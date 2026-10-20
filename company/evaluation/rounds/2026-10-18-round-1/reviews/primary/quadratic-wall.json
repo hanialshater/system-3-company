@@ -1,0 +1,104 @@
+{
+  "slug": "quadratic-wall",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/quadratic-wall",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Five, ten and twenty files produced ten, forty-five and 190 unordered pairs.",
+    "Diagrams drew every connecting comparison edge for small sizes, visibly becoming dense at twenty.",
+    "Thousand-file preset reported 499,500 and explicitly said too many to draw, but the Files slider and label remained twenty.",
+    "Reveal retained all four visited cases and derived n times n-minus-one divided by two, distinguishing 4.2-fold from exact fourfold growth in the small example."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Unordered pair counting and scaling ratios.",
+    "conceptualDemand": "Distinguish object count from relationship count.",
+    "interfaceBurden": "Four presets and a slider limited to small cases."
+  },
+  "whyCool": "Every added file introduces comparisons with all earlier files, so relationships explode faster than the folder size.",
+  "caveat": "Large-case Files control remains at twenty and needs clearer separate labeling; no actual runtime measurement.",
+  "effort": "Prediction, all four presets, small and large screenshots and derivation reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Good visual derivation with a misleading large-case control state.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Precise scale question with linear-growth and excessive-growth distractors.",
+      "evidence": "Forty-five pairs at ten, ask thousand.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Several sizes expose nonlinear growth and large-case representation limit.",
+      "evidence": "Five, ten, twenty and thousand.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Derives the count and quantifies observed scaling with finite-size precision.",
+      "evidence": "190 over forty-five equals about 4.2; thousand gives 11,100 times work.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Large-case input control contradicts selected case.",
+      "evidence": "Thousand active while Files label and slider say twenty.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General pairwise-work warning without a new applied case.",
+      "evidence": "Quadratic work becomes large early.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "A hundredfold input produces over ten-thousandfold pair work.",
+      "evidence": "Forty-five to 499,500.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Growing complete graph makes small-case density visible.",
+      "evidence": "Every line is one comparison; thousand honestly not drawn.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Adjust size and compare presets.",
+      "evidence": "Single input with multiple scales.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete warning for pairwise file comparisons.",
+      "evidence": "Input size alone understates all-pairs workload.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Combinatorial count and growth rate connect.",
+      "evidence": "Finite n-minus-one correction matters.",
+      "confidence": "medium"
+    }
+  }
+}

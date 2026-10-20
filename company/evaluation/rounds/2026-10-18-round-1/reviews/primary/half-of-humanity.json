@@ -1,0 +1,105 @@
+{
+  "slug": "half-of-humanity",
+  "demoVersion": 3,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/half-of-humanity",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predictionlargestcountriesneededforhalfworld3/7/15; chose15.",
+    "AddedIndia,China,USA,Indonesia,Pakistan,Nigeria:48.8%people19%land;Brazilseventh=>51.4%people25%land,Seenlinepreservedthreshold.",
+    "RemovedfivekeepingIndiaChina:35.2%people9%land;originalSeventh-crossinghistoryretained.",
+    "Reveal namessevenand48.8=>51.4of8.2billionUN2024;equal-area mapshowslandnotpeople.",
+    "Screenshot entiremap,selectionbuttons,countbar andprose readable."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simplecounts,percentages,andfamiliarworldmap.",
+    "conceptualDemand": "Separatecountrynumber,landshare,andpopulation share.",
+    "interfaceBurden": "Manysmallbuttons butreadablewholepath."
+  },
+  "whyCool": "Sevenhighlightedcountries cover aquarteroftheland butholdmorethanhalfthepeople.",
+  "caveat": "UN2024figuresandlandsharesobservednotindependentlyverified;currentselectioncan differfrompreservedthresholdhistory.",
+  "effort": "Prediction,six/seventhcountries,twocountrycounterfactual,reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Readableconcentrationdiscovery;limitedmechanisticdepth.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Plausiblepopulation-concentration alternatives.",
+      "evidence": "3/7/15largestcountries.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Countrytoggleaggregation exposesdatarelationships ratherthanmechanism.",
+      "evidence": "Six/seven/two countrytotals.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Usesactualthresholdhistory andlandcontrast toexplainanswer.",
+      "evidence": "Seventhtakes48.8to51.4;25%land.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Legiblemapandbar,persistenthistorydistinguishescurrenttwocountryselection.",
+      "evidence": "Current35.2versusSeen51.4 clearlylabeled.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Map-area versuspopulationprinciple offeredbutnewcase notexercised.",
+      "evidence": "Area mapshowslandnotpeople.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Sevenofroughly200countriesholdhalfpeople.",
+      "evidence": "51.4%in25%land.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Equal-areahighlight andpopulationbar juxtaposequantities.",
+      "evidence": "Two-country35.2%people9%land.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Togglecountries andbuildtotal.",
+      "evidence": "15countrybuttons.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Supportingmap/demographicliteracy.",
+      "evidence": "Do notreadpopulationfromlandarea.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Concentrationandland-populationdistinction.",
+      "evidence": "Fixed2024dataandcountryset.",
+      "confidence": "medium"
+    }
+  }
+}

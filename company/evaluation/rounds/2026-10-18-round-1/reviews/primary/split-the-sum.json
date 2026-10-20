@@ -1,0 +1,104 @@
+{
+  "slug": "split-the-sum",
+  "demoVersion": 3,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/split-the-sum",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted only cut10 works for13x7 rectangle versus anycut or middle.",
+    "Initialcut8 gave56+35=91; moved to10 gave70+21=91;Homecut1 gave7+84=91.",
+    "Reveal recalled selectedcut1 andcut10, explained pieces fill same rectangle and choosing easy products.",
+    "Inline1280x720 light screenshot showed grid, cut, products and full readable explanation. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Basic multiplication supported by rectangle grid.",
+    "conceptualDemand": "Areas add and multiplication facts.",
+    "interfaceBurden": "One slider plus step buttons, readable layout."
+  },
+  "whyCool": "The total stays91 while the cut turns an awkward product into two convenient ones.",
+  "caveat": "Single fixed rectangle; transfer and accessibility not independently tested.",
+  "effort": "Prediction, three cuts including boundary, reveal and inline screenshot.",
+  "provisionalBucket": "strong-gentle",
+  "bucketReason": "Clear readable constructive arithmetic lesson.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Tests validity versus convenience with precise area setup.",
+      "evidence": "Only10 versus anycut.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Moving cut changes parts while preserving total.",
+      "evidence": "Cuts8,10,1.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Observed contrast supports geometric invariant and convenience distinction.",
+      "evidence": "Same rectangle, choose easy products.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readable products, grid and state-aware prose.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General decomposition strategy but no fresh multiplication problem.",
+      "evidence": "Same13x7 throughout.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Convenient split is not uniquely valid.",
+      "evidence": "All totals91.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Grid pieces directly show distributivity.",
+      "evidence": "Cut1 and12wide pieces.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Movable cut explores invariance.",
+      "evidence": "Slider and column buttons.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Mental multiplication strategy is central.",
+      "evidence": "Times10 easy.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Area conservation explains distributive structure.",
+      "evidence": "Multiple equivalent decompositions.",
+      "confidence": "medium"
+    }
+  }
+}

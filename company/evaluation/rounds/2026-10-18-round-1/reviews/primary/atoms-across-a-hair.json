@@ -1,0 +1,121 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2",
+  "reviewKind": "primary",
+  "slug": "atoms-across-a-hair",
+  "demoVersion": 2,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/atoms-across-a-hair",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, familiar objects; no subject theory assumed.",
+  "viewport": "1280x720 desktop screenshot",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "text": "No-history banner; trust5/5 ignored. Predicted About350,000. Units defined in question; locked."
+    },
+    {
+      "id": "E",
+      "text": "Initial window100\u00b5m/500,000atoms. ArrowRight Zoom1:10\u00b5m/50,000. Automatic zoom reached5,\u00d7100,000,1nm/5atoms; hair350,000; reveal enabled."
+    },
+    {
+      "id": "R",
+      "text": "Five\u00d710 steps reduce count500,000\u219250,000\u21925,000\u2192500\u219250\u21925. Hair70% of initialwindow,0.7\u00d7500,000;70\u00b5m\u219270,000nm divided0.2nm. Screenshot inline at finalscroll shows graywindow top cut off and right-edge reveal clipping; atom details not visually verified. None saved."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Orders-of-magnitude alternatives with unit definitions.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Zoom readouts show powers often; final atom drawing not visible in tested scrolled viewport.",
+      "evidence": "E,R",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains scaling and independently supplies unit conversion.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readouts clear but final graphic/top and reveal right edge clip.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable ratio/unit-conversion procedure; limited to one scale example. Editorial only.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Single keyboard step not full audit.",
+      "evidence": "Untested",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Large scale difference quantified.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Zoom supports scale but final atom detail not verified.",
+      "evidence": "E,R",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Zoom exploration and automatic traversal.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Scale intuition rather than concrete decision.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Powers-of-ten and ratio conversion.",
+      "evidence": "R",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Multiple unit scales and repeated factors; definitions support conversion.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "moderate; clipping",
+    "prerequisiteNovelty": "moderate;\u00b5m/nm",
+    "notationRepresentationBurden": "moderate;micro/nano units and five scale steps"
+  },
+  "whyCool": "One zoom step cuts displayed atom count tenfold; five steps reach a five-atom-wide window.",
+  "caveat": "Final atomic drawing not visually verified in scrolled viewport; explanation clips right.",
+  "notApprovedForServing": true,
+  "effort": "About3minutes",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility modes",
+    "Final atom graphic detail",
+    "Zoom reversal"
+  ]
+}

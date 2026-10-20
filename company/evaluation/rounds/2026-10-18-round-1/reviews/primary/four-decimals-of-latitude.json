@@ -1,0 +1,156 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1b",
+  "date": "2026-10-18",
+  "slug": "four-decimals-of-latitude",
+  "domain": "geography",
+  "demoVersion": 1,
+  "expectedVersion": 1,
+  "batchId": "round1-02",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "8fb0620c0701103142783949667cef3c00cf7d3361b364cc7ba8614127f30ad8",
+  "demoSha256": "368ca8c4ac963d6d1fb245580f1cb6813341d887e49ed06747624a317526a6e1",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/four-decimals-of-latitude",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "evidenceMode": "live-browser-computer-use",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "previewIsolationObserved": true,
+  "visibleTrustChrome": "5/5 claims checked; ignored, unopened",
+  "phaseCoverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true,
+    "pixelInspection": true
+  },
+  "observations": [
+    {
+      "id": "p",
+      "action": "Selected1centimetre; Lock it in",
+      "outcome": "Prediction retained; decimal buttons unlocked at3decimals111m."
+    },
+    {
+      "id": "e",
+      "action": "Clicked4,5,6decimals",
+      "outcome": "11.1m,1.11m,.111m; latitude51.5074,51.50740,51.507400; reveal requires allthree."
+    },
+    {
+      "id": "v",
+      "action": "Inspected6decimal screenshot",
+      "outcome": "Football pitch105x68m and tiny red step with numeric label visible; dark1257x936 no horizontal cutoff; lower reveal scrolls vertically."
+    },
+    {
+      "id": "r",
+      "action": "Show me why",
+      "outcome": "11metres; each decimal10times finer;111km/degree spherical model; phone GPS few metres in open so extra digits mostly noise."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Kilometre/metre/centimetre alternatives demand meaningful scale commitment.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Three decimal contrasts expose factor10 with familiar pitch reference.",
+      "evidence": "e,v",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Ties observed steps to degree length and precision/accuracy limit.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Tiny step remains numerically labelled; buttons and units clear.",
+      "evidence": "v,e",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete phoneGPS interpretation with open-sky accuracy condition explains when extra digits mislead.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No mode checks.",
+      "evidence": "v",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Centimetre prediction reversed to11metres and noise warning.",
+      "evidence": "p,r",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Scaled pitch makes decimal place steps spatial.",
+      "evidence": "v,e",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversible discrete decimal comparison supports exploration.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Interpreting phone coordinates and excessive digits concrete.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Factor10 spatial scale plus accuracy limitation.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "One supported factor10 relationship with familiar physical reference.",
+    "conceptualDemand": "gentle",
+    "interfaceBurden": "low",
+    "conceptualChallenge": "gentle",
+    "prerequisiteNovelty": {
+      "level": "moderate",
+      "reason": "Latitude degree length andGPS accuracy introduced."
+    },
+    "notationRepresentationBurden": {
+      "level": "moderate",
+      "reason": "Trailing decimals,degree notation and metre subunits."
+    }
+  },
+  "whyCool": "Adding two decimal places shrinks the pitch-scale step from11.1metres to.111metres, then the reveal explains why extra precision can exceed GPS accuracy.",
+  "caveat": "Spherical latitude model; no longitude comparison or real GPS evidence tested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Decimal1/2 extremes, phone and accessibility modes untested."
+  ],
+  "reviewState": "complete-real-walkthrough",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  }
+}

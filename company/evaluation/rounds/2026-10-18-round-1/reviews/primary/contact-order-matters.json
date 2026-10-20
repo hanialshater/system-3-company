@@ -1,0 +1,105 @@
+{
+  "slug": "contact-order-matters",
+  "demoVersion": 4,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/contact-order-matters",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "Prediction reverse meetings D-E,C-D,B-C,A-B with A infected:0,1,4others? Chose4.",
+    "Day4 reverseorder Afirst reached1(B); forwardorder reached4; overlap reached4.",
+    "Efirst overlap reached4; forwardorder Efirst reached1(D).",
+    "Reveal resets display to original reverseorder Afirst, corrects1, explicitly references Efirst reachingD, distinguishes extra overlap contacts from merely reordering, caveats real transmission uncertainty.",
+    "Screenshot: large networkstage partly internallyscrolled; longreveal rightedge textclipped and pageverticalscroll."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 4,
+      "reason": "Connectedness versus temporalreachability is a strong misconception.",
+      "evidence": "Samefourcontacts, reversedtime.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Order,seed,and overlap show separate causal effects.",
+      "evidence": "Afirst reverse1vsforward4; Efirst forward1.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Personalized observedcounterfactual plus explicit model caveats.",
+      "evidence": "Reveal names Efirst Dresult, overlap addscontacts.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Many controls, long explanation, stage and rightedge clipping.",
+      "evidence": "Screenshot truncated networkandtext.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Temporal paths apply beyond static contactgraphs.",
+      "evidence": "Who-met-whom diagram can overstate reach.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual pointer walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 4,
+      "reason": "Sameconnections yield1or4.",
+      "evidence": "Ordercounterfactual observed.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Timeline and network encode order, though cropped.",
+      "evidence": "NodeE and dayaxis visible.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Switch seed and contactorder.",
+      "evidence": "Threeorders,twofirstcases.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful caution about interpreting contactnetworks.",
+      "evidence": "Realtransmission caveat.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 4,
+      "reason": "Temporalreachability,seed asymmetry,and concurrency.",
+      "evidence": "Three distinct experimentalvariables.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Chronological reasoning with a smallnetwork; optionaloverlap addsanother distinction.",
+    "conceptualDemand": "Connections alone insufficient; transmissiononlyforwardintime.",
+    "interfaceBurden": "Multiple controls and longclippedreveal."
+  },
+  "whyCool": "A connected chain can infect onlyone additional person when its meetings happen in the wrongorder.",
+  "caveat": "Deterministic toyinfection; longreveal layout issue; single reviewer.",
+  "effort": "Prediction, allorders atday4, alternatefirstcase, reveal.",
+  "notApprovedForServing": true,
+  "provisionalBucket": "strong",
+  "bucketReason": "Rich causalexperiment and tailored explanation; layoutfix needed."
+}

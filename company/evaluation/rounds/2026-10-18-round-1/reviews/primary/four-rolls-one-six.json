@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "four-rolls-one-six",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/four-rolls-one-six",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "four-rolls-one-six",
+    "domain": "probability",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/probability/four-rolls-one-six/meta.json",
+    "metaSha256": "9ff7202b046afa086995bdb030f955de83aeb3eb0e60f1dc2b45a234d459656d",
+    "demoSha256": "fd661f328059c09fdc5c572761a7199e609fcdc99b266fe9e418b3f0fefbb08c",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/four-rolls-one-six",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/four-rolls-one-six.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot"
+  },
+  "observations": {
+    "prediction": "Selected about 67% against about 52% and about 33%, then locked it in.",
+    "exploration": "Clicked Roll 1, 2, 3, 4 sequentially. No-six counts were 1000 \u2192 844 \u2192 701 \u2192 581 \u2192 477; at least one six ended 523 (52%). Start over reset stage to zero rolls, 1000 no-six and 0 successes; revealed explanation remained describing the completed run.",
+    "reveal": "Show me why corrected prediction to about 52%; exact chance 1 \u2212 (5/6)^4 = 51.8%. Explained removing one sixth of remaining players rather than everyone; additive approach would exceed 100% on seventh roll.",
+    "visual": "Actual 1257 \u00d7 936 dark screenshot inspected. Descending gold bars with count labels, dashed comparison, sequential controls and final counters all visible.",
+    "previewIsolation": "No-history evaluation banner visible.",
+    "blinding": "5/5 claims checked visible and ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Plausible additive mistake contrasted with correct repeated-trial probability.",
+      "evidence": "67%, 52%, 33% choices.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Sequential rolls expose shrinking eligible group and working reset.",
+      "evidence": "Counts 1000 to 477 over four steps; reset to 1000.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Uses actual run counts to explain complement and additive failure boundary.",
+      "evidence": "Reveal quotes 477/523, exact 51.8%, seventh-roll over-100% argument.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Graph labels and gated next-roll controls clearly guide desktop path.",
+      "evidence": "Inline screenshot and per-step feedback.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable count misses then subtract principle offered, but no new application with conditions.",
+      "evidence": "Final reveal sentence.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient access modes not tested.",
+      "evidence": "Keyboard, focus, contrast, phone, zoom and motion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed additive prediction contradicted by final 52%.",
+      "evidence": "67% prediction versus 523 successes.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Shrinking bars visibly represent cumulative misses.",
+      "evidence": "Five labeled bars in actual screenshot.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Roll progression and reset provide modest reversible experimentation.",
+      "evidence": "Four sequential clicks and working Start over.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Supports repeated-chance probability calculation.",
+      "evidence": "Exact complement formula and additive boundary.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Shrinking pool and impossible additive extrapolation give two linked explanations.",
+      "evidence": "One-sixth remaining and seventh-roll example.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Tracks repeated fractional reduction and complement.",
+    "conceptualDemand": "Requires following a changing denominator, then subtracting misses from total.",
+    "interfaceBurden": "Low; one active next roll at each step.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: complement and independent repeated trials.",
+    "notationRepresentationBurden": "moderate: fractions, percentages and exponent notation in reveal."
+  },
+  "whyCool": "Each roll removes a smaller slice of the remaining bar, making the additive 67% guess visibly overshoot.",
+  "caveat": "Only one completed run; reset clears the graph while retaining the prior run explanation, so its numbers no longer match current stage.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Second random run not completed.",
+    "Keyboard, focus, contrast, phone, zoom/reflow and motion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:05:09.498442+00:00"
+}

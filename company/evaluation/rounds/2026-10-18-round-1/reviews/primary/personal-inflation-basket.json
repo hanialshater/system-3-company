@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "personal-inflation-basket",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/personal-inflation-basket",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "5e2d285ce7a6a6f7fa02a9a69c69329501f6144cc4693c67513f11d0c2f93f95",
+    "demoSha256": "b9aa70fd832165aab9e55cbc673076a401fc310a541949fab43b737f391f7170",
+    "metaPath": "src/demos/economics/personal-inflation-basket/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected 2.7% and locked the predicted cost rise for a 50% rent, 30% food and 20% fun budget, with prices up 6%, 2% and 0%.",
+    "exploration": "Adding rent gave 3.0% so far, food raised it to 3.6%, and fun completed the total without increasing it. Moving rent share to 20% gave 1.8%; moving it to 70% gave 4.8%. Food remained 30% and fun took the remainder. Restored 50% rent before reveal.",
+    "reveal": "The reveal corrected the answer to 3.6%, separated contributions into 3.0, 0.6 and 0.0 points, and explained why the plain 2.7% average ignores spending weights. It generalized to household spending mixes and disclosed fixed basket, invented data and no switching.",
+    "visual": "Inspected the inline dark 1257 by 936 screenshot at 20% rent. The upper budget bar showed 20/30/50 shares; the lower contribution bar reached 1.8% below a dashed plain average marker at 2.7%. Share and price rise labels made the two encodings interpretable.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The choice targets a plausible unweighted averaging mistake.",
+      "evidence": "Selected 2.7% before seeing weighted contributions.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Building and changing the basket makes weighting concrete.",
+      "evidence": "Rent alone added 3.0 points, and changing rent share changed the total to 1.8% or 4.8%.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal explains the discrepancy with component arithmetic and assumptions.",
+      "evidence": "It contrasted 3.6% with 2.7% and named the fixed basket limitation.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "The share bar and contribution bar separate weights from price changes.",
+      "evidence": "Labels showed food fixed at 30% while fun absorbed the rent adjustment.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "It supplies a concrete way to apply the idea to another household.",
+      "evidence": "A household's inflation depends on its spending mix, under the stated fixed basket condition.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "The weighted result differs meaningfully from the intuitive plain average.",
+      "evidence": "The original basket produced 3.6% rather than 2.7%.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "The two bars show how spending share changes overall impact.",
+      "evidence": "The contribution bar stayed below the plain average marker for low rent share.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Adding blocks is guided rather than an open puzzle.",
+      "evidence": "Three add buttons and a share slider controlled a fixed three item basket.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "It helps interpret why household costs differ from an aggregate index.",
+      "evidence": "Different mixes produced 1.8%, 3.6% and 4.8% with identical price changes.",
+      "confidence": "high"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "The lesson connects arithmetic, interpretation and model limitations.",
+      "evidence": "The reveal states weighting and explicitly excludes switching goods.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Weighted percentages require a conceptual distinction, but the additive construction supports it.",
+    "conceptualDemand": "Moderate: distinguish a category's price rise from its contribution to the whole.",
+    "interfaceBurden": "Low: three add buttons and a single share slider.",
+    "conceptualChallenge": "Average price changes must be weighted by spending shares.",
+    "prerequisiteNovelty": "Percentage points and weighted averages are introduced.",
+    "notationRepresentationBurden": "Moderate: two related percentage bars encode different quantities."
+  },
+  "whyCool": "The same price rises can produce very different inflation simply because households buy different mixtures.",
+  "caveat": "The basket is fixed with invented numbers and no substitution; this is a mechanism illustration.",
+  "missingEvidence": [
+    "No new set of price changes or personally constructed basket was tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

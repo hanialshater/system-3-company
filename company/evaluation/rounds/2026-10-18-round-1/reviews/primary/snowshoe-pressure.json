@@ -1,0 +1,137 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "snowshoe-pressure",
+  "demoVersion": 2,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/snowshoe-pressure",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "snowshoe-pressure",
+    "domain": "physics",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/physics/snowshoe-pressure/meta.json",
+    "metaSha256": "fcd3fd7773518ad690a474c4912935f63900483d6231023dce9a3381de47c841",
+    "demoSha256": "86f3728130ef0d1af2ccc8dcbd46a30d4dafe768191aacf9e2e3ba6445d14ec9",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/snowshoe-pressure",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/snowshoe-pressure.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected 17 kPa and locked it in.",
+    "exploration": "Boots 0.04 square metres showed 17.2 kPa at constant weight 687 N. Snowshoe preset 0.40 showed 1.72. Restored boots; one keyboard step 0.08 gave 8.58. Restored snowshoes before reveal. Reveal only enabled after returning to boots, requiring both states to be experienced.",
+    "reveal": "Corrected to 1.7 kPa, connected reduced pressure to no sinking under toy snow limit, stated force divided by area and ten times area gives one tenth pressure. Explicitly said snow limit 3 kPa and sinking depths are made up.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected. Wide orange contact plate stayed above snow, with pressure bar below dashed 3 kPa limit. Weight metric stayed fixed, area and pressure labels readable, and model caveat visible.",
+    "previewIsolation": "Preview banner said history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Familiar situation gives a concrete inverse-ratio commitment.",
+      "evidence": "Tenfold area and three pressure alternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Reversible area control separates pressure from fixed weight.",
+      "evidence": "0.04, 0.08 and 0.40 square metres tested.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal explains both arithmetic and toy threshold.",
+      "evidence": "Same 687 N, ten times area, tenth pressure, made-up snow limit.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Fixed weight and changing area remain explicit; model caveat prevents literal depth interpretation.",
+      "evidence": "Weight 687 N and toy snow label.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General force-over-area principle supplied without a new application.",
+      "evidence": "Same hiker and snow examples only.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Complete mode audit not conducted.",
+      "evidence": "Keyboard area step worked; screen reader, contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Bigger contact makes the same weight less locally intense.",
+      "evidence": "17.2 to 1.72 kPa.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Foot depth and threshold bar connect pressure to support.",
+      "evidence": "Wide plate above surface and below limit bar.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Continuous size control changes the toy snow response.",
+      "evidence": "Boots and snowshoe presets plus intermediate step.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Explains a familiar tool through a general relation.",
+      "evidence": "Weight spread over area.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "One inverse relationship and threshold are explored.",
+      "evidence": "Force divided by area and toy support limit.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "Familiar object and simple ratio support unfamiliar pressure units.",
+    "conceptualDemand": "Separate total weight from force per contact area.",
+    "interfaceBurden": "One stepped slider and two presets.",
+    "conceptualChallenge": "gentle",
+    "prerequisiteNovelty": "Pressure and newton units; formula introduced at reveal.",
+    "notationRepresentationBurden": "Square metres, kPa, N and division."
+  },
+  "whyCool": "The same weight can stay fixed while its local pressure falls tenfold.",
+  "caveat": "Snow strength and sink depth are illustrative; the visible equation uses kPa without spelling out the thousand-pascal conversion.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:25:11.556000+00:00"
+}

@@ -1,0 +1,115 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1",
+  "reviewKind": "primary",
+  "slug": "rolled-or-folded-volume",
+  "demoVersion": 2,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/rolled-or-folded-volume",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy and simple charts; no domain theory.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "P: chose Roll it; title already says Rolling cannot erase the cloth; asks material volume without compressed air.",
+    "E: 12 sheets folded and rolled both1,440cm\u00b3; End20sheets2,400cm\u00b3; Home8sheets960cm\u00b3 and folded960cm\u00b3. Layout graphic changes.",
+    "R: Not quite Same outcome; current fold setting960cm\u00b3; shape does not remove material; real space differences air gaps/compression/bag sharing; volume conservation check.",
+    "No-history preview;6/6trust ignored. Inline screenshot1280x720 cleargraphic,counterandtext. AX retains previous2,400cm\u00b3 text but screenshot current960only."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Concrete choice but title largely gives conservation answer.",
+      "evidence": "P: chose Roll it; title already says Rolling cannot erase the cloth; asks material volume without compressed air.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Counters preserve volume through layout change; mechanism mostly stated.",
+      "evidence": "E: 12 sheets folded and rolled both1,440cm\u00b3; End20sheets2,400cm\u00b3; Home8sheets960cm\u00b3 and folded960cm\u00b3. Layout graphic changes.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Clear conservation and real-packing boundaries.",
+      "evidence": "R: Not quite Same outcome; current fold setting960cm\u00b3; shape does not remove material; real space differences air gaps/compression/bag sharing; volume conservation check.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Current value and arrangement clear visually.",
+      "evidence": "No-history preview;6/6trust ignored. Inline screenshot1280x720 cleargraphic,counterandtext. AX retains previous2,400cm\u00b3 text but screenshot current960only.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Distinguishes material from bag space and states conditions.",
+      "evidence": "R: Not quite Same outcome; current fold setting960cm\u00b3; shape does not remove material; real space differences air gaps/compression/bag sharing; volume conservation check.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Only slider keyboard checked; other modes unknown.",
+      "evidence": "No-history preview;6/6trust ignored. Inline screenshot1280x720 cleargraphic,counterandtext. AX retains previous2,400cm\u00b3 text but screenshot current960only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Title telegraphs conservation.",
+      "evidence": "P: chose Roll it; title already says Rolling cannot erase the cloth; asks material volume without compressed air.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Layoutchangeswithstablecounter.",
+      "evidence": "E: 12 sheets folded and rolled both1,440cm\u00b3; End20sheets2,400cm\u00b3; Home8sheets960cm\u00b3 and folded960cm\u00b3. Layout graphic changes.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversiblelayoutandamount.",
+      "evidence": "E: 12 sheets folded and rolled both1,440cm\u00b3; End20sheets2,400cm\u00b3; Home8sheets960cm\u00b3 and folded960cm\u00b3. Layout graphic changes.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Packingclaimboundary.",
+      "evidence": "R: Not quite Same outcome; current fold setting960cm\u00b3; shape does not remove material; real space differences air gaps/compression/bag sharing; volume conservation check.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "Singleconservationrelation.",
+      "evidence": "R: Not quite Same outcome; current fold setting960cm\u00b3; shape does not remove material; real space differences air gaps/compression/bag sharing; volume conservation check.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "One material-volume invariant.",
+    "conceptualDemand": "Distinguish materialamountfromarrangement.",
+    "interfaceBurden": "Low;twolayoutsandamountslider.",
+    "prerequisiteNovelty": "low: rectangularsheetvolume",
+    "notationRepresentationBurden": "low: dimensionsandcm\u00b3"
+  },
+  "whyCool": "Rollingandfolding12sheetskeepthecounterat1,440cm\u00b3.",
+  "caveat": "Doesnotmodelairgapsoractualbagfit;titleleaksprediction.",
+  "notApprovedForServing": true,
+  "effort": "about2minutes",
+  "missingEvidence": [
+    "Accessibility modes beyond slider keyboard",
+    "Learning outcomes"
+  ],
+  "fatalFindings": []
+}

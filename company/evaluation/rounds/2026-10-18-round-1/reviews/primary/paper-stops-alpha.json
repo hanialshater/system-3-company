@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "paper-stops-alpha",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/paper-stops-alpha",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "821cbf2e40f55191575273ea919c5be6502f1f6555e4ce721d51b438875e0801",
+    "demoSha256": "a015f1fbda8e435fac0b1c550adf4a635ca7b5495b87115bbee154677e9f4075",
+    "metaPath": "src/demos/chemistry/paper-stops-alpha/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected gamma for radiation stopped by paper and locked it in.",
+    "exploration": "Initial no-shield screenshot showed each100 per second. Paper showed alpha0,beta95,gamma100. Aluminium3 mm showed alpha0,beta0,gamma95. Lead5 cm showed alpha0,beta0,gamma2. Reveal unlocked after all three shields.",
+    "reveal": "Corrected alpha. Explains heavy charged helium nucleus losing energy early, beta needing aluminium and neutral gamma penetrating with2 per100 left after lead.",
+    "visual": "Inline screenshots inspected at initial,paper,aluminium,lead. Pink beam continuation thickness tracks transmitted counts, barrier labelled by material/thickness, species and count labels legible. Trust8/8 ignored.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884122 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Clear commitment but unexplained radiation names require prior chemistry knowledge to make more than a guess.",
+      "evidence": "Alpha/beta/gamma alternatives; stage names particles but no mechanism before lock.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Shield contrasts reveal different attenuation with numeric outputs.",
+      "evidence": "Paper0/95/100,aluminium0/0/95,lead0/0/2.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects observed shielding to particle charge/type and gamma residual.",
+      "evidence": "Heavy charged alpha versus neutral gamma explanation.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Material/thickness buttons,beam widths and transmitted counts are legible.",
+      "evidence": "Four inspected screenshots and successful sequence.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Charge/penetration principle offered without new application or applicability limits by radiation energy.",
+      "evidence": "Heavy charged easy to stop; neutral gamma goes deep.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Gamma prediction reversed and lead still leaves nonzero gamma.",
+      "evidence": "Paper alpha0,lead gamma2.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Beam continuations carry attenuation across three material contrasts.",
+      "evidence": "Inspected paper/aluminium/lead screenshots.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Shield buttons enable reversible material comparisons.",
+      "evidence": "Three shields exercised; return-to-none untested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete shielding material comparison central.",
+      "evidence": "Paper,3 mm aluminium,5 cm lead.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Species,charge and incomplete attenuation linked across materials.",
+      "evidence": "Three shields and reveal.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Compares three particle types across three shields with supported counts.",
+    "conceptualDemand": "Relates radiation identity and charge to penetration.",
+    "interfaceBurden": "Low: named material buttons.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "high: radiation particle identities",
+    "notationRepresentationBurden": "low: per-second counts,mm,cm"
+  },
+  "whyCool": "Changing paper to aluminium removes the beta beam, while even thick lead leaves a thin gamma line and a nonzero count.",
+  "caveat": "Fixed approximate counts do not expose radiation-energy dependence or a fresh shielding problem.",
+  "missingEvidence": [
+    "Return to no shield",
+    "Energy variation",
+    "Fresh application",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

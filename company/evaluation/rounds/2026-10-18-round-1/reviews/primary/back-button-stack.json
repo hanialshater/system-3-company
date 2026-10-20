@@ -1,0 +1,121 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2",
+  "reviewKind": "primary",
+  "slug": "back-button-stack",
+  "demoVersion": 5,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/back-button-stack",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, familiar objects; no subject theory assumed.",
+  "viewport": "1280x720 desktop screenshot",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "text": "No-history banner; trust5/5 ignored. Predicted B for A,B,C\u2192Back\u2192D\u2192Back; locked."
+    },
+    {
+      "id": "E",
+      "text": "Back from C: B, C marked ahead. VisitD: C thrownaway, pileA,B,D. Back:B; Back:A and Back disabled. Reveal remained available."
+    },
+    {
+      "id": "R",
+      "text": "Back steps down pile; ahead pages stay until newvisit. References actualDfromB discardingC and answerB. Namesstack, contrasts chronologicalA,B,C,D list. Inline screenshot ofA/aheadB,D and right reveal clipping; none saved."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete multistep sequence with plausible chronological-C alternative.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Branching visit visibly discards future while back retains ahead pages; boundary disabled.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects tested transitions to stack and explicit chronological misconception.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Positionlabels and discardedmessage clear; reveal rightclipping.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Reusable navigation model and last-added-first-back principle; editorialonly.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No modeaudit.",
+      "evidence": "Untested",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Newbranch removes C rather than retaining fullchronological sequence.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Verticalpile,ahead labels and deletion show mechanism.",
+      "evidence": "E,R",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Navigation puzzle and reversible backsteps.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Direct application to familiar browserBack behavior.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Historycursor,branch truncation and stack interpretation.",
+      "evidence": "E,R",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Requires tracking currentpage,aheadpages and branching mutation across a sequence.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "moderate;clipping",
+    "prerequisiteNovelty": "low-to-moderate;stack term",
+    "notationRepresentationBurden": "low;pageletters"
+  },
+  "whyCool": "Visiting D from B visibly throws C away, making Back return to B rather than last-opened C.",
+  "caveat": "Simplified browserhistory model; reveal rightedgeclips, and forward behavior unavailable to test.",
+  "notApprovedForServing": true,
+  "effort": "About3minutes",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility modes",
+    "Startover",
+    "Forwardnavigation"
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "raters-reward-agreement",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/raters-reward-agreement",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "raters-reward-agreement",
+    "domain": "ai",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/ai/raters-reward-agreement/meta.json",
+    "metaSha256": "79c3813f4731703e31eb7d1d0b96de6e17e0263bcbed0678e8c5c0227bf955a8",
+    "demoSha256": "c64b9f2fec83d4b487c40421a9fbbbe43da6865572bf3ffe44b1abe5f09c2ee1",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/raters-reward-agreement",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/raters-reward-agreement.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected always-correct against always-agreeing and tie; locked it in.",
+    "exploration": "Collected100 votes at70% agreement preference when user wrong:Agreeable60,Correct40,accuracy50% versus100%. Changed50%:50/50 tie. Changed30%:40/60. All three histories retained.",
+    "reveal": "Corrected always-agreeing fororiginal70% case. Explained equalanswers splitvotes whenuser right,andwrong userspreferagreement7/10. At50% tie,below50 correctionwins;rewardfits preferences ratherthantruth.",
+    "visual": "Actual1257 \u00d7936 dark screenshot inspected. Solid/hollow vote squares distinguishright/wrong users;current40/60 contrastsoriginal60/40 inretainedhistory. Fullreveal legible.",
+    "previewIsolation": "No-history evaluation banner visible.",
+    "blinding": "3/3 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear choice tests equating correctness with preference reward.",
+      "evidence": "Always-correct prediction versus70% case60/40.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Preference contrasts expose reversal whileaccuracy remainsfixed.",
+      "evidence": "70%\u219260/40;50%\u219250/50;30%\u219240/60.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects votes tosame-answer andwrong-user partitions andthreshold.",
+      "evidence": "Splitright-user votes;wrong-user7/10 preference.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Accuracylabels,votelegend andhistory separatemetrics ondesktop.",
+      "evidence": "Actualcurrent40/60 andhistory.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reward-model implication statedbut no concrete new application orscopeconditions.",
+      "evidence": "Preferences teachlikes ratherthantruth.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient access audit.",
+      "evidence": "Keyboard,focus,contrast,phone,zoom andmotion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committedcorrectness winnerloses votes underagreement preference.",
+      "evidence": "Accuracy100% gets40votes versus50%gets60.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Partitioned vote squares showwhichusers discriminate.",
+      "evidence": "Solidright/hollowwrong legend.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Threepreference settings offer reversible boundarycomparison.",
+      "evidence": "70,50,30 preferences tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete reward-data interpretation central.",
+      "evidence": "Preferencevotes canrewardagreement despiteerrors.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Usercorrectness,preference,andmodelaccuracy disentangled.",
+      "evidence": "Fixed50/100 accuracy withvotereversal.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Combines conditional userpreference withaggregatevotes.",
+    "conceptualDemand": "Partition right/wrongusers andcompareaccuracy withreward.",
+    "interfaceBurden": "Low:threecontrols andretainedhistory.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate:preference-modelreward andsycophancy.",
+    "notationRepresentationBurden": "moderate:conditionalrates andvote counts."
+  },
+  "whyCool": "Thecorrectmodel keeps100% accuracybutits votesmovefrom40 to60 whenwrongusers stopfavoring agreement.",
+  "caveat": "Inventedrates andtwoextreme fixedmodels;noactualrewardmodel trainedorrealraters measured.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Reset nottested.",
+    "Keyboard,focus,contrast,phone,zoom/reflow andmotion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:51:25.884859+00:00"
+}

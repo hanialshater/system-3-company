@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "scramble-the-digits",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/scramble-the-digits",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "b221046f89a4bab4aec58f74f121c0ebcbdf9a65943676e37662c68ff6f4b461",
+    "demoSha256": "28fb32c0846739eab8e896e528e300b089c4cb7ca9697f3797ab4bfe627f5485",
+    "metaPath": "src/demos/math/scramble-the-digits/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected Sometimes and locked the prediction about whether any scrambling of 7254 remains divisible by 9.",
+    "exploration": "Swapped 7 and 4 to make 4257, then swapped the middle 2 and 5 to make 4527. The displayed digit sum remained 18, while the quotients changed to 473 and 503.",
+    "reveal": "The reveal corrected Sometimes to Always, named both explored numbers, and explained that 1000 = 999 + 1, 100 = 99 + 1 and 10 = 9 + 1. The discarded parts are multiples of 9, leaving the digit sum as the remainder test.",
+    "visual": "Inspected the inline 1257 by 936 dark screenshot. Four large digit tiles aligned with their place decompositions and yellow leftover dots. The sum and exact division were readable below; a large empty panel made the reveal control fall at the lower viewport edge.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "A concrete universal claim invites an intuitive commitment before testing.",
+      "evidence": "Selected Sometimes for all permutations of 7254, then locked it.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Swapping digits exposes what changes and what stays fixed.",
+      "evidence": "4257 and 4527 had different quotients but the same sum of 18.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal uses the actual explored cases and explains the invariant.",
+      "evidence": "It named 4257 and 4527 and connected their shared sum to the place values.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Place values and leftover dots make the reason inspectable.",
+      "evidence": "Each place showed a multiple of 9 plus one, with dots matching its digit.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "The general digit sum test is stated, but a fresh number is not tested.",
+      "evidence": "The reveal says a number's remainder by 9 is its digit sum's; only the original digits were available.",
+      "confidence": "high"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "An apparently numerical coincidence becomes a guaranteed result.",
+      "evidence": "My Sometimes prediction was corrected by both tested permutations and the decomposition.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "The dots support the invariant instead of merely decorating the result.",
+      "evidence": "The yellow leftovers moved with the digits while their total stayed 18.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Pairwise tile swapping is a simple exploratory toy.",
+      "evidence": "Two direct swaps produced visibly different numbers.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "It gives a useful arithmetic divisibility check.",
+      "evidence": "The reveal states the digit sum remainder rule.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "It moves from examples to a place value explanation.",
+      "evidence": "The 999, 99 and 9 decompositions explain why swapping cannot alter the remainder.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "The controls are simple, while the explanation asks the learner to connect decimal place values with a remainder invariant.",
+    "conceptualDemand": "Moderate: distinguish the changing number from its unchanged digit sum.",
+    "interfaceBurden": "Low: select two digit tiles per swap, then reveal.",
+    "conceptualChallenge": "Understand why replacing each power of ten by one preserves remainder modulo 9.",
+    "prerequisiteNovelty": "Multiples and remainders are needed beyond everyday addition.",
+    "notationRepresentationBurden": "Moderate: place decompositions, dot counts and division equations share one panel."
+  },
+  "whyCool": "A number can change dramatically while a hidden arithmetic property stays fixed, and the leftover dots show why.",
+  "caveat": "Only permutations of one digit set are explored. A fresh divisible or nondivisible number would test generalization.",
+  "missingEvidence": [
+    "No fresh number or nondivisible digit set was tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

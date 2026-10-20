@@ -1,0 +1,104 @@
+{
+  "slug": "one-cell-rule-30",
+  "demoVersion": 2,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/one-cell-rule-30",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction gives Rule 30's eight-case local rule and asks the exact live-cell count after eight steps.",
+    "First step produced three live cells for Rule 30 and two for Rule 90.",
+    "At eight steps counts were seven and two; screenshot showed irregular versus nested triangles, with optional center sequences 110111001 and 100000000.",
+    "Reveal corrected the chosen nine to seven, listed Rule 30's row counts and explained simple rules need not yield simple pictures."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Binary neighborhood rules and exact multistep count.",
+    "conceptualDemand": "Trace local updates and compare emergent structure.",
+    "interfaceBurden": "Step, batch and center-column toggle; small cells."
+  },
+  "whyCool": "A tiny uniform rule can create an irregular picture while a similar rule creates nested order.",
+  "caveat": "Eight rows show a contrast, not a proof of randomness or absence of patterns; external historical claims not independently audited.",
+  "effort": "Prediction, single step, batch to eight, center-column highlight, screenshots and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Interesting parallel visual contrast, but exact-count prediction and small rule display add unnecessary burden.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Precise but computationally burdensome and weakly connected to the broad visual question.",
+      "evidence": "Exact eight-step count from a dense eight-case rule.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Stepwise and batch comparison plus column highlighting reveal different outputs.",
+      "evidence": "Same seed, two rules, count and center sequence contrasts.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Uses actual counts and visible pattern contrast to explain complexity from a simple rule.",
+      "evidence": "Seven versus two and irregular versus nested structures.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Local rule and cell counts are tiny; deriving a transition remains difficult.",
+      "evidence": "Eight-case legend and dense small grid in screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General principle with an application mention, not an applied exercise.",
+      "evidence": "Simple rules need not give simple pictures; random-source use mentioned.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Similar local rules produce markedly different structure.",
+      "evidence": "Irregular Rule 30 versus nested Rule 90.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Parallel grids and column highlights directly show the contrast.",
+      "evidence": "Shared seed with two evolving histories.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Step and highlight a fixed eight-row construction.",
+      "evidence": "No rule or seed editing, eight-step cap.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Primarily computational curiosity.",
+      "evidence": "Random-source application only mentioned.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Local determinism, global irregularity and sequences connect.",
+      "evidence": "Rule table, row counts and center column.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "slug": "small-n-favours-the-slow-curve",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/small-n-favours-the-slow-curve",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted merge sort. At n20 modeled insertion cost3200 versus merge5532; n43 14792 versus14933 still insertion.",
+    "At n44 winner flipped:15488 versus15374; n100 insertion80000 versus merge42521. Four traces persisted.",
+    "Screenshot showed proportional bars with outlined cheaper one, exact formulas and explicit 'cost model, not timings'. Reveal explained coefficient64 and eventually-versus-current-size distinction."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Prediction requires logarithmic formulas and algorithm names before scaffolding.",
+    "conceptualDemand": "Quadratic versus n-log-n with constants.",
+    "interfaceBurden": "Low: four guided presets."
+  },
+  "whyCool": "A one-item increase flips the modeled winner, making 'better growth rate' distinct from 'cheaper for this list'.",
+  "caveat": "Chosen coefficients and formulas are illustrative, not measured implementation performance; no free constants, input order or hardware conditions.",
+  "effort": "Browser prediction, four size comparisons, retained trace, screenshot and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Well-scoped model and exact crossover evidence, best for technically interested learners.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Formula comparison is precise but logarithms and sorting familiarity are assumed.",
+      "evidence": "8n\u00b2 versus64nlog\u2082n at20.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Adjacent crossover and wider-range contrasts isolate input size.",
+      "evidence": "20,43,44,100 fixed presets.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Original miss linked to observed boundary and coefficient mechanism.",
+      "evidence": "Insertion wins43, loses44; coefficient overwhelms growth advantage at20.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Model scope, exact totals and history remain visible.",
+      "evidence": "Cost-model label and four-row trace.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete algorithm-selection application with size condition.",
+      "evidence": "Short pieces handed to insertion sort; growth rate alone insufficient at actual n.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Nominally slower growth-class algorithm wins short cases.",
+      "evidence": "Insertion wins20/43.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Bars and retained numerical trace make reversal legible.",
+      "evidence": "Outlined winner switches between43 and44.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Mostly preset calculator.",
+      "evidence": "Four size buttons.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Models why hybrid algorithm choices depend on input size.",
+      "evidence": "Explicit connection to insertion sorting short pieces.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Separates constants from asymptotic growth.",
+      "evidence": "Adjacent boundary and large-size contrast.",
+      "confidence": "medium"
+    }
+  }
+}

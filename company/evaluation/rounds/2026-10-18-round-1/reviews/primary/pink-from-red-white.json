@@ -1,0 +1,104 @@
+{
+  "slug": "pink-from-red-white",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/pink-from-red-white",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted alloffspringpink fromtwoRWpinkparents;made-upRred,Wwhite,RWpink rule given,alternativeshalf/none.",
+    "One seed1pink;11seeds5red4pink2white;100seeds27red51pink22white. ParentRWicons andcolour/genotypelegend remain;grid fills.",
+    "Reveal recalls actual27/51/22,explains equalR/Wtransmission andfourpairsRR,RW,WR,WW yield1:2:1;statesone-run randomcounts wobble around25:50:25.",
+    "1280x720light gridandlegend clear;finalproseclippedright."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Familiarcolours andfourpaircombinations.",
+    "conceptualDemand": "Particulateinheritance versusblending.",
+    "interfaceBurden": "Simpleplant/fillbuttons."
+  },
+  "whyCool": "Pink is not a permanently blended gene: the red and white copies separate again in the next generation.",
+  "caveat": "Made-upincomplete-dominancetoy,onefixedcross andoneobservedseededrun. Noreset/resamplingtested. Prosecutoff.",
+  "effort": "Prediction,singleand10seedsteps,100seedfill,reveal,two screenshots.",
+  "provisionalBucket": "promising-with-fix",
+  "bucketReason": "Clearsegregationandsamplevariation;fixlayout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete blending-versussegregation misconception withtoygenotypestated.",
+      "evidence": "TwoRWparents,allversushalfpink.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Smallandlargersamples expose mixedoutcomes andsamplingvariation.",
+      "evidence": "1,11,100seedcounts.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explainsoriginalanswer throughfourallelepairs andactualsamplewithrandomnesslimit.",
+      "evidence": "27/51/22 versus25/50/25expectation.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Legendandcounts clear; equaltransmissiononlyexplicitatreveal andprosecutoff.",
+      "evidence": "Actualscreenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Onecrossprinciple explained butnonewparentcombinationtask.",
+      "evidence": "RW\u00d7RWonly.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Pinkparentsyieldredandwhiteoffspring too.",
+      "evidence": "27red22white among100.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Visiblemixedoffspringgrid connectsgenotypelegendto proportions.",
+      "evidence": "R Rred,R Wpink,W Wwhite.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Seedplantingandbatchfill invitenoisycountdiscovery.",
+      "evidence": "Singlethen10then100.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Foundationalinheritanceintuition.",
+      "evidence": "Colour doesnoterasealleles.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Segregation,paircombinations andsamplingvariation.",
+      "evidence": "1:2:1expectation versusactualsample.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "shortest-way-to-tokyo",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/shortest-way-to-tokyo",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "shortest-way-to-tokyo",
+    "domain": "geography",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/geography/shortest-way-to-tokyo/meta.json",
+    "metaSha256": "e49a3e46302922f9f900b68df767c3394c305e151c082d23a0d22390b7e100fd",
+    "demoSha256": "8c61db96bbf0440ed092ff84555ea43f9f205a577edd502ab3463a7457a3a69f",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/shortest-way-to-tokyo",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/shortest-way-to-tokyo.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected Hawaii against Northern Alaska and Mexico; locked it in.",
+    "exploration": "Initial map-straight route12820km. Hawaii14200,+1380. NorthernAlaska10880,\u22121940. MexicoCity14680,+1860. Shortest-tried label retainedAlaska. Revealaddedgreen dashed shortestpath whilecurrentMexico route remainedblue.",
+    "reveal": "Corrected NorthernAlaska;comparedactual10880 versus12820 andlongerdetours. Explainedgreatcircle tautstring,about70N,polewardMercatorstretch versusconstantbearing straightline. Ignoredwinds/airspace explicit.",
+    "visual": "Actual1257 \u00d7936 dark screenshot inspected. Dottedshortestpath bowsnorth nearAlaska;blueMexico route bowsdifferently. Longreveal internal scroll,bottompart partlyclipped.",
+    "previewIsolation": "No-history evaluation banner present.",
+    "blinding": "7/7 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear geographic alternatives testflatmapstraightness intuition.",
+      "evidence": "Hawaii prediction versusAlaska shortest.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Fourroute lengths exposeprojectionversusgrounddistance.",
+      "evidence": "12820 straight;14200 Hawaii;10880 Alaska;14680 Mexico.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Usesactualroutecomparisons andaddsgeometricreason withflightconstraints caveat.",
+      "evidence": "Greatcircle versusconstantbearing;winds/airspace excluded.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Routecontrols andcounts clear,butlongreveal requiresinternalscroll.",
+      "evidence": "Actualscreenshot bottomreveal clipped.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusablegreatcircleprinciple andconditions,butno concrete newcitypair.",
+      "evidence": "Tautstringonglobe andrealflightlimit.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient access audit.",
+      "evidence": "Keyboard,focus,contrast,phone,zoom andmotion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "CommittedHawaii intuitioncontradicted bymuchshorternorthernroute.",
+      "evidence": "Alaska10880 versusHawaii14200.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Maproutes anddashedgreatcircle carryprojectiondistortion.",
+      "evidence": "Actualdashednortharc versusblueMexicopath.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Fourroutepresets providecontrolledgeographiccomparison.",
+      "evidence": "Allfour routes tried.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concreteinterpretation oflong-haulroute geometry.",
+      "evidence": "Mapstraightline notshortestglobepath.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Groundlength,projectionstretch,constantbearing andoperationalcaveats linked.",
+      "evidence": "Fourlengths andwinds/airspace limit.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Comparesflatprojection appearances withsphericaldistance.",
+    "conceptualDemand": "Distinguishmapstraightness fromsurfacegeodesic androuteviawaypoint.",
+    "interfaceBurden": "Moderate:longinternalreveal;routebuttons simple.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate:greatcircle andconstantbearing.",
+    "notationRepresentationBurden": "moderate:km,latitude andpercentdifference."
+  },
+  "whyCool": "The northernarc looks longontheflatmap butmeasures1940km less thanthemapstraightline.",
+  "caveat": "FixedNYC\u2013Tokyo routes onidealizedglobe;not actualflightplanning orwinds/airspace analysis.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Switchback afterreveal nottested.",
+    "Keyboard,focus,contrast,phone,zoom/reflow andmotion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:07:24.059473+00:00"
+}

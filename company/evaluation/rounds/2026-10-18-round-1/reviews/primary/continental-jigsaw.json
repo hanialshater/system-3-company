@@ -1,0 +1,103 @@
+{
+  "slug": "continental-jigsaw",
+  "demoVersion": 6,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/continental-jigsaw",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Gulf of Guinea for Brazil bulge.",
+    "Closed to57\u00b0:rotated blue South America meets Gulf label;reset0 shows original coast,area17.9millionkm\u00b2 unchanged. Both maps visually inspected.",
+    "After slight slider move,reveal automatically restored57\u00b0,explains rigid rotation/arc and projection appearance,coarse rough fit. Claims coasts rarely match by chance without a chance comparison. Prose right clipped."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Globe rotation and map projection.",
+    "conceptualDemand": "Rigid spherical transform versus screen-size change.",
+    "interfaceBurden": "One slider,two presets."
+  },
+  "whyCool": "Moving a whole continent on a globe reveals a coastline correspondence without changing its actual area.",
+  "caveat": "Illustrative coarse alignment,not a plate reconstruction or quantified chance test;continental shelves and other evidence not examined.",
+  "effort": "Prediction,closed/open maps,slider,reveal,two endpoint screenshots.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Engaging geographic transform,scope needs careful historical interpretation.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Specific geographic destination with plausible alternatives.",
+      "evidence": "Southern/Horn/Gulf.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Rigid globe rotation,reset and area invariant provide contrast.",
+      "evidence": "0/57,17.9fixed.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects bulge destination,arc and coarse-fit limit.",
+      "evidence": "Original answer and projection size distinction.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readable map but labels compact and reveal clipped.",
+      "evidence": "Screenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Continental inference stated,no fresh application.",
+      "evidence": "Same coast fit.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Separated coastlines can align under rotation.",
+      "evidence": "Brazil/Gulf.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Central globe transform,baseline coast,trail and area invariant jointly expose mechanism.",
+      "evidence": "Both endpoints inspected.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Move continent across ocean.",
+      "evidence": "Slider/reset.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Primarily explanatory geology.",
+      "evidence": "No practical task.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Rotation/projection invariance and historical inference.",
+      "evidence": "Rough fit.",
+      "confidence": "medium"
+    }
+  }
+}

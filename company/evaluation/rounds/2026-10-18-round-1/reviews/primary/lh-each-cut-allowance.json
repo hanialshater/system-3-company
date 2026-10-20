@@ -1,0 +1,103 @@
+{
+  "slug": "lh-each-cut-allowance",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-each-cut-allowance",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Each panel is larger for six panels, each requiring 1.20 m plus 0.05 m.",
+    "Tests gave 7.5 versus 7.25 m; minimum one panel gave equal 1.25 m.",
+    "Screenshot used filled-container icons for a length model. Reveal explained per-unit versus job-level allowance, preserving original/current context."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Decimal addition and multiplication.",
+    "conceptualDemand": "Scope of a repeated allowance.",
+    "interfaceBurden": "Two tests and one slider."
+  },
+  "whyCool": "A small per-piece allowance accumulates across the whole job.",
+  "caveat": "Prediction is heavily cued and generic container graphic does not explain panel allowances.",
+  "effort": "Prediction, both tests, single-panel boundary, screenshot and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Correct useful arithmetic but prediction and visual representation are weak.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Title and repeated per-panel wording effectively give the answer.",
+      "evidence": "The allowance repeats each time.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Count boundary distinguishes repeated and one-time terms.",
+      "evidence": "Six panels versus one.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains distributive arithmetic through term scope.",
+      "evidence": "Multiply main length and allowance by count.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Explicit units, formulas and length-only scope.",
+      "evidence": "No cutting instructions.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General term-scope principle without new task.",
+      "evidence": "Per-unit versus job-level term.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Expected repeated allowance.",
+      "evidence": "Answer cued by title.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 1,
+      "reason": "Container icons do not depict panels or length allowances.",
+      "evidence": "Numeric cards carry explanation.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Tests and count slider.",
+      "evidence": "No independent layout.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Material allowance accounting is central.",
+      "evidence": "Panel-length requirement.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Distinguishes repeated and fixed terms.",
+      "evidence": "n\u00d71.25 versus n\u00d71.2+0.05.",
+      "confidence": "medium"
+    }
+  }
+}

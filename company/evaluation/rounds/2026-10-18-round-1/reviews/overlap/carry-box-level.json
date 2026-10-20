@@ -1,0 +1,130 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy/simple charts; no theory assumed.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "observations": [
+    {
+      "id": "p",
+      "phase": "prediction",
+      "text": "No-history preview verified; trust5/5 ignored. Chose1962J versus0/98 for10kg20mlevelsteadyspeed;locked. Workdefined force×distancealongforce."
+    },
+    {
+      "id": "e",
+      "phase": "exploration",
+      "text": "Initial30°ramp:20mpath10mrise98.1N×10=981J; Straightup:20mrise1962J; Level:0mrise0J,revealunlocked. Initial diagramforcearrowup and riseprojection screenshot inlineonly."
+    },
+    {
+      "id": "r",
+      "phase": "reveal",
+      "text": "Notquite0J;recallsown0/981/1962 and same98.1Nupforce/20mpath;onlyalongpush counts. Stilltiredmusclesburnenergyholding;steadyspeed,startstopignored."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Intuitive fatigue-versus-work misconception commitment.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Three pathdirection contrasts isolate rise.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Ownvalues and fatigue/idealization limits explicit.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Units/rise and force direction supported.",
+      "evidence": "p,e",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Reusable displacement-along-force rule and conditions.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Insufficient mode evidence.",
+      "evidence": "e",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Tiring levelcarry doeszero workonbox.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Arrow/riseprojection carries mechanism.",
+      "evidence": "p,e",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversible routes.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Everydaymechanics distinction.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Forceprojection,work and bodilyeffort linked.",
+      "evidence": "r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Separates mechanical work from effort and force direction from pathlength.",
+    "conceptualDemand": "Force/displacement projection and energy distinction; numerical products explicit.",
+    "interfaceBurden": "Three clearly labeled routepresets."
+  },
+  "whyCool": "The same20mpath and upwardforce give0/981/1962Jdepending only on verticalrise.",
+  "caveat": "Steady ideal carrying model ignores starts/stops and bodily motion; calorieeffort not inferred from mechanical work.",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Returnboundary and accessibility modes untested."
+  ],
+  "screenshots": [],
+  "slug": "carry-box-level",
+  "demoVersion": 1,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/carry-box-level",
+  "reviewKind": "overlap",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "ff4168d40343b0df93ff2adfd38c66eca0d1247c25406acd60d284caa2a5898c",
+    "metaSha256": "12cae1a0b4d68b56a2e38241b2873461913fbf18475cafc4aa4df5af61a7a691"
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "polar-day-length",
+  "demoVersion": 2,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/polar-day-length",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted exactlyhalfyear polar daylight versusfewdaysless/more; initialMarchday0declination\u22120.0dark.",
+    "Septemberbuttonday186:186sun0dark;nextMarchday365:186sun179dark. Internalupscrollshowsorbitinset179/186halves andfarthestsideexaggeratedellipse;pole/nightmapupdates.",
+    "Reveal explainssummerhalf7.6dayslongerwithroundedcounters,EarthslowestnearJulyfarthestpoint,andapproximately190dayswhenrefraction/Sunwidthincluded.",
+    "1280x720light orbitinsetsmallbutlabelsreadableafterordinaryscroll;finalprose rightedgecutoff."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Familiarseasonquestionbutorbitalspeed/horizonidealizationneedreasoning.",
+    "conceptualDemand": "Unequaltimeinthesameorbithalves.",
+    "interfaceBurden": "Two buttons,dateslider;normalinternalverticalscroll."
+  },
+  "whyCool": "The pole's daylight half lasts longer because Earth spends longer on the farther, slower side of its orbit.",
+  "caveat": "Roundedgeometricmodelversusapparent190dayvalue;physicalfiguresnotindependentlyaudited. Exaggeratedorbitexplicitlylabeled. Prosecutoff.",
+  "effort": "Prediction,twoequinoxruns,orbitinspection,reveal,three screenshots.",
+  "provisionalBucket": "promising-with-fix",
+  "bucketReason": "Usefulorbitalasymmetrywithlimit;fixlayout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear asymmetryquestionwithplausiblesymmetrybelief.",
+      "evidence": "Exactlyhalfversusfewdaysdifference.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Twoequinoxendpoints andorbit/map connectunequalhalfdurations.",
+      "evidence": "186lightversus179dark.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explainsoriginalanswer throughorbital-speedasymmetry andhorizonidealizationlimit.",
+      "evidence": "FarJuly slowsegment;190withrefraction/width.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Counters andinset clearonce scrolled;roundingexplained,butprosecutoff.",
+      "evidence": "Actualorbit andfinalscreenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Additionalreal-horizondurationmentioned withoutnewapplication.",
+      "evidence": "190days extension stated.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Oneannualrise/setdoesnotimplyequalhalves.",
+      "evidence": "186versus179days.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Orbitinsetdurationlabels andpolarshadow showasymmetry.",
+      "evidence": "Goldfarhalf186,other179.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Endpointbuttons anddayslider supportinspection.",
+      "evidence": "Twoendpointstates tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Seasonaldaylengthintuition.",
+      "evidence": "Geometricversusapparenthorizon.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Orbital-speedvariation andhorizonrefractionconditions.",
+      "evidence": "Julyfar/slowversus190apparentday.",
+      "confidence": "medium"
+    }
+  }
+}

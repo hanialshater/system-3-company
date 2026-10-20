@@ -1,0 +1,104 @@
+{
+  "slug": "coiled-cord-bend-radius",
+  "demoVersion": 3,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/coiled-cord-bend-radius",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted half the curvature when radius doubles for the same2 m plain cord.",
+    "Atbase10 cm, A circumference62.8 cm/3.18 turns/curvature.100 percm, B126/1.59/.050.",
+    "Atbase20, A126/1.59/.050, B251/.796/.025. Drawing showed partial0.8 turn at40 cm radius rather than a fabricated complete loop.",
+    "Reveal accurately explained reciprocal radius, more cord per turn and fixed total length/material; expressly excluded electrical safety and product-specific limits."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple reciprocal and proportional relationships with visible values.",
+    "conceptualDemand": "Curvature and circumference.",
+    "interfaceBurden": "Two views and radius slider."
+  },
+  "whyCool": "A fixed cord trades number of turns for gentleness of each bend.",
+  "caveat": "Geometric curvature only; no damage, stiffness or product-specific safe-bend model.",
+  "effort": "Completed prediction, both radii at two base settings, screenshots and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear geometric relationships and an accurate partial-turn boundary.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "A clear proportional geometry question with meaningful alternatives.",
+      "evidence": "Double radius versus curvature.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Changing radius exposes linked circumference, turn count and curvature.",
+      "evidence": "Two bases and doubled comparisons; partial-turn boundary.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Correct current numbers and geometric rule explain the relationship with useful scope limits.",
+      "evidence": "Curvature1/r and circumference increases.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Radius, units and partial-turn count are explicit.",
+      "evidence": "40cm radius and0.8 turns of200cm.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete geometric coil rule includes material/product applicability limits.",
+      "evidence": "Storage only; no safety or minimum-bend recommendation.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Larger coils use fewer turns and gentler curvature despite unchanged cord.",
+      "evidence": "Reciprocal scaling.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Coil arc and radius represent full and fractional turns.",
+      "evidence": "Partial loop at largest radius.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Radius control changes geometry.",
+      "evidence": "A/B and base slider.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Useful geometric storage intuition with explicit limits.",
+      "evidence": "Does not prescribe safe radius.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Links circumference, length and curvature.",
+      "evidence": "Material mechanics excluded.",
+      "confidence": "medium"
+    }
+  }
+}

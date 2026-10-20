@@ -1,0 +1,103 @@
+{
+  "slug": "lids-match-by-size",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lids-match-by-size",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Match diameter; title states rule and initial opening18/lid20 cm visible.",
+    "Initial color option mismatch2 cm; diameter option0. Increasing opening24 auto-selected24 lid in diameter mode,0; color fixed20 gave4.",
+    "Screenshots showed side-by-side differently sized circles,not lid seated on rim; no actual same-color cue. Reveal duplicated Your prediction held with currentcolor4 cm and correctly limited equal diameter to simplified size condition, requiring rim/seal/shape."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Diameter subtraction and simple matching.",
+    "conceptualDemand": "Choose relevant fitting attribute.",
+    "interfaceBurden": "Two modes and slider."
+  },
+  "whyCool": "A matching appearance cannot substitute for the dimensions and interface that make a lid fit.",
+  "caveat": "Color rule lacks a visible color-match candidate set; diameter mode assumes perfect lid available.",
+  "effort": "Prediction screenshot, both modes, largest opening, changed mode screenshot and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Useful compatibility caveat, weak prediction and incomplete visual premise.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Title supplies answer and options are rules rather than candidate lids.",
+      "evidence": "Fit needs diameter, not colour.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Mode/input contrast separates fixed lid and ideal matching lid.",
+      "evidence": "18/20,24/24,24/20.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains geometric condition and specific compatibility limits.",
+      "evidence": "Rim,seal,shape still required.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "No visible same-color candidates to explain color rule; duplicated verdict.",
+      "evidence": "Circles different colors; current mismatch4.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete additional fitting conditions prevent sufficient-diameter overclaim.",
+      "evidence": "Equal diameter alone not compatibility.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Expected geometric matching.",
+      "evidence": "Answer in title.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Circle sizes show mismatch,without actual seating or candidate set.",
+      "evidence": "24 versus20 circles.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Switching matching rule and varying diameter.",
+      "evidence": "Auto matching ideal lid.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Physical compatibility central.",
+      "evidence": "Size necessary not sufficient.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Distinguishes geometric and cosmetic attributes.",
+      "evidence": "Diameter versus rim/seal/shape.",
+      "confidence": "medium"
+    }
+  }
+}

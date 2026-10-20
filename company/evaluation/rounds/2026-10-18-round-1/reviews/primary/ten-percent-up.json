@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "ten-percent-up",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/ten-percent-up",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "513e3a6cd516791e9bf02e6aa61ae5a0e76b6d3f0c643c56ba9e7e439af3384a",
+    "demoSha256": "bcb5f464ebcca97d8e74df24d25af3cd2deac008e18e7f56c9f364dc6265c33d",
+    "metaPath": "src/demos/life/ten-percent-up/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected About 1,000 units and locked the energy reaching hawks prediction after four ten-percent transfers from 10,000 plant units.",
+    "exploration": "Added grasshoppers, frogs, snakes and hawks sequentially. Energy fell to 1,000, 100, 10 and 1 unit. Changed the per-link transfer to 20%, making the hawk total 16 units.",
+    "reveal": "The reveal corrected the answer to about one unit, explained repeated losses through metabolism, heat and uneaten material, and connected the shrinking energy to short food chains and scarce top predators. It qualified ten percent as a rule of thumb and gave 20% and 5% comparisons.",
+    "visual": "Inspected the inline dark 1257 by 936 screenshot at ten percent with all levels present. Square area represented energy: the plant square dominated, grasshopper and frog squares shrank sharply, and snake and hawk levels were tiny outlined dots with readable numeric labels.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The prompt tests whether a fractional transfer is applied repeatedly.",
+      "evidence": "Selected the one-link 1,000-unit result for the four-link chain.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Adding levels exposes compounding losses and the fraction control tests sensitivity.",
+      "evidence": "10,000 declined through four steps to one, while 20% transfer produced sixteen.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal explains the loss mechanism and qualifies the rule of thumb.",
+      "evidence": "It links losses to living costs and gives a measured-range caveat.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Area scaling and labels convey orders of magnitude without hiding tiny values.",
+      "evidence": "The final levels are visually tiny but labelled 10 and 1.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "The reveal applies the arithmetic mechanism to ecological structure under a variable-transfer caveat.",
+      "evidence": "It explains short chains and scarce top predators, with ten percent explicitly approximate.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Four modest-looking transfers leave only one ten-thousandth of the original energy.",
+      "evidence": "The hawk square becomes a dot beside the plants.",
+      "confidence": "high"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "True area encoding makes multiplicative loss tangible.",
+      "evidence": "Each successive square occupies a much smaller area.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Sequential addition and a fraction slider provide guided exploration.",
+      "evidence": "Four animal controls build the chain one level at a time.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "It gives an intuition for trophic energy constraints.",
+      "evidence": "The reveal connects available energy with predator scarcity.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "The lesson includes both compounding and variability in the transfer assumption.",
+      "evidence": "Twenty percent yields sixteen rather than one unit at the top.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "Repeated tenths and shrinking familiar food-chain levels support the new ecological inference.",
+    "conceptualDemand": "Low to moderate: apply the same fraction to the remaining amount at each link.",
+    "interfaceBurden": "Low: four level controls and one transfer slider.",
+    "conceptualChallenge": "Repeated percentage losses multiply rather than act once on the starting amount.",
+    "prerequisiteNovelty": "Trophic transfer efficiency is introduced through familiar animals.",
+    "notationRepresentationBurden": "Low: energy units, percentages and area-scaled squares."
+  },
+  "whyCool": "A huge base of energy dwindles into a near-invisible top square through repeated small shares.",
+  "caveat": "This is a simple fixed chain with the same transfer fraction at every link; real food webs and efficiencies vary.",
+  "missingEvidence": [
+    "No fresh food web or unequal transfer rates were tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

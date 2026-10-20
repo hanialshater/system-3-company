@@ -1,0 +1,116 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1",
+  "reviewKind": "primary",
+  "slug": "heat-the-ammonia-maker",
+  "demoVersion": 2,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/heat-the-ammonia-maker",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy and simple charts; no domain theory.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "P: chose risesalotforammoniaatequilibriumheated25to450\u00b0C;exothermicequationgiven.",
+    "E:25\u00b0C K5.6\u00d710\u2075;200\u00b0C0.39;450\u00b0C4.9\u00d710\u207b\u2075;Showspeedadds450reachesfasterarrow;NH3bar450\u00b0C0.23%,25\u00b0C94%.",
+    "R:Notquitefallsalot;exothermicheatpushesbalancetowardreactants;factorieshotforspeed,catalyst/highpressure;temperaturemovesK.",
+    "No-historypreview;7/7trustignored. Screenshot1280x720logKchartandproductbarclear;speedshownasannotationratherthanobservedtimecourse."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Meaningfulspeed/yieldconfusionbutrequiresdomainheat-equilibriumknowledge.",
+      "evidence": "P: chose risesalotforammoniaatequilibriumheated25to450\u00b0C;exothermicequationgiven.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Temperaturedisclosuresandbarcontrastyield;speedonlyannotation.",
+      "evidence": "E:25\u00b0C K5.6\u00d710\u2075;200\u00b0C0.39;450\u00b0C4.9\u00d710\u207b\u2075;Showspeedadds450reachesfasterarrow;NH3bar450\u00b0C0.23%,25\u00b0C94%.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explainsreactionheatdirectionandindustrialtradeoff.",
+      "evidence": "R:Notquitefallsalot;exothermicheatpushesbalancetowardreactants;factorieshotforspeed,catalyst/highpressure;temperaturemovesK.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Klogscaleandscientificnotationburdennovice;barhelps.",
+      "evidence": "No-historypreview;7/7trustignored. Screenshot1280x720logKchartandproductbarclear;speedshownasannotationratherthanobservedtimecourse.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Factoryapplicationstated;conditionslimited.",
+      "evidence": "R:Notquitefallsalot;exothermicheatpushesbalancetowardreactants;factorieshotforspeed,catalyst/highpressure;temperaturemovesK.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Modesnotsufficientlytested.",
+      "evidence": "No-historypreview;7/7trustignored. Screenshot1280x720logKchartandproductbarclear;speedshownasannotationratherthanobservedtimecourse.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Fasterreactionleaveslessproduct.",
+      "evidence": "E:25\u00b0C K5.6\u00d710\u2075;200\u00b0C0.39;450\u00b0C4.9\u00d710\u207b\u2075;Showspeedadds450reachesfasterarrow;NH3bar450\u00b0C0.23%,25\u00b0C94%.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Kplotandbarshowtrendbutnotheatmechanism.",
+      "evidence": "E:25\u00b0C K5.6\u00d710\u2075;200\u00b0C0.39;450\u00b0C4.9\u00d710\u207b\u2075;Showspeedadds450reachesfasterarrow;NH3bar450\u00b0C0.23%,25\u00b0C94%.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Fixedtemperaturedisclosures.",
+      "evidence": "E:25\u00b0C K5.6\u00d710\u2075;200\u00b0C0.39;450\u00b0C4.9\u00d710\u207b\u2075;Showspeedadds450reachesfasterarrow;NH3bar450\u00b0C0.23%,25\u00b0C94%.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Industrialprocessintuition.",
+      "evidence": "R:Notquitefallsalot;exothermicheatpushesbalancetowardreactants;factorieshotforspeed,catalyst/highpressure;temperaturemovesK.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "K,yield,speedandindustrialtradeoff.",
+      "evidence": "R:Notquitefallsalot;exothermicheatpushesbalancetowardreactants;factorieshotforspeed,catalyst/highpressure;temperaturemovesK.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Corecontrastrequiresreactiondirection,equilibriumconstantandkineticsdistinction.",
+    "conceptualDemand": "Multipledependentreactionabstractions.",
+    "interfaceBurden": "Lowbuttons.",
+    "prerequisiteNovelty": "high:K,exothermicbalance,kinetics",
+    "notationRepresentationBurden": "high:stoichiometry,logaxis,scientificnotation"
+  },
+  "whyCool": "Thehotpointislabelledfasteryetitsammoniabarshrinksfrom94%to0.23%.",
+  "caveat": "Speedclaimisannotation,nottime-basedexploration;pressurescopeonlybrieflystated.",
+  "notApprovedForServing": true,
+  "effort": "about3minutes",
+  "missingEvidence": [
+    "Timecoursespeedcomparison",
+    "Accessibility modes",
+    "Learning outcomes"
+  ],
+  "fatalFindings": []
+}

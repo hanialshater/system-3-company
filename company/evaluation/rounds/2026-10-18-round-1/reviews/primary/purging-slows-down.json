@@ -1,0 +1,140 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "purging-slows-down",
+  "demoVersion": 3,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/purging-slows-down",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "purging-slows-down",
+    "domain": "life",
+    "status": "published",
+    "demoVersion": 3,
+    "metaPath": "src/demos/life/purging-slows-down/meta.json",
+    "metaSha256": "d3b524f5a228f19dea6f5a6ea9e7d07ef9b1e9ac8186a8e218eb1e1e203ea336",
+    "demoSha256": "793b6b59743e01635e28b7652ae95b5bd47185f0fa20792502bb423485a60685",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/purging-slows-down",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/purging-slows-down.json"
+  },
+  "date": "2026-10-18T20:12:27.316973+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Chose10generations and locked."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Initial10%,20of200badcopies,1in100two,90%carriers. Ten generations5%,10of200,1in400,95%hidden. Twenty3.3%,7of200,1in900,97%hidden. Run1% reachedgeneration90,2of200,1in10000,99%hidden. Inspected dots and flattening curve."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read90correction,selection sees only doublecopies; firsthalf10generations versus remaining80; reciprocalshare increases1eachgeneration."
+    },
+    {
+      "phase": "visual-inspection",
+      "evidence": "Actual1257x936dark inline0,10,90and scrolled reveal inspected. Paired-dot carriers,legend,percentcurve and prose readable."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicit genetic conditions and time forecast.",
+      "evidence": "Large randommating,twocopieslethal,oneharmless,10to1percent.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Equal-time and endpoint contrasts expose slowing.",
+      "evidence": "10to5in10,5to3.3in10,1at90; healthy carriers increasingly dominant.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Mechanism links rarity to invisibility to selection.",
+      "evidence": "Two-copy1in100to1in10000; reciprocal law supplied.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Paired dots and frequency labels scaffold genetic abstraction.",
+      "evidence": "Copyshare distinct from twocopy births; toyconditions explicit.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reciprocal rule stays within same toy.",
+      "evidence": "No new genetic scenario or application task.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Lethality does not cause rapid disappearance.",
+      "evidence": "90generations rather than10;99%copies hidden at1%.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Flattening curve and sparse carriers show slow tail.",
+      "evidence": "Initialdoublecopy icon then singlecopy carriers and curve flatten.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Stepandrun simulation.",
+      "evidence": "Two10generation steps andendpoint.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Useful recessive persistence intuition within toy assumptions.",
+      "evidence": "Carrier protection from selection.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Frequency,paired inheritance and nonlinear removal connected.",
+      "evidence": "Square rarity and reciprocaltime law.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "conceptualDemand": "Track copies versus people and how rare pairs slow selection.",
+    "interfaceBurden": "Two run controls and reset; no precision.",
+    "prerequisiteNovelty": "Recessive carriers and randommating introduced directly.",
+    "notationRepresentationBurden": "Percent,1inN,paired dots and1/share; visual scaffolds."
+  }
+}

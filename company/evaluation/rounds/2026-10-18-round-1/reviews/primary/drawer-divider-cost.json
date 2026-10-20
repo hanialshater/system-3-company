@@ -1,0 +1,104 @@
+{
+  "slug": "drawer-divider-cost",
+  "demoVersion": 1,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/drawer-divider-cost",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Selected Count walls as the usable compartment estimate; title directly states dividers consume width.",
+    "Atinside40 cm/four compartments/1 cm dividers, ignored-wall estimate10 cm versus counted9.25.",
+    "Atinside30 cm, counted6.75 versus ignored7.5, consistent with three internal dividers.",
+    "Reveal correctly identified current ignored estimate7.5, gave subtract-internal-walls then divide rule, and limited to straight rectangular drawers. Held verdict duplicated."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple subtraction and division.",
+    "conceptualDemand": "Material thickness consumes usable width.",
+    "interfaceBurden": "Two modes and slider."
+  },
+  "whyCool": "The missing width is visible in the material separating the compartments.",
+  "caveat": "No construction tolerances or irregular drawer geometry; weak prediction and duplicated verdict need polish.",
+  "effort": "Completed prediction, both methods at two widths, screenshots and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Useful causal width accounting with a weak prediction and minor presentation defects.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Title and option names supply the answer rather than asking for a numerical consequence.",
+      "evidence": "Count walls versus Ignore walls.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Width and wall accounting demonstrate fixed material cost across sizes.",
+      "evidence": "40:10/9.25;30:7.5/6.75.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Correct general formula and scope explain the measured difference.",
+      "evidence": "Inside width minus three walls, divided by four.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Numeric labels are clear, but duplicate verdict and initially clipped footer reduce presentation quality.",
+      "evidence": "Two held lines.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete calculation procedure includes actual dimensions and material thickness.",
+      "evidence": "Straight rectangular drawer condition.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Small overlooked thickness accumulates.",
+      "evidence": "Three centimeters removed before division.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Visible internal dividers distinguish usable spaces from nominal subdivisions.",
+      "evidence": "Three thick walls among four compartments.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Accounting mode and width slider.",
+      "evidence": "Two variables.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Direct planning calculation.",
+      "evidence": "Use actual inside dimensions.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Separates compartment count from number of internal walls.",
+      "evidence": "Four compartments need three dividers.",
+      "confidence": "medium"
+    }
+  }
+}

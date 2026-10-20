@@ -1,0 +1,104 @@
+{
+  "slug": "never-flag-99",
+  "demoVersion": 2,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/never-flag-99",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted50% accuracy for approving all1000payments with10fraud; alternatives1/99%.",
+    "Flag20:98.6%accuracy,8of10fraudcaught. Approveall:99%,0of10. Slidermax50:96%,10of10;grid distinguishes falsealarms,caughtfraud,missedfraud.",
+    "Reveal compares990correct/10missed versus20flags8caught12falsealarms;states invented1%rate/ranking andmentions realdataset492/284807. It discusses original20case whilecurrent50statevisible without incorporating50extension.",
+    "1280x720light grid/readouts clear; rightedge revealprose clipped."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Requires distinguishing correctclassifications fromtargetcapture.",
+    "conceptualDemand": "Classimbalance andtwodenominators.",
+    "interfaceBurden": "One slider/twopresets; smallgrid."
+  },
+  "whyCool": "The useless model wins on accuracy while the model that catches every fraud scores lower.",
+  "caveat": "Inventedranking/rate; realdatasetclaimnotindependentlyverified. Revealdoesnotdiscuss50flagchangedstate; proseclip.",
+  "effort": "Prediction,three thresholds,reveal,two screenshots.",
+  "provisionalBucket": "promising-with-fix",
+  "bucketReason": "Strong metriccounterexample; fixreveal layout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete accuracy calculation targets rare-classmetric trap.",
+      "evidence": "1000payments,10fraud,approveall.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Baseline,20 and50flag contrasts expose accuracy/recall tradeoff andall-fraudcaptureboundary.",
+      "evidence": "99%0caught;98.6%8caught;96%10caught.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains original counterexample andtoy assumption butomits tested50extension.",
+      "evidence": "990correct and12falsealarms calculation.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Legend andpaired metrics clear; revealprosecutoff.",
+      "evidence": "Screenshot50flagstate andbaseline20explanation.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General metricselection advice,not newapplicationtask.",
+      "evidence": "Askcasescaught whenclassrare.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Betterfraudcapture lowersaccuracy.",
+      "evidence": "99%doingnothing versus96%catchallfraud.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Gridmakes rarecases andfalsealarms visible.",
+      "evidence": "Coloredlegend andpairedmetricoutputs.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Riskthreshold slider enablestradeoff exploration.",
+      "evidence": "0,20,50flags tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Centralmodelmetric interpretation.",
+      "evidence": "Accuracyversuscatchingtargetclass.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Classimbalance,confusioncounts andmetrictradeoff.",
+      "evidence": "8caught,12falsealarms,98.6%.",
+      "confidence": "medium"
+    }
+  }
+}

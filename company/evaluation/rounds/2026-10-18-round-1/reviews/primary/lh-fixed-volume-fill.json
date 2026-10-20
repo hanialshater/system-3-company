@@ -1,0 +1,103 @@
+{
+  "slug": "lh-fixed-volume-fill",
+  "demoVersion": 2,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-fixed-volume-fill",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Same: 10 L either way for filling a fixed bucket.",
+    "Tests gave 2 versus 4 minutes at 10 L for 5 versus 2.5 L/min. Maximum 20 L gave 4 versus 8 minutes.",
+    "Screenshot showed clock wedges and equal filled bucket icons. Reveal separated original/current volume and explained volume divided by flow rate."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple division of familiar volumes and rates.",
+    "conceptualDemand": "Fixed amount differs from fixed running time.",
+    "interfaceBurden": "Two tests and one slider."
+  },
+  "whyCool": "A slower tap takes longer without saving water when you fill the same bucket.",
+  "caveat": "No spills or overrun; fixed-duration uses would behave differently but are not demonstrated.",
+  "effort": "Prediction, both tests, maximum volume, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear misconception and supporting time-volume visuals.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear volume-versus-rate misconception with fixed target.",
+      "evidence": "Slow versus same volume choices.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Bucket size changes times consistently while delivery stays equal.",
+      "evidence": "10\u219220 L.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains constant delivered volume and changed duration.",
+      "evidence": "Slower only takes longer under assumptions.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Rates, volume and no-spill scope clear.",
+      "evidence": "Illustrative rates, fixed volume, no spills.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Conditional principle without contrasting fixed-duration application.",
+      "evidence": "Under these assumptions.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Challenges lower-flow-always-saves intuition.",
+      "evidence": "Same water at fixed target.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Clock differences and equal buckets support time-volume separation.",
+      "evidence": "Half versus full clock at 4/8 minutes.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Tests and bucket slider.",
+      "evidence": "No live fill task.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Water-use reasoning is central.",
+      "evidence": "Fixed-volume filling.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Separates rate, time and target volume.",
+      "evidence": "Inverse time relationship.",
+      "confidence": "medium"
+    }
+  }
+}

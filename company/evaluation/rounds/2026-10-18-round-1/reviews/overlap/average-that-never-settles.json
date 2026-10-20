@@ -1,0 +1,104 @@
+{
+  "slug": "average-that-never-settles",
+  "demoVersion": 4,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/average-that-never-settles",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "overlap",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "PredictionCauchyaverages withrareenormousdraws narrow/stayspread/driftzero; chose narrowslowly.",
+    "1draw:die spread5,Cauchy17of30beyond1;100draws0.69and12of30;10000draws0.07and18of30.",
+    "Reveal farthestaverage24.7 containsdraw250115,divided10000still25; theorysameCauchydistribution,halfoutside1; seeded30dotbatchnotrule.",
+    "Screenshot two rows ofaverages,offchart hollowdots; upperdierow partlyaboveviewportafterreveal; entireprose readable."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Distinguish drawdistribution from distributionofaverages and interpret extremetails.",
+    "conceptualDemand": "Rareunboundedvalues canoffsetlargesamplesize.",
+    "interfaceBurden": "Fivebuttons simple; two metrics andoffchartmarkers."
+  },
+  "whyCool": "Onedraw ofaquartermillion canstill move aten-thousand-number average by25.",
+  "caveat": "Independentrootreview withoutreading primaryratings; one seededbatch,not empiricalproof oftheorem.",
+  "effort": "Prediction,1/100/10000drawcontrasts,reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Mechanisticcounterexample to familiarintuition withcarefulfinitebatch caveat.",
+  "quality": {
+    "prediction": {
+      "score": 4,
+      "reason": "Strong challenge to universalaveraging intuition.",
+      "evidence": "Cauchyvsdie comparison.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Samplesizes show contrastingdistributions withsame30runs.",
+      "evidence": "Die5=>0.07,Cauchy17=>18outside1.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explains extremecontribution and separates theory fromfinitebatch.",
+      "evidence": "250115/10000about25;seededbatchcaveat.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readableexplanation butheavy statisticalrepresentation.",
+      "evidence": "Two distributions,two differentspreadmetrics.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Potential to questionconditions for averagingstability.",
+      "evidence": "Averaging neednotwashoutrareextremes.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 4,
+      "reason": "10000draws do not stabilizeaverage.",
+      "evidence": "18of30stillfarfromzero.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Contrastingdotclouds andoutlieraccounting.",
+      "evidence": "Diecluster versusCauchyspread.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Sample-sizepreset exploration.",
+      "evidence": "Fivecountbuttons.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Advanced statisticalintuition rather than immediateaction.",
+      "evidence": "NamedCauchytheoreticalexample.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 4,
+      "reason": "Heavy tails anddistributionofsamplemean.",
+      "evidence": "Any-n sameCauchyspread.",
+      "confidence": "medium"
+    }
+  }
+}

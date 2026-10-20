@@ -1,0 +1,104 @@
+{
+  "slug": "wobbly-table-quarter-turn",
+  "demoVersion": 1,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/wobbly-table-quarter-turn",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "At zero degrees the signed gap was four millimetres.",
+    "Find balance moved to 45 degrees and zero gap; screenshot showed a rotated square and green feet.",
+    "At 90 degrees the signed gap was negative four millimetres.",
+    "Reveal explicitly recalls visiting zero despite the current negative gap, explains the crossing, distinguishes balance from level, and excludes steps, holes and unequal legs."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Signed gap and continuity require interpretation.",
+    "conceptualDemand": "Infer an intermediate zero from a sign change.",
+    "interfaceBurden": "Angle slider and two presets."
+  },
+  "whyCool": "A quarter turn trades the high and low contacts, leaving a balanced position somewhere between.",
+  "caveat": "Illustrated signed-gap model rather than a measured contact simulation; no independent theorem audit.",
+  "effort": "Prediction, start and balance presets, quarter-turn endpoint, screenshots and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Interesting conditioned result with good changed-state explanation; signed schematic needs clarity.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "The title and answer label reveal the intended result.",
+      "evidence": "Turn the table, lose the wobble; Find balance.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Start, zero and opposite-sign endpoint establish the illustrated crossing.",
+      "evidence": "Four, zero, negative four across a quarter turn.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Handles changed final state and gives meaningful existence conditions.",
+      "evidence": "Visited zero; current negative gap; square equal-leg and gentle continuous ground.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "The signed-contact schematic is less intuitive than the stated physical problem.",
+      "evidence": "Negative gap and two schematic contact lines lack a plain sign definition.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete table-use conditions and counterconditions.",
+      "evidence": "Four feet down is not level; steps, holes and unequal legs outside model.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Rotation can remove wobble on uneven ground.",
+      "evidence": "Zero-gap position between opposite signs.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Rotation and foot colors illustrate balance, but terrain contact is schematic.",
+      "evidence": "Rotated square above two contact lines.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Continuous angle control around a special balanced point.",
+      "evidence": "Zero to ninety degrees with balance preset.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete table adjustment with conditions.",
+      "evidence": "Equal-leg square tables on gentle continuous ground.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Connects a sign crossing to existence and separates balance from level.",
+      "evidence": "Quarter-turn crossing and excluded terrain cases.",
+      "confidence": "medium"
+    }
+  }
+}

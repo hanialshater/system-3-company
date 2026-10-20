@@ -1,0 +1,104 @@
+{
+  "slug": "elastic-loop-release",
+  "demoVersion": 4,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/elastic-loop-release",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted sliding the hair tie over the cord's free end releases it; drawing labels the free end.",
+    "A retained a figure-eight-looking tie around a straight cord and reported1 loop; B showed an oval at the tip with direction arrow and reported0/free.",
+    "No continuous sequence established how the initial crossed-looking tie deforms or actually passes completely beyond the endpoint; final oval still visually overlaps tip.",
+    "Reveal stated free-end sliding without cutting, but generalized any hair tie round a cord as not a knot. It included unrelated bend-radius/electrical scope boilerplate."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple intended operation, with uncertainty from the diagram.",
+    "conceptualDemand": "Loop around an open-ended cord.",
+    "interfaceBurden": "Two buttons."
+  },
+  "whyCool": "A free endpoint can matter more than the apparent crossing in a loop.",
+  "caveat": "Needs a continuous release sequence and a clearly specified simple loop; real hitches, obstructed ends or tight fit can differ. Unrelated bend-radius boilerplate weakens focus.",
+  "effort": "Completed prediction, both states, screenshots and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Intended insight is useful but static visual evidence and scope are insufficiently precise.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "A plausible release choice, but the prose says looped at a free end and diagram does not clearly establish initial topology.",
+      "evidence": "Crossed-looking tie versus labeled free end.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Preset diagrams and counters change, without demonstrating the actual release motion.",
+      "evidence": "Two views only.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Free-end principle is plausible for the intended simple loop, but visual evidence does not establish transformation and general wording is too broad.",
+      "evidence": "Final reported0 while oval overlaps tip.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "State labels clear; initial crossed shape and final overlap obscure physical operation.",
+      "evidence": "No step sequence.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "A simple free-loop principle is stated but exact configuration and fit conditions are underexplained.",
+      "evidence": "No second arrangement or blocked-end boundary.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "An apparent knot can be released through an available endpoint.",
+      "evidence": "Intended topology distinction.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Diagram communicates loop location but not continuity of deformation.",
+      "evidence": "Static endpoint oval and arrow.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Two preset views.",
+      "evidence": "No dragging or undo path.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Potentially useful simple storage release idea.",
+      "evidence": "Only intended free-loop case.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Hints at knot versus loop topology.",
+      "evidence": "No rigorous configuration demonstration.",
+      "confidence": "medium"
+    }
+  }
+}

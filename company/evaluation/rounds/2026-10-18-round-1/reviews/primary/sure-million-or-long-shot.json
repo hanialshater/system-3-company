@@ -1,0 +1,103 @@
+{
+  "slug": "sure-million-or-long-shot",
+  "demoVersion": 1,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/sure-million-or-long-shot",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction says takes sure1M,asks allowed pair2 under expectedutility;chose11%1M.",
+    "Deliberately chose1A sure,2B10%5M. Cancellation crosses shared89%1M inpair1 and89%0 inpair2,leaving same11%1M versus10%5M+1%0.",
+    "Reveal claims no utilityfunction fits without indifference qualification. Counterexample:u0=0,u1M=1,u5M=1.1 makes both pairsequal,so either selectionfits. Screenshots readable."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Probability-weightedutility and modelconsistency.",
+    "conceptualDemand": "Preferences versus selections;sharedconsequencecancellation.",
+    "interfaceBurden": "Simplechoices,conceptuallydense."
+  },
+  "whyCool": "Removing a common part from each lottery reveals that two apparently different decisions ask the same underlying comparison.",
+  "caveat": "Require strict preference or acknowledge indifference;one chosen reversal doesn't prove certainty effect in reviewer.",
+  "effort": "Prediction,twodeliberatechoices,cancellation,reveal,two screenshots.",
+  "provisionalBucket": "revise-indifference-proof",
+  "bucketReason": "Excellentvisualalgebra,but central model-incompatibility claim has missing condition.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Core common-consequence implication meaningful,but takes does not establish strict preference.",
+      "evidence": "OnlyA excludes indifference.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Two actual choices and visual common-outcome cancellation.",
+      "evidence": "Identical residual lotteries.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 1,
+      "reason": "No utilityfunction fits is mathematically overstrong without strict preference or stable tie-breaking.",
+      "evidence": "u0=0,u1=1,u5=1.1 gives indifferenceboth.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readable probability grids and struck commonterms.",
+      "evidence": "Screenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete common-consequence comparison operation.",
+      "evidence": "Cancel equal weighted commonoutcomes.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Different certainty context can hide same preference inequality.",
+      "evidence": "Common89%removed.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Probability grids and cancellation make algebra visible.",
+      "evidence": "Matched residual11versus10.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Choose bothpairs,cancelcommonoutcome.",
+      "evidence": "Learnertrace.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Decision-model reflection,not actual financialadvice.",
+      "evidence": "Hypothetical.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Expectedutility independence and indifference boundary.",
+      "evidence": "Commonconsequence.",
+      "confidence": "medium"
+    }
+  }
+}

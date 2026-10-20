@@ -1,0 +1,104 @@
+{
+  "slug": "bond-seesaw",
+  "demoVersion": 2,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/bond-seesaw",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction1000bond50annual10years/principal,marketnew60:worth1000/926/1060; chose1060.",
+    "Rate6% price926,year10couponpresentvalue27.92;rate4% price1081,year10coupon33.78.",
+    "Reveal sumsdiscountedpayments,marketalternatives andoppositerate/pricemovement;5%price1000;no-default/yearly/steadyratemodelnotadvice.",
+    "Screenshot stackedpaymentslices andpricereadout; actualrightedgeproseclip andsliderextends toedge."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Bondcashflows,marketreturn,andtimevalue are prerequisite-heavy.",
+    "conceptualDemand": "Discountmultiplefuturepayments usingalternateavailableyield.",
+    "interfaceBurden": "Simplecontrols;densefinancialterms andclippedreveal."
+  },
+  "whyCool": "Thepromisepays thesamedollars,but itspricetoday moves whenbetterorworse alternatives appear.",
+  "caveat": "Toyone-rate/no-defaultmodel; pricingvaluesnotindependentlyaudited; noactualfinancialguidance.",
+  "effort": "Prediction,6/4%counterfactuals,reveal.",
+  "provisionalBucket": "specialist",
+  "bucketReason": "Usefulfinancialintuition withsignificantprerequisites andlayoutfriction.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Direction canbeinferred butexactpricing requiresdiscounting knowledge.",
+      "evidence": "Highermarketreturn lowersoldbondprice.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Two rates isolateinverseprice relation withfixedcashflows.",
+      "evidence": "6=>926,4=>1081.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects opportunitycost anddiscountedslices butnodiscountingderivation.",
+      "evidence": "Buy samepaymentstream atgoingrate.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Manyfinancialquantities andrightedgecutoff.",
+      "evidence": "Coupon,principal,marketreturn,presentvalue.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Potential for understanding fixedcashflow repricing.",
+      "evidence": "Ratesandpricesopposite undermodelassumptions.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Promised1000doesnotimplytodayprice1000.",
+      "evidence": "926at6%,1081at4%.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Slicedbar decomposesfuturepayments.",
+      "evidence": "Eachpayment worthlessforwait.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Ratepresets andslider.",
+      "evidence": "4/6%comparison.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Financialliteracy concept.",
+      "evidence": "Fixedpayment opportunitycost.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Discountingandmarketalternatives.",
+      "evidence": "Tenyearpaymentstream versuscurrentprice.",
+      "confidence": "medium"
+    }
+  }
+}

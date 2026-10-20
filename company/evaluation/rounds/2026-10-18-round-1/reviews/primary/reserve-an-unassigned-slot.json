@@ -1,0 +1,103 @@
+{
+  "slug": "reserve-an-unassigned-slot",
+  "demoVersion": 2,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/reserve-an-unassigned-slot",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted70 for extra10 afterfocus in full60minute schedule.",
+    "Initialplan tested60 with no urgent task displayed. Reserve preset movedadmin30\u219240,call50\u219260,finish70,leavesgap30\u201340 without urgent block.",
+    "Movedadmin0\u201320 causingoverlap20 invalid. Reveal correctly reports invalid but then says final layout reserves capacity; screenshot readable."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple timeline arithmetic.",
+    "conceptualDemand": "Extra work versus available capacity.",
+    "interfaceBurden": "Test,preset,start slider."
+  },
+  "whyCool": "A fully occupied schedule cannot absorb extra work without moving something.",
+  "caveat": "Render urgent task,clarify movable work,and make capacity explanation reflect final layout.",
+  "effort": "Prediction,test,preset,start boundary,reveal,inline screenshot.",
+  "provisionalBucket": "revise-missing-task-final-state",
+  "bucketReason": "Model and reveal do not fully support stated task.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Arithmetic clear but optionality/movability not stated for call.",
+      "evidence": "60full plus10.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Shows shifting tasks but never renders urgent task and slider can remove intended gap.",
+      "evidence": "Gap30\u201340;admin0.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 1,
+      "reason": "Final capacity claim conflicts with invalid current layout; no urgent task tracked.",
+      "evidence": "Invalidoverlap20 then reserves capacity.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readable schedule,missing urgent block and unexplained optional work.",
+      "evidence": "Onlyfocus/admin/call.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Slack principle stated without verified application.",
+      "evidence": "Unused time caveat.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Extra work extends full schedule.",
+      "evidence": "60\u219270.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Timeline shows gap and overlap but omits urgent work.",
+      "evidence": "Three blocks only.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Schedule preset and slider.",
+      "evidence": "Valid70 versus invalid.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Reserve capacity central.",
+      "evidence": "Scheduling slack.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Capacity versus predictability.",
+      "evidence": "Model caveat.",
+      "confidence": "medium"
+    }
+  }
+}

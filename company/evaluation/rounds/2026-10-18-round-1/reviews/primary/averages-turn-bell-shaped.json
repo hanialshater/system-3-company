@@ -1,0 +1,130 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy/simple charts; no theory assumed.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "observations": [
+    {
+      "id": "p",
+      "phase": "prediction",
+      "text": "No-history preview verified; trust4/4 ignored. Chose lopsidedlikeoneroll versusbell1.83/flat;locked. Fivefaces1/one6,2000groups."
+    },
+    {
+      "id": "e",
+      "phase": "exploration",
+      "text": "1roll meanofmeans1.88;2roll1.77;10roll1.82;30roll1.85,revealunlocked. Screenshot30histogram singlehump near1.83 with slight righttail versus initial1/6spikes."
+    },
+    {
+      "id": "r",
+      "phase": "reveal",
+      "text": "Notquitebell1.83. Initial1648ones352sixes;30averages2000humpcenter1.83actual1.85,slightlylopsided;rare sixesspread/extremeaveragesrare;manysmallrandompiecesaddedtendbell,CLT. Screenshots inline only."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear shape misconception alternatives.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Group-size contrasts visibly change distribution.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Uses actualhistogram/counts and residual skew.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Chart says bars count2000groupaverages.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General randomsum principle stated without applicability conditions.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Insufficient mode evidence.",
+      "evidence": "e",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Lopsidedrawdistribution becomesbellish.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Histogram carries mechanism.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversible sample-size presets.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Statistical averaging interpretation.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Shape,center,extreme rarity linked.",
+      "evidence": "r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Requires distinction between original outcomes and repeated sample averages, with shape/center comparison.",
+    "conceptualDemand": "Two sampling levels and distribution shape; chart directly supports.",
+    "interfaceBurden": "Five group-size presets/readout clear."
+  },
+  "whyCool": "Two spikes at1and6become a narrow humpnear1.83when each plotted result averages30rolls.",
+  "caveat": "General CLT statement lacks explicit independence/finitevariance qualifications; one die example; no rerun variability tested.",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "fatalFindings": [],
+  "missingEvidence": [
+    "5roll and returnboundary/accessibility modes untested."
+  ],
+  "screenshots": [],
+  "slug": "averages-turn-bell-shaped",
+  "demoVersion": 1,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/averages-turn-bell-shaped",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "46a21ac0260d3ce2cc05cbe0ac0d6601462a3a4afc892cf0a42bba3b21b9b7b6",
+    "metaSha256": "39af13ebe4f6de9e4bad8826bb806cb6d250a612db9c19b0862bbe09cb70d5e6"
+  }
+}

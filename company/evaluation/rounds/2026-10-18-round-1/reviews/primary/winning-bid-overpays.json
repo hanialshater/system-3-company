@@ -1,0 +1,104 @@
+{
+  "slug": "winning-bid-overpays",
+  "demoVersion": 2,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/winning-bid-overpays",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Ten bidders with seeded plus/minus-twenty errors around value one hundred produced twenty winning bids averaging 116.5, all over value; displayed overall guess average 99.2.",
+    "Two-bidder preset lowered average winner to 105.4; twenty-bidder preset raised it to 118.6.",
+    "Screenshot shows individual guesses and highlighted highest value in each auction against the true-value line.",
+    "Reveal retains ten- and two-bidder evidence and explains selection of the largest error, explicitly naming made-up seeded guesses."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Requires reasoning about conditional selection.",
+    "conceptualDemand": "Separate average estimate from average selected maximum.",
+    "interfaceBurden": "Run and two bidder-count presets."
+  },
+  "whyCool": "Winning is itself evidence that your estimate may be the unusually optimistic one.",
+  "caveat": "Seeded common-value toy with bids equal guesses; no strategic bid shading or private-value auction analysis. Guess-average display stayed 99.2 across tested presets.",
+  "effort": "Prediction, twenty auctions at ten bidders, two- and twenty-bidder contrasts, screenshot and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Direct visual selection mechanism and meaningful competitor-count contrast.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear distinction between unbiased estimates and selected winner.",
+      "evidence": "Pays about, below or above one hundred.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Three competition sizes test the selection effect.",
+      "evidence": "Two, ten and twenty bidders.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains selected error with observed sample comparison and model provenance.",
+      "evidence": "Average guess near true value does not imply average maximum near it.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Highlighted maxima and common true-value line show selection.",
+      "evidence": "Each auction's top dot colored separately.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General selection principle but no concrete new use or strategic adjustment.",
+      "evidence": "More rivals increase selected overestimate under this model.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Unbiased individual guesses produce biased winning prices.",
+      "evidence": "Guess average 99.2 versus winning 116.5.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Population dots and selected maxima directly demonstrate conditional selection.",
+      "evidence": "Twenty auctions with top estimates highlighted.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Fixed seeded comparisons across bidder counts.",
+      "evidence": "Run plus two alternative sizes.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Useful auction-selection intuition with limited realism.",
+      "evidence": "Bids equal estimates by construction.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Unconditional accuracy and selected extremes diverge.",
+      "evidence": "Competitor count changes the maximum.",
+      "confidence": "medium"
+    }
+  }
+}

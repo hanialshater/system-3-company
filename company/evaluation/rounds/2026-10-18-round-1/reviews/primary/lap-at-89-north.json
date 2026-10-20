@@ -1,0 +1,104 @@
+{
+  "slug": "lap-at-89-north",
+  "demoVersion": 3,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lap-at-89-north",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted40000km for once around89Nparallel; alternatives700/7000.",
+    "Equator40030kmround,12740straightacross;60N20020/6370;85N3490/1110;89N700/220. Polar mapring shrinks towardpole;current89ring becomes tiny speck.",
+    "Reveal recalls85and89cases,explains latitude circles shrink,89N1.7%equatorialdiameter;LondonEdinburgh650roadcomparison appears. No spherical cosine derivation orapproximationlimit statedinreveal.",
+    "1280x720light map roughly180pxdiameter before reveal; ring difficulttoinspectat89;proserightedgecutoff."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Familiarcirclegeometry anddistancecomparison.",
+    "conceptualDemand": "Latitudeparallels notallgreatcircles.",
+    "interfaceBurden": "Simplepresets;smallmapring."
+  },
+  "whyCool": "The phrase around the world hides a circle that can shrink to a speck near the pole.",
+  "caveat": "Polar walk isconceptual,notroutefeasibility. Sphericaldistanceapproximation androadcomparisonnotindependentlychecked. Tiny89Nring,prosecutoff.",
+  "effort": "Prediction,fourlatitude presets,reveal,two screenshots.",
+  "provisionalBucket": "promising-with-fix",
+  "bucketReason": "Accessiblegeographicreframe;improveringvisibilityandlayout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clearly defineslatitudeparallel ratherthanambiguousglobalcircumnavigation.",
+      "evidence": "89Nspecified and700/7000/40000 alternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Multiplelatitudecontrasts show shrinkingcircumference anddiameter.",
+      "evidence": "0,60,85,89N outputs.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reconcilesoriginalprediction withsmallcirclegeometry andvisitedstates.",
+      "evidence": "1.7%diameter and220km across.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readouts clear buttinypolarring andprosecutoff.",
+      "evidence": "89N screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General latitude-circle principle withoutnewapplicationtask.",
+      "evidence": "Roadcomparison isscaleanalogy.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Aroundworld canbeonly700km onnearpolarlatitude.",
+      "evidence": "89Nversusequator.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Same-mapring shrink pairedwithdiameter/circumference outputs.",
+      "evidence": "Fourlatitudecomparisons.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Latitudeexploration andpresets supportgeographicpuzzle.",
+      "evidence": "Multiplepresetlatitudes.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Usefulgeographicdistanceintuition ratherthanconcretetask.",
+      "evidence": "Latitudeparallelversusequator.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Circle-scaling relation;notmuchderivation.",
+      "evidence": "Smallerdiameter,smallerlap.",
+      "confidence": "medium"
+    }
+  }
+}

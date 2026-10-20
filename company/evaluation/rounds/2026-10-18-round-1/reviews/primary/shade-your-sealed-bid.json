@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "shade-your-sealed-bid",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/shade-your-sealed-bid",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "506e276b6f708da722c8854915a508dd964b57ef5ac8f5f650a5580168cb09fd",
+    "demoSha256": "32cb1232d295484c466f0e47444e9dbe3d03a4f98c3c96ea7bb206812960e9ea",
+    "metaPath": "src/demos/economics/shade-your-sealed-bid/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected $60 and locked the best first-price bid prediction for an $80 value against one rival bidding half of a uniform $0 to $100 value.",
+    "exploration": "Initial $80 bid had certain win and zero profit. Tested $60: certain win, $20 profit; $50: certain win, $30; $40: 80% win, $40 kept, $32 expected. Then tested $20: 40% win, $60 kept, $24 expected.",
+    "reveal": "The reveal corrected the answer to $40 and explained the flat win probability above $50, then two percentage points of lost win chance per dollar below it. It identified $40 as the best tradeoff and qualified the equilibrium with one uniform-value rival.",
+    "visual": "Inspected the inline dark 1257 by 936 screenshot at $40. A dashed expected-profit curve peaked at the highlighted $32 point above $40, with visited $50, $60 and $80 points. Win chance, conditional gain and expected profit were separately labelled.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The question requires balancing likelihood and gain rather than only winning.",
+      "evidence": "Selected $60 before comparing lower bids.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Preset and free slider bids expose both sides of the optimum.",
+      "evidence": "Expected profit rose to $32 at $40 then fell to $24 at $20.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal explains the observed kink and optimum under explicit assumptions.",
+      "evidence": "Win chance stays certain through $50, then falls as bids decrease.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Separate readouts distinguish conditional gain from expectation.",
+      "evidence": "At $40, 80% times $40 is shown as $32.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "The bidding rule is explained within the original fixed setup without a new case.",
+      "evidence": "Neither valuation nor rival strategy changes.",
+      "confidence": "high"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Winning less often can yield greater average profit.",
+      "evidence": "$40 earns more in expectation than a certain-win $50 bid.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "The curve and three readouts reveal the tradeoff.",
+      "evidence": "The visited lower $20 bid lies below the profit peak.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "A slider allows probing beyond the offered candidates.",
+      "evidence": "The $20 test checks the other side of the maximum.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "It clarifies why first-price bidders shade below value.",
+      "evidence": "The result is explicitly conditional on the rival model.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "The lesson connects win probability, surplus and optimal response.",
+      "evidence": "It explains the different behavior above and below the rival's maximum bid.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "The controls are simple, but expectation and strategic assumptions require careful interpretation.",
+    "conceptualDemand": "Moderate: multiply probability by gain and compare opposing effects.",
+    "interfaceBurden": "Low: presets and a bid slider.",
+    "conceptualChallenge": "Maximum chance of winning does not maximize expected surplus.",
+    "prerequisiteNovelty": "First-price bidding and equilibrium strategy are introduced.",
+    "notationRepresentationBurden": "Moderate: profit curve, probability and dollar readouts."
+  },
+  "whyCool": "Giving up some wins can pay more because the wins you keep become more valuable.",
+  "caveat": "One rival's fixed uniform-value half-bid strategy determines this optimum; it is not universal auction advice.",
+  "missingEvidence": [
+    "No fresh valuation or rival strategy was tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

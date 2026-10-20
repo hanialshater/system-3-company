@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "fib-call-explosion",
+  "demoVersion": 2,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/fib-call-explosion",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "0bdf61ab30fb0a73eee2cff204e2b0c0d58e2a44dd66bd9a3ed074606da974cc",
+    "demoSha256": "500ea1489a07ce6c5c077d34b9517f4a9d4dfd0692b5cda60b8815cf299c39da",
+    "metaPath": "src/demos/cs/fib-call-explosion/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected five total calls for fib(5) recipe and locked it in. Base cases fib(0) and fib(1) defined as one.",
+    "exploration": "Opened fib(5): three calls. Opened fib(4): five calls, fib(3) repeated twice. Open every call reached15, fib(3) twice and fib(2) three times. Remember answers changed graph to six computed values plus three dashed lookups, unlocking reveal.",
+    "reveal": "Corrected15. Explains repeated subproblems and memoization computes six distinct values with three lookups. Ends broad statement recursion repeats itself and memoization never solves same piece twice.",
+    "visual": "Inline full-tree and remembered-graph screenshots inspected: repeated3 nodes yellow and2 nodes red; remembered mode fades dashed lookup branches and retains computed chain. Counts and dashed legend legible. Trust3/3 ignored.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884122 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Recipe and call definition clearly support a count commitment.",
+      "evidence": "Five selected versus15 unfolded.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Manual branch expansion and remembering toggle expose repeated work and reuse contrast.",
+      "evidence": "Counts1,3,5,15 then six computed plus three lookups.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects exact repeated nodes and lookup distinction to memoization.",
+      "evidence": "Fib3 twice,fib2 three times,six distinct values.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Call definition,colour repeats and dashed lookup legend make tested path readable.",
+      "evidence": "Two inspected graph screenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable memoization principle offered without concrete new task or conditions for valid reusable results.",
+      "evidence": "Never solving same piece twice.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Five-call prediction reversed by15 and then substantial saved work.",
+      "evidence": "Full tree versus six computed.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Branch duplication and collapsed/dashed lookup graph carry mechanism across modes.",
+      "evidence": "Full-tree and remembering screenshots.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Individual branches and remember toggle allow reversible discovery.",
+      "evidence": "Root,child,all andremember actions.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete computation-saving technique central.",
+      "evidence": "Six computed versus15 calls.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Recursion tree,repeated subproblems and call-versus-computation distinction linked.",
+      "evidence": "Manual and remembered paths.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Requires recursive recipe expansion,call counting and distinguishing cached lookups from computed values.",
+    "conceptualDemand": "Nested dependencies plus reuse abstraction.",
+    "interfaceBurden": "Low:expand nodes andtoggle.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "high:recursion andmemoization",
+    "notationRepresentationBurden": "moderate:fib(n),n-1,n-2 andtree representation"
+  },
+  "whyCool": "Remembering answers turns the repeated coloured branches into dashed lookups and reduces fresh computation to six distinct values.",
+  "caveat": "Only fib(5) tested; final statement about recursion is broader than recursive algorithms with overlapping subproblems.",
+  "missingEvidence": [
+    "Larger n",
+    "Nonoverlapping recursion",
+    "Fresh application",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

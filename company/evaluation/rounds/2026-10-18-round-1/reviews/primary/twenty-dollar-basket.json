@@ -1,0 +1,104 @@
+{
+  "slug": "twenty-dollar-basket",
+  "demoVersion": 2,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/twenty-dollar-basket",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Initial full twenty-dollar basket held three four-dollar loaves and four two-dollar apples.",
+    "Raising loaves to four automatically reduced apples to two while spending stayed twenty.",
+    "Removing an apple left two dollars unused; changing to zero loaves and filling produced ten apples.",
+    "Screenshot encodes each item by its dollar width; reveal recalls the original full basket rather than confusing it with current contents, and explains the price ratio."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Small whole-number prices and quantities.",
+    "conceptualDemand": "Distinguish affordability from displacement.",
+    "interfaceBurden": "Loaf slider and apple controls."
+  },
+  "whyCool": "A purchase can fit the budget and still cost you something already in the basket.",
+  "caveat": "Made-up prices and two goods; no preference or real-price claim.",
+  "effort": "Prediction, original displacement, spare-budget state, opposite endpoint, screenshot and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Concrete conditional opportunity cost with reversible allocation and clear visual accounting.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Precise opportunity-cost question with clear initial full-budget condition.",
+      "evidence": "None, one or two apples leave.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Full allocation, spare money and opposite endpoint test the condition rather than only the original answer.",
+      "evidence": "Four loaves/two apples, four/one with two dollars left, then zero/ten.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Uses the original event and states the binding-budget condition and exchange ratio.",
+      "evidence": "Once all money spent, four over two means two apples.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Money-width diagram and spent/left counters track allocation.",
+      "evidence": "Ten equal two-dollar slots at endpoint.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Explicit general rule with its applicability condition.",
+      "evidence": "Price ratio determines tradeoff when the fixed budget is fully used.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Within-budget changes still displace alternatives.",
+      "evidence": "One loaf removes two apples.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Items occupy proportionate budget widths.",
+      "evidence": "Loaf costs twice apple width.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Build and rebalance a constrained basket.",
+      "evidence": "Slider, add/remove and fill.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete budget tradeoff.",
+      "evidence": "Opportunity cost when money already allocated.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Constraint, slack and price ratio.",
+      "evidence": "Spare cash versus full cart.",
+      "confidence": "medium"
+    }
+  }
+}

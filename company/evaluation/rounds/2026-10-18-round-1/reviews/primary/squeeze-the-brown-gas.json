@@ -1,0 +1,144 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "squeeze-the-brown-gas",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/squeeze-the-brown-gas",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "squeeze-the-brown-gas",
+    "domain": "chemistry",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/chemistry/squeeze-the-brown-gas/meta.json",
+    "metaSha256": "b8ddcc28f7af3af44a47d4297bd2c9e2cbeb69926c045dd29a9b8d4ebfec06c2",
+    "demoSha256": "8449ee761e97daf6b0543eabf2644adbca2d0b127700325ef66f31bc3f9cecf6",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/squeeze-the-brown-gas",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/squeeze-the-brown-gas.json"
+  },
+  "date": "2026-10-18T19:57:40.764747+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "prediction": "Chose Higher and locked before compression.",
+  "exploration": "Observed initial 22 NO2 + 49 N2O4, share31%, 71 molecules; half-volume initially darker then settled16+52,24%,68. Pullback restored22+49,31%,71.",
+  "reveal": "Read lower correction and two-to-one pairing explanation, partial pressure compensation and remaining darker concentration caveat.",
+  "screenshotInspection": "Inline1257x936 dark screenshots inspected initial compression, settled and return states and scrolled reveal; clear piston/legend/counters and readable explanation. No screenshot file persisted.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Precise prediction separates share from apparent darkness.",
+      "evidence": "Higher/Lower/Same asks share after half volume and waiting.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Reversible manipulation exposes immediate and equilibrium responses.",
+      "evidence": "Compressed31to24 percent,71to68 molecules; pullback restored baseline.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Causal account reconciles color and composition.",
+      "evidence": "Two NO2 pair into one N2O4; final color darker despite lower share.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Counts and legend support unfamiliar symbols.",
+      "evidence": "Single brown versus paired white particles, percentage and molecule counts; readable scrolled reveal.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Mechanism stated but no new application assessed.",
+      "evidence": "Fewer gas molecules principle provided for this same compression.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Initial darkening and later share decrease conflict usefully.",
+      "evidence": "Chose higher, observed24% rather than31%.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Piston and pairing connect volume to particle outcome.",
+      "evidence": "Half volume and count68 versus71 visible.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Simple reversible piston experimentation.",
+      "evidence": "Push and pull controls.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Useful chemical equilibrium intuition.",
+      "evidence": "Composition versus concentration distinction.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Two time scales and partial compensation.",
+      "evidence": "Immediate darkening then pairing; smaller space remains darker.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "conceptualDemand": "Link volume, concentration, molecular share and reversible pairing.",
+    "interfaceBurden": "Two buttons and counters; scroll to full reveal.",
+    "prerequisiteNovelty": "Chemical equilibrium unfamiliar but visually scaffolded.",
+    "notationRepresentationBurden": "NO2/N2O4 symbols plus percent/count/color, supported legend."
+  },
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Chose Higher and locked before compression."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Observed initial 22 NO2 + 49 N2O4, share31%, 71 molecules; half-volume initially darker then settled16+52,24%,68. Pullback restored22+49,31%,71."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read lower correction and two-to-one pairing explanation, partial pressure compensation and remaining darker concentration caveat."
+    },
+    {
+      "phase": "visual-inspection",
+      "evidence": "Inline1257x936 dark screenshots inspected initial compression, settled and return states and scrolled reveal; clear piston/legend/counters and readable explanation. No screenshot file persisted."
+    }
+  ]
+}

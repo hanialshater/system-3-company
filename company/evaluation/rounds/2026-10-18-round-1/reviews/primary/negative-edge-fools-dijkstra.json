@@ -1,0 +1,137 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "negative-edge-fools-dijkstra",
+  "demoVersion": 3,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/negative-edge-fools-dijkstra",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "negative-edge-fools-dijkstra",
+    "domain": "cs",
+    "status": "published",
+    "demoVersion": 3,
+    "metaPath": "src/demos/cs/negative-edge-fools-dijkstra/meta.json",
+    "metaSha256": "8216ae774f12b6f1c14abb9941da013ecd497bdeca3a882e5d60321f8c121728",
+    "demoSha256": "c709ffa800d4c2e755ad84a785ad67a14a5a525398862db032d26da56b56ab37",
+    "batchId": "round1-07",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/negative-edge-fools-dijkstra",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/negative-edge-fools-dijkstra.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Committed true cost 1 to A from supplied roads: S-A 2, S-B 3, B-A refund 2, A-C 2.",
+    "exploration": "Settled S, A, B, C in cheapest-label order. Labels finished A 2, B 3, C 4. First full-road pass changed A to 1 while C stayed 4; second changed C to 3. No reset or editable road offered.",
+    "reveal": "Confirmed cost 1 and traced locked A preventing later improvement, then the delayed propagation to C on the second pass. Named Bellman-Ford and extra checks.",
+    "visual": "Actual 1257 by 936 dark screenshots inspected. Parallel directed maps show locked versus revisable labels, numbered roads and highlighted updates. Reveal moved the upper map partly out of view; inner scrolling exposed the explanation.",
+    "previewIsolation": "Preview banner explicitly said learning history and analytics not saved.",
+    "blinding": "No source, metadata or other reviewer judgments inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete route arithmetic elicits an answer before algorithm execution.",
+      "evidence": "Predicted 3 minus 2 equals 1.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Stepping both methods shows the failure and delayed downstream correction.",
+      "evidence": "A 2 versus 1 and C 4 versus 3.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explanation links the visible failure to the settled-label assumption.",
+      "evidence": "Refund arrives after A locked.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Numbered roads, locks and parallel maps explain the contrast.",
+      "evidence": "Pass order makes C correction take a second pass.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General limitation named without a new map or modified condition.",
+      "evidence": "All execution follows the same four-road graph.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No full accessibility mode audit performed.",
+      "evidence": "Ordinary clicks, scrolling and screenshots only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "A later refund invalidates a seemingly final cheapest label.",
+      "evidence": "A remains locked at 2 despite route cost 1.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Parallel maps expose both primary and inherited error.",
+      "evidence": "C corrected only on second pass.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Stepwise map execution offers modest investigation.",
+      "evidence": "Town selections and two passes.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "A useful algorithm-selection limitation is concrete.",
+      "evidence": "Negative roads break settled-label logic.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Shows failure propagation and repeated relaxation.",
+      "evidence": "First pass fixes A, second C.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Small arithmetic but novel graph labels and update order.",
+    "conceptualDemand": "Track tentative costs, final locks and downstream propagation.",
+    "interfaceBurden": "Four town clicks then two passes; inner scrolling for reveal.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "Greedy settlement versus repeated road checks.",
+    "notationRepresentationBurden": "Directed weighted graphs, infinity and numbered road order."
+  },
+  "whyCool": "The refund repairs A before it repairs the town priced from A.",
+  "caveat": "Only a fixed negative-edge counterexample is available; no fresh map tests application.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Keyboard-only audit",
+    "Reduced motion audit",
+    "Contrast mode audit"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T21:11:35.355515+00:00"
+}

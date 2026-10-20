@@ -1,0 +1,137 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "tire-after-the-drive",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/tire-after-the-drive",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "tire-after-the-drive",
+    "domain": "chemistry",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/chemistry/tire-after-the-drive/meta.json",
+    "metaSha256": "8958bd4bad914b25e6f7fd5bb2a2817c6c0bc00d529601e4f1db7a5f10cae827",
+    "demoSha256": "e40bcc0d09c80ea920d228198a29896b6d9d8df8a84f61f2bbd1fec45d79f627",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/tire-after-the-drive",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/tire-after-the-drive.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected 550 kPa and locked it in.",
+    "exploration": "Initial 20 C gauge was 220 kPa. Keyboard Home gave 0 C and 198 kPa; End gave 60 C and 264 kPa. After-drive preset gave 50 C and 253 kPa, enabling reveal.",
+    "reveal": "Corrected to 253 kPa and distinguished 15 percent gauge rise from 10 percent absolute pressure rise. Explained kelvin 293 to 323 and total pressure 321 to 354, subtracting outside 101.",
+    "visual": "Actual dark 1257 by 936 screenshot inspected. Stacked outside-air and pink gauge bar, dashed cold level, Celsius-to-kelvin label and total/gauge readings were legible above explanation.",
+    "previewIsolation": "Preview banner stated history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Choices expose both Celsius-ratio and total-pressure confusions.",
+      "evidence": "550 and 354 distractors against 253.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Reversible temperature range updates gauge and absolute labels.",
+      "evidence": "0 C 198; 60 C 264; 50 C 253.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal accounts for both offsets behind the answer.",
+      "evidence": "Kelvin scale and outside-pressure subtraction.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Stacked bar visually separates total from gauge pressure.",
+      "evidence": "Outside-air base with gauge segment and dashed baseline.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General pressure-temperature rule has explicit fixed-volume context but no new application.",
+      "evidence": "Rigid sealed tyre and ideal gas label.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Complete mode audit not performed.",
+      "evidence": "Keyboard endpoints worked; screen reader, contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "A 2.5-fold Celsius number produces only 15 percent gauge rise.",
+      "evidence": "550 prediction versus 253 result.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Offset bar and temperature conversion show both corrections.",
+      "evidence": "321 to 354 total and 220 to 253 gauge.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Direct temperature experiment.",
+      "evidence": "Slider and parked/driving presets.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Everyday gauge reading gains a scale explanation.",
+      "evidence": "Warm tyre pressure example.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Combines absolute temperature and pressure reference offsets.",
+      "evidence": "Two distinct percentage changes.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Familiar object supports two unfamiliar zero-reference corrections.",
+    "conceptualDemand": "Use absolute temperature ratios and distinguish total from gauge pressure.",
+    "interfaceBurden": "One slider and two presets.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "Kelvin and gauge pressure introduced with visible offsets.",
+    "notationRepresentationBurden": "Celsius, kelvin, kPa and percentage comparisons."
+  },
+  "whyCool": "The bar reveals why two different zero points change the percentage story.",
+  "caveat": "Rigid fixed volume and sealed ideal gas assumptions limit the example; no fresh application was tested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:16:24.930854+00:00"
+}

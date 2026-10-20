@@ -1,0 +1,103 @@
+{
+  "slug": "cluster-stops-the-cascade",
+  "demoVersion": 5,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/cluster-stops-the-cascade",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted two seeds elsewhere can reach all12 with half-neighbor adoption.",
+    "Initial0/1 run stalls8/12 after6rounds. Tapped8:1/4outside adoption,needs2. Starting8/9 auto-ran to12/12 by8rounds.",
+    "Reveal restores initial stalled graph,explains holdout group eachmajorityfriendsinside and outside seeds cannot enter. Full graph inspected;right-edge prose clips. Broad where not howmany headline needs conditioning to compared cases."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Thresholdfractions and closed-group argument.",
+    "conceptualDemand": "Local reinforcement and initialconditions.",
+    "interfaceBurden": "Nodeinspection,runbuttons,autoplayseedpresets."
+  },
+  "whyCool": "A tightly connected group can resist every seed outside it,yet two seeds inside it can unlock the whole network.",
+  "caveat": "Fixed monotone half-threshold model;seed number can matter generally. Label original graph restored in reveal.",
+  "effort": "Prediction,initialrun,node8inspection,alternativeautorun,reveal,fullgraph screenshot.",
+  "provisionalBucket": "strong-framing-followup",
+  "bucketReason": "Controlled seed-location contrast and clear local proof.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Specific seed-location alternatives with explicit threshold.",
+      "evidence": "Moreseedsoutside versus differentpair.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Two starting pairs and node inspection reveal local bottleneck.",
+      "evidence": "8/12versus12/12,1/4.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Accurate traces and structural resistance argument.",
+      "evidence": "Morethanhalfinside blocksoutsidecascade.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Graph/restored state not labeled original,autoplay and clippedprose.",
+      "evidence": "Revealresets0/1.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Explicit general resistant-group criterion with outside-seed condition.",
+      "evidence": "Every member majorityinternal.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Same seedcount,differentlocationchanges globaloutcome.",
+      "evidence": "Two versus two.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Outlinedholdoutgroup and pernodefractions supportproof.",
+      "evidence": "8needs2of4.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Choose seeds and inspectpeople.",
+      "evidence": "Twonetworkruns.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Network diffusion intuition.",
+      "evidence": "Stipulatedthreshold.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Local density,seed placement and blocking-set proof.",
+      "evidence": "Notmerelyconnectivity.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1",
+  "reviewKind": "primary",
+  "slug": "background-shortcut",
+  "demoVersion": 2,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/background-shortcut",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy and simple charts; no domain theory.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "P: chose50%; training background95%,shape80%; model picks more reliable clue then shuffled-background test.",
+    "E: all4buttons: Background training19/20=95%; shuffled10/20=50%; Shape training16/20=80%; shuffled16/20=80%. Buttons retain percentages; photos show ticks/crosses.",
+    "R: Your prediction held. High score proves clue worked there, not intended clue; same-source test photos share shortcut; toy uses one clue at a time.",
+    "No-history preview banner;5/5trust chrome ignored. Inline screenshot1280x720 readable results and four control comparisons."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Plausible competing accuracies and explicit selection rule.",
+      "evidence": "P: chose50%; training background95%,shape80%; model picks more reliable clue then shuffled-background test.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Allfourclue/dataset contrasts expose shortcut failure.",
+      "evidence": "E: all4buttons: Background training19/20=95%; shuffled10/20=50%; Shape training16/20=80%; shuffled16/20=80%. Buttons retain percentages; photos show ticks/crosses.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains result and same-source limitation.",
+      "evidence": "R: Your prediction held. High score proves clue worked there, not intended clue; same-source test photos share shortcut; toy uses one clue at a time.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Retained percentages, photos and ticks readable.",
+      "evidence": "No-history preview banner;5/5trust chrome ignored. Inline screenshot1280x720 readable results and four control comparisons.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Reusable evaluation warning and applicability boundary.",
+      "evidence": "R: Your prediction held. High score proves clue worked there, not intended clue; same-source test photos share shortcut; toy uses one clue at a time.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode checks.",
+      "evidence": "No-history preview banner;5/5trust chrome ignored. Inline screenshot1280x720 readable results and four control comparisons.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Higher training score loses to stable shape after shuffle.",
+      "evidence": "E: all4buttons: Background training19/20=95%; shuffled10/20=50%; Shape training16/20=80%; shuffled16/20=80%. Buttons retain percentages; photos show ticks/crosses.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Photo backgrounds and error marks locate failure.",
+      "evidence": "E: all4buttons: Background training19/20=95%; shuffled10/20=50%; Shape training16/20=80%; shuffled16/20=80%. Buttons retain percentages; photos show ticks/crosses.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Four reversible comparisons.",
+      "evidence": "E: all4buttons: Background training19/20=95%; shuffled10/20=50%; Shape training16/20=80%; shuffled16/20=80%. Buttons retain percentages; photos show ticks/crosses.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete model evaluation caution.",
+      "evidence": "R: Your prediction held. High score proves clue worked there, not intended clue; same-source test photos share shortcut; toy uses one clue at a time.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Training selection, shift and test-source shortcut connected.",
+      "evidence": "R: Your prediction held. High score proves clue worked there, not intended clue; same-source test photos share shortcut; toy uses one clue at a time.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Compare two clues across two datasets with training selection.",
+    "conceptualDemand": "Linked reliability and distribution-change relation.",
+    "interfaceBurden": "Low four labelled comparisons.",
+    "prerequisiteNovelty": "moderate: training/test setup explained",
+    "notationRepresentationBurden": "low: percentages and counts"
+  },
+  "whyCool": "Shuffling backgrounds halves the winning clue\u2019s accuracy while shape stays80%.",
+  "caveat": "Model selection and shape accuracy are stipulated; no training process or counterexample beyond backgrounds.",
+  "notApprovedForServing": true,
+  "effort": "about2minutes",
+  "missingEvidence": [
+    "Accessibility modes",
+    "Learning outcomes"
+  ],
+  "fatalFindings": []
+}

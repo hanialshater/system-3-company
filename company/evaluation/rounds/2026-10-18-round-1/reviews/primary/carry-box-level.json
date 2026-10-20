@@ -1,0 +1,120 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2",
+  "reviewKind": "primary",
+  "slug": "carry-box-level",
+  "demoVersion": 1,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/carry-box-level",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, familiar objects; no subject theory assumed.",
+  "viewport": "1280x720 desktop screenshot",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "text": "No-history banner; trust 5/5 ignored. Predicted 0 J for level 20m carry at steady speed; locked."
+    },
+    {
+      "id": "E",
+      "text": "Ramp baseline: 20m moved,10m up,98.1N\u00d710=981J. Straight up:20mup,1962J. Level:0mup,0J; reveal unlocked."
+    },
+    {
+      "id": "R",
+      "text": "Work counts distance along push, arms up versus level motion perpendicular. Muscles still burn energy holding load. Steady speed, starting/stopping ignored. Internal upscroll showed full levelpath and upwardforce arrow. Normal verticalscroll; no horizontal issue established in inspected portion. Screenshot inline only."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear numerical alternatives challenge effort-equals-work intuition; definition visible above prediction.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Three paths hold totaldistance fixed while changing verticalcomponent and work.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Resolves felt effort discrepancy and states motion assumptions.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Force and displacement arrows, captions and readout align.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Reusable force-aligned-displacement rule with bodilyenergy boundary; editorial only.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No mode audit.",
+      "evidence": "Untested",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Heavy levelcarry tiring yet0J mechanicalwork onbox.",
+      "evidence": "P,E,R",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Orthogonal force/motion arrows carry mechanism.",
+      "evidence": "R screenshot",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Three preset comparisons.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Everyday lifting versus carrying interpretation.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Directional work,bodyenergy and steady-speed boundary.",
+      "evidence": "R",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Separates force direction,displacementcomponent and energy expenditure with supported comparisons.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low;normal verticalscroll",
+    "prerequisiteNovelty": "moderate;mechanical work",
+    "notationRepresentationBurden": "moderate;N,J and rampangle"
+  },
+  "whyCool": "The same20mtrip gives1962J,981J,or0J as upward motion changes.",
+  "caveat": "Definition partially primes prediction; no starting/stopping or horizontal-force cases tested.",
+  "notApprovedForServing": true,
+  "effort": "About 3 minutes",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility modes",
+    "Non-steady motion"
+  ]
+}

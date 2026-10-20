@@ -1,0 +1,137 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "the-middle-voter-decides",
+  "demoVersion": 2,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/the-middle-voter-decides",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "the-middle-voter-decides",
+    "domain": "math",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/math/the-middle-voter-decides/meta.json",
+    "metaSha256": "6f6bc14a76d866de84c3c6ed841ba8957af81b6163e36f20d156fc9de9355e05",
+    "demoSha256": "87268321009d71994d5f1a444a8df798d455c6141256bd8cf099f99ad6ca3af1",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/the-middle-voter-decides",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/the-middle-voter-decides.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected average4.8 and locked it in.",
+    "exploration": "Initial center five lost two-to-three against rival four. Average4.8 also lost against four. Candidate three won three-to-two. Rival Home zero gave candidate three four-to-one; End ten gave three-to-two. Center five beat ten. Stepped rival toward four in0.2 increments; final five lost against four. Restored candidate three. Page supplied separate all-integer-rival check strip.",
+    "reveal": "Corrected to third voter at three, referenced average losing to four and center losing to visited4.8 during slider sweep. Explained majority on either side of median via halfway boundary and nearer-position preference condition.",
+    "visual": "Actual dark1257 by936 screenshots inspected. Five labeled voters, candidate/rival triangles, halfway line and colored voting sides visible. Supplied rival-check strip and retained losses separate from current tally; full reveal readable.",
+    "previewIsolation": "Preview banner said history and analytics are not saved.",
+    "blinding": "No source,builder notes or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Contrasts median, mean and range center in a concrete asymmetric electorate.",
+      "evidence": "Favorites one,two,three,eight,ten.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Candidate choices and movable rival test both sides and counterexamples.",
+      "evidence": "Median wins endpoint rivals; average and center have defeating rivals.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal explains why middle voter anchors a majority against either side.",
+      "evidence": "One,two,three versus three,eight,ten.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Halfway boundary and colored votes make nearer-choice rule visible.",
+      "evidence": "Individual voter labels and current vote counts.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General median-voter condition is stated without a new application.",
+      "evidence": "Same one-dimensional electorate only.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Complete mode audit not conducted.",
+      "evidence": "Keyboard rival control and text tallies worked; screen reader,contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "The average position loses while an off-center voter wins.",
+      "evidence": "4.8 loses to four; median three wins.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Halfway line partitions voters and exposes majority mechanism.",
+      "evidence": "Same median stays on winning side of both directional splits.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Rival slider and candidate switches invite counterexample search.",
+      "evidence": "Continuous rival comparisons.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Clarifies conditional majority-choice principle.",
+      "evidence": "One-dimensional nearer preferences explicitly assumed.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Separates median,mean and geometric center with pairwise dominance.",
+      "evidence": "Distances pull mean but votes count sides.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simple line controls support pairwise-majority reasoning.",
+    "conceptualDemand": "Separate spatial average from majority ordering and reason over rivals on both sides.",
+    "interfaceBurden": "Three candidate presets and one rival slider.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "Median voter and head-to-head dominance.",
+    "notationRepresentationBurden": "Decimal positions,counts and halfway boundary."
+  },
+  "whyCool": "Voting counts which side people choose, not how far the distant voters pull an average.",
+  "caveat": "The guarantee assumes one-dimensional nearer preferences; supplied all-rival summary is not an independently tested continuum.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T21:05:01.632469+00:00"
+}

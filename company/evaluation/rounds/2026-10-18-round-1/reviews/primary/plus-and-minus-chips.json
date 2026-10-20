@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "plus-and-minus-chips",
+  "demoVersion": 3,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/plus-and-minus-chips",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "plus-and-minus-chips",
+    "domain": "math",
+    "status": "published",
+    "demoVersion": 3,
+    "metaPath": "src/demos/math/plus-and-minus-chips/meta.json",
+    "metaSha256": "bcc7cf81178a39833ff119bc5a5c3b8467cce45089a40948eeda9def52b77447",
+    "demoSha256": "a09f63b8f2d4704b2c5691c769430afd700de54f54c454d9668491e083541644",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/plus-and-minus-chips",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/plus-and-minus-chips.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected2 against8 and\u22122 for3 plus/5 minus chips; locked it in.",
+    "exploration": "Cancel one pair:2plus/4minus,one zero pair,total hidden. Cancel every pair:0plus/2minus,three pairs,total\u22122. Added plus:1plus/2minus,total hidden;cancelled yielded\u22121,four pairs. Start over restored3/5/0;all-pair cancellation again\u22122.",
+    "reveal": "Corrected\u22122;connected exact threezero pairs andtwonegative remainder. Explained zero-pair invariance anddebt/cash analogy;3+(\u22125)=3\u22125=\u22122.",
+    "visual": "Actual1257 \u00d7936 dark screenshot inspected. Two negative chips remain above three crossed-sign zero pairs below;total\u22122 andfullreveal legible.",
+    "previewIsolation": "No-history evaluation banner present.",
+    "blinding": "3/3 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear alternatives distinguish totalchipcount,unsigneddifference andsignedtotal.",
+      "evidence": "2 commitment versus\u22122.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Single/bulk cancellation,addedplus andreset show invariant zero removal andchangedquantity.",
+      "evidence": "3/5\u21920/2;addedplus then\u22121;resetrepeat\u22122.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects exact leftover signs tozero-pair argument andnotation.",
+      "evidence": "Threezero pairs andtwominus chips.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Signedchips,cancellationtray andfeedback makedesktop sequenceclear.",
+      "evidence": "Actualscreenshot zero labels and\u22122.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Debt/cash analogy offered,but no concrete new amounts orapplicationconditions.",
+      "evidence": "Debtswinby2 in sameexample.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient access audit.",
+      "evidence": "Keyboard,focus,contrast,phone,zoom andmotion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committedpositive difference contradicted bynegative remainder.",
+      "evidence": "Two remainingminus chips,total\u22122.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Zero pairs andsignedremainder carrymeaning ofnegativebalance.",
+      "evidence": "Actualtwo-chip remainder andzero tray.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Addingchips,canceling andreset permit reversible discovery.",
+      "evidence": "Addedplus changes\u22122 to\u22121 aftercancel.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete signedbalance/debt interpretation.",
+      "evidence": "Cash/debt analogy.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Zero-pair invariance andnewquantity contrast linked.",
+      "evidence": "Cancel unchangedvalue;addplus changesit.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "One supported additive-inverse relation withcountabletokens.",
+    "conceptualDemand": "Distinguish signofremainingchips fromunsignedcount.",
+    "interfaceBurden": "Low:clearbuttons andtokens;totalhidden untilfullycancelled.",
+    "conceptualChallenge": "gentle",
+    "prerequisiteNovelty": "low tomoderate:negativequantity andadditiveinverse.",
+    "notationRepresentationBurden": "low:signedintegers andsimpleequation."
+  },
+  "whyCool": "Removingthreezero pairs leavesexactlytwominus chips,thenaddingoneplus reduces thedebt toone.",
+  "caveat": "Onlyinitialnegativebalance andoneaddedplus tested;positive/zero totals andaddingminus nottested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Addminus button nottested.",
+    "Keyboard,focus,contrast,phone,zoom/reflow andmotion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:50:17.170865+00:00"
+}

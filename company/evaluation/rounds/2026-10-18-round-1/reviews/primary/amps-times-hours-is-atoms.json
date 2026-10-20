@@ -1,0 +1,130 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy/simple charts; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "observations": [
+    {
+      "id": "p",
+      "phase": "prediction",
+      "text": "No-history preview verified; trust7/7ignored. Chose4.7g vs1.2g/2.4g; locked. Question supplies2A,2electrons/atom,96485C/mol; screenshot also showed chain×63.55g/mol."
+    },
+    {
+      "id": "e",
+      "phase": "exploration",
+      "text": "2A presets15min=>0.59g;30=>1.19g;60=>2.37gand reveal unlocked. Switched1Aat60min=>1.19g. Visible chain1A×3600s=3600C÷96485=0.0373mol electrons÷2=0.0187molCu×63.55=1.19g."
+    },
+    {
+      "id": "r",
+      "phase": "reveal",
+      "text": "Not quite2.4g. Reveal retains target2A1h7200C/2.4g while interactive state remains1A1.19g; explains0.0746mol electrons/0.0373molCuand fixed two electrons, amps times time counts electrons. Screenshot reveal viewed inline only; assumption 'all current making copper' visible under chain."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Numerical commitment meaningful but substantial calculation and prerequisites.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Time/current contrasts expose product and proportional mass.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Full conversion chain resolves factor-two error and target.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Explicit units but demanding notation and target/current mismatch.",
+      "evidence": "p,e,r",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Reusable current×time and stoichiometric counting principle with model assumption.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Insufficient mode evidence.",
+      "evidence": "p",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Factor-two electron conversion resolves plausible4.7error.",
+      "evidence": "p,r",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Mass bar supports numerical conversion chain.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversible time/current contrasts.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete deposition amount context.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Multiple unit-conversion mechanisms linked.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Prediction/core explanation requires several dependent unit conversions and unfamiliar mole/charge/atom abstractions.",
+    "conceptualDemand": "Current×seconds→charge→moles electrons→moles copper→grams, fixed stoichiometric ratio.",
+    "interfaceBurden": "Simple time/current presets; notation and units substantial under common boundary."
+  },
+  "whyCool": "Halving current at60minutes gives the same1.19g as2Afor30minutes, making charge product visible.",
+  "caveat": "Reveal states original target while diagram remains1A; learners must distinguish target from current state. Model assumes all current deposits copper.",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Keyboard/focus/phone/reflow/contrast/motion untested."
+  ],
+  "screenshots": [],
+  "slug": "amps-times-hours-is-atoms",
+  "demoVersion": 1,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/amps-times-hours-is-atoms",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "c1889b9fc321c855d6ce9e98ba42e0f07ad300efd9373f94f80d67bcc7820f92",
+    "metaSha256": "d2701437b10e24f734b02e6492b8312093c6b9d391acbff3445a1de518798f18"
+  }
+}

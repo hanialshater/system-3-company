@@ -1,0 +1,103 @@
+{
+  "slug": "shelf-gap-wasted-height",
+  "demoVersion": 1,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/shelf-gap-wasted-height",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted adjust gap. Box12,hand3,gap35:fixed unused23;adjusted3 while slider still35.",
+    "Moved gap25 in adjusted mode;unused remains3,implying effective clearance15 despite displayed gap25.",
+    "Reveal says clearance minus box and retain hand allowance; screenshot readable but effective clearance unlabeled. Strength/mounting excluded."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Subtract box from clearance.",
+    "conceptualDemand": "Unused space versus necessary hand allowance.",
+    "interfaceBurden": "Two modes,ambiguous gap slider."
+  },
+  "whyCool": "Matching shelf spacing to stored objects can free room while retaining access clearance.",
+  "caveat": "Label original gap and actual adjusted clearance separately; distinguish necessary allowance from wasted space.",
+  "effort": "Prediction,mode contrast,gap variation,reveal,inline screenshot.",
+  "provisionalBucket": "revise-clearance-labels",
+  "bucketReason": "Useful idea but displayed input does not describe adjusted state.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Simple layout comparison, fixed tall gap strongly cues waste.",
+      "evidence": "Fixed tall versus adjust.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Layout reduces displayed waste but slider becomes causally opaque in adjusted mode.",
+      "evidence": "35\u219225 still3.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Mechanism and clearance/strength conditions stated.",
+      "evidence": "Box plus hand allowance.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Displayed gap is not actual adjusted opening, and necessary allowance called unused.",
+      "evidence": "Gap25 versus effective15,unused3.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete fit and allowance conditions for shelf adjustment.",
+      "evidence": "Retain box and hand clearance;manufacturer instructions.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Expected smaller gap wastes less.",
+      "evidence": "23\u21923.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Two shelves illustrate arrangement,not dimension labels.",
+      "evidence": "Small schematic.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Modes and partly ineffective slider.",
+      "evidence": "Adjusted output constant.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Storage clearance central.",
+      "evidence": "Fit and access allowance.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Fit constraint versus excess gap.",
+      "evidence": "Necessary clearance retained.",
+      "confidence": "medium"
+    }
+  }
+}

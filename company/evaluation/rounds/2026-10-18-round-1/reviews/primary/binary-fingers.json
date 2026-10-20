@@ -1,0 +1,121 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2",
+  "reviewKind": "primary",
+  "slug": "binary-fingers",
+  "demoVersion": 3,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/binary-fingers",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, familiar objects; no subject theory assumed.",
+  "viewport": "1280x720 desktop screenshot",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "text": "No-history banner; trust6/6 ignored. Predicted1024 from10/100/1024; locked."
+    },
+    {
+      "id": "E",
+      "text": "+1 raised finger1, number1, made2. Countto16 animated through4 then16; only16fingerup, made17. Raisedremainingninefingers:1023,made26,+1disabled; reveal enabled."
+    },
+    {
+      "id": "R",
+      "text": "0through1023 inclusive1024; each finger doubles patterns; at16 nextfinger starts lowerpattern again; two states per place binary. Reveal references26litcells. Inline screenshot shows visitedcellgrid and rightrevealclipping; fingers top off internal scroll. None saved."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Alternatives contrast ordinary finger count with binary patterns, explicitly includeszero.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Increment/carry,individualtoggles and maximum boundary show weightedpatterns.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains inclusivezero,patternuniqueness and doubling using observed16and26.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Worthlabels and counters clear; rightrevealclipping.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Reusable two-states-per-place principle, namedbinary; editorialonly.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No modeaudit.",
+      "evidence": "Untested",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Ten fingers span1024patterns rather than10.",
+      "evidence": "E,R",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Fingerstate/value plus visitedgrid connect representation to count.",
+      "evidence": "E,R",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Freefingertoggles and counting permit discovery.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Binaryrepresentation application.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Weightedpatterns,carry,doubling,inclusivecount.",
+      "evidence": "E,R",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Linked weightedvalues and doubling invariant supported by sequence.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "moderate;clipping",
+    "prerequisiteNovelty": "moderate;binary",
+    "notationRepresentationBurden": "moderate;ten weights/grid"
+  },
+  "whyCool": "After counting to16, raising remainingfingers produces1023while a grid tracks exactly26distinct visitednumbers.",
+  "caveat": "Demonstrates earlypatterns and maximum rather than exhaustive1024uniqueness; righttextclips.",
+  "notApprovedForServing": true,
+  "effort": "About3minutes",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility modes",
+    "All-downreset",
+    "Exhaustivepatterncoverage"
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "slug": "lh-split-order-fixed-fee",
+  "demoVersion": 2,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-split-order-fixed-fee",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Combined lower for\u20ac24 same goods with\u20ac4 per order, two separate orders.",
+    "Tests gave\u20ac32 versus\u20ac28; minimum one order gave\u20ac28 both.",
+    "Screenshot receipts explicitly itemized Goods\u20ac24,Fee\u20ac4,Total\u20ac28 at boundary. Reveal preserved original/current context and distinguished repeating fee from unchanged merchandise subtotal."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple addition and multiplication.",
+    "conceptualDemand": "Same goods with different fee count.",
+    "interfaceBurden": "Two tests and slider."
+  },
+  "whyCool": "Combining orders changes how often you pay the fee, not what the goods cost.",
+  "caveat": "Fictional policy with no discounts or consolidation constraints.",
+  "effort": "Prediction, both tests, one-order equality, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear itemized visual and cost-scope explanation.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Simple repeated fee comparison cued by title.",
+      "evidence": "Two orders versus combined.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Order count boundary removes extra fee.",
+      "evidence": "2\u21921 orders.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains per-order scope and subtotal invariance.",
+      "evidence": "Count how many times each line charged.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Receipt decomposition makes costs traceable.",
+      "evidence": "Goods, fee and total labelled.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete line-counting rule supports checking other receipts.",
+      "evidence": "Fixed per order, same goods.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Expected repeated-fee arithmetic.",
+      "evidence": "32 versus28.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Itemized receipt shows fixed subtotal and fee.",
+      "evidence": "Labelled goods/fee/total.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Tests and order slider.",
+      "evidence": "No order composition task.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Checkout fee comparison central.",
+      "evidence": "Order consolidation.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Cost scope and invariant subtotal.",
+      "evidence": "Fee repeats, goods unchanged.",
+      "confidence": "medium"
+    }
+  }
+}

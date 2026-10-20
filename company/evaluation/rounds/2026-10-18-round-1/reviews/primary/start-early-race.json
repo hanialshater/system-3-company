@@ -1,0 +1,105 @@
+{
+  "slug": "start-early-race",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/start-early-race",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction fully specifiedAna2400/year10years,thenstop;Benwait10then2400/year30;7%40yearhorizon;selectedBen.",
+    "Initialwait0Ben96k->479k,Ana24k->252k. Wait10Ben72k->227k,Anaahead25712;wait9Ben74k->245k,Anaahead7443;wait8Ben77k->265k,Benahead12105.",
+    "Reveal correctly named9yearcrossover,original10yearresults andfixedreturn/no-fee/tax/inflation limits.",
+    "Reveal saysAna'smoneyhad30extra years tocompound:30yearsafter stopping is clear in model,butextra relative toallBen deposits is ambiguous; owner wordingreview needed.",
+    "Inline1280x720 light screenshot: currentwait8metrics clear,prose right edge clipped. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Compounding and multiperiod contributions require quantitative intuition.",
+    "conceptualDemand": "Timing-dependent growth.",
+    "interfaceBurden": "One slider,preset andmetrics; proseclipping."
+  },
+  "whyCool": "Moving the startdate by one year can flip the winner despite much larger later contributions.",
+  "caveat": "Clarify30extra years claim and three-times shorthand at9years; fixedillustrative return; proseclips; accessibilityunknown.",
+  "effort": "Prediction,0/10/9/8yearcontrasts,reveal and inline screenshot.",
+  "provisionalBucket": "owner-wording-review",
+  "bucketReason": "Strong timingcontrast but compoundingduration wording needsprecision.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Complete contribution and return assumptions with directional alternatives.",
+      "evidence": "40yearhorizon and7%.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Delay comparisons find nearby winnercrossover rather than onlydramatic endpoints.",
+      "evidence": "Wait8versus9and10.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Useful actualcrossover and limits but30extra years wording can overstate timing comparison.",
+      "evidence": "Ana afterstopping versus variedBen depositdates.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clear contributions/results but clipping and ambiguousextra phrase.",
+      "evidence": "Inline screenshot and reveal.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General timing principle without fresh return or contribution scenario.",
+      "evidence": "Fixed7%throughout.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Smaller totalcontributions can finishahead through timing.",
+      "evidence": "24kversus72k.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Two growthcurves and in/out totals support timing comparison.",
+      "evidence": "Wait8currentstate.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Delay slider crosses winnerboundary.",
+      "evidence": "8and9years.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Savingstime and assumption awareness central.",
+      "evidence": "Explicit fixedreturnlimit.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Contributiontiming andcompounding compared.",
+      "evidence": "Winnercrossover.",
+      "confidence": "medium"
+    }
+  }
+}

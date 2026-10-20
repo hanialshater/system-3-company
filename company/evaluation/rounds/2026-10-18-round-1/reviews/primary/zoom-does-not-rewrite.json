@@ -1,0 +1,104 @@
+{
+  "slug": "zoom-does-not-rewrite",
+  "demoVersion": 1,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/zoom-does-not-rewrite",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Initial editor displayed Map and Key with two tokens.",
+    "Zoom in changed the badge to 150 percent; zoom out changed it to 80 percent.",
+    "Screenshots at 150 and 80 percent showed the same token boxes and apparently unchanged letter size, so the claimed view magnification was not visually demonstrated.",
+    "Reveal states scale 0.8 while stored words stay unchanged; both buttons disabled after one use."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Two words and two commands.",
+    "conceptualDemand": "Separate representation from document content.",
+    "interfaceBurden": "Two one-use buttons."
+  },
+  "whyCool": "A view can change without changing the underlying document.",
+  "caveat": "The tested view did not visibly scale, so the central interaction needs repair.",
+  "effort": "Prediction, zoom in and out, comparison screenshots and reveal.",
+  "provisionalBucket": "needs-fix",
+  "bucketReason": "Zoom percentage changes without a visible zoom effect.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "The hook explicitly states the answer.",
+      "evidence": "Larger letters do not add text; unchanged stored text.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 1,
+      "reason": "The numerical scale changes but the defining visual effect is missing.",
+      "evidence": "Same rendered tokens at 150 and 80 percent.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Correct conceptual statement lacks its promised visual evidence.",
+      "evidence": "View and document state described separately.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 1,
+      "reason": "Zoom labels contradict an unchanged rendering.",
+      "evidence": "150 versus 80 percent without visible magnification.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Basic principle without new application.",
+      "evidence": "Magnification and content are separate state.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 0,
+      "reason": "No demonstrated unexpected change.",
+      "evidence": "Words remain the same as promised.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 0,
+      "reason": "No visible scale contrast.",
+      "evidence": "Same size token text and boxes in both screenshots.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Two one-use commands.",
+      "evidence": "Only scale readout changes.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Useful basic distinction if demonstrated.",
+      "evidence": "Zoom does not edit document content.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "One state separation.",
+      "evidence": "View scale versus stored words.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -13,7 +13,7 @@ import { kudosRole } from "@/lib/hq-kudos";
 import type { Due } from "../../../tools/lib/rituals.mjs";
 import { Avatar } from "./Avatar";
 import Office from "./Office";
-import People from "./People";
+import People from "./PeoplePanel";
 import { PressBanner, PressOrg, PressResidents } from "./Press";
 import type { PressSnapshot } from "@/lib/hq-press";
 import { peopleAt, personName, personSeed, type Person } from "./people";

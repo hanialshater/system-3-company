@@ -1,0 +1,115 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1",
+  "reviewKind": "primary",
+  "slug": "bank-lends-it-again",
+  "demoVersion": 4,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/bank-lends-it-again",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy and simple charts; no domain theory.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "P: chose$10,000; bankkeeps10%, remainder spent/redeposited indefinitely.",
+    "E: Next round gives2rounds$1,900;+10then+50gives62rounds$9,985;20%retains62roundsbut$5,000;50%$2,000.",
+    "R: Your prediction held;90%ofpreceding round, firstdeposit divided by keptshare; textbook simplification, realbanks constrained by borrowers/capital and some no reserve requirement.",
+    "No-history preview;7/7trust ignored. Inline screenshot1280x720 reveal right-edgeclipping/internalverticalscroll."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicit model conditions and finite-limit question.",
+      "evidence": "P: chose$10,000; bankkeeps10%, remainder spent/redeposited indefinitely.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Rounds and reserve contrasts reveal accumulating ceiling.",
+      "evidence": "E: Next round gives2rounds$1,900;+10then+50gives62rounds$9,985;20%retains62roundsbut$5,000;50%$2,000.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains ratio and strong real-world limitation.",
+      "evidence": "R: Your prediction held;90%ofpreceding round, firstdeposit divided by keptshare; textbook simplification, realbanks constrained by borrowers/capital and some no reserve requirement.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Controls/counters clear; reveal clips right.",
+      "evidence": "No-history preview;7/7trust ignored. Inline screenshot1280x720 reveal right-edgeclipping/internalverticalscroll.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General sum rule qualified; realbank link limited.",
+      "evidence": "R: Your prediction held;90%ofpreceding round, firstdeposit divided by keptshare; textbook simplification, realbanks constrained by borrowers/capital and some no reserve requirement.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Modes not sufficiently tested.",
+      "evidence": "No-history preview;7/7trust ignored. Inline screenshot1280x720 reveal right-edgeclipping/internalverticalscroll.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Deposits accumulate to tenfold first deposit.",
+      "evidence": "E: Next round gives2rounds$1,900;+10then+50gives62rounds$9,985;20%retains62roundsbut$5,000;50%$2,000.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Stacked deposits support accumulation; numeric totals carry precision.",
+      "evidence": "No-history preview;7/7trust ignored. Inline screenshot1280x720 reveal right-edgeclipping/internalverticalscroll.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Rounds and keptshare reversible comparisons.",
+      "evidence": "E: Next round gives2rounds$1,900;+10then+50gives62rounds$9,985;20%retains62roundsbut$5,000;50%$2,000.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Banking-model boundary explicit.",
+      "evidence": "R: Your prediction held;90%ofpreceding round, firstdeposit divided by keptshare; textbook simplification, realbanks constrained by borrowers/capital and some no reserve requirement.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Recurrence, limiting sum and model limits.",
+      "evidence": "R: Your prediction held;90%ofpreceding round, firstdeposit divided by keptshare; textbook simplification, realbanks constrained by borrowers/capital and some no reserve requirement.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links repeated percentages to limiting total with direct support.",
+    "conceptualDemand": "Geometric accumulation and inverse share.",
+    "interfaceBurden": "Reveal clipping/internal scroll.",
+    "prerequisiteNovelty": "moderate: deposit/loan model stated",
+    "notationRepresentationBurden": "low: money/percent counters"
+  },
+  "whyCool": "At the same62rounds, raising keptshare changes the pile from$9,985to$5,000to$2,000.",
+  "caveat": "Simplified banking story carefully qualified, and reveal clips at right edge.",
+  "notApprovedForServing": true,
+  "effort": "about2minutes",
+  "missingEvidence": [
+    "Accessibility modes",
+    "Learning outcomes"
+  ],
+  "fatalFindings": []
+}

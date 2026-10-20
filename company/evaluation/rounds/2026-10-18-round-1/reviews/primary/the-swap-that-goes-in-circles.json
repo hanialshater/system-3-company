@@ -1,0 +1,126 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "the-swap-that-goes-in-circles",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/the-swap-that-goes-in-circles",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "37b6bc68c71aba65d2ad9ea43bfb49a078cd78810d0583e8c9432175d6154565",
+    "demoSha256": "1101a89cb53fc313ce0974686fa347070f2001646c1ae42bf373e48d420aa5c2",
+    "metaPath": "src/demos/math/the-swap-that-goes-in-circles/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected Apple, 60 cents poorer and locked the result after six preferred swaps under cyclic fruit preferences.",
+    "exploration": "Ran six swaps: back to cherry, paid 60 cents. Ran three: back to cherry, paid 30. Selected the apple-first ranking: apple after two swaps, paid 20. Pressing six swaps again returned to the cyclic cherry result rather than replaying the ranked mode; the controls act as scenario presets.",
+    "reveal": "The reveal corrected the answer to cherry, sixty cents poorer. It accurately quoted the three- and six-swap cycles and the ranked case stopping after two, then explained transitive preferences remove the exploitable circle.",
+    "visual": "Inspected the inline dark 1257 by 936 screenshot after six swaps. Three fruit cards formed a directed triangle with ten-cent arrows; a seven-fruit trail returned to cherry and the paid amount read sixty cents. Historical results stayed visible.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884175 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The prompt challenges equating locally preferred moves with global improvement.",
+      "evidence": "Selected an improved final item despite a six-step cycle.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Cycle lengths and a ranked contrast isolate preference consistency.",
+      "evidence": "Three and six swaps return to cherry; the ranking reaches apple and stops.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal explains the observed loss and the role of transitivity.",
+      "evidence": "It accurately counts the ranked case's two swaps.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "The graph is clear, but replay instructions are ambiguous about scenario resets.",
+      "evidence": "Pressing six swaps after ranking silently restores the cyclic scenario.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "The ending connects the toy to a concrete choice-model assumption and its condition.",
+      "evidence": "Transitive ranking prevents a seller repeatedly charging for a cycle of preferred swaps.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Every desired swap can leave the buyer with the same item and less money.",
+      "evidence": "Both complete cycles return to cherry after paying.",
+      "confidence": "high"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "The directed triangle and fruit trail make the loop visible.",
+      "evidence": "The six-swap trail circles back twice.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Fruit swaps make a consistency condition tangible.",
+      "evidence": "Three scenarios show repeated cycles and a terminating ranking.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "It illustrates why consistent preference ordering matters.",
+      "evidence": "The reveal ties transitivity to avoiding a money-pump cycle.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "The ranked contrast explains the failure rather than only showing it.",
+      "evidence": "Removing the cycle creates a best item where paid improvements stop.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "The fruit paths are simple, while transitive preference consistency is an abstract condition.",
+    "conceptualDemand": "Moderate: distinguish pairwise preferred steps from a coherent overall order.",
+    "interfaceBurden": "Low, with ambiguity from scenario buttons that reset the mode.",
+    "conceptualChallenge": "A local preference cycle can permit repeated losses with no net item improvement.",
+    "prerequisiteNovelty": "Transitivity and choice models are introduced.",
+    "notationRepresentationBurden": "Low: directed arrows, fruit sequence and cent totals."
+  },
+  "whyCool": "A sequence of individually welcome trades can sell someone a round trip back to what they already owned.",
+  "caveat": "The payment willingness is stipulated and the replay buttons select scenarios rather than preserving a ranked mode.",
+  "missingEvidence": [
+    "Transient swap motion was not separately inspected; final trails and states were inspected.",
+    "No fresh preference set was tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

@@ -1,0 +1,139 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "salt-and-concert-tickets",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/salt-and-concert-tickets",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "salt-and-concert-tickets",
+    "domain": "economics",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/economics/salt-and-concert-tickets/meta.json",
+    "metaSha256": "30bc24fd9a80f586e4892dccd478ac0c34fd9837ed3c72510477f4f400d1cc3e",
+    "demoSha256": "837333bcf79a8f356030a13acd57af84b409d13a3cc82a66dbc7da519b5b0f4b",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/salt-and-concert-tickets",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/salt-and-concert-tickets.json"
+  },
+  "date": "2026-10-18T20:54:29.363289+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Selected only salt: same10% price rise with1% salt purchase decline and20% ticket decline."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Set price rise10: salt sales\u22121%, revenue+8.9%; switched tickets at10: sales\u221220%, revenue\u221212%. Show why required both comparisons."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read1.1\u00d70.99=1.089 and1.1\u00d70.8=.88, taller versus narrower revenue box, elasticity label and invented-reactions/one-step/revenue-not-profit limitation."
+    },
+    {
+      "phase": "screenshotInspection",
+      "evidence": "Actual dark1257x936 screenshots showed green salt rectangle larger than dashed original, red ticket rectangle narrower, and readable reveal after scrolling."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Same price change with different buyer reactions makes a useful commitment.",
+      "evidence": "Only salt selected.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Two products preserve the price step while changing response.",
+      "evidence": "Salt+8.9%, tickets\u221212% at10%.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Arithmetic and rectangle changes explain the opposite outcomes.",
+      "evidence": "1.1\u00d7.99 and1.1\u00d7.8 tied to height and width.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Familiar sales example and explicit model limits.",
+      "evidence": "Invented buyers; revenue not profit repeated.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Names the general mechanism but provides no new application exercise.",
+      "evidence": "Price elasticity defined after the same comparison.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Higher price can reduce revenue despite the same increase.",
+      "evidence": "Ticket revenue\u221212%.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Rectangle area encodes the product and retains comparison outline.",
+      "evidence": "Taller narrower ticket box versus dashed baseline.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Simple slider and seller toggle.",
+      "evidence": "Tested both at10%.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Separates revenue from price and profit in an everyday decision.",
+      "evidence": "Buyer response and model limits explicit.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "One price step shows one relationship with limitations.",
+      "evidence": "No cost model or new case.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "conceptualDemand": "gentle: compare products of percentage multipliers",
+    "interfaceBurden": "gentle: one slider and two seller toggles",
+    "prerequisiteNovelty": "elasticity named after familiar buyer reactions",
+    "notationRepresentationBurden": "two multiplication equations and rectangle area"
+  }
+}

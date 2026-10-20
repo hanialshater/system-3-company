@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "more-traps-more-species",
+  "demoVersion": 2,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/more-traps-more-species",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "more-traps-more-species",
+    "domain": "life",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/life/more-traps-more-species/meta.json",
+    "metaSha256": "771ce29c2cda512c5f73905e2ed8e9c1b35b25da76d9ce14c53c0ce154f0e916",
+    "demoSha256": "98407266a9a284b393457a0ee2d016ab48277de2a15046e1d695a8dab476d7a1",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/more-traps-more-species",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/more-traps-more-species.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Chose About200 against About35 and About20; locked it in.",
+    "exploration": "Catch50 found20 species; Catch500 found34; Catch5000 found40. New forest seed changed label from2 to3 while5000 catch still40. Opening reveal returned displayed seed to2 and original20/34/40 curve.",
+    "reveal": "Corrected toAbout35 and cited34 at500, under twice20 at50. Explained common species appear early then repeats dominate and rarer species accrue;5000 found all40. Said compare places at same catch size; made-up forest.",
+    "visual": "Actual1257 \u00d7936 dark screenshot inspected. Green accumulation curve flattens at40 with20/50 and34/500 markers. Common-to-rare species strip fills. Full reveal legible.",
+    "previewIsolation": "No-history evaluation banner visible.",
+    "blinding": "6/6 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Plausible proportional versus saturating species options.",
+      "evidence": "About200 commitment versus35 correction.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Three catch sizes visibly show diminishing discoveries and full-species limit.",
+      "evidence": "50\u219220;500\u219234;5000\u219240.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects actual counts and flattening to common repeats and rare discoveries.",
+      "evidence": "34 versus20,all40,common/rare explanation.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Controls and labeled accumulation markers communicate tested sequence clearly.",
+      "evidence": "Actual screenshot and catch/species status.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete new comparison of two places with same-effort condition.",
+      "evidence": "Compare two places only at same catch size.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient access audit.",
+      "evidence": "Keyboard,focus,contrast,phone,zoom and motion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Tenfold catch produces less than twice species, contradicting200 prediction.",
+      "evidence": "20\u219234 rather than200.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Curve plateau and species strip carry saturation mechanism.",
+      "evidence": "Actual curve levels at40.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Catch sizes and seed change offer reversible comparisons.",
+      "evidence": "50,500,5000 and seed3 test.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete equal-effort biodiversity comparison is central.",
+      "evidence": "Two places require same catch size.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Sampling effort, rarity and finite total linked.",
+      "evidence": "Common repeats,rare species,all40 boundary.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links uneven species frequency to diminishing discoveries and fair comparison.",
+    "conceptualDemand": "Two linked relations: repeated common catches versus rare discovery; effort changes observed richness.",
+    "interfaceBurden": "Low: clear preset catches and curve labels.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: species accumulation and unequal abundance.",
+    "notationRepresentationBurden": "low: counts and two-axis curve."
+  },
+  "whyCool": "Increasing catch from500 to5000 adds only six species while the curve visibly flattens at40.",
+  "caveat": "Reveal returned seed3 to seed2; evidence for alternate seed limited to5000 total, not its full curve.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Alternate-seed smaller catches not tested.",
+    "Keyboard,focus,contrast,phone,zoom/reflow and motion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:16:28.312194+00:00"
+}

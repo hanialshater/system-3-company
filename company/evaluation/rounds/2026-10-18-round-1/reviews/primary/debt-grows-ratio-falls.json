@@ -1,0 +1,151 @@
+{
+  "status": "walkthrough-reviewed",
+  "reviewState": "complete-real-walkthrough",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "action": "Selected Below100% and locked",
+      "outcome": "Baseline year0 debt/GDP100 each; prediction retained."
+    },
+    {
+      "id": "E",
+      "action": "Nextyear then run10; borrowing End; growth Home",
+      "outcome": "Year1 debt103 GDP105 ratio98.2%; year10 baseline140/16385.7%; borrowing6% growth5% produced179/163110%; growth0% recomputed160/100160%. Prior comparison text retained6%,5%,110%."
+    },
+    {
+      "id": "R",
+      "action": "Opened Show me why at6% borrowing0%growth",
+      "outcome": "Confirmed baseline; explained numerator/denominator and toy fixed-rate limit. Reveal referred to stored6% borrowing5% growth110% contrast while current graph/controls showed6%,0%,160%."
+    },
+    {
+      "id": "V",
+      "action": "Inspected revealed screenshot with normal vertical scroll",
+      "outcome": "1257x992 dark Chrome; controls/text legible; graph160.0% endpoint label partly hidden beneath metric boxes; no horizontal text clipping."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear question differentiates absolute borrowing from relative burden.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Year progression, borrowing reversal and zero-growth boundary visibly separate numerator and denominator effects.",
+      "evidence": "E",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Causal explanation and limit clear, but retained contrast no longer matches current graph/settings after growth change.",
+      "evidence": "R,V",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Core controls and exact metrics readable, but stored contrast and current settings diverge and endpoint label overlaps metrics.",
+      "evidence": "E,R,V",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Fraction principle generalized verbally but no concrete new application.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic mode checks.",
+      "evidence": "Range keyboard use incidental; focus, contrast, phone, zoom/reflow and motion untested.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Correct baseline prediction confirmed, with supporting reversal under raised borrowing.",
+      "evidence": "P,E",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Line switches from declining85.7% to rising110% then160%, with baseline ghost supporting contrast.",
+      "evidence": "E,V",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Two reversible rates and year progression support experimentation.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete debt-to-GDP interpretation with toy-model limit.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Absolute versus relative growth and zero-denominator-growth boundary are linked contrasts.",
+      "evidence": "E,R",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Two changing quantities form one supported ratio; exact recurrence arithmetic optional.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": {
+      "level": "moderate",
+      "reason": "GDP/borrowing as annual rates and debt ratio introduced in context."
+    },
+    "notationRepresentationBurden": {
+      "level": "moderate",
+      "reason": "Percent rates, debt/GDP dollars, ratio percentages and time plot together."
+    },
+    "conceptualDemand": "Compare growing numerator and denominator overyears.",
+    "interfaceBurden": "Retained comparison differs from current zero-growth state; endpoint label partially obscured."
+  },
+  "whyCool": "Borrowing continues while the baseline debt ratio falls to85.7%, then raising borrowing turns the line upward.",
+  "caveat": "After changing growth to0%, reveal still describes saved5%growth110% while current ratio is160%; graph endpoint label overlaps metric boxes.",
+  "missingEvidence": [
+    "Systematic accessibility checks",
+    "Applied new transfer case",
+    "Phone layout"
+  ],
+  "effort": {
+    "approximateMinutes": 3
+  },
+  "partialBlinding": "Visible Why trust this? (4/4 claims checked); ignored and not opened.",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3b",
+  "date": "2026-10-18",
+  "notApprovedForServing": true,
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, number comparisons and familiar household objects; no domain theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 992,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "screenshots": [],
+  "fatalFindings": [],
+  "slug": "debt-grows-ratio-falls",
+  "demoVersion": 1,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/debt-grows-ratio-falls",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "7c4bcd1dfe4e40054bf318cc4fb8383ce0d806efb3ff8671731fd5553578bf28",
+    "metaSha256": "55fc3ac2608d7141e3948f17810193d8482572a27e2ee92ac8d1877d79c38efb"
+  }
+}

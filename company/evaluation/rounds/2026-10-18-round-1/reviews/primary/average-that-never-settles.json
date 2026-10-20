@@ -1,0 +1,115 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1",
+  "reviewKind": "primary",
+  "slug": "average-that-never-settles",
+  "demoVersion": 4,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/average-that-never-settles",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy and simple charts; no domain theory.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "P: chose Squeezes in too, just more slowly for Cauchy averages; rare enormous draws stated.",
+    "E: 1 draw die spread5.00, Cauchy17/30 beyond1;100draws0.69,12/30;10,000draws0.07,18/30. Farthest Cauchy average24.7 contains draw250,115; hollow dots off chart.",
+    "R: Not quite Stays as spread out as one draw. Single250,115draw divided10,000moves average25.0; theoretical50%outside\u00b11;30dots one seeded batch, not rule.",
+    "No-history preview;5/5trust ignored. Inline screenshot1280x720 clearly contrasts clustered die dots and scattered Cauchy dots."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Meaningful usual-average extrapolation.",
+      "evidence": "P: chose Squeezes in too, just more slowly for Cauchy averages; rare enormous draws stated.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Three sample-size contrasts preserve run comparison.",
+      "evidence": "E: 1 draw die spread5.00, Cauchy17/30 beyond1;100draws0.69,12/30;10,000draws0.07,18/30. Farthest Cauchy average24.7 contains draw250,115; hollow dots off chart.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains specific extreme draw and separates batch from theory.",
+      "evidence": "R: Not quite Stays as spread out as one draw. Single250,115draw divided10,000moves average25.0; theoretical50%outside\u00b11;30dots one seeded batch, not rule.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Dot rows, hollow markers and counters readable.",
+      "evidence": "No-history preview;5/5trust ignored. Inline screenshot1280x720 clearly contrasts clustered die dots and scattered Cauchy dots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Boundary to averaging explicit; when real data resembles Cauchy unexplored.",
+      "evidence": "R: Not quite Stays as spread out as one draw. Single250,115draw divided10,000moves average25.0; theoretical50%outside\u00b11;30dots one seeded batch, not rule.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Modes not sufficiently tested.",
+      "evidence": "No-history preview;5/5trust ignored. Inline screenshot1280x720 clearly contrasts clustered die dots and scattered Cauchy dots.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Ten thousand draws do not concentrate Cauchy averages.",
+      "evidence": "E: 1 draw die spread5.00, Cauchy17/30 beyond1;100draws0.69,12/30;10,000draws0.07,18/30. Farthest Cauchy average24.7 contains draw250,115; hollow dots off chart.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Dot spread comparison central.",
+      "evidence": "E: 1 draw die spread5.00, Cauchy17/30 beyond1;100draws0.69,12/30;10,000draws0.07,18/30. Farthest Cauchy average24.7 contains draw250,115; hollow dots off chart.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversible sample-size buttons.",
+      "evidence": "E: 1 draw die spread5.00, Cauchy17/30 beyond1;100draws0.69,12/30;10,000draws0.07,18/30. Farthest Cauchy average24.7 contains draw250,115; hollow dots off chart.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Limits of averaging intuition.",
+      "evidence": "R: Not quite Stays as spread out as one draw. Single250,115draw divided10,000moves average25.0; theoretical50%outside\u00b11;30dots one seeded batch, not rule.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Sampling distribution, extreme draws and finite-batch uncertainty.",
+      "evidence": "R: Not quite Stays as spread out as one draw. Single250,115draw divided10,000moves average25.0; theoretical50%outside\u00b11;30dots one seeded batch, not rule.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Reason across averages of runs, distribution spread and rare extremes rather than individual observations.",
+    "conceptualDemand": "Multiple levels of randomness and theoretical versus finite-batch distinction.",
+    "interfaceBurden": "Low sample buttons.",
+    "prerequisiteNovelty": "high: Cauchy and sampling distribution",
+    "notationRepresentationBurden": "moderate: two spread metrics and\u00b11"
+  },
+  "whyCool": "Die dots collapse near3.5 while Cauchy averages remain scattered after10,000draws.",
+  "caveat": "One seeded batch; distribution generation and real-world applicability not explored.",
+  "notApprovedForServing": true,
+  "effort": "about2minutes",
+  "missingEvidence": [
+    "Accessibility modes",
+    "Learning outcomes"
+  ],
+  "fatalFindings": []
+}

@@ -1,0 +1,120 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2",
+  "reviewKind": "primary",
+  "slug": "same-grey-in-shadow",
+  "demoVersion": 1,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/same-grey-in-shadow",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, familiar objects; no subject theory assumed.",
+  "viewport": "1280x720 desktop screenshots",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "text": "No-history banner confirmed; trust6/6 ignored. Predicted Neither is darker. Original board screenshot inspected: A/B labelled dark/light-context squares."
+    },
+    {
+      "id": "E",
+      "text": "SampleA andSampleB both120. Connect them added same-grey bridge. Remove shadow removed cylinder/shadow while readings stayed120; reveal unlocked. Screenshots inspected inline; none saved."
+    },
+    {
+      "id": "R",
+      "text": "Your prediction held; same grey120. Reveal asserts Your eyes judged B lighter, despite chosen Neither. Perception unconscious inference; lighting times surface reflection; real shadowed surface sending same light really is lighter, so guess usually right."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear screen-versus-appearance comparison, committed answer.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Sampling, bridge and removed context supply distinct comparisons.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Connects measurements to inference and real-scene limit, but assumes learner experienced illusion despite answer.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Labels, fixed samples and context toggle readable on tested path.",
+      "evidence": "P,E",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Distinguishes surface reflectance from received illumination with explicit applicability. Editorial only.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No mode audit.",
+      "evidence": "Untested",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Same sampledgrey contrasts apparent context; actual learner surprise unknown.",
+      "evidence": "P,E",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Bridge and context removal visibly isolate equality.",
+      "evidence": "E screenshots",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversible context toggles and sampling.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Perceptual interpretation without concrete decision.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Screen equality versus real-scene inference limit.",
+      "evidence": "R",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Screen brightness versus surface reflectance and illumination require linked distinction.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low",
+    "prerequisiteNovelty": "moderate; reflectance",
+    "notationRepresentationBurden": "low;0\u2013255 scale"
+  },
+  "whyCool": "A same-grey bridge links the squares while removing shadow preserves both120 readings.",
+  "caveat": "Reveal assumes the viewer saw B as lighter; this cannot be inferred from a simulated reviewer prediction.",
+  "notApprovedForServing": true,
+  "effort": "About3minutes",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility modes",
+    "Reset not tested"
+  ]
+}

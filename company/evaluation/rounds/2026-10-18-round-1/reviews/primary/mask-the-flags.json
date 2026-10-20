@@ -1,0 +1,104 @@
+{
+  "slug": "mask-the-flags",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/mask-the-flags",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction suppliedANDrule and10110with00110;selected10110. InitialANDgave00110.",
+    "Toggledfirstmaskbit:10110AND10110=10110. SwitchedOR,same10110; toggledsecondbit:mask11110,OR11110.",
+    "SwitchedXORwith11110gave01000. Reveal recalled originalAND,firstORsnapshot10110 and actualXORsnapshot,explained read/set/toggle and Unixpermissions.",
+    "Inline1280x720 light screenshot: full readable bits,controls and prose. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Binary notation andBoolean rules supported visually.",
+    "conceptualDemand": "Per-bitlogic and flags.",
+    "interfaceBurden": "Clear buttons and alignedrows,readable prose."
+  },
+  "whyCool": "One row of tiny switches lets the same mask read,set or flip several settings at once.",
+  "caveat": "Unixapplication named without a fresh permissions task; accessibility unknown.",
+  "effort": "Prediction,masktoggles,alloperations,reveal and inline screenshot.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Readable playful bitlogic with concrete operational uses.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Rule and operands specified with meaningful alternative outputs.",
+      "evidence": "ANDonlyboth1.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Bit changes and three operations expose matching/nonmatching bit behavior.",
+      "evidence": "AND,OR,XOR contrasts including absentflag set.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Recalled tested operations and clearly distinguishes purposes.",
+      "evidence": "Read,set,toggle.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readable aligned bitrows and state-aware examples.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Names concrete Unixpermission application and operation-specific uses.",
+      "evidence": "ANDreads,ORsets,XORtoggles chosenflags.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Same mask can preserve,set or reverse bits.",
+      "evidence": "XOR01000 versusOR11110.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Alignedrows show per-position logic.",
+      "evidence": "Settings,mask,result.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Clickablebits and operation switching invite controlled experiments.",
+      "evidence": "Two masktoggles and threeoperations.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Compact settings and permissions are central concrete applications.",
+      "evidence": "Unixpermissions.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Three Boolean operations and bitfield use.",
+      "evidence": "Parallel per-position computation.",
+      "confidence": "medium"
+    }
+  }
+}

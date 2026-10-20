@@ -1,0 +1,115 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1",
+  "reviewKind": "primary",
+  "slug": "attention-shares-one",
+  "demoVersion": 3,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/attention-shares-one",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy and simple charts; no domain theory assumed.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "P: chose 45%; locked prompt said each word scores by arrow alignment.",
+    "E: midway A 44.6%, total 100.0%; End 355\u00b0 A 67.8%; Home 0\u00b0 A 66.5%, scores A 1.00 B 0.00 C \u22121.00.",
+    "R: Your prediction held; A 44.6%, B 44.6%, C 10.8%; shares always add to 100%; toy unit arrows in 2-D skips \u221ad scaling.",
+    "Chrome: Evaluation preview \u00b7 learning history and analytics are not saved. Why trust this? (5/5 claims checked) ignored. Screenshot inline 1280x720; reveal has internal scrolling and text clipped at right."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear alignment prediction with three plausible shares.",
+      "evidence": "P: chose 45%; locked prompt said each word scores by arrow alignment.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Query boundary changes scores and share while conserving total.",
+      "evidence": "E: midway A 44.6%, total 100.0%; End 355\u00b0 A 67.8%; Home 0\u00b0 A 66.5%, scores A 1.00 B 0.00 C \u22121.00.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Resolves share and states model limitation.",
+      "evidence": "R: Your prediction held; A 44.6%, B 44.6%, C 10.8%; shares always add to 100%; toy unit arrows in 2-D skips \u221ad scaling.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Controls clear; reveal right edge clips text.",
+      "evidence": "Chrome: Evaluation preview \u00b7 learning history and analytics are not saved. Why trust this? (5/5 claims checked) ignored. Screenshot inline 1280x720; reveal has internal scrolling and text clipped at right.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable fixed-total principle with explicit toy boundary; no transfer task.",
+      "evidence": "R: Your prediction held; A 44.6%, B 44.6%, C 10.8%; shares always add to 100%; toy unit arrows in 2-D skips \u221ad scaling.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Keyboard slider tested only; focus, contrast, phone, zoom and motion unknown.",
+      "evidence": "E: midway A 44.6%, total 100.0%; End 355\u00b0 A 67.8%; Home 0\u00b0 A 66.5%, scores A 1.00 B 0.00 C \u22121.00.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Direct alignment still gives only two thirds.",
+      "evidence": "E: midway A 44.6%, total 100.0%; End 355\u00b0 A 67.8%; Home 0\u00b0 A 66.5%, scores A 1.00 B 0.00 C \u22121.00.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Stacked share bar supports conserved total; full arrow plot not visible in reveal screenshot.",
+      "evidence": "Chrome: Evaluation preview \u00b7 learning history and analytics are not saved. Why trust this? (5/5 claims checked) ignored. Screenshot inline 1280x720; reveal has internal scrolling and text clipped at right.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversible slider and presets.",
+      "evidence": "E: midway A 44.6%, total 100.0%; End 355\u00b0 A 67.8%; Home 0\u00b0 A 66.5%, scores A 1.00 B 0.00 C \u22121.00.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Transformer connection stated, no concrete application.",
+      "evidence": "R: Your prediction held; A 44.6%, B 44.6%, C 10.8%; shares always add to 100%; toy unit arrows in 2-D skips \u221ad scaling.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Alignment, normalization and weighted blend linked.",
+      "evidence": "R: Your prediction held; A 44.6%, B 44.6%, C 10.8%; shares always add to 100%; toy unit arrows in 2-D skips \u221ad scaling.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links arrow alignment to scores, shares and blend.",
+    "conceptualDemand": "Linked supported relations; optional transformer equation demanding.",
+    "interfaceBurden": "Reveal right clipping and internal scrolling.",
+    "prerequisiteNovelty": "moderate: arrows and softmax introduced",
+    "notationRepresentationBurden": "moderate: optional matrix notation"
+  },
+  "whyCool": "Rotating to A still leaves other words a visible slice.",
+  "caveat": "Reveal text clips at the right edge in tested desktop viewport.",
+  "notApprovedForServing": true,
+  "effort": "about 3 minutes",
+  "missingEvidence": [
+    "Accessibility modes beyond slider keyboard",
+    "Learner outcomes"
+  ],
+  "fatalFindings": []
+}

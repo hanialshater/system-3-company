@@ -1,0 +1,151 @@
+{
+  "status": "walkthrough-reviewed",
+  "reviewState": "complete-real-walkthrough",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "action": "Selected fewest crossings and locked",
+      "outcome": "Crossing switches, second knot and reset unlocked."
+    },
+    {
+      "id": "E",
+      "action": "Switched crossing1 then2 on6₁; selected5₂ and switched1; reset",
+      "outcome": "6 drawn named4₁ then0₁; selecting crossing2 cleared crossing1. Five drawn named3₁; reset restored5₂ while Seen retained3₁."
+    },
+    {
+      "id": "R",
+      "action": "Opened reveal after reset",
+      "outcome": "Reveal restored last switched five-crossing3₁ illustration; confirmed prediction, distinguished drawn crossings from minimum and second number as table position."
+    },
+    {
+      "id": "V",
+      "action": "Inspected switched6₁ and revealed5₂ screenshots",
+      "outcome": "1257x992 dark Chrome; over/under gaps, highlighted switch and text legible; no horizontal clipping."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear misconception distinguishes any drawing from minimum drawing and loop count.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Switching changes name while drawn count stays fixed across two knots; minimum itself remains asserted rather than demonstrated by deformation.",
+      "evidence": "E",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Connects count/name contrast and notation meaning, but does not show simplification establishing lower minimum.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Switch location and retained Seen example clarify full path; reveal restores matching last example after reset.",
+      "evidence": "E,R,V",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable table-name reading rule and second knot contrast; no concrete new task with demonstrated minimal drawing.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic mode checks.",
+      "evidence": "Keyboard, focus, contrast, phone, zoom/reflow and motion untested.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Correct prediction confirmed; fixed drawn count with changed identity gives supporting tension.",
+      "evidence": "P,E",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Visible over/under switch carries identity change, but minimum crossing reduction not pictured.",
+      "evidence": "E,V",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 4,
+      "reason": "Multiple switches, two knot choices and reset support reversible exploration.",
+      "evidence": "E",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Specific knot-table notation interpretation with limited external application.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Crossing count, knot identity, minimum and table index are linked distinctions.",
+      "evidence": "E,R",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Core minimum-over-all-drawings abstraction requires separating diagram properties from knot identity.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": {
+      "level": "high",
+      "reason": "Knot equivalence and minimal crossing tables unfamiliar to stated learner boundary."
+    },
+    "notationRepresentationBurden": {
+      "level": "moderate",
+      "reason": "Subscript knot names and over/under diagram conventions."
+    },
+    "conceptualDemand": "Reason about minimum across alternative drawings not shown, while switches change knot identity.",
+    "interfaceBurden": "Low in tested viewport; switches mutually exclusive."
+  },
+  "whyCool": "One crossing switch changes the name from6₁ to4₁ while six crossings remain drawn.",
+  "caveat": "No untangling animation or minimal drawing demonstrates the claimed lower crossing number.",
+  "missingEvidence": [
+    "Systematic accessibility checks",
+    "Minimal drawing comparison",
+    "Phone layout"
+  ],
+  "effort": {
+    "approximateMinutes": 3
+  },
+  "partialBlinding": "Visible Why trust this? (8/8 claims checked); ignored and not opened.",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3b",
+  "date": "2026-10-18",
+  "notApprovedForServing": true,
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, number comparisons and familiar household objects; no domain theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 992,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "screenshots": [],
+  "fatalFindings": [],
+  "slug": "draw-a-table-knot",
+  "demoVersion": 3,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/draw-a-table-knot",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "057bd3c4d30bf82160f42e9864e657cee042bc89ae3822a08245864917d5c7b5",
+    "metaSha256": "086b94e107da6064852ce6fc3e42f1b321c3709aa6bb0b1ee1d76a6443cc71ca"
+  }
+}

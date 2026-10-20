@@ -1,0 +1,104 @@
+{
+  "slug": "life-expectancy-gained-late",
+  "demoVersion": 3,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/life-expectancy-gained-late",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted about35 years gain from1900 to2000 versus30.6\u219233.5 in1800\u20131900.",
+    "Opened each span:1800\u20131900 gain2.9,1900\u20132000 gain34.7 to68.2,2023 level74.0.",
+    "The gain chart explicitly labeled100,100 and23-year spans, with final gain5.8, preventing equal-duration confusion.",
+    "Reveal accurately gave the roughly12-fold century-gain comparison and noted one source with25-year sampling hides epidemic-year drops."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple historical levels and differences.",
+    "conceptualDemand": "Life expectancy at birth and period gain.",
+    "interfaceBurden": "Four view buttons."
+  },
+  "whyCool": "A century-scale view makes the late acceleration in life expectancy striking.",
+  "caveat": "One historical source and coarse sampling; the demo does not explain how life expectancy at birth differs from the lifespan of a typical adult.",
+  "effort": "Completed prediction, all spans, gain chart, screenshots and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear historical comparison with appropriate source and sampling limits.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "A meaningful historical magnitude estimate with an explicit baseline.",
+      "evidence": "Options35,15,5 years.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Sequential chart reveals allow comparison but no analytical parameter changes.",
+      "evidence": "Three spans and gain view.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Exact values and ratio explain the observed historical acceleration with sampling limits.",
+      "evidence": "34.7 versus2.9 and epidemic-year caveat.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Units, dates and unequal span lengths are explicit.",
+      "evidence": "Gain chart labels100/100/23 years.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Dataset interpretation is explained without another application.",
+      "evidence": "No second comparison problem.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "The gain is almost12 times the preceding century's.",
+      "evidence": "34.7 versus2.9 years.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Level series and gain bars show different aspects of the change.",
+      "evidence": "Full historical curve and three gain bars.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Chart progression rather than manipulation.",
+      "evidence": "Four view controls.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Historical perspective on a population measure.",
+      "evidence": "No individual planning task.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Connects level changes, unequal spans and temporal sampling.",
+      "evidence": "Explicit suppressed epidemic-year variation.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "step-too-long",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/step-too-long",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "8812dcb29c3a0ff0b0d17a98a8c298dd9bc24cc7622411cc5beea9da37e80802",
+    "demoSha256": "edc34833aa97996dfd67f68ef401626dddc3d0cf3dda81e154e1bd91f1f0e867",
+    "metaPath": "src/demos/ai/step-too-long/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected under 0.1 distance after five steps at learning rate 1.1 and locked it in.",
+    "exploration": "Set rate 1.1 and ran five steps: distance 2.488, factor 1.2. Set 0.5, which reset steps, and took one step: distance zero, factor zero. Set 1.0 and ran five steps: distance remained one, factor one. Reveal retained original divergent trajectory.",
+    "reveal": "Corrected about 2.5. Lists alternating divergent iterates and distance multiplier absolute value of 1 minus twice the rate. Connects tested exact-bottom and neutral-oscillation rates to convergence threshold. Also describes untested 0.4 rate.",
+    "visual": "Inspected inline divergent-path screenshot: purple dashed zigzags cross the bowl and grow away from its bottom, with distance 2.488 and factor 1.2. Controls and labels legible. Trust count 3/3 ignored.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Precise numerical question but gradient update notation assumes substantial prior algebra.",
+      "evidence": "Rate 1.1 update equation before the prediction.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Divergent, exact-solution and neutral-boundary rates visibly distinguish three mechanisms.",
+      "evidence": "1.1 grows, 0.5 reaches zero, 1.0 stays at one.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Connects actual trajectories to multiplier and convergence boundary.",
+      "evidence": "Alternating sequence, zero/one/1.2 factors and steepness limit.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Named rates, step count and explicit factor make tested path understandable.",
+      "evidence": "Reset on rate change and screenshot readouts.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable step-size caution supplied without a concrete new loss function or applicability calculation.",
+      "evidence": "Limit depends on slope steepness.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Small-distance prediction reversed by oversized steps diverging.",
+      "evidence": "Distance 2.488 after five steps.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Bowl and zigzag path carry overshooting and growing-distance mechanism.",
+      "evidence": "Divergence screenshot plus three rate contrasts.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Rate choices and single/batch stepping allow reversible experiments.",
+      "evidence": "Three rates and both step controls tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete optimization learning-rate interpretation central.",
+      "evidence": "Oversized gradient steps fail to converge.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 4,
+      "reason": "Divergence, exact landing and neutral oscillation are distinct observed cases.",
+      "evidence": "Three tested factors and reveal.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Coordinates derivative-based update, signed iterates, distance factor and stability threshold.",
+    "conceptualDemand": "Several dependent algebra and optimization relations.",
+    "interfaceBurden": "Low: rate presets and step controls.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "high: gradient descent and convergence",
+    "notationRepresentationBurden": "high: eta, square loss, assignment arrow and absolute value"
+  },
+  "whyCool": "A rate of 0.5 lands exactly at the bottom, while doubling it to one makes the point bounce forever at the same distance.",
+  "caveat": "Only the scalar square loss is tested; other curvature and loss functions remain unknown.",
+  "missingEvidence": [
+    "Rate 0.4",
+    "Other loss function",
+    "Fresh application",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

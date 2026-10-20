@@ -1,0 +1,103 @@
+{
+  "slug": "lh-lead-time-stock",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-lead-time-stock",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted 20 units at ordering to consume four daily for three days and retain eight.",
+    "Tests gave with-buffer 20 versus no-buffer 12; maximum ten days gave 48 versus 40.",
+    "Screenshot showed aggregate stock bars. Reveal preserved original/current context, distinguished stock at reorder from purchase quantity, and limited constant-demand rule."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simple arithmetic with inventory timing distinction.",
+    "conceptualDemand": "Order before stock for waiting time is consumed.",
+    "interfaceBurden": "Two tests and one slider."
+  },
+  "whyCool": "The stock you need when ordering must cover the wait as well as the reserve.",
+  "caveat": "Constant demand and delay; no actual stock policy or stochastic safety-stock calculation.",
+  "effort": "Prediction, both tests, maximum delay, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear planning arithmetic and useful scope limits.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete inventory requirement distinguishes demand and reserve.",
+      "evidence": "20 versus 12 versus 8.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Lead-time change shows demand accumulation plus fixed reserve.",
+      "evidence": "3\u219210 days.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains formula and prevents order-quantity confusion.",
+      "evidence": "Stock left when ordering, not amount to buy.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Demand, reserve and illustrative scope explicit.",
+      "evidence": "Four per day, reserve eight.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete non-equivalence and variability caveat constrain application.",
+      "evidence": "Not quantity to buy; real delays vary.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Expected demand-plus-buffer arithmetic.",
+      "evidence": "No reversal.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Aggregate stock bars support total comparison.",
+      "evidence": "No depletion timeline or reserve partition.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Tests and lead-time slider.",
+      "evidence": "Demand and reserve fixed.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Reorder timing is central.",
+      "evidence": "Delivery-delay stock.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Separates waiting-period consumption and reserve.",
+      "evidence": "Fixed plus rate-times-time.",
+      "confidence": "medium"
+    }
+  }
+}

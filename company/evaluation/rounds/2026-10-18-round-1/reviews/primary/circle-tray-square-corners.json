@@ -1,0 +1,104 @@
+{
+  "slug": "circle-tray-square-corners",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/circle-tray-square-corners",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted four10 cm discs remain four after individually rotating45\u00b0 in a28 cm square-grid tray.",
+    "A/B both showed2 per row and4 total; B changed orientation marks but not circular outlines.",
+    "Raised tray side to34: both modes showed3 per row and9 total.",
+    "Reveal said original prediction held beside current9/9 without recalling original28 cm/four, then correctly distinguished rotation from rearrangement and excluded best-packing claims."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Basic circle geometry and counting.",
+    "conceptualDemand": "Rotation invariance versus layout change.",
+    "interfaceBurden": "Two views and size slider."
+  },
+  "whyCool": "The marks move while the boundary that decides packing does not.",
+  "caveat": "Changed tray size needs explicit reconciliation with the original four-disc prediction.",
+  "effort": "Completed prediction, both orientations, changed size, screenshots and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Sound geometric distinction with a recurring numeric-verdict framing issue.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clearly specifies individual rotation and square grid, avoiding global packing ambiguity.",
+      "evidence": "Four versus five/nine at28 cm.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Tray size and orientation distinguish circular invariance from capacity thresholds.",
+      "evidence": "28 cm4 versus34 cm9, both invariant under rotation.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Correct symmetry principle and solver limit, but numeric held verdict lacks original/current framing.",
+      "evidence": "Predicted4, reveal reports9/9.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Geometry and table are clear; generic held wording confuses the numerical prediction after resizing.",
+      "evidence": "Original28 cm not restated.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete symmetry distinction explicitly excludes rearranging or optimal packing.",
+      "evidence": "Changing arrangement is separate experiment.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Simple rotational symmetry.",
+      "evidence": "Circle remains unchanged.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Orientation marks rotate inside unchanged outlines.",
+      "evidence": "A/B grid comparison at two sizes.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Rotation and tray slider test capacity.",
+      "evidence": "Two variables.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Useful packing distinction.",
+      "evidence": "No optimal arrangement advice.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Separates symmetry, size threshold and packing optimization.",
+      "evidence": "Square-grid scope explicit.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1",
+  "reviewKind": "primary",
+  "slug": "heat-in-no-rise",
+  "demoVersion": 1,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/heat-in-no-rise",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy and simple charts; no domain theory.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "P: chose48\u00b0Cwaterafter200kJto1kgice0\u00b0C;334kJmeltingneedgiven.",
+    "E: keyboardRight100kJ0\u00b0C0.70kgice;200kJ0\u00b0C0.40kg;End700kJ88\u00b0C0ice;graphplateauthenrisingline.",
+    "R:Notquiteice/water0\u00b0C;200kJmelts0.60kg;past334kJwarms;meltingstructureversusmotion;liquidwater200kJwouldwarm48\u00b0C.",
+    "No-historypreview;5/5trustignored. Screenshot1280x720 cleargraphandreadouts."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Concretepredictionbuttitleand334kJclueheavilysignalplateau.",
+      "evidence": "P: chose48\u00b0Cwaterafter200kJto1kgice0\u00b0C;334kJmeltingneedgiven.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Before/aftermeltingcontrasts temperatureandremainingice.",
+      "evidence": "E: keyboardRight100kJ0\u00b0C0.70kgice;200kJ0\u00b0C0.40kg;End700kJ88\u00b0C0ice;graphplateauthenrisingline.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Usesactualstateandexplainsheatjobs.",
+      "evidence": "R:Notquiteice/water0\u00b0C;200kJmelts0.60kg;past334kJwarms;meltingstructureversusmotion;liquidwater200kJwouldwarm48\u00b0C.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Graphandstatecounterclear.",
+      "evidence": "No-historypreview;5/5trustignored. Screenshot1280x720 cleargraphandreadouts.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Distinguishesphasechangefromwarmingwithliquidcounterfactual.",
+      "evidence": "R:Notquiteice/water0\u00b0C;200kJmelts0.60kg;past334kJwarms;meltingstructureversusmotion;liquidwater200kJwouldwarm48\u00b0C.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Onlysliderkeyboardchecked;othermodesunknown.",
+      "evidence": "No-historypreview;5/5trustignored. Screenshot1280x720 cleargraphandreadouts.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Heatwithouttemperaturerise.",
+      "evidence": "E: keyboardRight100kJ0\u00b0C0.70kgice;200kJ0\u00b0C0.40kg;End700kJ88\u00b0C0ice;graphplateauthenrisingline.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Plateauandtemperature/icecountercentral.",
+      "evidence": "E: keyboardRight100kJ0\u00b0C0.70kgice;200kJ0\u00b0C0.40kg;End700kJ88\u00b0C0ice;graphplateauthenrisingline.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversibleheatslider.",
+      "evidence": "E: keyboardRight100kJ0\u00b0C0.70kgice;200kJ0\u00b0C0.40kg;End700kJ88\u00b0C0ice;graphplateauthenrisingline.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Familiariceheating.",
+      "evidence": "R:Notquiteice/water0\u00b0C;200kJmelts0.60kg;past334kJwarms;meltingstructureversusmotion;liquidwater200kJwouldwarm48\u00b0C.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Energyallocationandphaseboundary.",
+      "evidence": "R:Notquiteice/water0\u00b0C;200kJmelts0.60kg;past334kJwarms;meltingstructureversusmotion;liquidwater200kJwouldwarm48\u00b0C.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Linkenergyinputwithphasefractionandtemperatureconditionalonphase.",
+    "conceptualDemand": "Supportedpiecewiserelation.",
+    "interfaceBurden": "Low.",
+    "prerequisiteNovelty": "moderate:latentheatintroduced",
+    "notationRepresentationBurden": "low:graphandunits"
+  },
+  "whyCool": "Adding200kJremovesmosticewhilethetemperaturelineremainsflat.",
+  "caveat": "Massandpressurefixed;microscopicstructure explanationtextual.",
+  "notApprovedForServing": true,
+  "effort": "about2minutes",
+  "missingEvidence": [
+    "Accessibility modes beyond sliderkeyboard",
+    "Learning outcomes"
+  ],
+  "fatalFindings": []
+}

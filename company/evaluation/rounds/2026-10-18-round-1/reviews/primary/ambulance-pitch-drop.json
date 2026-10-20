@@ -1,0 +1,120 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2",
+  "reviewKind": "primary",
+  "slug": "ambulance-pitch-drop",
+  "demoVersion": 6,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/ambulance-pitch-drop",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, familiar objects; no subject theory assumed.",
+  "viewport": "1280x720 desktop screenshot",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "text": "No-history banner;trust8/8 ignored. Predicted starts above700Hz,endsbelow;locked."
+    },
+    {
+      "id": "E",
+      "text": "At\u221220:754Hz. KeyboardHome:\u221280,755Hz;End:+80,652Hz. ArrowRight sweeps crossed0/+20; retained checkpoints754/704/653; reveal enabled.40press sweep saturated80, so did not independently stopat0. Gaps31.8ahead/36.8behind versusparked34.3."
+    },
+    {
+      "id": "R",
+      "text": "Siren stayed700Hz. Earlier rings sentfrom earlierpositions, compressed ahead and stretched behind;704besidebecause soundleftwhileapproaching. Stillair,343m/s. Inline screenshot shows rings and retainedreadouts; top rings and right text partlyclipped by scrollpanel. None saved."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Alternatives separate sourcefrequency from approaching/receding observations.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Position contrast changes observerfrequency while driverremains700; retainedcheckpoints connect path.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains ring spacing,rateofarrival and non700beside limit.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Instructions and readouts clear but internal clipping and difficult exactstopwithkeys.",
+      "evidence": "E,R",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Reusable moving-source/received-crest distinction with still-air condition; editorialonly.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Keyboardslider tested but insufficient fullmodeaudit.",
+      "evidence": "E",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Sourceconstant yet observerfrequencychanges;beside704ratherthan700.",
+      "evidence": "E,R",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Spatialringgaps carry mechanism.",
+      "evidence": "R screenshot",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversible position sweep.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Explains familiarpassingsiren.",
+      "evidence": "P,R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Sourceversusobserverfrequency plusretardedemissionatbesideposition.",
+      "evidence": "R",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Spatialspacing\u2192arrivalrate relation supported, besideposition adds timing distinction.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "moderate;sliderprecision/clipping",
+    "prerequisiteNovelty": "moderate;Hz/wavecrests",
+    "notationRepresentationBurden": "moderate;Hz,m,m/s"
+  },
+  "whyCool": "The driver staysat700Hz while sweepingtheambulance changesobserverreadout755\u2192652Hz.",
+  "caveat": "No audio experience established; exactbesidestopnotindependentlyheld though retainedcheckpointobserved.",
+  "notApprovedForServing": true,
+  "effort": "About4minutes",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility modes beyondsliderkeys",
+    "Audioexperience"
+  ]
+}

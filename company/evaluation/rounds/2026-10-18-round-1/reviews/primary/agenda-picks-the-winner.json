@@ -1,0 +1,103 @@
+{
+  "slug": "agenda-picks-the-winner",
+  "demoVersion": 3,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/agenda-picks-the-winner",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "PredictedC forABthenC from explicit cyclic threevoter rankings.",
+    "ABthenC:AwinsAB2\u20131,CbeatsA2\u20131. BCthenA electsA;ACthenB electsB. Majority graphcycle completes.",
+    "Reveal restores original question labeledYourquestion,explains all3outcomes and sincere-voting condition. Screenshots readable."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Rankings,pairwise majority and sequential elimination.",
+    "conceptualDemand": "Individual consistency versus collective cycle.",
+    "interfaceBurden": "Three agenda controls,clear traces."
+  },
+  "whyCool": "The same preferences can elect any of three options solely by changing which contest happens first.",
+  "caveat": "Specific majority cycle with sincere pairwise voting;not every electorate or voting rule permits agenda control.",
+  "effort": "Prediction,all3agendas,reveal,two screenshots.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Controlled order experiment,clear graph and labeled original-state payoff.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Complete preference inputs,nontrivial two-round calculation.",
+      "evidence": "A/B/C choice.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "All agendas isolate order with rankings fixed.",
+      "evidence": "C/A/B winners.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Revisits labeled original answer,compares all outcomes,and states sincere-voting limit.",
+      "evidence": "Yourquestion restored;cycle2\u20131.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readable rankings,traces and directional graph legend.",
+      "evidence": "Screenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete agenda-setting mechanism with condition.",
+      "evidence": "Order controls winner in this majority cycle,sincere votes.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Consistent individuals can yield cycling group preference.",
+      "evidence": "Three winners same voters.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Cycle graph and vote traces make mechanism clear.",
+      "evidence": "A>B>C>A.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Choose agendas and observe different winners.",
+      "evidence": "Three controls.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Voting procedure design central.",
+      "evidence": "Agenda power.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Nontransitive aggregation and strategic-voting boundary.",
+      "evidence": "Sincere-vote condition.",
+      "confidence": "medium"
+    }
+  }
+}

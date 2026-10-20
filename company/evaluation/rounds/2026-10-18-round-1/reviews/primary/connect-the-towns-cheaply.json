@@ -1,0 +1,156 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1b",
+  "date": "2026-10-18",
+  "slug": "connect-the-towns-cheaply",
+  "domain": "cs",
+  "demoVersion": 2,
+  "expectedVersion": 2,
+  "batchId": "round1-03",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "66008a33ec87005f30b9e8d5bd8b3ba8c00afd4f66ad985595161ce9422c472f",
+  "demoSha256": "3ce8572b0647d971089d3563603434a3ff3ca08c19f12e6e1593ce857e7b0664",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/connect-the-towns-cheaply",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "evidenceMode": "live-browser-computer-use",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "previewIsolationObserved": true,
+  "visibleTrustChrome": "5/5 claims checked; ignored, unopened",
+  "phaseCoverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true,
+    "pixelInspection": true
+  },
+  "observations": [
+    {
+      "id": "p",
+      "action": "Selected5; Lock it in",
+      "outcome": "Prediction retained; cable controls unlocked."
+    },
+    {
+      "id": "e",
+      "action": "TriedAD5 first;AB1;BC2;AC2;CD3",
+      "outcome": "AD rejected cheapest-firstAB1feedback;AB/BClaidcost3;ACrefusedloopcostunchanged;CDconnectsallfourcost6."
+    },
+    {
+      "id": "v",
+      "action": "Inspected final network screenshot",
+      "outcome": "GreenAB/BC/CD, red dashedAC, fadedremainingedges; costs and3cables/6readouts legible;1257x936dark no horizontal cutoff."
+    },
+    {
+      "id": "r",
+      "action": "Show me why",
+      "outcome": "6; describes actuallaidlist andrefusedAC;threecheapestcost5triangleleavesDout;cheapest-firstskiploopsKruskal stated alwaysworks."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "5versus6 tests cheap triangle against full connectivity.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Expensive-first and cycle attempts visibly refused with reasons; acceptededges connecttowns.",
+      "evidence": "e,v",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains actual5failure and6solution through loop/connectivity; globalalgorithm claim mostlystated.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Costs,accepted/refusedstyles andspecificerrorfeedback clear.",
+      "evidence": "v,e",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalcheapest-nonloopalgorithm stated, no newgraph.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No mode checks.",
+      "evidence": "v",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "5prediction fails because threecheapest excludeD.",
+      "evidence": "p,e",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Redcycle versus greenconnections carry mechanism.",
+      "evidence": "v",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Deliberatelywrongchoices produce explanatory feedback.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Cost-minimizing network connection central concrete task.",
+      "evidence": "p,r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Cost ordering,cycle rejection andconnectivity linked.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Trackscomponents,costordering andcycle constraint withfour-town support.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": {
+      "level": "moderate",
+      "reason": "Graph network/cyclealgorithm introduced."
+    },
+    "notationRepresentationBurden": {
+      "level": "low",
+      "reason": "Lettertowns andsmallintegercosts."
+    }
+  },
+  "whyCool": "The2-costACcable is refused inred because it closes a loop; adding3-costCDinstead reaches the missingtown for6.",
+  "caveat": "One fixed graph and enforced greedyorder; general optimality asserted without exchange proof.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Equal-costalternative/reset andnewgraph, phone/accessibility untested."
+  ],
+  "reviewState": "complete-real-walkthrough",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "explain-the-link",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/explain-the-link",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Title/prediction discussed cloud,rain,puddle, but study fixture used invented gears tav turns bix turns rell.",
+    "Selected that knowing links is needed; after lock arrows were covered and words alphabetized.",
+    "Chose bix as direct predecessor of rell and tav of bix; Check gave2/2 and restored source.",
+    "Reveal accurately handled all-correct answers and finally connected the invented gear example to weather-list analogy; it claimed only remembered links could answer, though options permit recognition or guessing."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simple chain but invented labels and topic shift add memory/framing load.",
+    "conceptualDemand": "Directed relation versus list membership.",
+    "interfaceBurden": "Two cycling answer buttons."
+  },
+  "whyCool": "The same three names survive while the information needed to explain their relationship disappears.",
+  "caveat": "Correct forced-choice responses do not establish exclusive memory retrieval; title and fixture should share a coherent setup, and listing3/3 baseline is assigned rather than tested.",
+  "effort": "Completed prediction, source study, two covered link responses, check, screenshot and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Meaningful relational task with a framing mismatch and overstrong inference.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Useful list-versus-relationship distinction, but binary answer is strongly cued and context shifts.",
+      "evidence": "Weather question against invented-gear fixture.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Source links hide and actual answers are checked, so relationships must be selected rather than merely listed.",
+      "evidence": "Two link responses,2/2.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Correct observed score, but only remembered links claim overstates what the response proves.",
+      "evidence": "Cycled multiple-choice answers can be guessed/recognized.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Fixture directions clear, but unexplained topic switch until reveal increases framing burden.",
+      "evidence": "Cloud/rain/puddle versus tav/bix/rell.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete study rule asks for relations, with an explicit second analogy.",
+      "evidence": "Word list alone does not encode causal links.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "No error on tested path; distinction is conceptual.",
+      "evidence": "2/2 correct.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Arrows make directed relations distinct from word membership.",
+      "evidence": "Chain then alphabetical unlinked list.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Two response choices create a small relational memory task.",
+      "evidence": "Cycle answers then check.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful learning habit of explaining links rather than naming terms.",
+      "evidence": "Weather analogy.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Separates entity memory and relational knowledge.",
+      "evidence": "No causal intervention.",
+      "confidence": "medium"
+    }
+  }
+}

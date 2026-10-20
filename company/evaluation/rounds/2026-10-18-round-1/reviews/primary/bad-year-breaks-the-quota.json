@@ -1,0 +1,115 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1",
+  "reviewKind": "primary",
+  "slug": "bad-year-breaks-the-quota",
+  "demoVersion": 1,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/bad-year-breaks-the-quota",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy and simple charts; no domain theory.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "P: choseOnlylakeB;both600fish, catch120versus20%; diseasekills half, askyear60.",
+    "E:30%shock:A589,B600atyear60;50%shock:Aemptyinyear17,B600. Screenshot tippingpoint400;at300fishgrows105,Atakes120.",
+    "R:Your prediction held. Fixed120exceeds105growthat300;20%shrinks to60. Fixednumber tippingpoint400here;fixedshare none. Toymodel,notfishingadvice.",
+    "No-history preview;5/5trust ignored. Inline screenshot1280x720 labels two trajectories, shock and threshold."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Same starting yield makes contrastingpolicy question meaningful.",
+      "evidence": "P: choseOnlylakeB;both600fish, catch120versus20%; diseasekills half, askyear60.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Two shocks expose threshold and policy response.",
+      "evidence": "E:30%shock:A589,B600atyear60;50%shock:Aemptyinyear17,B600. Screenshot tippingpoint400;at300fishgrows105,Atakes120.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains actual growth/catch numbers and model limit.",
+      "evidence": "R:Your prediction held. Fixed120exceeds105growthat300;20%shrinks to60. Fixednumber tippingpoint400here;fixedshare none. Toymodel,notfishingadvice.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Graph and annotations clear on tested path.",
+      "evidence": "No-history preview;5/5trust ignored. Inline screenshot1280x720 labels two trajectories, shock and threshold.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Reusable fixedquota versus share resilience principle with toy boundary.",
+      "evidence": "R:Your prediction held. Fixed120exceeds105growthat300;20%shrinks to60. Fixednumber tippingpoint400here;fixedshare none. Toymodel,notfishingadvice.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Modes not sufficiently tested.",
+      "evidence": "No-history preview;5/5trust ignored. Inline screenshot1280x720 labels two trajectories, shock and threshold.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Same steady catches diverge aftershock.",
+      "evidence": "E:30%shock:A589,B600atyear60;50%shock:Aemptyinyear17,B600. Screenshot tippingpoint400;at300fishgrows105,Atakes120.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Thresholdline and recovery/collapse trajectories carry explanation.",
+      "evidence": "E:30%shock:A589,B600atyear60;50%shock:Aemptyinyear17,B600. Screenshot tippingpoint400;at300fishgrows105,Atakes120.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Two reversible shock comparisons.",
+      "evidence": "E:30%shock:A589,B600atyear60;50%shock:Aemptyinyear17,B600. Screenshot tippingpoint400;at300fishgrows105,Atakes120.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Resourcepolicy intuition with explicit caution.",
+      "evidence": "R:Your prediction held. Fixed120exceeds105growthat300;20%shrinks to60. Fixednumber tippingpoint400here;fixedshare none. Toymodel,notfishingadvice.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Feedback,growth,thresholdandpolicy linked.",
+      "evidence": "R:Your prediction held. Fixed120exceeds105growthat300;20%shrinks to60. Fixednumber tippingpoint400here;fixedshare none. Toymodel,notfishingadvice.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Linked growth/harvest comparison supports threshold reasoning.",
+    "conceptualDemand": "Nonlinear feedback explained with105versus120; equation optional.",
+    "interfaceBurden": "Low two shock controls.",
+    "prerequisiteNovelty": "moderate: stockgrowthrelation",
+    "notationRepresentationBurden": "moderate: optional logistic equation"
+  },
+  "whyCool": "A50%shock turns one formerly steady lake into collapse while proportional harvesting recovers.",
+  "caveat": "Only two shocks and fixed toy growth law; not empirical fishery evidence.",
+  "notApprovedForServing": true,
+  "effort": "about2minutes",
+  "missingEvidence": [
+    "Accessibility modes",
+    "Learning outcomes"
+  ],
+  "fatalFindings": []
+}

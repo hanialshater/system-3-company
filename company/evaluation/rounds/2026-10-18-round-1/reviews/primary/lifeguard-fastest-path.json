@@ -1,0 +1,104 @@
+{
+  "slug": "lifeguard-fastest-path",
+  "demoVersion": 2,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lifeguard-fastest-path",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predictionrun7m/s,swim1.5m/s,40mbeach/20mwater/60malong,entry40straight/56/24; chose40.",
+    "Exploredall8mstepentries viaEnd64andarrowstozero:64total24.4,0total47.9,best56total23.4(run9.8swim13.6). Returned40total26.9(run8.1swim18.9).",
+    "Reveal56bestavailableversustrue56.4;runfurtherfastmedium/swimlessslowmedium;newlightrefractionanalogyandsin(angle)/speedcondition;flatbeachsteadyspeeds.",
+    "Screenshot pathandtimereadouts clear;actualrightedgeprosecutoff,normalverticalscroll."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Geometricpathwithtwospeeds,tradeoffcanbeexploredwithoutcalculus.",
+    "conceptualDemand": "Distancealoneinsufficient; sumtimeacrossmedia.",
+    "interfaceBurden": "One8m-step slider;clippedreveal."
+  },
+  "whyCool": "Runfartheronthebeachandtheshorterswim savesmoretimethantheextraruncosts.",
+  "caveat": "Idealflatbeach/steadyspeedsanddiscreteentrygrid;refractionanalogyofferednotnewcase-tested.",
+  "effort": "Prediction,allentrypointswithkeyboard,returnstraightline,reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Goodoptimizationagency,quantizationhonesty,andconcretenewphysicsapplication.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Plausiblestraightlineversuslonger-fast-medium alternatives.",
+      "evidence": "40vs56vs24entrypoints.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Freeentrypoint changessegmenttimesandtotal,trackedbest.",
+      "evidence": "0/40/56/64contrasts.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Originalpredictionresolvedwithactualtimesanddiscrete-gridlimitexplicit.",
+      "evidence": "26.9vs23.4s;truebest56.4ratherthanoffered56.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clearsegments/timesbutactualrightedgetextcutoff.",
+      "evidence": "Screenshotlongreveallines truncated.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concreteadditionalapplicationtorefractionwithspeed-mediumcondition.",
+      "evidence": "Lightquickerpathinair/water;sinangle/speedmatchingexplained,notindependentlyapplied.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Longerroute canbesignificantlyfaster.",
+      "evidence": "Bentpath23.4vsstraight26.9s.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Pathbendandrun/swimtimes externalizetradeoff.",
+      "evidence": "Entrypositioncontrol andsegmentreadouts.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Searchshoreforfastestroute.",
+      "evidence": "Nineentrypoints andbest-so-fartracker.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Supportingoptimization/refractionintuition.",
+      "evidence": "Idealizedrescueanalogy,notrealrescueinstruction.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Weightedpathlength,optimum,discretization,andlightanalogy.",
+      "evidence": "56versus56.4andmedia-speeds.",
+      "confidence": "medium"
+    }
+  }
+}

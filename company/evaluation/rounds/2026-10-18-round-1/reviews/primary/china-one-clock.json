@@ -1,0 +1,115 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1",
+  "reviewKind": "primary",
+  "slug": "china-one-clock",
+  "demoVersion": 1,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/china-one-clock",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy and simple charts; no domain theory.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "P: chose1officialzone;61\u00b0longitude/about4hourssolartravel.",
+    "E: Kashgarnoon official14:56/solar12:00,Shanghaiofficial14:56/solar15:02; Shanghainoon official11:54/solar12:00,Kashgarsolar08:58. SliderHomeUTC02:00bothclock10:00,differentsolartimes.",
+    "R: Your prediction held. UTC+8officialclocksagree;zoneslegaldecision;meanSunmodel,actualSun\u00b116minutesyearly.",
+    "No-history preview;6/6trust ignored. Screenshot1280x720 mapnoonlineandclockcountersreadable."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Geometryversusofficialdecisionclear.",
+      "evidence": "P: chose1officialzone;61\u00b0longitude/about4hourssolartravel.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Citynoonpresetscontrastsynchronizedclocksandsolartime.",
+      "evidence": "E: Kashgarnoon official14:56/solar12:00,Shanghaiofficial14:56/solar15:02; Shanghainoon official11:54/solar12:00,Kashgarsolar08:58. SliderHomeUTC02:00bothclock10:00,differentsolartimes.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "ExplainslegalchoiceandmeanSunlimit.",
+      "evidence": "R: Your prediction held. UTC+8officialclocksagree;zoneslegaldecision;meanSunmodel,actualSun\u00b116minutesyearly.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Maplineandpairedcounterssupportcomparison.",
+      "evidence": "No-history preview;6/6trust ignored. Screenshot1280x720 mapnoonlineandclockcountersreadable.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Reusablecivilversussolartimedistinction.",
+      "evidence": "R: Your prediction held. UTC+8officialclocksagree;zoneslegaldecision;meanSunmodel,actualSun\u00b116minutesyearly.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Onlysliderkeyboardchecked;othermodesunknown.",
+      "evidence": "No-history preview;6/6trust ignored. Screenshot1280x720 mapnoonlineandclockcountersreadable.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Noonatnearly3pmofficialtime.",
+      "evidence": "E: Kashgarnoon official14:56/solar12:00,Shanghaiofficial14:56/solar15:02; Shanghainoon official11:54/solar12:00,Kashgarsolar08:58. SliderHomeUTC02:00bothclock10:00,differentsolartimes.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Movingnoonlineacrossmapconnectslongitudetotime.",
+      "evidence": "E: Kashgarnoon official14:56/solar12:00,Shanghaiofficial14:56/solar15:02; Shanghainoon official11:54/solar12:00,Kashgarsolar08:58. SliderHomeUTC02:00bothclock10:00,differentsolartimes.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversibletimeandcitypresets.",
+      "evidence": "E: Kashgarnoon official14:56/solar12:00,Shanghaiofficial14:56/solar15:02; Shanghainoon official11:54/solar12:00,Kashgarsolar08:58. SliderHomeUTC02:00bothclock10:00,differentsolartimes.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Everydaytime-zoneinterpretation.",
+      "evidence": "R: Your prediction held. UTC+8officialclocksagree;zoneslegaldecision;meanSunmodel,actualSun\u00b116minutesyearly.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Longitude,civiltimeandsolartime.",
+      "evidence": "R: Your prediction held. UTC+8officialclocksagree;zoneslegaldecision;meanSunmodel,actualSun\u00b116minutesyearly.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Comparetwocitiesandtwotimeframes.",
+    "conceptualDemand": "Linkedspatialandclockrelations.",
+    "interfaceBurden": "Lowlabelledcontrols.",
+    "prerequisiteNovelty": "moderate:UTCandmeanSun",
+    "notationRepresentationBurden": "low:clockformatsanddegrees"
+  },
+  "whyCool": "MovingnoonfromShanghaitoKashgarchangestheclocktonearly3pmwhilebothcityclocksstillagree.",
+  "caveat": "MeanSuntimemodel;regionalunofficialpracticesnotexplored.",
+  "notApprovedForServing": true,
+  "effort": "about2minutes",
+  "missingEvidence": [
+    "Accessibility modes beyond sliderkeyboard",
+    "Learning outcomes"
+  ],
+  "fatalFindings": []
+}

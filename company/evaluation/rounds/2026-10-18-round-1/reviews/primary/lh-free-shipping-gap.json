@@ -1,0 +1,103 @@
+{
+  "slug": "lh-free-shipping-gap",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-free-shipping-gap",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Pay shipping for \u20ac42 basket, \u20ac4 shipping below \u20ac50, exact top-up merchandise allowed.",
+    "Tests gave \u20ac46 versus \u20ac50; maximum \u20ac54 gave equal \u20ac54; at \u20ac49 checkout was \u20ac53 versus topped-up \u20ac50.",
+    "Screenshot showed receipt icons and a long floor/min expression for shipping. Reveal explained original \u20ac42 comparison and preserved current \u20ac49 reversal."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simple totals but code-like displayed expression adds burden.",
+    "conceptualDemand": "Compare total cost under threshold policy.",
+    "interfaceBurden": "Slider simple; floor/min expression difficult."
+  },
+  "whyCool": "Free shipping is only cheaper when the added goods cost less than the avoided fee.",
+  "caveat": "Assumes exact top-up goods available; expression should use plain conditional arithmetic.",
+  "effort": "Prediction, both tests, above-threshold equality, near-threshold reversal, screenshot and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Strong practical comparison with unnecessarily opaque formula.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Hook cues that free shipping can raise total, but quantities support comparison.",
+      "evidence": "\u20ac42 plus \u20ac4 versus \u20ac50.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Checked original winner, above-threshold equality and near-threshold reversal.",
+      "evidence": "42, 54, 49 baskets.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains whole-receipt reasoning without overgeneralizing winning choice.",
+      "evidence": "Compare totals before naming saving.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Plain scenario is clear but displayed floor/min formula is unnecessarily difficult.",
+      "evidence": "49+(4\u00d7(1-floor(min(1,49\u00f750)))).",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete total-cost rule and optional-goods condition support application.",
+      "evidence": "Shipping removed versus merchandise added.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Free shipping can cost more, with winner reversal near threshold.",
+      "evidence": "46 versus 50 then 53 versus 50.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 1,
+      "reason": "Receipt icons decorate totals.",
+      "evidence": "No fee versus added-goods decomposition graphic.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Threshold invites exploration.",
+      "evidence": "Near-threshold reversal.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Checkout comparison is central.",
+      "evidence": "Optional top-up goods.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Piecewise fee and total-cost comparison.",
+      "evidence": "Threshold changes cost.",
+      "confidence": "medium"
+    }
+  }
+}

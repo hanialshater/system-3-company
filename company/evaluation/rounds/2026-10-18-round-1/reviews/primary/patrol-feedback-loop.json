@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "patrol-feedback-loop",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/patrol-feedback-loop",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "patrol-feedback-loop",
+    "domain": "ai",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/ai/patrol-feedback-loop/meta.json",
+    "metaSha256": "3ed43491e6acc30940b664e7d99ff5a059a418ef97fa3b7b1551f1a736d99703",
+    "demoSha256": "5c33145ab14fcaf1e26c7e8e84f7105b4661e2bb0a6737cf39581ec75d0e6f02",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/patrol-feedback-loop",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/patrol-feedback-loop.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected50% against60% and84% A record share after20 rounds; locked it in.",
+    "exploration": "Start A6/B5. One most-records round gaveA7/B5,58.3%. Run20 gaveA26/B5,83.9%,every patrolA. Take turns reset6/5;Run20 gave16/15,51.6%.",
+    "reveal": "Corrected84%; recounted26/31 feedback chain and B remaining5 despite same true rate. Contrasted actual alternating16/31. Explicit toy limit:one log per round,only where patrolled.",
+    "visual": "Actual1257 \u00d7936 dark screenshot inspected. Stacked records and paired district labels show16 versus15 under turns; counters and reveal legible.",
+    "previewIsolation": "No-history evaluation banner present.",
+    "blinding": "4/4 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear alternatives separate underlying equality from observation feedback.",
+      "evidence": "50% commitment versus83.9% original result.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Allocation-rule contrast changes recorded imbalance while true-rate premise fixed.",
+      "evidence": "26/5 most records versus16/15 taking turns.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects exact observed counts to self-reinforcing selection and limit.",
+      "evidence": "Ahead\u2192patrol\u2192log\u2192ahead;only patrolled logs.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Rule labels,counts and reset-on-switch clearly expose comparison.",
+      "evidence": "Actual screenshot turns16/15.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General model-controlled observation principle and real-study reference,but no concrete new setting.",
+      "evidence": "Data reflect where model chooses to look.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient access audit.",
+      "evidence": "Keyboard,focus,contrast,phone,zoom and motion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Equal-rate prediction contradicted by84% measured share.",
+      "evidence": "Initial one-record lead grows to26/31.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Record stacks and share counter carry observed imbalance.",
+      "evidence": "Two district bar stacks.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Stepping and rule switch support reversible causal comparison.",
+      "evidence": "One round,bulk20,alternate rule andbulk20.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete interpretation of biased observations in allocation systems central.",
+      "evidence": "Same true rate,different measured records.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Allocation,measurement and learned evidence form explicit closed loop.",
+      "evidence": "Most-records versus balanced observation control.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links decisions to observation data and subsequent decisions.",
+    "conceptualDemand": "Distinguish true incidents from logged incidents under selective observation.",
+    "interfaceBurden": "Low:two rules and explicit counts.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: endogenous sampling feedback.",
+    "notationRepresentationBurden": "low:counts and percentages."
+  },
+  "whyCool": "Changing only patrol allocation keeps recorded shares nearhalf instead of turning one extra record into84%.",
+  "caveat": "Deterministic one-log-per-patrol toy; no real-world causal validation or alternative incident rates tested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Manual Reset button not tested;rule switch reset observed.",
+    "Keyboard,focus,contrast,phone,zoom/reflow and motion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:39:56.193498+00:00"
+}

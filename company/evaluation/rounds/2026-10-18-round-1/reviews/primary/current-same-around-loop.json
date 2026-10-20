@@ -1,0 +1,115 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1",
+  "reviewKind": "primary",
+  "slug": "current-same-around-loop",
+  "demoVersion": 3,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/current-same-around-loop",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy and simple charts; no domain theory.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "P: chose Lessthan0.50A betweenseriesbulbs.",
+    "E: all4ammeterpositionsat6Vread0.50A;End12Vbetween1.00A;all4positions12Vsame1.00A. Screenshotdotsfadeafterbulbs,each6.0Vdrop.",
+    "R:Notquite0.50A;chargenowheretopileup/leak,samecurrenteverypoint;12Vraisesall;bulbstakeenergy,notcurrent.",
+    "No-historypreview;7/7trustignored. Screenshot1280x720 circuitandammeterclear;dotsillustrateenergy."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Targetsused-upcurrentmisconception.",
+      "evidence": "P: chose Lessthan0.50A betweenseriesbulbs.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Fourpositionsattwovoltagesseparatecurrentfromenergy.",
+      "evidence": "E: all4ammeterpositionsat6Vread0.50A;End12Vbetween1.00A;all4positions12Vsame1.00A. Screenshotdotsfadeafterbulbs,each6.0Vdrop.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Usesactualmeasurementsandcharge-conservationexplanation.",
+      "evidence": "R:Notquite0.50A;chargenowheretopileup/leak,samecurrenteverypoint;12Vraisesall;bulbstakeenergy,notcurrent.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Meterlocationandvoltagedropsclear.",
+      "evidence": "No-historypreview;7/7trustignored. Screenshot1280x720 circuitandammeterclear;dotsillustrateenergy.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Reusableone-loopcurrentprincipleandenergy distinction.",
+      "evidence": "R:Notquite0.50A;chargenowheretopileup/leak,samecurrenteverypoint;12Vraisesall;bulbstakeenergy,notcurrent.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Onlysliderkeyboardchecked;othermodesunknown.",
+      "evidence": "No-historypreview;7/7trustignored. Screenshot1280x720 circuitandammeterclear;dotsillustrateenergy.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Secondbulbgetssamecurrentdespiteenergydecrease.",
+      "evidence": "E: all4ammeterpositionsat6Vread0.50A;End12Vbetween1.00A;all4positions12Vsame1.00A. Screenshotdotsfadeafterbulbs,each6.0Vdrop.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Meterandfadingchargemarkerscentral.",
+      "evidence": "E: all4ammeterpositionsat6Vread0.50A;End12Vbetween1.00A;all4positions12Vsame1.00A. Screenshotdotsfadeafterbulbs,each6.0Vdrop.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Measurementlocationandbatterycontrasts.",
+      "evidence": "E: all4ammeterpositionsat6Vread0.50A;End12Vbetween1.00A;all4positions12Vsame1.00A. Screenshotdotsfadeafterbulbs,each6.0Vdrop.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Basiccircuitunderstanding.",
+      "evidence": "R:Notquite0.50A;chargenowheretopileup/leak,samecurrenteverypoint;12Vraisesall;bulbstakeenergy,notcurrent.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Charge,current,voltageandenergy.",
+      "evidence": "R:Notquite0.50A;chargenowheretopileup/leak,samecurrenteverypoint;12Vraisesall;bulbstakeenergy,notcurrent.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Linkcurrentcontinuitywithenergytransferindistinctquantities.",
+    "conceptualDemand": "Severalconceptsvisuallysupported.",
+    "interfaceBurden": "Low.",
+    "prerequisiteNovelty": "moderate:amps/voltsdefined",
+    "notationRepresentationBurden": "moderate:circuitschematic"
+  },
+  "whyCool": "Movingthemeteraroundtheloopneverchangesitsreadingwhilechargedotslosebrightness.",
+  "caveat": "Singleidealseriesloopandidenticalbulbs;branchesnotexplored.",
+  "notApprovedForServing": true,
+  "effort": "about2minutes",
+  "missingEvidence": [
+    "Accessibility modes beyond sliderkeyboard",
+    "Learning outcomes"
+  ],
+  "fatalFindings": []
+}

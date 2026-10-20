@@ -1,0 +1,103 @@
+{
+  "slug": "tournament-second-best",
+  "demoVersion": 2,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/tournament-second-best",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted only final loser. Eight-player bracket championE aftersevenmatches; champion tap listed F,H,D as direct losses.",
+    "A tap: losttoB, not champion, cannot second; F tap: only losttochampion could second. Strengths screenshot E8,F7,D6 revealed F second despite first-round exit.",
+    "Reveal tied shortlist proof to observed players and stated two further matches amongthree gives nine total versus13 restarting seven-player search."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Familiar bracket but distinguish final placement from total ranking.",
+    "conceptualDemand": "Transitive deterministic strength and comparison reuse.",
+    "interfaceBurden": "Low round and player buttons."
+  },
+  "whyCool": "The first-round loser can be the true runner-up; the champion's match history already tells you whom to test.",
+  "caveat": "Fixed eight-player balanced bracket, unique deterministic strengths; real sports noise and ties excluded. Extra two matches described rather than playable.",
+  "effort": "Browser prediction, opening round, finish, champion/A/F inspection, strengths screenshot and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Good counterexample, evidence provenance and useful algorithmic payoff.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Familiar tournament intuition with exact deterministic condition.",
+      "evidence": "Stronger always wins, candidate set not just final placement.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Clickable player provenance tests candidate and noncandidate.",
+      "evidence": "E path, A excluded, F included, true strengths reveal.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Observed counterexample and elimination proof resolve prediction.",
+      "evidence": "F7 exitsround1 toE8, D6 final loser; only best can beat second.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Bracket and highlighted loss provenance distinguish candidate from known second.",
+      "evidence": "True strengths optional; messages say couldbe before reveal.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete reuse strategy and comparison-count benefit.",
+      "evidence": "Search champion's three victims, two extra matches versus six.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Second strongest can leave in first round.",
+      "evidence": "F stronger than final loserD.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Bracket provenance highlights relevant defeat.",
+      "evidence": "Selected F\u2192E edge and strengths.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Inspect different contestants and uncover strengths.",
+      "evidence": "Eight selectable players after rounds.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Reusing tournament comparison history saves work.",
+      "evidence": "Nine total versus13.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Necessary-candidate argument and shortlist cost.",
+      "evidence": "Second only loses tobest.",
+      "confidence": "medium"
+    }
+  }
+}

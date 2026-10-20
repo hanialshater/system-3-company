@@ -1,0 +1,103 @@
+{
+  "slug": "keys-fixed-drop-zone",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/keys-fixed-drop-zone",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted known address; six boxes unknown worst-case6,known1.",
+    "Changed possible places10 known remained1; schematic highlighted addressed box.",
+    "Reveal conditions benefit on returning item to address and explicitly counts checks,not memory performance. Screenshot slight right-edge clipping and duplicate prediction-held line."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Counting possible checks.",
+    "conceptualDemand": "Worst case versus known location.",
+    "interfaceBurden": "Two modes,one slider."
+  },
+  "whyCool": "A fixed address changes a search through possibilities into a direct lookup.",
+  "caveat": "Low challenge; no behavioral memory evidence or actual search task.",
+  "effort": "Prediction,modes,count variation,reveal,inline screenshot.",
+  "provisionalBucket": "solid-low-challenge",
+  "bucketReason": "Bounded useful principle,limited interaction.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Clear but nearly definitional information advantage.",
+      "evidence": "Known address versus unknown.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Toggle changes computed count, no actual search.",
+      "evidence": "6 versus1 and known10 remains1.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Accurate mechanism and maintenance condition.",
+      "evidence": "Return item to address; checks only.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readable model with compressed labels,duplicate verdict and small clipping.",
+      "evidence": "10boxes,knownaddress screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete maintenance condition supports applying fixed-location strategy.",
+      "evidence": "Return item to maintained address.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Expected known-location advantage.",
+      "evidence": "Worst-case linear versus1.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Boxes and highlighted address support count.",
+      "evidence": "Ten boxes.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Computed count toggle without search task.",
+      "evidence": "No box-check actions.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Maintained drop-zone principle central.",
+      "evidence": "Return item to address.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Worst-case search versus memory distinction.",
+      "evidence": "Scope explicit.",
+      "confidence": "medium"
+    }
+  }
+}

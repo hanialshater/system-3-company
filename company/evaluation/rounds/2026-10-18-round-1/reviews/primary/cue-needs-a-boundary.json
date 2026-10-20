@@ -1,0 +1,104 @@
+{
+  "slug": "cue-needs-a-boundary",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/cue-needs-a-boundary",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted three notes fit the generic Capital? cue; initial three targets visibly share that label.",
+    "A reported three fitting answers and did not grade ambiguous mappings.",
+    "B replaced target labels with Japan/Kenya/Peru and graded authored permutation0/3; two swaps corrected1/3 then3/3.",
+    "Reveal accurately separated ambiguous validity, specific cue count and corrected matching score, but B's label Kenya's capital describes one cue while the fixture grades all three countries."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Three familiar country-capital associations.",
+    "conceptualDemand": "Unique cue interpretation.",
+    "interfaceBurden": "A/B selectors and swaps."
+  },
+  "whyCool": "An ambiguous answer is left ungraded until the question becomes specific enough to check.",
+  "caveat": "B's single-country label and full three-country score need clearer framing; supplied answers make this matching rather than unaided recall.",
+  "effort": "Completed prediction, both cue modes, two corrections, screenshots and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Meaningful ambiguity distinction with a small labeling mismatch.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Visible examples support a concrete ambiguity judgment.",
+      "evidence": "Three capitals all fit the same generic cue.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Specificity changes gradeability, then actual swaps receive feedback.",
+      "evidence": "Unscored ambiguity to0/1/3 matching.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains why a boundary identifies the intended retrieval target.",
+      "evidence": "Generic fits3, Kenya fits1.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "B action names one country while changing all target labels and showing a three-item score.",
+      "evidence": "Kenya's capital view grades Japan,Kenya,Peru mapping.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete cue-writing rule is directly exemplified.",
+      "evidence": "Include the country to identify one answer.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "A simple ambiguity rather than unexpected result.",
+      "evidence": "Generic noun does not identify a country.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Target labels and aligned mappings make specificity visible.",
+      "evidence": "Capital? labels replaced by country names.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reordering answers provides a small matching task.",
+      "evidence": "Two swap controls.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful flashcard design procedure.",
+      "evidence": "Bound the cue to a specific target.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Separates ambiguity from wrong matching.",
+      "evidence": "A deliberately ungraded.",
+      "confidence": "medium"
+    }
+  }
+}

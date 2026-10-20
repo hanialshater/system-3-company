@@ -1,0 +1,103 @@
+{
+  "slug": "iso-date-filename-sort",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/iso-date-filename-sort",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Hook states day-first mixes months; chose YYYY-MM-DD.",
+    "Sort day-first put2025Dec1,2026Nov2,2026Jan15; use year-first put2025Dec1,2026Jan15,2026Nov2.",
+    "Reveal explains largest unit first and fixed-width scope, but says result reports3 order. Screenshot readable, no custom dates or repeat toggles."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Familiar dates and ordered list.",
+    "conceptualDemand": "Text versus chronological sort.",
+    "interfaceBurden": "Two clicks."
+  },
+  "whyCool": "Putting the largest time unit first makes ordinary text sorting act like date sorting.",
+  "caveat": "Hook spoils choice; remove order3 metric, add learner-controlled dates for stronger interaction.",
+  "effort": "Prediction,both sort operations,reveal,inline screenshot.",
+  "provisionalBucket": "revise-hook-metric",
+  "bucketReason": "Useful example but weak prediction and awkward result label.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Hook gives answer away.",
+      "evidence": "Explicit day-first failure.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Concrete two-order contrast, fixed mandatory sequence.",
+      "evidence": "Swapped November/January.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Correct mechanism and fixed-width condition.",
+      "evidence": "Largest time unit first.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readable records but meaningless order3 metric and fixture instruction.",
+      "evidence": "Reports3 order.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Explicit reusable naming condition supports new filenames.",
+      "evidence": "Fixed-width year-month-day dates sort chronologically.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Text order differs from date order.",
+      "evidence": "November before January day-first.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Record list shows order directly.",
+      "evidence": "Three dates.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Two preset operations.",
+      "evidence": "No editable data.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Filename naming convention central.",
+      "evidence": "Year-first dates.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Lexicographic significance and width condition.",
+      "evidence": "Year/month/day.",
+      "confidence": "medium"
+    }
+  }
+}

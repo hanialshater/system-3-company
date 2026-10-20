@@ -1,0 +1,104 @@
+{
+  "slug": "dependency-before-priority",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/dependency-before-priority",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted draft must precede high-priority review, based on the stated dependency.",
+    "Review10\u2192draft20\u2192send5 gave waiting40, zero late, one prerequisite violation.",
+    "Swap produced draft\u2192review\u2192send, waiting50, zero late, zero violations. Target disabled because already valid.",
+    "Reveal accurately identified the extra10 waiting minutes and explained that priority cannot release an unfinished input."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple three-job dependency chain.",
+    "conceptualDemand": "Prerequisite feasibility.",
+    "interfaceBurden": "Run and swap."
+  },
+  "whyCool": "A schedule with a better waiting number is still unusable if it runs work before its input exists.",
+  "caveat": "Fixed chain and serial resource; no editable priorities, dependencies or parallelism.",
+  "effort": "Completed prediction, both orders, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear feasibility distinction with meaningful metric contrast.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Concrete priority conflict is useful but dependency and title strongly cue answer.",
+      "evidence": "Review works from draft explicitly.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Reorder changes feasibility while worsening an unrelated metric.",
+      "evidence": "Waiting40 invalid versus50 valid.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Correctly prioritizes feasibility over lower waiting and explains why.",
+      "evidence": "Priority label does not alter input release.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Prerequisites, priority badge and violation count are visible.",
+      "evidence": "Draft/review/send chain.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete scheduling rule includes the relevant condition.",
+      "evidence": "A blocked high-priority task still needs completed input.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Lower waiting can correspond to an invalid schedule.",
+      "evidence": "Numeric optimum not sufficient.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Queue and labels show order, but dependency chain is textual.",
+      "evidence": "Needs draft/needs review labels.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Swap tests feasible versus infeasible order.",
+      "evidence": "Two orders.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Directly useful task sequencing habit.",
+      "evidence": "Dependencies constrain priority.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Separates objective value from feasibility.",
+      "evidence": "Hard prerequisite versus soft priority.",
+      "confidence": "medium"
+    }
+  }
+}

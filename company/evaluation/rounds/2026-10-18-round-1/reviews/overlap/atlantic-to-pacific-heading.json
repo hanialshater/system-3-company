@@ -1,0 +1,104 @@
+{
+  "slug": "atlantic-to-pacific-heading",
+  "demoVersion": 3,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/atlantic-to-pacific-heading",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "overlap",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "PredictionAtlantictoPacificviaPanama overallheadingSE,West,SW; choseWest.",
+    "Sailtoend142degSE58km; backthen5%still142deg3km;return100%142deg58km.",
+    "Reveal Pacificend eastandsouth ofAtlanticend,localisthmusEW; overallstraightline notwindingcanalturns.",
+    "Scrolledpreviewup: entiremap visible withnortharrow,labeledends andSEroute. Revealreadable; ordinaryinternalverticalscroll changeswhichpartshown."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Readnorthupmap andcompassdirections.",
+    "conceptualDemand": "Localgeometry cancontradictglobaloceanplacement.",
+    "interfaceBurden": "Simplebuttons/slider; verticalscroll."
+  },
+  "whyCool": "To reach thePacific here,you sail southeast\u2014even though thePacific iswest onyourmentalworldmap.",
+  "caveat": "Independentrootreview withoutprimaryratings; displayedcoordinates/distancesnotfactchecked; routeexplicitlyoverallstraightline.",
+  "effort": "Prediction,end/back/intermediate/end, reveal,scrollupfullmapcheck.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Memorablesurprise andclearmap;interaction mostlyreveals afixedfact.",
+  "quality": {
+    "prediction": {
+      "score": 4,
+      "reason": "Strong globalmapintuition versuslocalgeometry.",
+      "evidence": "Westexpectation correctedSE.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Sailing revealsfixedstraightlineheading;littlecounterfactualvariation.",
+      "evidence": "5%and100%both142degrees.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains localorientation withclear overalldirectioncaveat.",
+      "evidence": "Pacificend eastandsouth;canalwinds.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Clear northupmap,readablelabels; requiresverticalscroll tocombinefullmapandprose.",
+      "evidence": "Up-scrollshowsbothends andnortharrow.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Potential toquestion continentalschemas but mainlyonegeographicfact.",
+      "evidence": "Panamaorientation example.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 4,
+      "reason": "AtlantictoPacific meansheadingeastward here.",
+      "evidence": "SE142degrees.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Northupmap establishesactualendpointgeometry.",
+      "evidence": "Labeledends andSEarrow.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Movingship alongfixedline.",
+      "evidence": "Sail/back andprogressslider.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Geographicorientation literacy.",
+      "evidence": "Localversuscontinentaldirection.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Oneorientation surprise,straightlinecaveat.",
+      "evidence": "Noactualcanalroute displayed.",
+      "confidence": "medium"
+    }
+  }
+}

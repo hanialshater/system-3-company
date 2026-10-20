@@ -1,0 +1,104 @@
+{
+  "slug": "palindromes-grow-from-centres",
+  "demoVersion": 4,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/palindromes-grow-from-centres",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction defines positional palindromic substrings and asks count for aaaa.",
+    "Growing second-letter center found two palindromes in both aaaa and abaa.",
+    "Growing central gap found aa and aaaa in the first string, but stopped immediately on b/a mismatch in the second; screenshot shows green spans versus red mismatch.",
+    "All seven centers found ten versus six palindromes. Only nine of ten abaa substrings were tested because failed ba made whole abaa unnecessary; reveal explains unique centers and two-n-minus-one."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Positional substrings and odd/even centers.",
+    "conceptualDemand": "Relate symmetry to unique centers and safe pruning.",
+    "interfaceBurden": "Seven center choices shared by two strings."
+  },
+  "whyCool": "A failed two-letter middle can rule out a larger word without ever checking that whole word.",
+  "caveat": "Two fixed short strings; no runtime scaling benchmark.",
+  "effort": "Prediction, odd and even center contrasts, all seven centers, screenshots and comparative reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Excellent paired-case visual mechanism and explicit safe-pruning evidence.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Precise counting question that defines duplicate-position treatment.",
+      "evidence": "Four, seven or ten positional substrings.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "User-chosen odd and even centers across two contrasting strings expose growth and early stopping.",
+      "evidence": "Letter center, gap mismatch and all seven centers tested.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Connects counts, unique centers and a concretely skipped candidate.",
+      "evidence": "abaa never tested after ba failed; nine versus ten candidates.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Spans, gap markers and mismatch colors make stopping visible.",
+      "evidence": "Green nested spans versus red b/a mismatch.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 4,
+      "reason": "Second case lets the same method distinguish valid expansions and a candidate that need not be tested.",
+      "evidence": "aaaa all ten; abaa six with whole word skipped after middle failure.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "A single letter change permits skipping a larger candidate.",
+      "evidence": "abaa omitted after ba fails.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Center and expanding symmetric spans directly explain the algorithm.",
+      "evidence": "Odd/even centers across matched and mismatched strings.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Choose any center and inspect both strings.",
+      "evidence": "Seven selectable centers remain inspectable.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete string-search technique.",
+      "evidence": "Unique center enumeration and early stop.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Counting, completeness and pruning connect.",
+      "evidence": "Two-n-minus-one centers, every palindrome once, mismatch stops growth.",
+      "confidence": "medium"
+    }
+  }
+}

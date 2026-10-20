@@ -1,0 +1,137 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "thirteen-pigeons",
+  "demoVersion": 2,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/thirteen-pigeons",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "thirteen-pigeons",
+    "domain": "math",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/math/thirteen-pigeons/meta.json",
+    "metaSha256": "6e0f1bd004a818b2de9ad1781d00fe539260c796aa4e9b0a014dc670a1e4c0dd",
+    "demoSha256": "92dc7b963370b3a578cee3c55baabededcfd2e014b362f7e2d9bd2e64abc8537",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/thirteen-pigeons",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/thirteen-pigeons.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected 13 people and locked it in for guaranteed shared birth month.",
+    "exploration": "Placed one person in each of twelve months; occupied months were disabled until all twelve were filled. At twelve the screen said person 13 must share; placed person 13 in January. Start over reset placements to zero after reveal.",
+    "reveal": "Confirmed prediction and distinguished twelve people possibly all different from thirteen necessarily sharing. Named the pigeonhole principle and certainty from counting.",
+    "visual": "Actual 1257 by 936 dark screenshots inspected. Numbered people in a twelve-tile calendar made the boundary visible; January highlighted two people. Reveal readable.",
+    "previewIsolation": "Preview banner explicitly excluded learning history and analytics saves.",
+    "blinding": "No code, metadata or other reviewer judgments read."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete familiar threshold with a clear certainty question.",
+      "evidence": "Chose 13 rather than 12 or 24.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Placement demonstrates the extremal arrangement but mostly requires a prescribed sequence.",
+      "evidence": "Occupied months disabled until all twelve filled; thirteen forced a duplicate.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explanation directly connects the constructed boundary to a general counting proof.",
+      "evidence": "Twelve can avoid sharing; thirteen cannot.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Familiar month tiles and numbered tokens reduce representation burden.",
+      "evidence": "Distinct counts for people seated and months used.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General principle named without a different application.",
+      "evidence": "Only birth-month placement task offered.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No accessibility mode audit performed.",
+      "evidence": "Initial AX briefly exposed blank choices, later full labels appeared; screenshots guided selection.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Certainty without birthdays is a modest counting surprise.",
+      "evidence": "No random trial needed.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "The full calendar makes lack of a new category visible.",
+      "evidence": "Thirteen placed into occupied January.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Simple seating interaction is tangible but repetitive.",
+      "evidence": "Thirteen clicks on month tiles.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Useful counting lens without an applied follow-up.",
+      "evidence": "Pigeonhole principle named.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Shows a clean boundary and elementary proof.",
+      "evidence": "Twelve versus thirteen.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "Only counting and familiar month categories required.",
+    "conceptualDemand": "Distinguish possible sharing from guaranteed sharing.",
+    "interfaceBurden": "Thirteen placements and a reset; repeated but straightforward.",
+    "conceptualChallenge": "gentle",
+    "prerequisiteNovelty": "Guarantee from finite category counting.",
+    "notationRepresentationBurden": "Month abbreviations and numbered people."
+  },
+  "whyCool": "A full calendar proves a guarantee without knowing a single actual birthday.",
+  "caveat": "Interaction forces the no-duplicate arrangement until the final person; no fresh application tests transfer.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Keyboard-only audit",
+    "Reduced motion audit",
+    "Contrast mode audit"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T21:08:40.989979+00:00"
+}

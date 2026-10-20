@@ -1,0 +1,104 @@
+{
+  "slug": "new-server-moves-few-keys",
+  "demoVersion": 2,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/new-server-moves-few-keys",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Adding fifth server E under key modulo n moved sixteen of twenty consecutive keys.",
+    "Switching to ring showed four moved, all to E; screenshot marked moved keys zero through three and the new arc before A.",
+    "Removing E restored four servers while retaining the labeled addition comparison.",
+    "Reveal explicitly states E was placed for an even fifth and distinguishes that constructed example from a stated larger hashed-spots experiment."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Modulo, circular ownership and approximate balancing are unfamiliar to general learners.",
+    "conceptualDemand": "Compare two assignment rules under server-count change.",
+    "interfaceBurden": "Two schemes and add/remove buttons; internal scroll."
+  },
+  "whyCool": "A small change in the assignment rule can turn a near-global reshuffle into a local transfer.",
+  "caveat": "Fixed key set and chosen server placement; the stated larger experiment was not independently reproduced.",
+  "effort": "Prediction, modulo addition, ring comparison, diagram inspection, removal and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Excellent causal visual comparison with explicit placement assumptions.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Precise remapping question with meaningful alternative magnitudes.",
+      "evidence": "Four, ten or sixteen of twenty.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Scheme switch and add/remove expose ownership locality.",
+      "evidence": "Sixteen modulo versus four ring; removal tested.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Connects exact moved keys to the local ownership rule and construction limit.",
+      "evidence": "Only zero through three stay under modulo; ring takes from successor A; even fifth deliberately chosen.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Ownership colors, movement marks and preserved comparison are explicit.",
+      "evidence": "Ring direction and next-clockwise rule shown.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "General scaling principle qualified by the constructed geometry.",
+      "evidence": "New server takes only its successor's range; one-over-n is approximate with hashed spots.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Adding one server reshuffles most keys under the simple formula.",
+      "evidence": "Sixteen of twenty versus four.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Same keys and colored ownership make local versus global reassignment visible.",
+      "evidence": "Ring arc and individual moved-key outlines.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Switch schemes and add/remove a server.",
+      "evidence": "Direct reversible comparison.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete distributed storage design tradeoff.",
+      "evidence": "Adding capacity without remapping most keys.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Separates modulo reassignment, local ring ownership and balance assumptions.",
+      "evidence": "Even-placement example versus hashed spots.",
+      "confidence": "medium"
+    }
+  }
+}

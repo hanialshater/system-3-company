@@ -1,0 +1,103 @@
+{
+  "slug": "three-questions-six-orders",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/three-questions-six-orders",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted two. Asked A>B: three orders remained; A>C: two remained, screenshot retained ABC/ACB and crossed four ruled out.",
+    "B>C left ABC alone afterthreequestions. UI states answers are unluckiest, preserving adversarial intent.",
+    "Reveal correctly says two binary questions distinguish at mostfour possibilities while six orders exist, but also says 'Each answer can at most halve the orders', which is too broad: a particular answer can eliminate more thanhalf; worst-case branch retains at leasthalf."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Three cards concrete, worst-case guarantee more abstract.",
+    "conceptualDemand": "Adversarial outcomes and counting answer patterns.",
+    "interfaceBurden": "Low: three pair buttons."
+  },
+  "whyCool": "Two equally plausible orders survive your second question, showing exactly what information is still missing.",
+  "caveat": "Qualify the halving claim as worst-case remaining branch, not every answer. Three-question upper bound apparent for three pairs; nlogn extension not explored.",
+  "effort": "Browser prediction, three chosen pair questions, screenshot at two survivors, reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Good permutation elimination but a central proof sentence needs worst-case qualification.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Precise worst-case comparison task.",
+      "evidence": "Three different cards, yes/no pair comparisons, always suffices.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Learner chooses comparison order; adversarial answers preserve ambiguity.",
+      "evidence": "Six\u2192three\u2192two\u2192one under chosen A/B,A/C,B/C sequence.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Useful count argument marred by overgeneralized per-answer halving sentence.",
+      "evidence": "At mostfour answer patterns aftertwo valid; 'each answer at most halve' misleading without worst-case qualification.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Descending order convention implicit and lower-bound wording imprecise.",
+      "evidence": "A bigger B retains ABC; adversarial answers noted.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General nlogn bound asserted without application.",
+      "evidence": "log\u2082(n!) statement only.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Two comparisons can still leave two orders.",
+      "evidence": "ABC versusACB.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Surviving permutation cards make missing information concrete.",
+      "evidence": "Crossed-out orders and counts.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Pick next pair against unlucky answers.",
+      "evidence": "Three questions, no restart observed.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Introductory comparison lower-bound intuition.",
+      "evidence": "No applied sort design.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Worst-case information count beyond one trace.",
+      "evidence": "Four binary answer patterns insufficient for six orders.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "slug": "lh-flow-duration-offset",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-flow-duration-offset",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Equal for 12 L/min for 2 minutes versus 6 L/min for twice the duration.",
+    "Tests showed 24 L each; maximum A duration 8 minutes gave 96 L each.",
+    "Screenshot showed equal filled containers. Reveal preserved initial/current inputs and explained half-rate and double-duration cancellation."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Small integer multiplication and doubling.",
+    "conceptualDemand": "Combine changes in two factors.",
+    "interfaceBurden": "Two tests and one coupled slider."
+  },
+  "whyCool": "Halving the flow saves nothing if it runs for twice as long.",
+  "caveat": "Constant illustrative rates and exact doubled duration; does not model behavior.",
+  "effort": "Prediction, both tests, maximum duration, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear combined-factor comparison with limited exploration.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Fully specified rate-duration comparison with plausible separate-factor confusion.",
+      "evidence": "A, B or equal choices.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Shared time scaling preserves equality.",
+      "evidence": "2\u21928 A-minutes, B twice that.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains cancelling factors and rate-alone limitation.",
+      "evidence": "Half rate times double duration.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Expressions and coupled duration are explicit.",
+      "evidence": "12\u00d7t versus 6\u00d72t.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General warning without a separate new application.",
+      "evidence": "Rate alone does not state final volume.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Lower rate can deliver equal volume.",
+      "evidence": "Duration offsets rate.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Equal container fills reinforce equality.",
+      "evidence": "No temporal flow visualization.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Two tests and duration slider.",
+      "evidence": "Rates and ratio fixed.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Water-use accounting is central.",
+      "evidence": "Volume depends on rate and duration.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Multiplicative compensation.",
+      "evidence": "Inverse factors cancel.",
+      "confidence": "medium"
+    }
+  }
+}

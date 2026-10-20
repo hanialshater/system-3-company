@@ -1,0 +1,103 @@
+{
+  "slug": "towel-spread-dries-first",
+  "demoVersion": 2,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/towel-spread-dries-first",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction quarters12hours asks spread3/6/12; equal per-area evaporation law not given until reveal.",
+    "Width70 foldedarea0.49/time12,spread1.96/time3. Width90 folded0.63/9.33,spread2.52/2.33.",
+    "Reveal fixes same water,constant per-area rate and fourfold area;explicit real fabric/temp/humidity/airflow caveat. Screenshot right-edge clipping;diagram partly above scroll."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Inverse proportionality and fixed-water assumption.",
+    "conceptualDemand": "Area controls model rate,not empirical promise.",
+    "interfaceBurden": "Two modes,widthslider."
+  },
+  "whyCool": "With a fixed amount of water and equal evaporation per unit area,four times the exposed area means one quarter the modeled time.",
+  "caveat": "State rate assumption before exact prediction and clarify water remains fixed when towel width changes.",
+  "effort": "Prediction,A/B,widthvariation,reveal,inlinevisual.",
+  "provisionalBucket": "revise-model-disclosure",
+  "bucketReason": "Coherent toy model but prediction lacks assumptions.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Exact answer relies on unstated proportional-rate model.",
+      "evidence": "12\u21923 requires inverse exposed area.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Mode and width change area/time coherently under fixed-water toy.",
+      "evidence": "Fourfold area;wider towel lower time.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Mechanism and real-world scope explicit.",
+      "evidence": "Same water,per-area rate,not12hour promise.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Fixed water across changing towel size only explained later;original3 versus current2.33.",
+      "evidence": "Width70\u219290.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Model principle and caveat,no new application.",
+      "evidence": "Same towel.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Same water can leave faster through more area.",
+      "evidence": "12\u21923.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Table and folded/spread schematic support relation.",
+      "evidence": "Area/time columns.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Arrangement and width variation.",
+      "evidence": "70\u219290.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Laundry drying central but no real time guarantee.",
+      "evidence": "Explicit limitations.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Area-time inverse relation under fixed amount/rate.",
+      "evidence": "Model assumptions.",
+      "confidence": "medium"
+    }
+  }
+}

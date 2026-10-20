@@ -1,0 +1,140 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "hash-bucket-pileup",
+  "demoVersion": 2,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/hash-bucket-pileup",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "hash-bucket-pileup",
+    "domain": "cs",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/cs/hash-bucket-pileup/meta.json",
+    "metaSha256": "71ff46dd18175779cdf85a207fd5cc829b60ce0e181bffa794149170beab18b4",
+    "demoSha256": "4182b3e295c5beec2a4d34c482ab08aa96223d66ef39991b7e0d9db5d460432c",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/hash-bucket-pileup",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/hash-bucket-pileup.json"
+  },
+  "date": "2026-10-18T20:25:04.675140+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Chose9keys andlocked."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Nextkey1then2nocollision,uniqueprob1then.9;dropcollisionkey4inbucket4withkey1,uniqueprob.504.20moretables21total11collidedby4,16by5;20more41total19by4,28by5,currentcollisionkey6. Histograminspected."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read5correction,complementproduct1*.9*.8*.7=.504,and5unique.3024=about70%collision;realhashbucketlistsmanagecollisions."
+    },
+    {
+      "phase": "visual-inspection",
+      "evidence": "Actual1257x936dark inlineempty,firstcollision,41tablesandscrolledreveal inspected. Stackedkeys,highlightbucket,histogram andprose readable."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Preciselydefinedmore-than-halfthreshold.",
+      "evidence": "Tenrandomslots,firstcollision,2/5/9keys.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Individualplacementandbatchdistributionexposechanceprogression.",
+      "evidence": "Firstcollision4,41tables19by4and28by5;stackedkeysinspected.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Complementproductandimplementationimplicationexplainresult.",
+      "evidence": "4unique.504,5unique.3024,hashlistscope.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Distinctslots/keysandcomplementcaptionmakecountsconcrete.",
+      "evidence": "Keynumbersinsidebucketnumbers,histogramfirstcollisionlabel andexplicituniqueprobability.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concreteimplementationresponsewithcollisioncondition.",
+      "evidence": "Realhash tableskeep shortlist perbucket because collisions arriveearly;no freshtask.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Collision likelywhenhalfslotsremainempty.",
+      "evidence": "70%by5keysratherthan9.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Bucketstackandfirstcollisiondistributionconnecteventandfrequency.",
+      "evidence": "Key1and4samebucket then41samplehistogram.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Dropindividualkeysandmanytables.",
+      "evidence": "One-by-one,untilcollision,twobatch20actions.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Explainswhyhashstructuresneedcollisionhandling.",
+      "evidence": "Shortlistsperbucketmentioned.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Occupancy,conditionalprobabilityandcomplementlinked.",
+      "evidence": "Increasingoccupiedslothazardmultiplied acrosskeys.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "conceptualDemand": "Tracksuccessiveavoidanceprobabilitiesandcomplementtocollision.",
+    "interfaceBurden": "Fourbuttons andautomaticcounts;lowburden.",
+    "prerequisiteNovelty": "Hashtabledefinedasrowofslots;conditionalmultiplicationnew.",
+    "notationRepresentationBurden": "Decimalproducts,histogram,key/slotnumbers;visualstacksscaffold."
+  }
+}

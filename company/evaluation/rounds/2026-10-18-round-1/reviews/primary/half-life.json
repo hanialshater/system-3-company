@@ -1,0 +1,115 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1",
+  "reviewKind": "primary",
+  "slug": "half-life",
+  "demoVersion": 2,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/half-life",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy and simple charts; no domain theory.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "P: chose Morethanhalf:overdue for4thhalf-lifeamong25survivors.",
+    "E: firstrun49%,46%,55%,48%;fourth12of25decay,13remain. Newrunthen4:48%,52%,56%,64%;fourth14of22,8remain. Dotidentitiesandbarschange.",
+    "R:NotquiteAbouthalf;quotescurrent48/52/56/64,14/22;smallnumberwobble,nothingpushesoverdue;undecayedatom50%eachinterval;carbon14about5700years.",
+    "No-historypreview;8/8trustignored. Screenshot1280x720 survivorgridandsharebarsreadable."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Targetsconditional-survivalmisconceptions.",
+      "evidence": "P: chose Morethanhalf:overdue for4thhalf-lifeamong25survivors.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Tworunsandper-intervalfractionsrevealchancewobble.",
+      "evidence": "E: firstrun49%,46%,55%,48%;fourth12of25decay,13remain. Newrunthen4:48%,52%,56%,64%;fourth14of22,8remain. Dotidentitiesandbarschange.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Usesactual64%casewithoutcallingitproof,andexplainsmemorylessmodel.",
+      "evidence": "R:NotquiteAbouthalf;quotescurrent48/52/56/64,14/22;smallnumberwobble,nothingpushesoverdue;undecayedatom50%eachinterval;carbon14about5700years.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Conditionaldenominatorsandbarsclear.",
+      "evidence": "No-historypreview;8/8trustignored. Screenshot1280x720 survivorgridandsharebarsreadable.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Reusableconstantconditionalchancerulewithcarbon14example.",
+      "evidence": "R:NotquiteAbouthalf;quotescurrent48/52/56/64,14/22;smallnumberwobble,nothingpushesoverdue;undecayedatom50%eachinterval;carbon14about5700years.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Modesnotsufficientlytested.",
+      "evidence": "No-historypreview;8/8trustignored. Screenshot1280x720 survivorgridandsharebarsreadable.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Survivorsarenotoverdueortougher.",
+      "evidence": "E: firstrun49%,46%,55%,48%;fourth12of25decay,13remain. Newrunthen4:48%,52%,56%,64%;fourth14of22,8remain. Dotidentitiesandbarschange.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Dotcohortandconditionalsharebarscentral.",
+      "evidence": "E: firstrun49%,46%,55%,48%;fourth12of25decay,13remain. Newrunthen4:48%,52%,56%,64%;fourth14of22,8remain. Dotidentitiesandbarschange.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Newrunsandtimechoices.",
+      "evidence": "E: firstrun49%,46%,55%,48%;fourth12of25decay,13remain. Newrunthen4:48%,52%,56%,64%;fourth14of22,8remain. Dotidentitiesandbarschange.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Radioactivedecayintuition.",
+      "evidence": "R:NotquiteAbouthalf;quotescurrent48/52/56/64,14/22;smallnumberwobble,nothingpushesoverdue;undecayedatom50%eachinterval;carbon14about5700years.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Conditionalsurvival,chancevariationandexponentialcounts.",
+      "evidence": "R:NotquiteAbouthalf;quotescurrent48/52/56/64,14/22;smallnumberwobble,nothingpushesoverdue;undecayedatom50%eachinterval;carbon14about5700years.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Connectconditionalprobabilitywithshrinkingcohortandsamplingwobble.",
+    "conceptualDemand": "Linkedrelationssupportedbydenominators.",
+    "interfaceBurden": "Lowbuttons;internalscroll.",
+    "prerequisiteNovelty": "moderate:half-lifedefined",
+    "notationRepresentationBurden": "moderate:changingdenominatorpercentages"
+  },
+  "whyCool": "Thelastsmallcohortcanshow64%decaywithoutmakingitsatoms\u201coverdue\u201d.",
+  "caveat": "Tworunscannotestablishmemorylessness;theoreticalmodelstatedinreveal.",
+  "notApprovedForServing": true,
+  "effort": "about2minutes",
+  "missingEvidence": [
+    "Accessibility modes",
+    "Learning outcomes"
+  ],
+  "fatalFindings": []
+}

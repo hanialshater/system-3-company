@@ -1,0 +1,103 @@
+{
+  "slug": "lh-subtract-openings-area",
+  "demoVersion": 2,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-subtract-openings-area",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Selected Net surface for3 m high4 m wide panel with2 m\u00b2 opening needing no covering.",
+    "Tests gave10 versus12 m\u00b2; minimum width3 gave7 versus9.",
+    "Screenshot showed rectangle with central cutout versus filled rectangle. Reveal preserved inputs and explained enclosing boundary includes empty space."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Rectangle multiplication and subtraction.",
+    "conceptualDemand": "Subtract empty region from enclosing area.",
+    "interfaceBurden": "Two tests and slider."
+  },
+  "whyCool": "The area inside an outline includes space where there is no surface to cover.",
+  "caveat": "Prediction is answered by wording; model excludes actual material losses and constraints.",
+  "effort": "Prediction, both tests, minimum width, screenshot and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Clear geometry but weak prediction.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Label match and hook explicitly disclose subtraction.",
+      "evidence": "Which area remaining? Net surface.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Width change preserves fixed opening subtraction.",
+      "evidence": "4\u21923 m.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects arithmetic to material versus empty space.",
+      "evidence": "Outline encloses both.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Height,width,opening and units clear.",
+      "evidence": "Ideal dimensions.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General covering principle without second task.",
+      "evidence": "Boundary not automatically area needing coverage.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Expected opening subtraction.",
+      "evidence": "Title supplies rule.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Actual visible cutout embodies missing surface.",
+      "evidence": "Net cutout versus filled outline.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Tests and width slider.",
+      "evidence": "Opening fixed.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Surface quantity estimation central.",
+      "evidence": "Covering excludes opening.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Boundary versus occupied area.",
+      "evidence": "Enclosed empty region.",
+      "confidence": "medium"
+    }
+  }
+}

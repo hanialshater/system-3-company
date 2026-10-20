@@ -1,0 +1,140 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "selfing-halves-hets",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/selfing-halves-hets",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "selfing-halves-hets",
+    "domain": "life",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/life/selfing-halves-hets/meta.json",
+    "metaSha256": "bc9b65f3b5996964928425f3508f8ea3295d61edeaccc47cb1f56a2bb8d9c4fa",
+    "demoSha256": "7195f79d8e2c327bdf9d294db4f1331d2f8e74dd940809901cf0c2cbcc4030a3",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/selfing-halves-hets",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/selfing-halves-hets.json"
+  },
+  "date": "2026-10-18T20:29:12.121088+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Chose50%after3 andlocked."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Steppedgen1hybrids16of32,8AA8aa;gen2hybrids8,12AA12aa;gen3hybrids4=12.5%,14eachpure;gen4hybrids2=6.25%,15eachpure. Inspectedhalffilledplantsandpureends."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read12.5%correction,hybridseedAA/Aa/aa1:2:1,onlyhalfstayhybrid,purestaypure,halvingpergeneration;toyaveragesexplicit."
+    },
+    {
+      "phase": "visual-inspection",
+      "evidence": "Actual1257x936dark inlineinitial,gen1,gen3andgen4scrolledreveal inspected. Legend,half/full/emptycircles andcounts legible."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicit selfingconditions andhybriddefinition supportforecast.",
+      "evidence": "32Aaoneofeach,3generations,50/12.5/0%.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Repeatedhalvingwithpurecounts exposesprogression.",
+      "evidence": "32,16,8,4,2hybrids;balancedpuretypesincrease.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Inheritance mechanism explains persistenthalving.",
+      "evidence": "1:2:1hybridselfing,purelinesremainpure.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Visualgenotypelegendandaveragequalificationpreventsampleconfusion.",
+      "evidence": "HalfcircleAa,fullAA,emptyaa;averagesplitstated.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Purelineconsequencegeneralizessame model.",
+      "evidence": "No newbreedingcaseorapplicationtask.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Selfcopyingdoesnotpreservehybridity.",
+      "evidence": "Only4of32hybridafter3.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Filledcircletypesmakegenotypecountsvisible.",
+      "evidence": "Halfcirclesdropwhilefull/emptyincrease.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Generationpresetcomparison.",
+      "evidence": "Allfourgenerationsvisited.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Usefulbasicbreedingintuition.",
+      "evidence": "Selfingturnshybridsintopurelinesinmodel.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Segregationandabsorbingpurelineslinked.",
+      "evidence": "1:2:1andhalvingrecurrence.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "conceptualDemand": "Followgenotypesandweightedoffspringoutcomesacrossgenerations.",
+    "interfaceBurden": "Fourgenerationbuttonsandstart;lowburden.",
+    "prerequisiteNovelty": "Hybridgenotypedefinition supplied,segregationexplainedafterward.",
+    "notationRepresentationBurden": "AA/Aa/aa,ratios,count/percent andhalfcircles scaffold."
+  }
+}

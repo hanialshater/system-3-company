@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "which-particle-names-it",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/which-particle-names-it",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "f167bc5567b7052ba9a243983d0a53a07eca54f78ec8a2fbac200f0697b801c9",
+    "demoSha256": "9fd7e30487cc486422a4dfcb93c09ddb15bf51603f0659c4c9c7857798cfc407",
+    "metaPath": "src/demos/chemistry/which-particle-names-it/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected neutron and locked the particle addition prediction for turning carbon into nitrogen.",
+    "exploration": "Added a neutron: carbon-13, charge zero, with 6 protons, 7 neutrons and 6 electrons. Added an electron: still carbon-13 but charge -1. Added a proton: nitrogen-14, charge zero, with seven of each particle.",
+    "reveal": "The reveal corrected the answer to proton and accurately described the sequential neutron, electron and proton effects. It defined proton count as atomic number, distinguished mass and charge changes, named oxygen at eight protons, and qualified proton addition as a nuclear rather than ordinary test-tube change.",
+    "visual": "Inspected the inline dark 1257 by 936 screenshot at nitrogen-14. A large N and element label appeared beside a colored nucleus and electron rings. Particle counts read seven each, charge zero, and the diagram was marked not to scale.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The question distinguishes the identity roles of three particle types.",
+      "evidence": "Selected neutron before trying the additions.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "One-at-a-time additions isolate changes in name, mass label and charge.",
+      "evidence": "Neutron preserved carbon, electron changed charge, proton changed element.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal names each explored effect and a meaningful real-world limitation.",
+      "evidence": "It explains atomic number and distinguishes nuclear changes from test-tube chemistry.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Element, isotope label, charge and counts update explicitly.",
+      "evidence": "The final state shows nitrogen-14 with seven protons and charge zero.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "The oxygen extension is named but not applied to a fresh atom.",
+      "evidence": "The available walkthrough develops carbon to nitrogen only.",
+      "confidence": "high"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Adding matter or charge does not necessarily change the element.",
+      "evidence": "Only the proton changed carbon's name.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "The distinct labels and particle counts show three separate properties.",
+      "evidence": "Carbon-13 and negative charge appeared before the element changed.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Adding particles creates a simple atom construction toy.",
+      "evidence": "Three addition buttons produce different kinds of changes.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "It clarifies element, isotope and ion distinctions.",
+      "evidence": "The reveal assigns identity, mass and charge to different particle counts.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "The toy goes beyond the right answer to separate related classifications.",
+      "evidence": "It explains atomic number and nuclear versus ordinary chemical change.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "The controls are simple, but element identity, isotope mass and charge introduce three related concepts.",
+    "conceptualDemand": "Moderate: keep particle roles and derived labels separate.",
+    "interfaceBurden": "Low: three addition buttons.",
+    "conceptualChallenge": "Changes to an atom can affect different properties without changing its element.",
+    "prerequisiteNovelty": "Protons, neutrons, electrons, ions and atomic number are domain concepts.",
+    "notationRepresentationBurden": "Moderate: element symbols, mass suffixes, charge and particle counts."
+  },
+  "whyCool": "Three nearly identical clicks change three different aspects of an atom, and only one renames it.",
+  "caveat": "The cartoon is not to scale and particle addition is idealized; the reveal appropriately warns that proton addition is nuclear.",
+  "missingEvidence": [
+    "No fresh starting atom or oxygen case was tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

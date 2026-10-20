@@ -1,0 +1,104 @@
+{
+  "slug": "pairs-cancel-under-xor",
+  "demoVersion": 3,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/pairs-cancel-under-xor",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "The opening prediction asks for XOR fold of seven integers without defining XOR before the choice.",
+    "First fold changed zero to five; first duplicate three returned running value six to five, visibly toggling lamps two and one back.",
+    "Original order finished at seven; New order automatically ran a different ordering and also finished at seven, retaining both sequences.",
+    "Reveal explains identical-pair cancellation, identity zero, order independence and failure when another number appears an odd number of times."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "XOR and binary place values need prior introduction.",
+    "conceptualDemand": "Understand per-bit parity and cancellation.",
+    "interfaceBurden": "Several execution controls; internal scroll."
+  },
+  "whyCool": "Every duplicate flips the same bits back, leaving an unpaired value regardless of order.",
+  "caveat": "Entry question assumes XOR knowledge; the algorithm's lone-value conclusion depends on even multiplicities elsewhere.",
+  "effort": "Prediction, single fold, duplicate jump, completion, reordered run, screenshot and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Excellent bit-level mechanism and tested order invariance despite a weak unintroduced entry question.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Requires an undefined domain-specific operation for a general learner.",
+      "evidence": "XOR fold requested before its toggle meaning is introduced.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Step, duplicate jump and reordered complete run expose cancellation and invariance.",
+      "evidence": "Six to five at second three; two orders both seven.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Uses exact observed duplicate and second ordering, then gives the essential condition.",
+      "evidence": "Every other number must occur evenly; three copies do not cancel.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Bit lamps and running equations clarify the operation once exploration starts.",
+      "evidence": "Binary 110 XOR 011 becomes 101; lamp weights four/two/one.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Specific algorithmic use with explicit prerequisite.",
+      "evidence": "One pass finds lone number without sorting only when all others appear evenly.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Unsorted duplicates disappear under one running operation.",
+      "evidence": "Two different sequences both leave seven.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Bit toggles explain why identical values undo each other.",
+      "evidence": "Second three flips the same two lamps back.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Step, jump, finish and reorder.",
+      "evidence": "Multiple execution views with retained results.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete one-pass algorithm and applicability condition.",
+      "evidence": "Find a lone value without a count table.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Binary toggling, algebraic identities and input assumptions connect.",
+      "evidence": "Parity of multiplicities and order independence.",
+      "confidence": "medium"
+    }
+  }
+}

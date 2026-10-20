@@ -1,0 +1,104 @@
+{
+  "slug": "one-question-one-card",
+  "demoVersion": 2,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/one-question-one-card",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "The prompt explicitly supplies two correct answers and a right mark on a three-fact card.",
+    "Mark as one card records right; splitting shows Lima right, peso wrong with correction sol, and Spanish right.",
+    "Screenshot shows three independently outlined cards and two right, one wrong.",
+    "Reveal explains the lost currency error and separate cues; its parenthetical 'peso, not sol' is awkward beside the clearer on-card correction."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Three familiar facts and binary marks.",
+    "conceptualDemand": "Separate a grade from evidence for each fact.",
+    "interfaceBurden": "Two fixed comparison buttons."
+  },
+  "whyCool": "A single green mark can erase the exact fact that still needs work.",
+  "caveat": "Scripted grading comparison rather than a learning experiment; no independent factual audit.",
+  "effort": "Prediction, bundled mark, split view, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear visual explanation of a useful record-design limitation.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "The question supplies the missing fact and grading outcome.",
+      "evidence": "Two of three marked right directly cues hides a miss.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Two fixed grading views show the contrast.",
+      "evidence": "Bundled pass versus three independent marks.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The precise hidden error is exposed.",
+      "evidence": "Currency error leaves no trace in the bundled pass.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "The cards and per-fact correction make the result clear.",
+      "evidence": "Currency card says peso wrong, it is sol.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "States the cue-granularity principle without a new application.",
+      "evidence": "A correct answer to one cue does not establish the others.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "A pass can hide an error.",
+      "evidence": "Single right versus two right, one wrong.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Splitting physically reveals separately graded facts.",
+      "evidence": "Three cards with marks and correction.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "A fixed view comparison.",
+      "evidence": "Two buttons, no authored question or grading choice.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete flashcard design decision.",
+      "evidence": "Separate prompts reveal separate gaps.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Distinguishes knowledge from recorded granularity.",
+      "evidence": "Hidden miss survives a bundled grade.",
+      "confidence": "medium"
+    }
+  }
+}

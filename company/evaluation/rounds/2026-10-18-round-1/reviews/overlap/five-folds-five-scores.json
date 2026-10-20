@@ -1,0 +1,156 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1b",
+  "date": "2026-10-18",
+  "slug": "five-folds-five-scores",
+  "domain": "ai",
+  "demoVersion": 2,
+  "expectedVersion": 2,
+  "batchId": "round1-02",
+  "reviewKind": "overlap",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "f9b943f50107baaacb61a95b13c5d5755ad91c2cc9a8feeff0e029258fdb5f98",
+  "demoSha256": "6a0cdb2a6afabd209a5a5de7f9b809db36e009440909791363561ebeba478d1c",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/five-folds-five-scores",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "evidenceMode": "live-browser-computer-use",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "previewIsolationObserved": true,
+  "visibleTrustChrome": "4/4 claims checked; ignored, unopened",
+  "phaseCoverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true,
+    "pixelInspection": true
+  },
+  "observations": [
+    {
+      "id": "p",
+      "action": "Selected Within5points; Lock it in",
+      "outcome": "Prediction retained; score buttons unlocked."
+    },
+    {
+      "id": "e",
+      "action": "Scored folds1through5 in order",
+      "outcome": "100,75,100,50,75%; spread grows25then50points; mean80 only afterallfive; prior scores retained."
+    },
+    {
+      "id": "v",
+      "action": "Inspected fold5 screenshot",
+      "outcome": "Threshold0.5 and rule0/1regions; current4points enlarged with correct/wrong ticks and ringed mislabels; scores/readouts visible.1257x936dark no horizontal cutoff."
+    },
+    {
+      "id": "r",
+      "action": "Show me why",
+      "outcome": "25points or more; actual50spread for unchanged rule;80mean matches16/20;4wronglabels cannot distribute evenly across5groups so at least25spread; one held-out slice one draw."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear fixed-rule condition and plausible stability alternatives.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Changing held-out groups highlights different errors and visibly changes scores while rule stays fixed.",
+      "evidence": "e,v",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains observed50spread and80mean using group composition and counting boundary.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Threshold, labels, wrong rings and selected group support score comparison.",
+      "evidence": "v,e",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Held-out-slice principle stated; no concrete new-use condition.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No mode checks.",
+      "evidence": "v",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Within5 prediction reverses to50point variation.",
+      "evidence": "p,e",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Highlighted dots and error rings expose group composition.",
+      "evidence": "v",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Discrete fold selection supports comparison but fixed groups limit exploration.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Evaluation-score interpretation directly illustrated.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Composition variability, aggregate accuracy and indivisible error-count lower bound linked.",
+      "evidence": "r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links threshold correctness, small-sample percentages and aggregate mean with support; optional counting bound adds demand.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": {
+      "level": "moderate",
+      "reason": "Held-out folds and fixed prediction rule introduced."
+    },
+    "notationRepresentationBurden": {
+      "level": "moderate",
+      "reason": "Binary labels,threshold and percentage-point spread."
+    }
+  },
+  "whyCool": "The same vertical rule scores100% on one group and50% on another; selecting the dots exposes why one score is a sample.",
+  "caveat": "Fixed toy groups and untrained rule; no repartition or real model training tested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Alternative group order/reselection, phone and accessibility untested."
+  ],
+  "reviewState": "complete-real-walkthrough",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "status": "walkthrough-reviewed",
+  "reviewState": "complete-real-walkthrough",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "action": "Selected About68% and locked",
+      "outcome": "One-model batch1 baseline121/200; longrun60%."
+    },
+    {
+      "id": "E",
+      "action": "Selected5voters, same mistakes,21voters; unchecked same mistakes and Newbatch",
+      "outcome": "Five independent138/20068.3%longrun; shared errors121/20060%;21shared remained121/20060%; batch2independent21 got161/20082.6%. Controls retained21and independent mode."
+    },
+    {
+      "id": "R",
+      "action": "Opened Show me why",
+      "outcome": "Confirmed prediction; retained exact batch1comparisons and batch2label for21result; explained at least3of5 errors needed, independence versus copied mistakes."
+    },
+    {
+      "id": "V",
+      "action": "Inspected independent21grid and revealed screenshot with vertical scroll",
+      "outcome": "1257x992 darkChrome;200coloredtiles, scores, controls and explanation legible; no horizontalclipping."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear quantitative choice distinguishes no benefit from moderate/large majority benefit.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Voter count and shared-error boundary isolate benefit; newbatch distinguishes finite from longrun rate.",
+      "evidence": "E",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explains actual counts, retains batchidentities and resolves independent/shared mechanism and limitation.",
+      "evidence": "E,R",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Mode labels, batchcounter and sampleversuslongrun metrics support fullpath.",
+      "evidence": "E,R,V",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable error-diversity principle; no concrete new application beyond same toy voters.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic modes checked.",
+      "evidence": "Keyboard,focus,contrast,phone,zoom/reflow andmotion untested.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Correct68%prediction confirmed; shared-error collapse provides supporting reversal.",
+      "evidence": "P,E",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Outcomegrid visibly changes with voting conditions but does not show individual vote patterns.",
+      "evidence": "E,V",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 4,
+      "reason": "Count,shared-error toggle and freshbatch permit repeated reversible discoveries.",
+      "evidence": "E",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Ensemble diversity condition useful but remains within toy model context.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 4,
+      "reason": "Count effect,error dependence and sampleversuslongrun distinction tested across distinctstates.",
+      "evidence": "E,R",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Connects majority threshold and error dependence with supported aggregate rates.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": {
+      "level": "moderate",
+      "reason": "Independent errors andlongrun rate introduced through controls."
+    },
+    "notationRepresentationBurden": {
+      "level": "low",
+      "reason": "Counts andpercentages; no probability formula required."
+    },
+    "conceptualDemand": "Differentiate model accuracy from ensemble accuracy and shared versus independent errors.",
+    "interfaceBurden": "Low in testedviewport."
+  },
+  "whyCool": "Switching fivevoters to identical mistakes erases their gain, and even21voters cannot recover it.",
+  "caveat": "Grid shows aggregate vote correctness rather than the individual three-error combinations causing it.",
+  "missingEvidence": [
+    "Systematic accessibility checks",
+    "Applied newtransfercase",
+    "Phonelayout"
+  ],
+  "effort": {
+    "approximateMinutes": 3
+  },
+  "partialBlinding": "Visible Why trust this? (5/5claimschecked); ignored andnotopened.",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3b",
+  "date": "2026-10-18",
+  "notApprovedForServing": true,
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, number comparisons and familiar household objects; no domain theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 992,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "screenshots": [],
+  "fatalFindings": [],
+  "slug": "five-weak-voters",
+  "demoVersion": 1,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/five-weak-voters",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "f050c40cb60d53b712330df1b6f149f8075b4b2a85fa22d5b406a7a05c0acc18",
+    "metaSha256": "7a36aea64b422c7f743184bb6ec5cd7b0a174dfbbbb2ca37d6033af3513a9632"
+  }
+}

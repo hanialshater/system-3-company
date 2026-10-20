@@ -1,0 +1,103 @@
+{
+  "slug": "small-items-in-mesh",
+  "demoVersion": 1,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/small-items-in-mesh",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction closed mesh versus loose with explicit assumption items exceed mesh openings.",
+    "Loose8 contained0;closed8 contained8. Count12 closed12.",
+    "Reveal distinguishes boundary from proximity,conditions closure/mesh suitability,excludes cleaning/damage benefit. Screenshot small grouped rectangles,readable prose."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple containment counting.",
+    "conceptualDemand": "Proximity versus boundary.",
+    "interfaceBurden": "Two modes,one slider."
+  },
+  "whyCool": "Putting objects near one another is different from giving them a shared boundary.",
+  "caveat": "A mesh-opening or closure control and visible escape test would add causal discovery.",
+  "effort": "Prediction,mode contrast,count variation,reveal,inline screenshot.",
+  "provisionalBucket": "solid-low-challenge",
+  "bucketReason": "Clear bounded advice,very little discovery.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Assumptions and labels make answer definitional.",
+      "evidence": "Closed bag versus loose items.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Boundary/count changes display but no motion or escape test.",
+      "evidence": "0\u21928\u219212.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Mechanism and practical limits explicit.",
+      "evidence": "Closure and mesh suit items;not cleaning proof.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readable model and scope.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete containment condition for applying grouping.",
+      "evidence": "Closure and openings appropriate to items.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 0,
+      "reason": "Closed container contains items by assumption.",
+      "evidence": "No unexpected result.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Boundary groups small rectangles.",
+      "evidence": "Twelve items.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Toggle and count without challenge.",
+      "evidence": "No placement or escape.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Small item containment central.",
+      "evidence": "Mesh suitability.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "Boundary existence only.",
+      "evidence": "No aperture test.",
+      "confidence": "medium"
+    }
+  }
+}

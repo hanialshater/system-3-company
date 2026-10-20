@@ -1,0 +1,104 @@
+{
+  "slug": "eight-percent-showing",
+  "demoVersion": 1,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/eight-percent-showing",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predictionice0.917water1density,abovefraction8/50/92%; chose92.",
+    "0.5block shows50%;ice0.917shows8%;sliderEnd0.99shows1% (sliderdoesnotreachsinkingboundary).",
+    "Reveal ice92%submerged bydisplacedwaterweightbalance;freshwater0C,sea11%above caveat.",
+    "Screenshot blockwaterline andhalfmark clear; current0.99/1% versusice8%reveal; actualrightedgeproseclipping."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Decimaldensity andabove/belowfraction relation.",
+    "conceptualDemand": "Submergedshare equalsdensityratio;aboveiscomplement.",
+    "interfaceBurden": "Simplecontrols;clippedreveal andstatecomparison."
+  },
+  "whyCool": "Ice barelyfloats: itsdensity putsalmostallofit belowthewaterline.",
+  "caveat": "Displayedmaterialvaluesnotindependentlyfactchecked; currentrangesonlyfloatingdensities; single reviewer.",
+  "effort": "Prediction,half-density,ice,maxdensity,reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clearphysicalrelationship butlimitedinteractiondepth andlayoutfriction.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Aboveversusbelow complement distractor probesdensityintuition.",
+      "evidence": "8vs92%.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Density control shows smoothfloatingfraction relationship.",
+      "evidence": "0.5=>50%,0.917=>8%,0.99=>1%.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Mechanism plusfresh/sea distinction.",
+      "evidence": "Displacedwaterweight matchesblock.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clearblockdiagram butactualrightedgeclipping andcurrentvsoriginalstate.",
+      "evidence": "Current1%above,revealice8%.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Potential for predictingfractionssubmerged acrossmaterials.",
+      "evidence": "Lighterblocks ridehigher.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Onlysmallsliverofice abovefreshwater.",
+      "evidence": "8%above.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Waterline visiblydividesblockwithhalfmark.",
+      "evidence": "Densityslider movesheight.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Singlephysicalparameter slider.",
+      "evidence": "Densitypresets andrange.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Icebergandbuoyancyintuition.",
+      "evidence": "Freshversusseawater caveat.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "One densityratio anddisplacement principle.",
+      "evidence": "No sinkingormasscontrol.",
+      "confidence": "medium"
+    }
+  }
+}

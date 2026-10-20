@@ -1,0 +1,151 @@
+{
+  "status": "walkthrough-reviewed",
+  "reviewState": "complete-real-walkthrough",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "action": "Selected9 and locked",
+      "outcome": "First Cut enabled for48by18floor."
+    },
+    {
+      "id": "E",
+      "action": "Cut1through4; checked Tile with last square; Start over",
+      "outcome": "Remainders30x18,12x18,12x6,6x6; cut sizes18,18,12,6. Tiling showed8x3 squares of6. Reset cleared cuts/grid but kept reveal available."
+    },
+    {
+      "id": "R",
+      "action": "Opened reveal after reset",
+      "outcome": "Corrected to6; recalled actual cuts; explained common tile fits each piece and remainder, and last square fits all pieces going back;24tiles total."
+    },
+    {
+      "id": "V",
+      "action": "Inspected tiled stage and revealed reset screenshots",
+      "outcome": "1257x992 dark Chrome; cut regions, tile grid and text legible; no horizontal clipping."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear biggest-square question with plausible sides dividing justone dimension.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Sequential cuts and finaltiling show successful common divisor; no alternate input or incorrect tile action available.",
+      "evidence": "E",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains cut invariant and reverse reconstruction with exact observed sequence.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Single nextcut action, remainder labels and tiletoggle support sequence; reset visibly clears chart.",
+      "evidence": "E,R,V",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Euclid method described as reusable but no new rectangle to applyit.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic mode checks.",
+      "evidence": "Keyboard,focus,contrast,phone,zoom/reflow,motion untested.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Actual9prediction corrected to6 through remainder sequence.",
+      "evidence": "P,E,R",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Cut regions and6unit overlay carry mechanism from originalfloor to finaltiling.",
+      "evidence": "E,V",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Constrained sequentialcuts, overlay and reset permit modest reversible discovery.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete largesttile problem and exact coverage under no-cutting condition.",
+      "evidence": "P,R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Repeated subtraction,invariant and backwards reconstruction linked.",
+      "evidence": "E,R",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Supported multistep cutting plus invariant linking allremainders.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": {
+      "level": "moderate",
+      "reason": "Greatest shared divisor through Euclid method introduced."
+    },
+    "notationRepresentationBurden": {
+      "level": "low",
+      "reason": "Rectangle dimensions and multiplicationcounts."
+    },
+    "conceptualDemand": "Understand why common tile persists through cuts and finalsquare works backwards.",
+    "interfaceBurden": "Low in testedviewport."
+  },
+  "whyCool": "Four maximalcuts leave a6by6square that visibly tiles the whole48by18floor in24pieces.",
+  "caveat": "Fixed input offers no new rectangle or wrongtile test of method transfer.",
+  "missingEvidence": [
+    "Systematic accessibility checks",
+    "New rectangle application",
+    "Phone layout"
+  ],
+  "effort": {
+    "approximateMinutes": 3
+  },
+  "partialBlinding": "Visible Why trust this? (4/4 claims checked); ignored and not opened.",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3b",
+  "date": "2026-10-18",
+  "notApprovedForServing": true,
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, number comparisons and familiar household objects; no domain theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 992,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "screenshots": [],
+  "fatalFindings": [],
+  "slug": "euclid-square-cutting",
+  "demoVersion": 1,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/euclid-square-cutting",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "fe08f4b09d2a84400d9807f0da0de3622fb617b5c148385b532a841ebbcf39aa",
+    "metaSha256": "f53bcbbe6555ac89d6cfd5e7f58f68d5be881df874ec78d8a7490c0a161ab95c"
+  }
+}

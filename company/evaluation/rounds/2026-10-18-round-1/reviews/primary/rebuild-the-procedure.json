@@ -1,0 +1,120 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2",
+  "reviewKind": "primary",
+  "slug": "rebuild-the-procedure",
+  "demoVersion": 1,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/rebuild-the-procedure",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, familiar objects; no subject theory assumed.",
+  "viewport": "1280x720 desktop screenshot",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "text": "No-history preview; trust4/4 ignored. Predicted Rebuild the sequence versus Recognise each word. Target collect,sort,file; attempt file,collect,sort."
+    },
+    {
+      "id": "E",
+      "text": "Cover hid target. Check unchanged attempt:0/3 and target revealed. Swap1\u21942 hid target again, attempt collect,file,sort. Swap2\u21943:collect,sort,file. Check:3/3. Reveal unlocked already at incorrect check."
+    },
+    {
+      "id": "R",
+      "text": "Your reconstruction matches3of3. Explicit order collect\u2192sort\u2192file; check compares positions, owning right words insufficient. Screenshot inline clearly shows matchingpositions/checkmarks and complete prose, no clipping seen. None saved."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Answer follows directly from phrase procedureorder; little uncertainty.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Incorrect and corrected sequence expose position matching with identical words.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Accurately refers to3/3 but mainly restates task, no broader evidence of memory improvement.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Clear target/attempt columns,checks and swap labels, readable reveal.",
+      "evidence": "E,R",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General principle test ordered reconstruction is stated, limited to one toyprocedure. Editorial only.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No mode audit.",
+      "evidence": "Untested",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Same words can score0/3; straightforward contrast.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Position alignment and checkmarks carry order comparison.",
+      "evidence": "R screenshot",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversible swap puzzle.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Procedure recall strategy stated, not tested in realprocedure.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "Single ordering relation.",
+      "evidence": "R",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "One supported position-order relation with three familiar words.",
+    "conceptualDemand": "gentle",
+    "interfaceBurden": "low",
+    "prerequisiteNovelty": "low",
+    "notationRepresentationBurden": "low;swap arrows"
+  },
+  "whyCool": "All three familiar words initially earn0/3 until two swaps put them into the correct positions.",
+  "caveat": "Prediction nearly gives away intended answer; this demonstrates ordering rather than validating learning benefit.",
+  "notApprovedForServing": true,
+  "effort": "About3minutes",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility modes",
+    "Delayed recall"
+  ]
+}

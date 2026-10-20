@@ -1,0 +1,104 @@
+{
+  "slug": "up-hill-down-hill",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/up-hill-down-hill",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Equal sixty-kilometre legs with uphill speed thirty were specified; prediction asked downhill sixty, with forty-five, forty or fifty choices.",
+    "Downhill thirty gave four hours and average thirty; forty-five gave three hours twenty and average thirty-six; sixty gave three hours and average forty.",
+    "Screenshot at sixty showed equal-area distance blocks with widths two hours and one hour and average line at forty.",
+    "At downhill 120, average became forty-eight over two and a half hours; reveal explicitly recalls the original sixty setting and explains when forty-five would be valid."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Time weighting and graph area require interpretation.",
+    "conceptualDemand": "Use elapsed time rather than average speed labels directly.",
+    "interfaceBurden": "One speed slider."
+  },
+  "whyCool": "The slower half of a journey occupies more than half your time, so it weighs more in the average.",
+  "caveat": "Fixed constant-speed legs with no stops; not driving-speed advice.",
+  "effort": "Prediction, four speed settings, graph screenshot and context-aware reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Excellent visual weighting explanation and valid countercase.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Precise equal-distance trap with plausible arithmetic-mean distractor.",
+      "evidence": "Thirty and sixty over equal distances.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Several controlled speeds include equal-speed, original prediction and a fast-return boundary.",
+      "evidence": "Thirty, forty-five, sixty and 120 tested.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explains time weighting and distinguishes the equal-time countercase while preserving original context.",
+      "evidence": "Two hours at thirty, one at sixty; forty-five only for equal time.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Labeled speed-time blocks make the weighting explicit.",
+      "evidence": "Each area sixty kilometres; unequal widths.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "States the valid weighting rule and when simple mean works.",
+      "evidence": "Weight by elapsed time; equal time permits arithmetic average.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "The slow leg has more influence than an equal-distance intuition suggests.",
+      "evidence": "Average forty rather than forty-five.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Equal distance areas and unequal time widths explain weighting directly.",
+      "evidence": "Two-to-one widths at original speeds.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Continuous speed comparison changes geometry and result.",
+      "evidence": "Four speeds inspected.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete journey-average calculation.",
+      "evidence": "Total distance over total time.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Relates geometric area, elapsed time and weighted means.",
+      "evidence": "Equal-distance versus equal-time cases.",
+      "confidence": "medium"
+    }
+  }
+}

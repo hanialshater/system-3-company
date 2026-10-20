@@ -1,0 +1,104 @@
+{
+  "slug": "the-bar-nobody-can-forecast",
+  "demoVersion": 4,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/the-bar-nobody-can-forecast",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Forecast fifty sent all one hundred; forecast seventy sent none under the shared threshold rule.",
+    "One hundred independent sixty-percent attendance nights averaged 60.2 people with 48 percent crowded.",
+    "Screenshot showed nightly bars around the sixty threshold, with crowded nights colored separately.",
+    "Reveal retains both forecast outcomes and sampled counts, distinguishes sample 48 percent from stated long-run 46.2 percent, and explains average versus crowding frequency. Reset after reveal did not erase the retained longest-run evidence."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Combines shared beliefs and sampling variation.",
+    "conceptualDemand": "Separate a forecast's behavioral effect from its average accuracy.",
+    "interfaceBurden": "Two forecasts and simulation batch buttons."
+  },
+  "whyCool": "A forecast can change the very behavior it predicts, and an accurate average can still hide frequent overcrowding.",
+  "caveat": "Fixed homogeneous decision rule and independent attendance model; long-run rate not independently audited.",
+  "effort": "Prediction, both forecasts, one hundred random nights, screenshot, reveal and reset.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Two well-explained surprises with concrete observed evidence.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "A precise reflexive decision puzzle with plausible forecast-following distractors.",
+      "evidence": "Forecast fifty; choices fifty, sixty or one hundred.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Two shared forecasts and repeated independent attendance expose different mechanisms.",
+      "evidence": "All, none, then one hundred random nights.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explains both mechanisms with actual sampled evidence and a long-run comparison.",
+      "evidence": "Shared forecast defeats itself; average sixty still crowds nearly half of nights.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Threshold, sample size and observed versus long-run rates are explicit.",
+      "evidence": "Seed one, one hundred nights, 60.2 and 48 percent.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Powerful general ideas without a separate concrete application.",
+      "evidence": "Reflexive forecasts and averages versus threshold events.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 4,
+      "reason": "Two distinct expectation reversals are demonstrated.",
+      "evidence": "Trusted low forecast overcrowds; correct average still crowds almost half of nights.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Nightly bars and threshold explain average versus tail events.",
+      "evidence": "Bars alternate above and below sixty.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Forecast experiments and repeated random runs.",
+      "evidence": "One, ten and one hundred night controls.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Useful forecast and capacity intuition.",
+      "evidence": "No real attendance policy evaluation.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Reflexivity, random independence and threshold probability.",
+      "evidence": "Sample versus long-run crowding distinguished.",
+      "confidence": "medium"
+    }
+  }
+}

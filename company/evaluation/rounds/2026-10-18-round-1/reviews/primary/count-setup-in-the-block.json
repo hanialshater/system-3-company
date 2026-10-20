@@ -1,0 +1,104 @@
+{
+  "slug": "count-setup-in-the-block",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/count-setup-in-the-block",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted five minutes of task remain at call10; visual explicitly showed setup5 plus work10.",
+    "A work-only booking call10\u201325 overlapped task0\u201315 by5; B call15\u201330 and file30\u201340 gave zero.",
+    "Manual call70\u201385 left file30\u201340, zero overlap. Yours deliberately omitted a booked-duration value rather than equating idle delay with work.",
+    "Reveal correctly retained A/B/Yours and explained the missing setup allocation."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple addition and overlap.",
+    "conceptualDemand": "Setup is part of elapsed task time.",
+    "interfaceBurden": "Two presets and start slider."
+  },
+  "whyCool": "Setup becomes a visible part of the task rather than time that disappears from the calendar.",
+  "caveat": "Overlap model only; moving call after filing remains valid without dependency checks.",
+  "effort": "Completed prediction, both presets, manual boundary, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear practical model with accurate historical and current state summaries.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Visible setup/work durations support a concrete time prediction.",
+      "evidence": "5+10 versus call10.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Booking and manual start change overlap against occupied task time.",
+      "evidence": "A5 overlap,B0,manual0.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Accurate case summaries explain the hidden setup component.",
+      "evidence": "Original remaining5 and two booked durations.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Setup and work are visually separate; historical/current labels remain explicit.",
+      "evidence": "Yours booked duration shown dash rather than invented70.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete planning rule is grounded in stated setup and work durations.",
+      "evidence": "Book setup plus work before the next task.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "A familiar omitted overhead becomes visible.",
+      "evidence": "Task is15 not10.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Split setup/work block explains why call overlaps.",
+      "evidence": "Five-minute setup segment.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Start slider and booking presets test conflict.",
+      "evidence": "Three compared layouts.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Direct scheduling habit.",
+      "evidence": "Include setup in occupied task duration.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "One deterministic overhead component.",
+      "evidence": "No uncertainty or transition variation.",
+      "confidence": "medium"
+    }
+  }
+}

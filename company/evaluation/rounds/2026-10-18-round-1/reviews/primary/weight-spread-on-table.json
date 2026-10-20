@@ -1,0 +1,104 @@
+{
+  "slug": "weight-spread-on-table",
+  "demoVersion": 1,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/weight-spread-on-table",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "At two kilograms, ten square centimetres gave 19,620 Pa; thirty square centimetres gave 6,540 Pa.",
+    "Doubling mass to four kilograms at the wide footprint doubled pressure to 13,080 Pa.",
+    "Screenshot showed a wider contact rectangle with the same downward mass arrow.",
+    "Reveal distinguishes lower average pressure from unchanged total weight and explicitly excludes safe load and local material stress."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Pressure units and force-area ratio.",
+    "conceptualDemand": "Distinguish weight from average contact pressure.",
+    "interfaceBurden": "Two presets and mass slider."
+  },
+  "whyCool": "Spreading a load lowers average pressure while leaving the total weight unchanged.",
+  "caveat": "Average-pressure illustration, not a furniture strength assessment.",
+  "effort": "Prediction, both footprints, doubled mass, screenshots and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Consistent controlled relationships with explicit limits.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "A concrete area comparison, somewhat cued by title.",
+      "evidence": "Small versus wide footprint at the same load.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Area and mass contrasts expose inverse and direct dependence.",
+      "evidence": "Tripled area divides pressure by three; doubled mass doubles it.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Correct mechanism and meaningful scope limit.",
+      "evidence": "Force over contact area, unchanged total weight, no safe load inference.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Mass, area, gravity and pressure are labeled.",
+      "evidence": "Inputs and Pa readout track changes.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Explicitly distinguishes valid use from an unsafe inference.",
+      "evidence": "Lower average pressure cannot establish furniture capacity or local stress.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Same total load can give a different average pressure.",
+      "evidence": "19,620 versus 6,540 Pa.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Wider footprint supports the comparison.",
+      "evidence": "Contact rectangle widens; no pressure-field visualization.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Adjust mass and footprint.",
+      "evidence": "Both modes and mass boundary tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete load-versus-contact distinction.",
+      "evidence": "Total weight and furniture limits remain relevant.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Two dependencies and a modeling boundary.",
+      "evidence": "Mass, area and local stress are distinct.",
+      "confidence": "medium"
+    }
+  }
+}

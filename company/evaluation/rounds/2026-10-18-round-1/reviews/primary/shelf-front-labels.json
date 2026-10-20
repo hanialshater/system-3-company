@@ -1,0 +1,121 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2",
+  "reviewKind": "primary",
+  "slug": "shelf-front-labels",
+  "demoVersion": 1,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/shelf-front-labels",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, familiar objects; no subject theory assumed.",
+  "viewport": "1280x720 desktop screenshot",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "text": "No-history banner; trust6/6 ignored. Predicted Labels on front. Title already says labelbehindboxhidden; locked."
+    },
+    {
+      "id": "E",
+      "text": "Backlayout6boxes:0addresses. Front:6. CountEnd10:10addresses. Backat10:0. Readout included previousvalue transiently in AX; finalreveal0."
+    },
+    {
+      "id": "R",
+      "text": "Yourpredictionheld appears twice. Currentbacksetting0; opaque boxes block rearlabels from shown viewpoint; viewpointdependent; no searchtimemeasurement. Screenshot inline confirms duplicatepredictionheld,complete readableprose and smalltenboxdrawing. None saved."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Title directly supplies answer to obvious layout question.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Toggling layout/count shows direct occlusion but little mechanism beyond obvious example.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Accurate view-dependent explanation and explicit no-search-time limit, duplicated feedback.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Complete prose and clear controls/readout; minor duplicatedfeedback.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Labelvisiblefromviewpoint principle applicable but onlyfrontviewmodel. Editorialonly.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Keyboardsliderboundary not fullaudit.",
+      "evidence": "Untested",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 0,
+      "reason": "Observed relation directly stated in title, no reversal.",
+      "evidence": "P,E",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Boxdrawing and visibleaddresscounter support occlusion.",
+      "evidence": "R screenshot",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Simpletwo-layouttoggle/count.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Shelfaddressplacement application.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "Singleviewpointvisibility relation.",
+      "evidence": "R",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "One familiar occlusionrelation,without subjectprerequisites.",
+    "conceptualDemand": "gentle",
+    "interfaceBurden": "low;duplicatefeedback",
+    "prerequisiteNovelty": "low",
+    "notationRepresentationBurden": "low"
+  },
+  "whyCool": "Switching tenboxlabels fromfronttoback removes alltenvisibleaddresses inoneaction.",
+  "caveat": "Answer leaked bytitle; illustrative visibilitydoes notestablish searchspeedbenefit.",
+  "notApprovedForServing": true,
+  "effort": "About3minutes",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility modes",
+    "Alternativeviewpoints",
+    "Searchtiming"
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "two-random-walks-agree",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/two-random-walks-agree",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predictionindependent100coinflipstepwalks,probability|r|>0.5;selected5%.",
+    "Firstpairr+0.48,0of1strong. Tenmorelatest-0.05,2of11strong. Thirtymorelatest-0.11,17of41strong.",
+    "Showstrongestpair31r+0.88. Revealaccuratelycited41,17,+0.88,claimed100000seededpair39.8%reference,andexplainedslowtrendscanalignbychance.",
+    "Inline1280x720 light screenshot: pairedlines partlyaboveinternalviewport,correlationdotsandmetricsclear;right-edgeproseclips. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Requirescorrelationsignandthresholdinterpretation,withsupportinglabels.",
+    "conceptualDemand": "Independentprocessesversusfinite-sampleassociation.",
+    "interfaceBurden": "Clearbuttons;internalplot scrollandproseclipping."
+  },
+  "whyCool": "Twoindependentcoin-drivenlinescantrackcloselyenoughtolooklikeaconvincingstory.",
+  "caveat": "100000pairreferenceassertednotrerun;numericpredictionhard;right-edgeclipping;accessibilityunknown.",
+  "effort": "Prediction,1+10+30pairs,strongestselection,reveal andinline screenshot.",
+  "provisionalBucket": "strong-with-viewport-fix",
+  "bucketReason": "Usefuldistributionandextremeexamplecontrast;repairprose layout.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Precisestatisticaleventbutnumericfrequencyrequiresnontrivialsimulation/priorwalkknowledge.",
+      "evidence": "5,40,80%choices.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Multiplepairsandselectedstrongestdistinguishsinglecoincidencefromdistribution.",
+      "evidence": "17of41and+0.88.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Observedcountsandextremeexampleconnecttoindependentdriftmechanism.",
+      "evidence": "No sharedcause inmodel.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clearthreshold/countsbutproseclips;negativecorrelationdescribedmovetogetherloosely.",
+      "evidence": "rnear-1caption.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalcausalitywarningwithoutfreshrealseriesapplication.",
+      "evidence": "Samewalksimulation.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Independentwalkscanlookstronglylinkedfrequently.",
+      "evidence": "17/41above0.5andmax0.88.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Pairedcurvesandcorrelationdotdistributionmakecoincidencesvisible.",
+      "evidence": "Strongestpairhighlight.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Samplingandstrongest-togglecontrols.",
+      "evidence": "1,10,30batches.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Time-seriescorrelationcautioncentral.",
+      "evidence": "Trackingdoesnotprovecommoncause.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Persistence,independence andspurioussamplecorrelation.",
+      "evidence": "Slowtrendexplanation.",
+      "confidence": "medium"
+    }
+  }
+}

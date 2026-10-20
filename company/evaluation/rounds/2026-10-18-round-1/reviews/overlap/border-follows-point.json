@@ -1,0 +1,130 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy/simple charts; no theory assumed.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "observations": [
+    {
+      "id": "p",
+      "phase": "prediction",
+      "text": "No-history preview verified; trust5/5 ignored. Chose stays2 versus1/-2 afterA0→-2,B4;locked. Rule everyspot classclosestpoint."
+    },
+    {
+      "id": "e",
+      "phase": "exploration",
+      "text": "KeyboardxLefttwice=>A(-2,0),borderx1;revealunlocked. yEnd=>A(-2,2),borderaxis.67. Screenshot coloredregions,tiltedboundary perpendicular to dashedABconnection,midpointdifferentfromaxiscrossing. Inlineonly."
+    },
+    {
+      "id": "r",
+      "phase": "reveal",
+      "text": "Notquitex1;Aleft2boundaryleft1halfway-2/4;equidistantpoints defineborder;offaxis tiltperpendicularthroughmidpoint;manypointboundary stitchedpieces,nearbytrainingpoint moveslocalborder/classregions."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Specific geometric consequence with plausible alternatives.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Horizontal and vertical contrasts expose translation/tilt.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains midpoint/equidistance and ownmovement.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Coordinate/intercept/coloredregions readable.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "General equidistance construction with many-point application.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Insufficient mode evidence.",
+      "evidence": "e",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Data movesborder without drawing.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Coloredregions and midpointline carry geometry.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Two-dimensional reversible pointmovement.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Classifier boundary interpretation.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Midpoint,perpendicular,localclasschanges linked.",
+      "evidence": "r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Midpoint and perpendicular equidistance link 1D displacement with 2D classboundary.",
+    "conceptualDemand": "Coordinates and nearest-distance classification supported by coloredmap; extension many points verbal.",
+    "interfaceBurden": "Two ranges/labeled coordinates and intercept."
+  },
+  "whyCool": "MovingAlefttwo shiftsborderone, then liftingAtilts the entire classboundary while intercept becomes.67.",
+  "caveat": "Onlytwo trainingpoints demonstrated; many-pointlocality extension asserted; no reset tested.",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Only sliderkeys tested; accessibility modes untested."
+  ],
+  "screenshots": [],
+  "slug": "border-follows-point",
+  "demoVersion": 2,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/border-follows-point",
+  "reviewKind": "overlap",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "4398ed4f8d83b79b0a3003dcd288fb556434b94c397177d9fab66e050ca6da0e",
+    "metaSha256": "74f57a12ac683e95984dc6a12f277078a9a6bd4407354e291aca5e7b9d1468d7"
+  }
+}

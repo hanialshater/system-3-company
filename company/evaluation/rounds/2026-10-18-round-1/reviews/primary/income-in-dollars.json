@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "income-in-dollars",
+  "demoVersion": 3,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/income-in-dollars",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "income-in-dollars",
+    "domain": "ai",
+    "status": "published",
+    "demoVersion": 3,
+    "metaPath": "src/demos/ai/income-in-dollars/meta.json",
+    "metaSha256": "451f55a295a7a99c1103a22a2452fa7a1ba31b5c520554975ad1e0a8efb4f0f4",
+    "demoSha256": "d49d174af7ca81ed098c34c9bd39052b2d8cf3c199393e33e086868ba264dcb4",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/income-in-dollars",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/income-in-dollars.json"
+  },
+  "date": "2026-10-18T19:03:13.996933+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "No-history banner;trust4/4 ignored. SelectedA and locked. Prompt30year50000versusA31/58000,B60/51000,straight-line raw dollars.",
+    "exploration": "Dollars:A8000 B1000 nearestB.100s:A80 B31.6 nearestB.1000s:A8.1 B30 nearestA. Each unit clicked; reveal unlocked only after all.",
+    "reveal": "CorrectB in dollars;1year counts1dollar so age barely registers; plot squeeze.1000s changes nearest toA without people changing. Features comparable scales before distance.",
+    "visual": "Inline1257x936 dark screenshot inspected: you diamond,A/Bpoints,age/income axes and one year counts1000dollars caption. Thousand-scale distances/counters and reveal legible."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicit raw-unit condition distinguishes intuitive age proximity from numerical distance.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Three unit contrasts show initial dominance,intermediate nonflip and final nearest flip with same people.",
+      "evidence": "exploration",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Directly explains observed distances and scaling mechanism, warns number magnitude differs importance.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Units,nearest,counters and gap components explicit in tested desktop.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable comparable-feature scale rule; no concrete distinct new application or relevance choice.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "A intuitive prediction loses in dollars and wins after units change.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Spatial point plot and unit ratio carry meaning alongside numeric distances.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversible unit choices expose sensitive metric.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete nearest-person comparison implies scaling practice.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Unit dominance,intermediate state and nearest-neighbour flip.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Coordinate age/income units and straight-line distance under rescaling.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low unit buttons and counters",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: multifeature distance",
+    "notationRepresentationBurden": "moderate: dollar units,decimal distances and scatter plot"
+  },
+  "whyCool": "Changing dollars to thousands swaps the nearest person without changing anyone's age or income.",
+  "caveat": "No distinct application or task-specific scale selection; only prescribed unit choices."
+}

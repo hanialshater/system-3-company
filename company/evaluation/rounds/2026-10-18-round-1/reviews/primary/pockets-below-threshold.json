@@ -1,0 +1,104 @@
+{
+  "slug": "pockets-below-threshold",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/pockets-below-threshold",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted no growth in88%town because93%averageabovethreshold91.7%;R0=12,perfectvaccine,equaltowns,nointertowncontact given. Otheranswer explicitlyRabout1.4.",
+    "B88/A98:localR1.44/0.24,average93%. A100/B88:average94%,Bstill1.44,A0. B100/A100:average100%,bothR0. Dotgrids showprotected/openpeople.",
+    "Reveal recalls88%calculation12\u00d70.12=1.44andvisited94%averagecase;explainsmixinggroupthreshold,randommixingwithin/nointertowncontact/perfectprotection limits. Doesnotdiscusscurrentboth100extension.",
+    "1280x720light readoutsandgrids clearafterordinaryscroll;finalprosecutoffright."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simplefractions,butlocalversusaggregateandmixingmodelneedcare.",
+    "conceptualDemand": "Group-specificreproductionversusoverallcoverage.",
+    "interfaceBurden": "Twoslidersandpresets."
+  },
+  "whyCool": "The town average can improve while the isolated low-coverage town's outbreak potential stays exactly the same.",
+  "caveat": "Inventedperfect-protection/nointertowncontactmodel,notrealepidemiologicalprediction. Initialstage/questionmismatch. Prosecutoff;both100extensionnotinreveal.",
+  "effort": "Prediction,lowB,fullA,fullBcontrasts,reveal,two screenshots.",
+  "provisionalBucket": "promising-with-fix",
+  "bucketReason": "Clearlocal-versus-averagecausalcontrast;aligninitialstateandlayout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Specificlocalversusaggregatequestion andmixingassumptions test ecologicalaveragingmisconception.",
+      "evidence": "98/88towns,93overall,R0=12.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Independenttownchanges andfull-protectionboundary isolate localversusoverall effects.",
+      "evidence": "A98to100doesnotchangeB1.44;B100does.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explainsoriginalanswer andactual94%contrast withkeymixingconditions.",
+      "evidence": "LocalR0\u00d7susceptiblefraction,nointertowncontact.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Local/overalllabels clear;initialB95differsfromprediction88,andproseclips.",
+      "evidence": "Initialstage98/95,question98/88.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalwithin-groupthresholdprinciple,noexternalnewcasechallenge.",
+      "evidence": "Same twotowns throughout.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Improvingoverallcoverageelsewhere cannotchangeisolatedpocketrisk.",
+      "evidence": "Average94yetB1.44.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Separategrids/localRreadouts contrastsharedaverage.",
+      "evidence": "A0,B1.44versusoverall94%.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Twoindependentcoveragecontrols allowcausaltest.",
+      "evidence": "AandBcontrasts plusfullboundary.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Centralinterpretationofaggregatecoveragewithmixinggroups.",
+      "evidence": "Averageversuslocalreproduction.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Heterogeneity,mixing andthresholdconditions.",
+      "evidence": "No-contactassumptionessential.",
+      "confidence": "medium"
+    }
+  }
+}

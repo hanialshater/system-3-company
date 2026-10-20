@@ -1,0 +1,140 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "same-line-four-pictures",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/same-line-four-pictures",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "same-line-four-pictures",
+    "domain": "probability",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/probability/same-line-four-pictures/meta.json",
+    "metaSha256": "1bc6b8bcc819000b759db00122a080ace48fcb6369dab12cd05f88029e514fea",
+    "demoSha256": "5a261e7af0be0ac2919d2e4cd24015f723bfffa96f7d31508ff27d99fd22d37b",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/same-line-four-pictures",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/same-line-four-pictures.json"
+  },
+  "date": "2026-10-18T20:23:43.759096+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Chosesteeperset andlocked."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "ShowedfittedlineandvisitedIIcurve,IIItightlinewithhighoutlier,IVtenpointsatx8andonefarright,thenIcloud. Allmean9,7.5,r.82,liney3+.5x. Visuallyinspectedeachdifferentpointpattern."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Readsamecorrection,identicalsummaryandlinecannotdistinguishcloud/curve/outlier/leverage;alwaysdrawdata,Anscombeconstructedsetscontext."
+    },
+    {
+      "phase": "visual-inspection",
+      "evidence": "Actual1257x936dark inlineI,II,III,IVandfinalIscrolledreveal inspected. Axes,points,line,countersandprose legible."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Comparisonclearbutrequiresunintroducedfit/statisticrelation.",
+      "evidence": "Mean/spread/correlationr.82andbestfitlineassumedfamiliar.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Fourmeaningfullydifferentdatasetswithconstantnumbersdemonstratelimit.",
+      "evidence": "Cloud,curve,outlierandverticalclusterwithleverageallshareline3+.5x.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explicitlyconnectssummaryinvariancewithneedtoplot.",
+      "evidence": "Means/spread/correlationcannotdistinguishfourpatterns.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Visualcontraststrongbuttechnicaltermsnotdefined.",
+      "evidence": "Correlation,spread,bestfitandlineformulapresentwithoutintroductoryexplanation.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalplottingrulewithoutnewapplicationtask.",
+      "evidence": "Constructedfoursetsremainone demonstration.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Samefitandcorrelationconcealdramaticstructure.",
+      "evidence": "Curvedsetandverticalclusterhaveidenticalline.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Actualplotsaretheexplanationofsummaryloss.",
+      "evidence": "Fourpatternswithsamecountersinspected.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Toggleplotsandline.",
+      "evidence": "Allfoursetsvisited.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Usefuldataanalysisguardrail.",
+      "evidence": "Inspectrawplotsbeforetrustingsummaries.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Multiplefailuremodesoflinearsummary.",
+      "evidence": "Curvature,outliersandleveragecontrasted.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "conceptualDemand": "Comparevisualstructurewithconstantnumericsummariesandfit.",
+    "interfaceBurden": "Foursetbuttonsandlinetoggle;lowburden.",
+    "prerequisiteNovelty": "Correlation/regression/spreadnotfullyintroduced.",
+    "notationRepresentationBurden": "r,.82,meanx/y,lineequationandscatteraxes;highforboundary."
+  }
+}

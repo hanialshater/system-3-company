@@ -1,0 +1,130 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy/simple charts; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "observations": [
+    {
+      "id": "p",
+      "phase": "prediction",
+      "text": "No-history preview verified;3/3trust ignored. ChoseWhereholesarevsfewholes/evenly; locked. Hook 'Or is that backwards?' suggests reversal."
+    },
+    {
+      "id": "e",
+      "phase": "exploration",
+      "text": "Fly10=>5returned5lost0theirengineholes; Fly50=>37returned23lost0engineholes,cumulative60. Showlost=>diagram red holes concentrated engines versus black survivors avoiding engines; reveal unlocked. Screenshot legendBlackcameback/Rednevercameback; statistic 'THEIR ENGINE HOLES0' ambiguous antecedent under lost count."
+    },
+    {
+      "id": "r",
+      "phase": "reveal",
+      "text": "Notquitefewholes.23of60lost,every lost plane enginehit;37returnednoengineholes. Evenbulletlandings; observed holes conditional on survival. Toymodel:evenhits,onlyenginehitsfatal. Wald WWII analogy stated without independent verification. Screenshot viewed inline only."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Plausible options but hook cues reversal.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Cumulative samples and missing-case overlay expose selection.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Directly cites own counts and toy assumptions.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Graphic/legend clear; engine-hole counter antecedent unclear.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Reusable selection bias principle with toy limitation.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Insufficient mode evidence.",
+      "evidence": "e",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Cleanest area becomes armour target.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Missing red versus survivor black holes carry selection mechanism.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Fly batches and reveal hidden population.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Interpreting incomplete data explicit.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Observed sample, absent population and fatality condition linked.",
+      "evidence": "r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Requires separating observed survivors from missing population and inferring selection mechanism.",
+    "conceptualDemand": "Conditional sample and missing-case reasoning with direct overlay support.",
+    "interfaceBurden": "Three buttons and counters; ambiguous engine-hole counter label."
+  },
+  "whyCool": "Adding the lost-plane red holes fills engines that looked clean in surviving-plane black holes.",
+  "caveat": "Counter THEIR ENGINE HOLES0may refer ambiguously to preceding lost-plane counter; toy assumes only engine hits fatal; historical claim not independently checked.",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Hide/reset not tested; keyboard/focus/phone/reflow/contrast/motion untested."
+  ],
+  "screenshots": [],
+  "slug": "armour-where-no-holes",
+  "demoVersion": 1,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/armour-where-no-holes",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "2bda7a847f790161fe3b0d0c8f4b2e5a69e2a0379c0b0a5d162958e3228fb226",
+    "metaSha256": "450c556a86f57381912725eeda76ada1bbb18141322127da0ee0c774a491044c"
+  }
+}

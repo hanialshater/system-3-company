@@ -1,0 +1,104 @@
+{
+  "slug": "newton-doubles-the-digits",
+  "demoVersion": 3,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/newton-doubles-the-digits",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Starting at one, first update produced 1.5 and one matching significant digit.",
+    "Automatic iteration displayed matching counts one, three, six, twelve, then fifteen; fourth update reached twelve digits and sixth did not change.",
+    "Screenshot showed bold matching prefixes, growing digit bars, and a dynamically zoomed number line with g, 2/g and their average.",
+    "History slider returned to update zero without losing completed evidence; reveal explained error cancellation, approximate error squaring and floating-point limit."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Reciprocal estimates, significant digits and squared error.",
+    "conceptualDemand": "Relate local averaging to rapidly shrinking numerical error.",
+    "interfaceBurden": "Step, run and history slider; animation must settle."
+  },
+  "whyCool": "A simple average can roughly double the number of correct digits at each step until the computer runs out of precision.",
+  "caveat": "Single positive starting value and equation; broader convergence conditions are not explored.",
+  "effort": "Prediction, first update, full auto-run, settled state, screenshot, history inspection and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Excellent complementary numerical and geometric explanation with an observed precision boundary.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Precise convergence-speed question with plausible linear-growth distractors.",
+      "evidence": "Four, eight or twelve updates for twelve significant digits.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Single stepping, automatic convergence and historical inspection expose progression.",
+      "evidence": "First update, convergence to no change, slider back to zero.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explains mechanism, observed digit growth and a real stopping limit.",
+      "evidence": "Squared error, twelve at update four, fifteen at five and no change at six.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Matching prefixes and zoom labels make precision visible.",
+      "evidence": "Digit counts and number-line zoom shown.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Names Newton's method for a specific equation without another problem.",
+      "evidence": "Only g squared equals two explored.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Precision accelerates rather than adding one digit each time.",
+      "evidence": "Three to six to twelve matching digits.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Digit prefixes and rescaled bracketing support complementary explanations.",
+      "evidence": "Growing bars and g/reciprocal average.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Step or auto-run and inspect history.",
+      "evidence": "Fixed equation and starting point.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Illustrates numerical computation rather than an applied workflow.",
+      "evidence": "Newton iteration and machine precision.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Connects averaging, quadratic convergence and finite precision.",
+      "evidence": "Cancellation mechanism and no-change limit.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "random-surfer-finds-the-rank",
+  "demoVersion": 3,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/random-surfer-finds-the-rank",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Visible graph has A-B-C cycle with extra D/E links into C; fifteen-percent uniform jumping specified.",
+    "At 1,001 clicks A held 32.0 percent and C 32.5; at one hundred thousand A 31.2 and C 33.2.",
+    "Screenshot arrow widths and labels show C-to-A carrying 28.1 percent, D/E-to-C 2.5 percent each.",
+    "Reset restored zero live counters while retaining a clearly labeled hundred-thousand-run report. Reveal uses that run and compares stated direct values 0.312/0.332."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Long-run random walk and recursive importance.",
+    "conceptualDemand": "Weigh source traffic rather than count links.",
+    "interfaceBurden": "Step, two batch sizes and reset."
+  },
+  "whyCool": "An incoming link matters partly because of how often anyone reaches the page sending it.",
+  "caveat": "Fixed five-page graph, seed and jump probability; not a current search-engine ranking model.",
+  "effort": "Prediction, single move, thousand-scale and hundred-thousand runs, weighted-arrow screenshot, reset and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Excellent traffic-based mechanism and unusually clear reset evidence provenance.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete incoming-link-count misconception with topology available.",
+      "evidence": "One in-link versus three; third, half or almost equal visits.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Single move and two run lengths expose empirical visit shares.",
+      "evidence": "One click, 1,001 and one hundred thousand plus reset.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explains observed ranking through traffic-weighted links and source access.",
+      "evidence": "Busy C gives A more traffic than rarely visited D/E give C; direct result comparison.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 4,
+      "reason": "Topology, weighted arrows, seed and reset provenance stay explicit.",
+      "evidence": "Reset zero counters alongside labeled completed-run evidence.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "General ranking interpretation and counterexample to raw link counting.",
+      "evidence": "Long-run visit share depends on source traffic and jumping, not just incoming count.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "One strong incoming link can nearly match three incoming links.",
+      "evidence": "31.2 versus 33.2 percent.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Weighted arrows explain traffic rather than merely display scores.",
+      "evidence": "C-to-A thick versus D/E-to-C thin.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Step or batch a fixed seeded walk.",
+      "evidence": "No topology or damping editing.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete graph-ranking intuition.",
+      "evidence": "Source importance affects incoming traffic.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Topology, stationary visitation and teleportation connect.",
+      "evidence": "D/E only entered by jumps; cycle carries traffic.",
+      "confidence": "medium"
+    }
+  }
+}

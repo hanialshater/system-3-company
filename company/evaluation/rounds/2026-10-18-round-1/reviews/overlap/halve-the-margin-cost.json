@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "overlap",
+  "slug": "halve-the-margin-cost",
+  "demoVersion": 3,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/halve-the-margin-cost",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "halve-the-margin-cost",
+    "domain": "probability",
+    "status": "published",
+    "demoVersion": 3,
+    "metaPath": "src/demos/probability/halve-the-margin-cost/meta.json",
+    "metaSha256": "09b50488d2fc35b72a1ec97d37ef779e7cdfaa335772ad4cce2e56e690999d3f",
+    "demoSha256": "d1c6b85a862d930ebd0a0401f88e8344acdfafe1ae8571863edb31dbc265b1cb",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/halve-the-margin-cost",
+    "primaryWorker": "w1",
+    "reviewKind": "overlap",
+    "outputPath": "reviews/overlap/halve-the-margin-cost.json"
+  },
+  "date": "2026-10-18T19:30:04.044116+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "No-history banner confirmed; trust4/4 ignored. Selected2000 andlocked forhalving3.1pointmargin.",
+    "exploration": "1000:margin3.1,95/100inside. Double2000:2.2,97/100. Double4000:1.5,95/100,revealunlocks. SliderEnd8000:1.1,97/100,doublebuttondisabled. Historical1000/2000dashedbandsretained.",
+    "reveal": "Correct4000;recapsactual1000/2000/4000margins,square-rootsamplesizerule,randomsamplingonlynotnonresponseorbiasedlist.",
+    "visual": "Inline1257x936 dark screenshots inspected:100polldotsaround50%,bandnarrowsagainstfixed dashed1000/2000bounds. At8000reveal horizontaloverflow scrollbar overlayslowercounterrow; xaxis60%label repeats atedge. Textreveallegible."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Double/quadruple/eightfoldsamples choices distinguishlinearfromsquare-rootimprovement.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Threedoublingsandlargestboundaryshowdiminishingreturnsandretainedcomparisonbands.",
+      "evidence": "exploration;visual",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connectsactualmargins tosquare-rootruleandexplicitbias/nonresponselimit;why-square-rootitselfasserted.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Band/countersclearinitially,buthorizontaloverflowbaroverlayscounterrowat8000revealdesktop.",
+      "evidence": "visual",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concretepollplanningrulequadrupleforhalfmarginwithrandomsampling-onlyconditionandnamednonapplicablebiascases.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Chosen2000onlyreduces3.1to2.2;4000needed1.5.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Current/dashedbandsandpolldotsshowspreadchangeandoccasionalmisses.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Sampleslider/doublecontrolsenablecomparisons.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concretepollsamplebudgetinterpretationwithbiascaution.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Square-rootscaling,finitecoverage variationandnonsamplingerrorboundary.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Coordinate marginwidth,samplesizemultipliersandpoll-to-pollscatter;qualitativesquare-rootruleexplicit.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "moderate:horizontaloverflowcounteroverlayat8000",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: samplingmarginandcoverage",
+    "notationRepresentationBurden": "moderate: plus/minuspoints,percentaxisandreferencebands"
+  },
+  "whyCool": "Doublingthepeopletwicehalvestheband,whiletheold1000-persondashedbandstayswideforcomparison.",
+  "caveat": "Observedhorizontaloverflowovercounterrowat8000;true50%fixedandnosamplingdesignvariation."
+}

@@ -4,8 +4,8 @@
   "private": true,
   "description": "A company of narrow AI agents that makes 60-second interactive lessons, run on the System 3 architecture.",
   "scripts": {
-    "dev": "npm run registry && next dev",
-    "build": "npm run registry && next build",
+    "dev": "npm run editorial:account && npm run registry && next dev",
+    "build": "npm run editorial:account && npm run registry && next build",
     "start": "next start",
     "typecheck": "npm run registry && tsc --noEmit",
     "registry": "node tools/company.mjs registry",
@@ -34,7 +34,8 @@
     "test:personalization": "node company/personalization/model/gate.mjs",
     "test:dims": "node --test tests/personalization/dims-index.test.mjs",
     "test:metrics": "node --test tests/metrics/*.test.mjs",
-    "test:accounts": "node --import ./tests/lifehacks/register.mjs --test --test-concurrency=1 tests/accounts/*.test.mjs"
+    "test:accounts": "node --import ./tests/lifehacks/register.mjs --test --test-concurrency=1 tests/accounts/*.test.mjs",
+    "editorial:account": "node tools/build-editorial-profiles.mjs company/evaluation/rounds/2026-10-18-round-1 src/data/editorial-profiles.account.json"
   },
   "dependencies": {
     "better-auth": "1.7.10",

@@ -1,0 +1,121 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2",
+  "reviewKind": "primary",
+  "slug": "count-the-marked-fish",
+  "demoVersion": 2,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/count-the-marked-fish",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy/simplecharts;no subject theory assumed.",
+  "viewport": "1257\u00d7936 Chrome dark theme; inline screenshot",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "text": "No-history banner;trust5/5 ignored. Predicted1000from100marked,50caught,5marked;locked."
+    },
+    {
+      "id": "E",
+      "text": "Firstnet5/50 gives1000. Net4more gives counts4,7,9,3 and estimates1250,714,556,1667;toytruth1000;revealenabled."
+    },
+    {
+      "id": "R",
+      "text": "Referencesallfiveactualcounts;sampleprobe notlake;markedshare1/10 implies100\u00d710;oneestimateguess,several scatteraroundtruth. Fulldarkdesktopprose readable;fishdotsandwhitecapturecircles smallbutdiscernible. No saved screenshot."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete ratio estimate with explicitknownmarkcount andsample.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Fivecaptures show numericalscatter whiletruepopulationfixed.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Explainsratioandsamplingvariation but onlymixing assumption explicit;nocapturebias/closedpopulation boundary.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Counts,formulas,historyandprose readable at testedviewport.",
+      "evidence": "R screenshot",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable proportionestimator stated;no newpopulation/application tested.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No modeaudit.",
+      "evidence": "Untested",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Same lake yields estimates556to1667.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Markedfishandcapturecircles supportcounting;formula carries maininference.",
+      "evidence": "R screenshot",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Sampling andbatchcomparison.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Population estimation without exhaustivecapture.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Ratioinference andsamplingvariability.",
+      "evidence": "R",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links sampleshare to inversepopulationestimate and variability.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low",
+    "prerequisiteNovelty": "moderate;recapture",
+    "notationRepresentationBurden": "low-to-moderate;ratios"
+  },
+  "whyCool": "Five nets from one1000fishlake yield estimatesfrom556to1667,showinghowunreliableonesmallcapturecanbe.",
+  "caveat": "Fixedtoysequence;mixingstatedbut unequalcatchability/populationchange not explored.",
+  "notApprovedForServing": true,
+  "effort": "About3minutes",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility modes",
+    "Reset",
+    "Biasedcaptureboundary"
+  ]
+}

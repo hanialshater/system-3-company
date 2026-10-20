@@ -1,0 +1,137 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "strategy-builder",
+  "demoVersion": 4,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/strategy-builder",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "strategy-builder",
+    "domain": "life",
+    "status": "published",
+    "demoVersion": 4,
+    "metaPath": "src/demos/life/strategy-builder/meta.json",
+    "metaSha256": "49b50667f07b47a884b01be723e6dc671bd2df9607369768350ac38e209c0bed",
+    "demoSha256": "d97d044971c63ebf2947cd905c07531d823c7959412d3f7e585f61c0f44c0fe9",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/strategy-builder",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/strategy-builder.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected About 50 percent and locked it in.",
+    "exploration": "Three percent start had average 9.6 versus 10.1 and fell to zero by generation 60. Four percent preset also zero. Eight percent preset reached 100. Keyboard reduced start to six, resetting generation zero: averages 10.3 versus 10.2. Running six percent to generation 60 produced 18 of 100, still growing.",
+    "reveal": "Corrected to about six percent, gave exact crossing one in seventeen, contrasted 9 versus 14 in mixed encounters with 30 versus 10 in like encounters and qualified huge-population random pairing, ten rounds, fixed strategies and chosen payoffs.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected. Population symbols, payoff table and starting-score lines visible. Exploration lower share chip clipped at card bottom; reveal inner scroll hid population grid but showed table, crossing, current result and caveat.",
+    "previewIsolation": "Preview banner said history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "A substantive threshold commitment requires processing many unfamiliar payoff rules.",
+      "evidence": "Ten-round strategy and four candidate starting shares.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Different starts show loss, takeover and slow near-threshold growth.",
+      "evidence": "Three/four vanish; eight takes over; six reaches eighteen by sixty.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal explains why average fitness differs from direct encounter wins.",
+      "evidence": "Like-kind payoff advantage overcomes mixed-pair loss.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Table and crossing help, but dense setup and clipped regions add burden.",
+      "evidence": "Payoff calculations, starting-average graph and current averages coexist.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General repeated-meeting cooperation condition stated without a new application.",
+      "evidence": "Explicitly not a claim about people.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Complete mode audit not conducted.",
+      "evidence": "Keyboard starting-share adjustment worked; screen reader, contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "A small minority can ultimately grow despite losing mixed encounters.",
+      "evidence": "Threshold near six percent rather than fifty.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Crossing average-score lines explain starting-share dependence.",
+      "evidence": "Green and red lines cross near one in seventeen.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Population starts can be rerun and compared.",
+      "evidence": "Four/eight presets and start slider.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Clarifies a conditional cooperation mechanism.",
+      "evidence": "Toy model boundary explicitly excludes people.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 4,
+      "reason": "Repeated-game payoffs combine with frequency-dependent population dynamics.",
+      "evidence": "Near-threshold growth versus majority takeover.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Simple controls require repeated-game and payoff-weighting reasoning.",
+    "conceptualDemand": "Track tit-for-tat, cumulative encounter scores and composition-dependent averages.",
+    "interfaceBurden": "Two run controls, two presets and start slider; inner scroll.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "Tit-for-tat, payoff matrix and copied strategy dynamics.",
+    "notationRepresentationBurden": "Ten-round arithmetic, average score lines and population percentages."
+  },
+  "whyCool": "Winning individual mixed encounters does not guarantee winning population averages.",
+  "caveat": "Six percent grew but had not taken over by the available sixty-generation horizon; reveal correctly called it growth.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:40:01.712362+00:00"
+}

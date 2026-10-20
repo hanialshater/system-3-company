@@ -1,0 +1,139 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "ten-thousand-replies-still-wrong",
+  "demoVersion": 2,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/ten-thousand-replies-still-wrong",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "ten-thousand-replies-still-wrong",
+    "domain": "probability",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/probability/ten-thousand-replies-still-wrong/meta.json",
+    "metaSha256": "f5acc68c9220389f00ef954e7f7f5117f19ed85d335a5e44098b55183ea4edf8",
+    "demoSha256": "c1ffb996d951231e00696a1f80336a2937a4af5f16fe169ca8889a691711b366",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/ten-thousand-replies-still-wrong",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/ten-thousand-replies-still-wrong.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected about fifty percent and locked it in.",
+    "exploration": "Ran ten-thousand web replies: 32.3 percent support. One-thousand web: 35.3. One-hundred-thousand web: 33.1. One-thousand random calls: 48.7. Bars accumulated with narrower web whiskers at larger sizes. No reset or repeated new sample control visible; completed all four presets.",
+    "reveal": "Corrected to about thirty-three percent, explained twice-likely opposition response and more replies narrowing uncertainty around biased estimate. Compared random calls near truth through equal selection chances.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected. Four horizontal bars, percentage labels, whiskers and dashed town-fifty-percent line visible. Reveal readable. Whisker meaning and confidence level not explicitly defined in learner text.",
+    "previewIsolation": "Preview banner said history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete response-rate imbalance supports a selection-bias commitment.",
+      "evidence": "Equal town split but opponents twice as likely to respond.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Three web sizes and random-call comparison separate sample size from selection.",
+      "evidence": "33.1 at one hundred thousand web versus 48.7 at one thousand calls.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal explains precision around a biased target.",
+      "evidence": "Whiskers shrink while web estimates stay near one third.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Comparison is strong but whiskers are undefined and every-batch ratio prose overstates expected behavior.",
+      "evidence": "Observed web values vary around one third, while prose says every batch has two opponents per backer.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General sample-selection principle stated within same poll without a new application.",
+      "evidence": "Equal chance of being asked versus self-selection.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Complete mode audit not conducted.",
+      "evidence": "Selected poll percentage exposed as text; keyboard, screen reader, contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "A hundred times more web replies remain systematically off target.",
+      "evidence": "35.3 to 33.1 rather than fifty.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Tightening whiskers away from truth separates uncertainty and bias.",
+      "evidence": "Dashed fifty-percent line against web bars.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Four sampling presets accumulate a comparison.",
+      "evidence": "Three sizes and one alternative method.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 4,
+      "reason": "Useful for judging large voluntary-response polls.",
+      "evidence": "Selection process matters more than reply count here.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Distinguishes sampling precision and systematic selection error.",
+      "evidence": "Random-call contrast with smaller sample.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simple presets introduce bias versus sampling uncertainty.",
+    "conceptualDemand": "Normalize unequal response propensities and distinguish precision from representativeness.",
+    "interfaceBurden": "Four fixed poll buttons, no visible reset.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "Response bias and uncertainty whiskers.",
+    "notationRepresentationBurden": "Percentages, sample-size powers of ten and horizontal intervals."
+  },
+  "whyCool": "A narrower uncertainty bar can sit confidently around the wrong target.",
+  "caveat": "Whisker confidence level is not stated and ratio language should describe expectation rather than every realized batch.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Keyboard audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case",
+    "Visible reset unavailable"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:52:04.950508+00:00"
+}

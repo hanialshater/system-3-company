@@ -1,0 +1,104 @@
+{
+  "slug": "breeze-is-not-extra-surface",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/breeze-is-not-extra-surface",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted moving air helps the same cool towel dry sooner.",
+    "At1 m\u00b2, still air speed1 and breeze2; changing area to3 m\u00b2 gave speeds3 and6, with equal area in both conditions.",
+    "Visual shows airflow arrows and a cloth whose area changes independently of the A/B airflow condition.",
+    "Reveal accurately used current3 m\u00b2 and3/6 speeds, and explicitly labeled the doubled coefficient illustrative rather than a measured fan benefit."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple equal-area and proportional comparisons.",
+    "conceptualDemand": "Air movement versus exposed area.",
+    "interfaceBurden": "Two modes and area slider."
+  },
+  "whyCool": "A breeze changes the transport of water without secretly creating more towel surface.",
+  "caveat": "Illustrative proportional coefficient, not measured drying time or a general twofold fan benefit.",
+  "effort": "Completed prediction, both modes at1 m\u00b2, changed3 m\u00b2, screenshots and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear practical causal comparison and accurate changed-state reveal.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Tests a causal misconception with clear same-towel comparison.",
+      "evidence": "Warm-air-only and spreading-only alternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Independent area adjustment preserves the airflow ratio and distinguishes two factors.",
+      "evidence": "1 and3 m\u00b2, each compared across still/breeze.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Accurate current values explain multiplicative factors with an explicit empirical limit.",
+      "evidence": "Twofold coefficient is illustrative.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Model units and fixed-area comparisons are explicit.",
+      "evidence": "Cloth area identical across A/B.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete causal distinction includes its limiting condition.",
+      "evidence": "Area and movement are independent model factors; no measured fan effect.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Air movement can matter without added warmth or exposed area.",
+      "evidence": "Breeze doubles illustrative speed at equal area.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Arrows and table clarify the model, but mechanism is largely stated.",
+      "evidence": "No boundary-layer or moisture measurement.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Area slider and condition toggle support comparisons.",
+      "evidence": "A/B plus one parameter.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful drying intuition with an honest coefficient caveat.",
+      "evidence": "Airflow and exposure can contribute separately.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Separates two multiplicative factors.",
+      "evidence": "No humidity or temperature variables.",
+      "confidence": "medium"
+    }
+  }
+}

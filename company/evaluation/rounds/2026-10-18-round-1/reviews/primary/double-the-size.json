@@ -1,0 +1,151 @@
+{
+  "status": "walkthrough-reviewed",
+  "reviewState": "complete-real-walkthrough",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "action": "Selected2 and locked",
+      "outcome": "Choice retained and width/fill controls unlocked."
+    },
+    {
+      "id": "E",
+      "action": "Width ArrowRight to12; checked Fill; End to24; Home to6",
+      "outcome": "12in fourboxes;24in sixteenboxes with sixteen separate small circles and preserved empty corners; return6 restored onebox. Seen history retained6,12,24."
+    },
+    {
+      "id": "R",
+      "action": "Opened reveal then applied suggested18in via two ArrowRights",
+      "outcome": "Corrected to4; explained width and height scaling and same share of eachbox. Condition scale everylength byk stated;18in produced9boxes and Seen history added18."
+    },
+    {
+      "id": "V",
+      "action": "Inspected24in fill and reveal screenshots with vertical scroll",
+      "outcome": "1257x992 dark Chrome; graphics, captions and controls legible; no horizontal clipping."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear2versus4 misconception with committed answer and no leaked result.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Multiple scale contrasts plus smallest boundary and fill mode expose two-dimensional growth without packing claim.",
+      "evidence": "E,R",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explains corrected prediction through bothdimensions and same circle-to-box share, then supports a newsize.",
+      "evidence": "R",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Labels and seen history support full path in tested viewport.",
+      "evidence": "E,R,V",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete18in case and condition everylength scales equally are stated and applied; no non-applicable case.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic multimode checks.",
+      "evidence": "Incidental range keyboard only; focus, contrast, phone, zoom/reflow and motion untested.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Actual two-pizza prediction corrected tofour through visible two-dimensional growth.",
+      "evidence": "P,E,R",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Grid and big/small circles carry mechanism across1,4,16and9boxstates.",
+      "evidence": "E,R,V",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 4,
+      "reason": "Reversible range, fill mode and retained seen states support multiple discoveries.",
+      "evidence": "E,R",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete pizza quantity comparison with equal-scaling condition.",
+      "evidence": "P,R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Two-dimensional scaling and invariant occupied-box share explain more than a bare formula.",
+      "evidence": "E,R",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links two dimensions and invariant share toarea ratio, supported by grids.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": {
+      "level": "low",
+      "reason": "Familiar pizza widths and multiplication."
+    },
+    "notationRepresentationBurden": {
+      "level": "low",
+      "reason": "Counts andk×k with verbal support."
+    },
+    "conceptualDemand": "Distinguish width multiplier fromarea multiplier and circle share from box area.",
+    "interfaceBurden": "Low in tested viewport."
+  },
+  "whyCool": "The filled24inch box displays sixteen six-inch circles, then18inches yieldsnine by the same square rule.",
+  "caveat": "All cases preserve similar round shapes; no non-applicable unequal-scaling case is tested.",
+  "missingEvidence": [
+    "Systematic accessibility checks",
+    "Non-applicable transfer case",
+    "Phone layout"
+  ],
+  "effort": {
+    "approximateMinutes": 3
+  },
+  "partialBlinding": "Visible Why trust this? (4/4 claims checked); ignored and not opened.",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3b",
+  "date": "2026-10-18",
+  "notApprovedForServing": true,
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, number comparisons and familiar household objects; no domain theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 992,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "screenshots": [],
+  "fatalFindings": [],
+  "slug": "double-the-size",
+  "demoVersion": 3,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/double-the-size",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "44250e618b24081a31e94e7be923fe1e371064e7033b1c9c63754d9231accc68",
+    "metaSha256": "1e253fb09691523560531ce9db95912ca16015690615c74105badffe5fd1fa4a"
+  }
+}

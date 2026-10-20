@@ -1,0 +1,103 @@
+{
+  "slug": "shorter-folder-path",
+  "demoVersion": 1,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/shorter-folder-path",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction segments traversed versus file size after hook says deep folder traversal.",
+    "Count levels adds3+3+2=8 for work/old/notes,work/old/maps,home/docs. Remove old yields2+2+2=6.",
+    "Reveal calls middle redundant and explicitly no measured speedup or universal anti-depth rule. Screenshot readable; no actual navigation or redundancy test."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Count slash-separated names.",
+    "conceptualDemand": "Depth versus file attributes.",
+    "interfaceBurden": "Two clicks."
+  },
+  "whyCool": "Repeated navigation costs can come from a single unnecessary layer in the path.",
+  "caveat": "No demonstration that old is redundant or that shallow organization improves real retrieval.",
+  "effort": "Prediction,count,flatten,reveal,inline screenshot.",
+  "provisionalBucket": "revise-challenge-context",
+  "bucketReason": "Correct arithmetic,limited learner task.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Irrelevant file-size distractor and hook disclose measure.",
+      "evidence": "Levels versus file size.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Visible path shortening and count change, fixed operation.",
+      "evidence": "8\u21926.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Accurate arithmetic and limits.",
+      "evidence": "No measured speedup.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readable but redundant directory assumption unexplained; fixture jargon.",
+      "evidence": "Old may carry meaning.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Principle and caveat without concrete new application.",
+      "evidence": "Same paths.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 0,
+      "reason": "Removing segment reduces count.",
+      "evidence": "Expected subtraction.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Path strings make removed level visible.",
+      "evidence": "Old removed twice.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Two preset operations.",
+      "evidence": "No traversal.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Potential folder organization utility,not speed evidence.",
+      "evidence": "Redundancy assumption.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "Counting segments.",
+      "evidence": "No competing organization goals.",
+      "confidence": "medium"
+    }
+  }
+}

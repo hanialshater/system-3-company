@@ -1,0 +1,104 @@
+{
+  "slug": "bug-report-needs-reproduction",
+  "demoVersion": 1,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/bug-report-needs-reproduction",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Selected Input expected actual over It broke; title and hook already state the lesson.",
+    "Initial note Input x=2, Expected missing, Actual missing, one of three fields.",
+    "Add Expected inserted4; Add Actual inserted5; count advanced2/3 then3/3.",
+    "Reveal accurately summarized the completed checklist and distinguished symptom reproduction from proof of root cause. No actual function, environment or reproduction run was provided."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple labels and two clicks.",
+    "conceptualDemand": "Expected versus observed behavior.",
+    "interfaceBurden": "Very low."
+  },
+  "whyCool": "It turns a vague failure report into a concrete discrepancy another person can investigate.",
+  "caveat": "Three fields alone need a specified operation or reproduction steps and environment to make this numerical example actionable.",
+  "effort": "Completed prediction, both checklist additions, screenshot and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Practical advice but weak prediction and interaction; no actual reproduction.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Answer is directly cued and alternative is not plausible.",
+      "evidence": "Title Make the bug reproducible; hook says missing input.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 1,
+      "reason": "Two prescribed clicks fill predetermined fields without a meaningful learner decision.",
+      "evidence": "Expected4 and Actual5 inserted automatically.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Accurate checklist result and useful root-cause caveat, but no actual reproduction attempt.",
+      "evidence": "No function or steps identifying how x=2 produces5.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Fields and completion count are clear throughout.",
+      "evidence": "Input,Expected,Actual remain visible.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete reporting checklist includes the limit of reproduction evidence.",
+      "evidence": "Same input supports attempt; does not prove cause.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 0,
+      "reason": "No unexpected result.",
+      "evidence": "Known checklist revealed.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 1,
+      "reason": "Labeled fields mainly organize text.",
+      "evidence": "Three boxes and count.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 0,
+      "reason": "Prescribed form completion.",
+      "evidence": "Two locked sequence buttons.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful bug-report habit with evidence limit.",
+      "evidence": "Input,expected,actual and root-cause caveat.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "Basic reporting checklist.",
+      "evidence": "No debugging or causal test.",
+      "confidence": "medium"
+    }
+  }
+}

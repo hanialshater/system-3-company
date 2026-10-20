@@ -1,0 +1,140 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "steeper-is-not-taller",
+  "demoVersion": 3,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/steeper-is-not-taller",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "steeper-is-not-taller",
+    "domain": "math",
+    "status": "published",
+    "demoVersion": 3,
+    "metaPath": "src/demos/math/steeper-is-not-taller/meta.json",
+    "metaSha256": "b6eb410250857264b01d1317cddcdebb14a26a20fc6ebbaaa05b003b433834b2",
+    "demoSha256": "9d964a3a5674dd69b39b3a1df8866acd2495276814dd166a6a76682e7665f7e7",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/steeper-is-not-taller",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/steeper-is-not-taller.json"
+  },
+  "date": "2026-10-18T20:51:34.266576+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "ChoseA andlocked."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Across4A1B2;across12A3Bextended6;across8A2Bextended4. InspectedsolidactualBsegmentanddashedextension,varyingcomparisonline."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "ReadBcorrection,2/4=.5versus3/12=.25;Aends higherbecause longer,steepnessriseperrunnotfinalheight."
+    },
+    {
+      "phase": "visual-inspection",
+      "evidence": "Actual1257x936dark inlineinitial,4,12andfinal8scrolledreveal inspected. Lines,extensionlabels,countersandtext legible."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Endpointheightversusratioconflictconcrete.",
+      "evidence": "A3over12,B2over4,whichsteeper.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Equalruncontrastsandextensionmakecomparisoncontrolled.",
+      "evidence": "4,8,12runsalwaysBtwiceA;extensionclearlydashed.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Ratioexplainstallerendpointmisconception.",
+      "evidence": ".5versus.25,Aonlytallerbecause longer.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Distinguishesactualrampfromhypotheticalcontinuation.",
+      "evidence": "Keptgoingcaptionanddashedextension,commoncomparisonline.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General slope definitionwithinrampcase.",
+      "evidence": "No newgraph/applicationtask.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Shorterlowerendpointcanbesteepest.",
+      "evidence": "BtwiceAforanysamerun.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Commonverticalcomparisonlineisolatesriseperdistance.",
+      "evidence": "Threepositionsanddashedextensioninspected.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Horizontalcomparison sliderandpresets.",
+      "evidence": "4,12,8tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Usefulgraphandrampreadingintuition.",
+      "evidence": "Rateversusleveldistinction.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Oneproportionalrelationclearlydemonstrated.",
+      "evidence": "Slopeasratioandextension.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "conceptualDemand": "Normalizeheightbyequalhorizontalrun.",
+    "interfaceBurden": "Twopresetsandoneslider.",
+    "prerequisiteNovelty": "Slope introducedasriseperstep.",
+    "notationRepresentationBurden": "Simplegraph,divisionanddecimalratios;labels scaffold."
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "browserContext": {
+    "theme": "dark",
+    "browser": "Chrome",
+    "viewport": "1257×992"
+  },
+  "observations": [
+    {
+      "id": "p",
+      "phase": "prediction",
+      "text": "No-historybannerverified;trust5/5ignored. ChoseNo differswordorder vsidentical/onlylongsentence;locked. Toyvectorsdog(1,0),man(0,1),bites(1,1),attentionweightedblend."
+    },
+    {
+      "id": "e",
+      "phase": "exploration",
+      "text": "Tags offbothsummary(.79,.79);Swapmanbitesdog unchanged;tagsOn=>dogbitesman(1.30,.89),manbitesdog(1.62,.59),unlock;Swapbackchangesarrow. Screenshot numberedtokens and retainedsummaryrings,inlineonly."
+    },
+    {
+      "id": "r",
+      "phase": "reveal",
+      "text": "Notquiteidentical. Repeats ownoff/onvalues;withoutpositionseeswordpresence notwhere;realtransformersusepositions,these tagssimpler."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear order-versus-bag misconception commitment.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Swap/tag factorial contrast separates order mechanism.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Own summary pairs directly explain effect and toy limitation.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Controls clear; weightedblend mathematics left unspecified.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Transformer application stated without concrete newinput case.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic mode tests.",
+      "evidence": "e,r",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Oppositemeaning sentences identicalwithoutpositions.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Arrow/ring overlays expose identical/differing summaries.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversible swaps/tagtoggle.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Attentionmodel interpretation.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Permutationinvariance and positionconditioning linked.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Coreusesvectorweightedsummary and positionrepresentation beforeattention weighting defined.",
+    "conceptualDemand": "Multipleunfamiliarabstractions:vector,attentionblend,positions,permutationinvariance.",
+    "interfaceBurden": "Two clear buttons; coordinatevalues unfamiliar."
+  },
+  "whyCool": "Swapping words leaves the arrowfixed until positiontags are enabled, then the arrow moves.",
+  "caveat": "One fixedsentence/twotoytags; how weights computed not exposed; no evidence of semantic understanding.",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "missingEvidence": [
+    "Tagoffreset and accessibility modes untested."
+  ],
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3",
+  "notApprovedForServing": true,
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, number comparisons and familiar household objects; no domain theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 992
+  },
+  "screenshots": [],
+  "fatalFindings": [],
+  "slug": "dog-bites-man-twice",
+  "demoVersion": 2,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/dog-bites-man-twice",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "929e289238f03a2d91585970d6f91478cd6d92025a868804eaae2a20aeedd5cc",
+    "metaSha256": "0c77ebe686d8f340ae181adac512363de07ee78dbfa8353acc734539224c66b8"
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy/simple charts; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "observations": [
+    {
+      "id": "p",
+      "phase": "prediction",
+      "text": "History/analytics not saved banner verified. Mercator map29.9×; chose About4 versus About30/Under2; locked. Trust8/8 visible ignored."
+    },
+    {
+      "id": "e",
+      "phase": "exploration",
+      "text": "Put Australia on Antarctica changed Mercator ratio29.9×to3.5×. Show Equal Earth map changed to1.6× and unlocked reveal. Move Australia back retained1.6×, showing position-independent ratio on equal area map."
+    },
+    {
+      "id": "r",
+      "phase": "reveal",
+      "text": "Show me why: Not quite: it was Under2. Equal Earth keeps areas true:1.6wherever Australia is put; Mercator30and stops85°S. Coastline excludes ice shelves; including them cited14.2/7.69million km² gives1.8. Screenshot initial Mercator viewed inline only."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear counterintuitive area commitment.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Position and projection toggles visibly distinguish distortion and invariant.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains observed ratios and coastline limitation.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Labels and ratios directly understandable in tested viewport.",
+      "evidence": "p,e,r",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Projection choice affects area comparisons; explicit equal area property.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Insufficient mode evidence.",
+      "evidence": "p",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "30drawn versus under2actual reversal.",
+      "evidence": "p,r",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Map positions and projections carry area mechanism.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversible location/projection toggles.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Useful map area reading principle.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Projection and coastline boundary.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "One supported relation between map projection and area distortion.",
+    "conceptualDemand": "Compare ratios and positions; projection names supported by direct contrast.",
+    "interfaceBurden": "Two labeled toggle buttons; card scroll at720px."
+  },
+  "whyCool": "Moving Australia changes Mercator's ratio, while resetting its position on Equal Earth leaves1.6unchanged.",
+  "caveat": "Coastline and ice shelf choices change displayed1.6to reported1.8; result depends on supplied map geometry, not independently checked.",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "missingEvidence": [
+    "Keyboard/focus/phone/zoom/reflow/contrast/motion untested."
+  ],
+  "fatalFindings": [],
+  "screenshots": [],
+  "slug": "antarctica-vs-australia",
+  "demoVersion": 1,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/antarctica-vs-australia",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "69d40e42676f381f00a4b08809bac2884843aa9290d38bc1f12d6ac98b2e1fab",
+    "metaSha256": "c5a4d10907e3e68d1595ffe0b0e467c7a9401a41872ca87ea39711ef39b5997e"
+  }
+}

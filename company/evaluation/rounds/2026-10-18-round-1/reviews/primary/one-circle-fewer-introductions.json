@@ -1,0 +1,131 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "one-circle-fewer-introductions",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/one-circle-fewer-introductions",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "057c650f9246ed944ddbfa39d3ffc86cfed327445b3e81af960bc6526abb3722",
+    "demoSha256": "61e121f558361b0f22ebe4bac496015a3c1581d247f63c9ef35e87311bc7e8f8",
+    "metaPath": "src/demos/probability/one-circle-fewer-introductions/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected same either way for five separate circles versus one shared circle, each friend individually 10% likely to introduce; locked it in.",
+    "exploration": "Initial meeting100% gave chance41%. Meeting50% gave chance34%; screenshot states10 of20 weeks meet, then20% each, preserving marginal10%. Meeting10% gave chance10%, unlocking reveal.",
+    "reveal": "Corrected separate circles better. Independent failure0.9 to fifth gives59%,success41%. Shared nonmeeting weeks make all fail together; cites34% and10% while individual marginal10% stays fixed.",
+    "visual": "Inline50% screenshot inspected: five friend circles each10%,ten coloured meeting-week blocks out of20,conditional20% label and34% success bar below dashed41% independent reference. Trust5/5 ignored.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884151 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Clear correlation question but shared-circle meeting frequency unspecified in initial comparison,including equality at100%.",
+      "evidence": "Initial100% gives41%,sameasindependent,while answer marks separatebetter.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Meeting-frequency contrasts preserve individual chance while reducing union probability.",
+      "evidence": "100/50/10% meetings give41/34/10% introduction.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects observed marginal andjoint outcomes to shared failure weeks.",
+      "evidence": "10of20 then20% each;allfailtogether explanation.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Conditional versusmarginal labels visible,but relationship needs careful reading andinitial prediction lacksspecificmeetingrate.",
+      "evidence": "Inspected50% screenshot and100% equalitybaseline.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable dependence warning offered without concrete new correlated-opportunity case.",
+      "evidence": "Sharedcircle notindependenttries.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Same prediction reversed underrare sharedmeetings despiteunchangedindividual10%.",
+      "evidence": "34% then10% versus41%.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Meeting-week blocks andconditional label show sharedgate mechanism.",
+      "evidence": "50% screenshot.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Meeting presets offer limitedreversible conditionvariation.",
+      "evidence": "100,50,10 states.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete networking-introduction interpretation central.",
+      "evidence": "Separatecirclesversussharedfriends.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Marginalchance,conditionalopportunity andcorrelatedfailure linked.",
+      "evidence": "Three rates andreveal.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Keepsmarginalchanceconstantwhilechangingconditionalmeetingprobability andjointfailure.",
+    "conceptualDemand": "Multipledependentconditionalprobability relations.",
+    "interfaceBurden": "Low:fourpresets.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "high:correlation andconditionalprobability",
+    "notationRepresentationBurden": "moderate:10%marginal,20%conditional,0.9 fifthpower"
+  },
+  "whyCool": "At half-frequency meetings each friend becomes twiceaslikely to act duringmeetingweeks,yettheoverallchancefallsbecauseallfive failtogetherotherwise.",
+  "caveat": "Initial100% conditionproduces equality,so unqualified separate-is-better predictionneedsmeetingfrequencycondition.",
+  "missingEvidence": [
+    "25% meetings",
+    "Fresh application",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

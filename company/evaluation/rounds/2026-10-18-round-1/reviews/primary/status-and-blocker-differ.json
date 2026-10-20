@@ -1,0 +1,103 @@
+{
+  "slug": "status-and-blocker-differ",
+  "demoVersion": 1,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/status-and-blocker-differ",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Hook says update needs obstacle and next action; predicted done/blocker/next versus busy today.",
+    "Add Blocker supplies data;AddNext ask-Bo,done draft;1\u21923fields.",
+    "Reveal explains distinct information. Screenshot readable; no actual problem context to infer obstacle or action."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Three familiar fields.",
+    "conceptualDemand": "Activity versus obstacle versus next action.",
+    "interfaceBurden": "Two clicks."
+  },
+  "whyCool": "A useful update distinguishes progress from what prevents the next step.",
+  "caveat": "Needs concrete scenario and learner-selected blocker/action to become an interactive lesson.",
+  "effort": "Prediction,both additions,reveal,inline screenshot.",
+  "provisionalBucket": "revise-interaction-context",
+  "bucketReason": "Useful advice,weak exercise.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Hook directly supplies answer.",
+      "evidence": "Obstacle and next action.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 1,
+      "reason": "Two preset field additions, no learner decision.",
+      "evidence": "Data then ask-Bo.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Useful distinction stated but no applied outcome demonstrated.",
+      "evidence": "Checklist fields only.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readable but data vague,ask-Bo machine-like wording,fixture instruction.",
+      "evidence": "Screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Template without concrete new application.",
+      "evidence": "Done/blocker/next.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 0,
+      "reason": "Answer explicit.",
+      "evidence": "Hook.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 1,
+      "reason": "Text checklist.",
+      "evidence": "Three rows.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Two mandatory clicks.",
+      "evidence": "No choices.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Actionable status discipline central.",
+      "evidence": "Separate obstacle from activity.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "Single template.",
+      "evidence": "No diagnosis.",
+      "confidence": "medium"
+    }
+  }
+}

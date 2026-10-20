@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "race-down-the-ramp",
+  "demoVersion": 2,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/race-down-the-ramp",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "race-down-the-ramp",
+    "domain": "physics",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/physics/race-down-the-ramp/meta.json",
+    "metaSha256": "10fb493be6186b4a30c0a177555a78745f8e88f5740fcd2cdc21232ccb8d5da6",
+    "demoSha256": "2276120d114b3fb89409a0870dcbbd070c19b2c5fe85c6bff144f281ccc52e99",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/race-down-the-ramp",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/race-down-the-ramp.json"
+  },
+  "date": "2026-10-18T19:55:39.662564+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "Isolation confirmed;trust5/5 ignored. Selectedtie andlocked forsamemass/radiusdisc/hoop30degreeramp.",
+    "exploration": "Releasedequal1kgfromrest;naturalrunfinishdisc1.11s,hoop1.28. Doublehoop2kgbuttonstartsnewrun;finishdisc1.11,hoop1.28again. Bothhoopcountershistoryretained. DidnotuseJumpfinish. Revealunlocksaftersecondrun.",
+    "reveal": "Correctdisc. Actualtimes1.11/1.28regardlesshoopmass. Energysharesmoving/spin,hooprimmassuseshalfenergyspin,discnearcenterthird;massforce/inertiacancel. Nonslip/noaircondition.",
+    "visual": "Inline1257x936 dark screenshots inspectedaftereachrun: separateparallelramps,disc/hooprotations,finishlabelsandspin33/50percentbars. Allcontrols/fullreveallegible."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Shapeversusmassintuitionclearlytestedwithsamegeometryandconditions.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Actualshapecontrastanddouble-masscounterexampleisolatemassdistributionwithretainedtimes.",
+      "evidence": "exploration;visual",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Actualtimesconnectedtospinenergyfractionsandrimdistribution,masscancellationandnonslip/noairlimit.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Shapes,weights,timelabelsand33/50spinbarsclear;slowmodisclosed.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusableshape/massdistributionrulewithconditions,butnonewshape/applicationcase.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Chosenmatchedmass tiefails,andmakinglosinghoopheavierdoesnothelp.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Parallelracesandspinsharebarscarryshape-dependentenergycontrast.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Twofixedmassrunsandreplay,nofreegeometrychoices.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concreteinterpretationofrollingobjectraces.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Translationversusrotationenergy,massdistribution,massinvarianceandrollingcondition.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Coordinateenergyallocationandmassdistributionwithcontrolledmasscounterexample;fractionsbarssupportexplanation.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low:release/masscomparisonbuttons",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: rotationalinertia/energyshare",
+    "notationRepresentationBurden": "low: seconds,kgand33/50percentbars"
+  },
+  "whyCool": "Doublingthehoop'smassleavesits1.28secondfinishunchangedwhilethesoliddiscstillwins1.11.",
+  "caveat": "Onlydisc/thinhoopandtwohoopmasses;nootherdistributionorair/slippingtest."
+}

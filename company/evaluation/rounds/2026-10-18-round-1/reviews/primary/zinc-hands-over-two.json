@@ -1,0 +1,139 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "zinc-hands-over-two",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/zinc-hands-over-two",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "zinc-hands-over-two",
+    "domain": "chemistry",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/chemistry/zinc-hands-over-two/meta.json",
+    "metaSha256": "7cd7657e6d8985e96c5d03c209898b3e5932db8c00a9f56b1e723dd242f7f939",
+    "demoSha256": "90417851b47838b2be00c96fe32c298a20749a6f14d550d8d69bcb9de4be4b9b",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/zinc-hands-over-two",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/zinc-hands-over-two.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected two copper atoms and locked it in.",
+    "exploration": "Passed one electron: zero zinc gone, one electron moved, zero copper, with Zn plus and Cu plus labels. Second electron completed one zinc, two electrons and one copper. Clicked second and third zinc atoms to reach two/four/two and three/six/three. Fourth zinc gave four/eight/four and disabled all transfer controls. No reset visible.",
+    "reveal": "Corrected to one copper per zinc, recalled visited three/six/three tally and explained conservation of electrons. Defined zinc loss as oxidation and copper-ion gain as reduction.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected at odd electron count, exhausted zinc and reveal. Pink electron dots, charged labels, copper color change and numeric tally legible. Current four/eight/four differs from historical three/six/three prose but both were actually visited.",
+    "previewIsolation": "Preview banner said history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Two-electron accounting supports a concrete ratio, but answer largely follows explicit matching numbers.",
+      "evidence": "Zinc gives two and copper needs two stated before choice.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Single-electron and whole-atom actions expose completion boundary and repeated ratio.",
+      "evidence": "Odd electron no copper; paired electrons complete one-to-one trade.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal names oxidation and reduction after accounting.",
+      "evidence": "Zinc loses two while copper gains two.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Charge labels and tallies are clear; one-electron intermediate depiction lacks bookkeeping-only qualification.",
+      "evidence": "Zn plus and Cu plus appear in solution diagram during half trade.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General electron conservation principle supplied without a new redox application.",
+      "evidence": "Same zinc and copper pair throughout.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Complete mode audit not conducted.",
+      "evidence": "Labeled atom buttons and textual tally available; screen reader, keyboard, contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Two transferred electrons correspond to one copper atom.",
+      "evidence": "Two-electron pair needed per copper.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Electron dots and charge changes connect counting with species changes.",
+      "evidence": "Blue charged copper becomes orange neutral copper.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Individual-electron or full-atom transfers create hands-on bookkeeping.",
+      "evidence": "Clickable zinc atoms and pass-one-electron button.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Introduces oxidation and reduction accounting.",
+      "evidence": "Matched donor and acceptor electrons.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Connects conservation, ionic charge and reaction ratio.",
+      "evidence": "One-to-one atom trade from equal electron counts.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simple counting introduces unfamiliar ionic and electron notation.",
+    "conceptualDemand": "Distinguish electron number from atom number and match charge transfer requirements.",
+    "interfaceBurden": "Sequential atom buttons and one-electron control; no visible reset.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "Electrons, ions, oxidation and reduction.",
+    "notationRepresentationBurden": "Zn, Cu, superscript charges and paired electron dots."
+  },
+  "whyCool": "Electron accounting fixes the atom ratio: two given matches two needed.",
+  "caveat": "Odd-electron charge states appear as a teaching sequence without explicit warning that this is bookkeeping rather than a demonstrated reaction mechanism.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Keyboard audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case",
+    "Visible reset unavailable"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:59:53.191408+00:00"
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "june-sunrise-london-heading",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/june-sunrise-london-heading",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "PredictionLondon51.5N21June sunriseeast90/NE50/almostnorth10; choseeast.",
+    "June21=>rise50NE,set310;December21=>rise130SE,set230;March21=>rise90east,set270.",
+    "Revealseasonalslidingandrough79degswing,eastatequinox,flat-horizon/no-airassumption andsmallrefractionclaim;doesnotexplainearthtiltmechanism.",
+    "Screenshot top-downcompass andrise/setmarks,readoutclear;actualrightedgeprosecutoff."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Comparefamiliarcompassdirections andseasonaldates.",
+    "conceptualDemand": "Dueeastisnotyear-round;bearingscountfromnorth.",
+    "interfaceBurden": "Simplepresets/slider;clippedreveal."
+  },
+  "whyCool": "Londonssunrise swingsfromnortheasttosoutheast byalmost80degreesbetweenseasons.",
+  "caveat": "Idealflat-horizon/no-airmodel;astronomicalvaluesnotindependentlyaudited;causaltiltexplanationmissing.",
+  "effort": "Prediction,June/December/Marchcomparisons,reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Quickgeographicsurprise;largelypatternrevelationratherthanmechanisticexplanation.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Commondu e-eastbelief testedwithplausiblebearings.",
+      "evidence": "90versus50degrees.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Datepresets revealbearingpattern butunderlyingcelestialgeometrynotshown.",
+      "evidence": "50/130/90degreeoutputs.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Describesobservedseasonalpatternwithcondition,butwhyitshiftsthiswaynotexplained.",
+      "evidence": "Seasonsslidenorth/south assertion;notiltvisual/reason.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readablecompass,butactualrightedgecutoff.",
+      "evidence": "Screenshotlongreveallines truncated.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Equinoxconditionoffered;neworientationapplication notpracticed.",
+      "evidence": "DueeastinMarch/September statement.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "SunrisesfarfromdueeastinLondon summer.",
+      "evidence": "50NEversus90east.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Compass locatesbearing butdoesnotexplainseasonalmechanism.",
+      "evidence": "Top-downhorizoncircle.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Datepresetsandannualslider.",
+      "evidence": "Threekeydates.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Supportingseasonalorientationawareness.",
+      "evidence": "Sunriseeastshortcutlimitedbyequinox.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Seasonalbearingpatternandgeometryassumptions.",
+      "evidence": "Fixedlatitude,notunderlyingorbitgeometry.",
+      "confidence": "medium"
+    }
+  }
+}

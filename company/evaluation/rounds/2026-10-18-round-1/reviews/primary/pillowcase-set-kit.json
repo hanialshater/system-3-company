@@ -1,0 +1,143 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewKind": "primary",
+  "reviewer": "r1",
+  "slug": "pillowcase-set-kit",
+  "demoVersion": 1,
+  "batchId": "round1-01",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "D0",
+      "text": "Preview banner confirms history/analytics not saved."
+    },
+    {
+      "id": "D1",
+      "text": "Prediction fewer visits: Scattered pieces / One set kit / Same outcome; chose Same outcome."
+    },
+    {
+      "id": "D2",
+      "text": "Scattered at 4 locations: set=3 pieces and location visits=3; screenshot showed numbered containers, not identifiable bedding pieces."
+    },
+    {
+      "id": "D3",
+      "text": "One set kit at 4 locations changed visits to 1; reveal enabled immediately after layout switch despite prompt also saying vary input."
+    },
+    {
+      "id": "D4",
+      "text": "Attempted Locations=1 rejected by browser input; Home key moved slider from 4 to supported minimum 3. Kit remained 1; switched scattered at 3 locations: visits 3."
+    },
+    {
+      "id": "D5",
+      "text": "Reveal: \u201cNot quite: it was \u2018One set kit\u2019\u201d; counts separate locations, not seconds; chosen set pieces together replace visits with one; separating unlike sets preserves identification; not proof every object should be grouped."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Choice is clear but \u201cone set kit\u201d strongly cues answer and generic setup lacks tangible pieces.",
+      "evidence": [
+        "D1"
+      ],
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Layout toggle changes visits, but tested location change 4\u21923 leaves each result unchanged.",
+      "evidence": [
+        "D4"
+      ],
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal ties observed three-versus-one visits to grouping and explicitly limits scope.",
+      "evidence": [
+        "D5"
+      ],
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Instructions are usable but \u201cvary input\u201d lacks a demonstrated effect and essential pieces are not visible.",
+      "evidence": [
+        "D3"
+      ],
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Grouping principle includes conditions/trade-off but no concrete second everyday application.",
+      "evidence": [
+        "D5"
+      ],
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient multi-mode accessibility checks; D slider Home key is only a partial keyboard observation.",
+      "evidence": [
+        "Observed DOM accessible names, desktop screenshots; no comprehensive check."
+      ],
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Expected grouping advantage is largely signalled by labels despite chosen Same outcome.",
+      "evidence": [
+        "D1"
+      ],
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Containers and numeric visits support explanation but do not visibly show three pieces being bundled.",
+      "evidence": [
+        "D2"
+      ],
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversible layout and slider permit a narrow comparison.",
+      "evidence": [
+        "D4"
+      ],
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Grouping complete sets enables a concrete household retrieval action.",
+      "evidence": [
+        "D5"
+      ],
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "One grouping comparison plus an identification trade-off; tested location variation adds little.",
+      "evidence": [
+        "D5"
+      ],
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "Compare three visits to one using familiar grouping; no technical prerequisites.",
+    "boundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain theory assumed."
+  },
+  "whyCool": "Switching from scattered pieces to one kit changes the visit counter from three to one.",
+  "caveat": "The tested Locations slider does not change retrieval counts; no identifiable pillowcase or pieces observed.",
+  "evidenceProvenance": "company/evaluation/calibration/2026-10-18-launch-pilot/r1.json",
+  "reusedExistingReview": true,
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "notApprovedForServing": true
+}

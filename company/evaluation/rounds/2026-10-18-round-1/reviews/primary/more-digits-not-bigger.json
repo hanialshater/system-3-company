@@ -1,0 +1,103 @@
+{
+  "slug": "more-digits-not-bigger",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/more-digits-not-bigger",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted0.125 largest against0.25 and0.3, locked before bars built.",
+    "Built0.125 three successive digit steps, first0.1 block visible, then used Build rest for other numbers. Final common0-to-1 bars showed0.3 longest,0.25 next,0.125 shortest.",
+    "Reveal explained3 tenth blocks versus2 plus5 hundredths; each place worth tenth of preceding. Full prose readable in1280x720 light screenshot."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Concrete place-value comparison with minimal prerequisite.",
+    "conceptualDemand": "Tenths,hundredths,thousandths.",
+    "interfaceBurden": "Simple construction buttons; no reset observed."
+  },
+  "whyCool": "Digit count becomes misleading when equal-scale blocks reveal what each place contributes.",
+  "caveat": "Only one fixed trio; no new-case application or reset tested.",
+  "effort": "Prediction,three digit additions,build rest,reveal,two visual states.",
+  "provisionalBucket": "launch-candidate",
+  "bucketReason": "Clear concrete mechanism and readable reveal; modest depth by design.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Direct plausible digit-count misconception.",
+      "evidence": "Three unequal digit lengths; selected0.125.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Digit building shows causal place-value additions on common scale.",
+      "evidence": "0.125 built stepwise then all three bars compared.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Links answer to built blocks and smaller places.",
+      "evidence": "3 tenths beats2 tenths+5 hundredths.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Shared scale, labels and reveal readable throughout tested path.",
+      "evidence": "Final screenshot0.3,0.25,0.125 bar endpoints.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General comparison instruction without a fresh worked challenge.",
+      "evidence": "Compare from first digit; no second number set.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Shortest numeral wins targeted misconception.",
+      "evidence": "0.3 longest bar.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Multiple visible place-size additions on common scale central.",
+      "evidence": "Tenths blocks,hundredth slivers,thousandth hairlines.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Construction buttons support comparison.",
+      "evidence": "Stepwise digit build.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Everyday decimal comparison central.",
+      "evidence": "0.3 versus0.25 versus0.125.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "One foundational place-value relation.",
+      "evidence": "Each place tenth of previous.",
+      "confidence": "medium"
+    }
+  }
+}

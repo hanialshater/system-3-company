@@ -1,0 +1,103 @@
+{
+  "slug": "tic-tac-toe-is-a-draw",
+  "demoVersion": 3,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/tic-tac-toe-is-a-draw",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted first-player win. Tapped three endgame O-choice nodes: right-middle branch draw; bottom-left and bottom-right Owin. Root X best draw.",
+    "Screenshot showed tempting X-winning leaves crossed out when O had better reply, chosen branches bright. Scored three opening classes corner/edge/centre all draw, then empty root draw.",
+    "Reveal explicitly said bottom row was computer-run full search rather than hand-scored subtree, perfect-player condition and chess search-size limit."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Familiar game but nested opposing choices.",
+    "conceptualDemand": "Best guaranteed result versus optimistic leaf.",
+    "interfaceBurden": "Low controls; dense diagram needs vertical scroll."
+  },
+  "whyCool": "Winning leaves vanish from consideration when you let the opponent choose, making perfect play visible.",
+  "caveat": "Full-game count and opening values are computed assertions, not independently enumerated in this walkthrough. Taps reveal automatic answers rather than assess learner scoring.",
+  "effort": "Browser prediction, all eight score controls, endgame/opening screenshots and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Excellent adversarial tree visualization, though interaction is guided.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear familiar perfect-play outcome question.",
+      "evidence": "X/O/draw from empty board.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Tapping computes minimax automatically rather than learner selecting scores.",
+      "evidence": "Eight fixed nodes, no gameplay or score choice.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains opponent removes tempting winning continuations.",
+      "evidence": "Two Xwin leaves crossed out; root chooses guaranteed draw.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Visible branch selection and honest compressed search provenance.",
+      "evidence": "Bottom row 'same rules, run by computer'.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete extension to empty board and scope limit.",
+      "evidence": "Same minimax rules on full game; chess too large for this exhaustive method.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "First move advantage does not force win.",
+      "evidence": "Three opening classes all draw.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Tree explicitly reveals why a possible win is not a guaranteed win.",
+      "evidence": "Crossed favorable leaves and bright opponent-selected outcomes.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Game-themed guided scoring, no actual game.",
+      "evidence": "Eight score-node taps.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Introduces adversarial planning.",
+      "evidence": "Choose best against opponent's best reply.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Distinguishes possible path from minimax value and exhaustive scale.",
+      "evidence": "Endgame proof fragment and compressed full-search results.",
+      "confidence": "medium"
+    }
+  }
+}

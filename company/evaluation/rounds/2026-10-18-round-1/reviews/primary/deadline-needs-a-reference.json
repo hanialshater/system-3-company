@@ -1,0 +1,104 @@
+{
+  "slug": "deadline-needs-a-reference",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/deadline-needs-a-reference",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted06:00UTC, nine hours earlier than intended15:00UTC, when UTC+9 colleague interprets the zoneless15:00 as local.",
+    "A no zone gave06:00UTC and fields2/3; B addedUTC and gave shared15:00UTC, fields3/3.",
+    "Reveal correctly stated the conditional local-time assumption and explicitly excluded daylight-saving rules.",
+    "No date or offset adjustment available; only two fixed views."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Subtracting nine hours with familiar time notation.",
+    "conceptualDemand": "Clock time versus instant.",
+    "interfaceBurden": "Two buttons."
+  },
+  "whyCool": "One missing field changes the moment a colleague aims for by nine hours.",
+  "caveat": "The date lacks a year, so the rule literally fixing one moment assumes shared year/context; no day rollover or seasonal zone behavior is modeled.",
+  "effort": "Completed prediction, both views, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear concrete prediction and practical rule, with limited exploration.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Specified offset and reader assumption permit a concrete conversion.",
+      "evidence": "UTC+9 local15\u2192UTC06.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Adding a zone visibly changes interpretation but only via fixed presets.",
+      "evidence": "No editable time/offset.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Accurate numbers explain how explicit reference removes ambiguity.",
+      "evidence": "Conditional nine-hour difference.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Date,time,zone and interpretation are clearly separated.",
+      "evidence": "A/B table and field count.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete deadline-writing checklist includes scope.",
+      "evidence": "Date,time,zone; daylight-saving rules excluded.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Same written clock time can identify different moments.",
+      "evidence": "Nine-hour mismatch.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Fields and comparison table organize the difference.",
+      "evidence": "No clock or timeline conversion visual.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Two fixed views.",
+      "evidence": "No scenario manipulation.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Directly useful communication rule.",
+      "evidence": "Include explicit time reference.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Separates local reading from shared instant.",
+      "evidence": "Offset assumption explicit.",
+      "confidence": "medium"
+    }
+  }
+}

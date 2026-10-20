@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "overlap",
+  "slug": "dam-depth-not-width",
+  "demoVersion": 2,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/dam-depth-not-width",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "dam-depth-not-width",
+    "domain": "physics",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/physics/dam-depth-not-width/meta.json",
+    "metaSha256": "1637c9e4e21870650b6ee962915c3106c62d02e136448c7c5fcdd4458826c3a8",
+    "demoSha256": "9aa739f5620907896686700ffe5731722ffb8955d612a0e909408782f98da462",
+    "batchId": "round1-02",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/dam-depth-not-width",
+    "primaryWorker": "w1",
+    "reviewKind": "overlap",
+    "outputPath": "reviews/overlap/dam-depth-not-width.json"
+  },
+  "date": "2026-10-18T18:58:02.341893+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "observations": {
+    "prediction": "Selected The lake and locked. Width/depth initially disabled; preview no-history banner confirmed. Trust4/4 visible ignored.",
+    "exploration": "Width End moved 2 cm tube to500 m lake at10m:98.1kPa unchanged; log retained both. Depth End20m196.2kPa, Home2m19.6kPa. Reveal unlocked after both controls. Attempt100 rejected by input, then semantic End succeeded.",
+    "reveal": "Not quite: The same. Cites retained98.1 width comparison and current2m19.6; explains columns per square metre, rho*g*h, force/area distinction and gauge pressure excludes air.",
+    "visual": "Inline screenshot inspected1257x936 dark: water rectangle at2m, dashed narrow column over gauge, clear depth scale; widths explicitly not to scale, freshwater note. All reveal legible."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete plausible lake/tube/same commitment; hook suggests misconception without exposing outcome.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Width invariant and two depth boundaries isolate mechanism with retained comparison.",
+      "evidence": "exploration",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Connects actual log and current depth to column mechanism, resolves wrong answer and distinguishes total force/gauge limit.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Controls, pressure, historical10m log and current depth clearly separated in tested desktop.",
+      "evidence": "visual; exploration",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable per-area column principle and force distinction; no concrete new application tested or explained.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Only slider End/Home interaction; keyboard sequence/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Chosen lake prediction reversed by equal pressure width contrast.",
+      "evidence": "prediction; exploration; reveal",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Scaled depth and dashed column support pressure explanation; width not to scale disclosed.",
+      "evidence": "visual; reveal",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversible width and depth exploration with live gauge.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Pressure versus total force and water depth concretely interpreted, without applied task.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Independent width/depth, total force distinction and gauge boundary.",
+      "evidence": "exploration; reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Separates pressure per area from total water/force and links depth to column height.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low: two labelled sliders and historical log",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: pressure per area and gauge pressure introduced",
+    "notationRepresentationBurden": "moderate: kPa and rho*g*h explained alongside column"
+  },
+  "whyCool": "Widening the tube into a lake leaves98.1kPa unchanged, while changing depth moves the gauge.",
+  "caveat": "No fresh application case; no phone or accessibility audit.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Fresh transfer case",
+    "Accessibility mode audit"
+  ],
+  "effort": "Approximately3minutes active browser walkthrough",
+  "notApprovedForServing": true
+}

@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "stack-without-bend",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/stack-without-bend",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "5a81581554200c92b0735489d46d6a6a30024c8a97fef21d6365a24414204090",
+    "demoSha256": "07f4d48afaedc27f8c9d91a592a0dca5b8fe60be6db820ba67c427cf49fb1150",
+    "metaPath": "src/demos/ai/stack-without-bend/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected no equivalent single layer and locked it in for h=3x+1 then y=2h-5.",
+    "exploration": "Without bend, x0 gave h1,y-3; x1 h4,y3; x2 h7,y9. Turned bend on atx2: unchanged. Setx-1: h-2 clippedto0,y-5. Turned bendoff atsamex: h-2,y-9. Reveal unlocked afterbendtoggle.",
+    "reveal": "Corrected y=6x-3,expands composition andcites0/1/2 outputs. Explains ReLU kinkatminusone-third andwhy no single straightlayer matches. Applies principle tohidden-layer nonlinearities.",
+    "visual": "Inline negativeinput/bendon screenshot inspected:purplepiecewisegraph flatleft thenrising,rightsegmentmatchesdashedsingleline,kinklabelandh-clippingreadout legible. Trust4/4 ignored.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884157 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Precise affinecomposition alternatives testdepth-alone misconception.",
+      "evidence": "No equivalentselected versus6x-3.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Multipleinputs andsame-negative-input bendcontrast exposeequivalence andnonlinearbreak.",
+      "evidence": "0/1/2 linearoutputs;negativeinput-5 versus-9.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects exactlinear samples toalgebra andtestedclipping tokink.",
+      "evidence": "2(3x+1)-5 expansion andminusone-thirdthreshold.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Equations,inputslider andhidden/outputreadouts alignwithgraph.",
+      "evidence": "Inspectedbend screenshot andsameinputtoggle.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete neural-network layer application withnonlinearitycondition explained.",
+      "evidence": "Bendbetweenhiddenlayers letsdepthaddpower.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Two-layers-stronger prediction reverseduntilbendintroduced.",
+      "evidence": "Same6x-3 linewithoutbend,kinkwithbend.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Lineoverlap versuspiecewisekink carriesmechanism undercontrolledtoggle.",
+      "evidence": "Negativeinput screenshot andtwooutputs.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Inputslider andbendtoggle supportreversiblecomparison.",
+      "evidence": "Fourinputs andtoggleback tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete neural-networkdesignprinciple central.",
+      "evidence": "Nonlinearhiddenlayers explanation.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Affinecomposition,activationthreshold andexpressivepower linked.",
+      "evidence": "Linearandclippedstates plusreveal.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Requires composedfunctions,hiddenvariable,clipping andpiecewiselinearity.",
+    "conceptualDemand": "Multipledependentalgebra/representationrelations.",
+    "interfaceBurden": "Low:oneslider andtoggle.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "high:activationfunctions andlayercomposition",
+    "notationRepresentationBurden": "high:x,h,y,equations andpiecewisegraph"
+  },
+  "whyCool": "Atthesamenegativeinput,thebendchangesoutputfromminusnine tominusfivewhilepositiveinputsremainontheoriginalstraightline.",
+  "caveat": "Single-scalar toy andoneactivationonly;notageneralnetworkcapacitytest.",
+  "missingEvidence": [
+    "Exactkinkboundary",
+    "Othercoefficients",
+    "Fresh application",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

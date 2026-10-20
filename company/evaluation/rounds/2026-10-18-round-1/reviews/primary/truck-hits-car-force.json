@@ -1,0 +1,126 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "truck-hits-car-force",
+  "demoVersion": 2,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/truck-hits-car-force",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "ebecb9820573515d1351bb29ce5a882e1fad791e56f0efdd991e164364d3acf5",
+    "demoSha256": "d8a5e54605e62b2bd9732761e379d6dc3968fd805a98e0c56bff8da36102d24c",
+    "metaPath": "src/demos/physics/truck-hits-car-force/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected The truck pushes harder and locked the prediction for a 10,000 kg truck and 1,000 kg car. Before locking, the accessibility container already said each vehicle feels 389 kilonewtons; the visual pre-prediction state was not separately inspected.",
+    "exploration": "Moved to 100 ms: both forces were 18 kN, while truck and car speed changes were 2.4 and 24.0 m/s. Played to 120 ms: zero force and final changes 2.4 and 24.1. Set truck mass to 1,000 kg at the final state: both speed changes became 13.2 m/s.",
+    "reveal": "The reveal corrected the answer to equal forces, explained opposite interaction forces and mass-dependent acceleration, and accurately used the current equal-mass final changes of 13.2 m/s each.",
+    "visual": "Inspected the inline dark 1257 by 936 screenshot at 100 ms with the heavy truck. Equal opposing force arrows were both labelled 18 kN; unequal thin velocity arrows and separate speed-change readouts distinguished the effects.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "The concrete misconception is useful, but the accessible pre-prediction description leaks equality.",
+      "evidence": "Before locking, the container said each vehicle feels the same 389 kilonewtons.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Time and mass controls distinguish force equality from unequal effects and an equal-mass boundary.",
+      "evidence": "The tenfold mass ratio gave tenfold speed-change contrast; equal masses gave equal changes.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal explains both laws and adapts accurately to the current boundary case.",
+      "evidence": "It quotes 13.2 m/s for both equal masses and states a = F / m.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Different arrow roles and explicit values separate force from velocity.",
+      "evidence": "At 100 ms both forces read 18 kN while speed changes differed sharply.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "The general interaction rule is stated without a fresh noncollision application.",
+      "evidence": "Only the same vehicle collision is varied.",
+      "confidence": "high"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "The smaller car pushes just as hard while undergoing a much larger speed change.",
+      "evidence": "The heavy-truck case shows equal force and about tenfold speed-change difference.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "The paired arrows expose equal causes and unequal responses.",
+      "evidence": "Equal force labels sit over visibly unequal velocity arrows.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Time scrubbing and mass variation provide a useful physical toy.",
+      "evidence": "The equal-mass adjustment changes the outcome without changing the force rule.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "It clarifies a common confusion between force and effect.",
+      "evidence": "The reveal distinguishes interaction equality from acceleration.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "The lesson links Newton's third law with mass-dependent acceleration.",
+      "evidence": "The equal-mass boundary complements the original unequal-mass case.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "The visual is familiar, but force, velocity and speed change must be kept distinct.",
+    "conceptualDemand": "Moderate: equal interaction forces do not imply equal acceleration.",
+    "interfaceBurden": "Low: time slider, play button and mass slider.",
+    "conceptualChallenge": "Separate a force pair from its different effects on different masses.",
+    "prerequisiteNovelty": "Newton's third law and acceleration formula are introduced.",
+    "notationRepresentationBurden": "Moderate: kN, kg, ms, m/s and different arrow meanings."
+  },
+  "whyCool": "The dramatic asymmetry of the collision survives even when the pushes are exactly equal.",
+  "caveat": "The accessible pre-prediction description reveals equality. The ideal collision and speed changes do not model injury or structural damage.",
+  "missingEvidence": [
+    "The visual pre-prediction state was not separately inspected.",
+    "No noncollision application was tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

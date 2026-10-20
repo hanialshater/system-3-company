@@ -1,0 +1,103 @@
+{
+  "slug": "bird-on-the-wire",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/bird-on-the-wire",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predictedlessthan1V across feet versus11000/5500.",
+    "Foot1ground11000V,foot2ground11000V read in screenshots;across5cm0.002V. Feet20cm history0.008V;wingpole contact displays11000V andbird1.1A versus0.2\u00b5Ainitial.",
+    "Reveal explains relative potential and grounded contact,explicit no real-line approach/air arcs. Model screenshots readable;AXdoesnot expose voltmeter numeric values."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Voltage reference,small wire resistance and current.",
+    "conceptualDemand": "Potential difference rather than absolute voltage.",
+    "interfaceBurden": "Clear probes,slider,contacttoggle;numericmeter inaccessible in AX."
+  },
+  "whyCool": "Both feet can be thousands of volts above ground while differing from each other by only millivolts.",
+  "caveat": "Toy resistance/current assumptions determine exact numbers;numericmeter absent from AX,but dedicated accessibility audit not done.",
+  "effort": "Prediction,allprobes,distanceendpoint,groundedcontact,reveal,measurement screenshots.",
+  "provisionalBucket": "strong-accessibility-followup",
+  "bucketReason": "Multiple clear causal contrasts and consequential boundary.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Strong potential-to-ground versus across-body contrast.",
+      "evidence": "11000line versusfeet.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Multiple reference measurements,distance contrast and grounded-contact boundary isolate mechanism.",
+      "evidence": "Foot1/foot2/across/wing.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Connects actual comparisons and contrasting circuit path with boundary condition.",
+      "evidence": "11000versus0.008,groundedpole.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Clear meter leads,history and scoped reveal visually.",
+      "evidence": "Screenshots at every measurement.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Explicit voltage-between-two-points principle with grounded second-contact countercase.",
+      "evidence": "Same potential differs from ground path.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "High line voltage can coexist with tiny foot-to-foot voltage.",
+      "evidence": "11000versus0.002.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Meter lead placement and current depiction central across contrasts.",
+      "evidence": "Eachfoot/across/groundedpole.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Probe selection and contact experiment.",
+      "evidence": "Four modes plusdistance.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Conceptual electrical understanding,not an actionable real-line procedure.",
+      "evidence": "Explicit boundary warning.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Reference potential,wire drop and alternate circuit path.",
+      "evidence": "Current versus voltage.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "slug": "vaccinate-at-the-peak",
+  "demoVersion": 6,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/vaccinate-at-the-peak",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted threequarters under toyR0=3,20%instantvaccination. Detailed epidemic dynamics not supplied before numeric prediction.",
+    "Never94% finalinfected,day0 70%,peakday19 76% with35%notyetinfected,day40 94% withonly6%eligible.",
+    "Reveal calculates18/24=75% benefit and explicitly instant perfect protection,model not guidance. Dot-grid and legend readable in both screenshots."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Epidemic timing and counterfactual percentage-point benefit.",
+    "conceptualDemand": "Peak incidence versus remaining susceptible population.",
+    "interfaceBurden": "Clear presets,one slider."
+  },
+  "whyCool": "An epidemic's peak can occur while many infections are still ahead in the model.",
+  "caveat": "Synthetic instant-perfect-protection model;do not treat75% as general medical fact or policy guidance. State more model assumptions before exact prediction.",
+  "effort": "Prediction,never/day0/peak/day40,reveal,two screenshots.",
+  "provisionalBucket": "solid-model-disclosure-followup",
+  "bucketReason": "Strong timing contrast with explicit guidance boundary.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Magnitude intuition meaningful but exact fraction depends on unspecified toy dynamics.",
+      "evidence": "R0/coverage alone not full model.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Multiple timing contrasts plus late boundary reveal remaining preventable tail.",
+      "evidence": "Never/day0/peak/day40.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Uses actual seen values and clear toy limitation.",
+      "evidence": "18of24points;instantperfect.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readable natural frequencies,legend and trace.",
+      "evidence": "Grid and seen row.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Principle within toy,no distinct application.",
+      "evidence": "Peaknotend,not guidance.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Peak still retains substantial modeled benefit.",
+      "evidence": "75%earlybenefit.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Colored population grid shows final cases and protected remainder.",
+      "evidence": "Never outline comparator.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Timing exploration central.",
+      "evidence": "Four presets/slider.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Epidemic intuition,explicitly not real guidance.",
+      "evidence": "Ideal assumptions.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Peak versus final size,eligibility and timing.",
+      "evidence": "Tail reduction.",
+      "confidence": "medium"
+    }
+  }
+}

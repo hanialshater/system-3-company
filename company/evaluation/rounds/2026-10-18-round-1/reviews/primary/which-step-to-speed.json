@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "which-step-to-speed",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/which-step-to-speed",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "968e015fa76b1faa504935d81512fddeb4725bc68cd6c689ff0b39aca01fd02b",
+    "demoSha256": "72632d3f233dee2c4fe2b3fbd32145ff114830d0907f9ed32ee5b2a3ce47ed65",
+    "metaPath": "src/demos/chemistry/which-step-to-speed/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected about ten times sooner and locked the prediction for accelerating the already fast second step of A to B to C.",
+    "exploration": "Enabled step 2 times ten: half-time changed from 7.03 s to 6.94 s. Enabled step 1 too: both times ten gave 0.70 s. Selected only step 1 times ten: half-time 0.80 s. The comparison history retained all four conditions.",
+    "reveal": "The reveal corrected the answer to almost no sooner and accurately compared 7.03, 6.94 and 0.80 s. It explained the narrowest gate as the rate-determining step and said that is the step to target for speeding the reaction.",
+    "visual": "Inspected the inline dark 1257 by 936 screenshot after accelerating step 2. A two-gate diagram appeared over a product-versus-time graph; the original dashed and new pink curves almost overlapped near the half-product line, with 7.03 and 6.94 s labels.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The question targets a whole-process versus component-speed misconception.",
+      "evidence": "Selected tenfold improvement despite the first step remaining slow.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Independent toggles and an isolated bottleneck case identify which improvement matters.",
+      "evidence": "Fast step alone barely changed half-time; slow step alone nearly matched accelerating both.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal connects observed contrasts to a rate-limiting mechanism.",
+      "evidence": "It accurately compares fast-only and slow-only results.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Persistent curve comparisons and explicit half-times make the tiny versus large effects readable.",
+      "evidence": "The fast-only curve nearly overlaps the baseline while labels quantify the difference.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "The bottleneck principle is generalized but no new reaction or external application is developed.",
+      "evidence": "The ending remains within the same two-step chain.",
+      "confidence": "high"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "A tenfold component improvement can barely affect the overall result.",
+      "evidence": "The fast-step change reduced half-time by only 0.09 s.",
+      "confidence": "high"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "The gate analogy and overlaid product curves connect mechanism to timing.",
+      "evidence": "Nearly overlapping baseline and fast-only curves support the null result.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Toggles support a compact factorial comparison.",
+      "evidence": "Fast-only, both and slow-only conditions can be selected.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "It clarifies where an improvement should be targeted.",
+      "evidence": "The reveal identifies the rate-determining step.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "The isolated slow-step condition separates the contribution of the two changes.",
+      "evidence": "Slow-only 0.80 s is close to both 0.70 s, unlike fast-only 6.94 s.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "The gate metaphor is familiar, while reaction chains and product half-time add technical interpretation.",
+    "conceptualDemand": "Moderate: distinguish local rate changes from whole-chain throughput.",
+    "interfaceBurden": "Low: two toggles and an isolation preset.",
+    "conceptualChallenge": "Improving a nonbottleneck has little effect while the bottleneck remains.",
+    "prerequisiteNovelty": "Reaction intermediates and rate-determining steps are introduced.",
+    "notationRepresentationBurden": "Moderate: A to B to C notation, product curves and half-time values."
+  },
+  "whyCool": "The nearly useless improvement and the effective one can be isolated with the same tenfold speed change.",
+  "caveat": "The toy fixes a two-step chain with a hundredfold initial rate difference; real mechanisms may have changing rate control.",
+  "missingEvidence": [
+    "No fresh rate ratio or reaction chain was tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

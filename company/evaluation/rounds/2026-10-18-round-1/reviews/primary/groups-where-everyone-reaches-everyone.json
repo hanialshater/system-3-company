@@ -1,0 +1,140 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "groups-where-everyone-reaches-everyone",
+  "demoVersion": 2,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/groups-where-everyone-reaches-everyone",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "groups-where-everyone-reaches-everyone",
+    "domain": "cs",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/cs/groups-where-everyone-reaches-everyone/meta.json",
+    "metaSha256": "74f2918c29e75981f25066fa1adf5c4ebf90024f58cacbcaee9681a4c0046612",
+    "demoSha256": "ed73bbe873acd8d3e38ee1222f8a4b3a5a433b896704b80569f8c183754d21fe",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/groups-where-everyone-reaches-everyone",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/groups-where-everyone-reaches-everyone.json"
+  },
+  "date": "2026-10-18T20:11:36.062484+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Chose2 and locked."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Pass1finish6,5,4,3,2,1,7. Reversed roads,stepped groups{7},{1,2,3},{4,5,6}; colored nodes and reversedarrows inspected. Shrink returned original direction with threeblobs,no intergroup loop."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read3correction,singleton7 explanation,no route4back3; reversed flood cannot escape to uncolored group because outgoing boundary targets alreadycolored; condensation has no loops."
+    },
+    {
+      "phase": "visual-inspection",
+      "evidence": "Actual1257x936dark inline initial,coloredgroups,shrink and scrolled reveal inspected. Node numbers/arrows,groupcolors and full text readable."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete directed reachability question.",
+      "evidence": "Seven towns,explicit roadlist and visiblearrows;singleton tests misconception.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Staged reversal/grouping makes algorithm output inspectable.",
+      "evidence": "Threegroups found individually and condensed boundaries shown.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains singleton and why reversed floods stay contained.",
+      "evidence": "4to3and6to7 alreadycolored; no intergroup loops.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Reachability clear but finish-order algorithm jumps without construction.",
+      "evidence": "Pass1oneclick supplies order; DFS finish meaning and flood concept not fully scaffolded.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Algorithm and ordering stated for same graph.",
+      "evidence": "No new graph or application task.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Singleton counts and direction separates apparent connected map.",
+      "evidence": "Two loops plus7 formthreegroups.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Arrowreversal and colors show asymmetric boundaries.",
+      "evidence": "Original directions restored when groups outlined.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Stepwise graph procedure.",
+      "evidence": "Passbuttons,nextgroup,shrink.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Useful graph decomposition intuition.",
+      "evidence": "Components can be ordered; no concrete external use.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Reachability,twopasses and condensation linked.",
+      "evidence": "Finishing order,reversedflood,acyclicgroups.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "conceptualDemand": "Track directed reachability,finishorder,reversal,visitedgroups and condensation across dependent stages.",
+    "interfaceBurden": "Guided enabled buttons and automatic colors; little physical burden.",
+    "prerequisiteNovelty": "Graph traversal finishorder and strongly connected components unfamiliar.",
+    "notationRepresentationBurden": "Seven numberednodes,arrows,sets and ordinalfinishlabels."
+  }
+}

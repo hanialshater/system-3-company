@@ -1,0 +1,104 @@
+{
+  "slug": "equal-names-not-equal-files",
+  "demoVersion": 1,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/equal-names-not-equal-files",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Selected content identifier over filename; title/hook explicitly say equal names do not establish duplicate contents.",
+    "Records report.txt:A,report.txt:B,copy.txt:A visible from start.",
+    "Group names reported2; Group content also2. Screenshots showed unchanged record order/style, so actual group membership was never visually grouped.",
+    "Reveal accurately stated different report identifiers and limited comparison to declared content, not actual cryptographic hashes."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Three records and two labels.",
+    "conceptualDemand": "Name equality versus declared content equality.",
+    "interfaceBurden": "Two buttons."
+  },
+  "whyCool": "Names and contents can induce different relationships even when both produce two groups.",
+  "caveat": "The key relationship is not visualized; show the two name clusters versus the two content clusters to make the lesson inspectable.",
+  "effort": "Completed prediction, both grouping actions, before/after screenshots and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Sound caution but answer-spoiling prediction and nearly inert interaction.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Answer is supplied in title and visible records.",
+      "evidence": "DifferentA/B identifiers already shown.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 1,
+      "reason": "Two clicks change only metric label; both counts2 and no membership visualization.",
+      "evidence": "Unchanged records under both grouping actions.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Accurate identity rule but the displayed equal counts do not demonstrate which records group together.",
+      "evidence": "Two content groups only.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Name and identifier values clear, but Group actions imply membership changes not shown.",
+      "evidence": "Same list throughout.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Names-versus-content principle stated with a scope caveat but no concrete comparison procedure.",
+      "evidence": "Declared identifiers not real hashing.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Different names may share declared content and equal names may differ.",
+      "evidence": "copyA versus reportA/B.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 1,
+      "reason": "List shows identifiers but fails to expose grouping relationships.",
+      "evidence": "No lines,clusters or reordering.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 0,
+      "reason": "Preset count-label changes.",
+      "evidence": "No meaningful selection.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Useful file-identity caution.",
+      "evidence": "No real duplicate detection.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "Basic naming distinction.",
+      "evidence": "No hash or byte comparison.",
+      "confidence": "medium"
+    }
+  }
+}

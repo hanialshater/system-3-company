@@ -1,0 +1,138 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "water-follows-the-crowd",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/water-follows-the-crowd",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "water-follows-the-crowd",
+    "domain": "chemistry",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/chemistry/water-follows-the-crowd/meta.json",
+    "metaSha256": "610689ea4b869bf980a9810f1e6bf51e8d88c777eecf44ec976f5ddd88767374",
+    "demoSha256": "40a298e7d88a6ccc08b35fc7e96dfa631f6935086cfc647cad23466f31948956",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/water-follows-the-crowd",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/water-follows-the-crowd.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected Nowhere and locked it in.",
+    "exploration": "Opened membrane from equal 1 L volumes and 10 versus 30 sugar dots. Water volumes became 0.50 and 1.50 L, both concentration 0.20 mol/L. Moved ten sugar left: 20 each and 1 L each. Again left: 30 versus 10 and 1.50 versus 0.50 L. Moved right restored equal amounts and volumes.",
+    "reveal": "Corrected to left to right for original setup, referenced initial equilibrium, explained water toward higher sugar concentration and named osmosis. Stated raised-level pressure is ignored.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected. Dotted pink membrane, sugar dots and unequal water levels visible. Equal final setup showed equal concentrations but a rightward water arrow remained, apparently the latest movement indication without explicit history label. All reveal text readable.",
+    "previewIsolation": "Preview banner said history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear selective-permeability premise supports a directional commitment.",
+      "evidence": "Water allowed, sugar blocked, nowhere selected.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Changing sugar distribution reverses volume response and supports equal case.",
+      "evidence": "10/30, 20/20 and 30/10 dots tested with linked volumes.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal explains the original flow and names the mechanism with pressure caveat.",
+      "evidence": "Water concentration difference and ignored level pressure.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Quantities are clear but sugar-transfer control semantics and residual flow arrow can confuse.",
+      "evidence": "Sugar cannot cross beside move-sugar arrows; equal concentrations still rightward arrow.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Osmosis is generalized within the same apparatus without a new application.",
+      "evidence": "Net water flow through membrane defined.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Complete mode audit not conducted.",
+      "evidence": "Text volumes and concentrations available; screen reader, keyboard, contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Water moves despite trapped sugar.",
+      "evidence": "Initial right volume rises to 1.50 L.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Dot counts, levels and concentration metrics expose equalization.",
+      "evidence": "Both sides reach 0.20 mol/L with unequal volumes.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversible sugar controls alter equilibrium.",
+      "evidence": "Left and right redistribution.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Introduces a common biological transport principle.",
+      "evidence": "Osmosis named after experiment.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Separates solute amount, volume and concentration.",
+      "evidence": "20/20 gives equal volume; 30/10 gives unequal volume at equal concentration.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simple controls require concentration and selective-membrane reasoning.",
+    "conceptualDemand": "Distinguish sugar amount from concentration and infer water movement through selective barrier.",
+    "interfaceBurden": "Open button and two constrained redistribution buttons.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "Membrane selectivity and osmosis introduced; mol/L not fully explained.",
+    "notationRepresentationBurden": "Litres, dot-to-mole mapping and decimal mol/L."
+  },
+  "whyCool": "Water redistributes even though the visible sugar particles cannot pass the membrane.",
+  "caveat": "Redistributing sugar is an external setup manipulation but not explicitly labeled as such; water arrow remains at equal final concentrations.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Keyboard audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:26:17.339944+00:00"
+}

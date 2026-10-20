@@ -1,0 +1,104 @@
+{
+  "slug": "release-the-spinning-ball",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/release-the-spinning-ball",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted radiallyeast aftercutateastpointforanticlockwisefrictionlesstablemotion;promptstatesinstantaneousnorthvelocity. Alternativesnorth/keepscurving.",
+    "Eastcut showedstraightnorthtrail. Slider45NEresetcut;NEcutwentNW. Slider90Nreset;Ncutwentwest. Statefeedback clearlylabelsreleasepointanddirection.",
+    "Reveal specificallyrecallseastcaseandgeneralizesothertangents;explainsinwardstringforcebendsvelocity,nothingflingsoutward,cutremoveslateralforce.",
+    "1280x720light diagramclearbeforeinternalreveal-scroll;finalproseclippedright."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Concretecircleanddirectionexperiment.",
+    "conceptualDemand": "Forceversusvelocitydirection.",
+    "interfaceBurden": "Oneangleslider andcutbutton."
+  },
+  "whyCool": "Every cut sends the ball along the direction it already had, even though the string had been pulling toward the centre.",
+  "caveat": "Frictionlesstop-viewtoy;nooutsideforceor3Ddropmode. Rightedgeprosecutoff.",
+  "effort": "Prediction,threeanglecuts,reveal,two screenshots.",
+  "provisionalBucket": "promising-with-fix",
+  "bucketReason": "Clearrepeatedtangentmechanism;fixlayout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Specificinitialvelocityandfrictionlesscondition isolateinertiamisconception.",
+      "evidence": "Eastpointmovingnorth versusoutwardeast.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Repeatedreleaseangles exposeinvarianttangentdirection ratherthanfixednorthanswer.",
+      "evidence": "East\u2192north,NE\u2192NW,north\u2192west.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connectsoriginalandothercuts toforceversusvelocitymechanism.",
+      "evidence": "Stringbendsmotion;removingitpreservesdirection.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Angle/resetanddirectionlabels clear;prosecutoff.",
+      "evidence": "Actualscreenshots easttrail andnorthreveal.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalinertiarule withoutnewapplicationtask.",
+      "evidence": "Differentangleswithin sameapparatus.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Releasegoestangentiallyratherthanradially.",
+      "evidence": "Eastcutnorthtrajectory.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Severalanglecontrasts visiblyseparatecircle/radius/tangent.",
+      "evidence": "Threecutpointsandstraightpaths.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Choosecutpointandreleasetocheckgeometricprediction.",
+      "evidence": "Sliderresetandcutloop.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Foundationforcircular-motionintuition.",
+      "evidence": "Forcebendsratherthansustainsmotion.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Velocity,centripetalforce andinertialmotion separated.",
+      "evidence": "Directionalreadyheldversusforce inward.",
+      "confidence": "medium"
+    }
+  }
+}

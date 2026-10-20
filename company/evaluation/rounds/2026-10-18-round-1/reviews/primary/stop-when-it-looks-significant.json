@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "stop-when-it-looks-significant",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/stop-when-it-looks-significant",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "8007e29c0525a7cc042275385a5ac12af6898b2f334ccab8197d4e0c9ae8ea11",
+    "demoSha256": "847388f7536247e0ff11f8e69433d6de3a7a159040cded573f54834b5a29f35f",
+    "metaPath": "src/demos/probability/stop-when-it-looks-significant/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected about 5% and locked the false-positive prediction for checking a fair coin after every flip from 10 through 100.",
+    "exploration": "Look every flip flagged six of the twenty displayed paths. Looking only at the end flagged zero of those same twenty. Counting all hundred reported 23 flagged by repeated looks and five by endpoint-only testing.",
+    "reveal": "The reveal corrected the answer to about 29%, accurately quoted 23 versus five of the hundred sampled runs, and distinguished exact 28.5% repeated-check probability from 5.7% at the endpoint. It explained noise wandering across the boundary and variation between sets of coins.",
+    "visual": "Inspected the inline dark 1257 by 936 screenshot in every-flip mode. Twenty z-score paths crossed a green band bounded at plus or minus 1.96; six highlighted red paths had marked boundary crossings. The controls and flagged count were legible.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The prompt targets reuse of a nominal single-test error rate under optional stopping.",
+      "evidence": "Selected 5% for many looks at one evolving run.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Modes hold the paths fixed while changing the decision rule.",
+      "evidence": "Six of twenty were flagged at any point but none at the endpoint; all hundred gave 23 versus five.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal explains the difference and separates sample counts from exact probabilities.",
+      "evidence": "It quotes 23 and five while giving 28.5% and 5.7% as the underlying probabilities.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Boundary crossings and common paths make the extra opportunities visible.",
+      "evidence": "Red paths and crossing markers show which trajectories trigger repeated checking.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "The general repeated-look warning is stated without a new experiment or corrected procedure.",
+      "evidence": "The walkthrough remains a fixed fair-coin testing setup.",
+      "confidence": "high"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Repeatedly applying a five-percent-level test yields far more false alarms.",
+      "evidence": "The stated repeated-check probability is 28.5% rather than near five percent.",
+      "confidence": "high"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Paths that return inside the band explain why endpoint testing differs.",
+      "evidence": "Any crossing and endpoint status select different paths from the same sample.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Mode switches support a controlled comparison rather than a game.",
+      "evidence": "Three buttons reveal the decision rule and full count.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "It shows why stopping when significance appears changes error control.",
+      "evidence": "The ending warns that a single-test threshold cannot be interpreted unchanged over many looks.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "The lesson distinguishes sampling variation, exact probabilities and dependent repeated looks.",
+      "evidence": "It discloses different counts would occur with another hundred coins.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "The controls are simple, but statistical testing, standardized paths and stopping rules introduce several technical distinctions.",
+    "conceptualDemand": "High: understand false positives under repeated dependent observations.",
+    "interfaceBurden": "Low: two rule modes and one counting button.",
+    "conceptualChallenge": "The error rate belongs to the whole decision procedure, not just the threshold at one look.",
+    "prerequisiteNovelty": "Significance thresholds, z-scores and optional stopping are introduced.",
+    "notationRepresentationBurden": "High: standardized path formula, plus or minus 1.96 band and exact versus sampled rates."
+  },
+  "whyCool": "The same innocent noise paths become much more suspicious when any temporary excursion can end the test.",
+  "caveat": "The test and checking window are fixed. No sequentially adjusted testing method is demonstrated.",
+  "missingEvidence": [
+    "No new checking schedule, fresh seed or corrected testing procedure was tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

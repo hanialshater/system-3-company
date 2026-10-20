@@ -1,0 +1,105 @@
+{
+  "slug": "twins-never-split",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/twins-never-split",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction specified identical weight0.5, output weight1,bias0 and gradient descent on four varied points; chose differ a little.",
+    "Train200 gave w1=w2=0.000,gap0,loss0.250 versus initial loss1.427.",
+    "Nudge unit2 by0.01 and train200 gave step400 weights-1.627,1.627,gap3.254,loss0.003.",
+    "Reveal explained equal updates preserve symmetry and connected random initialization to specialization.",
+    "Inline1280x720 light screenshot showed overlapping then diverging curves; prose clipped at right. No accessibility audit."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Weights, bias, gradient descent and loss require prior ML context.",
+    "conceptualDemand": "Neural units and training dynamics.",
+    "interfaceBurden": "Two buttons and clear metrics; clipped explanation."
+  },
+  "whyCool": "Two curves remain exactly together until a tiny asymmetry lets them specialize.",
+  "caveat": "Toy setup; prose clipping and prerequisite-heavy vocabulary. Accessibility unknown.",
+  "effort": "Prediction, baseline200, nudged200, reveal and inline screenshot.",
+  "provisionalBucket": "strong-for-technical-audience",
+  "bucketReason": "Effective symmetry experiment and practical connection; layout repair needed.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Precise symmetry setup and plausible outcomes.",
+      "evidence": "Identical weights and gradient descent specified.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Baseline training then symmetry-breaking nudge provides causal comparison.",
+      "evidence": "Gap0 then3.254.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Observed curves and losses support explanation of equal updates.",
+      "evidence": "Exact baseline and nudged results recalled.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clear numerical comparison but explanation clipped in tested viewport.",
+      "evidence": "Inline reveal screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Names concrete initialization choice and condition explaining it.",
+      "evidence": "Random weights let units specialize when identical units get equal updates.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Varied data cannot separate symmetric units, tiny nudge can.",
+      "evidence": "Gap0 to3.254.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Coincident and diverging lines directly show symmetry breaking.",
+      "evidence": "Step400 plot.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Two training actions give a simple experiment.",
+      "evidence": "Train and nudge controls.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Explains a concrete neural-network initialization decision.",
+      "evidence": "Random weights application.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Connects parameter symmetry, optimization and loss.",
+      "evidence": "Equal updates and specialization.",
+      "confidence": "medium"
+    }
+  }
+}

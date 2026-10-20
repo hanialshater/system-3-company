@@ -1,0 +1,139 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "snap-the-magnet",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/snap-the-magnet",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "snap-the-magnet",
+    "domain": "physics",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/physics/snap-the-magnet/meta.json",
+    "metaSha256": "2243266aed9221786b02c26d6af46dcaf3fb49472f51a3548d9fa349c3e3f116",
+    "demoSha256": "9d2f315e21495face5d0aa1d23a670672b027604a1261ce5aeab24cb30890b39",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/snap-the-magnet",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/snap-the-magnet.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected Only a north pole and locked it in.",
+    "exploration": "Snapped middle: north half recorded N plus S and halves pulled together. Turned right half: pushed apart. Turn it back restored pulled together. Snapped each half again: four pieces, each N plus S, and reveal enabled.",
+    "reveal": "Corrected to both poles, referenced new cut-face poles, repulsion when turned and both poles in quarters. Explained aligned tiny atomic magnets and absence of observed lone north poles.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected. Half magnets and compass markers showed S and N at break. Four-quarter reveal displayed labeled poles and internal arrows with a persistent Seen history; all explanation text fit. Despite turn-back action, final right-quarter arrows were opposite left-quarter arrows; state consistency was not further investigated.",
+    "previewIsolation": "Preview banner said history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete break prediction isolates a common parts-versus-whole intuition.",
+      "evidence": "Only north selected before controls opened.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Split, reverse and split again provide meaningful contrasts.",
+      "evidence": "Attraction to repulsion, turn-back attraction, four two-pole pieces.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal ties new faces to internal aligned units.",
+      "evidence": "Atomic magnet arrows and compass results.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Pole labels and compass convention are explicit; final orientation after turn-back needs verification.",
+      "evidence": "Right quarters reversed in final diagram although turn-back had restored attraction.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Repeated splitting extends the same principle without a new application.",
+      "evidence": "Every quarter has both poles.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Complete mode audit not conducted.",
+      "evidence": "State summary available as text; keyboard, screen reader, contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Breaking a north-end piece creates another south end.",
+      "evidence": "New opposite cut-face poles.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Internal arrows and external compass labels connect scales.",
+      "evidence": "Atomic alignment and N/S endpoints.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Breaking and reversing magnets creates simple experiments.",
+      "evidence": "Snap, turn and quarter controls.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Clarifies everyday magnet behavior.",
+      "evidence": "Attraction and repulsion by orientation.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Connects macroscopic poles to aligned microscopic units.",
+      "evidence": "Every subdivided piece retains two ends.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "Familiar object and discrete operations support a microscopic explanation.",
+    "conceptualDemand": "Distinguish end labels from separable substances and infer new cut-face poles.",
+    "interfaceBurden": "Three contextual buttons and Seen history.",
+    "conceptualChallenge": "gentle",
+    "prerequisiteNovelty": "Compass north end convention and atomic magnet model.",
+    "notationRepresentationBurden": "N/S labels and directional arrows."
+  },
+  "whyCool": "A break reveals two new faces without isolating a single pole.",
+  "caveat": "Final quarter orientation after turning back deserves a state-consistency check; polarity conclusion itself remained visible.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Keyboard audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case",
+    "Quarter orientation consistency after turn back"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:21:50.481814+00:00"
+}

@@ -1,0 +1,103 @@
+{
+  "slug": "cut-the-rod-for-more",
+  "demoVersion": 4,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/cut-the-rod-for-more",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted10 from full prices1/5/8/9 at lengths1\u20134.",
+    "Filled each row:best1=1,best2=max2/5=5,best3=max6/6/8=8,best4=max9/10/9/9=10.",
+    "Diagram highlights reused length2 row and2+2 optimum. Reveal explains recurrence and greedy3+1 failure. Screenshots model readable,reveal right-edge clipped;no editable prices or cut-cost variable."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Recursive optimization notation and nested best subproblems.",
+    "conceptualDemand": "Compare first cuts using solved suffixes.",
+    "interfaceBurden": "Simple buttons,math trace."
+  },
+  "whyCool": "The best first cut can be found by reusing the best answers for every shorter remainder.",
+  "caveat": "Trace rather than open exploration;assumes no cut cost/material loss and fixed integer lengths.",
+  "effort": "Prediction,all four row fills,reveal,two screenshots.",
+  "provisionalBucket": "solid-trace",
+  "bucketReason": "Clear dynamic-programming explanation,limited agency.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Complete inputs and plausible whole/overcount distractors.",
+      "evidence": "9/10/13.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Stepwise trace informative but learner only advances fixed solution.",
+      "evidence": "Four fill buttons,no cut decisions.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects original optimum,greedy alternative and reuse mechanism.",
+      "evidence": "2+2 beats3+1 and whole.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readable decomposition but formal recurrence and clipped prose.",
+      "evidence": "Screenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General recurrence stated without distinct application.",
+      "evidence": "Same rod prices.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Largest-priced piece isn't best first cut.",
+      "evidence": "8+1<5+5.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Piece bars and outlined reused row show subproblem.",
+      "evidence": "2+best2.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Step through subproblems.",
+      "evidence": "Four rows.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Optimization technique central,not real pricing guidance.",
+      "evidence": "Toy rod.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Optimal substructure,reuse and greedy failure.",
+      "evidence": "Recurrence.",
+      "confidence": "medium"
+    }
+  }
+}

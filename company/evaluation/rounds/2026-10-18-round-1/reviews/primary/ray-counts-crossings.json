@@ -1,0 +1,104 @@
+{
+  "slug": "ray-counts-crossings",
+  "demoVersion": 4,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/ray-counts-crossings",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction describes U polygon and point three-four in its gap, while initial picture starts at seven-four.",
+    "Gap point three-four showed two crossings and outside; left arm one-four showed three crossings and inside, with alternating solid/dashed ray segments.",
+    "After reveal, separately verified right arm five-four and base three-one each had one crossing/inside, and exterior seven-four zero/outside.",
+    "Reveal deliberately redraws previously observed three-crossing case with POINT AGAIN label and explains parity from outside beyond the last crossing."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Coordinates and parity of crossings.",
+    "conceptualDemand": "Classify a concave region by transitions rather than visual centrality.",
+    "interfaceBurden": "Five point buttons and optional drag."
+  },
+  "whyCool": "Every boundary crossing flips inside to outside or back, so a simple count classifies a deeply notched shape.",
+  "caveat": "Boundary points and rays through vertices are not explored; initial picture uses different coordinates from prediction.",
+  "effort": "Prediction, gap and left-arm screenshots, reveal, separate right-arm/exterior/base checks.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Excellent crossing mechanism across several classifications, with an initial setup mismatch.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "A meaningful concavity example, but initial shown point differs from prediction coordinates.",
+      "evidence": "Picture at seven-four, question at three-four in gap.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Multiple controlled point positions distinguish zero, one, two and three crossings.",
+      "evidence": "Both arms, gap, base and exterior tested.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explains parity through exact observed boundary changes and far-outside anchor.",
+      "evidence": "Two crossings in gap, three in left arm; solid/dashed alternation.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Numbered crossings and explicit redraw provenance are clear after selection.",
+      "evidence": "POINT AGAIN labels the explanation's chosen earlier case.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "General rule with a concave counterexample to visual centrality.",
+      "evidence": "Odd/even crossings work despite multiple notches.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "A visually central point is outside a concave region.",
+      "evidence": "Gap between arms has two crossings.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Ray segment alternation directly shows the classification mechanism.",
+      "evidence": "Three numbered crossings alternate inside/outside.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Several point presets and advertised drag interaction.",
+      "evidence": "Five presets verified; drag not audited.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete computational geometry classification method.",
+      "evidence": "Point-in-polygon parity.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Global inside classification follows boundary-crossing parity.",
+      "evidence": "Outside anchor and alternating state.",
+      "confidence": "medium"
+    }
+  }
+}

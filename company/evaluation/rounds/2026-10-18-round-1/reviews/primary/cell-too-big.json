@@ -1,0 +1,130 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy/simple charts; no theory assumed.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "observations": [
+    {
+      "id": "p",
+      "phase": "prediction",
+      "text": "No-history preview verified; trust4/4 ignored. Chose10timeslarger versus same/10smaller;locked. Cubecellwidth1to10."
+    },
+    {
+      "id": "e",
+      "phase": "exploration",
+      "text": "Width1:surface6inside1ratio6;keyboardRight2:24/8ratio3;10button:600/1000ratio.6,revealunlocked. Screenshot largegridcube faded shade labeledsurfacepercube.1button reset6/1ratio6and revealretained."
+    },
+    {
+      "id": "r",
+      "phase": "reveal",
+      "text": "Notquite10smaller;recalls6/1vs600/1000;surfacesquare/volumecube,ratio6/width;foodwastecrosssurface,one reasoncellsstay small orfoldflatten;realcellsnotcubes,any evenlyscaledshape sameproportional loss. Screenshots inline only."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear size-versus-ratio misconception.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Intermediate/boundary/reset show growing totals but fallingratio.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Ownnumbers/exponent rule/shape limit linked.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Surface,inside,ratio labels readable in testedview.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Any evenlyscaledshape condition and folding/flattening application.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Insufficient mode evidence.",
+      "evidence": "e",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Largercell haslesssurfaceperinside.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Gridcube/shade represent ratio.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversible widthexploration.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Cellstructure explanation concrete.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Square/cube/inverse scaling and exchange linked.",
+      "evidence": "r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Relates different exponents to ratio and biological exchange constraint.",
+    "conceptualDemand": "Surface versus volume units and inverse ratio; supportednumerically.",
+    "interfaceBurden": "One range/two presets and explicit ratio labels."
+  },
+  "whyCool": "Doubling width halves surface per inside even though both totals grow; tenfold width dropsratio6to.6.",
+  "caveat": "Uniform cube model, no transport/diffusion mechanism simulated; biological explanation stated as one reason, shape qualification explicit.",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Only rangeArrowRight tested; accessibility modes untested."
+  ],
+  "screenshots": [],
+  "slug": "cell-too-big",
+  "demoVersion": 1,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/cell-too-big",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "dc61a4e515964b77be67cf7061be744e420edfba22b586cd1e726c8e79e105a1",
+    "metaSha256": "10f7c522ac115d06824b03e6b7b6572d5d67156833d9f40aa265bd001f09d20b"
+  }
+}

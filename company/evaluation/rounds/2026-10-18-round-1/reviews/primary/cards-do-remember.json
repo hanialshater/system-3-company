@@ -1,0 +1,147 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2b",
+  "reviewKind": "primary",
+  "slug": "cards-do-remember",
+  "domain": "probability",
+  "batchId": "round1-02",
+  "demoVersion": 2,
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "348cb54a7f5d55b67b425a08a72729bc9fda3a6853b097ec01cd55d15c42dddb",
+  "demoSha256": "47c058c008f95ea7443dc1055b590a274ea161079d2dd414e097e96845bdc623",
+  "reviewedAt": "2026-10-18T18:36:39.548058+00:00",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/cards-do-remember",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "previewIsolationConfirmed": true,
+  "visibleTrustChrome": "6/6 claims checked; ignored, panel unopened",
+  "phaseCoverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "o1",
+      "action": "Predicted 50% and locked",
+      "outcome": "Full deck 26/52=50%"
+    },
+    {
+      "id": "o2",
+      "action": "Dealt one red then jumped to ten reds",
+      "outcome": "25/51=49%, then 16/42=38%; empty red slots visible"
+    },
+    {
+      "id": "o3",
+      "action": "Put cards back, then Keep them out",
+      "outcome": "26/52=50% restored, then 16/42=38%; ten-dealt count retained"
+    },
+    {
+      "id": "o4",
+      "action": "Opened reveal",
+      "outcome": "Corrects prediction; explains remaining deck composition, replacement 50%, coin has no pile and no due-ness"
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Plausible equal-odds and reversed-composition distractors.",
+      "evidence": "o1",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Depletion and reversible replacement directly change remaining mix and odds.",
+      "evidence": "o2-o3",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Resolves wrong prediction using actual counts and replacement contrast, rejects due-ness.",
+      "evidence": "o4",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Legible tiles, counts and explicit controls in observed viewport; initial transient AX labels resolved visually.",
+      "evidence": "o1-o4; inline pixels",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Coin comparison supplies concrete new case and explains condition of no depleted pile.",
+      "evidence": "o4",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic mode checks; initial unlabeled AX options observed but not evaluated comprehensively.",
+      "evidence": "Untested",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed 50% overturned by visibly depleted red supply.",
+      "evidence": "o1-o4",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Empty red tiles against unchanged black tiles carry composition mechanism.",
+      "evidence": "o2-o3",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Deal and replacement toggle allow reversible comparison.",
+      "evidence": "o2-o3",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Recognizing changing deck odds is concrete probability use.",
+      "evidence": "o4",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Depletion, denominator change, replacement and independent coin contrast linked.",
+      "evidence": "o2-o4",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links changing numerator and denominator to probability and contrasts replacement with independence.",
+    "conceptualDemand": "balanced: fractions supported by deck graphic",
+    "interfaceBurden": "low: discrete deal and replacement controls",
+    "provisional": true
+  },
+  "whyCool": "Returning ten reds fills their empty slots and restores 50%, then keeping them out visibly returns the same deck to 38%.",
+  "caveat": "The first ten red cards are deliberately imposed, not an observed random streak; coin transfer is explained rather than tested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Phone, keyboard-only, focus, contrast measurement, zoom/reflow and reduced motion untested"
+  ],
+  "reviewState": "complete-real-walkthrough",
+  "effort": {
+    "approximateMinutes": 2
+  },
+  "screenshots": [
+    "Inline observed locked prediction and revealed depleted-deck state; no saved image file"
+  ],
+  "notApprovedForServing": true,
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  }
+}

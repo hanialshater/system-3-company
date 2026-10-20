@@ -1,0 +1,103 @@
+{
+  "slug": "lh-round-replenishment",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-round-replenishment",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Box order larger at12 required,3 stocked,six-unit boxes.",
+    "Tests gave rounded new quantity12 versus exact gap9. Minimum requirement1 gave zero both.",
+    "Screenshot showed aggregate order cards, not boxes or post-delivery inventory. Reveal preserved original/current inputs and explained subtract shortage first, but claimed extra units after delivery remain visible though only order/gap shown."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Two rounding constraints and dense expression.",
+    "conceptualDemand": "Shortage and discrete purchase differ.",
+    "interfaceBurden": "Simple controls, complex displayed formula."
+  },
+  "whyCool": "You buy whole boxes for the missing stock, not for the total requirement.",
+  "caveat": "Comparison does not demonstrate the advertised wrong-order alternative; no visible post-delivery surplus despite reveal claim.",
+  "effort": "Prediction, both tests, minimum boundary, screenshot and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Useful arithmetic but comparison and reveal claims need alignment.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Basic rounded-versus-exact comparison; title supplies operation order.",
+      "evidence": "12 required with3 stocked.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Boundary correctly prevents negative order and shows equality.",
+      "evidence": "12\u21921 requirement.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Correct sequence explained but comparison never tests wrong operation order and overstates visible delivered extras.",
+      "evidence": "A box order versus B exact gap, not incorrect-order calculation.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Dense ceil/max formula and no explicit box count or leftover.",
+      "evidence": "Result12items rather than2boxes.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General sequence stated without separate counterexample.",
+      "evidence": "Shortage before rounding.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Expected pack rounding.",
+      "evidence": "Gap9 rounded12.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 1,
+      "reason": "No individual boxes, stock or delivery surplus.",
+      "evidence": "Aggregate cards only.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Tests and requirement slider.",
+      "evidence": "Stock fixed.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Procurement pack sizing central.",
+      "evidence": "Subtract inventory then pack order.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Combines shortage floor and package ceiling.",
+      "evidence": "max then ceil.",
+      "confidence": "medium"
+    }
+  }
+}

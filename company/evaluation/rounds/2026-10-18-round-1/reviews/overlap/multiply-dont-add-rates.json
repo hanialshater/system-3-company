@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "overlap",
+  "slug": "multiply-dont-add-rates",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/multiply-dont-add-rates",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "multiply-dont-add-rates",
+    "domain": "chemistry",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/chemistry/multiply-dont-add-rates/meta.json",
+    "metaSha256": "038a87bf2c6ff2d7dae5433d45c746e985cd1feda94b9189ab2231ff22c5a34a",
+    "demoSha256": "9a4e27169888e121d49c78c36853772490cfbc9323de85ddb089759e74b38a7b",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/multiply-dont-add-rates",
+    "primaryWorker": "w3",
+    "reviewKind": "overlap",
+    "outputPath": "reviews/overlap/multiply-dont-add-rates.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Chose 6 times faster against8 and4; locked it in.",
+    "exploration": "Ran double A only, double B only and double both sequentially. Table grew from one baseline to four runs. Actual screenshot showed baseline\u00d71, A-only\u00d72, B-only\u00d74 and both\u00d78 with proportional bars.",
+    "reveal": "Corrected to8, explained effects multiply2\u00d74 rather than add. Introduced rate=k[A][B]\u00b2 and said exponents come from experiment rather than reaction equation.",
+    "visual": "Actual1257 \u00d7936 dark screenshots inspected. Four pink bars carry1,2,4,8 relation; concentration labels and all reveal legible. AX exposes run count/buttons but not table values, so values directly observed in screenshot.",
+    "previewIsolation": "No-history evaluation banner visible.",
+    "blinding": "5/5 checked chrome visible and ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear additive versus multiplicative alternatives.",
+      "evidence": "6 commitment versus8 correction.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Single-factor and combined runs expose product relation.",
+      "evidence": "A\u00d72,B\u00d74,both\u00d78 bars.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Directly connects all three observed rates to multiplicative rate law.",
+      "evidence": "2\u00d74=8 and experimental exponent explanation.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Labeled table and bars clearly show tested desktop contrast.",
+      "evidence": "Actual screenshot four-run table.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable empirical rate-law relation but no concrete new application or fresh case.",
+      "evidence": "rate=k[A][B]\u00b2 and exponent-source statement.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No access audit; table values absent from tested AX output.",
+      "evidence": "Values required visual screenshot; keyboard,focus,contrast,phone,zoom and motion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed additive6 contradicted by combined8.",
+      "evidence": "Joint run\u00d78.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Bar lengths show product rather than sum.",
+      "evidence": "Four proportional bars in actual screenshot.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Three experiment choices permit controlled comparison.",
+      "evidence": "Ran all three independently.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete rate prediction for a stated reaction model.",
+      "evidence": "Doubling both yields eightfold rate.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Factor combination and experimental order inference linked.",
+      "evidence": "Single-factor results and exponent explanation.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Combines two measured multiplicative factors; symbolic law adds representation burden.",
+    "conceptualDemand": "Core is two-factor multiplication; optional symbolic description introduces rate law.",
+    "interfaceBurden": "Low for sighted desktop path; AX table values not exposed in observed tree.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: reaction rate and empirical order.",
+    "notationRepresentationBurden": "moderate: concentration brackets,k and exponent\u00b2."
+  },
+  "whyCool": "Running both changes makes an eightfold bar after the individual twofold and fourfold bars.",
+  "caveat": "Only one fixed rate law; clear-table reset and new concentration factors not tested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Clear table not tested.",
+    "Keyboard,focus,contrast,phone,zoom/reflow and motion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:18:34.292167+00:00"
+}

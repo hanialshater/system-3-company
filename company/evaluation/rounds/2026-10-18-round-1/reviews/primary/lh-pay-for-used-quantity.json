@@ -1,0 +1,103 @@
+{
+  "slug": "lh-pay-for-used-quantity",
+  "demoVersion": 2,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-pay-for-used-quantity",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Singles lower at five used pieces: singles \u20ac0.50 each versus \u20ac4 ten-pack with unused pieces valued zero.",
+    "Tests gave \u20ac0.50 versus \u20ac0.80 per used piece. Ten used reversed to \u20ac0.40 pack; eight used gave equality \u20ac0.50.",
+    "Screenshot showed receipt icons and price cards. Reveal preserved original/current inputs and explicitly noted future value of leftovers changes model."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple monetary division.",
+    "conceptualDemand": "Choose denominator matching use and value.",
+    "interfaceBurden": "Two tests and count slider."
+  },
+  "whyCool": "Bulk is only cheaper per useful item if you use enough of the pack.",
+  "caveat": "Unused pieces are assumed worthless; no savings or sustainability conclusion beyond that assumption.",
+  "effort": "Prediction, both tests, full-use and break-even states, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Useful denominator lesson with demonstrated reversal and scope.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete consumption denominator tests apparent bulk saving.",
+      "evidence": "Five used versus ten purchased.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Checked original comparison, reversal and break-even.",
+      "evidence": "5, 10, 8 used.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains denominator and meaningful leftover-value limit.",
+      "evidence": "Used not purchased; leftovers may have later value.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Prices and zero unused value explicit.",
+      "evidence": "\u20ac4 divided by used quantity.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete condition distinguishes applicable situation.",
+      "evidence": "Remaining pieces have value later.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Cheaper purchased-unit price can cost more per used item.",
+      "evidence": "Pack \u20ac0.80 at five used.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 1,
+      "reason": "Receipt icons add little denominator explanation.",
+      "evidence": "No used/unused piece partition.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Slider reveals break-even.",
+      "evidence": "Equal at eight.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Consumption-aware shopping central.",
+      "evidence": "Unused quantity valuation.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Denominator choice and future value assumptions.",
+      "evidence": "Purchased versus used, leftovers.",
+      "confidence": "medium"
+    }
+  }
+}

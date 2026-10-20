@@ -1,0 +1,103 @@
+{
+  "slug": "plain-text-paste-scope",
+  "demoVersion": 1,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/plain-text-paste-scope",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted source formatting left behind by plain paste; title already says without style.",
+    "Styled operation displayed literal bold BOLD token beside Title; plain operation replaced BOLD with literal plain token beside Title.",
+    "Reveal says words kept with plain styling, but visible words differ BOLD versus plain. Both screenshots inspected; readable."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Two commands.",
+    "conceptualDemand": "Separate words from formatting.",
+    "interfaceBurden": "Two clicks."
+  },
+  "whyCool": "Plain paste can preserve content while dropping source formatting\u2014but this demo needs identical content to show it.",
+  "caveat": "Use identical words in both states; current token substitution undermines lesson.",
+  "effort": "Prediction,both operations,reveal,styled and plain screenshots.",
+  "provisionalBucket": "revise-content-style-confound",
+  "bucketReason": "Observed output contradicts claimed word preservation.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Title states answer and leave behind is ambiguous.",
+      "evidence": "Without the style.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 1,
+      "reason": "Fixed two-click token swap changes content as well as style.",
+      "evidence": "BOLD\u2192plain.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 1,
+      "reason": "Claim words retained conflicts with actual word substitution.",
+      "evidence": "BOLD and plain differ.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readable but token count not meaningful and fixture jargon.",
+      "evidence": "Tokens2 both states.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General paste distinction and app caveat stated.",
+      "evidence": "Real options vary by app.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 0,
+      "reason": "Title gives distinction.",
+      "evidence": "Without style.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 1,
+      "reason": "Bold token illustrates style but confounds content.",
+      "evidence": "BOLD vs plain.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Mandatory preset sequence.",
+      "evidence": "No editing.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Paste formatting control central.",
+      "evidence": "Plain versus styled paste.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "Single distinction.",
+      "evidence": "No real paste context.",
+      "confidence": "medium"
+    }
+  }
+}

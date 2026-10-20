@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "one-in-four-sprouts",
+  "demoVersion": 4,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/one-in-four-sprouts",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "528ce45351f8364bdd470e7b4ef571fc9b1b9203573318b9f7889cb231c8c9e2",
+    "demoSha256": "4991d732032039b42605fb8eb3a01cb3cbbe124a49c26dcfa54f1b24bcc941c4",
+    "metaPath": "src/demos/life/one-in-four-sprouts/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected100% for at least one white among four independent quarter-chance seeds and locked it in.",
+    "exploration": "Grow one gave ww,PP,Pw,wP,one white. Grow10 reached11 families,eight with white,five exactlyone,three none. Grow all100 reached67 with white,49 exactlyone,33 none; reveal unlocked.",
+    "reveal": "Corrected about68%. Uses actual67/49/33 counts,none chance(3/4)^4 about32%,complement68%. Distinguishes per-seed chance from quota,one-field variability and long-run exactlyone about42%. Made-up flower and independence caveat.",
+    "visual": "Inline first/final screenshots inspected: each family square holds four coloured dots,white-containing families outlined.100-family grid readable as aggregate,genotype text separately states seed sequence. Trust5/5 ignored.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884122 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear at-least-one question tests one-in-four-as-quota misconception.",
+      "evidence": "100% selected versus67 sampled/about68 exact.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Family and aggregate growth show none,one and multiple outcomes.",
+      "evidence": "First family,11-family and100-family states.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects actual counts to complement calculation and sample variation with independence condition.",
+      "evidence": "67/49/33 and(3/4)^4 explanation.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Family grouping,genotype explanation and separate outcome counts distinguish questions.",
+      "evidence": "Two inspected screenshots and readable counters.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Per-draw chance versus quota principle offered without concrete new application.",
+      "evidence": "Each seed its own draw,not quota per family.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "100% prediction fails with33 families lacking any white flower.",
+      "evidence": "100-family sample.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Grouped dots and outlines carry at-least-one versus individual outcomes.",
+      "evidence": "Final grid and counters.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Growth increments allow gradual sample discovery but fixed endpoint.",
+      "evidence": "One,ten,all controls exercised.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete inherited-flower probability question central.",
+      "evidence": "Independent seeds,made-up dominance rule.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Individual chance,family complement,exactlyone and sample variability linked.",
+      "evidence": "Three growth states and reveal.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Coordinates two-copy inheritance,per-seed chance,four-seed families,repeated samples and complement reasoning.",
+    "conceptualDemand": "Nested probability with genotype representation.",
+    "interfaceBurden": "Low: three growth buttons.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "high: inheritance and independent probability",
+    "notationRepresentationBurden": "high:PP/Pw/wP/ww and fourth-power complement"
+  },
+  "whyCool": "Growing100 four-seed families produces33 with no white flowers,showing why one-in-four per seed never guarantees one per family.",
+  "caveat": "One fixed field; no rerun or changed family-size application.",
+  "missingEvidence": [
+    "Repeated field",
+    "Different family size",
+    "Fresh application",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

@@ -1,0 +1,137 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "straight-across-saves",
+  "demoVersion": 2,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/straight-across-saves",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "straight-across-saves",
+    "domain": "math",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/math/straight-across-saves/meta.json",
+    "metaSha256": "b965284e20192f155dcd007df1407f537e2e461e6792093f50adc7472ebcc0f2",
+    "demoSha256": "1910f208713aceceee62268d3b692a338acc24f3781e8fb2e8119a98c4f5094d",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/straight-across-saves",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/straight-across-saves.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected 100 m saved and locked it in.",
+    "exploration": "Initial 100 east/200 north gave L route 300, straight 224, saved 76. At 200/200 gave 400,283,117. Set asked 300/400: 700,500,200. Home both sliders zero gave all zeros. Restored 300/400 with same result.",
+    "reveal": "Corrected to 200, derived square root of squared legs, gave about twenty-nine percent saving and flat-ground condition. Said straight side always shorter than sum.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected. Dashed orthogonal route, solid diagonal, grid and two comparison bars aligned. Brief compilation-time saved chip appeared zero after restore; subsequent full AX and screenshot showed stable 200, matching prose.",
+    "previewIsolation": "Preview banner said history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete familiar route prediction tests right-triangle distance.",
+      "evidence": "100,200,350 metre saving choices.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Two dimensions, symmetric case and zero boundary expose relation reversibly.",
+      "evidence": "300/400 saves 200; zero/zero saves zero.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal connects observed distances to squared-leg formula and percentage.",
+      "evidence": "Square root 250000 equals 500 versus 700 route.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Line styles, metre units and bars reinforce calculation.",
+      "evidence": "Flat-ground assumption stated.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General formula is supplied within the same route task without a new application.",
+      "evidence": "No fresh geometric setting attempted.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Complete mode audit not performed.",
+      "evidence": "Keyboard dimensions and zero boundary worked; screen reader, contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Diagonal saves a substantial part of a familiar route.",
+      "evidence": "Two hundred of seven hundred metres.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Route geometry and length bars show the same comparison.",
+      "evidence": "Dashed legs versus solid diagonal.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Two sliders reshape the route.",
+      "evidence": "East and north controls.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Applies right-triangle distance to walking.",
+      "evidence": "Flat-ground shortcut context.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "One geometric relation with percentage comparison.",
+      "evidence": "Pythagorean calculation.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Easy controls introduce squared distances and square roots.",
+    "conceptualDemand": "Distinguish summed orthogonal legs from straight Euclidean distance.",
+    "interfaceBurden": "Two stepped sliders.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "Right-triangle squared-leg relation introduced at reveal.",
+    "notationRepresentationBurden": "Metres, squared values and square roots."
+  },
+  "whyCool": "A route map and length bars make the diagonal saving measurable.",
+  "caveat": "The statement always shorter excludes degenerate zero-leg cases available in controls; at zero/zero equality was observed. Flat-ground assumption explicit.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:44:10.369749+00:00"
+}

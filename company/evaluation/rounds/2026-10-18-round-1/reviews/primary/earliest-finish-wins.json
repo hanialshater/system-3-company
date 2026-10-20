@@ -1,0 +1,104 @@
+{
+  "slug": "earliest-finish-wins",
+  "demoVersion": 2,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/earliest-finish-wins",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "PredictionfourintervalsA0-10,B1-4,C3-5,D4-7,sharedboundaryallowed;bestearlieststart/shortest/earliestfinish; choseshortest.",
+    "Booknextall:earlieststartAblocksall,shortestCblocksB/D,finishBpermitsD. Bookfinishagain=>B+Dtwo,otherrulesone.",
+    "Revealrepeatsactualchoices,explainsnothreetalksfitandearliestfinishleavesroom/exchangeargument.",
+    "Screenshot stackedtimelines withbookedgreen/clashdashes andsharedhouraxis; actualrightedgeprosecutoff,normalverticalscroll."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Trackfourintervalsandcomparethreegreedycriteria.",
+    "conceptualDemand": "Earliestfinishdiffersfromearlieststart/shortestduration.",
+    "interfaceBurden": "Clearstepbuttons;threepanelsscroll andclippedprose."
+  },
+  "whyCool": "Theshortesttalklookscheapbutblocksbothhalvesofatwo-talkschedule.",
+  "caveat": "Unweightedfixedintervals maximizingtalkcount;noalternativeintervalset orvaluedtalkproblemtested.",
+  "effort": "Prediction,bookallfirstchoices,finishearliest-finishroom,reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Goodcounterexamplesandtimelines;limitedfreechoice/newcasepractice.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Preciseplausiblegreedyrules withboundaryconditionstated.",
+      "evidence": "Bends4,Dstarts4explicitlyallowed.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Side-by-sidesamestalks/fixedrules exposefirst-choiceconsequences.",
+      "evidence": "AandCblockall;BpermitsD.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Linksactualchoices tocountsandexplainswhy2isoptimal.",
+      "evidence": "No3fit;earliestfinishleavesmostremainingday.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clearintervals/labelsbutactualrightedgecutoff.",
+      "evidence": "Threepanelsuseverticalscroll;notitselfdefect.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalgreedyprinciple stated;newsetofintervals notpracticed.",
+      "evidence": "Onlyfourfixedtalks.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Shortesttalkcanblocktwocompatibletalks.",
+      "evidence": "C3-5blocksB/D.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Timelineclashes makebadlocalchoiceconcrete.",
+      "evidence": "GreenB/Dback-to-back versusC.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Stepthroughfixedpolicyrooms.",
+      "evidence": "Booknextbuttons only.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Maximizingnonoverlappingappointments centraltoexercise.",
+      "evidence": "Oneschedulefits2instead1.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Greedycounterexamples,endpointcompatibility,andoptimalcountargument.",
+      "evidence": "Threepoliciesandno3-fitexplanation.",
+      "confidence": "medium"
+    }
+  }
+}

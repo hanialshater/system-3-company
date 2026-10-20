@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "doubling-finds-the-edge",
+  "demoVersion": 2,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/doubling-finds-the-edge",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "doubling-finds-the-edge",
+    "domain": "cs",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/cs/doubling-finds-the-edge/meta.json",
+    "metaSha256": "210c01b537f7b3ced0076d7334930e9cc3fef12f51e5d2274ce3622832132f5b",
+    "demoSha256": "f2a5ed8fdade018137938fc2487e9d6426e5cdc87819e29c38a21e633962d4aa",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/doubling-finds-the-edge",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/doubling-finds-the-edge.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot"
+  },
+  "observations": {
+    "prediction": "Chose About 100 against About 500 and About 20, then locked it in.",
+    "exploration": "Double the probe checked position1 value10. Double until past accumulated eleven comparisons through1024 value3079 and bracket513\u20131023. One Halve the gap checked768 value2311 and kept769\u20131023. Halve until found landed1000 value3007 with17 comparisons:11 doubled plus6 halved, versus1001 scan.",
+    "reveal": "Corrected to About20; recounted actual eleven doubling and six halving steps. Explained logarithmic growth, gap511 wide could take up to nine halvings but target hit early midpoint. Gave position one million as34 comparisons.",
+    "visual": "Actual1257 \u00d7936 dark screenshot inspected. Number line shows doubling probes, target, bracket and halving dots. Small history labels wrap but remain readable; full reveal visible.",
+    "previewIsolation": "Evaluation no-history banner present.",
+    "blinding": "6/6 checked chrome visible and ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear comparison-count options contrast linear and logarithmic expectations.",
+      "evidence": "100 choice versus20 correction and1001 scan baseline.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Two-stage controls expose bracketing then narrowing with exact counters.",
+      "evidence": "1024 bracket then768 narrowing then1000 found.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Ties actual17 comparisons to two phases and explains early-midpoint versus worst-case gap.",
+      "evidence": "11+6;511 wide up to9 halvings.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Active-stage controls, number line and counters make sequence legible.",
+      "evidence": "Actual screenshot and explicit position/value feedback.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete larger-position application with sorted unknown-length context and growth explanation.",
+      "evidence": "Prompt sorted list; reveal position one million34 comparisons and logarithmic rule.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient access audit.",
+      "evidence": "Keyboard, focus, contrast, phone, zoom and motion untested.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed100 comparison estimate contradicted by17.",
+      "evidence": "Finished-run17 versus prediction100.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Number line and shrinking bracket carry search process.",
+      "evidence": "Actual screenshot bracket513\u20131023 and halving dots.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Step and bulk controls allow examining process at own pace.",
+      "evidence": "One double, bulk double, one halve and bulk halve.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete search strategy for sorted list with unknown endpoint.",
+      "evidence": "Two-phase procedure and scan comparison.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Two phases plus early-hit versus maximum gap cost are central.",
+      "evidence": "11 doubling,6 actual halving,up to9 possible.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Core payoff requires coordinating bracketing, binary narrowing and logarithmic cost.",
+    "conceptualDemand": "Three dependent abstractions: sorted comparisons, bound discovery and position-dependent two-phase complexity.",
+    "interfaceBurden": "Low to moderate: several controls but only valid phase enabled; dense probe history.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "high: binary search and logarithms relative to everyday boundary.",
+    "notationRepresentationBurden": "moderate: indexed positions, bounds and log2 notation."
+  },
+  "whyCool": "Eleven expanding jumps find an endpoint, then six shrinking jumps locate the target with17 comparisons instead of1001.",
+  "caveat": "One fixed target tested; million-position example asserted in reveal but not interactively exercised.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Reset and other target positions not tested.",
+    "Keyboard, focus, contrast, phone, zoom/reflow and motion untested."
+  ],
+  "effort": "Approximately3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:08:56.696987+00:00"
+}

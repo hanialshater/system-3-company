@@ -1,0 +1,128 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2c",
+  "reviewKind": "overlap",
+  "slug": "cradle-two-in-two-out",
+  "demoVersion": 1,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/cradle-two-in-two-out",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "fda8e940adc17a22bdebb3ee237238c64b068ef3344bb28a6744ce5887e07d9a",
+  "demoSha256": "ff7e405e4eafbbd8fd44f33bf5a8904d8eee08e0486d8b98eaa99f48cb55badf",
+  "date": "2026-10-18",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": {
+    "prediction": "Chose one ball double speed; alternatives two starting speed/one starting speed.",
+    "exploration": "One double speed:momentumYes,energyNo; screenshotbeforemomentum2/after2,energy1/after2. One starting speed:No/No. Two starting speed:Yes/Yes. Allthree unlock reveal.",
+    "reveal": "Before2momentum,1energy; outcomes2/1,2/2,1/.5; onlytwo starting speedkeeps both.",
+    "visual": "CUA screenshotdark1257x936:idealidenticalballs,no losses note; faint before circles,one outgoing far ball;green equalmomentum bars/red energy mismatch labeled;candidatebuttonslegible.",
+    "chrome": "No-history preview banner verified. Visible trust-count ignored; trust panel unopened."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Plausible alternative preserving momentum alone.",
+      "evidence": "Three explicit ball-count/speed options.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Allthree contrasts show why one tally is insufficient.",
+      "evidence": "YesNo,NoNo,YesYes withbeforeafterbars.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Resolves commitment by exact two-tally comparisons.",
+      "evidence": "2/1,2/2,1/.5;two constraints.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Buttons and labeledbars distinguish candidate outcomes from actual.",
+      "evidence": "Pickoutcome;momentum/energy kept counters;idealnote.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable joint-constraint principle without new case.",
+      "evidence": "Two constraints leave one amongtestedoutcomes.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Desktop mouse/AX and screenshot only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Committedfastball keepsmomentum but failsenergy.",
+      "evidence": "Yes/No afterpredictedcandidate.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Beforeafterbars carry conservationcomparison.",
+      "evidence": "Green equalmomentum,red doubleenergy.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversiblecandidateexploration central.",
+      "evidence": "Threeoutcomes directlyselectable.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Concrete cradleexplanation;no external task.",
+      "evidence": "Fixedtwo-ballcradle.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Two distinct conservationconstraints across threecases.",
+      "evidence": "Momentumandenergycombination.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Compares two invariants across candidateoutcomes;bars support unfamiliar concepts.",
+    "conceptualDemand": "Jointconstraint reasoning;speed-squared relation implicit informula.",
+    "interfaceBurden": "low;alloutcomebuttonsclear.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": {
+      "level": "high",
+      "reason": "Momentumandkineticenergy notassumed."
+    },
+    "notationRepresentationBurden": {
+      "level": "moderate",
+      "reason": "mv,halfmv\u00b2andnormalisedunits."
+    }
+  },
+  "whyCool": "Choosing oneball atdouble speed leaves momentumgreen while energydoublesred,showing oneconstraint cannot decide.",
+  "caveat": "Onlythree suppliedoutcomes;idealidentical/no-loss assumption;no newapplication.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility modes: keyboard, focus, contrast, phone, zoom/reflow, motion untested"
+  ],
+  "effort": {
+    "approximateMinutes": 3
+  },
+  "notApprovedForServing": true
+}

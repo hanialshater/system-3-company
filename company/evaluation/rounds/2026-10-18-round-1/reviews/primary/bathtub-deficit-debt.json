@@ -1,0 +1,130 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy/simple charts; no theory assumed.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "observations": [
+    {
+      "id": "p",
+      "phase": "prediction",
+      "text": "No-history preview verified; trust 5/5 ignored. Chose $200 versus $1000/$2200, locked. Model label explicitly no interest, tap spending minus income."
+    },
+    {
+      "id": "e",
+      "phase": "exploration",
+      "text": "Next month: $1200 at month1; Run to month6: $2200; Save $200/month for2months: month8 $1800 and gap -$200; reveal unlocked. After reveal Start over reset month0/$1000 but retained gap -$200 and displayed reveal."
+    },
+    {
+      "id": "r",
+      "phase": "reveal",
+      "text": "Not quite $2200. Uses $1000+6×$200; distinguishes deficit flow/month from debt stock; negative gap drains debt; ignores interest which would grow tap. Initial tub/tap screenshot viewed inline only."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Separates monthly amount from accumulated total with plausible options.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Positive/negative flow visibly changes stock and month.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Uses observed target and saved-flow contrast with interest limit.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clear metaphor, but Start over keeps altered flow.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Reusable stock/flow distinction and interest caveat.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Insufficient mode evidence.",
+      "evidence": "p",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Reversing deficit leaves accumulated debt.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Tap/tub maps flow to stock.",
+      "evidence": "p,e",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Time/save/reset controls.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Debt accumulation interpretation central.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Accumulation and sign change; interest boundary verbal.",
+      "evidence": "r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "One accumulation relation and sign reversal supported by familiar tub metaphor.",
+    "conceptualDemand": "Starting stock plus monthly flow×time; flow/stock names introduced explicitly.",
+    "interfaceBurden": "Clear presets; reset retains changed gap, which needs attention."
+  },
+  "whyCool": "Saving changes the tap to -$200 and lowers the tub from $2200 to $1800 rather than erasing debt.",
+  "caveat": "Start over resets time/debt while retaining -$200 gap; no-interest toy model and no individualized financial guidance.",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Slider variation and zero-debt boundary untested; accessibility modes untested."
+  ],
+  "screenshots": [],
+  "slug": "bathtub-deficit-debt",
+  "demoVersion": 2,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/bathtub-deficit-debt",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "4909deed86dcda25053b955c5a967e36a3dc49e39fdbeac72ea6dcce85e09ce8",
+    "metaSha256": "32e4fe5fcb7eefff8db0e0607a4faa643b6fb109dd22700f5808dddc868c8ff0"
+  }
+}

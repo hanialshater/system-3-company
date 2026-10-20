@@ -1,0 +1,140 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "hanoi-tower-doubles",
+  "demoVersion": 4,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/hanoi-tower-doubles",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "hanoi-tower-doubles",
+    "domain": "cs",
+    "status": "published",
+    "demoVersion": 4,
+    "metaPath": "src/demos/cs/hanoi-tower-doubles/meta.json",
+    "metaSha256": "56a65bba3904b20a409da2e56684e2bfed9866afd80f630b60aa5995e4e68b2b",
+    "demoSha256": "e8f792cb36e72ecc9e5bbc15f8513c71a8649fddd731f84961bfb8b34085ae4d",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/hanoi-tower-doubles",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/hanoi-tower-doubles.json"
+  },
+  "date": "2026-10-18T20:21:15.949392+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Chose36 andlocked."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Solved3disks:top2shortcutAtoBcounts3,largestAtoCcounts1,top2BtoCcounts3,total7. Added4,5,6disks,observedbestcounts15,31,63anddecomposition7+1+7,15+1+15,31+1+31."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read63correction,necessarysmallerpuzzletwicepluslargestonce recurrence;doublingplusone."
+    },
+    {
+      "phase": "visual-inspection",
+      "evidence": "Actual1257x936dark inline initial,solved3,6diskcounts andscrolledreveal inspected. Pegs,diskstack,shortcutcosts andgrowthbars readable."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear constrained puzzle forecast.",
+      "evidence": "3need7,oneatatime,nobigonsmall,forecast6.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Countedshortcut exposes recursive structure without repetitive moves.",
+      "evidence": "3+1+3solved;4/5/6counts15/31/63.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Necessity argument explains doublingplusone.",
+      "evidence": "Mustclearbiggest,mov it,restoretop;oldpuzzletwice.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Shortcutdisclosure preserves move-count meaning.",
+      "evidence": "Blocktop2explicitly+3;laterblockcosts7/15/31;barslegible.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Samepuzzle recurrence generalized without fresh task.",
+      "evidence": "No newalgorithm orapplication.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Doubling towerheight produces9timesmoves.",
+      "evidence": "3disks7versus6disks63.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Physicalstagingandcountbars showrecursivework.",
+      "evidence": "Topstackcleared,biggestmoved,restored;then2x+1counts.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Playablepegspluscountedshortcuts.",
+      "evidence": "Solved3andgrew6.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Usefulrecursion/exponentialworkintuition.",
+      "evidence": "Puzzlespecificmechanism.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Recurrencenecessityandgrowthlinked.",
+      "evidence": "Smallerproblemneededtwice,notjustobservedsequence.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "conceptualDemand": "Treatsmallerstackasrecursiveproblem,counttwicethenone.",
+    "interfaceBurden": "Selectsource/destinationorblockshortcut;costsexplicit.",
+    "prerequisiteNovelty": "Recursivereasoningintroducedthroughphysicalpuzzle.",
+    "notationRepresentationBurden": "Counts,simpleaddition,bars;noformalrecurrence."
+  }
+}

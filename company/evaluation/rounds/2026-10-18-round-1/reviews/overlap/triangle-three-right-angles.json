@@ -1,0 +1,140 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "overlap",
+  "slug": "triangle-three-right-angles",
+  "demoVersion": 3,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/triangle-three-right-angles",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "triangle-three-right-angles",
+    "domain": "geography",
+    "status": "published",
+    "demoVersion": 3,
+    "metaPath": "src/demos/geography/triangle-three-right-angles/meta.json",
+    "metaSha256": "64b0a47301bf2728debd7ca34690dcbe88352c34db5eefca8480fd933f55bab8",
+    "demoSha256": "15dfb987feafd4d1296dbc3b40f92cd74711a71e9abb30d47ce17498d8c0df56",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/triangle-three-right-angles",
+    "primaryWorker": "w1",
+    "reviewKind": "overlap",
+    "outputPath": "reviews/overlap/triangle-three-right-angles.json"
+  },
+  "date": "2026-10-18T20:41:20.302207+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Chose180 andlocked."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "30Eangles90,90,30sum210excess30area21.3Mkm2/4.2%.90Eall90sum270excess90area63.8M/12.5%.150Esum330excess150area106.3M/20.8%. Inspectedtriangleareaandallthreecornerangles."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read270correction,flatversussphere,tinytrianglelimit,excessarearule1/720Earthperdegree,and90excessoneeighthEarth."
+    },
+    {
+      "phase": "visual-inspection",
+      "evidence": "Actual1257x936dark inlineinitial,30/90/150andscrolledreveal inspected.150Ecornerlabelclipsatrightbefore reveal;finalnestedscrollclipsmappoleandrighttextedge,AXprovidesfullprose."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concretecounterexampletoschooltriangleintuition.",
+      "evidence": "Northpoleandtwoequatorpoints90apart,180/210/270/360choices.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Threeangle/areacontrastswithretainedhistoryexposeexcessrelation.",
+      "evidence": "30/90/150excesswith4.2/12.5/20.8%Earth.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Geometriccounterexampleandarea/smallscaleboundarylinked.",
+      "evidence": "Threerightangles,excess1/720surfaceperdegree,tinytrianglesnearlyflat.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Anglelabelsstrongbutclippingandsmallscaledrevealburden.",
+      "evidence": "150rightcornerlabelclip;finalnestedscrollandrightproseedgeclipat1257x936.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Areaformulaandtinylimitwithinsamesphericaltrianglefamily.",
+      "evidence": "No newareacaseortask.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 4,
+      "reason": "Threerightanglesformtriangleonsphere.",
+      "evidence": "90/90/90sum270directlyseen.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Visibleanglesandshadedarealinkexcesstosize.",
+      "evidence": "Threecontrastsandhistoryinspected.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Singlecornerdragcontrol.",
+      "evidence": "30to90to150tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "UsefulcurvedgeometryandEarthintuition.",
+      "evidence": "Large-scalemappingdiffersfromrulergeometry.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Curvature,angleexcess,areaandlocalflatnessconnected.",
+      "evidence": "1/720ruleandtinylimit.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "conceptualDemand": "Replac eplanartriangleassumptionwithsurfacearcsandlinkexcesstoarea.",
+    "interfaceBurden": "Oneslider;150labelclipandfinalnestedscroll.",
+    "prerequisiteNovelty": "Sphericaltrianglesandangleexcessnew,explicitrightangleexample.",
+    "notationRepresentationBurden": "Angles,excess,percent,Mkm2and1/720surfacefraction;severalcounters."
+  }
+}

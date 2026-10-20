@@ -1,0 +1,103 @@
+{
+  "slug": "ties-keep-their-order",
+  "demoVersion": 3,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/ties-keep-their-order",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Ana. Started slide next then fast-forwarded to swap2. Stable lane finished Ben,Dee,Ana,Cal; swapping lane before second swap Ben,Ana,Cal,Dee.",
+    "Second swap exchanged Ana andDee, carrying Ana past equal-gradeCal. Both grade-sorted, B order Ana/Cal versusCal/Ana.",
+    "Screenshots retained two trails, original slot badges, Ana yellow andCal striped, crossing arrow and red outlines. Reveal connected equal-item passing to insertion/selection and spreadsheet name-then-grade sorting."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Familiar names/grades, two simultaneous sorting procedures.",
+    "conceptualDemand": "Primary-key correctness versus relative tie order.",
+    "interfaceBurden": "Low controls, compact dense trails."
+  },
+  "whyCool": "Ana andCal never need to swap with each other for their order to reverse\u2014a jump past an equal is enough.",
+  "caveat": "Fixed four-student example; spreadsheet preservation requires a stable final sort, implied by context but should stay explicit. No independently tried new table.",
+  "effort": "Browser prediction, slide step, fast-forward, pivotal second swap, before/after screenshots and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Exceptional identity-preserving visual for a useful sorting property.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete equal-key ambiguity with method-dependent correct answer.",
+      "evidence": "Alphabetic names, two grades, asks B leader.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Two methods under same input with pivotal crossing step.",
+      "evidence": "Learner triggers swap2 while prior stable trace retained.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Specific action explains changed secondary order and original answer.",
+      "evidence": "Ana slot2 toend passesCal despite never directly swapping B/B.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Identity styling and trails distinguish grade from original order.",
+      "evidence": "Name,grade,original slot and color/pattern cues.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete multi-key spreadsheet application.",
+      "evidence": "Name sort then stable grade sort preserves name order inside grade.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Both correctly sorted by grade but differ within ties.",
+      "evidence": "Long swap reverses Ana/Cal.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Crossing identity paths directly show stability violation.",
+      "evidence": "Retained trails, original position badges and highlighted crossing.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Guided two-method progression.",
+      "evidence": "No editable names/grades.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Secondary-key sorting relevance.",
+      "evidence": "Spreadsheet example.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Explains indirect tie reversal without comparing tied cards.",
+      "evidence": "Ana jumps pastCal on swap withDee.",
+      "confidence": "medium"
+    }
+  }
+}

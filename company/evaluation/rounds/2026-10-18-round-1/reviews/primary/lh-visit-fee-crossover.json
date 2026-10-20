@@ -1,0 +1,103 @@
+{
+  "slug": "lh-visit-fee-crossover",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-visit-fee-crossover",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Per visit lower at3 visits for\u20ac10/visit versus\u20ac30 once+\u20ac4/visit,equivalent service.",
+    "Tests gave30/42;5 visits equal50;10 visits reversed100/70.",
+    "Screenshot used receipt icons. Reveal preserved original/current inputs, identified five-visit equality and excluded needs/attendance prediction."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Compare fixed fee plus rate to pure rate.",
+    "conceptualDemand": "Usage determines plan winner.",
+    "interfaceBurden": "Two tests and slider."
+  },
+  "whyCool": "A lower price per visit can still cost more until you go often enough.",
+  "caveat": "Equivalent services and future attendance are assumptions; no actual recommendation.",
+  "effort": "Prediction, both tests, exact crossover and maximum, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Useful demonstrated threshold with explicit scope.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete fixed-variable tradeoff with fully supplied terms.",
+      "evidence": "Three visits.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Checked both winners and exact equality.",
+      "evidence": "3,5,10 visits.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains term separation and comparison scope.",
+      "evidence": "No future attendance prediction.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Fees, service equivalence and expressions explicit.",
+      "evidence": "Fictional prices.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete crossover and usage uncertainty qualify application.",
+      "evidence": "Five visits; needs and attendance separate.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Lower visit fee loses at low usage.",
+      "evidence": "30 versus42 then100 versus70.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 1,
+      "reason": "Receipt icons do not show intercept/slope comparison.",
+      "evidence": "Numerical cards carry tradeoff.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Crossover discovery supported.",
+      "evidence": "Equal5.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Plan comparison central.",
+      "evidence": "Access fee versus per use.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Fixed/variable terms and uncertain future use.",
+      "evidence": "Total cost differs from service fit.",
+      "confidence": "medium"
+    }
+  }
+}

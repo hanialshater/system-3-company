@@ -1,0 +1,103 @@
+{
+  "slug": "apply-not-quote",
+  "demoVersion": 3,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/apply-not-quote",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted 0 of 3 positions correct in 9,2,5 under ascending rule.",
+    "A any-order reports match not checked; B shows target2,5,9 and original0/3. Swap1/2 gives2,9,5 with1/3;swap2/3 gives2,5,9 with3/3.",
+    "Reveal accurately compares original and corrected state. Screenshots readable; any-order condition isn't an actual checker result despite hook saying it passes."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Three-number ordering.",
+    "conceptualDemand": "Correct elements versus correct arrangement.",
+    "interfaceBurden": "Modes and two swap controls."
+  },
+  "whyCool": "A response can contain every required element and still fail the rule that organizes them.",
+  "caveat": "Clarify any-order baseline and add a fresh unsolved arrangement for transfer.",
+  "effort": "Prediction,A/B,two corrections,reveal,two screenshots.",
+  "provisionalBucket": "solid-baseline-label-followup",
+  "bucketReason": "Actual corrective interaction,minor baseline inconsistency.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete rule application with plausible membership misconception.",
+      "evidence": "0/1/all3.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Learner swaps actually correct a scored attempt.",
+      "evidence": "0\u21921\u21923 positions.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Ties own correction to rule rather than membership.",
+      "evidence": "Original0,current3.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readable fields but any-order not checked conflicts with hook passes claim.",
+      "evidence": "Aresult.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Principle demonstrated without new task.",
+      "evidence": "Same three numbers.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "All numbers present doesn't mean correct positions.",
+      "evidence": "Membership versus order.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Target and attempt rows plus per-position checks.",
+      "evidence": "Visible corrected positions.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Actual swap correction central.",
+      "evidence": "Two chosen swaps.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Applying requirements versus superficial checks.",
+      "evidence": "Simple sorting exercise.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Membership versus positional predicate.",
+      "evidence": "Rule fidelity.",
+      "confidence": "medium"
+    }
+  }
+}

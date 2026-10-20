@@ -1,0 +1,103 @@
+{
+  "slug": "lh-two-for-one-boundary",
+  "demoVersion": 2,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-two-for-one-boundary",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction screenshot showed Pairs for\u20ac4,You buy3,pair-only purchase; selected\u20ac8.",
+    "Tests revealed comparison singles\u20ac3 each gives9 versus pairs8 for3 needed; minimum1 gave3 versus4 reversal.",
+    "Reveal preserved original/current state, explained rounding3 needed to2 whole pairs and even-count condition for half-price per item."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Small counts and pair ceiling.",
+    "conceptualDemand": "Required items differ from pairs purchased.",
+    "interfaceBurden": "Two tests and slider."
+  },
+  "whyCool": "Half the pair price is only the effective item price when you need an even count.",
+  "caveat": "Prompt says buy3 while model buys4 to cover3; should name required and received counts.",
+  "effort": "Prediction screenshot, both tests, one-item boundary and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Useful odd-pair limit with ambiguous need/purchase wording.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Pair-only assumption supports answer, but buy3 wording conflates need with receiving4.",
+      "evidence": "Choices6,8,12.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Odd/minimum count exposes pair rounding and winner reversal.",
+      "evidence": "3\u21921.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains indivisible pairs and exact even-count limitation.",
+      "evidence": "Half pair price only works for even count.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Needed count versus purchased count should be explicit; singles price appears after prediction.",
+      "evidence": "Buy3 but two pairs means4 received.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete even-count condition prevents naive unit-price application.",
+      "evidence": "Odd needs require whole pair.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Promotional per-item price fails for odd quantity.",
+      "evidence": "One needed costs4 in pair option.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 1,
+      "reason": "Receipt icons do not show bought versus needed items.",
+      "evidence": "Initial screenshot inspected.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Quantity boundary changes comparison winner.",
+      "evidence": "3 versus1.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Pack pricing central.",
+      "evidence": "Pair-only offer.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Indivisibility and effective cost.",
+      "evidence": "Even versus odd counts.",
+      "confidence": "medium"
+    }
+  }
+}

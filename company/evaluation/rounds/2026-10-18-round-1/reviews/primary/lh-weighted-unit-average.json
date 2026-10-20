@@ -1,0 +1,103 @@
+{
+  "slug": "lh-weighted-unit-average",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-weighted-unit-average",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Chosen weights lower:\u20ac3/kg A and\u20ac6/kg B,compare1 kg each versus2 kg A+1 kg B.",
+    "Both tests showed4.5 versus4 \u20ac/kg. Minimum A mass1 gave4.5 both.",
+    "Screenshot aggregate fills not mixture composition. Reveal preserved inputs and explained total cost/total mass, simple mean only for equal masses."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Weighted sum divided by total mass.",
+    "conceptualDemand": "Quantities determine weights, not just two price labels.",
+    "interfaceBurden": "Two tests and slider."
+  },
+  "whyCool": "The average price follows how much of each material you actually have.",
+  "caveat": "Diagram shows only aggregate averages rather than composition; fixed prices and additive masses.",
+  "effort": "Prediction, both tests, equal-mass boundary, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear weighted-mean mechanism and special-case condition.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete quantity-weighted price comparison.",
+      "evidence": "Different masses and rates supplied.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Equal-mass boundary validates simple-mean special case.",
+      "evidence": "2\u21921 kg cheap material.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains proper denominator and shift toward greater quantity.",
+      "evidence": "Total price divided by mass.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Material rates, additive masses and scope explicit.",
+      "evidence": "No mixing guidance.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Explicit equal-mass condition distinguishes simple average validity.",
+      "evidence": "Simple mean describes equal masses only.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Simple average fails unequal quantities.",
+      "evidence": "4 rather than4.5.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 1,
+      "reason": "No visual breakdown of cheap versus expensive quantities.",
+      "evidence": "Generic aggregate fill.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Tests and cheap-mass slider.",
+      "evidence": "Prices and expensive mass fixed.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Average unit price central.",
+      "evidence": "Weighted procurement cost.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Weighting and special-case ordinary mean.",
+      "evidence": "Mean moves toward larger component.",
+      "confidence": "medium"
+    }
+  }
+}

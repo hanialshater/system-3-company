@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "iss-gravity-still-there",
+  "demoVersion": 4,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/iss-gravity-still-there",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "36e3e8ea2ef535ed620028c9c8d197cd465c89352e8ebf83b876d89d689d4651",
+    "demoSha256": "a4270259cd7589f333c0ceb981e4d9f56664d94149758d4ac8935a55d326c0c0",
+    "metaPath": "src/demos/physics/iss-gravity-still-there/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected 0% gravity and locked it in.",
+    "exploration": "Visited 400 km: 88.5%; 6371 km: 25%; 20200 km: 5.7%; 35786 km: 2.3%. Threw at 3 km/s from 400 km, stepped twice by three minutes: hit ground 961 km away, predicted hit time 5.5 minutes. Threw at 7.67 km/s, stepped three minutes: still missing. Reveal unlocked. Height history retained.",
+    "reveal": "Corrected about 90%, links radius doubling to quarter gravity and 400 km adding only 6% centre distance. Slow throw hits while ISS-speed throw keeps missing; astronauts and station fall together.",
+    "visual": "Inline screenshots inspected. Final orange circular path surrounds green Earth; station square and ball dot share orbit; gravity bar remains almost full at 88.5%. Caption heights stretched sixfold, round Earth, no air. Trust count 8/8 ignored.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884122 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Direct gravity estimate surfaces floating-means-no-gravity misconception.",
+      "evidence": "0% selected versus 88.5% observed.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Height series and speed-controlled throws expose gravity decay and orbit boundary.",
+      "evidence": "Four heights, slow impact versus fast continued orbit with time steps.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Uses actual history and throw paths to resolve floating, with geometry/model limitations visible.",
+      "evidence": "Reveal cites quarter gravity, slow ground hit and ISS-speed falling together; no-air caption.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Named heights, speed choices and retained status make multi-step path followable.",
+      "evidence": "Successful height/throw/time sequence and screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable free-fall principle and distance rule offered, without new concrete case after explanation.",
+      "evidence": "Station and astronauts fall together; inverse-square relation.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "No-gravity prediction reversed by nearly full gravity bar and sustained orbit.",
+      "evidence": "88.5% at station height.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Gravity bar, impact mark and orbit path carry multiple linked mechanisms.",
+      "evidence": "Height contrasts, slow impact, fast orbit screenshot.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 4,
+      "reason": "Height, throw speed and time stepping support distinct experiments.",
+      "evidence": "Four heights and two throw outcomes exercised.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Explains concrete astronaut floating and satellite orbit phenomenon.",
+      "evidence": "Station/astronaut shared fall reveal.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 4,
+      "reason": "Inverse-square height relation, impact versus orbit and shared free fall all experienced.",
+      "evidence": "Four heights, two speed paths, repeated steps and reveal.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Core explanation links centre distance, inverse square, sideways speed, curved fall and shared motion.",
+    "conceptualDemand": "Several dependent abstractions with strong graphical support.",
+    "interfaceBurden": "Moderate: height, speed and time controls require sequence.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "high: orbital free fall and inverse-square field",
+    "notationRepresentationBurden": "moderate: km,km/s,percent and time"
+  },
+  "whyCool": "The fast ball keeps missing the ground while the gravity bar stays at 88.5%, making orbit visible as falling rather than gravity disappearing.",
+  "caveat": "Seven km/s path untested; model excludes air and stretches heights.",
+  "missingEvidence": [
+    "Seven km/s throw",
+    "Full orbital lap",
+    "Fresh application",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

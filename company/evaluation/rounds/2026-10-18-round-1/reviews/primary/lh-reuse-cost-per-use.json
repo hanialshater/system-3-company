@@ -1,0 +1,103 @@
+{
+  "slug": "lh-reuse-cost-per-use",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-reuse-cost-per-use",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Single-use lower at 50 uses for reusable \u20ac12 once versus \u20ac0.20/use.",
+    "Tests gave \u20ac0.24 versus \u20ac0.20. Slider increased by five to55 (\u20ac0.218) and60 (\u20ac0.20), then disabled exactly at equality and unlocked reveal.",
+    "Screenshot showed abstract rings. Reveal preserved initial/current values and omitted upkeep, lifespan and environmental impact."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple division and matching.",
+    "conceptualDemand": "One-time cost divided across uses.",
+    "interfaceBurden": "Two tests and five-use steps; success locks slider."
+  },
+  "whyCool": "Repeated use spreads a one-time price until it meets the disposable alternative.",
+  "caveat": "Cannot explore beyond equality after success; illustrative costs omit durability and upkeep.",
+  "effort": "Prediction, both tests,55 and60 use states, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear break-even task with limited post-success exploration.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Specific cost-per-use comparison with enough inputs.",
+      "evidence": "50 uses versus fixed price.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Requires finding equality but locks slider there, preventing testing beyond crossover.",
+      "evidence": "Disabled at60.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains division and break-even with limitations.",
+      "evidence": "\u20ac12/60=\u20ac0.20.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Equivalent service and exclusions explicit; task says raise until match.",
+      "evidence": "Clear unlock condition.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete lifespan/upkeep conditions constrain application.",
+      "evidence": "No purchasing or environmental conclusion.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Reusable does not start cheaper per use.",
+      "evidence": "0.24 at50, equal60.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 1,
+      "reason": "Abstract rings do not explain amortization.",
+      "evidence": "Numeric cards carry division.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Find equality task adds goal.",
+      "evidence": "Slider locks on success.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Repeated-use economics central.",
+      "evidence": "One-time cost amortization.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Fixed cost spread over use with scope.",
+      "evidence": "Cost per use versus recurring payment.",
+      "confidence": "medium"
+    }
+  }
+}

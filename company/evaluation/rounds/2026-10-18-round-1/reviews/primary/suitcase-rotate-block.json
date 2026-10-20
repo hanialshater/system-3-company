@@ -1,0 +1,103 @@
+{
+  "slug": "suitcase-rotate-block",
+  "demoVersion": 2,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/suitcase-rotate-block",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted quarter-turn for bag30\u00d736,block18\u00d712. Longway3,quarter4.",
+    "Bag width maximum35 quarter still4; diagram shows2\u00d72 grid and spare strip.",
+    "Reveal explains complete rows/columns and unusable strips,rigid no overlap/compression. Screenshot small schematic,prose clips. Does not claim global mixed-orientation optimum."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Dimension division and whole-row fit.",
+    "conceptualDemand": "Integer geometry,not area ratio alone.",
+    "interfaceBurden": "Two modes,width slider."
+  },
+  "whyCool": "Extra empty area is useful only if its shape can accommodate another whole object.",
+  "caveat": "Small diagram and clipped prose;comparison limited to displayed uniform orientations.",
+  "effort": "Prediction,orientationcontrast,widthendpoint,reveal,inlinevisual.",
+  "provisionalBucket": "solid-viewport-followup",
+  "bucketReason": "Clear bounded packing comparison.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Concrete geometry but title cues rotation.",
+      "evidence": "Rotate before bigger bag.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Orientation changes grid count; width exposes plateau.",
+      "evidence": "3\u21924,30\u219235 still4.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains discretized fit and idealization.",
+      "evidence": "Complete rows/columns,strips.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Tiny drawing and right-edge clipping.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete check rotations and full dimensions with rigid-grid conditions.",
+      "evidence": "Unused area may not fit whole block.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Same area,more blocks by orientation.",
+      "evidence": "3versus4.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Grid and leftover strips central.",
+      "evidence": "2\u00d72.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Orientation and width.",
+      "evidence": "Discrete counts.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Packing arrangement central.",
+      "evidence": "Before bigger bag.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Area alone versus integer grid fit.",
+      "evidence": "Plateau.",
+      "confidence": "medium"
+    }
+  }
+}

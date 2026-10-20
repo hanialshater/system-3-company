@@ -1,0 +1,105 @@
+{
+  "slug": "darkest-evening-of-the-year",
+  "demoVersion": 2,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/darkest-evening-of-the-year",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "Prediction earliest London sunset:21,13,30December; chose21 andlocked.",
+    "Plotted13Dec sunrise07:58 noon11:55 sunset15:51 day7h53;21Dec08:04/11:59/15:53 day7h50;30Dec08:06/12:03/16:00 day7h54.",
+    "Date sliderEnd:15Jan08:00/12:10/16:20 day8h21.",
+    "Reveal corrects to13December and explains shrinkingday combined with sliding solarnoon; tilt and orbital speed named.",
+    "Screenshot: three chartbands, earliest/latest circles; upper sunsetband partly clipped by stageviewport, fullreveal readable."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 4,
+      "reason": "Strong everyday seasonal misconception with nearby alternatives.",
+      "evidence": "Shortestday21vs earliest13.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Date comparisons make separate trends visible.",
+      "evidence": "13/21/30 checkpoints and slider15Jan.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains difference through movingnoon, while physicalcause remains verbal.",
+      "evidence": "Solarnoon11:55=>12:03.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Threeclockbands require careful reading; topband clipped.",
+      "evidence": "Screenshot sunsetband partlyaboveview.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Potential to separate duration from position of interval.",
+      "evidence": "Shrinkingday on slidingnoon explanation.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual chart with date-slider keyboard use only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 4,
+      "reason": "Earliest sunset differs from shortestday.",
+      "evidence": "13vs21December.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Separated bands support comparison.",
+      "evidence": "Sunset,noon,sunrise plotted.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Date plotting is exploratory rather than game-like.",
+      "evidence": "Fourdatebuttons andslider.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Seasonal time awareness.",
+      "evidence": "London wintertimes.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Combines shiftingcenter and shrinkingduration.",
+      "evidence": "Solarnoon shift explains mismatch.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Compare three time series and distinguish duration from clockposition.",
+    "conceptualDemand": "Movingcenter plus changinginterval; tilt/speed explanation not visualized.",
+    "interfaceBurden": "Threechartbands; upperband partlyclipped."
+  },
+  "whyCool": "The shortestday and darkest evening separate because the whole daylight window is sliding later.",
+  "caveat": "Displayed astronomical values observed, not independently factchecked; single reviewer.",
+  "effort": "Prediction, three keydates, sliderboundary and reveal.",
+  "notApprovedForServing": true,
+  "provisionalBucket": "strong",
+  "bucketReason": "Surprising insight with concrete comparisons; chartclipping needsattention."
+}

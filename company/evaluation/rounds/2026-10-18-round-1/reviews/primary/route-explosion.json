@@ -1,0 +1,104 @@
+{
+  "slug": "route-explosion",
+  "demoVersion": 3,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/route-explosion",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction fixes home and asks orders of nine other cities.",
+    "One route then all routes displayed all six orders for three cities; fourth city multiplied six by four to twenty-four.",
+    "Automatic growth to nine retained each factor and ended 362,880.",
+    "Nineteen-city case reported exact 121,645,100,408,832,000 and illustrative 3.9 years at a billion checks per second; reveal explains fixed home and why counting it gives the ten-factor distractor."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Permutations and large-number scale.",
+    "conceptualDemand": "Multiply sequential choices rather than square city count.",
+    "interfaceBurden": "Route, growth, large-case and reset controls."
+  },
+  "whyCool": "Each extra city multiplies the choices, so a few more cities can turn a short computation into years of brute force.",
+  "caveat": "Counts directed visit orders with fixed home, not symmetry-reduced tours; timing is hypothetical, not a benchmark.",
+  "effort": "Prediction, route step and exhaustive three-city set, four-city increment, nine and nineteen cases, screenshots and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Concrete small enumeration supports a precise factorial growth explanation.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Precise permutation count with meaningful square-growth and extra-home distractors.",
+      "evidence": "Home fixed, nine other cities.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Small exhaustive listing, one-city increment and larger bounds show growth.",
+      "evidence": "Three, four, nine and nineteen cities.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Derives observed count and explains distractor and practical enumeration limit.",
+      "evidence": "Nine choices then eight; home excluded; stated check-rate illustration.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Small route panels and retained multiplication chain distinguish enumeration from large counts.",
+      "evidence": "All six small routes; larger cases show formula rather than fabricated enumeration.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete computational implication with explicit hypothetical rate.",
+      "evidence": "Route planners need alternatives to full enumeration; speed assumption stated.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "A modest input count can imply enormous order count.",
+      "evidence": "Nine 362,880 versus nineteen about 1.2e17.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Small route enumeration connects permutations to the factor chain.",
+      "evidence": "Six drawn paths and incremental multipliers.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Enumerate paths, add one city, batch and inspect larger limit.",
+      "evidence": "Several scales and restart.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete algorithmic scaling warning.",
+      "evidence": "Brute-force route order evaluation.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Permutation counting and computational feasibility connect.",
+      "evidence": "Fixed start and factorial growth.",
+      "confidence": "medium"
+    }
+  }
+}

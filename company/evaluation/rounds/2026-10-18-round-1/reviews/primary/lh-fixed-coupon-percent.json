@@ -1,0 +1,103 @@
+{
+  "slug": "lh-fixed-coupon-percent",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-fixed-coupon-percent",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted \u20ac5 off gives lower total for \u20ac20 basket.",
+    "Tests gave percentage \u20ac16 versus fixed \u20ac15. At \u20ac25 both \u20ac20; maximum \u20ac40 gave percentage \u20ac32 versus fixed \u20ac35.",
+    "Screenshot used receipt icons and result cards. Reveal preserved initial/current context and explained equality at 20% of \u20ac25 = \u20ac5."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Familiar discounts and small amounts.",
+    "conceptualDemand": "Compare fixed and proportional savings.",
+    "interfaceBurden": "Two tests and basket slider."
+  },
+  "whyCool": "The best coupon changes when the basket crosses a simple threshold.",
+  "caveat": "Fictional offers exclude actual restrictions; no threshold graph.",
+  "effort": "Prediction, both tests, exact crossover, maximum boundary, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Useful decision rule demonstrated on both sides of equality.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete comparable offers with plausible choices and no exclusions.",
+      "evidence": "20% versus \u20ac5 at \u20ac20.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Controlled change checked equality and reversal across threshold.",
+      "evidence": "20, 25, 40 euro baskets.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains scaling and exact crossover.",
+      "evidence": "Percentage scales, fixed does not.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Final total comparison and expressions are explicit.",
+      "evidence": "One coupon, no exclusions.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete threshold gives a reusable decision condition.",
+      "evidence": "Match deductions to find \u20ac25 crossover.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Winning offer reverses with basket size.",
+      "evidence": "Fixed wins below threshold, percentage above.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 1,
+      "reason": "Receipt icons do not show threshold or slopes.",
+      "evidence": "Numeric cards carry comparison.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Finding crossover supports exploratory slider use.",
+      "evidence": "Equal at \u20ac25.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Offer comparison is central.",
+      "evidence": "Final checkout total.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Fixed versus proportional deductions.",
+      "evidence": "Linear crossover.",
+      "confidence": "medium"
+    }
+  }
+}

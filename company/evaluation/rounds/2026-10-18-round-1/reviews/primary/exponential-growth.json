@@ -1,0 +1,104 @@
+{
+  "slug": "exponential-growth",
+  "demoVersion": 2,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/exponential-growth",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predictiondoublingdailyfull30,day25coverage83/50/3%; chose83.",
+    "Onedayearlier30=>29half;walkback5from29animatedto24=1/64,1.56%;onedaylater25=1/32,3.13%.",
+    "Revealexplainsbackwardhalving,83%aslineartimeerror,threequartersfillslasttwodays,97%clearonlyfivedaysfromfull;exactdoublingpuzzleexplicit.",
+    "Screenshot small1024cellpond andlargereadout; actualrevealrightedgeclipping;verticalscrollshowsdifferentstageportion."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Severalhalvingsteps plusfraction-to-percentage representation.",
+    "conceptualDemand": "Countdoublingsbackward,ratherthanproportionoftime.",
+    "interfaceBurden": "Simplecontrols;walk5relativecurrentday,animation,clippedreveal."
+  },
+  "whyCool": "Apondthatstilllooks97percentclear canbefulljustfivedoublingslater.",
+  "caveat": "Exactdoublingpuzzle,norealalgaedynamics;walk5fromday29endson24,relative-controlbehaviorobserved.",
+  "effort": "Prediction,day29,animated5daywalk,day25,reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Strongmisconceptioncontrast,straightforwardmechanism;layoutfriction.",
+  "quality": {
+    "prediction": {
+      "score": 4,
+      "reason": "Preciselineartimeversusdoublingbeliefalternatives.",
+      "evidence": "83%=25/30compared3%=1/32.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Daysteps andanimation showrepeatedhalving.",
+      "evidence": "30full,29half,24/64,25/32.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connectsstatechange tohalvingandchosenlinearerror.",
+      "evidence": "83%timefractionisnotgrowthfraction.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Counts/explanation clearbutactualrightedgecutoff andtinypixels.",
+      "evidence": "1024cellgrid smallatcurrentview.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalrapid-lategrowthprinciple stated;newcase notapplied.",
+      "evidence": "Doubling30times overbillion stated.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Nearlyemptypond almostfullindays.",
+      "evidence": "3%at25full30.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Filledareafractions anddayreadout exposeexponentialshape.",
+      "evidence": "Half,quarter,sliver.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Timelinebuttons andslider.",
+      "evidence": "Oneearlier/later/walk5.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Supportinggrowthintuition.",
+      "evidence": "Doublingversuslineartime.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Onecompoundingmechanism andbackwardreasoning.",
+      "evidence": "No growthrateorcarryingcapacityvariation.",
+      "confidence": "medium"
+    }
+  }
+}

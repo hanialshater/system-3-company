@@ -1,0 +1,104 @@
+{
+  "slug": "clay-boat",
+  "demoVersion": 4,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/clay-boat",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction1kgclayball0.56L reshapedtofloat mustdisplace0.56,1,2L; chose0.56.",
+    "Wide dish floats1L; smallcup max0.8L thenfloods anddisplaces0.56L; bigcup floats1L; massreadout1kgthroughout.",
+    "Reveal comparesball0.56Lvswidedish1L, explicitly explains floodedcup and sameweight changeddisplacement.",
+    "Screenshot afterreveal uppercrosssection internallyaboveviewport and revealrightedgeclipped."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Distinguish materialvolume,capacity,and displacedwater.",
+    "conceptualDemand": "Weightbalance through displacement; hollowversusflooded.",
+    "interfaceBurden": "Simpleone-slider model; longclippedreveal."
+  },
+  "whyCool": "A smallcup stillsinks, but a largerhollowshape moves enoughwater to support the exactsame clay.",
+  "caveat": "Visualclarity observation reflects currentpreview afterreveal, not allviewports; single reviewer.",
+  "effort": "Prediction,wide/small/big shapes,reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Counterexample-rich physicalmechanism with constantmass.",
+  "quality": {
+    "prediction": {
+      "score": 4,
+      "reason": "Separates materialvolume from totaldisplacement.",
+      "evidence": "0.56vs1L alternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Shapecontrol exposes sinking,flooding,andfloating holdingmassfixed.",
+      "evidence": "Smallcup fails;bigcup succeeds.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Uses testedfailedshape to explain buoyancythreshold.",
+      "evidence": "0.8capacity thenflooding;pushmatchesweight at1L.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Several volumes and units plus clippedreveal.",
+      "evidence": "Material0.56,capacity0.8,displacement1L.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Potential to explain heavy-material boats.",
+      "evidence": "Hollowshape enclosesair; displacedwater weight.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Sameclay sinks orfloats.",
+      "evidence": "Ballversuscup.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Changingcrosssection and numericdisplacement.",
+      "evidence": "Shapeandconstantmassreadouts.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reshapingphysicalobject.",
+      "evidence": "Fiveshape slider.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Everydaybuoyancy understanding.",
+      "evidence": "Whyhollowheavy-material objectsfloat.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Capacity,flooding,and forcebalance.",
+      "evidence": "Smallcup counterexample.",
+      "confidence": "medium"
+    }
+  }
+}

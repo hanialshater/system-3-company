@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "square-root-wealth",
+  "demoVersion": 4,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/square-root-wealth",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "8ffcf0c7fad07d4ff2df3deb1cf6110cac88660564d8e770da904e239c34b362",
+    "demoSha256": "b47abdf9a60798e57846541889c5f8669130bb09827635925b6cfb30abbc663e",
+    "metaPath": "src/demos/economics/square-root-wealth/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected $50 and locked the certain amount equivalent to a fair $0 or $100 coin under square-root felt value.",
+    "exploration": "Tested sure $50: felt value 7.07 versus coin 5. Set $25: both felt values 5. Tested $10: 3.16, worse than coin; $75: 8.66, better. The found $25 crossing stayed marked on the curve.",
+    "reveal": "The reveal corrected the answer to $25 and accurately recognized the found crossing. It explained averaging square roots rather than dollars and compared the utility gain from zero to twenty-five with the smaller gain from fifty to a hundred. It explicitly called square-root utility a textbook model, not a measure of anyone.",
+    "visual": "Inspected the inline dark 1257 by 936 screenshot at $25. A concave mint curve crossed the dashed coin utility line at a marked $25 tick. Brackets compared unequal felt-value gains, and separate dollar and utility readouts were clear.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884175 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The question distinguishes average money from expected modeled utility.",
+      "evidence": "Selected the fifty-dollar mean payout.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "A slider locates equality and presets test both sides.",
+      "evidence": "Twenty-five matches the coin while ten is below and fifty or seventy-five above.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal explains the nonlinear transformation and accurately recalls the crossing.",
+      "evidence": "It contrasts utility gains of 5.00 and 2.93 over different wealth intervals.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "The curve and separate units make the comparison explicit.",
+      "evidence": "Sure amount is in dollars while felt value is a distinct readout.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "The diminishing-utility principle is generalized without a fresh gamble or application.",
+      "evidence": "Only one payoff pair and one utility function are tested.",
+      "confidence": "high"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "A certain twenty-five dollars can match a fifty-dollar-average gamble under this utility.",
+      "evidence": "The equality occurs at half the average payout.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "The bend and reference line explain the certainty equivalent.",
+      "evidence": "The marked crossing remains visible while other amounts are tried.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "The slider supports a simple matching task.",
+      "evidence": "Preset values probe lower and higher utility.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "It clarifies a model of risk aversion without presenting it as personal advice.",
+      "evidence": "The reveal explicitly limits the utility assumption.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "The lesson distinguishes averaging outcomes from averaging their utility.",
+      "evidence": "Unequal marginal gains explain why the two averages differ.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "The controls are easy, while nonlinear utility and expectation introduce an abstract economic model.",
+    "conceptualDemand": "Moderate: transform outcomes before averaging and invert the utility function.",
+    "interfaceBurden": "Low: one slider and three presets.",
+    "conceptualChallenge": "Equal expected utility need not mean equal expected dollars.",
+    "prerequisiteNovelty": "Square roots, diminishing marginal utility and certainty equivalents are introduced.",
+    "notationRepresentationBurden": "Moderate: utility curve, square-root arithmetic and money versus utility units."
+  },
+  "whyCool": "The curve's bend turns a risky fifty-dollar average into the same modeled value as a much smaller certain payment.",
+  "caveat": "The stipulated utility function is not a measurement of any person's preferences, and wealth is modeled without a background balance.",
+  "missingEvidence": [
+    "No fresh gamble or utility shape was tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

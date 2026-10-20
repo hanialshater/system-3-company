@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "say-seventy-mean-it",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/say-seventy-mean-it",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "say-seventy-mean-it",
+    "domain": "ai",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/ai/say-seventy-mean-it/meta.json",
+    "metaSha256": "79b5f4f7ed9d961181ac60bfe0cfa8ae5265f8bcdd5f1f4712979ed13f534de1",
+    "demoSha256": "bbc5bd40720e8b5ad8ca1b21f4c7f0eb4d03a12beb3cb7d2ee6a2c7bc51eba37",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/say-seventy-mean-it",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/say-seventy-mean-it.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected90% against70% and50% constant confidence minimizing average squared gap; locked it in.",
+    "exploration": "Initial50% average0.250. Say90% also0.250. Say70% lowered0.210. Slider End100% gave0.300;Home0% gave0.700. Outcome accuracy fixed14/20 throughout.",
+    "reveal": "Corrected70%;explained sixmisses at90% eachcost0.810,14hits at50% eachcost0.250. Weightedformula0.7(1\u2212r)\u00b2+0.3r\u00b2 minimizesat0.7;namedBrierscore andhonest hitrate principle.",
+    "visual": "Actual1257 \u00d7936 dark screenshot inspected. Twenty right/wrong markers andper-answer lossbars showcurrent0% costs;dashedaverage0.700. Fullreveal legible.",
+    "previewIsolation": "No-history evaluation banner present.",
+    "blinding": "4/4 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear overconfidence/honesty/hedging alternatives with explicit score.",
+      "evidence": "90% choice versus70% optimum.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Preset andendpoint contrasts show loss tradeoff withfixedaccuracy.",
+      "evidence": "50/90 both0.250;70=0.210;100=0.300;0=0.700.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects actualmeanlosses tohit/miss components andweightedquadratic.",
+      "evidence": "Sixmisses0.810 andformula.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Confidence labels,mean andoutcome bars supportdesktop path.",
+      "evidence": "Actual0% screenshot andloss0.700.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General honesty principle but no concrete new application orconditional-calibration limits.",
+      "evidence": "Bestconfidence truehitrate statement.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Slider endpointkeys alone insufficient audit.",
+      "evidence": "Home/End worked;focus,contrast,phone,zoom andmotion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed90% doesnowellthanhedging50 andlosesto70.",
+      "evidence": "0.250 tie versus0.210.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Per-answer lossbars showwhichoutcomes paycost.",
+      "evidence": "Right/wrong markers anddashedmean.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Continuousconfidence range allows boundaryexperimentation.",
+      "evidence": "Fiveconfidence values tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete confidence-reporting incentive central.",
+      "evidence": "Squaredscore rewards matchinghitrate.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Over/underconfidence symmetry,outcome weighting andproper-score optimum linked.",
+      "evidence": "50/90 tie andendpointlosses.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Core exactprediction usesweighted squaredloss overtwo outcomes.",
+    "conceptualDemand": "Track probabilities,squared residuals andweightedmean,then optimizeconstantreport.",
+    "interfaceBurden": "Low:one slider andthreepresets;mathematicalreveal addsburden.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "high:proper scoringrule andprobabilitycalibration.",
+    "notationRepresentationBurden": "high:squaredexpressions,r andweightedquadratic."
+  },
+  "whyCool": "Saying90% and50% ties at0.250,butthetruthful70% drops theaverage to0.210.",
+  "caveat": "Constantconfidence ononefixed20-answer dataset;not evidence ofconditionalcalibration orfutureknownhitrate.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Intermediate confidence optimization beyondpresets nottested.",
+    "Focus order,contrast,phone,zoom/reflow andmotion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:55:42.068316+00:00"
+}

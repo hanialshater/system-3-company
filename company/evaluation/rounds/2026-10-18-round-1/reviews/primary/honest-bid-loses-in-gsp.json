@@ -1,0 +1,104 @@
+{
+  "slug": "honest-bid-loses-in-gsp",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/honest-bid-loses-in-gsp",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predictiontwo10/4clickslots,values7/6/1,nextbidpricing,canXimprovehonest7with5or8; choseNo. Tiepriorityexplicit.",
+    "Bid5=>slot2profit24;bid8=>slot1profit10;bid0=>noslotprofit0;baselinehonest7slot1profit10.",
+    "Reveal10x(7-6)=10versus4x(7-1)=24,bidchoosesslotaswellasprice;fixedclicks/othersbids/oneround model.",
+    "Screenshotprofitbars andslotreadout clear;actualrightedgeprosecutoff. Titlehonestycostsyoutheadslot mismatchesbaselinehonestbidwinningtopslot;lossisprofit,nottheslot."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Severalnewauctionquantitiesandconditionalallocation/paymentrules.",
+    "conceptualDemand": "Distinguishbid,value,perclickprice,totalprofit,andposition.",
+    "interfaceBurden": "Simplecontrols;dense setup/titlemismatch andclippedreveal."
+  },
+  "whyCool": "Fourcheaperclicks earn24dollarswhere tenthigher-slotclicks earnonly10 inthemodel.",
+  "caveat": "Headlineimplieshonesty losesaslotbutobservedhonestbidwinsfirst;fixedtoyauction,noactualfinancial/marketingguidance.",
+  "effort": "Prediction,bid5/8/0contrasts,reveal.",
+  "provisionalBucket": "needs-review",
+  "bucketReason": "Usefulincentivecounterexample;headlineandlayoutshouldbecorrectedbeforelaunchselection.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concretegeneralized-second-pricecounterexample withfullclick/value/paymentrules.",
+      "evidence": "Canlowerbidding improveutility?",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Bidscontrolledagainstfixedothers exposeprice/slottradeoff andlosingboundary.",
+      "evidence": "5=>24,8=>10,0=>0.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explainsoriginalcomparisonandmulti-slotmechanismwithscopecondition.",
+      "evidence": "Fewercheaper clicks canyieldhigherprofit.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Titlemisstatescostofhonestyandactualprosecutoff.",
+      "evidence": "Honest7winsfirstslot;profitonly10.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Auctionincentiveprinciple offered;differentvaluation/slotsetup notpracticed.",
+      "evidence": "Fixedsingle-round model.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Droppingtoalowerslot increasesprofit.",
+      "evidence": "24versus10.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Profitbarsover bids plusexplicit slotreadout.",
+      "evidence": "Bid5largeprofit,7/8small.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Explorebidsanddiscontinuousslotchanges.",
+      "evidence": "Sliderandpresets.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Specializedauctionliteracy,notrealad-bidguidance.",
+      "evidence": "Fixedmodelassumptionsrestrictapplication.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Values,bids,prices,clickvolume,andtruthfulness interact.",
+      "evidence": "Multi-slotversussingle-priceintuition.",
+      "confidence": "medium"
+    }
+  }
+}

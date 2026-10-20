@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "powers-of-two-plus-one",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/powers-of-two-plus-one",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "powers-of-two-plus-one",
+    "domain": "math",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/math/powers-of-two-plus-one/meta.json",
+    "metaSha256": "f012dfa761761cfa74abb05545ff629bc4d0ba6a68a501a1db31aaa12824d3c6",
+    "demoSha256": "2e0b3bff9e59ff80729329fd3bc9ad388e6f7f14f24edfb5943030c9f095b2e2",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/powers-of-two-plus-one",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/powers-of-two-plus-one.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected256 against255 and254 forsum1+2+4+\u2026+128;locked it in.",
+    "exploration": "Stage showedoneemptycell inpacked square. Addedoneunit,pile1. Joinedblocks1,2,4,8,16,32,64,128 sequentially;pile doubled2,4,8,16,32,64,128,256. Eachstep saidpile matchesnextblock. Final16\u00d716 squarefilled256.",
+    "reveal": "Corrected255;explainedaugmentedpile256 meansoriginalblocks256\u22121. Generalformula1+2+\u2026+2^(n\u22121)=2^n\u22121. Sentence sayspile alwaysoneshort ofnextdoubling despitevisibleaugmentedpile beingexactpowers;referent potentiallyambiguous.",
+    "visual": "Actual1257 \u00d7936 dark screenshot inspected. Finalsolid256 square,alljoinedblocks andcounter legible;lastformula reachesbottomviewport.",
+    "previewIsolation": "No-history evaluation banner present.",
+    "blinding": "4/4 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Clearoff-by-one choice,buttitle One short ofnextdoubling stronglycues255.",
+      "evidence": "Title plus255/256/254 options.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Sequentialequal-block joinsvisiblyconstructaugmentedpoweroftwo.",
+      "evidence": "Pile1\u21922\u21924\u2192\u2026\u2192256.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Core256\u22121 linkclear,butpile terminology shiftsbetweenaugmentedpile andoriginalsum.",
+      "evidence": "Actualpile256 versusalwaysoneshort sentence.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Onlyvalidnextblock enabled andexplicitpilecounter guideddesktop path.",
+      "evidence": "Actualsquare andsequentialfeedback.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalgeometric-sumformula offered,no concrete newcase.",
+      "evidence": "Any runofdoublings statement.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient access audit.",
+      "evidence": "Keyboard,focus,contrast,phone,zoom andmotion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "256 prediction correctedbyextracell accounting,buttitlealreadycuesoneshort.",
+      "evidence": "Addedunit makes256,original255.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Packedblocks andfilledsquare carrysumidentity.",
+      "evidence": "Actual16\u00d716 square256.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Strictlysequentialjoinbuttons offerlittlealternativeexploration.",
+      "evidence": "Eightprescribedjoins only.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete shortcut forgeometricdoubling sums.",
+      "evidence": "2^n\u22121 formula.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Construction,compensation andgeneralformula linked.",
+      "evidence": "Addedone,joinpowers,subtractone.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Tracks anaddedunit throughrecursive doublingconstruction.",
+    "conceptualDemand": "Distinguishoriginalsumfromaugmentedpile andgeneralize recurringdoubling.",
+    "interfaceBurden": "Low:eightgatedsteps;ambiguouspilereferent inreveal.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate:geometric-series identity.",
+    "notationRepresentationBurden": "moderate:largepowers andsymbolicexponents."
+  },
+  "whyCool": "Anextraunit makes eachaccumulatedpile exactlymatchthenextblock untilthewhole256-cell squarefills.",
+  "caveat": "Titleleaks off-by-one direction;revealpilewording ambiguous,andreset nottested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Startover andshorter/longersums nottested.",
+    "Keyboard,focus,contrast,phone,zoom/reflow andmotion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:54:27.917388+00:00"
+}

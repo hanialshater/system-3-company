@@ -1,0 +1,105 @@
+{
+  "slug": "two-stacks-make-a-queue",
+  "demoVersion": 4,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/two-stacks-make-a-queue",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted each item is poured once per removal for fixed add1,add2,remove,add3,add4,remove3times tape.",
+    "Played tape in order. First removal poured2,1 then popped1 after animation settled. Added3,4 while out held2; second removal popped2 without pour.",
+    "Third removal poured4,3 then popped3; fourth popped4 without pour. Two pours total, output1,2,3,4, all visible moved1 badges.",
+    "Reveal used actual two batches and once-per-item reasoning to explain constant amortized cost; list-doubling analogy asserted.",
+    "Inline1280x720 light screenshots showed stacks and badges clearly; reveal right-edge prose clipped. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Stack/queue reversal and aggregate cost require attention but visual badges support it.",
+    "conceptualDemand": "Amortized versus worst single-operation cost.",
+    "interfaceBurden": "Guided tape, animation phases; prose clipping."
+  },
+  "whyCool": "Each item carries a movement badge that proves expensive-looking pours never charge it twice.",
+  "caveat": "Fixed operation tape; no separate doubling example; right-edge clipping; accessibility unknown.",
+  "effort": "Prediction,full tape with settled pour inspection,reveal and inline screenshots.",
+  "provisionalBucket": "strong-with-viewport-fix",
+  "bucketReason": "Good visual lifetime accounting; repair explanation layout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Complete algorithm rule and operation tape specify movement question.",
+      "evidence": "Once each versus every removal.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Guided interleaved tape contrasts pouring and no-pour removals.",
+      "evidence": "Two pours for four removals.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Observed item badges support lifetime accounting and average-cost explanation.",
+      "evidence": "Each crosses once, prior batch untouched.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clear badges and FIFO output but prose clips; animations require settled observation.",
+      "evidence": "Inline screenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General amortized principle and named doubling analogy without fresh application.",
+      "evidence": "Fixed tape only.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Occasional full transfer still yields cheap average work.",
+      "evidence": "Only two pour events.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Stacks, transfer arrow and per-item badges explain work accounting.",
+      "evidence": "Every moved1 badge.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Guided tape playback.",
+      "evidence": "Eight operations.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Queue implementation and amortized performance central.",
+      "evidence": "Once-per-item cost.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "FIFO via reversal and lifetime cost accounting.",
+      "evidence": "Slow operation pays for surrounding fast ones.",
+      "confidence": "medium"
+    }
+  }
+}

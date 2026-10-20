@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "overlap",
+  "slug": "head-on-is-a-wall",
+  "demoVersion": 2,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/head-on-is-a-wall",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "head-on-is-a-wall",
+    "domain": "physics",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/physics/head-on-is-a-wall/meta.json",
+    "metaSha256": "a93ad0ae8268cf47a4e7104b583f20760e9233bde2526e9a1b6c6ab5f3799571",
+    "demoSha256": "7a5003e8d4fa8f04e8ea2775fe80988157fdaf9c12fdd5a9c91f24f532d417fe",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/head-on-is-a-wall",
+    "primaryWorker": "w3",
+    "reviewKind": "overlap",
+    "outputPath": "reviews/overlap/head-on-is-a-wall.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Chose100 km/h against25 and50; locked it in.",
+    "exploration": "Into car at50 showed car A crush energy145 kJ. Wall at50 retained145 kJ. Wall at100 showed579 kJ and visibly about fourfold energy bar. Retained labels compare all three; animation ended100\u21920 at wall.",
+    "reveal": "Corrected to50; quoted145/145/579 kJ and fourfold difference. Explained stationary meeting point and each identical car stopping50\u21920 in own crumple zone; total energy shared between two zones; speed-squared energy.",
+    "visual": "Actual1257 \u00d7936 dark screenshots inspected for all three contrasts. Road,meeting point and retained energy bars show matching50 and larger100 wall. Full reveal legible.",
+    "previewIsolation": "No-history evaluation banner present.",
+    "blinding": "5/5 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear alternatives test confusing closing speed with per-car collision severity.",
+      "evidence": "100 prediction versus50 correction.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Car/wall and speed contrasts expose energy equality and squared-speed difference.",
+      "evidence": "145 versus145 versus579 kJ.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects tested energies and stationary midpoint to separate crumple zones.",
+      "evidence": "Actual three-run values and50\u21920 explanation.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Retained comparison labels and marked midpoint make tested desktop result clear.",
+      "evidence": "Actual screenshots of energy bar and road.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable symmetry and speed-squared principles, but no concrete new application.",
+      "evidence": "Identical-car conditions and energy explanation.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient access audit.",
+      "evidence": "Keyboard,focus,contrast,phone,zoom and motion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed doubled wall-speed prediction contradicted by equal50-speed energy.",
+      "evidence": "145 kJ car50 equals wall50.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Meeting point and energy bar carry per-car equivalence.",
+      "evidence": "Stationary midpoint; retained145/145/579 labels.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Target and speed choices enable reversible contrasts.",
+      "evidence": "Car50,wall50,wall100.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete interpretation of symmetric collision speed and energy.",
+      "evidence": "Closing speed differs from per-car stop speed.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Symmetry,division across crush zones and squared-speed scaling linked.",
+      "evidence": "Two145 zones versus579 for one wall100.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Connects symmetric stopping to individual energy and speed scaling.",
+    "conceptualDemand": "Distinguish total two-car energy from one car energy and compare speed-squared relation.",
+    "interfaceBurden": "Low: two targets and three speeds with retained results.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: kinetic energy and symmetry.",
+    "notationRepresentationBurden": "moderate: km/h,kJ and fourfold ratio."
+  },
+  "whyCool": "The two50-speed scenarios leave identical145 kJ markers, while wall100 fills four times as much bar.",
+  "caveat": "Only identical equal-speed cars and rigid wall tested; no mismatch or injury model.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "25 km/h case not tested.",
+    "Keyboard,focus,contrast,phone,zoom/reflow and motion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:19:33.490236+00:00"
+}

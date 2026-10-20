@@ -1,0 +1,104 @@
+{
+  "slug": "insurance-fair-price",
+  "demoVersion": 3,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/insurance-fair-price",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted120dollars average payout for1/100 annual10000loss and120premium; alternatives100,50. Independent risks stated.",
+    "Year1oneclaim,average100;year2oneclaim,average100;plus100years total102average99. Ownhouse12240premiums,0payout. Houses0/1/2+hits40/33/27;years0/1/2+losses36/38/28.",
+    "Reveal uses all currentcounts,expected1/100\u00d710000=100,premium20aboveexpectedcost,pooling sure smallcost versusrarelargeloss;independence/no-fraud/seededrun limits. Lockscontrols.",
+    "1280x720light housegrid smallbutreadable; prose rightedgeclipped."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simpleexpectation butseveralaggregateversusindividual quantities.",
+    "conceptualDemand": "Averagecost versuspremium andrealizedoutcome.",
+    "interfaceBurden": "Simplebuttons,densetallies."
+  },
+  "whyCool": "A customer can see no payout for a century while the insurer's average loss still converges near100dollars per customer-year.",
+  "caveat": "One seeded independent-risk toy withassumedcostmargin;not a realinsurancequote. Lockedrevealcontrols andrightedgecutoff.",
+  "effort": "Prediction,twoannualsteps,100yearbatch,reveal,two screenshots.",
+  "provisionalBucket": "promising-with-fix",
+  "bucketReason": "State-aware poolingexplanation withlimits;fixlayout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicit probability,severity andpremium supportexpected-loss misconception test.",
+      "evidence": "120premiumversus100expectedpayout.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Singleyears versuslongerpooledaverage expose variation anddifferentindividualoutcomes.",
+      "evidence": "1,2,102years;houseandyeartallies.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explainsoriginalanswer withactualaggregate/individualstates andexplicitmodellimits.",
+      "evidence": "99runaverageversus100expectation;ownhouse0claims;seededindependenttoy.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Labels andtallies clear butdense andprosecutoff.",
+      "evidence": "Actual102years screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalriskpooling principle described withoutfreshapplicationchallenge.",
+      "evidence": "Surepremiumversusrarelosswithin samepool.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Yourhousecanreceive nothingwhilepoolaverage staysnearexpectedloss.",
+      "evidence": "Own0payout over102yearsversus99average.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Housegrid andindividual/annualfrequencytallies externalize pooling.",
+      "evidence": "40unhit,27repeatedhits;36zerolossyears.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Yearbatchbuttons supportsimulation.",
+      "evidence": "Twoannualstepsplus100years.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Centralexpectedinsurancecost andpooling explanation.",
+      "evidence": "Premiumversuspayout distinction.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Expectation,variance,individualrisk andpoolinglinked.",
+      "evidence": "Lumpyyears,heterogeneousrealizedoutcomes,sameindependentrisk.",
+      "confidence": "medium"
+    }
+  }
+}

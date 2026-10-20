@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "word-in-pieces",
+  "demoVersion": 3,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/word-in-pieces",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "9629967c209f397caf161d8e02286b1ed468f48b4b1df7510e1468c6f339710d",
+    "demoSha256": "f609b89b6af24015b4e0326677c720da56c6e3655d2372538b4686bf4d6bf4da",
+    "metaPath": "src/demos/ai/word-in-pieces/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected one token and locked the prediction for unhappiness with available un, happi and ness pieces plus single letters.",
+    "exploration": "Initial segmentation was un, happi, ness: three tokens. Removed happi: seven tokens. Removed un: eight. Removed ness: eleven single-letter tokens. Selected zyxxy: five letters and five tokens. The history retained the original three and no-piece eleven cases.",
+    "reveal": "The reveal reset the stage to the original vocabulary and explicitly said so. It accurately quoted all-pieces three, no-pieces eleven and zyxxy five, explained model input as piece numbers, and connected vocabulary availability to frequent chunks in real tokenizer training.",
+    "visual": "Inspected the inline dark 1257 by 936 screenshot with all pieces enabled. Three large purple boxes showed un, happi and ness, each with a clearly invented numeric identifier. The toy label, vocabulary toggles, three-token count and history were legible.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The question distinguishes written words from model input units under an explicit rule.",
+      "evidence": "Selected one token despite the available three-piece vocabulary.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Vocabulary toggles isolate why segmentation changes while spelling stays fixed.",
+      "evidence": "The same word changed from three to seven, eight and eleven tokens.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal accurately uses the explored contrasts and explicitly discloses its reset.",
+      "evidence": "It compares eleven letters in three tokens with five letters in five tokens.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Chunk boxes, counts and history make segmentation visible.",
+      "evidence": "Each piece has a separate box and made-up identifier.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "The ending applies the toy mechanism to interpreting real model input with a vocabulary condition.",
+      "evidence": "Real tokenizers learn frequent chunks; what the model receives depends on that piece list.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "A longer word can use fewer tokens than a shorter unfamiliar string.",
+      "evidence": "Eleven letters used three tokens while zyxxy used five.",
+      "confidence": "high"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "The boxes expose token boundaries and their change under vocabulary removal.",
+      "evidence": "One middle chunk becomes five letter units when disabled.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Switching vocabulary pieces on and off creates a direct segmentation toy.",
+      "evidence": "Three toggles alter the same word without editing it.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "It clarifies why word and character counts do not determine token count.",
+      "evidence": "The reveal connects segmentation to a model's piece vocabulary.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "The lesson separates spelling, segmentation, token IDs and vocabulary source.",
+      "evidence": "The reveal explains frequent chunks and model input numbers.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "The word pieces are familiar, but vocabulary-based encoding and token identifiers are new.",
+    "conceptualDemand": "Moderate: distinguish a word from a sequence of vocabulary-dependent units.",
+    "interfaceBurden": "Low: three toggles and two word choices.",
+    "conceptualChallenge": "Input length in tokens depends on reusable chunks rather than visible word length.",
+    "prerequisiteNovelty": "Tokenizers, vocabularies and piece IDs are introduced.",
+    "notationRepresentationBurden": "Low to moderate: segmented text and invented numeric identifiers."
+  },
+  "whyCool": "The exact same spelling can become a different number of model-readable units when its piece list changes.",
+  "caveat": "This is an explicit longest-piece toy with made-up IDs, not an audit of any actual production tokenizer.",
+  "missingEvidence": [
+    "No user-entered fresh text or real tokenizer was tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

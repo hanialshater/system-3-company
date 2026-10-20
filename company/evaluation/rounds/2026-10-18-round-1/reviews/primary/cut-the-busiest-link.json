@@ -1,0 +1,136 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "cut-the-busiest-link",
+  "demoVersion": 2,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/cut-the-busiest-link",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "cut-the-busiest-link",
+    "domain": "cs",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/cs/cut-the-busiest-link/meta.json",
+    "metaSha256": "0a8b25f8e6650e81d5d75656cef29369d6227269c42a6ba50ca84c19b905e6bb",
+    "demoSha256": "76eb72cd033e7b6b6dd676ce0caff5b89034fe389cd7e294e8162bf557b9bf0c",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/cut-the-busiest-link",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/cut-the-busiest-link.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot"
+  },
+  "observations": {
+    "prediction": "Selected 12, the same and locked it in. Alternatives were 24 and 6. Stage was locked before commitment.",
+    "exploration": "Cut busiest 5\u20136: remaining bridge 3\u20137 rose from 12 to 24, internal 0\u20133 from 5 to 12.5. Cut busiest again: network changed from 16 links and one piece to 15 links and two pieces, groups of 6 and 4; further cutting disabled.",
+    "reveal": "Show me why explained 24 cross-group pairs sharing two links initially, then all using remaining bridge; named iterative cut and recount method and connected last cut to two groups.",
+    "visual": "Inspected actual inline screenshot. Dark desktop card; two groups visibly separate, removed bridges dashed with crosses, link counts legible though dense.",
+    "previewIsolation": "Visible evaluation preview banner states learning history and analytics are not saved.",
+    "blinding": "5/5 claims checked chrome visible and ignored; no trust panel opened."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear numerical commitment distinguishes unchanged, doubled and halved load.",
+      "evidence": "Prediction choices and actual commitment.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Two causal cuts show redistribution and disconnection.",
+      "evidence": "Bridge 12 to 24; second cut yields two pieces.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains doubled count with cross-group pairs and connects final split to observed groups.",
+      "evidence": "Reveal and retained first-cut comparison.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Controls, status and retained comparison make the tested desktop sequence clear.",
+      "evidence": "Screenshot and cut feedback.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable cut and recount procedure stated, without a new application or conditions for use.",
+      "evidence": "Reveal names Girvan\u2013Newman procedure only.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient access mode audit performed.",
+      "evidence": "Keyboard, focus, contrast, phone, zoom and motion remain untested.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed unchanged prediction contradicted by doubling.",
+      "evidence": "12 to 24 after first cut.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Graph and changing edge counts carry the redistribution and split.",
+      "evidence": "Screenshot plus successive network states.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Selectable edges and reset offer experimentation; tested two guided cuts.",
+      "evidence": "Cut busiest sequence and reset control.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Community discovery is a concrete disciplinary use.",
+      "evidence": "Reveal identifies groups after repeated busiest-edge cuts.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Redistribution then disconnection provide two linked observations.",
+      "evidence": "First and second cut states.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links shortest-path counts to redistribution and iterative splitting.",
+    "conceptualDemand": "Two linked relations: rerouting after removal and splitting after the remaining bridge is removed.",
+    "interfaceBurden": "Low on tested desktop; dense edge labels are a minor burden.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: shortest paths and equal splitting over ties introduced in feedback.",
+    "notationRepresentationBurden": "moderate: numbered vertices and fractional link counts."
+  },
+  "whyCool": "Cutting one bridge makes the other visibly double its load before the next cut separates the groups.",
+  "caveat": "Only one network and guided cut sequence tested; no fresh application or accessibility audit.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Reset not exercised.",
+    "Alternate edge cuts not tested.",
+    "Keyboard, focus, contrast, phone, zoom/reflow and motion checks not performed."
+  ],
+  "effort": "Approximately 3 minutes of browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:02:29.918553+00:00"
+}

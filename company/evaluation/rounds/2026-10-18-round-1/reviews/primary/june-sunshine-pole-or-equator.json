@@ -1,0 +1,104 @@
+{
+  "slug": "june-sunshine-pole-or-equator",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/june-sunshine-pole-or-equator",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted equator for21June24hour sunlight per square metre at top of atmosphere; alternatives pole,45N.",
+    "Equator9.2kWh/m2,45N11.6,pole12.6. Chart accumulated distinct hourly curves and table:12h67degrees,15.4h68degrees,24h23degrees. Slider89N12.6 added nearby curve.",
+    "Reveal connects lower constant polar Sun with24hours versus equatorial noon peak and12hours; distinguishes above-air sunlight from ground warmth.",
+    "1280x720 light screenshot right-edge prose cutoff; chart labels/table visible."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Requires interpreting area overhourly curve versuspeak.",
+    "conceptualDemand": "Duration times varyingintensity; tilt.",
+    "interfaceBurden": "Simple presets; dense smalltable."
+  },
+  "whyCool": "A low horizontal light curve wins on total area by lasting all day.",
+  "caveat": "One solstice date,top-of-atmosphere idealization; right-edge prose cutoff. Physical values not independently fact-checked.",
+  "effort": "Prediction,threepresets,nearbylatitude,reveal,two screenshots.",
+  "provisionalBucket": "promising-with-fix",
+  "bucketReason": "Strong visual integral intuition; fix reveal layout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Specific date,total duration,area andatmosphere boundary avoid ambiguity.",
+      "evidence": "24hours top-of-atmosphere versus hottest-place intuition.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Three controlled latitude comparisons and nearby continuous value expose duration-height tradeoff.",
+      "evidence": "0,45,90,89N curves and daily totals.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explains original answer using observed curves andmeaningful warmth limitation.",
+      "evidence": "24hours23degrees beats12hours67degrees; not groundtemperature.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Curves andtable clear; prose clipped horizontally.",
+      "evidence": "Actual reveal screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General tilt/duration lesson without newapplication.",
+      "evidence": "One date andhemisphere comparison.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Pole receives greaterdaily total despite lowerSun.",
+      "evidence": "12.6versus9.2kWh/m2.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Several distinct curve shapes make integrated area tradeoff concrete.",
+      "evidence": "Noonpeaks versusconstant24hour line; table totals.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Presets andlatitude slider support comparisons.",
+      "evidence": "Threepresets plus89N.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Seasonal intuition with explicit limits.",
+      "evidence": "Sunlight not warmth distinction.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Instantaneous intensity,duration,total energy andboundaryconditions linked.",
+      "evidence": "Watts curve versuskWh totals.",
+      "confidence": "medium"
+    }
+  }
+}

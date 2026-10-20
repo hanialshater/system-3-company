@@ -1,0 +1,104 @@
+{
+  "slug": "patience-piles",
+  "demoVersion": 3,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/patience-piles",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction defines a strictly increasing subsequence in 3 1 4 1 5 9 2 6.",
+    "After first card, incorrectly placing one on a new pile was rejected with precise feedback naming pile one.",
+    "Correct placement and automatic remainder produced four downward piles; tracing last pile highlighted original positions for 1 4 5 6 and predecessor links six-five-four-one.",
+    "Tracing pile two gave two-one. Reveal gives both upper bound (at most one card per descending pile) and constructive lower bound (predecessors), plus alternate longest sequence 3 4 5 9."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Greedy invariant and proof of optimal subsequence length.",
+    "conceptualDemand": "Distinguish current pile tops from historical predecessor chain.",
+    "interfaceBurden": "Placement controls, auto-deal and pile trace choices."
+  },
+  "whyCool": "A simple card-dealing rule proves a global optimum by building a matching witness and bound.",
+  "caveat": "Fixed eight-card sequence; no editable sequence or performance benchmark.",
+  "effort": "Prediction, single deal, wrong-choice feedback, corrected placement, full deal, two traces, screenshots and proof reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Exceptional constructive interaction and two-sided optimality explanation.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear finite challenge defining skipping and strict increase.",
+      "evidence": "Three, four or five cards.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Manual choice, corrective feedback, full construction and alternative traces expose the invariant.",
+      "evidence": "Wrong new pile rejected; last-pile and pile-two paths inspected.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explains both bounds establishing equality, not just the observed answer.",
+      "evidence": "At most one per downward pile; predecessor chain as long as pile count.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Original-order highlighting and arrows explain trace provenance.",
+      "evidence": "Earlier smaller predecessor rather than simply current pile tops.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "General pile rule and proof establish applicability beyond this sequence.",
+      "evidence": "Any pile-k card links to earlier smaller card on pile k-minus-one.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Greedy local dealing reveals a global longest subsequence.",
+      "evidence": "Four piles equals longest rising run.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Piles, predecessor arrows and source positions explain both construction and proof.",
+      "evidence": "Current top two differs from the four used in longest trace.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 4,
+      "reason": "Learner can attempt placements and receive targeted correction, then inspect multiple traces.",
+      "evidence": "Wrong placement and two trace paths tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete algorithm for a global sequence problem.",
+      "evidence": "One-pass pile construction measures subsequence length.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 4,
+      "reason": "Local invariant and matching upper/lower bounds are both visible.",
+      "evidence": "Descending-pile limit and constructive predecessor chain.",
+      "confidence": "medium"
+    }
+  }
+}

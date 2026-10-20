@@ -1,0 +1,104 @@
+{
+  "slug": "times-can-shrink",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/times-can-shrink",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted0.6x0.7above0.7rather thanbelow0.6.",
+    "Initialheight0area0;set0.7area0.42;1area0.6;1.5area0.9.",
+    "Reveal recalledalltestedheights,explainedseven-tenthsof0.6andidentityboundary;finalrulemultiplyingmakesbiggeronlywhenothernumberabove1 withinpositivegeometry.",
+    "Inline1280x720 light screenshot: areaandthreeequationsvisible; right-edgeproseclips. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simpledecimals supportedbyarea.",
+    "conceptualDemand": "Multiplicationasscaling.",
+    "interfaceBurden": "Clearpresets;proseclips."
+  },
+  "whyCool": "Themultiplierbecomesarectangleheight,sofractionsvisiblytakeonlypartofastrip.",
+  "caveat": "Finalbiggerthan1ruleassumespositivequantity;right-edgeclipping;accessibilityunknown.",
+  "effort": "Prediction,zeroandthreeheightcontrasts,reveal andinline screenshot.",
+  "provisionalBucket": "strong-gentle-with-viewport-fix",
+  "bucketReason": "Effectivepositive-scalingboundary;repairtextlayout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Simplepreciseproduct testscommonmultiplicationintuition.",
+      "evidence": "Above/between/below alternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Zero,belowone,identity andaboveonecontrasts exposeboundary.",
+      "evidence": "0,0.42,0.6,0.9.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explainsfractionalscaling andobservedidentityboundary.",
+      "evidence": "Seven-tenthsofstrip.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clearareaandmetrics butproseclips;generalrulepositive-domainimplicit.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concreteidentityandaboveonecases demonstratewhenoriginalshrinkclaimdoesnotapply.",
+      "evidence": "1and1.5comparisons.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Multiplicationcanmakesmaller.",
+      "evidence": "0.42belowbothfactors.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Rectangleheight showsfractionofstrip andexpansion.",
+      "evidence": "Unit-squareboundary.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Heightpresetsandslider.",
+      "evidence": "Multiplecontrasts.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Decimalmultiplicationintuition.",
+      "evidence": "Scalinginterpretation.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Identitythreshold andfractionaloperators.",
+      "evidence": "Below/equal/aboveone.",
+      "confidence": "medium"
+    }
+  }
+}

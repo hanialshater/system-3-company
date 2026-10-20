@@ -1,0 +1,104 @@
+{
+  "slug": "duplicate-before-experiment",
+  "demoVersion": 1,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/duplicate-before-experiment",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Selected Edit a duplicate over Overwrite only original; title/hook already explain preservation.",
+    "Duplicate changed original:A into original:A,copy:A; Edit copy changed only copy:B.",
+    "Final screenshot clearly showed original:A and copy:B side by side.",
+    "Reveal accurately described independent visible identifiers and stated a same-location duplicate is not a resilient backup."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Two identifiers and one changed value.",
+    "conceptualDemand": "Separate instance versus overwritten baseline.",
+    "interfaceBurden": "Two buttons."
+  },
+  "whyCool": "The original remains available for direct comparison after the copy changes.",
+  "caveat": "Minimal learner choice and an answer-spoiling prediction; no overwrite or recovery contrast.",
+  "effort": "Completed prediction, duplicate, edit, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear practical demonstration and backup caveat, but low challenge.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Directly restates the title with an obvious alternative.",
+      "evidence": "Experiment on a copy.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Visible isolated mutation demonstrates preservation, but both operations are prescribed.",
+      "evidence": "No overwrite counterfactual or editable content.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Accurate final-state explanation adds a useful backup distinction.",
+      "evidence": "OriginalA/copyB; local duplicate not resilient backup.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Identifiers and values distinguish original and copy.",
+      "evidence": "Two labeled tokens.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete experimentation method includes a meaningful boundary.",
+      "evidence": "Preserve separate original, but do not confuse same-location duplicate with backup.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 0,
+      "reason": "Expected result of duplication.",
+      "evidence": "No unexpected contrast.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Side-by-side states make preservation inspectable.",
+      "evidence": "OriginalA versus copyB.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Two fixed operations.",
+      "evidence": "No actual experiment choice.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful reversible-editing habit.",
+      "evidence": "Backup limit explicit.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "Basic independent-copy concept.",
+      "evidence": "No versioning or recovery model.",
+      "confidence": "medium"
+    }
+  }
+}

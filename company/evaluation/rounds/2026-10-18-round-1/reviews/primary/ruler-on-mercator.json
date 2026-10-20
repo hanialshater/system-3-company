@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "ruler-on-mercator",
+  "demoVersion": 3,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/ruler-on-mercator",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "ruler-on-mercator",
+    "domain": "geography",
+    "status": "published",
+    "demoVersion": 3,
+    "metaPath": "src/demos/geography/ruler-on-mercator/meta.json",
+    "metaSha256": "9a08af962e31c74d9f9907e094e78a84cd2bbad428472537b8a0486208d1c444",
+    "demoSha256": "8a861f8cf64af5b2a709422707d87760852933d12d2599e6eab12db8f18dda80",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/ruler-on-mercator",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/ruler-on-mercator.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected2000km against1000 and4000 at60N;locked it in.",
+    "exploration": "Equator fixedbar2000km,stretch1.00.30N:1732km,1.15\u00d7.60N:1000km,2\u00d7 andSeenhistorysaved. SliderEnd65N:845km,2.37\u00d7. Revealcollapsedcontrolsbutretainedcurrent65NandSeen60N.",
+    "reveal": "Corrected1000km;explicitlyreferredtosavedSeen60N ratherthancurrent65N. Explaineddoublemapstretchhalvesgrounddistance andtrue2000greenbar doublesinlength. Saidscale varieslatitude andonebarvalidonlyoneline.",
+    "visual": "Actual1257 \u00d7936 dark screenshot inspected. Fixedyellowbar andlongergreendashedlocal2000bar showdifference overMercatormap;current845kmandsaved1000kmbothlabeled. Fullreveal legible.",
+    "previewIsolation": "No-history evaluation banner present.",
+    "blinding": "5/5 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear constant/half/doubled distance alternatives testglobal-scale assumption.",
+      "evidence": "2000 commitment versus1000 at60N.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Three latitudes plusendpoint exposeinversegrounddistance andstretch relation.",
+      "evidence": "2000/1,1732/1.15,1000/2,845/2.37.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Usesexplicit saved60N result andlocaltruebar toexplain varyingmapscale.",
+      "evidence": "Doublemapstretch meanshalfground.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Currentmetrics andSeenline clearlyseparate65N stage from60N explanation.",
+      "evidence": "Actualscreenshot current845 versusSeen1000.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General latitude-specificscale rulebutno concrete newapplication.",
+      "evidence": "Onescalebartruealongoneline.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "One sliderEnd action insufficient audit.",
+      "evidence": "Endworked;focus,contrast,phone,zoom andmotion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committedconstantdistance contradicted byhalvingat60N.",
+      "evidence": "Samebar1000 not2000.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Fixedscreenbar versuslocalgroundbar carriesprojectionstretch.",
+      "evidence": "Yellowandgreendashedbars onmap.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Latitude presets andendpoint allow reversible spatialcomparison.",
+      "evidence": "0,30,60,65N tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete warningaboutusingworldmapscalebars central.",
+      "evidence": "Screenruler doesnotretain grounddistance.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Projectionstretch,localdistance andscalebarvalidity linked.",
+      "evidence": "Inversemetric relation andlatitude limit.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links changingprojection scale toinversegroundlength.",
+    "conceptualDemand": "Distinguishfixedscreenmeasure fromlocalgroundmeasure andinvertstretch.",
+    "interfaceBurden": "Low:latitudepresets,slider andsavedSeenresult.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate:Mercatorscale variation.",
+    "notationRepresentationBurden": "moderate:latitude degrees andstretchmultipliers."
+  },
+  "whyCool": "Thesameyellowruler coversonly1000km at60N whilethetrue2000km dashedbar grows twiceaslong.",
+  "caveat": "Fixedhorizontalbar ononeprojection;no arbitraryroute,longitude orrealnavigation test.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Showcontrols expansion afterreveal nottested.",
+    "Keyboard,focus,contrast,phone,zoom/reflow andmotion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:59:34.282762+00:00"
+}

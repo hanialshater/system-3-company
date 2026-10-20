@@ -1,0 +1,105 @@
+{
+  "slug": "coaster-track-shape",
+  "demoVersion": 3,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/coaster-track-shape",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction nofriction5mdrop steep/gentle/samespeed; chose steep.",
+    "SlopeEnd14degrees straight:9.90m/s4.16s vsreference9.90m/s1.18s.",
+    "CurveHome dipslow9.90m/s3.33s;CurveEndarchesmore9.90m/s10.82s.",
+    "Reveal everytestedtrack9.90, slowest10.82vs1.18; distinguishes sooner fromfaster, formula sqrt(2gh), nofriction caveat.",
+    "Beforeprediction AX stage already saysbottomspeed9.90 (numericreadouts hidden); screenshot toptrack clipped afterscroll and longrevealrightedge cropped."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Must distinguish time andspeed; formulaoptional.",
+    "conceptualDemand": "Different paths sameheightloss; timecanvary.",
+    "interfaceBurden": "Two sliders andanimation; clippedstage/reveal."
+  },
+  "whyCool": "A track taking almostten times as long can still deliver exactlythe same finalspeed.",
+  "caveat": "Toyfrictionless model; prepredictionAX speedleak and layoutfriction.",
+  "effort": "Prediction, gentleslope, bothcurveboundaries, reveal andvisualcheck.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Strong causalcontrast and tailoredpayoff; presentationissues recorded.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Good speedversustime misconception but AXstage exposes bottomspeed beforecommit.",
+      "evidence": "Prelock stage9.90; optionssteep/gentle/same.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Shapechanges alter time while holdingspeed.",
+      "evidence": "4.16,3.33,10.82s all9.90m/s.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Actualtestedtimes support a precise distinction.",
+      "evidence": "Sooner isnotfaster; nofrictionheightonly.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clippedstage/reveal and dynamicrace controls addfriction.",
+      "evidence": "Screenshot toptrackcropped.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Potential to separate travel time from finalspeed and useenergy.",
+      "evidence": "Heightlost determines speedunder assumptions.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 4,
+      "reason": "Verydifferent tracktimes sameendspeed.",
+      "evidence": "1.18vs10.82s both9.90.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Tracks and speedreadouts support invariant.",
+      "evidence": "Slope andcurve comparisons.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 4,
+      "reason": "Design/race variabletracks.",
+      "evidence": "Two shape sliders and Raceagain.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Physicalintuition under idealconditions.",
+      "evidence": "Explicitnofriction model.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Time,speed,geometry,and energy relation.",
+      "evidence": "sqrt(2gh) linked to invariant.",
+      "confidence": "medium"
+    }
+  }
+}

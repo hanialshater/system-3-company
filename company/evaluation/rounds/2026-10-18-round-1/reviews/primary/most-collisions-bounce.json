@@ -1,0 +1,124 @@
+{
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "No-history banner;4/4trustignored.Predicted1in4.",
+    "Fire1→1collision0reacted,bounce;Fire100→101total5reacted1in20.Clear→0/0,revealgateremainedopen;Fire100→100total8reacted1in13.",
+    "RevealreferencedFIRST101/5sampledespitecurrent100/8;explainedquarter×quarter=1/16,samplewobble;allshotsenergetic,orientationvariesandfacesaretoy.",
+    "Inline1257x936dark screenshot:reactivearcs oncirclesA/B,one-dotpershot,clearlastbounce;largeemptyspacepushesrevealbelowfold."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Requiresbothreactivefaces withplausibleonefactoralternative.",
+      "evidence": "Quartereach/1in4guess",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Repeatedsamplesandreset demonstrate variabilitywithorientationgraphic.",
+      "evidence": "1,101/5,reset100/8",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Goodproductexplanation but frozenfirstsampledoesnotmatchcurrentsampleandisnotlabeledhistorical.",
+      "evidence": "Reveal101/5vscurrent100/8",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Countersclear,share none yet at0success,andstalerevealcreatesstatemismatch.",
+      "evidence": "Screenshot andreset/reveal",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusableindependentprobabilityrule andorientationconditiongiven,no newcase.",
+      "evidence": "Revealquarterproduct",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No modeaudit.",
+      "evidence": "Unknown",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "1in4guesscontradictedby5/101and8/100.",
+      "evidence": "Twosamples",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Reactivefacearcsandbouncevisualgroundorientationcondition.",
+      "evidence": "Screenshot",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Batchsizesandclearpermitrepeatablesampling.",
+      "evidence": "Fire1/100reset100",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Reactionrateversuscollisionrateexplainedwithconditions.",
+      "evidence": "Reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Jointorientationandsamplingvariability,bothenergeticconstraint.",
+      "evidence": "Samplesandreveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Combinesindependentquarterprobabilitiesandsample-versus-rulecomparison.",
+    "conceptualDemand": "linkedprobabilityconditions",
+    "interfaceBurden": "moderate:stalesampleinreveal",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate:reactiveorientation",
+    "notationRepresentationBurden": "low:fractions"
+  },
+  "whyCool": "Aquarterchanceforeachreactivefacebecomesonlyoneinsixteenwhenbothmustalign.",
+  "caveat": "AfterClearandrerun,current100/8countercontrastswithunlabeledfirst101/5reveal.",
+  "effort": "~2minutes",
+  "missingEvidence": [
+    "Accessibility modes",
+    "New application"
+  ],
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3c",
+  "date": "2026-10-18",
+  "notApprovedForServing": true,
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, number comparisons and familiar household objects; no domain theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "screenshots": [],
+  "fatalFindings": [],
+  "slug": "most-collisions-bounce",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/most-collisions-bounce",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "a08a3d1d773e99a02b97dae5658449860785e03a23935deb9828a3fb120c698a",
+    "metaSha256": "37f703785db0b7583f23aa6799becc84b56e7776091a79639c2080f3a4d7ca70"
+  }
+}

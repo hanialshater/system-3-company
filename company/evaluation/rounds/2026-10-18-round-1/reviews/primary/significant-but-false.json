@@ -1,0 +1,104 @@
+{
+  "slug": "significant-but-false",
+  "demoVersion": 2,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/significant-but-false",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction fully specified1000ideas,10%true,80%power,5%falsepositive; selected5%flukes amongpasses.",
+    "50%true gave400real25flukes6%;1%true gave8real50flukes86%;10%true gave80real45flukes36%. Earlier results persisted.",
+    "Reveal distinguished false-positive denominator among900duds from false-discovery denominator among125passes and recalled low-prior86%.",
+    "Inline1280x720 light screenshot: dense but interpretable dot grid, clear legend/readouts and fully readable explanation. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Requires distinguishing conditional percentages but counts support it.",
+    "conceptualDemand": "Power, falsepositive versus false discovery.",
+    "interfaceBurden": "Three buttons and clear earlier-results line; dense grid."
+  },
+  "whyCool": "The same test looks trustworthy or misleading depending on how many real effects entered it.",
+  "caveat": "Ideal fixed-rate model; grid dense; no new transfer or accessibility audit.",
+  "effort": "Prediction, all three priors, reveal and inline screenshot.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Readable base-rate comparison with complete hook inputs and clear denominator explanation.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "All necessary model rates and meaningful denominator-confusion alternatives.",
+      "evidence": "80%power and5%falsepositive specified.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Changing prior prevalence under same test rates gives clear causal comparison.",
+      "evidence": "6%,86%,36%flukes.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains denominator distinction using actual counts and prior contrast.",
+      "evidence": "80real45flukes versus900duds.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readable legend, stored comparisons and explanation.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General interpretation principle without fresh test/application.",
+      "evidence": "Same modeled study population.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "5%falsepositive rate can yield86%false discoveries.",
+      "evidence": "1%true case.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Grid separates true ideas and passing flukes.",
+      "evidence": "Filled,ring,cross legend.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Three prevalence comparisons.",
+      "evidence": "Preset buttons.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Interpreting significant findings is central.",
+      "evidence": "Denominator and prior prevalence.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Combines power, falsepositives and prior base rate.",
+      "evidence": "Three conditional proportions.",
+      "confidence": "medium"
+    }
+  }
+}

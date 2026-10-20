@@ -1,0 +1,156 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1b",
+  "date": "2026-10-18",
+  "slug": "hidden-carriers",
+  "domain": "life",
+  "demoVersion": 3,
+  "expectedVersion": 3,
+  "batchId": "round1-03",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "bcaa119756d5108e8f0891318c1515f67a522ef6922e2ff616ac690249d15739",
+  "demoSha256": "619d11b699a776f9e81a5ded1ffcddc3e0e48ed86e948c6aac4c92dd8afb14a2",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/hidden-carriers",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "evidenceMode": "live-browser-computer-use",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "previewIsolationObserved": true,
+  "visibleTrustChrome": "5/5 claims checked; ignored, unopened",
+  "phaseCoverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true,
+    "pixelInspection": true
+  },
+  "observations": [
+    {
+      "id": "p",
+      "action": "Selected About1in10,000; Lock it in",
+      "outcome": "Prediction retained; trait frequencies unlocked at1in400."
+    },
+    {
+      "id": "e",
+      "action": "Select1in10,000 then1in100",
+      "outcome": "Rare:1affected198carriers,200of20,000variantcopies,198carriers/affected; common:100affected1800carriers,2000copies,18carriers/affected."
+    },
+    {
+      "id": "v",
+      "action": "Inspected rare-trait screenshot",
+      "outcome": "Tiny10,000dot square, ringedaffected and scattered carrier dots distinguish rarevisible fromhidden; numeric counts/legend clear.1257x936dark no horizontal cutoff."
+    },
+    {
+      "id": "r",
+      "action": "Show me why",
+      "outcome": "About1in50;200variantcopies,2inaffected leaves198carriers;100x100=10,000 pairedrarity;commoncase18ratio; madeup randommating/no selection/migration/mutation largepopulation assumptions."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "One-copy versus two-copy prevalence alternatives reveal plausible confusion.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Two rarity extremes changecarrier counts andcarrier/affected ratio withgene-copyaccounting.",
+      "evidence": "e,v",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Uses observed200copyaccount to explain198carriers anddeclaresmodel assumptions.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Dense dots supported by ringedaffected,legend andexactcounts; rare/commonratio clearlylabelled.",
+      "evidence": "v,e",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Recessivecopyfrequency principle stated under assumptions; no newcase task.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No mode checks.",
+      "evidence": "v",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Equalrarity prediction reverses to198carriers foroneaffected.",
+      "evidence": "p,e",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Ringedaffected amongst carriers makeshiddenprevalence visible.",
+      "evidence": "v",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Fixed frequencychoices allow comparison.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Interpreting geneticcarrier prevalence concrete disciplinaryuse.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Traitfrequency,genecopyfrequency,carrier accounting andratio trend linked.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Tracks two gene copies/person, paired variant probability and carrier count with explicit accounting.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": {
+      "level": "moderate",
+      "reason": "Recessiveinheritance/carriers introduced."
+    },
+    "notationRepresentationBurden": {
+      "level": "moderate",
+      "reason": "1inN frequencies,20,000copies andcarrier/affectedratio."
+    }
+  },
+  "whyCool": "The one ringed person uses just2of200variantcopies, leaving198copies hidden singly in otherwise unaffected carriers.",
+  "caveat": "Made-up trait under strong randommating/population assumptions; no individual risk inference tested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "1in2500case andindividualinheritance;phone/accessibility untested."
+  ],
+  "reviewState": "complete-real-walkthrough",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  }
+}

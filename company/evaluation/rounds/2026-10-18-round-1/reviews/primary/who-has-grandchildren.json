@@ -1,0 +1,139 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "who-has-grandchildren",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/who-has-grandchildren",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "who-has-grandchildren",
+    "domain": "life",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/life/who-has-grandchildren/meta.json",
+    "metaSha256": "9f67bc510fbd6a733b2a4ee0f0f5ef7726efb1e4da9759c4894a7151686f3898",
+    "demoSha256": "f3ee0922750cbee690f4bd170a0f02676ff6d7b9019c6f6b0322972908e29f36",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/who-has-grandchildren",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/who-has-grandchildren.json"
+  },
+  "date": "2026-10-18T21:05:23.056703+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Selected4times averagechildren for son versusdaughter in80%female population."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "8women2men share40children:5perwoman20perman4\u00d7;5and5:8each1\u00d7;2women8men:20perwoman5perman,ratio rounded.3\u00d7."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Raresex has higheraverageoffspring so parental raresexbias increasesgrandchildren, restoringevenratio. Equalrearingcost/randommating/average-share conditions andbrothercompetitionexception stated."
+    },
+    {
+      "phase": "screenshotInspection",
+      "evidence": "Actual1257x936 dark screenshot inspected8/2: eightshort5bars andtwotall20bars withshapelegend and4\u00d7counter readable."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Equal parent totals support a clear reciprocal-share comparison.",
+      "evidence": "80%female yields4\u00d7maleaverage.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Reversing rarity and equal ratio isolate frequency dependence.",
+      "evidence": "8/2,5/5,2/8 contrasts.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects arithmetic to selection and states necessary model conditions.",
+      "evidence": "Equalcost/randommating andexception.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Same40children and peradultbars explain aggregateidentity.",
+      "evidence": "40sharedby8versus2.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Evolutionary consequence within same sex-ratio model, no new task.",
+      "evidence": "Brothercompetition caveat without freshapplication.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Rarity confers individual advantage despite group-growth intuition.",
+      "evidence": "5versus20averageoffspring.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Individual bars reveal equal totals divided by different counts.",
+      "evidence": "Eight5barsversustwo20bars.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Ratio slider and presets allow focused contrasts.",
+      "evidence": "Three ratios checked.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Clarifies evolutionarysex-ratio reasoning underexplicitconditions.",
+      "evidence": "Average notindividualguarantee.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Links parental fitness, frequency dependence and exceptions.",
+      "evidence": "Advantage disappearsat5/5.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "conceptualDemand": "balanced: reciprocal averages and selection on parental offspring mix",
+    "interfaceBurden": "gentle: ratio slider andtwo presets",
+    "prerequisiteNovelty": "frequency-dependent reproductive advantage introduced",
+    "notationRepresentationBurden": "individual bars,averages andson/daughterratio"
+  }
+}

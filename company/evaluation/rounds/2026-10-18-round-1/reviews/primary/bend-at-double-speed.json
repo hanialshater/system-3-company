@@ -1,0 +1,130 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy/simple charts; no theory assumed.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "observations": [
+    {
+      "id": "p",
+      "phase": "prediction",
+      "text": "No-history preview verified; trust6/6 ignored. Chose100m versus200/400 for speed54→108km/h; locked."
+    },
+    {
+      "id": "e",
+      "phase": "exploration",
+      "text": "Keyboard speed Right:54→81, tightest50→112.5m, Skids on50m; Right108→200m threshold, Skids. Radius Right50→125 stillSkids; Right200 Grips, revealunlocked. History retains54/81/108 pairs."
+    },
+    {
+      "id": "r",
+      "phase": "reveal",
+      "text": "Not quite200m. Cites50/112.5/200and current200cleared; fixed sideways grip, turning push grows speed²; flat dry roadμ0.46 illustrative. Reveal screenshot inner diagram scrolled top away and horizontal right-edge clipping of prose/control track at1280×720. Inline only."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Linear-versus-square scaling alternatives clear.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Speed and radius contrast distinguish skid/grip boundary.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Own history and current threshold explained with assumptions.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 1,
+      "reason": "Controls labeled but tested reveal/control right edge clips.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Reusable quadratic-radius rule with explicit road/grip assumptions.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Slider arrows alone insufficient.",
+      "evidence": "e",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Double speed requires quadruple radius.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Dashed grip-limit arc and status carry boundary.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Adjust speed then seek gripping radius.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete turning-speed interpretation.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Speed square, radius and fixed force linked.",
+      "evidence": "r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Relates speed squared, radius and fixed grip; boundary supported by two controls.",
+    "conceptualDemand": "Quadratic scaling and two-variable safety condition explained without derivation.",
+    "interfaceBurden": "Two labeled ranges keyboard functional; card right-edge clipping and internal scroll."
+  },
+  "whyCool": "Doubling speed makes125mstill skid, and only200mgrips—four times the starting50m.",
+  "caveat": "Illustrative flat dry fixed grip; not driving guidance. Tested desktop reveal/control right edge clips; diagram large top portion off inner-scroll view.",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Full keyboard/focus/phone/reflow/contrast/motion untested; only slider arrows operated."
+  ],
+  "screenshots": [],
+  "slug": "bend-at-double-speed",
+  "demoVersion": 3,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/bend-at-double-speed",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "8542d86674e573c0ee410b22d7c92b1862fd07b33ecde1743fe092e0c8ab7895",
+    "metaSha256": "0623f53ccf644e3ee102b37e3ccb07e464b7cf58b268ff95d113171e2bb64444"
+  }
+}

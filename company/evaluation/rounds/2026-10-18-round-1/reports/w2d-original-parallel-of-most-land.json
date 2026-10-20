@@ -1,0 +1,126 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "parallel-of-most-land",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/parallel-of-most-land",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "parallel-of-most-land",
+    "domain": "geography",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/geography/parallel-of-most-land/meta.json",
+    "metaSha256": "9bbea9d1eacd5debe558d2bc280fea138f45c32fdcccd3aee53d7936324bb129",
+    "demoSha256": "9e91b3401cc0158d12eec3eba85feae7e992f372566edd770cac252c2ee84b76",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/parallel-of-most-land",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/parallel-of-most-land.json"
+  },
+  "date": "2026-10-18T20:01:39.640303+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "prediction": "Chose40N and locked.",
+  "exploration": "Observed20N32%,40N45%,65N77%,60S0%,equator21%; inspected highlighted yellow land stretches versus dashed sea.",
+  "reveal": "Read65N of three correction, country list, northern concentration and Antarctic far-south exception.",
+  "screenshotInspection": "Actual1257x936dark initial,65N and scrolled equator reveal inline screenshots inspected; land highlights/counters and full prose readable.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear share comparison among three parallels.",
+      "evidence": "Equator40N65N prediction before unlocked map.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Several geographic contrasts expose uneven distribution.",
+      "evidence": "21%,45%,77%,0% with corresponding map segments.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Corrects global-average intuition with bounded distribution.",
+      "evidence": "Most land north; southern sea until Antarctica; explicitly of three.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Percent and highlighted portions align.",
+      "evidence": "Thick yellow land,dashed sea, labeled latitude and map.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Pattern generalized within same map but no new task.",
+      "evidence": "40S60S and Antarctica described as adjacent cases.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Northern line mostly land versus southern zero.",
+      "evidence": "77%65N compared0%60S.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Highlighted map segments explain measured fractions.",
+      "evidence": "65N long contiguous yellow stretches versus equatorial short ones.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Preset comparisons and free slider.",
+      "evidence": "Four presets explored.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Useful geographic distribution intuition.",
+      "evidence": "Global ocean majority does not describe each latitude.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Single spatial distribution relation.",
+      "evidence": "Country list and Antarctic boundary add context.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "conceptualDemand": "Compare percentages along different horizontal map lines.",
+    "interfaceBurden": "Presets plus one latitude slider; scroll reveal.",
+    "prerequisiteNovelty": "Parallel defined directly.",
+    "notationRepresentationBurden": "DegreeN/S and percent on world map."
+  }
+}

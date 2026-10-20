@@ -1,0 +1,104 @@
+{
+  "slug": "ruler-catch",
+  "demoVersion": 4,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/ruler-catch",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted 0.2 s for a 20 cm catch, then locked the answer.",
+    "One drop produced 16.4 cm = 0.18 s; five more produced six catches spanning 12.6\u201327.4 cm and 0.16\u20130.24 s.",
+    "The visual aligns ruler distance with a nonlinear time scale and catch marks. It explicitly says this is a simulated catcher, not a measurement of my reflex.",
+    "Reveal accurately cites the six observed catches and derives t = sqrt(2d/g), converting 20 cm to 0.20 s."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "The intuition is accessible, while interpreting the square-root formula needs some algebra.",
+    "conceptualDemand": "Free fall and distance-to-time conversion.",
+    "interfaceBurden": "Two drop controls and a clear action."
+  },
+  "whyCool": "A ruler becomes a clock through a visibly nonlinear scale.",
+  "caveat": "Generated catches demonstrate a model; this does not measure the user's reaction time.",
+  "effort": "Completed prediction, six simulated drops, visual inspection and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear model illustration with accurate state-specific explanation.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Broad time estimates invite a meaningful physical intuition check.",
+      "evidence": "Options 0.02, 0.2 and 2 seconds for a 20 cm fall.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Repeated simulated samples illustrate the conversion, but no controlled physical parameter can be changed.",
+      "evidence": "Drop once and Drop 5 times generated catch marks and a range.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal connects the actual sample and original prediction to the physical conversion and its assumptions.",
+      "evidence": "Six catches and the 20 cm calculation match the observed state.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "The paired scales, formula and explicit simulation warning make the tested path clear.",
+      "evidence": "The ruler and time scale show 12.6 cm aligned with approximately 0.16 s.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "The conversion principle is explained without a second learner application.",
+      "evidence": "Formula and original 20 cm example only.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "A familiar catch becomes a quantitative time estimate.",
+      "evidence": "Centimeters map to fractions of a second.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Aligned distance and time scales explain the nonlinear relationship.",
+      "evidence": "Multiple catch marks occupy both scales.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Repeated drops provide a light sampling activity.",
+      "evidence": "Single and five-drop actions.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Explains how a ruler can estimate reaction time with limits.",
+      "evidence": "Explicit simulated-catcher warning.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Connects free fall and a square-root conversion.",
+      "evidence": "No air drag and falling from rest are stated.",
+      "confidence": "medium"
+    }
+  }
+}

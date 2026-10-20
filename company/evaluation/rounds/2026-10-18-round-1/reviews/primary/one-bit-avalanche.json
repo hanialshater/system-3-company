@@ -1,0 +1,139 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "one-bit-avalanche",
+  "demoVersion": 2,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/one-bit-avalanche",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "one-bit-avalanche",
+    "domain": "cs",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/cs/one-bit-avalanche/meta.json",
+    "metaSha256": "e451bb6be0a79a9d18666a0b84ba3d8b28723e6956666a9060d243bc0dbfb7a6",
+    "demoSha256": "6705c7fbce1f05f6cb9f80f0fcfbb195a9e9b64b0798e43ac583ea00de435ecc",
+    "batchId": "round1-07",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/one-bit-avalanche",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/one-bit-avalanche.json"
+  },
+  "date": "2026-10-18T21:12:32.238423+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Selected about128 changed outputbits for oneinputbit in256bit SHA hash."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Flippedbit1:129changes;flippedback:129;bit24:122;bit9:126. History retained fourcounts;inputcharacters changed c\u2192nonprintable\u2192c,t\u2192u,a\u2192nonprintable."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read fourcounts andaverageabout127,outputbits aboutcoinflip each,similarinputs notsimilarhashes,hard tolocallytweakoutput."
+    },
+    {
+      "phase": "screenshotInspection",
+      "evidence": "Actual1257x936 dark screenshot inspected firstflip: oneinputbit changed,129greenchangedcells scattered across16\u00d716outputgrid,count/history readable."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear inputversusoutput change question targets locality intuition.",
+      "evidence": "1/10/128 alternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Different bitpositions and reversal show broad but deterministic differences.",
+      "evidence": "129twice then122/126.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects empirical halfchanges to avalanche design.",
+      "evidence": "Average127versus128expectation.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Changed-cell highlight andnumericalhistory distinguish outputvalue fromdifference.",
+      "evidence": "Greenlegend changedbylasttap.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Integrityfingerprint context given withoutnewapplicationtask.",
+      "evidence": "Messagealteration use stated beforeprediction.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Oneinputbit changes roughlyhalfpicture.",
+      "evidence": "129of256firstflip.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Scattered changedcells convey nonlocal effect.",
+      "evidence": "16\u00d716grid broadlygreen.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Bitbuttons invite reversals andotherpositions.",
+      "evidence": "Fourflips across threepositions.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Explains why similar messages have dissimilar fingerprints.",
+      "evidence": "Cannot tunejustfewhashbits claim.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Outputeffect shown withoutinternalmixingmechanism.",
+      "evidence": "No algorithmround visualization.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "conceptualDemand": "balanced: distinguish inputbit,outputbit anddifference probability",
+    "interfaceBurden": "gentle:24bitbuttons",
+    "prerequisiteNovelty": "fixedsize cryptographicfingerprint andavalancheeffect",
+    "notationRepresentationBurden": "binarybytes,256cellgrid andchangehistory"
+  }
+}

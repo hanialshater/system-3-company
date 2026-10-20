@@ -1,0 +1,115 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1",
+  "reviewKind": "primary",
+  "slug": "drift-of-a-straight-throw",
+  "demoVersion": 2,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/drift-of-a-straight-throw",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy and simple charts; no domain theory.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "P: chose about50km east drift for1,000km north at100m/s,45\u00b0Nrotatingplatform.",
+    "E:1,000km472km;100km5.2km;10km52m retained. Equatorpreset0\u00b0Nall0m; pressingdistancebuttonafterequatorreturned45\u00b0N,soequatorretestedaloneandverified.",
+    "R:Notquite500km;driftapproximatelytime squared,curllimitslongpath;Coriolis,winds/currents;toy cannotshowdrainingsink.",
+    "No-historypreview;7/7trustignored. Screenshot1280x720 pathsmall but driftcountersclear."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Concreteestimate butmagnitudehardtopredictwithouttheory.",
+      "evidence": "P: chose about50km east drift for1,000km north at100m/s,45\u00b0Nrotatingplatform.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Distanceandlatitudecontrastsrevealstrongscalingandzeroboundary.",
+      "evidence": "E:1,000km472km;100km5.2km;10km52m retained. Equatorpreset0\u00b0Nall0m; pressingdistancebuttonafterequatorreturned45\u00b0N,soequatorretestedaloneandverified.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explainsactualscaleandmodelscope.",
+      "evidence": "R:Notquite500km;driftapproximatelytime squared,curllimitslongpath;Coriolis,winds/currents;toy cannotshowdrainingsink.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Countersclear,pathsmall;distancepresetsresetlatitudeunexpectedly.",
+      "evidence": "E:1,000km472km;100km5.2km;10km52m retained. Equatorpreset0\u00b0Nall0m; pressingdistancebuttonafterequatorreturned45\u00b0N,soequatorretestedaloneandverified.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Large-scaleflowapplicationandsinklimitexplicit.",
+      "evidence": "R:Notquite500km;driftapproximatelytime squared,curllimitslongpath;Coriolis,winds/currents;toy cannotshowdrainingsink.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Modesnotsufficientlytested.",
+      "evidence": "No-historypreview;7/7trustignored. Screenshot1280x720 pathsmall but driftcountersclear.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "100foldtraveladdsroughly9000folddrift.",
+      "evidence": "E:1,000km472km;100km5.2km;10km52m retained. Equatorpreset0\u00b0Nall0m; pressingdistancebuttonafterequatorreturned45\u00b0N,soequatorretestedaloneandverified.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Curvedpathsupportsdrift;numberscarryscale.",
+      "evidence": "No-historypreview;7/7trustignored. Screenshot1280x720 pathsmall but driftcountersclear.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Distanceandlatitudeexperiments.",
+      "evidence": "E:1,000km472km;100km5.2km;10km52m retained. Equatorpreset0\u00b0Nall0m; pressingdistancebuttonafterequatorreturned45\u00b0N,soequatorretestedaloneandverified.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Atmospheric/oceanicconnection.",
+      "evidence": "R:Notquite500km;driftapproximatelytime squared,curllimitslongpath;Coriolis,winds/currents;toy cannotshowdrainingsink.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Time-squaredgrowth,latitudeandcurvature.",
+      "evidence": "R:Notquite500km;driftapproximatelytime squared,curllimitslongpath;Coriolis,winds/currents;toy cannotshowdrainingsink.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Coreeffectrequiresrotatingreferenceframeandnonlinearaccumulation.",
+    "conceptualDemand": "Multipledependentmotionrelations.",
+    "interfaceBurden": "Presetsresetlatitude,pathsmall.",
+    "prerequisiteNovelty": "high:rotatingframe",
+    "notationRepresentationBurden": "moderate:scalingandunits"
+  },
+  "whyCool": "Ashort10kmrunbarelydriftswhile1,000kmcurlshundredsofkilometreseast.",
+  "caveat": "RotatingplatformtoynotfullEarthtrajectory;distancepresetsresetlatitude.",
+  "notApprovedForServing": true,
+  "effort": "about3minutes",
+  "missingEvidence": [
+    "Accessibility modes",
+    "Learning outcomes"
+  ],
+  "fatalFindings": []
+}

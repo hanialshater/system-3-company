@@ -1,0 +1,116 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1",
+  "reviewKind": "primary",
+  "slug": "four-to-one-settles",
+  "demoVersion": 2,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/four-to-one-settles",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy and simple charts; no domain theory.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "P: chose80B;settledB:A=4,100total.",
+    "E: sliderEnd60fromallA80B20A,next4/4,average81;AllB at60 gives88B12A,average82;half at60 gives82B18A,average77. Startswitchretainstime60.",
+    "R: Yourpredictionheld;actualaverages81/82/77quoted;chance100moleculeswobbles;80/20forward/back4each;temperaturechangesK.",
+    "No-historypreview;4/4trustignored. Screenshot1280x720 currentpanelinternallyscrolled,readoutsclear;fullcharttopnotinscreenshot."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Clearratioquestionbuttestsconversionratherthanequilibriumintuition.",
+      "evidence": "P: chose80B;settledB:A=4,100total.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Threeinitialstatesandflowsrevealcommonequilibriumwithfluctuation.",
+      "evidence": "E: sliderEnd60fromallA80B20A,next4/4,average81;AllB at60 gives88B12A,average82;half at60 gives82B18A,average77. Startswitchretainstime60.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Quotesobservedaveragesandexplainsequaldynamicflows.",
+      "evidence": "R: Yourpredictionheld;actualaverages81/82/77quoted;chance100moleculeswobbles;80/20forward/back4each;temperaturechangesK.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Countersandlabelsunderstandable;chartnotfullyinspected.",
+      "evidence": "No-historypreview;4/4trustignored. Screenshot1280x720 currentpanelinternallyscrolled,readoutsclear;fullcharttopnotinscreenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Initialstateindependenceandtemperatureboundaryexplicit.",
+      "evidence": "R: Yourpredictionheld;actualaverages81/82/77quoted;chance100moleculeswobbles;80/20forward/back4each;temperaturechangesK.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Onlysliderkeyboardchecked;othermodesunknown.",
+      "evidence": "No-historypreview;4/4trustignored. Screenshot1280x720 currentpanelinternallyscrolled,readoutsclear;fullcharttopnotinscreenshot.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Differentstartsconvergenear80whileconversionscontinue.",
+      "evidence": "E: sliderEnd60fromallA80B20A,next4/4,average81;AllB at60 gives88B12A,average82;half at60 gives82B18A,average77. Startswitchretainstime60.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Countsandflowscarrymechanism;fullchartnotinspected.",
+      "evidence": "No-historypreview;4/4trustignored. Screenshot1280x720 currentpanelinternallyscrolled,readoutsclear;fullcharttopnotinscreenshot.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversibletimeandinitialstates.",
+      "evidence": "E: sliderEnd60fromallA80B20A,next4/4,average81;AllB at60 gives88B12A,average82;half at60 gives82B18A,average77. Startswitchretainstime60.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Chemicalequilibriumintuition.",
+      "evidence": "R: Yourpredictionheld;actualaverages81/82/77quoted;chance100moleculeswobbles;80/20forward/back4each;temperaturechangesK.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Ratio,dynamicflows,initialstateandchance.",
+      "evidence": "R: Yourpredictionheld;actualaverages81/82/77quoted;chance100moleculeswobbles;80/20forward/back4each;temperaturechangesK.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Linkratio,totalandcounterbalancingconversionflows.",
+    "conceptualDemand": "Severalrelationssupportedwithnumbers.",
+    "interfaceBurden": "Internalscrollforchart/readouts.",
+    "prerequisiteNovelty": "moderate:equilibriumandKintroduced",
+    "notationRepresentationBurden": "moderate:ratios,percentflows"
+  },
+  "whyCool": "At80B20Abothdirectionsstillconvert4moleculesperstep.",
+  "caveat": "Temperatureboundaryistextonly;ratesandtotalfixed.",
+  "notApprovedForServing": true,
+  "effort": "about2minutes",
+  "missingEvidence": [
+    "Fullchartvisualinspection",
+    "Accessibility modes beyond sliderkeyboard",
+    "Learning outcomes"
+  ],
+  "fatalFindings": []
+}

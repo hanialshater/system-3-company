@@ -1,0 +1,139 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "true-cost-of-free-hours",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/true-cost-of-free-hours",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "true-cost-of-free-hours",
+    "domain": "economics",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/economics/true-cost-of-free-hours/meta.json",
+    "metaSha256": "dad4ff8b6f182f64f0c0ebabeffafb7b85c7687cccbf28718b39794b5ebaa070",
+    "demoSha256": "41628dcb0d61ffe9dac55551a9df1bf29945bad6b84ff86c28e7758b2fc25ca7",
+    "batchId": "round1-07",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/true-cost-of-free-hours",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/true-cost-of-free-hours.json"
+  },
+  "date": "2026-10-18T21:10:43.542478+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Selected110 for50fee and3hours foregone20/hour work."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Initial1hour70;3hours110 as50+60. Switchednothingpaid at3hours:50+0=50,foregonepayblock removed."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read feeplusforegonepay arithmetic, paidworkmustreallybeavailable, timecost and explicit taxes/coursevalue omissions."
+    },
+    {
+      "phase": "screenshotInspection",
+      "evidence": "Actual1257x936 dark screenshot inspected3hourpaidcase: stacked50fee and3\u00d720block,total110,counter andselectedalternative readable."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear alternatives distinguish fee,foregonepay andsum.",
+      "evidence": "50/60/110 choices.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Alternative toggle checks necessary availability condition.",
+      "evidence": "110paidversus50nothingpaid atsamehours.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains opportunity cost and avoids treating hypothetical wages as automatic.",
+      "evidence": "Workmustreallybethere;coursebenefitignored.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Stacked blocks make explicit andimplicit costs concrete.",
+      "evidence": "50feeplus60pay.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General costofchoice statement without new concrete application.",
+      "evidence": "Samecourse andworkalternative only.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Price tag omits a larger foregonepay component.",
+      "evidence": "50tagversus110total.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Two-blocktotal makes omittedcost visible.",
+      "evidence": "Foregonepayblockvanishes whenunavailable.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Hourslider andalternative toggle support focused comparison.",
+      "evidence": "Oneandthreehours;paid/unpaid.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful decision framing with realalternative andbenefit limits.",
+      "evidence": "Availabilitycondition explicit.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "One additive costrelationship withboundary.",
+      "evidence": "No broader tradeoff model.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "conceptualDemand": "gentle: add real foregoneearnings tofee",
+    "interfaceBurden": "gentle: hourslider andtwoalternative buttons",
+    "prerequisiteNovelty": "opportunity cost introduced usingfamiliarpay",
+    "notationRepresentationBurden": "stackedmoneyblocks andhours\u00d7wage"
+  }
+}

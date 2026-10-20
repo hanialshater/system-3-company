@@ -1,0 +1,104 @@
+{
+  "slug": "fifty-up-fifty-down",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/fifty-up-fifty-down",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted75 after100 rises50% and then falls50%.",
+    "Initial0% gave100. Slider maximum75% gave175 then43.75; one left step set50%, yielding150 then75.",
+    "Area diagram shows original dashed100, rise50, fall75 and corner loss25.",
+    "Reveal accurately explained different percentage bases and supplied10% up/down ending99 as another illustration."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Basic percentages with a supportive area representation.",
+    "conceptualDemand": "Changing base and multiplication.",
+    "interfaceBurden": "Single stepped slider."
+  },
+  "whyCool": "The loss becomes a literal corner of the picture rather than a surprising calculation.",
+  "caveat": "The word always needs the zero-change exception; available percentage settings are coarse.",
+  "effort": "Completed prediction, zero/75/50% states, screenshot and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "A clear geometric explanation of a broadly useful arithmetic trap.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Fully specified compounding problem tests a common cancellation intuition.",
+      "evidence": "100,75,125 alternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Changing percentage exposes how the loss grows with magnitude.",
+      "evidence": "0%,50%,75% states.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Arithmetic and diagram connect the prediction to multiplicative changes.",
+      "evidence": "50% of150 is75, not50.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Original base and lost corner are labeled clearly.",
+      "evidence": "Dashed start100 and ends75.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Additional10% example reinforces the principle but does not ask the learner to apply it.",
+      "evidence": "Narrated99 outcome only.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Equal percentage changes fail to cancel.",
+      "evidence": "50% up/down loses25.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Area construction makes the cross term visible across changed magnitudes.",
+      "evidence": "Rise strip, fall strip and extra corner.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Percentage slider changes the geometry.",
+      "evidence": "Four discrete percentage settings.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Useful intuition for percentage changes.",
+      "evidence": "No concrete follow-on decision.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Connects arithmetic bases and geometric multiplication.",
+      "evidence": "Corner loss explanation.",
+      "confidence": "medium"
+    }
+  }
+}

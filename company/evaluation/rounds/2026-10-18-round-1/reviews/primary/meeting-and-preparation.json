@@ -1,0 +1,103 @@
+{
+  "slug": "meeting-and-preparation",
+  "demoVersion": 2,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/meeting-and-preparation",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted preparation must be booked before30 forpresentation30\u201345 and20-minute prep.",
+    "Initial prep45\u201365:zero overlap,35 late. Presetprep10\u201330:zero overlap,on time. Maximumstart70\u219290:zero overlap,60 late.",
+    "Screenshot actual calendar and deadline marker supported contrast. Reveal accurately described final no-overlap but60-minute lateness and prerequisite."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple time intervals and deadline.",
+    "conceptualDemand": "Work must happen before use,not merely fit somewhere.",
+    "interfaceBurden": "Test,preset and slider."
+  },
+  "whyCool": "A calendar can have no conflicts and still put the preparation after the event.",
+  "caveat": "Fixed task durations and one person; no actual readiness assessment.",
+  "effort": "Prediction,initialtest,preset,lateboundary,screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear scheduling distinction with accurate final-state explanation.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Clear prerequisite but long correct option cues answer.",
+      "evidence": "Only if prep booked before30.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Preset and manual boundary distinguish overlap from deadline satisfaction.",
+      "evidence": "45\u219210\u219270.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains why calendar space alone insufficient and reflects final state.",
+      "evidence": "No overlap yet60 late.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Intervals,deadline and lateness separately labelled.",
+      "evidence": "Due30,finish90.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete prerequisite-versus-event distinction supports planning.",
+      "evidence": "Calendar must include prerequisite.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "No overlap does not imply readiness.",
+      "evidence": "Initial and final plansnonoverlappingbutlate.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Calendar intervals and deadline marker embody dependency.",
+      "evidence": "Prepafterpresent visibly.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Manual start allows bad and good schedules.",
+      "evidence": "Presetplus slider.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Preparation scheduling central.",
+      "evidence": "Prerequisite deadline.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Separates resource feasibility and readiness.",
+      "evidence": "Overlapversusdue time.",
+      "confidence": "medium"
+    }
+  }
+}

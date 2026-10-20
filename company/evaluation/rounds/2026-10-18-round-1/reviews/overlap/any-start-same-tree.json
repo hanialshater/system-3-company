@@ -1,0 +1,105 @@
+{
+  "slug": "any-start-same-tree",
+  "demoVersion": 2,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/any-start-same-tree",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "overlap",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predictiongrowcheapestfrontier fromA versusfriendE:mine/friend/same; chosemine.",
+    "AB4rejected becausecheapercableleaves towns;AC1,BC2,BD5,DE3 accepted;bothAandEtotal11samefourcablesdifferentorder.",
+    "ChangedfriendtoBthenD;bothtotal11samecables.",
+    "Reveal citeschosenedges,Eorder,andtestedBandD;cut-property verbalexplanation,distinctprices implyuniquecheapestnetwork; claim40possiblenetworksnotindependentlyenumerated.",
+    "Screenshot twographpanels andedgebuttons; actualrevealrightedge textcutoff; topgraph afterinternalscroll partlyaboveviewport."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Trackgraphfrontier,costcomparison,andglobaloptimalityargument.",
+    "conceptualDemand": "Localgreedychoice acrosscut versus arbitrarycheapedge.",
+    "interfaceBurden": "Eightbuttons,two smallgraphs,clippedreveal."
+  },
+  "whyCool": "Youandafriend canbuild the network indifferentorders and stillbuy exactly thesamefour cables.",
+  "caveat": "Independentrootreview withoutprimaryratings; uniqueness/countclaims observednotverified; noformalproof check.",
+  "effort": "Prediction,rejectededge,fouracceptededges,twoalternatestarts,reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Richalgorithmicinteraction; prerequisiteandlayoutdemand significant.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Meaningful startdependence question butmanyweights upfront.",
+      "evidence": "Eightedgecosts inprompt.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Rejectedsuboptimalchoice andalternate starts exposestrategy.",
+      "evidence": "AB4rejected;A/E/B/Dall11.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Observed invariance well-supported;cutproperty assertedratherthan proved.",
+      "evidence": "Cheapestcrossingedge alwayspartofcheapestnetwork.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Smallgraphs,eightweights andactualtextcutoff.",
+      "evidence": "Screenshot rightedge revealtruncation.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Potential torecognize greedyalgorithm withspecific guarantee.",
+      "evidence": "Distinctweights andfrontierchoice condition.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Differentgrowthorders converge tosameedges.",
+      "evidence": "A/E/B/Dtotal11.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Side-by-sidegraphs showedgeidentity andorderlabels.",
+      "evidence": "Same4cablesreadout.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Buildnetwork andswitchfriendstart.",
+      "evidence": "Eightedgebuttons andfourstartchoices.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Networkdesign andalgorithmicreasoning.",
+      "evidence": "Minimizecablebill.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 4,
+      "reason": "Cutproperty anduniqueMST beyond surfacepuzzle.",
+      "evidence": "Distinctcosts determineuniquenetwork.",
+      "confidence": "medium"
+    }
+  }
+}

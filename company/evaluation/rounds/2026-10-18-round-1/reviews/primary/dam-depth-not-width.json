@@ -1,0 +1,156 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1b",
+  "date": "2026-10-18",
+  "slug": "dam-depth-not-width",
+  "domain": "physics",
+  "demoVersion": 2,
+  "expectedVersion": 2,
+  "batchId": "round1-02",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "1637c9e4e21870650b6ee962915c3106c62d02e136448c7c5fcdd4458826c3a8",
+  "demoSha256": "9aa739f5620907896686700ffe5731722ffb8955d612a0e909408782f98da462",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/dam-depth-not-width",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "evidenceMode": "live-browser-computer-use",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "previewIsolationObserved": true,
+  "visibleTrustChrome": "Why trust this? (4/4 claims checked); ignored; unopened",
+  "phaseCoverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true,
+    "pixelInspection": true
+  },
+  "observations": [
+    {
+      "id": "p",
+      "action": "Selected The lake; Lock it in",
+      "outcome": "Prediction retained; Width and Depth unlocked."
+    },
+    {
+      "id": "e",
+      "action": "Width End at depth10; Depth End20 then Home2",
+      "outcome": "2 cm tube and 500 m lake both98.1kPa at10m; depth20 gave196.2kPa, depth2 gave19.6kPa. Historical10m comparison remained labelled separately."
+    },
+    {
+      "id": "v",
+      "action": "Inspected dark1257x936 screenshot at20m",
+      "outcome": "Water height on axis and dashed gauge column visible; controls/readouts clear; no horizontal cutoff."
+    },
+    {
+      "id": "r",
+      "action": "Show me why",
+      "outcome": "The same; reveal quotes observed tube/lake log and current2m19.6kPa; explains water column per square metre, rho*g*h, more side-by-side columns, total force versus pressure, air excluded."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Plausible volume misconception with committed alternatives.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Width invariance and depth response discriminated with controlled contrast and endpoints.",
+      "evidence": "e,v",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Personal log resolves prediction; column explanation distinguishes total force and gauge pressure.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Historical10m log labelled distinctly from current depth; clear instructions and display.",
+      "evidence": "e,v",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable column principle and force distinction offered; no new application task.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode checks.",
+      "evidence": "v",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Lake prediction reversed by unchanged pressure.",
+      "evidence": "p,e",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Water height and column illustrate why width is irrelevant.",
+      "evidence": "v,r",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversible width and depth contrasts.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Pressure versus total force useful for water-container reasoning.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Pressure, depth, total force and gauge reference linked.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Separates local pressure from total force using depth and column support.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": {
+      "level": "moderate",
+      "reason": "Pressure per area and gauge pressure introduced."
+    },
+    "notationRepresentationBurden": {
+      "level": "moderate",
+      "reason": "rho*g*h formula and kPa; visual and numeric supports."
+    }
+  },
+  "whyCool": "Widening a tube to a lake leaves98.1kPa unchanged, while changing only depth visibly changes both column height and pressure.",
+  "caveat": "Formula has unfamiliar notation; only one desktop path and no application transfer tested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility modes and phone untested; intermediate widths not tested."
+  ],
+  "reviewState": "complete-real-walkthrough",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  }
+}

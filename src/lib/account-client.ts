@@ -488,6 +488,7 @@ function forgetSession() {
   mePromise = null;
   knownMe = null;
   sessionReset = true;
+  if (typeof window !== "undefined") window.dispatchEvent(new Event("s3c:account-session-reset"));
 }
 
 /**

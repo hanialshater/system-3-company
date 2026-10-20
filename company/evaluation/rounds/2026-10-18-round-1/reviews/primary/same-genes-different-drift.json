@@ -1,0 +1,140 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "same-genes-different-drift",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/same-genes-different-drift",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "same-genes-different-drift",
+    "domain": "life",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/life/same-genes-different-drift/meta.json",
+    "metaSha256": "14ee78f37c472962d0ba284dc8a62fb9ef57fccfb15c5a0332bd48325e4159a0",
+    "demoSha256": "6d90d95c7cd01647508fd32831a1baa0585172fe73f37ecf9bd56d273e6a6b7f",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/same-genes-different-drift",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/same-genes-different-drift.json"
+  },
+  "date": "2026-10-18T20:22:31.656539+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Chosehalfandhalf andlocked."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "20beetles5populations:gen10onefixed,gen100all5fixed,fourredonegreen. Switched200at100onefixed,others77/96/31/52%red. Newruns200at100nonefixed,73/30/88/89/62%red."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Readneutralrandomparentdraw mechanism,lossabsorbing,nopreference,largerpopulations slower;takeoverprobabilitystartingfraction;nomutation/selection/migrationboundary."
+    },
+    {
+      "phase": "visual-inspection",
+      "evidence": "Actual1257x936dark inlineinitial,20endpoint,200endpointandscrolledreveal inspected.200endpointrightlabels initiallyclipafterredprefix;finalrevealintroducesnestedscrollandrighttextedgeclipthoughAXprovidesfulltext."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "No selectiveadvantage conditions isolate chance.",
+      "evidence": "20youngcopyrandomparents,halfandhalf,nocolorbetter.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Size,time andrerun contrasts expose stochasticfixation.",
+      "evidence": "20all5fixedat100 versus200onefixed thenzeroinnewrun;bothcolorswins.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains randomdrift andabsorbingloss with explicit boundaries.",
+      "evidence": "Lostcolorcannotreturn;nomutation/selection/migration;startingfractiontakeoverchance.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Toyclear but200labelsandrevealclipping addburden.",
+      "evidence": "Rightlabelsclipin200view;finalnestedscrollrighttextedgeclipped at1257x936.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General populationsize pattern within same toy.",
+      "evidence": "No new biological application or fresh task.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Neutraltraitsfixwithoutbeingbetter.",
+      "evidence": "20fivefixedwithbothredandgreenwinning.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Rows andsizecontrasts showlossandwandering.",
+      "evidence": "20uniformrows versus200mixedfractions.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Time slider,size switch andnewruns.",
+      "evidence": "10/100generations,20/200andrerunperformed.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful countertoadaptive-only explanations.",
+      "evidence": "Chancefixationwithoutselection.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Sampling,absorbingstate,sizeandinitialshare linked.",
+      "evidence": "Boundaryconditionsandtakeoverchance supplied.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "conceptualDemand": "Repeatedrandomsamplingaccumulatesandfixeswhileexpectationremainsneutral.",
+    "interfaceBurden": "Simpletime/size controls;200labelsclip,finalnestedscroll.",
+    "prerequisiteNovelty": "Geneticdrift andfixationintroducedvia coloredbeetles.",
+    "notationRepresentationBurden": "Counts,percentred,fivepopulations;noequations."
+  }
+}

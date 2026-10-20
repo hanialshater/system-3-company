@@ -1,0 +1,140 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "heapify-from-the-bottom",
+  "demoVersion": 2,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/heapify-from-the-bottom",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "heapify-from-the-bottom",
+    "domain": "cs",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/cs/heapify-from-the-bottom/meta.json",
+    "metaSha256": "e21fbe92e216057b857f90b8f12316018c15958733d1330619bae604ea238223",
+    "demoSha256": "2f4c7c9c22c97ccf80397a935c97b01d33f795f15e462911477ff0e1bb364852",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/heapify-from-the-bottom",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/heapify-from-the-bottom.json"
+  },
+  "date": "2026-10-18T20:31:53.445874+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Chose10bottomupswaps andlocked."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Siftparent3onelevel,total1;parent2one,total2;top1twolevels,total4. Incrementalinsert1zero,2one,resttotal10,climbs0,1,1,2,2,2,2. Finalsettledbothroot7,differentvalidheaps."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read4correction,leafnodesnowork,1+1+2bottomupversusnewlargestclimbs;halfleaves,quarteronelevelup,under2nswaps."
+    },
+    {
+      "phase": "visual-inspection",
+      "evidence": "Actual1257x936dark inlineinitial,bottomupcomplete,incrementalanimationandfinalsettledscrolledreveal inspected. Bothtrees,swapcounts andprose readable."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Specifiedsiftprocedureandorderedinputenablecostforecast.",
+      "evidence": "Cards1to7,largerchildswap,lastparentfirst.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Twoactualconstructionmethodsexposeworkdistribution.",
+      "evidence": "Bottomup1+1+2=4versusincremental0+1+1+2+2+2+2=10.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explainsmanycheaplowernodesandbound.",
+      "evidence": "Leavesnosift,quarteronelevelup,under2n.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Sidebysideheapsandannotateddescentsmakecostsvisible.",
+      "evidence": "Parents3then2then1;rootunlocksafterchildrenfixed;settledtreesvalid.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Anyheapboundgeneralizessamealgorithmwithoutnewcase.",
+      "evidence": "No freshtaskorapplication.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Buildallatoncecostsfarlesshere.",
+      "evidence": "4swapsversus10withsamecards.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Depthannotatedtreesexplaincostdistribution.",
+      "evidence": "Fourleavesuntouched;twoparents1each;root2.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Tappableparentsandinsertcontrols.",
+      "evidence": "Bothbuildmethodscompleted.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Usefulbulkdata-structureconstructionintuition.",
+      "evidence": "Bottomupbuildhaslinearbound.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Proceduralinvariantandaggregatecostlinked.",
+      "evidence": "Childheapsfixedbeforetop;manyleaveskeepcostlow.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "conceptualDemand": "Trackheapinvariant,twodifferentbuildordersandaggregateheightcostbound.",
+    "interfaceBurden": "Guidedenabledparentbuttonsandinsertbatch;physicalburdenlow.",
+    "prerequisiteNovelty": "Siftdownandbottomupconstructionnew;heaprulebrief.",
+    "notationRepresentationBurden": "Twotrees,pernodecosts,climblistand2nbound."
+  }
+}

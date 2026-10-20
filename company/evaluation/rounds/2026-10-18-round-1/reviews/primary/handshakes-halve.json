@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "handshakes-halve",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/handshakes-halve",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "handshakes-halve",
+    "domain": "math",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/math/handshakes-halve/meta.json",
+    "metaSha256": "558f66e6fea311278f2ef04694796f44aca2f0f2862732311a6484821eb723ae",
+    "demoSha256": "98e34eeffb556ce09529167eb96a90eddc0e07f0f405b4205821ac10b6333fe9",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/handshakes-halve",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/handshakes-halve.json"
+  },
+  "date": "2026-10-18T19:14:53.950695+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "No-history banner confirmed; trust3/3 ignored. Selected90 and locked.",
+    "exploration": "Sequentially added persons2through10; handshake totals1,3,6,10,15,21,28,36,45 and newguest contributes1through9. Countlines toggle shows9at each person,90lineends,two perhandshake; reveal unlocks. No reset visible.",
+    "reveal": "Correct45; explicitly relates arrival sum1+...+9 to45,then10x9=90doublecounts each hand sohalve.100counts selfhandshakes too.",
+    "visual": "Inline1257x936 dark screenshots inspected: ten numbered circle nodes,allpair edges,green9at each node,count45 and explanation legible. Denseedges less individually countable at10but degree labels clarify."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "100/90/45precisely distinguishselfcount anddoublecount mistakes.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Arrival sequence shows incremental pairs and degree view exposes doublecount;fixed one-way path limits experimentation.",
+      "evidence": "exploration;visual",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Resolves actual90prediction with two observed countingmethods and explains selfcount100boundary.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Enablednextguest,incrementalsum andline-endcount clear despite densefinalgraph.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable paircount method; no new context/application or explicit generalnformula.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Chosen90turnsoutlineends ratherthanhandshakes.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Nodes/edges anddegree labels make twohandsperpair visible; progression supports increasingcounts.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Guided arrival clicks andcounttoggle,noparameterchoiceorreset.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete unique-pair counting task.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Incrementalsum,degree doublecount andself-pair exclusion.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Coordinate incrementalarrival counting with per-persondoublecounting and exclusionofself.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low sequentialbuttons; densefinalgraph",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "low: handshakes/unique pairs familiar",
+    "notationRepresentationBurden": "low: addition,multiplication,halvingandgraph"
+  },
+  "whyCool": "The graph has45lines even though tenpeople each touch9lineends.",
+  "caveat": "One-way fixed10guest sequence; no fresh pairing application."
+}

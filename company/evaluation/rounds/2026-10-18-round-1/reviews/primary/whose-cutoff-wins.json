@@ -1,0 +1,140 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "whose-cutoff-wins",
+  "demoVersion": 3,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/whose-cutoff-wins",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "whose-cutoff-wins",
+    "domain": "ai",
+    "status": "published",
+    "demoVersion": 3,
+    "metaPath": "src/demos/ai/whose-cutoff-wins/meta.json",
+    "metaSha256": "5c0d0671d066537bea1c48be00ef5d64bcd9bf188bef8a9a6779222f892cbf0c",
+    "demoSha256": "bb7d942302b72ac1e67964c28b1daea27198c6c3340878bc5ff9e2277418d3d5",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/whose-cutoff-wins",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/whose-cutoff-wins.json"
+  },
+  "date": "2026-10-18T20:49:28.453307+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Chose40compromise andlocked."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Cutoff30A18/90wrongB0/10,total18. Learnstep40A9B1,total10. Learnstep50A0B2,total2. Inspectedredwrongcasesandgroupqualificationlines."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read50correction,98%overallaccuracyhides20%Berror0%A;40to50fixes9Awhilebreaks1B,groupblindtrainingobjectivefitsmajority;GenderShadesexamplepresentbutnotexternallyverified."
+    },
+    {
+      "phase": "visual-inspection",
+      "evidence": "Actual1257x936dark inline30,50andscrolledreveal inspected. InitialBqualificationlabelclipsleft;finalnestedscrollclipsrightproseedgesincluding20%groupB/0%Aline;AXfulltextread."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Specifiedpopulationandgrouptruththresholdsprovideoptimizationforecast.",
+      "evidence": "90Aqualify50,10Bqualify30,uniformscores,onecutoffminimizestotalerrors.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Learningstepsshowwhoseerrorsaretraded.",
+      "evidence": "18to10to2totalwhileB0to1to2andA18to9to0.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explainsobjectiveweightingandaggregateaccuracyblindspot.",
+      "evidence": "OneBcostfornineAfixes;98%overallversus20%Berror.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Countsstrongbutlabel/proseclippinginterferes.",
+      "evidence": "Blabelleftclipinitial;finalrightedgeclipandnestedscroll.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concreteexternalalgorithmicdisparitycasewithrelevantcondition.",
+      "evidence": "Faceanalysistoolsdifferenterrorsacrossgroups,overallscorehidesrare-groupfailure;no freshapplicationtask.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Groupblindinputdoesnotensureequalerrors.",
+      "evidence": "A0%B20%atoptimaloverallcutoff.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Populationrowsandredcasesmakecountweightingvisible.",
+      "evidence": "9Afixesfor1Bnewerror40to50.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Learningstepandslider.",
+      "evidence": "Twostepsfrom30to50.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Usefulevaluationguardrailforsubgrouperrors.",
+      "evidence": "Overall98%canhide20%rare-groupfailure.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Objective,dataimbalanceanderrorallocationlinked.",
+      "evidence": "Singlecutoffgroup-blindmodelwithdifferentqualificationrules.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "conceptualDemand": "Trackgroup-specifictruth,sharedthreshold,totalversusgrouperrorrates.",
+    "interfaceBurden": "Stepbuttonandslider;clippedlabelsandfinalnestedscroll.",
+    "prerequisiteNovelty": "Classifierobjectiveandgroupdisparityintroducedthroughcounts.",
+    "notationRepresentationBurden": "Scores,counts,ratesandtwoqualificationlines;matrixhelps."
+  }
+}

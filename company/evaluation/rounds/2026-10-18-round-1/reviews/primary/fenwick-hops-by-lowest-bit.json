@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "fenwick-hops-by-lowest-bit",
+  "demoVersion": 4,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/fenwick-hops-by-lowest-bit",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "812b0b46e4ad3cdcc776b473beccffe6d9acae24fd5a09f14f6db3849936c0ac",
+    "demoSha256": "b13baa997ace8cf1b69efa9c35dc7fb278be31ac155aba28e501dcdfc01ccfe9",
+    "metaPath": "src/demos/cs/fenwick-hops-by-lowest-bit/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected13 reads for prefix13 of16 Fenwick cells and locked it in. Formula i & -i supplied without explanation of bitwise operation.",
+    "exploration": "Three Read cell actions:13 covers13,hop12;12 covers9-12,hop8;8 completes1-13 with9+21+31=61. Change position1 highlighted cells1,2,4,8,16: five changed versus16 plain running totals; reveal unlocked.",
+    "reveal": "Corrected3. Explains clearing one set bit per query hop, disjoint ranges tile prefix, lowest set bit gives range length. Update adds lowest set bit; both directions about log2 n hops.",
+    "visual": "Inline completed-query/update screenshots inspected: green read ranges13,12,8 tile base row; red update outlines1,2,4,8,16 and all16 prefix sums. Binary chains and counts legible but dense. Base values/totals visually unchanged on update; control illustrates affected cells,not an actual numeric increment. Trust7/7 ignored.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884122 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Question depends on unfamiliar bitwise formula before sufficient explanation for common learner boundary.",
+      "evidence": "i & -i definition but no interpretation before lock.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Query steps and update highlights expose different sparse coverage paths.",
+      "evidence": "Three reads versusfive updated cells and16 totals.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects exact paths and tiling to set-bit rule and logarithmic complexity.",
+      "evidence": "13/12/8 ranges and1/2/4/8/16 update.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Controls followable,but bitwise notation and dense layered diagram demand substantial interpretation.",
+      "evidence": "Inspected query/update screenshots; update highlights without numeric value change.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable query/update rule offered without fresh index application.",
+      "evidence": "Clear/add lowest bit and log2 n claim.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "13-read prediction reversed by three covering cells and sparse update path.",
+      "evidence": "Three versus13, five versus16.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Range tiling and contrasting update highlights carry mechanism across both operations.",
+      "evidence": "Query and update screenshots.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Fixed query and one update path offer little reversible variation.",
+      "evidence": "All actions disabled at completion; no new index control.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete efficient dynamic prefix-sum operation central.",
+      "evidence": "Query and update versus plain totals.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Range decomposition,binary hops and update efficiency linked.",
+      "evidence": "Two paths and reveal.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Requires bitwise lowest-bit operation,binary representation,range tiling and update/query direction.",
+    "conceptualDemand": "Several dependent discrete data-structure abstractions.",
+    "interfaceBurden": "Moderate: dense layered display but fixed controls.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "high: Fenwick tree and bitwise operations",
+    "notationRepresentationBurden": "high: i & -i,binary,\u03a3,log2 n"
+  },
+  "whyCool": "Three green ranges tile thirteen numbers exactly,while a separate red chain shows only five cells need attention when the first value changes.",
+  "caveat": "Fixed prefix13 and update1; update shows affected cells without changing numerical values.",
+  "missingEvidence": [
+    "Fresh query index",
+    "Actual numeric update",
+    "Reset",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

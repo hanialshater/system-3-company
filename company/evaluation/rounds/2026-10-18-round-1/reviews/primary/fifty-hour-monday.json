@@ -1,0 +1,156 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1b",
+  "date": "2026-10-18",
+  "slug": "fifty-hour-monday",
+  "domain": "geography",
+  "demoVersion": 3,
+  "expectedVersion": 3,
+  "batchId": "round1-02",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "7f61616a4cb8730ce09c0ce570327b57793057dc3e13307f6320705c890ed341",
+  "demoSha256": "69d55513488b28a2f3edf72a6ffa8c0cac9342e4f52e88fbfbc0f502924d07fa",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/fifty-hour-monday",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "evidenceMode": "live-browser-computer-use",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "previewIsolationObserved": true,
+  "visibleTrustChrome": "6/6 claims checked; ignored, unopened",
+  "phaseCoverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true,
+    "pixelInspection": true
+  },
+  "observations": [
+    {
+      "id": "p",
+      "action": "Selected24; Lock it in",
+      "outcome": "Commitment retained; time controls unlocked."
+    },
+    {
+      "id": "e",
+      "action": "Forward18h; First Monday starts; Last Monday ends",
+      "outcome": "Sun18UTC Monday somewhere8h; firstSun10UTC yes0h; lastTue12UTC no50h.26h clock spread displayed."
+    },
+    {
+      "id": "v",
+      "action": "Inspected map screenshots before commitment and last boundary",
+      "outcome": "Bands/day letters and island dots visible. Kiritimati dot partially meets left map boundary but label visible; no essential horizontal cutoff.1257x936dark."
+    },
+    {
+      "id": "r",
+      "action": "Show me why",
+      "outcome": "50hours; namesUTC+14Kiritimati andUTC-12Baker;24+26=50; date-line bend explains west-edge Kiritimati."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "24/38/50 alternatives support familiar-day versus global-date misconception.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "First/last boundary and18h step expose date wave and50h duration.",
+      "evidence": "e,v",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Names tested endpoints and computes24+26; explains date-line geographic wrinkle.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "UTC definition, legends and explicit first/last controls support unfamiliar offsets.",
+      "evidence": "e,v",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General date-wave principle stated; no new application challenge.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic mode checks.",
+      "evidence": "v",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "24 prediction reversed by50h global duration.",
+      "evidence": "p,r",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Map bands and island clocks carry temporal sweep.",
+      "evidence": "e,v",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Time step and endpoints permit reversible discovery.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Useful interpretation of worldwide calendar dates/time zones.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Local24h, global26h spread and bent date line linked.",
+      "evidence": "r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Coordinates local calendar dates with UTC extremes and elapsed duration.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": {
+      "level": "moderate",
+      "reason": "UTC offsets and date-line conventions introduced."
+    },
+    "notationRepresentationBurden": {
+      "level": "moderate",
+      "reason": "Signed offsets, world map bands and elapsed-time counter."
+    }
+  },
+  "whyCool": "Jumping from the first Monday on Kiritimati to the last ending on Baker changes the counter from0 to50hours while no one local day grows longer.",
+  "caveat": "Map uses ideal15degree bands; only stated island extremes and one desktop path checked.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Fine slider transitions, phone and accessibility modes untested."
+  ],
+  "reviewState": "complete-real-walkthrough",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1b",
+  "date": "2026-10-18",
+  "slug": "drop-on-the-train",
+  "domain": "physics",
+  "demoVersion": 1,
+  "expectedVersion": 1,
+  "batchId": "round1-02",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "073d7a73108ff2dd4a44b4ac6093a25398df135db15e53044ae9e35d3782dbd2",
+  "demoSha256": "74f346f1d5dc26a8e044324e776cb5419fe488fa765927723fe29ac42212c976",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/drop-on-the-train",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "evidenceMode": "live-browser-computer-use",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "previewIsolationObserved": true,
+  "visibleTrustChrome": "5/5 claims checked; ignored, unopened",
+  "phaseCoverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true,
+    "pixelInspection": true
+  },
+  "observations": [
+    {
+      "id": "p",
+      "action": "Selected Behind your feet; Lock it in",
+      "outcome": "Prediction retained; drop and view controls unlocked."
+    },
+    {
+      "id": "e",
+      "action": "Drop20; View platform; Drop40",
+      "outcome": "Seen20:0cm; platform12.1m curve;40:0cm. Reveal remains locked after first two despite instruction naming only them, unlocks after40."
+    },
+    {
+      "id": "v",
+      "action": "Inspected platform screenshot",
+      "outcome": "Dashed release and solid landing passenger, curved ball trail, matching12.1m travel and0cm landing visible; heights4x disclosed.1257x936dark no horizontal cutoff."
+    },
+    {
+      "id": "r",
+      "action": "Show me why",
+      "outcome": "At your feet;0cm both speeds;0.61s12.1m same horizontal travel; release already moving and nothing slows it; steady-motion condition."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Three landing locations support clear intuitive commitment.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Frame and speed contrasts expose shared horizontal motion.",
+      "evidence": "e,v",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "References both speeds and platform curve with causal momentum account.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Instruction asks drop then platform, but reveal secretly also requires40m/s; recoverable extra control.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Steady-train principle stated; no new conditional application.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No mode checks.",
+      "evidence": "v",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Behind prediction reverses at both speeds; platform path differs.",
+      "evidence": "p,e",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Simultaneous passenger/ball positions and trail carry frame explanation.",
+      "evidence": "v",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "View toggle and two drops permit comparative discovery.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Explains objects dropped in steady transport.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Frames, invariant landing and shared horizontal speed linked.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Coordinates two reference frames and horizontal/vertical motion with visual support.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "moderate",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": {
+      "level": "moderate",
+      "reason": "Motion relative to platform/train introduced."
+    },
+    "notationRepresentationBurden": {
+      "level": "low",
+      "reason": "Simple distances/time and labelled trail."
+    }
+  },
+  "whyCool": "The platform view bends the ball path across12.1m while its landing remains0cm from the moving passenger at both tested speeds.",
+  "caveat": "Unlock instruction omits required40m/s trial; motion limited to steady train and nothing slowing ball.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Return view and repeat trials, phone/accessibility untested."
+  ],
+  "reviewState": "complete-real-walkthrough",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  }
+}

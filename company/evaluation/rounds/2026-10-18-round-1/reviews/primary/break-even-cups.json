@@ -1,0 +1,104 @@
+{
+  "slug": "break-even-cups",
+  "demoVersion": 1,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/break-even-cups",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predictionfixed300dailycost,unitcost1,price3,break-even100/150/300cups; chose100.",
+    "100cups cover200of300;150cover300. Price4 at150cover450;price2at150cover150.",
+    "Reveal originalprice3 andcup150,totalrevenue450,variablecost150,fixed300;general fixedcost dividedbyunitcontribution,steadyprice/allcupssold caveat.",
+    "Screenshot compactbar,cupcounter,pricebuttons andreadablereveal; originalprice3explanation differs from currentprice2clearlylabeled."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Basic subtraction,multiplication,anddivision in familiarbusinessstory.",
+    "conceptualDemand": "Revenue mustcover unitcost beforefixedcost.",
+    "interfaceBurden": "Severalincrementbuttons; currentprice versusoriginalreveal."
+  },
+  "whyCool": "Selling300dollars oflemonade stillleaves youshort,because thecups themselves consume apartofevery sale.",
+  "caveat": "Toyconstantcost/price andallsoldassumptions; noactualfinancialadvice; single reviewer.",
+  "effort": "Prediction,100/150sales,price4/2counterfactuals,reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Useful practicalmechanism with cleanaccounting and controls.",
+  "quality": {
+    "prediction": {
+      "score": 4,
+      "reason": "Targets confusingrevenuewithcontribution.",
+      "evidence": "100cupsrevenue300butcontribution200.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Sales andpricechanges reveal contributionaccounting.",
+      "evidence": "150cups withprice2/3/4 covers150/300/450.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explicitly decomposes revenueandcost withmodelassumptions.",
+      "evidence": "450=150variable+300fixed.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readablebar andexplanation; currentversusoriginalprice requiresattention.",
+      "evidence": "Currentprice2,revealAt3acup.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 4,
+      "reason": "Direct reusable unit-economics rule.",
+      "evidence": "Fixedcost dividedbywhatunit leaves.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "300revenue doesnotcover300fixedcost.",
+      "evidence": "Need450revenue.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Contributionbar andgap showcoverage.",
+      "evidence": "100=>200,150=>300.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Sell/takebackcups andvaryprice.",
+      "evidence": "Incrementbuttons pluspricepresets.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 4,
+      "reason": "Concrete smallbusiness unit-economics.",
+      "evidence": "Fixedandvariablecost distinction.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Contributionmargin andbreak-even withassumptions.",
+      "evidence": "Pricecounterfactuals plusgeneralrule.",
+      "confidence": "medium"
+    }
+  }
+}

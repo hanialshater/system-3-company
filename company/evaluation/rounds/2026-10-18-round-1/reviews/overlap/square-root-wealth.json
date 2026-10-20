@@ -1,0 +1,137 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "overlap",
+  "slug": "square-root-wealth",
+  "demoVersion": 4,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/square-root-wealth",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "square-root-wealth",
+    "domain": "economics",
+    "status": "published",
+    "demoVersion": 4,
+    "metaPath": "src/demos/economics/square-root-wealth/meta.json",
+    "metaSha256": "8ffcf0c7fad07d4ff2df3deb1cf6110cac88660564d8e770da904e239c34b362",
+    "demoSha256": "b47abdf9a60798e57846541889c5f8669130bb09827635925b6cfb30abbc663e",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/square-root-wealth",
+    "primaryWorker": "w3",
+    "reviewKind": "overlap",
+    "outputPath": "reviews/overlap/square-root-wealth.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Committed $25 for the sure amount equal to a 50-50 $0/$100 coin under stated square-root felt value.",
+    "exploration": "Compared $10 with value 3.16, $50 with 7.07 and $75 with 8.66 against coin value 5. Home reached $0; keyboard steps of $5 reached $25 and equal values 5.00. No separate reset offered.",
+    "reveal": "Confirmed $25, contrasted expected payout $50 and diminishing increments 5.00 from zero to 25 versus 2.93 from 50 to 100. Explicitly called square-root felt value one textbook model, not a measure of anyone and no advice.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected. Curve, coin horizontal line and sure-amount dot intersect at $25. Reveal prose says half of square root 100 equals 10, then which is 5; the equation under the chart correctly shows weighted components 0 + 5 = 5.",
+    "previewIsolation": "Preview banner said history and analytics not saved.",
+    "blinding": "No source, metadata or other reviewer judgments inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "A specified model makes the commitment answerable.",
+      "evidence": "Square-root wealth and equal coin probabilities given.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Slider and presets show utility crossing and contrasts above and below.",
+      "evidence": "Found $25 after testing 10, 50, 75 and zero.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The curve connects certainty equivalent to diminishing marginal value.",
+      "evidence": "Average payout 50 differs from utility-equivalent 25.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Graph is legible and scope careful, but reveal arithmetic wording is inconsistent.",
+      "evidence": "Half of sqrt100 is written as 10 before concluding 5; chart equation is correct.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General diminishing-value intuition without a new gamble.",
+      "evidence": "Only fixed 0/100 coin assessed.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No accessibility mode audit completed.",
+      "evidence": "Keyboard slider movement tested, but no full keyboard or assistive-mode audit.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Sure 25 matches a gamble averaging 50 in this model.",
+      "evidence": "Utility intersection at 25.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Concavity and intersection carry the explanation.",
+      "evidence": "Diminishing increments labeled on curve.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Slider offers simple investigation.",
+      "evidence": "Presets and reversible amount changes.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Explains a decision-model concept with explicit limits.",
+      "evidence": "Model not personal measurement or advice.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Separates expected utility from expected dollars.",
+      "evidence": "Coin utility 5 and equivalent wealth 25.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "A square-root curve and weighted average introduce modest mathematical novelty.",
+    "conceptualDemand": "Average transformed outcomes rather than transform average dollars.",
+    "interfaceBurden": "One slider and three presets.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "Expected utility and certainty equivalent.",
+    "notationRepresentationBurden": "Square roots, dollar scale and utility scale."
+  },
+  "whyCool": "The horizontal coin line meets the utility curve below the expected dollar payout.",
+  "caveat": "Reveal wording incorrectly equates half of sqrt100 with 10 before concluding 5; fixed model has no fresh gamble.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Full keyboard-only audit",
+    "Reduced motion audit",
+    "Contrast mode audit"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T21:10:28.517778+00:00"
+}

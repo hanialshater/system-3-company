@@ -1,0 +1,104 @@
+{
+  "slug": "one-person-two-jobs",
+  "demoVersion": 2,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/one-person-two-jobs",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Two 30-minute jobs both at zero reported 30 minutes overlap and no valid finish for one person.",
+    "One after the other set job B to 30\u201360, zero overlap and finish 60.",
+    "Moving B to 70\u2013100 kept zero overlap and changed finish to 100; screenshot aligned both bars correctly.",
+    "Reveal said the Minute 60 prediction held beside the final minute 100 result, then explained shared capacity."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Two half-hour tasks.",
+    "conceptualDemand": "Distinguish calendar layout from available capacity.",
+    "interfaceBurden": "Two test buttons and a slider."
+  },
+  "whyCool": "A calendar can draw parallel work without providing parallel capacity.",
+  "caveat": "Prediction feedback does not explain why an original 60-minute answer still holds after changing the final finish to 100.",
+  "effort": "Prediction, conflicting test, serial preset, later-start boundary, screenshot and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Useful accurate timeline with ambiguous prediction verdict.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "The intended arithmetic choice is clear, but the initial simultaneous plan has no valid finish.",
+      "evidence": "Options 30 and 60 despite the tested initial plan being infeasible.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Preset and slider distinguish infeasibility, earliest serial completion and idle delay.",
+      "evidence": "No valid finish, 60 and 100 tested.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Correct shared-capacity explanation is weakened by unconditional prediction feedback.",
+      "evidence": "Prediction held beside final finish 100 after choosing 60.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "The timeline is clear but verdict context is ambiguous.",
+      "evidence": "Final outcome differs from selected prediction.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "States a useful principle without a concrete second application.",
+      "evidence": "Separate calendar rows do not create capacity.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Separate rows conceal shared demand.",
+      "evidence": "Initial plan has no valid finish.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Timeline accurately displays start, duration and idle space.",
+      "evidence": "B moves from 0\u201330 to 30\u201360 and 70\u2013100.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Direct scheduling adjustments.",
+      "evidence": "Preset and start slider.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete personal planning constraint.",
+      "evidence": "One person cannot perform both jobs concurrently.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Capacity and delay are distinct.",
+      "evidence": "Zero overlap can finish at 60 or 100.",
+      "confidence": "medium"
+    }
+  }
+}

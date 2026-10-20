@@ -1,0 +1,115 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1",
+  "reviewKind": "primary",
+  "slug": "a-star-heads-for-goal",
+  "demoVersion": 8,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/a-star-heads-for-goal",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts; no domain theory.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "P: chose 7; Open 7 x 7 grid, no diagonal moves, score = steps so far + steps left.",
+    "E: Settle to goal: With guess 7 cells settled, route 6 steps. Wall on automatically reran: 16 cells, route 10. Guess off automatically reran: 46 cells, route 10. Table retained comparisons; guess at S 6, real wall route 10.",
+    "R: Your prediction held. The guess ranks cells nearer the goal first; guess can be too low, never too high, so it never makes a shorter route look worse.",
+    "Preview no history banner present; 6/6 trust chrome ignored. Inline screenshot 1280x720, numbered grid clearly contrasts explored cells."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete grid prediction with plausible counts.",
+      "evidence": "P: chose 7; Open 7 x 7 grid, no diagonal moves, score = steps so far + steps left.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Wall and guess contrasts retain route and work counts.",
+      "evidence": "E: Settle to goal: With guess 7 cells settled, route 6 steps. Wall on automatically reran: 16 cells, route 10. Guess off automatically reran: 46 cells, route 10. Table retained comparisons; guess at S 6, real wall route 10.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains efficiency and lower-bound condition against actual results.",
+      "evidence": "R: Your prediction held. The guess ranks cells nearer the goal first; guess can be too low, never too high, so it never makes a shorter route look worse.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Numbered grid and retained table support comparisons.",
+      "evidence": "Preview no history banner present; 6/6 trust chrome ignored. Inline screenshot 1280x720, numbered grid clearly contrasts explored cells.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Conditional search principle explained; no new application tested.",
+      "evidence": "R: Your prediction held. The guess ranks cells nearer the goal first; guess can be too low, never too high, so it never makes a shorter route look worse.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode checks.",
+      "evidence": "Preview no history banner present; 6/6 trust chrome ignored. Inline screenshot 1280x720, numbered grid clearly contrasts explored cells.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Same route takes 46 versus 16 settlements.",
+      "evidence": "E: Settle to goal: With guess 7 cells settled, route 6 steps. Wall on automatically reran: 16 cells, route 10. Guess off automatically reran: 46 cells, route 10. Table retained comparisons; guess at S 6, real wall route 10.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Numbered settlement grid shows flood versus focused search.",
+      "evidence": "Preview no history banner present; 6/6 trust chrome ignored. Inline screenshot 1280x720, numbered grid clearly contrasts explored cells.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Wall/guess toggles rerun comparisons.",
+      "evidence": "E: Settle to goal: With guess 7 cells settled, route 6 steps. Wall on automatically reran: 16 cells, route 10. Guess off automatically reran: 46 cells, route 10. Table retained comparisons; guess at S 6, real wall route 10.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Directly shows search efficiency with same route length.",
+      "evidence": "E: Settle to goal: With guess 7 cells settled, route 6 steps. Wall on automatically reran: 16 cells, route 10. Guess off automatically reran: 46 cells, route 10. Table retained comparisons; guess at S 6, real wall route 10.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Work, route length, obstacle and underestimate linked.",
+      "evidence": "E: Settle to goal: With guess 7 cells settled, route 6 steps. Wall on automatically reran: 16 cells, route 10. Guess off automatically reran: 46 cells, route 10. Table retained comparisons; guess at S 6, real wall route 10.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Compare search work with route length and supported estimate condition.",
+    "conceptualDemand": "Linked score and lower-bound relation.",
+    "interfaceBurden": "Low: automatic reruns, comparison table.",
+    "prerequisiteNovelty": "moderate: settlement and guess scoring introduced",
+    "notationRepresentationBurden": "low: counts and grid"
+  },
+  "whyCool": "Adding a wall makes the estimate wrong yet the guessed search still finds the same route with fewer cells.",
+  "caveat": "Never-too-high condition stated for this guess; no overestimate counterexample.",
+  "notApprovedForServing": true,
+  "effort": "about 3 minutes",
+  "missingEvidence": [
+    "Accessibility modes",
+    "Learner outcomes"
+  ],
+  "fatalFindings": []
+}

@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "stuck-in-the-shallow-valley",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/stuck-in-the-shallow-valley",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "85d694bf97288849f6382dee4f6eccc26324198bcd0161b95674f6f3e9a0492c",
+    "demoSha256": "7a547ba5a2d8ebe57e799d0424e4b5f3070e8bcf5fd288bbcb0d7993dd021601",
+    "metaPath": "src/demos/ai/stuck-in-the-shallow-valley/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected the deeper valley at x = -1.30 and locked the prediction for a ball released at x = 1.5 on the stated quartic toy curve.",
+    "exploration": "Start 1.5 stopped at x = 1.13, height -1.07. Start 0.5 reached the same shallow valley. Start -0.5 reached x = -1.30, height -3.51. The reveal unlocked after exploring both sides.",
+    "reveal": "The reveal corrected the initial prediction to the shallow valley and accurately grouped my two positive starts and negative start. It identified the hump near 0.17 as the separator and explained that downhill steps cannot climb out. It connected starting point sensitivity to gradient descent.",
+    "visual": "Inspected the inline dark 1257 by 936 screenshot after start -0.5. The curve clearly showed two unequal valleys and a labelled hump. A purple trail connected the selected start to the deeper valley; earlier starts remained as outlined markers.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The prompt distinguishes local downhill progress from the global goal.",
+      "evidence": "Selected the deeper destination for a specific start before running it.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Different starts expose two basins and repeatability within one basin.",
+      "evidence": "1.5 and 0.5 converged to the shallow valley; -0.5 reached the deeper valley.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The explanation uses actual runs and identifies the separating hump.",
+      "evidence": "Reveal named all three explored starts and the hump near 0.17.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "The terrain metaphor makes the barrier visible, though nearest is loose wording.",
+      "evidence": "The reveal explains the basin barrier but summarizes it as the nearest valley.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "The ending applies the mechanism to model training with a starting point condition.",
+      "evidence": "It says gradient descent follows the same rule, so initialization can affect the result.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Consistent improvement can stop short of the better answer.",
+      "evidence": "Both positive starts stopped at height -1.07 despite the visible lower valley.",
+      "confidence": "high"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "The hump and trails explain why the destinations differ.",
+      "evidence": "The screenshot exposed the barrier between the two valleys.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Releasing a ball from several starts makes the optimization mechanism tangible.",
+      "evidence": "Preset starts launched visible paths to different resting points.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "It gives an intuition for initialization sensitivity.",
+      "evidence": "The real model training connection is stated but no model is trained here.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "The lesson distinguishes local improvement from global optimality.",
+      "evidence": "Repeated starts within a basin and a start across the hump produced different minima.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "The visual downhill rule is accessible, while the quartic and optimization vocabulary add novelty.",
+    "conceptualDemand": "Moderate: understand local versus global improvement and basin dependence.",
+    "interfaceBurden": "Low: four release buttons and a reveal.",
+    "conceptualChallenge": "A procedure can improve at each step without reaching the best possible outcome.",
+    "prerequisiteNovelty": "Gradient descent and local minima are unfamiliar concepts for the learner boundary.",
+    "notationRepresentationBurden": "Moderate: polynomial, signed coordinates and heights appear, though the visual works without calculating them."
+  },
+  "whyCool": "The ball follows a sensible rule perfectly and still misses the lower valley because of where it starts.",
+  "caveat": "The phrase nearest valley is imprecise compared with the displayed hump and basin explanation. Only preset starts and one toy curve were tested.",
+  "missingEvidence": [
+    "No fresh curve or adjustable step size was explored.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

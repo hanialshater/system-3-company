@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "overlap",
+  "slug": "connect-the-towns-cheaply",
+  "demoVersion": 2,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/connect-the-towns-cheaply",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "connect-the-towns-cheaply",
+    "domain": "cs",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/cs/connect-the-towns-cheaply/meta.json",
+    "metaSha256": "66008a33ec87005f30b9e8d5bd8b3ba8c00afd4f66ad985595161ce9422c472f",
+    "demoSha256": "3ce8572b0647d971089d3563603434a3ff3ca08c19f12e6e1593ce857e7b0664",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/connect-the-towns-cheaply",
+    "primaryWorker": "w1",
+    "reviewKind": "overlap",
+    "outputPath": "reviews/overlap/connect-the-towns-cheaply.json"
+  },
+  "date": "2026-10-18T19:29:05.073818+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "No-history banner confirmed; trust5/5 ignored. Selected5 andlocked.",
+    "exploration": "AB1thenBC2laid,total3. AC2refusedcycle. CD3laid,allfourjoined,total6,revealunlocked. Screenshotconfirmed. Startagainclearsalllaid/refusedcost0butleavesrevealunlocked. TryAD5rejectedwithCheapestfirstABcosts1lessthan5. Clickrevealfromemptygraph.",
+    "reveal": "Correct6; FALSEstate sentenceYoulaid[empty]:total0,allfourtownsjoined. Restexplainscheapthree1+2+2formABCcycleleaveDout,min6,Kruskalcheapestskipcycles. Currentgraphindeedempty/cost0.",
+    "visual": "Inline1257x936 dark screenshots inspected: initialsuccessfulgreenAB/BC/CDandredrefusedAC;afterresetallgreydottededges,nojoinednetwork,counters0andfalsejoinedrevealvisible."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "5versus6/7separatescheapedge-sumfromconnectednetwork.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Requiredpathvisiblyshowscycleavoidance, butexpensivechoicesrefusedratherthanexplorable;resetleavesstalecompletiongate.",
+      "evidence": "exploration;visual",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 1,
+      "reason": "Generalreasoningusefulbuttestedresetpathfalselyclaimsalltownsjoinedat0costonemptygraph.",
+      "evidence": "reveal;visual",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Edges/cost/refusallegible;resetcompletionmismatchmisleading.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "ReusableKruskalruleforconnectingnetworks,butnofreshgraph/applicationorprecisegeneralscope.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Chosencheapthree5rejectedbycycleandneedsCD3for6.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Greenacceptededges/redrefusedcyclemakeconnectivitydifferencevisible.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Choicebuttonsandresetbutalgorithmforcescheapestsequence,restrictsexperimentation.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concretecheapnetworkconnectiontask.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Connectivityversuscyclesandcheapestchoice;generalsafetyargumentasserted.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Trackcomponents,cyclesandtotalcostwhilefollowinggreedyedgeorder.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "moderate:resetleavescompletiongate/stalepayoff",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: graphcycles/minimumspanningnetwork",
+    "notationRepresentationBurden": "low: townletters,edgeweightsandgraph"
+  },
+  "whyCool": "The cheapACcableisrefusedbecauseABandBCalreadyjoinitsends,leavingmoneyforD.",
+  "caveat": "Afterreset,revealincorrectlydescribesanempty0costgraphasallfourjoined.",
+  "findings": [
+    "Observed reproducible sequence: complete AB/BC/refusedAC/CD, reset, then reveal remains enabled and says total0 all four towns joined. Current graph has no laid edges. Owner should repair completion/state narration."
+  ]
+}

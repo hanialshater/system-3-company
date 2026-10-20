@@ -1,0 +1,103 @@
+{
+  "slug": "garment-overlap-hides-face",
+  "demoVersion": 2,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/garment-overlap-hides-face",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted3600 hidden for1800 overlap. A at width30 showed1800 overlap,3600 hidden,20400 open; B showed0 hidden24000 open.",
+    "Pressed A and B, then width60: A3600 overlap7200 hidden16800 open; B remained24000 open.",
+    "Reveal explains one contacting patch per shirt, preserves total cloth, excludes universal drying-time savings. Screenshot shows right-edge reveal clipping at1280\u00d7720."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Area doubling with simple controls.",
+    "conceptualDemand": "Recognize two contacting surfaces.",
+    "interfaceBurden": "Two modes and width slider."
+  },
+  "whyCool": "One overlap conceals two patches while total cloth stays fixed.",
+  "caveat": "Reveal clipped at tested viewport; no drying rate or time estimate.",
+  "effort": "Prediction,A/B comparison,width change,reveal and inline screenshot.",
+  "provisionalBucket": "solid-viewport-followup",
+  "bucketReason": "Sound bounded model; prose readability needs check.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Distinguishes one versus two hidden faces.",
+      "evidence": "1800 overlap choices0/1800/3600.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Layout and width isolate contact-area effects.",
+      "evidence": "Width30/60; B unchanged.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects doubled hidden area to physical contact and limits.",
+      "evidence": "Two patches; no universal time saving.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Results table is clear but prose clips at tested viewport.",
+      "evidence": "Inline screenshot right edge.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Useful principle and limits without fresh application.",
+      "evidence": "Same two-shirt comparison throughout.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Two faces hidden for one overlap.",
+      "evidence": "1800 leads3600.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Diagram and comparative table support area accounting.",
+      "evidence": "A/B table and layout.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Toggle and width variations.",
+      "evidence": "30 to60.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Laundry spacing central.",
+      "evidence": "Cloth exposed to air with limits.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Distinguishes cloth amount from exposed surface.",
+      "evidence": "Two contact patches.",
+      "confidence": "medium"
+    }
+  }
+}

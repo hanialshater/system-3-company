@@ -1,0 +1,103 @@
+{
+  "slug": "measure-inside-not-outside",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/measure-inside-not-outside",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Clear inside width;outer40 cm,two2 cm walls,insert37.",
+    "Outer mode gave+3 cm;inside gave\u22121. Increasingouter41 gave0.",
+    "Screenshot at\u22121 margin showed insert comfortably narrower than drawn opening and diagram labelled40cm opening despite outer-width variable. Reveal explained wall subtraction and corners/tapers,duplicated verdict."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Basic subtraction and clearance.",
+    "conceptualDemand": "Outer dimensions include unusable walls.",
+    "interfaceBurden": "Simplecontrols,contradictorypicture."
+  },
+  "whyCool": "A box can be wider than an insert outside and still too narrow inside.",
+  "caveat": "Central fit diagram must show wall thickness and collision consistently; currently numeric result contradicts apparent clearance.",
+  "effort": "Prediction screenshot,both modes,failing-fit screenshot,zero boundary and reveal.",
+  "provisionalBucket": "needs-fix",
+  "bucketReason": "Core visual contradicts the fit failure being taught.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Title supplies relevant measurement.",
+      "evidence": "Outside width can fool fit.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Mode contrast and zero boundary demonstrate arithmetic.",
+      "evidence": "40\u221237=3 versus40\u22124\u221237=\u22121;41\u21920.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Correct prose but claimed collision not visible in diagram.",
+      "evidence": "At\u22121 insert drawn well inside.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 1,
+      "reason": "Geometry contradicts fit result and calls outer width opening.",
+      "evidence": "Screenshot40cm opening with fit\u22121 and visible clearance.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Specific corner/taper limits extend measurement condition.",
+      "evidence": "Real opening may narrow further.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Outer fit can conceal inside collision numerically.",
+      "evidence": "+3 to\u22121.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 1,
+      "reason": "Non-scaled picture fails to show core collision.",
+      "evidence": "Insert visibly fits atnegative margin.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Mode switch and threshold exploration.",
+      "evidence": "Zero at41.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Usable clearance central.",
+      "evidence": "Subtract both walls.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Nominal versus usable dimension.",
+      "evidence": "Further shape constraints.",
+      "confidence": "medium"
+    }
+  }
+}

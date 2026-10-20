@@ -1,0 +1,104 @@
+{
+  "slug": "fee-drag-gap",
+  "demoVersion": 1,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/fee-drag-gap",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction10000grows7%30years,1%fee=>6%net,finalsharecost1/10/25%; chose10.",
+    "1%:57435end,18688gap24.5%;2%:43219end,32903gap43.2%;0%:76123end,gap0.",
+    "Reveal includesforegonecompoundingaswellasfees,steadyrate/no-deposit/taxmodel,realreturnsvary/notadvice.",
+    "Screenshot readableprose; readoutlabelFEESTOOK referstototalwealthgap includingforegonegrowth; zerofeecurrentchart versusoriginal1%explanation."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Compoundgrowthandcounterfactualwealthgap beyondsimpleannualpercentage.",
+    "conceptualDemand": "Directfees versuslostfuturegrowth; final-balance denominator.",
+    "interfaceBurden": "Simpleoneslider; labelambiguity andoriginal/currentstate."
+  },
+  "whyCool": "Aonepercentyearlydrag compounds intoaquarterofthebalance youotherwise wouldhavehad.",
+  "caveat": "FEESTOOKlabel includesforegonegrowth,notjustfeeamount;toyfixedreturnmodel,noactualfinancialguidance.",
+  "effort": "Prediction,1/2/0%counterfactuals,reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Usefulcompoundingintuition; wealthgaplabelshouldbeclarified.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Distinguishes one-yearfeefromcompoundedlong-runwealthgap.",
+      "evidence": "1/10/25%alternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Feecontrols demonstratezero,1,and2%counterfactuals.",
+      "evidence": "0/24.5/43.2%wealthgap.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explainsfeesplusforegonegrowthandfixedmodelassumptions.",
+      "evidence": "Everytakendollarstopsearning.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "FEESTOOKcanmislabelwealthgap asactualfeescharged.",
+      "evidence": "18688includescounterfactualforegonegrowth perreveal.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalcompoundingprinciple offered; newscenario notpracticed.",
+      "evidence": "Fixed30yearhorizon/7%returnonly.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "1%annualdrag costsroughlyquarteroffinalwealth inmodel.",
+      "evidence": "24.5%gap.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Divergingbalancecurves andgapreadout.",
+      "evidence": "Changingfeeratechangesredgap.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Oneparameterslider.",
+      "evidence": "0to2%fee.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Feesandcompounding centraltofinancialliteracycase.",
+      "evidence": "Annualrate versuslong-runwealth.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Repeatedrateeffect andopportunitycost.",
+      "evidence": "No time/return/depositvariation.",
+      "confidence": "medium"
+    }
+  }
+}

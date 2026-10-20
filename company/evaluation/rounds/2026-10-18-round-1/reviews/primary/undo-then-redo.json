@@ -1,0 +1,104 @@
+{
+  "slug": "undo-then-redo",
+  "demoVersion": 1,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/undo-then-redo",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Initial editor tokens were A, X, C.",
+    "Undo changed them to A, B, C; screenshot showed the restored middle token.",
+    "Redo restored A, X, C; both operation buttons then became disabled, preventing another cycle.",
+    "Reveal explains previous stored state and reapplying its transition, with an app-support caveat."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Three tokens and two named commands.",
+    "conceptualDemand": "Distinguish previous state and reapplication.",
+    "interfaceBurden": "Two one-use buttons."
+  },
+  "whyCool": "An accidental replacement can be reversed without reconstructing the old content.",
+  "caveat": "A fixed two-step illustration, not an editable history stack.",
+  "effort": "Prediction, undo, screenshot, redo and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Correct but very shallow and fully cued.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Title and command names answer the question.",
+      "evidence": "Which returns to prior state: Undo or Redo.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "One scripted reversible edit demonstrates both operations.",
+      "evidence": "Undo and redo work once each, then disable.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Correctly names the history mechanism and scope.",
+      "evidence": "Previous stored state, reapply transition, apps vary.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Visible tokens make each operation legible.",
+      "evidence": "B replaces X on undo and X returns on redo.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General command principle with no concrete second application.",
+      "evidence": "Apps differ in supported operations and histories.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Basic expected command behavior.",
+      "evidence": "Undo reverses and redo reapplies.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Token change is directly visible.",
+      "evidence": "A, B, C versus A, X, C.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "A two-step fixed sequence.",
+      "evidence": "No new editing or further cycling.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Introduces a common recovery action.",
+      "evidence": "Local edit history only.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "One state transition.",
+      "evidence": "Single edit and its reversal.",
+      "confidence": "medium"
+    }
+  }
+}

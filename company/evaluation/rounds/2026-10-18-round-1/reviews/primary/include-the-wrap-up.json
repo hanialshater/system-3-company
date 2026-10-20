@@ -1,0 +1,103 @@
+{
+  "slug": "include-the-wrap-up",
+  "demoVersion": 2,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/include-the-wrap-up",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted40 for call0\u201330 then notes10. Initial notes20\u201330 tested overlap10 invalid.",
+    "Preset notes30\u201340 gave valid40. SliderEnd notes70\u201380 gave valid80.",
+    "Reveal says prediction held, final80 and call-only30 is50 too early; doesn't separate40 idle minutes from10 work minutes. Screenshot readable."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Short scheduling arithmetic.",
+    "conceptualDemand": "Finish all tasks versus call finish.",
+    "interfaceBurden": "Test,preset,slider."
+  },
+  "whyCool": "The event ending and the whole job ending can be different times.",
+  "caveat": "At delayed starts, explain idle versus work time and original prediction versus current layout.",
+  "effort": "Prediction,test,preset,start endpoint,reveal,inline screenshot.",
+  "provisionalBucket": "revise-time-framing",
+  "bucketReason": "Model works, narrative confuses elapsed duration with work.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear total-job choice with task lengths.",
+      "evidence": "30 versus40.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Overlap,adjacent and delayed schedules tested.",
+      "evidence": "Invalid10,valid40,valid80.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Current finish correct but held verdict and workload phrasing blur changed start/idle time.",
+      "evidence": "Predicted40,current80;50 includes40 idle.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readable but elapsed-time versus workload distinction missing.",
+      "evidence": "Reveal final80 then workload.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Required wrap-up principle, no fresh application.",
+      "evidence": "Call and notes only.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Simple added task duration.",
+      "evidence": "30+10.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Timeline shows overlap and gap.",
+      "evidence": "20\u201330,30\u201340,70\u201380.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Start slider and repair preset.",
+      "evidence": "Three schedules.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Calendar completeness central.",
+      "evidence": "Include required notes.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Dependencies and elapsed span.",
+      "evidence": "Idle time exposed but unexplained.",
+      "confidence": "medium"
+    }
+  }
+}

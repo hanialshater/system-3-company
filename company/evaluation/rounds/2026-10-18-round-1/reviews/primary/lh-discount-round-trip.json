@@ -1,0 +1,103 @@
+{
+  "slug": "lh-discount-round-trip",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-discount-round-trip",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Below original for a 20% reduction followed by 20% rise.",
+    "Tests showed \u20ac100 versus \u20ac96 with expression 100\u00d70.8\u00d71.2. Maximum original \u20ac150 gave \u20ac150 versus \u20ac144.",
+    "Screenshot used receipt icons and result cards. Reveal preserved original/current distinction and explained smaller base and product 0.96."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Familiar percentages and displayed arithmetic.",
+    "conceptualDemand": "Track a changed percentage base.",
+    "interfaceBurden": "Two tests and one slider."
+  },
+  "whyCool": "Equal percentage changes fail to undo each other.",
+  "caveat": "Slider changes starting price only; no visual intermediate discounted amount.",
+  "effort": "Prediction, both tests, maximum boundary, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear misconception and explanation, modest visual support.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear plausible cancellation misconception with enough inputs.",
+      "evidence": "Below/at/above original choices.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Changing base amount demonstrates proportional loss.",
+      "evidence": "100\u2192150 gives 96\u2192144.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains different bases and multiplicative result.",
+      "evidence": "0.8\u00d71.2=0.96.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Price labels and expressions make tested path clear.",
+      "evidence": "Original and down-up cards.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General principle stated without a fresh application.",
+      "evidence": "Equal percentages need not equal amounts.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Non-cancellation is central conceptual hook.",
+      "evidence": "Equal percentages leave price lower.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 1,
+      "reason": "Icons decorate rather than show sequential bases.",
+      "evidence": "Numeric expression carries explanation.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Two tests and base-price slider.",
+      "evidence": "Percentage itself fixed.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Price changes are central application.",
+      "evidence": "Discount then markup.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Multiplicative versus additive change.",
+      "evidence": "Changing percentage base.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "No-historybanner;5/5trustignored.Predicted6times.",
+    "Aonlyaddssecondrun;Bonlythird;bothfourth.Screenshotbarsbaseline1,A2,B4,both8.Clearafterrevealrestored1runandallbuttons,revealsummaryremained.",
+    "Reveal2×4=8not6;rate=k[A][B]²,fixedk,exponentsfromexperimentsnotreactionequation.",
+    "Inline1257x936dark:barlengthsproportional1/2/4/8,concentrationmultiplierslabeled;largeemptyspacestagewithrevealbelowfold."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Plausibleadditiveversusmultiplicativechoices.",
+      "evidence": "6/8/4",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Independentandcombinedtrialsretaincomparablebars;resetworks.",
+      "evidence": "1/2/4/8plusclear",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explicitlyconnectstrialfactorstoproductandrate-lawinterpretation.",
+      "evidence": "Reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Barlabelsandcontrolsreadable;notationalextensioncompact.",
+      "evidence": "Screenshot",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Rate-lawruleandexperimentalexponentsgiven,nofreshcase.",
+      "evidence": "Reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No modeaudit.",
+      "evidence": "Unknown",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "6guessoverturnedby8bar.",
+      "evidence": "Prediction/both",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Proportionalbarssustainfactorcomparison.",
+      "evidence": "Screenshot",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Threepresettrialsandreset,nocustomfactors.",
+      "evidence": "Controls",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Experimentalreactionorderinterpretation.",
+      "evidence": "Rate-lawreveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Multiplicationandexperimentalexponents,onefixedreaction.",
+      "evidence": "Reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Combinesexperimentalfactors;optionalrate-lawnotationaddsnovelty.",
+    "conceptualDemand": "twofactorproduct",
+    "interfaceBurden": "low",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate:concentration/reactionorder",
+    "notationRepresentationBurden": "high:k[A][B]²"
+  },
+  "whyCool": "Twoindependentbarsat2and4predictacombinedbarat8.",
+  "caveat": "Threepreparedoutputsillustrateoneassumedrate law;learnercannotvaryconcentrationsfreely.",
+  "effort": "~2minutes",
+  "missingEvidence": [
+    "Accessibility modes",
+    "Freshapplication"
+  ],
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3c",
+  "date": "2026-10-18",
+  "notApprovedForServing": true,
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, number comparisons and familiar household objects; no domain theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "screenshots": [],
+  "fatalFindings": [],
+  "slug": "multiply-dont-add-rates",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/multiply-dont-add-rates",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "9a4e27169888e121d49c78c36853772490cfbc9323de85ddb089759e74b38a7b",
+    "metaSha256": "038a87bf2c6ff2d7dae5433d45c746e985cd1feda94b9189ab2231ff22c5a34a"
+  }
+}

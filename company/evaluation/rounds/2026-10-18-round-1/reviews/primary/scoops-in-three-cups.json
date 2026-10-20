@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "scoops-in-three-cups",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/scoops-in-three-cups",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "93b40c5ffcc05a7849ae1ae0013ba22faf26ef24023d0d866b192f277e680956",
+    "demoSha256": "73dc72daedbce1fe67cd5f520b51785fb25a2d15a213880fc1410d3be60bd7a5",
+    "metaPath": "src/demos/math/scoops-in-three-cups/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected 3/4 scoops and locked it in for three cups divided into quarter-cup scoops.",
+    "exploration": "Baseline one-cup scoop gave three scoops. Half-cup gave six. Quarter-cup gave twelve and unlocked reveal. Fifth-cup gave fifteen. Total rice remained three cups.",
+    "reveal": "Corrected twelve for the original quarter-cup question. Explains four scoops in each of three cups, division as how many pieces fit, and dividing by 1/n as multiplying by n.",
+    "visual": "Inspected inline quarter-cup screenshot: three outlined cups each partitioned into four numbered sections, numbered cumulatively through twelve. Labels and scoop presets are legible. Trust count 4/4 was ignored.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear everyday measurement question tests division-always-shrinks misconception.",
+      "evidence": "Selected 3/4 versus twelve observed quarter-cup sections.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Several scoop sizes visibly change partition count while preserving total volume.",
+      "evidence": "One, half, quarter and fifth cups gave three, six, twelve and fifteen scoops.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects the actual partition to reciprocal multiplication and the size-below-one condition.",
+      "evidence": "Four sections per cup times three cups, then 1/n rule.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Numbered sections, fixed cup count and named scoop choices make the task clear.",
+      "evidence": "Quarter-cup screenshot and three successful changes.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable measurement interpretation and condition are given, without a concrete new application.",
+      "evidence": "Pieces smaller than one increase the count; no new total or context.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed fractional answer is overturned by twelve countable sections.",
+      "evidence": "Prediction and quarter-cup result.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Cup partitions carry the division mechanism across multiple sizes.",
+      "evidence": "Half, quarter and fifth counts plus screenshot.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversible scoop presets support exploration.",
+      "evidence": "Three changed sizes were tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete kitchen measurement is central.",
+      "evidence": "Rice measured by cup and scoop size.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Measurement division and reciprocal multiplication are linked.",
+      "evidence": "Fixed total with several unit fractions.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "One familiar quantity is partitioned into smaller units.",
+    "conceptualDemand": "Supported counting and reciprocal relation.",
+    "interfaceBurden": "Low: named scoop presets.",
+    "conceptualChallenge": "gentle",
+    "prerequisiteNovelty": "low: unit-fraction measurement",
+    "notationRepresentationBurden": "low: fractions and multiplication"
+  },
+  "whyCool": "Smaller scoops create more numbered pieces without adding any rice.",
+  "caveat": "Only unit fractions and a fixed three-cup total were tested.",
+  "missingEvidence": [
+    "Third-cup preset",
+    "New total",
+    "Fresh application",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "transparent-box-visibility",
+  "demoVersion": 1,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/transparent-box-visibility",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Opaque six-box layout reported no visible target and showed dark closed fronts.",
+    "Clear fronts at ten boxes reported one visible target; all ten contents had orange outlines, with the last filled more strongly.",
+    "Changing count did not change the binary target result.",
+    "Reveal distinguishes observing an item from relocating it, and qualifies lighting, crowding and translucent materials."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Familiar boxes and binary visibility.",
+    "conceptualDemand": "Separate seeing from locating.",
+    "interfaceBurden": "Two modes and one slider."
+  },
+  "whyCool": "A clear front changes the information you have before opening a container.",
+  "caveat": "Ideal visibility and weak target color distinction; no retrieval-time experiment.",
+  "effort": "Prediction, opaque and clear layouts, ten-box boundary, screenshots and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Useful scope but obvious prediction and ambiguous target coloring.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "The labels nearly supply the answer.",
+      "evidence": "Clear fronts versus opaque boxes for seeing through.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "A fixed visibility comparison with a largely incidental count slider.",
+      "evidence": "Zero opaque versus one clear target; ten-box boundary.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains observation rather than location and states real-world limits.",
+      "evidence": "Lighting and crowded contents can still obscure objects.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Target distinction relies on fill rather than the promised orange color.",
+      "evidence": "All clear-front contents have orange outlines.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete alternative cue and limiting conditions.",
+      "evidence": "Opaque boxes need an address; clear materials still depend on contents and lighting.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "An expected visibility distinction.",
+      "evidence": "Clear fronts expose contents.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "The fronts reveal or hide items, but target coloring is weak.",
+      "evidence": "Orange outlines on every item and a stronger filled target.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "A basic toggle and count change.",
+      "evidence": "Count does not change target visibility result.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Specific storage cue choice with limits.",
+      "evidence": "Addresses for opaque containers; visibility conditions for clear ones.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "One simple observation distinction.",
+      "evidence": "Transparency changes observation, not location.",
+      "confidence": "medium"
+    }
+  }
+}

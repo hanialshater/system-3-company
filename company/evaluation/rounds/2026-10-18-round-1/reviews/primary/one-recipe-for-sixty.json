@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "one-recipe-for-sixty",
+  "demoVersion": 4,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/one-recipe-for-sixty",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "one-recipe-for-sixty",
+    "domain": "math",
+    "status": "published",
+    "demoVersion": 4,
+    "metaPath": "src/demos/math/one-recipe-for-sixty/meta.json",
+    "metaSha256": "5f8d39b4ac2527b46acf5181b930971a1e8e44c54772b86ac4cec034dbeae629",
+    "demoSha256": "d85f8f5c9d527be1a6d61aa15064238f0b940463ac430c1f4af0c1a300939c53",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/one-recipe-for-sixty",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/one-recipe-for-sixty.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Chose3 against1 and2 prime recipes ignoring order;locked it in.",
+    "exploration": "60 starts2\u00d730,4\u00d715,6\u00d710 automatically grew distinct trees,all shelf entries2,2,3,5. Try84 reset tree/shelf.84 starts2\u00d742 and7\u00d712 both produced2,2,3,7,retained side-by-side.",
+    "reveal": "Corrected1;named all three actual60 starts and both84 results. Generalized every whole number above1 has unique prime factorization apart from order.",
+    "visual": "Actual1257 \u00d7936 dark screenshot inspected.84\u21927\u00d712\u21923\u00d74\u21922\u00d72 tree has colored prime leaves;sorted prime badges on shelf match both starts. Full reveal legible.",
+    "previewIsolation": "No-history evaluation banner present.",
+    "blinding": "6/6 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear commitment tests confusing factor trees with distinct prime multisets.",
+      "evidence": "3 recipes prediction versus1 result;order ignored explicit.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Multiple initial splits across two numbers expose invariant prime leaves.",
+      "evidence": "Three60 paths2,2,3,5;two84 paths2,2,3,7.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Uses exact tested starts and new-number result to explain uniqueness with domain/order conditions.",
+      "evidence": "Whole numbers above1,apart from order.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Tree,prime colors and shelf support direct comparison.",
+      "evidence": "Actual screenshot84 prime badges and paths.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete new84 case actually exercised,with whole-number-above1 and order conditions;non-applicable case not tested.",
+      "evidence": "Two84 starts versus three60 starts;reveal conditions.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient access audit.",
+      "evidence": "Keyboard,focus,contrast,phone,zoom and motion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed multiple-recipes prediction contradicted by repeated invariant leaves.",
+      "evidence": "Allthree60 paths same multiset.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Branching trees differ while colored prime shelf stays same.",
+      "evidence": "Actual84 tree and sorted badges.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Five first splits and alternate number allow reversible discovery.",
+      "evidence": "Three60 and two84 choices tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete decomposition identity for integer multiplication.",
+      "evidence": "Unique prime recipe principle.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Different tree structures,order invariance and second number linked.",
+      "evidence": "60 and84 path comparisons.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Separates factor-tree path from invariant prime multiset.",
+    "conceptualDemand": "Follow recursive products and compare leaves ignoring order.",
+    "interfaceBurden": "Low:automatic tree growth and retained shelf.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate:prime decomposition and uniqueness.",
+    "notationRepresentationBurden": "low:whole numbers,multiplication and factor tree."
+  },
+  "whyCool": "Different trees for84 end in exactly the same colored2,2,3,7 badges.",
+  "caveat": "Only first split chosen;remaining branches automatic,and no0/1 or proof of general uniqueness tested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Other60/84 starts and return-to60 not tested.",
+    "Keyboard,focus,contrast,phone,zoom/reflow and motion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:30:18.491914+00:00"
+}

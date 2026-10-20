@@ -1,0 +1,104 @@
+{
+  "slug": "throw-it-fast-enough",
+  "demoVersion": 7,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/throw-it-fast-enough",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted about7.9 km/s as the slowest nonlanding sideways throw from a no-air peak; visual later specified10 km peak and height exaggeration\u00d740.",
+    "Tested7.6,7.8,7.85 km/s: landed1269,2245,3209 km away respectively. At7.9 km/s the ball circled in85 minutes.",
+    "At7.85 the first-minute fall17.6 km exceeded ground curvature17.4; at7.9 both rounded to17.6.",
+    "Reveal accurately compared the fastest tested landing7.85 with the nonlanding7.9, explaining continual falling and sqrt(gR)\u22487.91 km/s."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Visual intuition is accessible; quantitative orbital formula adds demand.",
+    "conceptualDemand": "Gravity, curvature and orbital motion.",
+    "interfaceBurden": "Speed steps and slider."
+  },
+  "whyCool": "Orbit appears as the point where the ground falls away as quickly as the ball does.",
+  "caveat": "Idealized no-air spherical Earth with exaggerated height; numerical values are rounded and the circular-speed formula is an approximation at the depicted peak.",
+  "effort": "Completed prediction, four speed states, trajectory screenshots and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Clear causal speed contrast and accurate observed-state explanation.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "A useful scale estimate, but exact speed needs gravitational information or prior orbital knowledge.",
+      "evidence": "Radius given; gravitational acceleration not stated before prediction.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Controlled speed steps expose the transition from landing to orbit.",
+      "evidence": "7.6 through7.9 km/s with quantitative outcomes.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "State-specific comparisons connect the trajectory to matching fall and curvature.",
+      "evidence": "Recorded fastest landing7.85 versus orbit7.9.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Path, speed and model assumptions are clearly labeled.",
+      "evidence": "No air,10 km peak, height exaggeration\u00d740.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Physical explanation and formula are supplied without a new planetary case.",
+      "evidence": "Fixed Earth model.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Continual falling becomes the mechanism of staying aloft.",
+      "evidence": "Nearly identical speeds cross a visible landing boundary.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Planet curvature and trajectories explain why faster throws miss the ground.",
+      "evidence": "First-minute tangent/fall comparison.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Stepping the throw speed controls whether the ball lands.",
+      "evidence": "Slower/faster and slider.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Primarily conceptual orbital physics.",
+      "evidence": "No practical launch design.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Links local free fall, global curvature and orbital speed.",
+      "evidence": "sqrt(gR) and fall/curvature amounts.",
+      "confidence": "medium"
+    }
+  }
+}

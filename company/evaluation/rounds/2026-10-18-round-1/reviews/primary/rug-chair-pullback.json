@@ -1,0 +1,103 @@
+{
+  "slug": "rug-chair-pullback",
+  "demoVersion": 1,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/rug-chair-pullback",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted include pullback for chair movement; title states beyond table.",
+    "At table120 footprint rug120,include60eachside240. Table160 include280.",
+    "Reveal explains both-side allowance and60chosenillustration not recommendation. Screenshot tiny top-view model and right-edge clipped prose."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Addition of two margins.",
+    "conceptualDemand": "Movement envelope beyond static footprint.",
+    "interfaceBurden": "Two modes and width slider."
+  },
+  "whyCool": "Furniture planning needs the space used in motion,not only the space occupied at rest.",
+  "caveat": "Improve prediction and show actual movement;60cm is explicitly illustrative.",
+  "effort": "Prediction,mode contrast,width variation,reveal,inline screenshot.",
+  "provisionalBucket": "revise-prediction-visual",
+  "bucketReason": "Useful bounded calculation,limited challenge.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Title and option disclose intended answer.",
+      "evidence": "Beyondtable/include pullback.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Footprint and allowance width comparison plus size change.",
+      "evidence": "120/240 then280.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Clear arithmetic and scope.",
+      "evidence": "Both sides,actual furniture,not ergonomic standard.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Small schematic,no movement animation and clipping.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Explicit actual-measurement and both-side rule.",
+      "evidence": "Check real furniture and paths.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Obvious extra clearance.",
+      "evidence": "Table alone insufficient.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Top-view rectangle supports footprint distinction.",
+      "evidence": "Two chairs and rug.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Mode and size variation without chair movement.",
+      "evidence": "No drag.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Furniture-space measurement central.",
+      "evidence": "Actual allowance caveat.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "Width plus two allowances.",
+      "evidence": "One calculation.",
+      "confidence": "medium"
+    }
+  }
+}

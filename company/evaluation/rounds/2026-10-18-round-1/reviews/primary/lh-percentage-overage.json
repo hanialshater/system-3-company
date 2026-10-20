@@ -1,0 +1,103 @@
+{
+  "slug": "lh-percentage-overage",
+  "demoVersion": 3,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-percentage-overage",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Ten extra larger at required 40 tiles.",
+    "Tests gave 44 percentage order versus 50 fixed-extra; maximum 120 gave 132 versus 130 reversal.",
+    "Screenshot showed aggregate fills rather than tiles. Reveal preserved original/current inputs and explained scaling, equality at 100 and rounding tie at 95."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple percentages and integer rounding.",
+    "conceptualDemand": "Fixed and proportional extras scale differently.",
+    "interfaceBurden": "Two tests and slider."
+  },
+  "whyCool": "Ten extra and ten percent extra stop meaning the same thing as the job grows.",
+  "caveat": "Toy quantity arithmetic does not determine appropriate installation allowance.",
+  "effort": "Prediction, both tests, maximum requirement, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear scaling contrast with honest rounding detail.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear fixed-count versus proportional distinction.",
+      "evidence": "40 tiles with 10% or ten extra.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Job-size change reverses ordering.",
+      "evidence": "40\u2192120 tiles.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains scaling and rounding effects.",
+      "evidence": "10% of 40 is four; tie at 95 due rounding.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Quantity-only scope and expressions explicit.",
+      "evidence": "No installation advice.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete crossover and rounding condition guide application.",
+      "evidence": "Percentage order larger above 100.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Which order is larger reverses with job size.",
+      "evidence": "44/50 then 132/130.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Common-scale aggregate fills support totals.",
+      "evidence": "No individual tile or extra partition.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Slider invites crossover exploration.",
+      "evidence": "Winner changes.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Quantity overage comparison central.",
+      "evidence": "Fixed versus percentage spare amount.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Combines scaling with integer rounding.",
+      "evidence": "ceil(1.1n) versus n+10.",
+      "confidence": "medium"
+    }
+  }
+}

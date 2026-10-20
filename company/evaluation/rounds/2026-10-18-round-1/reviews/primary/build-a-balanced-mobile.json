@@ -1,0 +1,121 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2",
+  "reviewKind": "primary",
+  "slug": "build-a-balanced-mobile",
+  "demoVersion": 2,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/build-a-balanced-mobile",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, familiar objects; no subject theory assumed.",
+  "viewport": "1280x720 desktop screenshot",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "text": "No-history banner confirmed; trust 7/7 ignored. Predicted 75 cm from 50/75/90; locked."
+    },
+    {
+      "id": "E",
+      "text": "Bare ruler at 50 level, turns 0/0. Add lump: right down, turns 0/5. ArrowRight pivot62.5:1.25/3.75. NextRight75:level,2.5/2.5. End100:left down,5/0."
+    },
+    {
+      "id": "R",
+      "text": "Reveal recalls prior level75, ruler mass at50, weight\u00d7distance, equal25cm arms; mass-weighted average and heavier-lump extension. Scrolled up to full stage; screenshot shows ruler tilt and lever arm at100. Normal verticalscroll; no horizontal clipping in inspected portion. Inline screenshot only."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Familiar ruler setup with explicit equal masses and concrete alternatives.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Baseline, load, balance and opposite-tilt boundary connect moments to pivot.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains ruler own weight and equal turning arms, generalizes weighted balance point.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Labels, readouts and tilt align; readable prose via normal verticalscroll.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Reusable weight-times-distance and mass-weighted position principle; editorial only.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Keyboard slider used but no mode audit.",
+      "evidence": "Untested",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Ruler own mass makes balance75 rather than midpoint or end.",
+      "evidence": "E,R",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Tilt, weight arrow and arm labels carry torque mechanism.",
+      "evidence": "R screenshot",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversible pivot/load controls.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Balancing a loaded physical object.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Distributed ruler weight, turning moments, weighted mean.",
+      "evidence": "R",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Linked mass-location and lever-arm relations supported visually.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low; normal verticalscroll",
+    "prerequisiteNovelty": "moderate; turning moment",
+    "notationRepresentationBurden": "moderate; kg\u00d7cm readouts"
+  },
+  "whyCool": "Moving the pivot from50 through75 to100 reverses which end drops, with equal turning values exactly at75.",
+  "caveat": "Heavier-lump extension stated but mass cannot be varied on tested path.",
+  "notApprovedForServing": true,
+  "effort": "About 3 minutes",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility modes",
+    "Mass contrast",
+    "Remove-lump reversal"
+  ]
+}

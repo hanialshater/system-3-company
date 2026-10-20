@@ -1,0 +1,115 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1",
+  "reviewKind": "primary",
+  "slug": "bad-hash-one-bucket",
+  "demoVersion": 2,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/bad-hash-one-bucket",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy and simple charts; no domain theory.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "P: chose10 slots for10,20,\u2026100 under mod10; remainder defined with23\u21923example.",
+    "E: dropped all10 keys; after3 used1slot/3steps; after10 used1slot/10steps to100. Switch mod7 retains keys,7slots/2steps; screenshot collision lists and empty7\u20139slots.",
+    "R: Not quite1; table big enough, rule problem; collision lists make lookup walk list; good hash breaks real-key patterns.",
+    "No-history preview;5/5trust ignored. Inline screenshot1280x720 clear slots/counters, internal scrolling needed for tall table."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete remainder calculation tests capacity intuition.",
+      "evidence": "P: chose10 slots for10,20,\u2026100 under mod10; remainder defined with23\u21923example.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Incremental collisions and alternate rule link mapping to lookup work.",
+      "evidence": "E: dropped all10 keys; after3 used1slot/3steps; after10 used1slot/10steps to100. Switch mod7 retains keys,7slots/2steps; screenshot collision lists and empty7\u20139slots.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains actual counts and reusable pattern criterion.",
+      "evidence": "R: Not quite1; table big enough, rule problem; collision lists make lookup walk list; good hash breaks real-key patterns.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Slots and list lengths visible despite internal scroll.",
+      "evidence": "No-history preview;5/5trust ignored. Inline screenshot1280x720 clear slots/counters, internal scrolling needed for tall table.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Hash quality tied to data pattern and chain cost.",
+      "evidence": "R: Not quite1; table big enough, rule problem; collision lists make lookup walk list; good hash breaks real-key patterns.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Modes not sufficiently tested.",
+      "evidence": "No-history preview;5/5trust ignored. Inline screenshot1280x720 clear slots/counters, internal scrolling needed for tall table.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Enough capacity still gives one list.",
+      "evidence": "E: dropped all10 keys; after3 used1slot/3steps; after10 used1slot/10steps to100. Switch mod7 retains keys,7slots/2steps; screenshot collision lists and empty7\u20139slots.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Collision chains and empty slots carry mechanism.",
+      "evidence": "E: dropped all10 keys; after3 used1slot/3steps; after10 used1slot/10steps to100. Switch mod7 retains keys,7slots/2steps; screenshot collision lists and empty7\u20139slots.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Keys and reversible rule switch.",
+      "evidence": "E: dropped all10 keys; after3 used1slot/3steps; after10 used1slot/10steps to100. Switch mod7 retains keys,7slots/2steps; screenshot collision lists and empty7\u20139slots.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Data-structure performance principle.",
+      "evidence": "R: Not quite1; table big enough, rule problem; collision lists make lookup walk list; good hash breaks real-key patterns.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Remainder mapping, collision chain and lookup cost.",
+      "evidence": "R: Not quite1; table big enough, rule problem; collision lists make lookup walk list; good hash breaks real-key patterns.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Link remainder rule with storage arrangement and search steps.",
+    "conceptualDemand": "Several supported relations, basic arithmetic.",
+    "interfaceBurden": "Tall table uses internal scroll.",
+    "prerequisiteNovelty": "moderate: hash and chains introduced",
+    "notationRepresentationBurden": "low: remainder explicitly defined"
+  },
+  "whyCool": "Switching one rule redistributes the same keys fromone slot into seven and cuts last-key lookup fromten steps totwo.",
+  "caveat": "Only fixed patterned keys; alternative rule still intentionally leaves three slots unused.",
+  "notApprovedForServing": true,
+  "effort": "about3minutes",
+  "missingEvidence": [
+    "Accessibility modes",
+    "Learning outcomes"
+  ],
+  "fatalFindings": []
+}

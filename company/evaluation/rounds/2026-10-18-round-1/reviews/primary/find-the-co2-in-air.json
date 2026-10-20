@@ -1,0 +1,107 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "slug": "find-the-co2-in-air",
+  "demoVersion": 1,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/find-the-co2-in-air",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "Prediction: about how many of10000 dry-air molecules areCO2? chose about400, locked.",
+    "Unlocked stage: tapped N2,O2,Ar,CO2, magnifier and One breath. Visible counts nitrogen7808 oxygen2095 argon93 CO2 4.",
+    "Reveal: Not quite: about4. about425ppm in2025 or0.043%; tiny share ofhuge crowd; half-litre breath about5\u00d710^18CO2 molecules.",
+    "Screenshot at1280\u00d7720: dense10000-dot grid with fourCO2markers, magnifiedsubgrid, breathreadout. Revealpane requires internalverticalscroll."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Plausible orders-of-magnitude alternatives expose trace-gas misconception.",
+      "evidence": "Prediction400vsreveal4.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Separate gas highlights,magnification and breath readout expose smallsharevslargecount.",
+      "evidence": "Tappedallfour gas buttons,magnifier,Onebreath;gridcountsvisible.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explicitly connects observed fourdots to ppm and absolute breathmolecule count.",
+      "evidence": "Revealquoted425ppm,0.043%,5\u00d710^18.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Densegridandscientificnotation with long internallyscrolling reveal raise representationburden.",
+      "evidence": "Screenshot densegrid and partiallybelowfoldreveal.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Editorial potential to distinguish concentration from totalamount in other mixtures.",
+      "evidence": "Reveal: A partper million is ashare,notanamount.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Onlydesktoppointer interactions observed; no sufficient keyboard/mobileaudit.",
+      "evidence": "No modecoverage.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "400prediction versus4result creates strong scale reversal.",
+      "evidence": "400\u21924 contrast.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Wholemixturegrid plus magnifier makes a tracequantity inspectable.",
+      "evidence": "Screenshot fourhighlightedCO2markers and magnifiedsubgrid.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "A few guided reveal toggles rather than open experimentation.",
+      "evidence": "Gasbuttons,mag,breath.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Useful concentrationinterpretation but not a direct procedure.",
+      "evidence": "ppm vs absoluteamount explanation.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Links fractions,ppm,molecularrepresentation and breath-scale count.",
+      "evidence": "Two distinct scale interpretations inreveal.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Core fraction-versus-total distinction accessible with numeracy; ppm and exponential notation addrepresentationdemand.",
+    "conceptualDemand": "share vs absoluteamount",
+    "interfaceBurden": "dense dots and scientificnotation; inner scrolling"
+  },
+  "whyCool": "Onlyfour of10000dots areCO2, but one breath stillcontains ahuge number ofCO2molecules.",
+  "caveat": "Numbers observed as lessoncontent, not independently factchecked; visibletrustcountnotusedforscoring; no reallearneroutcomes.",
+  "notApprovedForServing": true,
+  "effort": {
+    "approxBrowserCalls": 7,
+    "approxMinutes": 2
+  },
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear mechanism andstrong visual/payoff; dense notation/reveal stops a standout recommendation."
+}

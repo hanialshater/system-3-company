@@ -1,0 +1,131 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "every-message-is-possible",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/every-message-is-possible",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "b1ad74bef574400d6d090bb1cb4ee33be95076e088a57739d8845ef9466cfe82",
+    "demoSha256": "e86a204348db9c0e38c97c6f026f63e1c0a7b988b26cdb54c7c4f0bef30c338c",
+    "metaPath": "src/demos/cs/every-message-is-possible/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected one possible message for random once-used four-bit key and sent1101,then locked it in.",
+    "exploration": "Flipped bit1: message1000,key0101. Bit2:1100,key0001. Bit4:1101,key0000. Counter rose1,2,3; Fill in rest unlocked. Pressed it: sixteen distinct message/key pairs,16 of16; bit controls disabled,reveal unlocked.",
+    "reveal": "Cites three hand-picked messages and all sixteen different keys. Sent1101 rules nothing out with random key; trying keys only lists messages. One-time-pad condition key never reused.",
+    "visual": "Inline screenshot inspected: message,key,sent rows align four bits; sixteen green outlined message-key tiles and16 of16 count readable. Trust5/5 ignored.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884122 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear exhaustive-key question tests unique-decryption intuition with random once-used condition.",
+      "evidence": "One selected versus16 result.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Bit changes generate distinct keys while ciphertext fixed,then exhaustive mapping confirms.",
+      "evidence": "1000/0101,1100/0001,1101/0000 and16 pairs.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Uses exact hand-picked messages to explain no elimination and key-reuse limit.",
+      "evidence": "Reveal names three choices and never-reuse condition.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Aligned rows,brief XOR definition and grid make tested path understandable.",
+      "evidence": "Three flips and final screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General cryptographic principle and conditions supplied but no new ciphertext or reuse case.",
+      "evidence": "Random key and never reused.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Unique-message prediction reversed by every message fitting.",
+      "evidence": "16 of16 distinct-key mapping.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Aligned XOR rows and populated grid carry compatibility mechanism.",
+      "evidence": "Final screenshot and three hand cases.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Free bit choices let learner try contrasting messages before fill.",
+      "evidence": "Three flips including zero-key identity case.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete encryption-security interpretation central.",
+      "evidence": "Trying keys lists every message; random never-reused key.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "XOR mapping,exhaustive possibilities and key-use condition linked.",
+      "evidence": "Three manual cases,all16 and reveal.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Coordinates message,key,ciphertext and inference over all possible keys.",
+    "conceptualDemand": "Binary operation plus possibility/equal-likelihood reasoning.",
+    "interfaceBurden": "Low: four bit toggles and fill button.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "high: XOR and one-time pads",
+    "notationRepresentationBurden": "moderate: binary strings and aligned bit operation"
+  },
+  "whyCool": "Choosing the intercepted bits themselves as the message produces an all-zero key,yet every other message still gets its own compatible key.",
+  "caveat": "Fixed ciphertext and four-bit example; key reuse and nonuniform-message assumptions not explored.",
+  "missingEvidence": [
+    "New ciphertext",
+    "Key-reuse case",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

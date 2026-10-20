@@ -1,0 +1,103 @@
+{
+  "slug": "search-the-document-body",
+  "demoVersion": 1,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/search-the-document-body",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Title search beyond title;hook untitled can contain remembereddetail. Predictedbody for telescope visibly in body.",
+    "Titlesonly produced0;searchbodies1 untitled/telescopenotes.",
+    "Reveal correctly links field scope to matches. Screenshot readable,otherrecords faded;no editable query or alternate scopes."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple text matching.",
+    "conceptualDemand": "Search field scope.",
+    "interfaceBurden": "Two clicks."
+  },
+  "whyCool": "A failed search may reflect where you searched rather than whether the document exists.",
+  "caveat": "Needs learner-controlled query or field selection,unspoiled hook and normal user-facing wording.",
+  "effort": "Prediction,both search operations,reveal,inline screenshot.",
+  "provisionalBucket": "revise-hook-interaction",
+  "bucketReason": "Useful concept,low challenge.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Hook and visible data directly supply answer.",
+      "evidence": "Telescope only body.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Real field-filter contrast but fixed sequence.",
+      "evidence": "0\u21921.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains mechanism directly from selected record.",
+      "evidence": "Term bodynot title.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readable results but fixture jargon and1matches grammar.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete search-scope change when remembered term is in contents.",
+      "evidence": "Expand searched field.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Content versus title search.",
+      "evidence": "Untitledmatches.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Highlighted record and faded nonmatches.",
+      "evidence": "Three rows.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Two fixed operations.",
+      "evidence": "No query entry.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Finding remembered content central.",
+      "evidence": "Body search.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "Single exacttermfield contrast.",
+      "evidence": "Three records.",
+      "confidence": "medium"
+    }
+  }
+}

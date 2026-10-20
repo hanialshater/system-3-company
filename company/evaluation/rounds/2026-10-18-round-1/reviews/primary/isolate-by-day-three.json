@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "isolate-by-day-three",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/isolate-by-day-three",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "isolate-by-day-three",
+    "domain": "life",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/life/isolate-by-day-three/meta.json",
+    "metaSha256": "8eb4dcec1747d6259ae2c3c100120d75b9a42dfcc70123c11cc923728099fb72",
+    "demoSha256": "748d975a3f66c634e09b836bae9255c848a6f27c341c74b07f9c4eff809d3a16",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/isolate-by-day-three",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/isolate-by-day-three.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot"
+  },
+  "observations": {
+    "prediction": "Chose 3 against 1.5 and 0.5, then locked it in.",
+    "exploration": "Never isolated gave 30 infections from ten cases, R 3. Clicked day 3: 15 infections, R 1.5. Clicked day 2: ten infections, R 1. Pressed Home on slider: day 0, zero infections, R 0.",
+    "reveal": "Corrected prediction to 1.5, explained three of six infectious days preserve half the spread; each earlier day removes a sixth. Day 2 is replacement knife-edge R 1. Explicitly acknowledged tested day 0 R 0. Caveated even daily spread and presymptomatic transmission.",
+    "visual": "Actual 1257 \u00d7 936 dark screenshot inspected. Six day columns of infection dots become crossed-out at day zero; slider and complete reveal legible.",
+    "previewIsolation": "No-history evaluation banner present on entry.",
+    "blinding": "4/4 checked chrome visible and ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Numerical commitment tests whether partial isolation reduces spread.",
+      "evidence": "3 prediction versus 1.5 correction.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Presets and slider boundary visibly change infections and R.",
+      "evidence": "Day 6, 3, 2 and 0 states.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects timing fraction to actual counts, boundary and model limitation.",
+      "evidence": "15/30 infections, R 1.5 and day-zero acknowledgment.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Labeled days, counts and slider communicate tested desktop sequence clearly.",
+      "evidence": "Screenshot and live feedback.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Earlier-day principle and applicability limit offered, without concrete new application.",
+      "evidence": "Each earlier day removes a sixth; even-spread caveat.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "One slider Home action is insufficient access audit.",
+      "evidence": "Keyboard Home worked for slider; focus sequence, contrast, phone, zoom and motion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed unchanged R prediction contradicted by half-rate result.",
+      "evidence": "3 versus 1.5 after day 3.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Daily infection columns and canceled dots carry timing mechanism.",
+      "evidence": "Day-zero screenshot plus changing counts.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Timing presets and endpoint slider enable reversible discovery.",
+      "evidence": "Day 3, day 2, Home to day 0.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Makes timing of infection prevention concrete in toy setting.",
+      "evidence": "Earlier isolation reduces counted infections.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Proportional reduction, replacement boundary and even-spread limitation linked.",
+      "evidence": "Day 3 R1.5, day 2 R1, day0 R0; reveal limits.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links fractions of infectious duration to infections and average replacement.",
+    "conceptualDemand": "Track six-day fraction and average infections relative to one.",
+    "interfaceBurden": "Low; two presets and labeled slider.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: R and replacement threshold.",
+    "notationRepresentationBurden": "low: counts, fractions and simple ratios."
+  },
+  "whyCool": "Moving isolation to day zero visibly cancels every infection dot and the reveal acknowledges that exact tested boundary.",
+  "caveat": "Fixed even-spread toy model; no different infectiousness timing or fresh application tested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Focus order, contrast, phone, zoom/reflow and motion not tested.",
+    "Home key on one slider does not establish full keyboard access."
+  ],
+  "effort": "Approximately 2 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:07:01.071254+00:00"
+}

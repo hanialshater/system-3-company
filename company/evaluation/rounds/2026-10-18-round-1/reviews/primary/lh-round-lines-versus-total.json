@@ -1,0 +1,103 @@
+{
+  "slug": "lh-round-lines-versus-total",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-round-lines-versus-total",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Each line higher for three exact \u20ac0.335 lines rounded half-up to cents.",
+    "Tests gave \u20ac1.02 versus \u20ac1.01. One line gave equal \u20ac0.34; ten gave \u20ac3.40 versus \u20ac3.35.",
+    "Screenshot showed receipt icons. Reveal preserved original/current context, explained \u20ac1.005 half-up result, and limited billing convention."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Three decimal amounts and half-up convention.",
+    "conceptualDemand": "Rounding before summing differs from afterward.",
+    "interfaceBurden": "Two tests and count slider."
+  },
+  "whyCool": "Rounding order can change the receipt even when the unrounded lines are identical.",
+  "caveat": "Toy convention only; visual does not show where each half cent accumulates.",
+  "effort": "Prediction, both tests, one-line and maximum boundaries, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear numerical counterexample and explicit convention.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Specific rounding rule supports plausible order difference.",
+      "evidence": "Each line versus sum then round.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Checked equality and growing repeated-rounding discrepancy.",
+      "evidence": "3, 1, 10 lines.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains information loss with exact intermediate sum.",
+      "evidence": "Three0.34 versus1.005 rounded.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Explicit half-up cent rule prevents tie ambiguity.",
+      "evidence": "Actual billing requires own rule.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete operation-order and convention condition supports applying calculation.",
+      "evidence": "Stated half-up rule only.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Same underlying values produce different rounded totals.",
+      "evidence": "1.02 versus1.01.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 1,
+      "reason": "Receipt icons do not expose individual rounding increments.",
+      "evidence": "Numbers carry mechanism.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Count slider shows accumulation.",
+      "evidence": "One-line equality to five-cent gap.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Rounding reconciliation central.",
+      "evidence": "Totals depend on convention.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Noncommuting rounding and sum, information loss.",
+      "evidence": "Intermediate precision matters.",
+      "confidence": "medium"
+    }
+  }
+}

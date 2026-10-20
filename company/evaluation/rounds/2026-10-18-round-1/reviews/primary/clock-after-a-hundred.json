@@ -1,0 +1,104 @@
+{
+  "slug": "clock-after-a-hundred",
+  "demoVersion": 1,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/clock-after-a-hundred",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction9oclockplus100hours:1,4,9; chose4.",
+    "First12hourlap returns9; eightlaps96hours still9; four1hourbuttons complete100hours at1.",
+    "Reveal100=8x12+4,9+4=13shown1; specifically explains4answer confusesremainder with finaltime.",
+    "Screenshot clockface and lapbuttons clear; longreveal slight rightedgecrop/internalverticalscroll."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Familiarclock and simpleaddition.",
+    "conceptualDemand": "Keepstartposition when applyingremainder.",
+    "interfaceBurden": "Twelve guidedclicks; mildrevealclipping."
+  },
+  "whyCool": "You can throwaway96of100hours withoutchanging the clockhand.",
+  "caveat": "12hourdisplay ignoresAM/PM anddate bydesign; single reviewer.",
+  "effort": "Prediction,alllapsandremaininghours,reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear familiar mechanism with error-specificfeedback.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Good remainder-versus-startingposition distractor.",
+      "evidence": "Chose4, corrected1.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Repeatedlaps show invariance thenremainder movement.",
+      "evidence": "12=>9,96=>9,100=>1.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Targets chosenerror and generalizes rule.",
+      "evidence": "Answering4 mistakesleftoverfortime.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Familiarclock and simplelabels, mildlyclippedreveal.",
+      "evidence": "Clockface and100of100readout.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Potential to reason about periodiccycles.",
+      "evidence": "Wholelapschange nothing;remaindermatters.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Largecount simplifies tosmallremainder.",
+      "evidence": "100hours reduced4.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Clock andlapdots externalize cycle.",
+      "evidence": "Eightlaps samehandposition.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Guidedbuttonsequence.",
+      "evidence": "Eight12hour andfour1hourbuttons.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Timearithmetic and recurringcycles.",
+      "evidence": "Startingposition plusremainder.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "One modulararithmetic principle.",
+      "evidence": "100=8x12+4.",
+      "confidence": "medium"
+    }
+  }
+}

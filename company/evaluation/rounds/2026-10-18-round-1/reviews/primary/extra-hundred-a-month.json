@@ -1,0 +1,124 @@
+{
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "No-history preview;7/7 trust chrome visible ignored.Predicted about28years.",
+    "Baseline0:30yr0mo interest231676;saved0;month2 interest999 principal200.10. Extra100:24yr7mo interest182538 saved49138;month2 interest998.50 principal300.60.Extra500:14yr11mo interest102535 saved129142.Return0 restored baseline.",
+    "Reveal retained100 result and500 trial despite current0;explained smaller principal cuts following interest and feeds back monthly;fixed6percent,no fee,arithmetic not advice.",
+    "Inline screenshot dark1257x936: single debt curve and clear axes/endpoint,one narrow centered card;reveal fits except trust footer."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Plausible duration alternatives require commitment.",
+      "evidence": "28/25/20years choices",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Slider directly changes debt duration,interest and month2 split with baseline reversal.",
+      "evidence": "0→100→500→0",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Uses actual trial history and numeric causal link with explicit model limitations.",
+      "evidence": "Reveal100/500 amounts and month2 interest",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Clearly labeled chart,slider and money metrics;retained trial distinction readable.",
+      "evidence": "Screenshot and reveal",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable repayment feedback and conditions shown, but no new application beyond same loan.",
+      "evidence": "Reveal fixed6percent/no fee",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No mode audit.",
+      "evidence": "Unknown",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "28year prediction contradicted by24yr7mo from small extra.",
+      "evidence": "Committed prediction and100 result",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Debt curve and endpoint express payoff time.",
+      "evidence": "Screenshot",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversible slider enables amount comparisons.",
+      "evidence": "100/500/0",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete payment-duration and interest illustration with assumptions.",
+      "evidence": "Loan outputs and model limit",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Connects principal,following interest and payoff time.",
+      "evidence": "Month2 split plus accumulated totals",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links principal reduction,monthly interest and cumulative duration with numerical support.",
+    "conceptualDemand": "linked feedback relations",
+    "interfaceBurden": "low; one slider",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate:principal-interest split",
+    "notationRepresentationBurden": "low:money and years"
+  },
+  "whyCool": "Adding100 shifts payoff from30years to24years7months and exposes why the monthly interest shrinks.",
+  "caveat": "Only one fixed-rate loan model;does not assess whether prepayment is appropriate.",
+  "effort": "~2minutes",
+  "missingEvidence": [
+    "Accessibility modes",
+    "Different loan application"
+  ],
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3c",
+  "date": "2026-10-18",
+  "notApprovedForServing": true,
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, number comparisons and familiar household objects; no domain theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "screenshots": [],
+  "fatalFindings": [],
+  "slug": "extra-hundred-a-month",
+  "demoVersion": 2,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/extra-hundred-a-month",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "52e7ac32460b4b7c68d1bc1cafb72b61014751183cdd9f616a035467eaf1e48e",
+    "metaSha256": "55266b2d9c3f26bdd3e2cf867c448c340a7b5b45ce47ea0a90e33b0d3891d7fb"
+  }
+}

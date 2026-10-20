@@ -1,0 +1,105 @@
+{
+  "slug": "ways-to-make-ten",
+  "demoVersion": 3,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/ways-to-make-ten",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted4mixes for unlimited1,2,5coins totaling10,order explicitly irrelevant.",
+    "Filled one cell then1coinrow:oneway. Added2row settled6ways at10,1above+5twoleft; added5row10ways,6above+4fiveleft.",
+    "Let order matter built sequence row to128=75+44+9; separate total3example showed unordered1+1+1,1+2 versus additional2+1ordered.",
+    "Reveal explained coin-kind rows prevent duplicate orderings and contrasted10versus128 withactualrecurrences.",
+    "Inline1280x720 light screenshots: table and total3coinexample clear,prose rightedgeclipped. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Two-dimensional recurrence and counting-convention changes require sustained attention.",
+    "conceptualDemand": "Dynamicprogramming and duplicateavoidance.",
+    "interfaceBurden": "Guided buttons,animatedrows,dense scrollabletable and clippedprose."
+  },
+  "whyCool": "The same coins yield ten mixes or128sequences,and the table exposes exactly why.",
+  "caveat": "Animated rowcompletion needs settledinspection;target10fixed;right-edgeclipping;accessibilityunknown.",
+  "effort": "Prediction,singlecell,allthreecoinrows,orderedsequencecontrast,total3visualexample,reveal andinline screenshots.",
+  "provisionalBucket": "strong-technical-with-viewport-fix",
+  "bucketReason": "Useful recurrence and counted-object distinction;repair layout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicit denomination,unlimited mixes and order convention make count well-defined.",
+      "evidence": "4,10,128 alternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Step/row construction then changed order convention reveal counting structure.",
+      "evidence": "1to6to10versus128.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains recurrence and duplicate avoidance with small concrete ordering example.",
+      "evidence": "Total3two versus threeways.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Helpful recurrence and coinexamples but dense table/internal scroll and proseclipping.",
+      "evidence": "Inline screenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Total3fresh example applies order distinction and explains when same coins count separately.",
+      "evidence": "1+2versus2+1.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Changing only order convention multiplies count10to128.",
+      "evidence": "Same denominations,target10.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Cell dependencies and coinmix drawings ground recurrence.",
+      "evidence": "Above/left contributions and total3example.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Guided table-building controls.",
+      "evidence": "Step/rowbuttons.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Counting and dynamic-programming formulation.",
+      "evidence": "Avoidduplicatecombinations.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "State definition determines recurrence and countedobjects.",
+      "evidence": "Combinationsversussequences.",
+      "confidence": "medium"
+    }
+  }
+}

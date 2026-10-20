@@ -1,0 +1,104 @@
+{
+  "slug": "near-the-wall",
+  "demoVersion": 2,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/near-the-wall",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted10% against35/65 for share within5% of any face in10D uniform cube.",
+    "1D13of2007% exact10;2D43of20022% exact19;10D132of20066% exact65.1. New200points at10D118of20059% same exact65.1.100D200of200100% exact99.997.",
+    "Dot grid indicates near-wall membership, not actual geometry. Reveal recalls latest10D draw118 and exact1\u22120.9^10, mentions500seeded draws range108\u2013149 and repeats100D conclusion.",
+    "Light1280x720 screenshot shows right-edge prose clipping; readable outputs; ordinary internal scroll."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "High-dimensional setting explained via repeated simple probabilities.",
+    "conceptualDemand": "Complement and independent multiplication.",
+    "interfaceBurden": "Simple presets and resample; prose clipping."
+  },
+  "whyCool": "Points have more opportunities to be near some wall as dimensions accumulate.",
+  "caveat": "Uniform independent cube toy; grid is membership list, not projection.500draw claim not independently verified; duplicate prose and cutoff.",
+  "effort": "Prediction,four dimensions,resampling,reveal,two screenshots.",
+  "provisionalBucket": "promising-with-fix",
+  "bucketReason": "Strong expectation-versus-sample demonstration; fix layout and duplicated sentence.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicit distribution,threshold and any-dimension condition.",
+      "evidence": "Uniform10D cube,within5% anyface.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Multiple dimensions and fixed-dimension resampling separate structural effect from sample variation.",
+      "evidence": "1,2,10,100D plus new10Ddraw.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explains complement product and original sample while distinguishing expectation from variation.",
+      "evidence": "118draw versus65.1% exact;0.9^10 and500draw range.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Labeled grid/output clear, prose clipped and100D explanation duplicated.",
+      "evidence": "Reveal screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General dimension rule, no separate application exercise.",
+      "evidence": "Same cube at100D.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 4,
+      "reason": "Near-wall minority becomes virtually entire population.",
+      "evidence": "7%1D,66%10D,100%100D sample.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Grid and paired sample/exact counts externalize concentration.",
+      "evidence": "Filled dots expand asdimension increases.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Dimension switches and resampling invite repeated trials.",
+      "evidence": "4dimensions andnewdraw tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "AI category but no specific real-world use developed.",
+      "evidence": "Only uniform cube toy shown.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Complement probability and finite-sample variation central.",
+      "evidence": "Exact share versus seeded-draw range.",
+      "confidence": "medium"
+    }
+  }
+}

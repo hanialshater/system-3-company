@@ -1,0 +1,105 @@
+{
+  "slug": "web-bow-tie-reach",
+  "demoVersion": 3,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/web-bow-tie-reach",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Inspected visible directed graph before prediction; chose10 reachable fromcoreA rather than7or4.",
+    "StartA reached7of12;E10;H2;detachedK2. Reachable fill and selected ring changed with starts.",
+    "Reveal deliberately returned to first coreA,explicitly labelled that choice and dashed firstIN/OUTtrials; accurately recalled7/10/2 counts and namedcore/in/out/tendril/detachedgroups.",
+    "Real-web Broder2000mapping claim andtoy-not-scale caveat presented; external historical claim not verified in this walkthrough.",
+    "Inline1280x720 light screenshots: fullhighlightedgraph readable after internal scroll; initial unselected arrows pale;prose rightedgeclipped. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Small directed graph but multiple structural classes.",
+    "conceptualDemand": "Connectedversusreachable andstartdependence.",
+    "interfaceBurden": "Simple node selection;initial pale arrows,scroll andproseclipping."
+  },
+  "whyCool": "Changing only the starting page turns the same web from widely reachable to almost a dead end.",
+  "caveat": "Historicalwebstudyclaim notverifiedhere;initialarrowslowcontrast;right-edgeclipping;accessibilityunknown.",
+  "effort": "Prepredictiongraphinspection,prediction,fourstartregions,reveal,fullgraphinspection andinline screenshots.",
+  "provisionalBucket": "strong-with-viewport-fix",
+  "bucketReason": "Richdirectionalreachabilitycontrast;improvelayout/initialarrowcontrast.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Visible graph and direction rule support precise count.",
+      "evidence": "Connected10versusreachable7 distinction.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Core,IN,OUTanddetached starts contrast directional reach and component boundary.",
+      "evidence": "A7,E10,H2,K2.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Actualmulti-start comparisons explain directedbow-tiestructure with explicittoyboundary.",
+      "evidence": "ReturnedAviewclearlylabelled.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clear selectedgraph/historybutpaleinitialarrows andclippedprose.",
+      "evidence": "Inline screenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Differentstartregionsapplysame reachability principle andrealwebconnectionnamesstructuralgroups.",
+      "evidence": "INversusOUTversusdetached.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Being joined to a graph does not imply navigable from its center.",
+      "evidence": "10joinedbutA7.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Filledreachable nodes anddirectionalarrows expose asymmetry.",
+      "evidence": "Core/outfilled,INunfilled.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Chooseanyof12startingpages.",
+      "evidence": "Fourstartstested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Linknavigation anddirectedconnectivitycentral.",
+      "evidence": "Webstructureinterpretation.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Stronglyconnectedcore,directedreachability andweakconnection.",
+      "evidence": "Bowtieclasses.",
+      "confidence": "medium"
+    }
+  }
+}

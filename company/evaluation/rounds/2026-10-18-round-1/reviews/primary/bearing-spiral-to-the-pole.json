@@ -1,0 +1,115 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1",
+  "reviewKind": "primary",
+  "slug": "bearing-spiral-to-the-pole",
+  "demoVersion": 2,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/bearing-spiral-to-the-pole",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy and simple charts; no domain theory.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "P: chose endless path for heading 80\u00b0 from equator; alternatives about10,000km/about58,000km.",
+    "E: selected80\u00b0, zoomed in, closer89\u00b0N:56,990km/4.3turns;89.9\u00b0N:57,570/6.4;89.99\u00b0N:57,620/8.4;pole:57,630/endless. Zoom shows tightening spiral.",
+    "R: Not quite about58,000km. Last degree adds640km yet endless turns; each turn shorter; eachkm gains0.17km northing; rhumb line straight onMercator, spiral onglobe.",
+    "No-history preview;6/6trust ignored. Inline screenshot1280x720 readable globe and counters."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Distinct geometric intuitions committed.",
+      "evidence": "P: chose endless path for heading 80\u00b0 from equator; alternatives about10,000km/about58,000km.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Progressive proximity contrasts finite distance with increasing turns.",
+      "evidence": "E: selected80\u00b0, zoomed in, closer89\u00b0N:56,990km/4.3turns;89.9\u00b0N:57,570/6.4;89.99\u00b0N:57,620/8.4;pole:57,630/endless. Zoom shows tightening spiral.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains shortening turns and constant northing fraction.",
+      "evidence": "R: Not quite about58,000km. Last degree adds640km yet endless turns; each turn shorter; eachkm gains0.17km northing; rhumb line straight onMercator, spiral onglobe.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Zoom and counters clear.",
+      "evidence": "No-history preview;6/6trust ignored. Inline screenshot1280x720 readable globe and counters.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Rhumb/Mercator connection stated without second representation.",
+      "evidence": "R: Not quite about58,000km. Last degree adds640km yet endless turns; each turn shorter; eachkm gains0.17km northing; rhumb line straight onMercator, spiral onglobe.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Modes not sufficiently tested.",
+      "evidence": "No-history preview;6/6trust ignored. Inline screenshot1280x720 readable globe and counters.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Endless turns have finite distance.",
+      "evidence": "E: selected80\u00b0, zoomed in, closer89\u00b0N:56,990km/4.3turns;89.9\u00b0N:57,570/6.4;89.99\u00b0N:57,620/8.4;pole:57,630/endless. Zoom shows tightening spiral.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Tightening spiral plus distance counters central.",
+      "evidence": "E: selected80\u00b0, zoomed in, closer89\u00b0N:56,990km/4.3turns;89.9\u00b0N:57,570/6.4;89.99\u00b0N:57,620/8.4;pole:57,630/endless. Zoom shows tightening spiral.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Heading,zoomandproximity controls.",
+      "evidence": "E: selected80\u00b0, zoomed in, closer89\u00b0N:56,990km/4.3turns;89.9\u00b0N:57,570/6.4;89.99\u00b0N:57,620/8.4;pole:57,630/endless. Zoom shows tightening spiral.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Navigation/map connection.",
+      "evidence": "R: Not quite about58,000km. Last degree adds640km yet endless turns; each turn shorter; eachkm gains0.17km northing; rhumb line straight onMercator, spiral onglobe.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Finite length,infinite turns,headingandprojection linked.",
+      "evidence": "R: Not quite about58,000km. Last degree adds640km yet endless turns; each turn shorter; eachkm gains0.17km northing; rhumb line straight onMercator, spiral onglobe.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Core resolution separates infinite turn count from finite path length and constant directional gain.",
+    "conceptualDemand": "Limit reasoning with dependent geometric relations.",
+    "interfaceBurden": "Low labelled controls.",
+    "prerequisiteNovelty": "moderate: headings and rhumb line",
+    "notationRepresentationBurden": "moderate: decimal latitude and turns"
+  },
+  "whyCool": "Closer steps add abouttwo turns each while extra distance shrinks fromhundreds to tens ofkilometres.",
+  "caveat": "Mercator connection is text only; exact pole endpoint is idealized.",
+  "notApprovedForServing": true,
+  "effort": "about3minutes",
+  "missingEvidence": [
+    "Accessibility modes",
+    "Learning outcomes"
+  ],
+  "fatalFindings": []
+}

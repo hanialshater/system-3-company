@@ -1,0 +1,137 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "wire-eight-times",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/wire-eight-times",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "wire-eight-times",
+    "domain": "physics",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/physics/wire-eight-times/meta.json",
+    "metaSha256": "530f95b36f827a0ca76584613c0d80a8994d10ff86f3d8b7d8ca710ea2e4c41b",
+    "demoSha256": "db4d488744a4c5cfd47b719a151ba7e56c6283d4c0e789a8bfb0f998214d24c6",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/wire-eight-times",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/wire-eight-times.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected two ohms and locked it in.",
+    "exploration": "Baseline one metre/one millimetre gave one ohm. Length End three metres gave three ohms at original diameter. At2.5 metres/0.25 mm gave forty ohms and area0.063. Set asked two metres/0.5 mm: eight ohms and quarter area. Length Home0.5 metres at same diameter gave two ohms; one metre gave four. Restored two metres and eight.",
+    "reveal": "Corrected to eight, combined length factor two and diameter-squared area factor quarter, gave R equals resistivity times length divided by area. Same metal and temperature conditions explicit; baseline resistance illustrative rather than copper value.",
+    "visual": "Actual dark1257 by936 screenshots inspected. Side and end-on wire views, dashed original dimensions and length/area/resistance chips matched. Thickness exaggeration disclosed; reveal text legible.",
+    "previewIsolation": "Preview banner said history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete combined-scale prediction targets ignoring diameter-squared area.",
+      "evidence": "Two versus four versus eight ohms.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Independent length and diameter states separate linear and squared contributions.",
+      "evidence": "One-metre half-diameter four ohms; two-metre half-diameter eight.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal explains product of two mechanisms with model conditions.",
+      "evidence": "Length times two and area quarter yields resistance times eight.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "End-on view and area chip clarify width versus cross-section.",
+      "evidence": "Thickness exaggeration and illustrative material baseline explicit.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General formula and conditions supplied without a new application.",
+      "evidence": "Same wire model throughout.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Complete mode audit not conducted.",
+      "evidence": "Keyboard sliders worked; screen reader, contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Halving width multiplies resistance fourfold before length change.",
+      "evidence": "Combined eightfold resistance.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "End-on circle and dashed baseline reveal squared-area change.",
+      "evidence": "Quarter-area chip with smaller diameter.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Two geometric sliders update wire and numbers.",
+      "evidence": "Independent dimension controls.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Clarifies conductor geometry effects under fixed material conditions.",
+      "evidence": "Length and cross-section determine modeled resistance.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Combines direct and inverse geometric scaling.",
+      "evidence": "Diameter squared enters denominator.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simple controls introduce area scaling and resistance relation.",
+    "conceptualDemand": "Separate diameter from area and multiply independent scaling factors.",
+    "interfaceBurden": "Two stepped sliders.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "Resistance, cross-section and resistivity symbol.",
+    "notationRepresentationBurden": "Metres,millimetres,ohms, Greek rho and formula ratios."
+  },
+  "whyCool": "A small diameter change has a squared effect before the longer wire adds its own cost.",
+  "caveat": "Fixed metal and temperature assumed; resistance baseline is explicitly illustrative.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:55:07.320642+00:00"
+}

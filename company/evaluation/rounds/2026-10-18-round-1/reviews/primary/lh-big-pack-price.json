@@ -1,0 +1,104 @@
+{
+  "slug": "lh-big-pack-price",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-big-pack-price",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted A3\u20ac/500g cheaper perkg thanB6\u20ac/900g; title cues larger can cost more but actual quantities permit calculation.",
+    "TestA3/.5=6\u20ac/kg; B6/.9\u22486.667\u20ac/kg.",
+    "Reduced B price to3: B\u22483.333\u20ac/kg now belowA6. Same-scale visual and expressions changed correctly.",
+    "Reveal explicitly preserved original6\u20ac comparison and separately described current3\u20ac reversal, then gave price/kilograms normalization rule."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple division with decimals.",
+    "conceptualDemand": "Price per common quantity.",
+    "interfaceBurden": "Two tests and price slider."
+  },
+  "whyCool": "The larger pack's advantage depends on both its price and amount, not its size alone.",
+  "caveat": "Fictional prices; does not account for waste,required quantity,quality or storage constraints.",
+  "effort": "Completed prediction,both calculations,ranking reversal,screenshots and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Useful ratio task and clear changed-state explanation.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Complete prices and quantities support a concrete comparison with a plausible size heuristic distractor.",
+      "evidence": "A6/kg versusB6.667/kg.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Editable large-pack price reverses ranking while quantity fixed.",
+      "evidence": "B6\u21923.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Accurate original/current distinction explains conditional ranking rather than always favoring small packs.",
+      "evidence": "CurrentB cheaper despite originalA prediction correct.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Common units and expressions make comparison clear.",
+      "evidence": "Fictional same-product assumption stated.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete unit-price procedure.",
+      "evidence": "Divide price bykg; size alone insufficient.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Large does not imply cheap, but can become cheap at a different price.",
+      "evidence": "Ranking reverses with price.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Matched unit-price meters compare normalized values.",
+      "evidence": "Common scale.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Price slider changes ranking.",
+      "evidence": "Two tests and parameter.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful purchase comparison arithmetic.",
+      "evidence": "Same-product basis explicit.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Separates package quantity and unit value.",
+      "evidence": "Ratio normalization.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "skydiver-speed-limit",
+  "demoVersion": 2,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/skydiver-speed-limit",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "skydiver-speed-limit",
+    "domain": "physics",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/physics/skydiver-speed-limit/meta.json",
+    "metaSha256": "2e71f3e2adaa7d0ad0c34c28b373754e23d3989d26fc99c85423a4f454e741bf",
+    "demoSha256": "a29a1ae6fa7aaa7388b0f8adb76286bde07f6360f448578a1eb9a82523681247",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/skydiver-speed-limit",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/skydiver-speed-limit.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected keeps climbing without limit and locked it in.",
+    "exploration": "At zero time speed was zero. One keyboard step to 5 s gave 35.1 m/s belly down; 40 s gave 43.2 and stated drag matches weight. Switched head down at 40 s, giving 66.0. Home reset to zero and End restored 66.0.",
+    "reveal": "Corrected to near 43 m/s for the original belly-down case, referenced the observed 43.2 value, explained speed-squared drag and force cancellation, then head-down limit 66. Steady sea-level air and typical drag areas stated.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected. Saturating curve and equal opposing force arrows visible. Reveal retained head-down 66 curve with dashed previous belly-down curve near 43 and readable model caveat.",
+    "previewIsolation": "Preview banner said history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear qualitative misconception and numerical alternatives are committed before exploration.",
+      "evidence": "Unlimited growth chosen against two plateaus.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Time reset and pose switch isolate growth and drag-area contrast.",
+      "evidence": "5 s 35.1; 40 s 43.2; head down 66.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal explains a persistent force without persistent acceleration.",
+      "evidence": "Drag grows to match weight and cancels net force.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Curve and force arrows reinforce the same condition.",
+      "evidence": "Plateau and balanced arrows at long time; previous pose dashed.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Conditional physical mechanism is given, but no new application is attempted.",
+      "evidence": "Sea-level model and different drag area pose contrast.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Complete mode audit not conducted.",
+      "evidence": "Keyboard endpoints worked and values had text summaries; screen reader, contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Gravity can continue while acceleration stops.",
+      "evidence": "Long-time plateau with downward weight still shown.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Force balance and curve jointly explain the limit.",
+      "evidence": "Equal opposing arrows at plateau.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Time scrubber and pose toggle support comparison.",
+      "evidence": "Zero to 40 s and two poses.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Explains a recognizable falling-body phenomenon.",
+      "evidence": "Pose-dependent limit with model assumptions.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Links force balance, quadratic drag and terminal speed.",
+      "evidence": "Twice speed four times push.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simple graph controls introduce force versus acceleration distinction.",
+    "conceptualDemand": "Understand growing drag and net force cancellation while motion continues.",
+    "interfaceBurden": "One stepped time slider and a pose toggle.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "Drag area, force balance and squared-speed response.",
+    "notationRepresentationBurden": "Speed-time graph, m/s, kg and area units."
+  },
+  "whyCool": "Equal force arrows explain a speed limit without turning gravity off.",
+  "caveat": "Model assumes steady sea-level air; pose comparison recomputes a fall for that pose, not a real transition trajectory.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:18:27.029226+00:00"
+}

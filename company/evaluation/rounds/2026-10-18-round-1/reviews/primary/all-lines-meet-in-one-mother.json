@@ -1,0 +1,120 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2",
+  "reviewKind": "primary",
+  "slug": "all-lines-meet-in-one-mother",
+  "demoVersion": 3,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/all-lines-meet-in-one-mother",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, familiar objects; no subject theory assumed.",
+  "viewport": "1280x720 desktop screenshot",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "text": "No-history preview banner confirmed; trust5/5 ignored. Predicted All meet in one woman; locked."
+    },
+    {
+      "id": "E",
+      "text": "Back10:11 lines. Back to one line animated through52 generations/3 lines, then99/1 line. Run1,000 families: all met, mean96. 25 and100 women: mean46 and197; reveal unlocked."
+    },
+    {
+      "id": "R",
+      "text": "Joined lines never split; finite50 leads to one. 99 generations versus96 average; double women roughly doubles wait, about2N. She was not alone:49 other women lived beside her. Inline screenshot shows joining tree/histogram and text right-edge clipping; no saved screenshot."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Three concrete outcomes with commitment.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Generation stepping, many-family histogram and population contrast show mechanism and variability.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Links joining invariant to numerical results and corrects only-woman misconception.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Plain controls and results, but reveal text clips at right.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Finite merging and population-size relationship reusable within stated random-mother model; no outside application tested.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No mode audit.",
+      "evidence": "Untested",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Many lines collapse to one without only one woman existing.",
+      "evidence": "E,R",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Merging tree and distribution carry explanation.",
+      "evidence": "R screenshot",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Step-through lineage supports discovery.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Ancestry interpretation; no practical decision task.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Merging invariant, sampling distribution, population-size relation and survival distinction.",
+      "evidence": "E,R",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Joining invariant supported visually; scaling adds linked relationship.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "moderate; clipped reveal",
+    "prerequisiteNovelty": "moderate",
+    "notationRepresentationBurden": "moderate; histogram and2N"
+  },
+  "whyCool": "Watching fifty maternal lines merge becomes a population-size experiment with mean waits46,96,and197.",
+  "caveat": "Random-mother fixed-population model; reveal clips at right and transfer is editorial potential.",
+  "notApprovedForServing": true,
+  "effort": "About3minutes",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility modes",
+    "Slider reversal not tested"
+  ]
+}

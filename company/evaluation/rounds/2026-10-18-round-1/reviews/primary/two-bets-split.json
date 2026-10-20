@@ -1,0 +1,104 @@
+{
+  "slug": "two-bets-split",
+  "demoVersion": 7,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/two-bets-split",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted25% chance of losing when equal money is placed in two independent equal-probability+20%/\u221210% bets.",
+    "One bet loss50%, two25%, six10.9%; expected return remained+5%.",
+    "Changed six bets to move together: distribution returned to two outcomes and loss50%, still average+5%.",
+    "Reveal accurately referenced the original two-bet Seen row and current dependent case; the independence versus perfect-dependence model was explicitly labeled."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Joint probability and expected return require numeracy.",
+    "conceptualDemand": "Independence and distribution of an average.",
+    "interfaceBurden": "One slider and dependence toggle."
+  },
+  "whyCool": "The return distribution bunches up while its average stays still, then dependence removes the benefit.",
+  "caveat": "Risk is reduced rather than literally cancelled; finite independent bets can all lose. Loss probability need not decrease at every successive count for discrete returns.",
+  "effort": "Completed prediction, three counts, dependence contrast, screenshots and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Exceptional explanatory contrasts with clear model assumptions.",
+  "quality": {
+    "prediction": {
+      "score": 4,
+      "reason": "Complete probabilities, returns and allocation specify a precise nontrivial prediction.",
+      "evidence": "Both must fall for two-bet loss;25% distractors50/0.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Number of bets and dependence separately control the distribution, with a meaningful failure boundary.",
+      "evidence": "One/two/six independent versus six together.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Exact joint probability and dependence contrast explain changed risk without changing mean.",
+      "evidence": "Two25%, six together50%, average+5%.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Distribution and historical Seen rows distinguish loss probability from mean.",
+      "evidence": "Model dependence and toy status explicit.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete diversification lesson includes the condition that outcomes must not move together.",
+      "evidence": "Independent versus perfectly correlated allocation explicitly compared.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "The same expected return can have very different loss probabilities.",
+      "evidence": "Mean+5% throughout while risk changes.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Distribution shapes reveal both concentration and its failure under dependence.",
+      "evidence": "Two independent three bars versus six together two bars.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Control of count and dependence drives the lesson.",
+      "evidence": "Slider and Together/Independent toggles.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Useful general probability intuition under explicit toy assumptions.",
+      "evidence": "No actual investment inputs.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Separates expectation, loss probability and dependence.",
+      "evidence": "Worst case remains possible under independent splitting.",
+      "confidence": "medium"
+    }
+  }
+}

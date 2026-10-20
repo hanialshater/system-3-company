@@ -1,0 +1,139 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "wrench-throw-recoil",
+  "demoVersion": 2,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/wrench-throw-recoil",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "wrench-throw-recoil",
+    "domain": "physics",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/physics/wrench-throw-recoil/meta.json",
+    "metaSha256": "0036a3210aaf2972166937e2af0d9afa72edd62663f579b976bd0f5bb20f299a",
+    "demoSha256": "41d7fd4c60090fdb81add8ce72c9235ebd838959cea972367b2205a35fce916b",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/wrench-throw-recoil",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/wrench-throw-recoil.json"
+  },
+  "date": "2026-10-18T21:02:24.773047+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Selected.25m/s opposite for80kgastronaut throwing2kgat10m/s."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Throw gave.25m/s and20kgm/s eachway;mass4gave.5and40;speed20gave1and80. Graphic explicitly magnified astronaut move10times."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "First and last throw arithmetic shown; equal opposite momenta total0, only need something to push away, speeds measured from starting position."
+    },
+    {
+      "phase": "screenshotInspection",
+      "evidence": "Actual1257x936 dark screenshots inspected first and changed throw: dotted starting astronaut, separated wrench, opposed\u00b120/\u00b180 bars and total0, magnification caption visible."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear qualitative and quantitative alternatives target recoil misconception.",
+      "evidence": "No motion versus.25versus10opposite.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Independent mass and speed changes expose momentum product.",
+      "evidence": "2\u00d710\u21924\u00d710\u21924\u00d720.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects first and last observations through conserved total.",
+      "evidence": "20/80=.25 and80/80=1.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Explicit frame and magnification limits prevent misleading animation inference.",
+      "evidence": "Speed frame in reveal;10timeslarger caption.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General push-away statement without new application.",
+      "evidence": "Only wrench parameters changed.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Movement without air or external surface.",
+      "evidence": "Opposite recoil despite no outsideforce.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Opposed bars and position reference explain balance.",
+      "evidence": "\u00b180total0 anddottedstart.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Throw and adjust two variables.",
+      "evidence": "Mass andspeed contrasts tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Useful foundational momentum intuition.",
+      "evidence": "Bounded astronaut scenario.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Mass-speed product and reference-frame clarification add causal structure.",
+      "evidence": "Equal opposite momenta despite different speeds.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "conceptualDemand": "balanced: conserved signed product and unequal mass speeds",
+    "interfaceBurden": "gentle: throw button andtwo sliders",
+    "prerequisiteNovelty": "momentum introduced as mass times speed",
+    "notationRepresentationBurden": "opposed signed bars, compound unit and division"
+  }
+}

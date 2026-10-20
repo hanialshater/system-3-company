@@ -1,0 +1,119 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2",
+  "reviewKind": "primary",
+  "slug": "apr-apy-gap",
+  "demoVersion": 1,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/apr-apy-gap",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, familiar objects; no subject theory assumed.",
+  "viewport": "1280x720 desktop screenshot",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "text": "No-history banner; trust6/6 ignored. Predicted About$12.68 from exactly12/12.68/14; locked."
+    },
+    {
+      "id": "E",
+      "text": "Yearly112.00/12.00%; Monthly112.68/12.68%; Daily112.75/12.75%; Quarterly112.55/12.55%. Reveal unlocked afterMonthly+Daily. CurrentQuarterly preserved into reveal."
+    },
+    {
+      "id": "R",
+      "text": "Each1% on bigger balance;68c is interest on interest; daily only fewcents more. Compare effective rates, APR oftenquoted andAPY/AER effective; one deposit,no fees,365days. Screenshot inline stepchart above dashed plain12%line; right reveal clipping and year-endchart top partially outside scroll. None saved."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete dollar choices require numerical commitment.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Four frequencies show compounding gain and diminishing increment.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains68c and7c difference, applies to account comparison and assumptions.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clear controls/readouts but reveal right-edge clipping.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Effective-rate comparison is explicit reusable decision under stated assumptions; editorial only.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No mode audit.",
+      "evidence": "Untested",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Quoted12% becomes12.68%; daily adds little.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Step curve versus dashed plain-growth line carries mechanism.",
+      "evidence": "R screenshot",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversible frequency switching.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Explicit account-comparison application.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Interest-on-interest and diminishing frequency gain.",
+      "evidence": "E,R",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Repeated percentages and effective-versus-quoted distinction are linked but supported.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "moderate; clipping",
+    "prerequisiteNovelty": "low-to-moderate; effective-rate terminology",
+    "notationRepresentationBurden": "low; dollars and percentages"
+  },
+  "whyCool": "Switching monthly to daily reveals only7c extra despite vastly more payments.",
+  "caveat": "One deposit/no-fee assumptions; reveal right edge clipped and no measured transfer.",
+  "notApprovedForServing": true,
+  "effort": "About3minutes",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility modes"
+  ]
+}

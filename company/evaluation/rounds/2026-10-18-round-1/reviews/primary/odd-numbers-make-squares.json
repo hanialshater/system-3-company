@@ -1,0 +1,104 @@
+{
+  "slug": "odd-numbers-make-squares",
+  "demoVersion": 2,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/odd-numbers-make-squares",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted every total odd for1+3+5+...+19; alternatives no pattern/every perfect square.",
+    "Built3to2\u00d72=4,5to3\u00d73=9,7to4\u00d74=16,9to5\u00d75=25. New dots form two equal arms pluscorner. Undo9 returned4\u00d74=16; reveal recalls maximum5\u00d75.",
+    "Reveal explains3+3+1 border,extends9\u00d79+19to10\u00d710,and applies sameconstruction tofirst100odd numbers=10000.",
+    "1280x720light newborder visuallyclear,oldfilleddots faint;finalprose rightedgeclipped."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Concrete dots andbasicaddition supportgeneralproof.",
+    "conceptualDemand": "Repeatedinvariant versuspatternguess.",
+    "interfaceBurden": "Simpleadd/undo;faintoldarea."
+  },
+  "whyCool": "Each next odd number is exactly the L-shaped border needed to turn one square into the next.",
+  "caveat": "No independentnew-casechallenge;100termapplication suppliedbyreveal. Olddotslowcontrast andrightedgeprosecutoff.",
+  "effort": "Prediction,foursuccessiveadditions,undo,reveal,two screenshots.",
+  "provisionalBucket": "promising-with-fix",
+  "bucketReason": "Accessibleconstructiveproof;improvecontrastandlayout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Simple computable sequence targets parity versusgeometricpattern.",
+      "evidence": "Oddsummands versuspossiblyeventotals.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Several successive borders andundo expose reversibleconstructive invariant.",
+      "evidence": "2,3,4,5squares thenundo.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explains original pattern asnecessaryconstruction andextendsbeyondtestedsteps.",
+      "evidence": "n+n+1 border formsnextsquare,notjustobservedcoincidence.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Border/oldarea contrast supportsmechanism butoldareafaint andprosecutoff.",
+      "evidence": "Actual3\u00d73andfinalscreenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Explicit new100termuse statescondition:firstconsecutiveoddnumbers.",
+      "evidence": "First100oddnumbers=100\u00d7100=10000 bysameborderargument.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Odd-number pile becomesexact successionofsquares.",
+      "evidence": "1,4,9,16,25 totals.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Multiple borders visiblypartitionoddadditions intoarmsandcorner.",
+      "evidence": "3+3+1=7;4+4+1=9.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Constructionandundo makeproofmanipulable.",
+      "evidence": "Addstepsandundo tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Mental summation shortcut ratherthaneverydaytask.",
+      "evidence": "First100odds calculation.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Geometricproof andgeneralization beyondexamples.",
+      "evidence": "Everynewodd completesnextsquare.",
+      "confidence": "medium"
+    }
+  }
+}

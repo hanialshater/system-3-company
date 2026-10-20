@@ -1,0 +1,151 @@
+{
+  "status": "walkthrough-reviewed",
+  "reviewState": "complete-real-walkthrough",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "action": "Selected About80% and locked",
+      "outcome": "48 outlined flags appeared."
+    },
+    {
+      "id": "E",
+      "action": "Sorted flagged; showed missed ill; flagged all1000 then restored test",
+      "outcome": "Sorted8 ill40 healthy produced16.7%; missed toggle exposed two outlined missed cases; allflag boundary1000 flags10 ill1%; restoration returned48,8,16.7% while missed toggle retained."
+    },
+    {
+      "id": "R",
+      "action": "Opened reveal",
+      "outcome": "Corrected toAbout17%; explained8/48 versus8/10 and healthy population false alarms; acknowledged tried allflag1% boundary. Sentence Those answer of the ill follows both recall and overall accuracy claims, potentially conflating denominators."
+    },
+    {
+      "id": "V",
+      "action": "Inspected sorted,allflag and revealed screenshots",
+      "outcome": "1257x992 dark Chrome; small tiles visible, numeric summaries and reveal legible; no horizontal clipping."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear conditional question and plausible recall/accuracy distractors.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Sorting and indiscriminate flagging boundary expose changed denominator; restoration retains missed-case mode.",
+      "evidence": "E",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Connects exact observed fractions and boundary but wording appears to group overall accuracy with recall denominator.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Controls and metrics clear, but Those answer pronoun after two different metrics risks denominator confusion at explanatory crux.",
+      "evidence": "R,V",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable ask-which-question principle remains within same test and population.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic multimode checks.",
+      "evidence": "Keyboard,focus,contrast,phone,zoom/reflow,motion untested.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Actual80% prediction corrected to16.7% through sorted flag group.",
+      "evidence": "P,E,R",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Sorted flag subgroup, missed cases and allflag grid carry denominator contrast.",
+      "evidence": "E,V",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversible missed-case and allflag controls support discovery.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete interpretation of flagged test results with invented numbers clearly stated.",
+      "evidence": "P,R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 4,
+      "reason": "Recall,precision,base rate and indiscriminate flagging boundary provide distinct tested contrasts.",
+      "evidence": "E,R",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Core result requires distinguishing multiple conditional populations and rates at once.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": {
+      "level": "high",
+      "reason": "Recall,precision and false positives introduced alongside overall accuracy."
+    },
+    "notationRepresentationBurden": {
+      "level": "moderate",
+      "reason": "Several fractions and percentages with tiny1000-item diagram."
+    },
+    "conceptualDemand": "Separate amongill from amongflagged and amongall populations.",
+    "interfaceBurden": "Low control burden; explanatory pronoun ambiguity separate from conceptual challenge."
+  },
+  "whyCool": "Sorting the48 flags reveals onlyeight ill people, and flagging everyone dilutes the fraction to1%.",
+  "caveat": "Reveal says Those answer of the ill after naming both recall and overall accuracy; owner should check this suspected denominator conflation.",
+  "missingEvidence": [
+    "Systematic accessibility checks",
+    "Applied new transfer case",
+    "Phone layout"
+  ],
+  "effort": {
+    "approximateMinutes": 3
+  },
+  "partialBlinding": "Visible Why trust this? (4/4 claims checked); ignored and not opened.",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3b",
+  "date": "2026-10-18",
+  "notApprovedForServing": true,
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, number comparisons and familiar household objects; no domain theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 992,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "screenshots": [],
+  "fatalFindings": [],
+  "slug": "flagged-means-what",
+  "demoVersion": 1,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/flagged-means-what",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "2277693eb5cd1ee828492437396035fea396c6f417d4b427708f1904c4be2448",
+    "metaSha256": "90a68c58e252486213129f4d49bd4d9454e9eff286eb7f8a770c13be33695880"
+  }
+}

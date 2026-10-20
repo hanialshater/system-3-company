@@ -1,0 +1,104 @@
+{
+  "slug": "probing-clusters-grow",
+  "demoVersion": 2,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/probing-clusters-grow",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Initial occupied slots two-three-four and seven gave slot five four of ten possible hash starts and slot eight two of ten.",
+    "First inserted key hashed seven and moved to eight with two probes.",
+    "Next keys hashed three then two, landing five then six and merging a seven-slot run; screenshot shows the remaining slot nine catching eight of ten starts.",
+    "Filling table included wraparound to zero and one; last insertion took six probes. Reveal recalls initial probabilities and observed growth as primary clustering."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Uniform start probabilities and circular probing.",
+    "conceptualDemand": "Distinguish random hash origin from selected free destination.",
+    "interfaceBurden": "Insert, grow-to-threshold and fill controls."
+  },
+  "whyCool": "A long occupied stretch attracts more new keys to its end, making itself even longer.",
+  "caveat": "Fixed tiny table and insertion sequence; no alternative probing or resizing comparison.",
+  "effort": "Prediction, first insertion, cluster-growth batch, full-table wraparound, screenshots and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Excellent visual probability-to-performance feedback with observed boundary behavior.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Precise mechanism question with clear occupancy and collision rule.",
+      "evidence": "Uniform empty slots versus five versus eight.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Single insertion, cluster threshold and full-table boundary expose growth and wraparound.",
+      "evidence": "Two-, three-, five-probe inserts; wraparound and full table.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explains original probability and observed self-reinforcing growth with actual insertion history.",
+      "evidence": "Four of ten catchment, keys two/three extend cluster, last six probes.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Arrows, catchment bands and probe log expose both chance and work.",
+      "evidence": "Eight-of-ten band at slot nine after cluster merge.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General linear-probing mechanism without a second application or mitigation.",
+      "evidence": "Full stretches feed themselves.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Random starting slots do not give equally likely empty destinations.",
+      "evidence": "Four-of-ten versus one-of-ten, later eight-of-ten.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Catchment bands and walk arrows directly explain feedback.",
+      "evidence": "Cluster absorbs starts across its whole span.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Incremental, threshold and full-run exploration.",
+      "evidence": "Three controls reveal different stages.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete hash-table performance mechanism.",
+      "evidence": "Probe lengths grow as clusters accumulate.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Conditional destination probability and occupancy feedback connect.",
+      "evidence": "Uniform hashes produce nonuniform landings and longer walks.",
+      "confidence": "medium"
+    }
+  }
+}

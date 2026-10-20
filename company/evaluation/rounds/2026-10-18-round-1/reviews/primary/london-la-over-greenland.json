@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "london-la-over-greenland",
+  "demoVersion": 2,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/london-la-over-greenland",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "london-la-over-greenland",
+    "domain": "geography",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/geography/london-la-over-greenland/meta.json",
+    "metaSha256": "1b47cbe2fde47cc3259d5c4ff43dc54abcab81d400c274f314f1b2a1d7fb6007",
+    "demoSha256": "81b248087435a60febf086ddc931e42fffc3ff78c42104bda9811ce26d1526ea",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/london-la-over-greenland",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/london-la-over-greenland.json"
+  },
+  "date": "2026-10-18T19:39:50.612166+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "Preview isolation banner confirmed; trust6/6 visible ignored. Selected Only open ocean and locked.",
+    "exploration": "Mercator2500km Sea,3500 Sea,3000 Greenland. Screenshot confirmed marker over southern tip and red curved route versus dashed map-straight line. Gnomonic toggle preserves Greenland marker and makes route straight. SliderEnd8750km UnitedStates; displayed route8760, map-straight9730.",
+    "reveal": "Correct Greenland; roundEarth/no winds condition. Great circle shortest on sphere,gnomonic makes it straight;Mercator straight line constant compass direction longer9730versus8760.",
+    "visual": "Inline1257x936 dark screenshots inspected: both map projections,landhighlight androute markers. Gnomonic caption right-clipped before reveal; final nested vertical/horizontal scrollbars overlay distance counters and clip text right edge."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete geography choices distinguish familiar flat-map intuition; routehiddenbeforecommitment.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Sea/Greenland/Sea bracket andprojectiontoggle isolate curvedmapversusshortestpath withendpointboundary.",
+      "evidence": "exploration;visual",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Actualroute/distances tiedtogreatcircle andconstant-bearing contrast,roundEarth/no-winds conditions explicit.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Maps/control/state clear,butfinalhorizontalbar overlaysdistancecounters andrighttextclipped.",
+      "evidence": "visual",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete alternativeprojection use:straightgnomonicroutes indicate shortestgreatcircles,withsphere/no-winds condition;nofreshroute.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Chosenocean route actually touchesGreenland andcurvedmaplineisshorter.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Same route/marker transforms curvedMercator tostraightgnomonic acrosslandpositions.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversibleflightdistance/projectionchoices enablecomparison.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concreteflight-route/mapinterpretationwithwindlimitation.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Geodesicversusrhumbline,projectiondependence,distance andlandintersection.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Coordinate spherepath andtwoflatmaprepresentations withconstant-bearing contrast.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "moderate: nestedscroll/rightclipping",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: greatcircle/gnomonic/rhumbline",
+    "notationRepresentationBurden": "low: km,maplabelsandroutepaths"
+  },
+  "whyCool": "A route that bows overGreenland onMercator becomes a straight line ongnomonic and saves970km.",
+  "caveat": "Onefixedroute onroundEarthwithoutwinds;finalscrollbar/counteroverlap."
+}

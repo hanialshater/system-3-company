@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "pendulum-period",
+  "demoVersion": 4,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/pendulum-period",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "pendulum-period",
+    "domain": "physics",
+    "status": "published",
+    "demoVersion": 4,
+    "metaPath": "src/demos/physics/pendulum-period/meta.json",
+    "metaSha256": "47c97c88db5cbd54a37d1f0b018e599e23bc9b125b4128b4ebf25132e67684d0",
+    "demoSha256": "791c6f81b223b3366a4bf2a7356fd4389a8d29070bea8513e73625a3879d962d",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/pendulum-period",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/pendulum-period.json"
+  },
+  "date": "2026-10-18T19:33:50.572536+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "No-history banner confirmed; trust11/11 ignored. Selectedlonger andlocked for2kgversus100gsame1m.",
+    "exploration": "WeightEnd2kg,Release;after~5sheavyandghostlocked,measured2.02seach. Pause,setstring0.25automaticallyresetsweight100g(explicitcaptionOnlystringchangedweightback100g). Release;after~5s1.01sversusghost2.02,visiblyoutofstep. Revealwasalreadyenabledaftermasscasebeforeinstructedstringtest,performedbothanyway.",
+    "reveal": "Correctsame. Actual2kg/100g2.02cancelgravity20xandinertia20x. Actual0.25m1.01versus2.02,quarterlengthhalftime. Idealpointmass/noair/weightlessstring20deg;realdragcaveat andGalileolead/corkexample.",
+    "visual": "Inline1257x936 dark screenshots inspected: heavyboboverlapsdashedghost,shortstringoutofstep;timestampsandmeasuredperiodsvisible. Revealinnerverticalscrollbarandlongtext,horizontaloverflowpartlyclipsrightendsnearfinalcaveat."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clearlonger/same/less commitment targetsheavy-slowmisconceptionwithfixedlength.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Observedmeasuredheavycoincidenceandquarterlengthhalfperiodisolatevariables;automaticresetdisclosed.",
+      "evidence": "exploration;visual",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Connectsactualperiodstocancelledforce/inertiaandlengthrelation,explicitideal/airdraglimit.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Controls/periodslegible,butrevealnestedscrollandright-edgeclippingatfinalcaveat;gateopensbeforeinstructedlengthcontrast.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concreteclockbeat/pendulumlengthcontrolandGalileolead/corkcasewithideal/dragconditions;nofreshapplicationtask.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Chosenheavier-slowerfailswhilelengthchangeactuallyhalvesthebeat.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Liveghostsynchronyversusshort-stringphasecontrastvisiblycarrymassinvarianceandlengthdependence.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Releases,pause,weight/lengthchoicesenablereversibleexperimentation.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concreteunderstandingofwhatsetsapendulumbeat.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Masscancellation,lengthsquare-rootrelation andideal/dragboundary.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Comparecontrolledmass/lengthcontrastsandlinkforce/inertia cancellationtosameperiod.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "moderate:nestedscroll/rightclippingandautomaticweightresetdisclosed",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: forceversusinertia explanation",
+    "notationRepresentationBurden": "low: kg/g,m,secondsandratios"
+  },
+  "whyCool": "The2kgweightstayslockedtothe100gghost,butquarteringstringlengthmakesitticktwiceasfast.",
+  "caveat": "Ideal20degreemodel;finalrevealhasnestedscrollandright-edgeclipping."
+}

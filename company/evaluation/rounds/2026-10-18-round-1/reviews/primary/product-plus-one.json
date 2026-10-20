@@ -1,0 +1,104 @@
+{
+  "slug": "product-plus-one",
+  "demoVersion": 2,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/product-plus-one",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted productof2,3,5,7,11,13plus1=30031isprime; alternativesdividesbylistedprime/hasunlistedprimefactor.",
+    "List2,3 gives6+1=7prime,remainder1foreach. Added5,7,11,13:30031=59\u00d7509composite,alllistedremainders1. Removed2:15016=2\u00d72\u00d72\u00d71877,noneinthecurrentlist,allremainders1.",
+    "Reveal explainsoriginal30031factorization,productdivisibilityplus1remainders,everyintegerabove1hasprimefactor,andarbitraryfinitelistcontradiction;explicitproductplus1notalwaysprime.",
+    "1280x720light three screenshots clearcounts/factors andfullyreadableprose."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Smallarithmeticexamples supportabstractcontradictionproof.",
+    "conceptualDemand": "Divisibility,remainder andarbitraryfinite-listreasoning.",
+    "interfaceBurden": "Sixcleartoggles."
+  },
+  "whyCool": "The constructed number can fail to be prime and still prove that your list of primes is incomplete.",
+  "caveat": "Factorizationsprovidedbytoy,notindependentlycomputedhere. Primefactorizationexistenceassumed;noexternaltransferchallenge.",
+  "effort": "Prediction,primecase,full-listcompositecase,nonconsecutivelistcase,reveal,three screenshots.",
+  "provisionalBucket": "launch-candidate",
+  "bucketReason": "Clearinteractiveproofandcounterexamplewithreadableexplanation.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Precise temptingoverclaim versusactualproofgoal.",
+      "evidence": "30031primeversusnewprimefactor.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Prime/composite andnonconsecutivelistcontrasts exposeinvariantbeyondoneexample.",
+      "evidence": "7,30031,15016factoroutputs andremainders.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explainsoriginalerror,arbitrarylistreason andimportantnot-always-prime limit.",
+      "evidence": "Remainder1foralllisted,unlistedfactorrequired.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "List,factorization andremainders readable acrosschangedstates;originalcaseclearlynamedinreveal.",
+      "evidence": "Three screenshotsincludingremoved2case.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalproofstated andmultiplelists explored,butnonewexternalapplicationtask.",
+      "evidence": "Anyfinitelistargument.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 4,
+      "reason": "Productplusonecanbecompositeyetstillforceamissingprime;removing2recovers2asfactor.",
+      "evidence": "59\u00d7509and2^3\u00d71877 contrasts.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "List/factor/remainderalignmentexternalizesproofinvariant.",
+      "evidence": "Everyselectedprimearrowremainder1.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Arbitraryprime toggles inviteconstructivecounterexamples.",
+      "evidence": "Addedallthenremoved2.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Mathematicalproofratherthanpracticaltask.",
+      "evidence": "Infinitudeofprimes.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 4,
+      "reason": "Counterexampletogeneralization andfinite-listcontradictionseparated.",
+      "evidence": "Newfactorneednotbenewnumb erprimeitself.",
+      "confidence": "medium"
+    }
+  }
+}

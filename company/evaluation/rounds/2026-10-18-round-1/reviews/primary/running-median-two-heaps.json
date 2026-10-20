@@ -1,0 +1,104 @@
+{
+  "slug": "running-median-two-heaps",
+  "demoVersion": 2,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/running-median-two-heaps",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction states opposite heap tops and size invariant, asking how many existing numbers move when three follows five-fifteen-one.",
+    "First three arrivals gave medians five, ten and five, with sizes two versus one.",
+    "Fourth arrival three entered lower half; five moved to upper half, producing sizes two/two and median four.",
+    "Screenshot shows lower top three over one and upper top five over fifteen. Reveal distinguishes one cross-half transfer from logarithmic heap maintenance."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Requires heaps, partition invariants and complexity distinction.",
+    "conceptualDemand": "Read median from ordered halves while maintaining size balance.",
+    "interfaceBurden": "Next, finish and restart."
+  },
+  "whyCool": "You can keep the middle of an arriving stream by watching just two tops and moving at most one value between halves.",
+  "caveat": "Very short fixed stream; heap-internal reordering and larger behavior are explained rather than interactively shown.",
+  "effort": "Prediction, all four individual arrivals, before/after screenshots and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear invariant explanation but too little interactive variation for the strongest bucket.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Precise invariant-based transition question with all state supplied.",
+      "evidence": "Zero through three stored values crossing.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Four fixed arrivals reveal a single rebalance.",
+      "evidence": "No alternate stream, duplicates or longer case.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains moved value, median sequence and two-heap invariant.",
+      "evidence": "Five crosses once; tops determine medians; updates still cost logarithmic heap work.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Opposite top conventions and size counters make the rebalance legible.",
+      "evidence": "Lower maximum and upper minimum clearly labeled.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "General data-structure recipe with explicit per-arrival work.",
+      "evidence": "One insert and at most one cross-half move; not constant total update work.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Global middle can be maintained with a small local adjustment.",
+      "evidence": "One value crosses, no full resort.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Two small heaps expose the order and size invariants.",
+      "evidence": "Three/five tops bracket median four.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Four sequential fixed arrivals.",
+      "evidence": "Step or complete, no learner-selected values.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete streaming statistic technique.",
+      "evidence": "Maintain median online.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Partition order, balance and operation cost connect.",
+      "evidence": "At-most-one transfer versus logarithmic heap operations.",
+      "confidence": "medium"
+    }
+  }
+}

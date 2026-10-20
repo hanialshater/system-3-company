@@ -1,0 +1,156 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1b",
+  "date": "2026-10-18",
+  "slug": "farthest-place-from-you",
+  "domain": "geography",
+  "demoVersion": 1,
+  "expectedVersion": 1,
+  "batchId": "round1-02",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "a703b56a879a18036d3fcdccb0ad9063500c548ef08c74351256ea40d5b06d4f",
+  "demoSha256": "853f624cf30626e370a5e78f54db79c41981f7613bcb48db56f52fa9e70f53f7",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/farthest-place-from-you",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "evidenceMode": "live-browser-computer-use",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "previewIsolationObserved": true,
+  "visibleTrustChrome": "Why trust this? (6/6 claims checked); ignored; panel unopened",
+  "phaseCoverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true,
+    "pixelInspection": true
+  },
+  "observations": [
+    {
+      "id": "p",
+      "action": "Selected About 40,000 km; Lock it in",
+      "outcome": "Prediction retained; controls unlocked; instructed to draw 20,000 km ring then move pin."
+    },
+    {
+      "id": "e",
+      "action": "From Madrid 8,000 km ring, clicked Ring at 20,000 km, then Move pin to Wellington; pressed Home on Ring distance",
+      "outcome": "Ring real length changed 38,059 to 95 km; map recentered Wellington; minimum 1,000 km showed real length 6,257 km. Madrid\u2013Wellington remained 19,855 km. Reveal remained enabled after moving range back."
+    },
+    {
+      "id": "v",
+      "action": "Inspected screenshot of Wellington/20,000 km state",
+      "outcome": "Dark 1257x936 viewport; circular map, labels, range and readouts legible, lower reveal requires ordinary vertical scrolling. No horizontal cutoff observed."
+    },
+    {
+      "id": "r",
+      "action": "Show me why",
+      "outcome": "Not quite: About 20,000 km. Half circumference 20,015 km on a sphere; antipode is unique; map edge stretches that point into a circle; 95 km ring explanation links observed boundary."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Plausible circumference/half-circumference alternatives support actual commitment.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Ring and recentering give causal contrasts; lower radius checks a boundary.",
+      "evidence": "e,v",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains original wrong prediction and tiny boundary ring using explicit sphere model.",
+      "evidence": "r,e",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Visible labels and guided two-action unlock were clear in tested desktop view.",
+      "evidence": "p,e,v",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable antipode principle and Madrid\u2013Wellington illustration; no applied new task.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Insufficient mode checks; only range Home observed.",
+      "evidence": "e",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed 40,000 prediction reversed by half-circumference and tiny far ring.",
+      "evidence": "p,e,r",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Map edge and ring carry spatial explanation.",
+      "evidence": "v,r",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Radius and pin offer reversible exploration.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Provides geographic distance bound and named city comparison.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Shortest route, antipode and projection edge are linked mechanisms.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links shortest surface route, antipode and projected map edge with numeric support.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": {
+      "level": "moderate",
+      "reason": "Antipode and equidistant projection introduced."
+    },
+    "notationRepresentationBurden": {
+      "level": "moderate",
+      "reason": "Must reconcile flat circular map edge with single spherical point."
+    }
+  },
+  "whyCool": "Moving the ring to 20,000 km leaves only 95 km of real ring while the map displays a huge circle, and the reveal explains the stretched antipodal edge.",
+  "caveat": "Only one desktop path; projection interpretation requires abstraction and no second application is tested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Phone, contrast, focus sequence, zoom/reflow and motion checks; exhaustive pin/radius states not tested."
+  ],
+  "reviewState": "complete-real-walkthrough",
+  "effort": {
+    "approxMinutes": 3
+  },
+  "notApprovedForServing": true,
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  }
+}

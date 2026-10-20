@@ -1,0 +1,103 @@
+{
+  "slug": "spacer-protects-clearance",
+  "demoVersion": 1,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/spacer-protects-clearance",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Question which includes uncertainty has literal allow uncertainty option; selected it.",
+    "Opening30,insert28,bounds\u00b11:nominal2,worst-case0. Opening27 worst-case\u22123.",
+    "Reveal correctly explains smallest opening minus largest object and hypothetical bounds. Screenshot readable; schematic appears object narrower than opening despite negative margin,not visibly scaled to fit."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Two-sided bounds and negative margin.",
+    "conceptualDemand": "Nominal versus worst-case sizes.",
+    "interfaceBurden": "Two modes and opening slider."
+  },
+  "whyCool": "Two small measurement uncertainties can consume all of an apparently positive clearance.",
+  "caveat": "Replace tautological prediction and scale schematic to show worst-case interference.",
+  "effort": "Prediction,method contrast,negative boundary,reveal,inline screenshot.",
+  "provisionalBucket": "revise-prediction-diagram",
+  "bucketReason": "Correct useful arithmetic,weak question/visual fit.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Answer restates question.",
+      "evidence": "Includes uncertainty versus allow uncertainty.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Method and opening compare nominal versus conservative bound.",
+      "evidence": "2/0 then\u22123.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Mechanism and hypothetical nature explicit.",
+      "evidence": "Smallest opening minus largest object.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Numeric result clear but drawing does not visibly represent collision at negative clearance.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete tolerance calculation and actual-measurement condition.",
+      "evidence": "Measure real parts,use appropriate bounds.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Nominal room can vanish under two-sided uncertainty.",
+      "evidence": "2\u21920.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 1,
+      "reason": "Drawing not sufficiently tied to negative fit.",
+      "evidence": "Object appears within opening.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Method and opening variation.",
+      "evidence": "30\u219227.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Robust fit calculation central.",
+      "evidence": "Tolerance allowance.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Worst-case interval arithmetic.",
+      "evidence": "Subtract two uncertainty bounds.",
+      "confidence": "medium"
+    }
+  }
+}

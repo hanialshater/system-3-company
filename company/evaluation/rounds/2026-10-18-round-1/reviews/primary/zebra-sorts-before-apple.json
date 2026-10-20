@@ -1,0 +1,104 @@
+{
+  "slug": "zebra-sorts-before-apple",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/zebra-sorts-before-apple",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted apple first when sorting apple,Banana,Zebra by stored character numbers; code values were hidden before lock.",
+    "Revealed Z90,a97,B66,then sorted Banana,Zebra,apple. Ignore-case toggle changed order to apple,Banana,Zebra and retained original order below.",
+    "Reveal recalled both orders, explained uppercase/lowercase English-letter code ranges and offset32, and suggested language-aware sorting for people.",
+    "Inline 1280x720 light screenshot: complete readable cards, original-order history and prose. Ignore-case cards retain original codes, while button still says Sorted by code. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Familiar words and simple numerical comparison.",
+    "conceptualDemand": "Letters as numbers and case-sensitive order.",
+    "interfaceBurden": "Few clear controls and readable layout."
+  },
+  "whyCool": "The alphabetic-looking problem changes once each word displays the number the computer actually compares.",
+  "caveat": "Range/offset claims should be scoped to A-Z/a-z; normalized keys are not shown after ignore-case toggle; accessibility unknown.",
+  "effort": "Prediction,all three code reveals,raw sort,ignore-case contrast,reveal and inline screenshot.",
+  "provisionalBucket": "strong-gentle",
+  "bucketReason": "Readable everyday programming surprise with a concrete comparison-rule fix.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "The code ordering is a fact to discover rather than infer from information supplied before lock.",
+      "evidence": "Codes hidden until exploration.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Revealing codes and changing comparison rule gives a clear controlled contrast.",
+      "evidence": "Raw-code versus ignore-case order.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Actual numbers and changed order explain mismatch with familiar alphabetic expectations.",
+      "evidence": "66<90<97; ignore case restores apple first.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readable comparison and preserved original order; original codes remain visible after normalization.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete sorting choice and condition named for human-facing lists.",
+      "evidence": "Use language rules rather than raw codes.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Capital Zebra sorts before lowercase apple under raw codes.",
+      "evidence": "Apple last.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Codes on reordered cards expose the comparison key.",
+      "evidence": "66,90,97.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reveal cards,sort and toggle case handling.",
+      "evidence": "Two order modes.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Human-facing sort behavior is a common programming concern.",
+      "evidence": "Language-aware comparison.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Stored representation versus comparison semantics.",
+      "evidence": "Case normalization changes key.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2",
+  "reviewKind": "primary",
+  "slug": "at-least-one-boy",
+  "demoVersion": 1,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/at-least-one-boy",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, familiar objects; no subject theory assumed.",
+  "viewport": "1280x720 desktop screenshot",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "text": "No-history banner; trust5/5 ignored. Predicted1/3; locked."
+    },
+    {
+      "id": "E",
+      "text": "At least one boy:240of744(32%). Older boy:240of504(48%). No clue restored1000families and hid percent; reveal stayedavailable."
+    },
+    {
+      "id": "R",
+      "text": "Atleastone removes girl+girl, leaves3 equallycommon kinds;older removesrow leaves2. Clue removescases not particularchild; answerdepends howlearned, here onlyclueitself. Revealreferences priorcounts despite resetstage. Inline screenshot shows dotgrid,controls and right-edgeclipping; none saved."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Plausible1/2,1/3,1/4 choices foreground misconception.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Same numerator/different denominators across two clues directly expose conditioning.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains sample-space exclusion and information-protocol boundary.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clear pairedcounts but revealrightclipping and reference tostage mismatch afterNoClue reset.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "General clue-removes-cases principle and information caveat; editorial potential only.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No modeaudit.",
+      "evidence": "Untested",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Changing clue changesanswer despite same twochildren.",
+      "evidence": "E,R",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Grid/row exclusion carries conditioning.",
+      "evidence": "E,R",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversible filters.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Abstract probabilityinterpretation.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Conditionalcases,denominatorchange,informationprotocol.",
+      "evidence": "R",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Two linked filters supported through cases; information protocol adds boundary.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "moderate;clipping",
+    "prerequisiteNovelty": "moderate;conditioning",
+    "notationRepresentationBurden": "moderate;fractions/grid"
+  },
+  "whyCool": "The same240both-boyfamilies become32%or48%dependingonwhich clue removes otherfamilies.",
+  "caveat": "Resetstage showsallfamilies while reveal saysolderclue count is onstage; no independent probabilityoutcome validated.",
+  "notApprovedForServing": true,
+  "effort": "About3minutes",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility modes",
+    "Repeated sampling"
+  ]
+}

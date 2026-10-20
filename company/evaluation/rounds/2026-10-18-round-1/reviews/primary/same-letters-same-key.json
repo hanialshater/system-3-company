@@ -1,0 +1,104 @@
+{
+  "slug": "same-letters-same-key",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/same-letters-same-key",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction specifies sorting each word's letters and asks how many bins ten supplied words form.",
+    "Silent then listen both mapped to eilnst despite reversed processing order.",
+    "Google and gogole both mapped to eggloo, preserving repeated-letter multiplicities.",
+    "Completing all words gave groups four, two, three and one; dog alone. Reveal explains exact canonical-key equivalence and contrasts ten key constructions with forty-five pairwise comparisons."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Canonical representation and hash grouping.",
+    "conceptualDemand": "Understand sorted multiplicities as an equivalence key.",
+    "interfaceBurden": "Ten word choices, batch and reset."
+  },
+  "whyCool": "Choosing the right representation makes equivalent items find each other without checking every pair.",
+  "caveat": "Fixed lowercase words; letter-sorting and key-lookup costs remain even though explicit pairwise checks disappear.",
+  "effort": "Prediction, reordered first pair, repeated-letter pair, complete grouping, screenshot and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Clear canonical-key mechanism with multiple groups and singleton.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear finite grouping challenge with specified signature.",
+      "evidence": "Three, four or five groups.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "User-chosen processing order and several word families test signature grouping.",
+      "evidence": "Reordered listen/silent, repeated-letter group, singleton.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains why canonical keys make equivalent words share a bin.",
+      "evidence": "Sorted letters match exactly for anagrams; dog singleton.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Keys on source words and named bins make membership traceable.",
+      "evidence": "eilnst, eggloo, act and dgo.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete canonicalization recipe with comparison-work implication.",
+      "evidence": "Build a key per word and hash-group rather than compare every pair.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Grouping can avoid explicit word-to-word tests.",
+      "evidence": "Zero pairwise checks while forming four groups.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Canonical strings and bins directly expose equivalence.",
+      "evidence": "Different spellings share identical displayed key.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Choose word order or drop remainder.",
+      "evidence": "Fixed words and no editable key.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete grouping algorithm.",
+      "evidence": "Canonical signatures replace pairwise comparison.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Equivalence representation and indexing connect.",
+      "evidence": "Correct groups arise from key equality.",
+      "confidence": "medium"
+    }
+  }
+}

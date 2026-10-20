@@ -1,0 +1,139 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "the-loser-flips-the-winner",
+  "demoVersion": 3,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/the-loser-flips-the-winner",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "the-loser-flips-the-winner",
+    "domain": "math",
+    "status": "published",
+    "demoVersion": 3,
+    "metaPath": "src/demos/math/the-loser-flips-the-winner/meta.json",
+    "metaSha256": "3ae3ad1957f6e4aeb866c302e5c17d1660dbf53aa23614f49bfcefc664d330ee",
+    "demoSha256": "3d824ca49e41c5a43ec52a405cade0a747f4962817ddeb715bc44e00dd224d28",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/the-loser-flips-the-winner",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/the-loser-flips-the-winner.json"
+  },
+  "date": "2026-10-18T21:03:32.513183+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "SelectedA after removingC from five Borda ballots; rankings threeABC andtwoBCA visible."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Count gaveA6B7C2. Gap overlay gaveA1each onthree ballots,B2each ontwo. RemoveC gaveA3B2;B gaps shrink2\u21921 whileA gaps stay1."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read unchanged A/B preferences, C betweenB/A onlasttwo ballots creates extra lead; four beats three withC, three beats two without. Last-place option can change winner under points voting."
+    },
+    {
+      "phase": "screenshotInspection",
+      "evidence": "Actual1257x936 dark screenshots inspected allfive ballots, score bars and gap annotations before/afterC removal; both outcome captions retained."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete unchanged rankings support a testable counterintuitive recount.",
+      "evidence": "B initiallywins,C last;A predictedafterremoval.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Counts, gap overlay and removal isolate positional-score mechanism.",
+      "evidence": "Blead2\u21921 ontwo ballots.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains winner reversal without preference change.",
+      "evidence": "CbetweenB/A gives asymmetricpointgap.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Small ballot set and per-ballot leads make arithmetic visible.",
+      "evidence": "Three+1Aversustwo+2B,thentwo+1B.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General warning remains same points-voting example.",
+      "evidence": "No new ballot task or alternative method.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Removing last place flips winner with no changed preferences.",
+      "evidence": "B7\u20136 becomesA3\u20132.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Gap overlays identify the two ballots causing reversal.",
+      "evidence": "Was+2 now+1 onBsupporters.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Recount and remove controls support focused exploration.",
+      "evidence": "Count,gaps,remove tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Shows dependence of ranking outcomes on available alternatives.",
+      "evidence": "Unchanged AversusB preferences.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Moves beyond outcome to per-ballot score differences.",
+      "evidence": "Asymmetric gap compression explains reversal.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "conceptualDemand": "balanced: positional points versus pairwise preference and score gaps",
+    "interfaceBurden": "gentle: count,remove andgap buttons",
+    "prerequisiteNovelty": "Borda rule defined as2/1/0 then1/0",
+    "notationRepresentationBurden": "five ranked ballots, pointbars andlead sums"
+  }
+}

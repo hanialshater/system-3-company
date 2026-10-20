@@ -1,0 +1,105 @@
+{
+  "slug": "which-order-is-allowed",
+  "demoVersion": 1,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/which-order-is-allowed",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted one valid order for A before B/C and B/C before D.",
+    "Trying D first reported waiting for B and C. Built A B C D; swapping middle positions produced A C B D. Swapping first two rejected A-before-C violation.",
+    "Added D-before-A: line cleared, no free task; placing A reported waiting for D. Prior two orders remained labeled history.",
+    "Reveal accurately recalled both orders and changed cyclic case, explaining free-task choice and exact count two.",
+    "Inline 1280x720 light screenshot: graph, cycle arrow, history and full prose readable. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simple tasks but dependency and cycle reasoning.",
+    "conceptualDemand": "Partial orders and prerequisite availability.",
+    "interfaceBurden": "Clear buttons, targeted feedback and readable layout."
+  },
+  "whyCool": "One unconstrained middle swap creates two schedules; one backward arrow destroys every schedule.",
+  "caveat": "Small four-task graph; general cycle rule illustrated rather than formally proved; accessibility unknown.",
+  "effort": "Prediction, unmet dependency, full order, valid/invalid swaps, cycle and blocked placement, reveal and inline screenshot.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Readable constructive ordering puzzle with a clear changed-case boundary.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Complete dependency rules and small count alternatives.",
+      "evidence": "One, two or four orders.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Construction, valid/invalid swaps and cyclic modification test feasibility and freedom.",
+      "evidence": "Two orders versus no order after cycle.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Observed choices support exact count and concrete impossibility boundary.",
+      "evidence": "Only B/C interchange; added cycle blocks start.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readable graph, targeted feedback and historical orders.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 4,
+      "reason": "Fresh cyclic graph applies dependency reasoning and distinguishes when ordering becomes impossible.",
+      "evidence": "D-before-A modification tested.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Rules can leave several orders or none after one extra edge.",
+      "evidence": "Two to zero.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Arrows and task line connect constraints to sequence.",
+      "evidence": "Red cycle arrow.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Manual placement and swaps form a constructive puzzle.",
+      "evidence": "Wrong and valid actions tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Scheduling dependencies is central.",
+      "evidence": "Free-task selection rule.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Partial-order freedom and directed-cycle obstruction.",
+      "evidence": "Exact two-order reasoning.",
+      "confidence": "medium"
+    }
+  }
+}

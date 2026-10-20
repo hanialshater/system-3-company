@@ -1,0 +1,104 @@
+{
+  "slug": "estimate-a-range",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/estimate-a-range",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted a call20 is not guaranteed free of a task with duration15\u201325 starting0.",
+    "Test short duration15 gave no overlap and overall finish30. Long25 gave overlap5 and no valid finish.",
+    "Moved task start70: long task70\u201395 after call20\u201330, no overlap, finish95.",
+    "Reveal accurately described final long-duration state and advised checking the long endpoint rather than optimistic estimate."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple range endpoints and overlap.",
+    "conceptualDemand": "Uncertain duration and schedule feasibility.",
+    "interfaceBurden": "Test,preset,slider."
+  },
+  "whyCool": "The optimistic estimate and the robust schedule become visibly different.",
+  "caveat": "It tests a stated bound, not a confidence interval or likely duration. Moving the task after the call is allowed despite the original task-then-call story.",
+  "effort": "Completed prediction, short/long endpoints, manual boundary, screenshots and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear endpoint-risk comparison with accurate final-state feedback.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Complete duration interval and call time support a conditional forecast.",
+      "evidence": "Long endpoint exceeds available20.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Duration endpoint and manual placement reveal feasible versus conflicting layouts.",
+      "evidence": "15 clear,25 clashes,25 after call clear.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Accurate final-state explanation connects to endpoint robustness.",
+      "evidence": "Long25 no overlap at final start70.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Durations,overlap and finish values are explicit.",
+      "evidence": "No-valid-finish label when one person overlaps.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete interval-planning check is stated.",
+      "evidence": "Test longer endpoint before relying on optimistic estimate.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Optimistic plan may fail under longer duration.",
+      "evidence": "Five-minute overrun conflict.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Block extension makes the uncertainty consequence visible.",
+      "evidence": "Short15 versus long25.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Duration preset and start slider.",
+      "evidence": "Multiple layouts.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful conservative scheduling habit.",
+      "evidence": "Endpoint check.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Distinguishes optimistic estimate from bounded robustness.",
+      "evidence": "No probability distribution.",
+      "confidence": "medium"
+    }
+  }
+}

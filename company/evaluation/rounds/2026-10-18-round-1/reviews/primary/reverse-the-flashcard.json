@@ -1,0 +1,103 @@
+{
+  "slug": "reverse-the-flashcard",
+  "demoVersion": 2,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/reverse-the-flashcard",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Studied dax/red,wug/blue,zib/green before prediction not tested reverse; cards covered after lock.",
+    "Tapped each answer once: forward green/red/blue allcorrect;reverse dux/wug/zeb,1correct. Checked both rows,answers locked and cards uncovered.",
+    "Reveal accurately reports3/3 versus1/3 and corrections,states one direction doesn't test other. Screenshot readable. First-cycle options themselves produce asymmetry; not evidence of memory asymmetry."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Three arbitrary word-color pairs.",
+    "conceptualDemand": "Directional recall and evidence.",
+    "interfaceBurden": "Cycling six answers,two checks."
+  },
+  "whyCool": "Knowing an answer from one cue does not establish that the reverse cue works.",
+  "caveat": "Authored answer-cycle order makes first taps forward-correct/reverse-wrong; do not interpret resulting score difference as measured learning effect.",
+  "effort": "Studied setup,prediction,six answers,two checks,reveal,inline screenshot.",
+  "provisionalBucket": "solid-with-assessment-caveat",
+  "bucketReason": "Actual answer checking,needs neutral answer ordering for assessment.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Distinguishes evidence status from assumed symmetry.",
+      "evidence": "Not tested yet versus same card.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Learner enters/checks both mappings with explicit errors.",
+      "evidence": "Six answer controls and checks.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Own results and epistemic conclusion clear.",
+      "evidence": "Corrects dux/zeb;test other direction.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readable covered/uncovered and directional labels.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Explicit study operation and inference boundary.",
+      "evidence": "Reverse cue/answer to test opposite mapping.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Forward score can differ from reverse.",
+      "evidence": "3/3 versus1/3 selected trace.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Paired cards and direction rows support mapping.",
+      "evidence": "Three pairs.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Answers and scoring central.",
+      "evidence": "Six choices,two checks.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Study practice direction central.",
+      "evidence": "Test both mappings.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Testing direction versus assuming knowledge.",
+      "evidence": "Evidence distinction.",
+      "confidence": "medium"
+    }
+  }
+}

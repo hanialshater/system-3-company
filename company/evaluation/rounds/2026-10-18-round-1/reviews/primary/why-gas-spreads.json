@@ -1,0 +1,139 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "why-gas-spreads",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/why-gas-spreads",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "why-gas-spreads",
+    "domain": "chemistry",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/chemistry/why-gas-spreads/meta.json",
+    "metaSha256": "e955b35510802a6c87a5b8abc61547c360b3fe4e59658870b3043528d23b0c19",
+    "demoSha256": "3ef178dc1634a9b62824fde5ef127e74f1e0d4c53e2d840a05604d3f10d2a057",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/why-gas-spreads",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/why-gas-spreads.json"
+  },
+  "date": "2026-10-18T20:59:23.938803+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Selected about one in a million for all20 molecules in left half at one instant."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "1000snapshots each:4molecules69allleft;10molecules0;20molecules0. Last20snapshot8left. Tallies retained across sizes."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Referenced observed0 and69; independent half chances multiplied20times give1/1048576. More spread-out arrangements explain typical spread; real10^23 scaling mentioned with categorical never-happens wording."
+    },
+    {
+      "phase": "screenshotInspection",
+      "evidence": "Actual1257x936 dark snapshots showed particles in two halves, retained69/0/0 counters and full readable reveal after scroll."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete rare-event estimate probes exponential intuition.",
+      "evidence": "1in40,1000,million alternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Crowd-size comparisons expose rapid rarity with retained counters.",
+      "evidence": "69/1000 at4 versus0at10and20.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Multiplication explains observed rarity beyond limited samples.",
+      "evidence": "Half multiplied20times exact1048576.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Simple halves and repeated probability support explanation.",
+      "evidence": "Sample tally distinguished from exact calculation; categorical never language is shorthand.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Scales molecule count within same application without new task.",
+      "evidence": "Real10^23 extrapolation only.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Tiny crowd can bunch while larger crowd almost never does.",
+      "evidence": "69versus0 observed.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Particle snapshot and counters show outcome but not combinatorial multiplicity.",
+      "evidence": "No arrangement-count visualization.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Three sampling buttons allow repeated experiments.",
+      "evidence": "Sampled4,10,20.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Builds statistical intuition for gas distribution.",
+      "evidence": "More arrangements spread out.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Combines experiment, exact product and macroscopic scale.",
+      "evidence": "Sample counts and2^-20 explanation.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "conceptualDemand": "balanced: independent conjunctions and typical versus possible arrangements",
+    "interfaceBurden": "gentle: three snapshot buttons",
+    "prerequisiteNovelty": "statistical gas explanation and exponential rarity introduced",
+    "notationRepresentationBurden": "sample fractions, repeatedhalves and10^23 scale"
+  }
+}

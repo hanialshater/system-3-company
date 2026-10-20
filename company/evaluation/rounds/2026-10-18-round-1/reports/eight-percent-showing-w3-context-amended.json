@@ -1,0 +1,136 @@
+{
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "p",
+      "phase": "prediction",
+      "text": "No-history banner verified; trust5/5 ignored. Chose about92% vs8/50; locked."
+    },
+    {
+      "id": "e",
+      "phase": "exploration",
+      "text": "0.30 density70%above;0.50preset50%;Ice0.917preset8%,unlock; keyboardEnd0.990=>1%above. Screenshot block/waterline/halfmark corresponds1%current; inlineonly."
+    },
+    {
+      "id": "r",
+      "phase": "reveal",
+      "text": "Notquite8%;recalls testedice8despitecurrent.99/1%;displacedwaterweighsequalsblock,ice.917waterdensity=>92%submerged;freshwater0°C;densersea11%shows."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Plausible submerged/exposed fraction confusion.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Preset contrasts and near-water-density boundary visibly change exposure.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Own ice observation explained through displaced weight and water condition.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Density and exposure labeled; current state distinguished from recalled ice.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete iceberg application with freshwater versus seawater condition.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic mode testing.",
+      "evidence": "e,r",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "92%is hidden rather than visible.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Block position/waterline carries exposure.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversible density controls.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Iceberg exposure interpretation.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Density ratio/displacement and water density boundary.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Connect density ratio, displaced weight and complementary exposed fraction.",
+    "conceptualDemand": "Density unfamiliar but explicitly defined; two linked relations.",
+    "interfaceBurden": "One range/two presets simple."
+  },
+  "whyCool": "A .917-density ice block shows8%, while .99-density block nearly vanishes below the waterline.",
+  "caveat": "Onlyfloatingdensities; no sinking case; keyboard slider alone not accessibility evidence.",
+  "effort": {
+    "approxMinutes": 3
+  },
+  "missingEvidence": [
+    "Sinking boundary, full keyboard/focus, phone, reflow, contrast and motion untested."
+  ],
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3",
+  "notApprovedForServing": true,
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, number comparisons and familiar household objects; no domain theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 992
+  },
+  "screenshots": [],
+  "fatalFindings": [],
+  "slug": "eight-percent-showing",
+  "demoVersion": 1,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/eight-percent-showing",
+  "reviewKind": "overlap",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "fe84afa5a3214f440160dc24b42987f15de84635981ea7c5d22b0aadbcc7b287",
+    "metaSha256": "78d1df1591b21f27f79d0de3207bf7b4194eb425f202db60dc412142e5c82994"
+  },
+  "browserContext": {
+    "browser": "Chrome dedicated agent tab",
+    "theme": "dark",
+    "viewport": "1257×992; overlap clarity comparisons with earlier IAB have viewport/theme confounds."
+  },
+  "amendment": "Added observed Chrome context per root; original evidence/scores unchanged."
+}

@@ -1,0 +1,105 @@
+{
+  "slug": "tricolour-check",
+  "demoVersion": 2,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/tricolour-check",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predictionalloneorallthreedifferentcrossingrule,can trefoiluseallthree;selectedNo.",
+    "TrefoilAAA3/3valid. Changedarc2toC:ACA0/3;arc3toB:ACB3/3validallthree.",
+    "PlainloopCheckall3of3obey,allonecolour. FigureeightCheckall3of81obey,allonecolour.",
+    "Revealexplainedtricolourabilitysurviveswiggling anddistinguishestrefoilfromloop,butfigureeightfailurecannotestablishunknot.",
+    "Inline1280x720 light screenshot: readableknot,letteredcolors,crossingticks,priorresultcaption andfullprose. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simplecolorpuzzlebutarc/crossingandone-wayinvariantreasoning.",
+    "conceptualDemand": "Knotdiagrams andnecessaryversussufficienttest.",
+    "interfaceBurden": "Directarcbuttons,clearletterlabels andreadablelayout."
+  },
+  "whyCool": "Achildlikecolorpuzzlebecomesaproofthatoneknottypecannotuntangle,thenhonestlyshowswhereitstopsworking.",
+  "caveat": "Invarianceunderwigglingisexplainedbutnotinteractivelyproved;accessibilityunknown.",
+  "effort": "Prediction,invalid/validtrefoilcolorings,plainloopandfigureeightexhaustivechecks,reveal andinline screenshot.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Constructivepuzzlewithclearproofideaandexplicitlimitation.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clearlocalruleandconcreteconstructivequestion.",
+      "evidence": "Trefoilallthreecolors.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Failedtwocolor,successfulthreecolor andtwodistinctcomparisonknots testcriterionandlimit.",
+      "evidence": "ACA0/3,ACB3/3,figureeight3/81.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Connectsconstructiontoinvariantandexplicitcountercasewheretestcannotdistinguish.",
+      "evidence": "Figureeightnotplainloopdespitesamecolorabilityfailure.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readableletters,crossingticks andexplicitresultlimit.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 4,
+      "reason": "Newfigureeightcaseappliestest andexplicitlydistinguishesnonapplicableconclusion.",
+      "evidence": "Nontricolourabledoesnotimplyunknot.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Coloringconstraintcanproveknotsdifferbutcannotclassifyeveryknot.",
+      "evidence": "Trefoilversusfigureeight.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Localcrossingticks,constructivecolors andcomparisonknots jointlyexplaincriterionandfailurelimit.",
+      "evidence": "Alltestedstates.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Recoloringarcstoobeyconstraintisapuzzle.",
+      "evidence": "ManualsuccessfulACB.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Mostlymathematicalinsightratherthaneverydayapplication.",
+      "evidence": "Knotinvariant.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Localconstraints,topologicalinvariance andone-waytestlogic.",
+      "evidence": "Explicitnonconverse.",
+      "confidence": "medium"
+    }
+  }
+}

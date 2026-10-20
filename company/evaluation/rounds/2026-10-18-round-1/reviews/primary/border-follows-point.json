@@ -1,0 +1,120 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2",
+  "reviewKind": "primary",
+  "slug": "border-follows-point",
+  "demoVersion": 2,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/border-follows-point",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, familiar objects; no subject theory assumed.",
+  "viewport": "1280x720 desktop screenshot",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "text": "No-history banner; trust5/5 ignored. Predicted x=1 for A moving0\u2192\u22122 with B4; locked."
+    },
+    {
+      "id": "E",
+      "text": "ArrowLeft x\u22121:border1.50; nextLeft x\u22122:border1,revealunlocked. YEnd2:A(\u22122,2),borderaxis0.67."
+    },
+    {
+      "id": "R",
+      "text": "A moved2,border1; equidistantpoints defineborder. LiftingA tilts perpendicular to joiningline throughmidpoint. Manypoints stitchedpieces; nearpointmoves localborder. Screenshot inline tiltedline/colors, pointAofftop and righttextclipping. None saved."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Supported midpoint setup with plausible stationary/datafollowing choices.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Horizontalcontrasts and verticalboundary expose displacement and tilt.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains equidistance and geometricorientation,extendsmanypoints.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Coordinates/readouts clear but reveal statesborder1 while currentaxis0.67 unless readerdistinguishes originalaxis case;clipping.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Trainingdata defines localclassificationborder;manypointgeneralization editorialonly.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Two keyboardsliders tested,insufficientaudit.",
+      "evidence": "E",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Bordermoveshalf horizontalpointshift and tiltsunderverticalshift.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Coloredregions and geometricborder carrymechanism.",
+      "evidence": "R screenshot",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Twoaxispointmovement reversible.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Nearest-neighbor modelinterpretation.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Midpoint,equidistance,perpendicularity,localmanypointgeneralization.",
+      "evidence": "R",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Linked coordinategeometry supported by two-pointvisual;manypointsoptional.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "moderate;clipping",
+    "prerequisiteNovelty": "moderate;classifierborder",
+    "notationRepresentationBurden": "moderate;coordinates and perpendiculargeometry"
+  },
+  "whyCool": "Moving A left shifts theborderhalf asfar; lifting itthen tilts theborder and changesaxis crossingto0.67.",
+  "caveat": "Many-pointlocality statedratherthaninteractivelytested; originalpredictiontext canconflict visuallywith currentliftedstate.",
+  "notApprovedForServing": true,
+  "effort": "About3minutes",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility modes",
+    "Many-pointcase"
+  ]
+}

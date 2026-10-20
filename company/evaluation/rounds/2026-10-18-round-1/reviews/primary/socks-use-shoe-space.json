@@ -1,0 +1,103 @@
+{
+  "slug": "socks-use-shoe-space",
+  "demoVersion": 2,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/socks-use-shoe-space",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted none extra for socks inside shoe,capacity not stated before prediction.",
+    "Sock200 beside adds200,total1000;inside adds0,total800. Sock800 beside1600,inside adds200,total1000.",
+    "Reveal explains600 cavity and overflow,still prediction held despite current200 extra. Screenshot right-edge clipping."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "External versus internal volume and threshold.",
+    "conceptualDemand": "Added packing volume not material volume.",
+    "interfaceBurden": "Two modes and volume slider."
+  },
+  "whyCool": "A hollow object's empty interior can absorb extra contents until its capacity is used up.",
+  "caveat": "State cavity capacity before prediction and distinguish original answer from overflow state.",
+  "effort": "Prediction,A/B,overflow endpoint,reveal,inline screenshot.",
+  "provisionalBucket": "revise-capacity-verdict",
+  "bucketReason": "Useful boundary interaction,underspecified prediction.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Direction plausible but none answer conditional on undisclosed cavity fit.",
+      "evidence": "Capacity600 revealed later.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Actually crosses cavity capacity boundary.",
+      "evidence": "200 noextra;800 extra200.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Good overflow explanation but verdict not qualified to original state.",
+      "evidence": "None held with extra200 current.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clear table,missing initial capacity and clipped prose.",
+      "evidence": "600 only reveal.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete hollow-space reuse with capacity/deformation conditions.",
+      "evidence": "Only fitted volume absorbed.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Added objects can add no external volume until capacity.",
+      "evidence": "Threshold600.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Schematic and table support cavity accounting.",
+      "evidence": "Inside versus beside.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Placement and volume variation.",
+      "evidence": "200\u2192800.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Packing unused internal volume central.",
+      "evidence": "Clean,dry,don't deform.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Piecewise added-volume model and threshold.",
+      "evidence": "Overflow beyond600.",
+      "confidence": "medium"
+    }
+  }
+}

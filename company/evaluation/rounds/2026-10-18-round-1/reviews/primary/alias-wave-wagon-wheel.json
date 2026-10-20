@@ -1,0 +1,115 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1",
+  "reviewKind": "primary",
+  "slug": "alias-wave-wagon-wheel",
+  "demoVersion": 2,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/alias-wave-wagon-wheel",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy and simple charts; no domain theory.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "P: chose1Hzfor4Hzwave sampled5times/second; alternatives2Hzand0.5Hz.",
+    "E:4Hzbutton shows SAME DOTS AS1Hz; screenshot fastsolid and slowdashed waves intersect six dots. SliderHome0.5Hz: none slower; End4Hz:1Hz;2Hzbutton:none slower. Threshold text2.5Hz.",
+    "R: Your prediction held. Samples cannot tell two apart; faster than half sample rate looks slower; audio sampled more than twice highest frequency.",
+    "No-history preview banner;5/5trust ignored. Inline screenshot1280x720 clear overlaid waves and slider; keyboardHome/End visibly worked."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear sample-rate puzzle with plausible frequencies.",
+      "evidence": "P: chose1Hzfor4Hzwave sampled5times/second; alternatives2Hzand0.5Hz.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Continuous frequency and boundary presets expose ambiguity.",
+      "evidence": "E:4Hzbutton shows SAME DOTS AS1Hz; screenshot fastsolid and slowdashed waves intersect six dots. SliderHome0.5Hz: none slower; End4Hz:1Hz;2Hzbutton:none slower. Threshold text2.5Hz.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains coincident samples and audio connection.",
+      "evidence": "R: Your prediction held. Samples cannot tell two apart; faster than half sample rate looks slower; audio sampled more than twice highest frequency.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Overlaid lines show mechanism distinctly.",
+      "evidence": "No-history preview banner;5/5trust ignored. Inline screenshot1280x720 clear overlaid waves and slider; keyboardHome/End visibly worked.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Half-rate condition and audio application explicit.",
+      "evidence": "R: Your prediction held. Samples cannot tell two apart; faster than half sample rate looks slower; audio sampled more than twice highest frequency.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Only slider keyboard observed; other modes unknown.",
+      "evidence": "No-history preview banner;5/5trust ignored. Inline screenshot1280x720 clear overlaid waves and slider; keyboardHome/End visibly worked.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Different waves pass through identical samples.",
+      "evidence": "E:4Hzbutton shows SAME DOTS AS1Hz; screenshot fastsolid and slowdashed waves intersect six dots. SliderHome0.5Hz: none slower; End4Hz:1Hz;2Hzbutton:none slower. Threshold text2.5Hz.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Solid/dashed curves and common dots carry explanation.",
+      "evidence": "E:4Hzbutton shows SAME DOTS AS1Hz; screenshot fastsolid and slowdashed waves intersect six dots. SliderHome0.5Hz: none slower; End4Hz:1Hz;2Hzbutton:none slower. Threshold text2.5Hz.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversible frequency manipulation.",
+      "evidence": "E:4Hzbutton shows SAME DOTS AS1Hz; screenshot fastsolid and slowdashed waves intersect six dots. SliderHome0.5Hz: none slower; End4Hz:1Hz;2Hzbutton:none slower. Threshold text2.5Hz.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Audio sample rate application.",
+      "evidence": "R: Your prediction held. Samples cannot tell two apart; faster than half sample rate looks slower; audio sampled more than twice highest frequency.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Frequency ambiguity and threshold linked.",
+      "evidence": "E:4Hzbutton shows SAME DOTS AS1Hz; screenshot fastsolid and slowdashed waves intersect six dots. SliderHome0.5Hz: none slower; End4Hz:1Hz;2Hzbutton:none slower. Threshold text2.5Hz.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Connect continuous wave frequency, discrete samples and ambiguity threshold.",
+    "conceptualDemand": "Three representations linked; visual support strong.",
+    "interfaceBurden": "Low: slider and two presets.",
+    "prerequisiteNovelty": "moderate: Hz and sampling defined",
+    "notationRepresentationBurden": "moderate: continuous waveform interpretation"
+  },
+  "whyCool": "A4Hzwave and1Hzwave visibly meet every sampled dot.",
+  "caveat": "Fixed sample rate and wave phase; no phase or rate control to probe conditions.",
+  "notApprovedForServing": true,
+  "effort": "about2minutes",
+  "missingEvidence": [
+    "Accessibility modes beyond slider keyboard",
+    "Learning outcomes"
+  ],
+  "fatalFindings": []
+}

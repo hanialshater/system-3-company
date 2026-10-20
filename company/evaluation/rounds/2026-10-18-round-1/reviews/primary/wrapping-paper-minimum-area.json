@@ -1,0 +1,104 @@
+{
+  "slug": "wrapping-paper-minimum-area",
+  "demoVersion": 1,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/wrapping-paper-minimum-area",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "For box 20 by ten by eight cm, one rectangle reported 200 square cm.",
+    "All-six-faces mode and length thirty were tested; final surface lower bound was 1,240 square cm.",
+    "Screenshot shows an unlabelled cube-like box with crossed front diagonals in all-face mode, rather than six unfolded or individually measured faces.",
+    "Reveal explains three equal face pairs and excludes wrapping overlaps, folds and trim."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Basic box surface geometry.",
+    "conceptualDemand": "Count paired faces rather than a footprint.",
+    "interfaceBurden": "Two modes and length slider."
+  },
+  "whyCool": "A footprint misses most of the paper needed even before folds and overlaps.",
+  "caveat": "The visual does not unpack the six face areas or demonstrate a feasible wrapping layout.",
+  "effort": "Prediction, both estimates, maximum length, screenshots and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Correct scope but weak visual teaching and answer-cued prediction.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Title and labels supply the answer.",
+      "evidence": "A box has six faces; choose all six faces for entire surface.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Face model and length change alter the correct area calculation.",
+      "evidence": "Footprint 200 at length twenty, full area 1,240 at thirty.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Correctly explains omitted faces and lower-bound scope.",
+      "evidence": "Three equal pairs, before overlap.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "The diagram does not show the face contributions behind the total.",
+      "evidence": "No face dimensions or unfolded net; added front diagonals do not explain six faces.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Explicitly distinguishes surface area from sufficient wrapping paper.",
+      "evidence": "Real wrapping needs overlap, folds and trim.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Expected distinction between one and six faces.",
+      "evidence": "Question and title already name the difference.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 1,
+      "reason": "Generic box does not explain the numerical sum.",
+      "evidence": "Crossed front diagonals instead of six face areas.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Modes and length adjustment.",
+      "evidence": "Both estimates and maximum length tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Specific paper-estimation limit.",
+      "evidence": "Surface area is only a geometric lower bound.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Separates lower bound from feasible wrapping.",
+      "evidence": "Overlaps and folds remain outside the calculation.",
+      "confidence": "medium"
+    }
+  }
+}

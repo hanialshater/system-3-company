@@ -1,0 +1,104 @@
+{
+  "slug": "pennies-dont-add-up",
+  "demoVersion": 3,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/pennies-dont-add-up",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Opening asks whether a program's 0.1 plus 0.2 equals 0.3 without naming its number type.",
+    "Selecting binary fractions one-sixteenth, one-thirty-second and one-128th gave 0.1015625, explicitly over target.",
+    "Computer-storage view chose nearest twelve-switch approximation 0.10009765625 and contrasted its lower neighbor 0.099853515625; it showed common 53-bit stored values and printed sum 0.30000000000000004.",
+    "Reveal explains repeating binary expansion, nearest-value storage, decimal one-third analogy and whole-cent representation. All-off reset changed current switches while retaining storage explanation."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Binary fractional weights and finite precision.",
+    "conceptualDemand": "Distinguish mathematical decimals from stored machine approximations.",
+    "interfaceBurden": "Twelve switches and storage reveal."
+  },
+  "whyCool": "The tiny error begins when a decimal enters the computer, before addition even happens.",
+  "caveat": "Applies to the illustrated binary floating-point representation, not every programming language's numeric type.",
+  "effort": "Prediction, three manual switches, nearest-storage view, screenshot, reset and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Rich manipulable representation mechanism with practical consequence; opening needs number-type scope.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Specific alternatives, but generic 'a program' omits numeric representation needed for a universal answer.",
+      "evidence": "Binary floating-point model specified later.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Free bit combinations, automatic nearest approximation and reset expose representation limits.",
+      "evidence": "Manual overshoot, nearest two values and zero reset.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Connects finite fraction construction to stored approximations, observed sum and a representation alternative.",
+      "evidence": "Repeated binary 0011, decimal one-third analogy, whole cents.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Named fraction switches and signed residual make approximation visible.",
+      "evidence": "Over by 0.0015625, then neighboring representable values.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete numerical representation implication.",
+      "evidence": "Use whole cents for exact money units; general binary fraction rounding mechanism.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Simple decimal addition can fail exact binary equality.",
+      "evidence": "Printed sum 0.30000000000000004.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Fraction switches and neighboring number-line values expose finite representation.",
+      "evidence": "Constructed sum and nearest under/over values.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 4,
+      "reason": "Learner freely combines bits before guided storage explanation.",
+      "evidence": "Twelve toggle switches plus reset.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete programming representation insight.",
+      "evidence": "Exact equality and whole-cent alternative.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Binary expansion, rounding and arithmetic error connect.",
+      "evidence": "Input representation rather than arithmetic being arbitrary.",
+      "confidence": "medium"
+    }
+  }
+}

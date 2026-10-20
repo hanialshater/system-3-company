@@ -1,0 +1,139 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "window-forgets-start",
+  "demoVersion": 2,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/window-forgets-start",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "window-forgets-start",
+    "domain": "ai",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/ai/window-forgets-start/meta.json",
+    "metaSha256": "616c1149e8a61d3bbd0baa06a57fd86b4210fee3b6d7a3c7cd1f9e71bcd8aafb",
+    "demoSha256": "66f03e2af7a86fb5d36b0e0ca89869275817432cab9f6ae420644d49b7c49559",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/window-forgets-start",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/window-forgets-start.json"
+  },
+  "date": "2026-10-18T20:53:46.975621+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Chose 100% for a uniformly placed fact in twenty tokens with only the last eight visible; locked answer was 40%."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Window20 showed fact5 usable and 100%; window8 highlighted13\u201320 and fact5 outside. Moving fact to13 made it usable, then12 outside. Twenty random drops produced7 inside,35%, against40% exact."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Reveal explained eight of twenty positions, identified current fact12 as dark, and contrasted sample35% with long-run40%. It said earlier text is absent for that answer and related toy edge to larger real windows."
+    },
+    {
+      "phase": "screenshotInspection",
+      "evidence": "Inspected actual1257x936 dark viewport: dim tokens1\u201312, purple outline13\u201320, star12, dots and readable7of20 summary. No saved screenshot used."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete probability commitment tests the memory intuition.",
+      "evidence": "100% chosen against40% locked answer.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Window size and movable fact expose a sharp boundary.",
+      "evidence": "Fact13 usable then12 outside with window8.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal connects observed boundary and random sample to exact fraction.",
+      "evidence": "7of20 versus long-run40%, current fact12 identified.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Token boxes and counters explain the simplified mechanism clearly.",
+      "evidence": "Visible13\u201320 outline and outside status.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General real-model analogy appears without a new application task or conditions.",
+      "evidence": "Larger real windows mentioned; no fresh case.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "A one-position move abruptly removes access.",
+      "evidence": "13 yes,12 outside.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Highlighted boxes directly encode visibility.",
+      "evidence": "Eight outlined tokens out of twenty.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Moving the star and random drops support exploration.",
+      "evidence": "Moved fact eight positions and sampled20 spots.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Useful caution about old context within the toy boundary.",
+      "evidence": "Reveal says outside text absent for answer.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Sample variability and exact share extend one simple mechanism.",
+      "evidence": "35% observed versus40% exact.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "conceptualDemand": "gentle: count visible positions and distinguish presence from absence",
+    "interfaceBurden": "gentle: four window buttons, two star controls and one sampling button",
+    "prerequisiteNovelty": "tokens and context window introduced through a twenty-box toy",
+    "notationRepresentationBurden": "small numbered boxes, percentage and sample tally"
+  }
+}

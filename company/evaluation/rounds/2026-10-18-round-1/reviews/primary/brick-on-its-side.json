@@ -1,0 +1,115 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1",
+  "reviewKind": "primary",
+  "slug": "brick-on-its-side",
+  "demoVersion": 2,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/brick-on-its-side",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy and simple charts; no domain theory.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "P: chose2.6N for one-third contact area from2kg/7.8N wideface.",
+    "E: wide288cm\u00b27.8N;longside96cm\u00b27.8N;end selected thenmassEnd4kg15.7N;Home1kg3.9N. Reveal retained end2kg7.8N observation.",
+    "R:Notquite7.8N;lessarea presses eachbit harder,cancels;f=\u03bcmg;mass changesforce; harddrysurfaces,soft/sticky breakrule.",
+    "No-history preview;6/6trust ignored. Screenshot1280x720 clear massslider,scaleandcontact labels."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear contact-area misconception.",
+      "evidence": "P: chose2.6N for one-third contact area from2kg/7.8N wideface.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Area contrast and massboundary distinguish invariant from changingforce.",
+      "evidence": "E: wide288cm\u00b27.8N;longside96cm\u00b27.8N;end selected thenmassEnd4kg15.7N;Home1kg3.9N. Reveal retained end2kg7.8N observation.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Uses actual pulls, mechanism and surface limit.",
+      "evidence": "R:Notquite7.8N;lessarea presses eachbit harder,cancels;f=\u03bcmg;mass changesforce; harddrysurfaces,soft/sticky breakrule.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Scaleandlabels clear.",
+      "evidence": "No-history preview;6/6trust ignored. Screenshot1280x720 clear massslider,scaleandcontact labels.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Reusable distinction with explicit exceptions.",
+      "evidence": "R:Notquite7.8N;lessarea presses eachbit harder,cancels;f=\u03bcmg;mass changesforce; harddrysurfaces,soft/sticky breakrule.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Onlysliderkeyboard tested; modesotherwiseunknown.",
+      "evidence": "No-history preview;6/6trust ignored. Screenshot1280x720 clear massslider,scaleandcontact labels.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "One-thirdarea leavespullunchanged.",
+      "evidence": "E: wide288cm\u00b27.8N;longside96cm\u00b27.8N;end selected thenmassEnd4kg15.7N;Home1kg3.9N. Reveal retained end2kg7.8N observation.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Brickorientationandscale demonstrate;pressurecancellationtextual.",
+      "evidence": "R:Notquite7.8N;lessarea presses eachbit harder,cancels;f=\u03bcmg;mass changesforce; harddrysurfaces,soft/sticky breakrule.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Orientationandmass controls.",
+      "evidence": "E: wide288cm\u00b27.8N;longside96cm\u00b27.8N;end selected thenmassEnd4kg15.7N;Home1kg3.9N. Reveal retained end2kg7.8N observation.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Familiar dragfriction example.",
+      "evidence": "R:Notquite7.8N;lessarea presses eachbit harder,cancels;f=\u03bcmg;mass changesforce; harddrysurfaces,soft/sticky breakrule.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Area,loadandmaterial dependence.",
+      "evidence": "R:Notquite7.8N;lessarea presses eachbit harder,cancels;f=\u03bcmg;mass changesforce; harddrysurfaces,soft/sticky breakrule.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Separate contactarea from weight with supported cancellation.",
+    "conceptualDemand": "Two contrasts and pressure explanation.",
+    "interfaceBurden": "Low labelled controls.",
+    "prerequisiteNovelty": "moderate: \u03bc and normal-loadrelation",
+    "notationRepresentationBurden": "moderate: forceunitsandformula"
+  },
+  "whyCool": "Turningthebrickreducesarea butnotpull,while doublingmass doublespull.",
+  "caveat": "Microscopic cancellation is asserted ratherthanvisualized; dryhard modelonly.",
+  "notApprovedForServing": true,
+  "effort": "about3minutes",
+  "missingEvidence": [
+    "Accessibility modes beyond sliderkeyboard",
+    "Learning outcomes"
+  ],
+  "fatalFindings": []
+}

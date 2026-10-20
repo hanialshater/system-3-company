@@ -1,0 +1,103 @@
+{
+  "slug": "lh-overlap-material-area",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-overlap-material-area",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Selected With overlap for a 20 cm long rectangle requiring width 30 plus 2 cm overlap.",
+    "Tests gave 640 versus 600 cm\u00b2; minimum width 20 gave 440 versus 400, same 40 cm\u00b2 gap.",
+    "Screenshot showed small rectangles with thin highlighted edge on A. Reveal explained 2\u00d720 strip and material hidden under another layer, preserving input context."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Rectangle area and small addition.",
+    "conceptualDemand": "Hidden overlap contributes material area.",
+    "interfaceBurden": "Two tests and one slider."
+  },
+  "whyCool": "Material hidden in an overlap still belongs in the total.",
+  "caveat": "Prediction is essentially a label match; small diagram limits strip visibility.",
+  "effort": "Prediction, both tests, minimum width, screenshot and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Correct useful area explanation but weak prediction.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Option name restates question rather than eliciting area judgment.",
+      "evidence": "Which area includes overlap? With overlap.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Width change isolates constant strip contribution.",
+      "evidence": "30\u219220 width, fixed 40 cm\u00b2 difference.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains strip area and hidden-material distinction.",
+      "evidence": "Two by twenty adds forty.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Dimensions, expressions and ideal scope clear.",
+      "evidence": "No cutting guidance.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Principle stated without new material application.",
+      "evidence": "Hidden overlap still exists.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Expected additional strip.",
+      "evidence": "Title cues extra material.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Highlighted thin edge supports strip concept, but drawings small.",
+      "evidence": "A includes gold strip.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Tests and width slider.",
+      "evidence": "Overlap fixed.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Material allowance central.",
+      "evidence": "Overlap adds required paper.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Separates visible coverage from total material.",
+      "evidence": "Constant strip area.",
+      "confidence": "medium"
+    }
+  }
+}

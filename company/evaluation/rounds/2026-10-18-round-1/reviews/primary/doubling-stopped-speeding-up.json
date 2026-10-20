@@ -1,0 +1,103 @@
+{
+  "slug": "doubling-stopped-speeding-up",
+  "demoVersion": 3,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/doubling-stopped-speeding-up",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted about48 after given122 and48 years.",
+    "Clicked all intervals:1\u21922b122years,2\u21924b48,4\u21928b47. Level graph steepens while interval bars similar lattertwo.",
+    "Growth toggle shows peak2.25%1963,currentchart0.88%2022\u201323. Reveal contrasts count versus share,early uncertainty and projections;calls2023 endpoint present despite current2026. Screenshots readable."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Population totals versus percentage rates.",
+    "conceptualDemand": "Base-size effect and changing growth rate.",
+    "interfaceBurden": "Four clear chart controls."
+  },
+  "whyCool": "A larger absolute increase can happen without a shorter doubling time because the starting population is larger.",
+  "caveat": "Displayed historical numbers not independently source-audited;label2023 endpoint explicitly rather than present.",
+  "effort": "Prediction,three intervals,rateview,reveal,three screenshots.",
+  "provisionalBucket": "strong-date-label-followup",
+  "bucketReason": "Clear chart-based conceptual correction.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete historical intuition choice with plausible extrapolation.",
+      "evidence": "24/48/96.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Three intervals and level-versus-rate views expose distinction.",
+      "evidence": "122/48/47,ratefall.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains base-size effect and uncertainty with own inspected charts.",
+      "evidence": "4badded versus2b,slower share.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Charts clear but endpoint called present rather than2023.",
+      "evidence": "Reveal wording.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General count/rate lesson without new application.",
+      "evidence": "Same population series.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Steeper level curve need not mean faster proportional doubling.",
+      "evidence": "48versus47.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Level/rate graphs and aligned interval bars jointly explain misleading slope.",
+      "evidence": "Both views inspected.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Select intervals and metric.",
+      "evidence": "Four controls.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Statistical chart interpretation.",
+      "evidence": "Absolute versus proportional growth.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Growth level,rate,doubling time and uncertainty.",
+      "evidence": "Two metrics.",
+      "confidence": "medium"
+    }
+  }
+}

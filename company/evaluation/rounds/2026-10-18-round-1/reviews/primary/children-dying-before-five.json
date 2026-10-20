@@ -1,0 +1,115 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1",
+  "reviewKind": "primary",
+  "slug": "children-dying-before-five",
+  "demoVersion": 2,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/children-dying-before-five",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy and simple charts; no domain theory.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "P: chose About 35 against About 250/About 100; prompt cites Gapminder world estimate 411 per 1,000 in 1900.",
+    "E: pressed1800,1900,1950,2020; chart values430,411,246,37. Out of100children shows1900:41in100 \u00b72020:4in100; 11times fewer;56%fall after1950.",
+    "R: Your prediction held. One source\u2019s world figure; some early values guesses or modelled, not counted.",
+    "No-history preview banner present;7/7trust count ignored. Screenshot inline1280x720 has readable chart and controls."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete estimate commitment and plausible alternatives.",
+      "evidence": "P: chose About 35 against About 250/About 100; prompt cites Gapminder world estimate 411 per 1,000 in 1900.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Year presses disclose trend and frequency translation; limited causal exploration.",
+      "evidence": "E: pressed1800,1900,1950,2020; chart values430,411,246,37. Out of100children shows1900:41in100 \u00b72020:4in100; 11times fewer;56%fall after1950.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Resolves estimate and qualifies source uncertainty.",
+      "evidence": "R: Your prediction held. One source\u2019s world figure; some early values guesses or modelled, not counted.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readable chart, selected years and natural frequencies.",
+      "evidence": "No-history preview banner present;7/7trust count ignored. Screenshot inline1280x720 has readable chart and controls.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "World trend and source limits useful; no independent application.",
+      "evidence": "R: Your prediction held. One source\u2019s world figure; some early values guesses or modelled, not counted.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient keyboard, focus, contrast, phone, zoom or motion checks.",
+      "evidence": "No-history preview banner present;7/7trust count ignored. Screenshot inline1280x720 has readable chart and controls.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Large numerical decline supports expectation contrast.",
+      "evidence": "E: pressed1800,1900,1950,2020; chart values430,411,246,37. Out of100children shows1900:41in100 \u00b72020:4in100; 11times fewer;56%fall after1950.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Line shape and labelled endpoints show timing of fall.",
+      "evidence": "E: pressed1800,1900,1950,2020; chart values430,411,246,37. Out of100children shows1900:41in100 \u00b72020:4in100; 11times fewer;56%fall after1950.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Year disclosure and frequency toggle offer limited discovery.",
+      "evidence": "E: pressed1800,1900,1950,2020; chart values430,411,246,37. Out of100children shows1900:41in100 \u00b72020:4in100; 11times fewer;56%fall after1950.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete world-health comparison and uncertainty.",
+      "evidence": "R: Your prediction held. One source\u2019s world figure; some early values guesses or modelled, not counted.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Absolute levels, ratio and timing share.",
+      "evidence": "E: pressed1800,1900,1950,2020; chart values430,411,246,37. Out of100children shows1900:41in100 \u00b72020:4in100; 11times fewer;56%fall after1950.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "Core comparison uses simple chart and natural frequencies.",
+    "conceptualDemand": "Single historical trend; optional ratio/timing percentage.",
+    "interfaceBurden": "Low; chronological buttons.",
+    "prerequisiteNovelty": "low: mortality rate explained",
+    "notationRepresentationBurden": "low: per1000translated to100"
+  },
+  "whyCool": "Pressing2020completes a steep line from411to37, then translates it to41versus4children in100.",
+  "caveat": "Year reveal interaction describes a trend without examining causes or regional variation.",
+  "notApprovedForServing": true,
+  "effort": "about2minutes",
+  "missingEvidence": [
+    "Accessibility modes",
+    "Learning outcomes"
+  ],
+  "fatalFindings": []
+}

@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "long-answers-lose-the-product",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/long-answers-lose-the-product",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "long-answers-lose-the-product",
+    "domain": "ai",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/ai/long-answers-lose-the-product/meta.json",
+    "metaSha256": "f2540fff2455762e9ac909ac63073ca33d4973b07273c72923b81e7177f4cbae",
+    "demoSha256": "0a4b1957d5bd599f97f27bc9c5a6a5104b0b6b36f06146b67cfc0aa0f63c948c",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/long-answers-lose-the-product",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/long-answers-lose-the-product.json"
+  },
+  "date": "2026-10-18T19:15:56.939435+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "No-history banner confirmed; trust5/5 ignored. SelectedL and locked;S2tokens50%each,L10tokens85%each.",
+    "exploration": "+1token showsS50/L85. Alltokens:S25/L19.7. ShortenLHome1:85whole. Pertoken toggle:S50/L85; End10retains50/85. Historical whole10and1values retained. Reveal unlocks after length andmode changes.",
+    "reveal": "CorrectS;actual25versus19.7 explained by multiplying fractions. At1L85wins,past8loses; pertoken85beats50; realdecoders lengthcorrection stated.",
+    "visual": "Inline1257x936 dark screenshot inspected: tokenboxesS2/L10,per-tokenbar labels include whole25/19.7,moreprobablearrow pointsL incurrentmode; full reveal legible."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear betterper-token versuswholeproduct distinction with exactodds.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Partial/allproducts,length1/10 andnormalizedmode isolate compounding andlengthbias withretainedvalues.",
+      "evidence": "exploration;visual",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connectsactualproduct reversal tobelow1multipliers andobserved pertokencorrection; fixedinventedoddsdisclosed.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Mode labels explicitly separate pertokenandwhole;historicallog helps originalanswer despitecurrentLwinner.",
+      "evidence": "visual;reveal",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete decoderlengthcorrection use with condition comparingdifferinglengthproducts; no fresh applicationtask.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "ChosenhigherconfidenceL loseswholeprobability butwinsnormalizedscore.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Tokenboxes andbarlabels connect repeatedmultiplication andmodecontrast.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversiblelength/mode changes enable causalcomparison after productcompletion.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete interpretationof decoderlengthbias andcorrection.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Compounding,lengththreshold andper-tokenrankingcontrast.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Separate pertokenchance,wholeproduct,length andnormalizedcomparisons.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low:productbuttons,slider,toggle",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: sequenceprobability andlengthnormalization",
+    "notationRepresentationBurden": "moderate: percentagesandnestedwhole/per-tokenlabels"
+  },
+  "whyCool": "Ten85%steps multiply to19.7%,losingtotwo50%steps at25%,untilscoreisnormalizedpertoken.",
+  "caveat": "Invented equal tokenodds and no fresh candidateanswer test; threshold8stated rather than independently tested."
+}

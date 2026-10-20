@@ -1,0 +1,120 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2",
+  "reviewKind": "primary",
+  "slug": "survive-childhood-live-to-sixty",
+  "demoVersion": 2,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/survive-childhood-live-to-sixty",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, familiar objects; no subject theory assumed.",
+  "viewport": "1280x720 desktop screenshot",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "text": "No-history banner; trust6/6 ignored. Predicted About58 versus45/31 for average deathage conditional on30;locked."
+    },
+    {
+      "id": "E",
+      "text": "Four presets lefttoright: birthaverage28; before5deaths41%(506of1238); from30average58; from60average72. Allfour required before reveal enabled."
+    },
+    {
+      "id": "R",
+      "text": "Infant deaths pull birthaverage down; averages include everyone;lowbirthnumber not youngadultdeaths. Limits onecity/fiveyears. Inline screenshot shows steep earlydrop,age60markerand72average; right revealclips; none saved."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete conditionalaverage challenges familiar low-lifespan inference.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Four presets connect earlydeath mass and age-conditioned averages on samecurve.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains includedpopulation and narrow historicalscope.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clear ageatdeath labels; revealrightclipping.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Reusable averagepopulation/conditioning distinction with scopebound; editorialonly.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No modeaudit.",
+      "evidence": "Untested",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Birth28 coexists with survivoraverage58or72.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Curve earlydrop and conditionedmarkers carry mechanism.",
+      "evidence": "R screenshot",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Presetcomparison rather than openendedplay.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Interprets historical lifeexpectancyclaims.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Earlymortality and conditionalaverages,source-scope limit.",
+      "evidence": "R",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Requires distinguishing totalpopulation from survivingcohort and ageatdeath from remainingyears.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "moderate;clipping",
+    "prerequisiteNovelty": "moderate;survivorcurve",
+    "notationRepresentationBurden": "moderate;curve and percentages"
+  },
+  "whyCool": "The samecurve yields28frombirth but72forthosealready60, exposing howthe includedpopulationchanges.",
+  "caveat": "Onecity/fiveyears; revealrightedgeclips and no independent historical factcheck performed.",
+  "notApprovedForServing": true,
+  "effort": "About3minutes",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility modes",
+    "Other historicalpopulations"
+  ]
+}

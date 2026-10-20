@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "same-revenue-any-rule",
+  "demoVersion": 3,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/same-revenue-any-rule",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "585a0087552e763aec2ffa8466f0376abf4af2c8937c0cdd145633a08377b648",
+    "demoSha256": "3e9d44d9871c4dcc61a115b4a20c170924a82f884dde954ce7649a2624a8ab04",
+    "metaPath": "src/demos/economics/same-revenue-any-rule/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected First-price and locked the rule predicted to earn most with two random-value bidders bidding optimally.",
+    "exploration": "Ran one auction, then all 20,000. Average higher and lower values were $66.6 and $33.4. Inspected second-price, first-price and all-pay modes: average seller revenues were $33.4, $33.3 and $33.3. The last values were A $90.0 and B $18.9: second-price charged A $18.9, first-price A $45.0, and all-pay A $40.5 plus B $1.8.",
+    "reveal": "The reveal corrected the answer to about the same, accurately quoted my 20,000 averages and last-auction contrast, and explained strategic bid changes offset payment rules. It connected second-price to lower value, first-price to half the higher value, and all-pay to smaller bids from both. It disclosed independent uniform values and optimal bidding.",
+    "visual": "Inspected inline dark 1257 by 936 screenshots in all three payment modes. Three almost equal revenue bars met a dashed theory line at $33.3; the selected bar was filled. A lower value line and payment bars showed different last-auction payments under the same underlying values.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The prompt challenges comparing payment rules while holding bids mentally fixed.",
+      "evidence": "Selected first-price before optimal bid adaptation was visible.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Large-sample averages and per-auction rule modes separate two levels of comparison.",
+      "evidence": "Average revenues matched closely while the same last auction charged $18.9 versus $45.0.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal uses actual means to explain why bid adaptation cancels the payment difference.",
+      "evidence": "Half of the higher-value mean 66.6 matches the lower-value mean 33.4 approximately.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Separate aggregate bars and last-auction payments prevent conflating one sale with expectation.",
+      "evidence": "Theory and sampled means are labelled separately.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "The strategic principle is explained but no new auction assumptions or application are developed.",
+      "evidence": "All tested cases retain two independent uniform-value optimal bidders.",
+      "confidence": "high"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Making the winner pay their own bid need not raise average seller revenue.",
+      "evidence": "All three sample means were about $33.3.",
+      "confidence": "high"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "The display juxtaposes equal means with different individual payments.",
+      "evidence": "The three top bars nearly match while the lower payment bars vary by rule.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Sampling and payment mode switches provide controlled investigation.",
+      "evidence": "The learner can inspect the same values under three rules.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "It illustrates why changing a rule can change participant behavior.",
+      "evidence": "The reveal states that bid responses offset the direct payment change.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "The lesson includes sample variation, individual outcomes and model assumptions.",
+      "evidence": "A single auction differs while theoretical averages match under explicit conditions.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "The controls are easy, but strategic bidding and expected order statistics require several unfamiliar concepts.",
+    "conceptualDemand": "High: separate valuations, bids, payments and average revenue across rules.",
+    "interfaceBurden": "Low to moderate: sample buttons and three modes control a two-level display.",
+    "conceptualChallenge": "A rule's direct payment effect is offset by equilibrium behavior.",
+    "prerequisiteNovelty": "First-price, second-price, all-pay and optimal bid shading are introduced.",
+    "notationRepresentationBurden": "Moderate: aggregate bars, theory line, valuation positions and individual payment bars."
+  },
+  "whyCool": "Three very different ways of charging bidders converge to the same average because the bidders adapt.",
+  "caveat": "The equivalence is shown under fixed ideal assumptions, not as a universal claim about actual auctions.",
+  "missingEvidence": [
+    "No alternative value distribution, bidder count or nonoptimal strategy was tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

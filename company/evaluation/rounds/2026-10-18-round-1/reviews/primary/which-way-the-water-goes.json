@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "which-way-the-water-goes",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/which-way-the-water-goes",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "a63a5c57650dd4c79337ce717d93621e64a1455ca5f9aed7f3d4b6abf4f1a5b3",
+    "demoSha256": "a68302c024ebb1635ffffee4958516e659e1a596c11a8a711507efc2b9cbcb8f",
+    "metaPath": "src/demos/geography/which-way-the-water-goes/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected North and locked the net top-layer transport prediction for northward wind north of the equator.",
+    "exploration": "Started the wind: net water flow east. Trade winds toward west produced net north flow; westerlies toward east produced south flow. Flipping south of the equator with eastward wind changed net flow to north. Opened Ocean view, which reset to an idealized northern ocean with inward transport and clockwise circulation.",
+    "reveal": "The reveal corrected the initial answer to east and distinguished surface drift at 45 degrees from the depth-integrated 90 degree direction. It explained opposite rotation effects by hemisphere and connected the tested northern trade and westerly flows to water piling up and a gyre.",
+    "visual": "Inspected the inline dark 1257 by 936 screenshot in Ocean view. Dashed wind arrows at 15 and 45 north opposed each other. Thick transport arrows converged toward 30 north, and a dashed blue clockwise ellipse circled the labelled pile-up.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The question challenges the assumption that water moves with the wind.",
+      "evidence": "Selected north before observing eastward net transport.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Wind modes and a hemisphere toggle expose directional contrasts before a regional application.",
+      "evidence": "Westward versus eastward winds reverse net flow, and the hemisphere toggle reverses it again.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal connects local transport to the larger circulation and distinguishes layers.",
+      "evidence": "It names 45 degree surface drift, 90 degree net flow and the mound between wind bands.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "The ocean view separates wind, net transport and circulation with distinct arrows.",
+      "evidence": "Converging thick arrows and a dashed clockwise loop show different roles.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "A new regional application is developed from the local rule with hemisphere conditions.",
+      "evidence": "The northern trade and westerly flows are used to explain convergence and a gyre.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Wind-driven net flow is perpendicular rather than parallel to the wind.",
+      "evidence": "Northward wind produced eastward water transport in the initial case.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "The regional arrows make convergence and circulation visible.",
+      "evidence": "Opposite wind bands transport water toward the middle latitude.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "The guided modes support contrasts but no free direction control.",
+      "evidence": "Preset winds and a hemisphere toggle drive the lesson.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "It provides a mechanism for interpreting large ocean circulation.",
+      "evidence": "The local transport rule is linked to a simplified gyre.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "The lesson distinguishes vertical layers, hemispheres and regional effects.",
+      "evidence": "The reveal separates surface drift from integrated transport before explaining a gyre.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Few controls hide substantial spatial and physical reasoning across layers and hemispheres.",
+    "conceptualDemand": "High: track rotation direction, wind direction, depth integration and convergence.",
+    "interfaceBurden": "Low: three wind or view buttons and a hemisphere toggle.",
+    "conceptualChallenge": "Distinguish surface motion from net layer transport and connect local rules to a gyre.",
+    "prerequisiteNovelty": "Earth rotation deflection, layer turning and gyres are new domain concepts.",
+    "notationRepresentationBurden": "Moderate: compass directions, latitude bands and three arrow roles."
+  },
+  "whyCool": "A sideways local response to wind can organize an ocean-scale circulating pattern.",
+  "caveat": "The ocean is idealized. The toy does not show forces or vertical layers directly, and Ocean view resets the hemisphere to north.",
+  "missingEvidence": [
+    "No fresh wind direction or southern gyre application was tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

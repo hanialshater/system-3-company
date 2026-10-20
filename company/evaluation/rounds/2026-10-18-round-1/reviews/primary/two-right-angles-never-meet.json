@@ -1,0 +1,104 @@
+{
+  "slug": "two-right-angles-never-meet",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/two-right-angles-never-meet",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted a flat-page triangle cannot have two right angles.",
+    "At initial right corner60\u00b0, top30\u00b0 and sides meeting1.73 bases high were visible.",
+    "Set89\u00b0: tip1\u00b0, meeting57.3 bases up. Set90\u00b0: parallel sides, meeting never and displayed top0\u00b0.",
+    "Reveal correctly recalled89\u00b0/57.3/1\u00b0 and the exact90\u00b0 boundary, then used the180\u00b0 angle sum as a contradiction proof."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Visual geometry is simple; proof and limiting distinction add conceptual work.",
+    "conceptualDemand": "Euclidean angle sum and contradiction.",
+    "interfaceBurden": "One slider and two presets."
+  },
+  "whyCool": "A very tall triangle gives way to no triangle at all at the exact endpoint.",
+  "caveat": "Displayed top0\u00b0 at90\u00b0 is a limiting value, since there is no actual third corner; flat-page condition is essential.",
+  "effort": "Completed prediction, three angle states, screenshots and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear geometric boundary and accurate explanation.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicit flat-page condition supports a clear geometric prediction.",
+      "evidence": "Tall or short-base distractors.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Near-boundary and exact-boundary settings make the distinction visible.",
+      "evidence": "60,89,90 degrees.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Observed limiting behavior connects to a concise proof with the needed180\u00b0 premise.",
+      "evidence": "Two right angles leave no positive third angle.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Angles, height in base units and never-meets boundary are labeled.",
+      "evidence": "Arrows indicate off-screen meeting at89\u00b0 rather than false intersection.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Names contradiction proof but does not provide a second case for application.",
+      "evidence": "One Euclidean triangle.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Almost parallel still meets, exactly parallel never does.",
+      "evidence": "89\u00b057.3 bases versus90\u00b0never.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Construction distinguishes shrinking tip from the exact impossible endpoint.",
+      "evidence": "Near-boundary arrows and parallel lines.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Angle adjustment changes triangle geometry.",
+      "evidence": "Slider and89/90 presets.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Foundational geometry and proof vocabulary.",
+      "evidence": "No applied task.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Connects a limit intuition with proof by contradiction.",
+      "evidence": "180\u00b0 angle sum is the stated premise.",
+      "confidence": "medium"
+    }
+  }
+}

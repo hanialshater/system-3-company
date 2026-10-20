@@ -1,0 +1,121 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2",
+  "reviewKind": "primary",
+  "slug": "bus-wait-longer-than-half",
+  "demoVersion": 1,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/bus-wait-longer-than-half",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy/simplecharts;no subject theory assumed.",
+  "viewport": "1257\u00d7936 Chrome dark theme, inline screenshot only",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "text": "No-history banner;trust5/5 ignored. Predicted10minute averagewait forrandombuses averagegap10;locked."
+    },
+    {
+      "id": "E",
+      "text": "1rider average13.7;11riders8.4;211riders9.4,randomgap9.5. Regularbusestoggle preserves211riders:wait5.2,gap10. Revealenabled."
+    },
+    {
+      "id": "R",
+      "text": "References211riders9.4versus5.2;longgapscovermoreclock,samplingmorelikelythere. Says ifbusesreallyrandom,averagewaitequalsgap. Fullprose andtimeline readable darkdesktop;normalpageheight. No saved screenshot."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Familiarhalf-gap alternative versusrandomarrival difference.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Growingridersamples andsame-rider regularcontrast isolatearrivalvariability.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Lengthbias explainedusingnumbers,but randomarrivalprocessassumption behindexactequality notmadeprecise.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Tick/dot/shadinglegend and pairedwait/gapreadouts readable.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Length-biasedsampling principle stated;no newcaseapplication.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No modeaudit.",
+      "evidence": "Untested",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Randomgap9.5 giveswait9.4ratherthanhalf;regular10gives5.2.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Buslines,riderdots and longgapshading explainclockcoverage.",
+      "evidence": "E,R",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Riderdroppingandbusregularitytoggle.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Everydaytransitwaitinterpretation.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Samplevariation,regularitycontrast,lengthbias.",
+      "evidence": "R",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Two samplingframes,timecoverage andsame-ridercontrast linkedvisually.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low",
+    "prerequisiteNovelty": "moderate;lengthbias",
+    "notationRepresentationBurden": "low-to-moderate;timeline"
+  },
+  "whyCool": "The same211riders nearlyhalvetheiraveragewait whenirregularbuses becomeequallyspaced.",
+  "caveat": "Randomisnotfullyspecified;exactmeanwait=meangapdoesnotfollowfromarbitraryirregularityalone.",
+  "notApprovedForServing": true,
+  "effort": "About3minutes",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility modes",
+    "Alternatearrivaldistribution",
+    "Toggleback"
+  ]
+}

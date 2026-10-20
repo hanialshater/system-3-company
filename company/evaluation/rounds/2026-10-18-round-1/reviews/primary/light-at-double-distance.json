@@ -1,0 +1,104 @@
+{
+  "slug": "light-at-double-distance",
+  "demoVersion": 2,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/light-at-double-distance",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted50 lux from100 lux at1m when moved2m; choices50,25,12.5.",
+    "Slider End3m showed11.1lux and9squares; ArrowLeft2.5m16lux6.25squares;2m25lux4squares. At2m reveal enabled.",
+    "Cone diagram visibly doubles width and height at2m, page one of4squares. Reveal explains25lux and3m11lux, inverse square and small lamp/no reflective walls limit.",
+    "Light1280x720 screenshot: right prose edge cut, normal internal vertical scroll."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Concrete geometry and simple ratios.",
+    "conceptualDemand": "Area grows in two dimensions.",
+    "interfaceBurden": "One slider; prose edge cutoff."
+  },
+  "whyCool": "A one-dimensional move makes a two-dimensional light footprint grow fourfold.",
+  "caveat": "Small source/no reflected light; right-edge reveal cutoff in tested viewport.",
+  "effort": "Prediction,3 changed distances,diagram screenshot,reveal screenshot.",
+  "provisionalBucket": "promising-with-fix",
+  "bucketReason": "Strong visible geometry; fix prose layout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear half-versus-quarter misconception with explicit baseline.",
+      "evidence": "100lux1m to2m, selected50.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Controlled distance contrasts expose squared area including fractional distance.",
+      "evidence": "3,2.5,2m with9,6.25,4squares.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Connects original prediction, observed geometry and model limit.",
+      "evidence": "Twice wide\u00d7twice tall,quarter light; smalllamp/no walls.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Diagram and numerical outputs clear; reveal clipped horizontally.",
+      "evidence": "1280x720 screenshot right prose edge.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General law and another distance given but no independent new-use task.",
+      "evidence": "3m9squares11lux within same setup.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Distance doubling quarters instead of halves.",
+      "evidence": "Predicted50,observed25lux.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Multiple geometric area contrasts explain numerical law.",
+      "evidence": "Cone and square grid at2m plus3m and2.5m outputs.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Distance slider supports exploration.",
+      "evidence": "Three changed distances.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Everyday lamp/page question central.",
+      "evidence": "Page brightness by distance.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Geometric cause and explicit approximation conditions.",
+      "evidence": "Inverse-square derivation and no-reflection limit.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "slug": "italy-poorer-in-1800",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/italy-poorer-in-1800",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted75 for1800 with1450index100.",
+    "1450\u21921800 displays100\u219275 and\u2212.08%annual. 25yearwindows1438\u201362average101,1788\u20131812average79. Wholelineextends1310\u20131871;annualchangeview overlaysaveragepath.",
+    "Reveal uses endpoint andsmoothedcomparison,explicit single reconstructed north/centralregion,indexscope. Screenshotsreadable."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Index,annualizedrate andsmoothingwindow.",
+    "conceptualDemand": "Netlong-runchange versus annualnoise.",
+    "interfaceBurden": "Clear presets."
+  },
+  "whyCool": "Checking nearby-year averages shows that the historical decline is not just one lucky starting year and one bad ending year.",
+  "caveat": "One regional reconstruction,not allItaly or everyperson'sincome;historicalsourcevalues not independently audited here.",
+  "effort": "Prediction,endpoints,25yearaverages,annualchange,fullseriesvisible,reveal,screenshots.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Clear historicalcomparison with tested robustness and explicit scope.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear historical direction/magnitude alternatives,scope andindexgiven.",
+      "evidence": "75/100/150.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Endpoints,fullhistory andsmoothing check possible endpointartifact.",
+      "evidence": "100/75,101/79.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Original result plus tested robustness and evidence limitation.",
+      "evidence": "Notjust high/lowyear,single reconstruction.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Clear period,index andsmoothinglabels.",
+      "evidence": "Screenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Historical/chartprinciple without distinctapplication.",
+      "evidence": "Same regionalseries.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Long interval can have lower per-person output despite timepassing.",
+      "evidence": "Net25%decline.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Raw/smoothedcharts distinguish noise from comparison.",
+      "evidence": "25yearaverageoverlay.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Date andrepresentationexploration.",
+      "evidence": "Fivebuttons.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Historicaldata interpretation.",
+      "evidence": "No individualincomeestimate.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Endpointselection,smoothing,annualizedchange andscope.",
+      "evidence": "One reconstruction.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "browserContext": {
+    "theme": "dark",
+    "browser": "Chrome",
+    "viewport": "1257×992"
+  },
+  "observations": [
+    {
+      "id": "p",
+      "phase": "prediction",
+      "text": "No-historybannerverified,trust5/5ignored. ChoseNoAna betterboth versus24loaves/onlyBengains;locked. Ana4breador2cheese/h,Ben1/1,8heach,baseline20/12."
+    },
+    {
+      "id": "e",
+      "phase": "exploration",
+      "text": "BencheeseEnd8=>16bread16cheese;Anabakesbutton=>Ana6breadhours,24bread12cheese,unlock. AnaEnd8=>32bread8cheese,violates12target."
+    },
+    {
+      "id": "r",
+      "phase": "reveal",
+      "text": "Notquite24ifBencheese;recallsBen8cheese+Ana2h4cheese=12,Ana6h24bread;relativecostAna2bread/cheeseBen1;extra4canbesharedbothgain;fixedoutputs,no transport/tradecost."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Meaningful relative-productivity trap but title gives away trade benefit.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Two allocations and target-violating boundary expose constraint and opportunitycost.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Own24/12allocation and relativecost explain surplus;sharingstated.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Hourtiles/totals and targetfeedback clear.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General least-sacrifice rule stated without new concrete scenario.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Only range keys, no systematic modes.",
+      "evidence": "e,r",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Slowerworker contributes to higher jointoutput.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Hourtiles map allocation to productcounts.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Two allocation ranges allow feasible/infeasible discovery.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Division-of-work application.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Absoluteversusrelativeproductivity and constrainedtotals.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Linked two-person production rates, opportunitycost and fixed cheeseconstraint.",
+    "conceptualDemand": "Compare ratios and reallocate hours; directtiles support.",
+    "interfaceBurden": "Two ranges/one targetallocationbutton."
+  },
+  "whyCool": "Putting slowerBenoncheese freesAna to raisebread20to24while retaining12cheeses.",
+  "caveat": "Individual trade/share not simulated; assumptions fixedrates and no tradecost; exact gain depends specified outputs.",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "missingEvidence": [
+    "Sharingtransaction and systematicaccessibility untested."
+  ],
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3",
+  "notApprovedForServing": true,
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, number comparisons and familiar household objects; no domain theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 992
+  },
+  "screenshots": [],
+  "fatalFindings": [],
+  "slug": "cheese-for-bread",
+  "demoVersion": 3,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/cheese-for-bread",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "f83fc389728f1714007e0b107dacc36e719d2574f1a0c603ba74297acc5dfbb4",
+    "metaSha256": "152e7665e1363b655e94a165b48f57e7f662f661d934fce7f8257134d60cf09a"
+  }
+}

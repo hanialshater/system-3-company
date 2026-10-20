@@ -1,0 +1,103 @@
+{
+  "slug": "the-contrary-program",
+  "demoVersion": 2,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/the-contrary-program",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted clever-enough checker can succeed. D supplied both branches; declaring halts selected loop branch and wrong, declaring loops selected stop branch and wrong.",
+    "A displayed print hi then stop and accepted halts; B repeat-forever wait accepted loops. Both ordinary examples visibly correct.",
+    "Screenshot highlighted D's active branch with both wrong-answer marks retained. Reveal distinguished checking particular programs from universal always-correct checker and explained construction for any proposed H."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Simple interface carries abstract self-reference and universal quantification.",
+    "conceptualDemand": "Program about its checker; particular versus all programs.",
+    "interfaceBurden": "Low controls, but A/B hidden until first answer."
+  },
+  "whyCool": "You can change your answer, but the program changes branch so that either verdict defeats itself.",
+  "caveat": "Illustrative contradiction interface rather than full formal encoding proof. A/B code is revealed only after answering, weakening independent prediction on those cases.",
+  "effort": "Browser prediction, both D answers, A halt/B loop contrasts, screenshot and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Compelling logical contrast and clear scope, with initial visibility limitation for ordinary programs.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Opposite rule makes answer nearly explicit.",
+      "evidence": "D asks checker then does opposite.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Both impossible verdicts and two ordinary correct contrasts.",
+      "evidence": "D wrong twice; A/B correct.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Both branches plus nonuniversal counterexamples constrain claim.",
+      "evidence": "Particular checks possible, one universal solver impossible.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Ordinary program text only appears after choosing its verdict.",
+      "evidence": "A/B labels initially no code; first choice is blind.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Explicitly distinguishes possible specific checking from impossible universal guarantee.",
+      "evidence": "A/B successful versus constructedD.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Both available answers fail by construction.",
+      "evidence": "Two red wrong marks.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Active pseudocode branch and retained marks clarify contradiction.",
+      "evidence": "Selected loops verdict highlights stop branch.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Adversarial oracle role and unavoidable trap.",
+      "evidence": "Choose both answers then ordinary cases.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Clarifies limits of automated universal program analysis.",
+      "evidence": "Conceptual no general solver distinction.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Any-H construction and ordinary cases prevent overgeneralizing.",
+      "evidence": "Trap in constructedD rather than checker cleverness.",
+      "confidence": "medium"
+    }
+  }
+}

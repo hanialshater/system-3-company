@@ -1,0 +1,105 @@
+{
+  "slug": "blocked-cell-routes",
+  "demoVersion": 2,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/blocked-cell-routes",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "Prediction: 4x4 grid, only right/down, row2 column2 blocked; options8,12,20. Chose12 and locked.",
+    "Filled cells using left plus above; blockedcell zero. End read8 with16cells filled.",
+    "Remove block immediately changed end to20.",
+    "Reveal: Not quite:8. Block cut12 routes; each arrival comes fromleft orabove; reusing counts called dynamic programming.",
+    "Screenshot: mint4x4 grid; long reveal internally scrolls; firstrow partly above viewport."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Plausible counts prompt reasoning before seeing recurrence.",
+      "evidence": "Chose12 from8/12/20.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Building counts and toggling obstacle reveals causal structure.",
+      "evidence": "16 cells filled:8; removeblock:20.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explains recurrence and connects obstacle to exact route difference.",
+      "evidence": "Reveal identifies12 lost routes and reused counts.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Repeated cell clicks and internal scrolling add interface burden.",
+      "evidence": "16cell stage and screenshot partially above viewport.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Editorial potential for recognizing reusable subproblems.",
+      "evidence": "Reveal names dynamic programming; no independent transfer task.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual pointer walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "One obstacle removes most routes.",
+      "evidence": "8vs20 observed.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Grid local counts make recurrence concrete.",
+      "evidence": "Eachcell leftplusabove.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Build and toggle a routing puzzle.",
+      "evidence": "Clickablecells and Removeblock.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Algorithmic insight rather than immediate everyday task.",
+      "evidence": "Dynamicprogramming reveal.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Simple puzzle opens a reusable counting strategy.",
+      "evidence": "Localrecurrence and globalobstacle effect.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Requires following a recurrence with simple addition.",
+    "conceptualDemand": "Local counts combine to solve global routes.",
+    "interfaceBurden": "Repeatedcell clicks and internally scrolling reveal."
+  },
+  "whyCool": "Removing one square cuts20 routes to8, then the same small addition rule explains why.",
+  "caveat": "Single reviewer; no measured learning or accessibility claim.",
+  "effort": "Full prediction, cell filling, block toggle and reveal; approximately2minutes.",
+  "notApprovedForServing": true,
+  "provisionalBucket": "strong",
+  "bucketReason": "Clear causal interaction and explanatory payoff; layout friction remains."
+}

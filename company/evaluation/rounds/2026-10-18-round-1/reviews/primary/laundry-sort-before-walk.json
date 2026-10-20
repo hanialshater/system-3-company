@@ -1,0 +1,104 @@
+{
+  "slug": "laundry-sort-before-walk",
+  "demoVersion": 2,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/laundry-sort-before-walk",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted160 m for ten items carried one per8 m round-trip route.",
+    "A ten trips160 m versus B one grouped trip16 m.",
+    "Raised count12: A12/192 m, B1/16. Visual reduced repeated route arrows to a single out-and-back pair.",
+    "Reveal accurately stated current values and explicitly assumed unlimited capacity, with urgency/capacity limits; original160 verdict held beside changed192 without original ten-item context."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple multiplication.",
+    "conceptualDemand": "Batching fixed transport cost.",
+    "interfaceBurden": "Two modes and count slider."
+  },
+  "whyCool": "The route is paid once for a batch instead of once per item.",
+  "caveat": "No actual sorting or carrying-capacity model despite slug; changed-count prediction verdict needs framing.",
+  "effort": "Completed prediction, both modes, changed count, screenshots and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Useful route contrast with clear limits but recurring numeric-verdict ambiguity.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Complete route and round-trip assumptions support a concrete calculation.",
+      "evidence": "Ten\u00d716 m.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Batching mode and item count distinguish fixed versus repeated route cost.",
+      "evidence": "Count10\u219212 scales only individual-trip total.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Correct mechanism and assumptions but numeric prediction needs original/current reconciliation.",
+      "evidence": "Held160 beside192 current.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Trip and distance units clear; original count remains in title while current12 changes result.",
+      "evidence": "No explicit original scenario in reveal.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete batching rule includes applicability limits.",
+      "evidence": "Unlimited capacity,urgency may prevent batching; not measured time.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Many small round trips accumulate.",
+      "evidence": "160 versus16 m.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Repeated arrows versus single pair show route accounting.",
+      "evidence": "Counted trips visible.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Mode and count control travel.",
+      "evidence": "Two factors.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful batching principle with explicit conditions.",
+      "evidence": "Capacity and urgency caveats.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Fixed route cost versus per-item travel.",
+      "evidence": "Not a full chore model.",
+      "confidence": "medium"
+    }
+  }
+}

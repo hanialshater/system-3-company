@@ -1,0 +1,120 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2",
+  "reviewKind": "primary",
+  "slug": "accurate-bettor-takes-the-pot",
+  "demoVersion": 4,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/accurate-bettor-takes-the-pot",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, familiar objects; no subject theory assumed.",
+  "viewport": "1280x720 desktop screenshot",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "text": "Preview no-history banner confirmed. Trust chrome 6/6 ignored. Selected The 60% bettor; locked."
+    },
+    {
+      "id": "E",
+      "text": "1 race: loss, money ratio \u00d70.8, share 44.4%, pool odds 54.4%. Run to 500: over 99.9%, ratio 1,000+, pool odds 60.0%. Run 2: share 98.8%, ratio 81, pool odds 59.9%; Seen: 50% bettor 91.0%, race 203; reveal unlocked."
+    },
+    {
+      "id": "R",
+      "text": "Reveal: all five runs at least 98.8%; luck can lead for long; race 203 circled. Win \u00d71.2/loss \u00d70.8, three wins and two losses \u00d71.11. Model: two bettors, no fees, all-in every race. Screenshot inline shows multi-path chart with marked dip; reveal clips right in internal panel. None saved."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear comparison with plausible equal-money alternative.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Single loss, long horizon, and second path expose compounding and luck.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "References exact observed loss and marked long dip, states model limits.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Action guidance and metric labels clear, but right-edge reveal clipping.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Connects belief accuracy, compounding money and aggregate odds under explicit assumptions; editorial only.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No mode audit.",
+      "evidence": "Untested",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Accurate bettor can lose early and lag until race 203.",
+      "evidence": "E,R",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Multi-path graph and circled dip carry luck contrast.",
+      "evidence": "R screenshot",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Run switching permits reversible comparison.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Market-odds connection, limited by artificial all-in/no-fee assumptions.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Ratio multiplication, short-run luck, aggregate odds.",
+      "evidence": "E,R",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Core explanation links probability beliefs, multiplicative wealth ratios and pooled odds.",
+    "conceptualDemand": "demanding",
+    "interfaceBurden": "moderate; clipped reveal",
+    "prerequisiteNovelty": "moderate",
+    "notationRepresentationBurden": "moderate; ratios and percent share"
+  },
+  "whyCool": "Switching to run 2 exposes a wrong bettor holding 91% halfway through before the accurate bettor ends with 98.8%.",
+  "caveat": "Right-side explanation clipping; market transfer remains a constrained model and not measured learning.",
+  "notApprovedForServing": true,
+  "effort": "About 3 minutes",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility modes",
+    "Other three paths not independently tested"
+  ]
+}

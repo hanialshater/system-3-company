@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "press-the-string",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/press-the-string",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "press-the-string",
+    "domain": "physics",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/physics/press-the-string/meta.json",
+    "metaSha256": "84e058a2c3ceb4181fefb1c389e8dde0e0b630d9052e4449b37ebd04ed7f73e1",
+    "demoSha256": "1f4a5fa592d6cd12e41db3bd813301aa02fe511b10f5220054c8ea10377945c2",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/press-the-string",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/press-the-string.json"
+  },
+  "date": "2026-10-18T19:41:08.570329+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "No-history banner confirmed; trust6/6 ignored. Selected55Hz andlocked.",
+    "exploration": "Open110Hz. Rejected finger50input;renderedrange max3/step1read,thenArrowRightquarteralong147Hz/1.33;nextmiddle220/2;Endthreequarters440/4. Screenshotfreequarter0.163m versusdashedopen0.650m. Revealunlocks atmiddle.",
+    "reveal": "Correct220;actualmiddle0.325m/220andquarterfree440recapped. Roundtripwave travelsfree-length twicepervibration,half lengthhalvestime,frequencyinverse length. Idealstring/sametensioncondition.",
+    "visual": "Inline1257x936 dark screenshots inspected: fixedfingerendpoint,shortorangevibratingloop versusdashedopen;motionexplicitlyslowed55x,widthexaggerated. Fullreveallegible;noaudiojudgmentmade."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Half/same/doublefrequency choicesconfrontshorter/slowerintuitionwithHzdefined.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Fourfreelengthpositions exposeinversefrequencyandquarterlengthboundarywithreferenceghost.",
+      "evidence": "exploration;visual",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Citesactualhalf/quarterlengthstatesandexplainswave-roundtripcausewithsametensionlimit.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Free-length/reference/Hzlabels clear;discretesliderpositionslabelledoncechanged,slowedmotiondisclosed.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concreteguitarfingering/octaveuseandfixedtensionidealcondition;nofreshinstrumenttask.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Chosen55becomes220and440forshorterfreelengths.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Shorterloop/dashedreferenceacrossfourpositionsmakevibratinglengthmechanismvisible.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversiblefingerpositionchoicesenablecomparison.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concreteguitarpitchcontrolandone-octavemidpointrule.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Frequency,length,roundtriptimeandconstant-tensionlimit.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Linkfreelengthtowaveroundtriptimeandinversefrequency;fractionsandnumericalratiossupported.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low:discretefinger slider",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: waves/frequencymechanism",
+    "notationRepresentationBurden": "low: Hz,m,lengthfractionsandratios"
+  },
+  "whyCool": "Pressingthemiddledoublesfrequency,andmovingthreequartersalongquadruplesitbecauseonlyquarterstringremainsfree.",
+  "caveat": "Idealconstanttension;noauditorytestornewinstrumentcase."
+}

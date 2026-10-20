@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "the-equals-sign-balances",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/the-equals-sign-balances",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "c32d4903241ae5427029abd3eea77507313220ba5a1f95b2976bca84e178a33e",
+    "demoSha256": "7ae38fcacdb6a8dfbc839803efa09db4722f50086ac11a59a93359b9ec4cf931",
+    "metaPath": "src/demos/math/the-equals-sign-balances/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected 12 and locked the missing number prediction for 8 + 4 = box + 5.",
+    "exploration": "Tested box 12: left 12, right 17. Tested box 17: right 22. Tested box 7: right 12 and the balance became level. The trial history retained each substitution.",
+    "reveal": "The reveal corrected the answer to 7 and accurately explained why the predicted 12 made the right side 17. It defined the equals sign as both sides having the same amount rather than an instruction that the answer comes next.",
+    "visual": "Inspected the inline dark 1257 by 936 screenshot with box 7. Left and right pans contained separate unit block groups labelled 8, 4, box 7 and 5, with a left 12, right 12, level readout. Candidate controls and trial history were clear.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The nonstandard equation layout exposes an operational equals-sign misconception.",
+      "evidence": "Selected the left total 12 for the box.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Substituting candidates separates the box value from the full right-side value.",
+      "evidence": "12 produces 17, 17 produces 22, and 7 produces equality.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal explains the relation using the actual failed and successful substitutions.",
+      "evidence": "It compares right 17 against left 12 and then equal twelves.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Grouped blocks and explicit side totals make the distinction concrete.",
+      "evidence": "The box and extra five stay separate on the right pan.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "The relational principle is stated without a fresh equation or new application.",
+      "evidence": "Only the fixed 8 + 4 equation is tested.",
+      "confidence": "high"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "The result of the left-hand addition is not the missing box value.",
+      "evidence": "Putting 12 in the box tips the balance instead of solving it.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "The balance metaphor makes equality and inequality visible.",
+      "evidence": "The correct candidate makes both side totals twelve.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Candidate substitutions form a short balance puzzle.",
+      "evidence": "Three buttons allow testing the offered answers.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "It clarifies a foundational interpretation of mathematical notation.",
+      "evidence": "The equals sign means equal quantities on both sides.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "The explanation corrects one foundational misconception with one equation.",
+      "evidence": "No operations on both sides or additional equations are explored.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "Small whole-number blocks and three candidates keep the new relational interpretation accessible.",
+    "conceptualDemand": "Low: evaluate both complete sides instead of treating the box as the answer position.",
+    "interfaceBurden": "Low: three candidate buttons and reset.",
+    "conceptualChallenge": "The missing value is one part of an expression, not necessarily the left-side total.",
+    "prerequisiteNovelty": "The relational meaning of equality is emphasized.",
+    "notationRepresentationBurden": "Low: a short addition equation and counted blocks."
+  },
+  "whyCool": "A familiar equals sign becomes a balance to satisfy, exposing why a plausible arithmetic answer fails.",
+  "caveat": "The fixed candidate puzzle does not test whether the learner can solve a new equation independently.",
+  "missingEvidence": [
+    "No fresh equation or transfer problem was tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

@@ -1,0 +1,103 @@
+{
+  "slug": "lh-offcuts-not-one-piece",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-offcuts-not-one-piece",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Selected Separate for unjoined 60 cm pieces from 90 cm and 50 cm offcuts, zero cut loss.",
+    "Tests reported usable length 60 versus pooled 120 cm. Maximum piece size 80 gave equal 80 cm totals.",
+    "Screenshot showed abstract rings, not offcuts/cuts. Reveal explains separate fitting but calls pooled result intentionally infeasible even at current 80 cm where one 80 cm piece is feasible."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Discrete fit and dense formula.",
+    "conceptualDemand": "Total resource quantity does not ensure feasible pieces.",
+    "interfaceBurden": "Simple slider but long floor expressions."
+  },
+  "whyCool": "Enough total material can still be the wrong shape of inventory.",
+  "caveat": "Reveal overstates pooled infeasibility at sizes where totals coincide; needs actual offcut diagram and piece counts.",
+  "effort": "Prediction, both tests, maximum required size, screenshot and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Useful constraint lesson weakened by generic visual and overbroad reveal.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Hook explicitly gives inability to supply two pieces.",
+      "evidence": "90 and 50 cannot supply two 60 cm lengths.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Piece-size change distinguishes discrepancy and numerical coincidence.",
+      "evidence": "60\u219280 cm yields unequal then equal totals.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Core constraint explained, but unconditional infeasibility statement fails current equal case.",
+      "evidence": "At 80 pooled 80 cm is feasible from 90 cm offcut.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Returns length rather than piece count, with dense floor expression.",
+      "evidence": "Question usable pieces; results cm.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Explicit continuity constraint and fit-before-sum rule give concrete application condition.",
+      "evidence": "Each required piece within one offcut.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Sufficient total length can fail piece requirements.",
+      "evidence": "140 cm total cannot yield two unjoined 60s.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 1,
+      "reason": "No geometry of individual stock or cuts.",
+      "evidence": "Abstract rings only.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Piece-size changes expose discontinuous capacity.",
+      "evidence": "80 cm numerical equality.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Usable material planning central.",
+      "evidence": "Separate offcut constraints.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Aggregation can erase feasibility constraints.",
+      "evidence": "Floor before summing differs from pooled floor.",
+      "confidence": "medium"
+    }
+  }
+}

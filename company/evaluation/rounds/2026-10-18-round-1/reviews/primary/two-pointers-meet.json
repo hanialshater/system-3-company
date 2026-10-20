@@ -1,0 +1,105 @@
+{
+  "slug": "two-pointers-meet",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/two-pointers-meet",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction gave sorted list 1,3,4,6,8,11,13,15 and directional rule for sum24; chose28 maximum sums rather than7 or3.",
+    "Initial1+15=16. Wrong right-pointer move rejected: smaller right value makes sum smaller. Left move advanced to3 and two checks.",
+    "Follow the rule completed automatically at11+13=24 in7 sums; a subsequent attempted repeat found disabled completion control. No state was guessed from the failed repeat.",
+    "Reveal explained entire row/column elimination,27ruledout pairs,21never checked,and sorted-order requirement.",
+    "Inline1280x720 light screenshot showed grey pair grid and green solution; right-edge prose clipped. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Sorted-order reasoning and pair-grid interpretation.",
+    "conceptualDemand": "Eliminating groups of candidates safely.",
+    "interfaceBurden": "Three buttons; auto-run label could be clearer, prose clips."
+  },
+  "whyCool": "Moving one finger erases a whole row of impossible partners instead of checking each pair.",
+  "caveat": "One fixed sorted input; automatic completion rather than full manual trace; right-edge clipping; accessibility unknown.",
+  "effort": "Prediction,wrong-direction feedback,manual advance,automatic completion,reveal and inline screenshot.",
+  "provisionalBucket": "solid-with-viewport-fix",
+  "bucketReason": "Clear elimination idea and feedback; repair prose layout and clarify auto-run label.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicit ordered inputs and rule make bound question precise.",
+      "evidence": "28pairs versus7 checks.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Wrong-direction feedback and manual/automatic progression show elimination.",
+      "evidence": "Rejected right move at16, then completed7checks.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Observed count connects to monotonic row/column exclusion.",
+      "evidence": "Sorted1+15too small rules out all partners for1.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Useful grid and feedback but prose clips; Follow rule is auto-completion.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General sorted-order rule without a fresh list or unsorted countercase.",
+      "evidence": "Sameeight numbers.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "One comparison can eliminate several pairs.",
+      "evidence": "21pairs never inspected.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Grey grid records eliminated candidates.",
+      "evidence": "Single green solution.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Pointer choices with corrective feedback.",
+      "evidence": "Manual wrong/right actions.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Efficient sorted pair search central.",
+      "evidence": "Linear versus all-pairs comparison.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Monotonicity and worst-case bound.",
+      "evidence": "Atmostn-1 checks.",
+      "confidence": "medium"
+    }
+  }
+}

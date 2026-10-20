@@ -1,0 +1,147 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2b",
+  "reviewKind": "primary",
+  "slug": "early-fatality-count",
+  "domain": "life",
+  "batchId": "round1-02",
+  "demoVersion": 1,
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "b88e267203f4cebc4bffd30526180e6dd980d227fd0363260a1ea51606832684",
+  "demoSha256": "ec6586d400ece440c83d6c800b863089e1e6865eef931e665ece63fbcb2d262f",
+  "reviewedAt": "2026-10-18T18:38:42.600399+00:00",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/early-fatality-count",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "previewIsolationConfirmed": true,
+  "visibleTrustChrome": "4/4 claims checked; ignored, panel unopened",
+  "phaseCoverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "o1",
+      "action": "Predicted1 in50 and locked",
+      "outcome": "Day45 ratio1 in405; case bars rise with death dots15days behind, drawn x50"
+    },
+    {
+      "id": "o2",
+      "action": "Jumped Day90",
+      "outcome": "Ratio1 in53"
+    },
+    {
+      "id": "o3",
+      "action": "Jumped Day135",
+      "outcome": "Ratio1 in50; complete rise/fall curve visible, lagging dots"
+    },
+    {
+      "id": "o4",
+      "action": "Opened reveal",
+      "outcome": "Corrects to about1 in400; 15day lag means three doublings/eight times fewer cases; ratio climbs when cases fall; growing case denominator runs low"
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Known true rate versus reported current rate offers plausible misconception.",
+      "evidence": "o1",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Time changes show convergence from early low ratio to final stipulated rate.",
+      "evidence": "o1-o3",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Ties original ratio to15day lag and three doublings, then observed completed ratio.",
+      "evidence": "o4",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Ratios, days and x50 label legible on tested desktop.",
+      "evidence": "o1-o4; inline pixels",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Condition of growth causing low crude ratio stated; no new applied case.",
+      "evidence": "o4",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic mode checks.",
+      "evidence": "Untested",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed true rate is eightfold away from early observed ratio.",
+      "evidence": "o1-o4",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Lagged dots and case bars show temporal mismatch.",
+      "evidence": "o1-o3",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Day jumps enable reversible timeline exploration.",
+      "evidence": "o1-o3",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Supports interpreting early outbreak ratios under stipulated lag/growth conditions.",
+      "evidence": "o4",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Lag, growth and cumulative ratio convergence linked.",
+      "evidence": "o1-o4",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links lagged outcomes with current cumulative denominator and exponential growth.",
+    "conceptualDemand": "balanced: temporal alignment and fractions supported graphically",
+    "interfaceBurden": "low: day presets and ratio readout; x50 requires attention",
+    "provisional": true
+  },
+  "whyCool": "Jumping from day45 to135 changes the same outbreak ratio from1 in405 to1 in50 as the delayed death curve catches up.",
+  "caveat": "Made-up fixed delay and fatality rate simplify real outbreaks; no separate applied interpretation case.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Phone, keyboard-only, focus, contrast measurement, zoom/reflow and reduced motion untested"
+  ],
+  "reviewState": "complete-real-walkthrough",
+  "effort": {
+    "approximateMinutes": 2
+  },
+  "screenshots": [
+    "Inline observed Day45 and revealed Day135 states; no saved image file"
+  ],
+  "notApprovedForServing": true,
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  }
+}

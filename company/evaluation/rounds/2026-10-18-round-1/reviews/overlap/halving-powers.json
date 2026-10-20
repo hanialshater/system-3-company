@@ -1,0 +1,131 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "overlap",
+  "slug": "halving-powers",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/halving-powers",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "406acb284cfd13332d9dd3f9d9c4b551891477ae18d9106377ce49b15b251ee3",
+    "demoSha256": "2890fa359f8656eb2cc3cf7bcbd5f5f9251028f8aa9dc5873c63279b5fe68ae3",
+    "metaPath": "src/demos/math/halving-powers/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected zero for two to power zero and locked it in. Initial stacks8,4,2 shown with division arrows.",
+    "exploration": "Halve to exponent0 produced1 and unlocked reveal. Continued to exponent-1 produced1/2, then exponent-2 produced1/4; previous stacks retained. All step controls disabled after completion.",
+    "reveal": "Corrected1, cites observed halving through quarter. Gives exponent multiplication identity and starting-from-one interpretation. Generalises to any nonzero base.",
+    "visual": "Inline initial/final screenshots inspected: stacked blocks descending8,4,2,1,1/2,1/4 with zero-exponent block green; labels and divide arrows legible. Trust3/3 ignored.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884122 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear zero-versus-one misconception with visible numerical pattern.",
+      "evidence": "Zero selected while8,4,2 pattern available.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Sequential halving exposes zero and negative exponent continuation.",
+      "evidence": "1 then1/2 then1/4 stacks and explanatory equations.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects actual stack sequence to multiplication identity and nonzero-base condition.",
+      "evidence": "Reveal cites quarter extension and excludes zero base.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Only next step enabled, equations and matching bars make sequence clear.",
+      "evidence": "Three successful step actions and final screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General nonzero-base rule supplied but no fresh-base application.",
+      "evidence": "Same holds any number other than0 to power0.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed zero prediction reversed by single remaining block.",
+      "evidence": "Exponent0 gives1.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Block heights make halving continuity visible across exponent zero.",
+      "evidence": "Final six-stack screenshot.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Optional two negative steps extend fixed sequence.",
+      "evidence": "Continued after reveal first unlocked.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Mathematical rule use implicit without concrete task.",
+      "evidence": "Exponent multiplication identity.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Pattern,negative exponents and multiplicative identity offer linked explanations.",
+      "evidence": "Three steps and reveal.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Core halving relation gentle; explanation adds symbolic exponent identity and negative exponents.",
+    "conceptualDemand": "Supported transition from whole to fractional powers.",
+    "interfaceBurden": "Low: sequential buttons.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: exponent notation and empty product",
+    "notationRepresentationBurden": "moderate: superscripts,negative exponents,fractions"
+  },
+  "whyCool": "Halving past a single block produces halves and quarters without breaking the same pattern that forces the zero power to equal one.",
+  "caveat": "Fixed base-two sequence has no fresh-base case or reset.",
+  "missingEvidence": [
+    "Fresh base application",
+    "Reset",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

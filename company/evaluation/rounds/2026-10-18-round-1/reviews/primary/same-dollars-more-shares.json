@@ -1,0 +1,138 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "same-dollars-more-shares",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/same-dollars-more-shares",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "same-dollars-more-shares",
+    "domain": "economics",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/economics/same-dollars-more-shares/meta.json",
+    "metaSha256": "1ecea3f10ab6fad18d18c4ea0f16644642902933c65124096b1345ce459c9fa9",
+    "demoSha256": "067f87e8ffdd3b74b31aac405ce93ca6d86f5dced1c05ee9c5dfe7866e285803",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/same-dollars-more-shares",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/same-dollars-more-shares.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected 8.33 dollars and locked it in.",
+    "exploration": "Equal ten-dollar prices gave thirty shares and both averages ten. Middle five gave forty shares, price average 8.33 and cost per share 7.50. Middle twenty gave twenty-five shares, price average 13.33 and cost per share twelve. Restored ten to confirm equality, then five for reveal.",
+    "reveal": "Corrected to 7.50, explained ten/twenty/ten shares and three hundred divided by forty. Low-price month buys more shares and gets more weight. Explicit arithmetic-only model with invented prices and no return or purchase claim.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected. Three share-count bars labeled ten, twenty, ten alongside price labels; average-price and cost-per-share chips distinct and reveal readable.",
+    "previewIsolation": "Preview banner said history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete average choice targets wrong weighting.",
+      "evidence": "Plain price mean 8.33 versus cost 7.50.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Low, equal and high middle prices isolate share-quantity weighting.",
+      "evidence": "Forty, thirty and twenty-five total shares.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal explains correct denominator through visible purchased quantities.",
+      "evidence": "Three hundred divided by forty.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Both averages are labeled and arithmetic-only boundary explicit.",
+      "evidence": "Invented prices and no return claim.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General equal-dollar weighting stated without a new application.",
+      "evidence": "Same three fund purchases only.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Complete mode audit not conducted.",
+      "evidence": "Text chips and button states observed; keyboard, screen reader, contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Average cost is lower than plain price average.",
+      "evidence": "7.50 versus 8.33.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "More shares in low-price month makes unequal weights visible.",
+      "evidence": "Middle bar twice the other two.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Simple middle-price calculator.",
+      "evidence": "Three presets and slider.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Clarifies averaging a unit purchase cost.",
+      "evidence": "Spending divided by total units.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "One weighting distinction with equal-price boundary.",
+      "evidence": "Equal dollars versus equal share quantities.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple monetary division and clear bars support weighted-average reasoning.",
+    "conceptualDemand": "Choose units purchased as denominator rather than averaging listed prices.",
+    "interfaceBurden": "One middle-price slider and three presets.",
+    "conceptualChallenge": "gentle",
+    "prerequisiteNovelty": "Share quantity weighting explained with familiar spending.",
+    "notationRepresentationBurden": "Dollar prices, unit counts and division."
+  },
+  "whyCool": "A cheaper month counts more because the same dollars buy more units.",
+  "caveat": "This demonstrates purchase-cost arithmetic, not return improvement or a recommended investment strategy.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Keyboard audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:46:45.240706+00:00"
+}

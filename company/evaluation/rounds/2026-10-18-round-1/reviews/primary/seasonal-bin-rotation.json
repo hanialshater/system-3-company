@@ -1,0 +1,103 @@
+{
+  "slug": "seasonal-bin-rotation",
+  "demoVersion": 2,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/seasonal-bin-rotation",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Title frequentuse nearaccess precedesprediction front/back.",
+    "Depth8,fourfrequent/onerare:frequentback28 removals,front7;depth4 front3.",
+    "Reveal says repeated blockerremovals and chosen frequencies. Screenshot readable. Totalremovals label excludes target retrieval and reset/return assumption unstated."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Small repeated-count model.",
+    "conceptualDemand": "Weight access cost by frequency.",
+    "interfaceBurden": "Two modes,depthslider."
+  },
+  "whyCool": "A layout's cost depends on how often each item is needed,not just one retrieval.",
+  "caveat": "Specify blocker-only counts and restoring layout between requests; title spoils prediction.",
+  "effort": "Prediction,layoutcontrast,depthchange,reveal,inlinevisual.",
+  "provisionalBucket": "solid-revise-label-hook",
+  "bucketReason": "Useful repeated-cost model,assumptions need labeling.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Title directly supplies answer.",
+      "evidence": "Frequent use belongs near access.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Layout and depth change repeated access cost.",
+      "evidence": "28/7 then3.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains weighted blocker counts and frequency provenance.",
+      "evidence": "Chosen examples,not measured behavior.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Totalremovals label imprecise and repeated-use restoration unstated.",
+      "evidence": "Numbers count blockers not target.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete frequency-based arrangement rule with applicability limit.",
+      "evidence": "Acrossuses in queue;frequencies chosen.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Repeated frequency multiplies small access costs.",
+      "evidence": "28versus7.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Queue schematic and count support cost.",
+      "evidence": "Four boxes afterdepthchange.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Order and depth variation.",
+      "evidence": "8\u21924.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Storage access strategy central.",
+      "evidence": "Frequentfront.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Weighted repeated costs.",
+      "evidence": "4usesversus1.",
+      "confidence": "medium"
+    }
+  }
+}

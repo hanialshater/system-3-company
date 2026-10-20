@@ -1,0 +1,103 @@
+{
+  "slug": "handoff-after-finish",
+  "demoVersion": 2,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/handoff-after-finish",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Hook already states reviewer cannot start before draft finished; predicted after finish.",
+    "Initial draft0\u201325/review15\u201330/send30\u201335 tested invalid overlap10. Wait preset review25\u201340/send40\u201345 valid45.",
+    "Moved review0\u201315, send remained40\u201345; overlap15 invalid. Reveal accurately describes final invalid layout and disallows partial handoffs. Screenshot readable."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple ordered timeline.",
+    "conceptualDemand": "Task dependency and one-person conflict.",
+    "interfaceBurden": "Test,preset,start slider."
+  },
+  "whyCool": "A shorter-looking calendar can be impossible because its input is not ready.",
+  "caveat": "Hook reveals answer; replace fixture jargon. One-person conflict and input dependency coexist, so not isolated experimentally.",
+  "effort": "Prediction,test,preset,start variation,reveal,inline visual.",
+  "provisionalBucket": "revise-hook",
+  "bucketReason": "Working state-aware model but prediction is spoiled.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Hook gives answer directly.",
+      "evidence": "Cannot start before finish versus after finish choice.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Shows invalid,valid and changed invalid schedules.",
+      "evidence": "Overlap10\u21920\u219215.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains dependency and final state with explicit scope.",
+      "evidence": "Final invalid15; no partial handoffs.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readable schedule but implementation word fixture in learner reveal.",
+      "evidence": "Inline screenshot and fixture wording.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Principle and workflow caveat without new use.",
+      "evidence": "Partial handoffs mentioned.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 0,
+      "reason": "Answer explicit before prediction.",
+      "evidence": "Hook states dependency.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Timeline makes conflicting work visible.",
+      "evidence": "Hatched overlap15.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Start slider and repair preset.",
+      "evidence": "Invalid and valid variants.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Scheduling dependencies central.",
+      "evidence": "Draft releases review input.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Release condition distinct from task lengths.",
+      "evidence": "No partial handoffs.",
+      "confidence": "medium"
+    }
+  }
+}

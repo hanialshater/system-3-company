@@ -1,0 +1,130 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy/simple charts; no theory assumed.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "observations": [
+    {
+      "id": "p",
+      "phase": "prediction",
+      "text": "No-history preview verified; trust6/6 ignored. Chose1000times6000cm² versus same6/10times60; locked."
+    },
+    {
+      "id": "e",
+      "phase": "exploration",
+      "text": "2peredge:8pieces5mmedge12cm²total1.5each×2;5:125pieces2mm30total0.24each×5;10:1000pieces1mm60total0.06each×10, revealunlocked. Screenshot front-face grid, label 'front face only; cuts also make hidden faces', totalarea bar and baseline wholecube6."
+    },
+    {
+      "id": "r",
+      "phase": "reveal",
+      "text": "Not quite10times60. Uses own1000/60, areaeach6×0.1²=0.06and1000multiply; cutting exposes newfaces with volume retained; reaction touches outside and finerpiecesreactfaster. Screenshots inline only."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Distinct same/linear-piece/edge-scaling alternatives.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Three sizes expose count/piece-area/total contrasts.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Own numbers and new-face mechanism explained.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Units and front-face limitation explicit in tested view.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reaction application stated without conditions or simulation.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Insufficient mode evidence.",
+      "evidence": "e",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "1000pieces gives10timesarea.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Grid and totalarea bar support new-face explanation.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversible size presets.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Reaction-surface application concrete.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Linear/area/volume scales linked.",
+      "evidence": "r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links edge size, cube count and squared piece area to total surface.",
+    "conceptualDemand": "Three related scaling quantities; reaction application is additional assertion.",
+    "interfaceBurden": "Four clear presets and readouts; inner scroll needed."
+  },
+  "whyCool": "1000pieces have only0.06cm²each yet sum60cm², tenfold the unchanged-volume whole cube.",
+  "caveat": "Graphic shows front face only; reaction-rate application not simulated or conditional on chemistry; no reset tested.",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Whole-cube return/accessibility modes untested."
+  ],
+  "screenshots": [],
+  "slug": "cut-the-cube-surface",
+  "demoVersion": 3,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/cut-the-cube-surface",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "efbdf84978921b3a6f37e0c9e363b1ff15bca1f28c43caac7b9c66d788b07481",
+    "metaSha256": "56ff062fce8f6e0b87e5e50614b4222e2ad2d587b8a08342720c18f1fd51ba91"
+  }
+}

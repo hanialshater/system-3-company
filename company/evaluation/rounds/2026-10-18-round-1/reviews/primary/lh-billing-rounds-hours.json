@@ -1,0 +1,104 @@
+{
+  "slug": "lh-billing-rounds-hours",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-billing-rounds-hours",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted hourly lower at3.5h with4\u20ac per begun hour versus20\u20ac per begun24h period.",
+    "A4\u00d7ceil3.5=16\u20ac, B20\u00d7ceil(3.5/24)=20\u20ac.",
+    "Changed duration8h: hourly32\u20ac,daily20\u20ac, reversing ranking.",
+    "Reveal explicitly contrasted original3.5h and current8h and explained round billed quantity before multiplication."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Ceiling and24h periods add abstraction to simple prices.",
+    "conceptualDemand": "Discrete billing increments.",
+    "interfaceBurden": "Two tests and slider."
+  },
+  "whyCool": "The bill depends on the counted billing units, not just the clock time.",
+  "caveat": "Fictional charges only; no real tariff,grace-period,tax or fee model. Continuous meters do not show staircase jumps directly.",
+  "effort": "Completed prediction,both bills,duration reversal,screenshots and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear declared-rule calculation and accurate changed-state framing.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Fully specified fictional billing increments support a meaningful comparison.",
+      "evidence": "Begun-hour versus begun-day rules explicit.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Duration adjustment reverses the cheaper plan and displays ceiling expressions.",
+      "evidence": "3.5 versus8 hours.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Correct original/current values explain measurement versus charged units.",
+      "evidence": "Round first,then multiply.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Rules,units and current totals clear; ceil notation is supported by prose.",
+      "evidence": "Begun unit definition.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete billing arithmetic method tied to declared rules.",
+      "evidence": "Apply contract's stated increment,not raw elapsed time.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Measured3.5h pays four units; cheap plan changes with duration.",
+      "evidence": "16/20 then32/20.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Matched bill meters compare costs, but do not depict discrete time increments.",
+      "evidence": "Numeric ceiling expressions carry mechanism.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Duration slider changes comparison.",
+      "evidence": "Two tests.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful bill-estimation habit.",
+      "evidence": "Fictional rules explicit.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Separates measured and billable quantity.",
+      "evidence": "Rounding before multiplication.",
+      "confidence": "medium"
+    }
+  }
+}

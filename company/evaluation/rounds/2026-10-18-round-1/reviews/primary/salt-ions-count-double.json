@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "salt-ions-count-double",
+  "demoVersion": 2,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/salt-ions-count-double",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "salt-ions-count-double",
+    "domain": "chemistry",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/chemistry/salt-ions-count-double/meta.json",
+    "metaSha256": "eaf20967348a3191699dd8da3ef1d96ce04ff6f94e078c6aafd311057ff7f9ab",
+    "demoSha256": "ca4da437bcb7af6caf1420a66360c6c0294bf8357774fb77a32ba83126ec3bdf",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/salt-ions-count-double",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/salt-ions-count-double.json"
+  },
+  "date": "2026-10-18T19:34:59.735083+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "No-history banner confirmed; trust6/6 ignored. Selected1.9C andlocked. NaCl58g=1molcountdefinedwith6x10^23,in1kgwater.",
+    "exploration": "Sugar342g:10dots,freezes-1.9C. Salt58g:20dots,-3.7C,revealunlocks. Purewaterreset0dots/0C;revealretainsunlock.",
+    "reveal": "Correct3.7;historicalsalt20vssugar10dots,NaClsplitsNaandClions.1.86Cperparticlemolperkgwater,idealnotkindbutcount. Realionsinteractsoabout3.4dropstated.",
+    "visual": "Inline1257x936 dark screenshots inspected: cupdots,1dot0.1mollegend,temperatureaxis0to-4,freezingarrow;reset0stateandrevealhistoricalcomparisonlegible."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "ConcretequantitativechoicesdistinguishcountingNaClunitsfromdissociatedparticles;moldefined.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Sugar/salt/purewatercontrastvisiblychangesparticlecountandfreezeoutput;noamountcontrol.",
+      "evidence": "exploration;visual",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Actualdoublingdotsandtemperaturedrop linkedtodissociationandexplicitideal/ioninteractionlimit.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Particlelegend,units,andfreezingarrowclear;historicstatesexplicitafterpurewaterreset.",
+      "evidence": "visual;reveal",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concreteroadsaltapplicationin hook,particle-countconditionandideal-versusrealioniclimitexplained;nofreshapplicationtask.",
+      "evidence": "prediction;reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Chosen1.9isactualsugarresult,saltisdouble3.7despitemuchlowermass.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Dotcountandthermometercarryparticle/freezepointcontrast.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Threefixedreversiblesubstances,noparameterchoices.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concreteinterpretationofroadsaltloweringfreezingpointwithnonidealcondition.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Moleversusmass,dissociation,colligativecountandioninteractionlimit.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Linkequalformulacounttounlikeparticlecountsandfreezingdrop;moldefinitionprovidedbutchemistrynew.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low:threebuttons",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: moleandionicdissociation",
+    "notationRepresentationBurden": "moderate: NaCl,ions,mol,scientificnotationandnegativeC"
+  },
+  "whyCool": "Saltmakes20particle-dotswhereequal-molesugarmakes10,andthefreezingdropdoubles.",
+  "caveat": "Fixedidealconcentration;real3.4Ccorrectionstatedratherthansimulated."
+}

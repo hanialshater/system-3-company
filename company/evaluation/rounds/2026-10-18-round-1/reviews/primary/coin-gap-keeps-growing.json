@@ -1,0 +1,147 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2b",
+  "reviewKind": "primary",
+  "slug": "coin-gap-keeps-growing",
+  "domain": "probability",
+  "batchId": "round1-02",
+  "demoVersion": 3,
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "279b3ed00875864fc0440f932c9908e1be8733007718d9b0580eab7008c6a68d",
+  "demoSha256": "6580558b951856b0c9ded5115d379bd4f40a3ae5103427bdfaa82700ffaf420f",
+  "reviewedAt": "2026-10-18T18:43:27.446680+00:00",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/coin-gap-keeps-growing",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "previewIsolationConfirmed": true,
+  "visibleTrustChrome": "6/6 claims checked; ignored, panel unopened",
+  "phaseCoverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "o1",
+      "action": "PredictedUnder5 and locked",
+      "outcome": "10flips20runs: average gap2.5, typical2.5, shares20\u201390%"
+    },
+    {
+      "id": "o2",
+      "action": "Selected100 then1000 then10000",
+      "outcome": "Gaps8.3,16.3,86.1; typical8.0,25,80; share ranges40\u201361%,47.8\u201351.8%,49.0\u201350.9%; gap curves spread"
+    },
+    {
+      "id": "o3",
+      "action": "Switched Show heads share",
+      "outcome": "Same runs collapse around50% visually; reveal unlocked"
+    },
+    {
+      "id": "o4",
+      "action": "Opened reveal",
+      "outcome": "CorrectsAbout80, recalls all observed averages, explains typical square-root gap growth and20run wobble; LLN about share, not count"
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Plausible alternatives expose convergence misconception, but heads-minus-tails wording can suggest signed mean rather than distance.",
+      "evidence": "o1; locked prompt",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Four lengths and gap/share toggle directly contrast growing absolute distance and shrinking relative variation.",
+      "evidence": "o2-o3",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects actual averages to typical theory and sample wobble, resolves prediction.",
+      "evidence": "o4",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Charts clear but gap definition says heads minus tails while positive average gap denotes distance; distinction could be explicit.",
+      "evidence": "o1-o4; inline pixels",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable share-versus-count principle stated; no separate use case.",
+      "evidence": "o4",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic mode checks.",
+      "evidence": "Untested",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Under5 prediction contradicted by86.1 while shares nearly50%.",
+      "evidence": "o1-o4",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Same runs fan out in counts and squeeze in shares.",
+      "evidence": "o2-o3",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Length presets and view toggle support comparison.",
+      "evidence": "o2-o3",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Clarifies interpretation of long-run frequency claims.",
+      "evidence": "o4",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Absolute/relative distinction, square-root scale and sampling wobble linked.",
+      "evidence": "o2-o4",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Separates count distance, proportion and typical across-run expectation.",
+    "conceptualDemand": "balanced: representation changes and ratios; square root introduced as supported trend",
+    "interfaceBurden": "low: four lengths and one view toggle",
+    "provisional": true
+  },
+  "whyCool": "The same10000flip runs fan out to roughlyhundreds in count difference yet visually squeeze into49.0\u201350.9% heads when the view switches.",
+  "caveat": "Gap wording uses signed heads-minus-tails while average gap appears to mean absolute distance; no fresh independent set of20runs tested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Phone, keyboard-only, focus, contrast measurement, zoom/reflow and reduced motion untested"
+  ],
+  "reviewState": "complete-real-walkthrough",
+  "effort": {
+    "approximateMinutes": 2
+  },
+  "screenshots": [
+    "Inline observed locked,10000gap and revealed share states; no saved image file"
+  ],
+  "notApprovedForServing": true,
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  }
+}

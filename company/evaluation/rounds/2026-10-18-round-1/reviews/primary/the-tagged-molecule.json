@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "the-tagged-molecule",
+  "demoVersion": 3,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/the-tagged-molecule",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "the-tagged-molecule",
+    "domain": "chemistry",
+    "status": "published",
+    "demoVersion": 3,
+    "metaPath": "src/demos/chemistry/the-tagged-molecule/meta.json",
+    "metaSha256": "826a9c0076241c9c019008b8f5fb1e07055b6857e60adcd24033315c80295d12",
+    "demoSha256": "23a7459d241358760f70c7b55f8c6cc22feaaf8b5e448a15559167f14af19c4d",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/the-tagged-molecule",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/the-tagged-molecule.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected None against equaloppositechanges andonlyAtoB;locked it in.",
+    "exploration": "Initial50A/50B,tag45B. Nexttick:50/50 unchanged,12A\u2192B and12B\u2192A,tag45becameA. Fiveticks advancedto6,still50/50. Taggedmolecule1B;nexttick7 molecule1becameA,totals50/50. Bothselectedmolecules remainedtagged.",
+    "reveal": "Correctedequaloppositechanges. Personalizedtwo taggedmolecules/twotypechanges whilebarssteady. Explainedbalancedtraffic,notstoppedreaction;realmixtures balanceonaverage andcounts jitter.",
+    "visual": "Actual1257 \u00d7936 dark screenshot inspected. Circles/squares,shadedchangedcells andtwohistoryrows showturnover. Revealinternal scroll cropsupperbars/gridtop;explanationmostlyvisible,finalsentence atbottom.",
+    "previewIsolation": "No-history evaluation banner present.",
+    "blinding": "4/4 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear alternatives testconfusingconstantcomposition withstationarymolecules.",
+      "evidence": "None commitment versus24changes pertick.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Tickandretaggedmoleculecontrasts showindividualchanges atfixedtotals.",
+      "evidence": "Tag45B\u2192A;tag1B\u2192A;12eachdirection.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connectsactualtaghistory andbalancedcountsto dynamicequilibrium withaverage-limit caveat.",
+      "evidence": "Two tags/twochanges;realcountsjitter.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Corelabels andtags usable,butrevealscroll cropsupperstate.",
+      "evidence": "Actualscreenshot gridtop andbars notfullyvisible.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusablebalanced-flowprinciplewithrealmixturelimit,butno concrete newapplication.",
+      "evidence": "Totalssteadybecausetrafficbalances.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient access audit.",
+      "evidence": "Keyboard,focus,contrast,phone,zoom andmotion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committednochanges contradicted bytrackedmoleculeflips.",
+      "evidence": "Two B\u2192A taggedevents with50/50constant.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Shapechanges,shading andtaghistories carrymicroscopicturnover.",
+      "evidence": "Actualcircle/squaregrid andtwohistoryrows.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Selectablemolecules andtickcontrols allowindividualtracking.",
+      "evidence": "Addedsecondtag andstepped.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concreteinterpretation ofchemicalequilibrium.",
+      "evidence": "Equalforward/backwardrates ratherthanstoppedreaction.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Microscopicturnover,aggregateinvariance andaveragebalance linked.",
+      "evidence": "12eachdirection andrealjittercaveat.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Separatesindividualmolecularstate fromaggregatecomposition.",
+    "conceptualDemand": "Tracktwodirections andbalance whileindividualidentitieschange.",
+    "interfaceBurden": "Moderate:100clickablemolecules andinternalreveal scroll.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate:dynamicequilibrium.",
+    "notationRepresentationBurden": "low tomoderate:A/B,symbolshapes anddirectionarrows."
+  },
+  "whyCool": "A taggedB becomesA whilebothcompositionbars stay50,thenasecondtag shows thesamecontrast.",
+  "caveat": "Exact12-for-12 swapsaretoydeterminism;no perturbedcomposition orrateimbalance tested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Additionaltaghistories andpostreveal ticks nottested.",
+    "Keyboard,focus,contrast,phone,zoom/reflow andmotion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:06:13.845506+00:00"
+}

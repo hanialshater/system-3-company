@@ -1,0 +1,138 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "list-doubling-copies",
+  "demoVersion": 2,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/list-doubling-copies",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "list-doubling-copies",
+    "domain": "cs",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/cs/list-doubling-copies/meta.json",
+    "metaSha256": "8413e000507a2dc31881964a0b2f11703f1dd217d6bde10ecbd12bf33152d78e",
+    "demoSha256": "41f7c3147641a856f8bc382de239b9e65df1f13a5270e6f943e0a77b08ca614c",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/list-doubling-copies",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/list-doubling-copies.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected 120 copies and locked it in.",
+    "exploration": "Append filled capacity one with zero copies. Grow copied one into capacity two. Fill then double at capacities two, four and eight accumulated three, seven and fifteen copies, with appends two, four and eight. Run to sixteen reached sixteen appends/fifteen copies and0.94 ratio. Start over restored zero/zero and capacity one; rerun reproduced sixteen/fifteen.",
+    "reveal": "Corrected to fifteen, summed one plus two plus four plus eight, explained each resize buys equally many copy-free appends and n appends cost n minus one copies at powers of two. Distinguished slow individual grow from cheap average.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected. Numbered boxes and green copied subset, capacity text, copy sum and counters legible. After automatic rerun status caption still described last copy operation although all sixteen boxes filled; metrics consistent.",
+    "previewIsolation": "Preview banner said history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete resize rule supports exact accumulated-cost commitment.",
+      "evidence": "Fifteen versus thirty versus120 after sixteen appends.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Manual initial resize, later doublings, full run and reset distinguish append from copy.",
+      "evidence": "Copy totals one,three,seven,fifteen observed.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal links geometric sum to purchased free capacity and average cost.",
+      "evidence": "Eight copied creates room for eight more.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Separate append/copy counters and power-of-two qualification clarify claim.",
+      "evidence": "n minus one only stated for powers of two.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General amortized principle supplied within same list without new application.",
+      "evidence": "No alternative resizable structure tested.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Complete mode audit not conducted.",
+      "evidence": "Text capacity and counters available; screen reader, keyboard, contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Repeated whole-list copying adds only fifteen copies for sixteen appends.",
+      "evidence": "Sub-one copy average at full power-of-two capacity.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Boxes and copied subset make capacity investment tangible.",
+      "evidence": "Eight copied into sixteen boxes.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Manual append/grow and batch controls invite process exploration.",
+      "evidence": "Reset and automatic run reproduce total.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Clarifies why dynamic arrays can append cheaply on average.",
+      "evidence": "Worst individual operation versus average distinction.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Connects geometric series to amortized work.",
+      "evidence": "n minus one copies at powers of two.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simple boxes and counters support geometric-series reasoning.",
+    "conceptualDemand": "Separate occasional resize costs from aggregate append costs.",
+    "interfaceBurden": "Five contextual buttons and counters.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "Dynamic list capacity and amortized cost.",
+    "notationRepresentationBurden": "Powers of two, summed integers and average ratio."
+  },
+  "whyCool": "A costly copy can buy enough future space to keep the long-run average small.",
+  "caveat": "Copies are the chosen work unit, not total runtime; spare-memory overhead and alternative growth factors are not explored.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Keyboard audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T21:03:21.776343+00:00"
+}

@@ -1,0 +1,103 @@
+{
+  "slug": "shoes-opposite-ends",
+  "demoVersion": 2,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/shoes-opposite-ends",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted 18cm for toe12/heel6 pair toe-to-heel.",
+    "At bag28 toes-together24 leaves4; reversed18 leaves10. Bag26 leaves2 versus8.",
+    "Reveal explains complementary taper without squashing and explicitly even taper idealization. Screenshot confirms tapered shapes,prose right clipped."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple width sums.",
+    "conceptualDemand": "Complementary cross sections.",
+    "interfaceBurden": "Two modes,bag slider."
+  },
+  "whyCool": "Rotating one shape can shrink the pair's envelope without compressing either object.",
+  "caveat": "Ideal evenly tapered outlines; real fit varies and prose clips at tested viewport.",
+  "effort": "Prediction,A/B,bag width change,reveal,inline screenshot.",
+  "provisionalBucket": "solid-viewport-followup",
+  "bucketReason": "Concrete bounded geometry contrast.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete width choice using given geometry.",
+      "evidence": "18 versus24.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Orientation contrast and bag clearance variation.",
+      "evidence": "24/18 and bag28/26.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains complementarity and shape limitation.",
+      "evidence": "Even taper,real outlines vary.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clear table but clipping at tested viewport.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete packing method and condition.",
+      "evidence": "Turn one shoe,depends on complementary outlines.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Same objects smaller bounding width.",
+      "evidence": "Six cm reduction.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Complementary outlines make fit visible.",
+      "evidence": "Opposed tapered shoes.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Orientations and bag width.",
+      "evidence": "Two layouts.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Packing central.",
+      "evidence": "No compression needed.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Shape complementarity versus total volume.",
+      "evidence": "Bounding width changes.",
+      "confidence": "medium"
+    }
+  }
+}

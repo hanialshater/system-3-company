@@ -1,0 +1,124 @@
+{
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "Predicted 0.45 and locked it in; no-history banner present. Trust chrome 11/11 visible and ignored.",
+    "Ran 0.45: distance <0.001 after 10; 0.05:1.39; 0.95:1.39 with zigzag description;0.50:0 one hop;1.05:10.37 off valley. Comparison counters persisted across presets.",
+    "Show me why explained multiplier 1−2×step size and runaway beyond1; connected to neural-network learning rate.",
+    "Inline visual inspection: dark1257x936 screenshot, clear valley and dotted crossing arcs; narrow centered card scrolls internally and last reveal paragraph extends below viewport."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Three plausible numeric alternatives, actual commitment.",
+      "evidence": "Locked0.45",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Five controlled presets expose slow,oscillating,exact and divergent outcomes.",
+      "evidence": "Five observed run results",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Resolves prediction with exact observed numbers and explains divergence boundary.",
+      "evidence": "Reveal multiplier and five outcomes",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Controls and retained comparison legible; long reveal needs scrolling.",
+      "evidence": "Inline screenshot and preset feedback",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Neural-network learning rate named but conditions for moving from toy valley not explained.",
+      "evidence": "Reveal final paragraph",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No mode audit.",
+      "evidence": "Untested",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Correct prediction but equal distances at opposite rates and runaway add reversal.",
+      "evidence": "0.05/0.95 equal1.39",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Valley arcs and position carry five contrasting mechanisms.",
+      "evidence": "Screenshot plus preset outcomes",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 4,
+      "reason": "Five reusable presets invite controlled comparison.",
+      "evidence": "Five runs",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Explicit learning-rate tuning use, without real model task.",
+      "evidence": "Reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 4,
+      "reason": "Slow convergence,oscillation,one-hop optimum,divergence observed.",
+      "evidence": "Five runs",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links slope,rate and signed distance multiplier with supported numeric outcomes.",
+    "conceptualDemand": "linked relations",
+    "interfaceBurden": "low; internal scrolling",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: slope and learning-rate concepts",
+    "notationRepresentationBurden": "moderate: signed multiplier formula"
+  },
+  "whyCool": "Rates0.05 and0.95 end equally far away despite radically different paths.",
+  "caveat": "Toy quadratic valley does not demonstrate training a real neural network.",
+  "effort": "~3minutes",
+  "missingEvidence": [
+    "Accessibility modes",
+    "Real model application"
+  ],
+  "screenshots": [],
+  "viewport": {
+    "width": 1257,
+    "height": 992,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3c",
+  "date": "2026-10-18",
+  "notApprovedForServing": true,
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, number comparisons and familiar household objects; no domain theory assumed.",
+  "fatalFindings": [],
+  "slug": "gradient-descent",
+  "demoVersion": 4,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/gradient-descent",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "ab163cc0cd2e5ac368d86b6f966baf121dfb15c27f63c2c2027d052e32aecde6",
+    "metaSha256": "6b2cb3cca83c6832ea3f4e60fa544f8da59e2a863bdef89d3df643a6e7328548"
+  }
+}

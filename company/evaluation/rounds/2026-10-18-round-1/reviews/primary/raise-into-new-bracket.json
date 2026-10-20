@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "raise-into-new-bracket",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/raise-into-new-bracket",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "38365e75616f9d75ca4d0904dd2e9fe0d0b984956bfe913fa03f99b570804903",
+    "demoSha256": "79048aeabc5c29a1850b83ad4dfbbde40e04fb0dbe5db782b58819a88ac4089b",
+    "metaPath": "src/demos/economics/raise-into-new-bracket/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected It falls and locked the take-home change prediction when pay rises from $19,000 to $21,000 under invented 10% and 30% marginal brackets.",
+    "exploration": "At $19,000 take-home was $17,100. Raised to $20,000: $18,000 take-home, up $900. Raised to $21,000: $18,700, up $1,600 overall. Raised again to $22,000: $19,400, showing the next $1,000 adds $700 after tax.",
+    "reveal": "The reveal corrected the answer to a $1,600 increase and explained only the $1,000 above $20,000 in the original scenario pays 30%. It stated the lower dollars retain their previous rate and disclosed invented brackets without credits or other taxes.",
+    "visual": "Inspected the inline dark 1257 by 936 screenshot at $21,000. A dashed threshold separated a large keep 90% region from a narrow above-threshold slice labelled 30% only here. Take-home, change and average tax were clearly displayed.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The prompt directly tests the common all-income bracket interpretation.",
+      "evidence": "Selected a fall in take-home before crossing the threshold.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Incremental raises expose different marginal gains without a discontinuity.",
+      "evidence": "The first $1,000 added $900 and each tested above-threshold $1,000 added $700.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal explains the preserved lower slice and accurate original comparison.",
+      "evidence": "It quotes $17,100 to $18,700 and the $1,000 above the line.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "The threshold and slice labeling distinguish marginal from average taxation.",
+      "evidence": "The screenshot labels 30% only here while average tax reads 11.0%.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "The reusable marginal principle is stated within the original tax model.",
+      "evidence": "No different bracket structure or new application is worked.",
+      "confidence": "high"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Entering a higher bracket changes the next slice rather than the whole paycheck.",
+      "evidence": "Take-home kept rising across $20,000.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "The narrow extra slice makes the misconception visibly wrong.",
+      "evidence": "Most income remains in the keep 90% region.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Increment buttons make the boundary easy to probe.",
+      "evidence": "Three $1,000 raises reveal the change in marginal gain.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "It clarifies how marginal brackets work in the stated system.",
+      "evidence": "The ending distinguishes the top rate from tax on all pay.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "The lesson combines threshold behavior, marginal gain and average rate.",
+      "evidence": "At $21,000 the top rate is 30% while average tax is 11%.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "Dollar slices and incremental raises make a new marginal-rate distinction accessible.",
+    "conceptualDemand": "Low to moderate: apply different percentages to different portions.",
+    "interfaceBurden": "Low: slider and plus or minus $1,000 buttons.",
+    "conceptualChallenge": "Crossing a threshold changes only the amount above it.",
+    "prerequisiteNovelty": "Marginal versus average tax rate is the central new idea.",
+    "notationRepresentationBurden": "Low: dollar readouts and a split rectangle."
+  },
+  "whyCool": "A feared tax cliff becomes a visible bend in how much of the next dollar is kept.",
+  "caveat": "These invented brackets omit credits, other taxes and benefit interactions; the conclusion is limited to this system.",
+  "missingEvidence": [
+    "No alternate bracket or benefit system was tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

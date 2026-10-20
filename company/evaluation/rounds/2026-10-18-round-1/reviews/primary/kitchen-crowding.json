@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "kitchen-crowding",
+  "demoVersion": 4,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/kitchen-crowding",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "kitchen-crowding",
+    "domain": "economics",
+    "status": "published",
+    "demoVersion": 4,
+    "metaPath": "src/demos/economics/kitchen-crowding/meta.json",
+    "metaSha256": "7fcc67e789e65a81c0f930add5d8dd490bb4f5195d4200a45a25edb1258a98c1",
+    "demoSha256": "a6c691407aff53e44bd13b28f46900152ac3e979482254e52920ca0b4390ddde",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/kitchen-crowding",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/kitchen-crowding.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Chose40 against fewer/more than40; locked it in.",
+    "exploration": "Two workers one oven18. Added worker3:24,increment6. Worker4:28,increment4. Fill kitchen8:30,worker8 adds nothing. Added second oven:8 workers56,worker8 adds4.",
+    "reveal": "Corrected fewer than40; explained10+8+6+4=28,one-oven cap30,and observed second-oven56. Named fixed-input diminishing returns; explicit made-up model and real-kitchen caveat.",
+    "visual": "Actual1257 \u00d7936 dark screenshot inspected. Stacked marginal-output slices10,8,6,4 per oven and dashed proportional80 outline show shortfall. Ovens,worker dots,counters and full reveal legible.",
+    "previewIsolation": "No-history evaluation banner present.",
+    "blinding": "5/5 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear proportional-output misconception with plausible less/more choices.",
+      "evidence": "40 commitment versus28 result.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Worker increments,saturation and second oven show fixed-input mechanism.",
+      "evidence": "18\u219224\u219228\u219230;second oven56.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Uses actual marginal outputs and changed oven count to explain model.",
+      "evidence": "28 and30 versus56;fixed-input condition.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Labels,counters and stacked slices clearly show tested desktop sequence.",
+      "evidence": "Actual screenshot56 with two ovens.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General fixed-input principle with conditions,but no concrete new setting.",
+      "evidence": "When one input fixed,more another helps less.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient access audit.",
+      "evidence": "Keyboard,focus,contrast,phone,zoom and motion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed40 contradicted by28 and eventual crowding cap30.",
+      "evidence": "Four workers28;even eight only30.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Decreasing stacked slices and oven grouping carry mechanism.",
+      "evidence": "Two-oven screenshot per-worker increments.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Adding workers,filling and changing ovens enable reversible discovery.",
+      "evidence": "Three worker counts and second oven.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete staffing versus equipment capacity question central.",
+      "evidence": "Eight workers30 or56 depending ovens.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Marginal decline,saturation and relaxed constraint linked.",
+      "evidence": "Worker8 zero with one oven,four with two.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links marginal output to fixed equipment and saturation.",
+    "conceptualDemand": "Distinguish total from extra-worker contribution and compare fixed-input change.",
+    "interfaceBurden": "Low: descriptive worker/oven controls and labels.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: marginal return and fixed input.",
+    "notationRepresentationBurden": "low: counts and stacked sums."
+  },
+  "whyCool": "Adding a second oven makes the same eight workers jump from30 to56 pizzas an hour.",
+  "caveat": "Illustrative numbers only; no costs,wages or second industry application tested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Removing workers and returning to one oven not tested.",
+    "Keyboard,focus,contrast,phone,zoom/reflow and motion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:21:28.303198+00:00"
+}

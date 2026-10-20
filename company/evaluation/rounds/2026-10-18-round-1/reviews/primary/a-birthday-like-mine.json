@@ -1,0 +1,130 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy/simple charts; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "observations": [
+    {
+      "id": "p",
+      "phase": "prediction",
+      "text": "No-history preview verified. Chose23vs183/253and locked; trust7/7ignored. Initial diagram showed two probability bars, comparisons versus pair counts, numeric results masked."
+    },
+    {
+      "id": "e",
+      "phase": "exploration",
+      "text": "23preset:matchesyou6.1%,anytwo50.7%;183:39.5%,100.0%;253:50.0%,100.0%,reveal unlocked. Slider keyboard Home=>1other person:0.3%matchesyou,0.0%anytwo; reveal remained available."
+    },
+    {
+      "id": "r",
+      "phase": "reveal",
+      "text": "Not quite253; cites tested23/183/253numbers even while slider remains1. Explains23others create253pairs among themselves but you only23comparisons; each1in365; misses364/365multiply.253pairs/threshold coincidence acknowledged. Screenshot initial bars viewed inline only."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Familiar birthday intuition tested against plausible numerical alternatives.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Three meaningful contrasts and minimum range distinguish event probabilities.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects stored results to comparisons and multiplying misses.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clear bars but other-person/event population wording requires care.",
+      "evidence": "p,e,r",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable count-comparisons principle; assumptions not stated fully.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Insufficient mode testing.",
+      "evidence": "e",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "23at50%anypair gives only6.1%personal match.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Paired bars and comparison counts carry distinction.",
+      "evidence": "p,e",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversible range and presets.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Birthday context concrete without application exercise.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Pair counting, complements and multiplication linked.",
+      "evidence": "r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Core contrasts pair comparisons with fixed-person comparisons; multiplicative misses supports threshold.",
+    "conceptualDemand": "Two probability events, counting pairs and complement multiplication linked; no derivation required to operate.",
+    "interfaceBurden": "Three preset buttons/one range; 'other people' versus room wording needs attention."
+  },
+  "whyCool": "At23others the two bars diverge to6.1%versus50.7%, exposing why a shared birthday need not match yours.",
+  "caveat": "Reveal assumes365equally likely independent birthdays without explicit real-world limitation in observed text; anytwo excludes you despite general room phrasing.",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Only range Home keyboard operation observed; broader accessibility modes untested."
+  ],
+  "screenshots": [],
+  "slug": "a-birthday-like-mine",
+  "demoVersion": 2,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/a-birthday-like-mine",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "5930d3ada769c513155c7c01424a76effaa527b83066a80afc5f095e4b3b0e8b",
+    "metaSha256": "a57a394384f121a077845c25123c7886220a645b72982a11e87b1404ead2f6ee"
+  }
+}

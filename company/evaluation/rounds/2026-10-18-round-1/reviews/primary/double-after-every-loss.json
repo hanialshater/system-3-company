@@ -1,0 +1,104 @@
+{
+  "slug": "double-after-every-loss",
+  "demoVersion": 2,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/double-after-every-loss",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predictionfaircoinbet1doubleafterlossstopwinorsixlosses,expectedprofit+0.98/0/-0.98; chose+0.98.",
+    "Tenrounds10wins+10;untilbust33rounds32wins1bust-31;5000rounds4924wins76busts+136,mean+0.03.",
+    "Revealactualsampleplus63/64x1-1/64x63=0;manysmallwinsrare63losses;finite-runmean differsfromexpectation.",
+    "Screenshot cumulativeprofit withcliffs,counts,andreadablefullprose; ordinaryinternalverticalscroll."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Requires weightedaverage anddistinguishing roundfromindividualcoinflip.",
+    "conceptualDemand": "Highwinprobability doesnotimplypositiveexpectedprofit.",
+    "interfaceBurden": "Simplethreecomparisonbuttons andcounts."
+  },
+  "whyCool": "One63dollarbust canerase63one-dollarwins,sofrequentvictoriesdonotcreatefree money.",
+  "caveat": "Toyfaircoinandfixedsix-losslimit; noactualgambling; noindependenttransferexercise.",
+  "effort": "Prediction,10rounds,untilbust,5000rounds,reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Concreteexpectationcontrast andreadablepayoff; transferpotentialnotmeasured.",
+  "quality": {
+    "prediction": {
+      "score": 4,
+      "reason": "Plausiblehighwinfrequency versus expectedprofit alternatives.",
+      "evidence": "+0.98vs0 with6losslimitexplicit.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Short,long,andstopatbust comparisons expose rarelosses.",
+      "evidence": "10rounds+10 then33rounds-31 then5000+136.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Resolvesoriginalprediction andshowsfinite-samplelimit withactualmean.",
+      "evidence": "Expected0 versusobserved+0.03after5000.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readablerounddefinition,counts,andexpectationformula.",
+      "evidence": "Roundmeansseriesendingwinor6losses.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalstrategyprinciple stated butnewapplicationnotexercised.",
+      "evidence": "Doublingcannotchangefairgameaverage.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 4,
+      "reason": "Manywins coexistwithzeroexpectation andsharpdrawdowns.",
+      "evidence": "10straightwins thenbust erasesgain.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Profittrajectorycliffs show asymmetry.",
+      "evidence": "Wins/bustcounts linkedtocurve.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Runtoyrounds andchasefirstbust.",
+      "evidence": "Play10/untilbust/5000.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Riskstrategy misconception centraltoexercise.",
+      "evidence": "Rarelarge losses versusfrequentwins.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Expectation,skewedoutcomes,finite-samplevariation.",
+      "evidence": "63/64weightedpayoffs.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "slug": "lh-duty-cycle-energy",
+  "demoVersion": 2,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-duty-cycle-energy",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Selected 0.6 kWh for 100 W running a quarter of a 24-hour day.",
+    "Tests gave 0.6 versus 2.4 kWh. Minimum one hour gave 0.025 versus 0.1 kWh.",
+    "Screenshot showed both lines almost on the baseline against 4.8 kWh full scale at one hour. Reveal preserved original/current values and explained active-time fraction and constant on-power."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Power-energy conversion and duty fraction.",
+    "conceptualDemand": "Multiply actual on-time by power.",
+    "interfaceBurden": "Simple tests and duration slider."
+  },
+  "whyCool": "A power label does not tell you daily energy without active time.",
+  "caveat": "Assumes constant 25% duty and zero off-power; fixed graph scale makes small intervals visually subtle.",
+  "effort": "Prediction, both tests, minimum duration, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Useful misconception and explicit assumptions.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Specific plausible always-on misconception with sufficient inputs.",
+      "evidence": "0.6 versus 2.4 kWh choices.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Duration change scales both assumptions consistently.",
+      "evidence": "24 to 1 hour.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains why rated power alone is insufficient.",
+      "evidence": "Multiply elapsed time by on-time fraction.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Power and off-power assumptions explicit.",
+      "evidence": "100 W on, 0 W off, 25% or 100%.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Appliance variability and duration assumptions constrain applying model.",
+      "evidence": "Check own ratings and tariffs; toy model.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Fourfold difference supports hook.",
+      "evidence": "Quarter-time versus all-day.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Common-scale lines support comparison but short-interval detail is hard to see.",
+      "evidence": "Near-baseline lines at one hour.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Two tests and duration slider.",
+      "evidence": "Duty fraction fixed.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Energy calculation is central.",
+      "evidence": "Rated power versus active time.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Separates power, elapsed duration and duty fraction.",
+      "evidence": "Conversion W h to kWh.",
+      "confidence": "medium"
+    }
+  }
+}

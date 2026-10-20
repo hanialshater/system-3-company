@@ -1,0 +1,156 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1b",
+  "date": "2026-10-18",
+  "slug": "herd-immunity",
+  "domain": "life",
+  "demoVersion": 5,
+  "expectedVersion": 5,
+  "batchId": "round1-03",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "6708c28ef8f62718f650d7ada4e2927a4ee8b5a93dc8722a75af2331dfca126a",
+  "demoSha256": "7f15f44cf4e349524fc383a0be4e70e41779f9a3c20098df2fa922b61eb4c0d0",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/herd-immunity",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "evidenceMode": "live-browser-computer-use",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "previewIsolationObserved": true,
+  "visibleTrustChrome": "12/12 claims checked; ignored, unopened",
+  "phaseCoverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true,
+    "pixelInspection": true
+  },
+  "observations": [
+    {
+      "id": "p",
+      "action": "Selected Nearly all80; Lock it in",
+      "outcome": "Prediction retained; controls unlocked. Before commitment Each case infects4x20%=.8(shrinks) already visible."
+    },
+    {
+      "id": "e",
+      "action": "Run80% to end; select50,70,75%",
+      "outcome": "80:2/80 infected, average4;50:168/200, average146;70:2/120 fizzled by luck, average21;75:2/100, average8. Factors.8,2,1.2,1 displayed. Selection after completed run automatically completes alternate scenarios."
+    },
+    {
+      "id": "v",
+      "action": "Inspected75%screenshot",
+      "outcome": "400dot town and four-state legend, exact factor and average visible;1257x936dark no horizontal cutoff."
+    },
+    {
+      "id": "r",
+      "action": "Show me why",
+      "outcome": "Handful; quotes actual80,75,50 counts; below/at/above1 threshold, stochastic fizzle and200-run average; random mixing/perfect immunity toy; clustering can sustain outbreaks above threshold."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Commitment works but precommit .8shrinks readout cues expected small outbreak.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Four immunity contrasts distinguish threshold and lucky fizzle from population average.",
+      "evidence": "e,v",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Observed counts and factors connected to threshold with explicit stochastic/model limitations.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Town legend, individual run and200runaverage distinguished; feedback names luckyfizzle.",
+      "evidence": "e,v",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Explicit new clustering case limits threshold applicability to random mixing/perfect-immunity toy.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No mode checks.",
+      "evidence": "v",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Nearlyall prediction reverses to2/80;70%can grow yet fizzles.",
+      "evidence": "p,e",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Dot outcomes and factor readouts carry population shielding contrast.",
+      "evidence": "v,e",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Immunity scenarios support comparative exploration.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Protection of unprotected people central with model caveats.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Threshold,stochasticfizzle,average and clustering limitation linked.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Combines susceptible fraction,case multiplier and stochastic run versus average with explicit support.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": {
+      "level": "moderate",
+      "reason": "R0 and epidemic threshold introduced."
+    },
+    "notationRepresentationBurden": {
+      "level": "moderate",
+      "reason": "Percentproducts,1-1/R0 and finite averages."
+    }
+  },
+  "whyCool": "At70% immunity the multiplier says can grow while this run fizzles by luck, making the average-versus-one-outbreak distinction visible.",
+  "caveat": "Made-up disease, random mixing and perfect immunity; real vaccines and clustered contacts differ.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "New-outbreak repeats and60/90% scenarios;phone/accessibility untested."
+  ],
+  "reviewState": "complete-real-walkthrough",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  }
+}

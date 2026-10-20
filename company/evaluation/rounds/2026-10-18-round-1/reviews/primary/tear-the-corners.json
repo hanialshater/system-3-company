@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "tear-the-corners",
+  "demoVersion": 2,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/tear-the-corners",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "941b69ff8954a88052d808f7a4186eef9716d4849c28d48e79d702e0a3b36f8a",
+    "demoSha256": "849b505c755e11ba32ca33898ab2f8f8e1e94d8ad671109704ffb15496c6f41e",
+    "metaPath": "src/demos/math/tear-the-corners/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected it depends on the triangle and locked the shape made by assembling its three corners.",
+    "exploration": "Tore the tall triangle corners: 70 + 65 + 45 = 180 degrees. Switched to flat: 25 + 30 + 125 = 180. Switched to lopsided: 40 + 110 + 30 = 180. In each state the three sectors filled a straight line at the top.",
+    "reveal": "The reveal corrected the answer to a straight line and accurately counted tall, flat and lopsided as three tested shapes. It explained the dashed line is parallel to the base, so the moved base angles fit the gaps beside the top angle, and that growing one corner requires others to shrink.",
+    "visual": "Inspected the inline dark 1257 by 936 screenshot of the flat triangle with corners assembled. Three differently colored sectors filled a semicircle under a dashed horizontal line through the apex. The triangle and numeric 180 degree total remained visible.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The prompt distinguishes shape-dependent individual angles from an invariant total.",
+      "evidence": "Selected dependence on triangle shape.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Tearing and changing shapes expose the same assembled total across contrasting triangles.",
+      "evidence": "Three very different angle triples each fill 180 degrees.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal explains the invariant with a parallel-line argument and actual cases.",
+      "evidence": "It names all three tested shapes and describes how the base corners fit beside the apex.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Colored corners and a fixed dashed line make the assembly readable.",
+      "evidence": "The flat shape's sectors fill one semicircle with no gap or overlap.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "The invariant is generalized but no new geometry problem is applied.",
+      "evidence": "The walkthrough stays with three preset triangles.",
+      "confidence": "high"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Changing the shape changes every angle but not their total.",
+      "evidence": "Tall, flat and lopsided all sum to 180 degrees.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Moving the same colored corners to a straight line supports the reason.",
+      "evidence": "The parallel dashed line provides the common target for every shape.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "The paper-tearing metaphor makes a geometric fact approachable.",
+      "evidence": "A toggle assembles corners and shape choices transform the source triangle.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "It gives a mental model for the triangle angle sum.",
+      "evidence": "The reveal distinguishes a straight angle from a right angle.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "The lesson adds an argument rather than relying only on examples.",
+      "evidence": "Parallel lines explain why moved base angles exactly fill the remaining gaps.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "The visual corner assembly is direct, with a small step to parallel-line reasoning.",
+    "conceptualDemand": "Low to moderate: recognize a conserved total as individual angles change.",
+    "interfaceBurden": "Low: tear toggle and three shape choices.",
+    "conceptualChallenge": "Connect rearranged angles to parallel lines rather than treating the picture as coincidence.",
+    "prerequisiteNovelty": "Degree measure and angle relationships are used.",
+    "notationRepresentationBurden": "Low: colored sectors, a dashed line and short angle sums."
+  },
+  "whyCool": "Three corners taken from radically different triangles always tile the same straight angle.",
+  "caveat": "Only preset flat-plane triangles are available; there is no free vertex manipulation or fresh angle-solving problem.",
+  "missingEvidence": [
+    "No fresh triangle or distinct application was tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

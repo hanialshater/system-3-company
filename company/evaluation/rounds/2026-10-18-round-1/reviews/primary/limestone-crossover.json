@@ -1,0 +1,104 @@
+{
+  "slug": "limestone-crossover",
+  "demoVersion": 3,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/limestone-crossover",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "PredictionendothermicCaCO3decomposition1barCO2threshold100/400/850/2000C; chose400. PrelockshowsdeltaH179butnodatafordeltaS.",
+    "25C TdeltaS48deltaG+131;500C124notfavored;900C188deltaG-9;Findswitch845C.",
+    "Reveal entropyincreasefromgas multipliedbytemperatureovercomesheatcost; wordsgobyarself/nothinghappened, no reactionratebehavior shown.",
+    "Screenshot readabletwo-barcomparison andthreshold; rightedgeprose slightcutoff/internalverticalscroll."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Thermodynamicfunctions andentropynotwithindeclarednoviceboundary.",
+    "conceptualDemand": "Distinguishheatcost,entropygain,temperature,thermodynamicfavorability.",
+    "interfaceBurden": "Simplebuttons;formulaheavylabels."
+  },
+  "whyCool": "Aheatcost thatneverchanges canbeovertakenbyanentropygain thatgrowswithtemperature.",
+  "caveat": "Thresholdnumbersnotindependentlyaudited;modeldoesnotshowreactionkinetics;predictionlacksrequiredentropyinput.",
+  "effort": "Prediction,allthreetemperatures,threshold,reveal.",
+  "provisionalBucket": "needs-review",
+  "bucketReason": "Usefulbarmechanism butnovicepredictionandthermodynamicwordingneededitorialreview.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Exactthreshold notinferable fordeclarednovicewithoutentropyinput.",
+      "evidence": "DeltaSvalue absentbeforeprediction.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Controlledtemperaturepresets showbarcrossing andsignchange.",
+      "evidence": "25/500/900C and845threshold.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Explains algebraicbalance butentropyandrate/thermodynamic distinction insufficientlydeveloped.",
+      "evidence": "Gasraisesentropy;gobyitself phrasing,onlybarsobserved.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Formula/units/novelterms demandprerequisites;smallcutoff.",
+      "evidence": "DeltaG/H/S andKelvinconversioninchart.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalendothermicspontaneityclaim butnovelcase notpracticed.",
+      "evidence": "Absorbingheatdoesnotforbidchange.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Heat-absorbingchange canbefavored athightemperature.",
+      "evidence": "DeltaGpositivebecomesnegative.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Crossingbars makealgebraicthreshold visible.",
+      "evidence": "179versus188kJ.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Threepresets andthresholdbutton.",
+      "evidence": "Findswitch reveals845C.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Specializedthermodynamicsillustration.",
+      "evidence": "Limestonedecompositioncase.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Enthalpy,entropy,temperature competition.",
+      "evidence": "Signchange underfixedCO2condition.",
+      "confidence": "medium"
+    }
+  }
+}

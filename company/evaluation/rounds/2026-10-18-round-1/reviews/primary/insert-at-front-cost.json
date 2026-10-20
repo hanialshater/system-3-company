@@ -1,0 +1,105 @@
+{
+  "slug": "insert-at-front-cost",
+  "demoVersion": 3,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/insert-at-front-cost",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction asked existing items moved inserting at front of six numbered contiguous slots; selected1.",
+    "InsertedN and looked upitem4: rowN,A,B,C,D,E,F,moved6,lookup1jump.",
+    "Switchchain preserved operations and showed moved0,twoarrowsredrawn,lookup3hops; oldstartarrow faded.",
+    "Reveal compared observed operation costs and named array/linkedlist,includingk-1hop generalization.",
+    "Inline1280x720 light screenshot: complete readable chain,costs and prose. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Concrete row and chain analogy supports unfamiliar CS terms.",
+    "conceptualDemand": "Sequential versus directaccess.",
+    "interfaceBurden": "Three clear buttons and readable layout."
+  },
+  "whyCool": "The same seven items reveal opposite costs simply by changing how they are connected.",
+  "caveat": "Fixed-size illustration; array lookup described instant in abstract model; no accessibility audit.",
+  "effort": "Prediction,rowinsert/lookup,chaincomparison,reveal and inline screenshot.",
+  "provisionalBucket": "strong-gentle",
+  "bucketReason": "Readable concrete representation tradeoff.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Precise physical arrangement and clear count alternatives.",
+      "evidence": "Sixexistingitems versus newitem.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Same operations across representations reveal opposing costs.",
+      "evidence": "6versus0moved,1versus3lookup.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains observed tradeoff and general linked lookup cost.",
+      "evidence": "Arrayversuslinkedlist.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readable labels,costs,oldarrow and explanation.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General representation tradeoff but no new workload/application.",
+      "evidence": "Same insertion anditem4lookup.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Cheap insertion trades off against lookup.",
+      "evidence": "Opposed costreadouts.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Slots versus arrows make operation costs visible.",
+      "evidence": "Oldstartarrow and chainhops.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Two operations and representation switch.",
+      "evidence": "Insert,lookup,switch.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Data-structure choice is central.",
+      "evidence": "Array/listtradeoff.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Representation determines computational cost.",
+      "evidence": "k-1hops generalization.",
+      "confidence": "medium"
+    }
+  }
+}

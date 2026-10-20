@@ -1,0 +1,104 @@
+{
+  "slug": "glider-walks",
+  "demoVersion": 2,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/glider-walks",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted10cells after4steps of5cellglider;explicit2/3survival,3birth,othersdie rules;alternativesgone/sameshape moveddiagonally.",
+    "Steppedgenerations1,2,3,4;each5live. Countoverlay shows neighbournumbers,birth+ anddeath\u00d7. Gen4shape shiftedright/down withdashedoriginaloutline. Toggledcountsoff,replayedgen1then4.",
+    "Reveal recalls5throughfoursteps,sameshapeonecellright/down;explainslocalcountswithoutglobalmoverule,thenassertsGameofLifeuniversalcomputation.",
+    "1280x720light gridreadableafterordinaryinternalupscroll;finalproserightedgeclipped."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simplelocalcounts butfour-stepgridreasoningrequiresattention.",
+    "conceptualDemand": "Synchronouslocalupdates andemergence.",
+    "interfaceBurden": "Presetgenerationsandcounttoggle;internalverticalscroll."
+  },
+  "whyCool": "No cell is told to move, yet births and deaths reproduce the pattern one square diagonally away.",
+  "caveat": "Fixedglideronly,nopatterneditingtested. Universalcomputationclaimnotdemonstratedorindependentlyaudited. Prosecutoff.",
+  "effort": "Prediction,fourgenerationsteps,counttoggle,replay,reveal,three screenshots.",
+  "provisionalBucket": "promising-with-fix",
+  "bucketReason": "Visiblelocal-to-globalmechanism;fixlayout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicitlocalruleandstartingpattern supportdirectsimulationbelief.",
+      "evidence": "Four-stepglideroutcomealternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Step/replayandcountoverlay exposecausaltransitions,butfixedpatternonly.",
+      "evidence": "Fourgenerations andcounttoggle.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Linksactualstatesandshapeoffsettolocalemergence;computationalextensionnotdemonstrated.",
+      "evidence": "Norulesaysmove,yetpatterntravels.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Countsandbirth/deathmarks clear;densegridrequiresverticalscroll andproseclips.",
+      "evidence": "Fullgridvisibleafterupscroll;finalscreenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalemergenceidea andcomputationclaimwithoutnewpatternapplication.",
+      "evidence": "Noeditablegridobserved.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Localbirth/deathrules createapersistenttravellingpattern.",
+      "evidence": "Fivecellsreappearshiftedafter4steps.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Multiplecountedtransitions andghostoutlineexposemechanism.",
+      "evidence": "Birth/deathmarksandgenerationthumbnails.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Step,replay andoverlaycontrols enableinspection.",
+      "evidence": "Gen1through4thenreplay.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Computationalcuriosity,noconcreteapplicationdeveloped.",
+      "evidence": "Universalityonlymentioned.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Localruleversusglobalpatternidentityandmotion.",
+      "evidence": "Samecellcount,differentsites.",
+      "confidence": "medium"
+    }
+  }
+}

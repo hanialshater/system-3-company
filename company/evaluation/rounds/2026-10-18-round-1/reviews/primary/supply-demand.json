@@ -1,0 +1,106 @@
+{
+  "slug": "supply-demand",
+  "demoVersion": 2,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/supply-demand",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predictedmorethan40loavessellafter6to4pricecap;hookdidnotstateupwardslopingsupplyassumption.",
+    "At6want40baked40sold40. Cap4want60baked20sold20short40;capblockedpriceincrease.",
+    "Liftcapkept4initially;priceadjustbutton4.5gave55/25/25,thenfourtotalstepsreturned6and40/40/40. Price10gavewant0,baked80,sold0,surplus80.",
+    "Revealcorrectlyexplainedcapcaseandadjustmentdirection,disclosedstraightlines/madeupnumbers/nothingelsechanging,andlimitedclaimtoonecostratherthanpolicyverdict.",
+    "Inline1280x720 light screenshotafterinternalscrollupshowedbothlinesand80surplus;revealrightedgeclips. Atbalance6disabledadjustmentbuttonincorrectlylabelledSurplus.",
+    "Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Twoeconomicresponsecurvesandconstraintlogic.",
+    "conceptualDemand": "Quantitydemandedversussuppliedandsold.",
+    "interfaceBurden": "Clearcontrols,internalscroll;proseclipsandbalancebuttonlabel."
+  },
+  "whyCool": "Threecountersseparatewhatbuyerswant,whatbakersmake,andwhatcanactuallysell.",
+  "caveat": "Stateupwardslopingsupplyassumptionearlier;fixbalancedSurpluslabelandproselayout;illustrativemodel;accessibilityunknown.",
+  "effort": "Prediction,cap/lift,adjustmentsteps,equilibriumandsurplusboundary,reveal,chartinspectionandinline screenshots.",
+  "provisionalBucket": "strong-with-clarity-fixes",
+  "bucketReason": "Richcausalmodelandcarefullimits;hook/layout/disabledlabelneedprecision.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Clearquestionbutcapoutcomeneedssupplyresponsethathookleavesimplicit.",
+      "evidence": "Onlybaseline40at6specified.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Capbinding/unbinding,adjustment andsurplusboundary exposebothmarketresponses.",
+      "evidence": "4,4.5,6,10andcaptoggle.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explainsobservedconstraint andexplicitlyboundsmodelpolicyinterpretation.",
+      "evidence": "Onecostnotverdict caveat.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readablenumbers/chartbutclippedproseandmislabelleddisabledsurplusatbalance.",
+      "evidence": "6balancedand10surplus.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalmarketmechanismbutnofreshmarketapplication.",
+      "evidence": "Samebreadtoy.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Cheaperpriceincreaseswantbutreducessalesinmodel.",
+      "evidence": "60wantedonly20baked.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Crossinglinesandshortage/surplusspanexplainbindingconstraint.",
+      "evidence": "80surpluschart.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Cap,sliderandadjustmentstepssupportcausalexploration.",
+      "evidence": "Bindingandunbindingtested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Separatesintentionfrommodeledmarketresponse.",
+      "evidence": "Explicitpolicylimits.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Demand,supply,transactionsandpriceadjustmentdistinguished.",
+      "evidence": "Soldminimumofwant/baked.",
+      "confidence": "medium"
+    }
+  }
+}

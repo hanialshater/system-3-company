@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "rank-the-pairs",
+  "demoVersion": 2,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/rank-the-pairs",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "rank-the-pairs",
+    "domain": "ai",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/ai/rank-the-pairs/meta.json",
+    "metaSha256": "97515428c770f9f453cb2f986129e6c55f777563faa4f72ab71462e9a9780412",
+    "demoSha256": "4e3a72c3aa103b78de45a5f22ccbf0b2825efe405effaf9ed7590f91f1a9bf2d",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/rank-the-pairs",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/rank-the-pairs.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected75% against64%,86%,94% chance of spam ranking above real mail, ties half; locked it in.",
+    "exploration": "Checked first spam row:5/25 pairs,5 wins. Check all pairs:25 checked,21.5 wins. Screenshot shows three full winning rows;0.5 loses to0.6;0.3 loses to0.6 and0.4,ties0.3,wins0.2/0.1. Clicking next row after completion left state unchanged.",
+    "reveal": "Corrected86%,computed21.5/25 and half-credit tie. Named AUC and cutoff-free pair comparison. No ROC curve itself drawn.",
+    "visual": "Actual1257 \u00d7936 dark screenshots inspected. Labeled5\u00d75 matrix uses ticks,crosses andhalf symbol. Counts and full reveal readable.",
+    "previewIsolation": "No-history evaluation banner present.",
+    "blinding": "3/3 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Precise percentage choice mainly tests substantial pair bookkeeping before exploration.",
+      "evidence": "Ten decimal scores andfour percentage options.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Row then full matrix exposes wins,losses andtie contributions.",
+      "evidence": "First5wins;all21.5of25;half cell visible.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects actual matrix total andtie to threshold-free ranking metric.",
+      "evidence": "21.5/25=86%;tie half.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Row/column labels and explicit cell symbols clarify tested desktop path.",
+      "evidence": "Actual matrix screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable pairwise scoring principle but no concrete new classifier or applicability limit.",
+      "evidence": "Cutoff-free AUC definition.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient access audit.",
+      "evidence": "Keyboard,focus,contrast,phone,zoom andmotion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Committed75% contradicted by86%,but experience primarily counting.",
+      "evidence": "21.5 wins total.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Matrix visually organizes all pair cases.",
+      "evidence": "Ticks,crosses andhalf cell.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Reveal-row buttons offer limited fixed-case exploration.",
+      "evidence": "One row then allpairs;no editable scores.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete way to evaluate binary scorer without threshold.",
+      "evidence": "Spam-real ranking probability.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Pair ordering,tie handling andAUC naming connected.",
+      "evidence": "Halfcredit tie andcutoff-free interpretation.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Aggregates pairwise comparisons withhalfcredit into probability.",
+    "conceptualDemand": "Distinguish score ranking fromclassification threshold andcount weightedwins.",
+    "interfaceBurden": "Low:two buttons andclear matrix;completedrow button remainsactive butdoesnothing.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate:AUC andpairwise interpretation.",
+    "notationRepresentationBurden": "moderate:decimal scores,5\u00d75 matrix andpercentage."
+  },
+  "whyCool": "A single half-credit tie turns21 wins into21.5 and gives86% without choosing any cutoff.",
+  "caveat": "One fixed score set;ROC-area equivalence named without interactive ROC construction.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Other score distributions not available/tested.",
+    "Keyboard,focus,contrast,phone,zoom/reflow andmotion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:47:22.815464+00:00"
+}

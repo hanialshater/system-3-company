@@ -1,0 +1,104 @@
+{
+  "slug": "batch-by-setup",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/batch-by-setup",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted4 minutes less total waiting when A tasks are grouped; initial A1,B1,A2 gave21 minutes and two switches.",
+    "Swap first produced B1,A1,A2, which also groups the As but gave19 minutes and one switch.",
+    "Try target produced A1,A2,B1, giving17 minutes and one switch.",
+    "Reveal correctly explained21\u219217 by removing the earlier switch that delayed both later starts, and excluded real concentration-cost estimates."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple timeline sums; ambiguity is in wording rather than required background.",
+    "conceptualDemand": "Sum of start times and setup propagation.",
+    "interfaceBurden": "Run, swap and target buttons."
+  },
+  "whyCool": "A setup delay counts once on the clock but can count several times across waiting tasks.",
+  "caveat": "Prediction should name A1,A2,B1 explicitly; grouping can also mean B1,A1,A2, which saves only2 minutes.",
+  "effort": "Completed prediction, all three orders, screenshot and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Useful comparison with an under-specified prediction.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Grouping alone does not specify the claimed reduction: both19 and17 are achievable grouped orders.",
+      "evidence": "BAA reduces waiting2; AAB reduces4, but prompt only says group the As.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Three orders reveal that switch timing matters beyond switch count.",
+      "evidence": "ABA21, BAA19, AAB17.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Accurately explains the tested target ordering and why the earlier switch affects two starts.",
+      "evidence": "Target17, one switch;21\u219217.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Waiting definition is explicit but prediction omits which grouped order is meant.",
+      "evidence": "Two one-switch layouts have different total waiting.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete batching rule includes an explicit model limit.",
+      "evidence": "Two-minute setup is stated and real concentration costs are not estimated.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "One removed switch can save more total waiting than its own duration.",
+      "evidence": "Two-minute switch creates four total waiting minutes.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Timeline shows order but fixed80-minute scale makes five-minute blocks small.",
+      "evidence": "Three labeled tasks with starts and summary.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Swapping tasks changes the measured queue.",
+      "evidence": "Swap and target controls.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful planning principle with explicit setup assumption.",
+      "evidence": "Group tasks while considering where setup delays occur.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Separates number of switches from total waiting.",
+      "evidence": "BAA versus AAB.",
+      "confidence": "medium"
+    }
+  }
+}

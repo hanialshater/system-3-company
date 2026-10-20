@@ -1,0 +1,103 @@
+{
+  "slug": "start-after-the-deficit",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/start-after-the-deficit",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted E. From A cumulative net1,-2,2,0,1 and stall after leg2; from E1,2,-1,3,1 and stall afterleg3.",
+    "Shortcut 'start just after A lowest point' selected C:4,2,3,4,1, never belowzero. Screenshot showed driving-order bars all abovezero.",
+    "Also selected B then D; D visibly stalled immediately with net-2. Reveal correctly retained C success and original A dip despite current D chart, counted five tried starts and stated total+1 condition."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Signed cumulative sums and circular ordering.",
+    "conceptualDemand": "Cumulative minimum, wraparound and nonnegative total.",
+    "interfaceBurden": "Low: five start buttons plus shortcut."
+  },
+  "whyCool": "The worst point of one failed trip identifies where a successful trip should begin.",
+  "caveat": "Fixed net increments, unlimited tank model; chart continues hypothetical balances after actual stall. Cannot test negative total or capacity limits.",
+  "effort": "Browser prediction, all five start buttons, shortcut, screenshots of successful route and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Good controlled start contrasts and scoped cumulative-minimum explanation, with post-stall labeling limitation.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete reachable-loop task with explicit net amounts.",
+      "evidence": "A+1 B\u22123 C+4 D\u22122 E+1, empty tank.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Free start selection and minimum-based shortcut contrast success and failure.",
+      "evidence": "A/E fail versus C success, D immediate failure.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Original miss, observed minimum and successful shifted totals support rule.",
+      "evidence": "Deepest dip afterB; C net4,2,3,4,1; loop total+1 condition.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Failure labeled but full post-stall totals still called tank values.",
+      "evidence": "A chart continues2,0,1 after negative tank; hypothetical cumulative balance could be clearer.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "General start-selection rule includes total-net condition.",
+      "evidence": "Nonnegative whole loop and start after minimum; no need try every start.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "One cumulative scan replaces testing starts.",
+      "evidence": "AfterB dip points toC.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Driving-order positive/negative bars support feasibility.",
+      "evidence": "C all positive versus A/E deficit.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Learner freely tries five routes and shortcut.",
+      "evidence": "Changing start rotates sequence.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Algorithmic circular resource feasibility model.",
+      "evidence": "No real fuel capacity or station amounts.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Total feasibility and cumulative minimum tied together.",
+      "evidence": "Loop+1 and shifted baseline argument.",
+      "confidence": "medium"
+    }
+  }
+}

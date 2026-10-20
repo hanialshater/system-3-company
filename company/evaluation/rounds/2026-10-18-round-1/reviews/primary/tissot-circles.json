@@ -1,0 +1,137 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "tissot-circles",
+  "demoVersion": 2,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/tissot-circles",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "tissot-circles",
+    "domain": "geography",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/geography/tissot-circles/meta.json",
+    "metaSha256": "8b48bbe51ad8baa5c7245a94804721f573acc262f0d15e8db071063b5604688c",
+    "demoSha256": "255c294e006b4ab7516a991ac1673b2e0a8fe2995a24e134bd71e7f770e85ca8",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/tissot-circles",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/tissot-circles.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected About twice as big and locked it in.",
+    "exploration": "Mercator equator area ratio 1.00. At 30 N area 1.34, stretch 1.15 and width height 0.99. At 60 N area 4.16, stretch 2.00 and width height 0.98. Equal Earth at 60 N gave area 1.00 and width height 1.73. Home restored equator area 1.00 and shape ratio 0.74; restored 60 N.",
+    "reveal": "Corrected to about four times, explained two times stretch in each direction and finite-circle extra distortion, then equal-area shape change and unavoidable projection tradeoff.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected in both projections. Mercator northern circle was much larger and nearly round; Equal Earth northern oval and fixed equator oval had matching area. Reveal inner scroll clipped northern circle entirely at current position, though metrics and explanation were readable.",
+    "previewIsolation": "Preview banner said history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete area prediction tests confusing length with area.",
+      "evidence": "Twice chosen against same and four times.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Latitude and projection changes expose both area and shape tradeoffs.",
+      "evidence": "4.16 area at 60 N versus 1.00 after map switch.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal explains dimensional multiplication and acknowledges finite-circle difference.",
+      "evidence": "Two times two gives four; top edge stretched more.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Strong labels and ratios support contrast, but reveal clips the northern example from view.",
+      "evidence": "Inner scroll at reveal left fixed circle only visible.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General projection tradeoff supplied without a new use case.",
+      "evidence": "Every projection chooses distortion.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Complete mode audit not performed.",
+      "evidence": "Keyboard latitude reset worked; screen reader, contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Round shapes can carry fourfold area distortion.",
+      "evidence": "Mercator 60 N area 4.16 with shape ratio 0.98.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Matched ground circles and two map types reveal an invisible representation tradeoff.",
+      "evidence": "Equal Earth area 1.00 with squashed oval versus Mercator enlarged circle.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Moving circles and switching maps invites comparison.",
+      "evidence": "Latitude presets and projection toggle.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Supports interpretation of world-map area claims.",
+      "evidence": "Equal area versus shape preservation distinction.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Connects local scale, area multiplication and global map tradeoffs.",
+      "evidence": "Finite-circle qualification and sphere flattening limit.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Direct visual comparison introduces geometry and representation tradeoffs.",
+    "conceptualDemand": "Distinguish local shape, linear stretch and total area across map projections.",
+    "interfaceBurden": "One slider, two presets and map toggle; inner scrolling at reveal.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "Mercator and Equal Earth properties explained through controls.",
+    "notationRepresentationBurden": "Latitude, area and width-height multipliers plus two-dimensional multiplication."
+  },
+  "whyCool": "A map can keep a circle round while dramatically exaggerating its area.",
+  "caveat": "Reveal layout hides the northern circle at the tested scroll position; both full map states were inspected before reveal.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:20:33.838170+00:00"
+}

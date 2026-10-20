@@ -1,0 +1,104 @@
+{
+  "slug": "four-words-beat-eight-letters",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/four-words-beat-eight-letters",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted8letters morepossibilities than4words; explicituniformrandomlowercase26 andwordlist2048.",
+    "Initial8letters208827064576,21seconds exhaustive at10billion/s;4words17592186044416,29minutes.9letters5429503678976,9minutes;10letters141167095653376,4hours beats4words.5words36028797018963968,42days beats10letters.",
+    "Reveal recallsoriginal84foldratio andvisited10lettercrossover,explains26and2048 multipliers andequally-likely-random condition. Bars explicitlynumberofdigits,notlinearcount.",
+    "1280x720light screenshots fullprose/readouts readable."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simplechoices,butlargepowersandlogbarinterpretation.",
+    "conceptualDemand": "Independentchoicecounts multiply.",
+    "interfaceBurden": "Twoclearsliders."
+  },
+  "whyCool": "Four random words beat eight random letters by84times, but changing length can flip the winner again.",
+  "caveat": "Illustrativefixedofflineguessrate,exhaustive ratherthanexpectedtime;notcompleteaccountsecurityassessment. Assumesindependentuniformchoices. Actualcredentialentriesnotused.",
+  "effort": "Prediction,9/10lettercontrasts,5wordcontrast,reveal,two screenshots.",
+  "provisionalBucket": "launch-candidate",
+  "bucketReason": "Clearstate-awarecomparison andexplicitassumptions inreadablelayout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Fullyspecifiedrandomspaces permitreasoning beyondappearance.",
+      "evidence": "26^8 versus2048^4.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Independentlengthcontrasts repeatedlyreversewinner andexposemultipliers.",
+      "evidence": "8/9/10letters versus4words then5words.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Connects originalandcrossovercounts toproductrule andkeyrandomnesscondition.",
+      "evidence": "84timesmore;eachletter26,word2048;uniformchoices.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Exactcounts,exhaustivetimelabel andlogbarmeaning explicit;changedstatesreadable.",
+      "evidence": "Bar=numberofdigits;tryalltime.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Guidednewlengthchallenge requiresusingcountcomparison beyondoriginalpair,withrandomnesscondition explained.",
+      "evidence": "Canmaketheotherwin;10lettersbeats4words,then5wordsoverturns.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 4,
+      "reason": "Wordslargerspace despiteappearance,andwinnerchangeswithlength.",
+      "evidence": "4wordsbeats8/9letters;10letterswins;5wordswinsagain.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Pairedcounts,barsandtimes externalizeexponentialspaces.",
+      "evidence": "Severalcontrolledlengthcomparisons.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Twolengthsliders supportcrossoverpuzzle.",
+      "evidence": "Threechangedlengthstates.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Centralrandomcredentialsearchspaceinterpretation.",
+      "evidence": "Choicecountversusvisualcomplexity.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Productrule,uniformrandomness andguessingrateassumption.",
+      "evidence": "Exhaustivecountnotappearance.",
+      "confidence": "medium"
+    }
+  }
+}

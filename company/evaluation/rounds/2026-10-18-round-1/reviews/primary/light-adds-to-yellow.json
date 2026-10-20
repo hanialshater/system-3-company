@@ -1,0 +1,139 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "light-adds-to-yellow",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/light-adds-to-yellow",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "light-adds-to-yellow",
+    "domain": "cs",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/cs/light-adds-to-yellow/meta.json",
+    "metaSha256": "b3137393a44988781261920f551ee8a876c5da0fa4b17fb0e62cd924e9b1b995",
+    "demoSha256": "28ba6cce2c4b9e66dad2ef39f65aac198f3a8567631f0071457a9dbefee450c6",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/light-adds-to-yellow",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/light-adds-to-yellow.json"
+  },
+  "date": "2026-10-18T21:02:55.273478+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Selectedyellow forred255green255blue0."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Raisedred/green255:visibleyellow andrgb2552550. Addedblue128:paler colour;blue255:white withrgb255255255."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read observedyellow andwhite summary; emitted light adds while paint pigments absorb, explaining darkbrown paint contrast."
+    },
+    {
+      "phase": "screenshotInspection",
+      "evidence": "Actual1257x936 dark screenshots inspected initialblack,yellow andwhite swatches with RGB labels, selected channel buttons and textual colour labels."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Familiar paint intuition contrasts with screen light.",
+      "evidence": "Brown/yellow/white options.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Independent channels directly change visible result.",
+      "evidence": "Blue0\u2192128\u2192255 withredgreenfull.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains observed brightness change through additive versus absorptive mechanisms.",
+      "evidence": "Lightemission versuspigmentabsorption.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Simple channel values and named outcomes support interpretation.",
+      "evidence": "Yellow andwhite text plusRGB.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Paint provides a concrete different application with mechanism condition.",
+      "evidence": "Pigments soak up light, unlike emissive screen channels; darkbrown contrast.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Red andgreen yieldyellow rather than paintbrown.",
+      "evidence": "Visibleyellow swatch.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "The display demonstrates channel addition directly.",
+      "evidence": "Blueaddition turnsyellowpalethenwhite.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Channel buttons invite colour experimentation.",
+      "evidence": "Three independent levels each.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Explains screen-versus-paint colour expectations.",
+      "evidence": "Emission versusabsorption condition.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "One mixing distinction without cone or spectral detail.",
+      "evidence": "Simple additivechannels.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "conceptualDemand": "gentle: emitted light adds while pigments absorb",
+    "interfaceBurden": "gentle: three labelled channel rows withthree values",
+    "prerequisiteNovelty": "RGB channel values introduced as off tofull",
+    "notationRepresentationBurden": "RGB triplet and0/128/255levels"
+  }
+}

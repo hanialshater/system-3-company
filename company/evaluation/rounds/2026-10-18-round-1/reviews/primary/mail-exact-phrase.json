@@ -1,0 +1,103 @@
+{
+  "slug": "mail-exact-phrase",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/mail-exact-phrase",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Same adjacent words for quoted phrase,hook already distinguishes blue folder from folder is blue.",
+    "Both words selectedm1 blue folder andm2 folder is blue,2 matches;Exact phrase selectedonlym1,1.",
+    "Screenshot retained grey excluded rows for comparison. Reveal named currentm1 and explained adjacency; both operations disabled after prescribed sequence, no query editing."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Read four short strings.",
+    "conceptualDemand": "Sequence differs from unordered word presence.",
+    "interfaceBurden": "Two fixed operations."
+  },
+  "whyCool": "The same words can match a word search while failing an exact phrase.",
+  "caveat": "Fully cued prediction; fixed fixture does not demonstrate an actual mail provider or editable syntax.",
+  "effort": "Prediction,both operations,result screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear membership demonstration with limited independent interaction.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Hook and label effectively define answer.",
+      "evidence": "Same adjacent words versus words anywhere.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Meaningful membership contrast but two fixed one-way operations, no new query or reset.",
+      "evidence": "2\u21921 matching records.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains observed excluded reordered words and selected phrase.",
+      "evidence": "Quotation changes matching rule.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Actual records stay visible with selected styling.",
+      "evidence": "m1 highlighted,m2 grey.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Rule stated without second user-applied query.",
+      "evidence": "No syntax entry.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Expected phrase narrowing.",
+      "evidence": "Hook gives contrast.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Visible matched/excluded rows embody matching condition.",
+      "evidence": "m2 has both words but wrong sequence.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Two prescribed buttons.",
+      "evidence": "No query composition.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Exact-phrase search central.",
+      "evidence": "Select intended records.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Distinguishes word conjunction from sequence.",
+      "evidence": "Adjacency/order.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "spam-threshold-tradeoff",
+  "demoVersion": 2,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/spam-threshold-tradeoff",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted still1realflag at0.25threshold; all10scores supplied,baseline0.5catches4spam/flags1real.",
+    "0.25catches5spam,flags3real;0.65catches3,flags0;Home0flagsall5/5;End1flagsnone0/0. Common-score rows andflaggedregion move.",
+    "Reveal explainsoverlapandtie0.3preventperfectthreshold,recalls0.25/0.65tradeoff,costofmistakes,recall4/5to5/5,precision4/5to5/8.",
+    "1280x720light chartveryclearwithscorelabels;finalproseclippedright."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simplecountingbutprecision/recallandtradeoffaddconcepts.",
+    "conceptualDemand": "Thresholdversusmodelranking;differentdenominators.",
+    "interfaceBurden": "Onesliderandtwopresets."
+  },
+  "whyCool": "The low-scoring spam sits below some genuine mail, so moving one threshold cannot catch it without also catching those messages.",
+  "caveat": "Fixed10itemtoy,scorecalibrationandrealclassprevalencenotmodeled. No freshdatasettransfer. Prosecutoff.",
+  "effort": "Prediction,twointeriorthresholds,bothboundaries,reveal,two screenshots.",
+  "provisionalBucket": "promising-with-fix",
+  "bucketReason": "Clearoverlapmechanismandexplainablelimit;fixlayout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Allscoresandthresholdrule explicit forconcretefalse-positivecountprediction.",
+      "evidence": "Real0.6,0.4,0.3above0.25.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Multiplethresholdsandbothboundaries discriminatecatchesversusfalsealarms.",
+      "evidence": "0,0.25,0.65,1states.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explainsoriginalanswer throughspecificoverlapping/tiedscores andmeaningfulnoperfectthresholdlimit.",
+      "evidence": "Spam0.3cannotbecaughtwithoutthreegenuineflags.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Labeledscorelineandcounts clear;densefinalproseclips.",
+      "evidence": "Actualscreenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalcost-basedchoiceprinciple,no freshdataset/applicationtask.",
+      "evidence": "Scamversuslostemailtradeoffdescribed.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Morecatchesnecessarilycostfalsealarmsinthisoverlap.",
+      "evidence": "All5spamrequires3realflags.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Severalcutoffsandbothendpoints visiblyselectfromsharedscoreaxis.",
+      "evidence": "Twoclassrows,tie0.3,flaggedshading.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Sliderandpresetsinviteboundarysearch.",
+      "evidence": "Fourthresholds tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Centralclassification-operating-pointdecision.",
+      "evidence": "Recall/precision andmistakecosts.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Scoreoverlap,thresholdlimits anddifferentmetricdenominators.",
+      "evidence": "Recall5/5versusprecision5/8.",
+      "confidence": "medium"
+    }
+  }
+}

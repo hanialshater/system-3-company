@@ -1,0 +1,103 @@
+{
+  "slug": "alphabet-sort-search",
+  "demoVersion": 1,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/alphabet-sort-search",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted halve sorted candidates;title says rule out half.",
+    "Disclosed shuffled G/F/E/D/C/B/A/H scan8 targetlast. Compared sorted D<H,F<H,G<H,H=H,4checks,progressive fadedtiles.",
+    "Reveal accurately cites trace,ordering guarantee and excludes sorting work. Countslider disabled throughout tested path,all controls disabled after;prose rightclips."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Eight alphabet labels.",
+    "conceptualDemand": "Order implies elimination.",
+    "interfaceBurden": "Simplecomparebutton,disabledsliderconfusing."
+  },
+  "whyCool": "A comparison can tell you about labels you did not inspect when their order is guaranteed.",
+  "caveat": "Fixed target-last trace,not measured speedup or average search cost;count control unusable in tested flow.",
+  "effort": "Prediction,scan,four comparisons,reveal,two screenshots.",
+  "provisionalBucket": "solid-revise-hook-controls",
+  "bucketReason": "Clear trace,limited exploration and spoiled prediction.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Answer method restates goal/title.",
+      "evidence": "Halve candidates versus scan.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Clear elimination trace but fixed target and size,learner only advances comparisons.",
+      "evidence": "8versus4,disabledcount.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Own trace and cost boundary explicit.",
+      "evidence": "Sorting work excluded,targetlast disclosed.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readable tiles but disabled count and clipping.",
+      "evidence": "Screenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Explicit sorted-order condition for ruling out entire side.",
+      "evidence": "Unsorted lacks guarantee.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "One comparison eliminates multiple labels.",
+      "evidence": "DremovesA\u2013D.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Faded tiles and comparisons central.",
+      "evidence": "Candidate elimination.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Stepwise search trace.",
+      "evidence": "Four comparisons.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Sorted lookup principle central.",
+      "evidence": "Ordering guarantee.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Search versus preprocessing cost.",
+      "evidence": "Targetlast baseline.",
+      "confidence": "medium"
+    }
+  }
+}

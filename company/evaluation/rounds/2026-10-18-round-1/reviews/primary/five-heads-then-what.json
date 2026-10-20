@@ -1,0 +1,156 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1b",
+  "date": "2026-10-18",
+  "slug": "five-heads-then-what",
+  "domain": "probability",
+  "demoVersion": 1,
+  "expectedVersion": 1,
+  "batchId": "round1-03",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "79914af59a1d0a383b45809d266185da0587b599df78365cda40c7fb82b20df3",
+  "demoSha256": "27266d329a6abcf16734d24b91cd4de460c9481475eeca80c5cb698e805c535a",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/five-heads-then-what",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "evidenceMode": "live-browser-computer-use",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "previewIsolationObserved": true,
+  "visibleTrustChrome": "4/4 claims checked; ignored, unopened",
+  "phaseCoverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true,
+    "pixelInspection": true
+  },
+  "observations": [
+    {
+      "id": "p",
+      "action": "Selected Below50%; Lock it in",
+      "outcome": "Prediction retained; flip controls unlocked."
+    },
+    {
+      "id": "e",
+      "action": "Flip100;1000;10000;1",
+      "outcome": "100flips6runs4heads67%;1100flips39runs21heads54%;11100flips334runs166heads50% andpending5headstreak; singleflip increments335runs withoutheads166,50%rounded."
+    },
+    {
+      "id": "v",
+      "action": "Inspected11100 screenshot",
+      "outcome": "Last30flips, collectedfive-head columns with nextH/T, andconditionalcounts visible;smalltokens supportedbyreadouts.1257x936dark nohorizontalcutoff."
+    },
+    {
+      "id": "r",
+      "action": "Show me why",
+      "outcome": "Exactly50%;quotes11101/335runs166heads169tails;fresh50/50,finitechancewobble;longrunbalancebydilution notcompensation."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Below/exact/above alternatives expose gambler-fallacy commitment.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Multiple sample sizes andpending-nextflip contrast reveal conditional empiricalfrequency andnoise.",
+      "evidence": "e,v",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Uses exactcollectedcounts andexplains independence versusdilution withfinitevariation.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Next-flipheads denominator distinguishes conditional samples fromtotalflips;pendingstate explicit.",
+      "evidence": "e,v",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Independenceprinciple stated withfaircoincondition, no concrete newuse.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No mode checks.",
+      "evidence": "v",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Below50prediction contradicted by larger conditional sample nearhalf.",
+      "evidence": "p,e",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Streak columns show bothnextoutcomes aftersamefiveheads.",
+      "evidence": "v",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Batchsizes andsingleflip enable incrementaldiscovery.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete bias ininterpreting faircoin streaks.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Conditional sampling,independence,samplewobble anddilution linked.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Distinguishes paststreak,nextflipchance andempiricalconditionalfrequency acrosssample sizes.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": {
+      "level": "moderate",
+      "reason": "Independence andconditional sample introduced."
+    },
+    "notationRepresentationBurden": {
+      "level": "low",
+      "reason": "H/Ttokens,simplecounts andpercent."
+    }
+  },
+  "whyCool": "The nextflip aftera visiblefive-headstreak adds atail to theconditional sample, while hundreds ofsuchstreaks produce bothoutcomes nearlyequally.",
+  "caveat": "Fair independent simulatedcoin only; no biased/dependentcoincontrast.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Restart andbiasedcoinconditions;phone/accessibility untested."
+  ],
+  "reviewState": "complete-real-walkthrough",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "rule-of-72-shortcut",
+  "demoVersion": 2,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/rule-of-72-shortcut",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "rule-of-72-shortcut",
+    "domain": "economics",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/economics/rule-of-72-shortcut/meta.json",
+    "metaSha256": "e45435d4c75aa25eaac9e0eee9c74265d2bd05857f256ac44cf9437a92de035c",
+    "demoSha256": "e62c0e392f8e20c27de87fb872f19692cdea92064c4eaf756438e2d286b8182b",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/rule-of-72-shortcut",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/rule-of-72-shortcut.json"
+  },
+  "date": "2026-10-18T20:50:37.667011+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Chose11years andlocked."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "4%exact17.67shortcut18error.33;9%8.04/8/.04;3%23.45/24/.55;20%3.80/3.60/.20. Inspectedexponentialcurve,linearno-compoundingreference,dotexactandtriangleshortcut."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read8correction,72/rateversus100/ratesimplegrowth,72divisibility,closest6to10rangeandenderrors,steadyannualcompoundnotreturnforecast."
+    },
+    {
+      "phase": "visual-inspection",
+      "evidence": "Actual1257x936dark inline4,9,20andfinalscrolledreveal inspected. Graphmarkers,counters,reference andfulltext readable."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clearcompound-versuslineargrowthforecast.",
+      "evidence": "9%compounding8/11/16years.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Severalratesandexact/approximationcontrastshowaccuracyrange.",
+      "evidence": "3,4,9,20rateswitherrorcountersandlinearreference.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explainsmentalshortcutuseandlimits.",
+      "evidence": "72divisiblebymanyrates,6to10best,enddrift;steadycompoundingboundary.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Distinctdot/triangleandlineargrowthreference.",
+      "evidence": "Exact/72rate/offbycounterlabels;historical9revealversuscurrent20clear.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Ratecontrastswithinsamedoublingtask.",
+      "evidence": "No distinctapplicationorfreshcase.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Simpledivisioncloselymatchescompoundcurve.",
+      "evidence": "72/9=8versus8.04exact.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Curveandlinearreferenceexplainshorterdoublingtime.",
+      "evidence": "At9linear11.1versuscompound8.04.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Ratepresetsandslider.",
+      "evidence": "Fourratesobserved.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Usefulconditionedmentalarithmetic.",
+      "evidence": "Approximationforsteadyannualgrowthwithknownerrorrange.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Compounding,approximationandrangeboundarylinked.",
+      "evidence": "Exactversusshortcutandlinearcontrast.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "conceptualDemand": "Distinguishcompoundgrowthfromsimplegrowthandapproximationfromexacttime.",
+    "interfaceBurden": "Threepresetsandslider;automaticgraph.",
+    "prerequisiteNovelty": "Compoundinterestbrieflyexplainedasinterestoninterest.",
+    "notationRepresentationBurden": "Rates,years,72division,errorandcurves;clearlabels."
+  }
+}

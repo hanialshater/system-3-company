@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "loaf-with-smoke",
+  "demoVersion": 2,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/loaf-with-smoke",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "loaf-with-smoke",
+    "domain": "economics",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/economics/loaf-with-smoke/meta.json",
+    "metaSha256": "f5f1abc59d39c485b681a72b5763ff38fec37e9b524694f8e429db1445f3b8da",
+    "demoSha256": "e23c4c0471c429639427e8a8873ad8ad0c6f2bb1c46fc1422874dbfbf5d6ef26",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/loaf-with-smoke",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/loaf-with-smoke.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Chose40 against35 and0 true-cost quantity with$1 smoke;locked it in.",
+    "exploration": "Initial no harm market40,true40. Smoke harm$1 retainedmarket40 buttrue35,shaded excess feedback. Put$1 on bakers movedmarket35,true35. End harm slider$3 retainedfixed$1 charge:market35,true25.",
+    "reveal": "Corrected35 and explained original$1 case:market40,true35,excess35\u201340 wedge. Said unpriced cost on others leads excess production;fixed$1 charge movesmarket35 in this model,not policy claim. Reveal did not acknowledge current$3 harm/true25 state.",
+    "visual": "Actual1257 \u00d7936 dark screenshot inspected. Demand,charged baker line and true-cost dashed line cross at35 versus25. Metrics showmarket35,true25,harm$3;reveal below describes original$1 wedge35\u201340.",
+    "previewIsolation": "No-history evaluation banner present.",
+    "blinding": "6/6 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Conceptual direction clear,but exact35 lacks numeric axes or slopes before commitment.",
+      "evidence": "Prompt only baseline40 and$1 harm;initial graph no priced ticks.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Harm and charge contrasts expose private/social cost divergence and fixed-charge limit.",
+      "evidence": "40/35 then35/35 then35/25.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Explains original$1 path but does not adapt to tested$3 harm state.",
+      "evidence": "Reveal35\u201340 wedge versuscurrent25/35 graph.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Controls usable,but fixed-case reveal and current-stage numbers differ.",
+      "evidence": "Actual screenshot true25 under texttrue35 for$1.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General unpriced-cost mechanism with toy limit,no concrete new use.",
+      "evidence": "Cost on others left out of price.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "One slider endpoint insufficient audit.",
+      "evidence": "End worked;focus,contrast,phone,zoom and motion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed unchanged40 contradicted bytrue35 before pricing change.",
+      "evidence": "Smoke harms shifttrue quantity only.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Line shifts and crossing markers carry private/social difference.",
+      "evidence": "Currentcrossings25 and35.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Harm and charge controls permit distinct conditional experiments.",
+      "evidence": "No harm,$1 harm,charge,$3 harm.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete conceptual accounting for pollution costs.",
+      "evidence": "Baker price omitsneighbor harm.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "External cost,internalization and mismatch between fixedcharge and changedharm tested.",
+      "evidence": "35/35 aligned then35/25 divergence.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Coordinates several curves and two distinct cost controls.",
+    "conceptualDemand": "Distinguish willingness to pay,private cost,social cost and charged private cost as intersections.",
+    "interfaceBurden": "Moderate:curve identities and fixed-case reveal require careful tracking.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "high:marginal-cost intersection and externality.",
+    "notationRepresentationBurden": "moderate:price/quantity graph withfew numeric axis ticks."
+  },
+  "whyCool": "The$1 charge aligns market and true quantities,then raising harm to$3 opens a visible gap again.",
+  "caveat": "Reveal stays on original$1 case despite current$3 experiment;straight-line invented values only.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Removing charge and lower slider endpoint not tested.",
+    "Keyboard,focus,contrast,phone,zoom/reflow and motion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:29:05.871835+00:00"
+}

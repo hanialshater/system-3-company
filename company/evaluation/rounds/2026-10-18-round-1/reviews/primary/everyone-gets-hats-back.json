@@ -1,0 +1,156 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1b",
+  "date": "2026-10-18",
+  "slug": "everyone-gets-hats-back",
+  "domain": "probability",
+  "demoVersion": 1,
+  "expectedVersion": 1,
+  "batchId": "round1-03",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "9a166cc0fae4c8d7400e0c17a3ce87d431f8b150e67a0518344ba232ea9238ec",
+  "demoSha256": "7c048e64398916af9caf3f4a734ba415c97b3a8b1504cf34f74d9f373ec9aa35",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/everyone-gets-hats-back",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "evidenceMode": "live-browser-computer-use",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "previewIsolationObserved": true,
+  "visibleTrustChrome": "4/4 claims checked; ignored, unopened",
+  "phaseCoverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true,
+    "pixelInspection": true
+  },
+  "observations": [
+    {
+      "id": "p",
+      "action": "Selected About10%; Lock it in",
+      "outcome": "Prediction retained; crowd controls unlocked."
+    },
+    {
+      "id": "e",
+      "action": "Run3,10,100,1000 people; Shuffle1000again",
+      "outcome": "1000shuffles each:66.9,63.5,62.0,62.1%; repeat1000crowd62.9%. Prior crowd bars retained."
+    },
+    {
+      "id": "v",
+      "action": "Inspected repeat screenshot",
+      "outcome": "Four bars near63% labelled by crowd and percentage; readable dark1257x936 no horizontal cutoff."
+    },
+    {
+      "id": "r",
+      "action": "Show me why",
+      "outcome": "About63%; explicitly first-run log including62.1,exact66.7/63.2/63.2/63.2; moreopportunities smaller1/nchance cancel;1-1/e63.2%;1000trial scatterpointortwo."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Individual versus any-person match misconception supports clear commitment.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Four crowd scales and repeat distinguish stable chance from sample scatter.",
+      "evidence": "e,v",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "First-run log and scatter explanation clear; cancellation intuition does not derive at-least-one63.2% rather than expected matches.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Crowd,trial count,bar labels and first-run distinction explicit.",
+      "evidence": "e,v,r",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Opportunity/probability compensation principle stated without new case.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No mode checks.",
+      "evidence": "v",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "10%prediction reversed and crowd sizes remain near63%.",
+      "evidence": "p,e",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Retained nearlyequal bars carry crowd-invariance observation.",
+      "evidence": "v",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Crowd choices and random repeat support reversible discovery.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Abstract random-assignment interpretation, no direct use.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Crowd scaling,finite3case and sampling scatter distinguished.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Distinguishes oneperson from anyperson and trial probability from simulation percentage; exact1-1/easserted.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": {
+      "level": "moderate",
+      "reason": "Permutation fixedpoints and limitingchance new."
+    },
+    "notationRepresentationBurden": {
+      "level": "moderate",
+      "reason": "1/n,1-1/e and simulation percentages."
+    }
+  },
+  "whyCool": "Increasing the crowd from10to1000 barely shifts the matching bar, and a repeat moves it by less than onepoint.",
+  "caveat": "Cancellation intuition alone does not establish63.2%at-least-one probability; limit formula stated rather than derived.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Single-shuffle assignments and derivation; phone/accessibility untested."
+  ],
+  "reviewState": "complete-real-walkthrough",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  }
+}

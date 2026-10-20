@@ -1,0 +1,138 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "sliding-the-cutoff",
+  "demoVersion": 2,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/sliding-the-cutoff",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "sliding-the-cutoff",
+    "domain": "probability",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/probability/sliding-the-cutoff/meta.json",
+    "metaSha256": "324a822be8bf89ead9f54b50f92e4187f479bf9fc6131379685b0746492eb9d0",
+    "demoSha256": "dc4df9113b4febe6f3d5e9a85eba34094675eb56ffc02a1f69559366de2dc17c",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/sliding-the-cutoff",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/sliding-the-cutoff.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected about 7 percent missed and locked it in.",
+    "exploration": "At cutoff 1, missed and false alarms both 15.9 percent. Raised to 1.5: missed 30.9, false alarms 6.7. Lowered to 0.5: missed 6.7, false alarms 30.9. Better test at same 0.5 gave missed 2.3 and false alarms 15.9 with old values retained for comparison. Back to old test restored original values.",
+    "reveal": "Corrected to about 31 percent, used both threshold trials and distinguished shifting threshold from separating distributions to lower both errors at same cutoff.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected for raised cutoff, better test and reveal. Labeled healthy and sick curves, shaded missed and false-alarm tails, vertical line and percentage chips agreed. All learner explanation readable.",
+    "previewIsolation": "Preview banner said history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Direction commitment is useful but exact percentage requires unstated distribution knowledge.",
+      "evidence": "Average and spread given, but 31 versus 7 percent not derivable from everyday numeracy alone.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Two thresholds and reversible quality toggle distinguish policy from discrimination.",
+      "evidence": "Both errors decreased under better test at same cutoff.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal connects shaded areas to reciprocal errors and improvement.",
+      "evidence": "30.9/6.7 flips to 6.7/30.9.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Flags and both errors are plainly defined with separate denominators.",
+      "evidence": "Sick people missed versus healthy false alarms labels.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General tradeoff stated without a new application or decision-cost conditions.",
+      "evidence": "Same medical-score model throughout.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Complete mode audit not performed.",
+      "evidence": "Text percentages and definitions available; keyboard, screen reader, contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Stricter threshold misses more sick people.",
+      "evidence": "30.9 percent missed at raised cutoff.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Shaded tails and moving line make both error types visible together.",
+      "evidence": "Better separation reduces both shaded areas.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Threshold and quality controls invite comparisons.",
+      "evidence": "Two presets and test toggle.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Clarifies reading test error tradeoffs.",
+      "evidence": "Threshold versus underlying test quality.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Separates selection rule from overlapping score distributions.",
+      "evidence": "Conditional errors and distribution separation.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Easy controls hide statistical distribution prerequisites for exact prediction.",
+    "conceptualDemand": "Interpret overlapping densities, tail areas and two different conditional error rates.",
+    "interfaceBurden": "One cutoff slider, two presets and reversible test-quality toggle.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "Score distributions, spread and density-tail percentages.",
+    "notationRepresentationBurden": "Decimal score thresholds, bell curves and percentages."
+  },
+  "whyCool": "Moving a threshold exchanges errors, while better separation can reduce both.",
+  "caveat": "Exact initial percentages assume a distribution beyond the stated averages and spread; this is no real diagnostic recommendation.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Keyboard audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:37:00.636192+00:00"
+}

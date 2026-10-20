@@ -1,0 +1,139 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "the-pivotal-juror-convicts",
+  "demoVersion": 3,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/the-pivotal-juror-convicts",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "the-pivotal-juror-convicts",
+    "domain": "probability",
+    "status": "published",
+    "demoVersion": 3,
+    "metaPath": "src/demos/probability/the-pivotal-juror-convicts/meta.json",
+    "metaSha256": "fd88926797136af57c28a81fa422e5d9e00ae2d11bd06e3bc716726472cd0f77",
+    "demoSha256": "283c82784e50a53e747ec1472572ed76cd7ae01937b5a9e1d6ca0ed6aac8242d",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/the-pivotal-juror-convicts",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/the-pivotal-juror-convicts.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Committed 30% for guilt in the case where my vote matters. Prompt specified three jurors, 70% reliable clues, equal prior and unanimity.",
+    "exploration": "Initial all-innocent clues gave 7%. Flipping Juror 1 gave 30% with no pivotal vote; flipping Juror 2 gave 70% and pivotal Yes. Flipping my vote convicted without changing the bar; reversing it acquitted at the same 70%.",
+    "reveal": "Correction explained that other jurors vote their clues, so being pivotal supplies two guilty clues against one innocent clue. Distinguished evidence from the vote itself.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected. Three figures separately label clues and votes; probability bar and verdict badges make the independence of my vote from evidence visible. Reveal is readable.",
+    "previewIsolation": "Preview banner said learning history and analytics are not saved.",
+    "blinding": "No source, metadata or other reviewer judgments read."
+  },
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Concrete probability commitment, but critical assumptions arrive after the prediction.",
+      "evidence": "Others voting their clues is explained in reveal; conditional independence is not stated.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Reversible switches separate evidence updates from a decisive action.",
+      "evidence": "My vote changed verdict while probability stayed 70%.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal connects pivotality to information rather than mere power.",
+      "evidence": "Two other guilty votes disclose two guilty clues in this setup.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Diagram distinguishes clues from votes, but the probabilistic model is underspecified.",
+      "evidence": "70% reliability and equal prior alone do not establish independent signals; rational voting also needs loss assumptions.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable conditioning idea appears with no fresh scenario.",
+      "evidence": "Only the original three-juror setup is exercised.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Accessibility modes were not audited.",
+      "evidence": "Ordinary clicks and visual screenshots only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "An innocent clue can coexist with 70% guilt in the pivotal case.",
+      "evidence": "30% prediction corrected to 70%.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Separate clues, votes, bar and verdict show the key contrast.",
+      "evidence": "Vote toggle changes verdict but not probability.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Three simple toggles support investigation.",
+      "evidence": "Reversed decisive vote.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Illustrates conditional information, with consequential real-world framing needing caution.",
+      "evidence": "No decision losses or real legal standards modeled.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Distinguishes sincere evidence from conditioning on influence.",
+      "evidence": "Pivotality reveals other signals under their voting rule.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Conditional inference plus a unanimity decision rule requires tracking several assumptions.",
+    "conceptualDemand": "Condition on the pivotal event and separate evidence from an action.",
+    "interfaceBurden": "Three straightforward reversible toggles.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "Conditional probability and strategic voting are new.",
+    "notationRepresentationBurden": "Percent probability and distinct clue/vote labels."
+  },
+  "whyCool": "The vote can move the verdict while leaving the evidence bar unchanged.",
+  "caveat": "The exact posterior needs conditional independence; rational conviction also depends on decision losses. Those conditions are not stated in the visible walkthrough.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Conditional independence assumption",
+    "Decision-loss threshold",
+    "Screen reader audit",
+    "Keyboard-only audit",
+    "Reduced motion audit",
+    "Contrast mode audit"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T21:07:43.676340+00:00"
+}

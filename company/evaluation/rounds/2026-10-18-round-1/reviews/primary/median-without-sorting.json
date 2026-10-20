@@ -1,0 +1,105 @@
+{
+  "slug": "median-without-sorting",
+  "demoVersion": 3,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/median-without-sorting",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predictedsplitbothsides forfindingposition51among101shuffledcards,firstcardpivotrule supplied.",
+    "Firstsplitpivot64position64cost100. Wrongkeeprightrejected withposition51isleftfeedback;keptleft.",
+    "Dotherestfinishedmedian51in8splits297comparisons;Sortinstead619samecards.",
+    "Reveal explaineddiscardingotherpartition and supplied1000shuffledcardcomparison3300versus11000 asadditionaluntestedexample.",
+    "Inline1280x720 light screenshot: bars,costcomparison andmedianmarker readable; right-edgeproseclips. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Rankandpartitionlogic supportedbyfeedback.",
+    "conceptualDemand": "Orderstatistics anddiscardingirrelevantpartitions.",
+    "interfaceBurden": "Clearbuttonsequence;proseclipping."
+  },
+  "whyCool": "The searchthrowsawaycardorderitdoesnotneedandfindsthemiddleforabout halfthecomparisoncost.",
+  "caveat": "Fixedshuffleandpivotchoice;largerscalecostsnotverifiedinteractively;right-edgeclipping;accessibilityunknown.",
+  "effort": "Prediction,manualsplit,wrong/correctside,completion,sortcomparison,reveal andinline screenshot.",
+  "provisionalBucket": "strong-with-viewport-fix",
+  "bucketReason": "Effectiveobjective-specificalgorithmcomparison;repairproselayout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Specificselectionobjective andpartitionrule withmeaningfulsortconfusion.",
+      "evidence": "Keeponeversusbothsides.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Manualpartitionchoice andwrongchoicefeedback plusalgorithmcostcomparison.",
+      "evidence": "Pivot64,leftrequired;297versus619.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Observedcomparisons supportwhyonepartitioncanbediscarded.",
+      "evidence": "Pivotfinalrank andtargetside.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clearfeedback andcostbars butproseclips.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "1000caseisasserted,notapplied;generalprincipleonly.",
+      "evidence": "Freshcaseuntested.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Findingmiddle avoidsworkrequiredforfullsort.",
+      "evidence": "297versus619.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Discardedbars andcomparisoncosts groundalgorithmadvantage.",
+      "evidence": "Medianpositionmarker.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Split/chooseside/autocomplete.",
+      "evidence": "Wrongsidefeedback.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Selectingoneorderstatisticinsteadofsortingcentral.",
+      "evidence": "Objective-specificalgorithm.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Partitioninvariant,rankandworkcomplexityintuition.",
+      "evidence": "Onebranchversustwo.",
+      "confidence": "medium"
+    }
+  }
+}

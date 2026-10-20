@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "overlap",
+  "slug": "same-count-different-weight",
+  "demoVersion": 2,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/same-count-different-weight",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "0ce92ff3f9afcf16e702156ba43cb2015a7afce2134ef26029a10290002dfea0",
+    "demoSha256": "d6f30920110f7fe8ae6b1b349e6234345732f48b3cdaac0e0112599ae028284a",
+    "metaPath": "src/demos/chemistry/same-count-different-weight/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected water as containing more particles than carbon and locked it in. The question explicitly counts each atom or molecule as one particle.",
+    "exploration": "Pressed 12 g carbon: one mole, 6.02 times ten to power23 particles, box100%. Pressed 18 g water: identical count and fill, unlocking reveal. Set water mass9 g: half mole,3.01 times ten to power23,box50%.",
+    "reveal": "Corrected about the same. Refers to both full-box observations, explains heavier water molecules rather than more particles. Defines mole as count and molar mass as weight of that count; names iron56 g.",
+    "visual": "Inline full-water screenshot inspected: pink particle dots fill green-outlined box,18 g scale label,scientific-notation count and100% badge. Controls and units legible. Trust count6/6 ignored.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884157 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear atom-versus-molecule counting definition makes mass/count misconception test precise.",
+      "evidence": "Water selected versus equal counts.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Two substances with equal count and half-mass contrast expose count/mass relationship.",
+      "evidence": "12 g carbon equals18 g water;9 g water halves count.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects exact full boxes to mole and per-particle mass distinction.",
+      "evidence": "Same6.02 times ten to23,water molecules heavier.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Mass,fill andparticle-count readouts align clearly with preset actions.",
+      "evidence": "Inspected full-water screenshot andhalf-mass readout.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete iron weighing application andmolar-mass condition explain using mass to count particles.",
+      "evidence": "One mole iron about56 g;weighing counts known substance.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Heavier-water prediction overturned by equal filled boxes.",
+      "evidence": "Different mass,same count.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Box fill makes equal amount andhalf amount visible.",
+      "evidence": "Full-water screenshot andhalf-mass state.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Substance choices andmass slider support reversible exploration.",
+      "evidence": "Two presets andslider tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete chemistry practice ofweighing tocount central.",
+      "evidence": "Molar-mass reveal.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Particle mass,amount,mole count andmass proportionality linked.",
+      "evidence": "Three observed states andreveal.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Separates per-particle weight fromparticle count andconnects mass toamount.",
+    "conceptualDemand": "Two linked ratios withphysical counting metaphor.",
+    "interfaceBurden": "Low:presets andmass slider.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate:mole andmolar mass",
+    "notationRepresentationBurden": "high:scientificnotation andmol units"
+  },
+  "whyCool": "Eighteen grams ofwater fills exactly thesame particle box astwelve grams ofcarbon,thenhalf thewater masshalves thecount.",
+  "caveat": "Iron application stated ratherthan exercised;aluminium andothermass boundaries untested.",
+  "missingEvidence": [
+    "Iron",
+    "Aluminium",
+    "Zero-mass boundary",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

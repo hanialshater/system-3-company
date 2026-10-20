@@ -1,0 +1,103 @@
+{
+  "slug": "lh-fixed-energy-charge",
+  "demoVersion": 2,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-fixed-energy-charge",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted \u20ac14 for a \u20ac10 fixed-charge bill reduced from 40 to 20 kWh, given \u20ac18 initial bill.",
+    "Tests at 40 showed A \u20ac18 and no-fee B \u20ac12. Minimum 10 showed \u20ac12/\u20ac3; one slider step to 20 showed \u20ac14/\u20ac6.",
+    "Screenshot showed positive-intercept and origin lines on common \u20ac42 scale. Reveal explicitly answered original halving question, distinguished current state, and stated tariff equality at 100 kWh."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Requires fixed-variable decomposition and rates.",
+    "conceptualDemand": "Only variable component scales with usage.",
+    "interfaceBurden": "Two tests and usage slider."
+  },
+  "whyCool": "Cutting consumption in half leaves the fixed part of the bill untouched.",
+  "caveat": "Tariffs are fictional and actual bills may contain additional terms.",
+  "effort": "Prediction, both tests, minimum and halved usage, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Good misconception, graph and conditional explanation.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete misconception with enough data to infer variable component.",
+      "evidence": "\u20ac9, \u20ac10, \u20ac14 choices.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Changing usage separates fixed and variable terms.",
+      "evidence": "40\u219210\u219220 kWh.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains why only energy portion halves and adds tariff comparison.",
+      "evidence": "\u20ac8 energy halves, \u20ac10 fixed remains.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Rates, fees and original/current values explicit.",
+      "evidence": "Fictional rates, no taxes.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Specific tariff crossover and real-term caveat extend principle.",
+      "evidence": "Equal at 100 kWh under exact assumptions.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Half usage does not halve total bill.",
+      "evidence": "\u20ac18\u2192\u20ac14 rather than \u20ac9.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Line intercepts visibly distinguish fixed charge.",
+      "evidence": "A starts above zero; B at zero.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Tests and usage slider.",
+      "evidence": "No independent tariff editing.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Bill interpretation is central.",
+      "evidence": "Fixed versus variable charges.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Connects marginal rate, fixed cost and crossover.",
+      "evidence": "Halving and alternative tariff comparison.",
+      "confidence": "medium"
+    }
+  }
+}

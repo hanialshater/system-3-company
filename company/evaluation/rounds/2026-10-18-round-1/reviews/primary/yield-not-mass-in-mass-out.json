@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "yield-not-mass-in-mass-out",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/yield-not-mass-in-mass-out",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "78902ab1a4c32201a4e3c7d136cb39ef31ab4e29facaa493e14082af6ac32ebe",
+    "demoSha256": "5d804615e2934f93df07af3e6c270230b5754ce722084e6ba4163180c3e314aa",
+    "metaPath": "src/demos/chemistry/yield-not-mass-in-mass-out/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected 90% and locked the yield prediction for 1.80 g aspirin collected from 2.00 g salicylic acid, with theoretical aspirin output 2.61 g.",
+    "exploration": "Activated grams-to-moles and moles-to-aspirin-grams stages. The diagram showed 2.00 divided by 138.12 equals 0.01448 mol, then multiplied by 180.16 to give 2.61 g possible aspirin. At 0.50 g collected yield was 19%; setting 1.80 g gave 69%; changing collected mass to 2.00 g gave 77%.",
+    "reveal": "The reveal corrected the original answer to 69% and explained actual product divided by possible product, not starting reactant mass. It used the one-to-one mole conversion and different molar masses. It returned in prose to the visited 1.80 g scenario while the live slider remained at 2.00 g.",
+    "visual": "Inspected the inline dark 1257 by 936 screenshot after both conversion stages at 0.50 g collected. A grey 2.00 g input bar, a longer dashed 2.61 g possible-product bar and a short pink actual-product bar shared a gram scale. The two conversion equations were readable.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The question targets a plausible but wrong mass-ratio denominator.",
+      "evidence": "Selected 1.80 divided by 2.00, or 90%, despite the supplied theoretical product mass.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Conversion stages and collected-mass changes expose the correct reference quantity.",
+      "evidence": "Even 2.00 g collected is only 77% of the possible 2.61 g.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal explains the denominator using amount conversion and product molar mass.",
+      "evidence": "The one-to-one 0.01448 mol relation produces a different mass for aspirin.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "The bars clarify the ratio, but the chemistry behind a larger product mass is only partially explained.",
+      "evidence": "No other reactant or source of added atoms appears in the observed explanation.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "The yield definition is generalized without a fresh reaction or calculation.",
+      "evidence": "Only the same aspirin conversion and variable collected mass are explored.",
+      "confidence": "high"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Matching the starting mass does not mean a full product yield.",
+      "evidence": "2.00 g collected still gives only 77%.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "The dashed possible-product bar provides the correct denominator visually.",
+      "evidence": "Input, theoretical product and actual product share a clear scale.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "The interaction is a guided calculation rather than a puzzle toy.",
+      "evidence": "Two stage buttons and a mass slider expose the calculation.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "It clarifies the meaning of percent yield.",
+      "evidence": "Yield compares collected product with theoretical product, not unlike reactant mass.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "The calculation is explained, while reaction stoichiometry is assumed.",
+      "evidence": "The one-to-one mole relation is used without the full chemical reaction.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Moles, molar masses and stoichiometric conversion are substantial prerequisites for the everyday learner boundary.",
+    "conceptualDemand": "High: distinguish masses of different substances and compare amounts before converting back.",
+    "interfaceBurden": "Low: two conversion buttons, slider and target preset.",
+    "conceptualChallenge": "The theoretical mass of a different molecule is the relevant yield denominator.",
+    "prerequisiteNovelty": "Moles, molar mass and one-to-one stoichiometry are introduced or assumed.",
+    "notationRepresentationBurden": "High: decimal mass values, grams per mole and chained unit conversions."
+  },
+  "whyCool": "A product can weigh more than the starting powder at full yield, so the obvious mass ratio measures the wrong thing.",
+  "caveat": "The full reaction and other reagent supplying atoms are not shown in the observed explanation. This is a yield calculation, not a synthesis walkthrough.",
+  "missingEvidence": [
+    "No fresh reaction, limiting reagent or full reaction equation was tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

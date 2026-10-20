@@ -1,0 +1,138 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "sixteen-of-twenty-got-better",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/sixteen-of-twenty-got-better",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "sixteen-of-twenty-got-better",
+    "domain": "probability",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/probability/sixteen-of-twenty-got-better/meta.json",
+    "metaSha256": "c1a1ce31ab9bfa22db1d4ba911ce78a32ba9b991f5b24e3d15477ccbeb5937a0",
+    "demoSha256": "4fed5b25f1bd53bbe03a82ea7b475ab31f5830b6ff352a2363ee87dee96bb445",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/sixteen-of-twenty-got-better",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/sixteen-of-twenty-got-better.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected More people taking the pill and locked it in.",
+    "exploration": "Day three treated group had 3 of 20 better. Day seven had 16 of 20. Show no-pill group revealed 16 of 20 at day seven; returned day three showed 3 of 20 in both groups, then restored day seven. Show comparison is one-way; day selection reversible.",
+    "reveal": "Corrected to needing no-pill recovery, compared equal day-seven counts and explained natural recovery in this invented model. Claimed only comparison shows added effect and more treated people alone would not resolve it.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected. Two rows of twenty person icons with filled recovery markers and explicit counts were readable; invented cold and pill disclaimer remained visible. Reveal compacted the large exploration blank space.",
+    "previewIsolation": "Preview banner said history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Asks what missing information matters rather than just a numeric result.",
+      "evidence": "More treated versus timing versus untreated comparison.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Revealing one fixed comparison is informative but mostly prescribed.",
+      "evidence": "Two dates with equal treated and untreated counts; no alternative effects.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Equal rows explain why post-treatment improvement alone is insufficient.",
+      "evidence": "16 of 20 both groups and natural recovery explanation.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Counts and invented-case boundary are explicit.",
+      "evidence": "Filled equals feels better; invented cold and pill.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Causal-comparison principle explained without fresh application or comparability conditions.",
+      "evidence": "Only comparison row claim; no randomized assignment discussion.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Complete mode audit not performed.",
+      "evidence": "Counts and dates exposed as text; screen reader, keyboard, contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Large apparent recovery is matched without treatment.",
+      "evidence": "Sixteen recovered in each row.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Parallel icon rows reveal the missing counterfactual baseline.",
+      "evidence": "Equal counts with differently filled individuals.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Timeline selection and hidden-row reveal.",
+      "evidence": "Day three, seven and comparison button.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Supports evaluating claims based on before-after improvement.",
+      "evidence": "Asks what the treatment added.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "One causal comparison with natural recovery.",
+      "evidence": "No sampling uncertainty or assignment conditions explored.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple person counts support a causal-inference distinction.",
+    "conceptualDemand": "Separate improvement after treatment from improvement caused by treatment.",
+    "interfaceBurden": "Two day controls and a one-way comparison reveal.",
+    "conceptualChallenge": "gentle",
+    "prerequisiteNovelty": "Untreated comparison and natural recovery.",
+    "notationRepresentationBurden": "Counts out of twenty and day labels."
+  },
+  "whyCool": "A convincing recovery story changes when the missing comparison row appears.",
+  "caveat": "Equal toy groups do not establish how a real study should handle randomization, uncertainty or group comparability.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Keyboard audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:33:32.070707+00:00"
+}

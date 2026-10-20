@@ -1,0 +1,104 @@
+{
+  "slug": "two-pages-swallow-the-rank",
+  "demoVersion": 1,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/two-pages-swallow-the-rank",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "BeforepredictionvisuallyinspectedgraphA->B->CwithCtoA/D,DfeedingE,EFclosedpair;equalinitialscoresEF33.3%. Predicted33%after50rounds.",
+    "5roundsnojumpsEF79.2%;50rounds100.0%rounded. Add15%randomjumpsat50gave69.9%,beforeafterpersisted.",
+    "Revealexplainedclosedpairtrapsincomingmass andrandomredistributionrestoresallpages,connectedtoPageRank.",
+    "Inline1280x720 light screenshots: graph/scorebarsandfullprose readable;graphpartlyaboveinternalviewportafterrevealbutinitialfullgraphinspected. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Graphmassflowanditerationbutnoheavyformula.",
+    "conceptualDemand": "Closedtransitionclass andrandomjumpintuition.",
+    "interfaceBurden": "Clearpresetsandhistory,readablelayout."
+  },
+  "whyCool": "Aclosedtwo-pageclubdrainsrankfromtherestuntilrandomjumpscreateanescapehatch.",
+  "caveat": "100.0%isroundedfiniteiteration,notexactallmass;onesix-pagegraph;accessibilityunknown.",
+  "effort": "Prepredictiongraphinspection,prediction,5/50rounds,dampingcontrast,reveal andinline screenshots.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Readableflowmechanismandconcretealgorithmicfix.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Graphandpropagationruleprovidecausalbasisforclosed-sinkprediction.",
+      "evidence": "IncomingDlinkandnooutgoingEF.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Early/late accumulationandmatched50rounddampingcontrasttestmechanismandfix.",
+      "evidence": "33.3,79.2,100,69.9%.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Connectsgraphconstraint,observeddrain andsame-horizonpreventivechange.",
+      "evidence": "Everypagekeepssomewithjumps.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readablegraphboundary,bars,comparison andprose.",
+      "evidence": "Inline screenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "ConcretePageRankmodificationandclosed-sinkconditionexplainapplication.",
+      "evidence": "15%jumpsfixtrapping.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Twopagescapturealmostallscoredespitesix-pagegraph.",
+      "evidence": "EF100%.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Closedoutline,arrowsandscorebarsgroundflowconstraint.",
+      "evidence": "Beforeafterdamping.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Roundanddampingpresets.",
+      "evidence": "5/50andjumpbuttons.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Rankingalgorithmrobustnesscentral.",
+      "evidence": "PageRankconnection.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Iterativeflow,closedclasses andredistribution.",
+      "evidence": "Sinkversusteleportation.",
+      "confidence": "medium"
+    }
+  }
+}

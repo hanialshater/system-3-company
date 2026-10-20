@@ -1,0 +1,104 @@
+{
+  "slug": "three-pizzas-four-people",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/three-pizzas-four-people",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted4/3 rather than3/4or1/4 for equal sharing3pizzas among4people.",
+    "Cut allthree intoquarters:12quarters,eachperson0. Dealtfirstpizza:each1quarter;dealtremainingtwo:each3quarters.",
+    "Reveal tied constructed3quarters each to3/4,3divided4,0.75,and4x0.75=3;rejected4/3because insufficientpizza.",
+    "Inline1280x720 light screenshot showedfourplates withthreecoloredquarters each; prose right edge clipped. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Concrete equalsharing with visualpieces.",
+    "conceptualDemand": "Fraction anddivision equivalence.",
+    "interfaceBurden": "Guided cut/dealbuttons; proseclipping."
+  },
+  "whyCool": "Each pizza contributes one quarter to every plate,making the numerator and denominator tangible.",
+  "caveat": "Fixed problem; right-edge clipping and minor singular wording. Accessibility unknown.",
+  "effort": "Prediction,threecuts,three deals,intermediatecounts,reveal and inline screenshot.",
+  "provisionalBucket": "solid-gentle-with-viewport-fix",
+  "bucketReason": "Concrete sharing construction; repairprose layout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear equal-sharing task with numerator reversal alternative.",
+      "evidence": "3pizzas4people.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Cut/deal construction makes totalpieces and individualshares explicit.",
+      "evidence": "12quarters,0to1to3each.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects action to fraction,division and reverse multiplication check.",
+      "evidence": "4x0.75=3 and insufficient4/3.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clear plates and counts but prose clips; singular1quarters minor wording.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Same sharing example checked multiple ways without fresh problem.",
+      "evidence": "3/4 throughout.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Familiar equalsharing result.",
+      "evidence": "Threequarters each.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Coloredquarters on plates show equalallocation.",
+      "evidence": "Fourplates threepieces each.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Cutting and dealing is constructive.",
+      "evidence": "Sixactions.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Basic fraction interpretation.",
+      "evidence": "Sharing asdivision.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Connects fraction,decimal,division,multiplication.",
+      "evidence": "0.75equivalence.",
+      "confidence": "medium"
+    }
+  }
+}

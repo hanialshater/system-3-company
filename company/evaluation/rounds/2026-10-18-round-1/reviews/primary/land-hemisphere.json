@@ -1,0 +1,104 @@
+{
+  "slug": "land-hemisphere",
+  "demoVersion": 3,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/land-hemisphere",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted90%maximum landhemisphere versusjustunderhalf or29%.",
+    "Africa0N20E38%land;NorthPole40%;MidPacific10S150W21%;computerbest42N2E47%. Bestfound persists40then47;orthographicglobeupdates.",
+    "Reveal recallsbest47/thinnest21 andwhole29,claimssearchofeverypossiblecenteronmap andeveryhemisphere mostlywater.",
+    "1280x720light globe smallroughly140pxdiameter,lowcontrastgrayland;readouts clear,revealproseclippedright."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simpleglobeandpercentagecomparison.",
+    "conceptualDemand": "Anyorientedhemisphereversusstandardnorthsouth.",
+    "interfaceBurden": "Twosliders;smallglobe."
+  },
+  "whyCool": "Turning the globe to gather land still cannot make the visible half mostly land.",
+  "caveat": "Computersearchmaximum andgeographicfiguresnotindependentlyverified. Needsearchresolution/approximationdisclosure;orthographicdiscnot equal-area thoughdisplaydescribeshemisphere. Smalllowcontrastmap,prosecutoff.",
+  "effort": "Prediction,threepresets,computerbest,reveal,three screenshots.",
+  "provisionalBucket": "needs-owner-review",
+  "bucketReason": "Engagingsearchbutglobalmaximumclaimneedsmethodlimit.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete globalmax question withplausiblelandconcentration intuition.",
+      "evidence": "90%,underhalf,global29% alternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Severalcentres contrastlandshare andcomputerbest,butmaximality search opaque.",
+      "evidence": "38,40,21,47% inspected.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Recapsstates butasserts globalmax withoutvisible searchresolution/uncertainty.",
+      "evidence": "Everypossiblecenteronmapclaim,42N2Ebest.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readouts clear butsmalllowcontrastmap andclippedprose.",
+      "evidence": "Actualscreenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 1,
+      "reason": "Specific geographicfact withoutnewapplicationor explanatoryrule.",
+      "evidence": "Everyhemispheremostlywaterconclusion.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Evenlandiesthalf remainsmajoritywater.",
+      "evidence": "47%maximumdisplayed.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Globerotation supportscomparison butdoesnotdemonstratemaximality.",
+      "evidence": "Fourcentres withnumericaloutputs.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Search androtation mechanicinvitesexploration.",
+      "evidence": "Presets,twosliders,computerbest.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Geographiccuriosity ratherthanconcretetask.",
+      "evidence": "Maximumlandsharequestion.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Hemispherearea andspatialdistribution,searchmethodunexplained.",
+      "evidence": "Whole29versusbest47.",
+      "confidence": "medium"
+    }
+  }
+}

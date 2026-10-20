@@ -1,0 +1,103 @@
+{
+  "slug": "turns-beat-first-come-first",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/turns-beat-first-come-first",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted unchanged7. Jobs10/1/1 allarrivetogether. At tick3 round-robin B/Cfinished at2/3 while FCFSstillA.",
+    "One-unit completion waitsA2,B1,C2 average1.67 versusFCFS7. Five-unit preset automatically reran waits2/5/6 average4.33; two-unit waits2/2/3 average2.33. All results retained.",
+    "Screenshot showed same timeline scale and distinct job patterns, completed short jobs and wait labels. Reveal returned originalone-unit result despite currenttwo and explicitly excluded switching overhead."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Small workload but distinguish waiting from completion.",
+    "conceptualDemand": "Finish minus service and average across tasks.",
+    "interfaceBurden": "Low: tick/run/three presets."
+  },
+  "whyCool": "Two tiny jobs escape behind the large one while the large job pays only two units of delay.",
+  "caveat": "Fixed simultaneous arrivals10/1/1 and zero switching overhead. Does not show round-robin always optimal or faster for every workload.",
+  "effort": "Browser prediction, three ticks, finish, turn5/2 comparisons, screenshot and recovered reveal after transient browser timeout.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Useful controlled quantum comparisons with explicit overhead limitation.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Precise metric and fixed workload isolate schedule.",
+      "evidence": "Wait=finish\u2212work, arrivals together; average question.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Three turn-length contrasts plus FCFS baseline.",
+      "evidence": "1\u21921.67,2\u21922.33,5\u21924.33,FCFS7.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Observed short-job benefit and long-job delay explain mean and limit.",
+      "evidence": "B/Cfinish2/3, Aonlytwo later; real switch cost excluded.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Metric and toy assumptions remain explicit.",
+      "evidence": "Wait formula, workload, retained averages.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete system tradeoff with condition.",
+      "evidence": "Unknown job lengths can benefit from turns; switching overhead changes real choice.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Taking turns lowers average wait without extra total work.",
+      "evidence": "Total12 both; average7versus1.67.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Aligned schedule lanes expose early small completions.",
+      "evidence": "B/Ccomplete whileFCFSAcontinues.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Step and vary quantum.",
+      "evidence": "Three turn lengths auto-run comparisons.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Explains operating-system responsiveness tradeoff.",
+      "evidence": "Short-job benefit without knowing lengths.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Distinguishes totalwork, completion distribution and overhead.",
+      "evidence": "A delay2 versus large B/Csavings.",
+      "confidence": "medium"
+    }
+  }
+}

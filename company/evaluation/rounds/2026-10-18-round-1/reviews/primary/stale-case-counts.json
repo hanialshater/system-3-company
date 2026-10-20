@@ -1,0 +1,137 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "stale-case-counts",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/stale-case-counts",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "stale-case-counts",
+    "domain": "life",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/life/stale-case-counts/meta.json",
+    "metaSha256": "5d9e4c0af80deb6bfe9c2af6ce3c87564aa8f30783b616fd98fc096373fceb89",
+    "demoSha256": "7503b5f8c2560a692121bcdba8aac7d09dc9ed7b7ad519458528316ef2d2d85b",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/stale-case-counts",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/stale-case-counts.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected About 100 and locked it in.",
+    "exploration": "Zero delay equated report 100 to current infections. Nine-day preset gave 800, eight times report. Three-day preset gave 200. End twelve days gave 1600, sixteen times. Home restored zero; restored nine before reveal.",
+    "reveal": "Corrected to 800 by three doublings, referenced visited three and twelve day cases, contrasted growing with flat curve and stated made-up outbreak, steady doubling and identical delays with real delays variable.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected. Green report and pink current-infection curves, legends, dashed lag linkage and present-time vertical gap visible. Explanation and caveat legible.",
+    "previewIsolation": "Preview banner said history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete count commitment tests treating delayed report as current state.",
+      "evidence": "100 versus 300 versus 800.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Delay presets and endpoints show multiplicative lag effect reversibly.",
+      "evidence": "Zero, three, nine and twelve days compared.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal traces three doublings and explains dependence on growth.",
+      "evidence": "100 times two three times; flat curve contrast.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Color legends and text ratios connect past report to present state.",
+      "evidence": "Reported and actually infected curves labeled; toy assumptions explicit.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Growing-versus-flat condition is given but no new application is attempted.",
+      "evidence": "Photo of past analogy and flat-curve caveat.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Complete mode audit not conducted.",
+      "evidence": "Keyboard endpoints and text summaries observed; screen reader, contrast and reduced motion unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "A report of 100 can accompany 800 current infections in stated model.",
+      "evidence": "Three hidden doublings.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Shift and gap make reporting lag visible.",
+      "evidence": "Dashed linkage between curves.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Delay slider invites comparisons.",
+      "evidence": "Two presets and continuous day range.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Supports interpreting delayed indicators during growth.",
+      "evidence": "Counts describe past infections.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Combines compounding and delayed observation with assumptions.",
+      "evidence": "Flat-curve and variable-delay qualifications.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simple controls require repeated doubling and time-shift reasoning.",
+    "conceptualDemand": "Separate observation date from event date during exponential growth.",
+    "interfaceBurden": "One day slider and two presets.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "Reporting delay and steady doubling introduced in question.",
+    "notationRepresentationBurden": "Time-series curves, days, ratios and multiplication chain."
+  },
+  "whyCool": "A lagging report is a photograph of a smaller past during rapid growth.",
+  "caveat": "Fixed delays and constant doubling are toy assumptions; this review makes no real-outbreak inference.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Fresh transfer case"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:35:58.094329+00:00"
+}

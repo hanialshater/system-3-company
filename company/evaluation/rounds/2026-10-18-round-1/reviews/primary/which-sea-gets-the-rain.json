@@ -1,0 +1,126 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "which-sea-gets-the-rain",
+  "demoVersion": 3,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/which-sea-gets-the-rain",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "511afa556035257ccdcb8107391558231222a7cbaac7472c70347f682aa90940",
+    "demoSha256": "496aa8c84b172fb01e4cd659d961be073a8e8749b9fba2234761ca9b314f415c",
+    "metaPath": "src/demos/geography/which-sea-gets-the-rain/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected the west sea and locked the destination prediction for rain 55 km from the west coast and 150 km from the east.",
+    "exploration": "Triggered rain at the original dot, rain west of the ridge, then basin coloring. The final view showed the original dot's winding eastward path and a second westward path, separated by a divide near the west coast. Coloring reported 80% drains east.",
+    "reveal": "The reveal corrected the destination to east, explained water follows slope rather than nearest coast, and connected the second west-side drop and 80% basin to the ridge as a drainage divide.",
+    "visual": "Inspected the inline dark 1257 by 936 screenshot after coloring. A narrow dark west basin marked 20% and broad blue east basin marked 80% were separated by a jagged white divide. A salmon route crossed east from the original dot; a dashed white route ran west from the second spot. Distance labels remained visible.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The question targets nearest-coast intuition with concrete distances.",
+      "evidence": "Selected west despite the longer east drainage route.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Two drops and basin coloring connect local paths to a regional division.",
+      "evidence": "Drops on opposite sides reached opposite seas and coloring exposed unequal basin areas.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal explains the observed direction and the divide.",
+      "evidence": "It ties the 150 km route and 80% east area to the ridge.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "The colored basins and routes make the destination distinction readable.",
+      "evidence": "The final map labels both percentages and the divide.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "The watershed principle is generalized within the same island without a new application.",
+      "evidence": "No fresh terrain or practical runoff case is developed.",
+      "confidence": "high"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "The nearer sea receives none of the original drop despite being much closer.",
+      "evidence": "The original dot drains 150 km east rather than 55 km west.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "The basin overlay converts separate routes into an understandable landscape rule.",
+      "evidence": "The divide encloses a narrow west drainage area and broad east area.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Rain triggers invite exploration but only two locations are available.",
+      "evidence": "Two preset drops and a coloring button drive the sequence.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "It explains why drainage cannot be inferred from coast distance.",
+      "evidence": "The reveal identifies slope and divides as the relevant features.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "The lesson connects local flow to whole-area drainage shares.",
+      "evidence": "Two paths are followed by 20/80 basin coloring.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "Following paths on a simple invented map requires little notation and a familiar downhill rule.",
+    "conceptualDemand": "Low to moderate: distinguish geometric nearness from a downhill route.",
+    "interfaceBurden": "Low: three guided exploration buttons.",
+    "conceptualChallenge": "A ridge partitions where water can flow despite nearby alternative coasts.",
+    "prerequisiteNovelty": "Drainage divide and basin are introduced.",
+    "notationRepresentationBurden": "Low: simple map, distances and area percentages."
+  },
+  "whyCool": "A line near one coast can decide the destination of rain across most of an island.",
+  "caveat": "The invented map routes all surface water to a sea and does not model infiltration, storage or changing terrain.",
+  "missingEvidence": [
+    "Transient drop animation was not separately inspected; the final paths were inspected.",
+    "No fresh rainfall location was selectable.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

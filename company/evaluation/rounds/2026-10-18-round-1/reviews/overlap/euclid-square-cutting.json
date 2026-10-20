@@ -1,0 +1,156 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1b",
+  "date": "2026-10-18",
+  "slug": "euclid-square-cutting",
+  "domain": "math",
+  "demoVersion": 1,
+  "expectedVersion": 1,
+  "batchId": "round1-02",
+  "reviewKind": "overlap",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "f53bcbbe6555ac89d6cfd5e7f58f68d5be881df874ec78d8a7490c0a161ab95c",
+  "demoSha256": "fe08f4b09d2a84400d9807f0da0de3622fb617b5c148385b532a841ebbcf39aa",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/euclid-square-cutting",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "evidenceMode": "live-browser-computer-use",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "previewIsolationObserved": true,
+  "visibleTrustChrome": "4/4 claims checked; ignored, unopened",
+  "phaseCoverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true,
+    "pixelInspection": true
+  },
+  "observations": [
+    {
+      "id": "p",
+      "action": "Selected12; Lock it in",
+      "outcome": "Prediction retained; cut1unlocked."
+    },
+    {
+      "id": "e",
+      "action": "Cut1,2,3,4; Tile with last square",
+      "outcome": "Remainders30x18,12x18,12x6,6x6; cuts18,18,12,6; final overlay8x3 tilesof6."
+    },
+    {
+      "id": "v",
+      "action": "Inspected tiled screenshot",
+      "outcome": "Coloured cut squares and6-unit grid align across48x18floor;1257x936dark no horizontal cutoff; lower reveal scrolls."
+    },
+    {
+      "id": "r",
+      "action": "Show me why",
+      "outcome": "6; names all cuts and24tiles; any exact tile fits removed squares/remainder, last square fits back up; Euclid method."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Plausible dimension-related alternatives demand largest common tile choice.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Sequential remainders and final grid visibly expose the invariant.",
+      "evidence": "e,v",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Both directions of tile-fit reasoning link cuts to maximal shared tile.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Only next cut active, remainder text and final grid align.",
+      "evidence": "e,v",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General Euclid method stated but no new dimensions/application.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No mode checks.",
+      "evidence": "v",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "12prediction reversed by6-unit common grid.",
+      "evidence": "p,e",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Cut geometry and overlay carry shared-divisor explanation.",
+      "evidence": "v",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Guided cuts and optional overlay allow discovery, fixed dimensions.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete largest-floor-tile task, no different use.",
+      "evidence": "p,r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Iterated remainders and two-way invariant support algorithm.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Sequential geometric reductions and bidirectional common-tile invariant with visual support.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": {
+      "level": "moderate",
+      "reason": "Euclid algorithm introduced through floor tiling."
+    },
+    "notationRepresentationBurden": {
+      "level": "low",
+      "reason": "Simple rectangle dimensions and multiplication."
+    }
+  },
+  "whyCool": "The last6x6square becomes a grid that fits every earlier cut and covers the original floor in24identical tiles.",
+  "caveat": "One fixed rectangle; no new dimensions or deliberate invalid cut possible.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Start-over behavior, phone and accessibility modes untested."
+  ],
+  "reviewState": "complete-real-walkthrough",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  }
+}

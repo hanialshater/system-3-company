@@ -1,0 +1,104 @@
+{
+  "slug": "fitted-sheet-corners-nest",
+  "demoVersion": 2,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/fitted-sheet-corners-nest",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted same thickness for corners nested versus apart; alternative asserted exactly18cm flatter without dimensions supplied before choice.",
+    "After lock table already displayed four corners each,32cm apart and14cm nested. Pressed A and B; schematic switched separated cup-like layers to nested layers.",
+    "Reveal supplied hidden model inputs:four8cm corner depths versus14cm nested,explained shared hollow/thin added layers,and explicitly limited model to corners rather than all sheet folds.",
+    "Inline1280x720 light screenshots showed both schematic states and readable full prose. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple nesting and subtraction.",
+    "conceptualDemand": "Shared hollow versus additive depths.",
+    "interfaceBurden": "Two clear comparison buttons."
+  },
+  "whyCool": "The same four cloth corners can share one hollow instead of adding four full depths.",
+  "caveat": "Numerical prediction lacks model dimensions;not a complete fitted-sheet folding lesson;accessibility unknown.",
+  "effort": "Prediction,both schematic states,reveal and inline screenshots.",
+  "provisionalBucket": "revise-numeric-hook",
+  "bucketReason": "Clear nesting illustration and honest limits,but exact prediction lacks inputs.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Exact18cm alternative cannot be determined from provided setup.",
+      "evidence": "Corner depths and layer thickness only explained afterward.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Two fixed schematic states demonstrate nesting without exploratory parameters.",
+      "evidence": "A/B32versus14.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains geometric mechanism and explicitly qualifies real seams/elastic and whole-sheet scope.",
+      "evidence": "Shared hollow versus four full depths.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readable comparison and model limitation.",
+      "evidence": "Inline screenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Conceptual nesting principle but no actual folding sequence or fresh case.",
+      "evidence": "Corner-only schematic.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Nesting reduces bulk despite same corner count.",
+      "evidence": "32to14 in model.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Separated versus overlapping cup profiles illustrate shared hollow.",
+      "evidence": "Both A/B inspected.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Two prescribed switches.",
+      "evidence": "Fixed results.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Potential household folding relevance but no practical folding instruction.",
+      "evidence": "Corner nesting concept.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Depth stacking versus thin layers and explicit idealization.",
+      "evidence": "Model scope caveat.",
+      "confidence": "medium"
+    }
+  }
+}

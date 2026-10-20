@@ -1,0 +1,104 @@
+{
+  "slug": "parallel-vs-arc-short-hop",
+  "demoVersion": 2,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/parallel-vs-arc-short-hop",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted70km saving for1000km40Nparallel versusgreatcircle; alternatives0.7/7. Initialdisabledstage describesdifferent3000kmcase20saving.",
+    "1000km40N0.7km0.07%;5000km40N96km1.91%;5000km60N398km7.97%;5000km20N18km0.36%. Mercatorredparallel/bluearcvisiblyseparateathigherlatitude,longerdistance.",
+    "Reveal recalls1000/5000at40N and5000at60N,explainsparallelbendsawaymoreforlonger/higherlatitude,spheremodelnotflighttime;20Nextensionnotmentioned.",
+    "1280x720light smallshort-hoplinesnearlyoverlapbydesign,longerarcvisible;revealrightedgecutoff."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Requiresunderstandingprojectionversussurfacedistance.",
+    "conceptualDemand": "Greatcircleversuslatitudeparallel.",
+    "interfaceBurden": "One slider,presets andcyclelatitude."
+  },
+  "whyCool": "A shortcut that saves hundreds of kilometres on a long northern route saves less than one kilometre on a short hop.",
+  "caveat": "Spheremodelnotflighttime;exactfiguresnotindependentlyaudited. Initialstageuses3000casewhileprediction1000. Smallroutes andprosecutoff.",
+  "effort": "Prediction,two distances,threelatitudes,reveal,three screenshots.",
+  "provisionalBucket": "promising-with-fix",
+  "bucketReason": "Usefulwhen-it-matterscontrast;aligninitialstateandfixlayout.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Specificmagnitudequestion withoutformulaoravailablemodelbeforecommitment;mostlygeographicpriorknowledge.",
+      "evidence": "0.7versus7versus70kmaskedbeforecontrols.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Independentdistanceandlatitudecontrasts isolatewherebenefitmatters.",
+      "evidence": "1000/5000km and20/40/60N.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explainsobservednonlinearbenefit andprojection/flighttimelimit,butlittlederivation.",
+      "evidence": "5timesdistanceover130timessaving.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Routelegend/readoutclear;smallmapandclippedprose.",
+      "evidence": "Actualhighlatitudearc screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalshortversuslongrouteprinciple,nonewapplicationtask.",
+      "evidence": "Short hop gainsalmostnothing,notflighttime.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Dramaticlookinggreatcirclebenefit nearlyvanishesforshorthop.",
+      "evidence": "0.7kmoutof1000.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Sameprojectiondistinguishesarc andparallelwithnumericdistancecorrection.",
+      "evidence": "Highlatitude398km versus20N18km.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Distanceandlatitudecontrols supportcomparativepuzzle.",
+      "evidence": "Fourcontrolledstates.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Centralgeographicroutingintuition withflighttimelimit.",
+      "evidence": "Greatcircleversusparallelchoice.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Scale,latitude andprojectiondistortioncombined.",
+      "evidence": "Blueappearslongerbutshorteronsphere.",
+      "confidence": "medium"
+    }
+  }
+}

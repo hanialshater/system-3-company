@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "lemon-market-unravels",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lemon-market-unravels",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "lemon-market-unravels",
+    "domain": "economics",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/economics/lemon-market-unravels/meta.json",
+    "metaSha256": "cf5e977ede8cd0649acc4306756222ca0b3fa5f57c8ea82e1fe9633f791d245b",
+    "demoSha256": "ed5a111329d0eee97f30c8bd4accadb51ee4a7447471a79410d86b9ac2fc56bf",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/lemon-market-unravels",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/lemon-market-unravels.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Chose All of them against only good and only bad at2000 offer; locked it in.",
+    "exploration": "Initial3000 offer:10/10 cars,average value2000. Offer2000:5/10 cars,average1000,buyers overpay feedback. Offer1000:five cars,average1000. Home on offer slider gave500,five bad cars still offered at reservation threshold.",
+    "reveal": "Corrected only bad; explicitly compared initial3000/all cars with2000/good owners leave at2500 minimum. Explained average quality offered falls when price ignores quality. Stated invented two-kind model and indistinguishable cars.",
+    "visual": "Actual1257 \u00d7936 dark screenshot inspected. Good cars ghosted,bad cars colored;price,count and value metrics legible with full reveal.",
+    "previewIsolation": "No-history evaluation banner present.",
+    "blinding": "6/6 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear seller-composition commitment under distinct reservation values.",
+      "evidence": "All versus only-bad choice.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Offer contrasts visibly change composition and average value.",
+      "evidence": "3000 all10/value2000;2000 only5/value1000;500 threshold retains5.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects observed selection to good-owner reservation threshold and quality drop.",
+      "evidence": "2500 minimum versus2000 offer.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Threshold labels,ghosted cars and metrics clarify tested desktop state.",
+      "evidence": "Actual screenshot at500 withfive bad cars.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General quality-selection mechanism and assumptions but no concrete new application.",
+      "evidence": "Price ignores quality drives out better cars.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "One slider endpoint key insufficient audit.",
+      "evidence": "Home worked;focus,contrast,phone,zoom and motion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed all-sell expectation contradicted by half leaving.",
+      "evidence": "2000 offer removesfive good cars.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Ghosted quality group makes adverse selection visible.",
+      "evidence": "Good row ghosted,bad row active.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Offer presets and threshold endpoint permit reversible comparison.",
+      "evidence": "3000,2000,1000,500 offers.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete buyer price versus seller selection issue central.",
+      "evidence": "Average offer pays2000 for1000-quality pool.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Reservation prices and endogenous quality linked.",
+      "evidence": "Good sellers exit;average value falls.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links posted price,seller participation and conditional average quality.",
+    "conceptualDemand": "Distinguish buyer values from seller minimums and recompute composition.",
+    "interfaceBurden": "Low: three offer presets and labeled slider.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: adverse selection and reservation prices.",
+    "notationRepresentationBurden": "low:whole dollar values and counts."
+  },
+  "whyCool": "Offering the original average makes all good cars fade out and halves the remaining average value.",
+  "caveat": "Two fixed car types with hidden quality;no signaling,warranty or alternate market tested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Below500 offer unavailable on tested slider.",
+    "Keyboard,focus,contrast,phone,zoom/reflow and motion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:25:46.755933+00:00"
+}

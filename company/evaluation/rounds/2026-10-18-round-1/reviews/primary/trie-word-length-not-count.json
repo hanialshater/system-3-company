@@ -1,0 +1,103 @@
+{
+  "slug": "trie-word-length-not-count",
+  "demoVersion": 2,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/trie-word-length-not-count",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted100timesmore. Followed c/a/t manually among10words:3steps and catfound.",
+    "Added990words; automatic replay completed c/a/t in3steps among1000. Screenshot showed expanded first-letter branches and retained same three-edge catpath, original10-word count retained.",
+    "Reveal compares3versus3 and defines cost as letter hops. Title 'A thousand times the words' contradicts actual10\u21921000 change, which is100times."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Concrete word path introduces branching data structure.",
+    "conceptualDemand": "Lookup depth versus total tree size.",
+    "interfaceBurden": "Low: letter steps and one toggle."
+  },
+  "whyCool": "The dictionary grows sideways around the path you already know, rather than adding steps to that word.",
+  "caveat": "Fix thousand-times title to hundred-times. Only letter hops counted; child lookup and memory behavior can affect actual runtime. Single fixed successful query.",
+  "effort": "Browser prediction, c/a/t walk, dictionary expansion replay, both screenshots and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Good visible mechanism with an obvious quantitative title error.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear dictionary-size versus lookup-length question.",
+      "evidence": "10plus990words, cat threeletters.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Fixed word and two sizes, large replay automatic.",
+      "evidence": "Three manually enabled letters then one expansion control.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Same path supports hop-count independence in stated model.",
+      "evidence": "Three letter edges despite expanded side branches.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Central title overstates growth bytenfold.",
+      "evidence": "Thousandtimes title versus100times actual expansion.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General word-length statement without another word.",
+      "evidence": "Only cat; missing-key/long-word queries unavailable.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Much larger dictionary keeps same path length.",
+      "evidence": "Threehops atbothsizes.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Sidebranch expansion leaves highlighted path unchanged.",
+      "evidence": "26 first-letter branches and unchanged cat route.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Walkletters and expandtree.",
+      "evidence": "Nofree word input.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Introduces prefix-tree lookup tradeoff.",
+      "evidence": "Modelcountsletterhops, not benchmarktime.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Length dependence introduced with little implementation scope.",
+      "evidence": "No child-lookup/storage/caching cost comparison.",
+      "confidence": "medium"
+    }
+  }
+}

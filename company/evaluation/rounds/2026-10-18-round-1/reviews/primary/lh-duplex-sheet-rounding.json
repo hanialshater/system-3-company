@@ -1,0 +1,103 @@
+{
+  "slug": "lh-duplex-sheet-rounding",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-duplex-sheet-rounding",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Double-sided uses fewer sheets for seven pages with blank final sides allowed.",
+    "Tests gave 7 versus ceil(7\u00f72)=4. Minimum one page gave 1 versus 1.",
+    "Screenshot showed stylized turning-page icons rather than page-side allocation. Reveal preserved original 7 and current 1 and explained the partly unused whole final sheet."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Halving and rounding small integers.",
+    "conceptualDemand": "A blank side does not remove its physical sheet.",
+    "interfaceBurden": "Two tests and one slider."
+  },
+  "whyCool": "The last odd page still needs a whole sheet, even with its reverse blank.",
+  "caveat": "Prediction tests the ordering rather than the exact rounded count; icons do not depict blank-side allocation.",
+  "effort": "Prediction, both tests, one-page boundary, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear arithmetic and boundary, weak conceptual prediction.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Asks only smaller count, so does not test the central odd-page rounding misconception.",
+      "evidence": "Seven pages: single versus double sided.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Boundary exposes equality for one page.",
+      "evidence": "7/4 becomes 1/1.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains ceiling and physical indivisibility.",
+      "evidence": "Odd page still uses whole sheet.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Page-count assumptions and expressions are explicit.",
+      "evidence": "Two printable sides per sheet, blank final allowed.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General ceiling rule without another application.",
+      "evidence": "Divide by two and round up.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Expected sheet saving; one-page equality mild.",
+      "evidence": "No fractional-count prediction.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 1,
+      "reason": "Icons do not show odd final side.",
+      "evidence": "Numeric ceiling carries explanation.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Tests and count slider.",
+      "evidence": "No page assignment task.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Printing quantity is central.",
+      "evidence": "Physical sheet count.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Distinguishes pages from indivisible sheets.",
+      "evidence": "Ceiling versus exact half.",
+      "confidence": "medium"
+    }
+  }
+}

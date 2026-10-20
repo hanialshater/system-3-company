@@ -1,0 +1,104 @@
+{
+  "slug": "edges-are-differences",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/edges-are-differences",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted4 nonzero outputs for row200,200,200,10,10,10 with right-minus-left rule; choices0,2,4.",
+    "Nextpixel showedpixel3:10\u2212200=\u2212190;slidetoend4of4gave2nonzero,outputs0,\u2212190,\u2212190,0.",
+    "Swapped bright/dark,row10,10,10,200,200,200 resetcounts;Home then endscan gave0,+190,+190,0 and2nonzero.",
+    "Reveal still describes original negative outputs and brightpixel2/darkpixel5 while current reversed diagram showspositive outputs; later sentence explains swap sign. Light1280x720 right-edge prose cutoff."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simple subtraction embedded in sliding-filter representation.",
+    "conceptualDemand": "Neighbours versuscurrentpixel; sign andmagnitude.",
+    "interfaceBurden": "Several redundant scancontrols; stale prose."
+  },
+  "whyCool": "A tiny subtraction rule finds the boundary without recognizing what the picture contains.",
+  "caveat": "Reveal uses baseline negative outputs after learner swapscontrast; label original case or adapt prose. Horizontalcutoff. Technicalterminology not independently audited.",
+  "effort": "Prediction,stepandfullscan,reversal,fullrescan,reveal,two screenshots.",
+  "provisionalBucket": "promising-with-fix",
+  "bucketReason": "Strong causalinteraction; changed-state explanation needsfix.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete computable local-difference question with plausible brightness confusion.",
+      "evidence": "Four inner pixels and subtraction rule explicit.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Step scan,flat versusedge and contrast reversal discriminate sign andmagnitude.",
+      "evidence": "0,\u2212190,\u2212190,0 versus0,+190,+190,0.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Mechanism explained but original-state prose conflicts with tested reversed state.",
+      "evidence": "Reveal negative outputs,current diagrampositive.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Window and counts clear; stale prose andhorizontal cutoff.",
+      "evidence": "Reversed reveal screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General filter/image processing connection without second application.",
+      "evidence": "Mentionsphoto convolutionbuildingblock.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Bright anddark flatpatches bothzero; onlyedge responds.",
+      "evidence": "Two nonzero windows ratherthanall4.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Sliding weightedwindow plus contrast reversal expose local computation.",
+      "evidence": "\u22121,0,+1 overlay andsignedoutputs.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Scan,slider andswap give manipulable mechanism.",
+      "evidence": "Both orientations scanned.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Photoedge finding usecentral.",
+      "evidence": "Imageprocessingfilter explanation.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Localdifference,flatness andsign linked.",
+      "evidence": "Contrast reversal preservesmagnitude,changesign.",
+      "confidence": "medium"
+    }
+  }
+}

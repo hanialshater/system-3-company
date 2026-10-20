@@ -1,0 +1,119 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2",
+  "reviewKind": "primary",
+  "slug": "add-a-parallel-bulb",
+  "demoVersion": 1,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/add-a-parallel-bulb",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, familiar objects; no subject theory assumed.",
+  "viewport": "1280x720 desktop screenshot",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "text": "No-history banner confirmed, trust5/5 ignored. Predicted2.0A from alternatives0.5/1/2; locked."
+    },
+    {
+      "id": "E",
+      "text": "Bulb2 on:2bulbs,battery2.0A. Bulb3 on:3bulbs,3.0A. Bulb2 off:2bulbs,2.0A. Reveal enabled after secondbulb."
+    },
+    {
+      "id": "R",
+      "text": "Reveal connects1\u21922\u21923A to each branch full6V and6\u03a9 drawing1A; currents add at junction; pair acts3\u03a9. Limits ideal battery/fixed resistance, real bulbs heat. Inline screenshot shows remaining bulbs1A/glow, middle0A/off; right text clipping and topmeter partly out of internal scroll area. None saved."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Numerical alternatives surface current-sharing misconception.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Three configurations and reverse toggle show additive current and independent branches.",
+      "evidence": "E,R",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains branch voltage and junction addition with explicit ideal-model limit.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clear toggles/meters but internal panel clips reveal right edge.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Reusable parallel-branch addition with fixed-resistance assumptions; editorial potential only.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No mode audit.",
+      "evidence": "Untested",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Battery pays more instead of fixed current being shared.",
+      "evidence": "P,E",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Circuit labels, glow and meters connect branch status to total.",
+      "evidence": "R screenshot",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversible branch toggles.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Everyday bulb circuit with explicit idealization.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Branch independence and total current; resistance extension stated.",
+      "evidence": "R",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Connects branch independence and summed total; electrical units introduce prerequisite novelty.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "moderate; clipping",
+    "prerequisiteNovelty": "moderate; voltage/current/resistance",
+    "notationRepresentationBurden": "moderate;A,V,\u03a9 and circuit symbols"
+  },
+  "whyCool": "Removing the middle branch drops the battery meter while the other two bulbs retain their own1A.",
+  "caveat": "Idealized fixed-resistance model; reveal right edge clips and topmeter partly outside scrolled view.",
+  "notApprovedForServing": true,
+  "effort": "About3minutes",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility modes"
+  ]
+}

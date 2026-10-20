@@ -1,0 +1,135 @@
+{
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "browserContext": {
+    "theme": "dark",
+    "browser": "Chrome",
+    "viewport": "1257×992"
+  },
+  "observations": [
+    {
+      "id": "p",
+      "phase": "prediction",
+      "text": "No-history banner verified,trust5/5ignored. Chose100vs21/31digitsafter2^100;locked. Hookstatesdigitcountstraightline."
+    },
+    {
+      "id": "e",
+      "phase": "exploration",
+      "text": "+10=>2^10fourdigits;+10=>2^20sevendigits;Run100animation observed39/12 then100/31,unlock. Screenshot31-digitstrip with+3ticks every10,inlineonly."
+    },
+    {
+      "id": "r",
+      "phase": "reveal",
+      "text": "Notquite31;full2^100number;ten×1024about×1000each3digits in testedrange;start1+3tentimes31;log10(2^100)=100×.301≈30.1,wholepart+1."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Commitment clear but hook tells linear digitcount relation.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Step/run contrasts and digitstrip show multiplicative number versus additive length.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Own31digitresult explained by repeated scale and logarithm.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Strip/ticks and units clear; lognotation introduced after observation.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General digitcount formula stated; no concrete newnumber application.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic mode tests.",
+      "evidence": "e,r",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Enormousnumber only31digits.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Digitstrip/ticks carry growth comparison.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Step/range/run exploration.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Number-size estimation only.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Exponential growth, digitcount and logarithm linked.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Repeateddoubling and digit-length relation supported; logarithm equation adds optional notation.",
+    "conceptualDemand": "Exponent and floor-plus-one formula; directdigitstrip supportscore.",
+    "interfaceBurden": "Simple range/step/run."
+  },
+  "whyCool": "Ten doublings at a time add three displayed digits even while the numerical value multiplies1024.",
+  "caveat": "Exactly3perten holds observed0–100range, not independently tested beyond; reset/boundaries not checked.",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "missingEvidence": [
+    "Range/reset/accessibility modes untested."
+  ],
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3",
+  "notApprovedForServing": true,
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, number comparisons and familiar household objects; no domain theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 992
+  },
+  "screenshots": [],
+  "fatalFindings": [],
+  "slug": "digits-are-logs",
+  "demoVersion": 2,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/digits-are-logs",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "f2da37e94de42dba248ba1fd35713525fe50f27f0602bb787dfb70bc70e49b7c",
+    "metaSha256": "7764b1cd66295db68b1b73b73525283a7f36e1f81e5eb6bad388a1ec24212791"
+  }
+}

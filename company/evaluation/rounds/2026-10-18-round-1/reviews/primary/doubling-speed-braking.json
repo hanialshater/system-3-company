@@ -1,0 +1,156 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1b",
+  "date": "2026-10-18",
+  "slug": "doubling-speed-braking",
+  "domain": "physics",
+  "demoVersion": 2,
+  "expectedVersion": 2,
+  "batchId": "round1-02",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "0e74d67b7c6833f5b5931408e38d5bc70b79486aee1cc3d1739d78c2aa093eb9",
+  "demoSha256": "799156220135db1e110e89b3ca0ab6576f1e4f45de2599b49be032bf5ed4e10d",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/doubling-speed-braking",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "evidenceMode": "live-browser-computer-use",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "previewIsolationObserved": true,
+  "visibleTrustChrome": "6/6 claims checked; ignored, unopened",
+  "phaseCoverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true,
+    "pixelInspection": true
+  },
+  "observations": [
+    {
+      "id": "p",
+      "action": "Selected about14m; Lock it in",
+      "outcome": "Prediction retained; speed unlocked at30km/h6.9m."
+    },
+    {
+      "id": "e",
+      "action": "ArrowRight45, ArrowRight60, End120",
+      "outcome": "45:1.5speed2.25energy15.6m;60:2speed4energy27.8m;120:4speed16energy111.1m."
+    },
+    {
+      "id": "v",
+      "action": "Inspected120 screenshot",
+      "outcome": "16 numbered road blocks, car and metre axis legible; dark1257x936 no horizontal cutoff."
+    },
+    {
+      "id": "r",
+      "action": "Show me why",
+      "outcome": "about28m; references60km/h4stops and120km/h16blocks; energy speed squared, constant energy removed per metre; braking-only same brakes/road condition."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear doubled-speed alternatives expose linear-distance misconception.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Multiple speed contrasts directly expose changing energy and road ratios.",
+      "evidence": "e,v",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects tested60 and120 blocks to energy-removal mechanism and fixed-condition limit.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Numbered blocks and separate speed/energy/road readouts align.",
+      "evidence": "e,v",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Square-law principle and same-road conditions stated; no new task.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Insufficient mode checks.",
+      "evidence": "v",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "14m prediction reversed by27.8 and16block extreme.",
+      "evidence": "p,e,r",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Numbered blocks turn energy ratio into visible road.",
+      "evidence": "v",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversible speed control permits broad comparisons.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete braking-distance implication central to lesson.",
+      "evidence": "p,r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Energy growth, braking work and fixed conditions linked.",
+      "evidence": "r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links speed square to energy and energy removal per metre; numeric support.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": {
+      "level": "moderate",
+      "reason": "Movement energy and braking work introduced."
+    },
+    "notationRepresentationBurden": {
+      "level": "low",
+      "reason": "Familiar units, ratios and numbered blocks."
+    }
+  },
+  "whyCool": "Raising speed from60 to120 turns4 road blocks into16, showing how speed multiplies energy and required braking road.",
+  "caveat": "Model holds brakes and road fixed and excludes reaction distance; only desktop path checked.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Minimum speed/reset and accessibility modes untested."
+  ],
+  "reviewState": "complete-real-walkthrough",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  }
+}

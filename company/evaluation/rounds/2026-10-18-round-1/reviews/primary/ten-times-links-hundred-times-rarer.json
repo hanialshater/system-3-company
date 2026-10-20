@@ -1,0 +1,139 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "ten-times-links-hundred-times-rarer",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/ten-times-links-hundred-times-rarer",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "ten-times-links-hundred-times-rarer",
+    "domain": "probability",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/probability/ten-times-links-hundred-times-rarer/meta.json",
+    "metaSha256": "88601e4d8aa2cfcf5c7c1f1bb2bd1c60f521f689b6b95fd3b9bb581d8bd5a480",
+    "demoSha256": "9092ae12a5e6667f8479a76cecfeb174ed0773809ee7ad9ecbdf7f83a3e7774e",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/ten-times-links-hundred-times-rarer",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/ten-times-links-hundred-times-rarer.json"
+  },
+  "date": "2026-10-18T21:00:57.219794+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Selected100times rarer for1000links versus100 under1/k\u00b2 rule."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Linear chart initialk100share1/10000,100\u00d7rarerthan10 nearlyzero. Switchedloglog andk1000:1/million,100\u00d7rarerthan100. Movedk10:1/100,100\u00d7rarerthan1."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read same100factor per tenfold links, slope\u22122 as down two powers of ten per one across, linear apparentzero does not mean absence."
+    },
+    {
+      "phase": "screenshotInspection",
+      "evidence": "Actual1257x936 dark screenshots inspected: linear curve compressed nearaxis; loglog straight line marked\u00f7100,1/100,1/10^4,1/10^6; full reveal readable after scroll."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicit inverse-square rule supports calculable scale comparison.",
+      "evidence": "1000/100 tenfold leads100factor.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Axes toggle and logarithmic slider expose compressed tail.",
+      "evidence": "Linear nearzero versus loglogstraight line.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains constant factor and slope in terms of powers.",
+      "evidence": "Down two powers per one across.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Annotations and fraction counters support unfamiliar axes.",
+      "evidence": "Repeated\u00f7100 on each chart segment.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Same-page distribution only, no new application or changed exponent.",
+      "evidence": "Rare versus absent explanation.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Apparently absent tail becomes visible after scale change.",
+      "evidence": "Linearnearzero/loglogline.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Two representations illuminate the same distribution.",
+      "evidence": "Tail revealed on logarithmic axes.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Slider and axis buttons support limited exploration.",
+      "evidence": "k10,100,1000 compared.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful distinction between graphical compression and zero probability.",
+      "evidence": "No cliff despite nearzero linearplot.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Connects inverse square, ratios and logarithmic slope.",
+      "evidence": "1/k\u00b2 andslope\u22122.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "conceptualDemand": "balanced: relative rarity, powers and logarithmic coordinates",
+    "interfaceBurden": "gentle: axis toggle and discrete decade slider",
+    "prerequisiteNovelty": "logarithmic axes introduced through tenfold steps",
+    "notationRepresentationBurden": "inverse square, negative slope, fractional powers and two axis scales"
+  }
+}

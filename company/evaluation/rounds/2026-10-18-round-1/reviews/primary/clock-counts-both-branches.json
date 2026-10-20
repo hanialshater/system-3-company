@@ -1,0 +1,104 @@
+{
+  "slug": "clock-counts-both-branches",
+  "demoVersion": 1,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/clock-counts-both-branches",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction1.2% difference at0.1% perline permillionyears; chose12million.",
+    "3million =>3+3changes=0.6%;12million=>12+12=2.4%;6million=>6+6=1.2% match.",
+    "Reveal cites exact tried3/12 alternatives and explains bothbranches changing, factor2, constant madeuprate and norepeatedletterchange.",
+    "Screenshot branchingdotdiagram, readable arithmetic; titleleftedge and revealrightedge clipped in scrollingpane."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Rates and percentages plus two-branch accounting.",
+    "conceptualDemand": "Distinguish lineagechange from pairwisedifference.",
+    "interfaceBurden": "Simplebuttons; clipped scrollingpane."
+  },
+  "whyCool": "The DNA difference is two clocks running together, so counting only one doubles the age.",
+  "caveat": "Explicit toyconstant clock; single reviewer and no factualsource audit.",
+  "effort": "Prediction,threecounterfactual dates,reveal and visualcheck.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Focused misconception with personalized evidence; layoutfriction.",
+  "quality": {
+    "prediction": {
+      "score": 4,
+      "reason": "Targets singlebranch counting error.",
+      "evidence": "12vs6million alternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Counterfactual dates expose twice-rate accumulation.",
+      "evidence": "3,12,6 outputs observed.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Uses actual experiments and explains factor2 with limitations.",
+      "evidence": "Other splitsyoutried3gave0.6%,12gave2.4%.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Concise arithmetic but clipped text and percentage rate demand.",
+      "evidence": "Screenshot title and reveal edgescropped.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Potential for reasoning about divergence from commonorigin.",
+      "evidence": "Bothbranches contribute to difference.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Time is half onebranch estimate.",
+      "evidence": "12=>6million correction.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Two dottedbranches map to summedchanges.",
+      "evidence": "6+6=12shown.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Datebuttons and slider exploration.",
+      "evidence": "Threecounterfactual dates.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Foundational biologicalmodel interpretation.",
+      "evidence": "Molecularclock caveats.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Rate,difference,and two changinglineages.",
+      "evidence": "2timesrate timestime.",
+      "confidence": "medium"
+    }
+  }
+}

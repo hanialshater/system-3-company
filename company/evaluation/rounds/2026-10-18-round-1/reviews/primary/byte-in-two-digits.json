@@ -1,0 +1,152 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2b",
+  "reviewKind": "primary",
+  "slug": "byte-in-two-digits",
+  "domain": "cs",
+  "batchId": "round1-02",
+  "demoVersion": 1,
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "4ea91cf0a9bfa902073e5b0860e1989e0ae704a343747132f759f7aaa92dffb9",
+  "demoSha256": "8e0e3123e6268a37a280b85f8cd2350dd2e9199f6a12f8ac8af2b02bdd8fdd4b",
+  "reviewedAt": "2026-10-18T18:34:33.356392+00:00",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/byte-in-two-digits",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "previewIsolationConfirmed": true,
+  "visibleTrustChrome": "5/5 claims checked; ignored, panel unopened",
+  "phaseCoverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "o1",
+      "action": "Selected D6 and locked",
+      "outcome": "1101 -> 13 -> D; 0110 -> 6"
+    },
+    {
+      "id": "o2",
+      "action": "Turned left worth-2 on",
+      "outcome": "Left F (15), right remained 6"
+    },
+    {
+      "id": "o3",
+      "action": "Turned right worth-8 on",
+      "outcome": "Right E (14), left remained F; reveal unlocked"
+    },
+    {
+      "id": "o4",
+      "action": "Turned all four left switches off",
+      "outcome": "Left 0, right E unchanged"
+    },
+    {
+      "id": "o5",
+      "action": "Opened reveal",
+      "outcome": "Reconstructs original D6, first changes F6 and FE, and current 0000 1110 = 0E; explains 16 settings per four switches and exactly two symbols per byte"
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear alternatives separate value error and reversed groups.",
+      "evidence": "o1",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Left and right changes isolate independent symbols; all-off boundary visibly zero.",
+      "evidence": "o2-o4",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explanation uses original, intermediate and current state to connect grouping to two symbols.",
+      "evidence": "o5",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Weighted on/off controls and decimal-to-symbol feedback legible on tested desktop.",
+      "evidence": "o1-o5; inline pixels",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Four-bit grouping principle stated with byte condition; no separate applied case.",
+      "evidence": "o5",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic mode checks.",
+      "evidence": "Untested",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Correct prediction confirmed; independent group response adds supporting insight.",
+      "evidence": "o1-o5",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Two spatial groups and weighted switches directly carry conversion.",
+      "evidence": "o2-o4",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversible toggles allow inspecting independence and zero boundary.",
+      "evidence": "o2-o4",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete binary-to-hex reading skill for bytes.",
+      "evidence": "o5",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Independent grouping and zero/F boundaries illustrate one representation mapping.",
+      "evidence": "o2-o5",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links weighted binary addition, groups of four and unfamiliar A-F symbols.",
+    "conceptualDemand": "balanced: supported representation changes and addition",
+    "interfaceBurden": "low: eight labelled toggles and immediate sums",
+    "provisional": true
+  },
+  "whyCool": "Flipping the left worth-2 switch changes D6 to F6 while the right symbol stays fixed, making the two-symbol grouping visible.",
+  "caveat": "Hex notation is novel for the declared boundary; no independent application task follows the mapping.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Phone, keyboard-only, focus, contrast measurement, zoom/reflow and reduced motion untested"
+  ],
+  "reviewState": "complete-real-walkthrough",
+  "effort": {
+    "approximateMinutes": 2
+  },
+  "screenshots": [
+    "Inline observed unlocked and revealed 0E states; no saved image file"
+  ],
+  "notApprovedForServing": true,
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  }
+}

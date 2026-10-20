@@ -1,0 +1,103 @@
+{
+  "slug": "link-label-names-the-target",
+  "demoVersion": 2,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/link-label-names-the-target",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Report v3 sources rather than Click here.",
+    "Exercise showed note fields Artifact report,Version missing,Section missing; Add Version filledv3 then Add Section filledsources,1/3\u21923/3.",
+    "Screenshot confirmed checklist only,not three links or destination choice. Reveal described descriptive label and explicitly did not verify destination or accessibility."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple reading and two clicks.",
+    "conceptualDemand": "Specific text identifies destination better.",
+    "interfaceBurden": "Prescribed button sequence."
+  },
+  "whyCool": "A label can tell you the artifact, version and section before you follow it.",
+  "caveat": "Hook promises link ambiguity but actual exercise only completes metadata fields; no destination or accessibility audit.",
+  "effort": "Prediction, both field operations, screenshot and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Useful advice but weak interactive embodiment and mismatched hook.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Title and one richly specific choice supply answer.",
+      "evidence": "Report v3 sources versus Click here.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 1,
+      "reason": "Two prescribed autofill clicks, no link navigation or ambiguity test.",
+      "evidence": "Add Version then Section.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Explains descriptive components but no experienced link-target contrast.",
+      "evidence": "Checklist fields visible,not actual label navigating.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Hook promises three links; fixture is note checklist.",
+      "evidence": "No links shown.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General label rule and limit without new task.",
+      "evidence": "Does not verify destination/accessibility.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 0,
+      "reason": "No counterintuitive outcome observed.",
+      "evidence": "Expected field completion.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 1,
+      "reason": "Checklist shows metadata but not link interpretation.",
+      "evidence": "Three labelled fields.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 0,
+      "reason": "Autofill sequence only.",
+      "evidence": "No independent choice after prediction.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Useful link-writing example supporting prose.",
+      "evidence": "Artifact/version/section.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "Single descriptive-label principle.",
+      "evidence": "No navigation or competing destinations.",
+      "confidence": "medium"
+    }
+  }
+}

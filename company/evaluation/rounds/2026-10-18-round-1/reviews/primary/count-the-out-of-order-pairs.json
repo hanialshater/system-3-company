@@ -1,0 +1,156 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1b",
+  "date": "2026-10-18",
+  "slug": "count-the-out-of-order-pairs",
+  "domain": "cs",
+  "demoVersion": 2,
+  "expectedVersion": 2,
+  "batchId": "round1-03",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "f0aac5b9268cf108bfee416e74aeb37a8af6714232b10d178bb7f32cd5dfc18f",
+  "demoSha256": "03ebf95afcc321d54894bb1f94bd21af12078b37be023b264eaa332b455260d4",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/count-the-out-of-order-pairs",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "evidenceMode": "live-browser-computer-use",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "previewIsolationObserved": true,
+  "visibleTrustChrome": "7/7 claims checked; ignored, unopened",
+  "phaseCoverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true,
+    "pixelInspection": true
+  },
+  "observations": [
+    {
+      "id": "p",
+      "action": "Selected2; Lock it in",
+      "outcome": "Prediction retained; merge and exhaustive controls unlocked."
+    },
+    {
+      "id": "e",
+      "action": "Take next twice; Finish merge; Check every pair",
+      "outcome": "First1jumps2and4+2; next2fromleft+0; finish3jumps4+1, total3pairs in5takes; exhaustive10checks finds3."
+    },
+    {
+      "id": "v",
+      "action": "Inspected first-take screenshot",
+      "outcome": "Outlined waiting2/4 and arrows to output1 illustrate simultaneous two-pair jump; rows/readouts clear. Dark1257x936 no horizontal cutoff."
+    },
+    {
+      "id": "r",
+      "action": "Show me why",
+      "outcome": "3; actual jumps and explicitpairs(2,1),(4,1),(4,3);5takesvs10checks; merge-sort levelsO(nlogn)versusn2 extension stated."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete inversion definition and plausible counts allow genuine commitment.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Right jump versusleft nonjump andexhaustive method visibly contrast batch counting.",
+      "evidence": "e,v",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Actual jumps explain allthreepairs andcostcontrast; broadercomplexity claim stated.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Sorted halves and explicitjump arithmetic support graphical counters.",
+      "evidence": "e,v",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Merge-sortreuse stated withoutnewarray orworkedlevels.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No mode checks.",
+      "evidence": "v",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Firsttake counts twopairs, thenadditionaljump resolves2prediction to3.",
+      "evidence": "p,e",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Waiting-card outlines andjump arrows carrybatchmechanism.",
+      "evidence": "v",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Guidedsteps andtwo countingmodes supportcomparativeinspection.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Efficient disordercounting disciplinaryuse.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Sortedhalves,batchinversions,exhaustiveverification andcomplexityextension linked.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Corejumpcounts need sorted-half invariant andpairdefinition, visuallysupported; bigOoptionalextension moreabstract.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": {
+      "level": "moderate",
+      "reason": "Inversions andmergecounting introduced."
+    },
+    "notationRepresentationBurden": {
+      "level": "moderate",
+      "reason": "Pairnotation,threecardrows andO(nlogn)extension."
+    }
+  },
+  "whyCool": "Taking1fromtheright counts both waiting2and4atonce, so the merge reaches thesame3inversions as10exhaustivechecks in5takes.",
+  "caveat": "Fixed already-sorted halves; full recursive sorting cost is asserted after singlemerge.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Reset,otherarrays andfullrecursion;phone/accessibility untested."
+  ],
+  "reviewState": "complete-real-walkthrough",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  }
+}

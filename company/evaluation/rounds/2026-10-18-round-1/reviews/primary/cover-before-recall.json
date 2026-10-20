@@ -1,0 +1,104 @@
+{
+  "slug": "cover-before-recall",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/cover-before-recall",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Studied visible pairs bell/lake,kite/plum,leaf/door; predicted cannot know covered performance until trying.",
+    "Locking covered the source. Each cue button cycles supplied answers; leaf firstdoor, bell firstlane thenlake, kite firstplum.",
+    "Selected all correct and checked, producing3/3. Original answers reappeared after check.",
+    "Reveal accurately handled the all-correct case: nothing missed, only covered attempt establishes that, and explicitly denied a long-term memory score."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Three simple word pairs.",
+    "conceptualDemand": "Supported reading versus a covered test.",
+    "interfaceBurden": "Cycling answer buttons rather than typing."
+  },
+  "whyCool": "It can demonstrate why testing matters even when the learner gets every answer right.",
+  "caveat": "Cycling pre-supplied options permits recognition cues, so this is not pure free recall; the showing3/3 baseline is assigned from legibility rather than an actual prior response test.",
+  "effort": "Completed study, prediction, three covered selections, check, screenshots and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Actual learner response and careful perfect-score interpretation with limited memory claims.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Asks whether reading accuracy establishes unassisted performance, with explicit uncertainty option.",
+      "evidence": "A real covered attempt follows.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Source actually hides and selected answers receive matching feedback.",
+      "evidence": "Three independent cue responses, perfect score accepted.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Accurately adapts to a perfect score rather than inventing a deficit.",
+      "evidence": "Nothing missed this time and one-attempt limit.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Study, covered response and post-check states are explicit.",
+      "evidence": "Source pairs hidden then restored.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete checking procedure and evidence boundary are explicit.",
+      "evidence": "Cover answers to remove reading route; not long-term retention.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "No mismatch on tested attempt; insight is about evidence.",
+      "evidence": "Perfect3/3 still explained appropriately.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Visible/covered cards clarify support removal.",
+      "evidence": "Separate cue responses and result.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Choosing responses creates a small memory task.",
+      "evidence": "Cycled answer options and check.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful self-testing habit.",
+      "evidence": "Cover before checking recall.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Distinguishes reading, current performance and long-term retention.",
+      "evidence": "One-attempt caveat.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "next-word-tally",
+  "demoVersion": 3,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/next-word-tally",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted no unseen sentence from a one-word successor model trained on three explicit cat/dog sentences.",
+    "Manually chose dog,sat,on,the,mat; result 'the dog sat on the mat.' marked New, with all six pair counts listed. Restarted and auto-finished repetitive 'the cat sat on the cat sat on the cat sat on the dog sat on the mat.', also New.",
+    "Reveal recalls first novel sentence and explains local pair recombination, possible nonsense, and longer context used by larger language models.",
+    "1280x720 light screenshots: sentence and pair chips clear, reveal prose clipped at right edge."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Familiar words and explicit counts make mechanism concrete.",
+    "conceptualDemand": "Local pair knowledge versus whole-sentence memory.",
+    "interfaceBurden": "Several word choices, clear restart and finish."
+  },
+  "whyCool": "Every adjacent pair is familiar, yet the whole sentence is new\u2014and the same rule can also wander into nonsense.",
+  "caveat": "One-word count toy; broader language-model comparison is an analogy, not an equivalence. Reveal uses earlier sentence while later output remains. Right-edge prose cutoff.",
+  "effort": "Prediction,manual novel construction,restart,automatic generation,reveal,two screenshots.",
+  "provisionalBucket": "promising-with-fix",
+  "bucketReason": "Accessible generative mechanism with observable limitation; fix reveal layout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicit training text and target sentence make novelty claim testable.",
+      "evidence": "Unseen dog-on-mat sequence versus observed local pairs.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Manual construction plus restart and automatic repetitive generation expose both novelty and local-context limits.",
+      "evidence": "Short coherent new sentence and long repetitive new sentence.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explains original answer with pair evidence and meaningful one-word-context limitation.",
+      "evidence": "All pairs seen, whole sentence unseen; nonsense possible; longer-context comparison.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Counts and novelty labels clear; reveal clips horizontally and refers to earlier sentence while new output persists.",
+      "evidence": "Final screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Explicit broader language-model analogy but no independent new-use task.",
+      "evidence": "Next-token probabilities and longer context described.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "A count table creates a sentence absent from training.",
+      "evidence": "New label for dog-on-mat.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Allowed successor choices and final pair chips expose mechanism.",
+      "evidence": "Each word chosen from visible counts.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 4,
+      "reason": "Multiple distinct constructive and automatic paths generate coherent and repetitive results.",
+      "evidence": "Manual six-pair sentence; restarted automatic long sequence.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Central explanation of generation versus verbatim copying.",
+      "evidence": "Novel whole from seen pairs.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Local statistics, recombination, incoherence and context length linked.",
+      "evidence": "Same counts produce novelty and repetition.",
+      "confidence": "medium"
+    }
+  }
+}

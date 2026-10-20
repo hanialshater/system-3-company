@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "seesaw-sit-closer",
+  "demoVersion": 4,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/seesaw-sit-closer",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "seesaw-sit-closer",
+    "domain": "physics",
+    "status": "published",
+    "demoVersion": 4,
+    "metaPath": "src/demos/physics/seesaw-sit-closer/meta.json",
+    "metaSha256": "cadd5a4b959fb470200231f494f7ded05b56986f20c5aadbb5151c7a676445a5",
+    "demoSha256": "7ff3b3e8a6d663306159dd0d15867cfc1caacdf182fc6c7a25cce6ba77f17ed6",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/seesaw-sit-closer",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/seesaw-sit-closer.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected2m against4m and1m for20kg balancing40kg at2m;locked it in.",
+    "exploration": "Initial3m:20kg torque589 versus785,tipped. End5m:981 versus785,oppositetip. Left4.5m:883,tipped. Left4m:785/785,level. Home0.5m:98,tipped. Returnedvia5/4.5/4 tobalance;last4.5m dashedcomparison retained.",
+    "reveal": "Corrected4m;quotedbalanced785 andtested4.5m883. Explainedweight\u00d7pivotdistance torque,halfweight atdoubledistance. Light rigidplank,pointweights model stated.",
+    "visual": "Actual1257 \u00d7936 dark screenshot inspected. Levelplank at4m,equaltorquebars anddashedlast4.5m comparison showbalance andovershoot. Fullreveal legible.",
+    "previewIsolation": "No-history evaluation banner present.",
+    "blinding": "6/6 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear distance alternatives testweight-only/equaldistance reasoning.",
+      "evidence": "2m commitment versus4m.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Undershoot,balance,overshoot andendpoint contrast exposeproductrelation.",
+      "evidence": "589<785;785=785;883/981>785;98shortarm.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connectsactualbalanced andoff-balance values tomomentproduct withassumptions.",
+      "evidence": "20\u00d74 equals40\u00d72;785 both.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Labeledposition,planktilt andretainedbarcompare cleardesktop path.",
+      "evidence": "Actual4m level and4.5m dashed883.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable torqueprinciple andmodelconditions,butno concrete newapplication.",
+      "evidence": "Weighttimesdistance explanation.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sliderkeys alone insufficient audit.",
+      "evidence": "Home,End,arrows worked;otheraccessmodes unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Equal-distance prediction contradicted;lighterchild caneventipheavyone.",
+      "evidence": "4m balance,5m lighter-sidedown.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Plankangle andturning-effectbars carrytorquecomparison.",
+      "evidence": "Actualequalbars anddashedovershoot.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Positionrange permitsrepeatable balancehunt andboundarytests.",
+      "evidence": "0.5,3,4,4.5,5m tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concretelever-balance taskcentral.",
+      "evidence": "Halfweight needstwicedistance.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Productinvariant,balance andovershoot linked.",
+      "evidence": "Equal785 andneighbor883 contrast.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links weightanddistance throughmultiplicativeturningeffect.",
+    "conceptualDemand": "Comparetorques ratherthanmassalone andinterpretlevelasproductequality.",
+    "interfaceBurden": "Low:oneposition slider andexplicitbarvalues.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate:torqueandpivotdistance.",
+    "notationRepresentationBurden": "moderate:N\u00b7m,m,kg and9.81factor onstage."
+  },
+  "whyCool": "The20kg child balances at4m,butmovinganotherhalfmetre makesthelighterchildsidego down.",
+  "caveat": "Idealizedpointweights andlightplank;no secondmass,pivotshift orrealplaygroundsafety test.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Postreveal sliderchanges nottested.",
+    "Focusorder,contrast,phone,zoom/reflow andmotion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:08:47.350490+00:00"
+}

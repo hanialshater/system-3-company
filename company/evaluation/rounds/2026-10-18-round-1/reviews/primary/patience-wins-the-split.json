@@ -1,0 +1,103 @@
+{
+  "slug": "patience-wins-the-split",
+  "demoVersion": 5,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/patience-wins-the-split",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted about53 for alternating1dollar offers,10%shrink,noenddate.",
+    "At1round proposer100%;2rounds10%;3rounds91%. 400rounds10%shrink52.6%;50%shrink66.7%. Chart explicitly shows first20bars plus400limit.",
+    "Reveal accurately labels original10%seen case and50%contrast,explainscontinuationoffer and1/(1+.9). Screenshotsproseclipsright;requireschangedshrink to unlock withoutinstruction sayingso."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Backwardinduction andfixedpointlimit.",
+    "conceptualDemand": "Respondercontinuationvalue anddiscounting.",
+    "interfaceBurden": "Horizonbuttons,shrinkpresets;unlockunclear."
+  },
+  "whyCool": "With cheap delay,going first buys only a small edge because the other player can credibly wait to propose next.",
+  "caveat": "Finite400round stand-in,knownshrink andrationalpayoffs;acceptancewhenindifferentimplicit. No real negotiationbehavior measured.",
+  "effort": "Prediction,1/2/3/400rounds,10/50%shrink,reveal,screenshots;temporaryviewport1280\u00d7720needed.",
+  "provisionalBucket": "solid-complex-model",
+  "bucketReason": "Richcomparisons,needs novice primer andclearunlockinstruction.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Exactequilibrium share requires backward-induction assumptions not explained beforechoice.",
+      "evidence": "53fromconditionalrationalmodel.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Horizon oscillations,convergence andshrinkcontrast actuallytested.",
+      "evidence": "100/10/91 then52.6/66.7.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Accurate originalcase andcomparison,continuationmechanism explicit.",
+      "evidence": "Seen10%,400rounds.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Chart scope clear but revealgating andclippedprose;no negotiationactions.",
+      "evidence": "Change shrink needed.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Bargaining principle withinmodel,no newapplication.",
+      "evidence": "Samepiegame.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Firstmoveedge small withcheapwaiting,odd/evenhorizon swings.",
+      "evidence": "10versus91shortgames.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Bars andcontinuationofferformula explainconvergence.",
+      "evidence": "400limitline.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Addrounds andvaryshrink.",
+      "evidence": "Multiplehorizons.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Negotiationtheory intuition,not empiricalbargainprediction.",
+      "evidence": "Rationalcommonknowledge toy.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Backwardinduction andinfinitehorizonlimit.",
+      "evidence": "Alternatingrecurrence.",
+      "confidence": "medium"
+    }
+  }
+}

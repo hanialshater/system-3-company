@@ -1,0 +1,104 @@
+{
+  "slug": "ten-to-one-buffer",
+  "demoVersion": 3,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/ten-to-one-buffer",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted4.76 for10timesacidversusbase,pKa4.76;alternatives3.76/5.76. EqualamountspH=pKa given,logratio rule notbeforeprediction.",
+    "10/10mmol4.76;100acid/10base3.76;100/100back4.76;1acid/100base6.76. Hollow/filleddots andratioruler update.",
+    "Reveal recalls100/10and100/100,explains pH=pKa+log10(base/acid),tenfoldratiooneunit,moderate0.01\u20131mol/L limit. Latest1/100notdiscussed.",
+    "Light1280x720 dots/ruler clear,finalproseclippedright."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Weakacid,conjugatebase,pKa andlogarithms requirebackground.",
+    "conceptualDemand": "Equilibriumapproximation andratioinvariance.",
+    "interfaceBurden": "Two discrete sliders."
+  },
+  "whyCool": "Ten times as much of both ingredients leaves the pH unchanged because their ratio stays the same.",
+  "caveat": "Mmolamountswithoutvolume meanstatedconcentrationconditioncannotbechecked. Buffercapacitynotexplored. Noindependentchemistryaudit. Prosecutoff.",
+  "effort": "Prediction,three changedcompositioncontrasts,reveal,two screenshots.",
+  "provisionalBucket": "specialist-with-fix",
+  "bucketReason": "Strongratioinvariance;clarifyvolumeconditionsandlayout.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Exactchoice needs undisclosedlogrelation.",
+      "evidence": "Onlyequalamounts relation beforequestion.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Independentamountcontrasts expose ratio versus total andoppositeboundary.",
+      "evidence": "10/10,100/10,100/100,1/100.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explainsoriginalratio andtotalcontrast withapproximationcondition.",
+      "evidence": "Logequation andmoderateconcentration limit.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readouts clear; no volume tocheckconcentrationcondition,proseclips.",
+      "evidence": "mmolcontrols andmol/Llimit.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalrule withinonefixedbuffer,no newapplication.",
+      "evidence": "SameaceticacidpKa.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Moreofboth changesamount butnotpH.",
+      "evidence": "10/10and100/100both4.76.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Multiple ratio/total contrasts tiedtodotsandruler.",
+      "evidence": "1:10,1:1,100:1states.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Two componentcontrols supportcontrolledexperiments.",
+      "evidence": "Acid/baseindependentlychanged.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Centralbuffercompositioninterpretation.",
+      "evidence": "Ratioversusamount.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Logarithmicratio,invariance andapproximationcondition.",
+      "evidence": "Tenfoldratiooneunit.",
+      "confidence": "medium"
+    }
+  }
+}

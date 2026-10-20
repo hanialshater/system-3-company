@@ -1,0 +1,104 @@
+{
+  "slug": "choose-the-metric-first",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/choose-the-metric-first",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Selected Choose the objective over Count visible movement; hook already states the tradeoff.",
+    "Short5\u2192urgent15\u2192long20 produced total waiting25 and one late job against due15 for urgent.",
+    "Swapping first tasks produced urgent\u2192short\u2192long, waiting35 and zero late; target button then disabled because already at target.",
+    "Reveal accurately compared ten extra waiting minutes with eliminating lateness, but introduced no-late as the chosen goal only at reveal rather than letting the learner select an objective."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple queue sums and due-time comparison.",
+    "conceptualDemand": "Optimization objective versus metric.",
+    "interfaceBurden": "Run and swap controls."
+  },
+  "whyCool": "The same rearrangement improves one metric while making another worse.",
+  "caveat": "The app chooses a no-lateness target rather than asking the learner which objective matters; prediction could instead ask for the measurable tradeoff.",
+  "effort": "Completed prediction, both orders, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Meaningful tradeoff despite a weak prediction and late objective declaration.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "An obvious vocabulary choice replaces a concrete forecast of queue outcomes.",
+      "evidence": "Choose objective versus visible movement.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Reordering changes two measurable objectives in opposite directions.",
+      "evidence": "25/1 versus35/0.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Accurate numeric tradeoff supports the need for an objective.",
+      "evidence": "Ten extra waiting minutes eliminates late job.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Metrics are clear but the claimed goal is supplied late and target is preselected.",
+      "evidence": "No-late goal first explicit in reveal.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete comparison rule identifies when preference needs an objective.",
+      "evidence": "Waiting and lateness measure different things.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Improving deadline performance worsens total waiting.",
+      "evidence": "Tradeoff between two orders.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Task lengths and due markers expose deadline effects.",
+      "evidence": "Urgent fits due15 only when first.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Swap action changes the queue.",
+      "evidence": "Two available orders.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful objective-setting habit.",
+      "evidence": "Specify what better means before optimizing.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Two objectives and one Pareto tradeoff.",
+      "evidence": "No explicit weighting or priority selection.",
+      "confidence": "medium"
+    }
+  }
+}

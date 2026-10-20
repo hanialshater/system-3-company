@@ -1,0 +1,104 @@
+{
+  "slug": "copy-of-a-copy",
+  "demoVersion": 2,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/copy-of-a-copy",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction2%word sampled50times absencechance2/36/98%; chose2.",
+    "Generation1 ninewordsleft; generation11 fourleft using50worddraws;500wordcomparison generation10 all10left.",
+    "Reveal lists sixlostwords from actualrun,0.98^50=36.4%, zeroscannotreturn, larger samples slowloss notundoit; explicitcounttoy not realmodel.",
+    "Screenshot wordbars topcropped and longrevealrightedgeclipped; current500wordchart versus preserved50wordrun narrative."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Independentdrawabsence probability and recursive distributions.",
+    "conceptualDemand": "Perdrawchance versus allmissprobability, irreversiblezero.",
+    "interfaceBurden": "Simplebuttons but multiplecomparisonstates andclippedpane."
+  },
+  "whyCool": "A rareword can vanish inone smallsample, and copiesofthatcopy have no way toinvent itback.",
+  "caveat": "Counts-only toy, not actualtrainedmodel; externalstudyclaim not independentlychecked.",
+  "effort": "Prediction,1+10generations,500wordcomparison,reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Clear recursive-loss mechanism and usefulcounterfactual; statisticaldemand.",
+  "quality": {
+    "prediction": {
+      "score": 4,
+      "reason": "Tests perdraw probability versus aggregateabsence.",
+      "evidence": "2%word but36.4%absence.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Repeatedresampling pluslargersample counterfactual.",
+      "evidence": "50wordrun4left;500wordrun10left.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Actuallostwords and probability explain irreversibleloss.",
+      "evidence": "0.98^50 andzerocannotreturn.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Two samples/generationcounts plusclippedchart/text.",
+      "evidence": "11generationrun versus10generationcomparison.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Potential to understand rarecase loss in recursive sampling.",
+      "evidence": "Explicittoy limitation andrealmodelreference.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 4,
+      "reason": "A2%word has roughlyone-third chanceofdisappearing in50draws.",
+      "evidence": "36.4%reveal.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Wordcounts falltozero onbars.",
+      "evidence": "10=>9=>4words.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Advancegenerations andcompare sample sizes.",
+      "evidence": "Next,+10,500wordcontrols.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful datafeedback-loop intuition.",
+      "evidence": "Rarecases vanish underrecursive sampling.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 4,
+      "reason": "Compoundingloss,absorbingzeros,finite sampling.",
+      "evidence": "Missingword impossible nextgeneration.",
+      "confidence": "medium"
+    }
+  }
+}

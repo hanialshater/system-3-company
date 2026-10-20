@@ -1,0 +1,156 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1b",
+  "date": "2026-10-18",
+  "slug": "hydrogen-per-litre",
+  "domain": "chemistry",
+  "demoVersion": 2,
+  "expectedVersion": 2,
+  "batchId": "round1-02",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "a5752944835072d2632bae786b3fc10cbbb6acfa78e443ff065c000ef2af14c3",
+  "demoSha256": "8df1af494caea5166f68f8a374abd0fd9ff58d87bf2d2531bf534cc33c25ff97",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/hydrogen-per-litre",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "evidenceMode": "live-browser-computer-use",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "previewIsolationObserved": true,
+  "visibleTrustChrome": "6/6 claims checked; ignored, unopened",
+  "phaseCoverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true,
+    "pixelInspection": true
+  },
+  "observations": [
+    {
+      "id": "p",
+      "action": "Selected about3times more; Lock it in",
+      "outcome": "Prediction retained; comparison buttons unlocked."
+    },
+    {
+      "id": "e",
+      "action": "Per kilogram; Per litre gas; Liquefy hydrogen",
+      "outcome": "H142vs petrol48MJ/kg; gas0.012vs34MJ/L, petrol ahead2900; liquid10MJ/L, petrol ahead3.4; values retained."
+    },
+    {
+      "id": "v",
+      "action": "Inspected liquid comparison screenshot",
+      "outcome": "Gas hairline visibly labelled, petrol long and liquid intermediate bars; dark1257x936 controls and readouts legible, no horizontal cutoff."
+    },
+    {
+      "id": "r",
+      "action": "Show me why",
+      "outcome": "Correct3000times less; explains0.08g/L density, gas hairline and cryogenic liquid limit; best depends on shortage of mass or space."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Mass advantage versus volume disadvantage alternatives support meaningful commitment.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Mass, gas volume and liquid volume contrasts reveal normalization reversal.",
+      "evidence": "e,v",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Observed bars connected to density and mass/space constraints.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Hairline labelled explicitly; units and ratios remain visible.",
+      "evidence": "v,e",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Fuel choice mass/space principle stated; no explicit new case application.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient checks.",
+      "evidence": "v",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "3times-more prediction reverses to2900times less.",
+      "evidence": "p,e",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Bars and hairline make volume disadvantage visible.",
+      "evidence": "v",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Normalization and phase controls permit comparative exploration.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Fuel storage mass-versus-space decision central.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Normalization, density and liquid phase boundary linked.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Coordinates per-mass/per-volume quantities through density and phase.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": {
+      "level": "moderate",
+      "reason": "Fuel energy density and liquefaction introduced."
+    },
+    "notationRepresentationBurden": {
+      "level": "moderate",
+      "reason": "MJ/kg,MJ/L,kJ and cryogenic temperature; values support interpretation."
+    }
+  },
+  "whyCool": "Changing from per kilogram to per litre collapses hydrogen from the winning bar to a labelled hairline, and liquefaction only partly closes the gap.",
+  "caveat": "Fuel comparison concerns burning energy and space/mass; system costs and efficiency are not explored.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Return-to-gas behavior, phone and accessibility modes untested."
+  ],
+  "reviewState": "complete-real-walkthrough",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  }
+}

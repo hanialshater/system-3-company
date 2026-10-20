@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "same-air-less-oxygen",
+  "demoVersion": 2,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/same-air-less-oxygen",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "same-air-less-oxygen",
+    "domain": "chemistry",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/chemistry/same-air-less-oxygen/meta.json",
+    "metaSha256": "15cdd93e65cdbd01b974388802d284bc51aecf88f71322cdfd053bc8e2d0c132",
+    "demoSha256": "7335a397ee6054c99612c1400586bbe83065d9c87288c5124c00f631fe4aeb4e",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/same-air-less-oxygen",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/same-air-less-oxygen.json"
+  },
+  "date": "2026-10-18T19:42:08.312455+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "No-history banner confirmed;trust7/7 ignored. Selected7% andlocked. Initialsea-level21% oxygenreadoutvisiblebeforecommitment,consistentwithpromptgiven21%sealevel;notdirectsummitanswerleak.",
+    "exploration": "Sealevel203dots42oxygen,101.3kPa/21%/21.2oxygenkPa. Climb1000:180/38dots,89.9/21%/18.8. Summit8849:63/13dots,31.4/21%/6.6;revealunlocks. Sealevelresetrestoresoriginalcounts.",
+    "reveal": "Correct21%;actualsummit63versus203dotsand6.6versus21.2kPaquoted. Eachgascontributesfractionoftotalpressure,thinnerairnotpoorercomposition;breathaboutthird. Standardatmospheremodel,measuredsummit~34kPacaveat.",
+    "visual": "Inline1257x936 dark screenshots inspected: sameboxlesscrowdedatsummit,oxygenpinkdotfractionroughlysame;legend1dot0.5kPa. Currentresetstateandhistoricalsummitrevealclear,fulltextlegible."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Compositionversusabsolutepressurechoices clearwithkPadefinedandsealevelreference.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Intermediatealtitude,summitandreset showpartialpressuredropswhilefractionconstant,pairedwithcountvisual.",
+      "evidence": "exploration;visual",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Actualdots/pressurelinkedtofraction-times-totalmechanismandstandard-modelversusmeasuredlimit.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Airpressure,oxygenshare,oxygenpressurecountersseparate;same-boxlegendclear.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concretebreathing-at-altitudeinterpretationwithstandardmodelcondition andmeasuredpressurelimit;nofreshcase.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Chosen7%reversedbyunchanged21%despitethirdabsoluteoxygenpressure.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Sameboxdensityandpinkfractionacrosssea/intermediate/summitcarrycompositionversusamountdistinction.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Height,presetsandresetenablecontrolledcomparison.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concreteunderstandingofaltitudebreathingdifficultywithoutclaimingtreatmentguidance.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Mixturefraction,partialpressure,altitudemodelandempiricallimit.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Separatepercentagecompositionfromabsolutepressureandlinkpartialpressuretobreathamount.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low:heightandpresets",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: gaspartialpressure",
+    "notationRepresentationBurden": "low: percent,kPaanddotcounts"
+  },
+  "whyCool": "The summitboxlosestwo-thirdsofitsdotsbutoxygenstillmakesup21%ofwhatremains.",
+  "caveat": "Standardatmosphereratherthanrealweather;breathamountinterpretationdoesnotmodelhumidityortemperature."
+}

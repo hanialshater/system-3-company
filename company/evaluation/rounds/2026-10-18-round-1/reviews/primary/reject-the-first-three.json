@@ -1,0 +1,140 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "reject-the-first-three",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/reject-the-first-three",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "reject-the-first-three",
+    "domain": "probability",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/probability/reject-the-first-three/meta.json",
+    "metaSha256": "8eca3cbe267b69ae3f887a4e73f2d4407043463426471190aab771944088d7fb",
+    "demoSha256": "a15f73fb55fe92efb9ed71695c1f2aa223fe99bd78407fec48fc1db7a6e1af86",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/reject-the-first-three",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/reject-the-first-three.json"
+  },
+  "date": "2026-10-18T20:16:39.647147+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Chose10% and locked."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Reject3won7of20,lastorder2,10,9,6,1,7,3,5,4,8 picks1afterrejecting3. Reject0won1of20,picks2. Reject5won9of20,lastpicks8afterbest1alreadyrejected. Inspected rejected/picked bars."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read40%correction,small20sample caveat,all3628800orders39.9%reject3 versus10%reject0; reject4=39.8%,longlists37%,randomarrival/finalrefusalconditions."
+    },
+    {
+      "phase": "visual-inspection",
+      "evidence": "Actual1257x936dark inline unlocked,Reject3andfinalReject5scrolledreveal inspected. Ranklabels,pick/rejectedbarstyling and text readable."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicit rule and objective make probability forecast concrete.",
+      "evidence": "Tenrandomarrivals,norecall,reject3thenrecordwinner.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Shared rounds allow strategies and failure case comparison.",
+      "evidence": "3wins7,0wins1,5wins9; last5missesalreadyrejectedbest.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Separates small sample from exact rate and states assumptions.",
+      "evidence": "20roundsversusallorders; yardstick,39.9%,randomorder/finalrefusals.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Ranking and choice marks expose policy.",
+      "evidence": "1=best,shadedrejected,picklabel;sample caveat needed because5outperformed3here.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Long-list rule supplied with concrete sequential selection conditions.",
+      "evidence": "About37%forlonglists,randomorderandfinalrefusals; no new task.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Deliberate rejection improves random chance.",
+      "evidence": "39.9%versus10%exact.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Same arrival ranks reveal differing decisions.",
+      "evidence": "Reject3takesbest1,Reject5alreadydiscardedbest andtakes8.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Strategy buttons invite comparison.",
+      "evidence": "0,3,5tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Conditioned one-pass selection heuristic.",
+      "evidence": "Known list,randomarrivals,norecall.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Benchmarking,selectionrisk and sampling variation linked.",
+      "evidence": "Small sample canprefer5whileexactoptimal3.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "conceptualDemand": "Track comparison benchmark,irreversible decisions and chance across orders.",
+    "interfaceBurden": "Policybuttons automate20rounds; lastcase illustrated.",
+    "prerequisiteNovelty": "Optimalstopping new but rule fully stated.",
+    "notationRepresentationBurden": "Ranks1best,percent androundcounts; no formula."
+  }
+}

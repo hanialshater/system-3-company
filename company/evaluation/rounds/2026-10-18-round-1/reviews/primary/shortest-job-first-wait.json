@@ -1,0 +1,104 @@
+{
+  "slug": "shortest-job-first-wait",
+  "demoVersion": 2,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/shortest-job-first-wait",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Initial longest-first jobs eight-four-two-one had total wait thirty-four.",
+    "Moving one-minute job earlier three times passed through wait thirty-three and twenty-three.",
+    "Shortest-first one-two-four-eight gave waiting zero-one-three-seven, total eleven; total execution remained fifteen.",
+    "Returning to longest-first before reveal did not lose original comparison. Reveal sums both cases, explains each front job delays all behind, and notes long-job starvation under continual short arrivals."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Summed individual waiting differs from wall-clock completion.",
+    "conceptualDemand": "Track multiplicative delay imposed by earlier jobs.",
+    "interfaceBurden": "Four move-earlier buttons and two presets."
+  },
+  "whyCool": "Moving one long job later can remove its delay from everyone ahead of it without changing the total work.",
+  "caveat": "Known fixed job durations, all available initially and no switching overhead; real arrival/fairness policy not simulated.",
+  "effort": "Prediction, three local swaps, shortest preset, return to longest, screenshots and comparative reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Highly manipulable scheduling mechanism with explicit starvation limit.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete total-wait comparison with defined start-wait metric.",
+      "evidence": "Same thirty-four, about third, or slightly less.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Free adjacent swaps and presets allow causal intermediate comparisons and return.",
+      "evidence": "Several learner-chosen orders plus shortest and longest.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explains exact waiting sums, marginal delay mechanism and a meaningful limit.",
+      "evidence": "Front job counted for every follower; continual short arrivals can starve long jobs.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Shaded waiting versus colored execution separates unchanged work from changed wait.",
+      "evidence": "Timeline still fifteen while total waiting changes.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete scheduling rule with objective and failure condition.",
+      "evidence": "Minimize aggregate waiting for this batch; streaming arrivals can cause starvation.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Same work can impose dramatically different summed delay.",
+      "evidence": "Thirty-four versus eleven waiting minutes.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Waiting segments make the aggregate objective visible.",
+      "evidence": "Moving a short job reduces many shaded intervals.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 4,
+      "reason": "Learner can freely reorder via local swaps and compare presets.",
+      "evidence": "Five distinct orders retained.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete queue-priority tradeoff.",
+      "evidence": "Waiting objective versus long-job starvation.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Aggregate versus elapsed work and fairness tradeoff connect.",
+      "evidence": "Optimal batch order need not be fair under continued arrivals.",
+      "confidence": "medium"
+    }
+  }
+}

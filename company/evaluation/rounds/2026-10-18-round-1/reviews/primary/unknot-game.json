@@ -1,0 +1,139 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "unknot-game",
+  "demoVersion": 2,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/unknot-game",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "unknot-game",
+    "domain": "math",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/math/unknot-game/meta.json",
+    "metaSha256": "853b45552fe2d82ee257a4ceae281df446a22f25ab8385c9526eac4b2e646c50",
+    "demoSha256": "2b6e039bd5a15cc99bbed64ef7eb43952cd065591e38a432a1891a4aac8bebb0",
+    "batchId": "round1-07",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/unknot-game",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/unknot-game.json"
+  },
+  "date": "2026-10-18T21:10:10.170627+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Selected one switch for trefoil withthree crossings."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Tested eachtrefoilcrossing independently; selectedswitchreplacedprevious,all labelledPlainloop,tracker3of3. Figureeight crossings1and4eachPlainloop,tracker2of4."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Returnedtrefoil automatically;read tintedstrandontoptwice can slideoff and remainingtwistfallsout,unknottingnumber1bothknots,someneedmore."
+    },
+    {
+      "phase": "screenshotInspection",
+      "evidence": "Actual1257x936 dark screenshots inspected originaltrefoil,switchedtrefoil andfigureeight: tintedstrand andcrossingring visible. Plainloop label appears while drawing stillhascrossings; no full slide-to-circle sequence observed."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Invites guess about a new topological operation without scaffold for minimality.",
+      "evidence": "Threecrossings butfewestswitches unknown.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Direct crossings and alternate knot support independent contrasts.",
+      "evidence": "Trefoil3of3 andfigureeight2of4 tested.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Describes strand removal but observed picture relies partly on outcome assertion.",
+      "evidence": "Plainloop label whilecrossings remain;no fulluntangling observed.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Switch feedback is legible but topology of freeing requires mental manipulation.",
+      "evidence": "Tintedstrand ontoptwice statement.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Second knot extends comparison within same operation.",
+      "evidence": "No fresh application with conditions.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Any one trefoil crossing change suffices.",
+      "evidence": "Allthree tracker successes.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Tinting identifies relevant strand but full untangling is not observed.",
+      "evidence": "Stillcrossed drawing labelledPlainloop.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Clickable crossings andtwo knots encourage testing.",
+      "evidence": "Fiveindependentcrossings tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Main value is abstract knot intuition.",
+      "evidence": "No practical application given.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Names minimumswitchinvariant andcontrasts crossings versusunknottingnumber.",
+      "evidence": "Three/fourcrossingsbothnumber1.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "conceptualDemand": "demanding: mentally deform closedstrands anddistinguishdiagramcrossings fromknotinvariant",
+    "interfaceBurden": "gentle: crossing targets andknot selector",
+    "prerequisiteNovelty": "crossing changes andunknottingnumber",
+    "notationRepresentationBurden": "overunderdiagram withtintedstrand andsuccess tracker"
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "salt-water-hides-silver",
+  "demoVersion": 2,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/salt-water-hides-silver",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "salt-water-hides-silver",
+    "domain": "chemistry",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/chemistry/salt-water-hides-silver/meta.json",
+    "metaSha256": "f82a854d75762961e8b975da511cfe334f903091b802f2a3af4da244e1e4b8d8",
+    "demoSha256": "9effa099affd2f1801aaf3b6339021a77bda5f73d668692871a08ce289a6a429",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/salt-water-hides-silver",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/salt-water-hides-silver.json"
+  },
+  "date": "2026-10-18T19:38:25.287862+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "No-history banner confirmed; trust9/9 ignored. Selected unchanged1.3e-5mol/L andlocked;Ag/Clionsandconcentrationbracketsdefined.",
+    "exploration": "PureAg1.3e-5,product1.8e-10. NaCl.001=>Ag1.8e-7,75xlower,98.66%crystal. .01=>1.8e-8,745x,99.87%. .10=>1.8e-9,7500x,99.99%;productconstantthroughout. Purewaterresetrestoresbaseline;revealremainsenabled.",
+    "reveal": "Correct1.8e-9;historical.10caseexplicit. Whilecrystalsremainconcentrationproductceiling1.8e-10;addedClforcesAgcrystals,divisionby.10givesresult. Solubilitydependsionsalreadypresent. ChartdisclosesignoresAgCl2complexes.",
+    "visual": "Inline1257x936 dark screenshots inspected: silverbarshrink/chloridegrow onexplicitlogscaleeachlabel100x,mol/Landproductcounters. Firstpredictionstate lowestpresetpartlybelowinnerpanelbutafterunlockallbuttonsvisible. Revealtextbottomextendsbelowviewport;fullAXread."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Definedion/concentrationsetupwithunchanged,smallervalueandaddedClconfusionchoicesclear;heavyquantitativedemand.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Threedecadechloridestepsandpure reset exposeinverseAgresponseandconstantproductwithmultipleobservedstates.",
+      "evidence": "exploration;visual",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Actualproductinvarianceanddivisionexplainobserved99.99%dropwithcrystals-remainingcondition;modelcomplexlimitonlychartcaption.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Logscaleexplainedbutnotationdense,longpromptandbottomrevealoverflowheight;requiresconsiderableparsing.",
+      "evidence": "visual;prediction;reveal",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusablecommon-ionprincipleandcrystalsremainingcondition;nofreshsubstance/application.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "ChosenunchangedAgfalls7500xasotherionadded.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Opposinglogbarsandconstantproductcountershowinverseconcentrationrelationship.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Fourfixedreversibleconcentrationssupportcomparison,nocustomvalues.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concretesolubilityinterpretationforionicwatercomposition.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Productequilibrium,commonion,inversescaling,crystalreturnandmodelcomplexexclusion.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Coreinverseproductconstraintlinkedtoionaddition/crystallizationwithstepwisedisplays;quantitativescientificnotationhighbutconceptsupported.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "moderate:longprompt/revealoverflowheight",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "high: ionicconcentration,solubilityproduct,crystals equilibrium",
+    "notationRepresentationBurden": "high: Ag+/Cl-,brackets,mol/L,negativepowers,logscaleandproduct"
+  },
+  "whyCool": "Eachtenfoldchlorideincreasemakessilvertenfoldsmallerwhiletheirproductneverchanges.",
+  "caveat": "Simplifiedfree-ionmodelignorescomplexes;longnotation-heavytextandnofreshapplication."
+}

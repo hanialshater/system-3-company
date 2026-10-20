@@ -1,0 +1,104 @@
+{
+  "slug": "triangle-is-half",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/triangle-is-half",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predictedarea24forbase6height4tipoffside,ratherthan12or10.",
+    "Initialtip3insidebasearea12;tip12sixpastendarea12;tip-6oppositeextremearea12. Captionexplainedsliceskeepwidth.",
+    "Revealrecalledinvariantareaandextremeoffset,explainedhalfboxwithtipinsideandhorizontal-sliceinvariancewhenoutside.",
+    "Inline1280x720 light screenshot: wholetriangle,constantheight/base,allpresetsandfullprose readable. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simpleareaformulaandvisibleheight,withsupportedinvarianceintuition.",
+    "conceptualDemand": "Perpendicularheight andcrosssections.",
+    "interfaceBurden": "Clearpresets,readablelayout."
+  },
+  "whyCool": "Thetriangleleansfarbeyonditsbasebutits horizontalslicesnevergetlonger,sotheareacannotgrow.",
+  "caveat": "Fixedbaseandheight;nofreshapplication oraccessibilityaudit.",
+  "effort": "Prediction,insideandoppositeextremes,reveal andinline screenshot.",
+  "provisionalBucket": "strong-gentle",
+  "bucketReason": "Readablevisualinvariantwithmeaningfulboundarycase.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Completegeometricquantities andplausibleareaalternatives.",
+      "evidence": "Base6height4off-centertip.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Insideandbothoutsideextremeskeepparametersfixedandtestinvariance.",
+      "evidence": "Tip3,12,-6allarea12.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Connectsinitialhalfboxargumenttooutsideboundaryusingunchangedslices.",
+      "evidence": "Insideversusoutsideexplanationsbothpresent.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readablegeometry,labels andprose acrossshapechanges.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalsamebase-heightprinciplewithoutfreshareaapplication.",
+      "evidence": "Fixed6and4throughout.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Dramaticallyleaningtriangleholds samearea.",
+      "evidence": "Oppositeextremes.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Shapechange,horizontalcrosssections andheight/baseoverlaydirectlyexplaininvariance.",
+      "evidence": "Extreme-6screenshot.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Sevenpositionsinvitegeometricexperiments.",
+      "evidence": "Twoextremestested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Triangleareaandperpendicularheightintuition.",
+      "evidence": "Halfbaseheight.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Sliceinvariancesupportsareaconservation.",
+      "evidence": "Samecrosssectionlengths.",
+      "confidence": "medium"
+    }
+  }
+}

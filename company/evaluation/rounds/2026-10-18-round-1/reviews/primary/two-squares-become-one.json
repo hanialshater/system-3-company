@@ -1,0 +1,137 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "two-squares-become-one",
+  "demoVersion": 2,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/two-squares-become-one",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "two-squares-become-one",
+    "domain": "math",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/math/two-squares-become-one/meta.json",
+    "metaSha256": "fa30ea590811142371ba460c757e6ef4e87824905036feda4297a1f566a655a2",
+    "demoSha256": "ca30393cf6807243f82e04a98de5193f7471edccb632b1aa1a401b3ac9c6d609",
+    "batchId": "round1-07",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/two-squares-become-one",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/two-squares-become-one.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Committed long side 5 for a right triangle with short sides 3 and 4.",
+    "exploration": "Moved slider to pairs endpoint, inspected settled layout with empty squares 9 and 16; checked halfway then returned to corners, where one empty tilted square read 25. Slider has three discrete states. Initial endpoint screenshot caught motion; later settled screenshot verified final packing.",
+    "reveal": "Explained same four triangles and frame leave same empty area, so c times c equals 9 plus 16 equals 25. Generalized to short sides a and b and a squared plus b squared equals c squared.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected at corners, halfway and settled pairs. Congruent triangle colours, square frame and area labels align; motion temporarily overlaps triangles but endpoints form the claimed packing. Reveal readable.",
+    "previewIsolation": "Preview banner excluded history and analytics saves.",
+    "blinding": "No code, metadata or other judgments inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete length commitment connects to the later area proof.",
+      "evidence": "Chose 5 over 7 and 3.5.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Reversible rearrangement exposes conserved area across distinct shapes.",
+      "evidence": "Compared one tilted square 25 with squares 9 and 16.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal states the conserved quantity and derives the length.",
+      "evidence": "Same triangles and frame imply equal empty area.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Labels and stable endpoints support the proof.",
+      "evidence": "Settled pairs show separate 9 and 16 regions.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Algebraic generalization appears without a new triangle or application.",
+      "evidence": "Only 3-4 geometry available.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No accessibility mode audit performed.",
+      "evidence": "Slider Home, End and Left worked; full keyboard and motion modes untested.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "A remembered numerical rule becomes a rearrangement proof.",
+      "evidence": "One square becomes two equal-total-area squares.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "The conserved pieces carry the core mathematical explanation.",
+      "evidence": "Same frame and triangles at both endpoints.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Sliding pieces makes the proof tangible.",
+      "evidence": "Three reversible stages.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Provides understanding of a foundational relation without application.",
+      "evidence": "No fresh length problem.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Connects area conservation to a general identity.",
+      "evidence": "a squared plus b squared equals c squared.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simple numbers with a new area-conservation proof.",
+    "conceptualDemand": "Track conserved empty area and relate squared lengths to area.",
+    "interfaceBurden": "One three-state slider.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "Rearrangement proof and squared lengths.",
+    "notationRepresentationBurden": "Triangle side labels, area numbers and final variables."
+  },
+  "whyCool": "The formula follows from leaving the same empty area inside a fixed frame.",
+  "caveat": "Fixed 3-4 triangle; no fresh case tests the generalized relation.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Full keyboard-only audit",
+    "Reduced motion audit",
+    "Contrast mode audit"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T21:13:34.634259+00:00"
+}

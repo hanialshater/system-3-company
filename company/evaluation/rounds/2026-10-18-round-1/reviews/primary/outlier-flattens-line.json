@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "outlier-flattens-line",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/outlier-flattens-line",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "outlier-flattens-line",
+    "domain": "ai",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/ai/outlier-flattens-line/meta.json",
+    "metaSha256": "e0352d0983aea0bc21c9c1c0fd78708930d30e6961957abae34cf0a8cd961681",
+    "demoSha256": "efc3133b7f4eabe52e162e0814d43ec844e79f5a98fc1a75a41ce26eb4d73b69",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/outlier-flattens-line",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/outlier-flattens-line.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Chose About0.8 againstAbout0.5 andExactly0 slope;locked it in.",
+    "exploration": "Initial red(5,5):slope1,SSE0. Drop to0:slope0,SSE10. Comparey=x:slopeold1,SSE25. Showbest fit restored0/10. Backto5 restored1/0;droppedagain restored0/10.",
+    "reveal": "CorrectedExactly0;flat y2. Explained squared residual area:oldline straypoint miss5 costs25;flatline spreads misses,total10. Squaring makesfar miss outweighsmaller ones.",
+    "visual": "Actual1257 \u00d7936 dark screenshot inspected. Flat purple line,vertical misses andshaded residual squares show costs;red(5,0) marked,fullreveal legible.",
+    "previewIsolation": "No-history evaluation banner present.",
+    "blinding": "4/4 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear alternatives test expected resistance of four alignedpoints toone straypoint.",
+      "evidence": "0.8 commitment versus0 slope.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Outlier,comparisonline andreset contrast visibly expose objective tradeoff.",
+      "evidence": "1/0\u21920/10;oldline1/25;resetrepeat.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects actual25 versus10 squarecosts toflatoptimum andoutlier leverage.",
+      "evidence": "Miss5 square25 versusspread10.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Pointlabels,comparison toggle andSSEcounters clear ontesteddesktop.",
+      "evidence": "Actualscreenshotflatline andresiduals.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable squared-error sensitivity principle,no new application.",
+      "evidence": "Singlefar miss canmove wholefit.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient access audit.",
+      "evidence": "Keyboard,focus,contrast,phone,zoom andmotion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed modest flattening contradicted byfullyflatline.",
+      "evidence": "Slope1\u21920 withone movedpoint.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Squareareas directlycarry objective comparison.",
+      "evidence": "Residualsquares alongsideSSE10.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Pointheight,toggle andreset allowreversible experiment.",
+      "evidence": "Drop,oldline,bestfit,reset,drop.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete interpretation ofleast-squares outlier sensitivity.",
+      "evidence": "25 versus10 objective.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Slopechange andnonlinear residual weighting connected.",
+      "evidence": "Flatoptimum andsquaredmiss argument.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Links onepoint displacement tofitobjective andslope.",
+    "conceptualDemand": "Compare aggregate squared misses ratherthan majorityofpoint alignment.",
+    "interfaceBurden": "Low:pointheight andcomparison controls clearly labeled.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate:least-squares fitting andresiduals.",
+    "notationRepresentationBurden": "moderate:coordinates,slope,y=x,sumofsquares."
+  },
+  "whyCool": "Theoldline costs25 fromone miss,while theflatline spreads errors foronly10.",
+  "caveat": "One fixed endpoint outlier;no different xpositions orrobustfit alternative tested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Intermediate redheights nottested.",
+    "Keyboard,focus,contrast,phone,zoom/reflow andmotion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:31:38.647626+00:00"
+}

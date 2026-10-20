@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "line-stops-at-the-edge",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/line-stops-at-the-edge",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "line-stops-at-the-edge",
+    "domain": "ai",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/ai/line-stops-at-the-edge/meta.json",
+    "metaSha256": "d6b4313de890ded8fe62309f5c0e6a8f0c9c63928d16a44ba7cac04d03252e31",
+    "demoSha256": "479e467d3e18fb8b8bb790a2163cd8f0a8e01f57dbf205a13a16c78e60cc2746",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/line-stops-at-the-edge",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/line-stops-at-the-edge.json"
+  },
+  "date": "2026-10-18T19:12:48.600272+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "No-history banner confirmed; trust4/4 ignored. Selected About9 and locked. Prompt explicitly limits max0.125error to0..1.",
+    "exploration": "Initialx0.5 line0.375 truth0.25 error0.125; x1 line0.875 truth1 error0.125; x1.5 line1.375 truth2.25 error0.875; x3 line2.875 truth9 error6.125; reveal unlocks at3.",
+    "reveal": "Correct About2.9. Recaps actual distant gap versus bounded in-range gap; training points all0..1, ask whether new cases resemble training cases. Toy truth invented.",
+    "visual": "Inline1257x936 dark screenshot inspected: shaded training interval ends1,white dots,green curve,purple fittedline and red vertical residual at3. Controls/counters/reveal legible."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Specific fit prediction contrasts truth9 with line output; scope condition explicit.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "In-range boundary and two extrapolation positions show growing residual under fixed model.",
+      "evidence": "exploration;visual",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Actual error values link to training-domain limitation and explicit invented-model caveat.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Training shading,curve/line names and three counters unambiguous.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable data-domain trust question; no concrete distinct new application or fresh case.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Chosen9 predicts truth rather than model; output2.875 despite small trainingerror reverses expectation.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Residual growth against shaded training interval carries explanation across boundary and distantcase.",
+      "evidence": "exploration;visual",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversible xpoint controls expose divergence.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete caution for trusting fitted models outside data.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Trainingfit versus truth,boundary and increasing extrapolation error.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Separate true curve from fitted model and error inside versus outside observed interval.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low:pointbuttons and counters",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: model fit/training domain",
+    "notationRepresentationBurden": "moderate: x,y=x2,decimal residual and graph"
+  },
+  "whyCool": "The line misses by0.125 at1but6.125 at3as the curve bends away from its data.",
+  "caveat": "One invented quadratic truth and fixed line; no new real-model case."
+}

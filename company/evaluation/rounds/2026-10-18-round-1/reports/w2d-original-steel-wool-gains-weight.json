@@ -1,0 +1,126 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "steel-wool-gains-weight",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/steel-wool-gains-weight",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "steel-wool-gains-weight",
+    "domain": "chemistry",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/chemistry/steel-wool-gains-weight/meta.json",
+    "metaSha256": "ab1a1a46e0446a5ba96999fade3f597ff0cacda74563eef4d6e07e5f6dc6acbd",
+    "demoSha256": "dabdbc7bc2e58f466615ddaa7ab37e6abad458cbb7452a03be5bbd793353f438",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/steel-wool-gains-weight",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/steel-wool-gains-weight.json"
+  },
+  "date": "2026-10-18T20:00:46.340525+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "prediction": "Chose less than10g and locked.",
+  "exploration": "Clicked all8 iron atoms. First consumed2 oxygen,10.7g; half consumed6,12.1g; complete0air oxygen,14.3g,8iron retained. Inspected oxygen symbols attached to tiles.",
+  "reveal": "Read8iron+12oxygen explanation,2:3Fe2O3 ratio, wood products escaping and realFe3O4 caveat.",
+  "screenshotInspection": "Actual1257x936dark initial toy, complete oxidation and scrolled reveal inline screenshots inspected. Mass and count labels legible; toy atom scaling disclosed.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete mass forecast challenges burning-loss assumption.",
+      "evidence": "10g iron to Fe2O3; less/equal14g alternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Progressive atom capture visibly connects air loss and pan gain.",
+      "evidence": "10to10.7to12.1to14.3g;12to0oxygen,8iron retained.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Conservation mechanism and material caveats explained.",
+      "evidence": "Iron plus captured oxygen; wood gaseous products escape; mixed real oxides caveat.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Toy scale explicit and atom counts readable.",
+      "evidence": "8atoms stand for10g; final attached oxygen tiles and counters.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete second material and condition explain apparent opposite result.",
+      "evidence": "Wood loses pan mass becauseCO2 and water vapour escape into air; no fresh task.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Burning increases mass substantially.",
+      "evidence": "Less prediction corrected by14.3g.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Air atoms relocate to pan while scale grows.",
+      "evidence": "12oxygen depleted and attached to8iron.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Tap-to-burn progressive toy.",
+      "evidence": "Eight clickable tiles.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Explains ash mass and conservation.",
+      "evidence": "Wood contrast distinguishes escaping products.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Tracks system boundary and stoichiometry.",
+      "evidence": "Iron retained,oxygen captured,2:3ratio and real oxide caveat.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "conceptualDemand": "Track matter across pan/air boundary and distinguish mass change from destruction.",
+    "interfaceBurden": "Eight taps, no precision; scroll full reveal.",
+    "prerequisiteNovelty": "Atoms and chemical reaction introduced through toy.",
+    "notationRepresentationBurden": "Fe2O3/Fe3O4 symbols and2:3ratio; visual atoms scaffold."
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1b",
+  "date": "2026-10-18",
+  "slug": "copy-overlaps-itself",
+  "domain": "cs",
+  "demoVersion": 2,
+  "expectedVersion": 2,
+  "batchId": "round1-03",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "af79476fa53c76c14e215dae9702934579982b404531f11eb7d6aa1514f178cb",
+  "demoSha256": "b4dc83a40db845edb6f481f54ecd3d183381a8e6459aee32f46233b7eab31f89",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/copy-overlaps-itself",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "evidenceMode": "live-browser-computer-use",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "previewIsolationObserved": true,
+  "visibleTrustChrome": "4/4 claims checked; ignored, unopened",
+  "phaseCoverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true,
+    "pixelInspection": true
+  },
+  "observations": [
+    {
+      "id": "p",
+      "action": "Selected 'ab' and stops; Lock it in",
+      "outcome": "Prediction retained; first copy step unlocked."
+    },
+    {
+      "id": "e",
+      "action": "Steps 1 through 6; return to step1",
+      "outcome": "Output grows aba,abab,ababa,ababab,abababa,abababab. From step3 explicitly reads a letter this copy wrote. Returning1 shows aba; all visited steps remain unlocked and reveal stays available."
+    },
+    {
+      "id": "v",
+      "action": "Inspected step3 screenshot",
+      "outcome": "Original ab dark, copied letters green, source outlined and two-back arc visible; text explicitly identifies newly written source. Dark1257x936 no horizontal cutoff."
+    },
+    {
+      "id": "r",
+      "action": "Show me why after return1",
+      "outcome": "Correct abababab; references completed decoder output and step3 self-copy; two-number backreference rebuilds repeat; gzip/PNG use named."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Plausible stop/failure versus overlapping continuation alternatives.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Sequential source highlights expose original-to-new-output transition, revisit supports contrast.",
+      "evidence": "e,v",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains completed output and precise step3 mechanism; names representation purpose.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Two-back arc, source outline and explicit source-status text make unusual copy semantics clear.",
+      "evidence": "e,v",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Compression and gzip/PNG uses named; no new repeat or applicability task.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No mode checks.",
+      "evidence": "v",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Stopping prediction reversed when third copy reads first newly written letter.",
+      "evidence": "p,e",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Source highlight and two-back arc carry overlap mechanism.",
+      "evidence": "v",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Revisitable guided steps support inspection; fixed instruction.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Backreference compression purpose and file formats named.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Single overlap mechanism plus compact representation connection.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Tracks changing output as source while holding fixed offset and copy count.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": {
+      "level": "moderate",
+      "reason": "Decoder/backreference semantics new."
+    },
+    "notationRepresentationBurden": {
+      "level": "low",
+      "reason": "Two integers and short letter row."
+    }
+  },
+  "whyCool": "At step3 the source outline lands on a letter the same instruction just wrote, so two starting letters can grow into eight.",
+  "caveat": "One fixed back2/copy6 case; no varying offset, invalid reference or different repeat.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Alternative references, phone and accessibility untested."
+  ],
+  "reviewState": "complete-real-walkthrough",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  }
+}

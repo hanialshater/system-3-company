@@ -1,0 +1,104 @@
+{
+  "slug": "twenty-flips-run-of-five",
+  "demoVersion": 2,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/twenty-flips-run-of-five",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted5%forrunatleast5samefacein20fairflips.",
+    "Constructed20alternatingHTtaps,longestrun1. Ran1000simulatedsequences:475runsatleast5,47.5%;histogrammode4.",
+    "Steponerealaddedsequence1001withrun5,total476,47.6%. Reveal accurately usedactualsample,exact45.8%,mode4,andpersonallongestrun1with0sampledmatchingthatshort.",
+    "Inline1280x720 light screenshots: sequenceandhistogram clear; revealprose rightedgeclipped. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Familiarcoinflips butaggregateevent andhistogram interpretation.",
+    "conceptualDemand": "Streakcounting andrandomnessintuition.",
+    "interfaceBurden": "Simplebuttons;proseclips."
+  },
+  "whyCool": "A learner's deliberately random-looking sequence can be less typical than a streaky coin sequence.",
+  "caveat": "Simulatedsamplescalledreal;exactprobability notderived;rightedgeclips;accessibilityunknown.",
+  "effort": "Prediction,20manualtaps,1000samplebatch,singlesample,reveal andinline screenshots.",
+  "provisionalBucket": "strong-with-viewport-fix",
+  "bucketReason": "Personalcontrast anddistribution supportmemorable lesson;layoutrepairneeded.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Fullyspecified streakintuition question with plausible broad likelihoodchoices.",
+      "evidence": "20fairflips,5orlonger,eitherface.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Personalconstruction,large sample andindividualsequence relate intuitions todistribution.",
+      "evidence": "Alternatingrun1versusmode4and47.6%.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects actualpersonal/sampledresults toindependence andexactchance.",
+      "evidence": "45.8%versus47.6%withcounts.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Goodhistogramandsequences butproseclips;simulationscalledreal.",
+      "evidence": "Inline screenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Explains generalrandomnessintuition withoutfreshlength/eventcase.",
+      "evidence": "Fixed20flipsrun5.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Longstreaks common while perfectlyalternating fake israre.",
+      "evidence": "47.6%run5versusnonewithrun1.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Sequencesandhistogram connectindividualstreaks andaggregatefrequency.",
+      "evidence": "Mode4andhighlightedruns.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Learnercreatessequence andcomparesit tosimulation.",
+      "evidence": "20HTtaps.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Supportsintuitionaboutrandomstreaks.",
+      "evidence": "Coinhasnomemory.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Localindependence producesglobalpatterns andsamplingvariation.",
+      "evidence": "Exactversussampleprobability.",
+      "confidence": "medium"
+    }
+  }
+}

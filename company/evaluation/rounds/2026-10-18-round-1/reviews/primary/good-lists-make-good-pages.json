@@ -1,0 +1,104 @@
+{
+  "slug": "good-lists-make-good-pages",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/good-lists-make-good-pages",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "PredictedX ranksaboveY from3versus2inlinks;descriptionmentionssourceslistothergoodpages,butupdaterule/normalizationnotgivenbeforeprediction.",
+    "InitialX0.300,Y0.200,W0.300. Update1X0.200,Y0.233,W0.333,hub1/2scores0.269versushub3/4 0.115. Update50X0.099,Y0.277,W0.346. Resetreturns0andinitialscores.",
+    "Revealrecalls50updatevalueswhileresetstage0persists;explainslinksweightedbysourcehubscore,stronglistsandpagesreinforceeachother. Noexternalcontentqualityvalidationormodellimit developed.",
+    "1280x720light graphandbars readable;finalproserightedgecutoff."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Smallgraphbutcircularreweightingandnormalizationrequireattention.",
+    "conceptualDemand": "Recursivegraphscoresversusinlinkcounts.",
+    "interfaceBurden": "Threebuttons,densergraph."
+  },
+  "whyCool": "Two pages can have the same number of incoming links yet finish at opposite ends because their sources acquire different weights.",
+  "caveat": "Graph-definedauthoritydoesnotestablishactualcontentquality. Updateequations/normalizationnotvisible;reveal50scoresafterreset0couldbelabeledhistorical. Prosecutoff.",
+  "effort": "Prediction,oneupdate,50updates,reset,reveal,two screenshots.",
+  "provisionalBucket": "promising-with-fix",
+  "bucketReason": "Visibleweighted-votingmechanism;clarifyalgorithm/scopeandlayout.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Resultdependsonunspecifiedrecursivealgorithm;good-sourcewordingcuesdesiredanswer.",
+      "evidence": "Inlinkcountversushubruleonlyrevealedlater.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Initial,one-update,convergedandresetstates exposeiterativereweighting.",
+      "evidence": "X/Yrankingreversal andhubscorecontrast.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explainsgraph-specificfeedbackandoriginalanswer,butqualitysemantics/modelscopeunderqualified.",
+      "evidence": "h1/h2liftYZW;h3/h4onlyX.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Graphlabels andresetclear;revealdiscusses50whilecurrent0andprosecutoff.",
+      "evidence": "Finalscreenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Recursivevotingprinciple stated,noalternategraphapplication.",
+      "evidence": "Fixedlinknetworkonly.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Fewervotescanoutrankmore,andtwo3-inlinkpagesdiverge.",
+      "evidence": "Y0.277beatsX0.099,W0.346highest.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Hubweights,links andauthoritybars exposefeedback.",
+      "evidence": "Leftsourcescores,rightpagebars.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Step/run/reset limitedtoonegraph.",
+      "evidence": "Noedgelinkeditingobserved.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Centralrankingbeyondrawpopularityintuition.",
+      "evidence": "Weightedsourcevotes.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Mutuallyrecursivehub/authorityscores anditeration.",
+      "evidence": "Goodlists/pagesreinforceeachother.",
+      "confidence": "medium"
+    }
+  }
+}

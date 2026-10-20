@@ -1,0 +1,104 @@
+{
+  "slug": "lh-align-price-units",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-align-price-units",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted B lower at7\u20ac/kg versus A0.80\u20ac/100g, with1kg=1000g supplied.",
+    "TestA converted0.8\u00d710 to8\u20ac/kg; TestB gave7\u20ac/kg.",
+    "Moved B7\u21927.5\u21928, reaching equal normalized prices. Visual meters and displayed expressions agreed.",
+    "Reveal explicitly separated predictionB7 from currentB8, correctly marking original prediction held while showing current equality."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Multiply by ten and compare.",
+    "conceptualDemand": "Common-unit normalization.",
+    "interfaceBurden": "Two tests and price slider."
+  },
+  "whyCool": "Once the units align, the apparently smaller price is visibly the more expensive one.",
+  "caveat": "Fictional prices and unit price only; product quality,quantity needed and other purchase constraints are outside the model.",
+  "effort": "Completed prediction,both tests,price steps to equality,screenshots and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Useful quantitative task with a meaningful boundary and excellent original/current-state framing.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Complete units and plausible alternatives support a meaningful normalization question.",
+      "evidence": "0.80/100g versus7/kg.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Editable B price allows a real equality boundary after normalization.",
+      "evidence": "7 lower,8 equal.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Accurate original/current comparison resolves the changed-state limit and explains the unit conversion.",
+      "evidence": "Prediction7 versus stage8 stated explicitly.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Common unit,expression and fictional-price assumptions are clear.",
+      "evidence": "Both\u20ac/kg and0.8\u00d710 shown.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete normalization rule generalizes to shelf labels with an explicit comparison basis.",
+      "evidence": "Multiply100g price by ten before comparing perkg.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Smaller printed number can mean a higher unit price.",
+      "evidence": "0.80 becomes8/kg.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Matched meter scale supports apples-to-apples comparison.",
+      "evidence": "Equal bars at8.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Price slider tests ranking and equality.",
+      "evidence": "Threshold exploration.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Directly useful unit-price procedure.",
+      "evidence": "Match quantities before comparing.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Separates numeric label magnitude from unit-normalized value.",
+      "evidence": "Dimensional comparison.",
+      "confidence": "medium"
+    }
+  }
+}

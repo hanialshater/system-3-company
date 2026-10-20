@@ -1,0 +1,156 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1b",
+  "date": "2026-10-18",
+  "slug": "every-scale-equally-likely",
+  "domain": "probability",
+  "demoVersion": 4,
+  "expectedVersion": 4,
+  "batchId": "round1-03",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "bac7ff72341c5d09e9663dbc7bedcc522075b3e78e13a0c532779ff0ae2932fd",
+  "demoSha256": "a74e1409242540b3d5c12a6388207c63b53c56545fc27007059fe6c59f14c6c2",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/every-scale-equally-likely",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "evidenceMode": "live-browser-computer-use",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "previewIsolationObserved": true,
+  "visibleTrustChrome": "8/8 claims checked; ignored, unopened",
+  "phaseCoverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true,
+    "pixelInspection": true
+  },
+  "observations": [
+    {
+      "id": "p",
+      "action": "SelectedAbout100x; Lock it in",
+      "outcome": "Prediction retained; rules and band slider unlocked."
+    },
+    {
+      "id": "e",
+      "action": "Uniform,1/d2,1/d; BandEnd8",
+      "outcome": "Near2-3 share.4%,22%,12.2%; reciprocal compare near12.2vsfar10.2 ratio1.2; End highlights256-512257distances weight1/256to1/51210.2%; reveal enabled."
+    },
+    {
+      "id": "v",
+      "action": "Inspected reciprocal far-band screenshot",
+      "outcome": "Nine bars approximately10-12% except first15, dashed comparison extremes uniform50.1% andinverse-square60.9%; current farband highlighted.1257x936dark no horizontal cutoff."
+    },
+    {
+      "id": "r",
+      "action": "Show me why",
+      "outcome": "About1x; observed12.2/10.2 ratio1.2; doubling distance count cancels half individual likelihood; mentions message-halving link/routing."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Individual-distance intuition contrasted with band probability through actual commitment.",
+      "evidence": "p",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Three weighting rules and far-band contrast expose count/probability compensation.",
+      "evidence": "e,v",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains observed band shares and near/far ratio via cancellation; routing extension stated.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Usable labelled bars but ring,proportional notation and weighted-band multiplication burden novice boundary.",
+      "evidence": "p,e,v",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "New message-routing use tied to halving remaining distance under1/d condition, though not applied.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No mode checks.",
+      "evidence": "v",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "100x prediction reverses to1.2x despite unequal individual chances.",
+      "evidence": "p,e",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Band bars and two comparison extremes show distribution shape.",
+      "evidence": "v",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Rule switching and band slider provide reversible exploration.",
+      "evidence": "e",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Message-routing interpretation stated as application.",
+      "evidence": "r",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Three distributions, individual versus aggregate probability and routing link.",
+      "evidence": "e,r",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Core result needs conditional weighted probabilities across doubling bands on a ring, distinguishing per-distance from aggregate likelihood.",
+    "conceptualDemand": "demanding",
+    "interfaceBurden": "moderate",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": {
+      "level": "high",
+      "reason": "Weighted ring links and routing unfamiliar."
+    },
+    "notationRepresentationBurden": {
+      "level": "high",
+      "reason": "Proportional sign,inverse powers,band ranges and weight multiplication."
+    }
+  },
+  "whyCool": "Switching from uniform and inverse-square to1/d flattens the distance-band bars because more far distances cancel their smaller individual chance.",
+  "caveat": "Routing claim is stated after band experiment; no actual routed messages tested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Fine band sweep and route performance, phone/accessibility untested."
+  ],
+  "reviewState": "complete-real-walkthrough",
+  "effort": {
+    "approxMinutes": 2
+  },
+  "notApprovedForServing": true,
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  }
+}

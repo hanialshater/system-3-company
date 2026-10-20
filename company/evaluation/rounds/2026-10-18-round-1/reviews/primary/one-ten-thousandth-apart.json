@@ -1,0 +1,120 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2",
+  "reviewKind": "primary",
+  "slug": "one-ten-thousandth-apart",
+  "demoVersion": 1,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/one-ten-thousandth-apart",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, familiar objects; no subject theory assumed.",
+  "viewport": "1280x720 desktop screenshot",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "text": "Preview: learning history and analytics are not saved. Trust chrome 5/5 ignored. Predicted Up to 1 apart, like two random numbers; Lock it in unlocked controls."
+    },
+    {
+      "id": "E",
+      "text": "Run 30 steps: step 30 \u00b7 gap 0.616. 1,000\u00d7 more precise: run: gap 0.356 from 0.0000001. Average 1,000 steps enabled reveal."
+    },
+    {
+      "id": "R",
+      "text": "Your prediction held. Stayed within 0.1 until step 11; greater precision bought only 10 more steps. Long-run averages 0.51 and 0.48; forecasting a particular day versus average. Screenshot inspected inline; none saved. Reveal text visibly clips right in narrow internal panel."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete numerical alternatives require commitment.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Precision contrast visibly preserves eventual separation; averages add a boundary.",
+      "evidence": "E,R",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects numerical observations to forecasting limitation.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clear buttons and chart, but reveal text clips on right in internal panel.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Explicit distinction between particular-day forecasts and averages; editorial potential only.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No mode audit performed.",
+      "evidence": "Untested",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Tiny start difference becomes a large displayed gap.",
+      "evidence": "P,E",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Trajectory lines and split markers carry separation.",
+      "evidence": "E,R screenshot",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversible run and precision comparisons support discovery.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Weather forecast application appears in reveal.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Precision horizon and average-versus-path distinction.",
+      "evidence": "E,R",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Linked iteration, precision, and average distinctions; formula need not be calculated.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "moderate; reveal clipping",
+    "prerequisiteNovelty": "moderate",
+    "notationRepresentationBurden": "moderate; recurrence and trajectory graph"
+  },
+  "whyCool": "A thousandfold more precise start still yields a visibly large gap after 30 steps.",
+  "caveat": "Reveal clips at the right of its internal panel; no learning outcome or accessibility established.",
+  "notApprovedForServing": true,
+  "effort": "About 3 minutes",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility modes",
+    "Reset not tested"
+  ]
+}

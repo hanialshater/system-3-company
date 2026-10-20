@@ -1,0 +1,104 @@
+{
+  "slug": "calendar-needs-travel",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/calendar-needs-travel",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted five minutes late leaving0 for15 minutes of travel to a meeting at10.",
+    "A travel0\u201315/meeting10\u201330 gave five-minute shortfall and overlap.",
+    "B meeting15\u201335 removed overlap with travel and touched email35\u201345. Manual meeting70\u201390 gave55-minute gap and zero overlap.",
+    "Reveal explicitly separated original A, B and Yours and explained travel consumes calendar capacity like the meeting."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple durations and overlap.",
+    "conceptualDemand": "Travel consumes the person's time.",
+    "interfaceBurden": "Two presets and one slider."
+  },
+  "whyCool": "Travel stops being invisible overhead and becomes a competing calendar block.",
+  "caveat": "Model checks overlaps, not dependencies; a much later meeting can follow the fixed email without any other constraint.",
+  "effort": "Completed prediction, two presets, manual boundary, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear practical interaction with accurate state history.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear times support a concrete arrival calculation.",
+      "evidence": "Leave0, travel15, booked10.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Meeting start changes reveal overlap and gap against fixed travel.",
+      "evidence": "Starts10,15,70.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Accurate historical/current summaries explain the capacity conflict.",
+      "evidence": "A5-minute overlap, B0, Yours0.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Timeline and A/B/Yours labels prevent changed-state confusion.",
+      "evidence": "Shortfall versus positive gap distinguished.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete calendar rule maps travel to occupied capacity.",
+      "evidence": "Overlap means same person booked twice in this fixture.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Familiar but often omitted travel duration.",
+      "evidence": "Meeting slot alone is insufficient.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Aligned blocks make double booking visible.",
+      "evidence": "Travel/meeting overlap.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Start slider tests schedule placements.",
+      "evidence": "Two presets and manual start.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Direct planning habit.",
+      "evidence": "Reserve travel time as a block.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "Single resource constraint.",
+      "evidence": "No uncertain duration or location model.",
+      "confidence": "medium"
+    }
+  }
+}

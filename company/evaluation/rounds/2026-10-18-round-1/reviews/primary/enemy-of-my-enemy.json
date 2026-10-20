@@ -1,0 +1,151 @@
+{
+  "status": "walkthrough-reviewed",
+  "reviewState": "complete-real-walkthrough",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "action": "Selected Up to3 and locked",
+      "outcome": "All enemies showed10/10 unbalanced and five camps."
+    },
+    {
+      "id": "E",
+      "action": "Used3camps preset; flipped D-E; flipped A-D; reverted A-D then D-E",
+      "outcome": "ABC|D|E had3 unbalanced; D-E friendship formedABC|DE with0; extra A-D friendship produced not camps and3 unbalanced; manually returning to3camps unlocked reveal."
+    },
+    {
+      "id": "R",
+      "action": "Opened reveal",
+      "outcome": "Corrected to atmost2; referenced actualABC|DE andABC|D|E states, namedADE,BDE,CDE as all-enemy trios, then asserted any-size balance theorem."
+    },
+    {
+      "id": "V",
+      "action": "Inspected3camps and reveal screenshots",
+      "outcome": "1257x992 dark Chrome; graph edge switches, shaded failing triangles, labels and explanation legible; no horizontal clipping."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear conditional claim with competing camp-count bounds.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Manual graph edits distinguish balanced two camps, unbalanced three camps and not-camps condition.",
+      "evidence": "E",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects actual states and explains three-camp obstruction; full converse for arbitrarysize only asserted.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Named failing trios, counters and specific required exploration guide fullpath.",
+      "evidence": "E,R,V",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Any-size generalization stated but no new size/application tested.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic modes tested.",
+      "evidence": "Keyboard,focus,contrast,phone,zoom/reflow,motion untested.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Actual three-camp prediction contradicted by unavoidable enemytrios.",
+      "evidence": "P,E,R",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Signed edges and shaded triangles carry distinct balanced,threecamp and notcamp states.",
+      "evidence": "E,V",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 4,
+      "reason": "Ten reversible pair switches and presets support construction and diagnosis.",
+      "evidence": "E",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Abstract social analogy without concrete decision use.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 4,
+      "reason": "Local trio constraint,global camps and noncamp configuration exposed through controlled contrasts.",
+      "evidence": "E,R",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Core result links all localtriangles to global partition and requires conditional combinatorial reasoning.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": {
+      "level": "high",
+      "reason": "Signed complete graph, balance condition and camp partition introduced."
+    },
+    "notationRepresentationBurden": {
+      "level": "moderate",
+      "reason": "Plus/minus edges,lettertrios and group separators."
+    },
+    "conceptualDemand": "Track10pair relations and infer global constraint from localtriples.",
+    "interfaceBurden": "Dense but labeled switches and failingtrios support use."
+  },
+  "whyCool": "Changing just D-E from enemies tofriends turns three camps with three failingtrios into two camps withnone.",
+  "caveat": "General theorem for anynumber is stated after fixedfive-person exploration; full converse not demonstrated.",
+  "missingEvidence": [
+    "Systematic accessibility checks",
+    "Different-size applied case",
+    "Phone layout"
+  ],
+  "effort": {
+    "approximateMinutes": 3
+  },
+  "partialBlinding": "Visible Why trust this? (4/4 claims checked); ignored and not opened.",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3b",
+  "date": "2026-10-18",
+  "notApprovedForServing": true,
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, number comparisons and familiar household objects; no domain theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 992,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "screenshots": [],
+  "fatalFindings": [],
+  "slug": "enemy-of-my-enemy",
+  "demoVersion": 4,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/enemy-of-my-enemy",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "40bf96d56e8a2b447c730cea38d31306d6ff5f7b2a8973347a9647d1f6ec4269",
+    "metaSha256": "ed1246aba669f3c6b0145c9612633bd4c9e96cff88227274dab7e766dd379696"
+  }
+}

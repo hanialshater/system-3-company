@@ -1,0 +1,103 @@
+{
+  "slug": "separate-ready-from-blocked",
+  "demoVersion": 2,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/separate-ready-from-blocked",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Hook says blocked cannot run; predicted independent work.",
+    "Run output/independent/input reports waiting40,dependency violation1. Swap first independent/output/input waiting35,violation1. Target independent/input/output waiting25,violation0.",
+    "Reveal accurately reports final order and dependency rule; screenshot readable. Invalid orders shown as executed counterfactual schedules, not blocked by engine."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Three jobs and one dependency.",
+    "conceptualDemand": "Readiness versus list order.",
+    "interfaceBurden": "Run,swap,target controls."
+  },
+  "whyCool": "A task's position on the list cannot make its missing input appear.",
+  "caveat": "Hook spoils prediction; explain invalid schedules as hypothetical and avoid implying lower waiting alone determines best order.",
+  "effort": "Prediction,run,swap,target,reveal,inline screenshot.",
+  "provisionalBucket": "solid-revise-hook",
+  "bucketReason": "Readable dependency contrast,weak prediction.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Blocked output versus independent answer explicit in hook.",
+      "evidence": "Blocked cannot run yet.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Three concrete orders expose dependency violation separate from waiting.",
+      "evidence": "40/35/25 and1/1/0.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Final state and input requirement explained.",
+      "evidence": "List position doesn't override dependency.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readable labeled durations,deadline and violation count.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete planning rule with dependency condition.",
+      "evidence": "Execute inputs before dependent outputs,ready work can proceed.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Obvious dependency,nonzero metric useful.",
+      "evidence": "Output needs input.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Timeline/order reveals invalid sequences.",
+      "evidence": "Three jobs.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reorder and compare.",
+      "evidence": "Swap and target.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Readiness planning central.",
+      "evidence": "Independent work before input.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Feasibility separate from waiting metric.",
+      "evidence": "Invalid schedules still scored.",
+      "confidence": "medium"
+    }
+  }
+}

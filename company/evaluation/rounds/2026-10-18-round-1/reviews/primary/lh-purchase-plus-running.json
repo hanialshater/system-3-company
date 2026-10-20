@@ -1,0 +1,103 @@
+{
+  "slug": "lh-purchase-plus-running",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-purchase-plus-running",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted A lower at two years: \u20ac80 plus120 kWh/year versus \u20ac140 plus60, electricity \u20ac0.30/kWh.",
+    "Tests showed \u20ac152/\u20ac176; eight years reversed to \u20ac368/\u20ac284.",
+    "Screenshot showed shared-scale lines with different intercepts/slopes. Reveal preserved original/current context and excluded repair, lifespan and discounting."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Combines tariff, annual use and upfront price.",
+    "conceptualDemand": "Total cost depends on time horizon.",
+    "interfaceBurden": "Two tests and time slider."
+  },
+  "whyCool": "The cheaper price tag can lose once running costs accumulate.",
+  "caveat": "Illustrative totals omit lifespan, repair and time value of money.",
+  "effort": "Prediction, both tests, eight-year boundary, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear tradeoff with causal graph and conditional interpretation.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Fully supplied upfront/running tradeoff.",
+      "evidence": "Two-year total choices.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Time change reverses cost order.",
+      "evidence": "2\u21928 years.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains intercept and cumulative running cost with limits.",
+      "evidence": "Repair, lifespan, discounting omitted.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Inputs, expressions and scope clear.",
+      "evidence": "Illustrative annual use and tariff.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Specific excluded costs distinguish arithmetic from purchase decision.",
+      "evidence": "Not purchasing recommendation.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Higher purchase price can become cheaper overall.",
+      "evidence": "Winner reverses.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Line intercepts and slopes embody fixed/repeated terms.",
+      "evidence": "Common \u20ac368 scale.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Time slider invites crossover discovery.",
+      "evidence": "Cost order changes.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Ownership-cost comparison central.",
+      "evidence": "Upfront plus energy.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Time horizon and model boundaries.",
+      "evidence": "Fixed plus cumulative costs.",
+      "confidence": "medium"
+    }
+  }
+}

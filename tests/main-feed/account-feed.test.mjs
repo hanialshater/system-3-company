@@ -1,0 +1,19 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {accountFeedPage} from '../../src/lib/server/personalization/account-feed.ts';
+import {feedPrerequisites} from '../../src/lib/server/personalization/feed-prerequisites.ts';
+const rating=score=>({score,confidence:'high',reason:'Observed',evidence:'Rendered interaction'});
+const profile=(level='balanced')=>({state:'current',whyCool:'A visible payoff',caveat:'One model',quality:Object.fromEntries(['prediction','interaction','payoff','clarity','transfer','accessibility'].map(k=>[k,rating(3)])),experience:Object.fromEntries(['surprise','visualExplanation','playfulness','practicalValue','depth'].map(k=>[k,rating(4)])),complexity:{level}});
+const baseline=Array.from({length:73},(_,i)=>({slug:`lesson-${i}`,domain:i%2?'physics':'math',status:'published',title:'Title',hook:'Hook',durationSec:60,claims:{total:1,verified:1}}));
+const profiles=Object.fromEntries(baseline.map(i=>[i.slug,profile()]));
+const settings={personalizationOn:true,subjects:['physics'],experiences:[],challenge:null,lessOf:[]};
+const page=(s=settings,p=0,ps=profiles,prereq={})=>accountFeedPage(baseline,ps,s,'version',p,'account-a',prereq);
+test('signed-out/no-choice/off/reset shape preserves exact baseline',()=>{for(const on of [null,false])assert.deepEqual(page({...settings,personalizationOn:on}).items,baseline.slice(0,30));assert.deepEqual(page({...settings,subjects:[],experiences:[],challenge:null}).items,baseline.slice(0,30));});
+test('whole-catalogue pages are deterministic, unique and bounded',()=>{const pages=[0,1,2].map(p=>page(settings,p));assert.equal(new Set(pages.flatMap(p=>p.items.map(i=>i.slug))).size,73);assert.equal(new Set(pages.map(p=>p.snapshot)).size,1);for(const p of pages)for(const item of p.items)assert.ok(Math.abs(baseline.findIndex(i=>i.slug===item.slug)-(p.page*30+p.items.indexOf(item)))<=2);assert.deepEqual(page(),page());assert.equal(pages[2].next,null);});
+test('changed settings/profile identity produces different snapshot',()=>{assert.notEqual(page().snapshot,page({...settings,subjects:['math']}).snapshot);assert.notEqual(page().snapshot,accountFeedPage(baseline,profiles,settings,'new',0,'account-a').snapshot);});
+test('weak/stale/disputed/missing editorial profiles are fixed barriers',()=>{for(const state of ['stale','disputed']){const ps={...profiles,'lesson-1':{...profile(),state}};assert.equal(page(settings,0,ps).items[1].slug,'lesson-1');}assert.equal(page(settings,0,{}).items[1].slug,'lesson-1');});
+test('declared prerequisite and status inversions are refused',()=>{assert.equal(page(settings,0,profiles,{'lesson-1':['lesson-0']}).items[0].slug,'lesson-0');const b=baseline.map((x,i)=>({...x,status:i===0?'review':'published'}));assert.equal(accountFeedPage(b,profiles,settings,'v',0,'a').items[0].slug,'lesson-0');});
+test('transitive cross-domain declared dependencies only, no mastery inference',()=>{assert.deepEqual(feedPrerequisites([{slug:'a',domain:'math',concept:'a'},{slug:'b',domain:'physics',concept:'b'},{slug:'c',domain:'physics',concept:'c'}],[{domain:'math',concepts:[{id:'a'}]},{domain:'physics',concepts:[{id:'b',prerequisites:['math:a']},{id:'c',prerequisites:['b']}]}]).c,['a','b']);});
+test('only slim cards and moved explanations leave the server',()=>{const p=page();assert.ok(Object.keys(p.reasons).length);assert.ok(p.items.every(item=>!Object.hasOwn(item,'profile')&&!Object.hasOwn(item,'quality')));assert.ok(!JSON.stringify(p).includes('Observed'));for(const reason of Object.values(p.reasons))assert.match(reason,/stated choices/);});
+
+test('visible unpublished and retired items remain fixed even with strong profiles',()=>{for(const status of ['draft','retired']){const b=baseline.map((x,i)=>({...x,status:i<2?status:x.status}));const result=accountFeedPage(b,profiles,settings,'v',0,'a');assert.equal(result.items[0].slug,'lesson-0');assert.equal(result.items[1].slug,'lesson-1');}});

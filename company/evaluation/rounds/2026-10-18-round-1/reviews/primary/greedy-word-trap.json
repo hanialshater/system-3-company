@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "greedy-word-trap",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/greedy-word-trap",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "greedy-word-trap",
+    "domain": "ai",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/ai/greedy-word-trap/meta.json",
+    "metaSha256": "908a979ea17a7ac74956e0fb6b3c8e5d714a488721e3ecbf62f8a367b2d18ee8",
+    "demoSha256": "f815a939a8abaacadad39abefe6a67956717a92497f0ac394b826a62668942bd",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/greedy-word-trap",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/greedy-word-trap.json"
+  },
+  "date": "2026-10-18T19:00:31.279811+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "No-history banner confirmed;trust4/4 ignored. Selected cat+best and locked.",
+    "exploration": "Greedy path The cat sat24%; dog then barked36%; dog then sat4%. Reveal unlocks after contrasting complete paths.",
+    "reveal": "Correct dog+best. Recaps24%=.6*.4 and36%=.4*.9, product along path, greedy local weakness and beam search keeping multiple partial sentences to get closer.",
+    "visual": "Inline1257x936 dark screenshot inspected: branch probabilities and complete leaf products visible, current purple dog-sat4% versus green best36%. Reveal historical dog-barked recap accurately refers prior explored case."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Specific local/global alternatives can be calculated; clear commitment.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Two first branches and bad dog ending expose local/global contrast, leaf probabilities show boundary that not every dog ending wins.",
+      "evidence": "exploration;visual",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Uses actual24/36 paths and multiplication to explain local versus sequence optimum.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Tree labels, selected path, complete products and invented odds disclosure legible.",
+      "evidence": "visual",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Beam search concrete new strategy keeps alternatives when locally best can mislead; closeness rather than guarantee stated.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed greedy answer overturned by36 versus24.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Full tree shows conditional odds, path highlight and leaf products across three contrasted endings.",
+      "evidence": "exploration;visual",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversible path choices and greedy shortcut support comparison.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Connects to real decoding beam search but no working deployment task.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Local/global mismatch, probability product and limited search alternative.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Multiply conditional chances along paths and compare whole paths with local choices.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low: labelled branch buttons",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: conditional odds/products supported by tree",
+    "notationRepresentationBurden": "moderate: percentages/decimals and tree"
+  },
+  "whyCool": "The weaker40% first word yields36% sentence, beating the greedy60% start's24%.",
+  "caveat": "Tiny invented fixed-length tree; beam search is described without a fresh test case."
+}

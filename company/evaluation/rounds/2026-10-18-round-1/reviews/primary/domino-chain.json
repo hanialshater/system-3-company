@@ -1,0 +1,151 @@
+{
+  "status": "walkthrough-reviewed",
+  "reviewState": "complete-real-walkthrough",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "action": "Selected All of them and Lock it in",
+      "outcome": "Retained choice and unlocked push and remove-six controls. Initial AX briefly omitted controls but screenshot showed them; selecting made full AX available."
+    },
+    {
+      "id": "E",
+      "action": "Pushed domino1; moved domino6 out of reach; put it back",
+      "outcome": "12/12 fallen; removal recomputed 5/12 with six onward standing; restoration returned12/12. Push remained disabled after first push."
+    },
+    {
+      "id": "R",
+      "action": "Clicked Show me why",
+      "outcome": "Your prediction held; contrasted intact chain and missing sixth link; introduced base case and n to n+1 induction, explicitly saying dominoes picture rather than prove it."
+    },
+    {
+      "id": "V",
+      "action": "Inspected broken-chain and revealed screenshots with normal vertical scroll",
+      "outcome": "1257x992 dark Chrome; graphics, counters and reveal legible; no horizontal clipping."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear conditional chain question with plausible finite/partial alternatives.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Breaking and restoring one link visibly tests universal-link condition, but removal retroactively recomputes fallen state rather than replaying.",
+      "evidence": "E",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Resolves original prediction, contrasts exact observed boundary and explicitly limits the physical illustration.",
+      "evidence": "E,R",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Controls and count feedback make the tested sequence understandable; reveal legible.",
+      "evidence": "P,E,R,V",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "States induction rule and conditions, without a new mathematical case to apply it.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic multimode checks.",
+      "evidence": "Transient AX omission recorded, but no keyboard, focus, contrast, phone, zoom/reflow or motion coverage.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Correct prediction confirmed; broken-link contrast adds incidental expectation tension.",
+      "evidence": "P,E",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Fall-state diagram and changed chain boundary remain central across push, break and restoration.",
+      "evidence": "E,V",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversible missing-link control permits immediate discovery.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 1,
+      "reason": "Abstract proof principle without concrete external application.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Base case, universal step and one failed link are distinct linked conditions.",
+      "evidence": "E,R",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Familiar chain supports two linked proof conditions; optional symbolic formulation adds abstraction.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": {
+      "level": "moderate",
+      "reason": "Proof by induction is introduced from familiar domino behavior."
+    },
+    "notationRepresentationBurden": {
+      "level": "moderate",
+      "reason": "Reveal uses n and n+1 with verbal support."
+    },
+    "conceptualDemand": "Distinguish first case and every successor condition, extrapolate beyond12.",
+    "interfaceBurden": "Low; one transient AX omission recovered through visible choice."
+  },
+  "whyCool": "Removing just domino six changes the visible result from all twelve fallen to only five, exposing why every link matters.",
+  "caveat": "The control retroactively changes fallen dominoes; no new proof example tests transfer.",
+  "missingEvidence": [
+    "Systematic accessibility checks",
+    "Applied new transfer case",
+    "Phone layout"
+  ],
+  "effort": {
+    "approximateMinutes": 3
+  },
+  "partialBlinding": "Visible Why trust this? (4/4 claims checked); ignored and not opened.",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3b",
+  "date": "2026-10-18",
+  "notApprovedForServing": true,
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, number comparisons and familiar household objects; no domain theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 992,
+    "theme": "dark",
+    "browser": "Chrome"
+  },
+  "screenshots": [],
+  "fatalFindings": [],
+  "slug": "domino-chain",
+  "demoVersion": 1,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/domino-chain",
+  "reviewKind": "primary",
+  "sourceRevision": {
+    "baseRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+    "demoSha256": "443b7d14a0bf25b97e75b0c88e61bd0aae6f1b484ae89e161706077fc638b935",
+    "metaSha256": "f0175e9a92e87fcfc68c23c433db2ca6bcd18b2c08d5b650088e3202cc8a7ff7"
+  }
+}

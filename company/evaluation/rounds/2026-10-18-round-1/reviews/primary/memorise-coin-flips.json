@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "memorise-coin-flips",
+  "demoVersion": 3,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/memorise-coin-flips",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "memorise-coin-flips",
+    "domain": "ai",
+    "status": "published",
+    "demoVersion": 3,
+    "metaPath": "src/demos/ai/memorise-coin-flips/meta.json",
+    "metaSha256": "0f90449ab290572aad5c5b5da246d165dcc4d77d9da20ea98a36ebcf4875789a",
+    "demoSha256": "2e9ab974c69e2ac378ecd37b69e96cc3a374e1514bd85dee41c4998cec3ae6d8",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/memorise-coin-flips",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/memorise-coin-flips.json"
+  },
+  "date": "2026-10-18T19:24:42.660319+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "No-history banner confirmed; trust5/5 ignored. Selected cannotfitrandomlabels andlocked. Sixdistinctxpositions anddegree5sixtunablenumbersstated.",
+    "exploration": "Degree1set1miss1.50;degree3miss0.76;degree5miss0andnewpoint1of1. Reflipset2miss0,newpoint1of2. Try20moresets=>set22miss0,newpoint12of22. Revealunlockafterrequiredreflip/batch.",
+    "reveal": "CorrectZero. States0missacross22sets,sixtunablenumbersfitanysixdots;new0.5coinflip12/22=55%abouthalf. Perfecttrainingfitnotevidencepattern;randomlabelneuralnetexamplementioned.",
+    "visual": "Inline1257x936 dark screenshots inspected: curvepassesthroughsix+1/-1dots;newpointgold0.5diamondwithdashedgap,lastsetwrongpredictionclear. Degreecontrols,countersandfullreveallegible."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Randomnessversusfittingcapacityclear;zeroversushalf/cannotchoicesplausible.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Threecapacities,reflippedlabels and22setholdoutcounter exposefittingversusgeneralization withcontrasts.",
+      "evidence": "exploration;visual",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Linksactualmisses/holdoutcounttocapacityandindependentlabels,statestrainingfitlimitation;generalanysixdotclaimnotqualifieddistinctxbutpromptgivesthem.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Degree/labelset,newpoint andlargestmisslabels clear;allcurrentstateslegible.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete neuralnetworkrandom-labelanalogy andconditionthatperfecttrainingfitneednotindicatepattern;holdouttestshows relevantcheck.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Chosenimpossiblefitbecomeszeroerrorwhilefreshlabelsremainabouthalf.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Exacttraininginterpolationandindependentholdoutgapvisiblyseparatemechanismsacrosscapacities/labelsets.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Degreechoicesandreflips supportrepeatedexperimentation.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concretewarning/testingpracticefortrainingfitversusnewdataperformance.",
+      "evidence": "reveal;exploration",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Capacity,randomlabelmemorization,holdoutindependenceandfinite-samplevariation.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Distinguishfitcapacityfrompatternandindependentholdoutprediction;degreeabstractionscaffoldedbytunablenumbers.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low:degreebuttons/reflip",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: interpolation/generalization",
+    "notationRepresentationBurden": "moderate: degree,d+1,signedlabels andaccuracycounts"
+  },
+  "whyCool": "Degree5hitsalltrainingdotsyettheindependentgoldpointstillbeatsitaboutstrandomguessrate.",
+  "caveat": "Toypolynomialwithsixfixedxlocations;neuralnetworkcomparisontextonly,notfreshapplication."
+}

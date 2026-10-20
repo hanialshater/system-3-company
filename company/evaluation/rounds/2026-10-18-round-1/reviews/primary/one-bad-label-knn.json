@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "one-bad-label-knn",
+  "demoVersion": 2,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/one-bad-label-knn",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "one-bad-label-knn",
+    "domain": "ai",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/ai/one-bad-label-knn/meta.json",
+    "metaSha256": "5c9ceb99ab1ba18d7e0e939dfb5f434f915c74d3904bb4f2d2f7c38f2a97b4d8",
+    "demoSha256": "6a542e6f5a28d28905073d0669dc53f095f802bc00970afd1d874aff838f82ee",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/one-bad-label-knn",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/one-bad-label-knn.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Chose Orange against Blue and tie for k5; locked it in.",
+    "exploration": "Initial k1 votes0blue/1orange,orange label. k5 at initial blue-cluster query gave4blue/1orange,blue. k13 gave6blue/7orange,orange. Move dot twice visibly moved diamond through middle to orange cluster while k13 votes/label unchanged. At new orange-cluster position,k5 gave0blue/5orange,orange.",
+    "reveal": "Corrected Blue for original query, recalled observed4/1 initial vote. Explained one bad label outvoted,all13 globally orange independent of query position,noise-versus-boundary tradeoff. Current stage remained moved query with0/5 orange votes.",
+    "visual": "Actual1257 \u00d7936 dark screenshots inspected. Voter lines and enclosing radius change with k; moved diamond visible at two positions. Final screenshot shows orange-cluster query,current0/5 votes and historical original-query explanation below.",
+    "previewIsolation": "No-history evaluation banner present.",
+    "blinding": "4/4 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear local-majority commitment tests trusting closest mislabel.",
+      "evidence": "Orange commitment versus original-query4blue/1orange.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "k contrasts and moved queries expose noise suppression and global over-smoothing.",
+      "evidence": "k1 orange,k5 blue,k13 orange anywhere;new positionk5 orange.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains original vote and observed all-voter boundary with explicit tradeoff.",
+      "evidence": "4/1 outvotes mistake;6/7 independent of position.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Controls and diagram clear,but historical original-query Blue correction sits below current moved orange-query stage.",
+      "evidence": "Final screenshot current0/5 orange with correction Blue.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable noise/border tradeoff without concrete new application.",
+      "evidence": "Choosing k trades following noise against blurring borders.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient access audit.",
+      "evidence": "Keyboard,focus,contrast,phone,zoom and motion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Original k5 contradicts Orange prediction;larger k reverses it again.",
+      "evidence": "k1 orange\u2192k5 blue\u2192k13 orange.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Voter lines,radius and diamond location carry local/global mechanism.",
+      "evidence": "All13 lines versus five local voters.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "k selection and query movement support reversible discovery.",
+      "evidence": "Multiple k values and two query moves.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete classifier tuning tradeoff.",
+      "evidence": "One bad label versus excessive neighborhood size.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Noise robustness and loss of spatial boundaries tested separately.",
+      "evidence": "Initialk5 correction,k13 location invariance,new-positionk5 local vote.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Connects local voting with robustness and over-smoothing.",
+    "conceptualDemand": "Track voter selection and majority as query and neighborhood size change.",
+    "interfaceBurden": "Low to moderate: historical explanation differs from current moved query.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: nearest-neighbor classification and parameter choice.",
+    "notationRepresentationBurden": "low: k labels and vote counts."
+  },
+  "whyCool": "With all13 dots voting,moving the query across the picture changes nothing;returning to five restores a local vote.",
+  "caveat": "Reveal recalls initial blue-query result while stage can show a moved orange query;only fixed labeled dataset tested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "k3/k7 not tested.",
+    "Keyboard,focus,contrast,phone,zoom/reflow and motion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:23:44.762748+00:00"
+}

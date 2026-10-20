@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "overlap",
+  "slug": "june-sunshine-pole-or-equator",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/june-sunshine-pole-or-equator",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "june-sunshine-pole-or-equator",
+    "domain": "geography",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/geography/june-sunshine-pole-or-equator/meta.json",
+    "metaSha256": "30c6bd385228eda0123f60a254732f6cc8f950791297fd1a1f459808242a57e4",
+    "demoSha256": "64fb02fc3a601f7c7edc611c75339503affd5c007e065161c05097c040d22383",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/june-sunshine-pole-or-equator",
+    "primaryWorker": "w3",
+    "reviewKind": "overlap",
+    "outputPath": "reviews/overlap/june-sunshine-pole-or-equator.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Chose equator against North Pole and45 degrees north; locked it in.",
+    "exploration": "Drew equator:9.2 kWh/m\u00b2 daily. Drew45N:11.6. Drew pole:12.6. All curves and comparison rows retained. Screenshot row shows equator12h/noon67\u00b0,45N15.4h/68\u00b0,pole24h/23\u00b0.",
+    "reveal": "Corrected toNorth Pole; compared12.6 with9.2 and24h at23\u00b0 against12h and67\u00b0. Explained tilt and duration; explicitly above atmosphere rather than warmth at ground.",
+    "visual": "Actual1257 \u00d7936 dark screenshot inspected. Pole constant low line has filled area across24h; equator and45N peak high but narrower. Legend and full reveal legible.",
+    "previewIsolation": "No-history evaluation banner present.",
+    "blinding": "5/5 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear daily-total commitment contrasts intensity intuition and duration.",
+      "evidence": "Equator prediction versus pole correction;24h condition explicit.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Three latitude curves expose height-duration tradeoff.",
+      "evidence": "Equator9.2,45N11.6,pole12.6.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects observed totals to sun height and hours, with atmospheric limit.",
+      "evidence": "24h23\u00b0 versus12h67\u00b0; above-air caveat.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Retained curves and table communicate total versus peak.",
+      "evidence": "Actual screenshot hourly chart and daily totals.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General duration-intensity principle and boundary but no new application.",
+      "evidence": "Never setting beats high Sun; not ground warmth.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient access audit.",
+      "evidence": "Keyboard,focus,contrast,phone,zoom and motion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed equator prediction contradicted by polar daily total.",
+      "evidence": "12.6 exceeds9.2.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Area under time curve carries daily-total mechanism.",
+      "evidence": "Low24h pole rectangle versus tall equator arch.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Latitude presets allow comparative discovery.",
+      "evidence": "Three curves added sequentially.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete interpretation of June solar energy at different latitudes.",
+      "evidence": "Daily top-of-atmosphere comparison.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Sun angle,duration and atmospheric distinction linked.",
+      "evidence": "Three latitude rows and warmth caveat.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Relates intensity and duration through area under curve.",
+    "conceptualDemand": "Distinguish peak flux from daily accumulated energy and ground temperature.",
+    "interfaceBurden": "Low: three presets and retained comparison table.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: polar daylight and solar geometry.",
+    "notationRepresentationBurden": "moderate: W/m\u00b2,kWh/m\u00b2 and degrees."
+  },
+  "whyCool": "The low polar line stretches across all24 hours and beats the tall equatorial arch in daily energy.",
+  "caveat": "Only21June and three presets tested; atmosphere,ground warming and seasonal contrast outside evidence.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Slider intermediate latitudes not tested.",
+    "Keyboard,focus,contrast,phone,zoom/reflow and motion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:20:21.869867+00:00"
+}

@@ -1,0 +1,143 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewKind": "primary",
+  "reviewer": "r1",
+  "slug": "count-the-thunder",
+  "demoVersion": 2,
+  "batchId": "round1-02",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "C0",
+      "text": "Preview banner confirms history/analytics not saved."
+    },
+    {
+      "id": "C1",
+      "text": "Prediction six-second delay: about 200 m / about 2 km / about 20 km; chose 200 m and locked."
+    },
+    {
+      "id": "C2",
+      "text": "Before commitment, diagram text states \u201cEach arc: one second ... 343 m (air at 20 \u00b0C).\u201d"
+    },
+    {
+      "id": "C3",
+      "text": "At zero: \u201cFlash and thunder together: the strike is right here\u201d; set 6: \u201c2.06 km\u201d, flash 0.0000069 s and \u201cCount \u00f7 3 = 2\u201d. Screenshot showed six arcs and strike near 2 km."
+    },
+    {
+      "id": "C4",
+      "text": "Set 12: \u201c4.12 km\u201d, flash 0.0000137 s, \u201cCount \u00f7 3 = 4\u201d."
+    },
+    {
+      "id": "C5",
+      "text": "Reveal preserves 12-second state, resolves original six-second answer as about 2 km, explains light versus sound, 343m/s and count divided by three."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Question is answerable, but visible 343m-per-second statement cues the calculation.",
+      "evidence": [
+        "C2"
+      ],
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Zero, six and twelve seconds expose linear relation and zero boundary without changing other inputs.",
+      "evidence": [
+        "C3"
+      ],
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal connects current count, arcs, speed and original answer but does not explain approximation limits beyond initial temperature label.",
+      "evidence": [
+        "C5"
+      ],
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Named slider, live distance and current-state reveal make action and result explicit.",
+      "evidence": [
+        "C4"
+      ],
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Count divided by three is an actionable rule with a concrete second delay.",
+      "evidence": [
+        "C5"
+      ],
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient multi-mode accessibility checks; D slider Home key is only a partial keyboard observation.",
+      "evidence": [
+        "Observed DOM accessible names, desktop screenshots; no comprehensive check."
+      ],
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Committed 200m becomes 2.06km but pre-question speed cue weakens expectation reversal.",
+      "evidence": [
+        "C3"
+      ],
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Arcs, strike position and axis convey zero and doubled-distance states.",
+      "evidence": [
+        "C4"
+      ],
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Continuous reversible delay control supports experimentation.",
+      "evidence": [
+        "C4"
+      ],
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Rule estimates distance from an everyday observable delay.",
+      "evidence": [
+        "C5"
+      ],
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Sound propagation, negligible light travel and proportional distance are linked.",
+      "evidence": [
+        "C5"
+      ],
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "Read seconds/km and relate doubled count to doubled distance; no prior propagation theory needed.",
+    "boundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain theory assumed."
+  },
+  "whyCool": "Doubling the delay from six to twelve seconds moves the strike from 2.06 to 4.12 km.",
+  "caveat": "No actual flash/thunder timing or audio tested; temperature dependence not explored.",
+  "evidenceProvenance": "company/evaluation/calibration/2026-10-18-launch-pilot/r1.json",
+  "reusedExistingReview": true,
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "notApprovedForServing": true
+}

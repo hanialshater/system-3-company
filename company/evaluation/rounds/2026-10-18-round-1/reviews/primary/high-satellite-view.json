@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "high-satellite-view",
+  "demoVersion": 2,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/high-satellite-view",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "e65b2f80d0d943798f1e16b7b0231ce72444da2b38d9720c68a0ba48efe63599",
+    "demoSha256": "6eb2bcbc92ce7340766834ab61651ba70a6f178f675cdcdf889be9c00cca6db9",
+    "metaPath": "src/demos/geography/high-satellite-view/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "observations": {
+    "prediction": "Selected About half (50%), then Lock it in. Initial 1,000 km displayed 6.8%.",
+    "exploration": "Pressed Space station: 400 km, 19.8 degrees, 3.0%. Pressed Geostationary: 35,786 km, 81.3 degrees, 42.4%; Show me why unlocked.",
+    "reveal": "Not quite identified about 40%; compared current 42% to prior 3.0%. Explained grazing sightline, unseen poles, infinite height needed for half, and horizon dish view.",
+    "visual": "Inline CUA screenshot inspected: blue circular boundary nearly surrounds the dark orthographic globe; red below-satellite point, numeric percentage and controls legible. Bottom reveal action touched viewport edge.",
+    "isolation": "No-history evaluation preview banner present. Trust chrome 10/10 visible, ignored.",
+    "references": [
+      "CUA tab 543884107 prediction/exploration/reveal snapshots and inline screenshot; no screenshot file saved."
+    ]
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear half-versus-less-than-half alternatives with actual commitment.",
+      "evidence": "Selected 50% and observed 42.4%.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Low/high presets expose expanding visible area with numeric contrast.",
+      "evidence": "400 km 3.0% versus 35,786 km 42.4%.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains contrast and half-surface limit using retained low-orbit observation.",
+      "evidence": "Reveal cites both 42% and prior 3.0%, grazing sightline and infinite-height limit.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Preset names, units and percentage are legible; required contrast instruction is explicit.",
+      "evidence": "Inspected screenshot and successful two-preset unlock.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Dish-at-horizon application offered but no new case exercised or conditions developed beyond edge geometry.",
+      "evidence": "Near the edge, a dish sees the satellite on the horizon.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard, focus, contrast, phone, zoom/reflow and motion not tested.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed half prediction contradicted by 42.4% and finite-height limit.",
+      "evidence": "Prediction and reveal.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Globe circle directly carries extent of coverage.",
+      "evidence": "Inspected high-orbit screenshot and numeric low/high contrast.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversible presets and slider invite variation.",
+      "evidence": "Two presets exercised; slider not tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Satellite visibility and dish horizon give concrete interpretation.",
+      "evidence": "Reveal horizon sentence.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Altitude-area relation and asymptotic half limit appear.",
+      "evidence": "Low/high contrast and grazing-sightline reveal.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Connects height, spherical visible area and a limiting half surface.",
+    "conceptualDemand": "Supported relation with a geometric limit.",
+    "interfaceBurden": "Low; three named presets and one slider.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: satellite sightlines and globe degrees",
+    "notationRepresentationBurden": "moderate: degrees, km, percent and orthographic projection"
+  },
+  "whyCool": "Pressing Geostationary enlarges the visible circle yet leaves the surface share at only 42.4%.",
+  "caveat": "Only two presets tested; no new application task or accessibility audit.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Slider boundary",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "effort": "Approximately 2 minutes active browser walkthrough.",
+  "notApprovedForServing": true
+}

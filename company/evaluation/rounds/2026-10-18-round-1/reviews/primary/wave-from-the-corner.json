@@ -1,0 +1,105 @@
+{
+  "slug": "wave-from-the-corner",
+  "demoVersion": 1,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/wave-from-the-corner",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted5steps for open5x5corner-to-corner orthogonal movement.",
+    "Next ring1labelled3cells;Allrings reachedG8,labelled25. First wallrightofSleft24labelled,Gstill8 with detours near top.",
+    "SecondwallbelowSisolatedstart:only1labelled,headerWallsblockeverywaytoG,goalunreachable.",
+    "Reveal explainedoriginal8,4across4down,BFSlayers and70shortestroutes,butsaid everycellgetslabel andwalls onlybendwave despitecurrentunreachablecase.",
+    "Inline1280x720 light screenshots: opengridnumbers clear;unreachableblankgoalobserved;right-edgeproseclipped. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simplegridwithalgorithmiclayerreasoning.",
+    "conceptualDemand": "Distancefromsource andreachablecomponent.",
+    "interfaceBurden": "Cleargrid,butAXcells lackcoordinates andproseclips."
+  },
+  "whyCool": "A wave labels distances everywhere it can reach,without enumerating the many possible routes.",
+  "caveat": "Revealneedsreachable-cells qualification andunreachablecasehandling;right-edgeclipping;accessibilityunknown.",
+  "effort": "Prediction,manualring,fullwave,onewallreroute,two-wallisolation,reveal andinline screenshots.",
+  "provisionalBucket": "revise-unreachable-reveal",
+  "bucketReason": "StronginteractiveBFSbutexplanationovergeneralizeswhenwallsdisconnectgoal.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Complete grid and movement constraints with plausible counts.",
+      "evidence": "5x5orthogonalsteps.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Manualring,fullwave,wallrerouting andisolatedstartboundary testguaranteeandfailurecondition.",
+      "evidence": "25then24then1labelled.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "CorrectoriginalBFSprinciple butunqualifiedallcells/wallstatementmissesobservedunreachablelimit.",
+      "evidence": "CurrentgoalblankandonlySlabelled.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clearheaderstate butproseclips anddoesnotacknowledgecurrentblockedcase.",
+      "evidence": "Inline reveal screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Learner-builtwallcasesapplydistanceprocedure andexposeunreachablecondition.",
+      "evidence": "TwoexitwallsisolateS.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Distancewave avoids enumeratingmanyroutes.",
+      "evidence": "70shortestroutesclaimed,onegridlabeling.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Numberedlayers andwalls make reachabilityvisible.",
+      "evidence": "Ring1andG8versusblankgoal.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Build/removewalls andgrowrings.",
+      "evidence": "Customtwo-wallcase.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Shortestunweightedpath andreachabilitycentral.",
+      "evidence": "Breadthfirstsearch.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Layerinvariant,routecount anddisconnectionboundary.",
+      "evidence": "Unreachablecaseobserved.",
+      "confidence": "medium"
+    }
+  }
+}

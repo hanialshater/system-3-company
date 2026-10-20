@@ -1,0 +1,103 @@
+{
+  "slug": "lh-flow-times-minutes",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-flow-times-minutes",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted 3 L/min produces lower volume at equal four-minute duration.",
+    "Tests gave 24 versus 12 L. Maximum 12 minutes gave 72 versus 36 L.",
+    "Screenshot showed common-scale containers with double fill. Reveal preserved original/current inputs, explained unit cancellation and equal-duration control, and cautioned variable real flow."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Small integer multiplication and familiar units.",
+    "conceptualDemand": "Rate becomes amount through duration.",
+    "interfaceBurden": "Two tests and one slider."
+  },
+  "whyCool": "Turns a flow-rate label into a visible amount of water.",
+  "caveat": "Only constant flows with matching duration are modeled.",
+  "effort": "Prediction, both tests, maximum duration, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear foundational rate arithmetic with limited surprise.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Simple larger-rate comparison with equal time.",
+      "evidence": "6 versus 3 L/min for four minutes.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Duration scaling preserves the controlled flow contrast.",
+      "evidence": "4\u219212 minutes.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains product and controlled comparison.",
+      "evidence": "Volume per minute times minutes.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Units, expressions and limits explicit.",
+      "evidence": "Constant illustrative flows.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Explicit equal-duration condition supports meaningful comparisons.",
+      "evidence": "Keeping duration equal isolates rate; real flow varies.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Expected proportional result.",
+      "evidence": "Double rate gives double volume.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Common-scale fill levels show volume ratio.",
+      "evidence": "72 versus 36 L screenshot.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Tests and duration slider.",
+      "evidence": "Rates fixed.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Water-volume calculation is central.",
+      "evidence": "Flow-rate accounting.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Connects units and controlled comparison.",
+      "evidence": "Rate times duration.",
+      "confidence": "medium"
+    }
+  }
+}

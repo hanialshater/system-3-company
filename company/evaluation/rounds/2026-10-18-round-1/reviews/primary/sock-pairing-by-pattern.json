@@ -1,0 +1,103 @@
+{
+  "slug": "sock-pairing-by-pattern",
+  "demoVersion": 2,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/sock-pairing-by-pattern",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted11 for twelve mixed socks; prediction omits worst-case qualification shown later in table.",
+    "At12 mixed candidatecount12,checks11;patternbin4,checks3. At18 mixed18/17,bin6/5.",
+    "Reveal assumes unique partner can be last,excludes sorting time. Screenshot shows repeated same patterns but doesn't identify what distinguishes unique partner within pattern."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Counts and equal groups.",
+    "conceptualDemand": "Search candidates versus actual matching rule.",
+    "interfaceBurden": "Modes and count slider."
+  },
+  "whyCool": "Grouping by an informative feature shrinks the set you need to search.",
+  "caveat": "State worst case,equal groups,and what makes a unique partner; if any same-pattern sock is acceptable,the search model changes.",
+  "effort": "Prediction,A/B,countchange,reveal,inline screenshot.",
+  "provisionalBucket": "revise-search-assumptions",
+  "bucketReason": "Useful partition model,ambiguous matching task.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Counts answer depends on worst-case and unique-partner assumptions not stated in question.",
+      "evidence": "How many check versus at most.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Candidate counts update, no actual partner search or sorting task.",
+      "evidence": "11/3 to17/5.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Explains partitioning and sorting cost,but partner identity within same pattern underspecified.",
+      "evidence": "Five possible partners in same pattern.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readable table; equal pattern counts and unique partner rule implicit.",
+      "evidence": "Three equal bins.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete partition-before-search principle with setup-cost caveat.",
+      "evidence": "Sorting takes own time.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Partition lowers candidate count.",
+      "evidence": "17\u21925.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Pattern bins illustrate partition.",
+      "evidence": "Three groups.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Modes/count without matching task.",
+      "evidence": "No sock selections.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Sorting before search central.",
+      "evidence": "Sock grouping.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Worst-case versus preprocessing cost.",
+      "evidence": "Sorting excluded.",
+      "confidence": "medium"
+    }
+  }
+}

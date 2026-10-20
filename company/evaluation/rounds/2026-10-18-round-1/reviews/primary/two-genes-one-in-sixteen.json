@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "two-genes-one-in-sixteen",
+  "demoVersion": 1,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/two-genes-one-in-sixteen",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "cba62de376a76da0797b49800081a0fee41faf0cc04631a88b31ff269863ee89",
+    "demoSha256": "b6a7762eecffba3b22d89dc8581345bcdb12f229d82d96e424c34e871c386f7b",
+    "metaPath": "src/demos/life/two-genes-one-in-sixteen/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected one in four and locked the joint white-and-wrinkled fraction for two parents carrying one hidden copy of each independently inherited form.",
+    "exploration": "Crossed the parents to fill sixteen equally likely combinations. Marked white: four of sixteen. Marked wrinkled: four of sixteen. Marked both: one of sixteen.",
+    "reveal": "The reveal corrected the answer to one in sixteen and explained a quarter of the white seeds are wrinkled because the genes are inherited separately. It gave one quarter times one quarter and qualified the rule with linked genes on a chromosome.",
+    "visual": "Inspected the inline dark 1257 by 936 screenshot with white highlighted. A four by four grid encoded flower color by fill and seed shape by outline; four white cells were outlined green. Row and column symbols and a legend supported interpreting the combinations.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The question distinguishes a single recessive fraction from the joint event.",
+      "evidence": "Selected one in four before seeing the joint overlap.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Single-trait filters and a joint filter expose the probability intersection.",
+      "evidence": "Both individual filters select four cells, but the joint filter selects one.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal explains multiplication and explicitly states the independence limit.",
+      "evidence": "It gives 1/4 times 1/4 and notes nearby linked genes can break the rule.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Color and shape provide two separable encodings with explicit counts.",
+      "evidence": "The grid and legend distinguish white fill from wrinkled outline.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "The independent chance rule is stated without a new genetics cross or other application.",
+      "evidence": "Only this fixed two-trait example is available.",
+      "confidence": "high"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Combining two hidden traits is much rarer than either alone.",
+      "evidence": "Four selected cells for each single trait reduce to one joint cell.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Filtering the common grid makes the overlap visible.",
+      "evidence": "All three counts refer to the same sixteen combinations.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Crossing and filtering supports a guided discovery.",
+      "evidence": "Four controls fill and highlight a fixed grid.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "It connects independent inheritance to multiplication of chances.",
+      "evidence": "The reveal includes the important independence condition.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "The lesson explains the joint fraction and a biological boundary.",
+      "evidence": "Linked genes are named as a reason the simple multiplication can fail.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "The fraction comparison is simple, but hidden copies, gametes and independent inheritance are unfamiliar.",
+    "conceptualDemand": "Moderate: distinguish individual trait chances from their joint occurrence.",
+    "interfaceBurden": "Low: cross button and three filters.",
+    "conceptualChallenge": "Combine two separately inherited recessive requirements.",
+    "prerequisiteNovelty": "Recessive inheritance and chromosome linkage are introduced.",
+    "notationRepresentationBurden": "Moderate: four by four crossing grid, dual visual encoding and fraction multiplication."
+  },
+  "whyCool": "Two separate one-in-four patterns share only one cell when both conditions must hold.",
+  "caveat": "The plant and inheritance setup are invented and fixed; linkage is mentioned but not demonstrated.",
+  "missingEvidence": [
+    "No fresh parent genotypes or linked-gene case was tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "minus-times-minus",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/minus-times-minus",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "minus-times-minus",
+    "domain": "math",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/math/minus-times-minus/meta.json",
+    "metaSha256": "fc70a37774c376c2d12520370aefd4b0c987145ec44d0850b64852cdbaec223d",
+    "demoSha256": "70cf4c3302dcc4b386652d6c34c8b0bd6f5eb532a85181e9601dbc0088f0752c",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/minus-times-minus",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/minus-times-minus.json"
+  },
+  "date": "2026-10-18T19:26:45.397537+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "No-history banner confirmed; trust3/3 ignored. Selected-6 andlocked for(-3)*(-2).",
+    "exploration": "Steppedfirstfactor3,2,1,0,-1,-2,-3oneatime:products-6,-4,-2,0,2,4,6;eachstepadds2. Revealunlocksafterfullpath. Returned3restoresinitialsinglepointandkeepsrevealunlocked.",
+    "reveal": "Correct6. Recapsactualplus2sequenceandzero-crossing. Distributivity: (-3)*(-2)+(-3)*2=(-3)*0=0,secondterm-6sofirst+6,consistencyforcesrule.",
+    "visual": "Inline1257x936 dark screenshots inspected: productverticalaxis-6..6,firstfactorhorizontal3..-3descending,selectedpointandnumberlabel;resetbaseline3shows-6. Fullreveallegible."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clearnegativeproductversuspositive/sumchoices;titlequotesrulebutaskwhyprovidesactualreasoningtask.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Sequentialfactorchoicesexposeconstantdifferenceacrosszero;fixedsecondfactorlimitscausalrange.",
+      "evidence": "exploration;visual",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Observedsequenceconnectedtoexplicitdistributiveconsistency,notjustpatternassertion;resolvesoriginalnegativeguess.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Signedfactors/products,stepfeedbackandplotaxesclear;revealclearlyhistoricalafterreturn3.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalminus-times-minusconsistencyrulebutnofreshfactororapplicationcase.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Chosen-6reversedbysequence;hookalreadyquotescorrectsignrule,soexpectationreversallimited.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Productplotandzeroaxiscarryconstant-stepcontinuationthroughzero.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reversiblefactorchoiceswithinfixedmultiplicationpattern.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concretefoundationforsignedmultiplication.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Constantdifferences,zeroboundaryanddistributiveproof.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Patterncoregentle,butfullwhyrequiresdistributivecancellationandoppositetermreasoning.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low:factorbuttons",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: consistencyproofratherthanmemorizedsignrule",
+    "notationRepresentationBurden": "moderate: nestednegativeproductsandequationcancellation"
+  },
+  "whyCool": "The+2stepscontinuepastzero,anddistributivityforces(-3)*(-2)tobetheoppositeof-6.",
+  "caveat": "Onlysecondfactor-2;titlealreadyquotescorrectsignruleandnofreshcase."
+}

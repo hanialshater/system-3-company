@@ -1,0 +1,104 @@
+{
+  "slug": "dakar-nearer-brazil",
+  "demoVersion": 2,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/dakar-nearer-brazil",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Paris among Paris,Rome,Natal; locked.",
+    "Ring2500 none;3000 none;3500 Natal only;5500 allthree.",
+    "Reveal Natal3000km, Rome4170,Paris4210; azimuthal equidistant preserves center distances only.",
+    "Screenshot upper map internally cropped and rightedge reveal clipped; Natal3000 label despite3000ring excluding it."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple nearestcity comparison; projection terminology optional.",
+    "conceptualDemand": "Distance from one center.",
+    "interfaceBurden": "One slider; croppedmap and reveal."
+  },
+  "whyCool": "Brazil can be nearer to West Africa than Paris or Rome.",
+  "caveat": "Rounded3000km label differs from exact ring inclusion; values not independently factchecked.",
+  "effort": "Prediction,ring increments andmaximum,reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Strong surprise and useful map caveat; layout and roundingfriction.",
+  "quality": {
+    "prediction": {
+      "score": 4,
+      "reason": "Counterintuitive geography comparison.",
+      "evidence": "Natal beats twoEuropean cities.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Growing distance ring discovers ordering.",
+      "evidence": "None=>Natal=>all.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains projection property and surprising distance.",
+      "evidence": "Centerdistance true, otherpairs distorted.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Rounded boundary mismatch and clipped layout.",
+      "evidence": "3000ring none versus Natal3000label.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Potential to question flatmap distance intuitions.",
+      "evidence": "Projection validity limited to center.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 4,
+      "reason": "CrossAtlantic city closer.",
+      "evidence": "NatalvsParis/Rome.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Ring depicts distances, though mapcrop.",
+      "evidence": "3500ring capturesNatal.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Single exploratory slider.",
+      "evidence": "Ringradius control.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Mapreading insight.",
+      "evidence": "Centeronly distance reliability.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "One comparison and projection caveat.",
+      "evidence": "No alternatecenter control.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "puck-on-ice-no-push",
+  "demoVersion": 3,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/puck-on-ice-no-push",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "puck-on-ice-no-push",
+    "domain": "physics",
+    "status": "published",
+    "demoVersion": 3,
+    "metaPath": "src/demos/physics/puck-on-ice-no-push/meta.json",
+    "metaSha256": "86522b85335d5a9046c21aaa3ac49d510ab34f57995e86a580ac189bbb28b7f9",
+    "demoSha256": "cd22a53188a098ee42d541a1b6a7a63db04901a1953de98828cf92b641beef7b",
+    "batchId": "round1-04",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/puck-on-ice-no-push",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/puck-on-ice-no-push.json"
+  },
+  "date": "2026-10-18T19:48:26.906910+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "Isolation banner confirmed; trust5/5 ignored. Selected steady forward push and locked.",
+    "exploration": "Started all four pucks at2m/s. First state positions high1.6/medium2.1/low2.2/none2.3. After run high2.0,medium6.8,low15.1,none20.0m. Dots once per second; friction lanes shrink gaps,none equal2m. Run-again available; not retested.",
+    "reveal": "Correct no push. Explicit observed none2m gaps over10s/20m,high stops2m,low slows. Force changes motion; absent force motion persists,friction daily stoppingforce; Newton firstlaw named.",
+    "visual": "Inline1257x936 dark screenshots inspected: four equal lanes,shrinking versus equal dot gaps,positionlabels. Full controls and reveal legible;none final20label overlaps lastdot slightly."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear constant-speed question distinguishes continuing force from inertia; plausible alternatives.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "One launch gives controlled four-friction contrast with equal initialspeed; no custom parameters or tested rerun.",
+      "evidence": "exploration;visual",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Actual equal-gap/no-force and high-stop contrasts tied to force changesmotion and friction boundary.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "One-second dot legend and lane friction labels make speed change legible.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete daily stopping example with condition friction present versus ideal none,explains applicability of inertia; no new applicationtask.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Chosen steady push unnecessary while no-friction puck keeps equal gaps.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Four simultaneous dot-spacing contrasts visibly carry acceleration versus steady-speed mechanism.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Single guided run with rerun control, no parameter choice.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete interpretation of everyday push/stopping intuition.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Graded friction,none boundary,speed versus force distinction.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "One supported relation: friction changes speed while absent force preserves motion; equal-time dots directly scaffold.",
+    "conceptualDemand": "gentle",
+    "interfaceBurden": "low: one run button",
+    "conceptualChallenge": "gentle",
+    "prerequisiteNovelty": "moderate: inertia counters everyday intuition",
+    "notationRepresentationBurden": "low: metres/seconds and equal-gap dots"
+  },
+  "whyCool": "The bottom puck leaves equal2m gaps for ten seconds while every friction lane's gaps close up.",
+  "caveat": "Fixed initialspeed/friction levels; rerun and alternative push not tested."
+}

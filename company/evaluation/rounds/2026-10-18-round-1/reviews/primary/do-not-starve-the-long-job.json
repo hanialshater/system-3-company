@@ -1,0 +1,104 @@
+{
+  "slug": "do-not-starve-the-long-job",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/do-not-starve-the-long-job",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted long25-minute job due25 misses deadline if two5-minute jobs run first.",
+    "Short/short/long gave waiting15, one late job. Swapping equal short jobs left both metrics unchanged.",
+    "Long first gave waiting55, zero late. All jobs still finish in35 minutes.",
+    "Reveal accurately compared40 extra waiting minutes against eliminating lateness and limited shortest-first as a priority rule."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple task durations and due-time comparison.",
+    "conceptualDemand": "Total waiting versus deadline performance.",
+    "interfaceBurden": "Three queue controls."
+  },
+  "whyCool": "A worse total-wait number can be the only way to meet the important deadline.",
+  "caveat": "Despite the slug, this models finite deadline lateness, not starvation under a continuing arrival stream.",
+  "effort": "Completed prediction, three orders, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Clear deadline tradeoff and a useful equal-job invariance check.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Fully specified times support a concrete deadline forecast.",
+      "evidence": "Long finishes35 if started10.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Equal-short swap is a useful invariance contrast; moving long first changes objective tradeoff.",
+      "evidence": "15/1 versus55/0.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Accurate comparison explains why minimizing total waiting does not ensure deadlines.",
+      "evidence": "Long urgent because due25.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Durations,due markers and metrics are visible.",
+      "evidence": "Whole jobs one at a time.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete scheduling rule states when shortest-first is insufficient.",
+      "evidence": "Stated deadlines can override total-wait minimization.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Least total waiting can still miss an important job's deadline.",
+      "evidence": "55 waiting has no late jobs versus15 with one.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Timeline and due markers show the conflict.",
+      "evidence": "Long block meets due only when first.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Reordering changes measured outcomes.",
+      "evidence": "Swap and target.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful objective-sensitive scheduling habit.",
+      "evidence": "Do not treat shortest-first as universal.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Separates average efficiency and deadline feasibility.",
+      "evidence": "Finite fixed queue.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "delegate-the-whole-handoff",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/delegate-the-whole-handoff",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Selected Handoff as required before helper; title,hook and task label explicitly give dependency.",
+    "Initial helper10\u2192editing15\u2192handoff5 gave waiting35, one dependency violation. Swapping first gave40, still one violation.",
+    "Target handoff5\u2192helper10\u2192editing15 gave waiting20 and zero dependency violations; all cases had zero late.",
+    "Reveal accurately described current order and explicitly limited this single-resource model to order, not real delegation speedup."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Three tasks and one prerequisite.",
+    "conceptualDemand": "Dependency before execution.",
+    "interfaceBurden": "Run,swap,target."
+  },
+  "whyCool": "Moving a task later is not enough if the prerequisite still comes after it.",
+  "caveat": "The three tasks run serially on one resource; this cannot demonstrate the parallel benefit of actual delegation.",
+  "effort": "Completed prediction, three orders, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Useful dependency experiment with explicit model limits, but weak prediction.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Repeats an explicitly supplied dependency with an implausible alternative.",
+      "evidence": "Helper needs handoff first stated before asking.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Order changes distinguish dependency validity from merely delaying the helper.",
+      "evidence": "Initial and swapped invalid; target valid.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Accurate dependency metric and explicit speedup boundary support the lesson.",
+      "evidence": "Zero violations after handoff-first.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Prerequisite label and violation count are clear.",
+      "evidence": "Run before input metric.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete sequencing rule includes applicability limit.",
+      "evidence": "Release input before helper; no real delegation speedup claim.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Expected prerequisite ordering.",
+      "evidence": "Delaying helper alone does not fix missing input.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Queue timeline supports ordering but no explicit dependency arrow.",
+      "evidence": "Task label needs handoff.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Order controls change validity and waiting.",
+      "evidence": "Swap and target.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Useful handoff planning habit.",
+      "evidence": "Provide input before delegating execution.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Separates prerequisite validity and waiting.",
+      "evidence": "No parallel-resource model.",
+      "confidence": "medium"
+    }
+  }
+}

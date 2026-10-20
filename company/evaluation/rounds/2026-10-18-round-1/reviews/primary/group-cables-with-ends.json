@@ -1,0 +1,103 @@
+{
+  "slug": "group-cables-with-ends",
+  "demoVersion": 3,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/group-cables-with-ends",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted ends tucked tangles less. After lock, three cords showed six loose ends in middle tie versus zero tucked.",
+    "Pressed A/B; changed count3\u21928, table became16 loose ends versus0.",
+    "Reveal explains free ends weaving through loops but explicitly says drawing counts ends and does not simulate tangling. Inline screenshot readable."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Counting endpoints.",
+    "conceptualDemand": "Two ends per cord.",
+    "interfaceBurden": "Two toggles and count slider."
+  },
+  "whyCool": "Holding middles together leaves every endpoint free; securing ends changes a different property.",
+  "caveat": "Proxy demonstration cannot establish a measured reduction in tangles; prediction verdict should reflect that.",
+  "effort": "Prediction,A/B,count variation,reveal and inline screenshot.",
+  "provisionalBucket": "revise-outcome-proxy-framing",
+  "bucketReason": "Clear model but verdict exceeds observed result.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Asks empirical tangle outcome while interaction only counts a proxy.",
+      "evidence": "Which tangles less versus loose-end table.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Clear count contrast, but no tangle outcome tested.",
+      "evidence": "3\u21928 gives6\u219216 versus0.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Mechanism and limits explicit, yet prediction-held overstates observed evidence.",
+      "evidence": "Does not simulate tangling.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readable labels, table and scope.",
+      "evidence": "Inline screenshot and plain-cord storage caveat.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Storage principle without fresh application.",
+      "evidence": "Same cord setup.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 1,
+      "reason": "Simple endpoint counting.",
+      "evidence": "Two ends per cord.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Drawing supports loose-end comparison.",
+      "evidence": "Middle versus tucked.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Count slider and two arrangements.",
+      "evidence": "Eight-cord comparison.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Cord storage central.",
+      "evidence": "Tuck endpoints with bend-radius caveat.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "Single proxy count.",
+      "evidence": "No tangle dynamics.",
+      "confidence": "medium"
+    }
+  }
+}

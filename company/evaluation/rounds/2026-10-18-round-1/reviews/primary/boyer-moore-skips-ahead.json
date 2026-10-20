@@ -1,0 +1,121 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2",
+  "reviewKind": "primary",
+  "slug": "boyer-moore-skips-ahead",
+  "demoVersion": 2,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/boyer-moore-skips-ahead",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy and simple charts; no subject theory assumed.",
+  "viewport": "1257\u00d7936 Chrome, dark theme, screenshot inspected inline only",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "P",
+      "text": "No-history banner confirmed; trust8/8 ignored. Predicted15 fewer comparisons; locked."
+    },
+    {
+      "id": "E",
+      "text": "Compare1:S not in EXAMPLE slide7; counters1/1,placements2/2. Compare2:P slide2; counters2/2,placements2/3. Compare to match finished plain27/18placements versusHorspool15/5,11letters neverread; slide log S7,P2,E6(missI),P2,found."
+    },
+    {
+      "id": "R",
+      "text": "S absent justifies7; after4matched letters missI still uses endletterE forslide6not7. General skip only when justified by readletter. Screenshot showed two alignedlanes,slide table and counter; no deviceaudit."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Concrete count alternatives but safe-skip rule unfamiliar and numeric answer difficult to derive before observing.",
+      "evidence": "P",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Single steps expose distinct7/2 shifts and full-run contrast shows skippedletters.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains both absentletter and mismatch-versus-endletter distinction using actual log.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Two lanes and table/counters readable in tested dark desktop viewport.",
+      "evidence": "E screenshot",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable safe-skip principle stated; no new text/pattern applied.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No mode audit.",
+      "evidence": "Untested",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Reads only15 comparisons while skipping11textletters.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Two lanes,oldplacement outlines and shift table carrymechanism.",
+      "evidence": "E screenshot",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Fixed example step-through without reset/edit.",
+      "evidence": "E",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Text-search efficiency illustration.",
+      "evidence": "R",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Absentletter skip,endletter table lookup,partialmatch exception andcomparisoncounts.",
+      "evidence": "R",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Core tracks two searchstates,patternalignment,table lookup and a partialmatch conditional.",
+    "conceptualDemand": "demanding",
+    "interfaceBurden": "low",
+    "prerequisiteNovelty": "moderate; string search",
+    "notationRepresentationBurden": "moderate; indexed letters/table"
+  },
+  "whyCool": "One inspected S rules out seven placements, visibly jumping the bottom lane while the plain search advances one.",
+  "caveat": "One fixed text/pattern; no worst-case or changed-pattern boundary tested.",
+  "notApprovedForServing": true,
+  "effort": "About3minutes",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility modes",
+    "Newpattern",
+    "Worstcase"
+  ]
+}

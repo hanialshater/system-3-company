@@ -1,0 +1,135 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "keeping-the-bad-gene",
+  "demoVersion": 5,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/keeping-the-bad-gene",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "keeping-the-bad-gene",
+    "domain": "life",
+    "status": "published",
+    "demoVersion": 5,
+    "metaPath": "src/demos/life/keeping-the-bad-gene/meta.json",
+    "metaSha256": "b22fa7f8d4ff3848f7518f53061d4298976dc23a0ab365f66c60632e2859465f",
+    "demoSha256": "372d41bc57cc079452e3c294aca3cf68baafb29cf6e8669bd78d7d03567b07bd",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/keeping-the-bad-gene",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/keeping-the-bad-gene.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot"
+  },
+  "observations": {
+    "prediction": "Selected disappears against stable intermediate share and takes over; locked it in.",
+    "exploration": "At generation 0, starts were 1% and 50%; latter had 25% young with two copies. +10 gave 4% and 15%. To gen 60 gave 13% for both, balance 13%. End on no-w-survival slider set 95%: generation 60 shares 4% and 5%, balance 5%. Home set 70%: both 23%, balance 23%; two-copy young 5%, one-copy young 36%.",
+    "reveal": "Corrected to stable intermediate share. Explained rare benefit versus common double-copy deaths, baseline 15/(15+100) \u2248 13%, and acknowledged 70% survival increases balance to 23%. Stated random mating, huge population and made-up species; named sickle-cell allele where malaria common with different numbers.",
+    "visual": "Actual 1257 \u00d7 936 dark screenshots inspected. Initial graph and later counters legible. Reveal opened an internal scrolling stage; graph top cropped in reveal screenshot and long answer heading runs close to right edge. No full reflow audit.",
+    "previewIsolation": "No-history evaluation banner present.",
+    "blinding": "7/7 checked chrome visible and ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Choices test eliminating a lethal variant versus maintaining a tradeoff.",
+      "evidence": "Disappears commitment and intermediate correction.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Contrasting starts and changed survival expose convergence and balance shift.",
+      "evidence": "1%/50% to 13%; survival 95% balance 5%; 70% balance 23%.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects observed arrows and young-animal fractions to opposing selection, then tested parameter change.",
+      "evidence": "Rare benefit/common death explanation and 70% acknowledgment.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Controls and counters usable, but reveal internal scroll crops graph and packs lengthy text.",
+      "evidence": "Actual reveal screenshot has cropped upper graph and near-edge heading.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete new biological example with environmental condition and differing-number caveat.",
+      "evidence": "Sickle-cell allele where malaria common, with different numbers.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Only endpoint keys on one slider tested; insufficient audit.",
+      "evidence": "End/Home worked; focus order, contrast, phone, zoom and motion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed disappearance prediction contradicted by convergence to nonzero share.",
+      "evidence": "Both starts at 13% despite double-copy death.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Two population curves and genotype fractions explain competing pulls.",
+      "evidence": "Generation changes and young-animal rows.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Generation steps and slider endpoints expose reversible balance changes.",
+      "evidence": "85%, 95% and 70% survival contrasts.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Connects model to a concrete conditional biological example.",
+      "evidence": "Malaria/sickle-cell example with different numbers.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Frequency dependence, stable balance and changing selective advantage are linked.",
+      "evidence": "Rare/common arrows plus parameter-dependent equilibrium.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Coordinates allele share, genotype outcomes, selection and dynamic balance.",
+    "conceptualDemand": "Several dependent relations: two copies, population frequency, reproductive survival and opposing long-run pulls.",
+    "interfaceBurden": "Moderate: several data rows and internal reveal scroll.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "high: allele/genotype distinction and selection equilibrium.",
+    "notationRepresentationBurden": "moderate: w notation, percentages, arrows and equilibrium ratio."
+  },
+  "whyCool": "Two very different starting shares converge, then moving survival shifts their shared destination from 13% to 23%.",
+  "caveat": "Complex toy model with fixed mating and population assumptions; reveal layout requires internal scrolling and no fresh biological case is interactive.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Intermediate generation-by-generation path beyond first ten not fully stepped.",
+    "Focus order, contrast, phone, zoom/reflow and motion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:10:01.624865+00:00"
+}

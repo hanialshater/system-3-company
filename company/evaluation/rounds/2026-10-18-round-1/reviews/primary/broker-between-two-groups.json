@@ -1,0 +1,115 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1",
+  "reviewKind": "primary",
+  "slug": "broker-between-two-groups",
+  "demoVersion": 1,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/broker-between-two-groups",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy and simple charts; no domain theory.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "P: chose Hana for more shortest paths; Hana5friendsallconnected,Bo4friendsintwogroups.",
+    "E: Hana FRIENDS5 STRANGERPAIRS0 ONPATHS0;Bo4/4/24; tracedpaths1,2,3of24throughBo. Screenshot highlightedcross-grouppath.",
+    "R: NotquiteBo; Hana redundant,Bo onlylink across structuralhole; nodeswith6friendsscore10splitpaths.",
+    "No-history preview;4/4trust ignored. Screenshot1280x720 network/countersreadable."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Meaningful degree-versus-pathcontrast.",
+      "evidence": "P: chose Hana for more shortest paths; Hana5friendsallconnected,Bo4friendsintwogroups.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Nodecomparisonandseveralpathtracesexposebridge.",
+      "evidence": "E: Hana FRIENDS5 STRANGERPAIRS0 ONPATHS0;Bo4/4/24; tracedpaths1,2,3of24throughBo. Screenshot highlightedcross-grouppath.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Usesactualcountsanddefinesstructuralhole.",
+      "evidence": "R: NotquiteBo; Hana redundant,Bo onlylink across structuralhole; nodeswith6friendsscore10splitpaths.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Highlightedpathsandcountersclear.",
+      "evidence": "No-history preview;4/4trust ignored. Screenshot1280x720 network/countersreadable.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Socialimportanceapplicationexplicitbutconditionalnetworklimitsunstated.",
+      "evidence": "R: NotquiteBo; Hana redundant,Bo onlylink across structuralhole; nodeswith6friendsscore10splitpaths.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Modesnotsufficientlytested.",
+      "evidence": "No-history preview;4/4trust ignored. Screenshot1280x720 network/countersreadable.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Fewerfriendsmorebrokerage.",
+      "evidence": "E: Hana FRIENDS5 STRANGERPAIRS0 ONPATHS0;Bo4/4/24; tracedpaths1,2,3of24throughBo. Screenshot highlightedcross-grouppath.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Pathhighlightingcentral.",
+      "evidence": "E: Hana FRIENDS5 STRANGERPAIRS0 ONPATHS0;Bo4/4/24; tracedpaths1,2,3of24throughBo. Screenshot highlightedcross-grouppath.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Traceandnodechoicesreversible.",
+      "evidence": "E: Hana FRIENDS5 STRANGERPAIRS0 ONPATHS0;Bo4/4/24; tracedpaths1,2,3of24throughBo. Screenshot highlightedcross-grouppath.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Socialnetworkbrokerageintuition.",
+      "evidence": "R: NotquiteBo; Hana redundant,Bo onlylink across structuralhole; nodeswith6friendsscore10splitpaths.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Degree,localredundancyandbetween-grouppaths.",
+      "evidence": "R: NotquiteBo; Hana redundant,Bo onlylink across structuralhole; nodeswith6friendsscore10splitpaths.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Linklocalfriendcountwithglobalshortestpaths.",
+    "conceptualDemand": "Twolevelsofnetworkcomparison.",
+    "interfaceBurden": "Lowthreecontrols.",
+    "prerequisiteNovelty": "moderate:shortestpathcentrality",
+    "notationRepresentationBurden": "moderate:densenetwork"
+  },
+  "whyCool": "Everytracedcross-grouppathgoesthroughBowhileHana\u2019smanyfriendscanbypassher.",
+  "caveat": "Fixednetwork;cannotaddanedgeandtesthowbrokeragechanges.",
+  "notApprovedForServing": true,
+  "effort": "about2minutes",
+  "missingEvidence": [
+    "Accessibility modes",
+    "Learning outcomes"
+  ],
+  "fatalFindings": []
+}

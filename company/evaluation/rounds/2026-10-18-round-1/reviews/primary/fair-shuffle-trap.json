@@ -1,0 +1,131 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "fair-shuffle-trap",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/fair-shuffle-trap",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "26e145ad647d86cf5b7b77b567eaf8f2ac3fc4878a16b9d97f9e6bd0d5ed4289",
+    "demoSha256": "48ec906ddfd3f3b290dd38baf34d153f5120201523804c1c8a23bdc15ab2604b",
+    "metaPath": "src/demos/cs/fair-shuffle-trap/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected Yes for equal fairness of unrestricted three-position swaps and locked it in. Title already calls shuffle plays favourites.",
+    "exploration": "One unrestricted run swaps1-1,2-1,3-1 gaveCAB. All27 produced top18.5%. All6 unplaced-card runs produced top16.7%,unlocking reveal. Chart unrestricted counts4,5,5,5,4,4 versus all1 for restricted.",
+    "reveal": "Corrected No; three orders5 runs,other three4,25% relative difference.27 cannot divide evenly into6 outcomes; unplaced-card3x2x1 gives6,one per order,Fisher-Yates. States divisibility necessary for fairness.",
+    "visual": "Inline initial/final screenshots inspected: paired red/green bars per six order,counts at base and dashed fair1-in6 line. Fair method all equal,unrestricted varied. Trust5/5 ignored.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884122 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Commitment clear,but title announces unfairness before prediction.",
+      "evidence": "Title shuffle plays favourites versus Yes choice.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Single-run trace and exhaustive two-method bars expose unequal outcome multiplicity.",
+      "evidence": "27 counts4/5 versus6 all1.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Links observed counts to divisibility obstruction and corrected method.",
+      "evidence": "27 not multiple6;3x2x1 one per order.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Method names,traces,paired bars and fair reference clearly align.",
+      "evidence": "Inspected final enumeration screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete replacement algorithm and condition supplied for fair shuffling.",
+      "evidence": "Swap only unplaced cards,Fisher-Yates,one run per order.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Yes prediction overturned by exhaustive unequal bars.",
+      "evidence": "4 versus5 per order.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Paired distribution bars centrally show fairness contrast.",
+      "evidence": "Final screenshot fair reference and unequal red bars.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Single-step and enumerate-all controls offer fixed procedural exploration.",
+      "evidence": "One unrestricted run then both exhaustive sets.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Correct fair-shuffle method is concrete programming use.",
+      "evidence": "Fisher-Yates replacement.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Run/outcome mapping,relative bias and divisibility condition linked.",
+      "evidence": "27/6 counts and reveal.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Separates equally likely random-choice paths from output permutations,then reasons combinatorially.",
+    "conceptualDemand": "Two levels of counting and necessary-condition logic.",
+    "interfaceBurden": "Low: one/all buttons per method.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "high: shuffle algorithms and outcome multiplicity",
+    "notationRepresentationBurden": "moderate: permutations,3x2x1,percent shares"
+  },
+  "whyCool": "Enumerating every run makes unfairness exact: three orders have five routes while the other three have only four.",
+  "caveat": "Three-card exhaustive case only; divisibility is necessary and does not by itself prove uniformity.",
+  "missingEvidence": [
+    "Restricted single-run trace",
+    "Larger deck",
+    "Keyboard",
+    "Focus",
+    "Contrast audit",
+    "Phone",
+    "Zoom/reflow",
+    "Motion"
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

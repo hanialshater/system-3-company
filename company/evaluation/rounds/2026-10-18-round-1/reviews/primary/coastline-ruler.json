@@ -1,0 +1,104 @@
+{
+  "slug": "coastline-ruler",
+  "demoVersion": 1,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/coastline-ruler",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction200kmversus50kmruler same/shorter/longercoastlength; chosesame.",
+    "200km11steps2385km;100km26steps2642km;50km60steps3002km;25km126steps3159km.",
+    "Revealshorterrulervisitsbays/headlands;staterulerscale;coarse47corneroutline upperbound3404km versusrealcoast detail.",
+    "Scrolledpreviewtop:fulloutline visible butsmallabout50x100pixels withtinystepmarks; actualrightedge revealtextclipped."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simple lengthcomparison openssubtlescale-dependence idea.",
+    "conceptualDemand": "Measurementprocedure changesresolveddetail.",
+    "interfaceBurden": "Fourpresets easy; mapvery small andtextclipped."
+  },
+  "whyCool": "A shorterruler finds extracoast that alongruler simplysteps across.",
+  "caveat": "Coarsemodeloutline values observednotgeographicallyaudited; single reviewer.",
+  "effort": "Prediction,allfourrulers,reveal,fulloutlinevisualcheck.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Memorableinsight andhonestmodel-limit caveat; mapneedsbetterlegibility.",
+  "quality": {
+    "prediction": {
+      "score": 4,
+      "reason": "Simple measurementinvariance assumption withcounterintuitiveanswer.",
+      "evidence": "Samecoast differentruler.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Fourrulers showmonotonicmeasuredlength increase.",
+      "evidence": "2385=>2642=>3002=>3159.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explains missingbaysandfiniteoutline limit withactualresults.",
+      "evidence": "Coarseoutline bounded3404;realcoastdetail.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Smallmap makes geometricreasonhardertosee;rightedgeclipping.",
+      "evidence": "Fulloutline checkedafterupscroll.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Potential for understanding scale-dependentmeasurements.",
+      "evidence": "Reportlengthwithstatedruler.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 4,
+      "reason": "Changingruler changeslengthofsamecoast.",
+      "evidence": "2385vs3159km.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Measurementpaths present buttoo small for baysatcurrentview.",
+      "evidence": "About50x100pixeloutline.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Presetmeasurementcomparisons.",
+      "evidence": "Fourrulerbuttons.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Measurementliteracy andmapfigures.",
+      "evidence": "Publishedlengthscandisagreebyscale.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Resolutiondependence andfiniteversusrealoutline.",
+      "evidence": "47corner upperbound caveat.",
+      "confidence": "medium"
+    }
+  }
+}

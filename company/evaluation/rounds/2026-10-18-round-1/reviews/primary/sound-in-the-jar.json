@@ -1,0 +1,138 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "sound-in-the-jar",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/sound-in-the-jar",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "sound-in-the-jar",
+    "domain": "physics",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/physics/sound-in-the-jar/meta.json",
+    "metaSha256": "99b1c5293a0cfe5ec4f08dc11006bece4a4c6375b495d58ff2b4642e42aae4b1",
+    "demoSha256": "b7119849ae8f2b74f47ff97dda1e4c3aa73b5fb9ee8ca49dfb2ad4da69648fe1",
+    "batchId": "round1-05",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/sound-in-the-jar",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/sound-in-the-jar.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Selected Stays equally loud and locked it in.",
+    "exploration": "At 100 percent air display said Full. Keyboard steps gave 50 then 25 percent, both Quieter. Pump to 1 percent gave Near silence, almost empty jar and sliver sound bar while clapper continued swinging. Let air back in restored 100 percent and Full.",
+    "reveal": "Corrected to Fades to near silence, recalled the visited 1 percent state, explained molecular transmission and need for material, with faint sound may remain.",
+    "visual": "Actual dark 1257 by 936 screenshots inspected at 1 percent and reveal after air restoration. Dots, moving clapper, schematic sound bar and radiating arcs changed visibly. Reveal correctly described prior pumped state while current controls showed restored Full. Actual audio was not assessed.",
+    "previewIsolation": "Preview banner said history and analytics are not saved.",
+    "blinding": "No source, builder notes or other reviews inspected."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear qualitative prediction isolates vibration from transmission.",
+      "evidence": "Visible swinging clapper with sound alternatives.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Air steps and restoration provide a reversible contrast.",
+      "evidence": "100, 50, 25 and 1 percent tested.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal links unchanged source motion to diminished medium transmission.",
+      "evidence": "Same clapper, fewer molecules, reduced schematic bar.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Schematic label and textual sound categories avoid false quantitative precision.",
+      "evidence": "Sound bar explicitly schematic; faint sound caveat.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General material requirement stated without a new application.",
+      "evidence": "No fresh sound-medium example attempted.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Complete mode audit not performed.",
+      "evidence": "Keyboard steps and text states observed; screen reader, contrast, reduced motion and actual audio unaudited.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Visible vibration can remain while transmitted sound fades.",
+      "evidence": "Clapper unchanged at 1 percent.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Particle count and sound bar separate source from medium.",
+      "evidence": "Near-empty jar and sliver bar.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Pump and restore controls support direct experiment.",
+      "evidence": "Step slider and air return.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Explains sound transmission requirement.",
+      "evidence": "Material needed to carry sound.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "One medium-dependent mechanism explored.",
+      "evidence": "Molecular push transmission.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "Familiar bell and particle illustration with simple percentages.",
+    "conceptualDemand": "Separate source vibration from propagation through material.",
+    "interfaceBurden": "One stepped slider and pump/restore buttons.",
+    "conceptualChallenge": "gentle",
+    "prerequisiteNovelty": "Molecular transmission introduced in explanation.",
+    "notationRepresentationBurden": "Air percentages and qualitative sound states."
+  },
+  "whyCool": "The source can keep moving while the material carrying its signal disappears.",
+  "caveat": "Only visual schematic sound behavior was assessed; actual audio and residual transmission through solid supports were not tested.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Screen reader audit",
+    "Contrast audit",
+    "Reduced motion audit",
+    "Actual audio assessment",
+    "Fresh transfer case"
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T20:28:37.636532+00:00"
+}

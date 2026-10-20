@@ -1,0 +1,104 @@
+{
+  "slug": "wait-or-take-now",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/wait-or-take-now",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Sure payment, steady rate and no-tax assumptions appear before prediction comparing one thousand now with twelve hundred in three years at five percent.",
+    "Five-percent preset valued later payment at 1,037 today; seven percent gave 980 and reversed the preferred offer.",
+    "At zero rate, present value equaled nominal twelve hundred.",
+    "Screenshot distinguishes dashed future face value from solid current value. Reveal recalls original five-percent value 1,036.61, seven-percent 979.56 and approximate 6.27-percent crossover."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Compounding and present value are unfamiliar to some learners.",
+    "conceptualDemand": "Compare money at a common time using an alternative return.",
+    "interfaceBurden": "One slider and two rate presets."
+  },
+  "whyCool": "The larger payment can lose once both offers are measured in today's dollars.",
+  "caveat": "Illustrative certain-payment model; no tax, risk or liquidity assessment.",
+  "effort": "Prediction, five/seven-percent reversal, zero-rate boundary, screenshot and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Clear present-value mechanism with tested reversal and model scope.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Precise conditional comparison with equal-value and nominal-money distractors.",
+      "evidence": "Five percent annual alternative return over three years.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Rate reversal and zero-rate boundary test the core mechanism.",
+      "evidence": "Five, seven and zero percent.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explains original margin, tested reversal and boundary rate.",
+      "evidence": "Thirty-seven advantage rather than two hundred; rate-dependent crossover.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Face value versus present-value bars make timing distinction visible.",
+      "evidence": "Dashed twelve hundred and solid 980.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "General comparison rule with explicit model conditions.",
+      "evidence": "Rate determines relative present value; sure payment, steady rate, no tax.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Larger future payment can be worth less now.",
+      "evidence": "Preference reverses between five and seven percent.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Separate nominal outline and discounted bar show the difference.",
+      "evidence": "Current-dollar comparison on common baseline.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Variable rate changes ranking.",
+      "evidence": "Presets plus zero-rate exploration.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete time-value comparison under assumptions.",
+      "evidence": "Compare offers in present dollars.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Opportunity return, discounting and crossover connect.",
+      "evidence": "Nominal margin differs from present-value margin.",
+      "confidence": "medium"
+    }
+  }
+}

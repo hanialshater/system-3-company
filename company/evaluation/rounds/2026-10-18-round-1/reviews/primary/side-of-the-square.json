@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "side-of-the-square",
+  "demoVersion": 3,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/side-of-the-square",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "cb5f09f2fce526f2eee8a5d4f82bfef2b35ae90bb45e72fc24dd5ecc98678748",
+    "demoSha256": "45944c09647f41166f8dc54de556908b5debd01a19de8e4b5a04596a75611642",
+    "metaPath": "src/demos/math/side-of-the-square/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected 12.5 m and locked the side length prediction for a square with area 50 square metres.",
+    "exploration": "Tested 12.5 m, giving 156.25 square metres; 10 m gave 100; 8 m gave 64; 7 m gave 49; 7.1 m gave 50.41; and 7.07 m gave 49.98. Each new candidate opened the next refinement until reveal became available.",
+    "reveal": "The reveal corrected the answer to 7.07 m, defined square root as the side whose square is the target, and used the tested 7 and 8 metre sides to bracket the answer. It accurately contrasted dividing area by four with the resulting 156.25 square metres.",
+    "visual": "Inspected the inline dark 1257 by 936 screenshot at 7.07 m. The filled blue square nearly coincided with a dashed mint 50 square metre outline; the area readout remained 49.98, making the approximation explicit. Candidate buttons and side readout were readable.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The choices distinguish area, perimeter and square root reasoning.",
+      "evidence": "Selected area divided by four, 12.5 m.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Sequential candidates expose overestimates, an underestimate and decimal refinement.",
+      "evidence": "7 m gave 49 and 7.1 m gave 50.41 before 7.07 approached the target.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal explains the inverse relation using actual tested candidates.",
+      "evidence": "It defines the root and brackets it between 7 and 8.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "The target outline and explicit areas distinguish exact target from approximation.",
+      "evidence": "7.07 is shown as 49.98 rather than falsely exactly 50.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "The root concept is generalized but no new area or application is tested.",
+      "evidence": "Only the fixed 50 square metre floor is available.",
+      "confidence": "high"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "A whole area can require a nonwhole side length.",
+      "evidence": "Integer sides jump from 49 to 64 square metres.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "The expanding square and fixed outline show why the guesses miss.",
+      "evidence": "The final square almost covers the target while retaining the 49.98 label.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "A guided sequence invites refinement but limits free choice.",
+      "evidence": "Each new button unlocks the next preset.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "It clarifies how to infer a square room's wall length from area.",
+      "evidence": "The reveal introduces the square root relation.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "It includes bracketing and approximation rather than a bare calculator answer.",
+      "evidence": "7 and 8 bracket the root, with 7.1 and 7.07 refining it.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "The square visual and ordinary multiplication support the unfamiliar inverse operation.",
+    "conceptualDemand": "Low to moderate: find a side from its squared area and accept a decimal approximation.",
+    "interfaceBurden": "Low: sequential candidate buttons.",
+    "conceptualChallenge": "Area is side times itself, so dividing by a fixed number does not undo it.",
+    "prerequisiteNovelty": "Square roots and noninteger answers are introduced.",
+    "notationRepresentationBurden": "Low to moderate: metre versus square metre units and decimal products."
+  },
+  "whyCool": "The square can visibly land between whole side lengths, giving a geometric meaning to a square root.",
+  "caveat": "The search is guided through presets and only one target area is available.",
+  "missingEvidence": [
+    "No fresh area was tested independently.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

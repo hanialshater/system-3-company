@@ -2,14 +2,11 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { PublicMeta } from "@/lib/trust";
+import { feedSequence } from '@/lib/feed-sequence';
 import type { FeedItem, FeedPage } from "@/lib/feed-types";
 import { dayMsFromLocation, loadProgress, revisitDue, track, updateProgress } from "@/kit/progress";
 import { DemoCard, type DomainInfo } from "./DemoCard";
-
-type Item =
-  | { kind: "intro"; key: string }
-  | { kind: "lesson"; key: string; meta: FeedItem }
-  | { kind: "revisit"; key: string; meta: PublicMeta };
+import AccountFeedController, { type AccountFeedPage } from "./account/AccountFeedController";
 
 /**
  * One loaded list per filter: the cards fetched so far and the next page to ask for (null at the end).
@@ -41,24 +38,52 @@ export function Feed({ first, counts, domains }: { first: FeedPage; counts: Reco
   const scroller = useRef<HTMLDivElement>(null);
   const domainById = useMemo(() => Object.fromEntries(domains.map((d) => [d.id, d])), [domains]);
   const inflight = useRef(new Set<string>());
+  const requestGeneration = useRef(0);
+  const personal = useRef<AccountFeedPage | null>(null);
+  const checkingRef=useRef(false);
+  const [checkingPreferences,setCheckingPreferences]=useState(false);
+  const checkPreferences=useCallback((checking:boolean)=>{checkingRef.current=checking;setCheckingPreferences(checking);if(checking){requestGeneration.current++;inflight.current.clear();setLists(prev=>Object.fromEntries(Object.entries(prev).map(([key,value])=>[key,{...value,loading:false}])));}},[]);
+  const [personalPage, setPersonalPage] = useState<AccountFeedPage | null>(null);
+  const [pendingPersonal, setPendingPersonal] = useState<AccountFeedPage | null>(null);
+  const [refreshRequired, setRefreshRequired] = useState(false);
+  const [reasons, setReasons] = useState<Record<string,string>>({});
+  const applyPersonal = useCallback((page:AccountFeedPage|null) => {
+    if(page&&activeRef.current===0)setRevisitFrom(1);
+    ++requestGeneration.current;inflight.current.clear();personal.current=page;setPersonalPage(page);setReasons(page?.reasons??{});setPendingPersonal(null);setRefreshRequired(false);
+    setLists(prev=>({...prev,all:{items:page?.items??first.items,next:page?page.next:first.next,loading:false,failed:false}}));
+  },[first]);
+  const receivePersonal = useCallback((page:AccountFeedPage|null)=>{
+    if(!page){if(personal.current){applyPersonal(null);setActive(0);scroller.current?.scrollTo({top:0});}setPendingPersonal(null);return;}
+    if(personal.current&&personal.current.accountTag!==page.accountTag){applyPersonal(null);setActive(0);activeRef.current=0;scroller.current?.scrollTo({top:0});}
+    if(personal.current?.snapshot===page.snapshot&&personal.current.accountTag===page.accountTag)return;
+    if(activeRef.current===0)applyPersonal(page);else setPendingPersonal(page);
+  },[applyPersonal]);
 
   const load = useCallback((f: string, page: number, replace: boolean) => {
-    const key = `${f}/${page}`;
+    if(f==='all'&&checkingRef.current)return;
+    const generation=requestGeneration.current;
+    const snapshot=f==='all'?personal.current:null;
+    const key = `${generation}/${f}/${page}`;
     if (inflight.current.has(key)) return;
     inflight.current.add(key);
     setLists((prev) => ({ ...prev, [f]: { ...(prev[f] ?? { items: [], next: page }), loading: true, failed: false } }));
-    fetch(`/api/feed/${encodeURIComponent(f)}/${page}`)
-      .then((r) => (r.ok ? (r.json() as Promise<FeedPage>) : Promise.reject(new Error(String(r.status)))))
-      .then((p) =>
+    fetch(snapshot?`/api/account/feed?page=${page}&snapshot=${encodeURIComponent(snapshot.snapshot)}`:`/api/feed/${encodeURIComponent(f)}/${page}`,snapshot?{credentials:'same-origin',cache:'no-store'}:undefined)
+      .then((r) => {
+        if(snapshot&&!r.ok&&generation===requestGeneration.current){applyPersonal(null);setActive(0);scroller.current?.scrollTo({top:0});setRefreshRequired(true);}
+        return r.ok ? (r.json() as Promise<FeedPage>) : Promise.reject(new Error(String(r.status)));
+      })
+      .then((p) => {
+        if(generation!==requestGeneration.current)return;
+        if(snapshot){const result=p as AccountFeedPage;if(result.accountTag!==snapshot.accountTag||result.snapshot!==snapshot.snapshot||!result.matching){applyPersonal(null);setActive(0);scroller.current?.scrollTo({top:0});setRefreshRequired(true);return;}setReasons(prev=>({...prev,...result.reasons}));}
         setLists((prev) => {
           const have = replace ? [] : (prev[f]?.items ?? []);
           const seen = new Set(have.map((i) => i.slug));
           return { ...prev, [f]: { items: [...have, ...p.items.filter((i) => !seen.has(i.slug))], next: p.next, loading: false, failed: false } };
-        }),
-      )
-      .catch(() => setLists((prev) => ({ ...prev, [f]: { ...(prev[f] ?? { items: [], next: page }), loading: false, failed: true } })))
+        });
+      })
+      .catch(() => {if(generation!==requestGeneration.current)return;if(snapshot)setRefreshRequired(true);setLists((prev) => ({ ...prev, [f]: { ...(prev[f] ?? { items: [], next: page }), loading: false, failed: true } }));})
       .finally(() => inflight.current.delete(key));
-  }, []);
+  }, [applyPersonal]);
 
   useEffect(() => {
     const progress = loadProgress();
@@ -80,7 +105,7 @@ export function Feed({ first, counts, domains }: { first: FeedPage; counts: Reco
         for (const m of metas) if (m && (m.status === "published" || m.status === "review")) shown.push(m);
       }
       if (!live || !shown.length) return;
-      setRevisitFrom(activeRef.current + 2);
+      setRevisitFrom(personal.current&&activeRef.current===0?1:activeRef.current + 2);
       setRevisits(shown.slice(0, MAX_REVISITS));
     })();
     return () => {
@@ -90,27 +115,14 @@ export function Feed({ first, counts, domains }: { first: FeedPage; counts: Reco
 
   const list = lists[filter] ?? { items: [], next: 0, loading: false, failed: false };
 
-  const items: Item[] = useMemo(() => {
-    const due = revisits.filter((r) => filter === "all" || r.domain === filter);
-    const out: Item[] = [{ kind: "intro", key: "intro" }];
-    list.items.forEach((meta, i) => {
-      // Revisits come back between new lessons: retrieval before more input.
-      if (i % 3 === 1 && due.length && out.length >= revisitFrom) {
-        const r = due.shift()!;
-        out.push({ kind: "revisit", key: `revisit-${r.slug}`, meta: r });
-      }
-      out.push({ kind: "lesson", key: meta.slug, meta });
-    });
-    if (list.next === null) for (const r of due) out.push({ kind: "revisit", key: `revisit-${r.slug}`, meta: r });
-    return out;
-  }, [list, filter, revisits, revisitFrom]);
+  const items = useMemo(() => feedSequence(list.items,revisits,filter,revisitFrom,!!personalPage,list.next===null),[list,filter,revisits,revisitFrom,personalPage]);
 
   // EDD-001 option 3: load the next page before the learner reaches the end of what is loaded.
   useEffect(() => {
     // After a failure, wait for the learner's tap (retry below): no automatic retry.
-    if (list.next !== null && !list.loading && !list.failed && active >= items.length - PREFETCH_CARDS)
+    if (list.next !== null && !list.loading && !list.failed && active >= items.length - PREFETCH_CARDS && !checkingPreferences)
       load(filter, list.next, false);
-  }, [active, items.length, list.next, list.loading, list.failed, filter, load]);
+  }, [active, items.length, list.next, list.loading, list.failed, filter, load, checkingPreferences]);
 
   // A subject's page 0 replaces the seed taken from "all"; later pages append.
   const retry = () => {
@@ -181,7 +193,7 @@ export function Feed({ first, counts, domains }: { first: FeedPage; counts: Reco
     if (!lists[id]) {
       // Show at once what is already loaded (a prefix of that subject's order, see feedOrder), then
       // replace it with the subject's first page from the server.
-      const seed = (lists.all?.items ?? []).filter((d) => d.domain === id);
+      const seed = (personal.current ? first.items : (lists.all?.items ?? [])).filter((d) => d.domain === id);
       setLists((prev) => ({ ...prev, [id]: { items: seed, next: 0, loading: false, failed: false } }));
       load(id, 0, true);
     }
@@ -193,6 +205,7 @@ export function Feed({ first, counts, domains }: { first: FeedPage; counts: Reco
 
   return (
     <div className="feed-wrap">
+      <AccountFeedController onChange={receivePersonal} onChecking={checkPreferences}/>
       <nav className="topbar" aria-label="Subjects">
         <a className="brand" href="/">
           S3
@@ -214,6 +227,7 @@ export function Feed({ first, counts, domains }: { first: FeedPage; counts: Reco
           ))}
         </div>
         <div className="feed-personal-links"><a href="/library" aria-label="Library" title="Saved lessons"><svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M6 3h12v18l-6-4-6 4V3Z" /></svg></a><a href="/profile" aria-label="Profile" title="Profile and sign in"><svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.8"><circle cx="12" cy="8" r="4" /><path d="M4 22v-2a8 8 0 0 1 16 0v2" /></svg></a></div>
+        <a href="/preferences" aria-label="Feed preferences">Preferences</a>
         <a className="brand-link" href="/catalog">
           Map
         </a>
@@ -223,12 +237,17 @@ export function Feed({ first, counts, domains }: { first: FeedPage; counts: Reco
         <button type="button" aria-label="Previous lesson" disabled={active === 0} onClick={() => go(-1)}>↑</button>
         <button type="button" aria-label="Next lesson" onClick={() => go(1)}>↓</button>
       </nav>
+      {(pendingPersonal||refreshRequired)&&<div role="status" style={{position:'fixed',bottom:12,left:12,zIndex:25,background:'var(--bg)',padding:12,borderRadius:12}}><button type="button" style={{minHeight:44}} onClick={()=>{activeRef.current=0;if(pendingPersonal)applyPersonal(pendingPersonal);else window.location.reload();setFilter('all');setActive(0);scroller.current?.scrollTo({top:0});}}>Refresh feed to apply your choices</button></div>}
       <div className="feed" ref={scroller} data-testid="feed">
         {items.map((it, i) => (
-          <section key={it.key} className="slot-screen" data-index={i}>
-            {it.kind === "intro" && <IntroCard onStart={() => go(1)} count={counts[filter] ?? 0} />}
+          <section key={it.key} className="slot-screen" data-index={i} style={{position:"relative"}}>
+            {it.kind === "intro" && <><IntroCard onStart={() => go(1)} count={counts[filter] ?? 0} /><div style={{position:'absolute',bottom:24,left:24,right:24}}>
+              {checkingPreferences?<p>Checking saved choices…</p>:filter==='all'&&personalPage?<p>Based on your saved choices. <a href="/preferences">Edit preferences</a></p>:<p>Default order — not personalized. <a href="/preferences">Choose preferences</a></p>}
+              {(pendingPersonal||refreshRequired)&&<button type="button" onClick={()=>{activeRef.current=0;if(pendingPersonal)applyPersonal(pendingPersonal);else window.location.reload();setActive(0);scroller.current?.scrollTo({top:0});}}>Refresh feed to apply your choices</button>}
+            </div></>}
             {it.kind === "lesson" && (
-              <DemoCard meta={it.meta} domain={domainById[it.meta.domain]} active={Math.abs(active - i) <= 1} />
+              <><DemoCard meta={it.meta} domain={domainById[it.meta.domain]} active={Math.abs(active - i) <= 1} />
+              {filter==='all'&&!checkingPreferences&&reasons[it.meta.slug]&&<details style={{position:'absolute',bottom:12,left:20,right:20,background:'var(--bg)',color:'var(--fg)',padding:8}}><summary>Why this pick?</summary><p>{reasons[it.meta.slug]}</p><a href="/preferences">Edit preferences</a></details>}</>
             )}
             {it.kind === "revisit" && <RevisitCard meta={it.meta} domain={domainById[it.meta.domain]} />}
           </section>

@@ -1,0 +1,152 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2b",
+  "reviewKind": "primary",
+  "slug": "empty-ponds-still-left",
+  "domain": "life",
+  "batchId": "round1-02",
+  "demoVersion": 2,
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "metaSha256": "2ba44c939ee085d5fba3522f859f35357a48b1f2cb088380478382156a2e372a",
+  "demoSha256": "193f8315aa6b4153f91f3812a497d7a1af6d97a0560352ec43e1630d12e7c9f5",
+  "reviewedAt": "2026-10-18T18:42:15.117615+00:00",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/empty-ponds-still-left",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "previewIsolationConfirmed": true,
+  "visibleTrustChrome": "6/6 claims checked; ignored, panel unopened",
+  "phaseCoverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    {
+      "id": "o1",
+      "action": "Predicted about10 and locked",
+      "outcome": "Seed1 initial60 occupied of100; rules20% annual local extinction, refill depends on occupied ponds"
+    },
+    {
+      "id": "o2",
+      "action": "Ran Drain30",
+      "outcome": "Year100:33 occupied of70 good ponds"
+    },
+    {
+      "id": "o3",
+      "action": "Ran Drain50",
+      "outcome": "Year100:0 occupied of50; recorded extinction year67; start30 and refill14%"
+    },
+    {
+      "id": "o4",
+      "action": "Ran Drain70",
+      "outcome": "Year100:0 occupied of30good; extinction year23; previous results retained"
+    },
+    {
+      "id": "o5",
+      "action": "Opened reveal",
+      "outcome": "Corrects toNone; fewer occupied sources slows refill; average60% drainage threshold, bad luck below threshold, half50-drain runs die; toy model"
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Survival alternatives separate habitat remaining from viable recolonization.",
+      "evidence": "o1",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Three drainage contrasts display different survival and retained timing results.",
+      "evidence": "o2-o4",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects observed survival/extinction to recolonization and toy-model stochastic limit.",
+      "evidence": "o5",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Occupied/empty/drained legend and retained outcomes clear; animation reaches100.",
+      "evidence": "o1-o5; inline pixels",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Habitat may outlast species principle stated, without new applied habitat case.",
+      "evidence": "o5",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic mode checks.",
+      "evidence": "Untested",
+      "confidence": "medium"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Predicted10 replaced by extinction despite30good ponds.",
+      "evidence": "o1-o4",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Grid distinguishes unoccupied viable ponds from drained ponds as frogs vanish.",
+      "evidence": "o2-o4",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Drain presets and available seed control allow experimentation; seed not tested.",
+      "evidence": "o2-o4",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Provides conditional conservation intuition, explicitly toy model.",
+      "evidence": "o5",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Extinction/recolonization feedback and stochastic below-threshold loss linked.",
+      "evidence": "o2-o5",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Linked local extinction and recolonization feedback explains network survival.",
+    "conceptualDemand": "balanced: conditional stochastic processes supported by grid",
+    "interfaceBurden": "low: presets and retained outcomes; watch animation",
+    "provisional": true
+  },
+  "whyCool": "Drain50 leaves50good ponds but every frog still disappears byyear67, exposing why viable empty habitat alone cannot refill itself.",
+  "caveat": "Only seed1 tested; stated half-run and average-threshold claims were not independently sampled.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Phone, keyboard-only, focus, contrast measurement, zoom/reflow and reduced motion untested"
+  ],
+  "reviewState": "complete-real-walkthrough",
+  "effort": {
+    "approximateMinutes": 2
+  },
+  "screenshots": [
+    "Inline observed locked, completed Drain50 and revealed Drain70 states; no saved image file"
+  ],
+  "notApprovedForServing": true,
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  }
+}

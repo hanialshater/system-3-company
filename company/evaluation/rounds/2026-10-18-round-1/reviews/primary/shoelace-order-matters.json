@@ -1,0 +1,104 @@
+{
+  "slug": "shoelace-order-matters",
+  "demoVersion": 2,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/shoelace-order-matters",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction asks what the shoelace formula returns for reordered rectangle corners without displaying or defining that formula.",
+    "Manual bow-tie order gave zero, with diagram showing opposite signed contributions.",
+    "Anticlockwise boundary preset gave positive twelve and clockwise negative twelve; all three orders remained listed.",
+    "Reveal explains opposing strips cancel, bow-tie lobes still have nonzero area, and signed result magnitude matches simple boundary area while sign records orientation."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Signed area and coordinate path interpretation.",
+    "conceptualDemand": "Distinguish algebraic cancellation from geometric region size.",
+    "interfaceBurden": "Four corner choices and two orientation presets."
+  },
+  "whyCool": "The same four points can describe a rectangle or a crossing path whose signed contributions cancel.",
+  "caveat": "Formula is not introduced before prediction; fixed four-corner examples do not cover general self-intersection conventions.",
+  "effort": "Prediction, manual crossing order, both boundary orientations, screenshots and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Excellent contrasting geometric cases and interpretation, despite inaccessible entry question.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Requires an unintroduced named formula.",
+      "evidence": "Coordinates supplied, formula not given before choice.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Manual vertex order and both orientation presets test distinct geometric cases.",
+      "evidence": "Self-crossing zero versus boundary plus/minus twelve.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explains cancellation without claiming no enclosed geometry, then contrasts orientation.",
+      "evidence": "Two triangle lobes remain; boundary magnitude and sign interpreted separately.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Numbered vertices, arrows and opposite fills make path dependence visible.",
+      "evidence": "Retained orders show zero, twelve and negative twelve.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Concrete condition for interpreting signed area.",
+      "evidence": "Boundary traversal versus self-crossing cancellation; orientation affects sign.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Same point set yields zero or opposite signed areas.",
+      "evidence": "Order changes the path, not coordinates.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Path arrows and signed colored regions expose cancellation and orientation.",
+      "evidence": "Bow-tie opposite contributions versus filled rectangle.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Choose corner ordering and compare prescribed orientations.",
+      "evidence": "Four manual vertex choices plus resets/presets.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete geometry-input validation lesson.",
+      "evidence": "Vertex order is part of polygon definition.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Point sets, paths and algebraic area are distinct.",
+      "evidence": "Self-intersection versus orientation reversal.",
+      "confidence": "medium"
+    }
+  }
+}

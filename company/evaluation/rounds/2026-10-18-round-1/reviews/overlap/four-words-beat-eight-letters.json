@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "overlap",
+  "slug": "four-words-beat-eight-letters",
+  "demoVersion": 1,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/four-words-beat-eight-letters",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "f79fa302b296c05ab542272696198cb30ce5d4af2e7ff7a0a608539e95efb876",
+    "demoSha256": "9e63ef61fa019cbad2a870b75190970c8594ceaa8ce16554959f584e2d2d8ecc",
+    "metaPath": "src/demos/cs/four-words-beat-eight-letters/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected 8 letters and locked the prediction comparing eight random lowercase letters with four random words from a 2,048 word list.",
+    "exploration": "Initial counts were 208,827,064,576 letters versus 17,592,186,044,416 word combinations. Increased letters to ten, producing 141,167,095,653,376 and overtaking four words. Increased words to five, producing 36,028,797,018,963,968 and overtaking ten letters.",
+    "reveal": "The reveal corrected the original winner to four words, about 84 times more possibilities. It accurately recalled the intermediate ten letters versus four words reversal and explained each added letter multiplies by 26 while each word multiplies by 2,048, only for random equally likely choices.",
+    "visual": "Inspected the inline dark 1257 by 936 screenshot at ten letters and five words. Two labelled comparison cards showed full counts and assumed exhaustive search times. The bar scale was explicitly number of digits, not a linear count scale, and the larger word space was outlined.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The question challenges appearance based judgments with a precise random-choice comparison.",
+      "evidence": "Selected eight letters before seeing the counts.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Independent length controls reveal exponential factors and reversals.",
+      "evidence": "Ten letters beat four words, then five words beat ten letters.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal accurately connects the original comparison and an explored reversal to multiplication.",
+      "evidence": "It gives the 84-fold ratio and per-choice factors with the randomness condition.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Full counts and a labelled compressed scale keep the comparison interpretable.",
+      "evidence": "The screenshot explicitly says bars represent number of digits.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "A general counting rule and condition are supplied without a distinct new application.",
+      "evidence": "All tested cases remain random password lengths.",
+      "confidence": "high"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Four simple-looking random words have far more possibilities than eight lowercase letters.",
+      "evidence": "The initial word space was about 84 times larger.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "The cards communicate counts, but the bars do not themselves explain multiplication.",
+      "evidence": "The core mechanism arrives in the reveal text.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Two sliders let the learner repeatedly reverse the winner.",
+      "evidence": "Both length adjustments changed which space was larger.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "It replaces visual complexity with a relevant random search-space criterion.",
+      "evidence": "The reveal explicitly conditions the argument on random selection.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "It connects length, choice count and exhaustive search assumptions.",
+      "evidence": "Each extra word contributes a factor of 2,048 rather than merely more characters.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Controls are simple, while very large counts and exponential reasoning need careful interpretation.",
+    "conceptualDemand": "Moderate: count independent choices and distinguish appearance from uncertainty.",
+    "interfaceBurden": "Low: two length sliders.",
+    "conceptualChallenge": "Combinatorial growth depends on choices per position and random selection.",
+    "prerequisiteNovelty": "Search space and equal likelihood are introduced.",
+    "notationRepresentationBurden": "Moderate: huge integers, compressed bars and assumed search times."
+  },
+  "whyCool": "The winner can flip with one more choice because the relevant quantity multiplies rather than merely grows in visible length.",
+  "caveat": "The search speed is an illustrative fixed assumption and counts require independent random choices; no actual password is created or evaluated.",
+  "missingEvidence": [
+    "No nonrandom selection or different application was tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

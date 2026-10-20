@@ -1,0 +1,139 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "who-grabs-the-electrons",
+  "demoVersion": 2,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/who-grabs-the-electrons",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "who-grabs-the-electrons",
+    "domain": "chemistry",
+    "status": "published",
+    "demoVersion": 2,
+    "metaPath": "src/demos/chemistry/who-grabs-the-electrons/meta.json",
+    "metaSha256": "d8907abdfc456ad2de925596e41f6414fde2dc9214ba6c5226e4bfd78c056c6a",
+    "demoSha256": "4fc9594e5a8b986264d6f5d8612b095ef346a968496e27ced5c81135d2470cb1",
+    "batchId": "round1-06",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/who-grabs-the-electrons",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/who-grabs-the-electrons.json"
+  },
+  "date": "2026-10-18T20:56:10.343046+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": [
+    {
+      "phase": "prediction",
+      "evidence": "Selected oxygen for where shared water electrons spend more time."
+    },
+    {
+      "phase": "exploration",
+      "evidence": "Built water: electron pairs drawn near oxygen, oxygen\u03b4\u2212 and hydrogen\u03b4+. AddedO replacing oneH: O\u2013O pair centered. AddedCl: retainedO andCl partners, O\u2013Cl pair slightly shifted toward centralO."
+    },
+    {
+      "phase": "reveal",
+      "evidence": "Read explanation referencing prior O\u2013H and currentO/Cl contrast, equalO midpoint, electronegativity3.44versus2.20 and partial-charge attraction between water molecules."
+    },
+    {
+      "phase": "screenshotInspection",
+      "evidence": "Actual1257x936 dark screenshots inspected for water, mixedO/H, mixedO/Cl and full readable reveal after scroll; charge legend visible."
+    }
+  ],
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Commits to a plausible misconception but gives little basis for oxygen versus hydrogen without chemistry knowledge.",
+      "evidence": "Three electron-location options before any attraction comparison.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Partner replacement offers equal and unequal sharing contrasts.",
+      "evidence": "Water nearO, O\u2013O midpoint, O\u2013Cl smaller shift.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Reveal ties observed shifts to atom attraction and partial charges.",
+      "evidence": "3.44versus2.20 and water-neighbour attraction.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Defined charge legend and plain pull explanation support new terminology.",
+      "evidence": "\u03b4\u2212 slightly negative and electronegativity defined.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Neighbouring-water consequence extends meaning without a new application and conditions.",
+      "evidence": "No fresh case task.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Sharing need not be equal.",
+      "evidence": "Water pairs sit near oxygen.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Pair position and charge symbols encode relative attraction.",
+      "evidence": "Centered O\u2013O versus shifted O\u2013H.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Building and replacing partners invites comparison.",
+      "evidence": "Built water then addedO andCl.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Provides a foundation for water attraction.",
+      "evidence": "Partial charges linked to neighbours.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Several partners elaborate one attraction mechanism.",
+      "evidence": "No independent application or quantitative prediction.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "conceptualDemand": "balanced: shared electrons, relative attraction and partial charges are new abstractions",
+    "interfaceBurden": "gentle: build water and four partner buttons; replacement order inferred through visible results",
+    "prerequisiteNovelty": "chemical symbols, electronegativity and partial charges introduced",
+    "notationRepresentationBurden": "\u03b4 signs, element labels and two decimal attraction values"
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "shrink-toward-zero",
+  "demoVersion": 2,
+  "batchId": "round1-05",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/shrink-toward-zero",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted plainaverage lowerMSE fortruth0.5,4noisyreadingsSD1 versushalfaverage. Bias/spreaddefinitions andbaseline0/0.5/error0.25visible.",
+    "Half: bias\u22120.25,spread0.25,MSE0.125;factor0.2:\u22120.4/0.1/0.17;factor0:\u22120.5/0/0.25;returnedfactor1:0/0.5/0.25.40dotcloud contracts towardzero,truthlinefixed0.5.",
+    "Reveal explainsMSE=bias\u00b2+spread\u00b2 andover-shrinkage,exactbest0.5forthistoy. Doesnotexplicitlyexploreanothertruth/noiselevel orclarifyuniversal-optimumlimit.",
+    "1280x720light plotandreadouts clear;revealfinalprose rightedgeclipped."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Bias,SD,MSE andtheoreticalversussampledistinction requirestatistics.",
+    "conceptualDemand": "Expectedloss notaveragecorrectness.",
+    "interfaceBurden": "Simplepresetsandfactor slider."
+  },
+  "whyCool": "Pulling estimates away from the truth on average can still improve them by reducing their spread even more.",
+  "caveat": "Optimalfactor depends onknowntruth/noise;toydoesnotshowhowtochooseitfromdata. Clarifytheoreticalreadoutsversus40sampledots. Prosecutoff.",
+  "effort": "Prediction,fourfactorcontrasts,reveal,two screenshots.",
+  "provisionalBucket": "promising-with-fix",
+  "bucketReason": "Visiblebias-variancecounterexample;clarifymetricsemanticsandlayout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Specificlossfunction,truth andestimators permitbiased-versusunbiasedcomparison.",
+      "evidence": "Average squaredmiss defined;halfaveragecandidate.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Severalshrinkfactors includingzero andunshrunkboundaries exposebias/variancebalance.",
+      "evidence": "1,0.5,0.2,0MSEs0.25,0.125,0.17,0.25.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explainsobservedtradeoff anddecomposition;bestfactor dependenceonlyqualifiedhere.",
+      "evidence": "Bias\u00b2plusspread\u00b2;0.5bestinthistoy.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Fixedtruth andcentrelabels clear;long-runmetricsversus40sampledotscouldbeexplicit andproseclips.",
+      "evidence": "Toy40estimateslabel versuslong-runerrorreadout.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalshrinkageprinciple,noothertruth/noisemodelapplication.",
+      "evidence": "Unbiasedneednotbest.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Deliberatelybiasedestimate halveslong-runerror.",
+      "evidence": "0.125versus0.25.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Multiplecontractions exposecentreoffsetversusspreadincludingconstantzeroboundary.",
+      "evidence": "Fixedtruthline andshrinkingcloud.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Factorpresetsandslider encourageoptimalitysearch.",
+      "evidence": "Fourfactors tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Centralestimation/regularizationintuition.",
+      "evidence": "Bias-spreadtradeoff underMSE.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Lossfunction,decomposition andoracleoptimum.",
+      "evidence": "MSE=bias\u00b2+variance.",
+      "confidence": "medium"
+    }
+  }
+}

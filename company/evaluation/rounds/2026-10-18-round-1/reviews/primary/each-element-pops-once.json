@@ -1,0 +1,134 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "each-element-pops-once",
+  "demoVersion": 6,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/each-element-pops-once",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "each-element-pops-once",
+    "domain": "cs",
+    "status": "published",
+    "demoVersion": 6,
+    "metaPath": "src/demos/cs/each-element-pops-once/meta.json",
+    "metaSha256": "c34d0320b6f20c42cdf0c85e2095c60cc734cd3c83f5e0851bf6568e67ff23ad",
+    "demoSha256": "3238e691a684eb2dce0297c1a91e4a0ea48b3a8c58c143d639a8abae5072dbf2",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/each-element-pops-once",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/each-element-pops-once.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Chose 36 against18 and8 comparisons for descending nine-number list; locked it in.",
+    "exploration": "Next number gave scan8,stack0. All rest completed descending list:scan36,stack8,pops0. Switched to8\u20261,9; sequence automatically ran and ended scan36,stack15,pops8. Both case totals retained.",
+    "reveal": "Corrected to8; explained hollow stop ticks in descending list and final9 popping eight waiting values in alternate case. Every comparison pops a number or ends a turn, so linear rather than quadratic work.",
+    "visual": "Actual1257 \u00d7936 dark screenshots inspected. Scan rows show triangular work, stack rows show eight hollow stops or eight solid pop ticks, answers9 shown under earlier values in second case. Full reveal legible.",
+    "previewIsolation": "No-history evaluation banner visible.",
+    "blinding": "6/6 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Numerical choice tests assuming stack repeats scan work.",
+      "evidence": "36 commitment versus8 correction.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Two actual input cases contrast no pops with final cascade.",
+      "evidence": "Descending36/8/0 versus terminal9 case36/15/8.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains observed ticks and counters with once-only pop accounting.",
+      "evidence": "Each comparison pops or ends turn; actual8 and15 totals.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Retained totals, hollow/solid legend and answers make tested desktop path clear.",
+      "evidence": "Actual screenshot and both case counters.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General linear-work accounting stated but no concrete new application.",
+      "evidence": "Popped and answered exactly once; n versus n\u00b2.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient access audit.",
+      "evidence": "Keyboard,focus,contrast,phone,zoom and motion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed36 estimate contradicted by8, and cascade still only15.",
+      "evidence": "Two case totals.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Work ticks visually compare repeated scan with bounded stack work.",
+      "evidence": "Triangular scan ticks and solid/hollow stack ticks.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Two case selectors and stepping allow limited experimentation.",
+      "evidence": "One step,bulk completion,alternate list.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete next-greater-number algorithm and cost advantage.",
+      "evidence": "Answers9 in second input and scan36 comparison.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Two distinct arrangements expose stop comparisons and pop cascade.",
+      "evidence": "0 versus8 pops with bounded total work.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "Core explanation uses stack invariant and amortized accounting.",
+    "conceptualDemand": "Track waiting numbers, next-greater answers and total comparisons across an apparent nested loop.",
+    "interfaceBurden": "Low to moderate: two diagrams and automatic animations; totals clear after completion.",
+    "conceptualChallenge": "demanding",
+    "prerequisiteNovelty": "high: stack operations and amortized linear bound.",
+    "notationRepresentationBurden": "moderate: n versus n\u00b2 and work-tick chart."
+  },
+  "whyCool": "A final9 pops eight waiting numbers, yet the stack total stays15 while scan work remains36.",
+  "caveat": "Two fixed inputs only; did not manually step each pop in the automatically played second case.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Keyboard,focus,contrast,phone,zoom/reflow and motion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:15:33.583330+00:00"
+}

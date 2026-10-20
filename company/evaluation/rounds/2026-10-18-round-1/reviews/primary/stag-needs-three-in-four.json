@@ -1,0 +1,104 @@
+{
+  "slug": "stag-needs-three-in-four",
+  "demoVersion": 4,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/stag-needs-three-in-four",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Prediction specifiedstag4ifboth,0alone,hare3sure;selected50%confidence threshold.",
+    "Initial60% gave2.4versus3,hare. Presets0gave0versus3;50gave2versus3;75gave3versus3,eithertie;100gave4versus3,stag.",
+    "Reveal explained4timesconfidence threshold75 and self-reinforcing bothhare3/bothstag4 outcomes under stated symmetric beliefs.",
+    "Inline1280x720 light screenshot showed intersecting payofflines and both equilibrium badges; right-edge prose clipped. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simple expectedvalues plus strategic mutualbeliefs.",
+    "conceptualDemand": "Confidence-weightedpayoff and bestresponse.",
+    "interfaceBurden": "Clear presets and graph; prose clipping."
+  },
+  "whyCool": "A75%trust threshold separates a safe but poorer outcome from a better coordinated one.",
+  "caveat": "Inventedpayoffs,symmetricbeliefs and expectedpayoff objective; prose clipping. Accessibility unknown.",
+  "effort": "Prediction,allfourpresets,reveal and inline screenshot.",
+  "provisionalBucket": "strong-with-viewport-fix",
+  "bucketReason": "Clear threshold and coordination explanation; repair prose layout.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Payoffs fully specified and alternatives plausible.",
+      "evidence": "Expectedpayoff threshold.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Endpoints,belowthreshold and exacttie distinguish best responses.",
+      "evidence": "0,50,75,100tested.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Observed crossover and mutualbest replies explain coordination failure.",
+      "evidence": "Doubt can sustainhare despite preferredstag.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Graph and tie clear but prose clips.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General coordination principle without concrete newapplication.",
+      "evidence": "Same hunters.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Both prefer cooperation yet rationally settle for inferior equilibrium.",
+      "evidence": "Bothhare3,bothstag4.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Linecrossing and equilibrium badges show mechanism.",
+      "evidence": "75%intersection.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Confidence slider and presets.",
+      "evidence": "Four confidence levels.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Supports reasoning about trust and coordination.",
+      "evidence": "Symmetricbeliefmodel.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Expectedpayoff and multiple self-reinforcing equilibria.",
+      "evidence": "Bestreplytoself.",
+      "confidence": "medium"
+    }
+  }
+}

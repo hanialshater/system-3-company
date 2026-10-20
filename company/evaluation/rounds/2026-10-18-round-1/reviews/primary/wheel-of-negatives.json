@@ -1,0 +1,104 @@
+{
+  "slug": "wheel-of-negatives",
+  "demoVersion": 2,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/wheel-of-negatives",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted 128 after 127+1 in eight bits storing negatives; hook did not name two's complement or wrapping policy, and hid the top-bit weight.",
+    "After lock top-bit -128 appeared. +1 gave 10000000=-128; half turn +128 gave 0; minus1 gave 11111111=-1; plus1 returned 0.",
+    "Reveal recalled trials and explained weights/range, but called wrap overflow after discussing both 127 to -128 and -1 to 0; signed overflow needs distinction.",
+    "Inline 1280x720 light screenshot: wheel, bits and weights clear; right-edge prose clipped. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Binary weights, negative numbers and representational limits.",
+    "conceptualDemand": "Two's complement and overflow policy.",
+    "interfaceBurden": "Simple buttons and clear bits; prose clipping."
+  },
+  "whyCool": "The bits move one notch while their signed meaning jumps from the largest positive to the most negative value.",
+  "caveat": "State the wrapping model earlier; distinguish signed overflow from -1+1; right-edge clipping; accessibility unknown.",
+  "effort": "Prediction, positive boundary, half turn, negative-one/zero contrasts, reveal and inline screenshot.",
+  "provisionalBucket": "owner-wording-review",
+  "bucketReason": "Strong visual model; representation and overflow wording need precision.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Representation and arithmetic policy needed to determine answer are withheld.",
+      "evidence": "Negatives included alone does not specify two's-complement wrap.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Positive boundary, half turn, negative one and zero crossing expose cyclic representation.",
+      "evidence": "127,-128,0,-1,0 tested.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Useful weights explanation but overflow label risks conflating signed overflow with -1+1.",
+      "evidence": "Wrap and zero crossing described together.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clear bits but prose clips and model policy implicit.",
+      "evidence": "Inline screenshot.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Counter caution without fresh application or language-specific behavior.",
+      "evidence": "Fixed eight-bit model.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Incrementing the largest positive value turns it negative.",
+      "evidence": "127 to -128.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Circular range and weighted bits connect pattern to value.",
+      "evidence": "Top-bit -128.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Increment, decrement and half-turn experiments.",
+      "evidence": "Multiple boundaries.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Fixed-width arithmetic pitfalls are central.",
+      "evidence": "Growing counter example.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Representation limits and cyclic patterns.",
+      "evidence": "256 patterns.",
+      "confidence": "medium"
+    }
+  }
+}

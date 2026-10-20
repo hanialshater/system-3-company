@@ -1,0 +1,104 @@
+{
+  "slug": "version-nine-and-ten",
+  "demoVersion": 1,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/version-nine-and-ten",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Plain text sorting displayed v10, v2, v9.",
+    "Padding displayed v02, v09, v10 in ascending numeric order.",
+    "Screenshots showed actual record renaming and reordering, but the result badge read Order 3 in both states.",
+    "Reveal says '3 order', then explains equal-width versions and real browsers' natural numeric sorting."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Three familiar file labels.",
+    "conceptualDemand": "Compare characters rather than number values.",
+    "interfaceBurden": "Two one-use buttons."
+  },
+  "whyCool": "Version ten can come before version two when a system reads names as text.",
+  "caveat": "Malformed result label; no test of wider version numbers or custom naming.",
+  "effort": "Prediction, plain sort, padded sort, two screenshots and reveal.",
+  "provisionalBucket": "needs-polish",
+  "bucketReason": "Useful visible comparison weakened by generic malformed result text.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "A concrete lexical versus numeric distinction, cued by the hook.",
+      "evidence": "v09/v10 versus v9/v10.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Two fixed operations demonstrate the difference.",
+      "evidence": "Three records reorder and rename once.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Correct scope but malformed summary and little explanation of lexical comparison.",
+      "evidence": "Reports 3 order; same-width padding and natural sorting caveat.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Visible records clarify an otherwise uninformative metric.",
+      "evidence": "Order 3 unchanged in both states.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Specific naming technique with a concrete condition limiting its need.",
+      "evidence": "Equal-width versions for text sorting; natural numeric sorting may already handle it.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Ten can sort before two and nine.",
+      "evidence": "Plain v10, v2, v9.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Actual record order shows the contrast directly.",
+      "evidence": "v02, v09, v10 after padding.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Two fixed operations.",
+      "evidence": "No custom names or additional versions.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete version-naming technique.",
+      "evidence": "Consistent widths when text sorting matters.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Separates numeric meaning from text ordering.",
+      "evidence": "Natural numeric sort caveat.",
+      "confidence": "medium"
+    }
+  }
+}

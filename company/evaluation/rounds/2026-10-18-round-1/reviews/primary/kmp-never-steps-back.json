@@ -1,0 +1,125 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w3d",
+  "reviewKind": "primary",
+  "slug": "kmp-never-steps-back",
+  "demoVersion": 6,
+  "batchId": "round1-06",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/kmp-never-steps-back",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "managerIdentityPins": {
+    "metaSha256": "4304d7741a96725e8d6de7ed1b0bc04feafae64406c4cf082fadf3b6625a50b8",
+    "demoSha256": "65296cda575c48ee5fc61f0623550a9d5d5d93b85bc5088cdfd2bb7cf84602c3",
+    "metaPath": "src/demos/cs/kmp-never-steps-back/meta.json"
+  },
+  "date": "2026-10-18",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparing numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "observations": {
+    "prediction": "Selected 24 and locked the comparison count prediction for reusing matches while searching AAAB in AAAAAAAAB.",
+    "exploration": "Stopped at the first mismatch after four comparisons. The reuse explanation said retain two matched A's and slide one. Advanced one comparison to observe reuse without rereading those A's. Ran to the end: reuse found the match at comparison 14 with zero backward moves; the restart lane completed at 24 with five backward moves.",
+    "reveal": "The reveal corrected the answer to 14 and explained every mismatch follows AAA, whose last two A's can be retained. It gave the count 3 + 2 times 5 + 1 and identified the 0,1,2,0 fallback table as KMP.",
+    "visual": "Inspected inline dark 1257 by 936 screenshots at the first mismatch and during the completion run. Two aligned text and pattern lanes showed matched checks, a red B-versus-A mismatch and a boxed fallback 2. The reuse lane visibly reached the final B at 14 while the restart lane was still working.",
+    "isolation": "No-history evaluation preview banner present. Visible trust count ignored.",
+    "reference": "Own CUA tab 543884163 snapshots and inspected inline screenshot; no screenshot file saved."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "The prompt challenges the assumption that restarting work is unavoidable.",
+      "evidence": "Selected the same 24 comparisons as naive restarting.",
+      "confidence": "high"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Stepping through a mismatch exposes the preserved overlap before comparing totals.",
+      "evidence": "Two A's were retained, then the lanes finished with different counts.",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "The reveal accounts for the exact saving using the observed repeated mismatch structure.",
+      "evidence": "The formula explains the 14 total and zero backward moves.",
+      "confidence": "high"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Parallel lanes and the boxed fallback value make a technical optimization inspectable.",
+      "evidence": "The mismatch state explicitly says keep two A's and slide one.",
+      "confidence": "high"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "The named algorithm and table are explained without a fresh pattern or general construction.",
+      "evidence": "The walkthrough uses one repeated-letter example.",
+      "confidence": "high"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Sufficient mode audit not performed.",
+      "evidence": "Keyboard, focus, contrast audit, phone, zoom/reflow and motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "A failed comparison provides information that saves later work.",
+      "evidence": "Reuse reduced comparisons from 24 to 14 without moving backward in the text.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "The synchronized traces reveal which previous work is preserved.",
+      "evidence": "The fallback 2 is aligned under the last matched A.",
+      "confidence": "high"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Step and run controls encourage close inspection but remain technical.",
+      "evidence": "To next miss and Compare support a guided trace.",
+      "confidence": "high"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "It introduces why pattern search can avoid redundant reading.",
+      "evidence": "The ending identifies the fallback table as KMP.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "The lesson explains the exact count instead of only announcing a speedup.",
+      "evidence": "Repeated overlap gives the 3 + 2 times 5 + 1 calculation.",
+      "confidence": "high"
+    }
+  },
+  "complexity": {
+    "level": "demanding",
+    "reason": "The controls are simple, but multiple aligned indices and fallback reuse require algorithmic reasoning.",
+    "conceptualDemand": "High: infer how a matched suffix preserves a pattern prefix after failure.",
+    "interfaceBurden": "Low to moderate: three buttons control a dense two-lane trace.",
+    "conceptualChallenge": "A mismatch permits shifting the pattern while keeping known comparisons valid.",
+    "prerequisiteNovelty": "String matching and fallback tables are new technical concepts.",
+    "notationRepresentationBurden": "High: text and pattern alignment, comparison counters, backward counts and fallback numbers."
+  },
+  "whyCool": "A miss can tell the search exactly what it does not need to check again.",
+  "caveat": "Only AAAB in repeated A text is shown; the fallback table construction and broader performance bound are not demonstrated.",
+  "missingEvidence": [
+    "No fresh text or pattern was tested.",
+    "Accessibility modes were not audited."
+  ],
+  "fatalFindings": [],
+  "effort": "Approximately 2\u20133 minutes active browser walkthrough."
+}

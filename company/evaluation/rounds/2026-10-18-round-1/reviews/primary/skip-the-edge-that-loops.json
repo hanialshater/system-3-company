@@ -1,0 +1,103 @@
+{
+  "slug": "skip-the-edge-that-loops",
+  "demoVersion": 1,
+  "batchId": "round1-07",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/skip-the-edge-that-loops",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted five roads. Built A\u2013C cost1, B\u2013C cost2, D\u2013E cost3; A\u2013B cost4 was skipped while components still separate.",
+    "B\u2013D cost5 joined both groups. Test-rest finished four built, four skipped, total11.",
+    "Screenshot showed A/B/C same color, D/E another, built edges bright and next connecting edge highlighted. Reveal explicitly contrasted skipped cost4 and accepted cost5 through existing C path."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simple graph with a connectivity rule.",
+    "conceptualDemand": "Indirect paths, components and cycles.",
+    "interfaceBurden": "Low: step, complete or restart."
+  },
+  "whyCool": "The cost-four road loses to a cost-five road because connectivity matters more than cheapness alone.",
+  "caveat": "One fixed connected graph with unique costs; minimum-cost theorem is stated rather than independently established by alternate trees.",
+  "effort": "Browser prediction, five individually inspected edges, test-rest, screenshot and reveal.",
+  "provisionalBucket": "strong",
+  "bucketReason": "Clear visual counterexample to a plausible cheap-road misconception.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Concrete count question from a stated rule.",
+      "evidence": "Five towns and eight costs; choices eight,five,four.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Stepwise component changes expose useful versus redundant edges.",
+      "evidence": "Cost4 rejected before cost5 accepted.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Ties original prediction to the key redundant-path case.",
+      "evidence": "Four-road tree, cost11 and A\u2013C\u2013B path explained.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Component colors and persistent totals support tracing.",
+      "evidence": "Two groups before B\u2013D, final built/skipped/cost.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General Kruskal rule stated without a second graph.",
+      "evidence": "Fixed five-town graph; no alternate costs or topology.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Cheaper road can be rejected before a more expensive one.",
+      "evidence": "A\u2013B4 versus B\u2013D5.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Colored components and bright paths expose connectivity.",
+      "evidence": "Existing C route makes A\u2013B redundant.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Guided edge testing.",
+      "evidence": "No free road choice or graph edit.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Introduces cheapest connected network construction.",
+      "evidence": "Road-network model.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Separates local cheapness from connecting components.",
+      "evidence": "n\u22121 tree and minimum-cost assertion; no exchange proof.",
+      "confidence": "medium"
+    }
+  }
+}

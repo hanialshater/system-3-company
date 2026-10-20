@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "minus-one-flips-the-order",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/minus-one-flips-the-order",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "minus-one-flips-the-order",
+    "domain": "math",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/math/minus-one-flips-the-order/meta.json",
+    "metaSha256": "98f5860d66d85806024b123b11312058d38c00a6094883bf7b878bbd636f03e9",
+    "demoSha256": "932f9e705e8a0b4154bc53dc006ba11b49d6a66a82bd4d8442423badc04db322",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/minus-one-flips-the-order",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/minus-one-flips-the-order.json"
+  },
+  "date": "2026-10-18T19:23:50.050718+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "No-history banner confirmed; trust5/5 ignored. Selected -2<-5 and locked.",
+    "exploration": "Times2 changes original2/5 to4/10 (<). Times-1 changes originalto-2/-5 (>),notcumulative-4/-10. Minus3 originalto-1/2 (<); Times-2 to-4/-10 (>). Reset2/5 retainsallfourcomparisonlog; revealstaysunlocked.",
+    "reveal": "Correct-2>-5. Cites testedtimes2 versus-1andphysicalreflectionthrough0 swapsleft/right. Positive scaling/add/subtract preserveorder; negativesflip.",
+    "visual": "Inline1257x936 dark screenshot inspected: circle/square identities retained,numberline-10to10,original2/5afterreset andcompactcomparisonlog. Fullreveallegible."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Exactunchangedsign/reversed/equalitychoices surfaceoperation-on-bothsidesmisconception.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Positive/negative scaling,translation andreset isolateorderpreservationversusreflection withretainedlog.",
+      "evidence": "exploration;visual",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Usesactualcontrastsandnumberlinegeometry toexplainnegative-signcondition.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Numbersandidentitiesclear, butoperationsreapplytooriginalpairwithoutinitialexplicitstatement;couldexpectcumulativeoperations.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalnegative/positiveoperationrulewithcondition;nofreshinequalityapplication.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Chosenunchangedsignreversedbyreflectionwhileotheroperationspreserve.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 4,
+      "reason": "Numberline/shapeidentitiescarryleft-rightcomparison acrossfourtransformcontrasts.",
+      "evidence": "exploration;visual",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversibletransforms/reset supportcomparison.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concreteinequalitymanipulationrule.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Reflection,scaling,translation andsigncondition.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "Coreone-supportedrelation:left-rightorderreversesunderreflection;otherbuttonscontrastthesameidea.",
+    "conceptualDemand": "gentle",
+    "interfaceBurden": "moderate ambiguitywhetheroperationscumulative",
+    "conceptualChallenge": "gentle",
+    "prerequisiteNovelty": "low: numberlineandnegativevalues supported",
+    "notationRepresentationBurden": "low: inequalitysigns andsignedarithmetic"
+  },
+  "whyCool": "Multiplyingby-1puts-5totheleftof-2,sotheinequalitymustpointtheotherway.",
+  "caveat": "Transformsapplytotheoriginalpairratherthancumulatively;nofreshinequalitycase."
+}

@@ -1,0 +1,134 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1c",
+  "reviewKind": "primary",
+  "slug": "halve-the-margin-cost",
+  "demoVersion": 3,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/halve-the-margin-cost",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "halve-the-margin-cost",
+    "domain": "probability",
+    "status": "published",
+    "demoVersion": 3,
+    "metaPath": "src/demos/probability/halve-the-margin-cost/meta.json",
+    "metaSha256": "09b50488d2fc35b72a1ec97d37ef779e7cdfaa335772ad4cce2e56e690999d3f",
+    "demoSha256": "d1c6b85a862d930ebd0a0401f88e8344acdfafe1ae8571863edb31dbc265b1cb",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/halve-the-margin-cost",
+    "primaryWorker": "w1",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/halve-the-margin-cost.json"
+  },
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark",
+    "evidence": "Actual inline CUA screenshot inspected"
+  },
+  "observations": {
+    "prediction": "Chose 2000 against 4000 and 8000; locked it in.",
+    "exploration": "1000 sample showed \u00b13.1 points,95/100 inside band. Double people to2000 gave \u00b12.2,97/100; second double4000 gave \u00b11.5,95/100. End on slider8000 gave \u00b11.1,97/100; doubling disabled.",
+    "reveal": "Corrected to4000; connected tested2000 and4000 margins to square-root sample-size relation. Explicitly excludes refusal/nonresponse and biased list errors.",
+    "visual": "Actual1257 \u00d7936 dark screenshots inspected. Dot cloud narrows within band and dashed prior bands. In reveal screenshot a horizontal scrollbar lies across lower metric cards, partially obscuring their numbers; upper labels and reveal remain readable.",
+    "previewIsolation": "No-history evaluation banner present.",
+    "blinding": "4/4 checked chrome ignored."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Plausible doubling versus quadrupling choices test linear expectation.",
+      "evidence": "2000 choice versus4000 correction.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Multiple sample sizes visibly narrow spread and margin.",
+      "evidence": "1000\u00b13.1;2000\u00b12.2;4000\u00b11.5;8000\u00b11.1.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Uses actual contrasts and states sampling-only limit.",
+      "evidence": "Square-root rule and nonresponse/bias caveat.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Sequence usable but horizontal scrollbar partly covers metric cards in reveal view.",
+      "evidence": "Actual screenshot obscured lower counters.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Reusable sample-cost rule and limits, no concrete new application.",
+      "evidence": "Half error costs four times people.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "One slider endpoint key insufficient audit.",
+      "evidence": "End worked; focus,contrast,phone,zoom and motion unknown.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed doubling estimate fails to halve margin.",
+      "evidence": "2000\u00b12.2 versus desired\u00b11.5.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Dot spread and comparison bands show diminishing precision gains.",
+      "evidence": "Narrow cloud inside dashed prior bands.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Doubling and endpoint changes permit successive comparisons.",
+      "evidence": "1000 through8000 sample states.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concrete polling sample-budget question central.",
+      "evidence": "4000 respondents to halve margin.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Square-root return and sampling-bias limitation linked.",
+      "evidence": "Margin relation plus biased-list exclusion.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Relates sample scaling to uncertainty width and error scope.",
+    "conceptualDemand": "Two linked relations: quadrupling size halves random margin; bias lies outside it.",
+    "interfaceBurden": "Moderate: horizontal scrollbar partly overlaps counters.",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: sampling margin and square-root scaling.",
+    "notationRepresentationBurden": "moderate: \u00b1 points and percentages."
+  },
+  "whyCool": "Two doublings visibly shrink the band by half while one doubling falls short.",
+  "caveat": "One true-support level; no nonresponse or bias experiment and a scrollbar obscures part of metric cards.",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Focus order,contrast,phone,zoom/reflow and motion untested."
+  ],
+  "effort": "Approximately 3 minutes of actual browser review.",
+  "notApprovedForServing": true,
+  "createdAt": "2026-10-18T19:14:25.787542+00:00"
+}

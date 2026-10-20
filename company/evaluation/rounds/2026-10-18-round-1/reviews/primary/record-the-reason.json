@@ -1,0 +1,103 @@
+{
+  "slug": "record-the-reason",
+  "demoVersion": 1,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/record-the-reason",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Title and hook say preserve reason; predicted choice plus reason.",
+    "Fixed AddReason supplies shorter; AddCondition supplies deadline for choiceB;1\u21922\u21923 fields.",
+    "Reveal says later readers inspect rationale. Screenshot readable but no options,time requirements or specific deadline to interpret shorter."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Three fields.",
+    "conceptualDemand": "Decision versus rationale.",
+    "interfaceBurden": "Two clicks."
+  },
+  "whyCool": "Keeping the reason lets a future reader revisit a decision without guessing its original constraint.",
+  "caveat": "Needs concrete alternatives and condition values,plus a later decision challenge to test usefulness.",
+  "effort": "Prediction,two field additions,reveal,inline visual.",
+  "provisionalBucket": "revise-interaction-context",
+  "bucketReason": "Useful advice,abstract fixed checklist.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Hook directly answers.",
+      "evidence": "Choice alone lacks why.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 1,
+      "reason": "Two preset field additions without decisions.",
+      "evidence": "shorter/deadline fixed.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Explains record purpose but sample rationale underspecified.",
+      "evidence": "Shorter than what;deadline when absent.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readable checklist,abstract values lack context and fixture jargon.",
+      "evidence": "B/shorter/deadline.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Checklist principle without concrete new application.",
+      "evidence": "Choice,reason,condition.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 0,
+      "reason": "Answer stated.",
+      "evidence": "Title.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 1,
+      "reason": "Text fields only.",
+      "evidence": "Three rows.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Two required clicks.",
+      "evidence": "No editable note.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Decision record discipline central.",
+      "evidence": "Store rationale.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "Single record template.",
+      "evidence": "No competing constraints.",
+      "confidence": "medium"
+    }
+  }
+}

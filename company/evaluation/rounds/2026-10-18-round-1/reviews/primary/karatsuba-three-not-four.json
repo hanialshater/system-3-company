@@ -1,0 +1,103 @@
+{
+  "slug": "karatsuba-three-not-four",
+  "demoVersion": 5,
+  "batchId": "round1-08",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/karatsuba-three-not-four",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted27 from stated3productsperrecursivehalf split versus4,8digit inputs.",
+    "Firstsplit4versus3 four-digitproducts;next16versus9 two-digit;final64versus27 onedigit.",
+    "Checkmiddle shows3084879=6152445\u22121460454\u22121607112;bothfullproducts146076250397112. Diagram tiles/dots show counts. Reveal explains n^1.58versusn\u00b2. Screenshot rightclip;0widthbrowserrecovered with temporary1280\u00d7720viewport."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Blockmultiplication,algebraiccross-terms andrecursivecomplexity.",
+    "conceptualDemand": "Recovermiddlewithadd/subtract thenrecurse.",
+    "interfaceBurden": "Simplebuttons,densecontent."
+  },
+  "whyCool": "Saving one multiplication at every split turns a small algebraic trick into a different growth rate.",
+  "caveat": "Fixed carefully selected operands;addition/subtraction andcarryoverhead notcounted as digitproducts. No runtimebenchmark.",
+  "effort": "Prediction,threelevels,identitycheck,reveal,screenshots;viewportrecovery.",
+  "provisionalBucket": "solid-dense-trace",
+  "bucketReason": "Good algebra/countvisualization,limitedagencyanddensepresentation.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Complete recurrence premise and plausible linear-savings distractor.",
+      "evidence": "16/27/48.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Stepwise decomposition and identity check informative but fixed numbers/sequence.",
+      "evidence": "No editable operands.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Connects counts to algebraic recovery and compounded savings.",
+      "evidence": "4\u00b3versus3\u00b3,checkedmiddle.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Dense small formulas and right-edge clipping.",
+      "evidence": "Screenshots.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General recursion principle,no separate application.",
+      "evidence": "Same product.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Cross terms recovered with one combined product.",
+      "evidence": "3ratherthan4compounds.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Tiles,dots andnumericidentity connect branching to count.",
+      "evidence": "64versus27.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Split andcheckactions.",
+      "evidence": "Traceonly.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Algorithmic multiplication efficiency.",
+      "evidence": "Not actual runtimebenchmark.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Algebraicreuse andrecurrenceexponent.",
+      "evidence": "n^log2(3).",
+      "confidence": "medium"
+    }
+  }
+}

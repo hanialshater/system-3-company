@@ -1,0 +1,103 @@
+{
+  "slug": "project-prefix-filenames",
+  "demoVersion": 1,
+  "batchId": "round1-10",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/project-prefix-filenames",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Title Add project to name precedes prediction project-prefixed versus notes alone.",
+    "Show collisions keeps notes.txt acrossAtlas/Birch/Cedar,unique names1; Add prefixes makesAtlas-notes/Birch-notes/Cedar-notes,unique3.",
+    "Reveal limits claim to visible identity,not search time. Screenshots readable; project labels remain visible in both states."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Simple text identity.",
+    "conceptualDemand": "Filename versus folder context.",
+    "interfaceBurden": "Two clicks."
+  },
+  "whyCool": "A filename can carry the context it would otherwise lose when moved or shared.",
+  "caveat": "Hide folder labels in comparison or ask learner to identify moved files; title spoils prediction.",
+  "effort": "Prediction,collision,prefix,reveal,both screenshots.",
+  "provisionalBucket": "revise-hook-context",
+  "bucketReason": "Useful naming advice,limited challenge.",
+  "quality": {
+    "prediction": {
+      "score": 1,
+      "reason": "Title directly supplies answer.",
+      "evidence": "Add project to name.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Visible renaming contrast but fixed actions and labels reveal identity already.",
+      "evidence": "Unique1\u21923.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Mechanism and scope accurately tied to names.",
+      "evidence": "Prefix carries project identifier; no time estimate.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readable but context never actually removed and fixture wording.",
+      "evidence": "Right-side project labels persist.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Explicit reusable convention with outside-folder purpose.",
+      "evidence": "Carry project identifier into filename.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 0,
+      "reason": "Answer disclosed.",
+      "evidence": "Title.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 2,
+      "reason": "Names visibly change.",
+      "evidence": "Three prefix rows.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Two preset clicks.",
+      "evidence": "No custom naming.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Portable identity convention central.",
+      "evidence": "Project-prefixed names.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 1,
+      "reason": "One naming principle.",
+      "evidence": "Three records.",
+      "confidence": "medium"
+    }
+  }
+}

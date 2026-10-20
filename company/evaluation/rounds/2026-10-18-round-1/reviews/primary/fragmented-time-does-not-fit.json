@@ -1,0 +1,105 @@
+{
+  "slug": "fragmented-time-does-not-fit",
+  "demoVersion": 3,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/fragmented-time-does-not-fit",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted30minute unsplittable job fits three10minute gaps before40 because totalfree30.",
+    "Atstart0 job0-30 overlapped calls10-15 and25-30 by10minutes,no valid finish. Start1 also overlapped10.",
+    "Use one30min gap actually moved job to40-70 after original window; free-before40 metrics remained30total,longest10. No appointments were consolidated.",
+    "Reveal correctly distinguished total/longest gap and named unsplittable task,then described final finish70 without explicitly saying it relaxes original before40 requirement.",
+    "Inline1280x720 light screenshot: timeline and metrics readable; right-edge final prose clipped. Accessibility modes not audited."
+  ],
+  "complexity": {
+    "level": "gentle",
+    "reason": "Familiar calendar and simple duration comparison.",
+    "conceptualDemand": "Fragmentation of availability.",
+    "interfaceBurden": "Simple controls; later-slot scope unclear."
+  },
+  "whyCool": "Thirty free minutes can be unusable for one thirty-minute job when every gap is only ten.",
+  "caveat": "Label later40-70slot as outside original window;right-edge prose clipping;accessibility unknown.",
+  "effort": "Prediction,overlap test,later-slot contrast,second early start,reveal and inline screenshot.",
+  "provisionalBucket": "revise-window-framing",
+  "bucketReason": "Useful fragmentation illustration but changed-time-window comparison needs explicit framing.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicit gap lengths and indivisible task determine feasibility.",
+      "evidence": "Three10minute gaps versus30minute continuous job.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Blocked early placements contrast with a later continuous slot.",
+      "evidence": "Start0/1 versus40.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 2,
+      "reason": "Correct principle but later-slot example needs explicit changed-window framing.",
+      "evidence": "Before40question versusfinish70.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readable metrics but preset wording hides that job moves beyond original window; proseclips.",
+      "evidence": "Use one30min gap means40-70.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Same task moved later without a fresh independently solved calendar.",
+      "evidence": "General continuity principle.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 2,
+      "reason": "Summed free time differs from usable continuous time.",
+      "evidence": "30freebutlongest10.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Separated dashed gaps and job overlaps make fragmentation visible.",
+      "evidence": "Timeline0to40andlaterjob.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Preset and start slider.",
+      "evidence": "Two early starts tested.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Planning uninterrupted work blocks central.",
+      "evidence": "Unsplittable task.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Total measure versus longest contiguous interval.",
+      "evidence": "Originalwindow versuslater time.",
+      "confidence": "medium"
+    }
+  }
+}

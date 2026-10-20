@@ -1,0 +1,104 @@
+{
+  "slug": "greedy-slot-machine",
+  "demoVersion": 3,
+  "batchId": "round1-02",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/greedy-slot-machine",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "PredictionA30%B70%afteronepulleach,greedyworse-machine lock-in none/3in10/9in10; chosenone. Tiehandling notstatedinprediction.",
+    "Run1stuck1of1,last100wins41greedy75explorer;run2stuck1of2,averages55/76;102runs33stuck,averages57/67.",
+    "Revealrun1Binitialloss=>0%estimatedandneverretried;notallrunsfail;explorer90%best10%random gives68winsper100onceBfound.",
+    "Screenshot twopolicybarseries andaggregatereadouts,fullprose readable; ordinaryverticalscroll."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Sampleestimates,policyfeedback,andweightedrewardaverage.",
+    "conceptualDemand": "Greedyselectionrestrictswhatfutureevidencecanarrive.",
+    "interfaceBurden": "Threerunbuttons andreadablecounts."
+  },
+  "whyCool": "A singleearlymiss canmake thebestmachine lookworthless\u2014and agreedyplayernevercollectstheevidence tochangeitsmind.",
+  "caveat": "Tiepolicy omittedfromprediction;fixedtoyprobabilities andexplorationrate,notrealrecommendationperformance.",
+  "effort": "Prediction,run1,run2,100more,reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Usefulexplorationfailuremechanism;limiteduseragency andunderspecifiedpredictionrule.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Conceptclear butexactlock-in frequency dependsontiepolicy notspecified.",
+      "evidence": "Onepulleach oftenproduces equalrecords.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 2,
+      "reason": "Runsfixedpolicycomparisons;cannotchooseactions orchangeexplorationrate.",
+      "evidence": "Play,next,100more only.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Linksrun1earlymiss topermanentlackofnewinformation andaveragerewardcost.",
+      "evidence": "Blooks0%,nevertriedagain;33of102fail.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Readablepolicycomparison andaggregatecounts;explorerrule introducedinreveal.",
+      "evidence": "90/10mixture arithmeticexplicit.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Explorationprinciple illustratedinoriginalsetup;nonewapplicationexercise.",
+      "evidence": "No changedpayoffs/rates ornewcase.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Better-lookingchoice canlockonto worseoption.",
+      "evidence": "33of102runsstuck despite500pulls.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Two policyoutcomebars andstuckcounter supportcomparison.",
+      "evidence": "Greedy57explorer67latewins.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Watchrepeatedtoyplayers.",
+      "evidence": "No directpullpolicycontrol.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Supportingadaptive-decisionintuition.",
+      "evidence": "Whykeepexploring options.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Feedbackloops,earlynoise,and explorationcost.",
+      "evidence": "90/10asymptoticmixture68vsbest70.",
+      "confidence": "medium"
+    }
+  }
+}

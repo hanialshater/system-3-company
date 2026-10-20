@@ -1,0 +1,103 @@
+{
+  "slug": "lh-material-reuse-account",
+  "demoVersion": 1,
+  "batchId": "round1-09",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/lh-material-reuse-account",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted Replacements lower for ten uses: reusable 200 g plus 2 g/use, replacements 20 g/use.",
+    "Tests gave 220 versus 200 g. Eleven uses gave 222/220; twelve gave 224/240, reversing winner.",
+    "Screenshot used ring-like marks, no material decomposition. Reveal preserved original/current values and explicitly excluded energy, cleaning, transport, disposal and environmental impact inference."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Compare cumulative accounts with different starting costs.",
+    "conceptualDemand": "Crossover and measurement boundary.",
+    "interfaceBurden": "Two tests and count slider."
+  },
+  "whyCool": "Reuse can cross a material threshold without proving an environmental verdict.",
+  "caveat": "Hypothetical mass account omits all other lifecycle factors; graphic adds little explanation.",
+  "effort": "Prediction, both tests, adjacent crossover values, screenshot and reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Strong conditional reasoning and restrained conclusion.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Specific competing fixed and repeated masses support nontrivial comparison.",
+      "evidence": "Ten uses before crossover.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Adjacent integer counts establish winner reversal.",
+      "evidence": "10, 11, 12 uses.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explains accounting boundary and prevents environmental overclaim.",
+      "evidence": "Lower mass does not establish lower impact.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Initial and repeated mass terms explicit.",
+      "evidence": "Toy masses, material only.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Specific excluded dimensions clarify what result can establish.",
+      "evidence": "Energy, cleaning, transport, disposal.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Reusable initially uses more material, later less.",
+      "evidence": "Reversal between 11 and 12 uses.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 1,
+      "reason": "Abstract ring marks do not depict initial and repeated material.",
+      "evidence": "Numeric expressions carry mechanism.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Discovering crossover supports exploration.",
+      "evidence": "Adjacent counts flip winner.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Comparison accounting and boundaries central.",
+      "evidence": "Reuse versus replacement mass.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Fixed/repeated terms and model boundary distinguish mass from impact.",
+      "evidence": "Explicit lifecycle exclusions.",
+      "confidence": "medium"
+    }
+  }
+}

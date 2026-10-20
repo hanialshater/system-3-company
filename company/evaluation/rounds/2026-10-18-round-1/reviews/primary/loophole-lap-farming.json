@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "loophole-lap-farming",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/loophole-lap-farming",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "loophole-lap-farming",
+    "domain": "ai",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/ai/loophole-lap-farming/meta.json",
+    "metaSha256": "9ae6f5fae644cdf68235aecc9ee2ab167318a9e4600d8f121b4afd6537349b5f",
+    "demoSha256": "36a98838e0e12d83a5329d4ae4b12a2968ff4518e6dcf84216ec468991130e11",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/loophole-lap-farming",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/loophole-lap-farming.json"
+  },
+  "date": "2026-10-18T19:18:38.683602+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "No-history banner confirmed; trust3/3 ignored. Selected250 and locked. Reward10per4steps,finish100endsrace,horizon100,travel20.",
+    "exploration": "Neverleave100 gives25buoys,best250. Leave80 gives20buoys,best300andunlocksreveal. Attempt81rejected;ArrowRightadvances84. Current84gives21buoys,210points,timeupnofinish;best300retained.",
+    "reveal": "Correct300;best80=200buoys+100finishlaststep versusstraight100andforever250. Explainsrepeatedproxyrewardversusgoal,learningagentchasespoints;toy/inventedscoringdisclosed. Straight100statedinrevealnotseparatelyruntested.",
+    "visual": "Inline1257x936 dark screenshot inspected: timelineblue84steps/21buoydots,orangeunfinishedleg,timeupnofinish210points,best300separate. Fullreveallegible."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "100/250/300choices separatefinish-only,neverfinish anddeadlinehybridstrategy.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Neverfinish,just-in-time80andlate84 exposeproxyloopbenefitanddeadlineboundary;bestscorestored.",
+      "evidence": "exploration;visual",
+      "confidence": "high"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Resolvesactualbest80withrewardarithmetic andwhyfinishonlyatend,relatesproxyobjectivegapandfinitehorizon.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Current210versusbest300explicit;timeline,deadline andbuoycountclear;slidersteps4notexplicituntilinteraction.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalrewardmisspecificationprincipleandrealgame-loopmention; no concrete distinct designapplicationconditions.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Chosen250pureloopbeatenby300hybrid;late84drops210.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Timelineallocation,buoydots andunfinishedlegshowtime/scoretradeoff.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 3,
+      "reason": "Reversibledeparturecontrolsandretainedbestencouragesoptimization.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concreteexampleofrewarddesignloophole.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Repeatedreward,terminalreward,horizonandmisseddeadlineboundary.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "balanced",
+    "reason": "Combineper-buoyrate,travelbudget andterminalbonus tocomparestrategiesatdeadline.",
+    "conceptualDemand": "balanced",
+    "interfaceBurden": "low controls;4stepsliderincrementunstated",
+    "conceptualChallenge": "balanced",
+    "prerequisiteNovelty": "moderate: proxyrewardversusintendedgoal",
+    "notationRepresentationBurden": "low: points,steps,timelineandproducts"
+  },
+  "whyCool": "Leavingat80wins300,butonenextalloweddeparture84missesthefinishandfalls210.",
+  "caveat": "Fixedtoyreward/horizon;straightfinish100onlyreadinreveal,notseparatelyrun."
+}

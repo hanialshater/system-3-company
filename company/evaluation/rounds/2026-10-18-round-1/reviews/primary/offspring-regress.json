@@ -1,0 +1,104 @@
+{
+  "slug": "offspring-regress",
+  "demoVersion": 1,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/offspring-regress",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted110cm offspring from fieldmean100,selectedparents110,40% inherited differences; alternatives104,100.",
+    "40%preset offspring104;0%100;100%110. Parentselection stays110,offspringmeanmarker moves oncommonaxis. Dotcloud showsdistribution,notjustmean.",
+    "Reveal recalls allthreecases,explains onlyinheritedshare of10cmselectiongap passes,4cmresponse,andnames response=heritability\u00d7selection.",
+    "1280x720light meanlabels100/104tightlypacked,offspringdots lowcontrast;finalprosefullyreadable."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Simplearithmeticbutpopulationheritabilityconceptcarriesprerequisite.",
+    "conceptualDemand": "Selectedmeanversusinheriteddifference.",
+    "interfaceBurden": "Threebuttons;crowdedlabels."
+  },
+  "whyCool": "The offspring keep only part of the selected parents' height advantage, and the two extremes show why.",
+  "caveat": "Toyheritabilitywording shouldreceiveexpertreview:populationresponseassumptions notdeveloped;notindividualfractioninterpretation. Lowcontrastdots/crowdedmeanlabels. Noindependentaudit.",
+  "effort": "Prediction,threeinheritancepresets,reveal,two screenshots.",
+  "provisionalBucket": "promising-with-fix",
+  "bucketReason": "Usefulboundarycontrast;clarifyheritabilityassumptionsandvisualcontrast.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Explicitbaseline,selectiongap andinheritedfraction supportconcretecausalprediction.",
+      "evidence": "100,110,40% withthreeplausiblemeans.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Bothinheritanceboundaries plusintermediatecase isolate responsecoefficient.",
+      "evidence": "0/40/100% produce100/104/110.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explainsoriginalanswer andbothboundarycases withsimplegapcalculation.",
+      "evidence": "40%of10=4;environmentalcomponentnotinherited.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Readableprose butlowcontrastoffspringdots andcrowdedmeanlabels.",
+      "evidence": "Actual40% screenshot100104labelpair.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Generalbreederequation named withoutfreshcaseapplication.",
+      "evidence": "Onefixedselectiongap.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Selecting110cmparentsneednotreproduce110cmmean.",
+      "evidence": "104at40%,100atzero.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Fixedparentselection andmovingoffspringdistribution exposepartialresponse.",
+      "evidence": "Threecoefficientcontrasts oncommonaxis.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Threepresets supportlimitedcomparison.",
+      "evidence": "Noadjustableselectiongap.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Concretebreedingresponseinterpretationcentral.",
+      "evidence": "Selectionversusinheritedresponse.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Genetic/environmentalvariation andregressionlinked.",
+      "evidence": "Response=heritability\u00d7selection.",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w1",
+  "reviewKind": "primary",
+  "slug": "add-a-zero",
+  "demoVersion": 1,
+  "batchId": "round1-01",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/add-a-zero",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy and simple charts; no domain theory.",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "observations": [
+    "P: deliberately chose3.50for3.5\u00d710, alternatives35and30.5.",
+    "E: Stick a0on the end produced WRITTEN3.50 VALUE3.5; \u00d710 moved digits left and showed WRITTEN35.0 VALUE35; repeated \u00d710 showed350and disabled further multiplication.",
+    "R: Not quite: it was35. Add a zero only works for whole numbers, where shift leaves empty ones column; real rule times ten moves each digit up one place.",
+    "No-history preview banner present;4/4trust count ignored; inline screenshot1280x720 clearly shows place-value columns and digit shift."
+  ],
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Direct misconception commitment.",
+      "evidence": "P: deliberately chose3.50for3.5\u00d710, alternatives35and30.5.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Written form contrasts with numeric value, place shift visible.",
+      "evidence": "E: Stick a0on the end produced WRITTEN3.50 VALUE3.5; \u00d710 moved digits left and showed WRITTEN35.0 VALUE35; repeated \u00d710 showed350and disabled further multiplication.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Corrects actual wrong choice and states whole-number boundary.",
+      "evidence": "R: Not quite: it was35. Add a zero only works for whole numbers, where shift leaves empty ones column; real rule times ten moves each digit up one place.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Place columns and written/value counters clear.",
+      "evidence": "No-history preview banner present;4/4trust count ignored; inline screenshot1280x720 clearly shows place-value columns and digit shift.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 3,
+      "reason": "Reusable place shift rule plus whole-number exception.",
+      "evidence": "R: Not quite: it was35. Add a zero only works for whole numbers, where shift leaves empty ones column; real rule times ten moves each digit up one place.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "Modes not sufficiently checked.",
+      "evidence": "No-history preview banner present;4/4trust count ignored; inline screenshot1280x720 clearly shows place-value columns and digit shift.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Adding zero preserves value while multiplication changes it.",
+      "evidence": "E: Stick a0on the end produced WRITTEN3.50 VALUE3.5; \u00d710 moved digits left and showed WRITTEN35.0 VALUE35; repeated \u00d710 showed350and disabled further multiplication.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Digits shift across fixed place columns.",
+      "evidence": "No-history preview banner present;4/4trust count ignored; inline screenshot1280x720 clearly shows place-value columns and digit shift.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Two operation contrasts and repeated multiplication.",
+      "evidence": "E: Stick a0on the end produced WRITTEN3.50 VALUE3.5; \u00d710 moved digits left and showed WRITTEN35.0 VALUE35; repeated \u00d710 showed350and disabled further multiplication.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Everyday decimal multiplication misconception addressed.",
+      "evidence": "R: Not quite: it was35. Add a zero only works for whole numbers, where shift leaves empty ones column; real rule times ten moves each digit up one place.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 2,
+      "reason": "Representation and value distinguished with repeated place shift.",
+      "evidence": "E: Stick a0on the end produced WRITTEN3.50 VALUE3.5; \u00d710 moved digits left and showed WRITTEN35.0 VALUE35; repeated \u00d710 showed350and disabled further multiplication.",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "One supported place-value relation.",
+    "conceptualDemand": "Decimal notation needed but explained in column labels.",
+    "interfaceBurden": "Low; two labelled controls.",
+    "prerequisiteNovelty": "low: decimal place value supported",
+    "notationRepresentationBurden": "low: familiar decimal notation"
+  },
+  "whyCool": "Adding a zero changes3.5to3.50without changing value, while multiplying shifts the same digits into new columns.",
+  "caveat": "Only one starting number; no independent transfer prediction or reset tested.",
+  "notApprovedForServing": true,
+  "effort": "about2minutes",
+  "missingEvidence": [
+    "Accessibility modes",
+    "Learning outcomes"
+  ],
+  "fatalFindings": []
+}

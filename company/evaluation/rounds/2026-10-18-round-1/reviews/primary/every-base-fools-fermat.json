@@ -1,0 +1,104 @@
+{
+  "slug": "every-base-fools-fermat",
+  "demoVersion": 3,
+  "batchId": "round1-04",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/every-base-fools-fermat",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predicted about160of320 coprime bases give1 under a^560 mod561; prime rule and561=3\u00d711\u00d717 explicitly supplied.",
+    "Tested bases2,5,7:each Fermat gives1. Stronger chains2:263,166,67,1,1;5:23,529,463,67,1;7:241,298,166,67,1. Each exposes67squared=1 despite67not\u00b11mod561.",
+    "Reveal recalls latestbase7chain,asserts all320 Fermat successes,explains prime square-root property,and states10of320 still pass stronger test so repeatedrandom bases reduce miss.",
+    "1280x720light chain clear; finalprose clippedright."
+  ],
+  "complexity": {
+    "level": "demanding",
+    "reason": "Requires modulararithmetic,coprimality andexponent chains.",
+    "conceptualDemand": "Number-theoreticprimalityconditions.",
+    "interfaceBurden": "Simplepresetbuttons;notationdense."
+  },
+  "whyCool": "The final remainder looks perfectly prime, but the path of squarings contains a witness that gives the composite away.",
+  "caveat": "Onlythreebasesactuallytested;all320and10strongliars are revealclaims,notexhaustivebrowserverification. Specialistprerequisites andprosecutoff.",
+  "effort": "Prediction,threebasesunderboth tests,reveal,two screenshots.",
+  "provisionalBucket": "specialist-with-fix",
+  "bucketReason": "Strongalgorithmiccontrast;advancedprerequisitesandlayoutfix.",
+  "quality": {
+    "prediction": {
+      "score": 2,
+      "reason": "Precise specialist question but global320 answer not inferable from supplied prime-only implication without additional number theory.",
+      "evidence": "Prime=>congruence given,composite behavior asked.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 4,
+      "reason": "Multiple bases andtwo algorithms expose endpoint versusintermediate-chain distinction.",
+      "evidence": "Three differentchains allreveal67nontrivialroot.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Explains original trap usingactualchain andexplicit remainingfalse-negative limit.",
+      "evidence": "67not1or560;10of320strongliars claimed.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Numericalchain welllabeled; modularnotation/prerequisites andprosecutoff limit novicepath.",
+      "evidence": "Screenshots chainandlegend.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "General repeated-test strategy butnoothernumberapplication.",
+      "evidence": "Severalrandom bases for561.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Knowncomposite fools everycoprime Fermatbase.",
+      "evidence": "3testedbasesgive1;all320assertion.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Intermediate squaringchain reveals hiddenwitness.",
+      "evidence": "Red67before1.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Presetbaseandstrongertestbuttons supportcomparison.",
+      "evidence": "Bases2,5,7both tests.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Central probabilisticprimalitytest limitation.",
+      "evidence": "Endpointtestversusstrongertest.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 4,
+      "reason": "Necessary/sufficientimplication,modularroots andrandomizederror connected.",
+      "evidence": "AllFermatpasses,nontrivialroot,strongliarlimit.",
+      "confidence": "medium"
+    }
+  }
+}

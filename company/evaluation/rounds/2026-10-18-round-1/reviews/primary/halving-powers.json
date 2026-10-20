@@ -1,0 +1,132 @@
+{
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "w2d",
+  "reviewKind": "primary",
+  "slug": "halving-powers",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/halving-powers",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "identityPins": {
+    "slug": "halving-powers",
+    "domain": "math",
+    "status": "published",
+    "demoVersion": 1,
+    "metaPath": "src/demos/math/halving-powers/meta.json",
+    "metaSha256": "406acb284cfd13332d9dd3f9d9c4b551891477ae18d9106377ce49b15b251ee3",
+    "demoSha256": "2890fa359f8656eb2cc3cf7bcbd5f5f9251028f8aa9dc5873c63279b5fe68ae3",
+    "batchId": "round1-03",
+    "url": "http://127.0.0.1:3111/hq/personalization/review/halving-powers",
+    "primaryWorker": "w2",
+    "reviewKind": "primary",
+    "outputPath": "reviews/primary/halving-powers.json"
+  },
+  "date": "2026-10-18T19:11:18.899502+00:00",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "learnerStatement": "Simulated learner. This review finds problems; it is not evidence that anyone learned.",
+  "learnerBoundary": "Everyday numeracy, simple charts, comparison of numbers and familiar household objects; no domain-specific theory assumed.",
+  "viewport": {
+    "width": 1257,
+    "height": 936,
+    "theme": "dark"
+  },
+  "notApprovedForServing": true,
+  "effort": "Approximately2minutes active browser walkthrough",
+  "fatalFindings": [],
+  "missingEvidence": [
+    "Accessibility mode audit",
+    "Fresh application case"
+  ],
+  "observations": {
+    "prediction": "No-history banner confirmed; trust3/3 ignored. Selected0 and locked; positive powers8,4,2 supplied.",
+    "exploration": "Halve to2^0 yields2/2=1singleblock and unlocks reveal. Continue2^-1=1/2,2^-2=1/4; previous buttons disabled, no reset visible.",
+    "reveal": "Correct1; recaps actual1/2and1/4 extension. Explains dividing pattern, exponent multiplication2^0*2^3=2^3 and empty-product start1; any nonzero base condition explicitly excludes0.",
+    "visual": "Inline1257x936 dark screenshots inspected: proportional block stacks8,4,2,1,half,quarter; exponent labels and division arrows; zero-power block green. Full explanation legible."
+  },
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Zero versus1versus2 directly confronts no-factors intuition; pattern offers scaffolding.",
+      "evidence": "prediction",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Sequential halving visibly exposes zero and negative powers; narrow fixed path without reversible controls.",
+      "evidence": "exploration;visual",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 4,
+      "reason": "Links actual blocks/negative extension to pattern and exponent law, resolves zero intuition and excludeszero base.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 3,
+      "reason": "Sequential enabled control,lateststack and fraction labels clear throughout testeddesktop.",
+      "evidence": "exploration;visual",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Nonzero-base generalization and condition given; no concrete differentbase application.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No sufficient mode audit.",
+      "evidence": "Keyboard/focus/contrast/phone/zoom/motion unknown.",
+      "confidence": null
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "Committed0 overturned by singleblock then nonzero fractions.",
+      "evidence": "prediction;exploration",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Block heights and division arrows carry continuation across exponentzero.",
+      "evidence": "visual;exploration",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 1,
+      "reason": "Linear click-through continuation, no reversible experimentation.",
+      "evidence": "exploration",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 2,
+      "reason": "Concrete interpretation of zero/negative exponents for arithmetic.",
+      "evidence": "reveal",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Halving extension,exponent consistency,emptyproduct and excludedbase0.",
+      "evidence": "exploration;reveal",
+      "confidence": "medium"
+    }
+  },
+  "complexity": {
+    "level": "gentle",
+    "reason": "Core zero-power result follows one repeatedly supported halving relation; exponent-law proof optional explanation and negative powers supportedextension.",
+    "conceptualDemand": "gentle",
+    "interfaceBurden": "low: sequential buttons",
+    "conceptualChallenge": "gentle",
+    "prerequisiteNovelty": "moderate: zero/negative exponents introduced through familiar halving",
+    "notationRepresentationBurden": "moderate: superscripts,fractions and exponent-addition proof"
+  },
+  "whyCool": "The block pattern cannot jump to nothing: halving2leaves1and thenhalfandquarter.",
+  "caveat": "Fixedbase2and one-way controls; no fresh base case or resettested."
+}

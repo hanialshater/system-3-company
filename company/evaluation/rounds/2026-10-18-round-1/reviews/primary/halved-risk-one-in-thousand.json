@@ -1,0 +1,104 @@
+{
+  "slug": "halved-risk-one-in-thousand",
+  "demoVersion": 1,
+  "batchId": "round1-03",
+  "url": "http://127.0.0.1:3111/hq/personalization/review/halved-risk-one-in-thousand",
+  "schema": "catalogue-review-record-v1",
+  "reviewer": "root",
+  "reviewKind": "primary",
+  "sourceRevision": "2902594b67ebafee655c40e86a58aacdb210321d",
+  "status": "walkthrough-reviewed",
+  "coverage": {
+    "prediction": true,
+    "exploration": true,
+    "reveal": true
+  },
+  "notApprovedForServing": true,
+  "observations": [
+    "Predictionrisk2to1per1000,pillhalvesrisk,peoplehelped1/10/500; chose500.",
+    "Pillonatbaseline2=>1case1spared;20=>10cases10spared;200=>100cases100spared.",
+    "Reveal1per1000absolutebenefitversus50%relativecut,1000treatedfor1spared,baseline200samehalving100spared;fictionalpill.",
+    "Screenshot1000dotgrid smallbutcountreadouts large;actualrightedgeprosecutoff."
+  ],
+  "complexity": {
+    "level": "balanced",
+    "reason": "Basicarithmeticbutmustdistinguishrelativeandabsolutepercentagedenominators.",
+    "conceptualDemand": "Riskreductionpercentage actsonthebaseline,notwholecohort.",
+    "interfaceBurden": "Simplepresets;smallgridandclippedprose."
+  },
+  "whyCool": "Thesamehalvingcanmeanonepersonsparedor100,dependingonwhere theriskstarted.",
+  "caveat": "Fictionaltreatment/countillustration,riskperiodnotstated;notactualmedicalbenefitevidenceorguidance.",
+  "effort": "Prediction,pilltoggle,threebaselinecomparisons,reveal.",
+  "provisionalBucket": "solid",
+  "bucketReason": "Usefulriskliteracycontrast;timeframe/modelcontextandlayoutcouldbe clearer.",
+  "quality": {
+    "prediction": {
+      "score": 3,
+      "reason": "Clear relativepercentageversusabsolutecount alternatives.",
+      "evidence": "Half ofrisk versushalfof1000people.",
+      "confidence": "medium"
+    },
+    "interaction": {
+      "score": 3,
+      "reason": "Holdingrelativeeffectfixed,baselinepresets exposeabsolute-benefitchange.",
+      "evidence": "1/10/100sparedfor2/20/200baseline.",
+      "confidence": "medium"
+    },
+    "payoff": {
+      "score": 3,
+      "reason": "Explicitlyconnectsbaselineandbenefit plusnumbertreated.",
+      "evidence": "1000for1spared;fromwhat question.",
+      "confidence": "medium"
+    },
+    "clarity": {
+      "score": 2,
+      "reason": "Clearcountsbutactualrightedgecutoff;tinypopulationmarkers.",
+      "evidence": "Screenshottinygridandclippedreveal.",
+      "confidence": "medium"
+    },
+    "transfer": {
+      "score": 2,
+      "reason": "Claim-evaluationprinciple offeredbutnewtreatment/contextproblem notpracticed.",
+      "evidence": "Samefictionalpill acrossbaselinepresets.",
+      "confidence": "medium"
+    },
+    "accessibility": {
+      "score": null,
+      "reason": "No systematic assistive-mode assessment.",
+      "evidence": "Visual browser walkthrough only.",
+      "confidence": "low"
+    }
+  },
+  "experience": {
+    "surprise": {
+      "score": 3,
+      "reason": "50%relativebenefit canspareonlyoneofathousand.",
+      "evidence": "1sparedversus500prediction.",
+      "confidence": "medium"
+    },
+    "visualExplanation": {
+      "score": 3,
+      "reason": "Redcases/greenrings andcounts distinguishaffectedpopulation.",
+      "evidence": "Baseline200visual shows100spared.",
+      "confidence": "medium"
+    },
+    "playfulness": {
+      "score": 2,
+      "reason": "Togglepillandbaselinepresets.",
+      "evidence": "Fourcontrols.",
+      "confidence": "medium"
+    },
+    "practicalValue": {
+      "score": 3,
+      "reason": "Interpretingriskclaims centraltoexercise.",
+      "evidence": "Askstartingrisk,notjustrelativecut.",
+      "confidence": "medium"
+    },
+    "depth": {
+      "score": 3,
+      "reason": "Relativecut,absolutechange,andnumbertreated linked.",
+      "evidence": "Threebaselines and1000forone calculation.",
+      "confidence": "medium"
+    }
+  }
+}
