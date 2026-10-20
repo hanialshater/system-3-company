@@ -221,7 +221,9 @@ test("trace: every served revisit's row says why it is due (rule, wait, elapsed)
 test("every existing policy gives byte-identical compose output and episode traces to 4e13ef1 (gam at model-v0.2.2)", () => {
   const golden = JSON.parse(readFileSync(GOLDEN_FILE, "utf8"));
   assert.equal(golden.modelVersion, "model-v0.2.2");
-  assert.equal(M.MODEL_VERSION, "model-v0.2.2", "MODEL_VERSION moved; the GAM must stay as frozen");
+  // model-v0.3.0 (additive: COMPOSER_SESSION only) moved MODEL_VERSION; the phase A policies still read model-v0.2.2's
+  // definitions, so the pin is now PHASE_A_MODEL_VERSION plus composer-session.test.mjs's c2 GAM-fingerprint check.
+  assert.equal(M.PHASE_A_MODEL_VERSION, "model-v0.2.2", "PHASE_A_MODEL_VERSION moved; the GAM must stay as frozen");
   const now = goldenHashes(cat);
   assert.deepEqual(Object.keys(now), Object.keys(golden.hashes), "the set of ordering policies changed");
   for (const p of Object.keys(golden.hashes)) assert.deepEqual(now[p], golden.hashes[p], `${p}: output changed`);

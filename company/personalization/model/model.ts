@@ -31,7 +31,16 @@
  * serving code must never read them. self-check.mjs fails if this file mentions that module.
  */
 
-export const MODEL_VERSION = "model-v0.2.2" as const;
+export const MODEL_VERSION = "model-v0.3.0" as const;
+/**
+ * model-v0.3.0 is additive: it adds COMPOSER_SESSION (section 4b) and changes nothing that the phase A
+ * policies read (NEED_SHAPES, DAMPENER, COMPOSER, fingerprintFrom, detect are byte-identical to model-v0.2.2).
+ * Every phase A policy (default-order, draft-rules, gam and its ablations, random, epsilon-greedy) therefore
+ * still runs "the GAM at model-v0.2.2" (pre-commitment 1, criterion 2), and its trace records this version, so
+ * its output stays byte-identical to sim/policy-golden.json. Only the session policies record MODEL_VERSION.
+ * review-timing.test.mjs pins this string and the c2 harness's GAM fingerprint over COMPOSER and the curves.
+ */
+export const PHASE_A_MODEL_VERSION = "model-v0.2.2" as const;
 export const DECISION = "company/decisions/2026-10-16-personalization-model-v0.md" as const;
 
 /** The pilot set (response §3, phase A). Life Hacks is out: 15/200 lessons have prerequisites.
@@ -507,6 +516,134 @@ export type ComposeInput = {
 export type ComposeFn = (input: ComposeInput, model: typeof COMPOSER) => Pick[];
 
 // ---------------------------------------------------------------------------------------------
+// 4b. The session composer (model-v0.3.0): a faithful port of EDP's compose(), BESIDE composer-v0.2.
+//     Founder decision company/decisions/2026-10-20-founder-edp-faithful-personalization.md.
+//     Code: sim/composer-session.ts. Build note: company/personalization/policies/gam-session-build-note.md.
+//     Nothing above this section changed in model-v0.3.0; the phase A policies never read this block.
+// ---------------------------------------------------------------------------------------------
+
+/**
+ * The only terms a session pick's score may contain. As ComposerTermName, there is no engagement
+ * term (founder Q1; AMD-008 X1). `cov:<need>` is EDP's on_cov term; `slotDecay` and `attentionCost`
+ * are EDP's position penalty and attention budget. surprise and novelty stay gated (COMPOSER gates).
+ */
+export type SessionTermName =
+  | "base" | `need:${Need}` | `cov:${Need}` | "surprise" | "novelty" | "slotDecay" | "attentionCost";
+
+/** The numbers the session score reads. Per need (not per lesson: addr stays relational, brief response C3). */
+export type SessionCoefficients = {
+  /** weight on the default-order rank (1 for the next default card, falling linearly to 0); EDP's `base`. */
+  base: number;
+  /** onRem[n] × remaining[n] × addr[lesson, n]; EDP's on_rem. */
+  onRem: Record<Need, number>;
+  /** onCov[n] × coverage[n] × addr[lesson, n]; EDP's on_cov. > 0 complementarity, < 0 overlap penalty. */
+  onCov: Record<Need, number>;
+  /** − slotDecay × slot, charged to a departure from the default card only; EDP's slot_decay. */
+  slotDecay: number;
+  /** − attentionCost, charged to a departure only; and a departure needs need-term gain > attentionCost. EDP's cost. */
+  attentionCost: number;
+};
+
+/** One v3 edit, EDP's EDITS_V3 row shape [widget, path, from, to, reason] with a need (or "session") for the widget. */
+export type SessionEdit = [
+  target: Need | "session",
+  path: "onRem" | "onCov" | "base" | "slotDecay" | "attentionCost",
+  from: number,
+  to: number,
+  reason: string,
+];
+
+export const COMPOSER_SESSION = {
+  version: "composer-v0.3-session",
+  /**
+   * Serving mode (simulator only; nothing is served): compose a session of `sessionSize` new cards,
+   * serve them in order, and recompose after `sessionSize` cards or at the end of the day, whichever
+   * comes first. Due revisits still come first (the simulator serves them before any new card).
+   * Why this differs from COMPOSER.servingMode "compose-one-recompute": within a session, needs fall
+   * by ASSUMED coverage (applyAddr on the queued picks), not by evidence. A wrong prediction on card 1
+   * cannot change cards 2..N; only the next session sees it. That is exactly the O2 circularity the
+   * phase A contract removed: remaining/coverage measure what the model believes it addressed, not
+   * what the learner learned. It is back on purpose (founder decision 2026-10-20), it is scored by the
+   * independent learner like any candidate, and the coverage diagnostics it makes possible are
+   * labelled "circular: diagnostic only" (COMPOSER_SESSION.circularLabel).
+   */
+  servingMode: "compose-session-serve-in-order" as const,
+  /** guess: 5 cards, about 5 minutes of the feed at 60 s a card; EDP fills 6 widgets. */
+  sessionSize: 5,
+  recompute: "after sessionSize served new cards, or at the end of the day",
+  circularLabel: "circular: diagnostic only" as const,
+  /**
+   * v1: the hand-set start. Each number has a reason in `why` with the word "guess" while it is one;
+   * applied-scientist-personalization reviews them (build note §5).
+   */
+  v1: {
+    base: 1.0,
+    onRem: { repair: 0.5, build: 0.4, breadth: 0.35, stretch: 0.3 },
+    onCov: { repair: -0.2, build: -0.1, breadth: -0.3, stretch: -0.3 },
+    slotDecay: 0.02,
+    attentionCost: 0.1,
+  } satisfies SessionCoefficients as SessionCoefficients,
+  why: {
+    "base": "guess: same as COMPOSER.weights.defaultRank (1.0), so the default order is the base and a departure must earn its place",
+    "onRem.repair": "guess: same as COMPOSER.weights.onRem.repair, so v1 differs from gam only by the session machinery",
+    "onRem.build": "guess: same as COMPOSER.weights.onRem.build, so v1 differs from gam only by the session machinery",
+    "onRem.breadth": "guess: same as COMPOSER.weights.onRem.breadth, so v1 differs from gam only by the session machinery",
+    "onRem.stretch": "guess: same as COMPOSER.weights.onRem.stretch, so v1 differs from gam only by the session machinery",
+    "onCov.repair": "guess: mild overlap: a second repair card on a need the session already covered adds less; EDP v1 gives every primary need a negative on_cov",
+    "onCov.build": "guess: mildest overlap: two build steps in a row are a path, not a repeat, so the penalty is small",
+    "onCov.breadth": "guess: strong overlap: one card from another domain meets breadth for a session; more is a switch, not breadth",
+    "onCov.stretch": "guess: strong overlap: one stretch card per session (O8: stretch before readiness is the riskiest move)",
+    "slotDecay": "guess: a departure needs +.02 more per slot (+.08 by slot 5), because later slots rest on assumed coverage, not evidence (O2)",
+    "attentionCost": "guess: .1 equals COMPOSER.moveThreshold, so at slot 0 with nothing covered the move bar is phase A's; EDP's cost is .06",
+  } as Record<string, string>,
+  /**
+   * v3 = applyEdits(v1, edits): EDP's EDITS_V3 mechanism. Short on purpose; every reason is a guess
+   * until applied-scientist-personalization reviews it. No edit was chosen from a simulator result.
+   */
+  edits: [
+    ["build", "onCov", -0.1, 0.3, "guess: complementarity, EDP's chain synergies: a second build lesson extends the chain the first one opened (successor of a recalled concept)"],
+    ["repair", "onCov", -0.2, 0.15, "guess: complementarity: a second lesson on a missed concept's prerequisite chain reinforces the first (repair is rarely one card)"],
+    ["breadth", "onCov", -0.3, -0.5, "guess: stronger overlap penalty: two other-domain cards in one session is a domain switch, not breadth"],
+  ] as SessionEdit[],
+  /** Ablation: v1 with every cov:* term scored 0 (still shown in the trace as 0), so on_cov's effect can be read. */
+  ablations: { "no-cov": ["cov:repair", "cov:build", "cov:breadth", "cov:stretch"] as SessionTermName[] },
+  /**
+   * What the session composer reads from the phase A block, unchanged: COMPOSER.addr (relational addr),
+   * readiness, the surprise and novelty gates and weights (both gates shut, so both terms are 0), and every
+   * hard constraint (due revisits first, default when dampened or off, the 1-in-3 anti-bubble floor counted
+   * across history and the session's own moves, stretch readiness, stated subjects / less-of-this filter).
+   * COMPOSER.moveThreshold is NOT read: the attention budget replaces it (a departure must beat the default
+   * card after paying attentionCost + slotDecay × slot, and its need-term gain must exceed attentionCost).
+   */
+  readsFromComposer: ["addr", "readiness", "weights.surprise", "weights.novelty", "surpriseGate", "noveltyGate", "constraints"],
+};
+
+/** Pure: v1 + edits → a new coefficient object (EDP's applyEdits). Throws if an edit's `from` is stale. */
+export function applyEdits(base: SessionCoefficients, edits: SessionEdit[]): SessionCoefficients {
+  const m: SessionCoefficients = JSON.parse(JSON.stringify(base));
+  for (const [target, path, from, to] of edits) {
+    if (path === "onRem" || path === "onCov") {
+      if (target === "session") throw new Error(`edit ${path}: needs a need, not "session"`);
+      if (m[path][target] !== from) throw new Error(`edit ${target}.${path}: from ${from} but the value is ${m[path][target]}`);
+      m[path][target] = to;
+    } else {
+      if (target !== "session") throw new Error(`edit ${path}: a scalar term takes target "session"`);
+      if (m[path] !== from) throw new Error(`edit ${path}: from ${from} but the value is ${m[path]}`);
+      m[path] = to;
+    }
+  }
+  return m;
+}
+
+export type SessionVariant = "v1" | "v3";
+/** The session coefficients by variant. v3 is computed, never hand-copied, so the edit table is the only diff. */
+export function sessionCoefficients(variant: SessionVariant): SessionCoefficients {
+  if (variant === "v1") return JSON.parse(JSON.stringify(COMPOSER_SESSION.v1));
+  if (variant === "v3") return applyEdits(COMPOSER_SESSION.v1, COMPOSER_SESSION.edits);
+  throw new Error(`unknown session variant ${variant}`);
+}
+
+// ---------------------------------------------------------------------------------------------
 // 5. The learning objective the simulator scores (response §2.5). The pass criterion is
 //    W-1496's (personalization org, pending role approval) and is written before the simulator runs.
 // ---------------------------------------------------------------------------------------------
@@ -568,6 +705,26 @@ export function checkModel(): string[] {
     if (INPUT_PRIVACY[i] !== "not-personal" && !INPUT_PRIVACY_CONDITIONS[i]?.length) errs.push(`${i}: personal input with no ruling conditions`);
     if (INPUT_PRIVACY[i] === "not-personal" && INPUT_PRIVACY_CONDITIONS[i]?.length) errs.push(`${i}: not-personal input carries conditions`);
   }
+  // model-v0.3.0: the session composer block (section 4b).
+  const S = COMPOSER_SESSION;
+  if (!Number.isInteger(S.sessionSize) || S.sessionSize < 1 || S.sessionSize > 12) errs.push("session: sessionSize must be an integer 1..12");
+  const coeffNumbers = (c: SessionCoefficients): [string, number][] => [["base", c.base], ["slotDecay", c.slotDecay], ["attentionCost", c.attentionCost],
+    ...NEEDS.map((n): [string, number] => [`onRem.${n}`, c.onRem[n]]), ...NEEDS.map((n): [string, number] => [`onCov.${n}`, c.onCov[n]])];
+  for (const [k, v] of coeffNumbers(S.v1)) {
+    if (!Number.isFinite(v)) errs.push(`session v1.${k}: not a number`);
+    if (!S.why[k] || S.why[k].length < 20) errs.push(`session v1.${k}: needs a written reason`);
+  }
+  let v3: SessionCoefficients | null = null;
+  try { v3 = sessionCoefficients("v3"); } catch (e) { errs.push(`session edits: ${(e as Error).message}`); }
+  for (const c of [S.v1, ...(v3 ? [v3] : [])]) {
+    if (!(c.base > 0)) errs.push("session: base must be > 0 (the default order is the base)");
+    if (c.slotDecay < 0 || c.attentionCost < 0) errs.push("session: slotDecay and attentionCost are costs (>= 0)");
+    for (const n of NEEDS) {
+      if (!(c.onRem[n] >= 0)) errs.push(`session onRem.${n}: must be >= 0`);
+      if (!(c.onCov[n] >= -1 && c.onCov[n] <= 1)) errs.push(`session onCov.${n}: must be in -1..1`);
+    }
+  }
+  for (const e of S.edits) if (e.length !== 5 || e[4].length < 20) errs.push(`session edit ${e[0]}.${e[1]}: needs [target, path, from, to, reason]`);
   return errs;
 }
 
@@ -593,6 +750,8 @@ export function inspect() {
     version: MODEL_VERSION, decision: DECISION, pilot: PILOT_DOMAINS,
     signals: (Object.keys(SIGNAL_INPUTS) as (keyof typeof SIGNAL_INPUTS)[]).map((s) => ({ signal: s, inputs: SIGNAL_INPUTS[s], privacy: signalPrivacy(s) })),
     curves: curveViews(), composer: COMPOSER, objective: OBJECTIVE, policies: POLICIES,
+    // model-v0.3.0: the session composer beside composer-v0.2 (v1, v3 = applyEdits(v1, edits), the edit table).
+    composerSession: { ...COMPOSER_SESSION, coefficients: { v1: sessionCoefficients("v1"), v3: sessionCoefficients("v3") } },
     forbiddenInputs: FORBIDDEN_INPUTS,
     privacyRuling: PRIVACY_RULING,
     inputPrivacy: (Object.keys(INPUT_PRIVACY) as RawInput[]).map((i) => ({ input: i, status: INPUT_PRIVACY[i], conditions: INPUT_PRIVACY_CONDITIONS[i] })),

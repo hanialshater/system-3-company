@@ -4,7 +4,7 @@
 //   node company/personalization/model/sim/policy-golden.mjs            # print the current hashes
 //   node company/personalization/model/sim/policy-golden.mjs --write    # rewrite policy-golden.json (see rule below)
 //
-// For each policy in simulate.mjs ALL_POLICIES (default-order, draft-rules, gam at model-v0.2.2, the GAM
+// For each policy in simulate.mjs PHASE_A_POLICIES (was ALL_POLICIES until model-v0.3.0 added the session policies; default-order, draft-rules, gam at model-v0.2.2, the GAM
 // ablations, random, epsilon-greedy) it hashes, on fixed inputs:
 //   (a) the full compose output (picks + slot traces) of the policy's compose function over fixed synthetic
 //       histories on the real pilot catalog, 6 cards per case, recomputing after each card;
@@ -20,7 +20,7 @@ import { fileURLToPath } from "node:url";
 import * as M from "../model.ts";
 import { composeExplained, gamCompose, defaultOrderPolicy, randomPolicy, draftRulesPolicy } from "./composer.ts";
 import { loadPinnedCatalog } from "./catalog-pin.mjs"; // pinned catalogue (2026-10-18 note)
-import { runEpisode, ALL_POLICIES, GAM_VARIANTS, rng } from "./simulate.mjs";
+import { runEpisode, PHASE_A_POLICIES, GAM_VARIANTS, rng } from "./simulate.mjs";
 import { PERSONAS } from "../personas.ts";
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -57,7 +57,7 @@ function composeFor(policy, input, cat, rand) {
 export function goldenHashes(cat = loadPinnedCatalog()) {
   const out = {};
   const personas = PERSONAS.slice(0, 2);
-  for (const policy of ALL_POLICIES) {
+  for (const policy of PHASE_A_POLICIES) { // model-v0.3.0: the session policies are not pinned here (composer-session.test.mjs)
     const compose = [];
     for (const c of cases(cat)) {
       const rand = rng(fnv(`${c.id}|${policy}`));
