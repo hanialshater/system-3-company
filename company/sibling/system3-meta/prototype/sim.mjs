@@ -24,7 +24,8 @@ export const PARAMS = {
   bookTokens: 20_000, recordProb: 0.6, // [a] manual bookkeeping per run; [m] ~60% of runs recorded (EXP-009)
   sittings: [9 * 60, 13 * 60, 18 * 60], syncMeanMin: 180, pollTokensPerHour: 2_000, founderDeny: 0.05, // [a]
   wakeFrom: 8 * 60, wakeTo: 20 * 60,
-  iterate: false, wbrEveryMin: 3.5 * 24 * 60, maxAdds: 2, // P8: WBR reads org gaps and proposes staff
+  iterate: false, wbrEveryMin: 3.5 * 24 * 60, maxAdds: 2, wbrWaitMin: 60, // P8: WBR reads org gaps and proposes staff
+  recordLostUsage: false, // iteration 2a: room recover records the harness usage of a run that left without leave
 };
 
 const DAY = 24 * 60;
@@ -102,6 +103,7 @@ export function simulate({ config, seed = 1, params = {} }) {
       at(crashAt, () => {
         truth.crashes++;
         truth.tokens += tokens * 0.5;
+        lostSpend.set(run, tokens * 0.5);
         free();
         const crashed = { at: clock.now(), msg: m.id, order: o.id, stage };
         if (!config.leases) at(clock.now() + expo(P.noticeMeanMin), () => { rooms.runs.get(run).state = "lost"; log.add({ type: "noticed-dead", run }); recoverAt(crashed); launch(m.id); });
@@ -114,6 +116,7 @@ export function simulate({ config, seed = 1, params = {} }) {
   }
 
   const pendingCrash = [];
+  const lostSpend = new Map();
   const recoverAt = (c) => truth.recovered.push(clock.now() - c.at);
 
   function item(o) { return truth.items.get(o.id); }
@@ -221,7 +224,7 @@ export function simulate({ config, seed = 1, params = {} }) {
 
   // ---- lease recovery sweep (only meaningful with leases)
   if (config.leases) for (let t = 5; t < P.days * DAY; t += 5) at(t, () => {
-    const lost = rooms.recover();
+    const lost = rooms.recover({ usage: P.recordLostUsage ? (run) => lostSpend.get(run) ?? null : null });
     for (const x of lost) {
       const c = pendingCrash.find((c) => c.msg === x.msg);
       if (c) { recoverAt(c); pendingCrash.splice(pendingCrash.indexOf(c), 1); }
@@ -235,7 +238,7 @@ export function simulate({ config, seed = 1, params = {} }) {
     let since = 0;
     for (let t = P.wbrEveryMin; t < P.days * DAY; t += P.wbrEveryMin) at(t, () => {
       const rid = rituals.open("wbr", { agenda: ["efficiency", "flow status --stuck", "org gaps"] });
-      const g = org.gaps(log.events, { since, waitP50Min: 60 });
+      const g = org.gaps(log.events, { since, waitP50Min: P.wbrWaitMin });
       for (const inv of rituals.open_.get(rid).invitees) if (inv !== "cos" && R() < 0.8) rituals.position(rid, { by: inv, position: "ok" });
       const top = g.overloaded[0];
       if (top && truth.adds.filter((a) => a.pool === top.pool).length < P.maxAdds) {

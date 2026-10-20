@@ -457,8 +457,10 @@ export class Rooms {
     return o;
   }
 
-  /** Lease expiry: the run left without leave; its order goes back to the queue. */
-  recover() {
+  /** Lease expiry: the run left without leave; its order goes back to the queue. `usage(run)` is the harness's own
+   *  token count for the run (it reports usage for failed runs too); with autoBookkeeping it is recorded here, since
+   *  no leave will ever record it. */
+  recover({ usage = null } = {}) {
     const lost = [];
     for (const x of this.runs.values()) {
       if (x.state !== "running") continue;
@@ -467,6 +469,8 @@ export class Rooms {
         x.state = "lost";
         this.mailbox.release(x.msg, { run: x.run, reason: "lease expired" });
         this.log.add({ type: "left-without-leave", run: x.run, role: x.role, order: x.order, after: this.clock.now() - x.entered });
+        const n = usage?.(x.run);
+        if (this.config.autoBookkeeping && n != null) this.log.add({ type: "usage", run: x.run, role: x.role, tokens: n, auto: true, lost: true });
         lost.push(x);
       }
     }

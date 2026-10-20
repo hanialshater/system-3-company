@@ -67,3 +67,38 @@ Each change is its own arm, on the iteration-1 engine:
 | I2-2 | 2b: approval wait 2.4 h → ≤ 1.6 h; lead p50 ≤ 4.4 h; founder interactions/item rise to ≤ 0.30 | approval wait > 2.0 h, or founder/item > 0.40 |
 | I2-3 | 2c: the WBR adds a release role first; ship wait 0.64 h → ≤ 0.35 h | no release role added, or ship wait > 0.5 h |
 | I2-4 | 2d: lead p50 ≤ 4.0 h at ≤ 480k tokens/item | lead p50 > 4.5 h, or tokens/item > 500k |
+
+## Iteration 2: results (20 seeds)
+
+| arm | k tok/item | lead p50 h | lead p90 h | founder/item | escaped/item | measure error | WBR adds (mean per run) |
+|---|---|---|---|---|---|---|---|
+| engine (iteration 1) | 471 | 5.1 | 9.3 | 0.16 | 0.061 | −3% | none |
+| 2a measure fix | 471 | 5.1 | 9.3 | 0.16 | 0.061 | 0.0% | none |
+| 2b 5 sittings | 474 | 4.4 | 6.3 | 0.25 | 0.053 | −3% | none |
+| 2c WBR at 30 min | 474 | 4.7 | 9.0 | 0.16 | 0.059 | −3% | release 1.0, checker 1.0, builder 0.8 |
+| 2d all three | 466 | 3.6 | 5.3 | 0.22 | 0.055 | 0.0% | checker 1.0, builder 1.4, release 0.1 |
+
+Stage waits (h): 2b approval 2.36 → 1.03, ship 0.64 → 0.32 (smaller batches per sitting). 2c check 0.64 → 0.34, ship 0.64 → 0.45. 2d build 0.37, check 0.30, approval 1.05, ship 0.41.
+
+| # | Prediction | Result | Verdict |
+|---|---|---|---|
+| I2-1 | 2a error within ±1% | 0.0% | right |
+| I2-2 | 2b approval ≤ 1.6 h, p50 ≤ 4.4 h, founder/item ≤ 0.30 | 1.03 h, 4.4 h, 0.25 | right (p50 on the bound) |
+| I2-3 | 2c adds a release role first; ship wait ≤ 0.35 h | release first in 12 of 20 seeds (checker 6, builder 2); ship wait 0.45 h | half right (bound missed, not wrong: ≤ 0.5) |
+| I2-4 | 2d p50 ≤ 4.0 h at ≤ 480k tokens/item | 3.6 h at 466k | right |
+
+**What it shows:**
+- The measurement gap closes completely once lost runs record the harness's count. In the real company that means the harness's own usage, not an agent's report.
+- **More sittings trade founder time for speed:** +0.09 interactions per item buys −0.7 h p50 and −3 h p90. That is a founder decision, not an engine one.
+- With a threshold below real waits, `org gaps` finds the queue that batching created (release) and then the checker. The WBR's staffing rule then works end to end: ritual, proposal, founder queue, approval, onboarding, a new worker taking work. Added staff cost about nothing in tokens, because tokens follow work, not headcount. Idle capacity has no cost in this model, which is too kind: see the limits below.
+- With all three changes: p50 3.6 h, against 10.0 h for the current design. Lead time is now about 1 h of work plus about 0.6 rework loops per item plus waits.
+
+## Iteration 3: committed predictions (before the run)
+
+**3a code-first checking:** test1 catches 70% of defects instead of 50%. This models moving more review into code (the lesson-lint idea: layout fit, copy tells, overlap, format rules). The base is 2d.
+
+| # | Prediction | would_be_wrong_if |
+|---|---|---|
+| I3-1 | rework loops/item fall by ≥ 15% (from 0.58) | fall by < 5% |
+| I3-2 | tokens/item fall by ≥ 4% (from 466k) | fall by < 1% or rise |
+| I3-3 | escaped defects/item do not rise (≤ 0.055) | > 0.065 |
