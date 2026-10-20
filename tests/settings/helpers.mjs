@@ -89,6 +89,7 @@ export function deps(store, over = {}) {
     lines,
     enabled: () => true,
     userId: async () => "u-fake-1",
+    accountTag: () => "fake-account-tag",
     store,
     catalog: () => FAKE,
     log: (l) => lines.push(l),
@@ -98,7 +99,7 @@ export function deps(store, over = {}) {
 
 export const URL_ = "https://s3c.example/api/account/settings";
 export function put(body, { origin = "https://s3c.example", headers = {} } = {}) {
-  const h = { "content-type": "application/json", ...headers };
+  const h = { "content-type": "application/json", "x-s3c-account": "fake-account-tag", ...headers };
   if (origin) h.origin = origin;
   return new Request(URL_, { method: "PUT", headers: h, body: typeof body === "string" ? body : JSON.stringify(body) });
 }

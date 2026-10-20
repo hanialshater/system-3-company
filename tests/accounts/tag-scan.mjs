@@ -13,6 +13,7 @@
 import ts from "typescript";
 
 export const CLIENT_FILE = "src/lib/account-client.ts";
+export const PREFERENCES_CLIENT_FILE = "src/components/account/preferences-client.ts";
 /** The only routes a request may carry the tag to (PC10 writes). Exact paths, or a prefix followed by one slug. */
 export const WRITE_ROUTES = { exact: ["/api/account/progress", "/api/account/merge", "/api/account/delete"], prefix: ["/api/account/saves/", "/api/account/likes/"] };
 
@@ -54,6 +55,19 @@ function allowedRoute(arg) {
 
 /** The `headers: boundHeaders(...)` node of an allowed write, or null. */
 function allowedHeaderNode(file, call) {
+  if (file === PREFERENCES_CLIENT_FILE && ts.isIdentifier(call.expression) && call.expression.text === "fetch") {
+    const [url, init] = call.arguments;
+    if (!url || !ts.isStringLiteralLike(url) || url.text !== "/api/account/settings" || !init || !ts.isObjectLiteralExpression(init)) return null;
+    const property = (name) => init.properties.find(p => ts.isPropertyAssignment(p) && (ts.isIdentifier(p.name) || ts.isStringLiteralLike(p.name)) && p.name.text === name);
+    const method = property("method")?.initializer;
+    const headers = property("headers")?.initializer;
+    if (!method || !ts.isStringLiteralLike(method) || method.text !== "PUT" || !headers || !ts.isObjectLiteralExpression(headers) || headers.properties.length !== 2) return null;
+    const entries = headers.properties;
+    const content = entries.find(p => ts.isPropertyAssignment(p) && ts.isStringLiteralLike(p.name) && p.name.text === "content-type");
+    const binding = entries.find(p => ts.isPropertyAssignment(p) && ts.isStringLiteralLike(p.name) && p.name.text === "x-s3c-account");
+    if (content && ts.isStringLiteralLike(content.initializer) && content.initializer.text === "application/json" && binding && ts.isIdentifier(binding.initializer) && binding.initializer.text === "tag") return headers;
+    return null;
+  }
   if (file !== CLIENT_FILE || !ts.isIdentifier(call.expression) || call.expression.text !== "fetch") return null;
   const [url, init] = call.arguments;
   if (!allowedRoute(url) || !init || !ts.isObjectLiteralExpression(init)) return null;

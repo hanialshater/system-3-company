@@ -240,11 +240,11 @@ export async function exportAccount(q: Query, userId: string) {
   if (await tableExists(q, "lesson_save")) file.saves = await listMarks(q, "lesson_save", userId);
   // The personalization lane's settings table (origin/perso-m1, its own migration). Exported as stored if present.
   if (await tableExists(q, "settings")) {
-    const { rows } = await q("SELECT personalization_on, subjects, less_of FROM settings WHERE user_id = $1", [userId]);
+    const { rows } = await q("SELECT personalization_on, subjects, less_of, to_jsonb(s)->'experiences' AS experiences, to_jsonb(s)->>'challenge' AS challenge FROM settings s WHERE user_id = $1", [userId]);
     const r = rows[0];
     file.settings = r
-      ? { personalizationOn: r.personalization_on === true || r.personalization_on === false ? r.personalization_on : null, subjects: r.subjects ?? [], lessOf: r.less_of ?? [] }
-      : { personalizationOn: null, subjects: [], lessOf: [] };
+      ? { personalizationOn: r.personalization_on === true || r.personalization_on === false ? r.personalization_on : null, subjects: r.subjects ?? [], lessOf: r.less_of ?? [], experiences: r.experiences ?? [], challenge: r.challenge ?? null }
+      : { personalizationOn: null, subjects: [], lessOf: [], experiences: [], challenge: null };
   }
   return file;
 }

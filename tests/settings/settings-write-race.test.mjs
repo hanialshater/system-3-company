@@ -34,26 +34,26 @@ async function interleave(store, first, second) {
 
 test("D2a: a subjects-only PUT that started before an off and lands after it does not undo the off", async () => {
   const store = memoryStore();
-  store.rows.set(U, { personalizationOn: true, subjects: ["math"], lessOf: ["domain:cs"] });
+  store.rows.set(U, { experiences: [], challenge: null, personalizationOn: true, subjects: ["math"], lessOf: ["domain:cs"] });
   const { late, early } = await interleave(store, { subjects: ["history"] }, { personalizationOn: false });
   assert.equal(early.status, 200);
   assert.equal(late.status, 200);
-  assert.deepEqual(store.rows.get(U), { personalizationOn: false, subjects: ["history"], lessOf: ["domain:cs"] });
+  assert.deepEqual(store.rows.get(U), { experiences: [], challenge: null, personalizationOn: false, subjects: ["history"], lessOf: ["domain:cs"] });
   assert.equal((await body(late)).settings.personalizationOn, false, "B's answer shows the off, so the device takes it");
 });
 
 test("D2a: a merge (device on) that lands after an off does not undo it (G3 inside the one write)", async () => {
   const store = memoryStore();
-  store.rows.set(U, { personalizationOn: true, subjects: ["math"], lessOf: [] });
+  store.rows.set(U, { experiences: [], challenge: null, personalizationOn: true, subjects: ["math"], lessOf: [] });
   await interleave(store, { mode: "merge", personalizationOn: true, subjects: ["cs"] }, { personalizationOn: false });
-  assert.deepEqual(store.rows.get(U), { personalizationOn: false, subjects: ["math"], lessOf: [] });
+  assert.deepEqual(store.rows.get(U), { experiences: [], challenge: null, personalizationOn: false, subjects: ["math"], lessOf: [] });
 });
 
 test("D2a: the other order too, and a merge racing the first-ever off on an account with no row", async () => {
   const a = memoryStore();
-  a.rows.set(U, { personalizationOn: true, subjects: [], lessOf: [] });
+  a.rows.set(U, { experiences: [], challenge: null, personalizationOn: true, subjects: [], lessOf: [] });
   await interleave(a, { personalizationOn: false }, { subjects: ["cs"] }); // the off is the one held
-  assert.deepEqual(a.rows.get(U), { personalizationOn: false, subjects: ["cs"], lessOf: [] });
+  assert.deepEqual(a.rows.get(U), { experiences: [], challenge: null, personalizationOn: false, subjects: ["cs"], lessOf: [] });
 
   const b = memoryStore();
   await interleave(b, { mode: "merge", personalizationOn: true, subjects: ["cs"] }, { personalizationOn: false });
@@ -63,7 +63,7 @@ test("D2a: the other order too, and a merge racing the first-ever off on an acco
 
 test("D2a: the handler writes without reading first; the store receives only the keys the request carried", async () => {
   const store = memoryStore();
-  store.rows.set(U, { personalizationOn: true, subjects: ["math"], lessOf: [] });
+  store.rows.set(U, { experiences: [], challenge: null, personalizationOn: true, subjects: ["math"], lessOf: [] });
   await handleSettingsPut(put({ subjects: ["cs"] }), deps(store));
   assert.equal(store.calls.get, 0, "no read before the write");
   assert.deepEqual(store.calls.put[0].patch, { mode: "set", subjects: ["cs"] }, "personalizationOn is not sent to the store");
@@ -71,7 +71,7 @@ test("D2a: the handler writes without reading first; the store receives only the
 
 test("control: the old read-modify-write, with the same interleaving, loses the false", async () => {
   const store = memoryStore();
-  store.rows.set(U, { personalizationOn: true, subjects: ["math"], lessOf: [] });
+  store.rows.set(U, { experiences: [], challenge: null, personalizationOn: true, subjects: ["math"], lessOf: [] });
   // B reads, as the old handler did, then computes the whole row from that read.
   const stale = await store.get(U);
   const fullRow = { mode: "set", ...S.applyWrite(stale, { mode: "set", subjects: ["history"] }) };
@@ -84,17 +84,17 @@ test("control: the old read-modify-write, with the same interleaving, loses the 
 });
 
 test("applyWrite agrees with the sequential rules it replaced (set keeps unsent keys; merge per G3; D1)", () => {
-  const on = { personalizationOn: true, subjects: ["math"], lessOf: ["domain:cs"] };
+  const on = { experiences: [], challenge: null, personalizationOn: true, subjects: ["math"], lessOf: ["domain:cs"] };
   assert.deepEqual(S.applyWrite(on, { mode: "set", subjects: ["cs"] }), { ...on, subjects: ["cs"] });
   assert.deepEqual(S.applyWrite(on, { mode: "set", personalizationOn: null }), { ...on, personalizationOn: null });
   assert.deepEqual(S.applyWrite(on, { mode: "set" }), on);
   assert.equal(S.applyWrite(null, { mode: "set", subjects: [] }), null, "D1: no row for no choice");
   assert.equal(S.applyWrite(null, { mode: "merge", personalizationOn: null }), null);
-  assert.deepEqual(S.applyWrite(null, { mode: "set", lessOf: ["domain:cs"] }), { personalizationOn: null, subjects: [], lessOf: ["domain:cs"] });
+  assert.deepEqual(S.applyWrite(null, { mode: "set", lessOf: ["domain:cs"] }), { experiences: [], challenge: null, personalizationOn: null, subjects: [], lessOf: ["domain:cs"] });
   const states = [true, false, null];
   for (const acc of [...states, "none"]) {
     for (const dev of [...states, undefined]) {
-      const row = acc === "none" ? null : { personalizationOn: acc, subjects: ["math"], lessOf: [] };
+      const row = acc === "none" ? null : { experiences: [], challenge: null, personalizationOn: acc, subjects: ["math"], lessOf: [] };
       const patch = { mode: "merge", subjects: ["cs"] };
       if (dev !== undefined) patch.personalizationOn = dev;
       const out = S.applyWrite(row, patch);

@@ -10,8 +10,9 @@
 // D2a/C7: the PUT never reads the row before writing it. It hands the validated request to store.put, which applies
 //     it in one SQL statement against the locked row (settings-store.ts), so no stale value can be written back.
 // D3: the body's keys are an allow-list; an arm, a timestamp or any other key is dropped unread and never stored.
-// Anonymous learners never reach this: their settings stay on the device (D22, N2); no session means 401.
+// Anonymous learners never reach this account store: no session means 401; no new device preferences are saved.
 
+import { sameAccountHeader } from "../http";
 import { cleanStored, parseSettingsWrite, type FeedSettings, type SettingsCatalog } from "./settings";
 import type { SettingsStore } from "./settings-store";
 
@@ -21,8 +22,9 @@ export const MAX_SETTINGS_BODY_CHARS = 16_384;
 export type SettingsDeps = {
   /** ACCOUNTS_ENABLED, read per request (ADR-008 C5). Off: the route answers 404 as if it did not exist. */
   enabled: () => boolean;
-  /** The signed-in account id, or null. UNVERIFIED: the accounts branch's session helper (backend-engineer). */
+  /** The signed-in account id, or null, from the existing account session helper. */
   userId: (req: Request) => Promise<string | null>;
+  accountTag: (userId: string) => string;
   store: SettingsStore;
   catalog: () => SettingsCatalog | Promise<SettingsCatalog>;
   /** Receives fixed text only (B4). Defaults to console.error. */
@@ -70,7 +72,7 @@ export function sameOriginWrite(req: Request): boolean {
   }
 }
 
-type Auth = { ok: true; userId: string } | { ok: false; res: Response };
+type Auth = { ok: true; userId: string; accountTag: string } | { ok: false; res: Response };
 
 async function authenticate(req: Request, deps: SettingsDeps, op: "get" | "put"): Promise<Auth> {
   let userId: string | null;
@@ -81,7 +83,12 @@ async function authenticate(req: Request, deps: SettingsDeps, op: "get" | "put")
     return { ok: false, res: json(500, { error: "unavailable" }) };
   }
   if (!userId) return { ok: false, res: json(401, { error: "signed_out" }) };
-  return { ok: true, userId };
+  try {
+    return { ok: true, userId, accountTag: deps.accountTag(userId) };
+  } catch (err) {
+    logFailure(deps, op, "auth", err);
+    return { ok: false, res: json(500, { error: "unavailable" }) };
+  }
 }
 
 async function loadCatalog(deps: SettingsDeps, op: "get" | "put"): Promise<SettingsCatalog | null> {
@@ -111,7 +118,7 @@ export async function handleSettingsGet(req: Request, deps: SettingsDeps): Promi
     logFailure(deps, "get", "store", err);
     return json(500, { error: "unavailable" });
   }
-  return json(200, { settings: cleanStored(row, catalog) });
+  return json(200, { settings: cleanStored(row, catalog), accountTag: auth.accountTag });
 }
 
 /**
@@ -134,6 +141,7 @@ export async function handleSettingsPut(req: Request, deps: SettingsDeps): Promi
   if (!sameOriginWrite(req)) return json(403, { error: "origin" });
   const auth = await authenticate(req, deps, "put");
   if (!auth.ok) return auth.res;
+  if (!sameAccountHeader(req, auth.accountTag)) return json(409, { error: "account_changed" });
 
   let body: unknown;
   try {
@@ -154,7 +162,7 @@ export async function handleSettingsPut(req: Request, deps: SettingsDeps): Promi
 
   try {
     const stored: FeedSettings | null = await deps.store.put(auth.userId, patch);
-    return json(200, { settings: cleanStored(stored, catalog) });
+    return json(200, { settings: cleanStored(stored, catalog), accountTag: auth.accountTag });
   } catch (err) {
     logFailure(deps, "put", "store", err);
     return json(500, { error: "unavailable" });
