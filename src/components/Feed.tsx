@@ -2,7 +2,8 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { PublicMeta } from "@/lib/trust";
-import { quarantinedSlots, canResumeInteraction } from '@/lib/feed-quarantine';
+import { readOwnedProgress } from '@/lib/feed-history';
+import { quarantinedSlots, canResumeInteraction, feedRequestFailed } from '@/lib/feed-quarantine';
 import { feedSequence, type FeedSlot } from '@/lib/feed-sequence';
 import type { FeedItem, FeedPage } from "@/lib/feed-types";
 import { dayMsFromLocation, loadProgress, revisitDue, track, updateProgress } from "@/kit/progress";
@@ -114,13 +115,13 @@ export function Feed({ first, counts, domains }: { first: FeedPage; counts: Reco
           return { ...prev, [f]: { items: [...have, ...p.items.filter((i) => !seen.has(i.slug))], next: p.next, loading: false, failed: false } };
         });
       })
-      .catch(() => {if(generation!==requestGeneration.current)return;if(snapshot)setRefreshRequired(true);setLists((prev) => ({ ...prev, [f]: { ...(prev[f] ?? { items: [], next: page }), loading: false, failed: true } }));})
+      .catch(() => {if(generation!==requestGeneration.current)return;feedRequestFailed(!!snapshot,()=>{suspendPersonal();checkpoint.current=null;setRefreshRequired(true);},()=>setLists((prev) => ({ ...prev, [f]: { ...(prev[f] ?? { items: [], next: page }), loading: false, failed: true } })));})
       .finally(() => inflight.current.delete(key));
   }, [applyPersonal,suspendPersonal]);
 
   useEffect(()=>{
     const reset=()=>{
-      recallEpoch.current++;setRevisits([]);setRevisitFrom(0);checkpoint.current=null;
+      recallEpoch.current++;setHistoryGeneration(0);setRevisits([]);setRevisitFrom(0);checkpoint.current=null;
       const slot=activeRef.current>0?activeSlotRef.current:null;
       setContinuationSlot(slot);setPaused(!!slot);applyPersonal(null);
       if(slot){activeRef.current=1;setActive(1);requestAnimationFrame(()=>scroller.current?.scrollTo({top:scroller.current.clientHeight}));}
@@ -129,7 +130,9 @@ export function Feed({ first, counts, domains }: { first: FeedPage; counts: Reco
   },[applyPersonal]);
   useEffect(() => {
     const epoch=++recallEpoch.current;
-    const progress = loadProgress();
+    setRevisits([]);
+    const progress = readOwnedProgress(historyGeneration>0,loadProgress);
+    if(progress===null)return;
     const dayMs = dayMsFromLocation();
     const due = Object.keys(progress).filter((slug) => revisitDue(progress[slug], Date.now(), dayMs));
     if (!due.length) return;

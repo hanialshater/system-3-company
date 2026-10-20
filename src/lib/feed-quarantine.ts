@@ -6,3 +6,7 @@ export function quarantinedSlots(current:FeedSlot|null):FeedSlot[]{
 export function canResumeInteraction(expected:{tag:string;snapshot:string}|null,tag:string,snapshot:string):boolean{
  return !!expected&&expected.tag===tag&&expected.snapshot===snapshot;
 }
+/** A transport rejection has the same private withdrawal boundary as an HTTP error. */
+export function feedRequestFailed(isPrivate:boolean,withdraw:()=>void,publicFailure:()=>void):void{
+ if(isPrivate)withdraw();else publicFailure();
+}

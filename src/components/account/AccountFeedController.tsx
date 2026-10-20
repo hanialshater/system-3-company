@@ -80,15 +80,19 @@ export default function AccountFeedController({ onChange, onChecking, getBookmar
         }
         const focus=()=>{if(document.visibilityState==='visible')void refresh();};
         const withdraw=()=>{++generation;controller?.abort();callback.current(null);checking.current(false);};
+        const sessionReset=()=>{
+            withdraw();const n=generation;
+            void accountState().then(()=>{if(live&&n===generation)historyReady.current();});
+        };
         const defaultFeed=()=>{withdrawPreferenceMatching();withdraw();};
         void refresh();
         window.addEventListener('focus', focus);
         document.addEventListener('visibilitychange', focus);
-        window.addEventListener('s3c:account-session-reset', withdraw);
+        window.addEventListener('s3c:account-session-reset', sessionReset);
         window.addEventListener('s3c:preferences-withdraw', withdraw);
         window.addEventListener('s3c:feed-default',defaultFeed);
         const unwatch = watchPreferences(() => void refresh());
-        return () => { live = false; ++generation; controller?.abort(); unwatch(); window.removeEventListener('focus', focus); document.removeEventListener('visibilitychange', focus); window.removeEventListener('s3c:account-session-reset', withdraw); window.removeEventListener('s3c:preferences-withdraw', withdraw);window.removeEventListener('s3c:feed-default',defaultFeed); };
+        return () => { live = false; ++generation; controller?.abort(); unwatch(); window.removeEventListener('focus', focus); document.removeEventListener('visibilitychange', focus); window.removeEventListener('s3c:account-session-reset', sessionReset); window.removeEventListener('s3c:preferences-withdraw', withdraw);window.removeEventListener('s3c:feed-default',defaultFeed); };
     }, []);
     return null;
 }
