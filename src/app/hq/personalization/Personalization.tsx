@@ -12,6 +12,8 @@ import {
   NEED_ORDER, UNSCORED_LABEL, curvePath, fmt, precomputedLine, pwlAt, servableGroups, stepLine, yesNo,
   type CurveView, type NeedExplanation, type NewStep, type PersonaView, type SimCompare, type SimMeta, type SimTrace, type SlotTrace, type Step,
 } from "@/lib/hq-personalization";
+import { CIRCULAR_LABEL } from "@/lib/hq-personalization-sandbox";
+import ComposerLab from "./ComposerLab";
 import s from "./personalization.module.css";
 
 function SavedChoiceStatus() {
@@ -29,6 +31,8 @@ function SavedChoiceStatus() {
   </section>;
 }
 
+/** The session policies beside the baselines they are read against (default order, the stopped Phase A GAM). */
+const SESSION_SET = ["default-order", "gam"];
 type Initial = { persona: string | null; policy: string | null; seed: number | null; days: number | null; step: number | null };
 type Filter = "all" | "new" | "moved" | "revisit";
 
@@ -191,21 +195,22 @@ function Compare({ meta, persona, days: liveDays }: { meta: SimMeta; persona: st
   const [scope, setScope] = useState<"persona" | "all">("persona");
   const [seedsLive, setSeeds] = useState(5);
   const seeds = pre ? pre.seeds : seedsLive;
-  const [set, setSet] = useState<"main" | "all">(pre && !pre.sets.includes("main") ? pre.sets[0] : "main");
+  const [set, setSet] = useState<"main" | "all" | "session">(pre && !pre.sets.includes("main") ? pre.sets[0] : "main");
   const [res, setRes] = useState<SimCompare | null>(null);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
   const run = async () => {
     setBusy(true); setErr(null);
-    const q = new URLSearchParams({ op: "compare", persona: scope === "all" ? "all" : persona, seeds: String(seeds), set, days: String(days) });
+    const q = new URLSearchParams({ op: "compare", persona: scope === "all" ? "all" : persona, seeds: String(seeds), set: set === "session" ? "all" : set, days: String(days) });
     try {
       const r = await fetch(`/api/hq/personalization?${q}`);
       const j = await r.json();
       if (!r.ok) throw new Error(j.error ?? r.statusText);
-      setRes(j);
+      setRes(set === "session" ? { ...j, rows: (j as SimCompare).rows.filter((r: SimCompare["rows"][number]) => SESSION_SET.includes(r.policy) || sessionNames.includes(r.policy)) } : j);
     } catch (e) { setErr((e as Error).message); } finally { setBusy(false); }
   };
   const name = (id: string) => meta.personas.find((p) => p.id === id)?.name ?? id;
+  const sessionNames = Object.keys(meta.policies.session ?? {});
   const cols: [keyof SimCompare["rows"][number], string, number][] = [
     ["recall", "recall", 3], ["recallSe", "± se", 3], ["recallSd", "sd", 3], ["concepts", "concepts", 1], ["domains", "domains", 2],
     ["prereqFirst", "prereq first", 3], ["reveal", "reveal", 3], ["gain", "gain", 1], ["movedShare", "moved", 3], ["cards", "cards", 1],
@@ -230,9 +235,10 @@ function Compare({ meta, persona, days: liveDays }: { meta: SimMeta; persona: st
           </label>
         )}
         <label>Policies
-          <select value={set} onChange={(e) => setSet(e.target.value as "main" | "all")}>
+          <select value={set} onChange={(e) => setSet(e.target.value as "main" | "all" | "session")}>
             {(!pre || pre.sets.includes("main")) && <option value="main">model policies ({meta.policies.model.filter((p) => meta.policies.all.includes(p)).length})</option>}
-            {(!pre || pre.sets.includes("all")) && <option value="all">with ablations ({meta.policies.all.length})</option>}
+            {(!pre || pre.sets.includes("all")) && sessionNames.length > 0 && <option value="session">session policies beside default order and GAM ({SESSION_SET.length + sessionNames.length})</option>}
+            {(!pre || pre.sets.includes("all")) && <option value="all">with ablations and session policies ({meta.policies.all.length})</option>}
           </select>
         </label>
         <button type="submit" className={hq.btn} disabled={busy}>{busy ? (pre ? "Loading…" : "Running…") : pre ? "Show comparison" : "Run comparison"}</button>
@@ -244,17 +250,28 @@ function Compare({ meta, persona, days: liveDays }: { meta: SimMeta; persona: st
             <caption className={s.cap}>
               {UNSCORED_LABEL}. {res.personas.length === 1 ? `simulated persona ${name(res.personas[0])}` : `${res.personas.length} simulated personas`} × {res.seeds} seeds, {res.days} days ({meta.precomputed ? precomputedLine(meta.precomputed).replace(/, seed .*$/, "") : `${(res.ms / 1000).toFixed(1)} s, ${res.modelVersion}`})
             </caption>
-            <thead><tr><th scope="col">policy</th><th scope="col">episodes</th>{cols.map(([k, l]) => <th key={k} scope="col" title={res.columns[k as string]}>{l}</th>)}</tr></thead>
+            <thead>
+              <tr><th colSpan={2} />{<th colSpan={cols.length} scope="colgroup">simulated recall and guardrails (independent provisional learner)</th>}<th colSpan={2} scope="colgroup" className={s.circHead}>{CIRCULAR_LABEL}</th></tr>
+              <tr><th scope="col">policy</th><th scope="col">episodes</th>{cols.map(([k, l]) => <th key={k} scope="col" title={res.columns[k as string]}>{l}</th>)}
+                <th scope="col" className={s.circHead} title={res.columns["circular.needCoverageRate"]}>need coverage ({CIRCULAR_LABEL})</th>
+                <th scope="col" className={s.circHead} title={res.columns["circular.domainDiversity"]}>domain diversity ({CIRCULAR_LABEL})</th></tr>
+            </thead>
             <tbody>
               {res.rows.map((r) => (
                 <tr key={r.policy}>
                   <th scope="row" className={s.slug}>{r.policy}</th>
                   <td>{r.episodes}</td>
                   {cols.map(([k, , d]) => <td key={k}>{fmt(r[k] as number | null, d)}</td>)}
+                  <td className={s.circCell}>{fmt(r.circular?.needCoverageRate, 3)}</td>
+                  <td className={s.circCell}>{fmt(r.circular?.domainDiversity, 3)}</td>
                 </tr>
               ))}
             </tbody>
           </table>
+          <p className={s.circ} role="note">
+            {CIRCULAR_LABEL}: need coverage and domain diversity are EDP-style numbers graded by the model&apos;s own detect() and addr(), not by the simulated learner. They are never a pass score and always sit beside simulated recall.
+            The session policies (gam-session, gam-session-v3, gam-session-no-cov) are offline and {UNSCORED_LABEL}; a higher circular number is not evidence that a policy helps a learner.
+          </p>
           <ul className={s.legend}>
             {Object.entries(res.columns).map(([k, v]) => <li key={k}><code>{k}</code>: {v}</li>)}
           </ul>
@@ -395,6 +412,8 @@ export default function Personalization({ meta, error, initial }: { meta: SimMet
             </p>
           )}
         </header>
+
+        {meta.session && personaIds.length > 0 && <ComposerLab meta={meta} personaIds={personaIds} initialPersona={personaId} />}
 
         <section className={s.panel} aria-labelledby="run-h">
           <h2 id="run-h">{pre ? "Load a precomputed simulation" : "Run or load a simulation"}</h2>

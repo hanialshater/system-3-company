@@ -16,11 +16,12 @@ import { CANDIDATES, CANDIDATE_LABEL, type CandidateDoc, type CandidateEntry } f
 
 export const PRECOMPUTED_DIR = "src/data/hq-personalization";
 export const REGENERATE = "node tools/hq-lab-precompute.mjs";
-const FILE = /^(?:meta\.json|runs\/[a-z0-9-]+\.[a-z0-9-]+\.seed\d{1,3}\.days\d{1,2}\.json\.gz|compare\/[a-z0-9-]+\.(?:main|all)\.seeds\d{1,2}\.days\d{1,2}\.json|candidates\/[a-z0-9-]+\.reachable-v[23]\.seed\d{1,3}\.days\d{1,2}\.json\.gz)$/;
+const FILE = /^(?:meta\.json|runs\/[a-z0-9-]+\.[a-z0-9-]+\.seed\d{1,3}\.days\d{1,2}\.json\.gz|compare\/[a-z0-9-]+\.(?:main|all)\.seeds\d{1,2}\.days\d{1,2}\.json|sandbox\/[a-z0-9-]+\.v[13]\.seed\d{1,3}\.json\.gz|candidates\/[a-z0-9-]+\.reachable-v[23]\.seed\d{1,3}\.days\d{1,2}\.json\.gz)$/;
 
 type Res<T> = { ok: true; data: T } | { ok: false; error: string };
 type Entry = { persona: string; policy?: string; set?: string; seed?: number; seeds?: number; days: number; file: string };
-type Manifest = PrecomputedInfo & { runs: Entry[]; compares: Entry[]; files: Record<string, string>; candidates?: (CandidateEntry & { sha256: string })[]; candidateLabel?: string };
+type SandboxEntry = { persona: string; variant: string; seed: number; file: string };
+type Manifest = PrecomputedInfo & { runs: Entry[]; sandboxes?: SandboxEntry[]; compares: Entry[]; files: Record<string, string>; candidates?: (CandidateEntry & { sha256: string })[]; candidateLabel?: string };
 type Index = { manifest: Manifest; meta: SimMeta };
 
 class LabDataError extends Error {}
@@ -80,6 +81,14 @@ export function readPrecomputed<T>(req: SimRequest, root = process.cwd()): Res<T
     const pre = info(manifest);
     if (req.op === "meta") return { ok: true, data: { ...meta, saved: [], precomputed: pre } as T };
     if (req.op === "saved") return { ok: false, error: "Saved simulator traces are local only (npm run dev); this lab serves precomputed runs." };
+    if (req.op === "sandbox") {
+      const e = manifest.sandboxes?.find((x) => x.persona === req.persona && x.variant === req.variant && x.seed === req.seed);
+      if (!e) return { ok: false, error: `Not precomputed: session sandbox for ${req.persona} · ${req.variant} · seed ${req.seed}. This lab serves ${(manifest.sandboxes ?? []).length} sandbox documents (${pre.personas.length} simulated personas × v1, v3 × seed ${pre.seeds.join(", ")}); regenerate with \`${REGENERATE}\` if none are stored.` };
+      const d = parse(readListed(root, manifest.files, e.file), e.file, true);
+      if (!isObj(d) || d.schema !== "personalization-hq-sandbox-v0" || !isObj(d.persona) || d.persona.id !== req.persona || d.variant !== req.variant || d.seed !== req.seed
+        || !Array.isArray(d.candidates) || !isObj(d.needShapes) || !isObj(d.composed)) throw damaged(`${e.file} is not the sandbox document it is listed as`);
+      return { ok: true, data: d as T };
+    }
     if (req.op === "run") {
       const e = manifest.runs.find((r) => r.persona === req.persona && r.policy === req.policy && r.seed === req.seed && r.days === req.days);
       if (!e) return { ok: false, error: `Not precomputed: ${req.persona} · ${req.policy} · seed ${req.seed} · ${req.days} days. This lab serves ${precomputedLine(pre)}, for the policies listed; run the lab locally (npm run dev) for anything else.` };
