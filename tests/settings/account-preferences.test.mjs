@@ -86,6 +86,8 @@ test("write origin is exact and cannot be replaced by forwarding headers; JSON c
     { origin: "https://evil.example", headers: { "x-forwarded-host": "evil.example" } },
     { origin: "https://evil.example", headers: { host: "evil.example" } },
     { origin: "http://s3c.example" },
+    { origin: "malformed-origin" },
+    { origin: "https://user:password@s3c.example" },
     { origin: "https://s3c.example/some-path" },
   ]) assert.equal((await PUT(put({ experiences: ["depth"] }, options), deps(store))).status, 403);
   assert.equal((await PUT(put({ experiences: ["depth"] }, { headers: { "content-type": "text/plain" } }), deps(store))).status, 415);
