@@ -241,8 +241,9 @@ a { color: inherit; }
   .knot-tint { stroke: color-mix(in srgb, var(--domain) 70%, #000); }
 }
 
-/* Immersive feed chrome. Lesson colors inherit this dark surface in either OS theme. */
-.feed-wrap {
+/* Immersive feed chrome. Lesson colors inherit this dark surface in either OS theme. The single-lesson
+   page (/d/<slug>) wears the same surface so a shared link looks like the feed. */
+.feed-wrap, .single {
   --bg: #08090b; --bg-2: #111216; --bg-3: #1c1e24;
   --fg: #f7f7f8; --muted: #a9abb5; --line: #2d2f37;
   --good: #4fd1a5; --bad: #ff7a7a; --warn: #f6c453;
@@ -256,20 +257,20 @@ a { color: inherit; }
 .feed-wrap .chip.on::after { content: ""; position: absolute; bottom: 10px; left: 20%; right: 20%; height: 3px; border-radius: 3px; background: #fff; }
 .feed-wrap .brand-link { color: #dddde3; font-size: 12px; border: 1px solid #34353c; border-radius: 8px; padding: 8px 14px; }
 .feed-wrap .slot-screen { padding: 82px 80px 16px; }
-.feed-wrap .card-shell { max-width: 480px; border-radius: 20px; border: 1px solid #ffffff0b; padding: 20px; gap: 14px; overflow: visible; box-shadow: 0 18px 90px #0006; background: linear-gradient(160deg, #191b22, #101115 70%); }
-.feed-wrap .card-head { gap: 8px; }
-.feed-wrap .card-title { font-size: 24px; font-weight: 780; line-height: 1.13; letter-spacing: -.7px; }
-.feed-wrap .card-hook { font-size: 13px; line-height: 1.5; color: #abadb8; }
-.feed-wrap .tag { background: #ffffff08; font-size: 9px; letter-spacing: 1.1px; }
-.feed-wrap .tag.domain { background: none; padding-left: 0; }
-.feed-wrap .card-body { overflow: hidden; border-radius: 12px; }
-.feed-wrap .stage { background: #ffffff05; border: 1px solid #ffffff08; }
-.feed-wrap .card-foot { font-size: 11px; opacity: .8; }
-.feed-wrap .card-foot .link { font-size: 11px; text-decoration: none; }
-.feed-wrap .option { background: #ffffff08; border-color: #ffffff16; }
-.feed-wrap .option.selected { border-color: var(--domain); }
-.feed-wrap .primary { border-radius: 9px; }
-.feed-wrap .sheet { overflow: hidden; border-radius: 20px; z-index: 30; }
+:is(.feed-wrap, .single) .card-shell { max-width: 480px; border-radius: 20px; border: 1px solid #ffffff0b; padding: 20px; gap: 14px; overflow: visible; box-shadow: 0 18px 90px #0006; background: linear-gradient(160deg, #191b22, #101115 70%); }
+:is(.feed-wrap, .single) .card-head { gap: 8px; }
+:is(.feed-wrap, .single) .card-title { font-size: 24px; font-weight: 780; line-height: 1.13; letter-spacing: -.7px; }
+:is(.feed-wrap, .single) .card-hook { font-size: 13px; line-height: 1.5; color: #abadb8; }
+:is(.feed-wrap, .single) .tag { background: #ffffff08; font-size: 9px; letter-spacing: 1.1px; }
+:is(.feed-wrap, .single) .tag.domain { background: none; padding-left: 0; }
+:is(.feed-wrap, .single) .card-body { border-radius: 12px; }
+:is(.feed-wrap, .single) .stage { background: #ffffff05; border: 1px solid #ffffff08; }
+:is(.feed-wrap, .single) .card-foot { font-size: 11px; opacity: .8; }
+:is(.feed-wrap, .single) .card-foot .link { font-size: 11px; text-decoration: none; }
+:is(.feed-wrap, .single) .option { background: #ffffff08; border-color: #ffffff16; }
+:is(.feed-wrap, .single) .option.selected { border-color: var(--domain); }
+:is(.feed-wrap, .single) .primary { border-radius: 9px; }
+:is(.feed-wrap, .single) .sheet { overflow: hidden; border-radius: 20px; z-index: 30; }
 .feed-navigation { position: fixed; right: 30px; top: 44%; z-index: 20; display: grid; gap: 14px; }
 .feed-navigation button { width: 46px; height: 46px; border-radius: 50%; border: 1px solid #ffffff12; background: #ffffff0a; color: #fff; font-size: 23px; cursor: pointer; transition: background .2s; }
 .feed-navigation button:hover { background: #ffffff20; }
@@ -281,14 +282,14 @@ a { color: inherit; }
 .social-actions button:active svg { transform: scale(.88); }
 .social-actions button[aria-pressed=true] { color: #f3ce6a; }
 .social-actions button:first-child[aria-pressed=true] { color: #ff375f; }
-.feed-wrap .social-actions { position: absolute; left: calc(100% + 16px); bottom: 34px; flex-direction: column; gap: 24px; width: 56px; }
-.feed-wrap .social-actions button { color: #fff; font-size: 10px; padding: 0; }
-.feed-wrap .social-actions svg { width: 33px; height: 33px; }
-.feed-wrap .social-actions button[aria-pressed=true] { color: #f3ce6a; }
-.feed-wrap .social-actions button:first-child[aria-pressed=true] { color: #ff375f; }
+:is(.feed-wrap, .single) .social-actions { position: absolute; left: calc(100% + 16px); bottom: 34px; flex-direction: column; gap: 24px; width: 56px; }
+:is(.feed-wrap, .single) .social-actions button { color: #fff; font-size: 10px; padding: 0; }
+:is(.feed-wrap, .single) .social-actions svg { width: 33px; height: 33px; }
+:is(.feed-wrap, .single) .social-actions button[aria-pressed=true] { color: #f3ce6a; }
+:is(.feed-wrap, .single) .social-actions button:first-child[aria-pressed=true] { color: #ff375f; }
 .social-message { margin: 0; font-size: 11px; color: var(--muted); }
 .social-message:empty { display: none; }
-.feed-wrap .social-message:not(:empty) { position: absolute; bottom: 50px; left: 20px; right: 20px; background: #30323b; border-radius: 10px; padding: 12px; z-index: 4; box-shadow: 0 8px 24px #0005; }
+:is(.feed-wrap, .single) .social-message:not(:empty) { position: absolute; bottom: 50px; left: 20px; right: 20px; background: #30323b; border-radius: 10px; padding: 12px; z-index: 4; box-shadow: 0 8px 24px #0005; }
 .saved-lessons { padding-left: 20px; }
 .saved-lessons li { margin: 16px 0; }
 @media (max-width: 600px) {
@@ -298,24 +299,24 @@ a { color: inherit; }
   .feed-wrap .chip.on::after { bottom: 6px; }
   .feed-wrap .brand-link { display: none; }
   .feed-wrap .slot-screen { padding: 56px 0 0; }
-  .feed-wrap .card-shell { max-width: none; border: 0; border-radius: 0; padding: 16px 66px 16px 16px; background: radial-gradient(ellipse at 10% 20%, #22252f, #101115 65%); box-shadow: none; gap: 12px; }
-  .feed-wrap .card-shell.center { padding: 28px 30px; }
-  .feed-wrap .card-title { font-size: 21px; }
-  .feed-wrap .card-hook { font-size: 12px; }
-  .feed-wrap .social-actions { left: auto; right: 7px; bottom: 100px; width: 46px; gap: 22px; }
-  .feed-wrap .social-actions svg { width: 29px; height: 29px; }
+  :is(.feed-wrap, .single) .card-shell { max-width: none; border: 0; border-radius: 0; padding: 16px 66px 16px 16px; background: radial-gradient(ellipse at 10% 20%, #22252f, #101115 65%); box-shadow: none; gap: 12px; }
+  :is(.feed-wrap, .single) .card-shell.center { padding: 28px 30px; }
+  :is(.feed-wrap, .single) .card-title { font-size: 21px; }
+  :is(.feed-wrap, .single) .card-hook { font-size: 12px; }
+  :is(.feed-wrap, .single) .social-actions { left: auto; right: 7px; bottom: 100px; width: 46px; gap: 22px; }
+  :is(.feed-wrap, .single) .social-actions svg { width: 29px; height: 29px; }
   .feed-navigation { right: 8px; top: 70px; gap: 8px; }
   .feed-navigation button { width: 42px; height: 42px; font-size: 20px; }
-  .feed-wrap .card-foot { gap: 8px; }
-  .feed-wrap .card-foot .muted { display: none; }
-  .feed-wrap .sheet { border-radius: 0; }
+  :is(.feed-wrap, .single) .card-foot { gap: 8px; }
+  :is(.feed-wrap, .single) .card-foot .muted { display: none; }
+  :is(.feed-wrap, .single) .sheet { border-radius: 0; }
 }
 @media (prefers-reduced-motion: reduce) { .social-actions svg { transition: none; } }
 
 .feed-personal-links { display: flex; gap: 14px; flex-shrink: 0; }
 .feed-personal-links a { color: #f7f7f8; text-decoration: none; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: #ffffff0a; font-size: 24px; }
 .social-actions a { min-width: 44px; min-height: 44px; color: inherit; text-decoration: none; cursor: pointer; font-size: 10px; font-weight: 650; display: flex; flex-direction: column; align-items: center; gap: 6px; }
-.feed-wrap .social-actions a { color: #fff; padding: 0; }
+:is(.feed-wrap, .single) .social-actions a { color: #fff; padding: 0; }
 .social-actions a:hover svg { transform: scale(1.12); }
 .personal-page { --bg: #101115; --bg-2: #191b22; --bg-3: #22252f; --fg: #f7f7f8; --muted: #a9abb5; --line: #34363f; color-scheme: dark; background: var(--bg); color: var(--fg); min-height: 100dvh; padding: 28px max(22px, calc((100vw - 680px) / 2)); }
 .personal-page nav { display: flex; justify-content: space-between; margin-bottom: 56px; }
@@ -332,3 +333,35 @@ a { color: inherit; }
 .library-empty a { display: inline-block; margin-top: 20px; }
 .profile-page > main { border: 1px solid var(--line); border-radius: 16px; background: var(--bg-2); max-width: none !important; }
 @media (max-width: 600px) { .feed-personal-links { gap: 6px; } .feed-personal-links a { width: 36px; height: 36px; font-size: 21px; } .personal-page nav { margin-bottom: 30px; } }
+
+/* Calm card (founder, 2026-10-20: "scrolling bars, text too large, cluttered, not immersive").
+   Design only: no lesson, copy or kit change. The card still scrolls where its content is taller
+   than the screen, but no scrollbar is drawn inside it; type steps down one size; the stage loses
+   its framed box and sits on the card; the duration tag and the predict divider go. */
+.card-shell, .card-shell * { scrollbar-width: none; }
+.card-shell ::-webkit-scrollbar { display: none; }
+:is(.feed-wrap, .single) .tag:not(.domain):not(.status) { display: none; }
+:is(.feed-wrap, .single) .card-title { font-size: 20px; font-weight: 720; letter-spacing: -.4px; }
+:is(.feed-wrap, .single) .card-head { gap: 4px; }
+:is(.feed-wrap, .single) .stage { background: none; border: 0; padding: 4px 0; border-radius: 0; }
+:is(.feed-wrap, .single) .lesson { gap: 12px; }
+:is(.feed-wrap, .single) .panel { border-top: 0; padding-top: 0; }
+:is(.feed-wrap, .single) .lesson[data-phase="predict"] .panel { border-bottom: 0; padding-bottom: 4px; }
+:is(.feed-wrap, .single) .lesson[data-phase="predict"] .panel-q { font-size: 15px; font-weight: 450; line-height: 1.45; color: #d6d7de; margin-bottom: 12px; }
+:is(.feed-wrap, .single) .lesson[data-phase="explore"] .panel-q { font-size: 13px; line-height: 1.4; }
+:is(.feed-wrap, .single) .options { gap: 6px; margin-bottom: 8px; }
+:is(.feed-wrap, .single) .option { padding: 10px; font-size: 14px; font-weight: 600; border-radius: 10px; }
+:is(.feed-wrap, .single) .primary { padding: 11px; font-size: 14px; }
+:is(.feed-wrap, .single) .verdict { font-size: 15px; }
+:is(.feed-wrap, .single) .why, :is(.feed-wrap, .single) .why p { font-size: 14px; line-height: 1.5; color: #d6d7de; }
+:is(.feed-wrap, .single) .control { font-size: 13px; }
+:is(.feed-wrap, .single) .slider { font-size: 12px; }
+:is(.feed-wrap, .single) .readout-value { font-size: 15px; }
+@media (max-width: 600px) {
+  :is(.feed-wrap, .single) .card-title { font-size: 18px; }
+  :is(.feed-wrap, .single) .lesson[data-phase="predict"] .panel-q { font-size: 14px; }
+  :is(.feed-wrap, .single) .why, :is(.feed-wrap, .single) .why p { font-size: 13.5px; }
+}
+/* Before the prediction the stage is a preview under the question: its pictures take less height,
+   so the locked controls below them stay on screen instead of hiding below the fold. */
+:is(.feed-wrap, .single) .lesson[data-phase="predict"] .stage-svg { max-height: 30dvh; }
