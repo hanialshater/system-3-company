@@ -1,0 +1,5 @@
+### 2026-10-20 · account-preferences-default-2026-10-20 · chief-of-staff
+- did: Merged PR13 into default14ec87ad5: account preferences/main feed, AMD016, exact source admission and independent compiled evidence (company/ops/delivery/2026-10-20-account-preferences-source.json).
+- learned: SharedMain W-1754 is this task but actual default W-1754 is older M1 work; preserve divergent boards and use fresh default W-1981–1983, never copy wholesale (company/ops/delivery/2026-10-20-account-preferences-source.json).
+- know: Final app8f90/buildUgs6 passed bounded feature checks; admission-only885 independently audited; aggregate remains failed on unchanged parent issues, not green CI (company/engineering/readiness/2026-10-20-account-preferences-independent.md).
+- open: W-1982 rollout needs named DB/env readiness and specific deployment approval; W-1983 inherited verification triage. No real migration/deploy done, original draft walkthroughs and real-data learning stay parked (company/ops/delivery/2026-10-20-account-preferences-source.json).

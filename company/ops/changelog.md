@@ -1,5 +1,7 @@
 # Changelog
 
+2026-10-20 · personalization-engineer: Merged PR13 into default: explicit account-saved feed preferences, ordinary main-feed matching, profile edit/off/reset and export/delete, synthetic HQ and later-round admission tooling. AMD016 ratified; bounded exact candidate admitted. Compiled feature checks passed; inherited aggregate failures disclosed. Source only: no external schema/environment/deployment change. Receipt company/ops/delivery/2026-10-20-account-preferences-source.json.
+
 ## 2026-10-18: PR #8 merged into the default branch via PR #9 (merge a6333dd0); nothing deployed
 - Accounts, server progress, likes and saves (EDD-008 rebuild, PRD-005) behind `ACCOUNTS_ENABLED`, `LIKES_SAVES_ENABLED`, `LIKE_COUNTS_PUBLIC`, all default off. AMD-013 one readiness policy is now `applied`.
 - Founder approved the merge in conversation ("Ok approve pr #8"). CI green on 72f3a2e1 (verify, constitution). PR #9 added only record-conflict fixes: the default branch's draft AMD-013 became AMD-014, its board items W-1671..W-1682 became W-1901..W-1912.

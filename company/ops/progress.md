@@ -1,3 +1,11 @@
+## 2026-10-20 · chief-of-staff · Account preferences merged into actual default
+
+PR13 merged at14ec87ad5ce181bd32cc90209ffa48d156cedfa7 into remote default ccr-4c6c7654-ew9ko1. Optional subject/experience/challenge choices persist to signed-in accounts and drive the ordinary All feed; explicit Save/Edit/Off/Reset, export/delete, canonical fallback, private paging, account isolation and synthetic HQ inspection included. Founder Confirm AMD-016 plus required Board/owner dispositions recorded; exact protected patch3be5a518e and approved source admission885cdf385. No real-data learning; future evaluation remains append-only with exact readmission. Dataset0e5513073d5b6eca:1621total/954observed/921current/33disputed/667unknown.
+
+Feature evidence:57focused,18static,62realPG account tests,4compiled account/cache obligations,10canonical feed browser cases; independent12 earlier variants with6affected reruns on final buildUgs6Ydt-f1pPdpqxwlyWj/app8f90c4ca6. Build/TypeScript passed. Aggregate verify/CI remain FAILED on unchanged reproduced default issues; integratedcheck15errors/5warnings. No assertion waived and no production-readiness claim. All owner acceptance and sanitized evidence committed. Receipt: company/ops/delivery/2026-10-20-account-preferences-source.json.
+
+Source doneW-1981; rolloutbacklogW-1982 and inheritedbaseline triageW-1983. Development/Preview lack app account schema/config; Production has001–002 and requires reviewed additive003–004 plus separately approved deployment/environment readiness. No external DB/env/deploy change. Existing age/legal/region/release holds remain. Owned synthetic servers/container stopped, credential copies deleted. Shared dirty checkout preserved. Its localW-1754 names this task, but remoteW-1754 is unrelated older M1 work: never copy the shared board wholesale. Isolated integration checkout/private/tmp/s3-account-personalization remains clean except this bounded ops receipt; no unrelated paused work resumed.
+
 # Progress log (session handoffs)
 
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
