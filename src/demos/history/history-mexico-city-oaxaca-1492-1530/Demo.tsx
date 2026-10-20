@@ -4,6 +4,7 @@ import {Lesson,type StageContext} from "@/kit/Lesson";
 import {Control} from "@/kit/controls";
 import {Sources,RecordDetails} from "./Sources";
 import {REQUIRED,FRAMES,PREDICTION,REVEAL,initialState,transition,frameText,requiredContexts,canComplete,canDeliverFinal,PERIOD_DISCLOSURE,PERIOD_CLAIM,EXPLORE_HINT,type State,type Action,type Proof} from "./model";
+import { HistoryLocator } from "@/components/history/HistoryLocator";
 import s from "./styles.module.css";
 export function readOrdinaryProof(node:HTMLElement|null,state:State):Proof|null{
  if(!node||!node.isConnected||!state.committed||!state.frame||node.hidden||node.closest('[hidden],[aria-hidden="true"]')||node.getClientRects().length===0)return null;
@@ -22,6 +23,7 @@ function Stage({ctx,state,dispatch,open,paneId,onSources,onDismiss,onDetails,onR
  useEffect(()=>{if(ctx.locked)return;for(const id of state.earned){if(credited.current.has(id))continue;const finalCredit=state.earned.length===REQUIRED.length&&credited.current.size===REQUIRED.length-1;if(finalCredit&&!canDeliverFinal(state))continue;credited.current.add(id);ctx.interact();}},[state.earned,state.comparisonEverMounted,ctx.locked,ctx.interact]);
  const navigate=(id:string)=>{if(ctx.locked)return;dispatch({type:"navigate",target:id});onDismiss();if(ctx.phase==="reveal"&&id!=="comparison")onDetails(id);};
  return <div className={s.frame}>
+ <HistoryLocator slug="history-mexico-city-oaxaca-1492-1530" places={["Mexico City", "Oaxaca"]} />
  {!ctx.locked&&state.frame?<div className={s.evidence}><p ref={frameNode} data-frame={state.frame} data-generation={state.generation} data-witness={state.displayWitness??""} data-claim={FRAMES.find(f=>f.id===state.frame)?.claim}>{frameText(state.frame)}</p></div>:<div className={s.pending} aria-hidden="true"/>}
  <div className={s.controls}>{REQUIRED.map((id,i)=><Control key={id} data-record={id} disabled={ctx.locked||(state.active===id&&state.earned.includes(id))} data-earned={state.earned.includes(id)} aria-label={ctx.locked?`Record ${i+1}, locked`:`Record ${i+1}${state.earned.includes(id)?", saved":""}`} aria-pressed={!ctx.locked&&state.active===id} onClick={()=>navigate(id)}>{i+1}</Control>)}{!(ctx.phase==="reveal"&&state.frame==="comparison")&&<Control disabled={ctx.locked||state.active==="comparison"||(!state.comparisonReady&&!canComplete(state))} aria-label={ctx.locked?"Comparison, locked":"Saved comparison"} aria-pressed={!ctx.locked&&state.frame==="comparison"} onClick={()=>navigate("comparison")}>{REQUIRED.length+1}</Control>}<Control className={s.sourceControl} disabled={ctx.locked} aria-expanded={open} aria-controls={paneId} onClick={onSources}>{open?"Close":"Sources"}</Control><Control className={s.resetControl} disabled={ctx.locked||(!state.active&&!open)} onClick={event=>onReset(event.currentTarget)}>Reset</Control></div></div>;
 }

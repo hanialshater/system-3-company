@@ -3,6 +3,7 @@ import {useEffect,useReducer,useRef,useState,type Dispatch} from 'react';
 import {Lesson,type StageContext} from '@/kit/Lesson';
 import {Control} from '@/kit/controls';
 import {initialState,transition,visibleColumns,type State,type Action,type DateId} from './model';
+import { HistoryLocator } from "@/components/history/HistoryLocator";
 import s from './styles.module.css';
 const nov='https://www.stortinget.no/globalassets/pdf/stortingsarkivet/overordentlig-storting-1814/01_protokoll_stortinget.pdf';
 const june='https://stortinget.no/no/Stortinget-og-demokratiet/Historikk/stortinget-og-unionen-med-sverige/ut-av-unionen/ordenes-makt--revolusjon-med-blyant/';
@@ -12,6 +13,7 @@ function Stage({ctx,state,dispatch,open,onSources,setSourcesOpen}:{ctx:StageCont
  const cols=visibleColumns(state,ctx.locked);
  const select=(date:DateId)=>{const next=transition(state,{type:'select',date});dispatch({type:'select',date});for(const m of next.earned)if(!seen.current.has(m)){seen.current.add(m);ctx.interact();}};
  return <div className={s.frame}>
+ <HistoryLocator slug="history-oslo-copenhagen-1800-1920" places={["Oslo", "Copenhagen"]} />
  <div className={s.dates}><span/>{(['nov1814','jun1905'] as DateId[]).map((date,i)=><Control key={date} disabled={ctx.locked||state.focus===date} aria-pressed={!ctx.locked&&state.focus===date} onClick={()=>select(date)}>{i===0?'Nov1814':'Jun1905'}</Control>)}</div>
  <svg viewBox="0 0 340 170" width="340" height="170" className={s.diagram} role="group" aria-label={ctx.locked?'Document frame, not opened':'Selected official document fields'}>
  <text x="2" y="44" className={s.label}>King</text><text x="2" y="108" className={s.label}>Constitution</text>

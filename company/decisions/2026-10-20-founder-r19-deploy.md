@@ -1,4 +1,4 @@
-# Calm card design pass: deploy (r18)
+# Calm card design pass: deploy (r19)
 
 owner: chief-of-staff
 class: deploy
@@ -6,7 +6,7 @@ route: chief-of-staff → existing Vercel production project via the approved `[
 
 Founder verbatim (2026-10-20, this session), after the calm-card design pass: "Approve deploy".
 
-Covers the globals.css-only design pass (no in-card scrollbars, one step smaller type, frameless stage, duration tag and predict divider removed, locked-stage pictures capped at 30dvh, /d/<slug> on the feed's dark surface), merged onto r17.
+Covers the globals.css-only design pass (no in-card scrollbars, one step smaller type, frameless stage, duration tag and predict divider removed, locked-stage pictures capped at 30dvh, /d/<slug> on the feed's dark surface), merged onto r18 (history maps).
 
 ## Objections
 - Only 8 lessons were screenshotted before and after; tall custom stages (books, algorithms) were not checked.
