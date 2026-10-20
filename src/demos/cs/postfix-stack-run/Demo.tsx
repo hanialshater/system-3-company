@@ -47,7 +47,7 @@ export default function PostfixStackRun({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Read ${EXPR} left to right. A number goes on top of a pile; an operator takes the top two off and puts back their result. What is left?`,
+        question: `Your old calculator has no brackets, so you key in ${EXPR} and it reads left to right. A number goes on top of a pile; an operator takes the top two off and puts back their result. What is left?`,
         options: [String(RESULT), "12", "20"],
         answer: 0,
       }}

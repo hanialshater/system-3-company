@@ -42,7 +42,7 @@ export default function BrickOnItsSide({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A 2 kg brick, wide face down, needs a steady pull of 7.8 N on a table (μ = 0.40). Stood on a face with one third of the area, it needs…",
+          "Dragging a 2 kg brick, wide face down, across a table takes a steady 7.8 N pull (grip factor 0.40). You stand it on a face with one third of the area. How hard must you pull now?",
         options: ["About 7.8 N", "About 2.6 N", "About 23 N"],
         answer: 0,
       }}

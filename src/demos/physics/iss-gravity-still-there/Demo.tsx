@@ -130,7 +130,7 @@ export default function IssGravityStillThere({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "The ISS orbits about 400 km up. Compared with gravity at the ground, gravity up there is about…",
+        question: "You watch astronauts float on the ISS, which orbits about 400 km up. Compared with gravity at the ground, how strong is gravity up there?",
         options: ["0% (none)", "90%", "50%"],
         answer: 1,
       }}

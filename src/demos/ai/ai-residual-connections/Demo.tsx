@@ -36,7 +36,7 @@ function Stage({ locked, phase, interact }: {
 export default function Demo({ slug }: {
     slug: string;
 }) {
-    return <Lesson slug={slug} predict={{ "question": "At depth 3, which declared transformation has larger sensitivity?", "options": ["h←.1h", "h←h+.1h", "Equal"], "answer": 1 }} minInteractions={3} exploreHint="Try each case and compare the saved results." reveal={() => <p>The plain path multiplied sensitivity by .1 three times, giving .001. Adding the identity path changed each multiplier to 1.1, giving 1.331. A branch weight of −1 canceled that identity and gave zero. This construction guarantees neither nonzero gradients everywhere nor successful training.</p>}>
+    return <Lesson slug={slug} predict={{ "question": "You compare a deep network with and without skip connections, three layers each. At depth 3, which declared transformation has larger sensitivity?", "options": ["h←.1h", "h←h+.1h", "Equal"], "answer": 1 }} minInteractions={3} exploreHint="Try each case and compare the saved results." reveal={() => <p>The plain path multiplied sensitivity by .1 three times, giving .001. Adding the identity path changed each multiplier to 1.1, giving 1.331. A branch weight of −1 canceled that identity and gave zero. This construction guarantees neither nonzero gradients everywhere nor successful training.</p>}>
   {({ locked, phase, interact }) => <Stage locked={locked} phase={phase} interact={interact}/>}
  </Lesson>;
 }

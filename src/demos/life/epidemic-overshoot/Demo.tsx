@@ -132,7 +132,7 @@ export default function EpidemicOvershoot({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Made-up disease, R0 = 3, no one immune, simple well-mixed model. Herd immunity needs ${THR3} immune. Roughly what share is eventually infected?`,
+        question: `A made-up disease reaches a town where no one is immune and everyone mixes freely (a simple model). R0 = 3, so herd immunity needs ${THR3} immune. Left unchecked, roughly what share eventually catches it?`,
         options: [`About ${THR3}`, `About ${FINAL3}`, "100%"],
         answer: 1,
       }}

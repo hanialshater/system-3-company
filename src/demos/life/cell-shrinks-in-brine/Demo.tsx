@@ -58,7 +58,7 @@ export default function CellShrinksInBrine({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Toy cell: ${c2(C0)} dissolved stuff per volume, volume 1. It goes into a bath with ${c2(Q_BATH)}. Only water can cross. It ends up about:`,
+        question: `You drop a toy cell of volume 1, holding ${c2(C0)} dissolved stuff per volume, into a bath with ${c2(Q_BATH)}. Only water can cross its edge. About what size does it end up?`,
         options: ["the same size", "half its volume", "a quarter of its volume"],
         answer: 1,
       }}

@@ -68,7 +68,7 @@ export default function ReadTheBoneClock({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Carbon-14 is a radioactive form of carbon that slowly disappears after an animal dies. Its half-life, the time for half of it to disappear, is about 5,700 years. A bone has 1/8 of its original carbon-14. About how old is the bone?",
+          "On a dig, you find a bone with 1/8 of its original carbon-14. Carbon-14 is a radioactive form of carbon that slowly disappears after an animal dies. Its half-life, the time for half of it to disappear, is about 5,700 years. About how old is the bone?",
         options: ["About 5,700 years", "About 17,000 years", "About 46,000 years"],
         answer: 1,
       }}

@@ -58,7 +58,7 @@ export default function DeletedKeyBreaksSearch({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A tiny hash table uses linear probing: a key that finds its slot taken moves to the next one. A search starts at the key's slot and walks right until it finds the key or meets an empty slot. A, B and C all hash to slot 1 and sit in slots 1, 2, 3. You delete B by emptying slot 2. Now you search for C. What happens?",
+          "Your tiny hash table uses linear probing: a key that finds its slot taken moves to the next one. A search starts at the key's slot and walks right until it finds the key or meets an empty slot. A, B and C all hash to slot 1 and sit in slots 1, 2, 3. You delete B by emptying slot 2, then look up C. What happens?",
         options: ["C is found in slot 3", "The search says C is not there", "The search finds B"],
         answer: 1,
       }}

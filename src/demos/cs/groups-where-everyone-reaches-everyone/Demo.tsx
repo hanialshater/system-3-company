@@ -124,7 +124,7 @@ export default function SccTwoPasses({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "One-way roads: 1 to 2, 2 to 3, 3 to 1, 3 to 4, 4 to 5, 5 to 6, 6 to 4, 7 to 6. How many groups are there where every town can reach every other in the group?",
+          "Planning deliveries between seven towns, you have these one-way roads: 1 to 2, 2 to 3, 3 to 1, 3 to 4, 4 to 5, 5 to 6, 6 to 4, 7 to 6. How many groups are there where every town can reach every other in the group?",
         options: ["2", "3", "7"],
         answer: 1,
       }}

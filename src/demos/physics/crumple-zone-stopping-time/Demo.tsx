@@ -49,7 +49,7 @@ export default function CrumpleZone({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A 1000 kg car hits a wall at 15 m/s. A short crush stops it in 0.10 s; a longer crush takes 0.20 s. In the longer stop, the average force (in kN, thousands of newtons; the car's own weight is about 10 kN) is…",
+          "You watch a crash test: a 1000 kg car hits a wall at 15 m/s. A short crush stops it in 0.10 s; a longer crush takes 0.20 s. In the longer stop, the average force (in kN, thousands of newtons; the car's own weight is about 10 kN) is…",
         options: ["the same", "half as big", "twice as big"],
         answer: 1,
       }}

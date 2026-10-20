@@ -37,7 +37,7 @@ export default function BendAtDoubleSpeed({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A car takes a bend of radius ${BASE_R} m at ${BASE_KMH} km/h (${ms(BASE_KMH)} m/s), just within grip. At ${FAST_KMH} km/h with the same grip, the radius must be at least...`,
+        question: `On a country road, your car takes a bend of radius ${BASE_R} m at ${BASE_KMH} km/h (${ms(BASE_KMH)} m/s), just within grip. At ${FAST_KMH} km/h with the same grip, what is the smallest radius you can hold?`,
         options: [`${2 * BASE_R} m`, `${rMin(FAST_KMH)} m`, `${4 * BASE_R * 2} m`],
         answer: 1,
       }}

@@ -96,7 +96,7 @@ export default function BelowTheThresholdCrash({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `These animals need mates nearby to breed. Two groups start with 40 and 60, with room for ${fmt(CAP)}. After many years:`,
+        question: `You are watching two groups of an animal that breeds only when mates are nearby. One starts with 40, the other with 60, and there is room for ${fmt(CAP)}. What happens after many years?`,
         options: ["Both grow to 1,000", "The group of 40 dies out; 60 grows", "Both die out"],
         answer: 1,
       }}

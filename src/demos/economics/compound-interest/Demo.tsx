@@ -61,7 +61,7 @@ export default function CompoundInterest({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "$1,000 earns 7% a year, and the interest stays in. After 10 years the balance is $1,967. After 40 years, about how big is the balance?",
+          "You put $1,000 in an account paying 7% a year and leave the interest in. After 10 years it holds $1,967. After 40 years, about how much does it hold?",
         options: ["About $3,800", "About $4,900", "About $15,000"],
         answer: 2,
       }}

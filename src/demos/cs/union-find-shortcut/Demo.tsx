@@ -88,7 +88,7 @@ export default function UnionFindShortcut({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "8 people merge into groups, always hanging the smaller group under the bigger group's leader. In the worst case, how many hops from anyone up to their leader?",
+          "At a meetup, 8 people merge into groups, always hanging the smaller group under the bigger group's leader. In the worst case, how many hops from anyone up to their leader?",
         options: ["7", "3", "1"],
         answer: 1,
       }}

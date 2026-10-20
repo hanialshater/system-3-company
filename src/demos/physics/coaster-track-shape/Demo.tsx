@@ -122,7 +122,7 @@ export default function CoasterTrackShape({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A cart with nothing slowing it (no friction) starts from rest 5 m up and rolls to the floor down either a steep ramp or a gentle one. Which gives the higher speed at the bottom?",
+          "Testing a model coaster, you let a cart roll from rest 5 m up to the floor, down either a steep ramp or a gentle one. With no friction slowing it, which gives the higher speed at the bottom?",
         options: ["The steep ramp", "The gentle ramp", "Both end at the same speed"],
         answer: 2,
       }}

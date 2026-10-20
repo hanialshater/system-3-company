@@ -29,7 +29,7 @@ export default function DigitsAreLogs({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Start at 1 and double again and again: 2, 4, 8, 16, … (ten doublings give 1024). After 100 doublings you reach 2¹⁰⁰. How many digits does it have?",
+        question: "With pencil and paper, you start at 1 and double again and again: 2, 4, 8, 16, … (ten doublings give 1024). After 100 doublings you reach 2¹⁰⁰. How many digits does it have?",
         options: ["21", "31", "100"],
         answer: 1,
       }}

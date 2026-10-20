@@ -50,7 +50,7 @@ export default function LapAt89North({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "You walk once around the world along the 89°N parallel (line of latitude). How far is that?",
+        question: "You set out to walk once around the world along the 89°N parallel (line of latitude), close to the North Pole. How far is that lap?",
         options: [`About ${r10(lapKm(KEY))} km`, "About 7,000 km", "About 40,000 km"],
         answer: 0,
       }}

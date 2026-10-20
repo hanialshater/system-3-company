@@ -105,7 +105,7 @@ export default function TwoLocksWaitForever({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "P takes lock A, then lock B. Q takes B, then A. Anyone who finds a lock taken waits. Can both wait forever?",
+        question: "Two workers share two locks. P takes lock A, then lock B; Q takes B, then A. Anyone who finds a lock taken waits for it. Can both end up waiting forever?",
         options: ["No, one always finishes", "Yes, in some orders", "Yes, in every order"],
         answer: 1,
       }}

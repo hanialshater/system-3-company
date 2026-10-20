@@ -51,7 +51,7 @@ export default function StackOfCubes({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `What is ${KS.map((k) => `${k}³`).join(" + ")}?`,
+        question: `You build solid cubes of blocks: ${KS.map((k) => `${k}³`).join(" + ")}. How many blocks do they use in total?`,
         options: [`${total(N)}`, `${cube(N)}`, `${SQSUM}`],
         answer: 0,
       }}

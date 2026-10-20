@@ -103,7 +103,7 @@ export default function CheckingIsNotFinding({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "3, 34, 4, 12, 5, 2. Checking 4 + 5 = 9: one addition. Trying groups one by one, how many to prove none sums to 13?",
+        question: "Six cards on your table show 3, 34, 4, 12, 5, 2. Checking 4 + 5 = 9 takes one addition. Trying groups one by one, how many to prove none sums to 13?",
         options: ["6", "12", "64"],
         answer: 2,
       }}

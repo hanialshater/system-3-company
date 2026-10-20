@@ -47,7 +47,7 @@ export default function EuclidSquares({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A ${FW} by ${FH} floor is covered with identical square tiles, no cutting. What is the biggest tile side?`,
+        question: `You are tiling a ${FW} by ${FH} floor with identical square tiles and want no cutting at all. What is the biggest tile side that works?`,
         options: [String(TILE), "9", "12"],
         answer: 0,
       }}

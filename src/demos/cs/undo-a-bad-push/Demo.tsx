@@ -40,7 +40,7 @@ export default function UndoABadPush({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Pipes s–a, s–b, a–b, a–t, b–t each carry 1 unit. You send 1 unit along s → a → b → t, then keep adding water along any route with room, never taking water back. How much reaches t in the end?",
+          "In your water network, pipes s–a, s–b, a–b, a–t, b–t each carry 1 unit. You send 1 unit along s → a → b → t, then keep adding water along any route with room, never taking water back. How much reaches t?",
         options: ["1: stuck", "2", "3"],
         answer: 0,
       }}

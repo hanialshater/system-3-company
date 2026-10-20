@@ -44,7 +44,7 @@ export default function CaesarFallsToFrequency({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "In a long English message encrypted with a Caesar shift (every letter moved the same number of places along the alphabet), the most common letter is X. What is the shift most likely to be?",
+          "You intercept a long English message encrypted with a Caesar shift (every letter moved the same number of places along the alphabet). Its most common letter is X. What is the shift most likely to be?",
         options: ["3", "19", "23"],
         answer: 1,
       }}

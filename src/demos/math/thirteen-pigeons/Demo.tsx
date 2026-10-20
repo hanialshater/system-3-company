@@ -22,7 +22,7 @@ export default function ThirteenPigeons({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "How many people must be in a room to be certain that two of them share a birth month?",
+        question: "At your party, how many guests must be in the room for you to be certain that two of them share a birth month?",
         options: [String(N), String(N + 1), String(2 * N)],
         answer: 1,
       }}

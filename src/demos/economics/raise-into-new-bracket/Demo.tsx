@@ -42,7 +42,7 @@ export default function RaiseIntoNewBracket({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Made-up tax: ${LOW * 100}% on the first ${usd(LINE)} earned, ${HIGH * 100}% on every dollar above. Your pay rises from ${usd(Q_FROM)} to ${usd(Q_TO)}. How does take-home pay change?`,
+        question: `Under a made-up tax, you pay ${LOW * 100}% on the first ${usd(LINE)} you earn and ${HIGH * 100}% on every dollar above. Your pay rises from ${usd(Q_FROM)} to ${usd(Q_TO)}. How does your take-home pay change?`,
         options: ["It falls", `It rises by about ${usd(CHANGE)}`, "It stays the same"],
         answer: CHANGE < 0 ? 0 : CHANGE === 0 ? 2 : 1,
       }}

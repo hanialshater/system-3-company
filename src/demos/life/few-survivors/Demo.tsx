@@ -144,7 +144,7 @@ export default function FewSurvivors({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Toy model: a species crashes to 10 survivors, so 20 gene copies drawn at random. A variant on ${RARE_PCT}% of copies: how often is it lost?`,
+        question: `In a toy model, a species crashes to just 10 survivors, so only 20 gene copies, drawn at random, make it through. A variant was on ${RARE_PCT}% of copies before. How often is it lost?`,
         options: ["About 10% of crashes", "About 50% of crashes", `About ${P_LOST_PCT}% of crashes`],
         answer: 2,
       }}

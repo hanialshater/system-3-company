@@ -91,7 +91,7 @@ export default function SeattleMoscowHeading({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Standing in Seattle, which way do you face to set off on the shortest route to Moscow?",
+        question: "Compass in hand at a Seattle airfield, you plan the shortest possible route to Moscow, which lies far to the east. Which way do you face to set off?",
         options: ["East", "North-east", "Almost due north"],
         answer: 2,
       }}

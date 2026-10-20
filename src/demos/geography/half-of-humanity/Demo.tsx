@@ -85,7 +85,7 @@ export default function HalfOfHumanity({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Rank the world's countries by population. How many of the largest do you need to add up to half of humanity?",
+          "Line up the world's countries from most people to fewest, then add them up one by one. How many of the largest do you need to reach half of humanity?",
         options: ["7", "3", "15"],
         answer: 0,
       }}

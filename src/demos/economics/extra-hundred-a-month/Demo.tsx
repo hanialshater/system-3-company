@@ -61,7 +61,7 @@ export default function ExtraHundredAMonth({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A ${usd(LOAN)} loan at 6% takes 30 years at $${PAYMENT.toFixed(2)} a month. You add $${Q_EXTRA} to every payment. About how long does it take now?`,
+        question: `Your ${usd(LOAN)} loan at 6% takes 30 years at $${PAYMENT.toFixed(2)} a month. You start adding $${Q_EXTRA} to every payment. About how long until it is paid off now?`,
         options: ["about 28 years", `about ${Math.round(Q.months / 12)} years`, "about 20 years"],
         answer: 1,
       }}

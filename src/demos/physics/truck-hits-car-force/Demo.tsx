@@ -95,7 +95,7 @@ export default function TruckHitsCar({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A 10,000 kg truck and a 1,000 kg car collide head-on. During the impact, which pushes harder on the other?",
+          "Watching a crash test, you see a 10,000 kg truck and a 1,000 kg car collide head-on. During the impact, which pushes harder on the other?",
         options: ["The truck pushes harder", "The car pushes harder", "They push equally hard"],
         answer: 2,
       }}

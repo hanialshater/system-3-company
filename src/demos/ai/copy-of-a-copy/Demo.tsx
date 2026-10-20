@@ -63,7 +63,7 @@ export default function CopyOfACopy({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A word makes up ${(START[RARE] / BASE) * 100}% of the data. The next model is trained on ${BASE} words sampled from it. The chance the word never appears (and so is lost for good):`,
+        question: `A word makes up ${(START[RARE] / BASE) * 100}% of your training data. You train the next model on ${BASE} words sampled from that data. What is the chance the word never appears, and so is lost for good?`,
         options: ["About 2%", `About ${Math.round(exactLoss(BASE) * 100)}%`, "About 98%"],
         answer: 1,
       }}

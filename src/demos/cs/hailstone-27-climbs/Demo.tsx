@@ -84,7 +84,7 @@ export default function Hailstone27Climbs({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Rule: if n is even, halve it; if odd, make it 3n + 1. Start at 27. How many steps until it reaches 1?",
+        question: "You play a number game on your calculator. Rule: if n is even, halve it; if odd, make it 3n + 1. You start at 27. How many steps until it reaches 1?",
         options: ["Under 30", "30 to 100", "Over 100"],
         answer: 2,
       }}

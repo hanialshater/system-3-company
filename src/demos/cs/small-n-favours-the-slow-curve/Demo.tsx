@@ -84,7 +84,7 @@ export default function SmallNFavoursTheSlowCurve({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Insertion sort costs 8·n² steps. Merge sort costs 64·n·log₂n. To sort 20 items, which costs fewer steps?",
+        question: "Your app sorts a list of just 20 items. Insertion sort takes 8·n² steps; merge sort takes 64·n·log₂n, where n is the number of items. Which takes fewer steps here?",
         options: ["Insertion sort", "Merge sort", "They tie"],
         answer: 0,
       }}

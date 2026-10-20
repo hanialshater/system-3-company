@@ -100,7 +100,7 @@ export default function TwiceAsHot({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Kelvin (K) is the temperature scale that starts at absolute zero; 300 K is a room at 27 °C. Air is heated from 300 K to 600 K (327 °C). The typical speed of its molecules becomes about…",
+          "Your oven heats air from 300 K, a room at 27 °C, to 600 K (327 °C). Kelvin (K) is the temperature scale that starts at absolute zero. The typical speed of the air's molecules becomes about…",
         options: ["2 times as fast", "1.4 times as fast", "Unchanged"],
         answer: 1,
       }}

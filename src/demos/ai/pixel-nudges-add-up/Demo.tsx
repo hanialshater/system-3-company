@@ -59,7 +59,7 @@ export default function PixelNudgesAddUp({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A toy classifier adds up 100 pixel values and says 'cat' if the sum is above 50. This image sums to 50.5. Every pixel is darkened by 0.01 (1% of its range). The label:",
+          "A toy classifier adds up 100 pixel values and says 'cat' if the sum is above 50. Your photo sums to 50.5. You darken every pixel by 0.01 (1% of its range), too little to see. What happens to the label?",
         options: ["Stays 'cat'", "Flips", "Becomes undefined"],
         answer: 1,
       }}

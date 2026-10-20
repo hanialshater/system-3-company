@@ -44,7 +44,7 @@ export default function StackWithoutBend({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Layer 1: h = ${lin(A1, B1)}. Layer 2: y = ${lin(A2, B2, "h")}. One single layer that does the same job as both is:`,
+        question: `You stack two layers in a tiny network. Layer 1: h = ${lin(A1, B1)}. Layer 2: y = ${lin(A2, B2, "h")}. Which single layer does the same job as both?`,
         options: [`y = ${lin(ONE_A, ONE_B)}`, "y = 5x − 4", "None exists: two layers are stronger"],
         answer: 0,
       }}

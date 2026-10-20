@@ -91,7 +91,7 @@ export default function InterpolationGuessesThePage({ slug }: { slug: string }) 
       slug={slug}
       predict={{
         question:
-          "100 sorted values: 10, 20, 30 … 1000. You find 730 by guessing its position from its value. How many looks does it take?",
+          "You need 730 from 100 sorted values: 10, 20, 30 … 1000. Instead of opening the middle, you guess its position from its value. How many looks does it take?",
         options: ["1", "7", "10"],
         answer: 0,
       }}

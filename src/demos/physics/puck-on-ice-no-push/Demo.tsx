@@ -88,7 +88,7 @@ export default function PuckOnIce({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A puck glides at 2 m/s on perfectly frictionless ice. What push keeps it moving at 2 m/s?",
+          "Your hockey puck glides at 2 m/s across perfectly frictionless ice. What push do you need to keep it moving at 2 m/s?",
         options: ["A steady push forward", "No push at all", "A push that grows over time"],
         answer: 1,
       }}

@@ -40,7 +40,7 @@ export default function DoublingSpeedBraking({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "At 30 km/h, hard braking stops a car in about 7 m. With the same brakes at 60 km/h, it takes…",
+        question: "At 30 km/h, braking hard stops your car in about 7 m. On the same road with the same brakes at 60 km/h, how far does it take to stop?",
         options: ["about 14 m", "about 21 m", "about 28 m"],
         answer: 2,
       }}

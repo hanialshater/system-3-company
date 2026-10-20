@@ -39,7 +39,7 @@ export default function HanoiTowerDoubles({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Move a tower of disks to another peg, one disk at a time, never a bigger disk on a smaller one. 3 disks need 7 moves. How many moves do 6 disks need?",
+          "With the tower puzzle on your desk, you move the disks to another peg, one disk at a time, never a bigger disk on a smaller one. 3 disks need 7 moves. How many moves do 6 disks need?",
         options: ["12", "36", "63"],
         answer: 2,
       }}

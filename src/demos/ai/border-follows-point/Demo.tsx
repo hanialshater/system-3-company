@@ -74,7 +74,7 @@ export default function BorderFollowsPoint({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "One-nearest-neighbour: every spot takes the class of the closest training point. Class A sits at x = 0 and class B at x = 4, so the border is at x = 2. Move A to x = -2. The border moves to:",
+          "Your one-nearest-neighbour model gives every spot the class of its closest training point. Class A sits at x = 0 and class B at x = 4, so the border is at x = 2. You move A to x = -2. Where does the border go?",
         options: ["It stays at 2", "x = 1", "x = -2"],
         answer: 1,
       }}

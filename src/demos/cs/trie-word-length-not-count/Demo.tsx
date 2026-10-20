@@ -234,7 +234,7 @@ export default function TrieWordLengthNotCount({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A letter tree holds 10 words. You add 990 more. How many steps does checking for \"cat\" now take?",
+          "Your spell-checker stores 10 words in a letter tree. You add 990 more. How many steps does checking for \"cat\" now take?",
         options: ["About 100 times more", "About 10 times more", "The same 3 steps"],
         answer: 2,
       }}

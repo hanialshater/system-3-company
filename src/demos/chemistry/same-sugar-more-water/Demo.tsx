@@ -50,7 +50,7 @@ export default function SameSugarMoreWater({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "100 mL of sugar syrup at 1.0 mol/L (1 mol of sugar in each litre) is poured into 400 mL of extra water. The mixture is now about…",
+          "Mixing a drink, you pour 100 mL of sugar syrup at 1.0 mol/L (1 mol of sugar in each litre) into 400 mL of water. Your drink is now about…",
         options: ["0.20 mol/L", "0.80 mol/L", "0.25 mol/L"],
         answer: 0,
       }}

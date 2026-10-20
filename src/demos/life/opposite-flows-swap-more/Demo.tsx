@@ -163,7 +163,7 @@ export default function OppositeFlowsSwapMore({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Flowing the same way, blood leaves at 50. Flowing opposite ways, blood leaves at about:",
+        question: "Water with oxygen level 100 flows past blood arriving at 0, through 10 sections that each level the two off halfway. Flowing the same way, blood leaves at 50. Flip the water to flow the opposite way: where does blood leave?",
         options: ["50", "70", "90"],
         answer: 2,
       }}

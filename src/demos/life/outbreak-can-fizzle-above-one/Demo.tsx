@@ -82,7 +82,7 @@ export default function OutbreakCanFizzleAboveOne({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Each case infects a random number of others, 1.5 on average. One case arrives. How often does the chain die out by itself?",
+          "One infected traveller lands in your city. Each case infects a random number of others, 1.5 on average. How often does the chain of cases die out by itself?",
         options: ["Never", "About 4 in 10", "About 9 in 10"],
         answer: 1,
       }}

@@ -94,7 +94,7 @@ export default function RevenueSweetSpot({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A bakery sells 100 − 10 × price loaves a day. Which price earns the most revenue: $${a}, $${b} or $${c}?`,
+        question: `Your bakery sells 100 loaves a day, minus 10 for every dollar you charge per loaf. Which price brings in the most revenue: $${a}, $${b} or $${c}?`,
         options: CHOICES.map((p) => `$${p}`),
         answer: CHOICES.indexOf(BEST),
       }}

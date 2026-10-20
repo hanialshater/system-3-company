@@ -84,7 +84,7 @@ export default function RedAppleGreenLight({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "In a dark room, a ripe red apple is lit only by a pure green lamp. It looks…",
+        question: "In a dark kitchen, you light a ripe red apple with nothing but a pure green lamp. What colour does the apple look?",
         options: ["Bright red", "Almost black", "Green"],
         answer: 1,
       }}

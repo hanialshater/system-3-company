@@ -71,7 +71,7 @@ export default function TwoTugsRightAngle({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A crate on ice is pulled with 3 N east and 4 N north at the same time. The size of the single force with the same effect is…",
+        question: "Moving a crate across ice, you pull it 3 N east while your neighbour pulls 4 N north at the same time. How big is the single force with the same effect?",
         options: ["5 N", "7 N", "1 N"],
         answer: 0,
       }}

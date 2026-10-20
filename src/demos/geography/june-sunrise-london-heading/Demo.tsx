@@ -120,7 +120,7 @@ export default function JuneSunrise({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "In London (51.5°N) on 21 June, in which compass direction does the Sun rise? (North is 0°, east is 90°.)",
+        question: "Up before dawn in London (51.5°N) on 21 June, you wait to watch the sunrise. In which compass direction does the Sun rise? (North is 0°, east is 90°.)",
         options: ["Due east, 90°", "North-east, about 50°", "Almost due north, about 10°"],
         answer: 1,
       }}

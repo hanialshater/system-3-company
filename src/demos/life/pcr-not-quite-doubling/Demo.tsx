@@ -76,7 +76,7 @@ export default function PcrNotQuiteDoubling({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `PCR copies DNA in cycles. Toy PCR: 1 DNA molecule, ${CYCLES} cycles. A perfect cycle doubles the count. If each cycle is ${Q_EFF}% efficient (×${(1 + Q_EFF / 100).toFixed(1)}), the final count compared with perfect is about:`,
+        question: `In your lab, a toy PCR run copies 1 DNA molecule through ${CYCLES} cycles; a perfect cycle doubles the count. If each cycle is ${Q_EFF}% efficient (×${(1 + Q_EFF / 100).toFixed(1)}), how does the final count compare with perfect?`,
         options: ["90%", "50%", "20%"],
         answer: 2,
       }}

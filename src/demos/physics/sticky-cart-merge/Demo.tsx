@@ -90,7 +90,7 @@ export default function StickyCartMerge({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A 2 kg cart at 3 m/s hits a stationary 1 kg cart on a frictionless track, and they stick. Their speed afterwards?",
+        question: "On a frictionless track, you send a 2 kg cart at 3 m/s into a stationary 1 kg cart, and they stick together. How fast do they move afterwards?",
         options: ["3 m/s", "2 m/s", "1.5 m/s"],
         answer: 1,
       }}

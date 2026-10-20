@@ -131,7 +131,7 @@ export default function EarlyFatalityCount({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `On day ${QDAY}, with cases still rising, what is deaths so far ÷ cases so far?`,
+        question: `You follow a new outbreak's daily report. On day ${QDAY}, with cases still rising, you divide deaths so far by cases so far. What do you get?`,
         options: ["About 1 in 50", "About 1 in 100", "About 1 in 400"],
         answer: 2,
       }}

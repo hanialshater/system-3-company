@@ -32,7 +32,7 @@ export default function NoZipShrinksEverything({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "There are 8 different 3-bit files. Could one compressor turn every one of them into a shorter string (0, 1 or 2 bits) and still decompress each correctly?",
+          "Your folder holds all 8 different 3-bit files. Could one compressor turn every one of them into a shorter string (0, 1 or 2 bits) and still decompress each correctly?",
         options: ["Yes, with a clever code", "No, there are not enough shorter strings", "Yes, but only slowly"],
         answer: 1,
       }}

@@ -38,7 +38,7 @@ export default function KettleVsBulb({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A 2000 W kettle runs for 3 minutes. A 60 W bulb stays on for 2 hours. Which uses more energy?",
+        question: "This morning your 2000 W kettle runs for 3 minutes, and a 60 W bulb in the hall stays on for 2 hours. Which uses more energy?",
         options: ["The kettle", "The bulb", "Equal"],
         answer: 1,
       }}

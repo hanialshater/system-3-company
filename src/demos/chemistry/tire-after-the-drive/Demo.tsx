@@ -44,7 +44,7 @@ export default function TireAfterTheDrive({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A rigid, sealed tyre's gauge reads ${GAUGE0} kPa at ${T0} °C. The gauge shows pressure above the outside air's ${Math.round(ATM)} kPa. After a drive the air inside is ${HOT} °C. The gauge now reads about…`,
+        question: `Before a long drive, your gauge reads ${GAUGE0} kPa on a rigid, sealed tyre at ${T0} °C. The gauge shows pressure above the outside air's ${Math.round(ATM)} kPa. After the drive the air inside is ${HOT} °C. The gauge now reads about…`,
         options: [`${Math.round(HOT_GAUGE)} kPa`, `${Math.round(CELSIUS_WRONG)} kPa`, `${Math.round(abs(HOT))} kPa`],
         answer: 0,
       }}

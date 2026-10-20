@@ -83,7 +83,7 @@ export default function TwoRipplesCancel({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Two identical speakers play the same note. A wavelength is the length of one full wave. Where A's sound travels half a wavelength farther than B's, what do you hear?",
+          "At an outdoor concert, two identical speakers play the same note. A wavelength is the length of one full wave. You stand where A's sound travels half a wavelength farther than B's. What do you hear?",
         options: ["louder than one speaker", "the same as one speaker", "almost nothing"],
         answer: 2,
       }}

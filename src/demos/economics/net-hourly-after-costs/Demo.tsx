@@ -40,7 +40,7 @@ export default function NetHourlyAfterCosts({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A delivery job pays ${usd(PAY).replace(".00", "")} an hour. You drive ${Q_MILES} miles an hour, and driving costs ${usd(Q_RATE)} a mile. What is left per hour?`,
+        question: `A delivery app pays you ${usd(PAY).replace(".00", "")} an hour. In that hour you drive ${Q_MILES} miles, and your car costs ${usd(Q_RATE)} a mile to run. What do you actually keep per hour?`,
         options: [usd(PAY), usd(ANSWER), usd(cost(Q_MILES, Q_RATE))],
         answer: 1,
       }}

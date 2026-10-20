@@ -40,7 +40,7 @@ export default function FilamentVsLedHeat({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A 60 W filament bulb is on. About how much of its 60 W comes out as visible light?",
+        question: "Your reading lamp has an old 60 W filament bulb, switched on. About how much of its 60 W comes out as visible light?",
         options: ["About 3 W", "About 30 W", "About 57 W"],
         answer: 0,
       }}

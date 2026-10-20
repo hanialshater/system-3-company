@@ -43,7 +43,7 @@ export default function ThreeQuestionsSixOrders({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `${CARDS.length} different cards are in an unknown order. Each question is "is X bigger than Y?". What is the fewest questions that always suffices?`,
+        question: `${CARDS.length} different cards lie face down in an unknown order, and you may only ask "is X bigger than Y?". What is the fewest questions that always reveals the full order?`,
         options: ["2", String(MIN_Q), String(N)],
         answer: 1,
       }}

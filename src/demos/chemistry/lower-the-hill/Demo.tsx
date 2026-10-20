@@ -71,7 +71,7 @@ export default function LowerTheHill({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A catalyst lowers a reaction's barrier from ${EA0} kJ/mol to ${EA1} kJ/mol at ${T} K. The rate rises by about…`,
+        question: `You add a catalyst that lowers a reaction's barrier from ${EA0} kJ/mol to ${EA1} kJ/mol at ${T} K. By about how much does the rate rise?`,
         options: ["1.5 times", `${round2(GAIN).toLocaleString("en-US")} times`, "3 times"],
         answer: 1,
       }}

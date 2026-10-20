@@ -60,7 +60,7 @@ export default function BinaryFingers({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Each of ${F} fingers is either up or down. How many different numbers (0 included) can you show?`,
+        question: `Using only your hands, let each of your ${F} fingers be either up or down. How many different numbers (0 included) can you show?`,
         options: [String(F), String(F * F), String(2 ** F)],
         answer: 2,
       }}

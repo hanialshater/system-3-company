@@ -55,7 +55,7 @@ export default function FourWordsBeatEightLetters({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Password 1: ${L0} random lowercase letters. Password 2: ${W0} random words from a list of ${commas(WORDS)}. Which has more possible passwords?`,
+        question: `Setting up a new account, you can use ${L0} random lowercase letters or ${W0} random words from a list of ${commas(WORDS)}. Which has more possible passwords?`,
         options: [`${L0} letters`, `${W0} words`, "They are equal"],
         answer: 1,
       }}

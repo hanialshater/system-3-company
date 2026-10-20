@@ -117,7 +117,7 @@ export default function MostCasesVaccinated({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A town of 1,000 people, 90% of them vaccinated, is exposed to a disease. An unvaccinated person has a 50% chance of falling ill; the vaccine cuts that to 5%. About what share of the sick people are vaccinated?",
+          "A disease reaches your town of 1,000, where 90% are vaccinated. Unvaccinated, a person has a 50% chance of falling ill; the vaccine cuts that to 5%. About what share of the sick are vaccinated?",
         options: ["About 5%", "About 25%", "About 47%", "About 90%"],
         answer: 2,
       }}

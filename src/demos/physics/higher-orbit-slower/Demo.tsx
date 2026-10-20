@@ -58,7 +58,7 @@ export default function HigherOrbitSlower({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A satellite is moved from the ISS's circular orbit (6,771 km from Earth's centre) to geostationary orbit (42,164 km). Its speed becomes…",
+          "Your mission moves a satellite from the ISS's circular orbit (6,771 km from Earth's centre) to geostationary orbit (42,164 km). How does its orbiting speed change?",
         options: ["Faster", "The same", "Slower"],
         answer: 2,
       }}

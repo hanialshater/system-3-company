@@ -51,7 +51,7 @@ export default function AsthmaLooksSafe({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "In past records every asthma patient went to intensive care, and 4% of them died. Now the model sends low-risk patients to the ward. Asthma patients' death rate:",
+          "In past records every asthma patient went to intensive care, and 4% of them died. Your hospital's new model now sends low-risk patients to the ward. What happens to asthma patients' death rate?",
         options: ["Stays about 4%, as before", "Rises above 4%", "Falls below 4%"],
         answer: 1,
       }}

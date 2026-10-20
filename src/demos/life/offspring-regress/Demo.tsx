@@ -90,7 +90,7 @@ export default function OffspringRegress({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Made-up plants average ${cm(MEAN)}. Only the tallest, averaging ${cm(KEPT_MEAN)}, are crossed. ${Math.round(100 * Q_H)}% of the height differences are inherited; the rest is soil, sun and luck. Their offspring average about:`,
+        question: `In your field, made-up plants average ${cm(MEAN)}. You cross only the tallest, which average ${cm(KEPT_MEAN)}. ${Math.round(100 * Q_H)}% of the height differences are inherited; the rest is soil, sun and luck. How tall are their offspring on average?`,
         options: [cm(KEPT_MEAN), cm(offMean(Q_H)), cm(MEAN)],
         answer: 1,
       }}

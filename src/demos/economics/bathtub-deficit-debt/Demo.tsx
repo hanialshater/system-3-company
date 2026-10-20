@@ -37,7 +37,7 @@ export default function Bathtub({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `You owe ${usd(START)}. For ${Q_MONTHS} months you spend ${usd(Q_GAP)} more than you earn each month. What do you owe after ${Q_MONTHS} months (ignore interest)?`,
+        question: `You already owe ${usd(START)}. For ${Q_MONTHS} months, your bills run ${usd(Q_GAP)} more than your paycheck each month. Ignoring interest, what do you owe after ${Q_MONTHS} months?`,
         options: [usd(Q_GAP), usd(START), usd(START + Q_MONTHS * Q_GAP)],
         answer: 2,
       }}

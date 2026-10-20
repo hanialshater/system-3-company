@@ -152,7 +152,7 @@ export default function HawksNeverTakeOver({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Hawks fight (the winner takes 4, an injury costs 6); doves share. Start with 10% hawks, or with 90%. Where does the hawk share settle?",
+          "At a feeding spot, birds meet in pairs over food. Hawks fight (the winner takes 4, an injury costs 6); doves share. Start with 10% hawks, or with 90%. Where does the hawk share settle?",
         options: ["Nearly 100% hawks", "About 67% hawks", "About 33% hawks", "Near its start (10% or 90%)"],
         answer: 1,
       }}

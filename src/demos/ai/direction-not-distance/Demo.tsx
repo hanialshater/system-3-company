@@ -39,7 +39,7 @@ export default function DirectionNotDistance({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Query Q = (${Q.join(", ")}). B = (${bAt(K_START).join(", ")}) is far from Q. C = (${C.join(", ")}) is close to Q. Cosine similarity compares the angle between two arrows drawn from the origin. Which is more similar to Q?`,
+        question: `You search for items like query Q = (${Q.join(", ")}). B = (${bAt(K_START).join(", ")}) sits far from Q. C = (${C.join(", ")}) sits close to Q. Cosine similarity compares the angle between two arrows drawn from the origin. Which is more similar to Q?`,
         options: ["B", "C", "They tie"],
         answer: 0,
       }}

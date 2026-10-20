@@ -38,7 +38,7 @@ export default function ParallelOfMostLand({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A parallel is a line of latitude. Walk once around the world along one. On which is the largest share of your walk over land?",
+          "A parallel is a line of latitude. You walk once around the world along one. On which of these is the largest share of your walk over land?",
         options: ["The equator", "40°N", "65°N"],
         answer: 2,
       }}

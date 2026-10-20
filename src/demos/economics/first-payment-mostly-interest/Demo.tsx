@@ -59,7 +59,7 @@ export default function FirstPaymentMostlyInterest({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A ${usd(LOAN)} loan at 6% over 30 years has a payment of ${usd2(PAYMENT)}. After 5 years of payments, how much of the ${usd(LOAN)} have you paid off?`,
+        question: `You take out a ${usd(LOAN)} loan at 6% over 30 years and pay ${usd2(PAYMENT)} every month. After 5 years of payments, how much of the ${usd(LOAN)} have you paid off?`,
         options: [
           `about ${usd(Math.round(EVEN60 / 1000) * 1000)}`,
           `about ${usd(Math.round(PAID60 / 1000) * 1000)}`,

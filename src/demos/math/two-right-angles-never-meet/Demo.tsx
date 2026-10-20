@@ -54,7 +54,7 @@ export default function TwoRightAnglesNeverMeet({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "On a flat page, can a triangle have two right angles?",
+        question: "Sketching on flat paper, you draw a base and stand a square corner at each end of it. Can the two upright sides ever meet to make a triangle with two right angles?",
         options: ["Yes, if it is tall enough", "Yes, if its base is short enough", "No, never"],
         answer: 2,
       }}

@@ -58,7 +58,7 @@ export default function CutTheRod({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A rod of length 4 sells for $${PRICE[3]} whole. Pieces sell for $${PRICE[0]} (length 1), $${PRICE[1]} (length 2), $${PRICE[2]} (length 3). What is the most you can get for the length-4 rod?`,
+        question: `You have a rod of length 4 to sell. Whole, it fetches $${PRICE[3]}. Pieces fetch $${PRICE[0]} (length 1), $${PRICE[1]} (length 2), $${PRICE[2]} (length 3). Cutting is allowed. What is the most you can get for it?`,
         options: opts,
         answer: 1,
       }}

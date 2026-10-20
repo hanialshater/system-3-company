@@ -38,7 +38,7 @@ export default function SameDollarsMoreShares({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `You put $${DOLLARS} into a fund at $${OUTER} a share, then at $${Q_MID}, then at $${OUTER}. What is your average cost per share?`,
+        question: `You put $${DOLLARS} into a fund each time it trades at $${OUTER} a share, then at $${Q_MID}, then at $${OUTER} again. What is your average cost per share?`,
         options: [usd(avgPrice(Q_MID)), usd(avgCost(Q_MID)), usd(Q_MID)],
         answer: 1,
       }}

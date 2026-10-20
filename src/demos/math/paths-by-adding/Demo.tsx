@@ -41,7 +41,7 @@ export default function PathsByAdding({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A city is ${BLOCKS} blocks east by ${BLOCKS} blocks north; the corners are the dots. How many shortest routes go from one corner to the opposite one (only east or north)?`,
+        question: `You walk to work across a city ${BLOCKS} blocks east by ${BLOCKS} blocks north, moving only east or north; the corners are the dots. How many shortest routes can you take, corner to opposite corner?`,
         options: [String(2 * BLOCKS), String(BLOCKS * BLOCKS), String(ROUTES)],
         answer: 2,
       }}

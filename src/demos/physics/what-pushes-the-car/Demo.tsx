@@ -85,7 +85,7 @@ export default function WhatPushesTheCar({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A car speeds up along a flat road. What pushes the car forward?",
+        question: "You press the pedal and your car speeds up along a flat road. What actually pushes the car forward?",
         options: ["Its engine", "The road", "The air behind it"],
         answer: 1,
       }}

@@ -49,7 +49,7 @@ export default function LemonMarketUnravels({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Half of used cars are good (worth $${KINDS[0].value.toLocaleString("en-US")} to buyers; owners sell only for $${KINDS[0].ask.toLocaleString("en-US")} or more), half are bad (worth $${KINDS[1].value.toLocaleString("en-US")}; owners sell for $${KINDS[1].ask} or more). Buyers cannot tell, so they offer the average, ${usd(Q_OFFER)}. Which cars are for sale?`,
+        question: `You are shopping for a used car. Half of used cars are good (worth $${KINDS[0].value.toLocaleString("en-US")} to buyers; owners sell only for $${KINDS[0].ask.toLocaleString("en-US")} or more), half are bad (worth $${KINDS[1].value.toLocaleString("en-US")}; owners sell for $${KINDS[1].ask} or more). Buyers cannot tell, so they offer the average, ${usd(Q_OFFER)}. Which cars are for sale?`,
         options: ["All of them", "Only the good ones", "Only the bad ones"],
         answer: 2,
       }}

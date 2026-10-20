@@ -39,7 +39,7 @@ export default function AddTheSlices({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `What is 1/${A} + 1/${C}?`,
+        question: `You eat 1/${A} of one pizza, then 1/${C} of an identical pizza. How much pizza is that altogether: 1/${A} + 1/${C}?`,
         options: [`${WRONG.top}/${WRONG.bottom}`, sum, `1/${WRONG.bottom}`],
         answer: 1,
       }}

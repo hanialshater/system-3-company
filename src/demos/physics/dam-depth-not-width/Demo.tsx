@@ -45,7 +45,7 @@ export default function DamDepthNotWidth({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A wide lake is ${BASE_DEPTH} m deep. A thin tube of water stands ${BASE_DEPTH} m tall. At the bottom, which has the greater water pressure?`,
+        question: `Your ears ache at the bottom of a wide lake ${BASE_DEPTH} m deep. A thin tube of water stands ${BASE_DEPTH} m tall. At the bottom, which has the greater water pressure?`,
         options: ["The lake", "The tube", "The same"],
         answer: 2,
       }}

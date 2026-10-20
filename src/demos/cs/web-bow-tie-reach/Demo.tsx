@@ -72,7 +72,7 @@ export default function WebBowTieReach({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "12 small pages with one-way links. Ignoring direction, 10 of them are joined to the central group. Start on page A in that group and click links the way they point. How many pages can you reach, counting A?",
+          "You land on page A in the central group of a 12-page web with one-way links. Ignoring direction, 10 of them are joined to the central group. Clicking links only the way they point, how many pages can you reach, counting A?",
         options: ["7", "10", "4"],
         answer: 0,
       }}

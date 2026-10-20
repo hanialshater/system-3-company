@@ -53,7 +53,7 @@ export function AlphabetSearchLesson({slug}:{slug:string}) {
   const [count,setCount]=useState(8),[state,setState]=useState<SearchState>({scan:0,steps:[]});
   const target=shuffledLabels(count).target;
   return <Lesson slug={slug} minInteractions={2}
-    predict={{question:"To find the target, which method can rule out labels without checking every label?",options:["Halve sorted candidates","Scan shuffled labels"],answer:0}}
+    predict={{question:"You need one letter label from a long row. To find the target, which method can rule out labels without checking every label?",options:["Halve sorted candidates","Scan shuffled labels"],answer:0}}
     exploreHint="Scan the shuffled list, then compare the middle of sorted candidates. Faded labels were ruled out."
     reveal={()=> <><p>You found {target}: the disclosed target-last scan needed {state.scan} checks. Your sorted search needed {state.steps.length}, with comparisons {state.steps.map(step=>`${step.value}${step.verdict==="found"?"=":"<"}${target}`).join(" → ")}.</p><p>When the middle label is below the target, it and all earlier labels can be ruled out because the list is sorted. The faded tiles show that elimination. An unsorted list supplies no such ordering guarantee. Sorting takes work; this exercise counts only search comparisons.</p></>}
   >{({locked,interact})=><SearchStage count={count} setCount={setCount} state={state} setState={setState} locked={locked} interact={interact}/>}</Lesson>;

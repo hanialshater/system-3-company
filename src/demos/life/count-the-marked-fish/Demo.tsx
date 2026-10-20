@@ -85,7 +85,7 @@ export default function CountTheMarkedFish({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Toy lake. ${M} fish are caught, marked and let go. Later ${C} fish are caught and ${MARKED[0]} are marked. About how many fish are in the lake?`,
+        question: `At a toy lake, you catch ${M} fish, mark them and let them go. Later you catch ${C} fish, and ${MARKED[0]} of them are marked. About how many fish are in the lake?`,
         options: ["About 500", "About 1,000", "About 2,000"],
         answer: 1,
       }}

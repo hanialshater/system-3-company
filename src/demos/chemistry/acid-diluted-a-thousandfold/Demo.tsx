@@ -65,7 +65,7 @@ export default function AcidDilutedAThousandfold({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Hydrochloric acid at pH 5 is diluted 1,000 times with pure water at 25 °C. Its pH becomes about…",
+        question: "In the lab, you dilute hydrochloric acid at pH 5 a thousand times with pure water at 25 °C. About what pH does it end up at?",
         options: ["about 5", "about 6", "about 7", "about 8"],
         answer: 2,
       }}

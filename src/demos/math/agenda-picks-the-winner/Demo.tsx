@@ -53,7 +53,7 @@ export default function AgendaPicksTheWinner({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Three voters rank A, B, C. First vote: A against B. The winner then faces C. Who wins?",
+        question: "Three housemates each rank takeaway options A, B and C. You run the vote: first A against B, then the winner faces C. Which option wins?",
         options: OPTS,
         answer: OPTS.indexOf(run(AGENDAS[0]).champ),
       }}

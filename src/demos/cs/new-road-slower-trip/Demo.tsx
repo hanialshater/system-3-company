@@ -237,7 +237,7 @@ export default function NewRoadSlowerTrip({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "4,000 drivers go from S to E. Each route has one busy road (cars ÷ 100 minutes) and one fixed 45-minute road, so today every trip takes 65 minutes. A free link from A to B opens, and every driver takes the fastest route for them. How long does a trip take then?",
+          "Each morning you and 3,999 other drivers go from S to E. Each route has one busy road (cars ÷ 100 minutes) and one fixed 45-minute road, so today every trip takes 65 minutes. A free link from A to B opens, and every driver takes the fastest route for them. How long is your trip now?",
         options: ["About 40 min", "65 min, unchanged", "75 min", "80 min"],
         answer: 3,
       }}

@@ -92,7 +92,7 @@ export default function ChildrenNewMutations({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Each person carries two copies of a genome, ${LETTERS / 1e9} billion letters each. A copying error hits about ${REAL} letters in every 100 million per generation. About how many brand-new changes does a child carry?`,
+        question: `A baby is born with two copies of a genome, ${LETTERS / 1e9} billion letters each. A copying error hits about ${REAL} letters in every 100 million per generation. About how many brand-new changes does the baby carry?`,
         options: ["About 7", "About 70", "About 7,000"],
         answer: 1,
       }}

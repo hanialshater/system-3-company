@@ -64,7 +64,7 @@ export default function FallDistanceSquares({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A dropped stone falls 4.9 m in its first second (no air). How far has it fallen after 3 s?",
+        question: "From a tall cliff top you drop a stone. Ignoring air, it falls 4.9 m in its first second. How far has it fallen after 3 s?",
         options: ["14.7 m", "29.4 m", "44.1 m"],
         answer: 2,
       }}

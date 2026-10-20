@@ -102,7 +102,7 @@ export default function FlatRateCostsNearlyDouble({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Borrow $10,000 at '10% flat' for 2 years: $2,000 interest, 24 payments of $500. The true yearly rate on what you owe is about…",
+        question: "A lender quotes you $10,000 at '10% flat' for 2 years: $2,000 interest, 24 payments of $500. About what true yearly rate are you paying on what you owe?",
         options: ["10%", "14%", "18%"],
         answer: 2,
       }}

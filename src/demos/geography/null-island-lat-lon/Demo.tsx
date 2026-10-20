@@ -75,7 +75,7 @@ export default function NullIsland({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Latitude 0, longitude 0 is where the equator meets the prime meridian. What is there?",
+        question: "You type latitude 0, longitude 0 into your map app: the spot where the equator meets the prime meridian. If you went there, what would you find?",
         options: ["The Sahara, in North Africa", "A small island", "Open ocean, in the Gulf of Guinea"],
         answer: 2,
       }}

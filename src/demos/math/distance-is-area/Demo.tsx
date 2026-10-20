@@ -43,7 +43,7 @@ export default function DistanceIsArea({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A car speeds up steadily from 0 to ${VMAX} m/s over ${T} s. How far does it go?`,
+        question: `Pulling away from a red light, your car speeds up steadily from 0 to ${VMAX} m/s over ${T} s. How far do you travel in that time?`,
         options: [`${VMAX * T} m`, `${EXACT} m`, `${VMAX} m`],
         answer: 1,
       }}

@@ -39,7 +39,7 @@ export default function TheContraryProgram({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A checker H reads any program and answers 'halts' (it stops) or 'loops forever'. Program D asks H about D, then does the opposite. Can H be right about D?",
+          "You build a checker, H, that reads any program and answers 'halts' (it stops) or 'loops forever'. A rival writes program D, which asks H about D, then does the opposite. Can H be right about D?",
         options: ["Yes, if H is clever enough", "No: whatever H says is wrong", "Only if D is short"],
         answer: 1,
       }}

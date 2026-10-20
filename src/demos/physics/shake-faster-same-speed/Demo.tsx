@@ -53,7 +53,7 @@ export default function ShakeFasterSameSpeed({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "You shake the rope's end twice as often. Compared with before, each crest now reaches the far end...",
+        question: "You hold one end of a rope and shake it, sending waves to the far end. Keeping the rope just as tight, you shake twice as often. How does each crest now reach the far end?",
         options: ["Twice as fast", "In the same time", "Half as fast"],
         answer: 1,
       }}

@@ -49,7 +49,7 @@ export default function MiddleOfThree({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Ann–Bo–Cy in a line. Bo can split $1 with Ann or with Cy, not both. In repeated rounds, what share does Bo end up with?",
+        question: "Ann, Bo and Cy stand in a line, so only Bo can deal with both others. Bo can split $1 with Ann or with Cy, not both. Round after round, what share does Bo end up with?",
         options: ["About half", "About two thirds", "All, or nearly all"],
         answer: 2,
       }}

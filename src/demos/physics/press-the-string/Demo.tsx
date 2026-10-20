@@ -70,7 +70,7 @@ export default function PressTheString({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "An open guitar string vibrates 110 times a second (110 Hz). Pressed down at its middle, it vibrates about…",
+        question: "Tuning your guitar, you pluck an open string that vibrates 110 times a second (110 Hz). You press it down at its middle and pluck again. About how fast does it vibrate now?",
         options: ["55 Hz", "110 Hz", "220 Hz"],
         answer: 2,
       }}

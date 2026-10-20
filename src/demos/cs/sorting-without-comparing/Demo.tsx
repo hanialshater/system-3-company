@@ -31,7 +31,7 @@ export default function SortingWithoutComparing({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Ten exam scores, each a whole number from 0 to ${K - 1}, are sorted by tallying how many of each score occur and writing them out. How many comparisons between scores does that take?`,
+        question: `Marking ten exams, you get scores, each a whole number from 0 to ${K - 1}. You sort them by tallying how many of each score occur, then writing them out. How many comparisons between scores does that take?`,
         options: ["0", "9", "33"],
         answer: 0,
       }}

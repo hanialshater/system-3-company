@@ -51,7 +51,7 @@ export default function HeatWaveDemand({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Ice cream model: buyers want 100 − 10p cones, sellers supply 10p − 20; the lines cross at ${dollars(P0)} and ${Q0} cones. A heat wave makes buyers want ${Q_EXTRA} more at every price. New price?`,
+        question: `In the ice cream model, buyers want 100 − 10p cones and sellers supply 10p − 20; the lines cross at ${dollars(P0)} and ${Q0} cones. A heat wave hits, and buyers want ${Q_EXTRA} more at every price. What does a cone cost now?`,
         options: [dollars(P0), dollars(P1), dollars(WRONG)],
         answer: 1,
       }}

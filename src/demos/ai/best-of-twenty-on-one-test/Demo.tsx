@@ -82,7 +82,7 @@ export default function BestOfTwentyOnOneTest({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "20 teams' models each just guess (50% chance per question). All are scored on the same 100 test questions. The best scores about:",
+        question: "Your contest has 20 teams, and every team's model just guesses (50% chance per question). All are scored on the same 100 test questions. About what does the leaderboard winner score?",
         options: ["About 50%", "About 60%", "About 75%"],
         answer: 1,
       }}

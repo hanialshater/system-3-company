@@ -45,7 +45,7 @@ export default function TwoSuspectsPayoff({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Payoffs (you, other): both Cooperate ${PAY[0][0].join(", ")}. You Defect, they Cooperate ${PAY[1][0].join(", ")}. You Cooperate, they Defect ${PAY[0][1].join(", ")}. Both Defect ${PAY[1][1].join(", ")}. Whatever the other does, what is better for you?`,
+        question: `Questioned in separate rooms, you and your partner each choose. Payoffs (you, other): both Cooperate ${PAY[0][0].join(", ")}. You Defect, they Cooperate ${PAY[1][0].join(", ")}. You Cooperate, they Defect ${PAY[0][1].join(", ")}. Both Defect ${PAY[1][1].join(", ")}. Whatever the other does, what is better for you?`,
         options: ["Cooperate", "Defect", "It depends on what they do"],
         answer: DOMINANT === null ? 2 : DOMINANT,
       }}

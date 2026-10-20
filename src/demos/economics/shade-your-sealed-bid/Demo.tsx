@@ -37,7 +37,7 @@ export default function ShadeYourSealedBid({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "It's worth $80 to you; winners pay their bid. Your rival's value is anywhere $0–100, and they bid half of it. Best bid?",
+        question: "In a sealed-bid auction, the item is worth $80 to you and the winner pays their own bid. Your rival values it anywhere from $0 to $100 and bids half of that. What is your best bid?",
         options: ["$80", "$60", "$40"],
         answer: 2,
       }}

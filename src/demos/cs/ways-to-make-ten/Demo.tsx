@@ -343,7 +343,7 @@ export default function WaysToMakeTen({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Coins 1, 2 and 5. In how many ways can you make 10, if 5+5 and 2+2+2+2+2 count, and 1+2 is the same as 2+1?",
+          "Your pocket holds plenty of 1, 2 and 5 coins. In how many ways can you pay exactly 10, if 5+5 and 2+2+2+2+2 count, and 1+2 is the same as 2+1?",
         options: ["4", "10", "128"],
         answer: 1,
       }}

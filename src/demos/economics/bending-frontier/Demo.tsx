@@ -57,7 +57,7 @@ export default function BendingFrontier({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A farm has ${W_MAX} fields; each can grow 1 ton of wheat or some corn. Switching the first field to wheat costs ${FIRST} ton of corn. What does switching the last one, from ${W_MAX - 1} to ${W_MAX} tons of wheat, cost?`,
+        question: `Your farm has ${W_MAX} fields, and each can grow 1 ton of wheat or some corn. Switching your first field to wheat costs you ${FIRST} ton of corn. What does switching the last field cost, taking you from ${W_MAX - 1} to ${W_MAX} tons of wheat?`,
         options: [String(FIRST), String(W_MAX), String(LAST)],
         answer: 2,
       }}

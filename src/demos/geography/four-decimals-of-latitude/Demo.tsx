@@ -87,7 +87,7 @@ export default function FourDecimals({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A phone shows latitude 51.5074° N. If the last digit changes by one, how far north have you moved?",
+        question: "Your phone's map shows your latitude as 51.5074° N. You walk north until the last digit changes by one. How far north have you moved?",
         options: ["1 kilometre", "11 metres", "1 centimetre"],
         answer: 1,
       }}

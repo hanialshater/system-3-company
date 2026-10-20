@@ -40,7 +40,7 @@ export default function InsertAtFrontCost({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A row of ${ITEMS.length} items sits in numbered slots, side by side. A new item must go at the front. How many existing items must move?`,
+        question: `Your shelf holds a row of ${ITEMS.length} items in numbered slots, side by side. A new item must go at the front. How many existing items must move?`,
         options: ["1", String(ROW_MOVES), String(ROW_MOVES + 1)],
         answer: 1,
       }}

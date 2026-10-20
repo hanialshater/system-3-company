@@ -84,7 +84,7 @@ export default function WhichDissolvesInOil({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Salt, sugar and iodine are each shaken with hexane, an oily liquid from petrol. Which dissolves well?",
+        question: "You shake salt, sugar and iodine, each in its own jar, with hexane, an oily liquid made from petrol. Which one dissolves well?",
         options: ["salt", "sugar", "iodine"],
         answer: 2,
       }}

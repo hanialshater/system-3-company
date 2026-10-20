@@ -90,7 +90,7 @@ export default function HalfLife({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A half-life is the time in which about half of a pile of radioactive atoms decays. Start with 200; after 3 half-lives about 25 are left. During the 4th, what share of those 25 decays?",
+          "Your lab sample starts with 200 radioactive atoms. A half-life is the time in which about half of them decay; after 3 half-lives about 25 are left. During the 4th, what share of those 25 decays?",
         options: ["About half", "More than half: they're overdue", "Fewer than half: they're the tough ones"],
         answer: 0,
       }}

@@ -65,7 +65,7 @@ export default function SouthEastNorthWalk({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "From the North Pole, walking 1 km south, then 1 km east, then 1 km north brings you back to the start. How many other places on Earth do the same?",
+          "Setting out from the North Pole, you walk 1 km south, then 1 km east, then 1 km north, and land back where you started. How many other places on Earth let you do the same?",
         options: ["None: only the North Pole", "Exactly one more", "Infinitely many"],
         answer: 2,
       }}

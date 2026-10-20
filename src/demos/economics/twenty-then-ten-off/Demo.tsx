@@ -51,7 +51,7 @@ export default function TwentyThenTenOff({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A ${usd(PRICE)} coat is ${OFFS[0]}% off, then a coupon takes another ${OFFS[1]}% off the sale price. What is the total discount?`,
+        question: `At the till, the ${usd(PRICE)} coat you want is ${OFFS[0]}% off, and your coupon takes another ${OFFS[1]}% off the sale price. What is your total discount?`,
         options: [`${OFFS[0] + OFFS[1]}%`, `${TOTAL_PCT}%`, "25%"],
         answer: 1,
       }}

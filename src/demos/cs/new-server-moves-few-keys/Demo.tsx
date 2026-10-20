@@ -68,7 +68,7 @@ export default function NewServerMovesFewKeys({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Keys sit on 4 servers by (key mod 4). A fifth server is added, so it is now (key mod 5). Of 20 consecutive key numbers, how many move to a different server?",
+          "Your app stores keys on 4 servers by (key mod 4). Traffic grows, you add a fifth, so it is now (key mod 5). Of 20 consecutive key numbers, how many move to a different server?",
         options: ["4", "10", "16"],
         answer: 2,
       }}

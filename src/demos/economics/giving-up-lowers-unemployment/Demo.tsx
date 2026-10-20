@@ -52,7 +52,7 @@ export default function GivingUpLowersUnemployment({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "100 people want work: 90 have jobs, 10 are looking. 4 of the 10 stop looking. No new jobs. The unemployment rate…",
+        question: "In your town, 100 people want work: 90 have jobs and 10 are looking. 4 of the 10 give up and stop looking, and no new jobs appear. What does the unemployment rate do?",
         options: ["rises", "stays at 10%", "falls"],
         answer: 2,
       }}

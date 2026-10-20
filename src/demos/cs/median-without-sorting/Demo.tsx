@@ -88,7 +88,7 @@ export default function MedianWithoutSorting({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Find the median (position 51) of 101 shuffled cards by splitting around a pivot (the first card: smaller ones left, bigger ones right). After each split you:",
+          "You need the median card (position 51) of 101 shuffled cards. You split around a pivot, the first card: smaller ones left, bigger ones right. After each split, what do you do?",
         options: ["split both sides, as in sorting", "keep only the side holding the median", "keep the bigger side"],
         answer: 1,
       }}

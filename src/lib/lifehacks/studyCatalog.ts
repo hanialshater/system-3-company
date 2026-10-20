@@ -8,7 +8,7 @@ export const study_spaced_beats_cram = {
   "title": "Same hours, different calendar",
   "hook": "Three hours in one block or across three days: what changes a month later?",
   "objective": "Separate the research-supported spacing effect from invented memory curves.",
-  "question": "Same 3 hours of rereading. A month later, which plan remembers more?",
+  "question": "You plan your rereading: Plan A is three hours in one sitting, Plan B is one hour on each of three days. Same 3 hours of rereading. A month later, which plan remembers more?",
   "options": [
     "Plan A",
     "Plan B",
@@ -364,10 +364,10 @@ export const study_reverse_the_flashcard = {
 export const study_rebuild_the_procedure = {
   "family": "recall",
   "slug": "rebuild-the-procedure",
-  "title": "Rebuild the steps",
+  "title": "Know the steps, or their order?",
   "hook": "You remember all three actions. Do you remember their order?",
   "objective": "Reconstruct a procedure as an ordered sequence.",
-  "question": "Which test checks procedure order?",
+  "question": "Learning a three-step routine at work, you can already name every action in it when someone asks. Which test checks procedure order?",
   "options": [
     "Rebuild the sequence",
     "Recognise each word"
@@ -590,7 +590,7 @@ export const study_apply_not_quote = {
   "title": "Does this order pass?",
   "hook": "A checker passes 9, 2, 5 because all three numbers are there.",
   "objective": "Apply a stated sorting rule to visible values rather than repeat its wording.",
-  "question": "Under the ascending rule, how many of 9, 2, 5 are already in the right place?",
+  "question": "Your list must run smallest first. Under the ascending rule, how many of 9, 2, 5 are already in the right place?",
   "options": [
     "0 of 3",
     "1 of 3",
@@ -635,7 +635,7 @@ export const study_separate_confusable_pairs = {
   "title": "Two codes, one description",
   "hook": "Two part codes, both noted as 'grey cable'. Which one will you remember?",
   "objective": "Check the specific difference between two arbitrary codes.",
-  "question": "Codes K-417 and K-471, both noted as 'grey cable'. Asked for the grey cable's code, how often do you pick the right one?",
+  "question": "At the hardware shop counter, you check your notes. Codes K-417 and K-471, both noted as 'grey cable'. Asked for the grey cable's code, how often do you pick the right one?",
   "options": [
     "Always: I learned it",
     "About half the time"
@@ -723,7 +723,7 @@ export const study_check_confidence_with_output = {
   "title": "Feeling sure of the order",
   "hook": "You studied three words in order and feel sure of it. How sure should you be?",
   "objective": "Compare felt familiarity with a scored local reconstruction.",
-  "question": "Your attempt feels familiar. Before checking it, how many places do you know are right?",
+  "question": "You write the three words back in order from memory. Your attempt feels familiar. Before checking it, how many places do you know are right?",
   "options": [
     "All 3 of 3: you feel sure",
     "Unknown until checked",
@@ -888,7 +888,7 @@ export const study_buffer_for_a_late_finish = {
   "title": "When the draft runs late",
   "hook": "The draft overruns by five minutes.",
   "objective": "Distinguish planned slack from overlapping bookings.",
-  "question": "The draft runs 5 minutes over. Which plan has no clash with the call?",
+  "question": "You booked a draft, then a call. The draft runs 5 minutes over. Which plan has no clash with the call?",
   "options": [
     "Both clash by 5 min",
     "Touching, call at 20",
@@ -1030,7 +1030,7 @@ export const study_estimate_a_range = {
   "title": "15 to 25 minutes, call at 20",
   "hook": "A task takes 15 to 25 minutes. Which number do you plan with?",
   "objective": "Stress-test a schedule at the longer end of an explicit range.",
-  "question": "A 15-25 minute task, then a call at 20. Plan with 15: is the call safe?",
+  "question": "Before a work call, you try to squeeze in one task. A 15-25 minute task, then a call at 20. Plan with 15: is the call safe?",
   "options": [
     "Yes",
     "Not if it runs long"
@@ -1071,7 +1071,7 @@ export const study_one_person_two_jobs = {
   "title": "One person, two blocks",
   "hook": "Two jobs on two calendar rows, both yours. When are you done?",
   "objective": "Detect simultaneous bookings for one constrained resource.",
-  "question": "Two 30-minute jobs on separate rows from minute 0, one person. When is everything done?",
+  "question": "Your calendar shows two jobs side by side, and both of them are assigned to you. Two 30-minute jobs on separate rows from minute 0, one person. When is everything done?",
   "options": [
     "Minute 30",
     "Minute 60"
@@ -1108,7 +1108,7 @@ export const study_fit_before_fixed_slot = {
   "title": "Where do the 25 minutes go?",
   "hook": "A 25-minute task, a fixed call at 20, and an hour free. Where does it go?",
   "objective": "Place flexible work around a fixed calendar interval.",
-  "question": "A 25-minute task and a call at 20 to 30. Free until 60. Where does it fit?",
+  "question": "Your afternoon has one fixed call and a task you still need to slot in. A 25-minute task and a call at 20 to 30. Free until 60. Where does it fit?",
   "options": [
     "From 0, across the call",
     "From 30",
@@ -1147,7 +1147,7 @@ export const study_include_the_wrap_up = {
   "title": "When is the call job done?",
   "hook": "The call ends at minute 30. Is that when the job is done?",
   "objective": "Include a required follow-up block in total calendar capacity.",
-  "question": "A call from 0 to 30, then 10 minutes of notes. When is the job done?",
+  "question": "You block out your calendar for a client call. A call from 0 to 30, then 10 minutes of notes. When is the job done?",
   "options": [
     "30",
     "40"
@@ -1188,7 +1188,7 @@ export const study_fragmented_time_does_not_fit = {
   "title": "Thirty scattered minutes",
   "hook": "Thirty free minutes in scattered gaps: will a 30-minute job fit?",
   "objective": "Distinguish total free time from one continuous interval.",
-  "question": "Gaps of 10, 10 and 10 minutes before minute 40. Does the 30-minute job fit?",
+  "question": "Your calendar has small free gaps all morning. Gaps of 10, 10 and 10 minutes before minute 40. Does the 30-minute job fit?",
   "options": [
     "Yes: 30 minutes free",
     "No: it needs one 30-minute gap"
@@ -1232,7 +1232,7 @@ export const study_handoff_after_finish = {
   "title": "A handoff has a release time",
   "hook": "The reviewer cannot start with a draft that has not finished.",
   "objective": "Schedule a dependent task after its input is ready.",
-  "question": "When can review start in this model?",
+  "question": "A colleague is writing a draft, and you are the one who will review it. When can review start in this model?",
   "options": [
     "After draft finishes",
     "When drafting starts"
@@ -1343,10 +1343,10 @@ export const study_count_setup_in_the_block = {
 export const study_arrival_is_not_departure = {
   "family": "schedule",
   "slug": "arrival-is-not-departure",
-  "title": "Arrival time works backwards",
+  "title": "When must you leave?",
   "hook": "A 20-minute trip must end at minute 40. When do you need to leave?",
   "objective": "Compute a departure block ending at the required arrival.",
-  "question": "Latest departure for this 20-minute trip?",
+  "question": "You need to be there by minute 40. Latest departure for this 20-minute trip?",
   "options": [
     "Minute 20",
     "Minute 40"
@@ -1429,10 +1429,10 @@ export const study_reserve_an_unassigned_slot = {
 export const study_short_jobs_clear_a_queue = {
   "family": "order",
   "slug": "short-jobs-clear-a-queue",
-  "title": "Clear the short jobs",
+  "title": "Which jobs go first?",
   "hook": "Same total work, different waiting time for the people in this queue.",
   "objective": "Compare total waiting under two orders.",
-  "question": "With all jobs ready, which reduces total waiting in this exercise?",
+  "question": "Three people wait at your desk with a long, a quick and a small request, all ready to start. With all jobs ready, which reduces total waiting in this exercise?",
   "options": [
     "Short jobs first",
     "Long jobs first"
@@ -1483,7 +1483,7 @@ export const study_earliest_deadline_first = {
   "title": "Quick job or urgent job?",
   "hook": "Do the quickest job first. Does anything end up late?",
   "objective": "Compare deadline misses instead of only completion count.",
-  "question": "Short job (5 min, due 30) or urgent job (10 min, due 10). Do quickest first: is anything late?",
+  "question": "Two jobs land on your desk at the same moment. Short job (5 min, due 30) or urgent job (10 min, due 10). Do quickest first: is anything late?",
   "options": [
     "Yes, the urgent one",
     "No"
@@ -1528,7 +1528,7 @@ export const study_dependency_before_priority = {
   "title": "High priority, missing input",
   "hook": "One job is tagged high priority. Does that decide what runs first?",
   "objective": "Distinguish task priority from prerequisite readiness.",
-  "question": "The review is tagged high priority, and it works from the draft. Which runs first?",
+  "question": "Your to-do list has a draft and a review of that draft. The review is tagged high priority, and it works from the draft. Which runs first?",
   "options": [
     "The draft it needs",
     "The high-priority review"
@@ -1689,7 +1689,7 @@ export const study_do_not_starve_the_long_job = {
   "title": "Short jobs first?",
   "hook": "Short jobs first means the least waiting. Is it always the right order?",
   "objective": "Compare waiting and lateness when their objectives conflict.",
-  "question": "Two 5-minute jobs, and a 25-minute job due at minute 25. Do the short ones first: is the long job on time?",
+  "question": "Three jobs sit on your list this morning. Two 5-minute jobs, and a 25-minute job due at minute 25. Do the short ones first: is the long job on time?",
   "options": [
     "Yes: least waiting, so nothing waits too long",
     "No: it finishes late"
@@ -1737,7 +1737,7 @@ export const study_do_not_starve_the_long_job = {
 export const study_work_in_process_limit = {
   "family": "order",
   "slug": "work-in-process-limit",
-  "title": "Finish before starting more",
+  "title": "Finish one, or rotate all three?",
   "hook": "Three started tasks are not three finished tasks.",
   "objective": "Compare serial completion to round-robin partial progress.",
   "question": "Same three jobs, same order A, B, C. Which plan finishes its first job sooner?",
@@ -1788,10 +1788,10 @@ export const study_work_in_process_limit = {
 export const study_separate_ready_from_blocked = {
   "family": "order",
   "slug": "separate-ready-from-blocked",
-  "title": "Ready is a task property",
+  "title": "What can run before the input?",
   "hook": "A blocked task belongs on the board, but cannot run yet.",
   "objective": "Move blocked work behind its explicitly required input.",
-  "question": "Which task can run before the input arrives?",
+  "question": "Your to-do list has one task waiting on a file from a colleague and another that needs nothing from anyone. Which task can run before the input arrives?",
   "options": [
     "Independent work",
     "Blocked output"
@@ -1841,10 +1841,10 @@ export const study_separate_ready_from_blocked = {
 export const study_delegate_the_whole_handoff = {
   "family": "order",
   "slug": "delegate-the-whole-handoff",
-  "title": "Delegation includes a handoff",
+  "title": "When can the helper start?",
   "hook": "The helper saves work only after receiving the input.",
   "objective": "Include coordination as a prerequisite instead of ignoring it.",
-  "question": "What must precede the helper task here?",
+  "question": "You pass part of a job to a helper to save time. What must precede the helper task here?",
   "options": [
     "Handoff",
     "Unrelated editing"
@@ -1897,7 +1897,7 @@ export const study_choose_the_metric_first = {
   "title": "Which queue is better?",
   "hook": "One order waits less, the other is late less. Which one is better?",
   "objective": "Compare waiting and deadline misses for one fixed order.",
-  "question": "What is required before calling an order better?",
+  "question": "You must pick one of two task orders for your team. What is required before calling an order better?",
   "options": [
     "Count visible movement",
     "Choose the objective"
@@ -1948,7 +1948,7 @@ export const study_file_type_then_owner = {
   "title": "Narrow with two filters",
   "hook": "Four files; two are PDFs and two are Ana's. Which one matches both?",
   "objective": "Intersect type and owner filters.",
-  "question": "What does adding an owner filter to PDF mean?",
+  "question": "Hunting for one of Ana's PDFs, you filter to PDFs and then add an owner filter. What does adding an owner filter to PDF mean?",
   "options": [
     "Both conditions",
     "Either condition"
@@ -1992,10 +1992,10 @@ export const study_file_type_then_owner = {
 export const study_mail_exact_phrase = {
   "family": "files",
   "slug": "mail-exact-phrase",
-  "title": "Keep the phrase together",
+  "title": "What do quotes do in a search?",
   "hook": "“Blue folder” and “folder is blue” do not contain the same exact phrase.",
   "objective": "Distinguish an exact phrase from two unordered words.",
-  "question": "What does a quoted phrase require in this exercise?",
+  "question": "Hunting your inbox for the email about the blue folder, you put those two words in quotes. What does a quoted phrase require in this exercise?",
   "options": [
     "Same adjacent words",
     "Words anywhere"
@@ -2032,10 +2032,10 @@ export const study_mail_exact_phrase = {
 export const study_mail_minus_noise = {
   "family": "files",
   "slug": "mail-minus-noise",
-  "title": "Exclude the noisy term",
+  "title": "How to cut newsletters from a search?",
   "hook": "The right topic appears in both notes and newsletters.",
   "objective": "Use exclusion to remove an explicitly unwanted term.",
-  "question": "Which query removes newsletter matches?",
+  "question": "Your inbox search for a topic keeps pulling up newsletters along with the notes you want. Which query removes newsletter matches?",
   "options": [
     "Topic minus newsletter",
     "Topic OR newsletter"
@@ -2073,10 +2073,10 @@ export const study_mail_minus_noise = {
 export const study_file_modified_not_created = {
   "family": "files",
   "slug": "file-modified-not-created",
-  "title": "Modified is not created",
+  "title": "Which date finds today's edit?",
   "hook": "A newly edited old file and a newly created file answer different searches.",
   "objective": "Distinguish creation and modification date filters.",
-  "question": "For recent edits, which field matters?",
+  "question": "You edited an old file today and want it near the top of your recent work. For recent edits, which field matters?",
   "options": [
     "Modified date",
     "Created date"
@@ -2120,7 +2120,7 @@ export const study_iso_date_filename_sort = {
   "title": "Sort dates by their names",
   "hook": "Day-first names mix months when sorted alphabetically.",
   "objective": "Compare lexicographic ordering of two explicit date formats.",
-  "question": "Which format sorts these dates chronologically as text?",
+  "question": "You are naming dated files so they line up in a folder. Which format sorts these dates chronologically as text?",
   "options": [
     "YYYY-MM-DD",
     "DD-MM-YYYY"
@@ -2155,7 +2155,7 @@ export const study_version_nine_and_ten = {
   "title": "Version 10 after version 9",
   "hook": "Text order and numeric order disagree about 9 and 10.",
   "objective": "Pad numeric version fields before lexicographic sorting.",
-  "question": "Which names sort v9 before v10 alphabetically?",
+  "question": "You are naming drafts of a design so the folder lists them in order by name. Which names sort v9 before v10 alphabetically?",
   "options": [
     "v09 and v10",
     "v9 and v10"
@@ -2187,10 +2187,10 @@ export const study_version_nine_and_ten = {
 export const study_project_prefix_filenames = {
   "family": "files",
   "slug": "project-prefix-filenames",
-  "title": "Add the project to the name",
+  "title": "Which name survives leaving the folder?",
   "hook": "Three “notes” files need a clue that survives leaving their folders.",
   "objective": "Attach a project identifier to exported filenames.",
-  "question": "Which remains identifiable outside its folder?",
+  "question": "Three of your projects each have a file called notes.txt, and you are attaching one to an email. Which remains identifiable outside its folder?",
   "options": [
     "Project-prefixed name",
     "notes.txt alone"
@@ -2222,10 +2222,10 @@ export const study_project_prefix_filenames = {
 export const study_show_the_file_extension = {
   "family": "files",
   "slug": "show-the-file-extension",
-  "title": "See the file type",
+  "title": "Three files called report",
   "hook": "Two visible names look alike until their extensions appear.",
   "objective": "Expose extension information before distinguishing file formats.",
-  "question": "Which field distinguishes these formats?",
+  "question": "Your downloads folder shows three files all named 'report', and you need the PDF to send. Which field distinguishes these formats?",
   "options": [
     "Extension",
     "Shared base name"
@@ -2257,10 +2257,10 @@ export const study_show_the_file_extension = {
 export const study_tags_are_not_copies = {
   "family": "files",
   "slug": "tags-are-not-copies",
-  "title": "Two tags, one file",
+  "title": "Two tags: how many files?",
   "hook": "One document belongs to two topics without becoming two copies.",
   "objective": "Distinguish multiple labels from separate document identity.",
-  "question": "How many underlying documents have two labels here?",
+  "question": "Your notes app lists three entries under the tags work, study and home, and two of them show the same title. How many underlying documents have two labels here?",
   "options": [
     "One",
     "Two"
@@ -2292,10 +2292,10 @@ export const study_tags_are_not_copies = {
 export const study_equal_names_not_equal_files = {
   "family": "files",
   "slug": "equal-names-not-equal-files",
-  "title": "Same name, different contents",
+  "title": "Same name, same file?",
   "hook": "Identical filenames do not establish duplicate contents.",
   "objective": "Compare content identifiers instead of only names.",
-  "question": "Which comparison distinguishes the two report files?",
+  "question": "Clearing out a cluttered folder, you find two files both called report.txt and want to delete one. Which comparison distinguishes the two report files?",
   "options": [
     "Content identifier",
     "Filename alone"
@@ -2330,7 +2330,7 @@ export const study_shorter_folder_path = {
   "title": "Flatten one folder level",
   "hook": "A deep folder chain makes every visit traverse more levels.",
   "objective": "Count path segments before and after removing a redundant folder.",
-  "question": "Which measures this folder-navigation exercise?",
+  "question": "Several times a day you open your notes by clicking through work, then old, then notes. Which measures this folder-navigation exercise?",
   "options": [
     "Segments traversed",
     "File size"
@@ -2362,10 +2362,10 @@ export const study_shorter_folder_path = {
 export const study_size_is_not_recency = {
   "family": "files",
   "slug": "size-is-not-recency",
-  "title": "Large is not recent",
+  "title": "Find the newest file",
   "hook": "Sorting by size answers a different question from sorting by date.",
   "objective": "Choose sorting metadata that matches the retrieval goal.",
-  "question": "To find the most recently modified file, which sort fits?",
+  "question": "You need to send the file you edited last, and the folder holds a movie, notes and slides. To find the most recently modified file, which sort fits?",
   "options": [
     "Modified day",
     "Size"
@@ -2408,7 +2408,7 @@ export const study_deleted_is_a_search_state = {
   "title": "Where did the note go?",
   "hook": "You search for a note you deleted yesterday.",
   "objective": "Distinguish active-only search from including deleted items.",
-  "question": "The search lists active files. Is 'notes' in the list?",
+  "question": "You deleted a note called 'notes' yesterday, and now you search for it. The search lists active files. Is 'notes' in the list?",
   "options": [
     "Yes, search lists every file",
     "Yes, marked as deleted",
@@ -2454,10 +2454,10 @@ export const study_deleted_is_a_search_state = {
 export const study_search_the_document_body = {
   "family": "files",
   "slug": "search-the-document-body",
-  "title": "Search beyond the title",
+  "title": "Finding a file called Untitled?",
   "hook": "“Untitled” can contain the exact detail you remember.",
   "objective": "Distinguish title-only search from content search.",
-  "question": "Which finds the document containing “telescope”?",
+  "question": "You clearly remember a file on your laptop that mentions “telescope”, but it is titled “Untitled”. Which finds the document containing “telescope”?",
   "options": [
     "Body search",
     "Title search"
@@ -2493,7 +2493,7 @@ export const study_mail_or_vs_and = {
   "title": "Either sender or both fields",
   "hook": "OR broadens a set; AND requires both conditions.",
   "objective": "Distinguish union and intersection in a message filter.",
-  "question": "Which includes every match to either condition?",
+  "question": "Setting up an email filter, you want every message from either of two senders. Which includes every match to either condition?",
   "options": [
     "OR",
     "AND"
@@ -2544,7 +2544,7 @@ export const study_name_the_next_owner = {
   "title": "Who does the next action?",
   "hook": "“Someone should check it” leaves ownership unresolved.",
   "objective": "Add a named owner and next action to a fixture handoff.",
-  "question": "Which note assigns the action?",
+  "question": "The project meeting is over, everyone has left, and your notes end with “someone should check it”. Which note assigns the action?",
   "options": [
     "Named owner and action",
     "Someone should check"
@@ -2574,10 +2574,10 @@ export const study_name_the_next_owner = {
 export const study_make_a_question_answerable = {
   "family": "message",
   "slug": "make-a-question-answerable",
-  "title": "Bound the question",
+  "title": "Which ask gets a decision back?",
   "hook": "“What do you think?” can ask for almost anything.",
   "objective": "Specify the decision and the requested response.",
-  "question": "Which request defines the decision being asked for?",
+  "question": "Your manager has to pick between two plans, and you are writing the message that asks them. Which request defines the decision being asked for?",
   "options": [
     "Choose A or B",
     "What do you think?"
@@ -2660,7 +2660,7 @@ export const study_agenda_needs_an_outcome = {
   "title": "What will this meeting decide?",
   "hook": "The agenda item reads 'Topic: plan'.",
   "objective": "Add a desired outcome and decision owner to an agenda.",
-  "question": "With only 'Topic: plan' on the agenda, who decides what?",
+  "question": "Your team meeting is about to start. With only 'Topic: plan' on the agenda, who decides what?",
   "options": [
     "The group agrees a plan",
     "The topic's owner picks",
@@ -2706,10 +2706,10 @@ export const study_agenda_needs_an_outcome = {
 export const study_record_the_reason = {
   "family": "message",
   "slug": "record-the-reason",
-  "title": "Keep the decision reason",
+  "title": "What should a decision note keep?",
   "hook": "“We chose B” does not preserve why B was chosen.",
   "objective": "Record choice, constraint and reason together.",
-  "question": "Which record allows the rationale to be inspected later?",
+  "question": "Months from now, a colleague finds your note saying the team chose option B. Which record allows the rationale to be inspected later?",
   "options": [
     "Choice plus reason",
     "Choice alone"
@@ -2739,10 +2739,10 @@ export const study_record_the_reason = {
 export const study_handoff_needs_a_checkpoint = {
   "family": "message",
   "slug": "handoff-needs-a-checkpoint",
-  "title": "Leave a restart point",
+  "title": "Picking up where they left off",
   "hook": "A handoff saying “almost done” lacks a place to resume.",
   "objective": "Record the current artifact, completed step and next check.",
-  "question": "Which handoff identifies a restart point?",
+  "question": "You are handing a half-done task to a teammate before you leave for the day. Which handoff identifies a restart point?",
   "options": [
     "Artifact and next check",
     "Almost done"
@@ -2772,10 +2772,10 @@ export const study_handoff_needs_a_checkpoint = {
 export const study_bug_report_needs_reproduction = {
   "family": "message",
   "slug": "bug-report-needs-reproduction",
-  "title": "Make the bug reproducible",
+  "title": "Which bug report helps?",
   "hook": "“It broke” lacks the input that produced the failure.",
   "objective": "Specify input, expected output and actual output in a bug report.",
-  "question": "Which report supports a reproduction attempt?",
+  "question": "A user says your app failed, and you want to make it fail again yourself. Which report supports a reproduction attempt?",
   "options": [
     "Input expected actual",
     "It broke"
@@ -2805,10 +2805,10 @@ export const study_bug_report_needs_reproduction = {
 export const study_request_needs_the_object = {
   "family": "message",
   "slug": "request-needs-the-object",
-  "title": "Point to the exact object",
+  "title": "Which review request is clear?",
   "hook": "“Review the document” is ambiguous when three drafts exist.",
   "objective": "Specify artifact version and review scope.",
-  "question": "Which request points to one review target?",
+  "question": "Three drafts of the report sit in a shared folder, and you ask a colleague to review the document. Which request points to one review target?",
   "options": [
     "Version plus scope",
     "The document"
@@ -2838,10 +2838,10 @@ export const study_request_needs_the_object = {
 export const study_status_and_blocker_differ = {
   "family": "message",
   "slug": "status-and-blocker-differ",
-  "title": "Progress is not the blocker",
+  "title": "What should the update say?",
   "hook": "A status update needs the obstacle and the next unblock action.",
   "objective": "Separate completed work, blocker and next action.",
-  "question": "Which update makes the obstacle explicit?",
+  "question": "Your project is stuck waiting on access you don't have yet, and the team asks for a quick status update. Which update makes the obstacle explicit?",
   "options": [
     "Done blocker next",
     "Busy today"
@@ -2871,10 +2871,10 @@ export const study_status_and_blocker_differ = {
 export const study_link_label_names_the_target = {
   "family": "message",
   "slug": "link-label-names-the-target",
-  "title": "Name the link destination",
+  "title": "Which link label says where it goes?",
   "hook": "Three “click here” links hide which artifact each opens.",
   "objective": "Attach a descriptive target label to a fixture link.",
-  "question": "Which label names the intended destination?",
+  "question": "In an email to a teammate, three links to report files all read “click here”. Which label names the intended destination?",
   "options": [
     "Report v3 sources",
     "Click here"
@@ -2904,10 +2904,10 @@ export const study_link_label_names_the_target = {
 export const study_copy_keeps_the_original = {
   "family": "edit",
   "slug": "copy-keeps-the-original",
-  "title": "Copy keeps the original",
+  "title": "What does copy leave behind?",
   "hook": "A copy creates another instance without moving the source.",
   "objective": "Distinguish copy from move using visible source and destination.",
-  "question": "What does copy preserve?",
+  "question": "You copy some text and paste it further down your notes. What does copy preserve?",
   "options": [
     "Original source",
     "Only destination"
@@ -2942,10 +2942,10 @@ export const study_copy_keeps_the_original = {
 export const study_cut_moves_the_selection = {
   "family": "edit",
   "slug": "cut-moves-the-selection",
-  "title": "Cut and paste relocate",
+  "title": "Cut or copy: what differs?",
   "hook": "Copy and cut agree only if you ignore what happened to the source.",
   "objective": "Move selected content while observing its removal from the original position.",
-  "question": "What differs between cut and copy?",
+  "question": "You select some text in your notes to paste somewhere else. What differs between cut and copy?",
   "options": [
     "Removal from source",
     "The selected letters"
@@ -2976,10 +2976,10 @@ export const study_cut_moves_the_selection = {
 export const study_undo_then_redo = {
   "family": "edit",
   "slug": "undo-then-redo",
-  "title": "Undo the accidental edit",
+  "title": "Undo or redo?",
   "hook": "Undo and redo walk the local edit history in opposite directions.",
   "objective": "Restore a prior local edit and then reapply it.",
-  "question": "Which command returns to the prior edit state?",
+  "question": "You accidentally delete a paragraph while editing your essay and want it back as it was. Which command returns to the prior edit state?",
   "options": [
     "Undo",
     "Redo"
@@ -3011,10 +3011,10 @@ export const study_undo_then_redo = {
 export const study_select_before_replace = {
   "family": "edit",
   "slug": "select-before-replace",
-  "title": "Selection bounds replacement",
+  "title": "Replace one word, or all?",
   "hook": "Replacing a selection affects that selection, not every matching word.",
   "objective": "Distinguish replacing a selected occurrence from replacing all.",
-  "question": "Which limits the edit to the selected occurrence?",
+  "question": "One word in your report appears several times, but only one spot is wrong. You select that spot and type the fix. Which limits the edit to the selected occurrence?",
   "options": [
     "Selected replacement",
     "Replace all"
@@ -3046,10 +3046,10 @@ export const study_select_before_replace = {
 export const study_find_next_is_navigation = {
   "family": "edit",
   "slug": "find-next-is-navigation",
-  "title": "Find does not edit",
+  "title": "What does Find change?",
   "hook": "Finding a word changes your location, not the document’s content.",
   "objective": "Distinguish a search highlight from an editing operation.",
-  "question": "What does Find change here?",
+  "question": "Proofreading a long report before sending it, you use Find to jump to each use of a word. What does Find change here?",
   "options": [
     "Highlighted match",
     "Stored text"
@@ -3081,10 +3081,10 @@ export const study_find_next_is_navigation = {
 export const study_plain_text_paste_scope = {
   "family": "edit",
   "slug": "plain-text-paste-scope",
-  "title": "Paste words without the style",
+  "title": "What does a plain-text paste drop?",
   "hook": "A pasted title can bring formatting along with its words.",
   "objective": "Distinguish text content from a simulated style attribute.",
-  "question": "What does plain-text paste leave behind here?",
+  "question": "You copy a title from a web page into your report, and it arrives in a different font. What does plain-text paste leave behind here?",
   "options": [
     "Source formatting",
     "The words"
@@ -3112,10 +3112,10 @@ export const study_plain_text_paste_scope = {
 export const study_preview_replace_all = {
   "family": "edit",
   "slug": "preview-replace-all",
-  "title": "Preview the broad edit",
+  "title": "What to check before replace all?",
   "hook": "A broad replacement can change matches you did not mean to touch.",
   "objective": "Inspect every exact-match replacement before applying it.",
-  "question": "What should a broad edit preview expose?",
+  "question": "Fixing a name in your long document, you are one click away from replacing it everywhere at once. What should a broad edit preview expose?",
   "options": [
     "All affected matches",
     "Only first match"
@@ -3147,10 +3147,10 @@ export const study_preview_replace_all = {
 export const study_duplicate_before_experiment = {
   "family": "edit",
   "slug": "duplicate-before-experiment",
-  "title": "Experiment on a copy",
+  "title": "Before the risky edit",
   "hook": "A duplicate makes the original state available beside an edited version.",
   "objective": "Distinguish original and duplicate in a local experiment.",
-  "question": "Which preserves a separate original here?",
+  "question": "You want to try bold edits on a file but may need the old version back. Which preserves a separate original here?",
   "options": [
     "Edit a duplicate",
     "Overwrite only original"
@@ -3210,10 +3210,10 @@ export const study_zoom_does_not_rewrite = {
 export const study_selection_not_focus = {
   "family": "edit",
   "slug": "selection-not-focus",
-  "title": "Focus and selection differ",
+  "title": "Which item will the command hit?",
   "hook": "The active panel and the selected item are separate pieces of state.",
   "objective": "Distinguish choosing a target from bringing a panel into focus.",
-  "question": "Which identifies the item the command will affect here?",
+  "question": "In a two-panel app, you click into the side panel while one file in the main list stays highlighted. You run a command. Which identifies the item the command will affect here?",
   "options": [
     "Selection",
     "Panel focus alone"

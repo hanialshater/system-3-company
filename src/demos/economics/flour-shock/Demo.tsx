@@ -109,7 +109,7 @@ export default function FlourShock({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Bread model: buyers want 100 − 10p loaves, bakers bake 10p − 20, price $${P0}. Flour adds $${Q_COST} to each loaf's cost, so bakers now bake 10p − 40. New price?`,
+        question: `In the bread model, buyers want 100 − 10p loaves, bakers bake 10p − 20, and a loaf sells for $${P0}. Flour now adds $${Q_COST} to each loaf's cost, so bakers bake 10p − 40. What does a loaf cost now?`,
         options: [`$${P0}`, `$${P1}`, `$${P0 + Q_COST}`],
         answer: 1,
       }}

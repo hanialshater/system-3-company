@@ -44,7 +44,7 @@ export default function WebMapCutOffLatitude({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Standard web map tiles draw the whole world as one square Mercator map. How far north does that square reach?",
+        question: "Standard web map tiles draw the whole world as one square Mercator map. Scrolling north on your phone, how far north can you go before you hit the square's edge?",
         options: ["75°N", "85°N", "90°N, the North Pole"],
         answer: 1,
       }}

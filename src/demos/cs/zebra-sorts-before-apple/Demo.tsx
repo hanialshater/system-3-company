@@ -37,7 +37,7 @@ export default function ZebraSortsBeforeApple({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A computer sorts apple, Banana and Zebra by each letter's stored number. Where does apple land?",
+        question: "Your phone sorts three file names, apple, Banana and Zebra, by each letter's stored number. In the sorted list, where does apple land?",
         options: ["First", "Second", "Last"],
         answer: 2,
       }}

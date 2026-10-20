@@ -107,7 +107,7 @@ export default function ClusterStopsTheCascade({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "People 0 and 1 adopt first and the idea stops at 8 of 12. What would get it to all 12?",
+        question: "In a network of 12 friends, people 0 and 1 adopt a new idea first. It spreads friend to friend, then stops at 8 of 12. What would get it to all 12?",
         // v5 (learner r9, W-573): no option names "those four" (the group is the answer's key object, unmarked
         // until the run ends), and the wrong options are the concrete ones.
         options: ["Four people adopting first: 0, 1, 2 and 3", "Nothing: no start reaches all 12", "Two people adopting first, somewhere else"],

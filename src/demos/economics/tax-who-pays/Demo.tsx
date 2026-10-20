@@ -72,7 +72,7 @@ export default function TaxWhoPays({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Toy bread market: buyers want 100 − 10p loaves, bakers bake 10p − 20, price $${P0}. The government taxes bakers $${TAX} a loaf. How much more do buyers pay?`,
+        question: `In a toy bread market, loaves sell for $${P0}. At price p, buyers want 100 − 10p loaves and bakers bake 10p − 20. Now bakers are taxed $${TAX} a loaf. How much more do you pay at the counter?`,
         options: ["$0", money(BUYERS_RISE).replace(".00", ""), `$${TAX}`],
         answer: 1,
       }}

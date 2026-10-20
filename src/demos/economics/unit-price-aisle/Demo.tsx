@@ -43,7 +43,7 @@ export default function UnitPriceAisle({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Three packs of the same rice: ${PACKS.map((p) => `${p.name} for ${usd(p.cents)}`).join(", ")}. Which is cheapest per 100 g?`,
+        question: `In the rice aisle, the same rice comes in three packs: ${PACKS.map((p) => `${p.name} for ${usd(p.cents)}`).join(", ")}. Which is cheapest per 100 g?`,
         options: PACKS.map((p) => p.name),
         answer: CHEAPEST,
       }}

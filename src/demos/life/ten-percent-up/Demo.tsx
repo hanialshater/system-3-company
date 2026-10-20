@@ -33,7 +33,7 @@ export default function TenPercentUp({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Plants hold 10,000 units of energy. Each link passes on about 10%. Plant → grasshopper → frog → snake → hawk. How much reaches the hawks?",
+          "In the meadow behind your house, plants hold 10,000 units of energy. Grasshoppers eat the plants, frogs eat grasshoppers, snakes eat frogs and hawks eat snakes. Each link passes on about 10%. How much reaches the hawks?",
         options: ["About 1 unit", "About 100 units", "About 1,000 units"],
         answer: 0,
       }}

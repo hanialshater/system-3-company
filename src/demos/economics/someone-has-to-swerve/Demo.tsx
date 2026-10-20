@@ -80,7 +80,7 @@ export default function SomeoneHasToSwerve({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Two drivers: both straight crash (−10 each); swerve vs straight gives 0 and 3; both swerve give 1 each. Which outcomes are stable?",
+        question: "Two drivers head straight at each other. Both stay straight: they crash (−10 each). One swerves: the swerver gets 0, the other 3. Both swerve: 1 each. Which outcomes are stable?",
         options: ["Both swerve", "Both straight", "One of each"],
         answer: ANSWER,
       }}

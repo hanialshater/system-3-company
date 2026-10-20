@@ -96,7 +96,7 @@ export default function LeakyVaccineThreshold({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Made-up disease, R0 = ${R0}: a perfect vaccine would need ${pct(BASE)} coverage. This vaccine cuts each vaccinated person's infection chance by ${E_Q}%. Coverage needed?`,
+        question: `Your health office must stop a made-up disease, R0 = ${R0}. A perfect vaccine would need ${pct(BASE)} coverage, but yours cuts each vaccinated person's infection chance by ${E_Q}%. What coverage do you need?`,
         options: [pct(BASE), `About ${pct(needed(E_Q))}`, "Impossible: over 100%"],
         answer: 1,
       }}

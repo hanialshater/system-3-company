@@ -98,7 +98,7 @@ export default function OneBeetleAGeneration({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Two groups of 50 made-up beetles, half red at first; colour is pure chance. Alone for 200 generations, their red shares end up over half apart in about half of runs. With one beetle swapped each way per generation, how often?",
+          "Two islands each hold 50 made-up beetles, half red at first; colour is pure chance. Alone for 200 generations, their red shares end up over half apart in about half of runs. If one beetle crosses each way per generation, how often?",
         options: ["Still about half the time", "About 1 run in 4", "Rarely: a few runs in 100"],
         answer: 2,
       }}

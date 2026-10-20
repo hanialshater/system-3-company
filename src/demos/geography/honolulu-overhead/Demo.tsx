@@ -67,7 +67,7 @@ export default function HonoluluOverhead({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Which of these cities has the Sun directly overhead at noon on at least one day of the year?",
+        question: "You want to stand under a noon Sun that is directly overhead, on at least one day of the year. Which of these cities can give you that?",
         options: ["Miami (25.8°N)", "Cairo (30.0°N)", "Honolulu (21.3°N)"],
         answer: 2,
       }}

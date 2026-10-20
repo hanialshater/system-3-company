@@ -97,7 +97,7 @@ export default function CloserInWinter({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "In which month is the Earth closest to the Sun?",
+        question: "In the northern half of the world, you get hot summers and cold winters as the Earth circles the Sun. In which month is the Earth closest to the Sun?",
         options: ["January", "June", "September"],
         answer: 0,
       }}

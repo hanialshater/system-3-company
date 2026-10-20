@@ -65,7 +65,7 @@ export default function QuietDecadesThenEverywhere({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Toy region: ${START} invasive plants grow ${Math.round(100 * GROWTH)}% a year until the region holds ${fmt(CAP)}, which takes about ${Math.round(FULL_AT)} years. At year ${HALF}, what share of that final number is there?`,
+        question: `${START} invasive plants take root in your valley (a toy region) and grow ${Math.round(100 * GROWTH)}% a year until it holds ${fmt(CAP)}, about ${Math.round(FULL_AT)} years later. At year ${HALF}, what share of that final number is there?`,
         options: ["About 1%", "About 25%", "About 50%"],
         answer: 0,
       }}

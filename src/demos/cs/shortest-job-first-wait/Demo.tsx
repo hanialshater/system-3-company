@@ -40,7 +40,7 @@ export default function ShortestJobFirstWait({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Four print jobs take 8, 4, 2 and 1 minutes. Run in that order, the jobs wait a total of 34 minutes before starting. Shortest first, the total wait is:",
+          "At the office printer, four jobs take 8, 4, 2 and 1 minutes. Run in that order, they wait a total of 34 minutes before starting. If you print shortest first, what is the total wait?",
         options: ["the same 34", "about a third of it", "a little less"],
         answer: 1,
       }}

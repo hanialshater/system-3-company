@@ -125,7 +125,7 @@ export default function TwoPagesSwallowTheRank({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "E and F link only to each other. Each round every page splits its score among its links. After 50 rounds, E and F hold:",
+        question: "On a small web, pages E and F link only to each other. Each round every page splits its score among its links. After 50 rounds, what share of all the score do E and F hold?",
         options: ["About 33%", "About 67%", "About 100%"],
         answer: 2,
       }}

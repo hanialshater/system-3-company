@@ -71,7 +71,7 @@ export default function WinningBidOverpays({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A jar holds $100 in coins. Ten bidders guess its value; guesses are right on average. Each bids its guess; highest wins. The winner usually…",
+        question: "At a school fair, a jar holds $100 in coins. You and nine others guess its value; guesses are right on average. Each bids their guess; highest wins. The winner usually…",
         options: ["pays about $100", "pays under $100", "pays over $100"],
         answer: 2,
       }}

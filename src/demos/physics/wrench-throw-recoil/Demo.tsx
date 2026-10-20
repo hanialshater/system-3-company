@@ -43,7 +43,7 @@ export default function WrenchThrowRecoil({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `An ${ASTRONAUT} kg astronaut floating at rest throws a ${MASS0} kg wrench at ${SPEED0} m/s. The astronaut then moves...`,
+        question: `Floating at rest on a spacewalk, your mass is ${ASTRONAUT} kg. You throw a ${MASS0} kg wrench at ${SPEED0} m/s. How do you move then?`,
         options: ["Not at all", `${r3(drift(MASS0, SPEED0))} m/s the other way`, `${SPEED0} m/s the other way`],
         answer: 1,
       }}

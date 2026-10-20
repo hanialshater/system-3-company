@@ -47,7 +47,7 @@ export default function EarthFlattening({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Shrink the Earth to a 30 cm desk globe. How much shorter is its pole-to-pole diameter than its equator?",
+        question: "Your desk globe is 30 cm across, an exact scale model of the Earth. How much shorter is its pole-to-pole diameter than its diameter across the equator?",
         options: ["About 1 mm", "About 1 cm", "About 3 cm"],
         answer: 0,
       }}

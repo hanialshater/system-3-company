@@ -54,7 +54,7 @@ export default function ToasterTripsBreaker({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A ${V} V circuit has an ideal 15 A breaker. A 1500 W heater is already on. Which extra device will NOT trip it?`,
+        question: `On a cold morning, your 1500 W heater is already running on a ${V} V kitchen circuit with an ideal 15 A breaker. Which extra device will NOT trip it?`,
         options: ["A 200 W TV", "A 600 W blender", "A 1200 W toaster"],
         answer: 0,
       }}

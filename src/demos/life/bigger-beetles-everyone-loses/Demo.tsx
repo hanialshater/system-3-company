@@ -182,7 +182,7 @@ export default function BiggerBeetlesEveryoneLoses({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Offspring per meeting: small vs small 6, small vs large 2, large vs small 8, large vs large 4. All small now: average 6. A few large appear. After they take over, the average score is…",
+          "In your beetle colony, offspring per meeting are: small vs small 6, small vs large 2, large vs small 8, large vs large 4. All are small now, averaging 6. A few large beetles appear and take over. What is the average then?",
         options: ["Higher than 6", "The same, 6", "Lower than 6"],
         answer: 2,
       }}

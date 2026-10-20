@@ -53,7 +53,7 @@ export default function TheEqualsSignBalances({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "8 + 4 = □ + 5. What number goes in the box?",
+        question: "Your homework sheet says 8 + 4 = □ + 5. What number goes in the box?",
         options: ["7", "12", "17"],
         answer: 0,
       }}

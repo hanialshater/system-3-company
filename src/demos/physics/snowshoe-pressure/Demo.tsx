@@ -45,7 +45,7 @@ export default function SnowshoePressure({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A ${M} kg hiker in boots (${fmtA(BOOTS)} on the snow) presses on it at about ${kPa(BOOTS).toFixed(0)} kPa. In snowshoes with ${fmtA(SHOES)}, the pressure is about…`,
+        question: `Hiking in deep snow, you weigh ${M} kg and your boots (${fmtA(BOOTS)} on the snow) press on it at about ${kPa(BOOTS).toFixed(0)} kPa. You strap on snowshoes with ${fmtA(SHOES)}. About what is the pressure now?`,
         options: ["17 kPa", "1.7 kPa", "0.17 kPa"],
         answer: 1,
       }}

@@ -103,7 +103,7 @@ export default function BarcelonaSunMinutes({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Madrid and Barcelona keep the same official clock. Barcelona is about ${Math.round(GAP_KM)} km east of Madrid. How much earlier does the Sun reach its highest point there?`,
+        question: `On a trip across Spain, your phone never changes time. Madrid and Barcelona keep the same official clock. Barcelona is about ${Math.round(GAP_KM)} km east of Madrid. How much earlier does the Sun reach its highest point there?`,
         options: ["5 minutes", "23 minutes", "1 hour"],
         answer: 1,
       }}

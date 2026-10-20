@@ -49,7 +49,7 @@ export default function SketchTheCounts({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A table has 5 counters. 'cat' and 'dog' both hash to counter 2; 'eel' hashes to counter 4. The stream is 5 cats, 3 dogs, 1 eel. What does cat's counter read?",
+          "Your 5-counter table tracks a stream of animals. 'cat' and 'dog' both hash to counter 2; 'eel' hashes to counter 4. In come 5 cats, 3 dogs and 1 eel. What does cat's counter read?",
         options: ["5", "8", "3"],
         answer: 1,
       }}

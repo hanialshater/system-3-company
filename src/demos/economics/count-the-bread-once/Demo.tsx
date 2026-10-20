@@ -36,7 +36,7 @@ export default function CountBreadOnce({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A farmer sells wheat for $${STAGES[0].sale} to a miller, who sells flour for $${STAGES[1].sale} to a baker, who sells bread for $${STAGES[2].sale} to a family. Sales total $${SALES_TOTAL}. How much does this chain produce (GDP)?`,
+        question: `A farmer sells wheat for $${STAGES[0].sale} to a miller, who sells flour for $${STAGES[1].sale} to a baker, who sells your family bread for $${STAGES[2].sale}. Sales total $${SALES_TOTAL}. How much does this chain produce (GDP)?`,
         options: [`$${SALES_TOTAL}`, `$${FINAL}`, `$${added(1)}`],
         answer: 1,
       }}

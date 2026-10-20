@@ -48,7 +48,7 @@ export default function RabbitRatio({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "In 1, 1, 2, 3, 5, 8, 13, … each term is the sum of the last two. Divide each term by the one before it. Where do the ratios head?",
+        question: "In your notebook you write 1, 1, 2, 3, 5, 8, 13, …, each term the sum of the last two. Divide each term by the one before it. Where do the ratios head?",
         options: ["1.5", PHI.toFixed(3), "2"],
         answer: 1,
       }}

@@ -40,7 +40,7 @@ export default function BreakEvenCups({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A lemonade stand costs $${FIXED} a day to run. Each cup costs $${UNIT_COST} to make and sells for $${Q_PRICE}. How many cups to break even?`,
+        question: `Your lemonade stand costs $${FIXED} a day to run. Each cup costs you $${UNIT_COST} to make and sells for $${Q_PRICE}. How many cups must you sell each day to break even?`,
         options: [String(FIXED / Q_PRICE), String(ANSWER), String(FIXED)],
         answer: 1,
       }}

@@ -59,7 +59,7 @@ export default function AddingSquashesThePhoto({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A 4 by 6 photo is enlarged so its short side is 6. To keep the same shape, its long side must be…",
+        question: "At the print shop, your 4 by 6 photo is enlarged so its short side is 6. To keep the same shape, with no stretched faces, how long must its long side be?",
         options: ["8", "9", "12"],
         answer: 1,
       }}

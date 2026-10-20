@@ -93,7 +93,7 @@ export default function VirulenceSweetSpot({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Toy germ. A more harmful strain infects faster, but its carriers stay sick for fewer days. Example, harm 0.25: 2.0 new cases a day for 0.8 days, so R0 = 1.6 new cases per carrier in all. Which harm gives the highest R0?",
+          "You are tracking a made-up germ. A more harmful strain infects faster, but its carriers stay sick for fewer days. Example, harm 0.25: 2.0 new cases a day for 0.8 days, so R0 = 1.6 new cases per carrier in all. Which harm level gives the highest R0?",
         options: ["v = 0.25", "v = 1", "v = 4"],
         answer: 1,
       }}

@@ -52,7 +52,7 @@ export default function FiftyHourMonday({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Counting every time zone on Earth, for how many hours is it Monday somewhere?",
+        question: "Your Monday lasts 24 hours, but other time zones start and end theirs at different moments. Counting every time zone on Earth, for how many hours is it Monday somewhere?",
         options: ["24", "50", "38"],
         answer: 1,
       }}

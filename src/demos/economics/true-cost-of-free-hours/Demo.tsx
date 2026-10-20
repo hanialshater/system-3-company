@@ -100,7 +100,7 @@ export default function TrueCostOfFreeHours({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A course costs $${FEE} and takes ${Q_HOURS} hours. In those hours you could have earned $${WAGE} an hour. What does the course really cost you?`,
+        question: `You sign up for a $${FEE} course that takes ${Q_HOURS} hours. In those hours you could have been at work, earning $${WAGE} an hour. What does the course really cost you?`,
         options: [`$${FEE}`, `$${Q_HOURS * WAGE}`, `$${ANSWER}`],
         answer: 2,
       }}

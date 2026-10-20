@@ -225,7 +225,7 @@ export default function FewestExitsFirstTour({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A knight starts in the corner of a 5×5 board and must visit every square once. Rule A: take the first legal move in a fixed order. Rule B: go to the square with the fewest onward moves. How many squares does each visit before getting stuck?",
+          "You set a knight in the corner of a 5×5 board to visit every square once. Rule A: take the first legal move in a fixed order. Rule B: go to the square with the fewest onward moves. How many squares does each visit before getting stuck?",
         options: ["A 25 and B 25", "A 21 and B 25", "A 25 and B 21"],
         answer: 1,
       }}

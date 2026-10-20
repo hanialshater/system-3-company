@@ -58,7 +58,7 @@ export default function CoatOnTheIce({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Two identical ice blocks sit in a 25 °C room. One is wrapped in a wool coat. Which melts first?",
+        question: "Two identical ice blocks sit in your 25 °C kitchen. You wrap one of them in a wool coat. Which block melts first?",
         options: ["The wrapped block", "The bare block", "Both at the same time"],
         answer: 1,
       }}

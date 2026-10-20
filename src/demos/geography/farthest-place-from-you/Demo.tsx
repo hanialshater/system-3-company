@@ -43,7 +43,7 @@ export default function FarthestPlaceFromYou({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Travelling the shortest way over the Earth's surface, what is the greatest distance between any two places?",
+          "You plan the longest possible trip between two places on Earth, always taking the shortest way over the surface. What is the greatest distance you could have to travel?",
         options: ["About 10,000 km", "About 20,000 km", "About 40,000 km"],
         answer: 1,
       }}

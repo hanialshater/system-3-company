@@ -31,7 +31,7 @@ export default function EveryMessageIsPossible({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A ${BITS}-bit message was XORed with a random ${BITS}-bit key, used once, giving ${b4(CIPHER)}. How many different ${BITS}-bit messages could it be hiding?`,
+        question: `You intercept ${b4(CIPHER)}: a ${BITS}-bit message XORed with a random ${BITS}-bit key that was used once. How many different ${BITS}-bit messages could it be hiding?`,
         options: ["1", String(BITS), String(ALL)],
         answer: 2,
       }}

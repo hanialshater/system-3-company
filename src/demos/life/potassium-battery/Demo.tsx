@@ -106,7 +106,7 @@ export default function PotassiumBattery({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A cell holds ${IN} mM potassium inside and ${OUT0} mM outside. Only potassium can leak through. At body temperature the voltage across the membrane ends up near:`,
+        question: `A cell at body temperature holds ${IN} mM potassium inside and ${OUT0} mM outside, and only potassium can leak through its membrane. What voltage across the membrane does it end up near?`,
         options: [MV(E0 / 10), MV(E0), MV(Math.round(E0) * 10)],
         answer: 1,
       }}

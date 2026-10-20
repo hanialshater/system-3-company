@@ -95,7 +95,7 @@ export default function OneResourceOneWinner({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Toy pond: two plant species live on one nutrient and die at the same rate. A breaks even at ${A_NEED} units of nutrient, B needs 5. B starts ${Math.round(start.B / start.A)} times as common. In the long run:`,
+        question: `In your toy pond, two plant species live on one nutrient and die at the same rate. A breaks even at ${A_NEED} units of nutrient, B needs 5, and B starts ${Math.round(start.B / start.A)} times as common. What happens in the long run?`,
         options: ["They settle and share it", "A takes over", "B takes over"],
         answer: 1,
       }}

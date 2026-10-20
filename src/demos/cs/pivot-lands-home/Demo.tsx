@@ -50,7 +50,7 @@ export default function PivotLandsHome({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Partition [${CARDS.join(", ")}] around pivot ${PIVOT} (smaller values left, larger right). At which position (counting from 0) does ${PIVOT} end up?`,
+        question: `Dealt the cards [${CARDS.join(", ")}], you partition them around pivot ${PIVOT}: smaller values to its left, larger to its right. At which position (counting from 0) does ${PIVOT} end up?`,
         options: [String(SMALLER - 1), String(SMALLER), String(SMALLER + 1)],
         answer: 1,
       }}

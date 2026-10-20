@@ -36,7 +36,7 @@ function Stage({ locked, phase, interact }: {
 export default function Demo({ slug }: {
     slug: string;
 }) {
-    return <Lesson slug={slug} predict={{ "question": "The feature rule gets 9/10 right. How many more correct answers is that than always predicting 0?", "options": ["0", "1", "2"], "answer": 1 }} minInteractions={3} exploreHint="Try each case and compare the saved results." reveal={() => <p>The feature rule gained one correct case over always predicting 0. Yet the two rules scoring 8/10 found different numbers of positives: zero versus two. Equal accuracy concealed different error types. Comparing their usefulness would require error costs, not accuracy alone in this construction.</p>}>
+    return <Lesson slug={slug} predict={{ "question": "Your new model is tested on ten labeled examples. The feature rule gets 9/10 right. How many more correct answers is that than always predicting 0?", "options": ["0", "1", "2"], "answer": 1 }} minInteractions={3} exploreHint="Try each case and compare the saved results." reveal={() => <p>The feature rule gained one correct case over always predicting 0. Yet the two rules scoring 8/10 found different numbers of positives: zero versus two. Equal accuracy concealed different error types. Comparing their usefulness would require error costs, not accuracy alone in this construction.</p>}>
   {({ locked, phase, interact }) => <Stage locked={locked} phase={phase} interact={interact}/>}
  </Lesson>;
 }

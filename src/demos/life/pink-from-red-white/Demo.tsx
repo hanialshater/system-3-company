@@ -68,7 +68,7 @@ export default function PinkFromRedWhite({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Made-up flower: one red copy plus one white copy of the gene makes pink. Two pink parents are crossed. What share of their seeds grow pink?",
+        question: "In your garden, a made-up flower is pink when it has one red copy plus one white copy of the gene. You cross two pink parents. What share of their seeds grow pink?",
         options: ["All of them", "About half", "None"],
         answer: 1,
       }}

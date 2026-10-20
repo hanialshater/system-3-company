@@ -61,7 +61,7 @@ export default function CostlyResistance({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Toy dish, no drug. ${Math.round(100 * R0)}% of the bacteria are resistant, and they grow ${Q_COST}% slower each generation. After ${Q_GEN} generations the resistant share is about:`,
+        question: `You stop the drug in a toy dish. ${Math.round(100 * R0)}% of the bacteria are resistant, and they grow ${Q_COST}% slower each generation. After ${Q_GEN} generations, about what share is resistant?`,
         options: ["0%", `About ${Math.round(100 * share(Q_GEN, Q_COST))}%`, `Still ${Math.round(100 * R0)}%`],
         answer: 1,
       }}

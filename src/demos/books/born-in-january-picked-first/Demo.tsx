@@ -79,7 +79,7 @@ export default function BornInJanuaryPickedFirst({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A league picks the tallest 10% of 9-year-olds. The age cutoff is 1 January. About what share of the picks were born January to March?",
+          "Your local league picks the tallest 10% of its 9-year-olds for the top team. The age cutoff is 1 January. About what share of the picks were born January to March?",
         options: ["About 25%", "About 45%", "About 75%"],
         answer: 1,
       }}

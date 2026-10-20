@@ -67,7 +67,7 @@ export default function TearTheCorners({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Tear the three corners off a triangle and fit them together at one point. Whatever the triangle, they make…",
+        question: "You cut out any paper triangle, tear off its three corners and fit them together at one point. Whatever the triangle, they make…",
         options: ["a right angle", "a straight line", "it depends on the triangle"],
         answer: 1,
       }}

@@ -44,7 +44,7 @@ export default function DakarNearerBrazil({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Of these three cities, which is nearest to Dakar, Senegal?",
+        question: "At the airport in Dakar, Senegal, the departures board lists Paris, Rome and Natal in Brazil. Of these three cities, which is nearest to Dakar?",
         options: ["Paris", "Rome", "Natal, Brazil"],
         answer: 2,
       }}

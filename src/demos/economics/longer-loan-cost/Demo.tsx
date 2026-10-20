@@ -41,7 +41,7 @@ export default function LongerLoanCost({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A $20,000 loan at 6% a year. Stretching it from 5 years to 7 cuts the payment by about $95 a month. How much more interest do you pay overall?",
+          "You borrow $20,000 for a car at 6% a year. Stretching the loan from 5 years to 7 cuts the payment by about $95 a month. How much more interest do you pay overall?",
         options: ["About $200", "About $1,300", "About $5,000"],
         answer: 1,
       }}

@@ -123,7 +123,7 @@ export default function TheGridTakesUpToThreeEighths({ slug }: { slug: string })
     <Lesson
       slug={slug}
       predict={{
-        question: "Big grid, 8 neighbours each. A 5x5 block adopts; others adopt once at least q of their neighbours do. Highest q that takes everyone?",
+        question: "In a huge town laid out as a grid, each home has 8 neighbours. A 5x5 block adopts a new app; others adopt once at least q of their neighbours do. Highest q that takes everyone?",
         options: ["1/2", "3/8", "1/4"],
         answer: 1,
       }}

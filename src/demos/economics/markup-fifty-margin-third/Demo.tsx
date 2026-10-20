@@ -34,7 +34,7 @@ export default function MarkupMargin({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A shop pays $${COST} for a jacket and adds a ${Q_MARKUP}% markup. What share of the selling price is profit?`,
+        question: `Your shop buys a jacket for $${COST} and adds a ${Q_MARKUP}% markup to set the price tag. What share of that selling price is your profit?`,
         options: [`${Q_MARKUP}%`, whole(margin(Q_MARKUP)), "25%"],
         answer: 1,
       }}

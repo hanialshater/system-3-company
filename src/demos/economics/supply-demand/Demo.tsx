@@ -58,7 +58,7 @@ export default function SupplyDemand({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "In a toy town, bread sells for $6 and 40 loaves sell a day. The town caps the price at $4. How many loaves sell a day now?",
+          "In your toy town, bread sells for $6 and 40 loaves sell a day. The council caps the price at $4 so more people can afford it. How many loaves sell a day now?",
         options: ["More than 40", "Still 40", "Fewer than 40"],
         answer: 2,
       }}

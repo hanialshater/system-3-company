@@ -43,7 +43,7 @@ export default function AtomsAcrossAHair({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A human hair is about 70 micrometres (µm) wide; a micrometre is a thousandth of a millimetre. An atom is about 0.2 nanometres (nm) across; a nanometre is a thousandth of a micrometre. About how many atoms side by side span the hair?",
+          "You pull one hair from your head. It is about 70 micrometres (µm) wide; a micrometre is a thousandth of a millimetre. An atom is about 0.2 nanometres (nm) across; a nanometre is a thousandth of a micrometre. About how many atoms side by side span your hair?",
         options: ["About 3,500", "About 350,000", "About 350 million"],
         answer: 1,
       }}

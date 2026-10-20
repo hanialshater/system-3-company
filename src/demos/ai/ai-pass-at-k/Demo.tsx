@@ -36,7 +36,7 @@ function Stage({ locked, phase, interact }: {
 export default function Demo({ slug }: {
     slug: string;
 }) {
-    return <Lesson slug={slug} predict={{ "question": "Four independent attempts each succeed with probability .25. Is at-least-one success above .5?", "options": ["Yes", "No"], "answer": 0 }} minInteractions={3} exploreHint="Try each case and compare the saved results." reveal={() => <p>Four independent attempts gave .68359375 probability of at least one success. Sharing one draw left it at .25; two independent attempts gave .4375. Repeating shared outcomes supplied no extra chance. This is oracle success: without a checker, it does not identify which answer to choose.</p>}>
+    return <Lesson slug={slug} predict={{ "question": "A coding assistant gets four separate tries at the same puzzle. Four independent attempts each succeed with probability .25. Is at-least-one success above .5?", "options": ["Yes", "No"], "answer": 0 }} minInteractions={3} exploreHint="Try each case and compare the saved results." reveal={() => <p>Four independent attempts gave .68359375 probability of at least one success. Sharing one draw left it at .25; two independent attempts gave .4375. Repeating shared outcomes supplied no extra chance. This is oracle success: without a checker, it does not identify which answer to choose.</p>}>
   {({ locked, phase, interact }) => <Stage locked={locked} phase={phase} interact={interact}/>}
  </Lesson>;
 }

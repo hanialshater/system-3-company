@@ -63,7 +63,7 @@ export default function HeadOnIsAWall({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Car A crashes head-on into an identical car; both drive at 50 km/h. For car A, that crash is like hitting a solid wall at...",
+          "At a crash-test track, car A meets an identical car head-on; both drive at 50 km/h. For car A, that crash is like hitting a solid wall at what speed?",
         options: ["25 km/h", "50 km/h", "100 km/h"],
         answer: 1,
       }}

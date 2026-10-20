@@ -26,7 +26,7 @@ export default function FiftyUpFiftyDown({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A price of 100 rises 50%, then falls 50%. Where does it end?",
+        question: "A jacket you want costs 100. Its price rises 50%, then a week later falls 50%. What does it cost now?",
         options: ["100", "75", "125"],
         answer: 1,
       }}

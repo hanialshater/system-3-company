@@ -211,7 +211,7 @@ export default function MergeSortPayoff({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Two piles of 4 cards, each already sorted. To merge them into one sorted row of 8, what is the most comparisons you could ever need?",
+          "On the table sit two piles of 4 cards, each already sorted. You merge them into one sorted row of 8. What is the most comparisons you could ever need?",
         options: ["7", "16", "28"],
         answer: 0,
       }}

@@ -217,7 +217,7 @@ export default function SortedInputSinksQuicksort({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Quicksort always uses the first card as its pivot. You give it 6 cards already in order, 1 2 3 4 5 6. Compared with a shuffled hand like 3 4 1 6 2 5, it does:",
+          "Your quicksort always takes the first card as its pivot. You hand it 6 cards already in order, 1 2 3 4 5 6. Compared with a shuffled hand like 3 4 1 6 2 5, how much work does it do?",
         options: ["Less work", "About the same work", "The most work possible"],
         answer: 2,
       }}

@@ -107,7 +107,7 @@ export default function IndonesiaVsTheUsWidth({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Compare the contiguous US (the 48 joined states) coast to coast with Indonesia end to end. How far does Indonesia stretch?",
+          "Lay Indonesia over a map of the contiguous US (the 48 joined states) and compare it end to end with the US coast to coast. How far does Indonesia stretch?",
         options: ["About half as far", "About the same", "Further than the US"],
         answer: 2,
       }}

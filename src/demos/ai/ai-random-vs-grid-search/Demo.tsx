@@ -36,7 +36,7 @@ function Stage({ locked, phase, interact }: {
 export default function Demo({ slug }: {
     slug: string;
 }) {
-    return <Lesson slug={slug} predict={{ "question": "With four trials each, which set gets the higher best score?", "options": ["Grid", "DrawA", "Equal"], "answer": 1 }} minInteractions={3} exploreHint="Try each case and compare the saved results." reveal={() => <p>The grid tested two unique x values and reached .6. Fixed draw A tested four and reached 1; fixed draw B reached .55 and lost. Changing irrelevant y spent grid trials without adding x values. These four-trial examples do not guarantee that random search wins.</p>}>
+    return <Lesson slug={slug} predict={{ "question": "You tune two settings, only one of which matters, comparing a grid against random draw A. With four trials each, which set gets the higher best score?", "options": ["Grid", "DrawA", "Equal"], "answer": 1 }} minInteractions={3} exploreHint="Try each case and compare the saved results." reveal={() => <p>The grid tested two unique x values and reached .6. Fixed draw A tested four and reached 1; fixed draw B reached .55 and lost. Changing irrelevant y spent grid trials without adding x values. These four-trial examples do not guarantee that random search wins.</p>}>
   {({ locked, phase, interact }) => <Stage locked={locked} phase={phase} interact={interact}/>}
  </Lesson>;
 }

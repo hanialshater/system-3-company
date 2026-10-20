@@ -49,7 +49,7 @@ export default function OutsideOptionSetsTheSplit({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A and B split $1 by bargaining (the Nash model). A could get $0.40 elsewhere; B gets nothing elsewhere. How much does A get?",
+          "A and B haggle over how to split $1, settled by the Nash bargaining model. If talks fail, A can get $0.40 elsewhere and B gets nothing. How much does A get?",
         options: ["$0.50", "$0.70", "$0.40"],
         answer: 1,
       }}

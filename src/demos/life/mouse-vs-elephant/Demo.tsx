@@ -102,7 +102,7 @@ export default function MouseVsElephant({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `An elephant is about ${BIG.toLocaleString("en-US")} times heavier than a mouse. With the rough ¾-power rule for resting energy, how many times more energy does it use in total?`,
+        question: `At the zoo, an elephant and a mouse both lie resting. The elephant is about ${BIG.toLocaleString("en-US")} times heavier. With the rough ¾-power rule for resting energy, how many times more energy does it use in total?`,
         options: [`About ${BIG.toLocaleString("en-US")} times`, `About ${BIG_TOTAL} times`, "About 400 times"],
         answer: 1,
       }}

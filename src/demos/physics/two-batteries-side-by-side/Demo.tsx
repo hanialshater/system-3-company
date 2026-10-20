@@ -100,7 +100,7 @@ export default function TwoBatteriesSideBySide({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Two 1.5 V batteries are joined side by side: plus to plus, minus to minus. The voltage across the pair is...",
+        question: "Fixing a torch, you join two 1.5 V batteries side by side: plus to plus, minus to minus. What voltage do you get across the pair?",
         options: ["0 V", "1.5 V", "3.0 V"],
         answer: 1,
       }}

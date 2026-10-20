@@ -40,7 +40,7 @@ export default function HelsinkiSpinSpeed({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Earth's spin carries someone on the equator at about ${r10(speed(0))} km/h. How fast does it carry someone in Helsinki (60°N)?`,
+        question: `Earth's spin carries someone on the equator at about ${r10(speed(0))} km/h. You are sitting still at home in Helsinki (60°N). How fast does the spin carry you?`,
         options: [`About ${r10(speed(0))} km/h`, `About ${r10(speed(HELSINKI))} km/h`, "0 km/h"],
         answer: 1,
       }}

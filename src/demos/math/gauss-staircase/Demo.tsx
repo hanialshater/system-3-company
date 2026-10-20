@@ -25,7 +25,7 @@ export default function GaussStaircase({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Add 1 + 2 + 3 + … + 100, every whole number up to 100. What do you get?",
+        question: "On a long car ride, you set yourself a challenge: add 1 + 2 + 3 + … + 100, every whole number up to 100. What total do you get?",
         options: ["5,000", "5,050", "10,100"],
         answer: 1,
       }}

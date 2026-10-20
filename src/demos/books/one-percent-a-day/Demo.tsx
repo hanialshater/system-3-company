@@ -54,7 +54,7 @@ export default function OnePercentADay({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Get 1% better every day, each day building on the last. After one year, how much better are you?",
+        question: "You practise guitar and get 1% better every day, each day building on the last. After one year, how much better are you?",
         options: ["About 4.7 times", "About 37.8 times", "About 365 times"],
         answer: 1,
       }}

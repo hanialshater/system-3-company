@@ -57,7 +57,7 @@ export default function AddAZero({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `What is ${START} × 10?`,
+        question: `A recipe needs ${START} cups of flour and you are making 10 batches at once. How many cups is ${START} × 10?`,
         options: [written(tiles(0, true)), `${ANSWER}`, "30.5"],
         answer: 1,
       }}

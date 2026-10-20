@@ -75,7 +75,7 @@ export default function NewtonDoublesTheDigits({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Estimate √2 by repeating g = (g + 2/g) / 2, starting from g = 1. How many updates until g is right to 12 significant digits?",
+          "With only a basic calculator, you estimate √2 by averaging your guess with 2 ÷ guess, over and over, starting from 1. How many updates until your guess is right to 12 significant digits?",
         options: ["4", "8", "12"],
         answer: 0,
       }}

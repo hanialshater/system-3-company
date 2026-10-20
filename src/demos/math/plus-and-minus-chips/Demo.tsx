@@ -32,7 +32,7 @@ export default function PlusAndMinusChips({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `You hold ${START_P} plus-chips and ${START_M} minus-chips. A plus and a minus cancel. What is your total?`,
+        question: `In a board game, you hold ${START_P} plus-chips and ${START_M} minus-chips, and a plus and a minus cancel each other out. What is your total?`,
         options: [String(START_P + START_M), String(START_M - START_P), fmt(START_P - START_M)],
         answer: 2,
       }}

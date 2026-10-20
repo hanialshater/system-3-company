@@ -21,7 +21,7 @@ export const homeLessons: HomeSpec[] = [
       "Quarter-fold",
       "Spread flat"
     ],
-    "question": "Folded in quarters, the towel takes 12 hours in this model. Spread flat, how long?",
+    "question": "You need your beach towel dry for tomorrow. Folded in quarters, the towel takes 12 hours in this model. Spread flat, how long?",
     "idea": "Spreading the towel opens both large faces to the air. In this model each square metre of open face dries at the same speed, so the time falls as the open face grows.",
     "limit": "Real drying depends on fabric, temperature, humidity and airflow; this is not a twelve-hour promise.",
     "formula": "Area=2×(width/100)×1.4/layers; layers=4 or 1. Model hours=0.6/(area×0.1020408163). Edges and falling-rate drying omitted.",
@@ -78,7 +78,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "wobbly-table-quarter-turn",
-    "title": "Turn the table, lose the wobble",
+    "title": "Can turning a table stop the wobble?",
     "model": "wobble",
     "view": "wobble",
     "initial": 0,
@@ -122,7 +122,7 @@ export const homeLessons: HomeSpec[] = [
       "Matching wraps",
       "Opposing wraps"
     ],
-    "question": "Two bows tied in the same laces: one lies flat, one twists out of line. Which comes undone first?",
+    "question": "Halfway through a walk, you glance down at your shoes. Two bows tied in the same laces: one lies flat, one twists out of line. Which comes undone first?",
     "idea": "The twisted bow comes from tying both knot stages the same way round; tying the second the opposite way makes the bow lie flat. The finished bow’s orientation gives you a way to tell the two apart.",
     "limit": "Both can fail. The schematic is not a tying tutorial; loop loss is illustrative, not measured walking data.",
     "formula": "Both illustrative loops start at 20 mm at step 0. Walk advances from 0 to 25 steps: remaining loop = max(0, 20 − steps × rate) mm, with twisted (matching) rate 0.8 and flat (opposing) rate 0.3. The displayed results are 0 mm (undone) and 12.5 mm. No empirical lifetime is claimed.",
@@ -202,7 +202,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "door-swing-clearance",
-    "title": "A door needs a quarter-circle",
+    "title": "Where does the basket go?",
     "model": "swing",
     "view": "swing",
     "initial": 80,
@@ -216,7 +216,7 @@ export const homeLessons: HomeSpec[] = [
       "In swing",
       "Beyond swing"
     ],
-    "question": "Where can this light basket clear the door?",
+    "question": "Tidying the hallway, you need a spot for a light basket that will not stop the door opening. Where can this light basket clear the door?",
     "idea": "A hinged door sweeps an arc. In this top-down drawing, placing the basket outside the door radius removes the collision; the wall opening alone does not show the space needed.",
     "limit": "Real handles and basket shapes need extra clearance. Keep exits unobstructed.",
     "formula": "Basket center radius=65cm or door width+10cm; point-basket collision when radius<door width. Door sweeps 90°.",
@@ -230,7 +230,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "furniture-through-door",
-    "title": "Volume is not doorway fit",
+    "title": "Will it fit through the door?",
     "model": "fit",
     "view": "fit",
     "initial": 75,
@@ -245,7 +245,7 @@ export const homeLessons: HomeSpec[] = [
       "Broad face",
       "Narrow face"
     ],
-    "question": "Which face clears the pictured opening?",
+    "question": "You are carrying a rigid box-shaped piece of furniture to a doorway that looks too narrow. Which face clears the pictured opening?",
     "idea": "An object can have a small volume yet fail an opening. This drawing compares a rigid box’s two widths with the clear doorway width. Turning it changes the blocking dimension.",
     "limit": "Only a straight opening is modelled; corners, hands and trim need further measurements. Do not lift heavy furniture alone.",
     "formula": "Clearance=opening−object width; broad face=80cm, narrow=60cm. Height/depth not checked here.",
@@ -259,7 +259,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "sofa-diagonal-room",
-    "title": "The diagonal hides more length",
+    "title": "Along the edge or the diagonal?",
     "model": "diagonal",
     "view": "diagonal",
     "initial": 120,
@@ -274,7 +274,7 @@ export const homeLessons: HomeSpec[] = [
       "Along edge",
       "On diagonal"
     ],
-    "question": "Which line can contain the pictured 140cm rod?",
+    "question": "You need to lay a long curtain rod flat on the floor of a small room while you set up. Which line can contain the pictured 140cm rod?",
     "idea": "The rectangle’s diagonal is longer than either edge. A thin rod can fit along it when it is too long for the width; area alone does not answer a length-fit question.",
     "limit": "This is a thin rod, not a sofa manoeuvring guarantee; thickness and entry paths matter.",
     "formula": "Available length=width or sqrt(width²+90²); rod=140cm. Margin=available−140.",
@@ -350,7 +350,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "drawer-divider-cost",
-    "title": "Dividers eat drawer width",
+    "title": "Four sections in one drawer",
     "model": "divider",
     "view": "grid",
     "initial": 40,
@@ -365,7 +365,7 @@ export const homeLessons: HomeSpec[] = [
       "Ignore walls",
       "Count walls"
     ],
-    "question": "Which estimate leaves room for four compartments?",
+    "question": "You plan to split a drawer with dividers and work out how wide each section will be. Which estimate leaves room for four compartments?",
     "idea": "Dividers occupy space too. The usable width of each compartment is the drawer width minus the internal walls, divided by the number of compartments.",
     "limit": "Use inside dimensions and the actual material thickness; this is a straight rectangular drawer.",
     "formula": "Four compartments: naive width=W/4; actual width=(W−3×1)/4 cm.",
@@ -379,7 +379,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "suitcase-rotate-block",
-    "title": "Rotate before buying a bigger bag",
+    "title": "Turn the blocks, or not?",
     "model": "gridfit",
     "view": "grid",
     "initial": 30,
@@ -395,7 +395,7 @@ export const homeLessons: HomeSpec[] = [
       "Long way",
       "Quarter-turn"
     ],
-    "question": "Which orientation fits more identical blocks?",
+    "question": "The bottom of your bag has room for a layer of identical rectangular packs, laid the long way or turned a quarter. Which orientation fits more identical blocks?",
     "idea": "For these rigid rectangles, rotation changes how many complete rows and columns fit. Empty area can remain unusable when it is in strips narrower than another block.",
     "limit": "No compression or overlapping is permitted; real clothes are not rigid rectangles.",
     "formula": "Count=floor(W/itemW)×floor(36/itemH), item=18×12 or 12×18 cm.",
@@ -424,7 +424,7 @@ export const homeLessons: HomeSpec[] = [
       "Toes together",
       "Toe-to-heel"
     ],
-    "question": "Two shoes, 12 cm wide at the toe and 6 cm at the heel. How wide is the pair packed toe-to-heel?",
+    "question": "Your weekend bag is tight on width, and the shoes go in last. Two shoes, 12 cm wide at the toe and 6 cm at the heel. How wide is the pair packed toe-to-heel?",
     "idea": "A shoe is wide at the toe and narrow at the heel. Turn one round and each wide part sits beside a narrow one, so the pair is 6 cm narrower and neither shoe is squashed.",
     "limit": "Real shoe outlines vary; these simplified shapes narrow evenly from toe to heel.",
     "formula": "Pair width=2×12=24cm toes together, 12+6=18cm toe-to-heel; room left in the bag=bag width−pair width.",
@@ -521,7 +521,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "packing-cube-walls",
-    "title": "A cube has an inside and an outside",
+    "title": "How much does a packing cube hold?",
     "model": "inner-volume",
     "view": "volume",
     "initial": 30,
@@ -537,7 +537,7 @@ export const homeLessons: HomeSpec[] = [
       "Outer volume",
       "Usable volume"
     ],
-    "question": "Which figure describes space available to contents?",
+    "question": "Packing for a trip, you check whether everything will fit inside a padded packing cube. Which figure describes space available to contents?",
     "idea": "Container walls consume some of its external volume. Multiplying the outer dimensions counts material as storage; subtracting both walls in each direction gives the ideal inner capacity.",
     "limit": "Real seams, zips and curved corners change usable space further.",
     "formula": "Outer V=W×20×10; inner V=(W−2)×18×8 cm³ for 1cm walls.",
@@ -551,7 +551,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "rolled-or-folded-volume",
-    "title": "Rolling cannot erase the cloth",
+    "title": "Does rolling clothes shrink them?",
     "model": "conserve",
     "view": "cloth",
     "initial": 12,
@@ -567,7 +567,7 @@ export const homeLessons: HomeSpec[] = [
       "Fold it",
       "Roll it"
     ],
-    "question": "With no compressed air, which uses less cloth volume?",
+    "question": "Packing a suitcase, you can roll your clothes or fold them. With no compressed air, which uses less cloth volume?",
     "idea": "Changing shape does not remove material. This ideal sheet has the same volume rolled or folded. Real space differences come from air gaps, compression and how shapes share a bag.",
     "limit": "This is a volume conservation check, not a claim that rolling always wins or loses.",
     "formula": "Material volume=30×20×0.2 cm³ per sheet; total=input count×120, unchanged by layout.",
@@ -596,7 +596,7 @@ export const homeLessons: HomeSpec[] = [
       "One fold",
       "Two folds"
     ],
-    "question": "Five shirts folded once stack 4 cm high. Fold each once more. How tall now?",
+    "question": "Your shelf is short, so you try folding the shirts smaller. Five shirts folded once stack 4 cm high. Fold each once more. How tall now?",
     "idea": "An ideal incompressible sheet trades footprint for thickness. Doubling the layers doubles the height of an equally sized stack while conserving material volume.",
     "limit": "Real fabrics compress and trap air; these are sheet-model dimensions.",
     "formula": "Stack height=N×0.4×layers cm, layers=2 or 4; footprint fraction=1/layers.",
@@ -649,7 +649,7 @@ export const homeLessons: HomeSpec[] = [
       "Horizontal stack",
       "Vertical row"
     ],
-    "question": "Which arrangement exposes every coloured edge?",
+    "question": "You open a drawer of folded T-shirts in different colours and want to grab one without digging. Which arrangement exposes every coloured edge?",
     "idea": "This drawing counts visible item edges. A horizontal stack hides the lower tops, while a standing row exposes each edge. The row makes shirts easier to choose; it does not reduce their material volume.",
     "limit": "Choose a stable arrangement and drawer depth suited to the garments.",
     "formula": "Visible edges=1 for stack or N for row; hidden=N−visible. No claimed retrieval-time measurement.",
@@ -677,7 +677,7 @@ export const homeLessons: HomeSpec[] = [
       "Target at bottom",
       "Target at top"
     ],
-    "question": "The rain jacket is under five items. How many do you lift to reach it?",
+    "question": "It starts to rain as you step off the bus, and you open your packed bag. The rain jacket is under five items. How many do you lift to reach it?",
     "idea": "Every item above the one you need has to come out first. With the jacket on top, nothing is in the way, so the thing you need first is best packed last.",
     "limit": "This counts items lifted, not time; pockets and side openings change it.",
     "formula": "Items to lift=N−1 with the jacket at the bottom of N items, 0 with it on top.",
@@ -760,7 +760,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "heavy-book-close-to-back",
-    "title": "Same weight, shorter lever",
+    "title": "Where does the heavy book go?",
     "model": "torque",
     "view": "mechanics",
     "initial": 2,
@@ -775,7 +775,7 @@ export const homeLessons: HomeSpec[] = [
       "Far from back",
       "Near back"
     ],
-    "question": "Which placement produces less static turning moment?",
+    "question": "You are putting a heavy book on a wall shelf and want it to pull the shelf off its fixings as little as possible. Which placement produces less static turning moment?",
     "idea": "The same weight produces a smaller static moment when its horizontal distance from the support is shorter. The drawing changes distance, not the book’s mass.",
     "limit": "This simplified support model does not predict posture, comfort or injury; follow the pack’s limits.",
     "formula": "Moment=mass×9.81×distance/100 N·m; distance=30 or 10cm.",
@@ -804,7 +804,7 @@ export const homeLessons: HomeSpec[] = [
       "Unequal sides",
       "Balance sides"
     ],
-    "question": "3 kg on the left, 1 kg on the right. Move 1 kg across. Does the bag now hang straight?",
+    "question": "Your shopping tote tilts as you carry it home. 3 kg on the left, 1 kg on the right. Move 1 kg across. Does the bag now hang straight?",
     "idea": "The heavier side pulls the balance point towards it, and the bag tilts until that point is under the handle. Even the sides out, half the total on each, and the balance point is already under the handle: 3 kg and 1 kg become 2 kg each, 5 kg and 1 kg become 3 kg each. The bag hangs straight, and it weighs the same.",
     "limit": "A centred drawing does not certify a bag’s strength or make a heavy load safe.",
     "formula": "As packed: m kg left and 1 kg right, at −20 and +20 cm from the handle; evened out, each side=(m+1)/2 kg. Balance point=sum(mass×position)/total mass.",
@@ -943,7 +943,7 @@ export const homeLessons: HomeSpec[] = [
       "Faces touching",
       "Faces separated"
     ],
-    "question": "Over one bar, the towel's two inner faces touch. Across two bars, how much more face is open to the air?",
+    "question": "After your shower, you hang the towel up to dry. Over one bar, the towel's two inner faces touch. Across two bars, how much more face is open to the air?",
     "idea": "Two cloth faces pressed together are hidden from the surrounding air in this geometric model. Separating them restores exposed area; the cloth amount has not changed.",
     "limit": "This is exposed-area bookkeeping, not a measured drying-time prediction.",
     "formula": "Area=2×W×140/10000 times fraction; touching fraction=0.5, separated=1.",
@@ -1082,7 +1082,7 @@ export const homeLessons: HomeSpec[] = [
       "Overlapped",
       "Separate"
     ],
-    "question": "Two shirts overlap by 1,800 cm². How much cloth is hidden from the air?",
+    "question": "The washing line is crowded, so you squeeze the wet shirts together. Two shirts overlap by 1,800 cm². How much cloth is hidden from the air?",
     "idea": "Overlap hides the contacting regions from surrounding air. Separating the illustrated sheets restores those regions, although the total amount of cloth stays the same.",
     "limit": "Real draping and edge exposure differ; no universal time saving is claimed.",
     "formula": "Two sheets each 100×60cm, both faces: 24000cm². Contact hides 2×overlap×60; separation hides 0.",
@@ -1146,7 +1146,7 @@ export const homeLessons: HomeSpec[] = [
       "One item",
       "Whole load"
     ],
-    "question": "Each wet shirt holds about 250 g of water. Twelve dry indoors. How much water goes into the room's air?",
+    "question": "It is raining on laundry day, so your shirts hang in the living room. Each wet shirt holds about 250 g of water. Twelve dry indoors. How much water goes into the room's air?",
     "idea": "Water leaving laundry enters the surroundings. This example multiplies retained water per item by the item count; it is a mass balance, not a forecast of room humidity.",
     "limit": "Ventilation, temperature and condensation affect the room. This card counts water only; it does not predict room humidity.",
     "warning": "Dry indoors with a window open or a vent on: the water you dry goes into the room's air, and without ventilation it can cause damp and mould.",
@@ -1196,7 +1196,7 @@ export const homeLessons: HomeSpec[] = [
       "Humid setting",
       "Drier setting"
     ],
-    "question": "Same temperature. A room at 40% humidity and one at 80%. How much weaker is the drying push in the humid room?",
+    "question": "You can hang your washing in either of two rooms. Same temperature. A room at 40% humidity and one at 80%. How much weaker is the drying push in the humid room?",
     "idea": "At the same temperature, humid air already holds close to all the water vapour it can, so it takes water from a wet surface more slowly. The push is how far the air is from full.",
     "limit": "Surface temperature, airflow and fabric also matter; no room-control advice is implied.",
     "formula": "Drying push=100−humidity, out of 100; the drier room is 40 points less humid than the humid room. Assumes wet surface and air have equal temperature.",
@@ -1328,7 +1328,7 @@ export const homeLessons: HomeSpec[] = [
       "One rectangle",
       "Two halves"
     ],
-    "question": "Cut a towel in half and hang both halves flat. How much face area now?",
+    "question": "Hoping a towel will dry faster, you think about cutting it. Cut a towel in half and hang both halves flat. How much face area now?",
     "idea": "Splitting a flat rectangle preserves the combined front-and-back face area. It adds edges, but does not double the large faces; separating folded layers is a different operation.",
     "limit": "Edges and fabric thickness are omitted from this area comparison.",
     "formula": "Both layouts have area=2×width×120/10000 m²; each half has height60cm.",
@@ -1428,7 +1428,7 @@ export const homeLessons: HomeSpec[] = [
       "Thin sheet",
       "Double thickness"
     ],
-    "question": "Same size towel, twice as thick, so twice the cloth and twice the water. How much open face does each cm³ of cloth get now?",
+    "question": "At the shop, you weigh up a thicker towel. Same size towel, twice as thick, so twice the cloth and twice the water. How much open face does each cm³ of cloth get now?",
     "idea": "Twice as thick at the same width and length means twice the cloth, but the open face is still the same two sides. So each cm³ of cloth gets half as much open face.",
     "limit": "Open face per cm³ of cloth does not, on its own, set a towel’s drying time.",
     "formula": "Open face=2×50×100 cm²; cloth=50×100×thickness/10 cm³, doubled when twice as thick. Open face per cm³=open face÷cloth.",
@@ -1547,7 +1547,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "pillowcase-set-kit",
-    "title": "One set, one retrieval",
+    "title": "Where should a bedding set live?",
     "model": "group-access",
     "view": "order",
     "initial": 4,
@@ -1561,7 +1561,7 @@ export const homeLessons: HomeSpec[] = [
       "Scattered pieces",
       "One set kit"
     ],
-    "question": "Which setup uses fewer container visits for a complete set?",
+    "question": "Changing the bed, you need one complete matching set of bedding from the linen cupboard. Which setup uses fewer container visits for a complete set?",
     "idea": "The example counts separate locations, not seconds. Keeping the chosen set’s pieces together replaces multiple location visits with one, while separating unlike sets can preserve identification.",
     "limit": "It is an organisation trade-off, not proof that every object should be grouped.",
     "formula": "Chosen set has three pieces: scattered visits=min(input locations,3), kit visits=1.",
@@ -1589,7 +1589,7 @@ export const homeLessons: HomeSpec[] = [
       "One mixed pile",
       "Three pattern bins"
     ],
-    "question": "Twelve socks of three patterns in one pile. To find one sock's partner, how many socks do you check?",
+    "question": "Laundry day, and the clean socks land on the bed. Twelve socks of three patterns in one pile. To find one sock's partner, how many socks do you check?",
     "idea": "In a pile you pick socks up one at a time, so the partner can be the last one you check. Sorted by pattern first, you only check the socks in that pattern's bin.",
     "limit": "Sorting takes its own time, and this counts the worst case: the partner turns up last.",
     "formula": "Socks to check at most=N−1 in one mixed pile, N/3−1 in one of three equal pattern bins; N is a multiple of 6.",
@@ -1730,7 +1730,7 @@ export const homeLessons: HomeSpec[] = [
       "Loose items",
       "Closed mesh bag"
     ],
-    "question": "Which boundary keeps the pictured small items together?",
+    "question": "A handful of tiny items keeps scattering across the bottom of your beach bag. Which boundary keeps the pictured small items together?",
     "idea": "The closed bag in this simplified drawing keeps the listed items in one group. The useful question is whether the closure and mesh suit the items; merely placing them near one another adds no boundary.",
     "limit": "Follow appliance and garment guidance. The picture does not estimate damage prevention or cleaning performance.",
     "formula": "Contained count=0 with no boundary or N with a closed ideal bag; all items larger than openings.",
@@ -1792,7 +1792,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "shelf-front-labels",
-    "title": "A label behind a box is hidden",
+    "title": "Which way should the label face?",
     "model": "label-face",
     "view": "order",
     "initial": 6,
@@ -1806,7 +1806,7 @@ export const homeLessons: HomeSpec[] = [
       "Labels on back",
       "Labels on front"
     ],
-    "question": "Which layout exposes the written addresses?",
+    "question": "You stack storage boxes on a garage shelf, each with its address label written on one side, and view them from the front. Which layout exposes the written addresses?",
     "idea": "The picture uses opaque boxes. A rear-facing label is blocked when the boxes stay on the shelf; a front-facing address is visible from the shown viewpoint.",
     "limit": "Visibility is viewpoint-dependent; this card does not measure search time.",
     "formula": "Visible addresses=0 for rear faces or N for front faces in opaque front-view geometry.",
@@ -1834,7 +1834,7 @@ export const homeLessons: HomeSpec[] = [
       "Opaque boxes",
       "Clear fronts"
     ],
-    "question": "Which layout shows the orange item without opening boxes?",
+    "question": "You need the orange item from a wall of storage boxes and would rather not open them all. Which layout shows the orange item without opening boxes?",
     "idea": "Under this ideal clear-front assumption, contents are visible from the shown viewpoint. Opaque boxes require another cue such as an address; transparency changes observation, not where the item is.",
     "limit": "Real translucent materials, crowded contents and lighting can still obscure objects.",
     "formula": "Visible target=0 in opaque model,1 in clear model; possible boxes=N.",
@@ -1862,7 +1862,7 @@ export const homeLessons: HomeSpec[] = [
       "Loose ends",
       "Secure bundle ends"
     ],
-    "question": "Three cords tied together in the middle, or with their ends tucked. Which tangles less in a drawer?",
+    "question": "Spare cords go in your drawer, and later you want to pull one out without a fight. Three cords tied together in the middle, or with their ends tucked. Which tangles less in a drawer?",
     "idea": "A tie round the middle holds the cords together, but every end stays free. A tangle starts when a free end weaves through a loop, so tucking the ends away takes away that start. The drawing counts loose ends; it does not simulate tangling.",
     "limit": "Plain cord; storage only. The drawing gives no electrical safety limit or product-specific bend radius.",
     "formula": "Loose ends=2×cord count with a middle tie, 0 with the ends tucked into end ties; tangling itself is not simulated.",
@@ -2034,7 +2034,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "mug-handle-packing",
-    "title": "Handles break the neat circle",
+    "title": "How many mugs fit in a row?",
     "model": "handle-envelope",
     "view": "grid",
     "initial": 36,
@@ -2049,7 +2049,7 @@ export const homeLessons: HomeSpec[] = [
       "Body diameter",
       "Handle envelope"
     ],
-    "question": "Which estimate avoids the pictured handle overlap?",
+    "question": "Clearing a shelf, you want to know how many empty mugs fit side by side in one row. Which estimate avoids the pictured handle overlap?",
     "idea": "Counting only cup diameters ignores their handles. The conservative side-by-side layout uses the complete horizontal envelope for each empty cup.",
     "limit": "These are empty cups on a low surface; no hot-liquid packing advice. Handles may interleave in other layouts.",
     "formula": "Row count=floor(W/8) ignoring handle or floor(W/(8+3)) including handle.",
@@ -2125,7 +2125,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "round-box-leftover-gap",
-    "title": "Round inside square leaves corners",
+    "title": "Round or square in a square space?",
     "model": "circle-area",
     "view": "geometry",
     "initial": 20,
@@ -2139,7 +2139,7 @@ export const homeLessons: HomeSpec[] = [
       "Square footprint",
       "Inscribed circle"
     ],
-    "question": "Which shape leaves unused corners in this square space?",
+    "question": "A round tin or a square box could fill the same square spot on your shelf. Which shape leaves unused corners in this square space?",
     "idea": "The inscribed circle touches all four sides yet occupies less area than the square. Corner gaps remain outside the circular footprint; touching the sides is not the same as filling the region.",
     "limit": "This is two-dimensional area, not a complete storage-capacity estimate.",
     "formula": "Square=W²; circle=π(W/2)²; unused corner area=W²−πW²/4 cm².",
@@ -2153,7 +2153,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "rectangular-bin-nesting",
-    "title": "Walls limit nesting depth",
+    "title": "Stack or nest the empty bins?",
     "model": "nested-wall",
     "view": "volume",
     "initial": 4,
@@ -2168,7 +2168,7 @@ export const homeLessons: HomeSpec[] = [
       "Separate bins",
       "Nested bins"
     ],
-    "question": "Which ideal stack has a shorter outside height?",
+    "question": "Putting empty tapered bins away on a shelf, you can stack them on top of each other or nest them. Which ideal stack has a shorter outside height?",
     "idea": "For these tapered ideal bins, nesting shares hollow height while each additional rim adds a small increment. Solid boxes without a nesting shape do not share the same geometry.",
     "limit": "Check real taper and rims; this is not a universal storage ratio.",
     "formula": "Separate height=N×10; nested height=10+(N−1)×1 cm.",
@@ -2198,7 +2198,7 @@ export const homeLessons: HomeSpec[] = [
       "Assembled box",
       "Panels stacked"
     ],
-    "question": "Which arrangement takes up less space?",
+    "question": "Packing for a move, you can store an empty box-shaped cabinet built, or take it apart. Which arrangement takes up less space?",
     "idea": "An empty assembled object includes a large hollow in its envelope. Stacking the ideal panels removes that hollow from the outside dimensions while retaining all panel material.",
     "limit": "Real hardware and edges add volume; never dismantle furniture unless its instructions permit it.",
     "formula": "4 panels 40×30 + 2 panels 30×30, thickness t; stack envelope 40×30×6t; assembled reference 40×30×30.",
@@ -2212,7 +2212,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "rug-chair-pullback",
-    "title": "Chairs need room beyond the table",
+    "title": "How big should a dining rug be?",
     "model": "rug-clearance",
     "view": "geometry",
     "initial": 120,
@@ -2226,7 +2226,7 @@ export const homeLessons: HomeSpec[] = [
       "Table footprint",
       "Include pullback"
     ],
-    "question": "Which rug covers the pictured chair movement?",
+    "question": "Choosing a rug for under the dining table, remember that people slide their chairs back to stand up. Which rug covers the pictured chair movement?",
     "idea": "The drawing reserves space outside the table footprint for the selected chair movement. Adding that allowance at both sides produces a wider rectangle; the table dimensions alone omit it.",
     "limit": "The sixty-centimetre movement is chosen for this illustration, not an ergonomic recommendation. Check actual furniture and clear paths.",
     "formula": "Rug width=table width or table width+2×60cm; fixed chosen pullback60cm each side.",
@@ -2255,7 +2255,7 @@ export const homeLessons: HomeSpec[] = [
       "Fixed tall gap",
       "Adjust gap"
     ],
-    "question": "Which layout wastes less vertical space above these boxes?",
+    "question": "Your shelves sit at fixed heights, and short storage boxes leave a tall empty gap above them. Which layout wastes less vertical space above these boxes?",
     "idea": "The illustration subtracts box height from shelf clearance. Adjusting unused gap can create useful room elsewhere, provided the new opening still fits the box and hand allowance.",
     "limit": "Shelf strength and mounting are outside this card; use manufacturer instructions.",
     "formula": "Unused height=gap−12 or max(0,15−12)cm; chosen hand allowance3cm.",
@@ -2269,7 +2269,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "trays-slide-out-reach",
-    "title": "Move the tray, shorten the reach",
+    "title": "Reaching the back of the shelf",
     "model": "reach",
     "view": "geometry",
     "initial": 50,
@@ -2283,7 +2283,7 @@ export const homeLessons: HomeSpec[] = [
       "Fixed back item",
       "Slide tray out"
     ],
-    "question": "Which position reduces the shown horizontal reach?",
+    "question": "The jar you need sits at the very back of a deep cupboard shelf. Which position reduces the shown horizontal reach?",
     "idea": "Sliding the tray brings the same back item toward the front. The drawing subtracts travel from depth; it changes access distance without changing the shelf’s storage volume.",
     "limit": "Use trays and slides within their limits; this card models only horizontal distance.",
     "formula": "Reach=depth or max(0,depth−30)cm, selected tray travel30cm.",
@@ -2348,7 +2348,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "keys-fixed-drop-zone",
-    "title": "An address changes the search",
+    "title": "One home for the keys?",
     "model": "known-address",
     "view": "order",
     "initial": 6,
@@ -2362,7 +2362,7 @@ export const homeLessons: HomeSpec[] = [
       "Unknown box",
       "Known address"
     ],
-    "question": "Which search needs fewer possible box checks?",
+    "question": "Late for work, you hunt for your keys. They could be in any box by the door, or they always go back to one known box. Which search needs fewer possible box checks?",
     "idea": "In the stated worst-case search, an unknown location may require checking every box. A maintained address directs the search to one box; the benefit depends on returning the item to that address.",
     "limit": "This counts checks, not forgetfulness or memory performance.",
     "formula": "Worst-case checks=N unknown boxes or1 maintained address.",
@@ -2390,7 +2390,7 @@ export const homeLessons: HomeSpec[] = [
       "One shared tool",
       "One at each desk"
     ],
-    "question": "Which layout removes the shown shuttle trips?",
+    "question": "You switch between two desks all afternoon and need the same tool at both. Which layout removes the shown shuttle trips?",
     "idea": "The example alternates between two stations. A tool at each avoids carrying one back and forth, while increasing the number of tools stored; the stage makes that trade-off explicit.",
     "limit": "This is a chosen route, not a claim that duplicates always improve organisation.",
     "formula": "Travel=distance×4 transfers or0; stored tools=1 or2.",
@@ -2404,7 +2404,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "labels-specific-address",
-    "title": "A category is not a location",
+    "title": "Category label or box address?",
     "model": "address-specific",
     "view": "order",
     "initial": 8,
@@ -2418,7 +2418,7 @@ export const homeLessons: HomeSpec[] = [
       "Broad category",
       "Unique box address"
     ],
-    "question": "Which label narrows this search to one box?",
+    "question": "You need the tape measure from your stack of storage boxes. A box can carry a broad category name or a unique box address. Which label narrows this search to one box?",
     "idea": "A broad category may include several boxes. A unique box address specifies one location in the pictured system; category and location labels answer different questions.",
     "limit": "The item must still be put back correctly; labels alone do not enforce storage.",
     "formula": "Candidate boxes=ceil(N/2) in a chosen category or1 unique address.",
@@ -2432,7 +2432,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "seasonal-bin-rotation",
-    "title": "Frequent use belongs near access",
+    "title": "Which bin belongs at the front?",
     "model": "weighted-access",
     "view": "order",
     "initial": 8,
@@ -2447,7 +2447,7 @@ export const homeLessons: HomeSpec[] = [
       "Frequent bin at back",
       "Frequent bin at front"
     ],
-    "question": "Which layout needs fewer removals over these requests?",
+    "question": "In your stacked closet, one storage bin gets opened far more often than the others. Which layout needs fewer removals over these requests?",
     "idea": "Access cost should be counted across uses. Moving the frequently requested bin to the front reduces repeated blocker removals in this particular queue; the rarely requested bin can tolerate a longer path.",
     "limit": "The frequencies are chosen examples, not measured household behaviour.",
     "formula": "Two bins, access positions1 andN; frequent request4 times, rare1. Removals before=4(N−1), after=(N−1).",
@@ -2461,7 +2461,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "lids-match-by-size",
-    "title": "Fit needs diameter, not a colour",
+    "title": "Which lid fits the opening?",
     "model": "diameter-match",
     "view": "geometry",
     "initial": 18,
@@ -2476,7 +2476,7 @@ export const homeLessons: HomeSpec[] = [
       "Match colour",
       "Match diameter"
     ],
-    "question": "Which lid matches the pictured round opening?",
+    "question": "Clearing out a cupboard, you find a pot with no lid. Which lid matches the pictured round opening?",
     "idea": "This fit test compares the opening diameter with lid diameter. A matching colour supplies no geometric constraint; the selected equal-diameter example meets the simplified size condition.",
     "limit": "Real lids also need the right rim, seal and shape; equal diameter alone does not guarantee compatibility.",
     "formula": "Mismatch=abs(opening−20cm) for colour choice or0 for a selected matching-diameter lid.",
@@ -2490,7 +2490,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "nested-box-retrieval",
-    "title": "Saved space can cost access",
+    "title": "Nest the boxes or keep them apart?",
     "model": "nest-access",
     "view": "order",
     "initial": 5,
@@ -2504,7 +2504,7 @@ export const homeLessons: HomeSpec[] = [
       "Deep nesting",
       "Separate boxes"
     ],
-    "question": "Which layout gives the inner target fewer blockers?",
+    "question": "The item you need sits in the innermost of several boxes nested inside each other in the closet. Which layout gives the inner target fewer blockers?",
     "idea": "Nesting can share empty envelope space while adding objects that must be removed to reach an inner target. Separate storage trades a larger footprint for immediate access in this drawing.",
     "limit": "The best choice depends on use frequency and space; this is not a universal ranking.",
     "formula": "Blockers=N−1 nested containers or0 separately accessible containers.",
@@ -2518,7 +2518,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "spacer-protects-clearance",
-    "title": "A fit with no margin is fragile",
+    "title": "Will it still fit?",
     "model": "tolerance",
     "view": "fit",
     "initial": 30,
@@ -2533,7 +2533,7 @@ export const homeLessons: HomeSpec[] = [
       "Nominal fit",
       "Allow uncertainty"
     ],
-    "question": "Which fit check includes the pictured size uncertainty?",
+    "question": "A storage box should just slide into a gap on your shelf, but real sizes can be a little off the listed ones. Which fit check includes the pictured size uncertainty?",
     "idea": "Subtracting the largest plausible object size from the smallest plausible opening produces a more conservative margin than comparing nominal values. The card makes the uncertainty allowance visible.",
     "limit": "The one-centimetre bounds are hypothetical; measure real parts and use appropriate tolerances.",
     "formula": "Nominal margin=opening−28; bounded margin=(opening−1)−(28+1) cm.",
@@ -2547,7 +2547,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "wrapping-paper-minimum-area",
-    "title": "A box has six faces",
+    "title": "How much paper wraps a box?",
     "model": "box-area",
     "view": "geometry",
     "initial": 20,
@@ -2576,7 +2576,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "ribbon-around-box-length",
-    "title": "Two loops share the same height",
+    "title": "How much ribbon for a crossed wrap?",
     "model": "ribbon",
     "view": "geometry",
     "initial": 20,
@@ -2592,7 +2592,7 @@ export const homeLessons: HomeSpec[] = [
       "Around one direction",
       "Crossed loops"
     ],
-    "question": "Which length includes both crossed ribbon loops?",
+    "question": "Wrapping a gift, you want two ribbon loops crossing over the top of the box. Which length includes both crossed ribbon loops?",
     "idea": "Each rectangular loop travels around a width and the box height. Crossing two loops counts the height four times; then the chosen bow allowance is added separately.",
     "limit": "Real knots and routing can need extra ribbon; the allowance is illustrative.",
     "formula": "One loop=2(W+8)+20; crossed=2(W+8)+2(10+8)+20cm.",
@@ -2606,7 +2606,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "tape-mark-same-spacing",
-    "title": "Small step errors accumulate",
+    "title": "Where do you measure from?",
     "model": "mark-error",
     "view": "ruler",
     "initial": 5,
@@ -2621,7 +2621,7 @@ export const homeLessons: HomeSpec[] = [
       "Step from last mark",
       "Measure from origin"
     ],
-    "question": "Which method avoids compounding this repeated bias?",
+    "question": "Marking spots for a row of picture hooks along a wall, you notice each measured step runs a little long. Which method avoids compounding this repeated bias?",
     "idea": "A biased step repeated from the previous mark adds its error each time. Measuring each chosen position from one origin avoids that particular accumulation, though the measuring tool can still have its own errors.",
     "limit": "The bias is hypothetical, not a specification for real tape measures.",
     "formula": "Nth error=N×0.2cm for stepped marks or0.2cm for one-origin readings; target pitch10cm.",
@@ -2635,7 +2635,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "measure-diagonal-for-square",
-    "title": "Equal sides do not prove square",
+    "title": "Do equal sides make a frame square?",
     "model": "square-test",
     "view": "diagonal",
     "initial": 70,
@@ -2649,7 +2649,7 @@ export const homeLessons: HomeSpec[] = [
       "Sheared corner",
       "Square corner"
     ],
-    "question": "Which shape has equal diagonals in this example?",
+    "question": "Building a picture frame, you made opposite sides equal, but a corner might still lean. Which shape has equal diagonals in this example?",
     "idea": "A parallelogram can retain opposite side lengths while its corners skew. Its two diagonals differ unless the included angle is ninety degrees in this example; a diagonal comparison detects the skew.",
     "limit": "Equal diagonals alone do not prove every arbitrary quadrilateral is a rectangle; the parallelogram condition matters.",
     "formula": "For side lengths60 and input cm: square diagonals=sqrt(a²+b²); skew angle70° gives sqrt(a²+b²±2abcos70°).",
@@ -2663,7 +2663,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "ruler-start-not-zero",
-    "title": "Subtract the starting mark",
+    "title": "What if the ruler doesn't start at zero?",
     "model": "ruler-offset",
     "view": "ruler",
     "initial": 18,
@@ -2677,7 +2677,7 @@ export const homeLessons: HomeSpec[] = [
       "Read endpoint",
       "Subtract start"
     ],
-    "question": "Which reading gives this object’s length?",
+    "question": "The zero end of your ruler is damaged, so you line the object up at a later mark. Which reading gives this object’s length?",
     "idea": "The object begins at the three-centimetre mark. Its length is the endpoint minus its start; the endpoint reading alone includes the unused part of the ruler.",
     "limit": "A damaged zero can be bypassed with a known start, but check the ruler’s scale.",
     "formula": "Length=endpoint−3cm; raw endpoint overstates length by3cm.",
@@ -2691,7 +2691,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "measure-inside-not-outside",
-    "title": "Outside width can fool the fit",
+    "title": "Which width tells you the insert fits?",
     "model": "inside-width",
     "view": "fit",
     "initial": 40,
@@ -2706,7 +2706,7 @@ export const homeLessons: HomeSpec[] = [
       "Outer width",
       "Clear inside width"
     ],
-    "question": "Which measurement checks whether this insert fits?",
+    "question": "Shopping for an insert for your storage box, you have only measured the box from the outside. Which measurement checks whether this insert fits?",
     "idea": "A container’s outer width includes both walls. The insert must fit the clear inside opening, so subtracting the walls can change an apparent fit into a collision.",
     "limit": "Real corners and tapers may narrow the opening further.",
     "formula": "Clear width=outer−2×2cm; insert=37cm; margin uses outer or clear width.",
@@ -2735,7 +2735,7 @@ export const homeLessons: HomeSpec[] = [
       "Use rough 2.5",
       "Use exact 2.54"
     ],
-    "question": "Which conversion avoids the shown rounding shortcut?",
+    "question": "Your tape measure reads centimetres, but you need inches. Which conversion avoids the shown rounding shortcut?",
     "idea": "The inch is defined as exactly 25.4 millimetres. Dividing centimetres by 2.54 gives inches; using 2.5 is a convenient approximation with a visible error that grows with length.",
     "limit": "Measurement uncertainty remains even when the conversion factor is exact.",
     "formula": "Inches=centimetres/2.5 for shortcut or /2.54 exact; absolute difference shown.",
@@ -2749,7 +2749,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "margin-before-cut",
-    "title": "Mark the allowance, not just the face",
+    "title": "How wide do you cut before folding?",
     "model": "cut-allowance",
     "view": "ruler",
     "initial": 20,
@@ -2763,7 +2763,7 @@ export const homeLessons: HomeSpec[] = [
       "Finished width",
       "Include two folds"
     ],
-    "question": "Which blank includes the two shown fold allowances?",
+    "question": "At the craft table, you cut paper for a front face that folds over along each side edge. Which blank includes the two shown fold allowances?",
     "idea": "The finished face is narrower than the blank when two side folds consume material. Adding one allowance at each edge gives the required blank width in this ideal paper model.",
     "limit": "This card uses paper geometry only; cutting-tool safety and material stretch are outside scope.",
     "formula": "Blank width=finished+2×2cm; face-only width=finished.",
@@ -2777,7 +2777,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "resize-photo-frame-ratio",
-    "title": "Fit the photo without stretching",
+    "title": "How do you fit a photo to a frame?",
     "model": "aspect-fit",
     "view": "geometry",
     "initial": 30,
@@ -2793,7 +2793,7 @@ export const homeLessons: HomeSpec[] = [
       "Stretch to frame",
       "Keep ratio"
     ],
-    "question": "Which layout preserves the pictured photo’s proportions?",
+    "question": "The photo you want to hang is a different shape from the frame you bought. Which layout preserves the pictured photo’s proportions?",
     "idea": "Uniform scaling keeps the width-to-height ratio. In this frame, preserving a four-to-three photo may leave margins; forcing both dimensions to the frame would distort that ratio.",
     "limit": "Cropping is a third option that this comparison does not perform.",
     "formula": "Frame=input×20cm; ratio4/3; scale=min(W/4,20/3), photo=4s×3s; empty area=W×20−12s².",
@@ -2807,7 +2807,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "weight-spread-on-table",
-    "title": "Same load, different pressure",
+    "title": "Small feet or a wide base?",
     "model": "pressure",
     "view": "mechanics",
     "initial": 2,
@@ -2822,7 +2822,7 @@ export const homeLessons: HomeSpec[] = [
       "Small footprint",
       "Wide footprint"
     ],
-    "question": "Which footprint gives lower average pressure?",
+    "question": "You set a heavy plant pot on a wooden table and can rest it on small feet or a wide base. Which footprint gives lower average pressure?",
     "idea": "Average pressure is force divided by contact area. Spreading the same load over more area lowers this calculated average; it does not reduce the total weight carried by the table.",
     "limit": "This does not establish a safe table load or local material stress; follow furniture limits.",
     "formula": "Pressure=mass×9.81/(area/10000)Pa; chosen contact areas10 or30cm².",

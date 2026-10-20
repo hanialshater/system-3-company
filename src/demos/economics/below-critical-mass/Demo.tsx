@@ -213,7 +213,7 @@ export default function BelowCriticalMass({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A new product costs $0.16. People differ in how much they want it, and the more of the market already uses it, the more it is worth to each person. Each round, everyone who now values it above $0.16 starts using it. Two launches start with ${LOW}% and ${HIGH}% of the market. Where do they end up?`,
+        question: `You launch a product at $0.16. People differ in how much they want it, and it is worth more to each person the more of the market already uses it. Each round, everyone who now values it above $0.16 joins. You try two launches, starting at ${LOW}% and ${HIGH}% of the market. Where does each end up?`,
         options: [
           `The ${LOW}% launch holds at ${LOW}%; the ${HIGH}% launch grows to about 80%`,
           `The ${LOW}% launch fades to nothing; the ${HIGH}% launch grows to about 80%`,

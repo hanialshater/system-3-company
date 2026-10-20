@@ -222,7 +222,7 @@ export default function KeepOneOfAStream({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A stream has 4 items. Keep item 1. For item i (i = 2, 3, 4), replace the kept one with the new item with probability 1/i. What is the chance that item 1 is the one kept at the end?",
+          "Items pass you one at a time, 4 in all, and you can hold just one. Keep item 1. For item i (i = 2, 3, 4), replace the kept one with the new item with probability 1/i. What is the chance item 1 is kept at the end?",
         options: ["1/2", "1/4", "1/8"],
         answer: 1,
       }}

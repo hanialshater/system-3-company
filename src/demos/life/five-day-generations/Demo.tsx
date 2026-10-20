@@ -113,7 +113,7 @@ export default function FiveDayGenerations({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Made-up infection, R = ${R_Q}: each generation (${GEN_DAYS} days) has ${R_Q} times the last one's new cases. ${START} new cases now. New cases in generation ${MAX_GEN}?`,
+        question: `Your school counts ${START} new cases of a made-up infection, R = ${R_Q}: every ${GEN_DAYS} days a new generation of cases arrives, ${R_Q} times the last one. How many new cases in generation ${MAX_GEN}?`,
         options: [`About ${NAIVE}`, `About ${ANSWER_ROUND}`, "About 1,000"],
         answer: 1,
       }}

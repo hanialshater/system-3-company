@@ -110,7 +110,7 @@ export default function MazeDepthFirst({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Three places: S links to A and G, and A links to G. Depth-first search from S goes as deep as it can before trying anything else, and picks neighbours alphabetically. Which path to G does it return?",
+          "In a small maze, S opens to A and to G, and A also opens to G. Depth-first search from S goes as deep as it can first and picks neighbours alphabetically. Which path to G does it return?",
         options: ["S, G", triDfs.join(", "), "S, A, S, G"],
         answer: 1,
       }}

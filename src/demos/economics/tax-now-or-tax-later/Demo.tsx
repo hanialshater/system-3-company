@@ -49,7 +49,7 @@ export default function TaxNowOrLater({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "$10,000 to save. A: taxed 25% now, then grows untaxed. B: grows untaxed, taxed 25% on withdrawal. Both grow 4×. Which ends bigger?",
+        question: "You have $10,000 to save. Account A taxes it 25% now, then lets it grow untaxed. Account B lets it grow untaxed, then taxes 25% when you withdraw. Both grow 4×. Which ends bigger?",
         options: ["Account A", "Account B", "They tie"],
         answer: 2,
       }}

@@ -51,7 +51,7 @@ export default function Sieve({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `To find every prime up to ${N} by crossing out multiples, which primes must you cross out multiples of?`,
+        question: `Hunting for every prime up to ${N} on a number chart, you cross out multiples. Which primes must you cross out the multiples of?`,
         options: [SMALL.join(", "), "All primes up to 50", [...SMALL, 11, 13].join(", ")],
         answer: 0,
       }}

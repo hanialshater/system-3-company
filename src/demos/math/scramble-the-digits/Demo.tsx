@@ -28,7 +28,7 @@ export default function ScrambleDigits({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `${n0} is divisible by 9. Scramble its four digits any way you like. Is the new number still divisible by 9?`,
+        question: `Your locker code ${n0} is divisible by 9. You scramble its four digits any way you like. Is the new number still divisible by 9?`,
         options: ["Always", "Never", "Sometimes"],
         answer: 0,
       }}

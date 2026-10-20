@@ -52,7 +52,7 @@ export default function ThreeDayDoubling({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A made-up outbreak has 100 cases, and the count doubles every 3 days. If nothing changes, about how many cases are there after 30 days?",
+          "Your town has 100 cases of a made-up disease, and the count doubles every 3 days. If nothing changes, about how many cases will there be after 30 days?",
         options: ["About 1,000", "About 10,000", "About 100,000"],
         answer: 2,
       }}

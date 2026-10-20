@@ -45,7 +45,7 @@ export default function UpThenDownTrap({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "$100 rises 50%, then falls 50%. What is it worth?",
+        question: "You put $100 into a fund. It rises 50% in the first month, then falls 50% in the second. What is your money worth now?",
         options: ["$100", "$75", "$125"],
         answer: 1,
       }}

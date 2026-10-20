@@ -46,7 +46,7 @@ export default function InflationFallsPricesStillRise({ slug }: { slug: string }
     <Lesson
       slug={slug}
       predict={{
-        question: "A $100 basket. Inflation falls every year: 8%, 6%, 4%, 3%, 2%. After those five years, the basket costs…",
+        question: "Your basket of groceries costs $100. Then inflation falls every year: 8%, 6%, 4%, 3%, 2%. After those five years, what does the same basket cost?",
         options: ["less than $100", "about $108", "more than $120"],
         answer: 2,
       }}

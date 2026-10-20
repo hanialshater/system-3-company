@@ -59,7 +59,7 @@ export default function WhichSeaGetsTheRain({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Rain falls at the dot on this made-up island: ${westKm} km from the west sea and ${eastKm} km from the east sea. Where does the water reach the sea?`,
+        question: `Hiking on this made-up island, you get caught in rain at the dot: ${westKm} km from the west sea and ${eastKm} km from the east sea. Where does that rainwater reach the sea?`,
         options: ["The west sea", "The east sea", "Neither: it soaks in on the way"],
         answer: 1,
       }}

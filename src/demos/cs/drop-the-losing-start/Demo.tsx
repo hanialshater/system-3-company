@@ -417,7 +417,7 @@ export default function DropTheLosingStart({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Daily gains: -2 1 -3 4 -1 2 1 -5 4. What is the biggest total over a run of consecutive days?",
+        question: "Over nine days your market stall's daily gains were -2 1 -3 4 -1 2 1 -5 4. What is the biggest total you made over a run of consecutive days?",
         options: ["4", "6", "12"],
         answer: 1,
       }}

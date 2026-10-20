@@ -65,7 +65,7 @@ export default function DuplicatesInTheTest({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A model memorises its training answers. On anything new it says "yes", and half the true answers are "yes". ${Q_SHARE}% of the test items are copies of training items. Its test score:`,
+        question: `Your model memorises its training answers. On anything new it says "yes", and half the true answers are "yes". ${Q_SHARE}% of the test items turn out to be copies of training items. What test score does it get?`,
         options: [pct(Q.fresh), pct(Q.all), "80%"],
         answer: 1,
       }}

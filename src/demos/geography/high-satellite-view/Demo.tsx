@@ -115,7 +115,7 @@ export default function HighSatelliteView({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A geostationary satellite hangs ${km(GEO_KM)} above the equator. What share of the planet's surface can it see?`,
+        question: `A geostationary satellite hangs ${km(GEO_KM)} above the equator, parked over one spot. Looking down from up there, what share of the planet's surface can it see?`,
         options: ["About half (50%)", "Less than half (about 40%)", "About a quarter (25%)"],
         answer: 1,
       }}

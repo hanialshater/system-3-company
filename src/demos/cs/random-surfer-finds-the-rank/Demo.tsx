@@ -75,7 +75,7 @@ export default function RandomSurferFindsTheRank({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A surfer clicks random links forever, jumping anywhere 15% of the time. A has 1 in-link, C has 3. A's visits compared with C's?",
+          "A bored surfer clicks random links forever, jumping to any page 15% of the time. Page A has 1 in-link, page C has 3. How do A's visits compare with C's?",
         options: ["About a third", "About half", "Almost the same"],
         answer: 2,
       }}

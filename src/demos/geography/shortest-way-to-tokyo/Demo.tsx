@@ -78,7 +78,7 @@ export default function ShortestWayToTokyo({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A flight from New York (JFK) to Tokyo (Haneda) takes the shortest path over the globe. Which place does it pass closest to?",
+          "Your flight from New York (JFK) to Tokyo (Haneda) takes the shortest path over the globe. Watching the seat-back map, which place do you pass closest to?",
         options: ["Hawaii", "Northern Alaska", "Mexico"],
         answer: 1,
       }}

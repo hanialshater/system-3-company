@@ -94,7 +94,7 @@ export default function HemoglobinSCurve({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A carrier with one oxygen site and half-point ${P50} mmHg loses about ${Math.round(ONE_DROP)} points of saturation when local oxygen falls from ${REST} to ${WORK} mmHg. The four-site carrier loses about:`,
+        question: `As you climb stairs, oxygen in your working leg muscle falls from ${REST} to ${WORK} mmHg. A carrier with one oxygen site (half-point ${P50} mmHg) loses about ${Math.round(ONE_DROP)} points of saturation. How much does the four-site carrier lose?`,
         options: ["The same", `${f1(RATIO).replace(/\.0$/, "")} times as much`, "10 times as much"],
         answer: 1,
       }}

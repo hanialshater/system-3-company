@@ -167,7 +167,7 @@ export default function TwentyCulturesTwentyPlates({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Each culture is spread on a drug plate. How do the 20 counts of resistant colonies compare?",
+        question: "In your lab, 20 identical cultures each grow from one cell to about a million, with resistance mutations striking at random about once per million divisions. Each goes on a drug plate. How do the 20 counts of resistant colonies compare?",
         options: [
           "About the same on every plate",
           "Most plates have few or none, one or two have many",

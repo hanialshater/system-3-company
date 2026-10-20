@@ -72,7 +72,7 @@ export default function SavingsOutlastTheDivision({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "$500,000 saved, earning 5% a year. You take out $40,000 at the end of each year. The money runs out after about…",
+        question: "You retire with $500,000 saved, earning 5% a year, and take out $40,000 at the end of each year. The money runs out after about…",
         options: ["12 years", "20 years", "never"],
         answer: 1,
       }}

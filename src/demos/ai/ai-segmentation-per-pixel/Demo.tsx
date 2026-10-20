@@ -36,7 +36,7 @@ function Stage({ locked, phase, interact }: {
 export default function Demo({ slug }: {
     slug: string;
 }) {
-    return <Lesson slug={slug} predict={{ "question": "How many background cells does this enclosing box include?", "options": ["0", "2", "4", "9"], "answer": 2 }} minInteractions={3} exploreHint="Try each case and compare the saved results." reveal={() => <p>The cross’s box enclosed nine cells, including four background cells; its exact mask enclosed five with none. The solid rectangle made both representations include zero background cells. These are constructed output geometries, not measurements of a trained segmentation model’s accuracy.</p>}>
+    return <Lesson slug={slug} predict={{ "question": "Your app outlines a cross-shaped object with a rectangular box instead of tracing its exact pixels. How many background cells does this enclosing box include?", "options": ["0", "2", "4", "9"], "answer": 2 }} minInteractions={3} exploreHint="Try each case and compare the saved results." reveal={() => <p>The cross’s box enclosed nine cells, including four background cells; its exact mask enclosed five with none. The solid rectangle made both representations include zero background cells. These are constructed output geometries, not measurements of a trained segmentation model’s accuracy.</p>}>
   {({ locked, phase, interact }) => <Stage locked={locked} phase={phase} interact={interact}/>}
  </Lesson>;
 }

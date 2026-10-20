@@ -87,7 +87,7 @@ export default function SecretInTheCounts({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Trained on 7 sentences, including 'my pin is 4 7 1 9', a model counts what follows each two-word context. Prompted 'my pin is':",
+          "A tiny model learns from 7 sentences, one of them your private 'my pin is 4 7 1 9'. It counts what follows each two-word context. Someone types 'my pin is'. What comes next?",
         options: ["ready, the commonest word after 'is'", "4 7 1 9", "A random number"],
         answer: 1,
       }}

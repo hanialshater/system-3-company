@@ -115,7 +115,7 @@ export default function TurnsBeatFirstComeFirst({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Three jobs arrive together needing 10, 1 and 1 time units. First come, first served makes the others wait 10 and 11: average wait (0 + 10 + 11)/3 = 7. Taking turns of one unit each, what is the average wait (finish time minus work)?",
+          "Your laptop gets three jobs at once, needing 10, 1 and 1 time units. First come, first served makes the others wait 10 and 11: average wait (0 + 10 + 11)/3 = 7. With turns of one unit each, what is the average wait (finish time minus work)?",
         options: ["7, the same", "About 1.7", "About 5"],
         answer: 1,
       }}

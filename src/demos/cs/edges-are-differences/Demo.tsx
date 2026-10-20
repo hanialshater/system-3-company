@@ -38,7 +38,7 @@ export default function EdgesAreDifferences({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A row of pixel brightness values is ${ROW_A.join(" ")}. For each of the four inner pixels, compute right neighbour minus left neighbour. How many of the four answers are not zero?`,
+        question: `One row of your photo has pixel brightness values ${ROW_A.join(" ")}. For each of the four inner pixels, you take right neighbour minus left neighbour. How many of your four answers are not zero?`,
         options: ["0", String(NONZERO_A), "4"],
         answer: 1,
       }}

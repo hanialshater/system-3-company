@@ -68,7 +68,7 @@ export default function TheTwoDropCliff({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `${VA.toFixed(1)} mL of ${CONC.toFixed(3)} mol/L HCl is titrated with ${CONC.toFixed(3)} mol/L NaOH. From ${mL(A_D)} to ${mL(B_D)} of base (about 4 drops), the pH changes by about…`,
+        question: `In the lab you drip ${CONC.toFixed(3)} mol/L NaOH, a base, into ${VA.toFixed(1)} mL of ${CONC.toFixed(3)} mol/L HCl, an acid. Going from ${mL(A_D)} to ${mL(B_D)} of base (about 4 drops), the pH changes by about…`,
         options: ["0.2 units", "2 units", "6 to 7 units"],
         answer: 2,
       }}

@@ -110,7 +110,7 @@ export default function StopAtEpochSixty({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A degree-7 curve (a flexible, wiggly line) is trained by gradient descent on 8 noisy dots and checked on 200 held-out dots it never trains on. In this run, held-out error is lowest:`,
+        question: `You fit a degree-7 curve (a flexible, wiggly line) to 8 noisy dots by gradient descent, checking it on 200 held-out dots it never trains on. In this run, when is held-out error lowest?`,
         options: [`At the end (step ${fmtStep(N_STEPS)})`, "Early, within the first 100 steps", "At step 0, before any training"],
         answer,
       }}

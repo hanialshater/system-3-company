@@ -55,7 +55,7 @@ export default function LastDigitFirst({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "329 457 657 839 436 720 355. You sort by the last digit, then the middle digit, then the first digit, each time keeping ties in their current order. At the end the list is:",
+          "Seven numbered tickets sit on your desk: 329 457 657 839 436 720 355. You sort by the last digit, then the middle digit, then the first digit, each time keeping ties in their current order. At the end the list is:",
         options: ["fully sorted", "sorted by first digit only", "scrambled"],
         answer: 0,
       }}

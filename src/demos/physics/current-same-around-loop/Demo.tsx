@@ -104,7 +104,7 @@ export default function CurrentLoop({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Two identical bulbs in series on one battery. An ammeter before bulb 1 reads 0.50 A. What does it read between the bulbs?",
+          "You wire two identical bulbs in series to one battery. An ammeter (current meter) before bulb 1 reads 0.50 A. Moved to the wire between the bulbs, what does it read?",
         options: ["Less than 0.50 A", "0.50 A", "0 A"],
         answer: 1,
       }}

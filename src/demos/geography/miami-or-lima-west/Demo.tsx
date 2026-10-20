@@ -114,7 +114,7 @@ export default function MiamiOrLimaWest({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Peru faces the Pacific and Florida faces the Atlantic. Which city is further west, Miami or Lima?",
+        question: "Booking a flight from Miami to Lima, you recall that Peru faces the Pacific and Florida faces the Atlantic. Which city is further west, Miami or Lima?",
         options: ["Lima", "Miami", "They share a meridian"],
         answer: 1,
       }}

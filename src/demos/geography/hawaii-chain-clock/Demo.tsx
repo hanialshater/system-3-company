@@ -40,7 +40,7 @@ export default function HawaiiChainClock({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Kauaʻi's volcano is about ${kauai.ageMyr} million years old; Kīlauea is active today, about ${r10(km(kauai.at))} km away. On average, how fast has the Pacific plate carried Kauaʻi away?`,
+        question: `On Kauaʻi you stand on a volcano about ${kauai.ageMyr} million years old; Kīlauea, active today, is about ${r10(km(kauai.at))} km away. On average, how fast has the Pacific plate carried Kauaʻi away?`,
         options: ["About 1 cm a year", "About 10 cm a year", "About 1 m a year"],
         answer: 1,
       }}

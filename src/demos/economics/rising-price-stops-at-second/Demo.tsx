@@ -49,7 +49,7 @@ export default function RisingPriceStopsAtSecond({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Bidders value a lamp at $70, $55, $40. Price rises $1 at a time; each quits above their value. What does the winner pay?",
+        question: "At a lamp auction, the price climbs $1 at a time and each bidder quits once it passes their value: $70, $55 and $40. What does the winner pay?",
         options: ["$70", "$56", "$41"],
         answer: 1,
       }}

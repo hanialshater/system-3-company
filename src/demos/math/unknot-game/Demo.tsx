@@ -284,7 +284,7 @@ export default function UnknotGame({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "The trefoil has 3 crossings. Switching a crossing makes its top strand go under. What is the fewest switches that frees it?",
+          "A loop of string is tied as a trefoil with 3 crossings. Each switch makes one crossing's top strand go under instead. What is the fewest switches that lets the loop fall open?",
         options: ["1", "2", "3"],
         answer: 0,
       }}

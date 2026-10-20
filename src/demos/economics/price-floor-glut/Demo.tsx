@@ -48,7 +48,7 @@ export default function PriceFloorGlut({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Bread model: buyers want 100 − 10p loaves, bakers bake 10p − 20; the lines cross at $${P0} and ${Q0} loaves. A rule says bread cannot sell below $${Q_FLOOR}. How many loaves go unsold?`,
+        question: `In the town bread market, buyers want 100 − 10p loaves at price p and bakers bake 10p − 20, meeting at $${P0} and ${Q0} loaves. A new rule bans selling bread below $${Q_FLOOR}. How many loaves go unsold?`,
         options: ["0", String(QM.bought), String(QM.unsold)],
         answer: 2,
       }}

@@ -259,7 +259,7 @@ export default function TiesKeepTheirOrder({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Four students, listed alphabetically: Ana (B), Ben (A), Cal (B), Dee (A). You sort them by grade, A before B. Inside grade B, who comes first?",
+          "Your class list is alphabetical: Ana (B), Ben (A), Cal (B), Dee (A). You re-sort it by grade, A before B. Inside grade B, who comes first?",
         options: ["Ana, as before", "Cal", "It depends on the sorting method"],
         answer: 2,
       }}

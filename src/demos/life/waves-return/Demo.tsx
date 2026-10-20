@@ -169,7 +169,7 @@ export default function WavesReturn({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A made-up infection: each sick person infects ${R0} others when everyone can catch it (R0 = ${R0}). Recovered people are immune, but immunity fades after about ${L_Q} days. After many waves the pattern settles. What share of the town can catch it then?`,
+        question: `In your town, each sick person passes a made-up infection to ${R0} others when everyone can catch it (R0 = ${R0}). Recovered people are immune, but immunity fades after about ${L_Q} days. Once the waves settle into a pattern, what share of the town can catch it?`,
         options: ["Almost none", "About half", "Almost everyone"],
         answer: 1,
       }}

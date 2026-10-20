@@ -42,9 +42,9 @@ export default function BloomMaybeYes({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A ${M}-bit filter. Adding 'cat' lights bits ${list(BITS.cat)}; adding 'dog' lights ${list(
+        question: `Your ${M}-bit filter holds two words. Adding 'cat' lit bits ${list(BITS.cat)}; adding 'dog' lit ${list(
           BITS.dog,
-        )}. 'eel' was never added; it would use bits ${list(BITS.eel)}. Asked about eel, what does the filter say?`,
+        )}. 'eel' was never added; it would use bits ${list(BITS.eel)}. You ask about eel. What does the filter say?`,
         options: ["Definitely not added", "Maybe added", "Definitely added"],
         answer: EEL_FULL === "Maybe" ? 1 : 0,
       }}

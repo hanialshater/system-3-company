@@ -320,7 +320,7 @@ export default function ProposersGetTheBest({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Three students and three hospitals rank each other (lists on the cards). Run it with the students making offers, then with the hospitals. What happens?",
+          "You run a match for three students and three hospitals who rank each other (lists on the cards). Run it with the students making offers, then with the hospitals. What happens?",
         options: [
           "The same pairs both times",
           "Different pairs; the side making offers does better",

@@ -108,7 +108,7 @@ export default function HarmPricesClearTheMarket({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Three buyers, three items; raising prices clears at prices totalling ${usd(PRICE_TOTAL)}. Charge each buyer the harm they cause others. Payments total?`,
+        question: `You are selling three items to three buyers, and raising prices clears the market at prices totalling ${usd(PRICE_TOTAL)}. Instead, you charge each buyer the harm they cause the others. What do those payments total?`,
         options: [`Less than ${usd(PRICE_TOTAL)}`, `Exactly ${usd(PRICE_TOTAL)}`, `More than ${usd(PRICE_TOTAL)}`],
         answer: HARM_TOTAL < PRICE_TOTAL ? 0 : HARM_TOTAL === PRICE_TOTAL ? 1 : 2,
       }}

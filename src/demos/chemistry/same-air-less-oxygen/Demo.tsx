@@ -52,7 +52,7 @@ export default function SameAirLessOxygen({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Air pressure is measured in kilopascals (kPa): ${Math.round(P0)} kPa at sea level, but only about ${Math.round(SUMMIT_P)} kPa on Everest's summit. At sea level about 21% of the air is oxygen. On the summit, oxygen is about what share of the air?`,
+        question: `You stand on Everest's summit, where air pressure is about ${Math.round(SUMMIT_P)} kPa (kilopascals) instead of ${Math.round(P0)} kPa at sea level. At sea level about 21% of the air is oxygen. Up here, oxygen is about what share of the air?`,
         options: ["About 7%", "About 14%", "About 21%"],
         answer: 2,
       }}

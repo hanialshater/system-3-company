@@ -33,7 +33,7 @@ export default function CallStackDepth({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `factorial(n) = n × factorial(n − 1), and factorial(0) = 1. At the deepest moment of factorial(${TOP}), how many calls are open (waiting or running)?`,
+        question: `Your program runs factorial(${TOP}), where factorial(n) = n × factorial(n − 1) and factorial(0) = 1. At its deepest moment, how many calls are open (waiting or running)?`,
         options: ["1", String(TOP), String(MAX_DEPTH)],
         answer: 2,
       }}

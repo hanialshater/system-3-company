@@ -54,7 +54,7 @@ export default function FairShuffleTrap({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Shuffle A B C: for each position, swap its card with any of the 3 positions. That is 27 equally likely runs. Is every order equally likely?",
+          "Your card app shuffles A B C: for each position, it swaps that card with any of the 3 positions. That is 27 equally likely runs. Is every order equally likely?",
         options: ["Yes", "No, some orders come up more", "Only if you repeat it"],
         answer: 1,
       }}

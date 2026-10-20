@@ -54,7 +54,7 @@ export default function SaltIonsCountDouble({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `58 g of table salt (NaCl) is ${MOL.toFixed(1)} mol: a fixed count of NaCl units (1 mol = 6.0 × 10²³). It dissolves in 1.0 kg of water. The freezing point falls by about…`,
+        question: `Before an icy night, you dissolve 58 g of table salt (NaCl) in 1.0 kg of water. That is ${MOL.toFixed(1)} mol: a fixed count of NaCl units (1 mol = 6.0 × 10²³). About how far does the freezing point fall?`,
         options: [`${ONE_PARTICLE.toFixed(1)} °C`, `${SALT_DROP.toFixed(1)} °C`, "0.5 °C"],
         answer: 1,
       }}

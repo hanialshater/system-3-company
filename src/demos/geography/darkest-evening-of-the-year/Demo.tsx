@@ -53,7 +53,7 @@ export default function DarkestEvening({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "In London the shortest day is about 21 December. When is London's earliest sunset?",
+        question: "Walking home in a London December, you watch the evenings close in. The shortest day is about 21 December. When is London's earliest sunset?",
         options: ["About 21 December", "About 13 December", "About 30 December"],
         answer: 1,
       }}

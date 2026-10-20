@@ -44,7 +44,7 @@ export default function TwoCellsSumAnyRange({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Sales: ${SALES.join(" ")}. Running totals are built once. How many numbers must you read to total days ${Q_FROM}–${Q_TO}?`,
+        question: `Your shop's sales for eight days: ${SALES.join(" ")}. You have already built running totals once. How many numbers must you read to total days ${Q_FROM}–${Q_TO}?`,
         options: [String(Q_TO - Q_FROM + 1), "2", String(Q_TO)],
         answer: 1,
       }}

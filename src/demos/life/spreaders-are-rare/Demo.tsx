@@ -143,7 +143,7 @@ export default function SpreadersAreRare({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "An outbreak averages 2 new infections per case, but spread is very uneven: a few people infect many, most infect few. What share of cases infect no one at all? (Even spread would be: everyone infects about 2, by chance.)",
+          "In a new outbreak, cases average 2 infections each, but very unevenly: a few people infect many, most infect few. What share of cases infect no one at all? (Even spread would be: everyone infects about 2, by chance.)",
         options: [`About ${P0(Infinity)}`, "About 40%", `About ${P0(0.1)}`],
         answer: 2,
       }}

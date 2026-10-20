@@ -58,7 +58,7 @@ export default function ClicksNotValue({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "An article has 10 units of effort split between hype (h) and substance (s). Clicks = 2h + s; reader value = s. The split that maximises clicks gives reader value of:",
+          "You have 10 units of effort for an article, split between hype (h) and substance (s). Clicks = 2h + s; reader value = s. If you pick the split that gets the most clicks, what reader value do you deliver?",
         options: ["10", "5", "0"],
         answer: 2,
       }}

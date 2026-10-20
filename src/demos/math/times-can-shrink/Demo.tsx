@@ -50,7 +50,7 @@ export default function TimesCanShrink({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Multiply 0.6 by 0.7. Where does the answer land?",
+        question: "Checking your homework without a calculator, you multiply 0.6 by 0.7. Where does the answer land?",
         options: ["Above 0.7", "Between 0.6 and 0.7", "Below 0.6"],
         answer: 2,
       }}

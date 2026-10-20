@@ -97,7 +97,7 @@ export default function FallingYetAdding({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Toy outbreak: ${fmt(TODAY)} new cases today; each day ${FALL_Q}% fewer than the day before. If that continues, how many more cases from tomorrow on?`,
+        question: `The evening news reports ${fmt(TODAY)} new cases today in a made-up outbreak, and each day brings ${FALL_Q}% fewer than the day before. If that keeps up, how many more cases come from tomorrow on?`,
         options: [`About ${fmt(TODAY)}`, "About 4,000", `About ${fmt(ANSWER)}`],
         answer: 2,
       }}

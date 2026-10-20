@@ -58,7 +58,7 @@ export default function FreeRiderPot({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `${N} neighbours each hold $${HOLD}. Every dollar put in the pot becomes $${MULT}, shared equally by all ${N}. You put in all $${HOLD}; the others put in nothing. What do you end up with?`,
+        question: `On your street, ${N} neighbours each hold $${HOLD}. Every dollar put in the shared pot becomes $${MULT}, split equally among all ${N}. You put in all $${HOLD}; the others put in nothing. What do you end up with?`,
         options: [money(HOLD * MULT), money(ANSWER), money(HOLD + ANSWER)],
         answer: 1,
       }}

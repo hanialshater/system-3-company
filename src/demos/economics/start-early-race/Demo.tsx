@@ -50,7 +50,7 @@ export default function StartEarlyRace({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Ana saves $2,400 a year for 10 years, then stops. Ben waits 10 years, then saves $2,400 a year for 30 years. Both earn 7% a year. After 40 years, who has more?",
+          "Two coworkers both earn 7% a year on savings. Ana puts away $2,400 a year for 10 years, then stops. Ben waits 10 years, then puts away $2,400 a year for 30 years. After 40 years, who has more?",
         options: ["Ana", "Ben", "About equal"],
         answer: 0,
       }}

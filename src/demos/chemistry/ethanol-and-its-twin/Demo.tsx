@@ -107,7 +107,7 @@ export default function EthanolAndItsTwin({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Ethanol and dimethyl ether are built from the same nine atoms (C₂H₆O, 46 u). Ethanol boils at about 78 °C. Dimethyl ether boils at about…",
+          "Two bottles on a lab shelf hold ethanol and dimethyl ether, built from the same nine atoms (C₂H₆O, 46 u). Ethanol boils at about 78 °C. About where does dimethyl ether boil?",
         options: ["about 78 °C", "about 35 °C", "about −25 °C"],
         answer: 2,
       }}

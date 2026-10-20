@@ -55,7 +55,7 @@ export default function OrderOfTheBadYear({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "$100k invested. One year +25%, one year −20%. You withdraw $20k at each year-end. Which order leaves more?",
+        question: "You have $100k invested for two years: one year it gains 25%, the other it loses 20%. You withdraw $20k at the end of each year to live on. Which order leaves you more?",
         options: ["Same either way", "The gain year first", "The loss year first"],
         answer: 1,
       }}

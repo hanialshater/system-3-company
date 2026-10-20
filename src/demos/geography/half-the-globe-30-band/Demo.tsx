@@ -48,7 +48,7 @@ export default function HalfTheGlobe30Band({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "What share of the Earth's surface lies between 30°S and 30°N?",
+        question: "On a globe, you shade the band from 30° south to 30° north of the equator. What share of the Earth's whole surface have you shaded?",
         options: ["About 33%", "About 50%", "About 25%"],
         answer: 1,
       }}

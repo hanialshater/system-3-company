@@ -63,7 +63,7 @@ export default function TheBarNobodyCanForecast({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "100 people go to a bar only if they expect 60 or fewer. All trust one forecast: 50 will come. How many come?",
+        question: "You and 99 other regulars go to your bar only if you expect 60 or fewer people there. Everyone trusts one forecast: 50 will come tonight. How many actually come?",
         options: ["50", "60", "100"],
         answer: [50, 60, 100].indexOf(attendanceFor(50)),
       }}

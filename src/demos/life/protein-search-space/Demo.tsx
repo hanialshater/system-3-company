@@ -146,7 +146,7 @@ export default function ProteinSearchSpace({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A chain of ${MAX} links can bend ${BENDS} ways at each link. How many different shapes could it take?`,
+        question: `A newly made protein chain of ${MAX} links can bend ${BENDS} ways at each link. How many different shapes could it take?`,
         options: [
           `About ${BENDS * MAX} (${BENDS} × ${MAX})`,
           "About a trillion (1 with 12 zeros)",

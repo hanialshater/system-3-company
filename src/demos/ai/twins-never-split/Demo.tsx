@@ -101,7 +101,7 @@ export default function TwinsNeverSplit({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Two hidden units start identical (weight 0.5, output weight 1, bias 0) and train by gradient descent on four varied data points. After ${CHUNK} steps their weights differ:`,
+        question: `You build a network whose two hidden units start identical (weight 0.5, output weight 1, bias 0), then train it by gradient descent on four varied data points. After ${CHUNK} steps, how much do their weights differ?`,
         options: ["By a little", "They stay exactly equal", "By a lot"],
         answer: 1,
       }}

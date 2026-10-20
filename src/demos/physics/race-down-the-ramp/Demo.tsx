@@ -87,7 +87,7 @@ export default function RaceDownTheRamp({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A solid disc and a thin hoop, same mass and same radius, roll from rest down the same 30° ramp. Which reaches the bottom first?",
+          "You hold a solid disc and a thin hoop, same mass and same radius, at the top of the same 30° ramp, then let both roll from rest. Which reaches the bottom first?",
         options: ["The solid disc", "The thin hoop", "They tie"],
         answer: 0,
       }}

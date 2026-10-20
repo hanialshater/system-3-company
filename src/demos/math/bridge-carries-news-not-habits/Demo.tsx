@@ -90,7 +90,7 @@ export default function BridgeCarriesNewsNotHabits({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Two groups of 5 joined by one link. Group A adopts. Ben, across the bridge, joins if half his friends have. Does group B adopt?",
+          "Your group of 5 friends (group A) all take up a new habit. One link joins your group to group B, also 5 people. Ben, across that bridge, joins if half his friends have. Does group B adopt?",
         options: ["Yes, all of B", "Only Ben", "No one in B"],
         answer: 2,
       }}

@@ -84,7 +84,7 @@ export default function Effusion({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Helium (4.0 g/mol) and nitrogen (28.0 g/mol) at the same temperature leak through a pinhole. Helium escapes about…",
+        question: "In the workshop, a tank of helium (4.0 g/mol) and a tank of nitrogen (28.0 g/mol), at the same temperature, each leak through a pinhole. Compared with nitrogen, how fast does helium escape?",
         options: ["2.6 times faster", "7 times faster", "at the same rate"],
         answer: 0,
       }}

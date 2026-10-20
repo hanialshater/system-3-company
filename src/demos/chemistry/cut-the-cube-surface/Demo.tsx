@@ -35,7 +35,7 @@ export default function CutTheCube({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A 1 cm cube (outside area ${area1(1)} cm²) is cut into ${fmt(BIG ** 3)} small cubes, each 1 mm on a side. The total outside area of all the pieces becomes…`,
+        question: `With a sharp knife, you cut a 1 cm cube (outside area ${area1(1)} cm²) into ${fmt(BIG ** 3)} small cubes, each 1 mm on a side. What does the total outside area of all the pieces become?`,
         options: [`the same, ${area1(1)} cm²`, `${area1(BIG) / area1(1)} times more, ${area1(BIG)} cm²`, `${fmt(BIG ** 3)} times more, ${fmt(area1(BIG) * 100)} cm²`],
         answer: 1,
       }}

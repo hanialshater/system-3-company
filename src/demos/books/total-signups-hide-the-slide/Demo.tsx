@@ -53,7 +53,7 @@ export default function TotalSignupsHideTheSlide({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Total customers rose every month for six months. Visitors were the same each month. What happened to each month's share of visitors who became customers?",
+          "Your app's total customers rose every month for six months, with the same number of visitors each month. What happened to each month's share of visitors who became customers?",
         options: ["It rose", "It stayed the same", "It fell", "The total can't tell you"],
         answer: 3,
       }}

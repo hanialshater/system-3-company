@@ -40,7 +40,7 @@ export default function SideOfTheSquare({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A square floor has area ${TARGET} square metres. Its side is closest to...`,
+        question: `Your new room has a square floor covering ${TARGET} square metres. The length of each wall is closest to...`,
         options: [`${TARGET / 2} m`, "7.07 m", "10 m", `${TARGET / 4} m`],
         answer: 1,
       }}

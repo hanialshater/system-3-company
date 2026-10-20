@@ -344,7 +344,7 @@ export default function WhoPaysSameFilter({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Smoke costs a laundry $300 a year; a filter, $100 a year. The factory may legally pollute. If they bargain freely, is the filter fitted?",
+          "You run a laundry, and smoke from the factory next door costs you $300 a year. A filter costs $100 a year. The factory may legally pollute. If you bargain freely, is the filter fitted?",
         options: ["No, the factory has the right", "Yes, the laundry pays for it", "Only if a court orders it"],
         answer: 1,
       }}

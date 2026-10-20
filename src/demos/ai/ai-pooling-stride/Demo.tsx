@@ -36,7 +36,7 @@ function Stage({ locked, phase, interact }: {
 export default function Demo({ slug }: {
     slug: string;
 }) {
-    return <Lesson slug={slug} predict={{ "question": "With offset 1 and stride 2, what is the last pooled value?", "options": ["3", "8", "9"], "answer": 1 }} minInteractions={4} exploreHint="Try each case and compare the saved results." reveal={() => <p>The shifted last window contained 3 and 8, producing 8. Both swapped pairs produced 9, although its original position changed. The maximum retained the value, not its within-window location. These valid-window examples do not establish translation invariance.</p>}>
+    return <Lesson slug={slug} predict={{ "question": "A max window two cells wide slides along the row 1, 9, 2, 3, 8 in your image network. With offset 1 and stride 2, what is the last pooled value?", "options": ["3", "8", "9"], "answer": 1 }} minInteractions={4} exploreHint="Try each case and compare the saved results." reveal={() => <p>The shifted last window contained 3 and 8, producing 8. Both swapped pairs produced 9, although its original position changed. The maximum retained the value, not its within-window location. These valid-window examples do not establish translation invariance.</p>}>
   {({ locked, phase, interact }) => <Stage locked={locked} phase={phase} interact={interact}/>}
  </Lesson>;
 }

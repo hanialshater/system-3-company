@@ -57,7 +57,7 @@ export default function RulerCatch({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A ruler dropped without warning is caught at the ${ASKED_CM} cm mark. The catcher's reaction time was about...`,
+        question: `Someone drops a ruler between your fingers without warning, and you catch it at the ${ASKED_CM} cm mark. About how long was your reaction time?`,
         options: ["0.02 s", `${timeFor(ASKED_CM).toFixed(1)} s`, "2 s"],
         answer: 1,
       }}

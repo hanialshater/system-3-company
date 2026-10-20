@@ -31,7 +31,7 @@ export default function ProductPlusOne({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Could ${PRIMES.join(", ")} be every prime? Multiply them and add 1: ${ALL + 1}. Which is true of it?`,
+        question: `A classmate claims ${PRIMES.join(", ")} are every prime there is. You multiply them and add 1: ${ALL + 1}. Which is true of that number?`,
         options: ["It is prime", `It divides by one of ${PRIMES[0]} to ${PRIMES[PRIMES.length - 1]}`, "It has a prime factor not in the list"],
         answer: 2,
       }}

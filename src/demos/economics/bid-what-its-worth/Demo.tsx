@@ -42,7 +42,7 @@ export default function BidWhatItsWorth({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `You value a painting at $${VALUE}. Sealed bids: the highest bidder wins and pays the SECOND-highest bid. You do not know the other bids. Which bid is never worse than any other, whatever the others bid?`,
+        question: `At a sealed-bid auction, you value a painting at $${VALUE}. The highest bidder wins and pays the SECOND-highest bid, and you cannot see the other bids. Which bid is never worse than any other, whatever the others bid?`,
         options: ["$50", "$90", "$70"],
         answer: 2,
       }}

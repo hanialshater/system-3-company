@@ -35,7 +35,7 @@ export default function TwoThirdsOfTheAverage({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Everyone picks any number from 0 to 100; closest to 2/3 of the average wins. All are rational and know it. What do they pick?",
+        question: "In a class contest, everyone picks any number from 0 to 100, and whoever is closest to 2/3 of the average wins. All are rational and know it. What does everyone pick?",
         options: ["33", "22", "0"],
         answer: 2,
       }}

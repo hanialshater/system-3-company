@@ -40,7 +40,7 @@ export default function PersonalInflationBasket({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A household spends ${Q_RENT}% on rent (up 6%), ${FOOD}% on food (up 2%) and ${100 - FOOD - Q_RENT}% on fun (up 0%). By how much did its total cost of living rise?`,
+        question: `Your household spends ${Q_RENT}% of its budget on rent (up 6%), ${FOOD}% on food (up 2%) and ${100 - FOOD - Q_RENT}% on fun (up 0%). By how much did your total cost of living rise?`,
         options: [pct(PLAIN), pct(Q_TOTAL), "6%"],
         answer: 1,
       }}

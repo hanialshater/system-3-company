@@ -53,7 +53,7 @@ export default function LongestDrinkingStraw({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A perfect pump sucks on a very tall straw standing in water at sea level. Water can rise up the straw by at most...",
+        question: "At sea level, you fit a perfect pump to a very tall straw standing in water and switch it on. At most, how high can the water rise up the straw?",
         options: ["About 1 m", "About 10 m", "Any height, with enough pull"],
         answer: 1,
       }}

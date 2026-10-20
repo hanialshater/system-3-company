@@ -35,7 +35,7 @@ export default function SeesawMean({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Equal weights sit at ${WEIGHTS.slice(0, -1).join(", ")} and ${WEIGHTS[WEIGHTS.length - 1]} on a plank. Where does the pivot go to balance it?`,
+        question: `In your workshop, you set equal weights at ${WEIGHTS.slice(0, -1).join(", ")} and ${WEIGHTS[WEIGHTS.length - 1]} along a plank. Where must the pivot go so the plank balances?`,
         options: [String(MEDIAN), String(MEAN), String(MIDRANGE)],
         answer: 1,
       }}

@@ -57,7 +57,7 @@ export default function OddsAverage({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Bettor 1 ($${START.w1}) thinks A wins ${START.p1}%; bettor 2 ($${START.w2}) thinks ${START.p2}%. Each splits all their money by belief. Implied chance for A?`,
+        question: `Before a match, one bettor with $${START.w1} thinks A wins ${START.p1}%; another with $${START.w2} thinks ${START.p2}%. Each splits all their money in line with their belief. What chance do the odds give A?`,
         options: ["60%", "70%", "80%"],
         answer: 1,
       }}

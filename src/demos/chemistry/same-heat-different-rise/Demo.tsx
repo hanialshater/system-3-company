@@ -43,7 +43,7 @@ export default function SameHeatDifferentRise({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `1 kg of water and 1 kg of iron each receive ${Q_ASK} kJ of heat. The iron's temperature rises by about…`,
+        question: `On the stove, you give 1 kg of water and a 1 kg iron skillet the same ${Q_ASK} kJ of heat each. The iron's temperature rises by about…`,
         options: ["The same as the water's", `${TIMES} times as much as the water's`, "Half as much as the water's"],
         answer: 1,
       }}

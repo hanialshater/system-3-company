@@ -44,7 +44,7 @@ export default function BallAtTheTop({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A ball thrown straight up is momentarily at rest at the top. Its acceleration at that instant is…",
+        question: "In the park you toss a ball straight up. At the very top it hangs at rest for an instant. What is its acceleration at that moment?",
         options: ["Zero", "9.81 m/s² downward", "9.81 m/s² upward"],
         answer: 1,
       }}

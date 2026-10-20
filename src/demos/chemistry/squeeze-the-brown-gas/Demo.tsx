@@ -75,7 +75,7 @@ export default function SqueezeTheBrownGas({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "N₂O₄ (colourless) and 2 NO₂ (brown) are in equilibrium. You halve the volume and wait. Compared with before, the share of NO₂ molecules is…",
+          "A sealed syringe holds N₂O₄ (colourless) and 2 NO₂ (brown) in equilibrium. You push the plunger in to halve the volume and wait. Compared with before, the share of NO₂ molecules is…",
         options: ["Higher", "Lower", "The same"],
         answer: 1,
       }}

@@ -48,7 +48,7 @@ export default function StepTooLong({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Minimising f(x) = x² from x = 1, each step does x ← x − η·2x. With step size η = ${Q_ETA}, after ${Q_STEPS} steps the distance from the bottom is:`,
+        question: `You run gradient descent down the bowl f(x) = x², starting at x = 1. Each step does x ← x − η·2x, with step size η = ${Q_ETA}. After ${Q_STEPS} steps, how far is x from the bottom?`,
         options: ["Under 0.1", "About 1 (circling)", `About ${qDist.toFixed(1)}`],
         answer: 2,
       }}

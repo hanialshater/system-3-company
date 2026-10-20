@@ -53,7 +53,7 @@ export default function Drop({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A drop of water (about ${DROP_ML} mL, about ${DROP_ML} g) contains about how many H₂O molecules?`,
+        question: `One drop of water falls from your tap: about ${DROP_ML} mL, about ${DROP_ML} g. About how many H₂O molecules does it hold?`,
         options: ["About 10⁹ (a billion)", "About 10¹⁵", "About 10²¹"],
         answer: 2,
       }}

@@ -32,7 +32,7 @@ export default function ByteInTwoDigits({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `The byte ${START} is split into ${hi(START)} and ${lo(START)}. Each group of four becomes one hex symbol (0 to 9, then A to F for 10 to 15). What is the byte in hex?`,
+        question: `You split the byte ${START} into ${hi(START)} and ${lo(START)}. Each group of four becomes one hex symbol (0 to 9, then A to F for 10 to 15). What do you write for the byte in hex?`,
         options: [START_HEX, `${HEX[val(hi(START)) - 1]}${sym(lo(START))}`, `${sym(lo(START))}${sym(hi(START))}`],
         answer: 0,
       }}

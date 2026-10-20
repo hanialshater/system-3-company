@@ -47,7 +47,7 @@ export default function PenniesDontAddUp({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A program adds 0.1 and 0.2, then asks if the result equals 0.3. What happens?",
+        question: "Your shopping app adds 0.1 and 0.2, then checks whether the result equals 0.3. What happens?",
         options: ["They are equal", "The sum is a tiny bit more than 0.3", "The sum is a tiny bit less than 0.3"],
         answer: 1,
       }}

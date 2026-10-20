@@ -49,7 +49,7 @@ export default function StagHunt({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Stag: ${STAG} if both hunt it, 0 if alone. Hare: ${HARE} for sure. How sure must you be your partner hunts stag?`,
+        question: `You and a partner set out hunting. The stag gives you ${STAG} if you both hunt it, 0 if you go alone. A hare gives you ${HARE} for sure. How sure must you be your partner hunts stag?`,
         options: ["At least 50%", "At least 75%", "At least 90%", "Fully sure: 100%"],
         answer: 1,
       }}

@@ -88,7 +88,7 @@ export default function GreedySlotMachine({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Machine A pays on 30% of pulls, B on 70%; the players don't know which is which. Each pulls A once and B once. Greedy then always picks the machine with the better record so far. Over 500 pulls, greedy ends up stuck on the worse machine A in about:",
+          "Two slot machines: A pays on 30% of pulls, B on 70%, but you don't know which is which. You pull A once and B once, then always pick the one with the better record so far. Over many runs of 500 pulls, how often do you end up stuck on the worse machine, A?",
         options: ["No runs", "3 runs in 10", "9 runs in 10"],
         answer: 1,
       }}

@@ -67,7 +67,7 @@ export default function TwoSpringsEndToEnd({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "One spring stretches 5 cm under a 1 kg mass. Two of the same springs hooked end to end, under the same 1 kg, stretch in total by…",
+          "Hanging a planter, you find one spring stretches 5 cm under a 1 kg mass. You hook two of the same springs end to end under the same 1 kg. How far do they stretch in total?",
         options: ["2.5 cm", "5 cm", "10 cm"],
         answer: 2,
       }}

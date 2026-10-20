@@ -69,7 +69,7 @@ export default function ExteriorTurns({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Walk round a shape with straight sides, turning at each corner, until you face the way you started. Your total turning is...",
+        question: "Walking the edge of a field with straight sides, you turn at each corner until you face the way you started. What is your total turning?",
         options: ["180°", "360°", "More for more sides"],
         answer: 1,
       }}

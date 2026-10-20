@@ -90,7 +90,7 @@ export default function SaturatedEnzyme({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Enzymes are molecules that each work on one substrate molecule at a time. At the half-way concentration of substrate, half the enzymes are busy. At 10 times that, doubling the substrate speeds the reaction up by about…",
+          "In your test tube, each enzyme works on one substrate molecule at a time, and at the half-way substrate concentration half the enzymes are busy. At 10 times that, how much faster does doubling the substrate make the reaction?",
         options: ["100% faster (2 times)", "50% faster", `${HI} faster`],
         answer: 2,
       }}

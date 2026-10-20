@@ -55,7 +55,7 @@ export default function SeesawSitCloser({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A ${M_HEAVY} kg child sits ${D_HEAVY.toFixed(1)} m from the middle of a seesaw. Where must a ${M_LIGHT} kg child sit on the other side to balance it?`,
+        question: `At the playground, a ${M_HEAVY} kg child sits ${D_HEAVY.toFixed(1)} m from the middle of a seesaw. You help a ${M_LIGHT} kg child onto the other side. Where must they sit to balance it?`,
         options: ["4.0 m from the middle", "2.0 m from the middle", "1.0 m from the middle"],
         answer: 0,
       }}

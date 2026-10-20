@@ -63,7 +63,7 @@ export default function TriangleThreeRightAngles({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A triangle on the globe has its corners at the North Pole, at 0°, 0° on the equator, and at 90°E on the equator. What do its three angles add up to?",
+          "With a marker on a globe, you draw a triangle with corners at the North Pole, where the equator meets 0° longitude, and where it meets 90° east. What do its three angles add up to?",
         options: ["180°", "210°", `${Math.round(key.sum)}°`, "360°"],
         answer: 2,
       }}

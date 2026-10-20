@@ -63,7 +63,7 @@ export default function DrunkardsReach({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A particle takes random steps. With 4 times as many steps, it typically ends up about how many times farther from its start?",
+        question: "Under a microscope, you watch a particle jitter in random steps. If it takes 4 times as many steps, about how many times farther from its start does it typically end up?",
         options: ["4 times", "2 times", "The same"],
         answer: 1,
       }}

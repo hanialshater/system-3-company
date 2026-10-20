@@ -148,7 +148,7 @@ export default function SteadyCatchFromALake({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `You catch ${Q} fish every year. After 60 years, how many fish are left?`,
+        question: `Your lake starts full, with 1,000 fish, the most it can hold. You catch ${Q} fish every year. After 60 years, how many fish are left?`,
         options: ["About 870", "About 600", "About 0"],
         answer: 2,
       }}

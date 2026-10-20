@@ -134,7 +134,7 @@ export default function PesticideParadox({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "In a simple model, pests breed freely and predators grow only by eating pests. A spray kills the same share of pests and of predators every month. Over time, the average number of pests…",
+          "On your farm (a simple model), pests breed freely and predators grow only by eating pests. Each month you spray, killing the same share of pests and of predators. Over time, what does the average number of pests do?",
         options: ["falls", "stays the same", "rises"],
         answer: 2,
       }}

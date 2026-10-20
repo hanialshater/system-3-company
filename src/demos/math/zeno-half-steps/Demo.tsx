@@ -49,7 +49,7 @@ export default function ZenoHalfSteps({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Add 1/2 + 1/4 + 1/8 + 1/16 + ... forever. The total is...",
+        question: "On a calculator you keep adding 1/2 + 1/4 + 1/8 + 1/16 + ..., each piece half the one before, and you never stop. What total do the pieces add up to?",
         options: ["Grows without limit", "Exactly 1", "Exactly 2"],
         answer: 1,
       }}

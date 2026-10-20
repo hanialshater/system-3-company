@@ -165,7 +165,7 @@ export default function TwoBetsSplit({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Each of two independent bets pays +${UP}% or ${ret(DOWN)} with equal chance. You put half your money in each. What is the chance you lose money?`,
+        question: `You split your savings evenly between two independent bets, like two separate coin flips. Each pays +${UP}% or ${ret(DOWN)} with equal chance. What is the chance you lose money overall?`,
         options: ["50%", pct(lossChance(Q_N)), "0%"],
         answer: 1,
       }}

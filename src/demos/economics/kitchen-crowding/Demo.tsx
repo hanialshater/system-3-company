@@ -167,7 +167,7 @@ export default function KitchenCrowding({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `One worker in a small kitchen with one oven makes ${FIRST} pizzas an hour. How many pizzas an hour do ${Q_N} workers make together?`,
+        question: `In your small pizza kitchen with one oven, one worker makes ${FIRST} pizzas an hour. If ${Q_N} workers share the kitchen, how many pizzas an hour do they make together?`,
         options: [`${FIRST * Q_N}`, `Fewer than ${FIRST * Q_N}`, `More than ${FIRST * Q_N}`],
         answer: 1,
       }}

@@ -71,7 +71,7 @@ export default function GeneticDrift({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "20 beetles, half red and half green; neither colour is better. Each generation, 20 young copy parents picked at random. After many generations, the population is most likely…",
+          "Your jar holds 20 beetles, half red and half green; neither colour is better. Each generation, 20 young copy parents picked at random. After many generations, what will the jar most likely hold?",
         options: ["still about half and half", "all one colour (either)", "always all red"],
         answer: 1,
       }}

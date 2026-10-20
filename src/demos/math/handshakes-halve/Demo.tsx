@@ -37,7 +37,7 @@ export default function HandshakesHalve({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `${N} people each shake hands once with everyone else. How many handshakes?`,
+        question: `At a party, ${N} people each shake hands once with everyone else there. How many handshakes happen in all?`,
         options: [String(N * N), String(N * (N - 1)), String(PAIRS)],
         answer: 2,
       }}

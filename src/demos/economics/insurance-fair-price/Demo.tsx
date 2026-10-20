@@ -161,7 +161,7 @@ export default function InsuranceFairPrice({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A house has a 1-in-100 chance a year of a $10,000 loss. An insurer charges $${PREMIUM} a year to cover it. On average, how much does it pay out per customer a year?`,
+        question: `Your house has a 1-in-100 chance a year of a $10,000 loss. An insurer charges you $${PREMIUM} a year to cover it. On average, how much does it pay out per customer a year?`,
         options: [`$${PREMIUM}`, `$${EXPECTED}`, "$50"],
         answer: 1,
       }}

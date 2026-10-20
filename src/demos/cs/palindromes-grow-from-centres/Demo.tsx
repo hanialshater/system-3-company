@@ -66,7 +66,7 @@ export default function PalindromesFromCentres({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `How many palindromic substrings (read the same backwards; each start and end position counted separately) does "${WORD}" have?`,
+        question: `Your word game scores every palindromic piece of "${WORD}" (reads the same backwards; each start and end position counted separately). How many pieces does it find?`,
         options: ["4", "7", "10"],
         answer: 2,
       }}

@@ -41,7 +41,7 @@ export default function LightAddsToYellow({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Each screen pixel has three lights, from 0 (off) to 255 (full). One is set to red ${Q.red}, green ${Q.green}, blue ${Q.blue}. What colour appears?`,
+        question: `On your phone screen, each pixel has three lights, from 0 (off) to 255 (full). You set one to red ${Q.red}, green ${Q.green}, blue ${Q.blue}. What colour appears?`,
         options: ["Brown", "Yellow", "White"],
         answer: 1,
       }}

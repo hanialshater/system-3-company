@@ -276,7 +276,7 @@ export default function TernaryAsksMore({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Ternary search checks two points per round and keeps one third of the list. For 1,000 sorted numbers, how does its worst-case number of comparisons compare with binary search's 10?",
+          "You search 1,000 sorted numbers by ternary search: check two points per round, keep one third of the list. Binary search needs 10 comparisons at worst. How does ternary search's worst case compare?",
         options: ["Fewer than 10", "About 10", "More than 10"],
         answer: 2,
       }}

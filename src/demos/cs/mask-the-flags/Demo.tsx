@@ -36,7 +36,7 @@ export default function MaskTheFlags({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Five on/off settings are stored as ${VALUE}. You AND them with the mask ${START_MASK} (AND gives 1 only where both have 1). What results?`,
+        question: `Your game stores five on/off settings as ${VALUE}. To read some of them, you AND it with the mask ${START_MASK} (AND gives 1 only where both have 1). What do you get?`,
         options: [START_RESULT, "10000", VALUE],
         answer: 0,
       }}

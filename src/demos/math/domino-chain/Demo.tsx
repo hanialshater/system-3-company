@@ -35,7 +35,7 @@ export default function DominoChain({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "The first domino falls, and any falling domino knocks over the next. Which dominoes fall?",
+        question: "You set up an endless row of dominoes. The first domino falls, and any falling domino knocks over the next. Which dominoes fall?",
         options: ["Only the first few", "All of them", "Only the even ones"],
         answer: 1,
       }}

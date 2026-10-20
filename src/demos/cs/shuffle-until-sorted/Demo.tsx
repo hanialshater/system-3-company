@@ -113,7 +113,7 @@ export default function ShuffleUntilSorted({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A sort shuffles the cards at random and stops when they happen to be in order. With 5 cards, about how many shuffles does it need on average?",
+          "You sort 5 playing cards by shuffling them at random and checking, stopping only when they happen to land in order. On average, about how many shuffles will you need?",
         options: ["About 5", "About 25", "About 120"],
         answer: 2,
       }}

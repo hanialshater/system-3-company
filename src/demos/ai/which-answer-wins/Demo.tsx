@@ -41,7 +41,7 @@ export default function WhichAnswerWins({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `People pick answer A over B in ${OBSERVED * 100}% of comparisons. A reward model says P(A preferred) = 1 / (1 + e^-(rA − rB)). The reward gap rA − rB is:`,
+        question: `Shown two chatbot answers, people pick A over B in ${OBSERVED * 100}% of comparisons. A reward model says P(A preferred) = 1 / (1 + e^-(rA − rB)). What is the reward gap rA − rB?`,
         options: PRESETS.map(String),
         answer: 1,
       }}

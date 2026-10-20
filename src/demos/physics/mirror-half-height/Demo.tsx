@@ -65,7 +65,7 @@ export default function MirrorHalfHeight({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A woman 1.80 m tall, eyes at 1.70 m, wants to see all of herself in a flat wall mirror. The shortest mirror that works is…",
+          "You are 1.80 m tall, eyes at 1.70 m, and you're buying a flat wall mirror for your bedroom to see all of yourself. What is the shortest mirror that works?",
         options: ["0.45 m", "1.80 m", "0.90 m"],
         answer: 2,
       }}

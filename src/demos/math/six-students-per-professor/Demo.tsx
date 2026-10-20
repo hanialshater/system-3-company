@@ -39,7 +39,7 @@ export default function SixStudentsPerProfessor({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A college has six times as many students as professors. S = number of students, P = number of professors. Which equation is right?",
+          "Your college has six times as many students as professors. Let S be the number of students and P the number of professors. Which equation is right?",
         options: ["6S = P", "S = 6P", "6S = 6P"],
         answer: 1,
       }}

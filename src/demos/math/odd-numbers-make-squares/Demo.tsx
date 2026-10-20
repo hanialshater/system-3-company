@@ -70,7 +70,7 @@ export default function OddNumbersMakeSquares({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Add the odd numbers in order: 1 + 3 + 5 + 7 + … up to ${last}. What do the running totals do?`,
+        question: `Stacking tiles, you add the odd numbers in order: 1 + 3 + 5 + 7 + … up to ${last}, checking the total after each. What do the running totals do?`,
         options: [
           "No pattern: you have to add them up",
           "Every total is a perfect square",

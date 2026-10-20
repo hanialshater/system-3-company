@@ -41,7 +41,7 @@ export default function ThreePointsMorePayment({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A ${usd(LOAN)} loan over 30 years. The payment is ${usd(PAY_BASE)} a month at ${BASE}%. At ${Q_RATE}%, by how much does the payment rise?`,
+        question: `Your bank quotes a ${usd(LOAN)} home loan over 30 years at ${BASE}%: ${usd(PAY_BASE)} a month. Before you sign, the rate moves to ${Q_RATE}%. By how much does your monthly payment rise?`,
         options: [`about ${Q_RATE - BASE}%`, `about ${Math.round(RISE_Q * 100)}%`, `about ${Math.round(RATE_RATIO * 100)}%`],
         answer: 1,
       }}

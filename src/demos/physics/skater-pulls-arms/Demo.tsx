@@ -40,7 +40,7 @@ export default function SkaterPullsArms({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A skater spins at 1 turn per second. Pulling her arms in cuts her moment of inertia (how spread out her mass is around the spin axis) from 3.0 to 1.0 kg·m². Her spin becomes…",
+          "At the rink, you watch a skater spin at 1 turn per second. Pulling her arms in cuts her moment of inertia (how spread out her mass is around the spin axis) from 3.0 to 1.0 kg·m². How fast does she spin now?",
         options: ["1 turn per second", "3 turns per second", "9 turns per second"],
         answer: 1,
       }}

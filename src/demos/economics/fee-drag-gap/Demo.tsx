@@ -45,7 +45,7 @@ export default function FeeDragGap({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "$10,000 grows at 7% a year for 30 years. A fund charges 1% a year (so you net 6%). What share of the final balance do the fees cost?",
+          "You invest $10,000 at 7% a year for 30 years, but your fund charges 1% a year, so you net 6%. What share of the final balance do the fees cost you?",
         options: ["About 1%", "About 10%", "About 25%"],
         answer: 2,
       }}

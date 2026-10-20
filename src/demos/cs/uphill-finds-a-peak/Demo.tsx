@@ -40,7 +40,7 @@ export default function UphillFindsAPeak({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "7 face-down cards in no order. A peak is a card not smaller than its neighbours. Turn over the middle card and its right neighbour, then keep the half on the bigger side. At most how many cards do you turn over?",
+          "Seven cards lie face down in no order. You want a peak: a card not smaller than its neighbours. Turn over the middle card and its right neighbour, then keep the half on the bigger side, and repeat. At most how many cards do you turn over?",
         options: ["3", "5", "7"],
         answer: 1,
       }}

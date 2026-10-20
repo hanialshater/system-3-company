@@ -75,7 +75,7 @@ export default function TrueTextFalseClaims({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Trained on three true sentences (Paris is the capital of France. Rome is the capital of Italy. Madrid is the capital of Spain.) with one word of memory, the model starts “Rome is the capital of” and picks the next word. How often is it false?",
+          "You type “Rome is the capital of” into a tiny model with one word of memory, trained on three true sentences (Paris is the capital of France. Rome is the capital of Italy. Madrid is the capital of Spain.). How often is its next word false?",
         options: ["Never", "About 1 time in 3", "About 2 times in 3"],
         answer: 2,
       }}

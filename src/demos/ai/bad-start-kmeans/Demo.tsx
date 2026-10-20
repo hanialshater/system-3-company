@@ -96,7 +96,7 @@ export default function BadStartKmeans({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Points on a line: 0, 4, 6, 10. k-means with 2 groups starts with centres at 0 and 4, then repeats 'assign each point to the nearest centre, move each centre to its group's mean'. The final groups:",
+          "You split four shops along a street, at 0, 4, 6 and 10, into 2 groups with k-means. Centres start at 0 and 4, then it repeats 'assign each shop to the nearest centre, move each centre to its group's mean'. What are the final groups?",
         options: ["{0, 4} and {6, 10}", "{0} and {4, 6, 10}", "{0, 4, 6} and {10}"],
         answer: 1,
       }}

@@ -36,7 +36,7 @@ function Stage({ locked, phase, interact }: {
 export default function Demo({ slug }: {
     slug: string;
 }) {
-    return <Lesson slug={slug} predict={{ "question": "If the declared alternating pattern continues, what is observation at t=6?", "options": ["14", "16", "18"], "answer": 2 }} minInteractions={3} exploreHint="Try each case and compare the saved results." reveal={() => <p>Subtracting the declared alternating component exposed trend values 10 through 15. Continuing that phase predicted 18 at t=6. The flipped phase instead produced 12 at t=4, where the old model expected 16. Six observations alone do not establish real seasonality.</p>}>
+    return <Lesson slug={slug} predict={{ "question": "Your chart zigzags up and down around a rising trend. If the declared alternating pattern continues, what is observation at t=6?", "options": ["14", "16", "18"], "answer": 2 }} minInteractions={3} exploreHint="Try each case and compare the saved results." reveal={() => <p>Subtracting the declared alternating component exposed trend values 10 through 15. Continuing that phase predicted 18 at t=6. The flipped phase instead produced 12 at t=4, where the old model expected 16. Six observations alone do not establish real seasonality.</p>}>
   {({ locked, phase, interact }) => <Stage locked={locked} phase={phase} interact={interact}/>}
  </Lesson>;
 }

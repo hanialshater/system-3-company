@@ -76,7 +76,7 @@ export default function SharedPasture({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "10 herders share a pasture, one cow each. Each cow earns 20 minus the total number of cows, so each herder earns 10. You alone add a second cow. What do you earn?",
+          "You are one of 10 herders sharing a pasture, one cow each. Each cow earns 20 minus the total number of cows, so everyone earns 10. You alone add a second cow. What do you earn?",
         options: ["9", "18", "10"],
         answer: 1,
       }}

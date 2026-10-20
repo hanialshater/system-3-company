@@ -107,7 +107,7 @@ export default function PushTheSwing({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A swing takes 2 s to go out and back. You give it 8 equal shoves. Which rhythm builds the biggest swing?",
+        question: "At the playground, the swing you are pushing takes 2 s to go out and back. You have 8 equal shoves to give. Which rhythm builds the biggest swing?",
         options: ["A shove every 2 s", "A shove every 1 s", "A shove every 3 s"],
         answer: 0,
       }}

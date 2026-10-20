@@ -43,7 +43,7 @@ export default function BondLedger({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Burning methane (CH₄ + 2 O₂ → CO₂ + 2 H₂O) gives out heat. Atoms are held together by bonds. Where does the heat come from?",
+        question: "You light a methane flame on a stove (CH₄ + 2 O₂ → CO₂ + 2 H₂O), and it gives out heat. Atoms are held together by bonds. Where does that heat come from?",
         options: ["Breaking the old bonds releases it", "The new bonds return more energy than breaking the old ones cost", "Forming new bonds releases it, and breaking the old ones costs nothing"],
         answer: 1,
       }}

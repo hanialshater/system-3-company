@@ -42,7 +42,7 @@ export default function SaySeventyMeanIt({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A model was right on ${HITS} of ${N} questions (${Math.round(BEST * 100)}%). It states one confidence r every time, scored by the squared gap: (r − 1)² if right, r² if wrong. Which r gives the lowest average?`,
+        question: `Your quiz bot was right on ${HITS} of ${N} questions (${Math.round(BEST * 100)}%). It must state one confidence, r, every time, scored by the squared gap: (r − 1)² if right, r² if wrong. Which r gives the lowest average?`,
         options: ["90%", "70%", "50%"],
         answer: 1,
       }}

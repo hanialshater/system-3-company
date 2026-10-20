@@ -109,7 +109,7 @@ export default function OneGoodLinkBeatsMany({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Every page has a score: how important it is. Page X has 3 links pointing at it. Page Y has 1 link, from page H. After many rounds of updating, which page has the higher score?",
+          "A search engine gives every page a score for how important it is. Page X has 3 links pointing at it. Page Y has 1 link, from page H. After many rounds of updating, which page scores higher?",
         options: ["X, with 3 links in", "They tie", "Y, with 1 link in"],
         answer: 2,
       }}

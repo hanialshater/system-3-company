@@ -36,7 +36,7 @@ function Stage({ locked, phase, interact }: {
 export default function Demo({ slug }: {
     slug: string;
 }) {
-    return <Lesson slug={slug} predict={{ "question": "Which probability gives the larger product for labels [1,1,0]?", "options": ["p=.8", "p=.5", "Equal"], "answer": 0 }} minInteractions={4} exploreHint="Try each case and compare the saved results." reveal={() => <p>Likelihoods .128 and .125 favoured the first model; p=2/3 improved to 4/27. Negative natural log reverses the ordering; dividing by 3 gives mean loss. At p=1 the observed zero was impossible. These results concern this declared Bernoulli construction.</p>}>
+    return <Lesson slug={slug} predict={{ "question": "You log three coin flips, 1 for heads and 0 for tails, and compare two guesses for the heads rate. Which probability gives the larger product for labels [1,1,0]?", "options": ["p=.8", "p=.5", "Equal"], "answer": 0 }} minInteractions={4} exploreHint="Try each case and compare the saved results." reveal={() => <p>Likelihoods .128 and .125 favoured the first model; p=2/3 improved to 4/27. Negative natural log reverses the ordering; dividing by 3 gives mean loss. At p=1 the observed zero was impossible. These results concern this declared Bernoulli construction.</p>}>
   {({ locked, phase, interact }) => <Stage locked={locked} phase={phase} interact={interact}/>}
  </Lesson>;
 }

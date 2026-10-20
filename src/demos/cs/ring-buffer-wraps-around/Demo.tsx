@@ -44,7 +44,7 @@ export default function RingBuffer({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A buffer holds ${CAP} items. You write 1, 2, 3, ..., ${LAST} in turn, each into the next slot and wrapping from slot 3 back to slot 0, overwriting the oldest. What is in slots 0, 1, 2, 3?`,
+        question: `Your dashcam's buffer holds ${CAP} clips. It writes clips 1, 2, 3, ..., ${LAST} in turn, each into the next slot and wrapping from slot 3 back to slot 0, overwriting the oldest. What is in slots 0, 1, 2, 3?`,
         options: ["1, 2, 3, 4", "7, 8, 9, 10", FINAL.join(", ")],
         answer: 2,
       }}

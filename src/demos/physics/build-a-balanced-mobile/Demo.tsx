@@ -79,7 +79,7 @@ export default function BalancedMobile({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A uniform 1 m ruler (0.10 kg) has a 0.10 kg lump on its 100 cm end. Where must the pivot go to balance it?",
+          "Building a mobile, you hang a uniform 1 m ruler (0.10 kg) with a 0.10 kg lump on its 100 cm end. Where must the string (the pivot) go to balance it?",
         options: ["50 cm", "75 cm", "90 cm"],
         answer: 1,
       }}

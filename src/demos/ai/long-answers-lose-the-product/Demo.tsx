@@ -53,7 +53,7 @@ export default function LongAnswersLoseTheProduct({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Answer S has 2 tokens, each 50% likely. Answer L has 10 tokens, each 85% likely. The more probable whole answer is:",
+        question: "Your chatbot weighs two replies. Answer S has 2 tokens, each 50% likely. Answer L has 10 tokens, each 85% likely. Which whole answer is more probable?",
         options: ["S", "L", "They tie"],
         answer: 0,
       }}

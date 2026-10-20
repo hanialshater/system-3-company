@@ -135,7 +135,7 @@ export default function TicTacToeIsADraw({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "If both players play perfectly from an empty board, who wins?",
+        question: "Two perfect players sit down to tic-tac-toe on an empty board, X moving first. If neither ever makes a mistake, who wins?",
         options: ["X, who moves first", "O", "Nobody, it is a draw"],
         answer: 2,
       }}
