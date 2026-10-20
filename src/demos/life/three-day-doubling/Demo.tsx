@@ -67,7 +67,7 @@ export default function ThreeDayDoubling({ slug }: { slug: string }) {
           </p>
           <p>
             Stepping back from day 30 to day 24 cut the count to a quarter, 25,600. Six days is two doublings, so in this
-            model a 6-day delay means four times as many cases. When growth compounds, a few days is a lot.
+            model a 6-day delay means four times as many cases.
           </p>
           <p className="muted">
             The disease is made up and its doubling time never changes. Real outbreaks slow as people become immune or

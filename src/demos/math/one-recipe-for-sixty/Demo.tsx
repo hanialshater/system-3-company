@@ -97,7 +97,7 @@ export default function OneRecipeForSixty({ slug }: { slug: string }) {
           </p>
           <p>
             That is no accident{tried84.length > 0 ? " with 60 or 84" : ""}. Every whole number above 1 breaks into primes in exactly one way, apart from
-            order. Primes are the atoms of multiplication, and each number has one recipe.
+            order.
           </p>
         </>
       )}

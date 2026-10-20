@@ -198,9 +198,9 @@ export default function BiggerBeetlesEveryoneLoses({ slug }: { slug: string }) {
             Large beats small against either opponent (8 vs 6 against small, 4 vs 2 against large), so it spreads
             whatever the mix. Once nearly everyone is large, a small mutant scores about 2 where the large score about 4, so
             your 5% of mutants shrank back within {STEP} generations. A strategy that, once common, no small group of mutants can invade is
-            evolutionarily stable, even when it leaves everyone with less: an arms race.
+            evolutionarily stable, even when it leaves everyone with less.
           </p>
-          <p className="muted">Toy model with chosen payoffs and no baseline offspring; it is not a claim about real beetles.</p>
+          <p className="muted">A model with chosen payoffs and no baseline offspring; it is not a claim about real beetles.</p>
         </>
       )}
     >

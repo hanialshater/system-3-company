@@ -87,8 +87,7 @@ export default function ShrinkingDegree({ slug }: { slug: string }) {
             The thin lines of longitude all meet at the poles, so the gap
             between them shrinks
             {seen[80] ? `: you saw ${seen[80]} km at 80°N` : ""}. A degree of
-            latitude stays {PER_DEG.toFixed(0)} km. So &ldquo;one degree&rdquo;
-            east&ndash;west is not a fixed distance.
+            latitude stays {PER_DEG.toFixed(0)} km.
           </p>
         </>
       )}

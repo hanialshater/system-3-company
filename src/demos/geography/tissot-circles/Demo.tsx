@@ -86,7 +86,7 @@ export default function TissotCircles({ slug }: { slug: string }) {
           <p>
             On Equal Earth the two areas matched ({ee.toFixed(2)}×), but the northern circle was squashed. A flat map can
             keep shapes round or keep areas equal, not both everywhere: that is a proven result about spheres, not a flaw
-            of one map. Every projection chooses which distortion to accept.
+            of one map.
           </p>
         </>
       )}

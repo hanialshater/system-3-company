@@ -68,7 +68,6 @@ export default function ShrinkTowardZero({ slug }: { slug: string }) {
             Average squared error is bias² plus spread². Shrinking trades a little bias for a lot less spread, until the bias
             costs more than the spread saves. Here the best factor is exactly {BEST}.
           </p>
-          <p>Unbiased is not the same as best: a deliberately biased estimate can miss by less, on average.</p>
         </>
       )}
     >

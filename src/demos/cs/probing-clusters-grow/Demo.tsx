@@ -92,7 +92,6 @@ export default function ProbingClustersGrow({ slug }: { slug: string }) {
             keys walk further: {last ? `your last key took ${last.probes} probes.` : "probes get longer as it fills."} This
             is called primary clustering.
           </p>
-          <p className="muted">With linear probing, full stretches feed themselves.</p>
         </>
       )}
     >

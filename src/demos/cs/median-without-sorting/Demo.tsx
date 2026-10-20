@@ -105,7 +105,6 @@ export default function MedianWithoutSorting({ slug }: { slug: string }) {
             go. Sorting must split both sides. The gap grows: on 1,000 shuffled cards, about 3,300 comparisons against
             about 11,000.
           </p>
-          <p className="muted">To find one position you only need the side it is on.</p>
         </>
       )}
     >

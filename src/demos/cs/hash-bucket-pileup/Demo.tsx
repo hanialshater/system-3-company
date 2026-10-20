@@ -89,7 +89,6 @@ export default function HashBucketPileup({ slug }: { slug: string }) {
           <p>
             Each new key has more occupied slots to hit, and those chances multiply. That is why hash tables need a way to handle collisions, such as keeping a list of keys in each slot.
           </p>
-          <p className="muted">Collisions come early. Plan for them.</p>
         </>
       )}
     >

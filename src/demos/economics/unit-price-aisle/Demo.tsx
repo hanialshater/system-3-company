@@ -58,10 +58,7 @@ export default function UnitPriceAisle({ slug }: { slug: string }) {
               <strong>{PACKS[CHEAPEST].name}</strong> pack was cheapest; the biggest pack cost the same rate as the smallest.
               {moved && ` At ${usd(bigCents)} the 1.2 kg pack worked out to ${usd(now)} per 100 g.`}
             </p>
-            <p>
-              The sticker price tells you what you pay; the size tells you what you get. Only dividing one by the other gives
-              the rate, and that rate need not fall as the pack grows.
-            </p>
+            <p>Only dividing price by size gives the rate, and that rate need not fall as the pack grows.</p>
             <p className="muted">Prices are invented. A unit price ignores waste and storage: a lower rate only helps if you use it all.</p>
           </>
         );

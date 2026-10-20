@@ -82,7 +82,7 @@ export default function PinkFromRedWhite({ slug }: { slug: string }) {
               Your {TOTAL} pots: <strong>{t.pink} pink</strong>, {t.red} red, {t.white} white. Close to a quarter red, half pink, a quarter white.
             </p>
             <p>
-              Each pink parent hands on its R or its W with equal chance. A seed gets R R, R W, W R or W W: red 1, pink 2, white 1 of 4, so pink is half. Here the pair shows directly in the colour; pink parents still carry red and white. The random seeds are one run, so the counts wobble around 25 : 50 : 25.
+              Each pink parent hands on its R or its W with equal chance. A seed gets R R, R W, W R or W W: red 1, pink 2, white 1 of 4, so pink is half. Here the pair shows directly in the colour; pink parents still carry red and white. The seeds are random, so the counts wobble around 25 : 50 : 25.
             </p>
           </>
         );

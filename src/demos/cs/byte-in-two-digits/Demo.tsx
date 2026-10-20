@@ -49,7 +49,7 @@ export default function ByteInTwoDigits({ slug }: { slug: string }) {
             {sym(lo(bits))} in hex.
           </p>
           <p>
-            No detour through ordinary numbers: four switches have exactly 16 settings, one per hex symbol, so hex is
+            Four switches have exactly 16 settings, one per hex symbol, so hex is
             binary written four switches at a time and every byte is exactly two symbols.
           </p>
         </>

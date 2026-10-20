@@ -230,7 +230,6 @@ export default function MergeSortPayoff({ slug }: { slug: string }) {
             , against 28 for checking every pair. Halving 1,000 cards takes 10 rounds, each under 1,000 comparisons:
             fewer than 10,000, against 499,500 for every pair.
           </p>
-          <p className="muted">The splitting is setup. The merge is the payoff.</p>
         </>
       )}
     >

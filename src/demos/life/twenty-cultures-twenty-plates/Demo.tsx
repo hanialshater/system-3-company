@@ -181,8 +181,8 @@ export default function TwentyCulturesTwentyPlates({ slug }: { slug: string }) {
         <>
           <p>
             {jackpot
-              ? `In your run, ${g.none} plates had none and one had ${g.max}. A mutation early in growth was copied into every descendant: a jackpot.`
-              : `In your run, ${g.none} plates had none and the largest had ${g.max}: uneven, but no big jackpot this time. An early mutation, copied into every descendant, makes one.`}{" "}
+              ? `Here, ${g.none} plates had none and one had ${g.max}. A mutation early in growth was copied into every descendant: a jackpot.`
+              : `Here, ${g.none} plates had none and the largest had ${g.max}: uneven, but no big jackpot this time. An early mutation, copied into every descendant, makes one.`}{" "}
             When the drug made the mutations, every plate got a similar count ({d.min} to {d.max}).
           </p>
           <p>

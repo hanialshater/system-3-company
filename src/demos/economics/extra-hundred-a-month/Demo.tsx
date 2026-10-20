@@ -78,7 +78,7 @@ export default function ExtraHundredAMonth({ slug }: { slug: string }) {
             </p>
             <p>
               The extra goes straight to what is still owed. In month 2 the interest was already {usd2(Q.path[1] * RATE)} instead of {usd2(BASE.path[1] * RATE)} (0.5% of a smaller balance), so
-              more of the payment repaid the loan. The saving feeds itself every month.
+              more of the payment repaid the loan.
             </p>
             <p className="muted">A model: a fixed, illustrative 6%, no prepayment fee. Arithmetic, not advice on whether to prepay.</p>
           </>

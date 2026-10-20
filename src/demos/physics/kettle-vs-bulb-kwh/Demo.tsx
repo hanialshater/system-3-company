@@ -54,7 +54,7 @@ export default function KettleVsBulb({ slug }: { slug: string }) {
             </p>
             <p>
               Watts say how fast energy flows: each kettle minute was a thick slice, each bulb minute a thin one. The bill
-              counts the whole bar, power × time, in kilowatt-hours. Enough thin slices beat a few thick ones.
+              counts the whole bar, power × time, in kilowatt-hours.
             </p>
             <p className="muted">Assumes each appliance draws its label power steadily. 1 kWh = 3.6 million joules.</p>
           </>

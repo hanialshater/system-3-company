@@ -114,7 +114,7 @@ export default function StaleCaseCounts({ slug }: { slug: string }) {
           <p>
             The {REPORTED} people reported today were infected {LAG_Q} days ago. {LAG_Q} days is {LAG_Q / DOUBLING} doublings, so the
             infections have kept multiplying since: {REPORTED} &times; 2 &times; 2 &times; 2 = <strong>{fmt(ANSWER)}</strong> infected
-            today. The report is a photo of the past.
+            today.
           </p>
           <p>
             {others.length

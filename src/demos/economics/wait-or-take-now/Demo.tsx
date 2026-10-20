@@ -111,8 +111,7 @@ export default function WaitOrTakeNow({ slug }: { slug: string }) {
           </p>
           <p>
             Above about {BREAK_EVEN.toFixed(2)}% the answer flips: at {FLIP_SHOW}% the later offer is worth only{" "}
-            {money(pv(FLIP_SHOW))} today. Future money is worth less today because money now could be earning. Whether later is
-            better depends on the rate, not just the bigger number.
+            {money(pv(FLIP_SHOW))} today. Future money is worth less today because money now could be earning.
           </p>
           <p className="muted">A model: a sure payment, a steady rate, no tax. Not advice.</p>
         </>

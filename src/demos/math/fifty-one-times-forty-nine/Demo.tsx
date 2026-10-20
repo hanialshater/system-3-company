@@ -54,7 +54,7 @@ export default function FiftyOne({ slug }: { slug: string }) {
               : ""}
             Nothing is lost when the strip moves, except that its end does not fit: the small square, d × d.
           </p>
-          <p>So (a + d)(a − d) = a² − d², always: the near-square product is the square minus a tiny square.</p>
+          <p>So (a + d)(a − d) = a² − d², always.</p>
         </>
       )}
     >

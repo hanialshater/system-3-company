@@ -55,10 +55,9 @@ export default function ShortestJobFirstWait({ slug }: { slug: string }) {
           </p>
           <p>
             A job at the front makes every job behind it wait, so its length is counted once for each of them. Put the
-            short ones first and the 8-minute job delays nobody. The catch: if short jobs keep arriving, a long one can
+            short ones first and the 8-minute job delays nobody. If short jobs keep arriving, a long one can
             wait forever.
           </p>
-          <p className="muted">The order of the work changes how long everyone waits.</p>
         </>
       )}
     >

@@ -85,8 +85,8 @@ export default function WinningBidOverpays({ slug }: { slug: string }) {
             bidder whose guess was highest, so the error that wins is the biggest one.
           </p>
           <p>
-            With 2 bidders the winner paid {usd1(two ?? 105.42)} on average: more rivals, bigger overpayment. A made-up jar with random,
-            seeded guesses.
+            With 2 bidders the winner paid {usd1(two ?? 105.42)} on average: more rivals, bigger overpayment. A made-up jar with random
+            guesses.
           </p>
         </>
       )}

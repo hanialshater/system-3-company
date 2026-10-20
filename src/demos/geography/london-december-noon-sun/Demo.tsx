@@ -76,8 +76,8 @@ export default function LondonDecemberNoonSun({ slug }: { slug: string }) {
             it to {f1(noonAltitude(TILT))}° in June or drops it to {f1(noonAltitude(-TILT))}° in December.
           </p>
           <p>
-            So London&rsquo;s winter noon Sun is {f1(noonAltitude(TILT) - noonAltitude(-TILT))}° lower than its summer noon Sun: twice the tilt,
-            not a little lower. Low is why it is weak: the same sunbeam covers {f1(spread(noonAltitude(-TILT)))} times the ground in December,
+            So London&rsquo;s winter noon Sun is {f1(noonAltitude(TILT) - noonAltitude(-TILT))}° lower than its summer noon Sun: twice the tilt.
+            Low is why it is weak: the same sunbeam covers {f1(spread(noonAltitude(-TILT)))} times the ground in December,
             against {f1(spread(noonAltitude(TILT)))} times in June.
           </p>
         </>

@@ -59,7 +59,7 @@ export default function TwoSuspectsPayoff({ slug }: { slug: string }) {
           </p>
           <p>
             The other player reads the same table and reaches the same answer. So both defect and each gets {PAY[1][1][0]}, though
-            both cooperating would give each {PAY[0][0][0]}. A move can be best for each player and still leave both worse off.
+            both cooperating would give each {PAY[0][0][0]}.
           </p>
           <p className="muted">
             A model: invented payoffs, one round, no talking. When the same two players meet again and again, cooperation can last.

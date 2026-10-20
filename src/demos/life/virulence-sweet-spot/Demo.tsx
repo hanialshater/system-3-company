@@ -107,7 +107,7 @@ export default function VirulenceSweetSpot({ slug }: { slug: string }) {
               You plotted {pts.map((p) => `harm ${fv(p)}: R0 ${f1(r0(p))}`).join("; ")}. R0 rose, then fell, peaking at harm 1.
             </p>
             <p>
-              More harm means faster spread (4 × √v) but a shorter infection (1 ÷ (1 + v) days). R0 is their product, so R0 peaks in the middle. In this toy the square-root link is chosen; real germs vary and the theory is debated.
+              More harm means faster spread (4 × √v) but a shorter infection (1 ÷ (1 + v) days). R0 is their product, so R0 peaks in the middle. Here the square-root link is chosen; real germs vary and the theory is debated.
             </p>
           </>
         );

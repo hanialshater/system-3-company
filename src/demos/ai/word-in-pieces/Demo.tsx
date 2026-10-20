@@ -68,7 +68,6 @@ export default function WordInPieces({ slug }: { slug: string }) {
             single letters. A model built on a tokenizer like this does not receive the word, only the row of piece numbers. Real tokenizers learn
             their piece lists from large amounts of text, so frequent chunks get pieces.
           </p>
-          <p>What a model &ldquo;reads&rdquo; depends on its piece list, not on the word you see.</p>
         </>
       )}
     >

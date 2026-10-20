@@ -117,7 +117,7 @@ export default function MouseVsElephant({ slug }: { slug: string }) {
           </p>
           <p>
             Energy use grows as mass to the ¾ power, so per gram it falls as mass to the &minus;¼ power. Each tenfold step in
-            mass multiplied the total by about 5.6, not 10. Big animals run slower per gram.
+            mass multiplied the total by about 5.6, not 10.
           </p>
           <p className="muted">
             Model: a rough rule of thumb across mammals. The exponent is still debated (some studies find nearer ⅔), and

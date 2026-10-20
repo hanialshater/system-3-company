@@ -69,7 +69,7 @@ export default function GradientFadesWithDepth({ slug }: { slug: string }) {
           </p>
           <p>
             ReLU&apos;s slope is 1 wherever it is active, so all ten layers got the full signal,{" "}
-            <strong>{pct(seen.relu10 ?? 1)}</strong>. Depth helps only if the signal survives.
+            <strong>{pct(seen.relu10 ?? 1)}</strong>.
           </p>
         </>
       )}

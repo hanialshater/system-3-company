@@ -190,7 +190,7 @@ export default function WavesReturn({ slug }: { slug: string }) {
             susceptibles. That balance (1/R0 = {pct(1 / R0)}) held whatever the immunity length: it changes only how many
             are sick and how far apart the waves are.
           </p>
-          <p className="muted">Toy model: no births, deaths, seasons or vaccines. Numbers are made up.</p>
+          <p className="muted">Model: no births, deaths, seasons or vaccines. Numbers are made up.</p>
         </>
       )}
     >

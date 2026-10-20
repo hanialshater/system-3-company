@@ -57,7 +57,7 @@ export default function NetHourlyAfterCosts({ slug }: { slug: string }) {
                 ` At ${Q_MILES} miles, ${others.map((r) => `${usd(r)} a mile would leave ${usd(kept(Q_MILES, r))}`).join(" and ")}.`}
             </p>
             <p>
-              The ${(PAY / 100).toFixed(0)} is what the job pays, not what it pays you. The car's fuel and wear come out of every hour,
+              The car's fuel and wear come out of every hour,
               and they grow with every mile. What you earn is the pay left after the costs of earning it.
             </p>
             <p className="muted">A model: no tax or tips, and the per-mile costs are examples, not an official rate.</p>

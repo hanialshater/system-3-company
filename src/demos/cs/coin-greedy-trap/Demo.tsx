@@ -81,7 +81,6 @@ export default function CoinGreedyTrap({ slug }: { slug: string }) {
             {seen.includes(10) ? " For 10 it took 4 + 4 + 1 + 1 against 4 + 3 + 3: another trap." : ""}{" "}
             It fails when an early grab blocks a better combination later.
           </p>
-          <p className="muted">The best-looking step is not always part of the best answer.</p>
         </>
       )}
     >

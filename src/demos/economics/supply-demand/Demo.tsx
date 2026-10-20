@@ -76,7 +76,7 @@ export default function SupplyDemand({ slug }: { slug: string }) {
             that point.
           </p>
           <p className="muted">
-            A toy model: straight lines, made-up numbers, nothing else changing. Real caps can also bring queues, black
+            A model: straight lines, made-up numbers, nothing else changing. Real caps can also bring queues, black
             markets and lower quality. It shows one cost of a cap, not whether a cap is worth it.
           </p>
         </>

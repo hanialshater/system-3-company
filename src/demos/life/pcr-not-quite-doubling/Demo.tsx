@@ -88,7 +88,7 @@ export default function PcrNotQuiteDoubling({ slug }: { slug: string }) {
             At {Q_EFF}% you saw {big(count(Q_EFF, CYCLES))} copies after {CYCLES} cycles against {big(count(100, CYCLES))} for perfect: <strong>{pctOf(Q_EFF)}%</strong> of the perfect result.
           </p>
           <p>
-            Each cycle gives ×{(1 + Q_EFF / 100).toFixed(1)} instead of ×2, which is {(1 + Q_EFF / 100) / 2} of a perfect cycle. That shortfall multiplies itself every cycle: {(1 + Q_EFF / 100) / 2} thirty times is {ratio(Q_EFF).toFixed(2)}. Small losses compound just as growth does. Toy model: fixed efficiency, no plateau.
+            Each cycle gives ×{(1 + Q_EFF / 100).toFixed(1)} instead of ×2, which is {(1 + Q_EFF / 100) / 2} of a perfect cycle. That shortfall multiplies itself every cycle: {(1 + Q_EFF / 100) / 2} thirty times is {ratio(Q_EFF).toFixed(2)}. Toy model: fixed efficiency, no plateau.
           </p>
         </>
       )}

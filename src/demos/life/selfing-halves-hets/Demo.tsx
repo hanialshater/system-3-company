@@ -102,7 +102,7 @@ export default function SelfingHalvesHets({ slug }: { slug: string }) {
             </p>
             <p>
               A hybrid passes on either copy, so its seed is AA, Aa or aa in a 1 : 2 : 1 split: only half its seeds stay hybrid. A pure plant
-              only makes pure seeds, so hybrids never come back. Selfing halves them every generation and turns a mixed field into pure lines.
+              only makes pure seeds, so hybrids never come back.
             </p>
           </>
         );

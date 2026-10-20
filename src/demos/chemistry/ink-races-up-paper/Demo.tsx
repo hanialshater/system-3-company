@@ -45,8 +45,7 @@ export default function Chromatography({ slug }: { slug: string }) {
           </p>
           <p>
             Each dye is carried by the water but held back by the paper. The stickier one is held longer, so it travels a smaller fraction of the
-            water&apos;s distance: {rf(K_B).toFixed(2)} for B against {rf(K_A).toFixed(2)} for A. Separation is a race between being carried and
-            holding on.
+            water&apos;s distance: {rf(K_B).toFixed(2)} for B against {rf(K_A).toFixed(2)} for A.
           </p>
         </>
       )}

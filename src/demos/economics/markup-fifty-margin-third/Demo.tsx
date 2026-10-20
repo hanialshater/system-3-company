@@ -48,7 +48,7 @@ export default function MarkupMargin({ slug }: { slug: string }) {
           </p>
           <p>
             At a {FULL}% markup the profit (${profit(FULL)}) was half the ${price(FULL)} price. Markup divides by cost, margin by price, so margin is
-            markup ÷ (1 + markup) and stays under 100%. Always name the base.
+            markup ÷ (1 + markup) and stays under 100%.
           </p>
         </>
       )}

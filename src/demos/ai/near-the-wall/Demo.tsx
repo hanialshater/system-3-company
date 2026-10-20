@@ -101,8 +101,7 @@ export default function NearTheWall({ slug }: { slug: string }) {
             </p>
             <p>
               Each dimension gives a point a 10% chance to sit at an edge, and it only has to be at an edge in one. Staying clear
-              of all of them takes 0.9 × 0.9 × … ten times, which is only {pct(1 - exactShare(Q_DIM))}. At 100 dimensions almost
-              no point is in the middle.
+              of all of them takes 0.9 × 0.9 × … ten times, which is only {pct(1 - exactShare(Q_DIM))}.
             </p>
             <p>
               At 100 dimensions the exact share is {(exactShare(100) * 100).toFixed(3)}%: almost no point is in the middle.

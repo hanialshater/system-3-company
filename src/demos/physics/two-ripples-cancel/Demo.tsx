@@ -100,8 +100,7 @@ export default function TwoRipplesCancel({ slug }: { slug: string }) {
               : " Further out, with a whole wave extra, they come back in step."}
           </p>
           <p>
-            Waves add by height. Half a wave late, A&apos;s crest arrives with B&apos;s trough, and they cancel. Two
-            sounds can make less than one.
+            Waves add by height. Half a wave late, A&apos;s crest arrives with B&apos;s trough, and they cancel.
           </p>
           <p className="muted">Idealised: equal loudness from each speaker, no echoes. A real room leaves a quiet spot, not silence.</p>
         </>

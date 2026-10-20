@@ -56,7 +56,7 @@ export default function BondLedger({ slug }: { slug: string }) {
           </p>
           <p>
             The new bonds (2 × 799 + 4 × 463) are stronger in total than the old ones (4 × 413 + 2 × 498), so {fmt(NET)} kJ is left over as heat: about{" "}
-            {fmt(NET)} kJ released per mole of methane. Heat comes from the difference, not from breaking bonds.
+            {fmt(NET)} kJ released per mole of methane.
           </p>
         </>
       )}

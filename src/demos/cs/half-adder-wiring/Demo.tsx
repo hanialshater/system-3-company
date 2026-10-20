@@ -67,8 +67,7 @@ export default function HalfAdderWiring({ slug }: { slug: string }) {
             1 + 1 column, where it gives 1. The carry digits, 0, 0, 0, 1, are 1 only when both inputs are 1: that is AND.
           </p>
           <p>
-            So adding two bits is nothing more than two gates side by side, called a half adder. The machine does not know
-            arithmetic; the wiring does it.
+            So adding two bits is nothing more than two gates side by side, called a half adder.
           </p>
         </>
       )}

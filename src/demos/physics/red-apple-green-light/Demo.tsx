@@ -100,7 +100,7 @@ export default function RedAppleGreenLight({ slug }: { slug: string }) {
             An apple has no light of its own. Its colour is the part of the arriving light it sends back; it absorbs the rest.
             A red apple returns red, and a green lamp brings no red to return.
           </p>
-          <p className="muted">Toy values for three colour bands; real light and real apples have smooth spectra.</p>
+          <p className="muted">Made-up values for three colour bands; real light and real apples have smooth spectra.</p>
         </>
       )}
     >

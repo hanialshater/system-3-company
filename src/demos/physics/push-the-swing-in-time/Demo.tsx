@@ -127,7 +127,7 @@ export default function PushTheSwing({ slug }: { slug: string }) {
             </p>
             <p>
               A swing has its own rhythm, set by its length. Shoves in step with it pile up; shoves out of step undo each
-              other. More shoves is not more swing.
+              other.
             </p>
             <p className="muted">Model: small swings, light friction, equal shoves. This is resonance.</p>
           </>

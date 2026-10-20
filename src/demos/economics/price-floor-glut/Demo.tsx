@@ -62,8 +62,8 @@ export default function PriceFloorGlut({ slug }: { slug: string }) {
             sold fell from {Q0} to {QM.bought}.
           </p>
           <p>
-            The rule changes the price, not what buyers want: at ${Q_FLOOR} they want fewer loaves, while bakers, promised {`$${Q_FLOOR}`}, bake more. The gap between the two is a surplus.
-            {seen.some((f) => f < P0) && ` Below $${P0} the rule changed nothing: the price was already higher.`}
+            At ${Q_FLOOR} buyers want fewer loaves, while bakers, promised {`$${Q_FLOOR}`}, bake more. The gap between the two is a surplus.
+            {seen.some((f) => f < P0) && ` Below $${P0} the floor changed nothing: the price was already higher.`}
           </p>
           <p className="muted">A model: straight lines, one market, bakers bake for the floor price. Not a claim about any real rule.</p>
         </>

@@ -116,7 +116,6 @@ export default function BinarySearch({ slug }: { slug: string }) {
             Size barely matters. Doubling the range adds one guess: a million numbers need at most 20, a billion at most
             30.
           </p>
-          <p className="muted">Each guess halves the haystack. That is the whole trick.</p>
         </>
       )}
     >

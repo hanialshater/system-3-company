@@ -181,7 +181,7 @@ export default function InsuranceFairPrice({ slug }: { slug: string }) {
             In the pool, {never} houses were never hit, but {twicePlus} were hit twice or more. No house knows which it will
             be: each swaps a small sure cost for cover against a rare large loss, which the pool of 100 carries.
           </p>
-          <p className="muted">A model: independent risks, no fraud, one seeded run. Not advice about buying cover.</p>
+          <p className="muted">A model: independent risks, no fraud, one random draw. Not advice about buying cover.</p>
         </>
       )}
     >

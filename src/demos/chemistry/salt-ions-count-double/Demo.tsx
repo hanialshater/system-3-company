@@ -69,7 +69,7 @@ export default function SaltIonsCountDouble({ slug }: { slug: string }) {
           </p>
           <p>
             Freezing point drops with the number of dissolved particles, not their kind: {KF} °C per mole of particles in a
-            kilogram of water. Salt counts double.
+            kilogram of water.
           </p>
           <p className="muted">Ideal model. Real salt water drops a little less, about 3.4 °C, because ions tug on each other.</p>
         </>
