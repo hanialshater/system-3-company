@@ -22270,6 +22270,69 @@
       "domain": null,
       "created": "2026-10-20",
       "links": []
+    },
+    {
+      "id": "W-1988",
+      "title": "EDD-016 G0/G1/G4 (session composer serving): before the criterion for composer-v0.3-session freezes, require the readout to score the frozen single-file candidate by sha256 and record it in the manifest (EDD-016 §4.2); after a PASS, register the experiment (card S8): prediction first, arms/O2, arm holding per privacy N5, counters only. A FAIL is reported unedited and ends the path. See company/engineering/edd/EDD-016-session-composer-serving.md §10.2",
+      "owner": "personalization-eval",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-20",
+      "links": []
+    },
+    {
+      "id": "W-1989",
+      "title": "EDD-016 G3 (session composer serving): privacy read of the serving inputs (§6 table), the new local off-switch key s3c:order:v1, the frozen candidate's input list, reason key set and copy slots; state whether the W-1916 phase-B rulings stand while AMD-008 part P (F-19) is unratified. After G1 passes; nothing serves before it. See company/engineering/edd/EDD-016-session-composer-serving.md §6, §10.2",
+      "owner": "privacy-reviewer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-20",
+      "links": []
+    },
+    {
+      "id": "W-1990",
+      "title": "EDD-016 G4 (session composer serving): EXP format and index entry, and event/counter semantics for the experiment personalization-eval registers (cards moved by reason per day, cells under 20 suppressed, recall #4/#5 by arm); confirm registrar per card S8 vs the founder record naming analytics-steward (EDD-016 O3). See company/engineering/edd/EDD-016-session-composer-serving.md §10.2, §13",
+      "owner": "analytics-steward",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-20",
+      "links": []
+    },
+    {
+      "id": "W-1991",
+      "title": "EDD-016 build (after G1-G4 clear, not before): flag-off build of the session composer serving path: byte copy under src/lib/learner/policies/ with T1 hash lock, candidate-agnostic glue, off switch, reason keys, precedence with AMD-016 (§7), tests T1-T18, self-check gateway hunk in the same commit (co-signed by learner-model-engineer), paths.json rule; then tier-2 merge review and readiness. See company/engineering/edd/EDD-016-session-composer-serving.md §4, §9, §10",
+      "owner": "personalization-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-20",
+      "links": []
+    },
+    {
+      "id": "W-1992",
+      "title": "EDD-016 G2: tier-2 design review of EDD-016 and ADR-011 (author is principal-engineer, so not self-reviewed); may wait until after G1, but the binding addendum (candidate id, sha256, key set, bench) must be reviewed after G1. Platform-engineer reads §7 and the Feed parts. See company/engineering/edd/EDD-016-session-composer-serving.md",
+      "owner": "principal-engineer-ops",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-20",
+      "links": []
+    },
+    {
+      "id": "W-1993",
+      "title": "EDD-016 G4b: draft the surface-value.md amendment the session composer needs before any flag-on deploy (AMD-015 A1: a different candidate needs a further amendment; AMD-016: no combining): candidate id, per-learner precedence with AMD-016, the off switch (or not), cold start, whether AMD-015 Part B withdrawal covers it. Founder ratifies. See company/engineering/edd/EDD-016-session-composer-serving.md §7, §8, §13 O1",
+      "owner": "evaluation-steward",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-20",
+      "links": []
+    },
+    {
+      "id": "W-1994",
+      "title": "EDD-016 Q1 (before freeze): freeze composer-v0.3-session as one import-free file in company/personalization/policies/ with build note sha256 and an equivalence test vs model.ts + sim/composer.ts; interface takes shown slugs (EDD-010 Q-A1 (i)), exports CANDIDATE_ID, reason key set and a marker; attention budget a constant, never from session length. See company/engineering/edd/EDD-016-session-composer-serving.md §4.1, §4.3, §4.4",
+      "owner": "learner-model-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-20",
+      "links": []
     }
   ]
 }
