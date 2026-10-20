@@ -18,7 +18,7 @@ import { fileURLToPath } from "node:url";
 import * as M from "../../../model/model.ts";
 import { PERSONAS } from "../personas.copy.mjs";
 import { CRITERION2, EPISODE2, cells2 } from "./world2.mjs";
-import { assertScoringAllowed2, criterionStatus2, loadInputs2, CRITERION2_FILE, cellByName2, parseArm, REFERENCE_ARM, gamFingerprint, GAM_FROZEN_VERSION, loadCandidate } from "./harness2.mjs";
+import { assertScoringAllowed2, criterionStatus2, loadInputs2, CRITERION2_FILE, cellByName2, parseArm, REFERENCE_ARM, gamFingerprint, gamModelVersion, GAM_FROZEN_VERSION, loadCandidate } from "./harness2.mjs";
 import { t1Replay2, pickChecks2, reviewChecks, t5Static2, t6Dynamic2, t7aForgetting0, t7bPrereq0, t7cLag, t7dReadPure, t7eLuckyGuess, t7fShapeSpread, t7gGuessNoStrengthen, t7hPrehistoryLaw, t8InputShape, t9FixedCopy } from "./checks2.mjs";
 import { judgePair2, outcome2, headroom, interval, mean } from "./scorer2.mjs";
 
@@ -76,7 +76,9 @@ async function main() {
   if (!PLUMBING) {
     if (!candidate) throw new Error("--candidate=<path> is required (criterion 2 records it before the freeze)");
     await loadCandidate(candidate);
-    if (M.MODEL_VERSION !== GAM_FROZEN_VERSION) throw new Error(`the GAM must be ${GAM_FROZEN_VERSION} as frozen (pre-commitment 1); model is ${M.MODEL_VERSION}`);
+    // W-1996: the GAM's version is PHASE_A_MODEL_VERSION since model-v0.3.0; the fingerprint is checked too.
+    if (gamModelVersion() !== GAM_FROZEN_VERSION) throw new Error(`the GAM must be ${GAM_FROZEN_VERSION} as frozen (pre-commitment 1); model is ${gamModelVersion()}`);
+    if (gamFingerprint() !== readFileSync(join(HERE, "gam-v0.2.2.sha256"), "utf8").trim()) throw new Error("the GAM fingerprint differs from gam-v0.2.2.sha256 (pre-commitment 1)");
   }
   const out = arg("out", join(HERE, "out"));
   mkdirSync(out, { recursive: true });

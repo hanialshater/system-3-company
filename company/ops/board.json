@@ -22275,10 +22275,11 @@
       "id": "W-1988",
       "title": "EDD-016 G0/G1/G4 (session composer serving): before the criterion for composer-v0.3-session freezes, require the readout to score the frozen single-file candidate by sha256 and record it in the manifest (EDD-016 §4.2); after a PASS, register the experiment (card S8): prediction first, arms/O2, arm holding per privacy N5, counters only. A FAIL is reported unedited and ends the path. See company/engineering/edd/EDD-016-session-composer-serving.md §10.2",
       "owner": "personalization-eval",
-      "state": "backlog",
+      "state": "doing",
       "domain": null,
       "created": "2026-10-20",
-      "links": []
+      "links": [],
+      "updated": "2026-10-20"
     },
     {
       "id": "W-1989",
@@ -22348,10 +22349,11 @@
       "id": "W-1996",
       "title": "c2 harness pins M.MODEL_VERSION==model-v0.2.2 (run2.mjs:79, tests2.test.mjs:119, gamFingerprint); model-v0.3.0 is additive, use M.PHASE_A_MODEL_VERSION if the harness must run on the live tree (gam-session-build-note.md §7 O-1); then score gam-session/-v3/-no-cov under a frozen criterion",
       "owner": "personalization-eval",
-      "state": "backlog",
+      "state": "doing",
       "domain": null,
       "created": "2026-10-20",
-      "links": []
+      "links": [],
+      "updated": "2026-10-20"
     },
     {
       "id": "W-1997",
@@ -22434,10 +22436,11 @@
       "id": "W-2005",
       "title": "Session criterion (W-1996/W-1988): before freezing, include arm gam-session-v3-edpbase (if built and hashed; else freeze without it, vp withdraws it) and the vp keep/kill roles K1-K5 (company/decisions/2026-10-20-vp-personalization-session-base.md §4: vs default-order gate, per-persona harm veto, K3 attribution contrasts, served subject-mix guardrail, reasonCarriesMove copy gate), or record why one cannot be measured. Statistics stay eval's",
       "owner": "personalization-eval",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-20",
-      "links": []
+      "links": [],
+      "updated": "2026-10-20"
     },
     {
       "id": "W-2006",
@@ -22487,6 +22490,33 @@
       "created": "2026-10-20",
       "links": [],
       "updated": "2026-10-20"
+    },
+    {
+      "id": "W-2011",
+      "title": "EDD-016 §4.4 says the served session recomposes the next K on every reveal or recall; the session criterion scores the build's serving mode compose-session-serve-in-order (sessionSize 5, recompose after 5 served or at session end), and a result binds only that mode (company/personalization/eval/2026-10-20-session-criterion.md §1.3). Align the EDD's glue with the scored mode, or name the recompose-on-reveal glue as a separate candidate needing its own readout row",
+      "owner": "principal-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-20",
+      "links": []
+    },
+    {
+      "id": "W-2012",
+      "title": "W-1994 single-file freeze: to serve on the session readout, the equivalence test must meet the bridge in company/personalization/eval/2026-10-20-session-criterion.md §6 (byte-identical compositions vs composeSessionFor on the variant's own episodes, every persona, seeds 70001-70010, interleave:base and slots-high, at a commit where the five pinned files and the catalogue hash still match); eval then records the file's sha256 in a readout addendum",
+      "owner": "learner-model-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-20",
+      "links": []
+    },
+    {
+      "id": "W-2013",
+      "title": "Session readout (W-1996/W-2005): after the freeze commit, write and hash the tables formatter, then run runS.mjs in the three named parts at S=2000 (about 10-13 h at --jobs=4) and merge; readout to vp-personalization unedited (company/personalization/eval/2026-10-20-session-criterion.md §8)",
+      "owner": "personalization-eval",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-20",
+      "links": []
     }
   ]
 }

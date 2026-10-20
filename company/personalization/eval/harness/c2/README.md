@@ -38,3 +38,7 @@ node company/personalization/eval/harness/c2/run2.mjs --seeds=<S> --candidate=<P
 5. Spot check: `harness2.mjs episode` prints a hash that must match across processes and worktrees.
 
 Every random draw is a hash of a string key. No clock, `Math.random` or environment is read by the judge or the reference arms.
+
+## W-1996 (2026-10-20, run eval-s1-1020): the GAM version pin on the live tree
+
+Since model-v0.3.0, `MODEL_VERSION` names the session composer's line and `PHASE_A_MODEL_VERSION` names the phase A GAM. `harness2.mjs` `gamModelVersion()` returns `PHASE_A_MODEL_VERSION` (or `MODEL_VERSION` at commits before it existed); `gamFingerprint()`, run2.mjs's check and tests2's pin read it. The string is the same (model-v0.2.2), so the fingerprint in `gam-v0.2.2.sha256` is unchanged, and run2.mjs now checks the fingerprint too. Readout 2 reproduces at b89f259 as before. Criterion 3's C3-ID2 and 3b's 3b-ID0 hash these files against readouts 2 and 3; on the live tree they already failed (model.ts, catalogue) and now also list harness2.mjs and run2.mjs. Details: company/personalization/eval/2026-10-20-session-criterion.md §10.

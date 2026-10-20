@@ -121,3 +121,20 @@ Objections (travel with this ruling):
 - **O11 The coarse EDP spread (scientist's sensitivity).** EDP's base takes five values. Leaving out the one .20 widget gives β ≈ .011, and v3's spread gives .037. **Answer:** §2.3 names `makeModulesV1` and the spread over its need widgets, and that spread is .15. Dropping a widget would be a choice made after seeing the number. The .011 to .037 range is reported as context only.
 
 Board: W-2010 done. The stale hq-cli comment is W-2009 (learner-model-engineer), not mine.
+
+## 9. Addendum (W-2005 read-back, 2026-10-20, run vp-k2read-1020): I accept eval's statistics for K2, K4 and K5
+
+Read: company/personalization/eval/2026-10-20-session-criterion.md §3 (K1 to K5) and §7, in the draft about to freeze. I read no result: none exists. I did not edit the criterion, because eval owns it.
+
+**Ruling: accept K2/K4/K5 as written in the criterion.**
+
+- **K2.** "Upper 95% end below 0" is read as a simultaneous 95% interval (Bonferroni) within two families: the base cell (6 intervals) and the one-at-a-time cells (156). The unadjusted clear losses are printed beside it. I checked eval's arithmetic. If no persona truly differs, unadjusted tests give a false veto with probability 1 − .975^6 ≈ 14% in the base cell and 1 − .975^156 ≈ 98% across the sweep. A veto that fires on almost any variant tells me nothing. The adjustment also costs little protection. K1 already counts a harm of 1 point or more in any of the 27 cells, unadjusted, and K1 PASS needs every cell. So K2's adjustment only affects losses smaller than 1 point. §4 left the statistics to eval, and I said in O4 that I accept them as frozen.
+- **K4.** Eval's measure is the share of served new cards outside the home domain, where home is set from the visible pre-history. It reads the served order and never the model's beliefs, so it is non-circular, as §4 asked. The test is non-inferiority: the lower end must be ≥ −0.05 per persona, in the base cell and in every one-at-a-time cell, unadjusted. This puts the burden on the variant, which is what §3 "Anti-bubble" requires. The 5-point margin equals G1's.
+- **K5.** Eval pools over the base cell and every one-at-a-time cell. That is stricter than my "per variant" wording, and I accept it. NO-MOVES is never read as COPY-CLEAR. Near-ties are context only, which fits §7 O8.
+
+Objections (they travel with this ruling):
+
+- **O12 The base-cell adjustment is weaker than the reading I had in mind (mine).** For a variant that passes K1, at least 4 personas gain. So a literal base-cell veto would fire falsely only on the other personas, about 2.5% for each null persona, not 14%. Bonferroni at six intervals (about z 2.64 against 1.96) can miss a small but real loss for one persona in the base cell. **Answer:** accepted as the cost of one statistic, fixed before any result. The family-wise rate is 5% at most, and lower in practice because the personas share a seed list. I will not use the unadjusted column to kill a variant after the results. That would be a contrast chosen post hoc (§4, O4). Any serving brief that names a variant must list every unadjusted base-cell clear loss beside it as a known risk. head-of-product will read those losses for copy and default-order impact. This is a disclosure duty. It changes no keep or kill.
+- **O13 K4's home is fixed at the start of the episode (mine).** If the order narrows towards a domain the learner starts favouring during the episode, the measure does not see it as a narrowing of the home. **Answer:** with two pilot domains, any narrowing moves the outside-home share either way, and G1 (completed top-domain share) still binds inside K1. I accept it for this readout. Once a catalogue with more than two domains is scored, the home definition must be revisited, by eval and before results.
+
+Nothing else in §1 to §8 changes. K1, K3, the K3c tie rule and the one-variant limit stand.

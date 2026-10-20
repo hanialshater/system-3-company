@@ -37,9 +37,13 @@ export { catalog };
 // The GAM as frozen (pre-commitment 1). The hash is of model-v0.2.2's COMPOSER and curves; a test pins it.
 // ------------------------------------------------------------------------------------------------
 export const GAM_FROZEN_VERSION = "model-v0.2.2";
+// W-1996 (2026-10-20): since model-v0.3.0 MODEL_VERSION names the session composer's line and PHASE_A_MODEL_VERSION names
+// the phase A GAM (model.ts). The GAM pin reads the latter; at commits before it existed, MODEL_VERSION was the GAM's.
+// Same string, so the fingerprint is unchanged (gam-v0.2.2.sha256); the fingerprint, not the label, is the real pin.
+export const gamModelVersion = () => M.PHASE_A_MODEL_VERSION ?? M.MODEL_VERSION;
 export function gamFingerprint() {
   const v = M.inspect ? M.inspect() : null;
-  return sha(JSON.stringify({ version: M.MODEL_VERSION, composer: M.COMPOSER, curves: v ? v.curves : null }));
+  return sha(JSON.stringify({ version: gamModelVersion(), composer: M.COMPOSER, curves: v ? v.curves : null }));
 }
 
 // ------------------------------------------------------------------------------------------------
