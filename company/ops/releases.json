@@ -896,6 +896,41 @@
           "Existing unverified claims and draft/review publication statuses remain."
         ]
       }
+    },
+    {
+      "version": "r15",
+      "date": "2026-10-20T19:22:07.000Z",
+      "commit": "7fbfe1be2112d221c4e95cee6f72db9c55cd0b64",
+      "target": "production",
+      "approved_by": {
+        "who": "founder",
+        "record": "company/decisions/2026-10-20-founder-probability-layout-deploy.md"
+      },
+      "summary": "Lessons open on the question; 79 probability questions rewritten as scenes and 65 lessons' copy made plainer.",
+      "added": {
+        "features": [
+          "Lesson layout: the subtitle is hidden once a lesson is open, the question and options sit above the stage, and the explore bar is slimmer."
+        ],
+        "lessons": {
+          "published": {
+            "count": 0,
+            "slugs": []
+          },
+          "in_review": {
+            "count": 0,
+            "slugs": []
+          }
+        },
+        "fixes": [
+          "Probability: titles that gave away the answer, hooks that asked a different question, wink hooks, closing slogans and builder words removed in 65 lessons.",
+          "Probability: every predict question rewritten as a concrete second-person scene with its conditions stated."
+        ],
+        "known_issues": [
+          "Edited lessons' learner-review and QA records are for an older version (W-1990).",
+          "Reveal still shrinks the stage on long reveals (W-1991).",
+          "No local production build; layout QA ran on 42 sampled lessons against a dev server."
+        ]
+      }
     }
   ],
   "historical_deployments": [
