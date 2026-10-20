@@ -8,9 +8,9 @@ import { cleanStored } from '@/lib/server/personalization/settings';
 import { accountFeedPage } from '@/lib/server/personalization/account-feed';
 import type { EditorialProfile } from '@/lib/preference-match';
 import dataset from '@/data/editorial-profiles.account.json';
-export const dynamic = 'force-dynamic';
-export const runtime='nodejs';
-export const preferredRegion='fra1';
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+export const preferredRegion = "fra1";
 export async function GET(req: Request) {
     const deps = settingsDeps();
     if (!deps)

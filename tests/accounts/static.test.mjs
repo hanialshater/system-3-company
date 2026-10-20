@@ -291,19 +291,19 @@ test("S18. W-1913 privacy condition 1 (as amended by PC10): no fetch or sendBeac
     DEVICE_KEY: ["src/lib/account-client.ts"],
     boundHeaders: ["src/lib/account-client.ts"],
     ACCOUNT_HEADER: ["src/lib/account-client.ts", "src/lib/server/http.ts"],
-    accountTag: ["src/lib/server/account-api.ts", "src/lib/server/http.ts", "src/lib/server/personalization/settings-handler.ts", "src/lib/server/personalization/settings-wiring.ts"],
+    accountTag: ["src/app/api/account/feed/route.ts", "src/components/Feed.tsx", "src/components/account/AccountFeedController.tsx", "src/components/account/PreferenceEditor.tsx", "src/components/account/preferences-client.ts", "src/lib/server/account-api.ts", "src/lib/server/http.ts", "src/lib/server/personalization/account-feed-handler.ts", "src/lib/server/personalization/account-feed.ts", "src/lib/server/personalization/settings-handler.ts", "src/lib/server/personalization/settings-wiring.ts"],
     sameAccountHeader: ["src/lib/server/account-api.ts", "src/lib/server/http.ts", "src/lib/server/personalization/settings-handler.ts"],
     "s3c:account-device:v1": ["src/lib/account-client.ts", "src/lib/server/http.ts"],
-    "x-s3c-account": ["src/lib/account-client.ts", "src/lib/server/http.ts"],
+    "x-s3c-account": ["src/lib/account-client.ts", "src/lib/server/http.ts", "src/components/account/preferences-client.ts"],
   };
   for (const [name, files] of Object.entries(homes)) {
     const found = SRC.filter((f) => code.get(f).includes(name)).map(rel).sort();
     assert.deepEqual(found, [...files].sort(), `${name} appears only in its home files`);
   }
-  // Of the files that can hold a /me answer (account-client.ts and its importers), only AccountView reads `.tag`.
+  // Exact account-view key, bound preference bridge and ephemeral controller bookmark use tags; no telemetry reader is admitted.
   const holders = SRC.filter((f) => rel(f) === CLIENT_FILE || /from\s+["']@\/lib\/account-client["']|import\(["']@\/lib\/account-client["']\)/.test(read(f)));
   const tagUsers = holders.filter((f) => /\.tag\b/.test(code.get(f))).map(rel).sort();
-  assert.deepEqual(tagUsers, ["src/components/account/AccountView.tsx", "src/lib/account-client.ts"]);
+  assert.deepEqual(tagUsers, ["src/components/account/AccountFeedController.tsx", "src/components/account/AccountView.tsx", "src/components/account/preferences-client.ts", "src/lib/account-client.ts"]);
   const viewTag = [...code.get(path.join(ROOT, "src/components/account/AccountView.tsx")).matchAll(/\S*\.tag\b\S?/g)].map((m) => m[0]);
   assert.deepEqual(viewTag, ["key={me.tag}"], "AccountView uses the tag only as a React key");
   // 4. The client and server name the same header, and the server binds exactly the routes the exception allows.

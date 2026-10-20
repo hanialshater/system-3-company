@@ -23,7 +23,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
-import { fileURLToPath, pathToFileURL } from "node:url";
+import { fileURLToPath } from "node:url";
 
 // AMD-013: the readiness policy (verdicts, versions, holds, review order, and QA) lives in tools/lib/readiness.mjs,
 // which tools/company.mjs launchGates() also calls. These names are re-exported so tests/publish/ is unchanged.
@@ -108,4 +108,16 @@ function main() {
     }
 }
 
-if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) main();
+// Node resolves the module filename through symlinks, while argv can retain an alias
+// (notably /var versus /private/var on macOS). Compare filesystem identities so
+// direct execution still runs, while imports and unavailable argv stay inert.
+function isDirectExecution() {
+  if (!process.argv[1]) return false;
+  try {
+    return fs.realpathSync(fileURLToPath(import.meta.url)) === fs.realpathSync(path.resolve(process.argv[1]));
+  } catch {
+    return false;
+  }
+}
+
+if (isDirectExecution()) main();
