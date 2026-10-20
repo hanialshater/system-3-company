@@ -31,8 +31,13 @@
  * serving code must never read them. self-check.mjs fails if this file mentions that module.
  */
 
-export const MODEL_VERSION = "model-v0.4.0" as const;
+export const MODEL_VERSION = "model-v0.4.1" as const;
 /**
+ * model-v0.4.1 changes four session numbers only (W-2000, applied-scientist-personalization; reasons in COMPOSER_SESSION.why,
+ * the edit rows and company/personalization/policies/gam-session-params.md): addrUse .35 -> .45, attentionCost .1 -> .06,
+ * slotDecay .02 -> .01, and the v3 synergies build.onCov +.15 -> +.28, repair.onCov +.15 -> +.35. Each is scaled from
+ * EDP's own reference numbers (orchestrator-inline.js makeModulesV1/EDITS_V3, edp-engine.js cost), not from any result.
+ * Nothing a phase A policy reads moved. The algorithm is unchanged (no sandbox-reference.mjs or port change).
  * model-v0.4.0 changes the session composer only (W-1999, learner-model-engineer; numbers stay applied-scientist-personalization's):
  * SessionCoefficients gains `addrUse` (v1 .35, a guess), the amount of relational addr a pick consumes: remaining falls
  * and coverage rises by addrUse x addr, while the scoring addr is unchanged; the attention budget's gain is EDP's own
@@ -592,9 +597,9 @@ export const COMPOSER_SESSION = {
     base: 1.0,
     onRem: { repair: 0.5, build: 0.4, breadth: 0.35, stretch: 0.3 },
     onCov: { repair: -0.2, build: -0.1, breadth: -0.3, stretch: -0.3 },
-    slotDecay: 0.02,
-    attentionCost: 0.1,
-    addrUse: 0.35,
+    slotDecay: 0.01,
+    attentionCost: 0.06,
+    addrUse: 0.45,
   } satisfies SessionCoefficients as SessionCoefficients,
   why: {
     "base": "guess: same as COMPOSER.weights.defaultRank (1.0), so the default order is the base and a departure must earn its place",
@@ -606,9 +611,9 @@ export const COMPOSER_SESSION = {
     "onCov.build": "guess: mildest overlap: build addr is fixed from history for the session, so a second build card is another successor of a recalled concept (a parallel frontier step), not a repeat; the penalty is small",
     "onCov.breadth": "guess: strong overlap: one card from another domain meets breadth for a session; more is a switch, not breadth",
     "onCov.stretch": "guess: strong overlap: one stretch card per session (O8: stretch before readiness is the riskiest move)",
-    "slotDecay": "guess: a departure needs +.02 more per slot (+.08 by slot 5), because later slots rest on assumed coverage, not evidence (O2). Kept at model-v0.3.1: it is about 3x EDP's per-slot differential relative to the need terms, on purpose (O2), and with v3's +.15 synergies it is what ends a chain: a pure chain card clears the bar only while .15 - .1 - .02*slot > 0, i.e. up to session slot 2 (gam-session-params.md). model-v0.4.0 note (learner-model-engineer, W-1999): that arithmetic assumed coverage 1 after one addr-1 pick; coverage now rises by addrUse x addr (.35), so a pure chain card's cov term is .15 x .35 = .05 and the chain bound needs re-review (applied-scientist-personalization)",
-    "attentionCost": "guess: .1 equals COMPOSER.moveThreshold, so at slot 0 with nothing covered the move bar is phase A's; EDP's cost is .06. From model-v0.4.0 the budget compares it with EDP's gain (need mass the card would resolve, sum of min(remaining, addrUse x addr)), so it is a real stopping rule: a card resolving .1 or less of any need cannot depart however it scores",
-    "addrUse": "guess: .35, applied-scientist-personalization's estimate (gam-session-params.md, Routed 1): our relational addr is 1 or .5 against need medians .23 to .46, so a pick at addr 1 used to zero 97% of the needs it touched; EDP's addr/need ratio is about .5 to 1 (one widget uses about half a need). At .35 one addr-1 pick leaves a median repair (.41) or build (.46) need with .06 to .11 left, so a need can draw a second card only when it is high (above about .45 at attentionCost .1), as in EDP",
+    "slotDecay": "guess: .01 (model-v0.4.1; was .02). A departure needs +.01 more per slot (+.04 by session slot 4), because later slots rest on assumed coverage, not evidence (O2). Scaled from EDP: its need widgets' slot_decay averages .058 and its default widgets' .035, a .023 per-slot differential against a median primary on_rem of 1.75, i.e. .013 per unit of need mass; ours in the same units is slotDecay / onRem (mean .39), so EDP's own differential would be .005. .01 keeps a 2x O2 premium (it was 4x). It no longer ends a v3 chain by itself: with the synergy at .7 x onRem a follow-on card clears the score bar through slot 4, and EDP's own stopping rule ends the chain, the attention budget (the follow-on must still resolve more than attentionCost of need mass; gam-session-params.md)",
+    "attentionCost": "guess: .06 (model-v0.4.1; was .1), EDP's cost (edp-engine.js compose, cost=.06). From model-v0.4.0 the budget compares it with EDP's gain (need mass the card would resolve, sum of min(remaining, addrUse x addr)), which is in EDP's units, so EDP's number applies directly: a card resolving .06 or less of any need cannot depart however it scores (a pure synergy card on an exhausted need: EDP's 'weak departure'). The same number is the score cost of a departure; in need-mass units that bar is .06 / onRem (mean .39) = .15, close to EDP's own bar (default widgets' base .30-.45 over need widgets' .05-.20, about .3, over a median on_rem of 1.75 = .17). Cost: at slot 0 the move bar is no longer phase A's COMPOSER.moveThreshold .1, so v1 is not gam plus session machinery only; the founder's goal is EDP's behaviour (company/decisions/2026-10-20-founder-edp-faithful-personalization.md)",
+    "addrUse": "guess: .45 (model-v0.4.1; was .35). EDP's widget addr is need mass: its 18 need widgets' primary addr has median .45 and their secondary addr median .20. Our relational addr is 1 for a primary match and .5 for a partial one, so addrUse .45 maps 1 to .45 and .5 to .225, EDP's two medians. A median repair (.41) or build (.46) need is then about used up by one primary pick, as in EDP (a .5 widget on a .5 need), and a high need (p90 .6 to .7) keeps .15 to .25, enough for a follow-on card to pass the budget. Both state vectors move by addrUse x addr (build note §8.2)",
   } as Record<string, string>,
   /**
    * v3 = applyEdits(v1, edits): EDP's EDITS_V3 mechanism. Short on purpose; every reason is a guess
@@ -622,8 +627,9 @@ export const COMPOSER_SESSION = {
    */
   edits: [
     // model-v0.3.1 (applied-scientist-personalization, gam-session-params.md): build .3 -> .15; the breadth -.5 row removed.
-    ["build", "onCov", -0.1, 0.15, "guess: complementarity, EDP's chain synergies: a second successor of a recalled concept after the first (addr is fixed from history, so it is a parallel frontier step, not a successor of the first card). .15, not .3: as in EDP the synergy ranks below a typical unaddressed need's primary pull (build median .4 x .46 = .18, repair .5 x .41 = .21) and above the move bar (.1 + .02 x slot) only up to slot 2. model-v0.4.0 note (learner-model-engineer, W-1999): written for coverage 1 after one pick; coverage is now addrUse x addr (.35), so the synergy term is .15 x .35 x addr, for re-review"],
-    ["repair", "onCov", -0.2, 0.15, "guess: complementarity: a second lesson on a missed concept's prerequisite chain reinforces the first (repair is rarely one card). Kept at model-v0.3.1: same scale rule as build"],
+    // model-v0.4.1 (applied-scientist-personalization, W-2000): build +.15 -> +.28, repair +.15 -> +.35 (.71 x onRem, EDP's median synergy ratio).
+    ["build", "onCov", -0.1, 0.28, "guess: complementarity, EDP's chain synergies: a second successor of a recalled concept after the first (addr is fixed from history, so it is a parallel frontier step, not a successor of the first card). .28 (model-v0.4.1; was .15) = .71 x onRem.build .4: EDP's v3 synergy widgets carry on_cov at .50 to 1.43 of their own on_rem, median .71 (EDITS_V3: easy_returns_promise, style_bridge, occasion_lookbook, material_deep_dive, price_history, wishlist_save, size_guide, recently_viewed). After one addr-1 build pick (coverage .45) the term is .28 x .45 = .13: below a typical unaddressed need's primary pull (build .4 x .46 = .18, repair .5 x .41 = .21), so other needs still come first as in EDP, and above the slot-4 move bar (.06 + .01 x 4 = .10). The chain then ends where EDP's does, at the attention budget: the follow-on must still resolve more than .06 of need mass"],
+    ["repair", "onCov", -0.2, 0.35, "guess: complementarity: a second lesson on a missed concept's prerequisite chain reinforces the first (repair is rarely one card). .35 (model-v0.4.1; was .15) = .71 x onRem.repair .5, the same EDP scale rule as build: .35 x .45 = .16 after one addr-1 repair pick, below a typical unaddressed primary pull and above the move bar to slot 4; the budget ends the chain"],
   ] as SessionEdit[],
   /** Ablation: v1 with every cov:* term scored 0 (still shown in the trace as 0), so on_cov's effect can be read. */
   ablations: { "no-cov": ["cov:repair", "cov:build", "cov:breadth", "cov:stretch"] as SessionTermName[] },
