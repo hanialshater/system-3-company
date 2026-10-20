@@ -28,7 +28,7 @@ export default function AccountFeedController({ onChange, onChecking, getBookmar
     useEffect(() => {
         let generation = 0, live = true;
         let controller: AbortController | null = null;
-        async function refresh() {
+        async function refresh(fresh=true) {
             const n = ++generation;
             controller?.abort();
             controller = new AbortController();
@@ -36,7 +36,7 @@ export default function AccountFeedController({ onChange, onChecking, getBookmar
             checking.current(true);
             const bookmark=bookmarkRef.current();
             try {
-                const prefs = await readAccountPreferences();
+                const prefs = await readAccountPreferences(fresh);
                 if (!live || n !== generation)
                     return;
                 if (!prefs || prefs.settings.personalizationOn !== true || matchingWithdrawn()) {
@@ -85,7 +85,7 @@ export default function AccountFeedController({ onChange, onChecking, getBookmar
             void accountState().then(()=>{if(live&&n===generation)historyReady.current();});
         };
         const defaultFeed=()=>{withdrawPreferenceMatching();withdraw();};
-        void refresh();
+        void refresh(false);
         window.addEventListener('focus', focus);
         document.addEventListener('visibilitychange', focus);
         window.addEventListener('s3c:account-session-reset', sessionReset);

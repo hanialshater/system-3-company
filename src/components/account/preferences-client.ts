@@ -20,8 +20,13 @@ function forgetPreferenceIdentity(){boundAccountTag=null;identityRead++;invalida
 onAccountChanged(forgetPreferenceIdentity);
 if (typeof window !== "undefined")
     window.addEventListener("s3c:account-session-reset", () => { localWithdrawal = false; forgetPreferenceIdentity(); });
-export async function readAccountPreferences(): Promise<PreferenceRead | null> {
+export async function readAccountPreferences(fresh=true): Promise<PreferenceRead | null> {
  const request=++identityRead,generation=epoch;
+ // Initial mount honors cached accounts-off 404. A non-null probe never admits a cached identity.
+ if(!fresh){
+  const probe=await accountMe();
+  if(request!==identityRead||generation!==epoch||probe===null)return null;
+ }
  const me=await accountMe(true);
  if(request!==identityRead||generation!==epoch)return null;
  const tag=me?.signedIn?me.tag:null;
