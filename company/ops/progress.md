@@ -1,3 +1,13 @@
+## 2026-10-20 · chief-of-staff (for System 3 Meta) · Meta prototype: tools, toy org, simulator, three iterations
+
+Founder: "experiment with these tools create a toy org, simulate building and observe and iterate on performance. This is meta company, current company is not affected". Built in company/sibling/system3-meta/prototype/ (plain Node, no dependencies; nothing in the company imports it; no company tool, gate or data changed):
+- tools: lib.mjs (engine with flows/orders/approvals, mailbox, rooms, org, rituals);
+- toy org: toy.mjs;
+- simulator: sim.mjs and run.mjs;
+- tests: tests/tools.test.mjs, 12/12.
+
+Predictions were committed before each run (PREDICTIONS.md, ITERATIONS.md). Iteration 1, engine vs a model of the current design: tokens/item 61%, lead p50 51%, founder interactions/item 15%; 0 duplicates, 0 violations, every crash recovered within one lease. Serial dispatch is the biggest single cost. P8 (checker bottleneck) was wrong: founder approval waits were the bottleneck. Iteration 2: the measurement fix closes the gap to 0%; 5 sittings; a staffing threshold that fires. Together: p50 3.6 h vs 10.0 h for the current design. Iteration 3: code-first test1 cut escaped defects 38% but not rework (I3-1 wrong): catching sooner still rebuilds. Two tool bugs found by the simulator and fixed with tests. Confidence: high in the tools' invariants under faults; low in the absolute numbers (assumed parameters, simulated workers; see "Limits" in ITERATIONS.md). Next: calibrate with EXP-009/pilot data; iteration 4 (builder runs the lint before leave); a live 2-3 agent run.
+
 ## 2026-10-20 · tools-lead · W-1998: EXP-009 reconciliation script built and run
 - **Changed:** new `tools/reconcile.mjs` (read-only, dependency-free) and 12 fixture tests in `tests/reconcile/` (`node --test tests/reconcile/*.test.mjs`, 12/12). First run saved to `company/experiments/EXP-009/run-2026-10-20.json`; how each source is extracted, the matching rules and the limits are in `company/experiments/EXP-009/build-notes.md`. Tier-1 self-check: `company/engineering/readiness/2026-10-20-reconcile-exp009.md`. The checkout was a shallow clone; I ran a read-only `git fetch --unshallow origin` so that commits and meta.json history cover the window.
 - **Believe:** the script computes every number, and its output is byte-identical across reruns on the same HEAD (tested). I am fairly sure the rules do what build-notes says. I am less sure the independent list is complete: the event log has 314 runs on 10-15/10-16 that no item names. I did not write EXP-009's `## Result`.

@@ -102,3 +102,32 @@ Stage waits (h): 2b approval 2.36 → 1.03, ship 0.64 → 0.32 (smaller batches 
 | I3-1 | rework loops/item fall by ≥ 15% (from 0.58) | fall by < 5% |
 | I3-2 | tokens/item fall by ≥ 4% (from 466k) | fall by < 1% or rise |
 | I3-3 | escaped defects/item do not rise (≤ 0.055) | > 0.065 |
+
+## Iteration 3: results (20 seeds)
+
+| arm | k tok/item | lead p50 h | lead p90 h | escaped/item | rework/item | check wait h | WBR adds |
+|---|---|---|---|---|---|---|---|
+| 2d all three | 466 | 3.6 | 5.3 | 0.055 | 0.58 | 0.30 | checker 1.0, builder 1.4, release 0.1 |
+| 3a code-first test1 | 453 | 3.9 | 5.4 | 0.034 | 0.58 | 0.40 | builder 1.4, checker 0.8 |
+
+| # | Prediction | Result | Verdict |
+|---|---|---|---|
+| I3-1 | rework loops/item fall ≥ 15% | 0.58 → 0.58 | **wrong** |
+| I3-2 | tokens/item fall ≥ 4% | −2.8% | missed (not wrong: bound 1%) |
+| I3-3 | escaped defects do not rise | 0.055 → 0.034 (−38%) | right |
+
+**What it shows:** moving checks into code did not reduce rework. It moved rework earlier: a defect caught by test1 still sends the item back for a rebuild, which is the expensive run. What it bought was quality: 38% fewer defects reached the learner, because the human-style check now sees fewer defects and misses fewer of them. Tokens fell only by the checker runs saved. Lead time rose 0.3 h, within run-to-run variation from staffing: the WBR added fewer checkers because the check queue looked shorter at review time. **To cut rework, the defect has to be prevented at build time, not caught sooner:** for example, the builder runs the lint before leaving the room. That is the iteration-4 candidate.
+
+## Limits of this simulation (read before using any number)
+
+- Every [a] parameter in `sim.mjs` is an assumption. The [m] values come from today's metrics, which EXP-009 shows are incomplete. The absolute numbers mean little; the direction and the ranking of mechanisms are the result.
+- The `current` arm is a model of today's design (serial dispatch, prose rules, manual bookkeeping, interruptions), not the real company.
+- Workers are not agents: no misunderstanding, no context limit, no model variance, no brief quality. Idle staff cost nothing, which makes adding staff look free.
+- One toy org (2 lanes, 4 builders, 1 checker, 1 release role), one flow, 14 days, 20 seeds.
+- What it does establish: the prototype tools hold their invariants under crashes, duplicates and illegal requests (0 duplicate runs, 0 violations, every crash recovered within one lease, across 180 runs of every arm), and two tool bugs were found and fixed before any real use.
+
+## Next
+
+1. Calibrate: replace [a] parameters with pilot data once EXP-009's fixes land. Dispatch time and tokens, bookkeeping tokens and approval waits are the ones that drive the result.
+2. Iteration 4: the builder runs test1 inside its own room before `leave` (prevention), against 3a.
+3. A live run: the same tools with 2-3 real agents on a bounded batch (the Meta roadmap's first pilot), where the four fault checks are the S5/S9 tests above, done by real sessions.

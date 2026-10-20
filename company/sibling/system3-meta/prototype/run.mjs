@@ -37,9 +37,14 @@ export const ITERATION2 = {
   "2d all three": { config: DEFAULT_CONFIG, params: { recordLostUsage: true, sittings: FIVE, iterate: true, wbrWaitMin: 30 } },
 };
 
+export const ITERATION3 = {
+  "2d all three": ITERATION2["2d all three"],
+  "3a code-first test1": { config: DEFAULT_CONFIG, params: { ...ITERATION2["2d all three"].params, mechShare: 0.7 } },
+};
+
 if (import.meta.url === `file://${process.argv[1]}`) {
   const it = arg("iteration", "1");
-  const res = runArms(it === "2" ? ITERATION2 : ARMS);
+  const res = runArms(it === "3" ? ITERATION3 : it === "2" ? ITERATION2 : ARMS);
   if (process.argv.includes("--json")) console.log(JSON.stringify(res, null, 2));
   else {
     const cols = [["shipped", 0], ["tokensPerShipped", -3, "k tok/item"], ["leadP50h", 1], ["leadP90h", 1], ["founderPerShipped", 2], ["escapedPerShipped", 3], ["reworkPerShipped", 2], ["measureError", 2, "meas err"], ["dupRuns", 1], ["violations", 1], ["unrecovered", 1], ["recoverMeanMin", 0, "recover min"], ["adds", null]];
