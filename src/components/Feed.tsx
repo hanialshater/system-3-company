@@ -2,7 +2,8 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { PublicMeta } from "@/lib/trust";
-import { feedSequence } from '@/lib/feed-sequence';
+import { quarantinedSlots, canResumeInteraction } from '@/lib/feed-quarantine';
+import { feedSequence, type FeedSlot } from '@/lib/feed-sequence';
 import type { FeedItem, FeedPage } from "@/lib/feed-types";
 import { dayMsFromLocation, loadProgress, revisitDue, track, updateProgress } from "@/kit/progress";
 import { DemoCard, type DomainInfo } from "./DemoCard";
@@ -42,22 +43,48 @@ export function Feed({ first, counts, domains }: { first: FeedPage; counts: Reco
   const personal = useRef<AccountFeedPage | null>(null);
   const checkingRef=useRef(false);
   const [checkingPreferences,setCheckingPreferences]=useState(false);
-  const checkPreferences=useCallback((checking:boolean)=>{checkingRef.current=checking;setCheckingPreferences(checking);if(checking){requestGeneration.current++;inflight.current.clear();setLists(prev=>Object.fromEntries(Object.entries(prev).map(([key,value])=>[key,{...value,loading:false}])));}},[]);
   const [personalPage, setPersonalPage] = useState<AccountFeedPage | null>(null);
   const [pendingPersonal, setPendingPersonal] = useState<AccountFeedPage | null>(null);
   const [refreshRequired, setRefreshRequired] = useState(false);
+  const activeSlotRef=useRef<FeedSlot|null>(null);
+  const checkpoint=useRef<{tag:string;snapshot:string}|null>(null);
+  const [continuationSlot,setContinuationSlot]=useState<FeedSlot|null>(null);
+  const [paused,setPaused]=useState(false);
+  const [feedSession,setFeedSession]=useState(0);
   const [reasons, setReasons] = useState<Record<string,string>>({});
   const applyPersonal = useCallback((page:AccountFeedPage|null) => {
     if(page&&activeRef.current===0)setRevisitFrom(1);
     ++requestGeneration.current;inflight.current.clear();personal.current=page;setPersonalPage(page);setReasons(page?.reasons??{});setPendingPersonal(null);setRefreshRequired(false);
     setLists(prev=>({...prev,all:{items:page?.items??first.items,next:page?page.next:first.next,loading:false,failed:false}}));
   },[first]);
+  const suspendPersonal=useCallback(()=>{
+    const old=personal.current;
+    if(!old)return;
+    const slot=activeRef.current>0?activeSlotRef.current:null;
+    checkpoint.current=slot?{tag:old.accountTag,snapshot:old.snapshot}:null;
+    setContinuationSlot(slot);setPaused(!!slot);applyPersonal(null);
+    if(slot){activeRef.current=1;setActive(1);requestAnimationFrame(()=>scroller.current?.scrollTo({top:scroller.current.clientHeight}));}
+  },[applyPersonal]);
+  const checkPreferences=useCallback((checking:boolean)=>{
+    checkingRef.current=checking;setCheckingPreferences(checking);
+    if(checking){suspendPersonal();requestGeneration.current++;inflight.current.clear();setLists(prev=>Object.fromEntries(Object.entries(prev).map(([key,value])=>[key,{...value,loading:false}])));}
+  },[suspendPersonal]);
   const receivePersonal = useCallback((page:AccountFeedPage|null)=>{
-    if(!page){if(personal.current){applyPersonal(null);setActive(0);scroller.current?.scrollTo({top:0});}setPendingPersonal(null);return;}
-    if(personal.current&&personal.current.accountTag!==page.accountTag){applyPersonal(null);setActive(0);activeRef.current=0;scroller.current?.scrollTo({top:0});}
+    if(!page){suspendPersonal();checkpoint.current=null;setPendingPersonal(null);return;}
+    if(checkpoint.current){
+      const same=canResumeInteraction(checkpoint.current,page.accountTag,page.snapshot);
+      checkpoint.current=null;
+      if(same){applyPersonal(page);setPaused(false);setRevisitFrom(2);return;}
+      setPendingPersonal(page);return;
+    }
+    if(paused){setPendingPersonal(page);return;}
     if(personal.current?.snapshot===page.snapshot&&personal.current.accountTag===page.accountTag)return;
     if(activeRef.current===0)applyPersonal(page);else setPendingPersonal(page);
-  },[applyPersonal]);
+  },[applyPersonal,suspendPersonal,paused]);
+  const restartFeed=(page:AccountFeedPage|null)=>{
+    if(!page)window.dispatchEvent(new Event('s3c:feed-default'));
+    checkpoint.current=null;setContinuationSlot(null);setPaused(false);setFeedSession(n=>n+1);activeRef.current=0;setActive(0);setFilter('all');applyPersonal(page);scroller.current?.scrollTo({top:0});
+  };
 
   const load = useCallback((f: string, page: number, replace: boolean) => {
     if(f==='all'&&checkingRef.current)return;
@@ -67,14 +94,14 @@ export function Feed({ first, counts, domains }: { first: FeedPage; counts: Reco
     if (inflight.current.has(key)) return;
     inflight.current.add(key);
     setLists((prev) => ({ ...prev, [f]: { ...(prev[f] ?? { items: [], next: page }), loading: true, failed: false } }));
-    fetch(snapshot?`/api/account/feed?page=${page}&snapshot=${encodeURIComponent(snapshot.snapshot)}`:`/api/feed/${encodeURIComponent(f)}/${page}`,snapshot?{credentials:'same-origin',cache:'no-store'}:undefined)
+    fetch(snapshot?`/api/account/feed?page=${page}`:`/api/feed/${encodeURIComponent(f)}/${page}`,snapshot?{credentials:'same-origin',cache:'no-store',headers:{'x-s3c-feed-snapshot':snapshot.snapshot}}:undefined)
       .then((r) => {
-        if(snapshot&&!r.ok&&generation===requestGeneration.current){applyPersonal(null);setActive(0);scroller.current?.scrollTo({top:0});setRefreshRequired(true);}
+        if(snapshot&&!r.ok&&generation===requestGeneration.current){suspendPersonal();checkpoint.current=null;setRefreshRequired(true);}
         return r.ok ? (r.json() as Promise<FeedPage>) : Promise.reject(new Error(String(r.status)));
       })
       .then((p) => {
         if(generation!==requestGeneration.current)return;
-        if(snapshot){const result=p as AccountFeedPage;if(result.accountTag!==snapshot.accountTag||result.snapshot!==snapshot.snapshot||!result.matching){applyPersonal(null);setActive(0);scroller.current?.scrollTo({top:0});setRefreshRequired(true);return;}setReasons(prev=>({...prev,...result.reasons}));}
+        if(snapshot){const result=p as AccountFeedPage;if(result.accountTag!==snapshot.accountTag||result.snapshot!==snapshot.snapshot||!result.matching){suspendPersonal();checkpoint.current=null;setRefreshRequired(true);return;}setReasons(prev=>({...prev,...result.reasons}));}
         setLists((prev) => {
           const have = replace ? [] : (prev[f]?.items ?? []);
           const seen = new Set(have.map((i) => i.slug));
@@ -83,7 +110,7 @@ export function Feed({ first, counts, domains }: { first: FeedPage; counts: Reco
       })
       .catch(() => {if(generation!==requestGeneration.current)return;if(snapshot)setRefreshRequired(true);setLists((prev) => ({ ...prev, [f]: { ...(prev[f] ?? { items: [], next: page }), loading: false, failed: true } }));})
       .finally(() => inflight.current.delete(key));
-  }, [applyPersonal]);
+  }, [applyPersonal,suspendPersonal]);
 
   useEffect(() => {
     const progress = loadProgress();
@@ -105,7 +132,7 @@ export function Feed({ first, counts, domains }: { first: FeedPage; counts: Reco
         for (const m of metas) if (m && (m.status === "published" || m.status === "review")) shown.push(m);
       }
       if (!live || !shown.length) return;
-      setRevisitFrom(personal.current&&activeRef.current===0?1:activeRef.current + 2);
+      setRevisitFrom(personal.current?activeRef.current+1:activeRef.current + 2);
       setRevisits(shown.slice(0, MAX_REVISITS));
     })();
     return () => {
@@ -115,14 +142,20 @@ export function Feed({ first, counts, domains }: { first: FeedPage; counts: Reco
 
   const list = lists[filter] ?? { items: [], next: 0, loading: false, failed: false };
 
-  const items = useMemo(() => feedSequence(list.items,revisits,filter,revisitFrom,!!personalPage,list.next===null),[list,filter,revisits,revisitFrom,personalPage]);
+  const items = useMemo(() => {
+    if(paused&&continuationSlot)return quarantinedSlots(continuationSlot);
+    const normal=feedSequence(list.items,revisits,filter,Math.max(1,revisitFrom-(continuationSlot&&filter==='all'?1:0)),!!personalPage,list.next===null);
+    if(continuationSlot&&filter==='all')return [normal[0],continuationSlot,...normal.slice(1).filter(slot=>slot.key!==continuationSlot.key)];
+    return normal;
+  },[list,filter,revisits,revisitFrom,personalPage,paused,continuationSlot]);
+  activeSlotRef.current=items[active]?.kind!=='intro'?items[active]??null:null;
 
   // EDD-001 option 3: load the next page before the learner reaches the end of what is loaded.
   useEffect(() => {
     // After a failure, wait for the learner's tap (retry below): no automatic retry.
-    if (list.next !== null && !list.loading && !list.failed && active >= items.length - PREFETCH_CARDS && !checkingPreferences)
+    if (list.next !== null && !list.loading && !list.failed && active >= items.length - PREFETCH_CARDS && !checkingPreferences && !paused)
       load(filter, list.next, false);
-  }, [active, items.length, list.next, list.loading, list.failed, filter, load, checkingPreferences]);
+  }, [active, items.length, list.next, list.loading, list.failed, filter, load, checkingPreferences, paused]);
 
   // A subject's page 0 replaces the seed taken from "all"; later pages append.
   const retry = () => {
@@ -190,6 +223,7 @@ export function Feed({ first, counts, domains }: { first: FeedPage; counts: Reco
   }, [go]);
 
   const chooseFilter = (id: string) => {
+    if(paused)return;
     if (!lists[id]) {
       // Show at once what is already loaded (a prefix of that subject's order, see feedOrder), then
       // replace it with the subject's first page from the server.
@@ -237,22 +271,23 @@ export function Feed({ first, counts, domains }: { first: FeedPage; counts: Reco
         <button type="button" aria-label="Previous lesson" disabled={active === 0} onClick={() => go(-1)}>↑</button>
         <button type="button" aria-label="Next lesson" onClick={() => go(1)}>↓</button>
       </nav>
-      {(pendingPersonal||refreshRequired)&&<div role="status" style={{position:'fixed',bottom:12,left:12,zIndex:25,background:'var(--bg)',padding:12,borderRadius:12}}><button type="button" style={{minHeight:44}} onClick={()=>{activeRef.current=0;if(pendingPersonal)applyPersonal(pendingPersonal);else window.location.reload();setFilter('all');setActive(0);scroller.current?.scrollTo({top:0});}}>Refresh feed to apply your choices</button></div>}
+      {(pendingPersonal||refreshRequired)&&<div role="status" style={{position:'fixed',bottom:12,left:12,zIndex:25,background:'var(--bg)',padding:12,borderRadius:12}}><button type="button" style={{minHeight:44}} onClick={()=>{if(pendingPersonal)restartFeed(pendingPersonal);else restartFeed(null);}}>Refresh feed to apply your choices</button></div>}
+      {paused&&<div role="status" style={{position:'fixed',top:76,left:12,right:12,zIndex:26,background:'var(--bg)',padding:12,borderRadius:12}}><p>{checkingPreferences?'Checking your account. Your current lesson is paused.':'Your current lesson is paused; private feed choices are unavailable.'}</p><button type="button" style={{minHeight:44}} onClick={()=>restartFeed(null)}>Continue with default feed</button></div>}
       <div className="feed" ref={scroller} data-testid="feed">
         {items.map((it, i) => (
-          <section key={it.key} className="slot-screen" data-index={i} style={{position:"relative"}}>
+          <section key={`${feedSession}:${it.key}`} className="slot-screen" data-index={i} style={{position:"relative"}}>
             {it.kind === "intro" && <><IntroCard onStart={() => go(1)} count={counts[filter] ?? 0} /><div style={{position:'absolute',bottom:24,left:24,right:24}}>
               {checkingPreferences?<p>Checking saved choices…</p>:filter==='all'&&personalPage?<p>Based on your saved choices. <a href="/preferences">Edit preferences</a></p>:<p>Default order — not personalized. <a href="/preferences">Choose preferences</a></p>}
-              {(pendingPersonal||refreshRequired)&&<button type="button" onClick={()=>{activeRef.current=0;if(pendingPersonal)applyPersonal(pendingPersonal);else window.location.reload();setActive(0);scroller.current?.scrollTo({top:0});}}>Refresh feed to apply your choices</button>}
+              {(pendingPersonal||refreshRequired)&&<button type="button" onClick={()=>restartFeed(pendingPersonal)}>Refresh feed to apply your choices</button>}
             </div></>}
             {it.kind === "lesson" && (
-              <><DemoCard meta={it.meta} domain={domainById[it.meta.domain]} active={Math.abs(active - i) <= 1} />
-              {filter==='all'&&!checkingPreferences&&reasons[it.meta.slug]&&<details style={{position:'absolute',bottom:12,left:20,right:20,background:'var(--bg)',color:'var(--fg)',padding:8}}><summary>Why this pick?</summary><p>{reasons[it.meta.slug]}</p><a href="/preferences">Edit preferences</a></details>}</>
+              <div style={{display:"contents"}} inert={paused}><DemoCard meta={it.meta} domain={domainById[it.meta.domain]} active={Math.abs(active - i) <= 1} />
+              {filter==='all'&&!checkingPreferences&&reasons[it.meta.slug]&&<details style={{position:'absolute',bottom:12,left:20,right:20,background:'var(--bg)',color:'var(--fg)',padding:8}}><summary>Why this pick?</summary><p>{reasons[it.meta.slug]}</p><a href="/preferences">Edit preferences</a></details>}</div>
             )}
-            {it.kind === "revisit" && <RevisitCard meta={it.meta} domain={domainById[it.meta.domain]} />}
+            {it.kind === "revisit" && <div style={{display:"contents"}} inert={paused}><RevisitCard meta={it.meta} domain={domainById[it.meta.domain]} /></div>}
           </section>
         ))}
-        {list.next !== null && (
+        {!paused && list.next !== null && (
           <section className="slot-screen">
             <div className="card-shell center" aria-live="polite">
               {list.failed ? (
@@ -270,12 +305,12 @@ export function Feed({ first, counts, domains }: { first: FeedPage; counts: Reco
             </div>
           </section>
         )}
-        <section className="slot-screen end">
+        {!paused&&<section className="slot-screen end">
           <div className="card-shell center">
             <h2 className="card-title">That is everything for now.</h2>
             <p className="card-hook">Come back tomorrow: some of these will return as one-question revisits.</p>
           </div>
-        </section>
+        </section>}
       </div>
     </div>
   );

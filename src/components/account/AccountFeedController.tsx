@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useRef } from 'react';
 import type { FeedPage } from '@/lib/feed-types';
-import { readAccountPreferences, watchPreferences, matchingWithdrawn } from './preferences-client';
+import { readAccountPreferences, watchPreferences, matchingWithdrawn, withdrawPreferenceMatching } from './preferences-client';
 export type AccountFeedPage = FeedPage & {
     accountTag: string;
     snapshot: string;
@@ -58,16 +58,17 @@ export default function AccountFeedController({ onChange, onChecking }: {
                     checking.current(false);
             }
         }
-        const focus = () => { if (document.visibilityState === 'visible')
-            void refresh(); };
-        const withdraw = () => { ++generation; controller?.abort(); callback.current(null); checking.current(false); };
+        const focus=()=>{if(document.visibilityState==='visible')void refresh();};
+        const withdraw=()=>{++generation;controller?.abort();callback.current(null);checking.current(false);};
+        const defaultFeed=()=>{withdrawPreferenceMatching();withdraw();};
         void refresh();
         window.addEventListener('focus', focus);
         document.addEventListener('visibilitychange', focus);
         window.addEventListener('s3c:account-session-reset', withdraw);
         window.addEventListener('s3c:preferences-withdraw', withdraw);
+        window.addEventListener('s3c:feed-default',defaultFeed);
         const unwatch = watchPreferences(() => void refresh());
-        return () => { live = false; ++generation; controller?.abort(); unwatch(); window.removeEventListener('focus', focus); document.removeEventListener('visibilitychange', focus); window.removeEventListener('s3c:account-session-reset', withdraw); window.removeEventListener('s3c:preferences-withdraw', withdraw); };
+        return () => { live = false; ++generation; controller?.abort(); unwatch(); window.removeEventListener('focus', focus); document.removeEventListener('visibilitychange', focus); window.removeEventListener('s3c:account-session-reset', withdraw); window.removeEventListener('s3c:preferences-withdraw', withdraw);window.removeEventListener('s3c:feed-default',defaultFeed); };
     }, []);
     return null;
 }

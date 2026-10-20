@@ -83,6 +83,7 @@ function readDevice(): DeviceState | null {
 
 // ---------- /me ----------
 let mePromise: Promise<Me | null> | null = null;
+let meEpoch=0;
 /** The last answer, without asking again (so an anonymous Save never causes a request, C5.1). */
 let knownMe: Me | null = null;
 
@@ -93,11 +94,12 @@ let knownMe: Me | null = null;
  */
 export function accountMe(refresh = false): Promise<Me | null> {
   if (!mePromise || refresh) {
+    const generation=++meEpoch;
     const init: RequestInit = refresh ? { credentials: "same-origin", cache: "no-store" } : { credentials: "same-origin" };
     mePromise = fetch("/api/account/me", init)
       .then((r) => (r.ok ? (r.json() as Promise<Me>) : null))
-      .then((m) => (knownMe = m))
-      .catch(() => (knownMe = null));
+      .then((m) => generation===meEpoch?(knownMe=m):mePromise)
+      .catch(() => generation===meEpoch?(knownMe=null):mePromise);
   }
   return mePromise;
 }
@@ -482,13 +484,14 @@ export async function setLiked(slug: string, liked: boolean): Promise<boolean> {
 
 // ---------- Session ----------
 function forgetSession() {
+  ++meEpoch;
   started = null;
   current = null;
   ready = new Promise<AccountState>((r) => (resolveReady = r));
   mePromise = null;
   knownMe = null;
   sessionReset = true;
-  if (typeof window !== "undefined") window.dispatchEvent(new Event("s3c:account-session-reset"));
+  if (typeof window !== "undefined" && typeof window.dispatchEvent === "function") window.dispatchEvent(new Event("s3c:account-session-reset"));
 }
 
 /**

@@ -22,7 +22,7 @@ export async function handleAccountFeed(req: Request, deps: Dependencies): Promi
             return json(400, { error: 'page' });
         const settings = await deps.settings(id), admitted = deps.admitted();
         const result = deps.page(admitted ? settings : { ...settings, personalizationOn: false }, Number(raw), deps.accountTag(id));
-        if (Number(raw) > 0 && params.get('snapshot') !== result.snapshot)
+        if (Number(raw) > 0 && req.headers.get('x-s3c-feed-snapshot') !== result.snapshot)
             return json(409, { error: 'refresh_required' });
         return json(200, { ...result, ...(!admitted ? { admissionPending: true } : {}) });
     }

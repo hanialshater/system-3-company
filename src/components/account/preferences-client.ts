@@ -6,29 +6,36 @@ export type PreferenceRead = {
     accountTag: string;
 };
 let epoch = 0;
+let identityRead=0;
+let boundAccountTag:string|null=null;
 let localWithdrawal = false;
 export function matchingWithdrawn() { return localWithdrawal; }
 export function withdrawPreferenceMatching() { localWithdrawal = true; epoch++; if (typeof window !== "undefined")
     window.dispatchEvent(new Event("s3c:preferences-withdraw")); }
-const listeners = new Set<() => void>();
-export function invalidatePreferences() { epoch++; for (const cb of listeners)
-    cb(); }
-export function watchPreferences(cb: () => void) { listeners.add(cb); return () => { listeners.delete(cb); }; }
-onAccountChanged(invalidatePreferences);
+const listeners = new Set<(source?:symbol) => void>();
+export function invalidatePreferences(source?:symbol) { epoch++; for (const cb of listeners)
+    cb(source); }
+export function watchPreferences(cb: (source?:symbol) => void) { listeners.add(cb); return () => { listeners.delete(cb); }; }
+function forgetPreferenceIdentity(){boundAccountTag=null;identityRead++;invalidatePreferences();}
+onAccountChanged(forgetPreferenceIdentity);
 if (typeof window !== "undefined")
-    window.addEventListener("s3c:account-session-reset", () => { localWithdrawal = false; invalidatePreferences(); });
+    window.addEventListener("s3c:account-session-reset", () => { localWithdrawal = false; forgetPreferenceIdentity(); });
 export async function readAccountPreferences(): Promise<PreferenceRead | null> {
-    const generation = epoch;
-    const me = await accountMe(true);
-    if (generation !== epoch || !me?.signedIn)
-        return null;
-    const r = await fetch('/api/account/settings', { credentials: 'same-origin', cache: 'no-store' });
-    if (!r.ok)
-        return null;
-    const value = await r.json() as PreferenceRead;
-    return generation === epoch && value.accountTag === me.tag ? value : null;
+ const request=++identityRead,generation=epoch;
+ const me=await accountMe(true);
+ if(request!==identityRead||generation!==epoch)return null;
+ const tag=me?.signedIn?me.tag:null;
+ if(boundAccountTag!==tag){boundAccountTag=tag;epoch++;}
+ const acceptedEpoch=epoch;
+ if(!tag)return null;
+ const r=await fetch('/api/account/settings',{credentials:'same-origin',cache:'no-store'});
+ if(!r.ok)return null;
+ const value=await r.json() as PreferenceRead;
+ return request===identityRead&&acceptedEpoch===epoch&&boundAccountTag===tag&&value.accountTag===tag?value:null;
 }
-export async function writeAccountPreferences(tag: string, patch: Partial<AccountPreferences>): Promise<PreferenceRead | null> {
+export async function writeAccountPreferences(tag: string, patch: Partial<AccountPreferences>,source?:symbol): Promise<PreferenceRead | null> {
+    if(boundAccountTag!==null&&boundAccountTag!==tag)return null;
+    boundAccountTag=tag;
     const generation = ++epoch;
     const r = await fetch('/api/account/settings', { method: 'PUT', credentials: 'same-origin', cache: 'no-store', headers: { 'content-type': 'application/json', 'x-s3c-account': tag }, body: JSON.stringify(patch) });
     if (r.status === 409) {
@@ -38,9 +45,9 @@ export async function writeAccountPreferences(tag: string, patch: Partial<Accoun
     if (!r.ok || generation !== epoch)
         return null;
     const value = await r.json() as PreferenceRead;
-    if (generation !== epoch || value.accountTag !== tag)
+    if (generation !== epoch || boundAccountTag!==tag || value.accountTag !== tag)
         return null;
     localWithdrawal = value.settings.personalizationOn !== true;
-    invalidatePreferences();
+    invalidatePreferences(source);
     return value;
 }

@@ -1,0 +1,11 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {accountPreferenceAdmitted} from '../../src/lib/server/personalization/preference-admission.ts';
+const identity={profileSetVersion:'current',recipeSourceSha256:'recipe-hash',profileContentsSha256:'profile-hash'};
+const manifest={...identity,status:'proposed',recipeVersion:'stated-fit-account-2026-10-20-v1'};
+const exact='stated-fit-account-2026-10-20-v1:current';
+test('unset uses only exact approved source admission',()=>{assert.equal(accountPreferenceAdmitted({},identity,manifest),false);assert.equal(accountPreferenceAdmitted({},identity,{...manifest,status:'approved'}),true);});
+test('defined empty/off/unknown/mismatch values fail closed even with approved source',()=>{for(const value of ['', 'off','unknown','stated-fit-account-2026-10-20-v1:old'])assert.equal(accountPreferenceAdmitted({ACCOUNT_PREFERENCE_RECIPE:value},identity,{...manifest,status:'approved'}),false);});
+test('exact pair permits controlled QA while source admission is proposed',()=>assert.equal(accountPreferenceAdmitted({ACCOUNT_PREFERENCE_RECIPE:exact},identity,manifest),true));
+test('recipe/profile/source drift fails closed for unset and exact override',()=>{for(const changed of [{...manifest,recipeVersion:'other'},{...manifest,profileSetVersion:'new-round'},{...manifest,recipeSourceSha256:'changed'},{...manifest,profileContentsSha256:'changed'}])for(const env of [{},{ACCOUNT_PREFERENCE_RECIPE:exact}])assert.equal(accountPreferenceAdmitted(env,identity,{...changed,status:'approved'}),false);});
+test('actual reachable-v3 sentinel excludes both controlled QA and approved source',()=>{for(const env of [{NEXT_PUBLIC_NEW_LESSON_ORDER:'reachable-v3'},{NEXT_PUBLIC_NEW_LESSON_ORDER:'reachable-v3',ACCOUNT_PREFERENCE_RECIPE:exact}])assert.equal(accountPreferenceAdmitted(env,identity,{...manifest,status:'approved'}),false);});

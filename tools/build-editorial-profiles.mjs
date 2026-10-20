@@ -54,7 +54,7 @@ export function buildEditorialProfiles(root, roundDir) {
     }
   }
   versionBytes.push(Buffer.from(JSON.stringify(catalogue)));
-  return {catalogueCount:catalogue.length,schema:'editorial-preference-preview-v1',profileSetVersion:hash(Buffer.concat([...versionBytes,Buffer.from(JSON.stringify(profiles))])).slice(0,16),round:roundDir,notApprovedForServing:true,notMeasuredLearning:true,freshnessScope:'Metadata and Demo.tsx entry-file pins only; transitive imports are not pinned. Provisional review evidence, not full artifact freshness or release approval.',counts,profiles};
+  return {recipeSourceSha256:hash(fs.readFileSync(path.join(root,'src/lib/preference-match.ts'))),profileContentsSha256:hash(Buffer.from(JSON.stringify(profiles))),catalogueCount:catalogue.length,schema:'editorial-preference-preview-v1',profileSetVersion:hash(Buffer.concat([...versionBytes,Buffer.from(JSON.stringify(profiles))])).slice(0,16),round:roundDir,notApprovedForServing:true,notMeasuredLearning:true,freshnessScope:'Metadata and Demo.tsx entry-file pins only; transitive imports are not pinned. Provisional review evidence, not full artifact freshness or release approval.',counts,profiles};
 }
 
 if (process.argv[1] && fs.realpathSync(process.argv[1])===fs.realpathSync(fileURLToPath(import.meta.url))) {

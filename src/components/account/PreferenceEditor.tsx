@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { EXPERIENCE_CHOICES, emptyPreferences, type AccountPreferences } from '@/lib/account-preference-types';
 import { readAccountPreferences, writeAccountPreferences, watchPreferences, withdrawPreferenceMatching, type PreferenceRead } from './preferences-client';
+import { preferencePatch, type PreferenceAction } from '@/lib/preference-patch';
 const labels = { gentle: 'Gentle', balanced: 'Balanced', demanding: 'Demanding' };
 export default function PreferenceEditor({ domains }: {
     domains: {
@@ -11,11 +12,13 @@ export default function PreferenceEditor({ domains }: {
 }) {
     const [saved, setSaved] = useState<PreferenceRead | null>(null), [draft, setDraft] = useState<AccountPreferences>(emptyPreferences), [state, setState] = useState('loading');
     const generation = useRef(0);
+    const operation=useRef(0),mounted=useRef(false),currentTag=useRef<string|null>(null),source=useRef(Symbol("preference-editor"));
     useEffect(() => {
-        let live = true;
-        const refresh = async () => { const n = ++generation.current; setSaved(null); setDraft(emptyPreferences()); setState('loading'); try {
+        let live = true;mounted.current=true;
+        const refresh = async () => { const n = ++generation.current; ++operation.current;currentTag.current=null; setSaved(null); setDraft(emptyPreferences()); setState('loading'); try {
             const value = await readAccountPreferences();
             if (live && n === generation.current) {
+                currentTag.current=value?.accountTag??null;
                 setSaved(value);
                 setDraft(value?.settings ?? emptyPreferences());
                 setState(value ? 'ready' : 'unavailable');
@@ -30,21 +33,25 @@ export default function PreferenceEditor({ domains }: {
         void refresh();
         window.addEventListener('focus', focus);
         document.addEventListener('visibilitychange', focus);
-        const unwatch = watchPreferences(() => void refresh());
-        return () => { live = false; generation.current++; unwatch(); window.removeEventListener('focus', focus); document.removeEventListener('visibilitychange', focus); };
+        const unwatch = watchPreferences(writer => {if(writer!==source.current)void refresh();});
+        return () => { live = false;mounted.current=false;currentTag.current=null;++operation.current; generation.current++; unwatch(); window.removeEventListener('focus', focus); document.removeEventListener('visibilitychange', focus); };
     }, []);
     const toggle = (key: 'subjects' | 'experiences', id: string) => setDraft(d => ({ ...d, [key]: d[key].includes(id) ? d[key].filter(v => v !== id) : [...d[key], id] }));
-    async function save(mode: 'save' | 'enable' | 'off' | 'reset') {
+    async function save(mode: PreferenceAction) {
         if (!saved)
             return;
         const tag = saved.accountTag;
+        if(currentTag.current!==tag||!mounted.current)return;
+        const n=++operation.current;
+        const stillCurrent=()=>mounted.current&&n===operation.current&&currentTag.current===tag;
         setState('saving');
-        const patch: Partial<AccountPreferences> = mode === 'reset' ? { ...emptyPreferences(), personalizationOn: false } : mode === 'off' ? { personalizationOn: false } : { subjects: draft.subjects, experiences: draft.experiences, challenge: draft.challenge, ...(mode === 'enable' ? { personalizationOn: true } : {}) };
+        const patch=preferencePatch(saved.settings,draft,mode);
         // Off/reset withdraw the active local order before acknowledgement. Failed writes stay visibly unsaved.
         if (mode === 'off' || mode === 'reset')
             withdrawPreferenceMatching();
         try {
-            const value = await writeAccountPreferences(tag, patch);
+            const value = await writeAccountPreferences(tag, patch,source.current);
+            if(!stillCurrent())return;
             if (!value) {
                 setState('error');
                 return;
@@ -54,7 +61,7 @@ export default function PreferenceEditor({ domains }: {
             setState('saved');
         }
         catch {
-            setState('error');
+            if(stillCurrent())setState('error');
         }
     }
     return <section aria-labelledby="preferences-heading" style={{ display: 'grid', gap: 14, maxWidth: 600 }}>
