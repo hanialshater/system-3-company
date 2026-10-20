@@ -319,6 +319,92 @@ node tools/mailbox.mjs watch <role> --on-message="<command>"   # wake on arrival
 - **Durable storage:** mailboxes are a gitignored spool in the main checkout, so a container restart, or a second session in another container, loses them. EXP-009 found `company/ops/mailboxes` absent in this container. Async approvals can wait for days, so the spool needs a store that survives: committed message files, or the progress database. That is an engineering decision for principal-engineer.
 - **Dispatcher:** today only the chief of staff drains and starts agents, because only it holds the Agent tool. In the pilot a supervisor process drains and launches by the same rules. That is phase 1 of the Meta roadmap.
 
+## S13. The org itself: roles, skills, floors, rituals, onboarding, offboarding, staffing, activity
+
+The org is already data: `tools/org/roles.mjs` (109 roles) → `tools/org/generate.mjs` → `company/roles/*.md` and `.claude/agents/*.md`. Gaps found 2026-10-20:
+- No `floor` or `room` field: rooms live in a separate table, `ROOM_BY_ROLE` in `tools/events.mjs`.
+- No `skills` field.
+- A role's `rituals` are prose ("wbr (reads, comments)"), not ids checked against `company/rituals/triggers.json`.
+- Lanes live in `company/ceo-office/poc-map.md`.
+- Adding a role is a document process (`company/ceo-office/org-change-process.md`: consult the founder's directs, then the founder) that nothing enforces.
+
+`tools/org.mjs` makes one role record the source for all of these, and runs every change through an `org-change` flow (S0). The founder signs it, because org change is a founder-reserved right.
+
+```bash
+node tools/org.mjs propose add --id=cm-music --title="Music category manager" --reports-to=head-of-product \
+  --floor=2 --room=cm-music --lane=1 --skills=new-lesson,demo-crit --rituals=wbr:attends,demo-crit:presents \
+  --tools=RECORDS --model=… --reason="Domain launch: music (DOC-0130)" --by=chief-of-staff-ceo-office
+# → ORG-0007 PROPOSED · checks: id free, reportsTo exists, room exists on that floor, skills exist, ritual ids
+#   exist, lane has one POC · consult requests queued (S9) to the founder's directs the change touches
+
+node tools/org.mjs approve ORG-0007 --by=founder --words="Add the music CM"
+# → onboarding (generated, in one step): role record written · company/roles/cm-music.md and
+#   .claude/agents/cm-music.md generated · memory init (tools/memory.mjs init) · room seat on floor 2 · lane 1 roster ·
+#   ritual invitee lists · day-one order created (read the onboarding docs; first brief) · org event
+
+node tools/org.mjs propose change cm-music --skills=+domain-launch --rituals=+vertical-review:attends
+node tools/org.mjs propose retire mockup-artist --reason="never dispatched in 30 d after reconciliation" --to=interaction-designer
+# → offboarding on approval: open orders and board items reassigned to --to (listed, refused if none) ·
+#   memory compacted and archived (nothing deleted) · removed from rooms, lanes and ritual lists · agent file removed ·
+#   onboarding doc kept with a retired header · event
+```
+
+**Staffing: do we have the right agents?** The tool computes the evidence and does not decide:
+
+```bash
+node tools/org.mjs gaps --since=30d
+# missing roles:  14 orders refused "no role in lane" · 6 consult runs as a role that does not exist ·
+#                 3 escalations for work no lane owns
+# overloaded:     demo-builder queue wait p50 6 h · fact-checker backlog 8,054 claims
+# idle:           32 roles never dispatched (UNRELIABLE until EXP-009 coverage ≥ 95%: no retire proposals)
+# overlap:        inScope lines shared by 2+ roles (word match, listed for review)
+# → each line links its events; chief-of-staff-ceo-office turns findings into proposals
+```
+
+**Monitoring:**
+
+```bash
+node tools/org.mjs activity cm-physics --since=7d
+# runs 12 · tokens 1.4M · stages signed: uat 3 · refusals 2 (lane) · rework loops caused 1 ·
+# left without leave 0 · consult runs as this role 1 · memory: 18 KB, compacted 10-19 · rituals: wbr attended 1/1
+node tools/org.mjs floor 2                     # who is on the floor, live: running, waiting, idle, stale
+node tools/org.mjs health                      # per role: last run, refusal rate, rework rate, memory health
+```
+
+All of this comes from room and flow events. A role that is not running shows as idle or unknown, never as busy.
+
+## S14. Consult mode: thinking in another role's hat
+
+Anyone can think as another role, but never sign as it.
+
+```bash
+node tools/room.mjs enter learner-review --as=learner-evaluator --mode=consult --by=chief-of-staff
+# → that role's context pack (role doc, memory read-only, room board) · actor "chief-of-staff as learner-evaluator (consult)"
+node tools/room.mjs leave --run=… --notes=<file>
+# → notes stored as advice, labelled consult
+```
+
+For a consult run, code refuses:
+- signing a stage, checking a claim or answering an approval;
+- writing that role's memory;
+- writing events in that role's name.
+
+A finding from a consult becomes an order to the real role. If you want the role's own context and memory, send that role's agent a question (`mailbox send --kind=question`); that is more independent than playing the role. Repeated consults as a role that does not exist show up in `org gaps`.
+
+## Existing tools each piece is built from
+
+| New piece | Built from |
+|---|---|
+| `room enter` | `dispatch-check.mjs`, mailbox `drain`/`claim`, `memory.mjs read`, `claim.mjs` |
+| `room leave` | `memory.mjs add`, `events.mjs report`, `lib/usage.mjs`, `company board move`, mailbox `done` |
+| flow test 1 (lessons) | `npm run verify`, `qa-changed.mjs`, `reveal-fit.mjs`, `copy-tells.mjs`, `overlap.mjs` |
+| flow lesson stages | `lib/readiness.mjs` and the protected gates (read, never copied) |
+| flow release | `release-draft.mjs`, `company/ops/runbook-deploy.md` |
+| `ritual` | `rituals-due.mjs`, `lib/rituals.mjs`, `triggers.json`, templates |
+| `docs` | the decision-record header checks in `company check` |
+| `org` | `tools/org/roles.mjs`, `generate.mjs`, `people.mjs`, `memory.mjs init`, `ROOM_BY_ROLE` (moved into the role record) |
+| measurement | `reconcile.mjs`, `metrics.mjs`, `ops-health.mjs`, `triage.mjs` |
+
 ## What every command writes
 
 Every accepted command writes one event (`order`, `approve`, `escalate`, `request`, `decide`, `callback`, `timeout`, `enter`, `heartbeat`, `leave`, `advance`, `refuse`, `recover`) with order id, run id, role, room and evidence paths. Refusals are events too: they show where the rules bite. These events are what EXP-009's reconciliation and the efficiency report read.
