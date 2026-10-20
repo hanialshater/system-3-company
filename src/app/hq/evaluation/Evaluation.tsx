@@ -6,7 +6,7 @@
 // "Overall"): the pooled scope stays in the JSON as a diagnostic and is never rendered here. Defaults to
 // `learning`. Criterion flags (company/evaluation/flags.json) are shown next to the ranks.
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { HqTop } from "../HqTop";
 import type { Flag, Leaderboard, Row } from "./types";
@@ -30,7 +30,7 @@ function flagsFor(data: Leaderboard | null, id: string): Flag[] {
   return scope?.flags ?? (data.flags ?? []).filter((f) => f.criterion === id);
 }
 
-export default function Evaluation({ data }: { data: Leaderboard | null }) {
+export default function Evaluation({ data, editorial }: { data: Leaderboard | null; editorial?: ReactNode }) {
   const criteria = useMemo(() => shownCriteria(data), [data]);
   const [picked, setCriterion] = useState(DEFAULT_CRITERION);
   const criterion = criteria.some((c) => c.id === picked) ? picked : (criteria[0]?.id ?? DEFAULT_CRITERION);
@@ -83,7 +83,8 @@ export default function Evaluation({ data }: { data: Leaderboard | null }) {
 
   return (
     <main className={s.hq}>
-      <HqTop on="evaluation" subtitle="Pairwise leaderboard (Bradley-Terry)" />
+      <HqTop on="evaluation" subtitle="Catalogue evidence and pairwise results" />
+      {editorial}
       <p className={`${s.muted} ${d.noOverall}`} data-testid="eval-rule">
         A rank is the judges&apos; preference. It is not a publish gate and not evidence of learning (company/evaluation/README.md).
         {data && data.totalRecords > 0 ? ` Round data: ${data.totalRecords} records, last dated ${data.lastRecordDate}.` : ""}

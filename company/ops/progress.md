@@ -1,3 +1,9 @@
+## 2026-10-20 · chief-of-staff · Evaluation extension and HQ findings
+
+W-1984 source complete: new-demo continuation plan with existing role ownership,100-item queues/15-item checkpoints, independent overlap/calibration, broad-first buckets/exploration and exact independent readmission. W-1985/1986 future rounds/export andW-1987 Bayesian/GAM real-data research remain backlog; no new evaluation or329draft walkthroughs resumed. HQ evaluation derives snapshot coverage and separates ordinal profiles from per-criterion BT results; personalization foregrounds actual saved-choice source implementation, synthetic inspection and failed historical GAM. CPO/VP dispositions and independent engineering GO recorded.
+
+Typecheck and source-render/count/link checks pass; focused5/6 includes privacy2/2. Verify fails inherited publish readiness metadata; unchangedbe3 reproduces it and staleBT generatedmetadata equality. Company check117errors/5warnings as baseline. Fresh build/browser NOTRUN: dispatchgate refused R1 overdue rituals/C3 path classification, no bypass. No private data read, source recipe/admission change, new rating, database operation or deploy. Evidence: company/engineering/readiness/2026-10-20-hq-findings.json.
+
 ## 2026-10-20 · chief-of-staff · Copy-release snapshot readmitted
 
 Preserved concurrent default be3a6d58b; exact snapshot fc663bbcab56c209 independently readmitted under AMD-016. 146 stale observations stay fixed; all33 underlying disputes remain unresolved. No new ratings or app changes. Focused57/57, HQprivacy2/2 and independent actual-manifest2/2 passed. Company check remains117errors/5warnings, identical to be3 baseline; earlier smaller counts are historical. No deployment, environment mutation or real database writes. Source receipt: company/ops/delivery/2026-10-20-account-preference-readmission.json. RolloutW-1982 and baseline triageW-1983 remain backlog.

@@ -79,3 +79,14 @@
 }
 .flagList { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; }
 .noOverall { margin: 16px 0 0; font-size: 13px; line-height: 1.45; }
+
+.coverage { border: 1px solid var(--line); background: var(--bg-2); border-radius: 14px; padding: 16px; margin-bottom: 16px; line-height: 1.5; min-width: 0; overflow-wrap: anywhere; }
+.coverage h1 { margin: 0 0 8px; font-size: 24px; }
+.coverage h2 { margin-bottom: 0; font-size: 18px; }
+.coverage p { margin: 10px 0; }
+.coverage a { color: var(--accent); }
+.coverage summary { cursor: pointer; min-height: 40px; display: list-item; }
+.coverage li { margin: 8px 0; }
+.coverageStats { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 12px; margin: 16px 0; }
+.coverageStats dt, .provenance { font-size: 13px; color: var(--muted); }
+.coverageStats dd { margin: 0; font-size: 24px; font-variant-numeric: tabular-nums; }

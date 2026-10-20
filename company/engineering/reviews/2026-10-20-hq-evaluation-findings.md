@@ -1,0 +1,46 @@
+# HQ evaluation and personalization findings: routing
+
+Date: 2026-10-20. Owner: principal-engineer. Scope: founder-requested HQ explanation and evaluation extension workflow after account preference admission.
+
+## Classification and ownership
+
+Tier 1: reversible changes to existing HQ pages only; workflow/review documents are tier 0. No EDD, new dependency, amendment or new route is required. Route implementation to existing hq-engineer, with one independent engineer diff review and operational readiness record. This classification stops applying if scope reaches private account reads, matcher behavior, dataset/admission writes, registry/schema, APIs or new routes. Return those to their existing tier-2 owners before implementation.
+
+## Concrete builder scope
+
+Allowed existing UI files: `src/app/hq/evaluation/page.tsx`, `src/app/hq/evaluation/Evaluation.tsx`, `src/app/hq/evaluation/evaluation.module.css`, `src/app/hq/personalization/page.tsx`, `src/app/hq/personalization/Personalization.tsx`, `src/app/hq/personalization/personalization.module.css`, `src/app/hq/personalization/preferences/page.tsx`. Prefer server-page status panels above existing interactive tools; existing CSS only if necessary. For evaluation server props, import only the existing public editorial snapshot and public admission manifest for derived summary counts/version/status. Within personalization, preserve the strict existing privacy import allowlist: prefer textual status and inspector links, and reuse the inspector’s existing public dataset import; do not broaden imports or revise scanner closure pins in this bounded task. Do not add a shared component or library without updating this brief. Existing leaderboard and simulation remain intact.
+
+Evaluation must clearly separate rubric observations from Bradley–Terry pairwise ranks. Preserve criterion-specific rankings and diagnostic-only overall scope; do not invent a full-catalogue overall ranking or imply scores are measured learning. Show current/stale/disputed/unknown coverage from snapshot, version and source-only admission; explain that publication/claim gates remain independent. Link synthetic stated-preference inspector and existing historical simulation. Surface the new workflow with named existing role responsibilities and next-round selection/checklist, linking the durable owner plan. Do not hardcode counts; report 31 disputed-state separately from 33 underlying unresolved disputes only if the latter can be safely derived or explicitly described as a dated finding.
+
+Personalization must place actual app status first: optional signed-in saved subject/experience/challenge choices; explicit on/off/reset; bounded editorial matching; account environment/migration rollout still pending. Distinguish source-integrated functionality from live activation. Label GAM/persona/seed controls historical synthetic simulation, not the production policy; link `/hq/personalization/preferences` as current-recipe synthetic inspection and `/preferences` as the actual optional account editor. Explain missing/stale/disputed/weak evidence retains canonical slots, and future behavioral/Bayesian learning is backlog. Never load a learner account or display actual preference/history data in HQ.
+
+Future evaluation workflow should be append-only, source/version pinned, roughly 100 demos per assigned evaluator batch. First pass prioritizes unknown/new and stale entries with catalogue-wide coverage; subsequent rounds allocate attention to promising buckets while retaining coverage/audit sampling. An evaluation observation does not admit a serving snapshot: independent provenance/Product/privacy/engineering checks and exact version/hash admission remain necessary. Existing role routing should name head-of-evaluation/evaluation-steward for contract/plan, evaluation-engineer for inventory/export tooling, independent evaluators for artifact-first reviews, head-of-product for value and bucket dispositions, and existing privacy/engineering reviewers for admission. Do not dispatch a new rating round in this UI task.
+
+## Verification and integration boundary
+
+Read installed Next guides before JSX edits. Required `npm run check` and `npm run verify` on integrated tree, report inherited failures accurately rather than asserting green CI. Focus browser QA on both HQ routes and synthetic inspector: links work, summary matches snapshot, simulation controls remain usable, no private data or measured-learning/live-rollout claims, narrow/mobile layout remains readable. Reuse existing HQ privacy and main-feed regression checks where applicable; no protected test edits and no implementation-mirroring new test suite. One independent engineer reads exact diff; no builder self-review. No build/server/deployment/database work is performed by this routing role. CoS owns worker dispatch, events, board and progress.
+
+## Source basis
+
+Read: company engineering tiers/path map; current HQ evaluation/simulation/inspector entry points; AMD-016 admission manifest; account preference delivery/readmission records. Current admission profile version is `fc663bbcab56c209`, but UI must derive it. Existing 117 company errors / 5 warnings after copy release are disclosed parent-baseline debt; they do not authorize weakening checks.
+
+## Host guard clarification
+
+Current host load approximately 28.9 on 8 CPUs blocks another compile/server launch. Classification remains tier 1 for these existing presentation/navigation changes (documentation alone tier 0). Run focused existing SSR/source checks and, when guard permits, one typecheck; run mandatory `npm run verify` once and retain its actual inherited early failures. Do not force a second full build past known failures or launch a duplicate build/server. If verify reaches a build while guard remains unsafe, report that phase deferred by host guard rather than claim full verification. CoS may arrange browser inspection through an already-owned available runtime only after confirming it represents the candidate; stale browser evidence cannot validate new copy. This is source-only UI integration, not deployment readiness or a waiver of the ordinary verification contract.
+
+## Independent final presentation review
+2026-10-20 · principal-engineer · run `hq-findings-independent-review`. Builder final six-file diff frozen; reviewer did not implement this diff.
+**GO for bounded Tier-1 source integration**, subject to truthful coordinator verification reporting. No content or scope blocker found. Reviewed the exact six source diffs and CPO extension-plan / VP personalization dispositions.
+- Server evaluation page derives observed/state/unknown counts and snapshot identity from existing public dataset. It says the manifest *lists* approval, avoiding a claim to perform independent runtime admission/hash recomputation. It retains per-criterion official pairwise results and no overall rank. Dated33 underlying disputes is explicitly distinguished from derived disputed-state count.
+- The `ReactNode` editorial slot is valid server/client interleaving under installed Next guide `node_modules/next/dist/docs/01-app/01-getting-started/05-server-and-client-components.md`: server-rendered content passed as other props does not import the dataset into the client module graph.
+- Personalization copy matches VP disposition, preserves source-versus-live distinction, links actual editor and separate synthetic inspector, and honestly labels historical GAM FAIL/stopped. Simulation controls and loader remain intact. No new personalized account reads or privacy import broadening; existing inspector, main feed, matcher, dataset/admission source and protected paths are unchanged.
+- All new `/hq/library/...md` targets correspond to existing or task-created company Markdown. Existing `[[...path]]` route and `safeDocPath` support those targets. JSON receipt uses GitHub source URL because the Library serves Markdown only. Styles are scoped to the touched HQ modules and use responsive count-grid/wrapping; final visual rendering remains coordinator verification responsibility.
+- Coordinator reports focused checks5/6 passed including HQ privacy2/2; existing BT generated metadata equality failure (currentVersion3vs4) retained, not waived or repaired here. I did not duplicate build/browser/test runs. Mandatory verify/check/typecheck and any safe current-candidate browser proof belong in coordinator report; GO is not a claim these checks all passed or permission to deploy.
+
+Reviewed source hashes:
+- `src/app/hq/evaluation/Evaluation.tsx`: `b90185279f52f3e16c83dbf23c06a1255ca7783a65584938e455500d4b6e36a6`
+- `src/app/hq/evaluation/evaluation.module.css`: `98d5cbfa81ffd9f4df03249b0c1e5b4d4967bb60b5e2fe887bf23a223a80ac21`
+- `src/app/hq/evaluation/page.tsx`: `8ec7d79c61fcc6c78b18b7c068972348394c6cc16aab2406fcabd943dc1cc084`
+- `src/app/hq/personalization/Personalization.tsx`: `dc5773f2073af6a6c2fad71dc6a22c52f46d21b228291a55cde877da19e32062`
+- `src/app/hq/personalization/page.tsx`: `ab498100e0fa5ac6ca245cc3c6fca59a1cba5c6cc61581694116e89c533f6227`
+- `src/app/hq/personalization/personalization.module.css`: `542dc5bc8708aa55771f161a102e92fc85ca64b0c4d0387ef5b183583a05fb40`

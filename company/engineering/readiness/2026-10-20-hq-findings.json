@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-20",
+  "scope": "Six existing read-only HQ presentation files; no ratings, runtime recipe, private account reads or admission edits",
+  "typecheck": "PASS",
+  "sourceRender": "PASS: current counts, normal/error personalization status and nine library links",
+  "focused": "5/6 passed: privacy2/2, evaluation3/4; generated BT metadata comparison stale",
+  "check": "FAILED 117 errors/5 warnings, unchanged known baseline",
+  "verify": "FAILED at publish readiness test (33/34); stale current-version learner/QA metadata; same test fails unchanged be3a6d58b",
+  "baselineEvidence": "unchanged be3a6d58b reproduces publish readiness and BT generatedmetadata failures",
+  "freshBuildAndBrowser": "NOT RUN: preflight refused build due R1 overdue WBR/founder digest and C3 worktree-path classification; no override used",
+  "sourceRenderHarnessCorrections": [
+    "Node JSON loader needed JSON support; temp loader added",
+    "Initial error-branch assertion expected historical heading; corrected to inspect normal precomputed branch as well, no application change"
+  ],
+  "deployment": false,
+  "databaseWrites": false,
+  "independentReview": "company/engineering/reviews/2026-10-20-hq-evaluation-findings.md"
+}

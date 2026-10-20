@@ -14,6 +14,21 @@ import {
 } from "@/lib/hq-personalization";
 import s from "./personalization.module.css";
 
+function SavedChoiceStatus() {
+  return <section className={s.header} aria-labelledby="saved-choice-heading">
+    <h1 id="saved-choice-heading">Saved choices in the main feed</h1>
+    <p className={s.badges}><span className={s.badge}>source integrated</span><span className={s.badgeWarn}>live account rollout pending</span></p>
+    <p>Signed-in learners can explicitly save subjects, experience preferences and challenge level. The main feed can use those choices within a bounded editorial matching rule. Off, reset and signed-out use the default order. Account environment and database rollout remain pending; source integration does not confirm live activation.</p>
+    <p><Link href="/preferences">Open the optional account editor</Link> · <Link href="/">Main feed</Link> · <Link href="/hq/personalization/preferences">Inspect synthetic stated choices</Link> · <Link href="/hq/evaluation">Evaluation coverage</Link></p>
+    <details><summary>Current rule, evidence and future learning</summary>
+      <p>Stated-preference inspection uses synthetic choices and editorial catalogue data. It does not show an actual customer’s feed, account preferences or learning history. Match points are ordinal comparisons, not probabilities, measured quality or learning gains.</p>
+      <p>The admitted rule combines subject, experience and challenge fit. Swaps stay within five-card groups, need a five-point advantage and move at most two places. Status positions and prerequisites remain protected; missing, stale, disputed or weak evidence retains canonical slots. Changed demos need fresh artifact review and exact snapshot readmission.</p>
+      <p>Bayesian cold-start estimates, historical performance and a fitted GAM remain research backlog. The current rule does not learn from behavior. VP Personalization owns future input decisions; science, privacy and independent evaluation review any registered real-data experiment before release.</p>
+      <p><Link href="/hq/library/personalization/2026-10-20-hq-findings-and-next-steps.md">Findings and future personalization roles</Link> · <Link href="/hq/library/evaluation/2026-10-20-catalogue-extension-plan.md">New-demo evaluation plan</Link> · <Link href="/hq/library/constitution/amendments/AMD-016-saved-stated-preference-order.md">AMD-016</Link> · <a href="https://github.com/hanialshater/system-3-company/blob/ccr-4c6c7654-ew9ko1/company/ops/delivery/2026-10-20-account-preference-readmission.json">Exact readmission receipt</a></p>
+    </details>
+  </section>;
+}
+
 type Initial = { persona: string | null; policy: string | null; seed: number | null; days: number | null; step: number | null };
 type Filter = "all" | "new" | "moved" | "revisit";
 
@@ -332,7 +347,8 @@ export default function Personalization({ meta, error, initial }: { meta: SimMet
   if (!meta || !persona)
     return (
       <div className={hq.hq}>
-        <HqTop on="personalization" subtitle="Personalization lab (simulation)" />
+        <HqTop on="personalization" subtitle="Saved choices and synthetic inspection" />
+        <div className={s.page}><SavedChoiceStatus /></div>
         <p role="alert" className={s.error}>{error ?? "No personas were returned by the simulator."}</p>
       </div>
     );
@@ -347,10 +363,13 @@ export default function Personalization({ meta, error, initial }: { meta: SimMet
 
   return (
     <div className={hq.hq}>
-      <HqTop on="personalization" subtitle="Personalization lab (simulation)" />
+      <HqTop on="personalization" subtitle="Saved choices and synthetic inspection" />
       <main className={s.page}>
+        <SavedChoiceStatus />
         <header className={s.header}>
-          <h1>Personalization lab</h1>
+          <h2>Historical GAM simulation</h2>
+          <p>Offline simulated personas and policies. The earlier Phase A GAM failed its readout and was stopped. This lab is retained for inspection; it is not the model serving saved choices, a customer feed inspection or evidence of real-user improvement.</p>
+          <p><Link href="/hq/library/personalization/eval/2026-10-16-phase-a-readout-1.md">Phase A failed readout</Link> · <Link href="/hq/library/decisions/2026-10-16-vp-personalization-phase-a-readout-1-decisions.md">VP decision</Link></p>
           <p className={s.badges}>
             <span className={s.badge}>{meta.modelVersion}</span>
             <span className={s.badge}>{meta.personasVersion}</span>

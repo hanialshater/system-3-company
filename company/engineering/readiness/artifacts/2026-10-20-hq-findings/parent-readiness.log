@@ -1,0 +1,207 @@
+TAP version 13
+# Subtest: gate: patched check raises no readiness error on the repo as it is (grandfathered lessons warn)
+not ok 1 - gate: patched check raises no readiness error on the repo as it is (grandfathered lessons warn)
+  ---
+  duration_ms: 4059.211562
+  type: 'test'
+  location: '/private/tmp/s3-account-default-proof/tests/publish/readiness.test.mjs:200:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+    + [
+    +   'error src/demos/ai/best-of-twenty-on-one-test: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/ai/best-of-twenty-on-one-test: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)',
+    +   'error src/demos/ai/duplicates-in-the-test: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/ai/duplicates-in-the-test: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)',
+    +   'error src/demos/ai/flagged-means-what: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/ai/flagged-means-what: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)',
+    +   'error src/demos/ai/gradient-fades-with-depth: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/ai/long-answers-lose-the-product: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/ai/long-answers-lose-the-product: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)',
+    +   'error src/demos/ai/noisy-compass: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/ai/one-bad-label-knn: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/ai/one-bad-label-knn: published but fails gate: QA: newest QA record predates the current version',
+    +   'error src/demos/ai/stack-without-bend: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/ai/stack-without-bend: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)',
+    +   'error src/demos/ai/stuck-in-the-shallow-valley: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/ai/stuck-in-the-shallow-valley: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)',
+    +   'error src/demos/ai/which-question-splits: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/big-ideas/one-ten-thousandth-apart: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/chemistry/atoms-across-a-hair: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/chemistry/atoms-across-a-hair: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)',
+    +   'error src/demos/chemistry/freezer-balloon: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/chemistry/freezer-balloon: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)',
+    +   'error src/demos/chemistry/hydrogen-per-litre: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/chemistry/hydrogen-per-litre: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)',
+    +   'error src/demos/chemistry/ph-log-scale: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/chemistry/ph-log-scale: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)',
+    +   'error src/demos/chemistry/same-heat-different-rise: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/chemistry/same-heat-different-rise: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)',
+    +   'error src/demos/chemistry/which-particle-names-it: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/chemistry/which-particle-names-it: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)',
+    +   'error src/demos/cs/big-number-swallows-one: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/cs/big-number-swallows-one: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)',
+    +   'error src/demos/cs/checking-is-not-finding: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/cs/checking-is-not-finding: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)',
+    +   'error src/demos/cs/every-message-is-possible: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/cs/good-lists-make-good-pages: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/cs/good-lists-make-good-pages: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)',
+    +   'error src/demos/cs/lopsided-tree: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/cs/lopsided-tree: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)',
+    +   'error src/demos/cs/one-bit-avalanche: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/cs/one-bit-avalanche: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)',
+    +   'error src/demos/cs/paint-mix-shared-secret: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/cs/paint-mix-shared-secret: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)',
+    +   'error src/demos/cs/shell-gaps-shrink-the-shuffles: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/cs/shell-gaps-shrink-the-shuffles: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)',
+    +   'error src/demos/cs/shuffle-until-sorted: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/cs/shuffle-until-sorted: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)',
+    +   'error src/demos/cs/sketch-the-counts: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/cs/sketch-the-counts: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)',
+    +   'error src/demos/cs/three-questions-six-orders: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/cs/three-questions-six-orders: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)',
+    +   'error src/demos/cs/zebra-sorts-before-apple: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/cs/zebra-sorts-before-apple: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)',
+    +   'error src/demos/geography/why-the-poles-get-less-sun: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/geography/why-the-poles-get-less-sun: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)',
+    +   'error src/demos/history/children-dying-before-five: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/history/children-dying-before-five: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)',
+    +   'error src/demos/life/cell-too-big: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/life/cell-too-big: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)',
+    +   'error src/demos/lifehacks/rebuild-the-procedure: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/life/hemoglobin-s-curve: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/life/hemoglobin-s-curve: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)',
+    +   'error src/demos/life/isolate-by-day-three: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/life/isolate-by-day-three: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)',
+    +   'error src/demos/life/one-percent-edge: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/life/one-percent-edge: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)',
+    +   'error src/demos/life/virulence-sweet-spot: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/life/virulence-sweet-spot: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)',
+    +   'error src/demos/math/domino-chain: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/math/domino-chain: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)',
+    +   'error src/demos/math/draw-a-table-knot: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/math/draw-a-table-knot: published but fails gate: QA: newest QA record is for v3, lesson is v4',
+    +   'error src/demos/math/euclid-three-steps: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/physics/mirror-half-height: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/physics/mirror-half-height: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)',
+    +   'error src/demos/physics/skater-pulls-arms: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/physics/skater-pulls-arms: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)',
+    +   'error src/demos/probability/how-surprising-is-sixty: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/probability/how-surprising-is-sixty: published but fails gate: QA: newest QA record predates the current version',
+    +   'error src/demos/probability/sixteen-of-twenty-got-better: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/probability/sixteen-of-twenty-got-better: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)',
+    +   'error src/demos/probability/twenty-flips-run-of-five: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/probability/twenty-flips-run-of-five: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)',
+    +   'error src/demos/probability/why-seven-wins: published but fails gate: learner review: verdict is for an older version',
+    +   'error src/demos/probability/why-seven-wins: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)'
+    + ]
+    - []
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+    0: 'error src/demos/ai/best-of-twenty-on-one-test: published but fails gate: learner review: verdict is for an older version'
+    1: 'error src/demos/ai/best-of-twenty-on-one-test: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)'
+    2: 'error src/demos/ai/duplicates-in-the-test: published but fails gate: learner review: verdict is for an older version'
+    3: 'error src/demos/ai/duplicates-in-the-test: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)'
+    4: 'error src/demos/ai/flagged-means-what: published but fails gate: learner review: verdict is for an older version'
+    5: 'error src/demos/ai/flagged-means-what: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)'
+    6: 'error src/demos/ai/gradient-fades-with-depth: published but fails gate: learner review: verdict is for an older version'
+    7: 'error src/demos/ai/long-answers-lose-the-product: published but fails gate: learner review: verdict is for an older version'
+    8: 'error src/demos/ai/long-answers-lose-the-product: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)'
+    9: 'error src/demos/ai/noisy-compass: published but fails gate: learner review: verdict is for an older version'
+    10: 'error src/demos/ai/one-bad-label-knn: published but fails gate: learner review: verdict is for an older version'
+    11: 'error src/demos/ai/one-bad-label-knn: published but fails gate: QA: newest QA record predates the current version'
+    12: 'error src/demos/ai/stack-without-bend: published but fails gate: learner review: verdict is for an older version'
+    13: 'error src/demos/ai/stack-without-bend: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)'
+    14: 'error src/demos/ai/stuck-in-the-shallow-valley: published but fails gate: learner review: verdict is for an older version'
+    15: 'error src/demos/ai/stuck-in-the-shallow-valley: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)'
+    16: 'error src/demos/ai/which-question-splits: published but fails gate: learner review: verdict is for an older version'
+    17: 'error src/demos/big-ideas/one-ten-thousandth-apart: published but fails gate: learner review: verdict is for an older version'
+    18: 'error src/demos/chemistry/atoms-across-a-hair: published but fails gate: learner review: verdict is for an older version'
+    19: 'error src/demos/chemistry/atoms-across-a-hair: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)'
+    20: 'error src/demos/chemistry/freezer-balloon: published but fails gate: learner review: verdict is for an older version'
+    21: 'error src/demos/chemistry/freezer-balloon: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)'
+    22: 'error src/demos/chemistry/hydrogen-per-litre: published but fails gate: learner review: verdict is for an older version'
+    23: 'error src/demos/chemistry/hydrogen-per-litre: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)'
+    24: 'error src/demos/chemistry/ph-log-scale: published but fails gate: learner review: verdict is for an older version'
+    25: 'error src/demos/chemistry/ph-log-scale: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)'
+    26: 'error src/demos/chemistry/same-heat-different-rise: published but fails gate: learner review: verdict is for an older version'
+    27: 'error src/demos/chemistry/same-heat-different-rise: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)'
+    28: 'error src/demos/chemistry/which-particle-names-it: published but fails gate: learner review: verdict is for an older version'
+    29: 'error src/demos/chemistry/which-particle-names-it: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)'
+    30: 'error src/demos/cs/big-number-swallows-one: published but fails gate: learner review: verdict is for an older version'
+    31: 'error src/demos/cs/big-number-swallows-one: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)'
+    32: 'error src/demos/cs/checking-is-not-finding: published but fails gate: learner review: verdict is for an older version'
+    33: 'error src/demos/cs/checking-is-not-finding: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)'
+    34: 'error src/demos/cs/every-message-is-possible: published but fails gate: learner review: verdict is for an older version'
+    35: 'error src/demos/cs/good-lists-make-good-pages: published but fails gate: learner review: verdict is for an older version'
+    36: 'error src/demos/cs/good-lists-make-good-pages: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)'
+    37: 'error src/demos/cs/lopsided-tree: published but fails gate: learner review: verdict is for an older version'
+    38: 'error src/demos/cs/lopsided-tree: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)'
+    39: 'error src/demos/cs/one-bit-avalanche: published but fails gate: learner review: verdict is for an older version'
+    40: 'error src/demos/cs/one-bit-avalanche: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)'
+    41: 'error src/demos/cs/paint-mix-shared-secret: published but fails gate: learner review: verdict is for an older version'
+    42: 'error src/demos/cs/paint-mix-shared-secret: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)'
+    43: 'error src/demos/cs/shell-gaps-shrink-the-shuffles: published but fails gate: learner review: verdict is for an older version'
+    44: 'error src/demos/cs/shell-gaps-shrink-the-shuffles: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)'
+    45: 'error src/demos/cs/shuffle-until-sorted: published but fails gate: learner review: verdict is for an older version'
+    46: 'error src/demos/cs/shuffle-until-sorted: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)'
+    47: 'error src/demos/cs/sketch-the-counts: published but fails gate: learner review: verdict is for an older version'
+    48: 'error src/demos/cs/sketch-the-counts: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)'
+    49: 'error src/demos/cs/three-questions-six-orders: published but fails gate: learner review: verdict is for an older version'
+    50: 'error src/demos/cs/three-questions-six-orders: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)'
+    51: 'error src/demos/cs/zebra-sorts-before-apple: published but fails gate: learner review: verdict is for an older version'
+    52: 'error src/demos/cs/zebra-sorts-before-apple: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)'
+    53: 'error src/demos/geography/why-the-poles-get-less-sun: published but fails gate: learner review: verdict is for an older version'
+    54: 'error src/demos/geography/why-the-poles-get-less-sun: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)'
+    55: 'error src/demos/history/children-dying-before-five: published but fails gate: learner review: verdict is for an older version'
+    56: 'error src/demos/history/children-dying-before-five: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)'
+    57: 'error src/demos/life/cell-too-big: published but fails gate: learner review: verdict is for an older version'
+    58: 'error src/demos/life/cell-too-big: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)'
+    59: 'error src/demos/lifehacks/rebuild-the-procedure: published but fails gate: learner review: verdict is for an older version'
+    60: 'error src/demos/life/hemoglobin-s-curve: published but fails gate: learner review: verdict is for an older version'
+    61: 'error src/demos/life/hemoglobin-s-curve: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)'
+    62: 'error src/demos/life/isolate-by-day-three: published but fails gate: learner review: verdict is for an older version'
+    63: 'error src/demos/life/isolate-by-day-three: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)'
+    64: 'error src/demos/life/one-percent-edge: published but fails gate: learner review: verdict is for an older version'
+    65: 'error src/demos/life/one-percent-edge: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)'
+    66: 'error src/demos/life/virulence-sweet-spot: published but fails gate: learner review: verdict is for an older version'
+    67: 'error src/demos/life/virulence-sweet-spot: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)'
+    68: 'error src/demos/math/domino-chain: published but fails gate: learner review: verdict is for an older version'
+    69: 'error src/demos/math/domino-chain: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)'
+    70: 'error src/demos/math/draw-a-table-knot: published but fails gate: learner review: verdict is for an older version'
+    71: 'error src/demos/math/draw-a-table-knot: published but fails gate: QA: newest QA record is for v3, lesson is v4'
+    72: 'error src/demos/math/euclid-three-steps: published but fails gate: learner review: verdict is for an older version'
+    73: 'error src/demos/physics/mirror-half-height: published but fails gate: learner review: verdict is for an older version'
+    74: 'error src/demos/physics/mirror-half-height: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)'
+    75: 'error src/demos/physics/skater-pulls-arms: published but fails gate: learner review: verdict is for an older version'
+    76: 'error src/demos/physics/skater-pulls-arms: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)'
+    77: 'error src/demos/probability/how-surprising-is-sixty: published but fails gate: learner review: verdict is for an older version'
+    78: 'error src/demos/probability/how-surprising-is-sixty: published but fails gate: QA: newest QA record predates the current version'
+    79: 'error src/demos/probability/sixteen-of-twenty-got-better: published but fails gate: learner review: verdict is for an older version'
+    80: 'error src/demos/probability/sixteen-of-twenty-got-better: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)'
+    81: 'error src/demos/probability/twenty-flips-run-of-five: published but fails gate: learner review: verdict is for an older version'
+    82: 'error src/demos/probability/twenty-flips-run-of-five: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)'
+    83: 'error src/demos/probability/why-seven-wins: published but fails gate: learner review: verdict is for an older version'
+    84: 'error src/demos/probability/why-seven-wins: published but fails gate: QA: newest QA record has no version stamp and is dated the same day as an older-version review (cannot tell which version it saw)'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/s3-account-default-proof/tests/publish/readiness.test.mjs:205:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4351.947147
