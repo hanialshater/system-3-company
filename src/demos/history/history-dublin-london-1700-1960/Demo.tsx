@@ -4,6 +4,7 @@ import {Lesson,type StageContext} from '@/kit/Lesson';
 import {Control} from '@/kit/controls';
 import {lessonData as data} from './data';
 import {initialState,transition,visibleColumns,RECORDS,type State,type Action,type DocumentId} from './model';
+import { HistoryLocator } from "@/components/history/HistoryLocator";
 import s from './styles.module.css';
 function DocumentaryStage({ctx,state,dispatch,open,setOpen,onSources,sourceId}:{ctx:StageContext;state:State;dispatch:Dispatch<Action>;open:boolean;setOpen:Dispatch<boolean>;onSources:()=>void;sourceId:string}){
  const earned=useRef(new Set<DocumentId>()); const phase=useRef(ctx.phase);
@@ -11,7 +12,8 @@ function DocumentaryStage({ctx,state,dispatch,open,setOpen,onSources,sourceId}:{
  useEffect(()=>{if(phase.current!==ctx.phase){phase.current=ctx.phase;setOpen(false);}},[ctx.phase,setOpen]);
  const cols=visibleColumns(state,ctx.locked);
  function select(id:DocumentId){const next=transition(state,{type:'select',id});dispatch({type:'select',id});for(const witness of next.earned)if(!earned.current.has(witness)){earned.current.add(witness);ctx.interact();}}
- return <div className={`${s.frame} ${open?s.sourcesActive:''}`}><div className={s.dates}>{RECORDS.map(doc=><Control key={doc.id} disabled={ctx.locked||state.focus===doc.id} aria-pressed={!ctx.locked&&state.focus===doc.id} onClick={()=>select(doc.id)}>{doc.label}</Control>)}</div>
+ return <div className={`${s.frame} ${open?s.sourcesActive:''}`}>
+ <HistoryLocator slug="history-dublin-london-1700-1960" places={["Dublin", "London"]} /><div className={s.dates}>{RECORDS.map(doc=><Control key={doc.id} disabled={ctx.locked||state.focus===doc.id} aria-pressed={!ctx.locked&&state.focus===doc.id} onClick={()=>select(doc.id)}>{doc.label}</Control>)}</div>
  <div className={s.columns}>{RECORDS.map((doc,i)=>{const r=cols[doc.id];return <div key={doc.id} className={s.record} data-selected={!ctx.locked&&state.focus===doc.id} data-kind="nodes">
  {!r?<div className={s.empty} aria-label="Unvisited document"><svg viewBox="0 0 64 32" aria-hidden="true"><rect x="6" y="2" width="52" height="28" rx="3" fill="none" stroke="var(--line)"/><path d="M18 12h28M18 20h28" stroke="var(--line)" strokeDasharray="3 3"/></svg></div>:<><svg viewBox="0 0 126 17" className={s.drawing} aria-hidden="true"><path d={i===0?"M12 14h100V6L62 1 12 6z M25 7v7m25-7v7m25-7v7m25-7v7":"M6 3l4 4 4-4 4 4 4-4v10H6z M42 8h30v6H42z M84 8h30v6H84z"} fill="none" stroke="currentColor" strokeDasharray={undefined} /></svg>{r.fields.map(f=><p key={f.address} className={s.field} data-claim={f.claim}>{f.text}</p>)}</>}
 

@@ -3,6 +3,7 @@ import {useEffect,useId,useReducer,useRef,useState,type CSSProperties,type Dispa
 import {Lesson,type StageContext} from "@/kit/Lesson";
 import {Control} from "@/kit/controls";
 import {DOCUMENTS,REQUIRED,PREDICTION,REVEAL,PROVENANCE,RELATION,CONTEXT,initialState,transition,type Action,type State} from "./model";
+import { HistoryLocator } from "@/components/history/HistoryLocator";
 import s from "./styles.module.css";
 function Stage({ctx,state,dispatch,open,onSources,onDismiss,paneId}:{ctx:StageContext;state:State;dispatch:Dispatch<Action>;open:boolean;onSources:()=>void;onDismiss:()=>void;paneId:string}){
  const credited=useRef(new Set<string>());const previousPhase=useRef(ctx.phase);
@@ -11,6 +12,7 @@ function Stage({ctx,state,dispatch,open,onSources,onDismiss,paneId}:{ctx:StageCo
  const select=(id:string)=>{if(ctx.locked)return;dispatch({type:"select",id});if(REQUIRED.includes(id)&&!credited.current.has(id)){credited.current.add(id);ctx.interact();}};
  const loaded=!ctx.locked&&state.loaded.length>0;
  return <div className={s.frame}>
+ <HistoryLocator slug="history-kathmandu-patna-1700-1900" places={["Kathmandu", "Patna"]} />
  <div className={s.tiles} style={{"--columns":DOCUMENTS.length===4?2:DOCUMENTS.length} as CSSProperties}>
  {DOCUMENTS.map((d,index)=>{const seen=!ctx.locked&&state.loaded.includes(d.id);return <Control key={d.id} className={s.tile} disabled={ctx.locked||state.active===d.id} aria-pressed={!ctx.locked&&state.active===d.id} aria-label={ctx.locked?`Record ${index+1}, locked`:undefined} onClick={()=>select(d.id)}><span>{ctx.locked?`Record ${index+1}`:d.label}</span>{seen&&DOCUMENTS.length===4&&<span className={s.datum} data-claim={d.claims.join(" ")}>{d.display}</span>}</Control>;})}</div>
  {loaded?<>{DOCUMENTS.length!==4&&<div className={s.evidence}>{DOCUMENTS.filter(d=>state.loaded.includes(d.id)).map(d=><div key={d.id} className={s.evidenceRow} data-active={state.active===d.id} data-claim={d.claims.join(" ")}><span className={s.datum}>{d.display}</span>{CONTEXT[d.id]&&<span className={s.context} data-claim={`context.${d.id}`}>{CONTEXT[d.id]}</span>}</div>)}</div>}<svg viewBox="0 0 300 12" className={s.relation} aria-hidden="true"><path d={RELATION} fill="none" stroke="var(--muted)" strokeWidth="1.5"/></svg><p className={s.provenance} data-claim="provenance">{PROVENANCE}</p>{DOCUMENTS.length===4&&Object.entries(CONTEXT).filter(([id])=>state.loaded.includes(id)).map(([id,text])=><p key={id} className={s.context} data-claim={`context.${id}`}>{text}</p>)}</>:<div className={s.pending} aria-hidden="true"/>}

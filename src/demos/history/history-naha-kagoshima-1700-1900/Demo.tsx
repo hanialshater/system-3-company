@@ -4,6 +4,7 @@ import {Lesson,type StageContext} from "@/kit/Lesson";
 import {Control} from "@/kit/controls";
 import {Sources,RecordDetails} from "./Sources";
 import {DOCUMENTS,REQUIRED,FRAMES,PREDICTION,REVEAL,initialState,transition,frameText,requiredContexts,canComplete,canDeliverFinal,type State,type Action,type Proof} from "./model";
+import { HistoryLocator } from "@/components/history/HistoryLocator";
 import s from "./styles.module.css";
 
 // A request belongs to one activation, never merely to a later BODY focus.
@@ -54,6 +55,7 @@ function Stage({ctx,state,dispatch,open,paneId,onSources,onDismiss,onDetails,onP
  useEffect(()=>{if(ctx.locked)return;for(const id of state.earned){if(credited.current.has(id))continue;const finalCredit=state.earned.length===REQUIRED.length&&credited.current.size===REQUIRED.length-1;if(finalCredit&&!canDeliverFinal(state))continue;credited.current.add(id);ctx.interact();}},[state.earned,state.comparisonEverMounted,ctx.locked,ctx.interact]);
  const navigate=(id:string)=>{if(ctx.locked)return;dispatch({type:"navigate",target:id});onDismiss();if(ctx.phase==="reveal"&&id!=="comparison")onDetails(id);};
  return <div className={s.frame}>
+ <HistoryLocator slug="history-naha-kagoshima-1700-1900" places={["Naha", "Kagoshima"]} />
  {!ctx.locked&&shownFrame?<><div className={s.evidence}><p ref={frameNode} data-frame={shownFrame} data-generation={state.generation} data-witness={shownFrame===state.frame?(state.displayWitness??""):""} data-claim={FRAMES.find(f=>f.id===shownFrame)?.claim}>{frameText(shownFrame)}</p></div></>:<div className={s.pending} aria-hidden="true"/>}
  <div className={s.controls}>{REQUIRED.map((id,i)=><Control data-history-record="true" key={id} disabled={ctx.locked||(ctx.phase!=="reveal"&&state.active===id&&state.earned.includes(id))} data-earned={state.earned.includes(id)} aria-label={ctx.locked?`Record ${i+1}, locked`:`Record ${i+1}${state.earned.includes(id)?", saved":""}`} aria-pressed={!ctx.locked&&state.active===id} onClick={()=>navigate(id)}>{i+1}</Control>)}{!(ctx.phase==="reveal"&&shownFrame==="comparison")&&<Control disabled={ctx.locked||(ctx.phase==="reveal"?shownFrame==="comparison":state.active==="comparison")||(!state.comparisonReady&&!canComplete(state))} aria-label={ctx.locked?"Comparison, locked":"Saved comparison"} aria-pressed={!ctx.locked&&shownFrame==="comparison"} onClick={()=>navigate("comparison")}>{REQUIRED.length+1}</Control>}<Control className={s.sourceControl} disabled={ctx.locked} aria-expanded={open} aria-controls={paneId} onClick={onSources}>{open?"Close":"Sources"}</Control><Control className={s.resetControl} disabled={ctx.locked||(!state.active&&!open)} data-history-reset="true" onClick={()=>{dispatch({type:"reset"});onDismiss();}}>Reset</Control></div></div>;
 }

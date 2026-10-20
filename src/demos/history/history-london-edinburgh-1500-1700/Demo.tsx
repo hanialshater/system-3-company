@@ -3,6 +3,7 @@ import {useEffect,useReducer,useRef,useState,type Dispatch,type RefObject} from 
 import {Lesson,type StageContext} from '@/kit/Lesson';
 import {Control} from '@/kit/controls';
 import {initialState,transition,visibleColumns,type State,type Action,type Year} from './model';
+import { HistoryLocator } from "@/components/history/HistoryLocator";
 import s from './styles.module.css';
 const account='https://www.parliament.uk/about/living-heritage/evolutionofparliament/legislativescrutiny/act-of-union-1707/overview/union-of-the-crowns/';
 const articles='https://www.parliament.uk/globalassets/documents/heritage/articlesofunion.pdf';
@@ -16,6 +17,7 @@ function Stage({ctx,state,dispatch,open,onOpen,onReset,sourceButton}:{ctx:StageC
  const diagramHeight=separateMonarchRow?68:52;
  const choose=(year:Year)=>{const next=transition(state,{type:'select',year});dispatch({type:'select',year});if(next.earned.includes(year)&&!signalled.current.has(year)){signalled.current.add(year);interact();}};
  return <div className={s.frame}>
+ <HistoryLocator slug="history-london-edinburgh-1500-1700" places={["London", "Edinburgh"]} />
   <p className={s.orientation} data-claim="history.history-london-edinburgh-1500-1700.c6">Selected institutions; modern city names orient the case.</p>
   <svg viewBox={`0 0 290 ${diagramHeight}`} width="290" height={diagramHeight} style={{height:diagramHeight}} className={s.diagram} role="group" aria-label={locked?'Institution frame, dates not yet opened':'Selected institutional evidence'}>
    <text x="1" y={separateMonarchRow?29:13} className={s.rowLabel}>Monarch</text>
