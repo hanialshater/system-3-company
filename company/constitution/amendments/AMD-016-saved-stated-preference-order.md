@@ -1,6 +1,6 @@
 # AMD-016: Explicitly saved account choices in the ordinary All feed
 
-status: proposed — prepared text, not ratified or applied
+status: ratified — founder confirmed and required Board/implementation dispositions recorded
 date: 2026-10-20
 proposed_by: founder product direction, company/decisions/2026-10-20-founder-account-personalization.md
 prepared_by: evaluation-steward
@@ -83,3 +83,22 @@ This is confirmation of concrete protected wording, not a request to repeat the 
 ## Preparation validation
 
 2026-10-20: startup status completed; current-default AMD015 and Surface Value inspected; no protected path edited. Shared-main `npm run check` failed16errors/3warnings in existing History support entries and unrelated founder decision metadata (same categories as engineering routing), log `/tmp/account-prefs-amendment-check.log`. This preparation does not repair or waive those errors. No code/build/browser validation was performed by the steward; implementation acceptance remains pending.
+
+## Founder confirmation received
+
+2026-10-20: in response to the assistant’s linked exact AMD-016 question, the founder answered **“Confirm AMD-016”**. This is actual confirmation, not inferred from the earlier feature request. The required final owner/runtime dispositions remain pending; no protected text or serving admission is applied by this entry.
+
+## Recorded decision and application — 2026-10-20
+
+This decision supersedes the pending proposal status above. The exact protected replacement/rider and trade-off rows above are unchanged from the presented proposal.
+
+| Seat | Actual disposition | Evidence |
+|---|---|---|
+| founder | Ratify: “Confirm AMD-016”, answering the linked exact-wording question | company/decisions/2026-10-20-founder-account-personalization.md |
+| head-of-product | ACCEPT exact protected wording and bounded stated-taste candidate | company/product/2026-10-20-account-preference-order.md, final Board disposition |
+| privacy-reviewer (affected seat) | Support exact bounded proposal; final scoped implementation cleared | company/reviews/_privacy/2026-10-20-account-preferences.md |
+| evaluation-steward | Presented proposal; independent provenance GO, abstains as deciding approver | company/evaluation/reviews/2026-10-20-account-preference-provenance.md |
+
+The independent owner evidence is committed at `73a19a149`; final implementation `8f90c4ca61cc879ff10636d7fc4dde17e1db5626`, compiled `Ugs6Ydt-f1pPdpqxwlyWj`, recipe `stated-fit-account-2026-10-20-v1`, profile set `0e5513073d5b6eca`. Engineering/source integration acceptance is recorded in company/engineering/readiness/2026-10-20-account-preferences-independent.md. Exact inventory: 1,621 catalogue, 954 observations, 921 entry-current, 33 disputed, 667 unknown; 762 meet the core guard before taste/status. Entry-file freshness is explicitly not transitive artifact certification or factual/learning approval.
+
+Apply only the stated Surface Value text in a dedicated amendment-referenced commit. Candidate manifest approval follows separately, with actual-manifest guard tests and unchanged source/profile hash audit. Aggregate verification remains failed on reproduced inherited baseline issues; assertions are retained. This ratification grants no real database migration or deployment approval, legal/age clearance, behavioral learning or changed lesson gate.
