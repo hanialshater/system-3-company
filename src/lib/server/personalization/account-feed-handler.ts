@@ -18,6 +18,7 @@ export async function handleAccountFeed(req: Request, deps: Dependencies): Promi
         if (!id)
             return json(401, { error: 'signed_out' });
         const params = new URL(req.url).searchParams, raw = params.get('page') ?? '0';
+        if(params.has('snapshot'))return json(400,{error:'query'});
         if (!/^\d{1,5}$/.test(raw))
             return json(400, { error: 'page' });
         const settings = await deps.settings(id), admitted = deps.admitted();

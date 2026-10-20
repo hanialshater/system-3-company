@@ -10,4 +10,4 @@ test('page syntax and mixed snapshots fail closed',async()=>{for(const q of ['?p
 test('unadmitted candidate returns baseline, including page snapshot consistency',async()=>{const r=await handleAccountFeed(request(),fixture({admitted:()=>false}));assert.deepEqual(await r.json(),{items:[],page:0,next:null,total:0,filter:'all',snapshot:'off-version',matching:false,accountTag:'opaque-tag',reasons:{},admissionPending:true});assert.equal((await handleAccountFeed(request('?page=1','on-version'),fixture({admitted:()=>false}))).status,409);});
 test('failure response contains no DB error/choices/user data',async()=>{const r=await handleAccountFeed(request(),fixture({settings:async()=>{throw Error('SECRET SENTINEL');}}));assert.equal(r.status,503);assert.equal(await r.text(),'{"error":"unavailable"}');});
 
-test('legacy query snapshot is never accepted',async()=>assert.equal((await handleAccountFeed(request('?page=1&snapshot=on-version'),fixture())).status,409));
+test('legacy query snapshot is explicitly refused on every page',async()=>{for(const page of [0,1])assert.equal((await handleAccountFeed(request(`?page=${page}&snapshot=on-version`),fixture())).status,400);});
