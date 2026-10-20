@@ -289,6 +289,36 @@ node tools/docs.mjs stale
 
 Rules: a review signed by the document's own author is refused. An approved document changes only through a new version. An objection is answered or carried, never dropped: approval is refused while one is unanswered. Protected-path documents (the constitution) keep their amendment process: the registry reads its state and does not replace it.
 
+## S12. The mailbox is the delivery layer under all three
+
+`tools/mailbox.mjs` stays, with its API (`send`, `list`, `read`, `drain`, `claim`, `launched`, `release`, `done`, `status`). flow, ritual and docs never deliver anything themselves: every order, request, decision, invite and callback is a mailbox message, and every lease is the mailbox's reservation (O_EXCL marker, run id, lease). Its tests (`npm run test:mailbox`, 11/11 on 2026-10-20) already cover parallel sends, two drains, release and lease expiry.
+
+| Engine call | Mailbox message |
+|---|---|
+| `flow order new` / `delegate` | `send --kind=order` (today `dispatch-request`) to the dispatcher, with the order id |
+| `room enter` / `recover` | `drain` + `claim` / lease expiry: the same reservation code |
+| `room leave` | `done --report=<receipt>` to the orderer |
+| `flow request` (S9) | `send --kind=approval-request --to=<approver> --key=… --due=…` |
+| `flow decide` | `send --kind=decision --in-reply-to=<request>`; its callbacks are `send --kind=callback` to the dispatcher |
+| `ritual open` | `send --kind=invite --to=<each invitee> --due=…` |
+| `docs submit` / `review` | `send --kind=review-request` / `--kind=review` |
+
+**What the mailbox needs added:**
+
+```bash
+node tools/mailbox.mjs send --kind=approval-request --to=founder --key=O-0412:release:v3 --due=24h …
+# --key: a second send with the same key returns the first message (exactly once, S9)
+# --due: past due, the engine's timeout callback fires (never an approval)
+
+node tools/mailbox.mjs ack <id> --by=<role>        # received and understood: separate from read and from done
+node tools/mailbox.mjs thread <id>                 # the request, its decision, its callbacks, in order
+node tools/mailbox.mjs watch <role> --on-message="<command>"   # wake on arrival, no polling (W-1280: must be shown to fire)
+```
+
+- **New kinds:** `order`, `approval-request`, `decision`, `callback`, `invite`, `review-request`, `review`, `notice`. The lane rule moves out of `company/ceo-office/poc-map.md` (parsed today by `readLanes`) into `tools/org/flows.mjs`.
+- **Durable storage:** mailboxes are a gitignored spool in the main checkout, so a container restart, or a second session in another container, loses them. EXP-009 found `company/ops/mailboxes` absent in this container. Async approvals can wait for days, so the spool needs a store that survives: committed message files, or the progress database. That is an engineering decision for principal-engineer.
+- **Dispatcher:** today only the chief of staff drains and starts agents, because only it holds the Agent tool. In the pilot a supervisor process drains and launches by the same rules. That is phase 1 of the Meta roadmap.
+
 ## What every command writes
 
 Every accepted command writes one event (`order`, `approve`, `escalate`, `request`, `decide`, `callback`, `timeout`, `enter`, `heartbeat`, `leave`, `advance`, `refuse`, `recover`) with order id, run id, role, room and evidence paths. Refusals are events too: they show where the rules bite. These events are what EXP-009's reconciliation and the efficiency report read.
