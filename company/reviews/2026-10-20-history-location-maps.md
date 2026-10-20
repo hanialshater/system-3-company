@@ -23,3 +23,7 @@ Reproduction:
 - node --import ./tests/lifehacks/register.mjs --test src/demos/history/history-*/model.test.ts
 
 Rollback: revert the history locator commit; no database or environment rollback is needed.
+
+## Production and full phone follow-through (2026-10-21)
+
+Vercel deployment dpl_8Vy574NU6MbDqmGCTgvVMnGfJSoY reached READY at source 4afb9c11a99c4d367be53939b363a328bbb67c6b. All 100 live SVG assets match the tested bytes. Three live phone pages and the complete Paris/Lyon learner flow pass without JavaScript errors. Expanded phone contract: 99/100 city-history lessons pass; Luanda/Kinshasa has an existing Sources/Reset overlap, reproduced with the locator hidden. Closing Sources then revealing succeeds. Routed as W-2023; no new map regression found. Earlier phone/desktop sample: 16/16. Receipt: company/ops/deployments/2026-10-21-r18-production.json. Independent source-claim verification is routed as W-2022; builder claims remain unverified.
