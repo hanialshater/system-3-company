@@ -1,3 +1,11 @@
+## 2026-10-21 · history map stories · 24 drafts and a 200-topic curriculum (W-2024)
+
+Implemented `/history` with 24 actual story lessons in eight families, including Normandy, Alexander, Golden Horde and the 1492 Atlantic voyage. Learners predict, visit four distinct checkpoints, scrub the timeline, compare earlier evidence and reveal an explanation beside the final map. Separate curriculum lists 176 further research candidates, not available lessons. Source addresses, schematic geometry limits, provenance and the narrative charter change are in the founder decision and `content/history-stories/README.md`.
+
+Verification: production build and TypeScript pass; 26 data tests, 48 full browser flows and 48 unchanged protected contract checks pass on phone/desktop. Main-feed 57/57 and deploy tooling 19/19 pass. Global company check remains exactly 811 errors and four warnings, with zero new errors; publication and HQ suites retain failures. `company/ops/deployments/2026-10-21-r20-verification.json` records the scope and limits.
+
+All new lessons remain drafts and source claims unverified. Independent research/cultural pre-build review was not completed; this deviation is recorded explicitly. W-2024 is now with cm-history for independent research, cultural, fact and learner review before editorial publication. No protected file or gate changed. Production deployment is continuing under the original fix/deploy request and the subsequent “Yes do it”; the live receipt will identify the actual deployed SHA.
+
 ## 2026-10-20 · personalization-eval · session run plan: §11 written, formatter + parts check hashed, 11 chunks planned (W-2013)
 
 What changed (not committed): criterion §11 (freeze commit bdebacc2, sha256 40a82a40…ef9; formatter and parts-check sha256; the run partition stated); new harness/cs/partsCheckS.mjs (11 chunks, each inside one §8 part; refuses missing/duplicated/foreign chunks, plumbing, wrong S, a run commit not descended from the freeze or changing anything but §11 and the allowed paths, harness or pin hashes unlike the freeze commit's); harness/cs/readoutS-tables.mjs (formatter, runs the check first, computes no verdict); harness/cs/RUN-PLAN-s1.md (commands); README. No file runS.mjs hashes and no pinned candidate file changed.
