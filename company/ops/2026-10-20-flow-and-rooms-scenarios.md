@@ -227,6 +227,68 @@ node tools/flow.mjs decide A-0088 --by=founder --decision=approve --words="Appro
 - **Founder decisions:** `decide --by=founder` needs the founder's own words and the channel they came through. Code checks the words against the founder-reserved actions: "Approve deploy" covers a release and nothing more. An agent can file the founder's words, but it cannot be the source of them.
 - **Batching:** the founder's queue can be answered in one sitting, with `decide A-0087 A-0088 …`, each item carrying its own words. The founder digest is generated from the queue.
 
+## One engine, three APIs: work, rituals, documents
+
+The state machine, queues, callbacks, rooms and events are one engine (`tools/lib/flow-engine.mjs`). Three tools sit on it, each with its own API, because each starts differently:
+
+| Tool | What starts it | What it produces | Exists today |
+|---|---|---|---|
+| `tools/flow.mjs` | an order | accepted work | the mailbox, the board, the lesson gates |
+| `tools/ritual.mjs` | a trigger (cadence, a count, an incident) | a ritual record, and orders for its actions | `company/rituals/triggers.json`, `tools/rituals-due.mjs` (when a ritual is due), templates; records are written by hand |
+| `tools/docs.mjs` | a new or changed document | a document registry entry, a review, a status | `company/decisions/` (123 files; 43 have no `status:` line); no document registry (the only registry generates the lesson index from `meta.json`) |
+
+## S10. Rituals: trigger → open → rounds → close
+
+```bash
+node tools/ritual.mjs due
+# wbr        due   7 d since 2026-10-17 record · room: ceo-office · chair: chief-of-staff
+# ops-review due   SEV2 incident I-028 (orMatch) · chair: principal-engineer-ops
+
+node tools/ritual.mjs open wbr --date=2026-10-24
+# → RIT-0031 wbr OPEN · agenda generated from the template plus data: efficiency.mjs --week, flow status --stuck=24h,
+#   reconcile coverage, open actions from RIT-0024 · invited: analytics-steward, portfolio-manager, principal-engineer-ops
+#   each invitee gets a queued request (S9) with a due time; nobody is polled
+
+room enter ceo-office --ritual=RIT-0031 --role=analytics-steward      # same room pattern as S8
+room leave --run=… --ritual=RIT-0031 --position="usage coverage 0% after 10-16" --objection="…" \
+  --action="restore usage writer; owner tools-lead; due 10-27"
+
+node tools/ritual.mjs close RIT-0031 --by=chief-of-staff
+# → record company/rituals/records/2026-10-24-wbr.md written from the template, with every position, objection and
+#   absent invitee · each action becomes an order (flow order new, owner and due set) · ritual event written ·
+#   rituals-due resets from the committed record, as today
+node tools/ritual.mjs actions --open          # actions from all rituals, with their orders' current stage
+```
+
+Rules: a ritual closes only with its template's required sections filled in (the check runs at close). An action without an owner and a due date is refused. A ritual whose invitees did not come closes with their names in the record, never with their positions filled in by someone else. Previous actions not done appear on the next agenda by themselves.
+
+## S11. Documents: registry and review
+
+Every document that decides or specifies something (decision record, EDD, ADR, PRD, amendment, runbook) gets a registry entry built from its header lines. Each document type has its own review flow (S0), so who reviews what is set when that document type's flow is defined.
+
+```bash
+node tools/docs.mjs index
+# → company/docs-registry.json generated from header lines: id, type, title, owner, date, status, version,
+#   supersedes, rests-on, required reviewers, review state · and a list of files whose headers are missing or bad
+
+node tools/docs.mjs new decision --title="Code flow v1" --owner=founder --by=chief-of-staff
+# → company/decisions/2026-10-21-code-flow-v1.md from the template · DOC-0124 draft
+
+node tools/docs.mjs submit DOC-0124
+# → review flow decision@v1: check (chief-of-staff-ceo-office) → approve (founder) · requests queued (S9)
+
+node tools/docs.mjs review DOC-0124 --by=chief-of-staff-ceo-office --verdict=changes --objection="limits per lane missing"
+# → objection stored with its author and kept with the document; the author must answer it before approval
+
+node tools/docs.mjs approve DOC-0124 --by=founder --words="Approve code flow v1"
+# → status decided · version 1 frozen (later edits make v2 and reopen review) · callbacks: flow approve-def code@v1
+
+node tools/docs.mjs stale
+# → documents whose rests-on claims or experiments changed, superseded documents still cited, drafts with no review
+```
+
+Rules: a review signed by the document's own author is refused. An approved document changes only through a new version. An objection is answered or carried, never dropped: approval is refused while one is unanswered. Protected-path documents (the constitution) keep their amendment process: the registry reads its state and does not replace it.
+
 ## What every command writes
 
 Every accepted command writes one event (`order`, `approve`, `escalate`, `request`, `decide`, `callback`, `timeout`, `enter`, `heartbeat`, `leave`, `advance`, `refuse`, `recover`) with order id, run id, role, room and evidence paths. Refusals are events too: they show where the rules bite. These events are what EXP-009's reconciliation and the efficiency report read.
