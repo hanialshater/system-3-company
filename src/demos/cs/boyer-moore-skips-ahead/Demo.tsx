@@ -325,9 +325,6 @@ export default function BoyerMooreSkipsAhead({ slug }: { slug: string }) {
             and never read <strong>{T.length - laneState(HORS, MAXK).read.size}</strong> of the {T.length} letters. The
             plain method read every letter: {PLAIN.length} comparisons, {laneState(PLAIN, MAXK).placements} placements.
           </p>
-          <p className="muted">
-            A search can skip text, as long as each skip is justified by a letter it did read.
-          </p>
         </>
       )}
     >

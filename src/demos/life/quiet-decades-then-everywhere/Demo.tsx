@@ -82,8 +82,7 @@ export default function QuietDecadesThenEverywhere({ slug }: { slug: string }) {
             </p>
             <p>
               Growing {Math.round(100 * GROWTH)}% a year doubles the count about every {(Math.log(2) / Math.log(1 + GROWTH)).toFixed(1)} years,
-              so each doubling adds as many plants as all the years before it together. Almost all of the filling happens in the last few doublings,
-              which is why exponential spread looks harmless until it is late.
+              so each doubling adds as many plants as all the years before it together. Almost all of the filling happens in the last few doublings.
             </p>
           </>
         );

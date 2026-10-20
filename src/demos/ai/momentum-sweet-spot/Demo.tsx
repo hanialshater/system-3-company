@@ -72,8 +72,7 @@ export default function MomentumSweetSpot({ slug }: { slug: string }) {
             smoothed the zigzag: 0.5 took {stepsFor(0.5)}, 0.8 took {stepsFor(0.8)}.
           </p>
           <p>
-            At 0.9 it carried so much speed that it shot past the bottom, rolled back and overshot again, three times. Momentum
-            speeds descent only up to a point; too much and the ball keeps overshooting.
+            At 0.9 it carried so much speed that it shot past the bottom, rolled back and overshot again, three times.
           </p>
           <p className="muted">Toy valley, invented; real loss surfaces are not this shape.</p>
         </>

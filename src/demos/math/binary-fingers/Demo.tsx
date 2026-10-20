@@ -69,14 +69,14 @@ export default function BinaryFingers({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            <strong>{2 ** F}.</strong> Counting up, each new pattern lit its own cell: 0, 1, 2 … {COUNT_TO}, none skipped,
+            <strong>{2 ** F}.</strong> Counting up, each new pattern filled its own cell: 0, 1, 2 … {COUNT_TO}, none skipped,
             none twice. All {F} fingers up made {MAXN}, the last cell. Every number from 0 to {MAXN} has exactly one
-            pattern, so that is {MAXN} + 1 = {2 ** F} numbers. You lit {made.size} of them.
+            pattern, so that is {MAXN} + 1 = {2 ** F} numbers. You made {made.size} of them.
           </p>
           <p>
             At {COUNT_TO}, the four right fingers had made all of 0 to 15, and the next finger started them all again.
             Each finger doubles the count: down (all the old numbers) or up (all of them again, plus its value). Ten
-            doublings: 2 × 2 × … × 2 = {2 ** F}. Two states per place: that is binary.
+            doublings: 2 × 2 × … × 2 = {2 ** F}. Two states per place is binary.
           </p>
         </>
       )}

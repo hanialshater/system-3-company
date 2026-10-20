@@ -84,8 +84,7 @@ export default function BorderFollowsPoint({ slug }: { slug: string }) {
         <>
           <p>
             With A at -2 the border sits at <strong>x = {fmt(axisCrossing([-2, 0]))}</strong>, halfway between -2 and 4. A moved 2;
-            the border moved 1. No one drew that border: it is wherever the two points are equally far away, so it goes where the
-            data goes.
+            the border moved 1. No one drew that border: it is wherever the two points are equally far away.
           </p>
           <p>
             Lift A off the axis and the border tilts, staying at right angles to the line joining the two points, through their

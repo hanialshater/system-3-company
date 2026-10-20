@@ -67,8 +67,7 @@ export default function DarkestEvening({ slug }: { slug: string }) {
           </p>
           <p>
             The day is shortest on the 21st, but the whole day is sliding later: solar noon moves from {Q.noon13} on the 13th
-            to {Q.noon30} on the 30th, mostly because of Earth&rsquo;s tilt, and partly because Earth moves fastest in early January. A
-            shrinking day on a sliding noon puts the darkest evening early.
+            to {Q.noon30} on the 30th, mostly because of Earth&rsquo;s tilt, and partly because Earth moves fastest in early January.
           </p>
         </>
       )}

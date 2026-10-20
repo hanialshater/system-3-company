@@ -61,7 +61,6 @@ export default function CountTheThunder({ slug }: { slug: string }) {
             Sound in air goes about {C_SOUND} m every second, so every 3 s of counting is about 1 km (
             {(3 * C_SOUND).toLocaleString("en-US")} m). Divide your count by 3 for kilometres.
           </p>
-          <p className="muted">Same event, two messengers: light is fast, sound is slow.</p>
         </>
         );
       }}

@@ -108,7 +108,7 @@ export default function RevenueSweetSpot({ slug }: { slug: string }) {
           </p>
           <p>
             Each $1 on the price earns $1 more on every loaf still sold, but loses 10 loaves. Below ${BEST} the gain wins;
-            above ${BEST} the lost sales win. So revenue rises, peaks, then falls: a higher price is not always more money.
+            above ${BEST} the lost sales win. So revenue rises, peaks, then falls.
           </p>
           <p className="muted">A model: straight-line demand, and revenue only. Profit would also subtract the cost of each loaf.</p>
         </>

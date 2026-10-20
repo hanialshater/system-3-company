@@ -110,8 +110,7 @@ export default function LeakyVaccineThreshold({ slug }: { slug: string }) {
           </p>
           <p>
             You took efficacy down to {lowest}%. Below {pct(BASE)} efficacy the needed coverage passes 100%: at {E_LOW}% it would be{" "}
-            {pct(needed(E_LOW))}, and even vaccinating everyone leaves R at {rEff(100, E_LOW).toFixed(1)}. The coverage needed depends on R0
-            and on how well the vaccine works.
+            {pct(needed(E_LOW))}, and even vaccinating everyone leaves R at {rEff(100, E_LOW).toFixed(1)}.
           </p>
           <p className="muted">Toy model: random mixing, a made-up disease, R at the start of an outbreak. Not a statement about any real vaccine.</p>
         </>

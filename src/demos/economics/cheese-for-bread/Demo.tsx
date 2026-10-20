@@ -172,7 +172,7 @@ export default function CheeseForBread({ slug }: { slug: string }) {
         <>
           <p>
             Ben on cheese all {HOURS} hours ({HOURS} cheeses) plus Ana's 2 cheese hours ({2 * ANA.cheese}) still make {BEST.cheeses} cheeses, and Ana's other 6 hours bake{" "}
-            <strong>{BEST.loaves} loaves</strong>, {BEST.loaves - EVEN.loaves} more than before. Same hours, more food.
+            <strong>{BEST.loaves} loaves</strong>, {BEST.loaves - EVEN.loaves} more than before.
           </p>
           <p>
             Each cheese costs Ana {ANA.bread / ANA.cheese} loaves but Ben only {BEN.bread / BEN.cheese}, so Ben should make it. When each does the job where they give up least, the total grows, and the extra loaves can be shared so both gain.

@@ -66,7 +66,7 @@ export default function OutsideOptionSetsTheSplit({ slug }: { slug: string }) {
             {hi > lo
               ? `Your Tried row: raising A's option from ${usd(lo)} to ${usd(hi)} (${hi - lo} cents) moved A's deal from ${usd(split(lo).A)} to ${usd(split(hi).A)} (${split(hi).A - split(lo).A} cents). `
               : ""}
-            The option works as a threat, not as a move: it matters even though A never uses it.
+            The option matters even though A never uses it.
           </p>
         </>
       )}

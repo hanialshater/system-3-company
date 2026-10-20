@@ -51,7 +51,6 @@ export default function RsaLockWithPublicKey({ slug }: { slug: string }) {
             Multiplying two primes is easy; finding them again from the product is not. No fast method is known for
             numbers hundreds of digits long, which is what real keys use.
           </p>
-          <p className="muted">A public lock can be safe when the key to open it hides inside a hard problem.</p>
         </>
       )}
     >

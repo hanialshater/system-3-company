@@ -91,7 +91,7 @@ export default function NorthIsUp({ slug }: { slug: string }) {
           </p>
           <p>
             Turning twice gave south at the top, the way al-Idrisi drew his world map in 1154. The Earth is a ball with no top, so which way is
-            up on a map is a choice. North-up is today&rsquo;s convention, not a fact about the planet.
+            up on a map is a choice. North-up is today&rsquo;s convention.
           </p>
         </>
       )}

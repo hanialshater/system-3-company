@@ -73,8 +73,8 @@ export default function AddAZero({ slug }: { slug: string }) {
           )}
           <p>
             × 10 moved every digit one column left: 3 ones became 3 tens and 5 tenths became 5 ones, so {START} × 10 = {ANSWER}.
-            &quot;Add a zero&quot; only works for whole numbers, where the shift leaves an empty ones column to fill with 0. The
-            real rule: times ten moves each digit up one place.
+            &quot;Add a zero&quot; only works for whole numbers, where the shift leaves an empty ones column to fill with 0. Times ten
+            moves each digit up one place.
           </p>
         </>
       )}

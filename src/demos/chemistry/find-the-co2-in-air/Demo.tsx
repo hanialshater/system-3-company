@@ -85,7 +85,7 @@ export default function FindTheCo2InAir({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Out on a walk, you scoop up 10,000 molecules of dry outdoor air. About how many of them are carbon dioxide?",
+        question: "Picture 10,000 molecules of dry outdoor air. About how many of them are carbon dioxide?",
         options: ["about 4", "about 40", "about 400", "about 2,000"],
         answer: 0,
       }}

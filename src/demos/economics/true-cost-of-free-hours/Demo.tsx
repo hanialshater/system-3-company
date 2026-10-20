@@ -118,7 +118,7 @@ export default function TrueCostOfFreeHours({ slug }: { slug: string }) {
             switched the alternative to nothing paid, the second block vanished: the given-up pay counts only if that work
             was really there to take.
           </p>
-          <p className="muted">Toy numbers. It ignores taxes and what the course is worth to you.</p>
+          <p className="muted">Made-up numbers. It ignores taxes and what the course is worth to you.</p>
         </>
       )}
     >

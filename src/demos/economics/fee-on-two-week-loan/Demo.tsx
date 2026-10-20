@@ -44,7 +44,7 @@ export default function FeeOnTwoWeekLoan({ slug }: { slug: string }) {
             <strong>${yearly(Q_DAYS)}</strong> on every $100, a simple yearly rate of <strong>{pct(yearly(Q_DAYS))}</strong>. The{" "}
             {FEE}% is the rate for two weeks only.
           </p>
-          <p>The fee did not change as you moved the length; the number of times it repeats did. Compare rates over the same time.</p>
+          <p>The fee did not change as you moved the length; the number of times it repeats did.</p>
           <p className="muted">A model: you borrow $100 again each time and pay only the fee; simple annualising, no view on any lender.</p>
         </>
       )}

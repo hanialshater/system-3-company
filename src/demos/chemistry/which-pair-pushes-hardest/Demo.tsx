@@ -50,8 +50,8 @@ export default function Ladder({ slug }: { slug: string }) {
             {volts("Cu", "Ag").toFixed(2)} V.
           </p>
           <p>
-            A cell&apos;s voltage is the gap between its two metals on the ladder: {E.Ag.toFixed(2)} − ({E.Zn.toFixed(2)}) = {volts("Zn", "Ag").toFixed(2)} V. The
-            farthest-apart pair wins. Bigger plates change how much current a cell can supply, not this gap.
+            A cell&apos;s voltage is the gap between its two metals on the ladder: {E.Ag.toFixed(2)} − ({E.Zn.toFixed(2)}) = {volts("Zn", "Ag").toFixed(2)} V.
+            Bigger plates change how much current a cell can supply, not this gap.
           </p>
         </>
       )}

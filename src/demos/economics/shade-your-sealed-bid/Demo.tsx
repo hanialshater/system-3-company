@@ -52,7 +52,6 @@ export default function ShadeYourSealedBid({ slug }: { slug: string }) {
           <p>
             Below ${RIVAL_MAX_BID}, each dollar shaved costs 2 points of win chance. The best trade is at <strong>${BEST}</strong>:
             you win {Math.round(winChance(BEST) * 100)}% of the time and keep ${VALUE - BEST}, an expected {money(expected(BEST))}.
-            When you pay your own bid, the best bid is well below your value.
           </p>
           <p className="muted">
             A model: one rival, values spread evenly. With two such bidders, bidding half your value is the equilibrium.

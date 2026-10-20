@@ -98,8 +98,7 @@ export default function FlaggedMeansWhat({ slug }: { slug: string }) {
           <p>
             {sawAll
               ? "Flagging everyone, as you tried, catches all the ill and makes a flag worth 1%."
-              : "Flag everyone and recall hits 100% while a flag is worth 1%."}{" "}
-            Always ask which question a number answers.
+              : "Flag everyone and recall hits 100% while a flag is worth 1%."}
           </p>
         </>
       )}

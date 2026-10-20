@@ -93,7 +93,6 @@ export default function LruEvictionOrder({ slug }: { slug: string }) {
             recently tend to be used again soon, so operating systems and web caches use this rule or cheap
             approximations of it.
           </p>
-          <p className="muted">Recency, not arrival, decides who stays.</p>
         </>
       )}
     >

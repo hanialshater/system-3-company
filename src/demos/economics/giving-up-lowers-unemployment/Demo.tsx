@@ -66,7 +66,7 @@ export default function GivingUpLowersUnemployment({ slug }: { slug: string }) {
             {pct(fr?.rate ?? 6)} and jobs rose to <strong>{fr?.jobs ?? 94}</strong>.
           </p>
           <p>
-            Two almost equal rates, two different stories. A falling rate alone cannot tell you which happened; the number of jobs can. A
+            A falling rate alone cannot tell you which happened; the number of jobs can. A
             toy town of 100.
           </p>
         </>

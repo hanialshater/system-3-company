@@ -133,7 +133,7 @@ export default function CoasterTrackShape({ slug }: { slug: string }) {
           <p>
             Every track you tried ended at <strong>{vBottom.toFixed(2)} m/s</strong>, the same as the steep ramp.
             {slowest !== null && slowest > REF.t[N]
-              ? ` Your slowest took ${slowest.toFixed(2)} s to get there, against ${REF.t[N].toFixed(2)} s: arriving sooner is not arriving faster.`
+              ? ` Your slowest took ${slowest.toFixed(2)} s to get there, against ${REF.t[N].toFixed(2)} s.`
               : " The shape changed the time, not the final speed."}
           </p>
           <p>

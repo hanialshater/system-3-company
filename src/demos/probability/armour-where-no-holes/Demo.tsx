@@ -32,7 +32,7 @@ export default function ArmourWhereNoHoles({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Your squadron's bombers limp home with bullet holes all over the wings and body, but almost none on the engines. You're in charge of extra armour. Where does it go?",
+          "Bombers return with bullet holes all over the wings and body, but almost none on the engines. Where should extra armour go?",
         options: ["Where the holes are", "Where returning planes have few holes", "Spread it evenly"],
         answer: 1,
       }}

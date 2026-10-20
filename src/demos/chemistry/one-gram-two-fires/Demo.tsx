@@ -66,7 +66,7 @@ export default function OneGramTwoFires({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "One fire burns 1 g of carbon completely. The other splits all the atoms in 1 g of uranium-235. To the nearest power of ten, how much more energy does the uranium release?",
+          "You burn 1 g of carbon completely, and you split all the atoms in 1 g of uranium-235. To the nearest power of ten, how much more energy does the uranium release?",
         options: ["about 100 times more", "about 10,000 times more", "about 1 million times more", "about 1 billion times more"],
         answer: 2,
       }}

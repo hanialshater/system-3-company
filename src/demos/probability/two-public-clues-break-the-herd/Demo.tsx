@@ -38,7 +38,7 @@ export default function TwoPublicCluesBreakTheHerd({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "In the urn game, the first two people picked blue and 98 more copied them. Then two other clues are read out, both red. Your own clue says red. Which colour is the urn?",
+          "A hidden urn is blue or red, and each person gets a private clue to its colour. The first two people picked blue and 98 more copied them. Then two more clues are read out, both red. Your own clue says red. Which colour is the urn?",
         options: ["Blue, with the crowd", "Red", "Toss-up"],
         answer: 1,
       }}

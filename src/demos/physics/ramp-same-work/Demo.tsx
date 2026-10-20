@@ -87,7 +87,7 @@ export default function RampSameWork({ slug }: { slug: string }) {
             </p>
             <p>
               A ramp only has to hold back the part of the weight that points down the slope: weight × height ÷ length.
-              The price is distance. Work is force × distance, so a smaller push over a longer path gives the same work,
+              Work is force × distance, so a smaller push over a longer path gives the same work,
               m × g × h.
             </p>
             <p className="muted">Real ramps add friction, so they cost a little more work, not less.</p>

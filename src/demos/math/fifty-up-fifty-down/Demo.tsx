@@ -42,7 +42,6 @@ export default function FiftyUpFiftyDown({ slug }: { slug: string }) {
             of 150 is more than 50% of 100. The extra 25 is the corner you never get back, and some corner is always
             lost: even 10% up then 10% down ends at 99.
           </p>
-          <p className="muted">Percent changes multiply. They do not cancel.</p>
         </>
       )}
     >

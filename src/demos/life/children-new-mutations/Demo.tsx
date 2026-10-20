@@ -107,7 +107,7 @@ export default function ChildrenNewMutations({ slug }: { slug: string }) {
             {other ? ` At ${other.rate} per 100 million, child ${other.c} had ${other.n}: the count follows the rate.` : ""}
           </p>
           <p>
-            Rare per letter, common per person: every child is a few dozen letters new. Studies that read parents' and children's genomes find
+            Studies that read parents' and children's genomes find
             about 60 to 70 new changes per child.
           </p>
         </>

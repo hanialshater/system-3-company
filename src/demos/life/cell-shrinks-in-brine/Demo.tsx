@@ -71,7 +71,7 @@ export default function CellShrinksInBrine({ slug }: { slug: string }) {
             {set.length > 1 ? ` Other baths you tried: ${set.filter((b) => b !== Q_BATH).map((b) => `${c2(b)} gave ${v2(b)}`).join("; ")}.` : ""}
           </p>
           <p>
-            The stuff cannot leave, so the cell still holds {c2(C0)} × 1 = {c2(C0)} units. Water leaves until that amount, spread over the new volume, matches the bath: {c2(C0)} ÷ {v2(Q_BATH)} = {c2(Q_BATH)}. Water follows concentration. Real cells shrink less: this toy ignores walls and the cell&apos;s own bulk.
+            The stuff cannot leave, so the cell still holds {c2(C0)} × 1 = {c2(C0)} units. Water leaves until that amount, spread over the new volume, matches the bath: {c2(C0)} ÷ {v2(Q_BATH)} = {c2(Q_BATH)}. Water follows concentration. Real cells shrink less: this model ignores walls and the cell&apos;s own bulk.
           </p>
         </>
       )}

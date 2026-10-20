@@ -293,7 +293,6 @@ export default function AnyStartSameTree({ slug }: { slug: string }) {
             Whatever towns you have joined, the cheapest cable across the dashed line is always part of the cheapest
             network. So the start changes only the order. With every cable priced differently, only one of the 40 possible networks costs 11.
           </p>
-          <p className="muted">Where you start decides the order, not the network.</p>
         </>
       )}
     >

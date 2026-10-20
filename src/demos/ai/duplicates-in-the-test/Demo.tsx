@@ -86,7 +86,6 @@ export default function DuplicatesInTheTest({ slug }: { slug: string }) {
               The copies reward memorized answers rather than performance on new items. Every leaked item adds a free right answer, so the score climbs while the
               model gets no better at anything new.
             </p>
-            <p>To measure performance on unseen items, keep the test items out of training.</p>
           </>
         );
       }}

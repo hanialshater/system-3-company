@@ -92,7 +92,6 @@ export default function OddNumbersMakeSquares({ slug }: { slug: string }) {
             numbers make 10 × 10 = 100. The same L's, a hundred of them, make 100 × 100: the first 100 odd numbers add
             up to 10,000.
           </p>
-          <p className="muted">The sum was never a pile. It was a square all along.</p>
         </>
       )}
     >

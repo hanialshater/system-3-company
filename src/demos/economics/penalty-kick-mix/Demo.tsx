@@ -91,7 +91,7 @@ export default function PenaltyKickMix({ slug }: { slug: string }) {
             left and the kicker still scores {f3(K.score)}. Shooting left less stops that: at the best mixes either dive concedes{" "}
             {f3(Z.score)} and either kick wins {f3(Z.score)}, so neither side gains by switching.
           </p>
-          <p className="muted">Toy numbers, not real penalty rates.</p>
+          <p className="muted">Made-up numbers, not real penalty rates.</p>
         </>
       )}
     >

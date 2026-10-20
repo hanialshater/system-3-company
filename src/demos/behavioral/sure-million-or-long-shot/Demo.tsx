@@ -146,7 +146,7 @@ export default function SureMillionOrLongShot({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "First choice: a sure $1M, or a gamble with 10% of $5M, 89% of $1M and 1% of nothing. You take the sure $1M. Under expected utility, which may you take in pair 2?",
+        question: "Pair 1: a sure $1M, or a gamble with 10% of $5M, 89% of $1M and 1% of nothing. You take the sure $1M. Pair 2: 11% of $1M, or 10% of $5M. Under expected utility, which may you take in pair 2?",
         options: ["Only the 11% chance of $1M", "Only the 10% chance of $5M", "Either one, depending on how cautious you are"],
         answer: 0,
       }}

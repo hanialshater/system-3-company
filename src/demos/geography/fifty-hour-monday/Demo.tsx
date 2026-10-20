@@ -68,8 +68,7 @@ export default function FiftyHourMonday({ slug }: { slug: string }) {
           <p>
             Clocks on Earth are spread
             over {MAX_OFF - MIN_OFF} hours, from {fmtOff(MIN_OFF)} to {fmtOff(MAX_OFF)}, so one date lasts 24 +{" "}
-            {MAX_OFF - MIN_OFF} = {MON_HOURS} hours from the first midnight to the last. A date is not one wall of
-            midnight; it is a wave that takes two days to cross the world.
+            {MAX_OFF - MIN_OFF} = {MON_HOURS} hours from the first midnight to the last.
           </p>
           <p>
             Kiritimati sits at the map&rsquo;s west edge yet keeps UTC+14: the date line bends east round Kiribati so the

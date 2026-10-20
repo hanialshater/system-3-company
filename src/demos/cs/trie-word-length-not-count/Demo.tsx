@@ -249,7 +249,6 @@ export default function TrieWordLengthNotCount({ slug }: { slug: string }) {
             Each step follows the next letter, so the cost is the length of the word, not how many words the tree holds. The 990
             new words grew branches beside your path; the path stayed three hops long.
           </p>
-          <p className="muted">Lookup depends on the word, not on the dictionary.</p>
         </>
       )}
     >

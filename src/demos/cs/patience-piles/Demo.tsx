@@ -269,7 +269,6 @@ export default function PatiencePiles({ slug }: { slug: string }) {
             has an arrow back to a smaller, earlier card on pile k − 1, as your trace drew, so a run as long as the number of
             piles always exists.
           </p>
-          <p className="muted">One pass of a card game measures the longest rising run.</p>
         </>
       )}
     >

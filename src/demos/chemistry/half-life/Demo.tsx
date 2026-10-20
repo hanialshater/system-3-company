@@ -99,7 +99,7 @@ export default function HalfLife({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            Your run: {keyHistory.map((h) => `${h.pct}%`).join(", ")} decayed at half-lives 1 to {KEY_STEP}. In the 4th,{" "}
+            Your atoms: {keyHistory.map((h) => `${h.pct}%`).join(", ")} decayed at half-lives 1 to {KEY_STEP}. In the 4th,{" "}
             {k4?.gone} of the {k4?.before} survivors went. They had already lasted 3 half-lives and still went at about
             the same rate. With only {k4?.before} atoms the share wobbles by chance, but nothing pushes it toward
             &ldquo;overdue&rdquo;.

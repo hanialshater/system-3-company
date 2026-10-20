@@ -76,7 +76,7 @@ export default function CompoundInterest({ slug }: { slug: string }) {
           </p>
           <p>
             Plain 7% of $1,000 a year gives {money(simple(40))} (the plain-7% readout); keeping the first decade&apos;s pace (dashed line) ends near {hundreds(straight(40))}. The other{" "}
-            <strong>{money(balance(40) - simple(40))}</strong> is interest earned on earlier interest, the top layer. The balance roughly doubles every ten years, and doubling is not a straight line.
+            <strong>{money(balance(40) - simple(40))}</strong> is interest earned on earlier interest, the top layer. The balance roughly doubles every ten years.
           </p>
           <p className="muted">A model: a steady 7% with no fees, taxes or inflation. Real returns wobble.</p>
         </>

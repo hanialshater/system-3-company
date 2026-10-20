@@ -94,8 +94,7 @@ export default function SomeoneHasToSwerve({ slug }: { slug: string }) {
           </p>
           <p>
             Only the two &ldquo;one of each&rdquo; cells had no arrow out. There, the one going straight gets {PAY[1][0][0]} and would not swap
-            for {PAY[0][0][0]}; the one swerving gets {PAY[0][1][0]} and would not swap for {PAY[1][1][0]}. Identical players, an identical game,
-            and the stable outcomes are the ones where they act differently.
+            for {PAY[0][0][0]}; the one swerving gets {PAY[0][1][0]} and would not swap for {PAY[1][1][0]}.
           </p>
           <p className="muted">Invented payoffs, one round, chosen at the same moment.</p>
         </>

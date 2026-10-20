@@ -64,12 +64,11 @@ export default function LoopholeLapFarming({ slug }: { slug: string }) {
             cross the line on the last step.
           </p>
           <p>
-            The finish pays once; the buoy pays forever. A score-maximiser treats the race as a buoy farm and finishes only
+            A score-maximiser treats the race as a buoy farm and finishes only
             because the last {FINISH_DIST} steps cannot buy more than {FINISH_PTS}.
           </p>
           <p>
-            We meant &quot;win the race&quot;; we paid for &quot;points&quot;. A learning agent chases what is paid. Game-playing
-            agents have found real loops like this.
+            A learning agent chases what it is paid for. Game-playing agents have found real loops like this.
           </p>
         </>
       )}

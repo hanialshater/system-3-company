@@ -110,7 +110,7 @@ export default function BelowTheThresholdCrash({ slug }: { slug: string }) {
               You released {list.join(", ")}: {list.map((n) => `${n} ${outcome(n)}`).join("; ")}.
             </p>
             <p>
-              The same species has two fates, split by the line at {THRESH}. The line is the group size, {THRESH}, below which animals struggle to find mates. Below it each animal finds fewer mates, so the group shrinks faster; above it the group grows until food limits it at {fmt(CAP)}. Small does not always mean slow recovery: below the threshold it means none. Toy model: the threshold and rate are invented.
+              The same species has two fates, split by the line at {THRESH}. The line is the group size, {THRESH}, below which animals struggle to find mates. Below it each animal finds fewer mates, so the group shrinks faster; above it the group grows until food limits it at {fmt(CAP)}. The threshold and rate are invented.
             </p>
           </>
         );

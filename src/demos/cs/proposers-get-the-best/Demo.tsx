@@ -333,10 +333,10 @@ export default function ProposersGetTheBest({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            Students proposing gave {found.S ? pairText(found.S) : "(not run)"}:
+            Students proposing gave {found.S ? pairText(found.S) : "(not tried)"}:
             first choices for students {fs ? fs.st : "?"}, hospitals{" "}
             {fs ? fs.ho : "?"}. Hospitals proposing gave{" "}
-            {found.H ? pairText(found.H) : "(not run)"}: students{" "}
+            {found.H ? pairText(found.H) : "(not tried)"}: students{" "}
             {fh ? fh.st : "?"}, hospitals {fh ? fh.ho : "?"}.
             {same
               ? " Same pairs."

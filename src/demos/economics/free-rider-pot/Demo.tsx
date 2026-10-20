@@ -73,7 +73,7 @@ export default function FreeRiderPot({ slug }: { slug: string }) {
           <p>
             Each dollar you give becomes ${MULT}, but you get back only a tenth: {Math.round(BACK_PER_DOLLAR * 100)} cents. So whatever
             the others do, each dollar you hold back leaves you {Math.round((1 - BACK_PER_DOLLAR) * 100)} cents better off, while
-            the group loses ${MULT - 1}. What pays for each person is not what pays for the group.
+            the group loses ${MULT - 1}.
           </p>
           <p className="muted">
             A model: one round, no talking, no punishment. In lab versions of this game many people do give, at least at first.

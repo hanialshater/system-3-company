@@ -128,10 +128,10 @@ export default function StopAtEpochSixty({ slug }: { slug: string }) {
             </p>
             <p>
               Early on, the curve learns the broad shape of the data. Later it bends to pass through the noise in its 8 training
-              dots. Training error cannot tell those apart; held-out error can. This run was picked to show a clear dip. Where the dip
+              dots. Training error cannot tell those apart; held-out error can. This curve was picked to show a clear dip. Where the dip
               falls changes from run to run, but in 483 of 500 seeded runs of this toy the lowest held-out error came before the end.
             </p>
-            <p>Training longer is not always better: stop where held-out error is lowest.</p>
+            <p>Stop where held-out error is lowest.</p>
           </>
         );
       }}

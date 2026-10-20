@@ -58,7 +58,6 @@ export default function TwoPointersMeet({ slug }: { slug: string }) {
             Because the list is sorted, 1 + 15 being too small means 1 is too small with every partner. Each sum moves a
             finger one step inward, so 8 numbers need at most <strong>7</strong> sums, not 28. This search used all 7.
           </p>
-          <p className="muted">Sorted order lets one check throw away a whole row of possibilities.</p>
         </>
       )}
     >

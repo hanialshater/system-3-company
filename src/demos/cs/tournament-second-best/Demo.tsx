@@ -96,7 +96,7 @@ export default function TournamentSecondBest({ slug }: { slug: string }) {
           <p>
             So the knockout gives a free shortlist. {EXTRA} more matches among the {VICTIMS.length} find the runner-up:{" "}
             {TOTAL + EXTRA} matches in all, instead of {TOTAL} + {NAIVE_EXTRA} = {TOTAL + NAIVE_EXTRA} if you searched the other{" "}
-            {P - 1} again. Splitting into pairs does the work once and keeps the record.
+            {P - 1} again.
           </p>
         </>
       )}

@@ -58,8 +58,7 @@ export default function GrowthGapSeventyYears({ slug }: { slug: string }) {
             </p>
             <p>
               Each year&apos;s growth builds on the last, so the gap compounds too: {(1 + (BASE + Q_GAP) / 100).toFixed(2)} ÷{" "}
-              {(1 + BASE / 100).toFixed(2)} ≈ {(ratio(Q_GAP, 1)).toFixed(4)} a year, and that to the power {YEARS} is {R70.toFixed(2)}. Within a
-              lifetime, one point of growth becomes a factor of two.
+              {(1 + BASE / 100).toFixed(2)} ≈ {(ratio(Q_GAP, 1)).toFixed(4)} a year, and that to the power {YEARS} is {R70.toFixed(2)}.
             </p>
             <p className="muted">A model: steady growth, invented rates, no shocks. Not any country&apos;s record and not a forecast.</p>
           </>

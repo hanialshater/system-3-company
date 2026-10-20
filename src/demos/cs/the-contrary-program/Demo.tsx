@@ -55,7 +55,7 @@ export default function TheContraryProgram({ slug }: { slug: string }) {
                 ? `On D you said ${d.map((t) => `"${t.v}" and D ${t.v === "halts" ? "looped" : "stopped"}`).join("; you said ")}. `
                 : ""}
               D is built to do the opposite of whatever H says about D, so both of H&apos;s answers are wrong. No cleverness
-              inside H helps: the trap is in D, not in H.
+              inside H helps.
             </p>
             <p>
               {others.length ? `On ${others.join(" and ")} a verdict can be right (see the ticks): ` : "On simple programs like A and B a verdict can be right: "}

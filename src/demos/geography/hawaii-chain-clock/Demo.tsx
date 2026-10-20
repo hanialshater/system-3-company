@@ -54,7 +54,7 @@ export default function HawaiiChainClock({ slug }: { slug: string }) {
           </p>
           <p>
             Two islands, nearly the same speed. Volcanoes form over a hot spot that stays roughly put; the plate carries each one
-            off to the northwest as a new one grows. The chain is a clock: distance along it, divided by age, reads the plate&rsquo;s speed.
+            off to the northwest as a new one grows.
           </p>
         </>
       )}

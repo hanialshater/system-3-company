@@ -106,8 +106,7 @@ export default function HalfOfHumanity({ slug }: { slug: string }) {
             outside Antarctica, yet hold half of everyone.
             {russia
               ? ` Russia alone took land from ${russia.landBefore} to ${russia.landAfter}, people only from ${russia.pplBefore} to ${russia.pplAfter}.`
-              : ""}{" "}
-            A map of area shows land, not people.
+              : ""}
           </p>
         </>
       )}

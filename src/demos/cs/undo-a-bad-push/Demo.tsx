@@ -58,7 +58,6 @@ export default function UndoABadPush({ slug }: { slug: string }) {
             Look at the dashed cut line: only the two pipes out of s cross it, and both are full. All water must cross
             that line, so no flow can beat 2.
           </p>
-          <p className="muted">The best flow sometimes means taking water back.</p>
         </>
       )}
     >

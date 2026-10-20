@@ -66,7 +66,6 @@ export default function SameSugarMoreWater({ slug }: { slug: string }) {
             the start, because the volume grew five times. 0.25 comes from dividing by the 400 mL of water instead of
             the 500 mL of mixture.
           </p>
-          <p className="muted">Adding water never removes sugar. It spreads the same amount thinner.</p>
         </>
       )}
     >

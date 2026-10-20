@@ -42,7 +42,9 @@ sentence the learner reads, and the title must not answer it.
 
 - Point at what the learner just saw on the stage, with its numbers.
 - Do not end on a maxim that restates the paragraph ("Randomness has no memory."). Model caveats
-  ("No slipping, no air drag.") are fine and stay.
+  ("No slipping, no air drag.") are fine and stay. A closing line that is the only place the lesson's point,
+  mechanism or answer to the misconception is stated is content, not a maxim: keep it (2026-10-20:
+  16 of ~135 reveal cuts removed exactly that and had to be restored).
 - Avoid "X, not Y" pivots and colon pivots onto a slogan or a named term the learner has not met.
 - No idea the stage never showed (a new formula, a new study, a new term).
 - No builder words on the stage or in the reveal: seed, run, Toy:, lit, leaves (graph), whisker.

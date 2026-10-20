@@ -108,10 +108,8 @@ export default function UnionFindShortcut({ slug }: { slug: string }) {
           </p>
           <p>
             A person moves one hop further from their leader only when their group joins one at least as big, so their
-            group at least doubles. From 1 to 8 that can happen only 3 times. Finding a leader stays short however the
-            groups grow.
+            group at least doubles. From 1 to 8 that can happen only 3 times.
           </p>
-          <p className="muted">Small trees by rule make &quot;are we connected?&quot; a few hops, not a search.</p>
         </>
       )}
     >

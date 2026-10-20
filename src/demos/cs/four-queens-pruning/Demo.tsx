@@ -104,7 +104,6 @@ export default function FourQueensPruning({ slug }: { slug: string }) {
             starts that way is skipped at once. The saving grows fast: 8 queens have 16,777,216 one-per-row boards, but
             backtracking makes 2,056 placements to find all 92 solutions.
           </p>
-          <p className="muted">Pruning early is what makes search possible.</p>
         </>
       )}
     >

@@ -101,8 +101,7 @@ export default function LandHemisphere({ slug }: { slug: string }) {
             was {pct(best)}; the thinnest, {pct(low)}.
           </p>
           <p>
-            The whole planet is {pct(facts.planet)} land, as the stage showed. However you cut it, every half of the Earth is mostly
-            water.
+            The whole planet is {pct(facts.planet)} land, as the stage showed.
           </p>
         </>
       )}

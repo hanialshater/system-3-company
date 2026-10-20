@@ -178,7 +178,7 @@ export default function EmptyPondsStillLeft({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Your town drains 70 of its 100 ponds for new houses. Still, 30 good ponds are left, 19 with frogs. Walking past them 100 years from now, how many ponds have frogs?",
+        question: "Your town drains 70 of its 100 ponds for new houses. Still, 30 good ponds are left, 19 with frogs. 100 years from now, how many ponds have frogs?",
         options: ["19 or more", "About 10", "None"],
         answer: 2,
       }}

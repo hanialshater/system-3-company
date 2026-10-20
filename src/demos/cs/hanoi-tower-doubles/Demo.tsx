@@ -61,7 +61,6 @@ export default function HanoiTowerDoubles({ slug }: { slug: string }) {
             {Array.from({ length: n - MIN_N + 1 }, (_, i) => `${MIN_N + i} disks take ${cost(MIN_N + i)}`).join(", ")}
             {n < MAX_N ? `, and carrying on the same way, ${MAX_N} disks take ${cost(MAX_N)}` : ""}.
           </p>
-          <p className="muted">One more disk means solving the old puzzle twice. That is doubling.</p>
         </>
       )}
     >

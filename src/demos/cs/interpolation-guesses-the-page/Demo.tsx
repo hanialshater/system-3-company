@@ -120,7 +120,6 @@ export default function InterpolationGuessesThePage({ slug }: { slug: string }) 
             Aiming by value is like opening a dictionary near the back for “W”. It is brilliant when values are spread evenly and
             can be worse than halving when they are not.
           </p>
-          <p className="muted">Sorted order lets you aim, but only the spread of the values says whether aiming pays.</p>
         </>
       )}
     >

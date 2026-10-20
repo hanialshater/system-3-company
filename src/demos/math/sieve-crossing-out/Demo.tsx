@@ -68,8 +68,7 @@ export default function Sieve({ slug }: { slug: string }) {
             most 10, so every non-prime has a factor of {SMALL.join(", ")} and is already gone.
           </p>
           <p>
-            {EXTRA}&apos;s first new multiple would be {EXTRA} × {EXTRA} = {EXTRA * EXTRA}, past {N}. Four sweeps clear a hundred
-            numbers.
+            {EXTRA}&apos;s first new multiple would be {EXTRA} × {EXTRA} = {EXTRA * EXTRA}, past {N}.
           </p>
         </>
       )}
