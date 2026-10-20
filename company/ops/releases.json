@@ -864,6 +864,38 @@
           "Draft/review statuses and unverifiedclaims remain unchanged; deployment is not publication acceptance."
         ]
       }
+    },
+    {
+      "version": "r14",
+      "date": "2026-10-20T08:12:22.516Z",
+      "commit": "be3a6d58bedd4c2697a7d84d1e01576a4596f38c",
+      "target": "production",
+      "approved_by": {
+        "who": "founder",
+        "record": "company/decisions/2026-10-20-founder-copy-pass-deploy.md"
+      },
+      "summary": "Clarifies learner copy in 696 demos and shared text sources; all 1,621 demos remain live.",
+      "added": {
+        "features": [],
+        "lessons": {
+          "published": {
+            "count": 0,
+            "slugs": []
+          },
+          "in_review": {
+            "count": 0,
+            "slugs": []
+          }
+        },
+        "fixes": [
+          "Clearer titles, hooks, recall choices, instructions and source disclosures.",
+          "Corrected the pruning recall answer to match its existing explanation and model."
+        ],
+        "known_issues": [
+          "Broad QA deferred by founder; only lightweight integrity, required production build and one public catalog request completed.",
+          "Existing unverified claims and draft/review publication statuses remain."
+        ]
+      }
     }
   ],
   "historical_deployments": [
