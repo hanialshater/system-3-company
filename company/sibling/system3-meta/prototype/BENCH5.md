@@ -77,3 +77,10 @@ The founder asked for a task that "needs agent collaboration and self improvemen
 **New in the kernel for it:**
 - An open **ask** to an agent decider is planned as that role's work; the manager's brief carries `order reopen`.
 - Builders' briefs say how to raise one instead of editing another order's module.
+
+## Attempt 1 (20:39-20:42 UTC): stopped on a crash-recovery hole, before any build
+
+- **The crash.** The three kickoff positions were written; then F1 killed the lead while it chaired MTG-1.
+- **The hole.** Chairing is judgment work outside a room, so there was no run to abandon. Its launch reservation would have held the meeting for the full 30-minute grace period, and nothing would have relaunched the chair.
+- **The fix.** A launch the launcher reports finished, ok or crashed, reserves nothing. 82 tests (`tests/faults.test.mjs`: the chair is planned again at once).
+- The record is in `live/bench5-attempt1/`. Restarted from scratch.

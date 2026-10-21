@@ -123,3 +123,16 @@ test("an ask from a builder to its manager is planned as the manager's work, wit
   const p = t.plan.find((x) => x.role === "editor");
   assert.ok(p && p.tasks.some((k) => k.kind === "ask"), JSON.stringify(t.plan));
 });
+
+test("a judgment launch that crashed reserves nothing: the meeting's chair is planned again at once", () => {
+  const dir = company();
+  assert.equal(cli(dir, ["meeting", "open", "--by=editor", "--title=Kickoff", "--room=story-room", "--minutes=30", "--invitees=writer-1", "--agenda=" + JSON.stringify([{ title: "split" }])]).code, 0);
+  assert.equal(cli(dir, ["meeting", "position", "--id=MTG-1", "--by=writer-1", "--item=1", "--text=two halves"]).code, 0);
+  const plan1 = tick(dir).plan;
+  const chair = plan1.find((p) => p.role === "editor");
+  assert.ok(chair?.tasks.some((t) => t.kind === "chair"), JSON.stringify(plan1));
+  assert.equal(spawnSync("node", [path.join(HERE, "..", "supervisor.mjs"), "launched", "--role=editor", "--tasks=chair:MTG-1"], { env: envOf(dir), encoding: "utf8" }).status, 0);
+  assert.equal(tick(dir).plan.some((p) => p.role === "editor"), false, "reserved while it runs");
+  assert.equal(cli(dir, ["launch", "finished", "--launch=0001-editor", "--role=editor", "--tokens=40000", "--ok=false", "--reason=killed"]).code, 0);
+  assert.ok(tick(dir).plan.some((p) => p.role === "editor" && p.tasks.some((t) => t.kind === "chair")), "planned again after the crash");
+});

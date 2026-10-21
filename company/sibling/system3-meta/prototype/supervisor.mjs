@@ -134,8 +134,11 @@ export function plan(co, { batchLater: batchDefault = 3, cap: capDefault = 4 } =
   const now = co.engine.clock.now();
   // a launch for work outside rooms (meeting positions, chairing, delegating) does not reserve room work (benchmark 2:
   // writer-1's kickoff launch kept its STYLE build unplanned for the grace period)
+  // a launch the launcher reports finished (ok or crashed) reserves nothing any more (benchmark 5: a chair killed
+  // mid-meeting held its meeting for the 30-minute grace period)
+  const ended = (l) => log.events.some((e) => e.type === "launch-finished" && e.role === l.role && e.t >= l.t);
   for (const l of log.events.filter((e) => e.type === "launch" && now - e.t < LAUNCH_GRACE_MIN && !(e.tasks?.length && !e.msgs?.length))) {
-    if (!log.events.some((e) => e.type === "enter" && e.role === l.role && e.t >= l.t)) running.add(l.role);
+    if (!log.events.some((e) => e.type === "enter" && e.role === l.role && e.t >= l.t) && !ended(l)) running.add(l.role);
   }
   // a session waiting for its role's next item will take it (room next --wait)
   for (const s of rooms.sessions.values()) if (s.open && s.waitUntil != null && s.waitUntil > now) running.add(s.role);
@@ -175,7 +178,7 @@ export function plan(co, { batchLater: batchDefault = 3, cap: capDefault = 4 } =
   if (checker) consider(checker.id, mailbox.queue("pool:checker", "work").filter((m) => co.engine.orders.get(m.ref).builder !== checker.id));
   for (const j of judgment(co)) {
     // a launch reserves non-room work until the work is done or NON_ROOM_GRACE_MIN passes (no room enter to watch for)
-    if (log.events.some((e) => e.type === "launch" && e.role === j.role && now - e.t < NON_ROOM_GRACE_MIN && (e.tasks ?? []).some((t) => j.tasks.some((u) => u.kind === t.kind && u.ref === t.ref)))) continue;
+    if (log.events.some((e) => e.type === "launch" && e.role === j.role && now - e.t < NON_ROOM_GRACE_MIN && !ended(e) && (e.tasks ?? []).some((t) => j.tasks.some((u) => u.kind === t.kind && u.ref === t.ref)))) continue;
     const same = out.find((p) => p.role === j.role);
     if (same) same.tasks = [...(same.tasks ?? []), ...j.tasks]; else out.push(j);
   }
@@ -377,7 +380,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   if (cmd === "launched") {
     // The orchestrator records each session it starts, so the next plan does not ask for it again.
     if (!opt.role) { console.error("usage: node supervisor.mjs launched --role=<role> [--msgs=M-1,M-2] [--why=…]"); process.exit(2); }
-    print(withLock(() => { const co = load(); const e = co.log.add({ type: "launch", role: opt.role, msgs: opt.msgs ? String(opt.msgs).split(",") : [], why: opt.why ?? null }); save(co); return e; }));
+    print(withLock(() => { const co = load(); const e = co.log.add({ type: "launch", role: opt.role, msgs: opt.msgs ? String(opt.msgs).split(",") : [], tasks: opt.tasks ? String(opt.tasks).split(",").map((x) => { const [kind, ref] = x.split(":"); return { kind, ref }; }) : [], why: opt.why ?? null }); save(co); return e; }));
   } else if (cmd === "serve") {
     serve(opts, { idleMin: Number(opt["idle-min"] ?? 2), maxMin: Number(opt["max-min"] ?? 120) });
   } else if (cmd === "usage") {
