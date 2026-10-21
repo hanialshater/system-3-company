@@ -163,6 +163,7 @@ test("judgment: meeting positions, then the chair, then delegation are planned f
   assert.match(b, /You chair meeting MTG-1/);
   assert.match(b, /order delegate <O> --by=editor --to=<builder>/);
   assert.match(b, /writer-1, writer-2/);
+  assert.doesNotMatch(b, /wbr close/, "an ordinary meeting closes with meeting close");
   co.log.add({ type: "launch", role: "editor", msgs: [], tasks: p[0].tasks });
   assert.deepEqual(plan(co), [], "a launched judgment session is reserved");
   co.log.add({ type: "launch", role: "writer-1", msgs: [], tasks: [{ kind: "positions", ref: m.id }] });

@@ -241,3 +241,14 @@ test("benchmark 1 fixes: a closed meeting frees its room; orders carry their pro
   const ceo = G.rollUp(co).at(-1);
   assert.ok(ceo.exceptions.some((g) => g.why_here.some((w) => /unmeasured: orders/.test(w))));
 });
+
+test("WBR pack: a first window starts at the first event; any revised order is a miss", () => {
+  const co = build();
+  co.log.add({ type: "shipped", order: "O-9", loops: 1 });
+  co.log.add({ type: "shipped", order: "O-8", loops: 0 });
+  const p = RIT.page0(co);
+  assert.ok(p.window.from, "window.from is set");
+  const hm = RIT.hitsAndMisses(co);
+  assert.ok(hm.misses.includes("O-9 shipped after 1 revision"));
+  assert.ok(hm.hits.includes("O-8 shipped first time"));
+});

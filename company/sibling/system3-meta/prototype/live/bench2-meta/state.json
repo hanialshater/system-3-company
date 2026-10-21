@@ -55,14 +55,14 @@
        "id": "BK-2",
        "room": "story-room",
        "start": 29876668.375633333,
-       "end": 29876698.375633333,
+       "end": 29876673.304733332,
        "by": "cos",
        "attendees": [
         "cos",
         "editor"
        ],
        "purpose": "WBR 2026-10-21",
-       "state": "booked"
+       "state": "used"
       }
      ]
     ]
@@ -119,10 +119,70 @@
         "writer-2": "M-2"
        }
       }
+     ],
+     [
+      "P-2",
+      {
+       "id": "P-2",
+       "channel": "company",
+       "by": "cos",
+       "title": "Minutes: WBR 2026-10-21",
+       "body": "# WBR 2026-10-21 (MTG-2)\n\nchair: cos · invited: cos, editor · absent: none · room: story-room\n\n## 1. Page 0: metrics\nRound 1:\n- editor: Page 0 reads clean on volume (7/7 orders shipped, 0 refusals, 0 overdue, board empty) but two numbers need a second look before we call it a good week. (a) revisionsPerShipped 0.57 means about 4 revisions across 7 orders, yet the hits list only O-3, O-5, O-7 as first-time and misses is empty: the other four orders (STYLE, two rounds, PACK or whichever) went through revise and should show up as misses or at least as \"shipped after revise\", or the page hides where the rework was. (b) flowEfficiencyMedian 0.22 with leadP50 16.6 min means most lead time was waiting, not working; I want the wait broken out by stage (review queue vs writer) before we tune anything. Also: window.from is null, so the page has no start date and the per-week numbers are not comparable to a later WBR; fix the window. tokensPerShipped ~134k is our baseline for the Benchmark-2 comparison; record it as such, no target yet.\n- cos: Page 0 (pack numbers): 7 shipped, 10 items done, 0 in backlog/todo/in-progress/in-review, 0 overdue, 0 refusals, goals 3 green / 0 yellow / 0 red. Cost and speed: 134,483 tokens per shipped item, lead time p50 16.6 min, flow efficiency median 0.22, revisions per shipped 0.57. Reading: output is complete; the weak number is flow efficiency 0.22 (most lead time is waiting, not working) and 0.57 revisions per shipped (about 4 revisions over 7 shipments). The window has no start date (from: null), so these are lifetime numbers, not this week's; next WBR needs a dated window to compare against.\n**Decision:** Page 0 accepted as lifetime numbers, not a week: 7 shipped, 10 done, 0 open work, 0 overdue, 0 refusals, goals 3 green. Record tokensPerShipped 134,483, leadP50Min 16.6, flowEfficiencyMedian 0.22 and revisionsPerShipped 0.57 as the Benchmark-2 baseline; no targets set this week. Two Page 0 fixes before the next WBR: (1) the window must have a start date (window.from is null today), so the next pack covers 2026-10-21 onward; (2) flow efficiency 0.22 gets a wait breakdown by stage (writer vs review queue) before anyone tunes the pipeline. · actions: ISS-11, ISS-12\n\n## 2. Hits and misses\nRound 1:\n- editor: Hits: all five rounds plus STYLE and PACK shipped; I re-read the shipped pack and every fact I checked holds (Venus hottest via thick clouds, Ganymede wider than Mercury 5,268 vs 4,879 km, ~1,300 Earths in Jupiter, Olympus Mons ~2.5x Everest, Ceres largest in the belt, Pluto dwarf planet since 2006, 1969 landing); all 20 answers distinct and in their owning rounds; banned traps avoided. Miss I am raising: a cross-round giveaway that PACK saw and did not fix. R1 Q2 Why says \"Pluto used to be on the list, but now it is called a dwarf planet\", which hands the players the R5 Q2 answer (Pluto, dwarf planet since 2006) three rounds early. PACK notes list it as \"agreement\" rather than a clash. The order said PACK fixes anything that clashes across rounds; a giveaway is a clash in a quiz even if the answer strings differ. Fix: rewrite R1 Q2 Why without naming Pluto, e.g. \"Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus and Neptune all travel around the Sun.\" (14 words) or keep it shorter. Minor watch items, not blockers: Great Red Spot \"wider than our whole Earth\" is true today (~1.3 Earths) but it is shrinking; R5 Q2 Why \"shares its path with lots of other icy bits\" is a fair kid-level gloss of not clearing its orbit. Process miss: the same writer (writer-2) wrote R4, R5 and PACK, so PACK checked its own rounds; next time the cross-round read should be done by someone who wrote none of them.\n- cos: Hits per pack: O-3, O-5, O-7 shipped first time. Misses per pack: none. But 3 first-time hits out of 7 shipped plus 0.57 revisions per shipped means 4 orders needed at least one revision, and the misses list does not show them; a revision is a miss worth naming. Content check I did on shipped/PACK/page.md: 20 distinct answers, each in its owning round per STYLE; no banned words (grep clean); every Why line is 20 words or fewer (max 20); facts I checked hold (Venus hottest, Ganymede wider than Mercury, Ceres biggest in the belt, about 8 minutes, about 1,300 Earths, 1969, Pluto dwarf planet since 2006). Soft spot: R1 Q2 Why restates R5's Pluto fact; allowed (a mention, not an answer) but it is overlap. Great Red Spot 'wider than our whole Earth' is true today but the storm is shrinking; keep an eye on it.\n**Decision:** Hits: O-3, O-5, O-7 shipped first time; all 20 answers distinct and in their owning rounds; facts checked by both cos and editor hold; no banned words; every Why line is 20 words or fewer. Miss (agreed with editor): R1 Q2 Why names Pluto as a dwarf planet, which gives away the R5 Q2 answer. That is a cross-round clash PACK should have fixed, even though the answer strings differ. Rule from now on: no Question or Why line may name or describe another round's answer. Fix: replace the R1 Q2 Why, in both shipped/ROUND1 and shipped/PACK, with exactly: \"Four small rocky planets and four giant planets circle the Sun, so that makes eight.\" (15 words, no planet names; do not list the planets in order, because that would give away R2 Q1 Mercury closest). Change nothing else. Second miss: the 4 orders that shipped after a revise are not shown under misses; Page 0 must list them. Watch item, no change now: Great Red Spot 'wider than our whole Earth' is true today (about 1.3 Earths) but shrinking; recheck at the next pack revision. Process: the cross-round PACK read is done by a writer who wrote none of the rounds being checked (writer-1 for this revision, since writer-2 wrote R4, R5 and PACK). · actions: ISS-14, ISS-15, ISS-16\n\n## 3. Roadmap and goal status\nRound 1:\n- editor: PRJ-1 is 7/7 and G-1/G-2/G-3 are green with every success metric met, but none is done=true and I do not think G-3 \"Quiz pack accepted\" should be marked done yet: its measure counts shipped pages, and acceptance should mean the pack passes an independent cross-round read. Proposal: keep G-3 green-not-done, open one small order (PACK revision, owner editor, writer-1 to do it since writer-1 did not write PACK) to fix the R1 Q2 Pluto giveaway, have test1 re-run the word, reading-ease and banned-word checks on R1 and the assembled pack, then I close G-3 well before its 2026-10-31 due date. G-2 (pipeline on cycle and batch) is met on \"orders shipped 7\" but that metric does not test the cycle/batch claim itself; cos should say what evidence shows the supervisor cycle ran without hand bookkeeping before marking G-2 done. G-1 stays with the founder to accept.\n- cos: Roadmap per pack: PRJ-1 Solar System Quiz Pack, lead editor, 7/7 done, G-3 green. Goals: G-1 (founder, due 2026-11-20) met 5/5 rounds and 1/1 pack; G-2 (cos, due 2026-11-10) met 7/7 orders; G-3 (editor, due 2026-10-31) met 1/1 style, 5/5 rounds, 1/1 pack. All three are met: true but done: false. Proposal: editor does a final acceptance read of PACK and marks G-3 done before its 2026-10-31 due date; G-2 and G-1 close after that, G-1 only by the founder. No new work for PRJ-1.\n**Decision:** PRJ-1 is 7/7 and G-1, G-2, G-3 are green with every success metric met, but none is marked done this week. G-3 (editor, due 2026-10-31) closes only after the PACK revision ships and reader's checks pass; editor then reads the revised PACK once and marks G-3 done by 2026-10-28. G-2 (cos, due 2026-11-10): 'orders shipped 7' does not prove the cycle-and-batch claim, so cos writes the evidence (supervisor cycle log, no hand bookkeeping) into G-2 before marking it done. G-1 stays with the founder. No other new work on PRJ-1. · actions: ISS-17, ISS-18\n\n## 4. Leadership asks\nRound 1:\n- editor: No asks are open (0 total), and I am not raising one to the founder for the fix: the R1 Q2 rewrite is inside my lane and the MTG-1 rules already decide it (an answer has one home; PACK fixes clashes). Two asks I do want on the record: (1) to the founder, once the PACK revision ships: accept the pack (G-1) or name what would block acceptance, since \"true and fun\" is the founder goal and only the founder can sign it. (2) to cos as chair: add a \"shipped after revise\" line or count revisions under misses on Page 0, and set window.from, so the next WBR can compare like with like. If cos disagrees that the Pluto mention is a clash, I want that objection recorded with the decision, not closed as noted.\n- cos: Asks per pack: 0 open, 0 total, 0 to founder, 0 rerouted, 0 escalated. Nothing for leadership to unblock. One thing to tell the founder in the digest: the pack is complete and met its code-measured criteria, and G-1 (founder-owned) is ready for the founder to accept or reject.\n**Decision:** Pack shows 0 asks open, 0 total, 0 to founder, 0 rerouted, 0 escalated. No ask is raised for the R1 Q2 fix: it is inside the editor lane and MTG-1 rules already decide it. One ask goes to the founder after G-3 is done: accept the Solar System Quiz Pack (G-1) or name what blocks acceptance. The Page 0 changes the editor asked for (window start, shipped-after-revise as misses) are taken by cos under items 1 and 2. There was no disagreement on whether the Pluto mention is a clash: cos agrees it is, so nothing is carried. · actions: ISS-19\n",
+       "ack": false,
+       "key": "MTG-2:minutes",
+       "ref": "MTG-2",
+       "t": 29876673.30475,
+       "to": [
+        "founder",
+        "editor",
+        "writer-1",
+        "writer-2",
+        "reader",
+        "release"
+       ],
+       "msgs": {
+        "founder": "M-68",
+        "editor": "M-69",
+        "writer-1": "M-70",
+        "writer-2": "M-71",
+        "reader": "M-72",
+        "release": "M-73"
+       }
+      }
+     ],
+     [
+      "P-3",
+      {
+       "id": "P-3",
+       "channel": "company",
+       "by": "cos",
+       "title": "WBR 2026-10-21",
+       "body": "# WBR 2026-10-21\n\n## Summary\nPRJ-1 shipped 7/7 orders with 0 overdue, 0 refusals and goals 3 green; tokensPerShipped 134,483, leadP50 16.6 min, flow efficiency 0.22 and 0.57 revisions per shipped are recorded as the Benchmark-2 baseline (lifetime, since Page 0 has no start date yet). The shipped pack has 20 distinct, correctly owned answers and the facts checked hold, but R1 Q2's Why gives away R5's Pluto answer: writer-1 replaces it with a fixed 15-word line by 2026-10-24 and reader rechecks by 2026-10-25. G-3 closes after that (editor, by 2026-10-28), G-2 needs cycle-and-batch evidence from cos, and G-1 goes to the founder for acceptance. Page 0 gets a dated window, shipped-after-revise listed as misses, and a per-stage wait breakdown before the next WBR.\n\n## Page 0\n| measure | value |\n|---|---|\n| window | {\"from\":null,\"to\":\"2026-10-21T16:28:22.536Z\"} |\n| shipped | 7 |\n| tokensPerShipped | 134483 |\n| leadP50Min | 16.6 |\n| flowEfficiencyMedian | 0.22 |\n| revisionsPerShipped | 0.57 |\n| refusals | 0 |\n| work | {\"backlog\":0,\"todo\":0,\"in-progress\":0,\"in-review\":0,\"done\":10,\"cancelled\":0} |\n| overdue | 0 |\n| goals | {\"green\":3,\"yellow\":0,\"red\":0} |\n\n## Hits\n- O-3 shipped first time\n- O-5 shipped first time\n- O-7 shipped first time\n\n## Misses\n- none\n\n## Roadmap\n- Solar System Quiz Pack (editor): 7/7 done · goals G-3 green\n\n## Goals\n- G-1 [green] Solar System Quiz Pack: five rounds, true and fun (founder, due 2026-11-20)\n-   G-2 [green] Quiz pipeline runs on cycle and batch (cos, due 2026-11-10)\n-     G-3 [green] Quiz pack accepted (editor, due 2026-10-31)\n\n## Leadership asks\n0 asks · 0 to the founder · 0 rerouted down · 0 escalated with a reason\n\n## Minutes\n# WBR 2026-10-21 (MTG-2)\n\nchair: cos · invited: cos, editor · absent: none · room: story-room\n\n## 1. Page 0: metrics\nRound 1:\n- editor: Page 0 reads clean on volume (7/7 orders shipped, 0 refusals, 0 overdue, board empty) but two numbers need a second look before we call it a good week. (a) revisionsPerShipped 0.57 means about 4 revisions across 7 orders, yet the hits list only O-3, O-5, O-7 as first-time and misses is empty: the other four orders (STYLE, two rounds, PACK or whichever) went through revise and should show up as misses or at least as \"shipped after revise\", or the page hides where the rework was. (b) flowEfficiencyMedian 0.22 with leadP50 16.6 min means most lead time was waiting, not working; I want the wait broken out by stage (review queue vs writer) before we tune anything. Also: window.from is null, so the page has no start date and the per-week numbers are not comparable to a later WBR; fix the window. tokensPerShipped ~134k is our baseline for the Benchmark-2 comparison; record it as such, no target yet.\n- cos: Page 0 (pack numbers): 7 shipped, 10 items done, 0 in backlog/todo/in-progress/in-review, 0 overdue, 0 refusals, goals 3 green / 0 yellow / 0 red. Cost and speed: 134,483 tokens per shipped item, lead time p50 16.6 min, flow efficiency median 0.22, revisions per shipped 0.57. Reading: output is complete; the weak number is flow efficiency 0.22 (most lead time is waiting, not working) and 0.57 revisions per shipped (about 4 revisions over 7 shipments). The window has no start date (from: null), so these are lifetime numbers, not this week's; next WBR needs a dated window to compare against.\n**Decision:** Page 0 accepted as lifetime numbers, not a week: 7 shipped, 10 done, 0 open work, 0 overdue, 0 refusals, goals 3 green. Record tokensPerShipped 134,483, leadP50Min 16.6, flowEfficiencyMedian 0.22 and revisionsPerShipped 0.57 as the Benchmark-2 baseline; no targets set this week. Two Page 0 fixes before the next WBR: (1) the window must have a start date (window.from is null today), so the next pack covers 2026-10-21 onward; (2) flow efficiency 0.22 gets a wait breakdown by stage (writer vs review queue) before anyone tunes the pipeline. · actions: ISS-11, ISS-12\n\n## 2. Hits and misses\nRound 1:\n- editor: Hits: all five rounds plus STYLE and PACK shipped; I re-read the shipped pack and every fact I checked holds (Venus hottest via thick clouds, Ganymede wider than Mercury 5,268 vs 4,879 km, ~1,300 Earths in Jupiter, Olympus Mons ~2.5x Everest, Ceres largest in the belt, Pluto dwarf planet since 2006, 1969 landing); all 20 answers distinct and in their owning rounds; banned traps avoided. Miss I am raising: a cross-round giveaway that PACK saw and did not fix. R1 Q2 Why says \"Pluto used to be on the list, but now it is called a dwarf planet\", which hands the players the R5 Q2 answer (Pluto, dwarf planet since 2006) three rounds early. PACK notes list it as \"agreement\" rather than a clash. The order said PACK fixes anything that clashes across rounds; a giveaway is a clash in a quiz even if the answer strings differ. Fix: rewrite R1 Q2 Why without naming Pluto, e.g. \"Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus and Neptune all travel around the Sun.\" (14 words) or keep it shorter. Minor watch items, not blockers: Great Red Spot \"wider than our whole Earth\" is true today (~1.3 Earths) but it is shrinking; R5 Q2 Why \"shares its path with lots of other icy bits\" is a fair kid-level gloss of not clearing its orbit. Process miss: the same writer (writer-2) wrote R4, R5 and PACK, so PACK checked its own rounds; next time the cross-round read should be done by someone who wrote none of them.\n- cos: Hits per pack: O-3, O-5, O-7 shipped first time. Misses per pack: none. But 3 first-time hits out of 7 shipped plus 0.57 revisions per shipped means 4 orders needed at least one revision, and the misses list does not show them; a revision is a miss worth naming. Content check I did on shipped/PACK/page.md: 20 distinct answers, each in its owning round per STYLE; no banned words (grep clean); every Why line is 20 words or fewer (max 20); facts I checked hold (Venus hottest, Ganymede wider than Mercury, Ceres biggest in the belt, about 8 minutes, about 1,300 Earths, 1969, Pluto dwarf planet since 2006). Soft spot: R1 Q2 Why restates R5's Pluto fact; allowed (a mention, not an answer) but it is overlap. Great Red Spot 'wider than our whole Earth' is true today but the storm is shrinking; keep an eye on it.\n**Decision:** Hits: O-3, O-5, O-7 shipped first time; all 20 answers distinct and in their owning rounds; facts checked by both cos and editor hold; no banned words; every Why line is 20 words or fewer. Miss (agreed with editor): R1 Q2 Why names Pluto as a dwarf planet, which gives away the R5 Q2 answer. That is a cross-round clash PACK should have fixed, even though the answer strings differ. Rule from now on: no Question or Why line may name or describe another round's answer. Fix: replace the R1 Q2 Why, in both shipped/ROUND1 and shipped/PACK, with exactly: \"Four small rocky planets and four giant planets circle the Sun, so that makes eight.\" (15 words, no planet names; do not list the planets in order, because that would give away R2 Q1 Mercury closest). Change nothing else. Second miss: the 4 orders that shipped after a revise are not shown under misses; Page 0 must list them. Watch item, no change now: Great Red Spot 'wider than our whole Earth' is true today (about 1.3 Earths) but shrinking; recheck at the next pack revision. Process: the cross-round PACK read is done by a writer who wrote none of the rounds being checked (writer-1 for this revision, since writer-2 wrote R4, R5 and PACK). · actions: ISS-14, ISS-15, ISS-16\n\n## 3. Roadmap and goal status\nRound 1:\n- editor: PRJ-1 is 7/7 and G-1/G-2/G-3 are green with every success metric met, but none is done=true and I do not think G-3 \"Quiz pack accepted\" should be marked done yet: its measure counts shipped pages, and acceptance should mean the pack passes an independent cross-round read. Proposal: keep G-3 green-not-done, open one small order (PACK revision, owner editor, writer-1 to do it since writer-1 did not write PACK) to fix the R1 Q2 Pluto giveaway, have test1 re-run the word, reading-ease and banned-word checks on R1 and the assembled pack, then I close G-3 well before its 2026-10-31 due date. G-2 (pipeline on cycle and batch) is met on \"orders shipped 7\" but that metric does not test the cycle/batch claim itself; cos should say what evidence shows the supervisor cycle ran without hand bookkeeping before marking G-2 done. G-1 stays with the founder to accept.\n- cos: Roadmap per pack: PRJ-1 Solar System Quiz Pack, lead editor, 7/7 done, G-3 green. Goals: G-1 (founder, due 2026-11-20) met 5/5 rounds and 1/1 pack; G-2 (cos, due 2026-11-10) met 7/7 orders; G-3 (editor, due 2026-10-31) met 1/1 style, 5/5 rounds, 1/1 pack. All three are met: true but done: false. Proposal: editor does a final acceptance read of PACK and marks G-3 done before its 2026-10-31 due date; G-2 and G-1 close after that, G-1 only by the founder. No new work for PRJ-1.\n**Decision:** PRJ-1 is 7/7 and G-1, G-2, G-3 are green with every success metric met, but none is marked done this week. G-3 (editor, due 2026-10-31) closes only after the PACK revision ships and reader's checks pass; editor then reads the revised PACK once and marks G-3 done by 2026-10-28. G-2 (cos, due 2026-11-10): 'orders shipped 7' does not prove the cycle-and-batch claim, so cos writes the evidence (supervisor cycle log, no hand bookkeeping) into G-2 before marking it done. G-1 stays with the founder. No other new work on PRJ-1. · actions: ISS-17, ISS-18\n\n## 4. Leadership asks\nRound 1:\n- editor: No asks are open (0 total), and I am not raising one to the founder for the fix: the R1 Q2 rewrite is inside my lane and the MTG-1 rules already decide it (an answer has one home; PACK fixes clashes). Two asks I do want on the record: (1) to the founder, once the PACK revision ships: accept the pack (G-1) or name what would block acceptance, since \"true and fun\" is the founder goal and only the founder can sign it. (2) to cos as chair: add a \"shipped after revise\" line or count revisions under misses on Page 0, and set window.from, so the next WBR can compare like with like. If cos disagrees that the Pluto mention is a clash, I want that objection recorded with the decision, not closed as noted.\n- cos: Asks per pack: 0 open, 0 total, 0 to founder, 0 rerouted, 0 escalated. Nothing for leadership to unblock. One thing to tell the founder in the digest: the pack is complete and met its code-measured criteria, and G-1 (founder-owned) is ready for the founder to accept or reject.\n**Decision:** Pack shows 0 asks open, 0 total, 0 to founder, 0 rerouted, 0 escalated. No ask is raised for the R1 Q2 fix: it is inside the editor lane and MTG-1 rules already decide it. One ask goes to the founder after G-3 is done: accept the Solar System Quiz Pack (G-1) or name what blocks acceptance. The Page 0 changes the editor asked for (window start, shipped-after-revise as misses) are taken by cos under items 1 and 2. There was no disagreement on whether the Pluto mention is a clash: cos agrees it is, so nothing is carried. · actions: ISS-19\n",
+       "ack": false,
+       "key": "MTG-2:wbr",
+       "ref": null,
+       "t": 29876673.304766666,
+       "to": [
+        "founder",
+        "editor",
+        "writer-1",
+        "writer-2",
+        "reader",
+        "release"
+       ],
+       "msgs": {
+        "founder": "M-74",
+        "editor": "M-75",
+        "writer-1": "M-76",
+        "writer-2": "M-77",
+        "reader": "M-78",
+        "release": "M-79"
+       }
+      }
      ]
     ]
    },
-   "n": 1
+   "n": 3
   },
   "tracker": {
    "items": {
@@ -624,6 +684,287 @@
         }
        ]
       }
+     ],
+     [
+      "ISS-11",
+      {
+       "id": "ISS-11",
+       "kind": "action",
+       "title": "Page 0: set window.from to the previous WBR close (2026-10-21) so numbers are weekly and comparable",
+       "body": "From MTG-2 item 1: Page 0: metrics",
+       "state": "backlog",
+       "assignee": "cos",
+       "project": null,
+       "labels": [],
+       "priority": 3,
+       "cycle": null,
+       "due": "2026-10-28",
+       "goal": null,
+       "order": null,
+       "links": [],
+       "comments": [],
+       "by": "cos",
+       "created": 29876672.3171,
+       "updated": 29876672.3171,
+       "history": [
+        {
+         "t": 29876672.3171,
+         "by": "cos",
+         "state": "backlog"
+        }
+       ]
+      }
+     ],
+     [
+      "ISS-12",
+      {
+       "id": "ISS-12",
+       "kind": "action",
+       "title": "Break flowEfficiencyMedian 0.22 into wait time per stage (writer, review queue, PACK) for PRJ-1 orders",
+       "body": "From MTG-2 item 1: Page 0: metrics",
+       "state": "backlog",
+       "assignee": "cos",
+       "project": null,
+       "labels": [],
+       "priority": 3,
+       "cycle": null,
+       "due": "2026-10-28",
+       "goal": null,
+       "order": null,
+       "links": [],
+       "comments": [],
+       "by": "cos",
+       "created": 29876672.3171,
+       "updated": 29876672.3171,
+       "history": [
+        {
+         "t": 29876672.3171,
+         "by": "cos",
+         "state": "backlog"
+        }
+       ]
+      }
+     ],
+     [
+      "ISS-13",
+      {
+       "id": "ISS-13",
+       "kind": "action",
+       "title": "PACK revision: replace R1 Q2 Why (ROUND1 and PACK) with \"Four small rocky planets and four giant planets circle the Sun, so that makes eight.\"; add the rule no Q/Why may name another round answer to the PACK Changes list",
+       "body": "From MTG-2 item 2: Hits and misses",
+       "state": "cancelled",
+       "assignee": "writer-1",
+       "project": null,
+       "labels": [],
+       "priority": 3,
+       "cycle": null,
+       "due": "2026-10-24",
+       "goal": null,
+       "order": null,
+       "links": [],
+       "comments": [
+        {
+         "by": "cos",
+         "t": 29876673.764966667,
+         "text": "Duplicate of ISS-14: created by a meeting decide that was then refused (unknown role test1); the refusal did not roll back this action."
+        }
+       ],
+       "by": "cos",
+       "created": 29876672.318933334,
+       "updated": 29876673.764966667,
+       "history": [
+        {
+         "t": 29876672.318933334,
+         "by": "cos",
+         "state": "backlog"
+        },
+        {
+         "t": 29876673.762966666,
+         "by": "cos",
+         "state": "cancelled"
+        }
+       ]
+      }
+     ],
+     [
+      "ISS-14",
+      {
+       "id": "ISS-14",
+       "kind": "action",
+       "title": "PACK revision: replace R1 Q2 Why (ROUND1 and PACK) with \"Four small rocky planets and four giant planets circle the Sun, so that makes eight.\"; add the rule no Q/Why may name another round answer to the PACK Changes list",
+       "body": "From MTG-2 item 2: Hits and misses",
+       "state": "backlog",
+       "assignee": "writer-1",
+       "project": null,
+       "labels": [],
+       "priority": 3,
+       "cycle": null,
+       "due": "2026-10-24",
+       "goal": null,
+       "order": null,
+       "links": [],
+       "comments": [],
+       "by": "cos",
+       "created": 29876673.189783335,
+       "updated": 29876673.1898,
+       "history": [
+        {
+         "t": 29876673.1898,
+         "by": "cos",
+         "state": "backlog"
+        }
+       ]
+      }
+     ],
+     [
+      "ISS-15",
+      {
+       "id": "ISS-15",
+       "kind": "action",
+       "title": "Check revised ROUND1 and PACK: word count, reading ease 60+, banned words, 20 distinct answers, no Q/Why names another round answer",
+       "body": "From MTG-2 item 2: Hits and misses",
+       "state": "backlog",
+       "assignee": "reader",
+       "project": null,
+       "labels": [],
+       "priority": 3,
+       "cycle": null,
+       "due": "2026-10-25",
+       "goal": null,
+       "order": null,
+       "links": [],
+       "comments": [],
+       "by": "cos",
+       "created": 29876673.1898,
+       "updated": 29876673.1898,
+       "history": [
+        {
+         "t": 29876673.1898,
+         "by": "cos",
+         "state": "backlog"
+        }
+       ]
+      }
+     ],
+     [
+      "ISS-16",
+      {
+       "id": "ISS-16",
+       "kind": "action",
+       "title": "Page 0: list orders that shipped after a revise under misses (order id, revisions)",
+       "body": "From MTG-2 item 2: Hits and misses",
+       "state": "backlog",
+       "assignee": "cos",
+       "project": null,
+       "labels": [],
+       "priority": 3,
+       "cycle": null,
+       "due": "2026-10-28",
+       "goal": null,
+       "order": null,
+       "links": [],
+       "comments": [],
+       "by": "cos",
+       "created": 29876673.1898,
+       "updated": 29876673.1898,
+       "history": [
+        {
+         "t": 29876673.1898,
+         "by": "cos",
+         "state": "backlog"
+        }
+       ]
+      }
+     ],
+     [
+      "ISS-17",
+      {
+       "id": "ISS-17",
+       "kind": "action",
+       "title": "Accept G-3: read revised PACK, confirm reader checks passed, mark G-3 done",
+       "body": "From MTG-2 item 3: Roadmap and goal status",
+       "state": "backlog",
+       "assignee": "editor",
+       "project": null,
+       "labels": [],
+       "priority": 3,
+       "cycle": null,
+       "due": "2026-10-28",
+       "goal": null,
+       "order": null,
+       "links": [],
+       "comments": [],
+       "by": "cos",
+       "created": 29876673.192383334,
+       "updated": 29876673.192383334,
+       "history": [
+        {
+         "t": 29876673.192383334,
+         "by": "cos",
+         "state": "backlog"
+        }
+       ]
+      }
+     ],
+     [
+      "ISS-18",
+      {
+       "id": "ISS-18",
+       "kind": "action",
+       "title": "G-2 evidence: cite the supervisor-cycle log showing PRJ-1 ran on cycle and batch without hand bookkeeping, then mark G-2 done or say what failed",
+       "body": "From MTG-2 item 3: Roadmap and goal status",
+       "state": "backlog",
+       "assignee": "cos",
+       "project": null,
+       "labels": [],
+       "priority": 3,
+       "cycle": null,
+       "due": "2026-11-06",
+       "goal": null,
+       "order": null,
+       "links": [],
+       "comments": [],
+       "by": "cos",
+       "created": 29876673.192383334,
+       "updated": 29876673.192383334,
+       "history": [
+        {
+         "t": 29876673.192383334,
+         "by": "cos",
+         "state": "backlog"
+        }
+       ]
+      }
+     ],
+     [
+      "ISS-19",
+      {
+       "id": "ISS-19",
+       "kind": "action",
+       "title": "Ask founder to accept G-1 (Solar System Quiz Pack) or name what blocks it, once G-3 is done",
+       "body": "From MTG-2 item 4: Leadership asks",
+       "state": "backlog",
+       "assignee": "cos",
+       "project": null,
+       "labels": [],
+       "priority": 3,
+       "cycle": null,
+       "due": "2026-10-30",
+       "goal": null,
+       "order": null,
+       "links": [],
+       "comments": [],
+       "by": "cos",
+       "created": 29876673.194483332,
+       "updated": 29876673.194483332,
+       "history": [
+        {
+         "t": 29876673.194483332,
+         "by": "cos",
+         "state": "backlog"
+        }
+       ]
+      }
      ]
     ]
    },
@@ -647,7 +988,7 @@
    "cycles": {
     "__map": []
    },
-   "n": 10,
+   "n": 19,
    "nP": 1,
    "nC": 0
   },
@@ -693,7 +1034,7 @@
          "reason": null
         }
        ],
-       "reviewedStatus": null,
+       "reviewedStatus": "green",
        "done": false
       }
      ],
@@ -731,7 +1072,7 @@
          "reason": null
         }
        ],
-       "reviewedStatus": null,
+       "reviewedStatus": "green",
        "done": false
       }
      ],
@@ -783,14 +1124,36 @@
          "reason": null
         }
        ],
-       "reviewedStatus": null,
+       "reviewedStatus": "green",
        "done": false
       }
      ]
     ]
    },
    "n": 3,
-   "reviews": []
+   "reviews": [
+    {
+     "t": 29876673.306583334,
+     "level": "lane",
+     "by": "editor",
+     "own": 1,
+     "exceptions": 0
+    },
+    {
+     "t": 29876673.306583334,
+     "level": "org",
+     "by": "cos",
+     "own": 1,
+     "exceptions": 0
+    },
+    {
+     "t": 29876673.306583334,
+     "level": "company",
+     "by": "founder",
+     "own": 1,
+     "exceptions": 0
+    }
+   ]
   },
   "meetings": {
    "meetings": {
@@ -914,7 +1277,7 @@
        "room": "story-room",
        "channel": "company",
        "opened": 29876668.37565,
-       "state": "open",
+       "state": "closed",
        "agenda": [
         {
          "n": 1,
@@ -924,12 +1287,29 @@
          "rounds": [
           {
            "n": 1,
-           "positions": {},
-           "revealed": false
+           "positions": {
+            "editor": {
+             "text": "Page 0 reads clean on volume (7/7 orders shipped, 0 refusals, 0 overdue, board empty) but two numbers need a second look before we call it a good week. (a) revisionsPerShipped 0.57 means about 4 revisions across 7 orders, yet the hits list only O-3, O-5, O-7 as first-time and misses is empty: the other four orders (STYLE, two rounds, PACK or whichever) went through revise and should show up as misses or at least as \"shipped after revise\", or the page hides where the rework was. (b) flowEfficiencyMedian 0.22 with leadP50 16.6 min means most lead time was waiting, not working; I want the wait broken out by stage (review queue vs writer) before we tune anything. Also: window.from is null, so the page has no start date and the per-week numbers are not comparable to a later WBR; fix the window. tokensPerShipped ~134k is our baseline for the Benchmark-2 comparison; record it as such, no target yet.",
+             "t": 29876669.599633332
+            },
+            "cos": {
+             "text": "Page 0 (pack numbers): 7 shipped, 10 items done, 0 in backlog/todo/in-progress/in-review, 0 overdue, 0 refusals, goals 3 green / 0 yellow / 0 red. Cost and speed: 134,483 tokens per shipped item, lead time p50 16.6 min, flow efficiency median 0.22, revisions per shipped 0.57. Reading: output is complete; the weak number is flow efficiency 0.22 (most lead time is waiting, not working) and 0.57 revisions per shipped (about 4 revisions over 7 shipments). The window has no start date (from: null), so these are lifetime numbers, not this week's; next WBR needs a dated window to compare against.",
+             "t": 29876671.745533332
+            }
+           },
+           "revealed": true,
+           "missing": []
           }
          ],
          "objections": [],
-         "decision": null,
+         "decision": {
+          "text": "Page 0 accepted as lifetime numbers, not a week: 7 shipped, 10 done, 0 open work, 0 overdue, 0 refusals, goals 3 green. Record tokensPerShipped 134,483, leadP50Min 16.6, flowEfficiencyMedian 0.22 and revisionsPerShipped 0.57 as the Benchmark-2 baseline; no targets set this week. Two Page 0 fixes before the next WBR: (1) the window must have a start date (window.from is null today), so the next pack covers 2026-10-21 onward; (2) flow efficiency 0.22 gets a wait breakdown by stage (writer vs review queue) before anyone tunes the pipeline.",
+          "t": 29876672.3171,
+          "actions": [
+           "ISS-11",
+           "ISS-12"
+          ]
+         },
          "deferred": null
         },
         {
@@ -940,12 +1320,30 @@
          "rounds": [
           {
            "n": 1,
-           "positions": {},
-           "revealed": false
+           "positions": {
+            "editor": {
+             "text": "Hits: all five rounds plus STYLE and PACK shipped; I re-read the shipped pack and every fact I checked holds (Venus hottest via thick clouds, Ganymede wider than Mercury 5,268 vs 4,879 km, ~1,300 Earths in Jupiter, Olympus Mons ~2.5x Everest, Ceres largest in the belt, Pluto dwarf planet since 2006, 1969 landing); all 20 answers distinct and in their owning rounds; banned traps avoided. Miss I am raising: a cross-round giveaway that PACK saw and did not fix. R1 Q2 Why says \"Pluto used to be on the list, but now it is called a dwarf planet\", which hands the players the R5 Q2 answer (Pluto, dwarf planet since 2006) three rounds early. PACK notes list it as \"agreement\" rather than a clash. The order said PACK fixes anything that clashes across rounds; a giveaway is a clash in a quiz even if the answer strings differ. Fix: rewrite R1 Q2 Why without naming Pluto, e.g. \"Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus and Neptune all travel around the Sun.\" (14 words) or keep it shorter. Minor watch items, not blockers: Great Red Spot \"wider than our whole Earth\" is true today (~1.3 Earths) but it is shrinking; R5 Q2 Why \"shares its path with lots of other icy bits\" is a fair kid-level gloss of not clearing its orbit. Process miss: the same writer (writer-2) wrote R4, R5 and PACK, so PACK checked its own rounds; next time the cross-round read should be done by someone who wrote none of them.",
+             "t": 29876669.601866666
+            },
+            "cos": {
+             "text": "Hits per pack: O-3, O-5, O-7 shipped first time. Misses per pack: none. But 3 first-time hits out of 7 shipped plus 0.57 revisions per shipped means 4 orders needed at least one revision, and the misses list does not show them; a revision is a miss worth naming. Content check I did on shipped/PACK/page.md: 20 distinct answers, each in its owning round per STYLE; no banned words (grep clean); every Why line is 20 words or fewer (max 20); facts I checked hold (Venus hottest, Ganymede wider than Mercury, Ceres biggest in the belt, about 8 minutes, about 1,300 Earths, 1969, Pluto dwarf planet since 2006). Soft spot: R1 Q2 Why restates R5's Pluto fact; allowed (a mention, not an answer) but it is overlap. Great Red Spot 'wider than our whole Earth' is true today but the storm is shrinking; keep an eye on it.",
+             "t": 29876671.74765
+            }
+           },
+           "revealed": true,
+           "missing": []
           }
          ],
          "objections": [],
-         "decision": null,
+         "decision": {
+          "text": "Hits: O-3, O-5, O-7 shipped first time; all 20 answers distinct and in their owning rounds; facts checked by both cos and editor hold; no banned words; every Why line is 20 words or fewer. Miss (agreed with editor): R1 Q2 Why names Pluto as a dwarf planet, which gives away the R5 Q2 answer. That is a cross-round clash PACK should have fixed, even though the answer strings differ. Rule from now on: no Question or Why line may name or describe another round's answer. Fix: replace the R1 Q2 Why, in both shipped/ROUND1 and shipped/PACK, with exactly: \"Four small rocky planets and four giant planets circle the Sun, so that makes eight.\" (15 words, no planet names; do not list the planets in order, because that would give away R2 Q1 Mercury closest). Change nothing else. Second miss: the 4 orders that shipped after a revise are not shown under misses; Page 0 must list them. Watch item, no change now: Great Red Spot 'wider than our whole Earth' is true today (about 1.3 Earths) but shrinking; recheck at the next pack revision. Process: the cross-round PACK read is done by a writer who wrote none of the rounds being checked (writer-1 for this revision, since writer-2 wrote R4, R5 and PACK).",
+          "t": 29876673.1898,
+          "actions": [
+           "ISS-14",
+           "ISS-15",
+           "ISS-16"
+          ]
+         },
          "deferred": null
         },
         {
@@ -956,12 +1354,29 @@
          "rounds": [
           {
            "n": 1,
-           "positions": {},
-           "revealed": false
+           "positions": {
+            "editor": {
+             "text": "PRJ-1 is 7/7 and G-1/G-2/G-3 are green with every success metric met, but none is done=true and I do not think G-3 \"Quiz pack accepted\" should be marked done yet: its measure counts shipped pages, and acceptance should mean the pack passes an independent cross-round read. Proposal: keep G-3 green-not-done, open one small order (PACK revision, owner editor, writer-1 to do it since writer-1 did not write PACK) to fix the R1 Q2 Pluto giveaway, have test1 re-run the word, reading-ease and banned-word checks on R1 and the assembled pack, then I close G-3 well before its 2026-10-31 due date. G-2 (pipeline on cycle and batch) is met on \"orders shipped 7\" but that metric does not test the cycle/batch claim itself; cos should say what evidence shows the supervisor cycle ran without hand bookkeeping before marking G-2 done. G-1 stays with the founder to accept.",
+             "t": 29876669.604183335
+            },
+            "cos": {
+             "text": "Roadmap per pack: PRJ-1 Solar System Quiz Pack, lead editor, 7/7 done, G-3 green. Goals: G-1 (founder, due 2026-11-20) met 5/5 rounds and 1/1 pack; G-2 (cos, due 2026-11-10) met 7/7 orders; G-3 (editor, due 2026-10-31) met 1/1 style, 5/5 rounds, 1/1 pack. All three are met: true but done: false. Proposal: editor does a final acceptance read of PACK and marks G-3 done before its 2026-10-31 due date; G-2 and G-1 close after that, G-1 only by the founder. No new work for PRJ-1.",
+             "t": 29876671.749316666
+            }
+           },
+           "revealed": true,
+           "missing": []
           }
          ],
          "objections": [],
-         "decision": null,
+         "decision": {
+          "text": "PRJ-1 is 7/7 and G-1, G-2, G-3 are green with every success metric met, but none is marked done this week. G-3 (editor, due 2026-10-31) closes only after the PACK revision ships and reader's checks pass; editor then reads the revised PACK once and marks G-3 done by 2026-10-28. G-2 (cos, due 2026-11-10): 'orders shipped 7' does not prove the cycle-and-batch claim, so cos writes the evidence (supervisor cycle log, no hand bookkeeping) into G-2 before marking it done. G-1 stays with the founder. No other new work on PRJ-1.",
+          "t": 29876673.192383334,
+          "actions": [
+           "ISS-17",
+           "ISS-18"
+          ]
+         },
          "deferred": null
         },
         {
@@ -972,19 +1387,36 @@
          "rounds": [
           {
            "n": 1,
-           "positions": {},
-           "revealed": false
+           "positions": {
+            "editor": {
+             "text": "No asks are open (0 total), and I am not raising one to the founder for the fix: the R1 Q2 rewrite is inside my lane and the MTG-1 rules already decide it (an answer has one home; PACK fixes clashes). Two asks I do want on the record: (1) to the founder, once the PACK revision ships: accept the pack (G-1) or name what would block acceptance, since \"true and fun\" is the founder goal and only the founder can sign it. (2) to cos as chair: add a \"shipped after revise\" line or count revisions under misses on Page 0, and set window.from, so the next WBR can compare like with like. If cos disagrees that the Pluto mention is a clash, I want that objection recorded with the decision, not closed as noted.",
+             "t": 29876669.6064
+            },
+            "cos": {
+             "text": "Asks per pack: 0 open, 0 total, 0 to founder, 0 rerouted, 0 escalated. Nothing for leadership to unblock. One thing to tell the founder in the digest: the pack is complete and met its code-measured criteria, and G-1 (founder-owned) is ready for the founder to accept or reject.",
+             "t": 29876671.75105
+            }
+           },
+           "revealed": true,
+           "missing": []
           }
          ],
          "objections": [],
-         "decision": null,
+         "decision": {
+          "text": "Pack shows 0 asks open, 0 total, 0 to founder, 0 rerouted, 0 escalated. No ask is raised for the R1 Q2 fix: it is inside the editor lane and MTG-1 rules already decide it. One ask goes to the founder after G-3 is done: accept the Solar System Quiz Pack (G-1) or name what blocks acceptance. The Page 0 changes the editor asked for (window start, shipped-after-revise as misses) are taken by cos under items 1 and 2. There was no disagreement on whether the Pluto mention is a clash: cos agrees it is, so nothing is carried.",
+          "t": 29876673.194483332,
+          "actions": [
+           "ISS-19"
+          ]
+         },
          "deferred": null
         }
        ],
        "board": {},
        "present": {
         "__set": [
-         "cos"
+         "cos",
+         "editor"
         ]
        },
        "pack": {
@@ -1162,7 +1594,9 @@
          "rerouted": 0,
          "escalated": 0
         }
-       }
+       },
+       "closed": 29876673.304733332,
+       "minutes": "# WBR 2026-10-21 (MTG-2)\n\nchair: cos · invited: cos, editor · absent: none · room: story-room\n\n## 1. Page 0: metrics\nRound 1:\n- editor: Page 0 reads clean on volume (7/7 orders shipped, 0 refusals, 0 overdue, board empty) but two numbers need a second look before we call it a good week. (a) revisionsPerShipped 0.57 means about 4 revisions across 7 orders, yet the hits list only O-3, O-5, O-7 as first-time and misses is empty: the other four orders (STYLE, two rounds, PACK or whichever) went through revise and should show up as misses or at least as \"shipped after revise\", or the page hides where the rework was. (b) flowEfficiencyMedian 0.22 with leadP50 16.6 min means most lead time was waiting, not working; I want the wait broken out by stage (review queue vs writer) before we tune anything. Also: window.from is null, so the page has no start date and the per-week numbers are not comparable to a later WBR; fix the window. tokensPerShipped ~134k is our baseline for the Benchmark-2 comparison; record it as such, no target yet.\n- cos: Page 0 (pack numbers): 7 shipped, 10 items done, 0 in backlog/todo/in-progress/in-review, 0 overdue, 0 refusals, goals 3 green / 0 yellow / 0 red. Cost and speed: 134,483 tokens per shipped item, lead time p50 16.6 min, flow efficiency median 0.22, revisions per shipped 0.57. Reading: output is complete; the weak number is flow efficiency 0.22 (most lead time is waiting, not working) and 0.57 revisions per shipped (about 4 revisions over 7 shipments). The window has no start date (from: null), so these are lifetime numbers, not this week's; next WBR needs a dated window to compare against.\n**Decision:** Page 0 accepted as lifetime numbers, not a week: 7 shipped, 10 done, 0 open work, 0 overdue, 0 refusals, goals 3 green. Record tokensPerShipped 134,483, leadP50Min 16.6, flowEfficiencyMedian 0.22 and revisionsPerShipped 0.57 as the Benchmark-2 baseline; no targets set this week. Two Page 0 fixes before the next WBR: (1) the window must have a start date (window.from is null today), so the next pack covers 2026-10-21 onward; (2) flow efficiency 0.22 gets a wait breakdown by stage (writer vs review queue) before anyone tunes the pipeline. · actions: ISS-11, ISS-12\n\n## 2. Hits and misses\nRound 1:\n- editor: Hits: all five rounds plus STYLE and PACK shipped; I re-read the shipped pack and every fact I checked holds (Venus hottest via thick clouds, Ganymede wider than Mercury 5,268 vs 4,879 km, ~1,300 Earths in Jupiter, Olympus Mons ~2.5x Everest, Ceres largest in the belt, Pluto dwarf planet since 2006, 1969 landing); all 20 answers distinct and in their owning rounds; banned traps avoided. Miss I am raising: a cross-round giveaway that PACK saw and did not fix. R1 Q2 Why says \"Pluto used to be on the list, but now it is called a dwarf planet\", which hands the players the R5 Q2 answer (Pluto, dwarf planet since 2006) three rounds early. PACK notes list it as \"agreement\" rather than a clash. The order said PACK fixes anything that clashes across rounds; a giveaway is a clash in a quiz even if the answer strings differ. Fix: rewrite R1 Q2 Why without naming Pluto, e.g. \"Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus and Neptune all travel around the Sun.\" (14 words) or keep it shorter. Minor watch items, not blockers: Great Red Spot \"wider than our whole Earth\" is true today (~1.3 Earths) but it is shrinking; R5 Q2 Why \"shares its path with lots of other icy bits\" is a fair kid-level gloss of not clearing its orbit. Process miss: the same writer (writer-2) wrote R4, R5 and PACK, so PACK checked its own rounds; next time the cross-round read should be done by someone who wrote none of them.\n- cos: Hits per pack: O-3, O-5, O-7 shipped first time. Misses per pack: none. But 3 first-time hits out of 7 shipped plus 0.57 revisions per shipped means 4 orders needed at least one revision, and the misses list does not show them; a revision is a miss worth naming. Content check I did on shipped/PACK/page.md: 20 distinct answers, each in its owning round per STYLE; no banned words (grep clean); every Why line is 20 words or fewer (max 20); facts I checked hold (Venus hottest, Ganymede wider than Mercury, Ceres biggest in the belt, about 8 minutes, about 1,300 Earths, 1969, Pluto dwarf planet since 2006). Soft spot: R1 Q2 Why restates R5's Pluto fact; allowed (a mention, not an answer) but it is overlap. Great Red Spot 'wider than our whole Earth' is true today but the storm is shrinking; keep an eye on it.\n**Decision:** Hits: O-3, O-5, O-7 shipped first time; all 20 answers distinct and in their owning rounds; facts checked by both cos and editor hold; no banned words; every Why line is 20 words or fewer. Miss (agreed with editor): R1 Q2 Why names Pluto as a dwarf planet, which gives away the R5 Q2 answer. That is a cross-round clash PACK should have fixed, even though the answer strings differ. Rule from now on: no Question or Why line may name or describe another round's answer. Fix: replace the R1 Q2 Why, in both shipped/ROUND1 and shipped/PACK, with exactly: \"Four small rocky planets and four giant planets circle the Sun, so that makes eight.\" (15 words, no planet names; do not list the planets in order, because that would give away R2 Q1 Mercury closest). Change nothing else. Second miss: the 4 orders that shipped after a revise are not shown under misses; Page 0 must list them. Watch item, no change now: Great Red Spot 'wider than our whole Earth' is true today (about 1.3 Earths) but shrinking; recheck at the next pack revision. Process: the cross-round PACK read is done by a writer who wrote none of the rounds being checked (writer-1 for this revision, since writer-2 wrote R4, R5 and PACK). · actions: ISS-14, ISS-15, ISS-16\n\n## 3. Roadmap and goal status\nRound 1:\n- editor: PRJ-1 is 7/7 and G-1/G-2/G-3 are green with every success metric met, but none is done=true and I do not think G-3 \"Quiz pack accepted\" should be marked done yet: its measure counts shipped pages, and acceptance should mean the pack passes an independent cross-round read. Proposal: keep G-3 green-not-done, open one small order (PACK revision, owner editor, writer-1 to do it since writer-1 did not write PACK) to fix the R1 Q2 Pluto giveaway, have test1 re-run the word, reading-ease and banned-word checks on R1 and the assembled pack, then I close G-3 well before its 2026-10-31 due date. G-2 (pipeline on cycle and batch) is met on \"orders shipped 7\" but that metric does not test the cycle/batch claim itself; cos should say what evidence shows the supervisor cycle ran without hand bookkeeping before marking G-2 done. G-1 stays with the founder to accept.\n- cos: Roadmap per pack: PRJ-1 Solar System Quiz Pack, lead editor, 7/7 done, G-3 green. Goals: G-1 (founder, due 2026-11-20) met 5/5 rounds and 1/1 pack; G-2 (cos, due 2026-11-10) met 7/7 orders; G-3 (editor, due 2026-10-31) met 1/1 style, 5/5 rounds, 1/1 pack. All three are met: true but done: false. Proposal: editor does a final acceptance read of PACK and marks G-3 done before its 2026-10-31 due date; G-2 and G-1 close after that, G-1 only by the founder. No new work for PRJ-1.\n**Decision:** PRJ-1 is 7/7 and G-1, G-2, G-3 are green with every success metric met, but none is marked done this week. G-3 (editor, due 2026-10-31) closes only after the PACK revision ships and reader's checks pass; editor then reads the revised PACK once and marks G-3 done by 2026-10-28. G-2 (cos, due 2026-11-10): 'orders shipped 7' does not prove the cycle-and-batch claim, so cos writes the evidence (supervisor cycle log, no hand bookkeeping) into G-2 before marking it done. G-1 stays with the founder. No other new work on PRJ-1. · actions: ISS-17, ISS-18\n\n## 4. Leadership asks\nRound 1:\n- editor: No asks are open (0 total), and I am not raising one to the founder for the fix: the R1 Q2 rewrite is inside my lane and the MTG-1 rules already decide it (an answer has one home; PACK fixes clashes). Two asks I do want on the record: (1) to the founder, once the PACK revision ships: accept the pack (G-1) or name what would block acceptance, since \"true and fun\" is the founder goal and only the founder can sign it. (2) to cos as chair: add a \"shipped after revise\" line or count revisions under misses on Page 0, and set window.from, so the next WBR can compare like with like. If cos disagrees that the Pluto mention is a clash, I want that objection recorded with the decision, not closed as noted.\n- cos: Asks per pack: 0 open, 0 total, 0 to founder, 0 rerouted, 0 escalated. Nothing for leadership to unblock. One thing to tell the founder in the digest: the pack is complete and met its code-measured criteria, and G-1 (founder-owned) is ready for the founder to accept or reject.\n**Decision:** Pack shows 0 asks open, 0 total, 0 to founder, 0 rerouted, 0 escalated. No ask is raised for the R1 Q2 fix: it is inside the editor lane and MTG-1 rules already decide it. One ask goes to the founder after G-3 is done: accept the Solar System Quiz Pack (G-1) or name what blocks acceptance. The Page 0 changes the editor asked for (window start, shipped-after-revise as misses) are taken by cos under items 1 and 2. There was no disagreement on whether the Pluto mention is a clash: cos agrees it is, so nothing is carried. · actions: ISS-19\n"
       }
      ]
     ]
@@ -1170,8 +1604,257 @@
    "n": 2
   },
   "rituals": {
-   "wbr": [],
-   "goalReviews": [],
+   "wbr": [
+    {
+     "meeting": "MTG-2",
+     "closed": 29876673.304766666,
+     "summary": "PRJ-1 shipped 7/7 orders with 0 overdue, 0 refusals and goals 3 green; tokensPerShipped 134,483, leadP50 16.6 min, flow efficiency 0.22 and 0.57 revisions per shipped are recorded as the Benchmark-2 baseline (lifetime, since Page 0 has no start date yet). The shipped pack has 20 distinct, correctly owned answers and the facts checked hold, but R1 Q2's Why gives away R5's Pluto answer: writer-1 replaces it with a fixed 15-word line by 2026-10-24 and reader rechecks by 2026-10-25. G-3 closes after that (editor, by 2026-10-28), G-2 needs cycle-and-batch evidence from cos, and G-1 goes to the founder for acceptance. Page 0 gets a dated window, shipped-after-revise listed as misses, and a per-stage wait breakdown before the next WBR.",
+     "pack": {
+      "page0": {
+       "window": {
+        "from": null,
+        "to": "2026-10-21T16:28:22.536Z"
+       },
+       "shipped": 7,
+       "tokensPerShipped": 134483,
+       "leadP50Min": 16.6,
+       "flowEfficiencyMedian": 0.22,
+       "revisionsPerShipped": 0.57,
+       "refusals": 0,
+       "work": {
+        "backlog": 0,
+        "todo": 0,
+        "in-progress": 0,
+        "in-review": 0,
+        "done": 10,
+        "cancelled": 0
+       },
+       "overdue": 0,
+       "goals": {
+        "green": 3,
+        "yellow": 0,
+        "red": 0
+       }
+      },
+      "hits": [
+       "O-3 shipped first time",
+       "O-5 shipped first time",
+       "O-7 shipped first time"
+      ],
+      "misses": [],
+      "roadmap": [
+       {
+        "project": "PRJ-1",
+        "name": "Solar System Quiz Pack",
+        "lead": "editor",
+        "done": 7,
+        "total": 7,
+        "goals": [
+         {
+          "id": "G-3",
+          "status": "green"
+         }
+        ]
+       }
+      ],
+      "goals": [
+       {
+        "depth": 0,
+        "id": "G-1",
+        "title": "Solar System Quiz Pack: five rounds, true and fun",
+        "level": "company",
+        "owner": "founder",
+        "due": "2026-11-20",
+        "status": "green",
+        "ownerStatus": "green",
+        "autoRed": false,
+        "reason": null,
+        "path": null,
+        "divergence": null,
+        "contributorsWorst": "green",
+        "progress": null,
+        "met": true,
+        "done": false,
+        "why": "the second proxy task: does Meta's advantage hold on factual work",
+        "what": "a style sheet, five rounds, an assembled pack",
+        "success": [
+         {
+          "metric": "rounds shipped",
+          "target": 5,
+          "current": 5,
+          "unit": null,
+          "source": "shipped:ROUND"
+         },
+         {
+          "metric": "pack shipped",
+          "target": 1,
+          "current": 1,
+          "unit": null,
+          "source": "shipped:PACK"
+         }
+        ],
+        "contributesTo": []
+       },
+       {
+        "depth": 1,
+        "id": "G-2",
+        "title": "Quiz pipeline runs on cycle and batch",
+        "level": "org",
+        "owner": "cos",
+        "due": "2026-11-10",
+        "status": "green",
+        "ownerStatus": "green",
+        "autoRed": false,
+        "reason": null,
+        "path": null,
+        "divergence": null,
+        "contributorsWorst": "green",
+        "progress": null,
+        "met": true,
+        "done": false,
+        "why": "Benchmark 1 found the orchestrator's bookkeeping by hand",
+        "what": "orders, supervisor cycle, meetings, WBR",
+        "success": [
+         {
+          "metric": "orders shipped",
+          "target": 7,
+          "current": 7,
+          "unit": null,
+          "source": "shipped:"
+         }
+        ],
+        "contributesTo": [
+         "G-1"
+        ]
+       },
+       {
+        "depth": 2,
+        "id": "G-3",
+        "title": "Quiz pack accepted",
+        "level": "lane",
+        "owner": "editor",
+        "due": "2026-10-31",
+        "status": "green",
+        "ownerStatus": "green",
+        "autoRed": false,
+        "reason": null,
+        "path": null,
+        "divergence": null,
+        "contributorsWorst": null,
+        "progress": {
+         "done": 7,
+         "total": 7
+        },
+        "met": true,
+        "done": false,
+        "why": "the lane's deliverable",
+        "what": "style sheet, rounds 1-5, the pack",
+        "success": [
+         {
+          "metric": "style shipped",
+          "target": 1,
+          "current": 1,
+          "unit": null,
+          "source": "shipped:STYLE"
+         },
+         {
+          "metric": "rounds shipped",
+          "target": 5,
+          "current": 5,
+          "unit": null,
+          "source": "shipped:ROUND"
+         },
+         {
+          "metric": "pack shipped",
+          "target": 1,
+          "current": 1,
+          "unit": null,
+          "source": "shipped:PACK"
+         }
+        ],
+        "contributesTo": [
+         "G-2"
+        ]
+       }
+      ],
+      "asks": {
+       "open": [],
+       "total": 0,
+       "toFounder": 0,
+       "rerouted": 0,
+       "escalated": 0
+      }
+     },
+     "doc": "# WBR 2026-10-21\n\n## Summary\nPRJ-1 shipped 7/7 orders with 0 overdue, 0 refusals and goals 3 green; tokensPerShipped 134,483, leadP50 16.6 min, flow efficiency 0.22 and 0.57 revisions per shipped are recorded as the Benchmark-2 baseline (lifetime, since Page 0 has no start date yet). The shipped pack has 20 distinct, correctly owned answers and the facts checked hold, but R1 Q2's Why gives away R5's Pluto answer: writer-1 replaces it with a fixed 15-word line by 2026-10-24 and reader rechecks by 2026-10-25. G-3 closes after that (editor, by 2026-10-28), G-2 needs cycle-and-batch evidence from cos, and G-1 goes to the founder for acceptance. Page 0 gets a dated window, shipped-after-revise listed as misses, and a per-stage wait breakdown before the next WBR.\n\n## Page 0\n| measure | value |\n|---|---|\n| window | {\"from\":null,\"to\":\"2026-10-21T16:28:22.536Z\"} |\n| shipped | 7 |\n| tokensPerShipped | 134483 |\n| leadP50Min | 16.6 |\n| flowEfficiencyMedian | 0.22 |\n| revisionsPerShipped | 0.57 |\n| refusals | 0 |\n| work | {\"backlog\":0,\"todo\":0,\"in-progress\":0,\"in-review\":0,\"done\":10,\"cancelled\":0} |\n| overdue | 0 |\n| goals | {\"green\":3,\"yellow\":0,\"red\":0} |\n\n## Hits\n- O-3 shipped first time\n- O-5 shipped first time\n- O-7 shipped first time\n\n## Misses\n- none\n\n## Roadmap\n- Solar System Quiz Pack (editor): 7/7 done · goals G-3 green\n\n## Goals\n- G-1 [green] Solar System Quiz Pack: five rounds, true and fun (founder, due 2026-11-20)\n-   G-2 [green] Quiz pipeline runs on cycle and batch (cos, due 2026-11-10)\n-     G-3 [green] Quiz pack accepted (editor, due 2026-10-31)\n\n## Leadership asks\n0 asks · 0 to the founder · 0 rerouted down · 0 escalated with a reason\n\n## Minutes\n# WBR 2026-10-21 (MTG-2)\n\nchair: cos · invited: cos, editor · absent: none · room: story-room\n\n## 1. Page 0: metrics\nRound 1:\n- editor: Page 0 reads clean on volume (7/7 orders shipped, 0 refusals, 0 overdue, board empty) but two numbers need a second look before we call it a good week. (a) revisionsPerShipped 0.57 means about 4 revisions across 7 orders, yet the hits list only O-3, O-5, O-7 as first-time and misses is empty: the other four orders (STYLE, two rounds, PACK or whichever) went through revise and should show up as misses or at least as \"shipped after revise\", or the page hides where the rework was. (b) flowEfficiencyMedian 0.22 with leadP50 16.6 min means most lead time was waiting, not working; I want the wait broken out by stage (review queue vs writer) before we tune anything. Also: window.from is null, so the page has no start date and the per-week numbers are not comparable to a later WBR; fix the window. tokensPerShipped ~134k is our baseline for the Benchmark-2 comparison; record it as such, no target yet.\n- cos: Page 0 (pack numbers): 7 shipped, 10 items done, 0 in backlog/todo/in-progress/in-review, 0 overdue, 0 refusals, goals 3 green / 0 yellow / 0 red. Cost and speed: 134,483 tokens per shipped item, lead time p50 16.6 min, flow efficiency median 0.22, revisions per shipped 0.57. Reading: output is complete; the weak number is flow efficiency 0.22 (most lead time is waiting, not working) and 0.57 revisions per shipped (about 4 revisions over 7 shipments). The window has no start date (from: null), so these are lifetime numbers, not this week's; next WBR needs a dated window to compare against.\n**Decision:** Page 0 accepted as lifetime numbers, not a week: 7 shipped, 10 done, 0 open work, 0 overdue, 0 refusals, goals 3 green. Record tokensPerShipped 134,483, leadP50Min 16.6, flowEfficiencyMedian 0.22 and revisionsPerShipped 0.57 as the Benchmark-2 baseline; no targets set this week. Two Page 0 fixes before the next WBR: (1) the window must have a start date (window.from is null today), so the next pack covers 2026-10-21 onward; (2) flow efficiency 0.22 gets a wait breakdown by stage (writer vs review queue) before anyone tunes the pipeline. · actions: ISS-11, ISS-12\n\n## 2. Hits and misses\nRound 1:\n- editor: Hits: all five rounds plus STYLE and PACK shipped; I re-read the shipped pack and every fact I checked holds (Venus hottest via thick clouds, Ganymede wider than Mercury 5,268 vs 4,879 km, ~1,300 Earths in Jupiter, Olympus Mons ~2.5x Everest, Ceres largest in the belt, Pluto dwarf planet since 2006, 1969 landing); all 20 answers distinct and in their owning rounds; banned traps avoided. Miss I am raising: a cross-round giveaway that PACK saw and did not fix. R1 Q2 Why says \"Pluto used to be on the list, but now it is called a dwarf planet\", which hands the players the R5 Q2 answer (Pluto, dwarf planet since 2006) three rounds early. PACK notes list it as \"agreement\" rather than a clash. The order said PACK fixes anything that clashes across rounds; a giveaway is a clash in a quiz even if the answer strings differ. Fix: rewrite R1 Q2 Why without naming Pluto, e.g. \"Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus and Neptune all travel around the Sun.\" (14 words) or keep it shorter. Minor watch items, not blockers: Great Red Spot \"wider than our whole Earth\" is true today (~1.3 Earths) but it is shrinking; R5 Q2 Why \"shares its path with lots of other icy bits\" is a fair kid-level gloss of not clearing its orbit. Process miss: the same writer (writer-2) wrote R4, R5 and PACK, so PACK checked its own rounds; next time the cross-round read should be done by someone who wrote none of them.\n- cos: Hits per pack: O-3, O-5, O-7 shipped first time. Misses per pack: none. But 3 first-time hits out of 7 shipped plus 0.57 revisions per shipped means 4 orders needed at least one revision, and the misses list does not show them; a revision is a miss worth naming. Content check I did on shipped/PACK/page.md: 20 distinct answers, each in its owning round per STYLE; no banned words (grep clean); every Why line is 20 words or fewer (max 20); facts I checked hold (Venus hottest, Ganymede wider than Mercury, Ceres biggest in the belt, about 8 minutes, about 1,300 Earths, 1969, Pluto dwarf planet since 2006). Soft spot: R1 Q2 Why restates R5's Pluto fact; allowed (a mention, not an answer) but it is overlap. Great Red Spot 'wider than our whole Earth' is true today but the storm is shrinking; keep an eye on it.\n**Decision:** Hits: O-3, O-5, O-7 shipped first time; all 20 answers distinct and in their owning rounds; facts checked by both cos and editor hold; no banned words; every Why line is 20 words or fewer. Miss (agreed with editor): R1 Q2 Why names Pluto as a dwarf planet, which gives away the R5 Q2 answer. That is a cross-round clash PACK should have fixed, even though the answer strings differ. Rule from now on: no Question or Why line may name or describe another round's answer. Fix: replace the R1 Q2 Why, in both shipped/ROUND1 and shipped/PACK, with exactly: \"Four small rocky planets and four giant planets circle the Sun, so that makes eight.\" (15 words, no planet names; do not list the planets in order, because that would give away R2 Q1 Mercury closest). Change nothing else. Second miss: the 4 orders that shipped after a revise are not shown under misses; Page 0 must list them. Watch item, no change now: Great Red Spot 'wider than our whole Earth' is true today (about 1.3 Earths) but shrinking; recheck at the next pack revision. Process: the cross-round PACK read is done by a writer who wrote none of the rounds being checked (writer-1 for this revision, since writer-2 wrote R4, R5 and PACK). · actions: ISS-14, ISS-15, ISS-16\n\n## 3. Roadmap and goal status\nRound 1:\n- editor: PRJ-1 is 7/7 and G-1/G-2/G-3 are green with every success metric met, but none is done=true and I do not think G-3 \"Quiz pack accepted\" should be marked done yet: its measure counts shipped pages, and acceptance should mean the pack passes an independent cross-round read. Proposal: keep G-3 green-not-done, open one small order (PACK revision, owner editor, writer-1 to do it since writer-1 did not write PACK) to fix the R1 Q2 Pluto giveaway, have test1 re-run the word, reading-ease and banned-word checks on R1 and the assembled pack, then I close G-3 well before its 2026-10-31 due date. G-2 (pipeline on cycle and batch) is met on \"orders shipped 7\" but that metric does not test the cycle/batch claim itself; cos should say what evidence shows the supervisor cycle ran without hand bookkeeping before marking G-2 done. G-1 stays with the founder to accept.\n- cos: Roadmap per pack: PRJ-1 Solar System Quiz Pack, lead editor, 7/7 done, G-3 green. Goals: G-1 (founder, due 2026-11-20) met 5/5 rounds and 1/1 pack; G-2 (cos, due 2026-11-10) met 7/7 orders; G-3 (editor, due 2026-10-31) met 1/1 style, 5/5 rounds, 1/1 pack. All three are met: true but done: false. Proposal: editor does a final acceptance read of PACK and marks G-3 done before its 2026-10-31 due date; G-2 and G-1 close after that, G-1 only by the founder. No new work for PRJ-1.\n**Decision:** PRJ-1 is 7/7 and G-1, G-2, G-3 are green with every success metric met, but none is marked done this week. G-3 (editor, due 2026-10-31) closes only after the PACK revision ships and reader's checks pass; editor then reads the revised PACK once and marks G-3 done by 2026-10-28. G-2 (cos, due 2026-11-10): 'orders shipped 7' does not prove the cycle-and-batch claim, so cos writes the evidence (supervisor cycle log, no hand bookkeeping) into G-2 before marking it done. G-1 stays with the founder. No other new work on PRJ-1. · actions: ISS-17, ISS-18\n\n## 4. Leadership asks\nRound 1:\n- editor: No asks are open (0 total), and I am not raising one to the founder for the fix: the R1 Q2 rewrite is inside my lane and the MTG-1 rules already decide it (an answer has one home; PACK fixes clashes). Two asks I do want on the record: (1) to the founder, once the PACK revision ships: accept the pack (G-1) or name what would block acceptance, since \"true and fun\" is the founder goal and only the founder can sign it. (2) to cos as chair: add a \"shipped after revise\" line or count revisions under misses on Page 0, and set window.from, so the next WBR can compare like with like. If cos disagrees that the Pluto mention is a clash, I want that objection recorded with the decision, not closed as noted.\n- cos: Asks per pack: 0 open, 0 total, 0 to founder, 0 rerouted, 0 escalated. Nothing for leadership to unblock. One thing to tell the founder in the digest: the pack is complete and met its code-measured criteria, and G-1 (founder-owned) is ready for the founder to accept or reject.\n**Decision:** Pack shows 0 asks open, 0 total, 0 to founder, 0 rerouted, 0 escalated. No ask is raised for the R1 Q2 fix: it is inside the editor lane and MTG-1 rules already decide it. One ask goes to the founder after G-3 is done: accept the Solar System Quiz Pack (G-1) or name what blocks acceptance. The Page 0 changes the editor asked for (window start, shipped-after-revise as misses) are taken by cos under items 1 and 2. There was no disagreement on whether the Pluto mention is a clash: cos agrees it is, so nothing is carried. · actions: ISS-19\n"
+    }
+   ],
+   "goalReviews": [
+    {
+     "t": 29876673.306583334,
+     "by": "cos",
+     "steps": [
+      {
+       "level": "lane",
+       "by": "editor",
+       "own": 1,
+       "exceptions": 0
+      },
+      {
+       "level": "org",
+       "by": "cos",
+       "own": 1,
+       "exceptions": 0
+      },
+      {
+       "level": "company",
+       "by": "founder",
+       "own": 1,
+       "exceptions": 0
+      }
+     ],
+     "ceo": {
+      "own": [
+       {
+        "id": "G-1",
+        "title": "Solar System Quiz Pack: five rounds, true and fun",
+        "level": "company",
+        "owner": "founder",
+        "due": "2026-11-20",
+        "status": "green",
+        "ownerStatus": "green",
+        "autoRed": false,
+        "reason": null,
+        "path": null,
+        "divergence": null,
+        "contributorsWorst": "green",
+        "progress": null,
+        "met": true,
+        "done": false,
+        "why": "the second proxy task: does Meta's advantage hold on factual work",
+        "what": "a style sheet, five rounds, an assembled pack",
+        "success": [
+         {
+          "metric": "rounds shipped",
+          "target": 5,
+          "current": 5,
+          "unit": null,
+          "source": "shipped:ROUND"
+         },
+         {
+          "metric": "pack shipped",
+          "target": 1,
+          "current": 1,
+          "unit": null,
+          "source": "shipped:PACK"
+         }
+        ],
+        "contributesTo": []
+       }
+      ],
+      "exceptions": []
+     }
+    }
+   ],
    "digests": []
   }
  },
@@ -5745,6 +6428,559 @@
      }
     ],
     "why": "cycle: positions: MTG-2"
+   },
+   {
+    "seq": 443,
+    "t": 29876669.599633332,
+    "type": "position",
+    "meeting": "MTG-2",
+    "item": 1,
+    "round": 1,
+    "by": "editor"
+   },
+   {
+    "seq": 444,
+    "t": 29876669.601866666,
+    "type": "position",
+    "meeting": "MTG-2",
+    "item": 2,
+    "round": 1,
+    "by": "editor"
+   },
+   {
+    "seq": 445,
+    "t": 29876669.604183335,
+    "type": "position",
+    "meeting": "MTG-2",
+    "item": 3,
+    "round": 1,
+    "by": "editor"
+   },
+   {
+    "seq": 446,
+    "t": 29876669.6064,
+    "type": "position",
+    "meeting": "MTG-2",
+    "item": 4,
+    "round": 1,
+    "by": "editor"
+   },
+   {
+    "seq": 447,
+    "t": 29876670.303116668,
+    "type": "usage",
+    "role": "editor",
+    "tokens": 70919,
+    "label": "outside a room",
+    "source": "harness",
+    "supervisor": true
+   },
+   {
+    "seq": 448,
+    "t": 29876670.303733334,
+    "type": "launch",
+    "role": "cos",
+    "msgs": [],
+    "tasks": [
+     {
+      "kind": "chair",
+      "ref": "MTG-2",
+      "items": [
+       1,
+       2,
+       3,
+       4
+      ]
+     }
+    ],
+    "why": "cycle: chair: MTG-2"
+   },
+   {
+    "seq": 449,
+    "t": 29876671.745533332,
+    "type": "position",
+    "meeting": "MTG-2",
+    "item": 1,
+    "round": 1,
+    "by": "cos"
+   },
+   {
+    "seq": 450,
+    "t": 29876671.74766667,
+    "type": "position",
+    "meeting": "MTG-2",
+    "item": 2,
+    "round": 1,
+    "by": "cos"
+   },
+   {
+    "seq": 451,
+    "t": 29876671.749316666,
+    "type": "position",
+    "meeting": "MTG-2",
+    "item": 3,
+    "round": 1,
+    "by": "cos"
+   },
+   {
+    "seq": 452,
+    "t": 29876671.75105,
+    "type": "position",
+    "meeting": "MTG-2",
+    "item": 4,
+    "round": 1,
+    "by": "cos"
+   },
+   {
+    "seq": 453,
+    "t": 29876671.87751667,
+    "type": "reveal",
+    "meeting": "MTG-2",
+    "item": 1,
+    "round": 1,
+    "positions": 2,
+    "missing": 0
+   },
+   {
+    "seq": 454,
+    "t": 29876671.8812,
+    "type": "reveal",
+    "meeting": "MTG-2",
+    "item": 2,
+    "round": 1,
+    "positions": 2,
+    "missing": 0
+   },
+   {
+    "seq": 455,
+    "t": 29876671.88465,
+    "type": "reveal",
+    "meeting": "MTG-2",
+    "item": 3,
+    "round": 1,
+    "positions": 2,
+    "missing": 0
+   },
+   {
+    "seq": 456,
+    "t": 29876671.888883334,
+    "type": "reveal",
+    "meeting": "MTG-2",
+    "item": 4,
+    "round": 1,
+    "positions": 2,
+    "missing": 0
+   },
+   {
+    "seq": 457,
+    "t": 29876672.3171,
+    "type": "item-create",
+    "item": "ISS-11",
+    "kind": "action",
+    "by": "cos",
+    "assignee": "cos",
+    "project": null,
+    "goal": null
+   },
+   {
+    "seq": 458,
+    "t": 29876672.3171,
+    "type": "item-create",
+    "item": "ISS-12",
+    "kind": "action",
+    "by": "cos",
+    "assignee": "cos",
+    "project": null,
+    "goal": null
+   },
+   {
+    "seq": 459,
+    "t": 29876672.3171,
+    "type": "meeting-decide",
+    "meeting": "MTG-2",
+    "item": 1,
+    "by": "cos",
+    "objections": 0,
+    "actions": 2
+   },
+   {
+    "seq": 460,
+    "t": 29876672.318933334,
+    "type": "item-create",
+    "item": "ISS-13",
+    "kind": "action",
+    "by": "cos",
+    "assignee": "writer-1",
+    "project": null,
+    "goal": null
+   },
+   {
+    "seq": 461,
+    "t": 29876672.318933334,
+    "type": "refuse",
+    "rule": "hard",
+    "msg": "HARD: no active role test1",
+    "argv": "meeting decide --id=MTG-2 --by=cos --item=2 --decision=Hits: O-3, O-5, O-7 shipped first time; all 20 answers distinct and in their owning rounds; facts checked by both cos and editor hold; no banned words; every Why line is 20 words or fewer. Miss (agreed with editor): R1 Q2 Why names Pluto as a dwarf planet, which gives away the R5 Q2 answer. That is a cross-round clash PACK should have fixed, even though the answer strings differ. Rule from now on: no Question or Why line may name or describe another round's answer. Fix: replace the R1 Q2 Why, in both shipped/ROUND1 and shipped/PACK, with exactly: \"Four small rocky planets and four giant planets circle the Sun, so that makes eight.\" (15 words, no planet names; do not list the planets in order, because that would give away R2 Q1 Mercury closest). Change nothing else. Second miss: the 4 orders that shipped after a revise are not shown under misses; Page 0 must list them. Watch item, no change now: Great Red Spot 'wider than our whole Earth' is true today (about 1.3 Earths) but shrinking; recheck at the next pack revision. Process: the cross-round PACK read is done by a writer who wrote none of the rounds being checked. --actions=[{\"title\":\"PACK revision: replace R1 Q2 Why (ROUND1 and PACK) with \\\"Four small rocky planets and four giant planets circle the Sun, so that makes eight.\\\"; add the rule no Q/Why may name another round answer to the PACK Changes list\",\"owner\":\"writer-1\",\"due\":\"2026-10-24\"},{\"title\":\"Re-run word count, reading ease, banned-word and answer-uniqueness checks on revised ROUND1 and PACK\",\"owner\":\"test1\",\"due\":\"2026-10-25\"},{\"title\":\"Page 0: list orders that shipped after a revise under misses (shipped after revise: order id, revisions)\",\"owner\":\"cos\",\"due\":\"2026-10-28\"}]"
+   },
+   {
+    "seq": 462,
+    "t": 29876673.1898,
+    "type": "item-create",
+    "item": "ISS-14",
+    "kind": "action",
+    "by": "cos",
+    "assignee": "writer-1",
+    "project": null,
+    "goal": null
+   },
+   {
+    "seq": 463,
+    "t": 29876673.1898,
+    "type": "item-create",
+    "item": "ISS-15",
+    "kind": "action",
+    "by": "cos",
+    "assignee": "reader",
+    "project": null,
+    "goal": null
+   },
+   {
+    "seq": 464,
+    "t": 29876673.1898,
+    "type": "item-create",
+    "item": "ISS-16",
+    "kind": "action",
+    "by": "cos",
+    "assignee": "cos",
+    "project": null,
+    "goal": null
+   },
+   {
+    "seq": 465,
+    "t": 29876673.1898,
+    "type": "meeting-decide",
+    "meeting": "MTG-2",
+    "item": 2,
+    "by": "cos",
+    "objections": 0,
+    "actions": 3
+   },
+   {
+    "seq": 466,
+    "t": 29876673.192383334,
+    "type": "item-create",
+    "item": "ISS-17",
+    "kind": "action",
+    "by": "cos",
+    "assignee": "editor",
+    "project": null,
+    "goal": null
+   },
+   {
+    "seq": 467,
+    "t": 29876673.192383334,
+    "type": "item-create",
+    "item": "ISS-18",
+    "kind": "action",
+    "by": "cos",
+    "assignee": "cos",
+    "project": null,
+    "goal": null
+   },
+   {
+    "seq": 468,
+    "t": 29876673.192383334,
+    "type": "meeting-decide",
+    "meeting": "MTG-2",
+    "item": 3,
+    "by": "cos",
+    "objections": 0,
+    "actions": 2
+   },
+   {
+    "seq": 469,
+    "t": 29876673.194483332,
+    "type": "item-create",
+    "item": "ISS-19",
+    "kind": "action",
+    "by": "cos",
+    "assignee": "cos",
+    "project": null,
+    "goal": null
+   },
+   {
+    "seq": 470,
+    "t": 29876673.194483332,
+    "type": "meeting-decide",
+    "meeting": "MTG-2",
+    "item": 4,
+    "by": "cos",
+    "objections": 0,
+    "actions": 1
+   },
+   {
+    "seq": 471,
+    "t": 29876673.304733332,
+    "type": "room-release",
+    "booking": "BK-2",
+    "room": "story-room"
+   },
+   {
+    "seq": 472,
+    "t": 29876673.30475,
+    "type": "meeting-close",
+    "meeting": "MTG-2",
+    "by": "cos",
+    "decided": 4,
+    "deferred": 0,
+    "absent": []
+   },
+   {
+    "seq": 473,
+    "t": 29876673.30475,
+    "type": "send",
+    "msg": "M-68",
+    "from": "cos",
+    "to": "founder",
+    "kind": "post",
+    "key": "P-2:founder",
+    "ref": "P-2",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 474,
+    "t": 29876673.30475,
+    "type": "send",
+    "msg": "M-69",
+    "from": "cos",
+    "to": "editor",
+    "kind": "post",
+    "key": "P-2:editor",
+    "ref": "P-2",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 475,
+    "t": 29876673.304766666,
+    "type": "send",
+    "msg": "M-70",
+    "from": "cos",
+    "to": "writer-1",
+    "kind": "post",
+    "key": "P-2:writer-1",
+    "ref": "P-2",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 476,
+    "t": 29876673.304766666,
+    "type": "send",
+    "msg": "M-71",
+    "from": "cos",
+    "to": "writer-2",
+    "kind": "post",
+    "key": "P-2:writer-2",
+    "ref": "P-2",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 477,
+    "t": 29876673.304766666,
+    "type": "send",
+    "msg": "M-72",
+    "from": "cos",
+    "to": "reader",
+    "kind": "post",
+    "key": "P-2:reader",
+    "ref": "P-2",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 478,
+    "t": 29876673.304766666,
+    "type": "send",
+    "msg": "M-73",
+    "from": "cos",
+    "to": "release",
+    "kind": "post",
+    "key": "P-2:release",
+    "ref": "P-2",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 479,
+    "t": 29876673.304766666,
+    "type": "post",
+    "post": "P-2",
+    "channel": "company",
+    "by": "cos",
+    "title": "Minutes: WBR 2026-10-21",
+    "recipients": 6,
+    "ack": false
+   },
+   {
+    "seq": 480,
+    "t": 29876673.304766666,
+    "type": "send",
+    "msg": "M-74",
+    "from": "cos",
+    "to": "founder",
+    "kind": "post",
+    "key": "P-3:founder",
+    "ref": "P-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 481,
+    "t": 29876673.304766666,
+    "type": "send",
+    "msg": "M-75",
+    "from": "cos",
+    "to": "editor",
+    "kind": "post",
+    "key": "P-3:editor",
+    "ref": "P-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 482,
+    "t": 29876673.304766666,
+    "type": "send",
+    "msg": "M-76",
+    "from": "cos",
+    "to": "writer-1",
+    "kind": "post",
+    "key": "P-3:writer-1",
+    "ref": "P-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 483,
+    "t": 29876673.304766666,
+    "type": "send",
+    "msg": "M-77",
+    "from": "cos",
+    "to": "writer-2",
+    "kind": "post",
+    "key": "P-3:writer-2",
+    "ref": "P-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 484,
+    "t": 29876673.304766666,
+    "type": "send",
+    "msg": "M-78",
+    "from": "cos",
+    "to": "reader",
+    "kind": "post",
+    "key": "P-3:reader",
+    "ref": "P-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 485,
+    "t": 29876673.304766666,
+    "type": "send",
+    "msg": "M-79",
+    "from": "cos",
+    "to": "release",
+    "kind": "post",
+    "key": "P-3:release",
+    "ref": "P-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 486,
+    "t": 29876673.304766666,
+    "type": "post",
+    "post": "P-3",
+    "channel": "company",
+    "by": "cos",
+    "title": "WBR 2026-10-21",
+    "recipients": 6,
+    "ack": false
+   },
+   {
+    "seq": 487,
+    "t": 29876673.304766666,
+    "type": "wbr-close",
+    "meeting": "MTG-2",
+    "by": "cos"
+   },
+   {
+    "seq": 488,
+    "t": 29876673.306583334,
+    "type": "goal-review",
+    "level": "lane",
+    "by": "editor",
+    "own": 1,
+    "exceptions": 0
+   },
+   {
+    "seq": 489,
+    "t": 29876673.306583334,
+    "type": "goal-review",
+    "level": "org",
+    "by": "cos",
+    "own": 1,
+    "exceptions": 0
+   },
+   {
+    "seq": 490,
+    "t": 29876673.306583334,
+    "type": "goal-review",
+    "level": "company",
+    "by": "founder",
+    "own": 1,
+    "exceptions": 0
+   },
+   {
+    "seq": 491,
+    "t": 29876673.306583334,
+    "type": "goal-review-ritual",
+    "by": "cos",
+    "levels": 3,
+    "toCeo": 1
+   },
+   {
+    "seq": 492,
+    "t": 29876673.762966666,
+    "type": "item-update",
+    "item": "ISS-13",
+    "by": "cos",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 493,
+    "t": 29876673.764966667,
+    "type": "item-comment",
+    "item": "ISS-13",
+    "by": "cos"
+   },
+   {
+    "seq": 494,
+    "t": 29876674.53115,
+    "type": "usage",
+    "role": "cos",
+    "tokens": 91812,
+    "label": "outside a room",
+    "source": "harness",
+    "supervisor": true
    }
   ]
  },
@@ -7246,6 +8482,270 @@
       "lease": null,
       "acked": false
      }
+    ],
+    [
+     "M-68",
+     {
+      "id": "M-68",
+      "from": "cos",
+      "to": "founder",
+      "kind": "post",
+      "key": "P-2:founder",
+      "due": null,
+      "ref": "P-2",
+      "body": {
+       "channel": "company",
+       "title": "Minutes: WBR 2026-10-21",
+       "ack": false
+      },
+      "priority": "next",
+      "ts": 29876673.30475,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-69",
+     {
+      "id": "M-69",
+      "from": "cos",
+      "to": "editor",
+      "kind": "post",
+      "key": "P-2:editor",
+      "due": null,
+      "ref": "P-2",
+      "body": {
+       "channel": "company",
+       "title": "Minutes: WBR 2026-10-21",
+       "ack": false
+      },
+      "priority": "next",
+      "ts": 29876673.30475,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-70",
+     {
+      "id": "M-70",
+      "from": "cos",
+      "to": "writer-1",
+      "kind": "post",
+      "key": "P-2:writer-1",
+      "due": null,
+      "ref": "P-2",
+      "body": {
+       "channel": "company",
+       "title": "Minutes: WBR 2026-10-21",
+       "ack": false
+      },
+      "priority": "next",
+      "ts": 29876673.304766666,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-71",
+     {
+      "id": "M-71",
+      "from": "cos",
+      "to": "writer-2",
+      "kind": "post",
+      "key": "P-2:writer-2",
+      "due": null,
+      "ref": "P-2",
+      "body": {
+       "channel": "company",
+       "title": "Minutes: WBR 2026-10-21",
+       "ack": false
+      },
+      "priority": "next",
+      "ts": 29876673.304766666,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-72",
+     {
+      "id": "M-72",
+      "from": "cos",
+      "to": "reader",
+      "kind": "post",
+      "key": "P-2:reader",
+      "due": null,
+      "ref": "P-2",
+      "body": {
+       "channel": "company",
+       "title": "Minutes: WBR 2026-10-21",
+       "ack": false
+      },
+      "priority": "next",
+      "ts": 29876673.304766666,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-73",
+     {
+      "id": "M-73",
+      "from": "cos",
+      "to": "release",
+      "kind": "post",
+      "key": "P-2:release",
+      "due": null,
+      "ref": "P-2",
+      "body": {
+       "channel": "company",
+       "title": "Minutes: WBR 2026-10-21",
+       "ack": false
+      },
+      "priority": "next",
+      "ts": 29876673.304766666,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-74",
+     {
+      "id": "M-74",
+      "from": "cos",
+      "to": "founder",
+      "kind": "post",
+      "key": "P-3:founder",
+      "due": null,
+      "ref": "P-3",
+      "body": {
+       "channel": "company",
+       "title": "WBR 2026-10-21",
+       "ack": false
+      },
+      "priority": "next",
+      "ts": 29876673.304766666,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-75",
+     {
+      "id": "M-75",
+      "from": "cos",
+      "to": "editor",
+      "kind": "post",
+      "key": "P-3:editor",
+      "due": null,
+      "ref": "P-3",
+      "body": {
+       "channel": "company",
+       "title": "WBR 2026-10-21",
+       "ack": false
+      },
+      "priority": "next",
+      "ts": 29876673.304766666,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-76",
+     {
+      "id": "M-76",
+      "from": "cos",
+      "to": "writer-1",
+      "kind": "post",
+      "key": "P-3:writer-1",
+      "due": null,
+      "ref": "P-3",
+      "body": {
+       "channel": "company",
+       "title": "WBR 2026-10-21",
+       "ack": false
+      },
+      "priority": "next",
+      "ts": 29876673.304766666,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-77",
+     {
+      "id": "M-77",
+      "from": "cos",
+      "to": "writer-2",
+      "kind": "post",
+      "key": "P-3:writer-2",
+      "due": null,
+      "ref": "P-3",
+      "body": {
+       "channel": "company",
+       "title": "WBR 2026-10-21",
+       "ack": false
+      },
+      "priority": "next",
+      "ts": 29876673.304766666,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-78",
+     {
+      "id": "M-78",
+      "from": "cos",
+      "to": "reader",
+      "kind": "post",
+      "key": "P-3:reader",
+      "due": null,
+      "ref": "P-3",
+      "body": {
+       "channel": "company",
+       "title": "WBR 2026-10-21",
+       "ack": false
+      },
+      "priority": "next",
+      "ts": 29876673.304766666,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-79",
+     {
+      "id": "M-79",
+      "from": "cos",
+      "to": "release",
+      "kind": "post",
+      "key": "P-3:release",
+      "due": null,
+      "ref": "P-3",
+      "body": {
+       "channel": "company",
+       "title": "WBR 2026-10-21",
+       "ack": false
+      },
+      "priority": "next",
+      "ts": 29876673.304766666,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
     ]
    ]
   },
@@ -7402,10 +8902,58 @@
     [
      "O-7:ship:0",
      "M-66"
+    ],
+    [
+     "P-2:founder",
+     "M-68"
+    ],
+    [
+     "P-2:editor",
+     "M-69"
+    ],
+    [
+     "P-2:writer-1",
+     "M-70"
+    ],
+    [
+     "P-2:writer-2",
+     "M-71"
+    ],
+    [
+     "P-2:reader",
+     "M-72"
+    ],
+    [
+     "P-2:release",
+     "M-73"
+    ],
+    [
+     "P-3:founder",
+     "M-74"
+    ],
+    [
+     "P-3:editor",
+     "M-75"
+    ],
+    [
+     "P-3:writer-1",
+     "M-76"
+    ],
+    [
+     "P-3:writer-2",
+     "M-77"
+    ],
+    [
+     "P-3:reader",
+     "M-78"
+    ],
+    [
+     "P-3:release",
+     "M-79"
     ]
    ]
   },
-  "n": 67
+  "n": 79
  },
  "org": {
   "roles": {

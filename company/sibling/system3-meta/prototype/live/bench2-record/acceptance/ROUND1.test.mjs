@@ -1,0 +1,2 @@
+import { test } from "node:test"; import assert from "node:assert/strict"; import { round } from "./rubric.mjs";
+test("ROUND1 meets the rubric", () => { const r = round("ROUND1"); assert.ok(!r.missing, "missing"); assert.ok(r.title, "# Round 1: <topic> first line"); assert.equal(r.q, 4, "4 questions"); assert.equal(r.a, 4, "4 answers"); assert.equal(r.why, 4, "4 why lines"); assert.ok(r.words >= 100 && r.words <= 300, `${r.words} words`); assert.ok(r.ease >= 60, `reading ease ${r.ease.toFixed(0)}`); assert.deepEqual(r.banned, [], "no banned words"); });

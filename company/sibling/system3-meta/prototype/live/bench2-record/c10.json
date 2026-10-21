@@ -1,0 +1,60 @@
+{
+  "usage": [
+    {
+      "role": "reader",
+      "session": "S-8",
+      "tokens": 74661
+    }
+  ],
+  "exit": "agent sessions needed",
+  "steps": [
+    {
+      "step": "uat",
+      "order": "O-3",
+      "result": "pass",
+      "output": "# tests 1 # pass 1 # fail 0"
+    },
+    {
+      "step": "uat",
+      "order": "O-5",
+      "result": "pass",
+      "output": "# tests 1 # pass 1 # fail 0"
+    },
+    {
+      "step": "ship",
+      "order": "O-3",
+      "files": [
+        "page.md"
+      ]
+    },
+    {
+      "step": "ship",
+      "order": "O-5",
+      "files": [
+        "notes.md",
+        "page.md"
+      ]
+    }
+  ],
+  "launch": [
+    {
+      "role": "writer-1",
+      "why": "next: 2 waiting, no session running",
+      "msgs": [
+        "M-29",
+        "M-33"
+      ],
+      "cap": 2,
+      "brief": "You are `writer-1` (builder) in a company run by a CLI.\n\nRun every command from: /home/user/system-3-company/company/sibling/system3-meta/prototype\nPrefix every command with: META_LIVE_DIR=/home/user/system-3-company/company/sibling/system3-meta/prototype/live/bench2-meta\n\nThe product: \"Solar System Quiz Pack\", a quiz pack for ages 8-10. A style sheet (STYLE) sets the format and five round topics; five rounds (ROUND1-ROUND5) of 4 questions each, every question with `**Qn.**`, `**Answer:**` and a one-sentence `**Why:**`; then PACK assembles the shipped rounds and fixes anything that clashes across rounds. Every fact must be true; no answer may appear in two rounds. The kickoff decisions are in meeting MTG-1 (`node meta.mjs meeting show --id=MTG-1`, minutes in the lane:e channel). Shipped work is in live/bench2-meta/shipped/<TASK>/page.md.\n\n1. Enter: `node meta.mjs room enter --msg=M-29 --role=writer-1`. The JSON pack gives the order, stage, workdir, accept criteria, findings, history, memory and the exact `next_with` and `leave_with` commands. Your session cap is 2 (2 items queued, starting with ROUND1).\n2. Do the work the accept criteria ask, in the workdir only. If the order has `checks`, run `node meta.mjs check --order=<O>` before you hand in: it runs the same test1 code will run.\n3. Hand in with `next_with` (`--cap=2 --evidence=<path> --learned='one line'`) to take the next item in this session; on the last item use `leave_with`.\nIf a command refuses, read the message and fix what it names.\n\nReport back briefly: each item, its outcome, and anything that confused you."
+    },
+    {
+      "role": "writer-2",
+      "why": "next: 1 waiting, no session running",
+      "msgs": [
+        "M-37"
+      ],
+      "cap": 1,
+      "brief": "You are `writer-2` (builder) in a company run by a CLI.\n\nRun every command from: /home/user/system-3-company/company/sibling/system3-meta/prototype\nPrefix every command with: META_LIVE_DIR=/home/user/system-3-company/company/sibling/system3-meta/prototype/live/bench2-meta\n\nThe product: \"Solar System Quiz Pack\", a quiz pack for ages 8-10. A style sheet (STYLE) sets the format and five round topics; five rounds (ROUND1-ROUND5) of 4 questions each, every question with `**Qn.**`, `**Answer:**` and a one-sentence `**Why:**`; then PACK assembles the shipped rounds and fixes anything that clashes across rounds. Every fact must be true; no answer may appear in two rounds. The kickoff decisions are in meeting MTG-1 (`node meta.mjs meeting show --id=MTG-1`, minutes in the lane:e channel). Shipped work is in live/bench2-meta/shipped/<TASK>/page.md.\n\nYour open actions (do them in this session when they touch this work; mark each done with `node meta.mjs item update --id=<ISS> --by=writer-2 --state=done`):\n- ISS-9: PACK: list all 20 answers and confirm none repeats and each sits in its owning round (due 2026-10-24) · From MTG-1 item 1: Rounds: five topics with no overlap, and which facts each round owns\n\n1. Enter: `node meta.mjs room enter --msg=M-37 --role=writer-2`. The JSON pack gives the order, stage, workdir, accept criteria, findings, history, memory and the exact `next_with` and `leave_with` commands. Your session cap is 1 (1 item queued, starting with ROUND5).\n2. Do the work the accept criteria ask, in the workdir only. If the order has `checks`, run `node meta.mjs check --order=<O>` before you hand in: it runs the same test1 code will run.\n3. Hand in with `next_with` (`--cap=1 --evidence=<path> --learned='one line'`) to take the next item in this session; on the last item use `leave_with`.\nIf a command refuses, read the message and fix what it names.\n\nReport back briefly: each item, its outcome, and anything that confused you."
+    }
+  ]
+}

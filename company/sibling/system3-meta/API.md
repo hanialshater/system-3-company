@@ -244,3 +244,28 @@ An ask addressed higher than it needs is rerouted down unless `--escalate` gives
 **Rituals** (`rituals.mjs`): `wbr page0` · `wbr open --by=<cos> [--room --start=<ISO> --invitees --channel]` (code builds the pack: page 0 metrics, hits and misses, roadmap and goals, leadership asks with how many reached the founder; then a four-item meeting) · `wbr close --meeting --summary` (the chair writes only the summary; the document is rendered from the record and posted to `company`) · `goal-review --by` (lane → org → company) · `digest --audience=founder|lane:<l>|company [--channel=<id> to publish]`.
 
 **Text checks as test1** (`state.mjs runTextChecks`): `order new … [--project=PRJ-n --goal=G-n] --checks='{"file":"page.md","minWords","maxWords","mustInclude":[…],"banned":[…],"minReadingEase","titleLine":true}'`. The supervisor runs them in place of `node --test` (Flesch reading ease).
+
+## 12. The orchestrator's loop in code (built for Benchmark 2)
+
+- **`node supervisor.mjs cycle [--finished=<role>:<tokens>,…] [watch flags]`** is the orchestrator's one command per wake. It:
+  - records the harness usage of finished sessions (the role's latest session without usage, or a plain usage event for work outside a room);
+  - watches until a session is needed;
+  - reserves every planned launch;
+  - prints a **brief per launch, written by code**: role, prefix, `live/<dir>/CONTEXT.md`, the role's open tracker actions, the exact first command and the cap.
+
+  The orchestrator launches the briefs as written and types no bookkeeping.
+- **The plan covers judgment outside rooms** (`judgment()`):
+  - meeting positions still to write;
+  - a chair whose meeting has every position in. A WBR's chair is told to close with `wbr close`;
+  - orders with no builder, which go to their manager. A manager chairing an open meeting delegates after deciding.
+
+  A launch for such work reserves it for up to 30 min. It does not hold back the same role's room work.
+- **The drain cap adapts:** when the remainder after `cap` is at most half a cap, the session takes all of it.
+- **`node meta.mjs batch --file=<ops.json>`** runs `[{cmd, sub?, arg?, args}]` on one state, all or nothing. `${n.field}` reads field `field` of the n-th result.
+- **`node meta.mjs check --order=<O>`** runs the order's test1 (tests or text checks) without signing. Builders self-check before they hand in.
+- **`node meta.mjs help [<command>]`** lists the commands.
+- **Text checks** (`--checks`):
+  - `mustInclude` is literal text;
+  - `lineMaxWords: [{prefix, maxWords}]` limits lines that start with a prefix, e.g. `**Why:**` ≤ 20.
+- **A refused command saves only its refusal events.** Partial changes are discarded.
+- **Goal criteria** may carry `source` (`shipped:<prefix>`, `done:<label>`) and are measured by code.

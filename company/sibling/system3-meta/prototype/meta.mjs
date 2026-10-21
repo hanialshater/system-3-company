@@ -122,8 +122,13 @@ function main() {
     } catch (e) {
       // A refusal is an event too (live run 1 lost every refusal by not saving on error). HARD refusals get one here.
       if (e.refused && !readOnly) {
-        if (!co.log.events.slice(before).some((x) => x.type === "refuse")) co.log.add({ type: "refuse", rule: "hard", msg: e.message, argv: argv.join(" ") });
-        save(co);
+        // a refused command changes nothing but the record of its refusal (benchmark 2: a refused meeting decide left
+        // the tracker action it had already created): reload, then append only the refusal events
+        const refusals = co.log.events.slice(before).filter((x) => x.type === "refuse");
+        const clean = load();
+        if (refusals.length) for (const r of refusals) { const { seq, t, ...rest } = r; clean.log.add(rest); }
+        else clean.log.add({ type: "refuse", rule: "hard", msg: e.message, argv: argv.join(" ") });
+        save(clean);
       }
       throw e;
     }

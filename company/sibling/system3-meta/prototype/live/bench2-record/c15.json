@@ -1,0 +1,32 @@
+{
+  "usage": [
+    {
+      "role": "reader",
+      "session": "S-18",
+      "tokens": 70642
+    }
+  ],
+  "exit": "agent sessions needed",
+  "steps": [],
+  "launch": [
+    {
+      "role": "editor",
+      "why": "positions: MTG-2",
+      "msgs": [],
+      "cap": 1,
+      "tasks": [
+        {
+          "kind": "positions",
+          "ref": "MTG-2",
+          "items": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ],
+      "brief": "You are `editor` (manager) in a company run by a CLI.\n\nRun every command from: /home/user/system-3-company/company/sibling/system3-meta/prototype\nPrefix every command with: META_LIVE_DIR=/home/user/system-3-company/company/sibling/system3-meta/prototype/live/bench2-meta\n\nThe product: \"Solar System Quiz Pack\", a quiz pack for ages 8-10. A style sheet (STYLE) sets the format and five round topics; five rounds (ROUND1-ROUND5) of 4 questions each, every question with `**Qn.**`, `**Answer:**` and a one-sentence `**Why:**`; then PACK assembles the shipped rounds and fixes anything that clashes across rounds. Every fact must be true; no answer may appear in two rounds. The kickoff decisions are in meeting MTG-1 (`node meta.mjs meeting show --id=MTG-1`, minutes in the lane:e channel). Shipped work is in live/bench2-meta/shipped/<TASK>/page.md.\n\nMeeting MTG-2: read it with `node meta.mjs meeting show --id=MTG-2` (agenda, and the pack if any). For each item 1, 2, 3, 4, write your own position: `node meta.mjs meeting position --id=MTG-2 --by=editor --item=<n> --text='…'`. Positions stay private until the chair reveals them; argue from the order, the goals and what you know, and be specific.\n\nReport back briefly: each item, its outcome, and anything that confused you."
+    }
+  ]
+}

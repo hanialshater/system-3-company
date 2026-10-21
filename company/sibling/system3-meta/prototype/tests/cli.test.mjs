@@ -34,3 +34,16 @@ test("batch: set-up in one command, results feed later ops, any refusal saves no
   const state = JSON.parse(fs.readFileSync(path.join(dir, "state.json"), "utf8"));
   assert.equal(JSON.stringify(state).includes('"lane:e"'), false);
 });
+
+test("a refused command saves only its refusal, not the changes it made before refusing", () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "meta-refuse-"));
+  assert.equal(cli(dir, "init", "--spec=storybook").code, 0);
+  assert.equal(cli(dir, "meeting", "open", "--by=editor", "--title=K", "--invitees=writer-1", `--agenda=[{"title":"a"}]`).code, 0);
+  assert.equal(cli(dir, "meeting", "reveal", "--id=MTG-1", "--by=editor", "--item=1", "--force").code, 0);
+  // the second action's owner does not exist: the first action must not survive the refusal
+  const r = cli(dir, "meeting", "decide", "--id=MTG-1", "--by=editor", "--item=1", "--decision=d", `--actions=[{"title":"ok","owner":"writer-1","due":"2026-11-01"},{"title":"bad","owner":"test1","due":"2026-11-01"}]`);
+  assert.equal(r.code, 1, r.err);
+  const state = JSON.parse(fs.readFileSync(path.join(dir, "state.json"), "utf8"));
+  assert.equal(JSON.stringify(state.data.tracker ?? {}).includes('"ok"'), false, "no partial action");
+  assert.ok(state.log.events.some((e) => e.type === "refuse"), "the refusal is recorded");
+});

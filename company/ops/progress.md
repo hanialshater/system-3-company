@@ -1,3 +1,36 @@
+## 2026-10-21 · chief-of-staff (for System 3 Meta) · Benchmark 2 (quiz pack): the loop in code, and an honest second result
+
+Founder: "Don't stop".
+
+**Built** (company/sibling/system3-meta/prototype, 54 tests):
+- `supervisor.mjs cycle`: usage, watch, launch reservations and briefs written by code. The plan now covers meetings, chairs and delegation.
+- `meta.mjs batch`, `check` and `help`, and an adaptive drain cap.
+- Text checks gain literal `mustInclude` (it was broken) and `lineMaxWords`.
+- A refused command no longer keeps partial changes.
+- WBR fixes: revised orders count as misses, and the first window has a start.
+
+**Benchmark 2** (prototype/BENCH2.md; predictions C1-C7 committed before the run):
+- **Tokens:** Meta used 70% of the current method's (C1 wrong, not refuted).
+- **Wall time:** 1.64× (C3 wrong).
+- **Orchestrator actions:** 142% (C2 refuted). The wake is still typed by hand.
+- **Bookkeeping by hand:** 0 (C7 right).
+- **Facts:** no wrong facts in either pack.
+- **Judges:** both blind judges would publish Meta's pack (9 of 12 criteria).
+- **Defect shipped:** Meta's PACK integration missed a cross-round giveaway (Pluto); its WBR caught it and opened a fix (ISS-14, ISS-15, not run).
+
+**Belief** (medium, n = 2):
+- Meta's quality edge is real and comes from the kickoff.
+- Its cost edge holds only when the kickoff's checkable rules become code checks.
+- Serial gates cost wall time.
+
+**Next:**
+- Decisions → order checks.
+- Parallel start after decisions.
+- A cycle hook in the harness.
+- A code check for cross-round giveaways.
+
+**Blocked:** nothing. `npm run check` errors predate this work and sit outside the sandbox.
+
 ## 2026-10-21 · chief-of-staff (for System 3 Meta) · Company tools built; Benchmark 1 (story book) against the current method
 
 Founder: "start building these, iteratively and test it … benchmarked against current method. Use writing small story book as a proxy task", with goals (levels, breakdown, RAG, due, why, what, success, roll-up review, board) and rituals with APIs (WBR: page 0, summary, hits and misses, roadmap and goals, leadership asks routed so not everything reaches the CEO).

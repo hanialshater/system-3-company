@@ -29,7 +29,8 @@ export function page0(co, since = -Infinity) {
   const leads = fm.orders.map((o) => o.lead).sort((a, b) => a - b);
   const cols = board(co);
   return {
-    window: { from: since === -Infinity ? null : new Date(since * 60000).toISOString(), to: new Date(now(co) * 60000).toISOString() },
+    // the first WBR's window starts at the first event (benchmark 2: from was null, so weeks could not be compared)
+    window: { from: new Date((since === -Infinity ? (co.log.events[0]?.t ?? now(co)) : since) * 60000).toISOString(), to: new Date(now(co) * 60000).toISOString() },
     shipped: fm.shipped,
     tokensPerShipped: Math.round(fm.tokensPerShipped),
     leadP50Min: r1(leads[Math.floor(leads.length / 2)] ?? null),
@@ -56,7 +57,8 @@ export function hitsAndMisses(co, since = -Infinity) {
     ...goals.filter((g) => effective(co, g) === "red").map((g) => `goal ${g.id} red${g.status !== "red" ? " (past due)" : ""}: ${g.title}${g.reason ? ` · ${g.reason}` : ""}`),
     ...goals.filter((g) => effective(co, g) === "yellow").map((g) => `goal ${g.id} yellow: ${g.title} · ${g.reason}`),
     ...overdue(co).map((i) => `${i.id} overdue (${i.kind}, ${i.assignee ?? "unassigned"}): ${i.title}`),
-    ...ev.filter((e) => e.type === "shipped" && e.loops >= 2).map((e) => `${e.order} needed ${e.loops} revisions`),
+    // every revise loop is rework (benchmark 2, editor: "the misses list is empty although 4 orders were revised")
+    ...ev.filter((e) => e.type === "shipped" && e.loops >= 1).map((e) => `${e.order} shipped after ${e.loops} revision${e.loops > 1 ? "s" : ""}`),
   ];
   return { hits, misses };
 }
