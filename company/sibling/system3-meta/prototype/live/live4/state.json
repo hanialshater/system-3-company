@@ -208,7 +208,7 @@
        "kind": "order",
        "title": "Round 3",
        "body": "",
-       "state": "in-progress",
+       "state": "in-review",
        "assignee": "writer-2",
        "project": null,
        "labels": [
@@ -223,7 +223,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876684.26728333,
-       "updated": 29876691.466916665,
+       "updated": 29876692.14705,
        "history": [
         {
          "t": 29876684.26728333,
@@ -244,6 +244,11 @@
          "t": 29876691.466916665,
          "by": "engine",
          "state": "in-progress"
+        },
+        {
+         "t": 29876692.14705,
+         "by": "engine",
+         "state": "in-review"
         }
        ]
       }
@@ -2453,6 +2458,133 @@
     "mode": "work",
     "session": "S-7",
     "item": 1
+   },
+   {
+    "seq": 155,
+    "t": 29876692.143483333,
+    "type": "advance",
+    "order": "O-3",
+    "stage": "build",
+    "by": "writer-2",
+    "verdict": "pass"
+   },
+   {
+    "seq": 156,
+    "t": 29876692.143483333,
+    "type": "code-stage",
+    "order": "O-3",
+    "stage": "test1"
+   },
+   {
+    "seq": 157,
+    "t": 29876692.1435,
+    "type": "done",
+    "msg": "M-16",
+    "run": "R-9"
+   },
+   {
+    "seq": 158,
+    "t": 29876692.1435,
+    "type": "send",
+    "msg": "M-22",
+    "from": "writer-2",
+    "to": "editor",
+    "kind": "report",
+    "key": null,
+    "ref": "O-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 159,
+    "t": 29876692.1435,
+    "type": "leave",
+    "run": "R-9",
+    "role": "writer-2",
+    "order": "O-3",
+    "stage": "build",
+    "verdict": "pass",
+    "minutes": 0.3382166661322117
+   },
+   {
+    "seq": 160,
+    "t": 29876692.14705,
+    "type": "advance",
+    "order": "O-3",
+    "stage": "test1",
+    "by": "code",
+    "verdict": "pass"
+   },
+   {
+    "seq": 161,
+    "t": 29876692.14705,
+    "type": "send",
+    "msg": "M-23",
+    "from": "editor",
+    "to": "pool:checker",
+    "kind": "work",
+    "key": "O-3:check:1",
+    "ref": "O-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 162,
+    "t": 29876692.14705,
+    "type": "item-update",
+    "item": "ISS-3",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 163,
+    "t": 29876692.14705,
+    "type": "supervisor-tick",
+    "steps": [
+     "test1:O-3"
+    ]
+   },
+   {
+    "seq": 164,
+    "t": 29876692.14705,
+    "type": "launch",
+    "role": "reader",
+    "msgs": [
+     "M-23"
+    ],
+    "tasks": [],
+    "why": "plan: next: 1 waiting, no session running"
+   },
+   {
+    "seq": 165,
+    "t": 29876692.546616666,
+    "type": "session-open",
+    "session": "S-8",
+    "role": "reader"
+   },
+   {
+    "seq": 166,
+    "t": 29876692.546616666,
+    "type": "claim",
+    "msg": "M-23",
+    "run": "R-10"
+   },
+   {
+    "seq": 167,
+    "t": 29876692.546616666,
+    "type": "enter",
+    "run": "R-10",
+    "msg": "M-23",
+    "role": "reader",
+    "by": "reader",
+    "room": "quality",
+    "order": "O-3",
+    "stage": "check",
+    "mode": "work",
+    "session": "S-8",
+    "item": 1
    }
   ]
  },
@@ -2813,7 +2945,7 @@
       },
       "priority": "next",
       "ts": 29876691.463366665,
-      "state": "open",
+      "state": "done",
       "lease": {
        "run": "R-9",
        "until": 29876721.805283334
@@ -2928,6 +3060,51 @@
       "lease": null,
       "acked": false
      }
+    ],
+    [
+     "M-22",
+     {
+      "id": "M-22",
+      "from": "writer-2",
+      "to": "editor",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-3",
+      "body": {
+       "stage": "build",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876692.1435,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-23",
+     {
+      "id": "M-23",
+      "from": "editor",
+      "to": "pool:checker",
+      "kind": "work",
+      "key": "O-3:check:1",
+      "due": null,
+      "ref": "O-3",
+      "body": {
+       "stage": "check",
+       "loops": 1
+      },
+      "priority": "next",
+      "ts": 29876692.14705,
+      "state": "open",
+      "lease": {
+       "run": "R-10",
+       "until": 29876722.546616666
+      },
+      "acked": false
+     }
     ]
    ]
   },
@@ -2984,10 +3161,14 @@
     [
      "O-2:ship:0",
      "M-20"
+    ],
+    [
+     "O-3:check:1",
+     "M-23"
     ]
    ]
   },
-  "n": 21
+  "n": 23
  },
  "org": {
   "roles": {
@@ -3516,7 +3697,7 @@
       "spent": 0,
       "accept": "live/live4/work/ROUND3/page.md: round 3 of the quiz, on the round 3 topic the kickoff decided (MTG-1). First line '# Round 3: <topic>'; exactly 4 questions, each '**Qn.** …' then '**Answer:** …' then a one-sentence '**Why:** …'; 100-300 words; reading ease at least 60; every fact true; only facts this round owns, so no answer repeats or is given away by another round; the kickoff's limits; no words like stupid, dumb, kill, dead, blood, hate.",
       "words": null,
-      "stage": "build",
+      "stage": "check",
       "loops": 1,
       "created": 29876684.15373333,
       "history": [
@@ -3537,6 +3718,18 @@
         "by": "reader",
         "verdict": "revise",
         "t": 29876691.463366665
+       },
+       {
+        "stage": "build",
+        "by": "writer-2",
+        "verdict": "pass",
+        "t": 29876692.143483333
+       },
+       {
+        "stage": "test1",
+        "by": "code",
+        "verdict": "pass",
+        "t": 29876692.14705
        }
       ],
       "priority": "next",
@@ -3879,13 +4072,29 @@
       "stage": "build",
       "loops": 1,
       "entered": 29876691.805283334,
-      "state": "running",
+      "state": "left",
       "session": "S-7"
+     }
+    ],
+    [
+     "R-10",
+     {
+      "run": "R-10",
+      "msg": "M-23",
+      "role": "reader",
+      "by": "reader",
+      "consult": false,
+      "order": "O-3",
+      "stage": "check",
+      "loops": 1,
+      "entered": 29876692.546616666,
+      "state": "running",
+      "session": "S-8"
      }
     ]
    ]
   },
-  "n": 9,
+  "n": 10,
   "memory": {
    "__map": [
     [
@@ -3912,6 +4121,12 @@
        "t": 29876689.445033334,
        "did": "build on O-3: pass (loop 0)",
        "learned": "Order checks ban substrings like whale and die, so scan every word (e.g. bodies, studied) before writing; hermit crab has a soft belly, not soft legs.",
+       "mistake": null
+      },
+      {
+       "t": 29876692.1435,
+       "did": "build on O-3: pass (loop 1)",
+       "learned": "Kickoff format means title plus only Qn/Answer/Why lines (no intro line), and numbers must be written as digits, including in Why lines.",
        "mistake": null
       }
      ]
@@ -4029,9 +4244,19 @@
       "open": true,
       "started": 29876691.805283334
      }
+    ],
+    [
+     "S-8",
+     {
+      "id": "S-8",
+      "role": "reader",
+      "items": 1,
+      "open": true,
+      "started": 29876692.546616666
+     }
     ]
    ]
   },
-  "nS": 7
+  "nS": 8
  }
 }

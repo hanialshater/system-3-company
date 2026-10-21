@@ -43,3 +43,13 @@ test("text checks: lineMaxWords limits the lines that start with a prefix", asyn
   assert.equal(r.pass, false);
   assert.match(r.output, /^line 3 \(\*\*Why:\*\*\) has 6 words > 5$/);
 });
+
+test("text checks: allowedLines rejects a line outside the decided kinds", async () => {
+  const { runTextChecks, LIVE, mergeChecks } = await import("../state.mjs");
+  const fs = await import("node:fs"); const path = await import("node:path");
+  const d = path.join(LIVE, "work", "QL"); fs.mkdirSync(d, { recursive: true });
+  fs.writeFileSync(path.join(d, "page.md"), "# Round 3: Shells\n\nAll four animals have no backbone. Can you name them?\n**Q1.** What?\n**Answer:** A crab\n**Why:** Shells.\n");
+  const r = runTextChecks("QL", { allowedLines: ["# ", "**Q", "**Answer:**", "**Why:**"] });
+  assert.equal(r.pass, false); assert.match(r.output, /^line 3 is not an allowed kind of line/);
+  assert.deepEqual(mergeChecks({ allowedLines: ["# ", "**Q", "> "] }, { allowedLines: ["# ", "**Q"] }).allowedLines, ["# ", "**Q"]);
+});

@@ -128,12 +128,15 @@ export function runTextChecks(task, checks) {
     if (n > r.maxWords) fails.push(`line ${i + 1} (${r.prefix}) has ${n} words > ${r.maxWords}`);
   }
   if (checks.distinctAnswers) fails.push(...answerClashes(task, text, checks.distinctAnswers));
+  // only these kinds of line (live run 4: a decided format, a title then Q/Answer/Why lines, could not be checked, and an
+  // intro line went back at the reader)
+  if (checks.allowedLines) for (const [i, l] of lines.entries()) { const t = l.trim(); if (t && !checks.allowedLines.some((p) => t.startsWith(p))) fails.push(`line ${i + 1} is not an allowed kind of line (${checks.allowedLines.map((p) => JSON.stringify(p)).join(", ")}): "${t.slice(0, 60)}"`); }
   if (checks.minReadingEase && ease < checks.minReadingEase) fails.push(`reading ease ${ease.toFixed(0)} < ${checks.minReadingEase}`);
   return { pass: !fails.length, output: fails.length ? fails.join("; ") : `ok: ${words.length} words, reading ease ${ease.toFixed(0)}` };
 }
 
 // ---- checks as data: validated, merged (a decision tightens them), and the cross-section answer check ----------------
-export const CHECK_KEYS = ["file", "minWords", "maxWords", "mustInclude", "banned", "minReadingEase", "titleLine", "lineMaxWords", "distinctAnswers"];
+export const CHECK_KEYS = ["file", "minWords", "maxWords", "mustInclude", "banned", "minReadingEase", "titleLine", "lineMaxWords", "distinctAnswers", "allowedLines"];
 export function validateChecks(c) {
   if (!c || typeof c !== "object" || Array.isArray(c)) return "checks are an object";
   const bad = Object.keys(c).filter((k) => !CHECK_KEYS.includes(k));
@@ -141,6 +144,7 @@ export function validateChecks(c) {
   for (const k of ["mustInclude", "banned"]) if (c[k] != null && !Array.isArray(c[k])) return `${k} is a list`;
   if (c.lineMaxWords != null && (!Array.isArray(c.lineMaxWords) || c.lineMaxWords.some((r) => !r.prefix || !(r.maxWords > 0)))) return "lineMaxWords is a list of {prefix, maxWords}";
   if (c.distinctAnswers != null && !c.distinctAnswers.prefix) return "distinctAnswers needs a prefix";
+  if (c.allowedLines != null && (!Array.isArray(c.allowedLines) || !c.allowedLines.length)) return "allowedLines is a list of line prefixes";
   return null;
 }
 /** Merge b into a: lists join, limits take the stricter value. A decision can only tighten an order's checks. */
@@ -152,6 +156,7 @@ export function mergeChecks(a = {}, b = {}) {
     else if (k === "minWords" || k === "minReadingEase") out[k] = Math.max(v, a[k] ?? -Infinity);
     else if (k === "maxWords") out[k] = Math.min(v, a[k] ?? Infinity);
     else if (k === "titleLine") out[k] = !!(v || a[k]);
+    else if (k === "allowedLines") out[k] = a[k] ? a[k].filter((x) => v.includes(x)) : v; // stricter: only prefixes both allow
     else out[k] = v;
   }
   return out;
@@ -210,6 +215,7 @@ export function describeChecks(c = {}) {
   if (c.banned?.length) L.push(`must not contain these as whole words (case does not matter; "kill" does not match "skill", "blood" does not match "warm-blooded"; plurals and other forms are not matched either): ${c.banned.join(", ")}`);
   for (const r of c.lineMaxWords ?? []) L.push(`each line starting ${JSON.stringify(r.prefix)} has at most ${r.maxWords} words after it`);
   if (c.minReadingEase) L.push(`Flesch reading ease at least ${c.minReadingEase} (short sentences, short words)`);
+  if (c.allowedLines) L.push(`every non-empty line starts with one of: ${c.allowedLines.map((x) => JSON.stringify(x)).join(", ")}`);
   if (c.distinctAnswers) L.push(`no ${JSON.stringify(c.distinctAnswers.prefix)} answer repeats ${c.distinctAnswers.across ? `another ${c.distinctAnswers.across}* task's` : "another section's"}, and no line names another ${c.distinctAnswers.across ? "task" : "section"}'s answer together with a distinctive word of that answer's question (a give-away)`);
   return L;
 }
