@@ -288,3 +288,17 @@ An ask addressed higher than it needs is rerouted down unless `--escalate` gives
   - it prints one JSON line per event (`serving`, `steps`, `launch`, `done`, `stopped`, `refused`); run it under a monitor;
   - it ends when every order is done and no meeting is open.
 - **`node supervisor.mjs usage --finished=S-n:tokens|role:tokens,… [--outside=role:tokens,…]`:** records harness usage in a batch.
+
+## 14. Org evaluation (`orgeval.mjs`)
+
+`node orgeval.mjs pack --runs=<live dir>,… [--escapes=<json>] [--compare=<json>] [--out=<dir>]` writes `pack.json` and `pack.md` from the runs' records. Code writes every number.
+
+- **Per run:**
+  - **cost:** sessions, tokens, tokens per shipped item, minutes to the last ship;
+  - **auto-correction:** first-pass yield; revises by who caught them (code, checker, orderer, integration) and by defect class; escapes from the escapes file; the share caught before ship; human catches of a class code can check;
+  - **learning:** repeats of a class after the builder had been told; the same class on several items before any telling; memory entries per role;
+  - **collaboration:** each meeting's positions, objections, decisions, rules and actions; rules applied to orders; actions done.
+- **Across runs:** a trend table, oldest first.
+- **Defect classes:** `classify()` reads a finding's "Class:" heads: length, format, numbers, banned, duplicate or giveaway (all checkable by code); fact, consistency and clarity (not checkable).
+- **Findings history:** the engine now keeps every revise's findings in the order history, so later packs classify every revise, not only the last.
+- **Spec:** `meta` holds the founder, `vp-meta` (level vp) and `org-evaluator` (level evaluator). An evaluator's `decision` ask routes to `vp-meta`.

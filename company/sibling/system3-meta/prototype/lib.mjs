@@ -138,7 +138,7 @@ export class Mailbox {
 
 // ------------------------------------------------------------------ org: roles as data, changes through approval
 
-export const LEVELS = ["founder", "chief-of-staff", "manager", "builder", "checker", "release", "contractor"];
+export const LEVELS = ["founder", "vp", "chief-of-staff", "manager", "builder", "checker", "release", "contractor", "evaluator"];
 
 export class Org {
   constructor({ log, rooms = [], skills = [], rituals = [] }) {
@@ -374,7 +374,7 @@ export class Engine {
     this.guard(this.mayAssign(o, stage, by), "signer", `${by} may not sign ${stage} on ${id}`, { order: id, by });
     if (stage === "check") { this.guard(by !== o.builder, "independence", `${by} built ${id} and cannot check it`, { order: id, by }); o.checker = by; }
     if (s.signer !== "code") this.guard(!!evidence, "evidence", `${stage} needs evidence`, { order: id, by });
-    o.history.push({ stage, by, verdict, t: this.clock.now() });
+    o.history.push({ stage, by, verdict, t: this.clock.now(), ...(verdict === "revise" && findings ? { findings: String(findings).slice(0, 2000) } : {}) }); // every revise keeps its findings (org evaluation reads them)
     this.log.add({ type: "advance", order: id, stage, by, verdict });
     if (verdict === "pass") o.stage = this.nextStage(o);
     else {

@@ -123,6 +123,36 @@ companions: [API.md](API.md) (every command and rule) · [design and scenarios](
 - **Ends:** on accept, reject or expiry. A handoff goes to the manager, and no memory is kept.
 - **Commands:** `contract brief`, `contract deliver`.
 
+## VP Meta (agent)
+
+- **Purpose:** owns Meta's own performance: whether the companies it builds learn, improve and work well together. It reports to the founder.
+- **Does:**
+  - reads each org evaluation;
+  - answers the evaluator's asks (yes, no or redirect, with text);
+  - turns accepted recommendations into orders or rule changes for the companies' managers;
+  - escalates only what is the founder's: deploys, org changes, large budgets.
+- **May not:** sign any stage, or edit an evaluation.
+
+## Org evaluator (agent, reports to vp-meta)
+
+- **Purpose:** judges four questions for the companies Meta builds:
+  1. Do agents learn?
+  2. Does the process improve from run to run?
+  3. Do fallible agents still produce correct work (auto-correction)?
+  4. Does collaboration between agents help?
+- **Does:**
+  - runs `node orgeval.mjs pack --runs=… --escapes=… --compare=…`. Code computes every number from the runs' records, and the escapes come from blind fact-checks, judges and reviews;
+  - writes an evaluation: per question a verdict, evidence citing pack numbers only, a confidence, and what would change the verdict;
+  - names the gaps in measurement;
+  - raises at most 3 ranked recommendations as `ask raise --kind=decision`, which route to vp-meta.
+- **May not:**
+  - state a number the pack does not hold;
+  - sign stages;
+  - build, check or fix work;
+  - read another company's state files. It reads packs, records and results docs.
+- **Commands:** `orgeval.mjs pack`, `ask raise`, `channel post`.
+- **Why separate from the chief of staff:** the chief of staff runs the company and would be grading its own operation. The evaluator sits outside the line and reports to the vp, like the company's evaluation steward.
+
 ## Who uses the company tools (built 2026-10-21)
 
 | Tool | Founder | Chief of staff | Manager | Builder, checker |

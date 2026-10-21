@@ -11,6 +11,20 @@ const STAGES = (evidenceBuild) => [
 ];
 
 export const SPECS = {
+  // System 3 Meta itself (founder, 2026-10-21: "Add org evaluation agent reporting to meta vp"): the org that builds
+  // companies, with an evaluator that judges whether the companies it builds learn, improve, self-correct and
+  // collaborate well. The evaluator reads code-built packs (orgeval.mjs), writes judgments, and raises its
+  // recommendations as asks to the vp; it signs no stage and builds nothing.
+  meta: {
+    rooms: [{ id: "lobby", floor: 1, kind: "lobby" }, { id: "vp-office", floor: 1, kind: "office" }, { id: "eval-room", floor: 2, kind: "quality" }, { id: "review-room", floor: 2, kind: "meeting", capacity: 4 }],
+    skills: ["manage", "evaluate"],
+    roles: [
+      { id: "founder", level: "founder", human: true, room: "lobby", floor: 1 },
+      { id: "vp-meta", level: "vp", reportsTo: "founder", room: "vp-office", floor: 1, skills: ["manage"] },
+      { id: "org-evaluator", level: "evaluator", reportsTo: "vp-meta", room: "eval-room", floor: 2, skills: ["evaluate"] },
+    ],
+    flow: { name: "task", stages: STAGES("live/work/<task>/page.md") },
+  },
   toy: {
     rooms: [{ id: "lobby", floor: 1, kind: "lobby" }, { id: "ceo-office", floor: 1, kind: "office" }, { id: "sandbox", floor: 2, kind: "lane", lane: "s" }, { id: "quality", floor: 3, kind: "quality" }, { id: "launch", floor: 3, kind: "launch" }],
     skills: ["manage", "js", "review", "release"],

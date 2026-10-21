@@ -1,0 +1,256 @@
+{
+ "data": {
+  "spec": "meta",
+  "channels": {
+   "channels": {
+    "__map": [
+     [
+      "meta-review",
+      {
+       "id": "meta-review",
+       "kind": "topic",
+       "title": "",
+       "by": "vp-meta",
+       "members": [
+        "vp-meta",
+        "org-evaluator"
+       ],
+       "created": 29876703.847566668
+      }
+     ]
+    ]
+   },
+   "posts": {
+    "__map": []
+   },
+   "n": 0
+  }
+ },
+ "log": {
+  "events": [
+   {
+    "seq": 1,
+    "t": 29876703.844433334,
+    "type": "org-genesis",
+    "roles": [
+     "founder",
+     "vp-meta",
+     "org-evaluator"
+    ]
+   },
+   {
+    "seq": 2,
+    "t": 29876703.84445,
+    "type": "flow-define",
+    "flow": "task@v1",
+    "by": "cos"
+   },
+   {
+    "seq": 3,
+    "t": 29876703.84445,
+    "type": "flow-active",
+    "flow": "task@v1",
+    "by": "founder",
+    "words": "Approve the task flow for the Meta sandbox (founder: Decide for me, 2026-10-21)"
+   },
+   {
+    "seq": 4,
+    "t": 29876703.847566668,
+    "type": "channel-create",
+    "channel": "meta-review",
+    "kind": "topic",
+    "by": "vp-meta"
+   }
+  ]
+ },
+ "mailbox": {
+  "msgs": {
+   "__map": []
+  },
+  "keys": {
+   "__map": []
+  },
+  "n": 0
+ },
+ "org": {
+  "roles": {
+   "__map": [
+    [
+     "founder",
+     {
+      "skills": [],
+      "rituals": [],
+      "active": true,
+      "id": "founder",
+      "level": "founder",
+      "human": true,
+      "room": "lobby",
+      "floor": 1
+     }
+    ],
+    [
+     "vp-meta",
+     {
+      "skills": [
+       "manage"
+      ],
+      "rituals": [],
+      "active": true,
+      "id": "vp-meta",
+      "level": "vp",
+      "reportsTo": "founder",
+      "room": "vp-office",
+      "floor": 1
+     }
+    ],
+    [
+     "org-evaluator",
+     {
+      "skills": [
+       "evaluate"
+      ],
+      "rituals": [],
+      "active": true,
+      "id": "org-evaluator",
+      "level": "evaluator",
+      "reportsTo": "vp-meta",
+      "room": "eval-room",
+      "floor": 2
+     }
+    ]
+   ]
+  },
+  "changes": {
+   "__map": []
+  },
+  "n": 0,
+  "rooms": {
+   "__map": [
+    [
+     "lobby",
+     {
+      "id": "lobby",
+      "floor": 1,
+      "kind": "lobby"
+     }
+    ],
+    [
+     "vp-office",
+     {
+      "id": "vp-office",
+      "floor": 1,
+      "kind": "office"
+     }
+    ],
+    [
+     "eval-room",
+     {
+      "id": "eval-room",
+      "floor": 2,
+      "kind": "quality"
+     }
+    ],
+    [
+     "review-room",
+     {
+      "id": "review-room",
+      "floor": 2,
+      "kind": "meeting",
+      "capacity": 4
+     }
+    ]
+   ]
+  }
+ },
+ "engine": {
+  "flows": {
+   "__map": [
+    [
+     "task@v1",
+     {
+      "stages": [
+       {
+        "stage": "build",
+        "signer": "builder",
+        "evidence": [
+         "live/work/<task>/page.md"
+        ]
+       },
+       {
+        "stage": "test1",
+        "signer": "code",
+        "evidence": []
+       },
+       {
+        "stage": "check",
+        "signer": "checker",
+        "evidence": [
+         "review notes"
+        ]
+       },
+       {
+        "stage": "uat",
+        "signer": "orderer",
+        "evidence": [
+         "hidden acceptance tests"
+        ]
+       },
+       {
+        "stage": "ship",
+        "signer": "release",
+        "evidence": [
+         "copied to live/shipped/"
+        ]
+       }
+      ],
+      "name": "task",
+      "key": "task@v1",
+      "state": "active",
+      "by": "cos"
+     }
+    ]
+   ]
+  },
+  "active": {
+   "__map": [
+    [
+     "task",
+     "task@v1"
+    ]
+   ]
+  },
+  "orders": {
+   "__map": []
+  },
+  "approvals": {
+   "__map": []
+  },
+  "n": {
+   "O": 0,
+   "A": 0
+  },
+  "limits": {
+   "chief-of-staff": 500000,
+   "manager": 250000
+  },
+  "policies": {
+   "__map": []
+  },
+  "contracts": {
+   "__map": []
+  }
+ },
+ "rooms": {
+  "runs": {
+   "__map": []
+  },
+  "n": 0,
+  "memory": {
+   "__map": []
+  },
+  "sessions": {
+   "__map": []
+  },
+  "nS": 0
+ }
+}
