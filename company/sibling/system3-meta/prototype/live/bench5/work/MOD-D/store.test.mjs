@@ -6,6 +6,7 @@ import { createStore } from "./store.mjs";
 function evaluate(ast, ctx) {
   if (ast.type === "num") return ast.value;
   if (ast.type === "add") return ast.cells.reduce((s, c) => s + (ctx.get(c) || 0), 0);
+  if (ast.type === "error") return { error: ast.code };
   return { error: "#VALUE!" };
 }
 
@@ -102,4 +103,87 @@ test("wave 2: replacing a formula drops its old edges", () => {
   assert.equal(s.get("B1"), 100);
   val(s, "A2", 3);
   assert.equal(s.get("B1"), 3);
+});
+
+// wave 3 helpers
+const f = (...cells) => ({ raw: "=" + cells.join("+"), ast: { type: "add", cells }, refs: cells });
+const v = (n) => ({ raw: String(n), ast: null, refs: [], value: n });
+const CYC = { error: "#CYCLE!" };
+
+test("wave 3: self reference and a bare range over itself are cycles", () => {
+  const s = createStore({ evaluate });
+  s.set("A1", f("A1"));
+  assert.deepEqual(s.get("A1"), CYC);
+  s.set("A1", f("A1", "A2")); // like =A1:A2 in A1
+  assert.deepEqual(s.get("A1"), CYC);
+  s.set("A1", v(3));
+  assert.equal(s.get("A1"), 3);
+});
+
+test("wave 3: indirect cycle, readers of it, and breaking it", () => {
+  const s = createStore({ evaluate });
+  s.set("A1", v(1));
+  s.set("B1", f("A1"));
+  s.set("C1", f("B1"));
+  s.set("D1", f("C1")); // reads the chain
+  assert.equal(s.get("D1"), 1);
+  s.set("A1", f("C1")); // A1 -> C1 -> B1 -> A1
+  for (const c of ["A1", "B1", "C1", "D1"]) assert.deepEqual(s.get(c), CYC, c);
+  s.set("E1", f("D1")); // new reader of a cycle cell
+  assert.deepEqual(s.get("E1"), CYC);
+  s.set("B1", v(5)); // break inside the cycle
+  assert.equal(s.get("B1"), 5);
+  assert.equal(s.get("C1"), 5);
+  assert.equal(s.get("A1"), 5);
+  assert.equal(s.get("D1"), 5);
+  assert.equal(s.get("E1"), 5);
+  s.set("B1", f("A1")); // cycle again
+  assert.deepEqual(s.get("E1"), CYC);
+  s.clear("C1"); // clearing a member breaks it too
+  assert.equal(s.get("A1"), 0);
+  assert.equal(s.get("B1"), 0);
+  assert.equal(s.get("D1"), 0);
+  assert.equal(s.get("E1"), 0);
+});
+
+test("wave 3: cycle reached through a range dependency", () => {
+  const s = createStore({ evaluate });
+  s.set("A1", v(1));
+  s.set("A2", v(2));
+  s.set("A3", f("A1", "A2", "A3")); // SUM(A1:A3) in A3
+  assert.deepEqual(s.get("A3"), CYC);
+  s.set("B1", f("A3"));
+  assert.deepEqual(s.get("B1"), CYC);
+  s.set("A3", f("A1", "A2"));
+  assert.equal(s.get("A3"), 3);
+  assert.equal(s.get("B1"), 3);
+});
+
+test("wave 3: a cell beside a cycle is unaffected", () => {
+  const s = createStore({ evaluate });
+  s.set("A1", f("B1"));
+  s.set("B1", f("A1"));
+  s.set("C1", v(4));
+  s.set("D1", f("C1"));
+  assert.deepEqual(s.get("A1"), CYC);
+  assert.equal(s.get("D1"), 4);
+});
+
+test("wave 3: 99-row chain and a whole-sheet sum recalc", () => {
+  const s = createStore({ evaluate });
+  s.set("A1", v(1));
+  for (let r = 2; r <= 99; r++) s.set("A" + r, f("A" + (r - 1)));
+  assert.equal(s.get("A99"), 1);
+  s.set("A1", v(7));
+  assert.equal(s.get("A99"), 7);
+  const all = [];
+  for (let c = 66; c <= 90; c++) for (let r = 1; r <= 10; r++) all.push(String.fromCharCode(c) + r);
+  for (const c of all) if (c !== "Z10") s.set(c, v(1));
+  s.set("Z10", f("A10", ...all.filter((c) => c !== "Z10")));
+  assert.equal(s.get("Z10"), 7 + 249);
+  s.set("A1", f("A99")); // close the long chain into a loop
+  assert.deepEqual(s.get("A99"), CYC);
+  assert.deepEqual(s.get("Z10"), CYC);
+  s.set("A1", v(2));
+  assert.equal(s.get("Z10"), 2 + 249);
 });
