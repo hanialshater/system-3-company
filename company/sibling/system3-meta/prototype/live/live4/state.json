@@ -38,7 +38,7 @@
        "id": "BK-1",
        "room": "story-room",
        "start": 29876684.1537,
-       "end": 29876714.1537,
+       "end": 29876688.177816667,
        "by": "editor",
        "attendees": [
         "editor",
@@ -46,7 +46,7 @@
         "writer-2"
        ],
        "purpose": "Kickoff: Ocean Animals Quiz",
-       "state": "booked"
+       "state": "used"
       }
      ]
     ]
@@ -81,9 +81,32 @@
     ]
    },
    "posts": {
-    "__map": []
+    "__map": [
+     [
+      "P-1",
+      {
+       "id": "P-1",
+       "channel": "lane:e",
+       "by": "editor",
+       "title": "Minutes: Kickoff: Ocean Animals Quiz",
+       "body": "# Kickoff: Ocean Animals Quiz (MTG-1)\n\nchair: editor · invited: editor, writer-1, writer-2 · absent: none · room: story-room\n\n## 1. Rounds: three topics with no overlap, and which animals and facts each round owns\nRound 1:\n- writer-2: Split by animal group so no animal can sit in two rounds. Round 1: Ocean Mammals (owns blue whale, dolphin, orca, sea otter): blue whale is the largest animal ever; dolphins breathe air through a blowhole; orcas are the largest dolphins; sea otters hold paws while they sleep. Round 2: Fish and Sharks (owns shark, whale shark, seahorse, clownfish): shark skeletons are cartilage not bone; whale shark is the largest fish; seahorse fathers carry the babies; clownfish live in sea anemones. Round 3: Animals Without Backbones (owns octopus, sea star, jellyfish, hermit crab): octopus has three hearts; sea stars can regrow an arm; jellyfish have no brain; hermit crabs move into empty shells. Cross-round guards: Round 2 must say whale shark is the largest FISH and never the largest animal (that is Round 1s answer); Round 1 must not say sharks are fish or mention whale shark; Round 3 owns the word \"backbone\" so Rounds 1-2 should not quiz it; no round names another rounds animals in a question or Why line. Call the orca \"orca\" only: \"killer whale\" contains \"kill\", which every order bans as a substring.\n- writer-1: CORRECTED (replaces my earlier text, which wrongly implied the seahorse is not a fish; it is a fish). Split the rounds by animal group, so every animal belongs to exactly one round and overlap is impossible by construction. Round 1: Ocean Mammals. Round 2: Fish and Sharks. Round 3: Animals Without Backbones (invertebrates). Ownership, one animal per answer, each animal named only in its own round (questions, answers and Why lines): R1 owns blue whale (largest animal ever), dolphin (finds food by echolocation), sea otter (uses a rock as a tool to open shells), manatee (plant-eating sea cow). R2 owns whale shark (largest fish), seahorse (a fish; the father carries the babies), shark (skeleton of cartilage, not bone), clownfish (lives safely in a sea anemone). R3 owns octopus (three hearts), jellyfish (no brain), sea star (not a fish despite the old name starfish; can regrow a lost arm), hermit crab (moves into empty shells). Traps: whale shark is a fish, so it stays in R2 and R1 may not mention it; R2 must not compare it with the blue whale; say orca, never \"killer whale\" (the order bans \"kill\"). A writer who wants to swap an animal takes one from its own group and it is added to this list in the minutes before writing. distinctAnswers already checks Answer lines across ROUND; the no-give-away rule (no other round animal named anywhere) is not code-checked, so I ask the editor to carry it as a rule or check it at review.\n- editor: Three non-overlapping rounds. ROUND1 Ocean Mammals (whales, dolphins, seals, sea otters). ROUND2 Fish and Sharks (sharks, clownfish, seahorses, rays). ROUND3 Invertebrates (octopus, jellyfish, starfish/sea stars, crabs). Each animal appears in only one round; each answer only once in the whole pack; no question mentions another round's animals.\n**Decision:** Rounds split by animal group, so no animal can appear in two rounds. Title lines exactly: \"# Round 1: Ocean Mammals\", \"# Round 2: Fish and Sharks\", \"# Round 3: Animals Without Backbones\". Each round owns exactly four animals, one per question, and each Answer is that animal: ROUND1 owns blue whale (largest animal that has ever lived), dolphin (finds food by echolocation: sends out clicks and listens for the echo), sea otter (uses a rock as a tool to crack open shells), manatee (a plant-eating mammal also called a sea cow). ROUND2 owns whale shark (the largest fish; say largest FISH, never largest animal, and do not compare it with any whale), seahorse (a fish whose father carries the eggs in a pouch until they hatch), shark (skeleton made of cartilage, the bendy stuff in your ears, not bone), clownfish (lives safely among the stinging arms of a sea anemone). ROUND3 owns octopus (has three hearts), jellyfish (has no brain), sea star (not a fish even though people call it a starfish; can regrow a lost arm), hermit crab (moves into empty shells and swaps for bigger ones as it grows). No round names another round animals anywhere (question, answer or Why), and only ROUND3 talks about backbones. Say \"orca\" if ever needed, never \"killer whale\". Swaps: a writer who must swap an animal takes one from the same group and posts it in lane:e before writing; the editor confirms. Code carries: each round must name its four animals, and is banned from naming the other rounds animals; answers are distinct across rounds (already on the orders). · actions: ISS-5\n- rule for ROUND1*: {\"mustInclude\":[\"blue whale\",\"dolphin\",\"sea otter\",\"manatee\"],\"banned\":[\"shark\",\"seahorse\",\"clownfish\",\"octopus\",\"jellyfish\",\"sea star\",\"starfish\",\"crab\",\"backbone\",\"backbones\",\"killer\"]} (checked by code; tightened O-1, O-2, O-3)\n- rule for ROUND2*: {\"mustInclude\":[\"whale shark\",\"seahorse\",\"clownfish\",\"cartilage\"],\"banned\":[\"blue whale\",\"dolphin\",\"otter\",\"manatee\",\"octopus\",\"jellyfish\",\"sea star\",\"starfish\",\"crab\",\"backbone\",\"backbones\",\"killer\"]} (checked by code; tightened O-1, O-2, O-3)\n- rule for ROUND3*: {\"mustInclude\":[\"octopus\",\"jellyfish\",\"sea star\",\"hermit crab\"],\"banned\":[\"whale\",\"dolphin\",\"otter\",\"manatee\",\"shark\",\"seahorse\",\"clownfish\",\"killer\"]} (checked by code; tightened O-1, O-2, O-3)\n\n## 2. Format and limits for ages 8-10: question, answer and why-line lengths, difficulty, words to avoid\nRound 1:\n- writer-2: Format (the orders already fix: title line, exactly 4 questions as **Qn.** / **Answer:** / one-sentence **Why:**, 100-300 words, reading ease >= 60). Limits I propose on top: question at most 20 words and ends with \"?\"; answer 1-4 words, a name or number, no full sentence; Why line one sentence of 12-25 words, with one plain fact and no new quiz-able fact from another round. That puts a round near 160-220 words, safely inside 100-300. Difficulty: per round Q1-Q2 easy (most 8-year-olds can guess), Q3 medium, Q4 a surprising fact; no trick questions and no multiple-negative wording. Words: besides the banned list (stupid, dumb, kill, dead, blood, hate, matched as substrings, so no \"killer whale\", \"skill\", \"deadly\"), avoid scary words like attack, bite, prey, die, danger; use \"eat\" or \"hunt\" plainly. Avoid jargon (cartilage, cephalopod, invertebrate) unless the Why line explains it in kid words, e.g. \"the bendy stuff in your nose\". Prefer short words to keep reading ease at 60+. Numbers as digits. Code-checkable rules worth carrying on the orders: max question words, max Why words, banned substrings incl. \"killer\".\n- writer-1: Format inside the order (title line, 4 x Qn/Answer/Why, 100-300 words, reading ease >= 60, banned list). Limits I propose: question at most 20 words, one question mark, no multiple-choice options (options are where another round answer leaks in); Answer 1-4 words, normally the animal name, written the same way every time (e.g. \"A blue whale\"); Why exactly one sentence, at most 25 words, ending in a period, giving the fact behind the answer in plain words (explain any hard word inline, e.g. cartilage = \"the bendy stuff in your ears\"). Aim for about 150-200 words per round so we are well inside 300. Difficulty per round: two easy (most 8-year-olds know), one medium, one stretch, with the stretch as Q4. Facts: only well-established ones; round or hedge numbers (\"up to about 30 metres\", \"more than 30 metres\" style claims avoided unless sourced). Words to avoid beyond the order list: killer (use orca), die/death, bite, attack, deadly, scary, gross, eat-alive or hunting gore; also \"blood\" means no \"blue blood\" fact for the octopus. No sarcasm or trick questions. Reading ease: short words, sentences under 15 words where possible; each writer runs node meta.mjs check --order=<O> before leaving the room.\n- editor: Each question: **Qn.** line max 20 words, **Answer:** line max 6 words, **Why:** one sentence max 20 words. Easy-to-medium difficulty, plain words for ages 8-10. Avoid scary/gory words (kill, blood, die, dead) and absolutes like 'always'/'never' unless true. Answers distinct across rounds.\n**Decision:** Format per question, three lines: \"**Qn.** <question>\" at most 20 words after the marker, one question ending in \"?\", no multiple-choice options; \"**Answer:** <answer>\" 1-4 words, the owned animal name with a/an (e.g. \"A blue whale\"), no sentence; \"**Why:** <one sentence>\" at most 25 words after the marker, exactly one sentence ending in a period, giving the true fact behind the answer in plain words, explaining any hard word inline (cartilage = the bendy stuff in your ears; echolocation = clicks and echoes). Aim for 150-220 words per round (orders allow 100-300); reading ease at least 60, so short words and short sentences. Difficulty in each round: Q1 and Q2 easy, Q3 medium, Q4 a surprising stretch fact; no trick questions, no double negatives, no sarcasm. Only well-established facts; avoid precise numbers unless certain (say \"the largest\", not a length in metres). Words to avoid on top of the order list (stupid, dumb, kill, dead, blood, hate): killer, die, death, deadly, attack, bite, scary, gross, danger; prefer \"eat\" or \"catch\". Numbers as digits. Before leaving the room every writer runs node meta.mjs check --order=<O> and fixes every failure. PACK keeps each round as shipped, inherits these line limits and word bans, and lists any change under \"## Changes\".\n- rule for ROUND*: {\"lineMaxWords\":[{\"prefix\":\"**Q1.**\",\"maxWords\":20},{\"prefix\":\"**Q2.**\",\"maxWords\":20},{\"prefix\":\"**Q3.**\",\"maxWords\":20},{\"prefix\":\"**Q4.**\",\"maxWords\":20},{\"prefix\":\"**Answer:**\",\"maxWords\":4},{\"prefix\":\"**Why:**\",\"maxWords\":25}],\"mustInclude\":[\"**Q2.**\",\"**Q3.**\"],\"banned\":[\"killer\",\"die\",\"death\",\"deadly\",\"attack\",\"bite\",\"scary\",\"gross\",\"danger\"]} (checked by code; tightened O-1, O-2, O-3, O-4)\n- rule for PACK*: {\"lineMaxWords\":[{\"prefix\":\"**Q1.**\",\"maxWords\":20},{\"prefix\":\"**Q2.**\",\"maxWords\":20},{\"prefix\":\"**Q3.**\",\"maxWords\":20},{\"prefix\":\"**Q4.**\",\"maxWords\":20},{\"prefix\":\"**Answer:**\",\"maxWords\":4},{\"prefix\":\"**Why:**\",\"maxWords\":25}],\"mustInclude\":[\"# Round 2:\"],\"banned\":[\"killer\",\"die\",\"death\",\"deadly\",\"attack\",\"bite\",\"scary\",\"gross\",\"danger\"]} (checked by code; tightened O-1, O-2, O-3, O-4)\n",
+       "ack": false,
+       "key": "MTG-1:minutes",
+       "ref": "MTG-1",
+       "t": 29876688.177833334,
+       "to": [
+        "writer-1",
+        "writer-2"
+       ],
+       "msgs": {
+        "writer-1": "M-1",
+        "writer-2": "M-2"
+       }
+      }
+     ]
+    ]
    },
-   "n": 0
+   "n": 1
   },
   "tracker": {
    "items": {
@@ -96,7 +119,7 @@
        "title": "Round 1",
        "body": "",
        "state": "in-progress",
-       "assignee": null,
+       "assignee": "writer-1",
        "project": null,
        "labels": [],
        "priority": 3,
@@ -108,7 +131,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876684.26728333,
-       "updated": 29876684.26728333,
+       "updated": 29876688.351333335,
        "history": [
         {
          "t": 29876684.26728333,
@@ -131,7 +154,7 @@
        "title": "Round 2",
        "body": "",
        "state": "in-progress",
-       "assignee": null,
+       "assignee": "writer-1",
        "project": null,
        "labels": [],
        "priority": 3,
@@ -143,7 +166,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876684.26728333,
-       "updated": 29876684.26728333,
+       "updated": 29876688.351333335,
        "history": [
         {
          "t": 29876684.26728333,
@@ -166,7 +189,7 @@
        "title": "Round 3",
        "body": "",
        "state": "in-progress",
-       "assignee": null,
+       "assignee": "writer-2",
        "project": null,
        "labels": [],
        "priority": 3,
@@ -178,7 +201,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876684.26728333,
-       "updated": 29876684.26728333,
+       "updated": 29876688.351333335,
        "history": [
         {
          "t": 29876684.26728333,
@@ -227,6 +250,36 @@
         }
        ]
       }
+     ],
+     [
+      "ISS-5",
+      {
+       "id": "ISS-5",
+       "kind": "action",
+       "title": "Review shipped rounds for give-aways code cannot catch (indirect hints at another round answer) and for fact accuracy before PACK",
+       "body": "From MTG-1 item 1: Rounds: three topics with no overlap, and which animals and facts each round owns",
+       "state": "backlog",
+       "assignee": "editor",
+       "project": null,
+       "labels": [],
+       "priority": 3,
+       "cycle": null,
+       "due": "2026-10-22",
+       "goal": null,
+       "order": null,
+       "links": [],
+       "comments": [],
+       "by": "editor",
+       "created": 29876687.98545,
+       "updated": 29876687.98545,
+       "history": [
+        {
+         "t": 29876687.98545,
+         "by": "editor",
+         "state": "backlog"
+        }
+       ]
+      }
      ]
     ]
    },
@@ -236,7 +289,7 @@
    "cycles": {
     "__map": []
    },
-   "n": 4,
+   "n": 5,
    "nP": 0,
    "nC": 0
   },
@@ -310,7 +363,7 @@
        "room": "story-room",
        "channel": "lane:e",
        "opened": 29876684.1537,
-       "state": "open",
+       "state": "closed",
        "agenda": [
         {
          "n": 1,
@@ -324,13 +377,105 @@
             "writer-2": {
              "text": "Split by animal group so no animal can sit in two rounds. Round 1: Ocean Mammals (owns blue whale, dolphin, orca, sea otter): blue whale is the largest animal ever; dolphins breathe air through a blowhole; orcas are the largest dolphins; sea otters hold paws while they sleep. Round 2: Fish and Sharks (owns shark, whale shark, seahorse, clownfish): shark skeletons are cartilage not bone; whale shark is the largest fish; seahorse fathers carry the babies; clownfish live in sea anemones. Round 3: Animals Without Backbones (owns octopus, sea star, jellyfish, hermit crab): octopus has three hearts; sea stars can regrow an arm; jellyfish have no brain; hermit crabs move into empty shells. Cross-round guards: Round 2 must say whale shark is the largest FISH and never the largest animal (that is Round 1s answer); Round 1 must not say sharks are fish or mention whale shark; Round 3 owns the word \"backbone\" so Rounds 1-2 should not quiz it; no round names another rounds animals in a question or Why line. Call the orca \"orca\" only: \"killer whale\" contains \"kill\", which every order bans as a substring.",
              "t": 29876686.096366666
+            },
+            "writer-1": {
+             "text": "CORRECTED (replaces my earlier text, which wrongly implied the seahorse is not a fish; it is a fish). Split the rounds by animal group, so every animal belongs to exactly one round and overlap is impossible by construction. Round 1: Ocean Mammals. Round 2: Fish and Sharks. Round 3: Animals Without Backbones (invertebrates). Ownership, one animal per answer, each animal named only in its own round (questions, answers and Why lines): R1 owns blue whale (largest animal ever), dolphin (finds food by echolocation), sea otter (uses a rock as a tool to open shells), manatee (plant-eating sea cow). R2 owns whale shark (largest fish), seahorse (a fish; the father carries the babies), shark (skeleton of cartilage, not bone), clownfish (lives safely in a sea anemone). R3 owns octopus (three hearts), jellyfish (no brain), sea star (not a fish despite the old name starfish; can regrow a lost arm), hermit crab (moves into empty shells). Traps: whale shark is a fish, so it stays in R2 and R1 may not mention it; R2 must not compare it with the blue whale; say orca, never \"killer whale\" (the order bans \"kill\"). A writer who wants to swap an animal takes one from its own group and it is added to this list in the minutes before writing. distinctAnswers already checks Answer lines across ROUND; the no-give-away rule (no other round animal named anywhere) is not code-checked, so I ask the editor to carry it as a rule or check it at review.",
+             "t": 29876686.52995
+            },
+            "editor": {
+             "text": "Three non-overlapping rounds. ROUND1 Ocean Mammals (whales, dolphins, seals, sea otters). ROUND2 Fish and Sharks (sharks, clownfish, seahorses, rays). ROUND3 Invertebrates (octopus, jellyfish, starfish/sea stars, crabs). Each animal appears in only one round; each answer only once in the whole pack; no question mentions another round's animals.",
+             "t": 29876687.097116668
             }
            },
-           "revealed": false
+           "revealed": true,
+           "missing": []
           }
          ],
          "objections": [],
-         "decision": null,
+         "decision": {
+          "text": "Rounds split by animal group, so no animal can appear in two rounds. Title lines exactly: \"# Round 1: Ocean Mammals\", \"# Round 2: Fish and Sharks\", \"# Round 3: Animals Without Backbones\". Each round owns exactly four animals, one per question, and each Answer is that animal: ROUND1 owns blue whale (largest animal that has ever lived), dolphin (finds food by echolocation: sends out clicks and listens for the echo), sea otter (uses a rock as a tool to crack open shells), manatee (a plant-eating mammal also called a sea cow). ROUND2 owns whale shark (the largest fish; say largest FISH, never largest animal, and do not compare it with any whale), seahorse (a fish whose father carries the eggs in a pouch until they hatch), shark (skeleton made of cartilage, the bendy stuff in your ears, not bone), clownfish (lives safely among the stinging arms of a sea anemone). ROUND3 owns octopus (has three hearts), jellyfish (has no brain), sea star (not a fish even though people call it a starfish; can regrow a lost arm), hermit crab (moves into empty shells and swaps for bigger ones as it grows). No round names another round animals anywhere (question, answer or Why), and only ROUND3 talks about backbones. Say \"orca\" if ever needed, never \"killer whale\". Swaps: a writer who must swap an animal takes one from the same group and posts it in lane:e before writing; the editor confirms. Code carries: each round must name its four animals, and is banned from naming the other rounds animals; answers are distinct across rounds (already on the orders).",
+          "t": 29876687.985466667,
+          "actions": [
+           "ISS-5"
+          ],
+          "rules": [
+           {
+            "tasks": "ROUND1",
+            "checks": {
+             "mustInclude": [
+              "blue whale",
+              "dolphin",
+              "sea otter",
+              "manatee"
+             ],
+             "banned": [
+              "shark",
+              "seahorse",
+              "clownfish",
+              "octopus",
+              "jellyfish",
+              "sea star",
+              "starfish",
+              "crab",
+              "backbone",
+              "backbones",
+              "killer"
+             ]
+            }
+           },
+           {
+            "tasks": "ROUND2",
+            "checks": {
+             "mustInclude": [
+              "whale shark",
+              "seahorse",
+              "clownfish",
+              "cartilage"
+             ],
+             "banned": [
+              "blue whale",
+              "dolphin",
+              "otter",
+              "manatee",
+              "octopus",
+              "jellyfish",
+              "sea star",
+              "starfish",
+              "crab",
+              "backbone",
+              "backbones",
+              "killer"
+             ]
+            }
+           },
+           {
+            "tasks": "ROUND3",
+            "checks": {
+             "mustInclude": [
+              "octopus",
+              "jellyfish",
+              "sea star",
+              "hermit crab"
+             ],
+             "banned": [
+              "whale",
+              "dolphin",
+              "otter",
+              "manatee",
+              "shark",
+              "seahorse",
+              "clownfish",
+              "killer"
+             ]
+            }
+           }
+          ],
+          "tightened": [
+           "O-1",
+           "O-2",
+           "O-3"
+          ]
+         },
          "deferred": null
         },
         {
@@ -345,13 +490,125 @@
             "writer-2": {
              "text": "Format (the orders already fix: title line, exactly 4 questions as **Qn.** / **Answer:** / one-sentence **Why:**, 100-300 words, reading ease >= 60). Limits I propose on top: question at most 20 words and ends with \"?\"; answer 1-4 words, a name or number, no full sentence; Why line one sentence of 12-25 words, with one plain fact and no new quiz-able fact from another round. That puts a round near 160-220 words, safely inside 100-300. Difficulty: per round Q1-Q2 easy (most 8-year-olds can guess), Q3 medium, Q4 a surprising fact; no trick questions and no multiple-negative wording. Words: besides the banned list (stupid, dumb, kill, dead, blood, hate, matched as substrings, so no \"killer whale\", \"skill\", \"deadly\"), avoid scary words like attack, bite, prey, die, danger; use \"eat\" or \"hunt\" plainly. Avoid jargon (cartilage, cephalopod, invertebrate) unless the Why line explains it in kid words, e.g. \"the bendy stuff in your nose\". Prefer short words to keep reading ease at 60+. Numbers as digits. Code-checkable rules worth carrying on the orders: max question words, max Why words, banned substrings incl. \"killer\".",
              "t": 29876686.10068333
+            },
+            "writer-1": {
+             "text": "Format inside the order (title line, 4 x Qn/Answer/Why, 100-300 words, reading ease >= 60, banned list). Limits I propose: question at most 20 words, one question mark, no multiple-choice options (options are where another round answer leaks in); Answer 1-4 words, normally the animal name, written the same way every time (e.g. \"A blue whale\"); Why exactly one sentence, at most 25 words, ending in a period, giving the fact behind the answer in plain words (explain any hard word inline, e.g. cartilage = \"the bendy stuff in your ears\"). Aim for about 150-200 words per round so we are well inside 300. Difficulty per round: two easy (most 8-year-olds know), one medium, one stretch, with the stretch as Q4. Facts: only well-established ones; round or hedge numbers (\"up to about 30 metres\", \"more than 30 metres\" style claims avoided unless sourced). Words to avoid beyond the order list: killer (use orca), die/death, bite, attack, deadly, scary, gross, eat-alive or hunting gore; also \"blood\" means no \"blue blood\" fact for the octopus. No sarcasm or trick questions. Reading ease: short words, sentences under 15 words where possible; each writer runs node meta.mjs check --order=<O> before leaving the room.",
+             "t": 29876686.379833333
+            },
+            "editor": {
+             "text": "Each question: **Qn.** line max 20 words, **Answer:** line max 6 words, **Why:** one sentence max 20 words. Easy-to-medium difficulty, plain words for ages 8-10. Avoid scary/gory words (kill, blood, die, dead) and absolutes like 'always'/'never' unless true. Answers distinct across rounds.",
+             "t": 29876687.099066667
             }
            },
-           "revealed": false
+           "revealed": true,
+           "missing": []
           }
          ],
          "objections": [],
-         "decision": null,
+         "decision": {
+          "text": "Format per question, three lines: \"**Qn.** <question>\" at most 20 words after the marker, one question ending in \"?\", no multiple-choice options; \"**Answer:** <answer>\" 1-4 words, the owned animal name with a/an (e.g. \"A blue whale\"), no sentence; \"**Why:** <one sentence>\" at most 25 words after the marker, exactly one sentence ending in a period, giving the true fact behind the answer in plain words, explaining any hard word inline (cartilage = the bendy stuff in your ears; echolocation = clicks and echoes). Aim for 150-220 words per round (orders allow 100-300); reading ease at least 60, so short words and short sentences. Difficulty in each round: Q1 and Q2 easy, Q3 medium, Q4 a surprising stretch fact; no trick questions, no double negatives, no sarcasm. Only well-established facts; avoid precise numbers unless certain (say \"the largest\", not a length in metres). Words to avoid on top of the order list (stupid, dumb, kill, dead, blood, hate): killer, die, death, deadly, attack, bite, scary, gross, danger; prefer \"eat\" or \"catch\". Numbers as digits. Before leaving the room every writer runs node meta.mjs check --order=<O> and fixes every failure. PACK keeps each round as shipped, inherits these line limits and word bans, and lists any change under \"## Changes\".",
+          "t": 29876688.175816666,
+          "actions": [],
+          "rules": [
+           {
+            "tasks": "ROUND",
+            "checks": {
+             "lineMaxWords": [
+              {
+               "prefix": "**Q1.**",
+               "maxWords": 20
+              },
+              {
+               "prefix": "**Q2.**",
+               "maxWords": 20
+              },
+              {
+               "prefix": "**Q3.**",
+               "maxWords": 20
+              },
+              {
+               "prefix": "**Q4.**",
+               "maxWords": 20
+              },
+              {
+               "prefix": "**Answer:**",
+               "maxWords": 4
+              },
+              {
+               "prefix": "**Why:**",
+               "maxWords": 25
+              }
+             ],
+             "mustInclude": [
+              "**Q2.**",
+              "**Q3.**"
+             ],
+             "banned": [
+              "killer",
+              "die",
+              "death",
+              "deadly",
+              "attack",
+              "bite",
+              "scary",
+              "gross",
+              "danger"
+             ]
+            }
+           },
+           {
+            "tasks": "PACK",
+            "checks": {
+             "lineMaxWords": [
+              {
+               "prefix": "**Q1.**",
+               "maxWords": 20
+              },
+              {
+               "prefix": "**Q2.**",
+               "maxWords": 20
+              },
+              {
+               "prefix": "**Q3.**",
+               "maxWords": 20
+              },
+              {
+               "prefix": "**Q4.**",
+               "maxWords": 20
+              },
+              {
+               "prefix": "**Answer:**",
+               "maxWords": 4
+              },
+              {
+               "prefix": "**Why:**",
+               "maxWords": 25
+              }
+             ],
+             "mustInclude": [
+              "# Round 2:"
+             ],
+             "banned": [
+              "killer",
+              "die",
+              "death",
+              "deadly",
+              "attack",
+              "bite",
+              "scary",
+              "gross",
+              "danger"
+             ]
+            }
+           }
+          ],
+          "tightened": [
+           "O-1",
+           "O-2",
+           "O-3",
+           "O-4"
+          ]
+         },
          "deferred": null
         }
        ],
@@ -359,15 +616,186 @@
        "present": {
         "__set": [
          "editor",
-         "writer-2"
+         "writer-2",
+         "writer-1"
         ]
-       }
+       },
+       "closed": 29876688.177816667,
+       "minutes": "# Kickoff: Ocean Animals Quiz (MTG-1)\n\nchair: editor · invited: editor, writer-1, writer-2 · absent: none · room: story-room\n\n## 1. Rounds: three topics with no overlap, and which animals and facts each round owns\nRound 1:\n- writer-2: Split by animal group so no animal can sit in two rounds. Round 1: Ocean Mammals (owns blue whale, dolphin, orca, sea otter): blue whale is the largest animal ever; dolphins breathe air through a blowhole; orcas are the largest dolphins; sea otters hold paws while they sleep. Round 2: Fish and Sharks (owns shark, whale shark, seahorse, clownfish): shark skeletons are cartilage not bone; whale shark is the largest fish; seahorse fathers carry the babies; clownfish live in sea anemones. Round 3: Animals Without Backbones (owns octopus, sea star, jellyfish, hermit crab): octopus has three hearts; sea stars can regrow an arm; jellyfish have no brain; hermit crabs move into empty shells. Cross-round guards: Round 2 must say whale shark is the largest FISH and never the largest animal (that is Round 1s answer); Round 1 must not say sharks are fish or mention whale shark; Round 3 owns the word \"backbone\" so Rounds 1-2 should not quiz it; no round names another rounds animals in a question or Why line. Call the orca \"orca\" only: \"killer whale\" contains \"kill\", which every order bans as a substring.\n- writer-1: CORRECTED (replaces my earlier text, which wrongly implied the seahorse is not a fish; it is a fish). Split the rounds by animal group, so every animal belongs to exactly one round and overlap is impossible by construction. Round 1: Ocean Mammals. Round 2: Fish and Sharks. Round 3: Animals Without Backbones (invertebrates). Ownership, one animal per answer, each animal named only in its own round (questions, answers and Why lines): R1 owns blue whale (largest animal ever), dolphin (finds food by echolocation), sea otter (uses a rock as a tool to open shells), manatee (plant-eating sea cow). R2 owns whale shark (largest fish), seahorse (a fish; the father carries the babies), shark (skeleton of cartilage, not bone), clownfish (lives safely in a sea anemone). R3 owns octopus (three hearts), jellyfish (no brain), sea star (not a fish despite the old name starfish; can regrow a lost arm), hermit crab (moves into empty shells). Traps: whale shark is a fish, so it stays in R2 and R1 may not mention it; R2 must not compare it with the blue whale; say orca, never \"killer whale\" (the order bans \"kill\"). A writer who wants to swap an animal takes one from its own group and it is added to this list in the minutes before writing. distinctAnswers already checks Answer lines across ROUND; the no-give-away rule (no other round animal named anywhere) is not code-checked, so I ask the editor to carry it as a rule or check it at review.\n- editor: Three non-overlapping rounds. ROUND1 Ocean Mammals (whales, dolphins, seals, sea otters). ROUND2 Fish and Sharks (sharks, clownfish, seahorses, rays). ROUND3 Invertebrates (octopus, jellyfish, starfish/sea stars, crabs). Each animal appears in only one round; each answer only once in the whole pack; no question mentions another round's animals.\n**Decision:** Rounds split by animal group, so no animal can appear in two rounds. Title lines exactly: \"# Round 1: Ocean Mammals\", \"# Round 2: Fish and Sharks\", \"# Round 3: Animals Without Backbones\". Each round owns exactly four animals, one per question, and each Answer is that animal: ROUND1 owns blue whale (largest animal that has ever lived), dolphin (finds food by echolocation: sends out clicks and listens for the echo), sea otter (uses a rock as a tool to crack open shells), manatee (a plant-eating mammal also called a sea cow). ROUND2 owns whale shark (the largest fish; say largest FISH, never largest animal, and do not compare it with any whale), seahorse (a fish whose father carries the eggs in a pouch until they hatch), shark (skeleton made of cartilage, the bendy stuff in your ears, not bone), clownfish (lives safely among the stinging arms of a sea anemone). ROUND3 owns octopus (has three hearts), jellyfish (has no brain), sea star (not a fish even though people call it a starfish; can regrow a lost arm), hermit crab (moves into empty shells and swaps for bigger ones as it grows). No round names another round animals anywhere (question, answer or Why), and only ROUND3 talks about backbones. Say \"orca\" if ever needed, never \"killer whale\". Swaps: a writer who must swap an animal takes one from the same group and posts it in lane:e before writing; the editor confirms. Code carries: each round must name its four animals, and is banned from naming the other rounds animals; answers are distinct across rounds (already on the orders). · actions: ISS-5\n- rule for ROUND1*: {\"mustInclude\":[\"blue whale\",\"dolphin\",\"sea otter\",\"manatee\"],\"banned\":[\"shark\",\"seahorse\",\"clownfish\",\"octopus\",\"jellyfish\",\"sea star\",\"starfish\",\"crab\",\"backbone\",\"backbones\",\"killer\"]} (checked by code; tightened O-1, O-2, O-3)\n- rule for ROUND2*: {\"mustInclude\":[\"whale shark\",\"seahorse\",\"clownfish\",\"cartilage\"],\"banned\":[\"blue whale\",\"dolphin\",\"otter\",\"manatee\",\"octopus\",\"jellyfish\",\"sea star\",\"starfish\",\"crab\",\"backbone\",\"backbones\",\"killer\"]} (checked by code; tightened O-1, O-2, O-3)\n- rule for ROUND3*: {\"mustInclude\":[\"octopus\",\"jellyfish\",\"sea star\",\"hermit crab\"],\"banned\":[\"whale\",\"dolphin\",\"otter\",\"manatee\",\"shark\",\"seahorse\",\"clownfish\",\"killer\"]} (checked by code; tightened O-1, O-2, O-3)\n\n## 2. Format and limits for ages 8-10: question, answer and why-line lengths, difficulty, words to avoid\nRound 1:\n- writer-2: Format (the orders already fix: title line, exactly 4 questions as **Qn.** / **Answer:** / one-sentence **Why:**, 100-300 words, reading ease >= 60). Limits I propose on top: question at most 20 words and ends with \"?\"; answer 1-4 words, a name or number, no full sentence; Why line one sentence of 12-25 words, with one plain fact and no new quiz-able fact from another round. That puts a round near 160-220 words, safely inside 100-300. Difficulty: per round Q1-Q2 easy (most 8-year-olds can guess), Q3 medium, Q4 a surprising fact; no trick questions and no multiple-negative wording. Words: besides the banned list (stupid, dumb, kill, dead, blood, hate, matched as substrings, so no \"killer whale\", \"skill\", \"deadly\"), avoid scary words like attack, bite, prey, die, danger; use \"eat\" or \"hunt\" plainly. Avoid jargon (cartilage, cephalopod, invertebrate) unless the Why line explains it in kid words, e.g. \"the bendy stuff in your nose\". Prefer short words to keep reading ease at 60+. Numbers as digits. Code-checkable rules worth carrying on the orders: max question words, max Why words, banned substrings incl. \"killer\".\n- writer-1: Format inside the order (title line, 4 x Qn/Answer/Why, 100-300 words, reading ease >= 60, banned list). Limits I propose: question at most 20 words, one question mark, no multiple-choice options (options are where another round answer leaks in); Answer 1-4 words, normally the animal name, written the same way every time (e.g. \"A blue whale\"); Why exactly one sentence, at most 25 words, ending in a period, giving the fact behind the answer in plain words (explain any hard word inline, e.g. cartilage = \"the bendy stuff in your ears\"). Aim for about 150-200 words per round so we are well inside 300. Difficulty per round: two easy (most 8-year-olds know), one medium, one stretch, with the stretch as Q4. Facts: only well-established ones; round or hedge numbers (\"up to about 30 metres\", \"more than 30 metres\" style claims avoided unless sourced). Words to avoid beyond the order list: killer (use orca), die/death, bite, attack, deadly, scary, gross, eat-alive or hunting gore; also \"blood\" means no \"blue blood\" fact for the octopus. No sarcasm or trick questions. Reading ease: short words, sentences under 15 words where possible; each writer runs node meta.mjs check --order=<O> before leaving the room.\n- editor: Each question: **Qn.** line max 20 words, **Answer:** line max 6 words, **Why:** one sentence max 20 words. Easy-to-medium difficulty, plain words for ages 8-10. Avoid scary/gory words (kill, blood, die, dead) and absolutes like 'always'/'never' unless true. Answers distinct across rounds.\n**Decision:** Format per question, three lines: \"**Qn.** <question>\" at most 20 words after the marker, one question ending in \"?\", no multiple-choice options; \"**Answer:** <answer>\" 1-4 words, the owned animal name with a/an (e.g. \"A blue whale\"), no sentence; \"**Why:** <one sentence>\" at most 25 words after the marker, exactly one sentence ending in a period, giving the true fact behind the answer in plain words, explaining any hard word inline (cartilage = the bendy stuff in your ears; echolocation = clicks and echoes). Aim for 150-220 words per round (orders allow 100-300); reading ease at least 60, so short words and short sentences. Difficulty in each round: Q1 and Q2 easy, Q3 medium, Q4 a surprising stretch fact; no trick questions, no double negatives, no sarcasm. Only well-established facts; avoid precise numbers unless certain (say \"the largest\", not a length in metres). Words to avoid on top of the order list (stupid, dumb, kill, dead, blood, hate): killer, die, death, deadly, attack, bite, scary, gross, danger; prefer \"eat\" or \"catch\". Numbers as digits. Before leaving the room every writer runs node meta.mjs check --order=<O> and fixes every failure. PACK keeps each round as shipped, inherits these line limits and word bans, and lists any change under \"## Changes\".\n- rule for ROUND*: {\"lineMaxWords\":[{\"prefix\":\"**Q1.**\",\"maxWords\":20},{\"prefix\":\"**Q2.**\",\"maxWords\":20},{\"prefix\":\"**Q3.**\",\"maxWords\":20},{\"prefix\":\"**Q4.**\",\"maxWords\":20},{\"prefix\":\"**Answer:**\",\"maxWords\":4},{\"prefix\":\"**Why:**\",\"maxWords\":25}],\"mustInclude\":[\"**Q2.**\",\"**Q3.**\"],\"banned\":[\"killer\",\"die\",\"death\",\"deadly\",\"attack\",\"bite\",\"scary\",\"gross\",\"danger\"]} (checked by code; tightened O-1, O-2, O-3, O-4)\n- rule for PACK*: {\"lineMaxWords\":[{\"prefix\":\"**Q1.**\",\"maxWords\":20},{\"prefix\":\"**Q2.**\",\"maxWords\":20},{\"prefix\":\"**Q3.**\",\"maxWords\":20},{\"prefix\":\"**Q4.**\",\"maxWords\":20},{\"prefix\":\"**Answer:**\",\"maxWords\":4},{\"prefix\":\"**Why:**\",\"maxWords\":25}],\"mustInclude\":[\"# Round 2:\"],\"banned\":[\"killer\",\"die\",\"death\",\"deadly\",\"attack\",\"bite\",\"scary\",\"gross\",\"danger\"]} (checked by code; tightened O-1, O-2, O-3, O-4)\n"
       }
      ]
     ]
    },
    "n": 1
-  }
+  },
+  "rules": [
+   {
+    "tasks": "ROUND1",
+    "checks": {
+     "mustInclude": [
+      "blue whale",
+      "dolphin",
+      "sea otter",
+      "manatee"
+     ],
+     "banned": [
+      "shark",
+      "seahorse",
+      "clownfish",
+      "octopus",
+      "jellyfish",
+      "sea star",
+      "starfish",
+      "crab",
+      "backbone",
+      "backbones",
+      "killer"
+     ]
+    },
+    "source": "MTG-1 item 1"
+   },
+   {
+    "tasks": "ROUND2",
+    "checks": {
+     "mustInclude": [
+      "whale shark",
+      "seahorse",
+      "clownfish",
+      "cartilage"
+     ],
+     "banned": [
+      "blue whale",
+      "dolphin",
+      "otter",
+      "manatee",
+      "octopus",
+      "jellyfish",
+      "sea star",
+      "starfish",
+      "crab",
+      "backbone",
+      "backbones",
+      "killer"
+     ]
+    },
+    "source": "MTG-1 item 1"
+   },
+   {
+    "tasks": "ROUND3",
+    "checks": {
+     "mustInclude": [
+      "octopus",
+      "jellyfish",
+      "sea star",
+      "hermit crab"
+     ],
+     "banned": [
+      "whale",
+      "dolphin",
+      "otter",
+      "manatee",
+      "shark",
+      "seahorse",
+      "clownfish",
+      "killer"
+     ]
+    },
+    "source": "MTG-1 item 1"
+   },
+   {
+    "tasks": "ROUND",
+    "checks": {
+     "lineMaxWords": [
+      {
+       "prefix": "**Q1.**",
+       "maxWords": 20
+      },
+      {
+       "prefix": "**Q2.**",
+       "maxWords": 20
+      },
+      {
+       "prefix": "**Q3.**",
+       "maxWords": 20
+      },
+      {
+       "prefix": "**Q4.**",
+       "maxWords": 20
+      },
+      {
+       "prefix": "**Answer:**",
+       "maxWords": 4
+      },
+      {
+       "prefix": "**Why:**",
+       "maxWords": 25
+      }
+     ],
+     "mustInclude": [
+      "**Q2.**",
+      "**Q3.**"
+     ],
+     "banned": [
+      "killer",
+      "die",
+      "death",
+      "deadly",
+      "attack",
+      "bite",
+      "scary",
+      "gross",
+      "danger"
+     ]
+    },
+    "source": "MTG-1 item 2"
+   },
+   {
+    "tasks": "PACK",
+    "checks": {
+     "lineMaxWords": [
+      {
+       "prefix": "**Q1.**",
+       "maxWords": 20
+      },
+      {
+       "prefix": "**Q2.**",
+       "maxWords": 20
+      },
+      {
+       "prefix": "**Q3.**",
+       "maxWords": 20
+      },
+      {
+       "prefix": "**Q4.**",
+       "maxWords": 20
+      },
+      {
+       "prefix": "**Answer:**",
+       "maxWords": 4
+      },
+      {
+       "prefix": "**Why:**",
+       "maxWords": 25
+      }
+     ],
+     "mustInclude": [
+      "# Round 2:"
+     ],
+     "banned": [
+      "killer",
+      "die",
+      "death",
+      "deadly",
+      "attack",
+      "bite",
+      "scary",
+      "gross",
+      "danger"
+     ]
+    },
+    "source": "MTG-1 item 2"
+   }
+  ]
  },
  "log": {
   "events": [
@@ -642,17 +1070,621 @@
     "item": 2,
     "round": 1,
     "by": "writer-2"
+   },
+   {
+    "seq": 25,
+    "t": 29876686.3778,
+    "type": "position",
+    "meeting": "MTG-1",
+    "item": 1,
+    "round": 1,
+    "by": "writer-1"
+   },
+   {
+    "seq": 26,
+    "t": 29876686.379833333,
+    "type": "position",
+    "meeting": "MTG-1",
+    "item": 2,
+    "round": 1,
+    "by": "writer-1"
+   },
+   {
+    "seq": 27,
+    "t": 29876686.381216668,
+    "type": "launch",
+    "role": "editor",
+    "msgs": [],
+    "tasks": [
+     {
+      "kind": "chair",
+      "ref": "MTG-1",
+      "items": [
+       1,
+       2
+      ]
+     },
+     {
+      "kind": "delegate",
+      "ref": "O-1"
+     },
+     {
+      "kind": "delegate",
+      "ref": "O-2"
+     },
+     {
+      "kind": "delegate",
+      "ref": "O-3"
+     },
+     {
+      "kind": "delegate",
+      "ref": "O-4"
+     }
+    ],
+    "why": "plan: chair: MTG-1; delegate: O-1, O-2, O-3, O-4"
+   },
+   {
+    "seq": 28,
+    "t": 29876686.52995,
+    "type": "position",
+    "meeting": "MTG-1",
+    "item": 1,
+    "round": 1,
+    "by": "writer-1"
+   },
+   {
+    "seq": 29,
+    "t": 29876687.097116668,
+    "type": "position",
+    "meeting": "MTG-1",
+    "item": 1,
+    "round": 1,
+    "by": "editor"
+   },
+   {
+    "seq": 30,
+    "t": 29876687.099083334,
+    "type": "position",
+    "meeting": "MTG-1",
+    "item": 2,
+    "round": 1,
+    "by": "editor"
+   },
+   {
+    "seq": 31,
+    "t": 29876687.101066668,
+    "type": "reveal",
+    "meeting": "MTG-1",
+    "item": 1,
+    "round": 1,
+    "positions": 3,
+    "missing": 0
+   },
+   {
+    "seq": 32,
+    "t": 29876687.10305,
+    "type": "reveal",
+    "meeting": "MTG-1",
+    "item": 2,
+    "round": 1,
+    "positions": 3,
+    "missing": 0
+   },
+   {
+    "seq": 33,
+    "t": 29876687.985466667,
+    "type": "item-create",
+    "item": "ISS-5",
+    "kind": "action",
+    "by": "editor",
+    "assignee": "editor",
+    "project": null,
+    "goal": null
+   },
+   {
+    "seq": 34,
+    "t": 29876687.985466667,
+    "type": "rule-applied",
+    "order": "O-1",
+    "task": "ROUND1",
+    "source": "MTG-1 item 1",
+    "keys": [
+     "mustInclude",
+     "banned"
+    ]
+   },
+   {
+    "seq": 35,
+    "t": 29876687.985466667,
+    "type": "rule-applied",
+    "order": "O-2",
+    "task": "ROUND2",
+    "source": "MTG-1 item 1",
+    "keys": [
+     "mustInclude",
+     "banned"
+    ]
+   },
+   {
+    "seq": 36,
+    "t": 29876687.985466667,
+    "type": "rule-applied",
+    "order": "O-3",
+    "task": "ROUND3",
+    "source": "MTG-1 item 1",
+    "keys": [
+     "mustInclude",
+     "banned"
+    ]
+   },
+   {
+    "seq": 37,
+    "t": 29876687.985466667,
+    "type": "meeting-decide",
+    "meeting": "MTG-1",
+    "item": 1,
+    "by": "editor",
+    "objections": 0,
+    "actions": 1
+   },
+   {
+    "seq": 38,
+    "t": 29876688.175816666,
+    "type": "rule-applied",
+    "order": "O-1",
+    "task": "ROUND1",
+    "source": "MTG-1 item 2",
+    "keys": [
+     "lineMaxWords",
+     "mustInclude",
+     "banned"
+    ]
+   },
+   {
+    "seq": 39,
+    "t": 29876688.175816666,
+    "type": "rule-applied",
+    "order": "O-2",
+    "task": "ROUND2",
+    "source": "MTG-1 item 2",
+    "keys": [
+     "lineMaxWords",
+     "mustInclude",
+     "banned"
+    ]
+   },
+   {
+    "seq": 40,
+    "t": 29876688.175816666,
+    "type": "rule-applied",
+    "order": "O-3",
+    "task": "ROUND3",
+    "source": "MTG-1 item 2",
+    "keys": [
+     "lineMaxWords",
+     "mustInclude",
+     "banned"
+    ]
+   },
+   {
+    "seq": 41,
+    "t": 29876688.175816666,
+    "type": "rule-applied",
+    "order": "O-4",
+    "task": "PACK",
+    "source": "MTG-1 item 2",
+    "keys": [
+     "lineMaxWords",
+     "mustInclude",
+     "banned"
+    ]
+   },
+   {
+    "seq": 42,
+    "t": 29876688.175816666,
+    "type": "meeting-decide",
+    "meeting": "MTG-1",
+    "item": 2,
+    "by": "editor",
+    "objections": 0,
+    "actions": 0
+   },
+   {
+    "seq": 43,
+    "t": 29876688.177816667,
+    "type": "room-release",
+    "booking": "BK-1",
+    "room": "story-room"
+   },
+   {
+    "seq": 44,
+    "t": 29876688.177816667,
+    "type": "meeting-close",
+    "meeting": "MTG-1",
+    "by": "editor",
+    "decided": 2,
+    "deferred": 0,
+    "absent": []
+   },
+   {
+    "seq": 45,
+    "t": 29876688.177833334,
+    "type": "send",
+    "msg": "M-1",
+    "from": "editor",
+    "to": "writer-1",
+    "kind": "post",
+    "key": "P-1:writer-1",
+    "ref": "P-1",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 46,
+    "t": 29876688.17785,
+    "type": "send",
+    "msg": "M-2",
+    "from": "editor",
+    "to": "writer-2",
+    "kind": "post",
+    "key": "P-1:writer-2",
+    "ref": "P-1",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 47,
+    "t": 29876688.17785,
+    "type": "post",
+    "post": "P-1",
+    "channel": "lane:e",
+    "by": "editor",
+    "title": "Minutes: Kickoff: Ocean Animals Quiz",
+    "recipients": 2,
+    "ack": false
+   },
+   {
+    "seq": 48,
+    "t": 29876688.3479,
+    "type": "delegate",
+    "order": "O-1",
+    "by": "editor",
+    "to": "writer-1",
+    "budget": 150000
+   },
+   {
+    "seq": 49,
+    "t": 29876688.3479,
+    "type": "send",
+    "msg": "M-3",
+    "from": "editor",
+    "to": "writer-1",
+    "kind": "work",
+    "key": "O-1:build:0",
+    "ref": "O-1",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 50,
+    "t": 29876688.3496,
+    "type": "delegate",
+    "order": "O-2",
+    "by": "editor",
+    "to": "writer-1",
+    "budget": 150000
+   },
+   {
+    "seq": 51,
+    "t": 29876688.3496,
+    "type": "send",
+    "msg": "M-4",
+    "from": "editor",
+    "to": "writer-1",
+    "kind": "work",
+    "key": "O-2:build:0",
+    "ref": "O-2",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 52,
+    "t": 29876688.3511,
+    "type": "delegate",
+    "order": "O-3",
+    "by": "editor",
+    "to": "writer-2",
+    "budget": 150000
+   },
+   {
+    "seq": 53,
+    "t": 29876688.35111667,
+    "type": "send",
+    "msg": "M-5",
+    "from": "editor",
+    "to": "writer-2",
+    "kind": "work",
+    "key": "O-3:build:0",
+    "ref": "O-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 54,
+    "t": 29876688.351333335,
+    "type": "item-update",
+    "item": "ISS-1",
+    "by": "engine",
+    "changes": [
+     "assignee"
+    ]
+   },
+   {
+    "seq": 55,
+    "t": 29876688.351333335,
+    "type": "item-update",
+    "item": "ISS-2",
+    "by": "engine",
+    "changes": [
+     "assignee"
+    ]
+   },
+   {
+    "seq": 56,
+    "t": 29876688.351333335,
+    "type": "item-update",
+    "item": "ISS-3",
+    "by": "engine",
+    "changes": [
+     "assignee"
+    ]
+   },
+   {
+    "seq": 57,
+    "t": 29876688.351333335,
+    "type": "launch",
+    "role": "writer-1",
+    "msgs": [
+     "M-3",
+     "M-4"
+    ],
+    "tasks": [],
+    "why": "plan: next: 2 waiting, no session running"
+   },
+   {
+    "seq": 58,
+    "t": 29876688.351333335,
+    "type": "launch",
+    "role": "writer-2",
+    "msgs": [
+     "M-5"
+    ],
+    "tasks": [],
+    "why": "plan: next: 1 waiting, no session running"
+   },
+   {
+    "seq": 59,
+    "t": 29876688.3528,
+    "type": "delegate",
+    "order": "O-4",
+    "by": "editor",
+    "to": "writer-2",
+    "budget": 150000
+   },
+   {
+    "seq": 60,
+    "t": 29876688.3528,
+    "type": "blocked",
+    "order": "O-4",
+    "after": [
+     "O-1",
+     "O-2",
+     "O-3"
+    ]
+   },
+   {
+    "seq": 61,
+    "t": 29876688.91135,
+    "type": "session-open",
+    "session": "S-1",
+    "role": "writer-2"
+   },
+   {
+    "seq": 62,
+    "t": 29876688.911366668,
+    "type": "claim",
+    "msg": "M-5",
+    "run": "R-1"
+   },
+   {
+    "seq": 63,
+    "t": 29876688.911366668,
+    "type": "enter",
+    "run": "R-1",
+    "msg": "M-5",
+    "role": "writer-2",
+    "by": "writer-2",
+    "room": "editorial",
+    "order": "O-3",
+    "stage": "build",
+    "mode": "work",
+    "session": "S-1",
+    "item": 1
+   },
+   {
+    "seq": 64,
+    "t": 29876688.9157,
+    "type": "session-open",
+    "session": "S-2",
+    "role": "writer-1"
+   },
+   {
+    "seq": 65,
+    "t": 29876688.9157,
+    "type": "claim",
+    "msg": "M-3",
+    "run": "R-2"
+   },
+   {
+    "seq": 66,
+    "t": 29876688.9157,
+    "type": "enter",
+    "run": "R-2",
+    "msg": "M-3",
+    "role": "writer-1",
+    "by": "writer-1",
+    "room": "editorial",
+    "order": "O-1",
+    "stage": "build",
+    "mode": "work",
+    "session": "S-2",
+    "item": 1
    }
   ]
  },
  "mailbox": {
   "msgs": {
-   "__map": []
+   "__map": [
+    [
+     "M-1",
+     {
+      "id": "M-1",
+      "from": "editor",
+      "to": "writer-1",
+      "kind": "post",
+      "key": "P-1:writer-1",
+      "due": null,
+      "ref": "P-1",
+      "body": {
+       "channel": "lane:e",
+       "title": "Minutes: Kickoff: Ocean Animals Quiz",
+       "ack": false
+      },
+      "priority": "next",
+      "ts": 29876688.177833334,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-2",
+     {
+      "id": "M-2",
+      "from": "editor",
+      "to": "writer-2",
+      "kind": "post",
+      "key": "P-1:writer-2",
+      "due": null,
+      "ref": "P-1",
+      "body": {
+       "channel": "lane:e",
+       "title": "Minutes: Kickoff: Ocean Animals Quiz",
+       "ack": false
+      },
+      "priority": "next",
+      "ts": 29876688.17785,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-3",
+     {
+      "id": "M-3",
+      "from": "editor",
+      "to": "writer-1",
+      "kind": "work",
+      "key": "O-1:build:0",
+      "due": null,
+      "ref": "O-1",
+      "body": {
+       "stage": "build",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876688.3479,
+      "state": "open",
+      "lease": {
+       "run": "R-2",
+       "until": 29876718.9157
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-4",
+     {
+      "id": "M-4",
+      "from": "editor",
+      "to": "writer-1",
+      "kind": "work",
+      "key": "O-2:build:0",
+      "due": null,
+      "ref": "O-2",
+      "body": {
+       "stage": "build",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876688.3496,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-5",
+     {
+      "id": "M-5",
+      "from": "editor",
+      "to": "writer-2",
+      "kind": "work",
+      "key": "O-3:build:0",
+      "due": null,
+      "ref": "O-3",
+      "body": {
+       "stage": "build",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876688.35111667,
+      "state": "open",
+      "lease": {
+       "run": "R-1",
+       "until": 29876718.911366668
+      },
+      "acked": false
+     }
+    ]
+   ]
   },
   "keys": {
-   "__map": []
+   "__map": [
+    [
+     "P-1:writer-1",
+     "M-1"
+    ],
+    [
+     "P-1:writer-2",
+     "M-2"
+    ],
+    [
+     "O-1:build:0",
+     "M-3"
+    ],
+    [
+     "O-2:build:0",
+     "M-4"
+    ],
+    [
+     "O-3:build:0",
+     "M-5"
+    ]
+   ]
   },
-  "n": 0
+  "n": 5
  },
  "org": {
   "roles": {
@@ -891,11 +1923,12 @@
       "title": "Round 1",
       "chain": [
        "cos",
-       "editor"
+       "editor",
+       "writer-1"
       ],
       "orderer": "cos",
       "manager": "editor",
-      "builder": null,
+      "builder": "writer-1",
       "checker": null,
       "budget": 200000,
       "spent": 0,
@@ -921,7 +1954,13 @@
         "**Q1.**",
         "**Q4.**",
         "**Answer:**",
-        "**Why:**"
+        "**Why:**",
+        "blue whale",
+        "dolphin",
+        "sea otter",
+        "manatee",
+        "**Q2.**",
+        "**Q3.**"
        ],
        "banned": [
         "stupid",
@@ -929,13 +1968,58 @@
         "kill",
         "dead",
         "blood",
-        "hate"
+        "hate",
+        "shark",
+        "seahorse",
+        "clownfish",
+        "octopus",
+        "jellyfish",
+        "sea star",
+        "starfish",
+        "crab",
+        "backbone",
+        "backbones",
+        "killer",
+        "die",
+        "death",
+        "deadly",
+        "attack",
+        "bite",
+        "scary",
+        "gross",
+        "danger"
        ],
        "minReadingEase": 60,
        "distinctAnswers": {
         "prefix": "**Answer:**",
         "across": "ROUND"
-       }
+       },
+       "lineMaxWords": [
+        {
+         "prefix": "**Q1.**",
+         "maxWords": 20
+        },
+        {
+         "prefix": "**Q2.**",
+         "maxWords": 20
+        },
+        {
+         "prefix": "**Q3.**",
+         "maxWords": 20
+        },
+        {
+         "prefix": "**Q4.**",
+         "maxWords": 20
+        },
+        {
+         "prefix": "**Answer:**",
+         "maxWords": 4
+        },
+        {
+         "prefix": "**Why:**",
+         "maxWords": 25
+        }
+       ]
       }
      }
     ],
@@ -947,11 +2031,12 @@
       "title": "Round 2",
       "chain": [
        "cos",
-       "editor"
+       "editor",
+       "writer-1"
       ],
       "orderer": "cos",
       "manager": "editor",
-      "builder": null,
+      "builder": "writer-1",
       "checker": null,
       "budget": 200000,
       "spent": 0,
@@ -977,7 +2062,13 @@
         "**Q1.**",
         "**Q4.**",
         "**Answer:**",
-        "**Why:**"
+        "**Why:**",
+        "whale shark",
+        "seahorse",
+        "clownfish",
+        "cartilage",
+        "**Q2.**",
+        "**Q3.**"
        ],
        "banned": [
         "stupid",
@@ -985,13 +2076,59 @@
         "kill",
         "dead",
         "blood",
-        "hate"
+        "hate",
+        "blue whale",
+        "dolphin",
+        "otter",
+        "manatee",
+        "octopus",
+        "jellyfish",
+        "sea star",
+        "starfish",
+        "crab",
+        "backbone",
+        "backbones",
+        "killer",
+        "die",
+        "death",
+        "deadly",
+        "attack",
+        "bite",
+        "scary",
+        "gross",
+        "danger"
        ],
        "minReadingEase": 60,
        "distinctAnswers": {
         "prefix": "**Answer:**",
         "across": "ROUND"
-       }
+       },
+       "lineMaxWords": [
+        {
+         "prefix": "**Q1.**",
+         "maxWords": 20
+        },
+        {
+         "prefix": "**Q2.**",
+         "maxWords": 20
+        },
+        {
+         "prefix": "**Q3.**",
+         "maxWords": 20
+        },
+        {
+         "prefix": "**Q4.**",
+         "maxWords": 20
+        },
+        {
+         "prefix": "**Answer:**",
+         "maxWords": 4
+        },
+        {
+         "prefix": "**Why:**",
+         "maxWords": 25
+        }
+       ]
       }
      }
     ],
@@ -1003,11 +2140,12 @@
       "title": "Round 3",
       "chain": [
        "cos",
-       "editor"
+       "editor",
+       "writer-2"
       ],
       "orderer": "cos",
       "manager": "editor",
-      "builder": null,
+      "builder": "writer-2",
       "checker": null,
       "budget": 200000,
       "spent": 0,
@@ -1033,7 +2171,13 @@
         "**Q1.**",
         "**Q4.**",
         "**Answer:**",
-        "**Why:**"
+        "**Why:**",
+        "octopus",
+        "jellyfish",
+        "sea star",
+        "hermit crab",
+        "**Q2.**",
+        "**Q3.**"
        ],
        "banned": [
         "stupid",
@@ -1041,13 +2185,55 @@
         "kill",
         "dead",
         "blood",
-        "hate"
+        "hate",
+        "whale",
+        "dolphin",
+        "otter",
+        "manatee",
+        "shark",
+        "seahorse",
+        "clownfish",
+        "killer",
+        "die",
+        "death",
+        "deadly",
+        "attack",
+        "bite",
+        "scary",
+        "gross",
+        "danger"
        ],
        "minReadingEase": 60,
        "distinctAnswers": {
         "prefix": "**Answer:**",
         "across": "ROUND"
-       }
+       },
+       "lineMaxWords": [
+        {
+         "prefix": "**Q1.**",
+         "maxWords": 20
+        },
+        {
+         "prefix": "**Q2.**",
+         "maxWords": 20
+        },
+        {
+         "prefix": "**Q3.**",
+         "maxWords": 20
+        },
+        {
+         "prefix": "**Q4.**",
+         "maxWords": 20
+        },
+        {
+         "prefix": "**Answer:**",
+         "maxWords": 4
+        },
+        {
+         "prefix": "**Why:**",
+         "maxWords": 25
+        }
+       ]
       }
      }
     ],
@@ -1059,11 +2245,12 @@
       "title": "Assembled quiz",
       "chain": [
        "cos",
-       "editor"
+       "editor",
+       "writer-2"
       ],
       "orderer": "cos",
       "manager": "editor",
-      "builder": null,
+      "builder": "writer-2",
       "checker": null,
       "budget": 200000,
       "spent": 0,
@@ -1091,7 +2278,8 @@
        "mustInclude": [
         "# Round 1:",
         "# Round 3:",
-        "## Changes"
+        "## Changes",
+        "# Round 2:"
        ],
        "banned": [
         "stupid",
@@ -1099,12 +2287,47 @@
         "kill",
         "dead",
         "blood",
-        "hate"
+        "hate",
+        "killer",
+        "die",
+        "death",
+        "deadly",
+        "attack",
+        "bite",
+        "scary",
+        "gross",
+        "danger"
        ],
        "distinctAnswers": {
         "prefix": "**Answer:**",
         "split": "^# Round \\d+:"
-       }
+       },
+       "lineMaxWords": [
+        {
+         "prefix": "**Q1.**",
+         "maxWords": 20
+        },
+        {
+         "prefix": "**Q2.**",
+         "maxWords": 20
+        },
+        {
+         "prefix": "**Q3.**",
+         "maxWords": 20
+        },
+        {
+         "prefix": "**Q4.**",
+         "maxWords": 20
+        },
+        {
+         "prefix": "**Answer:**",
+         "maxWords": 4
+        },
+        {
+         "prefix": "**Why:**",
+         "maxWords": 25
+        }
+       ]
       }
      }
     ]
@@ -1130,15 +2353,69 @@
  },
  "rooms": {
   "runs": {
-   "__map": []
+   "__map": [
+    [
+     "R-1",
+     {
+      "run": "R-1",
+      "msg": "M-5",
+      "role": "writer-2",
+      "by": "writer-2",
+      "consult": false,
+      "order": "O-3",
+      "stage": "build",
+      "loops": 0,
+      "entered": 29876688.911366668,
+      "state": "running",
+      "session": "S-1"
+     }
+    ],
+    [
+     "R-2",
+     {
+      "run": "R-2",
+      "msg": "M-3",
+      "role": "writer-1",
+      "by": "writer-1",
+      "consult": false,
+      "order": "O-1",
+      "stage": "build",
+      "loops": 0,
+      "entered": 29876688.9157,
+      "state": "running",
+      "session": "S-2"
+     }
+    ]
+   ]
   },
-  "n": 0,
+  "n": 2,
   "memory": {
    "__map": []
   },
   "sessions": {
-   "__map": []
+   "__map": [
+    [
+     "S-1",
+     {
+      "id": "S-1",
+      "role": "writer-2",
+      "items": 1,
+      "open": true,
+      "started": 29876688.91135
+     }
+    ],
+    [
+     "S-2",
+     {
+      "id": "S-2",
+      "role": "writer-1",
+      "items": 1,
+      "open": true,
+      "started": 29876688.9157
+     }
+    ]
+   ]
   },
-  "nS": 0
+  "nS": 2
  }
 }

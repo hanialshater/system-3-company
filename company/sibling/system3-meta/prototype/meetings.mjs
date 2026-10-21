@@ -121,13 +121,15 @@ export function object(co, { id, by, n, text }) {
 export function applyRules(co, rules, source) {
   const out = [];
   for (const r of rules) {
+    const hit = [];
     for (const o of co.engine.orders.values()) {
       if (o.stage === "done" || !String(o.task ?? "").startsWith(r.tasks)) continue;
       o.checks = mergeChecks(o.checks ?? {}, r.checks);
-      out.push(o.id);
+      hit.push(o.id);
       co.log.add({ type: "rule-applied", order: o.id, task: o.task, source, keys: Object.keys(r.checks) });
     }
     (co.data.rules ??= []).push({ ...r, source });
+    out.push(hit); // per rule (live run 4: one list for all rules made the minutes misleading)
   }
   return out;
 }
@@ -149,7 +151,7 @@ export function decide(co, { id, by, n, decision, answers = {}, actions = [], ru
   }
   const made = actions.map((x) => createItem(co, { by, kind: "action", title: x.title, assignee: x.owner, due: x.due, goal: x.goal ?? a.goal ?? null, body: `From ${m.id} item ${n}: ${a.title}` }));
   const tightened = rules.length ? applyRules(co, rules, `${m.id} item ${n}`) : [];
-  a.decision = { text: decision, t: now(co), actions: made.map((x) => x.id), rules, tightened };
+  a.decision = { text: decision, t: now(co), actions: made.map((x) => x.id), rules: rules.map((r, i) => ({ ...r, tightened: tightened[i] })) };
   co.log.add({ type: "meeting-decide", meeting: id, item: n, by, objections: a.objections.length, actions: made.length });
   return a;
 }
@@ -186,7 +188,7 @@ function minutes(co, m, absent) {
       for (const [who, p] of Object.entries(r.positions)) L.push(`- ${who}: ${p.text}`);
     }
     for (const o of a.objections) L.push(`- objection ${o.k} (${o.by}): ${o.text} → ${o.answer?.how}: ${o.answer?.text}`);
-    if (a.decision) L.push(`**Decision:** ${a.decision.text}${a.decision.actions.length ? ` · actions: ${a.decision.actions.join(", ")}` : ""}`, ...(a.decision.rules ?? []).map((r) => `- rule for ${r.tasks}*: ${JSON.stringify(r.checks)} (checked by code; tightened ${a.decision.tightened.join(", ") || "no open order yet"})`));
+    if (a.decision) L.push(`**Decision:** ${a.decision.text}${a.decision.actions.length ? ` · actions: ${a.decision.actions.join(", ")}` : ""}`, ...(a.decision.rules ?? []).map((r) => `- rule for ${r.tasks}*: ${JSON.stringify(r.checks)} (checked by code; tightened ${(r.tightened ?? []).join(", ") || "no open order yet"})`));
     if (a.deferred) L.push(`**Deferred:** ${a.deferred.reason}`);
     L.push("");
   }
