@@ -66,7 +66,7 @@ test("wave 2: a value of exactly 10 is returned as 10", () => {
   assert.equal(s.display("A2"), "10");
 });
 
-// Wave 3. The exact code "#CYCLE!" comes from slot B's ERR (ISS-13); until B has it,
+// Wave 3. The exact code "#CIRC!" comes from slot B's ERR (ISS-13); until B has it,
 // these assert only that cycle cells are errors and that breaking the cycle recovers.
 const isErrCode = (v) => typeof v === "string" && v.startsWith("#");
 

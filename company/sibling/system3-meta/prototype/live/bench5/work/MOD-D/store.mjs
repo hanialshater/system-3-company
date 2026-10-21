@@ -39,13 +39,13 @@ export function createStore({ evaluate } = {}) {
   }
   // Wave 3: the cycle error is B's; D imports nothing, so it is obtained through the
   // injected evaluate from an error node (C maps it with errorFromCode).
-  const CYCLE_NODE = Object.freeze({ type: "error", code: "#CYCLE!" });
+  const CYCLE_NODE = Object.freeze({ type: "error", code: "#CIRC!" });
   const cycleValue = () => evaluate(CYCLE_NODE, ctx);
 
   // Recalculate `cell` and every transitive dependent. Strongly connected components
   // (Tarjan) of that subgraph come out refs-first, i.e. in evaluation order. A cell in a
   // non-trivial component (or reading itself) is on a cycle; a cell reading a cell on or
-  // behind a cycle is also #CYCLE!. Everything else is evaluated normally, so breaking a
+  // behind a cycle is also #CIRC!. Everything else is evaluated normally, so breaking a
   // cycle restores normal values.
   function recalc(cell) {
     const affected = new Set([cell]);

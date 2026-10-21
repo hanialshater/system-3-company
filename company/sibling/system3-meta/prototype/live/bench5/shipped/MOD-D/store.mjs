@@ -37,24 +37,56 @@ export function createStore({ evaluate } = {}) {
       dependents.get(r).add(cell);
     }
   }
-  function compute(cell) {
-    const c = cells.get(cell);
-    if (c && c.ast) c.value = evaluate(c.ast, ctx);
-  }
-  // Recalculate every transitive dependent of `cell` in topological order.
-  // (Cycle detection arrives with wave 3; until then a visited set keeps this finite.)
-  function recalcDependents(cell) {
-    const order = [];
-    const seen = new Set([cell]);
-    (function visit(c) {
-      for (const d of dependents.get(c) || []) {
-        if (seen.has(d)) continue;
-        seen.add(d);
-        visit(d);
-        order.push(d);
+  // Wave 3: the cycle error is B's; D imports nothing, so it is obtained through the
+  // injected evaluate from an error node (C maps it with errorFromCode).
+  const CYCLE_NODE = Object.freeze({ type: "error", code: "#CIRC!" });
+  const cycleValue = () => evaluate(CYCLE_NODE, ctx);
+
+  // Recalculate `cell` and every transitive dependent. Strongly connected components
+  // (Tarjan) of that subgraph come out refs-first, i.e. in evaluation order. A cell in a
+  // non-trivial component (or reading itself) is on a cycle; a cell reading a cell on or
+  // behind a cycle is also #CIRC!. Everything else is evaluated normally, so breaking a
+  // cycle restores normal values.
+  function recalc(cell) {
+    const affected = new Set([cell]);
+    const queue = [cell];
+    while (queue.length) {
+      for (const d of dependents.get(queue.pop()) || []) {
+        if (!affected.has(d)) { affected.add(d); queue.push(d); }
       }
-    })(cell);
-    order.reverse().forEach(compute);
+    }
+    for (const c of affected) if (!cells.has(c)) affected.delete(c);
+
+    const index = new Map(), low = new Map(), onStack = new Set(), stack = [];
+    let next = 0;
+    const sccs = [];
+    function strong(v) {
+      index.set(v, next); low.set(v, next); next++;
+      stack.push(v); onStack.add(v);
+      for (const w of cells.get(v).refs) {
+        if (!affected.has(w)) continue;
+        if (!index.has(w)) { strong(w); low.set(v, Math.min(low.get(v), low.get(w))); }
+        else if (onStack.has(w)) low.set(v, Math.min(low.get(v), index.get(w)));
+      }
+      if (low.get(v) === index.get(v)) {
+        const comp = [];
+        let w;
+        do { w = stack.pop(); onStack.delete(w); comp.push(w); } while (w !== v);
+        sccs.push(comp);
+      }
+    }
+    for (const c of affected) if (!index.has(c)) strong(c);
+
+    for (const comp of sccs) {
+      const first = cells.get(comp[0]);
+      const looped = comp.length > 1 || first.refs.includes(comp[0]);
+      for (const c of comp) {
+        const entry = cells.get(c);
+        entry.cyc = looped || entry.refs.some((r) => cells.get(r)?.cyc === true);
+        if (!entry.ast) continue;
+        entry.value = entry.cyc ? cycleValue() : evaluate(entry.ast, ctx);
+      }
+    }
   }
 
   return {
@@ -62,13 +94,12 @@ export function createStore({ evaluate } = {}) {
       unlink(cell);
       cells.set(cell, { raw, ast, refs: [...refs], value: ast ? "" : value });
       link(cell, refs);
-      compute(cell);
-      recalcDependents(cell);
+      recalc(cell);
     },
     clear(cell) {
       unlink(cell);
       cells.delete(cell);
-      recalcDependents(cell);
+      recalc(cell);
     },
     get(cell) {
       return cells.has(cell) ? cells.get(cell).value : "";

@@ -108,7 +108,7 @@ test("wave 2: replacing a formula drops its old edges", () => {
 // wave 3 helpers
 const f = (...cells) => ({ raw: "=" + cells.join("+"), ast: { type: "add", cells }, refs: cells });
 const v = (n) => ({ raw: String(n), ast: null, refs: [], value: n });
-const CYC = { error: "#CYCLE!" };
+const CYC = { error: "#CIRC!" };
 
 test("wave 3: self reference and a bare range over itself are cycles", () => {
   const s = createStore({ evaluate });
