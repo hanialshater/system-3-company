@@ -1812,6 +1812,68 @@
     "mode": "work",
     "session": "S-2",
     "item": 1
+   },
+   {
+    "seq": 99,
+    "t": 29876655.137316667,
+    "type": "advance",
+    "order": "O-1",
+    "stage": "check",
+    "by": "reader",
+    "verdict": "revise"
+   },
+   {
+    "seq": 100,
+    "t": 29876655.137316667,
+    "type": "reopen",
+    "order": "O-1",
+    "from": "check",
+    "loops": 1,
+    "priority": "next"
+   },
+   {
+    "seq": 101,
+    "t": 29876655.137316667,
+    "type": "send",
+    "msg": "M-6",
+    "from": "editor",
+    "to": "writer-1",
+    "kind": "work",
+    "key": "O-1:build:1",
+    "ref": "O-1",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 102,
+    "t": 29876655.137316667,
+    "type": "done",
+    "msg": "M-5",
+    "run": "R-2"
+   },
+   {
+    "seq": 103,
+    "t": 29876655.137316667,
+    "type": "send",
+    "msg": "M-7",
+    "from": "pool:checker",
+    "to": "editor",
+    "kind": "report",
+    "key": null,
+    "ref": "O-1",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 104,
+    "t": 29876655.137316667,
+    "type": "leave",
+    "run": "R-2",
+    "role": "reader",
+    "order": "O-1",
+    "stage": "check",
+    "verdict": "revise",
+    "minutes": 0.595216665416956
    }
   ]
  },
@@ -1923,11 +1985,53 @@
       },
       "priority": "next",
       "ts": 29876654.3344,
-      "state": "open",
+      "state": "done",
       "lease": {
        "run": "R-2",
        "until": 29876684.5421
       },
+      "acked": false
+     }
+    ],
+    [
+     "M-6",
+     {
+      "id": "M-6",
+      "from": "editor",
+      "to": "writer-1",
+      "kind": "work",
+      "key": "O-1:build:1",
+      "due": null,
+      "ref": "O-1",
+      "body": {
+       "stage": "build",
+       "loops": 1
+      },
+      "priority": "next",
+      "ts": 29876655.137316667,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-7",
+     {
+      "id": "M-7",
+      "from": "pool:checker",
+      "to": "editor",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-1",
+      "body": {
+       "stage": "check",
+       "verdict": "revise"
+      },
+      "priority": "next",
+      "ts": 29876655.137316667,
+      "state": "open",
+      "lease": null,
       "acked": false
      }
     ]
@@ -1950,10 +2054,14 @@
     [
      "O-1:check:0",
      "M-5"
+    ],
+    [
+     "O-1:build:1",
+     "M-6"
     ]
    ]
   },
-  "n": 5
+  "n": 7
  },
  "org": {
   "roles": {
@@ -2198,13 +2306,13 @@
       "orderer": "cos",
       "manager": "editor",
       "builder": "writer-1",
-      "checker": null,
+      "checker": "reader",
       "budget": 200000,
       "spent": 0,
       "accept": "live/bench2-meta/work/STYLE/page.md: the style sheet for 'Solar System Quiz Pack' (ages 8-10), following the kickoff decisions (MTG-1 minutes in the lane:e channel). Sections: '## Format' (how a question, its answer and its one-sentence why look: '**Qn.**', '**Answer:**', '**Why:**'), '## Rounds' with exactly five lines '- Round 1: <topic>' to '- Round 5: <topic>', topics that do not overlap, each with the facts it owns, and a difficulty rule. No words like stupid, dumb, kill, dead, blood, hate.",
       "words": null,
-      "stage": "check",
-      "loops": 0,
+      "stage": "build",
+      "loops": 1,
       "created": 29876647.767983332,
       "history": [
        {
@@ -2218,6 +2326,12 @@
         "by": "code",
         "verdict": "pass",
         "t": 29876654.3344
+       },
+       {
+        "stage": "check",
+        "by": "reader",
+        "verdict": "revise",
+        "t": 29876655.137316667
        }
       ],
       "priority": "next",
@@ -2243,7 +2357,8 @@
         "blood",
         "hate"
        ]
-      }
+      },
+      "findings": "Class: the number rule contradicts the sheet own reserved answers and owned facts (a round writer cannot obey both). Instances: (1) ## Difficulty says \"No question needs a precise number. Any number is rounded and says about\", but the Round 4 line and the reserved-answers table make \"1969\" (first Moon landing) an answer: an exact year that cannot be \"about\" → required: state that dates and counts (1969, since 2006, eight planets) are exact and exempt, and that the \"about\" rule applies to measurements such as distances, times and sizes. (2) The Round 1 reserved answer \"eight (planets)\" is an exact count, not rounded → required: covered by the same exemption, written into ## Difficulty. (3) Round 5 owns \"Pluto is a dwarf planet (since 2006)\", an exact year → required: covered by the same exemption. Everything else passes: Format, five Round lines, non-overlapping topics with owned facts, difficulty ladder, no banned words, and it matches the MTG-1 decisions."
      }
     ],
     [
@@ -2634,7 +2749,7 @@
       "stage": "check",
       "loops": 0,
       "entered": 29876654.5421,
-      "state": "running",
+      "state": "left",
       "session": "S-2"
      }
     ]
@@ -2650,6 +2765,17 @@
        "t": 29876653.80295,
        "did": "build on O-1: pass (loop 0)",
        "learned": "The banned-word check scans the style sheet itself, so a banned-words list must be spelled letter by letter to pass.",
+       "mistake": null
+      }
+     ]
+    ],
+    [
+     "reader",
+     [
+      {
+       "t": 29876655.137316667,
+       "did": "check on O-1: revise (loop 0)",
+       "learned": "Check a style sheet rules against its own reserved lists and owned facts; a blanket rule like \"every number says about\" can contradict the dates and counts it reserves.",
        "mistake": null
       }
      ]
