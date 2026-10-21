@@ -57,7 +57,7 @@ Each milestone gets a committed prediction before it starts, and is judged on it
 | M5 | Governance and budgets: lane budgets, external-action approvals, a human inbox, an HQ view | Over-budget and boundary-crossing actions refused or escalated in tests; the founder runs a week from the queue alone | 1-2 weeks |
 | M6 | Another operator, another use case (roadmap phase 12) | Someone other than the founder generates and runs a company from a spec, and it delivers outcomes they accept; founder interventions counted | open |
 
-**Recommended next:** M2. The generator is what turns the tools for one company into a meta company, and it can start from the toy spec already running.
+**Recommended next (revised 2026-10-21, founder: "not so fast"):** finish the tools first, in the order in [TOOLS.md](TOOLS.md): channels and broadcast, tracker, group meetings, rituals, newsletter, approvals and org changes in the CLI, document registry. M1-M6 follow.
 
 ## Founder decisions needed
 
