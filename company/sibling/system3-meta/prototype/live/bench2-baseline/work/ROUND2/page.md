@@ -10,8 +10,8 @@
 
 **Q3.** Which planet is the hottest of all the planets?
 **Answer:** Venus
-**Why:** Venus has thick clouds that trap heat like a warm blanket, so it is even hotter than Mercury.
+**Why:** Venus has a very thick blanket of air that traps the Sun's heat, so it is even hotter than Mercury.
 
-**Q4.** What is the name of the giant volcano on Mars, the tallest in the solar system?
+**Q4.** What is the name of the giant volcano on Mars, the biggest in the solar system?
 **Answer:** Olympus Mons
-**Why:** Olympus Mons is more than twice as tall as Mount Everest, the tallest mountain on Earth.
+**Why:** Olympus Mons is more than twice as tall as Mount Everest, the highest mountain on Earth.

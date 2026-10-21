@@ -165,4 +165,7 @@ test("judgment: meeting positions, then the chair, then delegation are planned f
   assert.match(b, /writer-1, writer-2/);
   co.log.add({ type: "launch", role: "editor", msgs: [], tasks: p[0].tasks });
   assert.deepEqual(plan(co), [], "a launched judgment session is reserved");
+  co.log.add({ type: "launch", role: "writer-1", msgs: [], tasks: [{ kind: "positions", ref: m.id }] });
+  co.engine.delegate(o.id, { by: "editor", to: "writer-1", budget: 100 });
+  assert.deepEqual(plan(co).map((x) => x.role), ["writer-1"], "a positions launch does not hold back the writer's build");
 });

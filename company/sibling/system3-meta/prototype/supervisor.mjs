@@ -83,7 +83,9 @@ export function plan(co, { batchLater: batchDefault = 3, cap: capDefault = 4 } =
   // the first watch fired 3 s after the launch and asked for the same session again). Past the grace period with no
   // enter, the launch failed and the role is planned again.
   const now = co.engine.clock.now();
-  for (const l of log.events.filter((e) => e.type === "launch" && now - e.t < LAUNCH_GRACE_MIN)) {
+  // a launch for work outside rooms (meeting positions, chairing, delegating) does not reserve room work (benchmark 2:
+  // writer-1's kickoff launch kept its STYLE build unplanned for the grace period)
+  for (const l of log.events.filter((e) => e.type === "launch" && now - e.t < LAUNCH_GRACE_MIN && !(e.tasks?.length && !e.msgs?.length))) {
     if (!log.events.some((e) => e.type === "enter" && e.role === l.role && e.t >= l.t)) running.add(l.role);
   }
   const out = [];
@@ -150,6 +152,10 @@ export function briefFor(co, item, { context = null } = {}) {
   const o = first ? co.engine.orders.get(first.ref) : null;
   const L = [`You are \`${item.role}\` (${r.level}) in a company run by a CLI.`, "", `Run every command from: ${HERE}`, pre ? `Prefix every command with: ${pre}` : "", ""];
   if (context) L.push(context.trim(), "");
+  // open tracker actions assigned to this role travel with the brief (benchmark 2: the kickoff gave writer-1 actions
+  // its STYLE brief did not mention)
+  const acts = [...(co.data?.tracker?.items?.values() ?? [])].filter((i) => i.kind === "action" && i.assignee === item.role && !["done", "cancelled"].includes(i.state));
+  if (acts.length) L.push(`Your open actions (do them in this session when they touch this work; mark each done with \`node meta.mjs item update --id=<ISS> --by=${item.role} --state=done\`):`, ...acts.map((i) => `- ${i.id}: ${i.title}${i.due ? ` (due ${i.due})` : ""}${i.body ? ` · ${i.body}` : ""}`), "");
   for (const t of item.tasks ?? []) {
     if (t.kind === "positions") L.push(`Meeting ${t.ref}: read it with \`node meta.mjs meeting show --id=${t.ref}\` (agenda, and the pack if any). For each item ${t.items.join(", ")}, write your own position: \`node meta.mjs meeting position --id=${t.ref} --by=${item.role} --item=<n> --text='…'\`. Positions stay private until the chair reveals them; argue from the order, the goals and what you know, and be specific.`);
     if (t.kind === "chair") L.push(`You chair meeting ${t.ref}: \`node meta.mjs meeting show --id=${t.ref}\`. For each item ${t.items.join(", ")}: write your own position (\`meeting position\`), then \`meeting reveal --id=${t.ref} --by=${item.role} --item=<n>\` (add \`--force\` if someone is missing; they are named in the minutes), read them (\`meeting read\`), and \`meeting decide --id=${t.ref} --by=${item.role} --item=<n> --decision='…'\` (answer every objection with \`--answers\`; follow-ups as \`--actions='[{"title":"…","owner":"<role>","due":"YYYY-MM-DD"}]'\`). Then \`meeting close --id=${t.ref} --by=${item.role}\`. The decision text is what builders will follow: make it concrete.`);

@@ -62,7 +62,7 @@ const argv = process.argv.slice(2);
 const opt = {}, pos = [];
 for (const a of argv) { if (a.startsWith("--")) { const [k, ...v] = a.slice(2).split("="); opt[k] = v.length ? v.join("=") : true; } else pos.push(a); }
 const out = (x) => console.log(JSON.stringify(x, rep, 2));
-const need = (...ks) => { for (const k of ks) if (opt[k] == null || opt[k] === true) throw new Error(`missing --${k}`); };
+const need = (...ks) => { const miss = ks.filter((k) => opt[k] == null || opt[k] === true); if (miss.length) throw new Error(`missing ${miss.map((k) => `--${k}`).join(" ")}`); };
 
 
 function pack(co, run, ctx, session, item) {

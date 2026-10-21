@@ -10,7 +10,7 @@
 
 **Q3.** About how many days does the Moon take to go once around Earth?
 **Answer:** 27
-**Why:** The Moon takes about 27 days to travel all the way around Earth one time.
+**Why:** That is one trip around Earth, but going from one full moon to the next takes about 29.5 days, so if you guessed about a month, you were close.
 
 **Q4.** What name do we give the big, dark, flat patches we can see on the Moon?
 **Answer:** Maria
