@@ -1,0 +1,73 @@
+{
+  "date": "2026-10-21",
+  "sourceCommit": "b74e5f1ba181b05934e33479859ef04dcec6931f",
+  "kind": "Implementation verification, not an independent editorial review",
+  "change": {
+    "svgAssets": 7,
+    "illustratedStories": 18,
+    "historicalGeometryChanges": 0,
+    "publicationPromotions": 0
+  },
+  "tests": {
+    "build": "pass",
+    "typescript": "pass",
+    "historyRegression": {
+      "passed": 128,
+      "failed": 0
+    },
+    "fullPhoneDesktopFlows": {
+      "passed": 48,
+      "failed": 0,
+      "includes": [
+        "prediction lock hides art",
+        "checkpoint artwork changes",
+        "reveal art avoids map text",
+        "map, caption and reveal fit",
+        "gating/reset/comparison still work"
+      ]
+    },
+    "protectedContract": {
+      "startTime": "2026-10-21T17:12:01.906Z",
+      "duration": 70334.29,
+      "expected": 48,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "harness": {
+      "qaStamp": {
+        "files": [
+          "tests/qa",
+          "playwright.config.ts"
+        ],
+        "head": "5c532bb7f39ae1c0234f94d546dd0ffc6f2f8a69",
+        "commit": "5c532bb7f39ae1c0234f94d546dd0ffc6f2f8a69",
+        "blobs": {
+          "playwright.config.ts": "ce609a465f9d9c56cfe4e77d5a20fa418e7be9fa",
+          "tests/qa/contract.spec.ts": "6fe304a61ef88ebbeefed12d670fcccdf3c65319",
+          "tests/qa/feed.spec.ts": "9b7393c753f5a14b0ce780d774c3f110bec2561c",
+          "tests/qa/lessons.ts": "8a5597a6e48aef13f97475a3f74d23a70234f072"
+        },
+        "modified": [],
+        "clean": true
+      },
+      "actualWorkers": 4
+    },
+    "mainFeed": {
+      "passed": 57,
+      "failed": 0
+    },
+    "companyCheck": {
+      "baselineErrors": 811,
+      "currentErrors": 811,
+      "newErrors": 0,
+      "warnings": 4
+    },
+    "fullVerify": "Blocked by the same two publication-readiness failures after 19 deploy tests pass."
+  },
+  "artifacts": {
+    "flowResultsSha256": "190e5b7eab52a043a26aa5de29cc9e366189e66bd56bfa283e927d1ad7c93ec4",
+    "contractReportSha256": "3f67fead5abd6986cd7ef20cf7bd906a43e0cec1fc1f77f348da22fee6b0a5a0"
+  },
+  "remaining": "W-2024 independent historical review remains pending; art convention claims unverified. Actual deployment and live checks are recorded separately."
+}

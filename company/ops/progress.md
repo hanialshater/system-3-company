@@ -1,3 +1,11 @@
+## 2026-10-21 · history map illustrations · seven original SVGs (W-2025)
+
+Added ships, a Normandy landing craft, horse, camp, fire, crossed swords and castle illustrations. Eighteen stories select artwork by checkpoint; atlas previews use the same vector source. Placement avoids labels and geographic points. Camps are unlocated illustrative vignettes. Standalone reusable SVGs and their generator are included. No historical dates, routes or coordinates changed; changed lessons remain drafts with unverified art-convention claims and bumped versions.
+
+Verification: build and TypeScript pass; 128 history regression tests, 48 full phone/desktop flows, 48 protected contract checks and 57 feed tests pass. Visual inspection covered all seven assets and campaign/ship/castle/fire phone screens. Global check remains exactly 811 errors and four warnings, zero new errors. Full verify stops on two existing publication-readiness failures. The prior history figure test assumed every map lived directly in Demo.tsx; it now follows the story engine and verifies real coastlines/markers. Protected files untouched.
+
+Next: deploy this refinement to the existing site under the ongoing founder history fix/deploy request, then record actual live checks. Independent historical reviews remain with W-2024; these tests are implementation evidence, not editorial approval. Preflight: company/ops/deployments/2026-10-21-r21-verification.json.
+
 ## 2026-10-21 · history map stories · 24 drafts and a 200-topic curriculum (W-2024)
 
 Implemented `/history` with 24 actual story lessons in eight families, including Normandy, Alexander, Golden Horde and the 1492 Atlantic voyage. Learners predict, visit four distinct checkpoints, scrub the timeline, compare earlier evidence and reveal an explanation beside the final map. Separate curriculum lists 176 further research candidates, not available lessons. Source addresses, schematic geometry limits, provenance and the narrative charter change are in the founder decision and `content/history-stories/README.md`.
