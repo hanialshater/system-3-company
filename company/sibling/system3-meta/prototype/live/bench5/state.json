@@ -519,6 +519,14 @@
             "reviewer": {
              "text": "Split by pipeline stage so each wave lands mostly in one slot and every slot is unit-testable alone. A = values: error constants, coercion (toNumber/toText/toBool, \"\" as 0, numeric text, case-insensitive compare), parseLiteral for non-= input (\" -2.5 \", .5, \"12abc\" stays text), round9 and display formatting. Pure, no imports. B = parser: tokenizer + precedence parser (cmp < & < +- < */ < ^ right-assoc; unary binds to the atom so -2^2=4; 1.2.3 and unbalanced parens are parse errors). Grammar must ALREADY accept cell refs (A1, case-insensitive), ranges (A1:B3) and calls NAME(args,...) in wave 1, so waves 2/3 do not reopen it; wave 1 just evaluates calls to #NAME?. C = evaluator: walks AST with a resolver callback for refs/ranges, applies operator semantics via A, left error wins, non-finite -> #VALUE!, function registry (wave-1 registry empty -> #NAME?; wave 2 functions are added here as registry entries). D = cell addressing + dependency graph: parse/normalise cell names (A1..Z99, no leading zero, throws otherwise), dependency extraction from AST, recalc order (topological), cycle detection (wave 3). SHEET = store of raw text/AST/value per cell, wires A-D, implements set/get/display. Owners: dev-1 owns B and C (AST shape is shared between them, one head avoids drift); dev-2 owns A and D; lead owns SHEET and ARCH.md. Reviewer checks each slot against SPEC5 examples plus edge cases before check stage, and flags cross-slot failures to the owning slot.",
              "t": 29876920.306033332
+            },
+            "dev-2": {
+             "text": "Split by pipeline stage so each later wave lands mostly in one slot. A = PARSER (MOD-A/parser.mjs): cell-name validation/normalising (A1..Z99, case-insensitive, no leading zero), tokenizer and precedence-climbing parser for wave 1 (numbers incl. 7. and .5, 1.2.3 bad; strings; TRUE/FALSE; comparison < & < +- < */ < ^ right-assoc; unary binds the atom so -2^2=4); already produces call nodes (so FOO(1) parses, C makes it #NAME?) and in wave 2 ref/range nodes plus refsOf(ast). B = VALUES (MOD-B/values.mjs): value representation, error values, literal parsing for set() (\" -2.5 \" -> number, \"12abc\" stays text), coercions (\"\" ->0, bools 1/0, numeric text), all operator semantics (& text forms, case-insensitive string compare, non-finite -> #VALUE!, left error wins), round-to-9 and display(). C = EVALUATOR + FUNCTIONS (MOD-C/evaluate.mjs): walks AST with a context that resolves cells, calls B for ops; owns the function registry (empty in wave 1 -> #NAME?, wave 2 functions are added here). D = STORE/GRAPH/RECALC (MOD-D/graph.mjs): dependency edges, dependents in topological order, cycle detection (wave 3); wave 1 it is a trivial cell store but it exists from day one so wave 2/3 do not reshape SHEET. SHEET wires them: set -> A.parse, D.setDeps, recalc order via C.evaluate. Owners: dev-1 owns A and D (syntax + graph, both structural), dev-2 owns B and C (semantics: values, ops, functions) — the two pairs meet only at the AST shape and the value shape, which ARCH.md fixes. Lead owns SHEET integration.",
+             "t": 29876920.549466666
+            },
+            "dev-1": {
+             "text": "Split by pipeline stage so each wave lands mostly in one slot. A = formula syntax: tokenizer + precedence parser (comparison < & < +- < */ < ^ right-assoc, unary binds to next atom so -2^2=4), number grammar (1.2.3 bad), strings, TRUE/FALSE any case; it already parses NAME(args) calls (wave 1 -> #NAME? at eval) and is where wave-2 refs/ranges (A1, A1:B3) go, plus a refs(ast) helper listing referenced cells. B = values and types: error values, coercion (\"\"->0, bool->1/0, numeric text->number, else #VALUE!), every operator semantics incl. #DIV/0!, non-finite -> #VALUE!, left-error-wins, case-insensitive string compare, & text forms, 9-decimal rounding, display formatting, and classifying plain input text (\" -2.5 \" -> number, \"12abc\" stays text). C = evaluator: walks AST with a context {getCell, functions}; owns the function registry (empty in wave 1 => any call #NAME?; wave-2 functions added here, using B for coercion). D = cell store and recalculation: cell-name validation/normalisation (A1..Z99, case-insensitive, throws otherwise), stored text/AST/value per cell, dependency graph from refs(ast), recalculation order in wave 3, cycle detection. SHEET = createSheet wiring only: set -> D.validate, B.classify or A.parse, store, recalc; get -> value; display -> B.format. Ownership: dev-1 takes A and C (parser and evaluator share the AST contract, one owner avoids drift); dev-2 takes B and D. SHEET built by whoever lead assigns, I suggest lead or dev-2 since D does most of the wiring.",
+             "t": 29876920.5982
             }
            },
            "revealed": false
@@ -536,7 +544,20 @@
          "rounds": [
           {
            "n": 1,
-           "positions": {},
+           "positions": {
+            "reviewer": {
+             "text": "Files: work/MOD-A/values.mjs, MOD-B/parser.mjs, MOD-C/eval.mjs, MOD-D/cells.mjs, SHEET/sheet.mjs; imports are relative siblings, e.g. from SHEET: import {...} from \"../MOD-A/values.mjs\" (shipped copies keep the same layout so paths still resolve). Values: JS number, string, boolean; errors are frozen singleton objects {error:\"#DIV/0!\"} exported from A as ERR.DIV0, ERR.VALUE, ERR.NAME (later ERR.REF, ERR.CYCLE if wave 3 needs it) plus isError(v); never throw for value errors. A exports: ERR, isError(v), parseLiteral(text)->number|string, toNumber(v)->number|error, toText(v)->string|error, compare(a,b)->-1|0|1|error, round9(n), display(v)->string. B exports: parse(src /*text after =*/)->{ok:true,ast}|{ok:false} (never throws). AST nodes: {t:\"num\",v}, {t:\"str\",v}, {t:\"bool\",v}, {t:\"ref\",cell:\"A1\" uppercased}, {t:\"range\",from,to}, {t:\"call\",name upper,args:[]}, {t:\"un\",op:\"-\"|\"+\",e}, {t:\"bin\",op,l,r}. C exports: evaluate(ast, resolve /*(cell)->value*/)->value, plus registerFunction(name, fn) for wave 2. D exports: normCell(name)->\"A1\" or throws Error, refsOf(ast)->Set of cells (ranges expanded), and a Graph class {setDeps(cell,deps), order(changed)->cells to recompute, cycles()} for waves 2-3. SHEET: createSheet()->{set,get,display}; get returns value rounded via round9 for numbers. Lead writes ARCH.md from the meeting outcome; reviewer verifies ARCH.md covers every SPEC5 behaviour with exactly one owning slot before builds start.",
+             "t": 29876920.4285
+            },
+            "dev-2": {
+             "text": "Values: JS number | string | boolean | \"\" (empty) | error object. Errors are frozen singletons {error:\"#DIV/0!\"} exported by B as ERR.DIV0, ERR.VALUE, ERR.NAME (later ERR.REF, ERR.CYCLE), test with isError(v); never thrown inside the engine — only bad cell names throw (Error from set/get). B values.mjs exports: ERR, isError(v), parseInput(text) -> {kind:\"empty\"}|{kind:\"value\",value}|{kind:\"formula\",src} (src without \"=\"), toNumber(v) -> number|error, toText(v) -> string|error, unary(op,v), binary(op,l,r) for op in + - * / ^ & = <> < > <= >=, round9(n), display(v) -> string. A parser.mjs exports: normalizeCell(name) -> \"A1\" or null; parse(src) -> AST, never throws: syntax errors return {type:\"error\",error:ERR.VALUE}. AST: {type:\"num\",value} {type:\"str\",value} {type:\"bool\",value} {type:\"unary\",op,arg} {type:\"binary\",op,left,right} {type:\"call\",name(upper),args:[AST]}; reserved for wave 2: {type:\"ref\",cell} {type:\"range\",from,to}; refsOf(ast) -> [cell] (returns [] in wave 1). C evaluate.mjs exports evaluate(ast, ctx) -> value, ctx = {get(cell) -> value}; result numbers are rounded by round9 at the cell boundary in SHEET, not mid-expression. D graph.mjs exports createGraph() -> {setDeps(cell,deps), dependents(cell) -> cells in recalc order, cycles() -> Set}. Imports by relative path between work dirs: SHEET imports \"../MOD-A/parser.mjs\", \"../MOD-B/values.mjs\", \"../MOD-C/evaluate.mjs\", \"../MOD-D/graph.mjs\"; C imports \"../MOD-B/values.mjs\"; A imports \"../MOD-B/values.mjs\" only for ERR. shipped/ must keep the same MOD-x/ layout so the paths still resolve. No module may import SHEET. The lead (chair) writes ARCH.md from the minutes; each owner then adds a short per-module section; reviewer checks ARCH against the code at check stage.",
+             "t": 29876920.55125
+            },
+            "dev-1": {
+             "text": "Files/paths: work/MOD-A/parse.mjs, MOD-B/values.mjs, MOD-C/evaluate.mjs, MOD-D/cells.mjs, SHEET/sheet.mjs; imports always relative siblings like \"../MOD-B/values.mjs\" so the same tree works in shipped/. Values: JS number, string, boolean, \"\" for empty; errors are frozen singleton objects from B: ERR.DIV0, ERR.VALUE, ERR.NAME (later ERR.REF, cycle error) each {error:\"#DIV/0!\"} etc., with isError(v); never thrown, never plain strings (so text \"#DIV/0!\" typed by a user stays text). Open question for lead: what exact form hidden tests expect from get() for an error - if they compare to the string, SHEET.get converts at the boundary only. B exports: ERR, isError(v), classifyInput(text)->number|string, toNumber(v)->number|error, toText(v)->string|error, unary(op,v), binary(op,a,b) (op in = <> < > <= >= & + - * / ^; handles error propagation left-first, rounding none), round9(n), format(v)->string. A exports: parse(src) where src excludes leading \"=\" -> {ok:true,ast} | {ok:false} (never throws); AST nodes {t:\"num\",v} {t:\"str\",v} {t:\"bool\",v} {t:\"un\",op,arg} {t:\"bin\",op,l,r} {t:\"call\",name(uppercased),args[]}, reserved for wave 2 {t:\"ref\",cell:\"A1\"} {t:\"range\",from,to}; refs(ast)->string[] of normalised cells. C exports: evaluate(ast, ctx) -> value, ctx={getCell(name)->value}; FUNCTIONS registry map name->fn(args,ctx) (empty now); unknown name -> ERR.NAME. D exports: normalize(name)->\"A1\" or throws Error; createStore() -> {setCell(name,{text,ast|null,value}), getCell(name), dependentsOf(name), ...} grows with wave 3. Numbers rounded to 9 decimals in get (SHEET applies B.round9 on the final value). ARCH.md: lead writes it from the decided positions (contract owner), both builders review before build starts; interface changes in later waves go through lead and ARCH.md, not ad-hoc.",
+             "t": 29876920.599666666
+            }
+           },
            "revealed": false
           }
          ],
@@ -549,7 +570,9 @@
        "present": {
         "__set": [
          "lead",
-         "reviewer"
+         "reviewer",
+         "dev-2",
+         "dev-1"
         ]
        }
       }
@@ -918,6 +941,141 @@
     "item": 1,
     "round": 1,
     "by": "reviewer"
+   },
+   {
+    "seq": 31,
+    "t": 29876920.4285,
+    "type": "position",
+    "meeting": "MTG-1",
+    "item": 2,
+    "round": 1,
+    "by": "reviewer"
+   },
+   {
+    "seq": 32,
+    "t": 29876920.549466666,
+    "type": "position",
+    "meeting": "MTG-1",
+    "item": 1,
+    "round": 1,
+    "by": "dev-2"
+   },
+   {
+    "seq": 33,
+    "t": 29876920.55125,
+    "type": "position",
+    "meeting": "MTG-1",
+    "item": 2,
+    "round": 1,
+    "by": "dev-2"
+   },
+   {
+    "seq": 34,
+    "t": 29876920.5982,
+    "type": "position",
+    "meeting": "MTG-1",
+    "item": 1,
+    "round": 1,
+    "by": "dev-1"
+   },
+   {
+    "seq": 35,
+    "t": 29876920.599666666,
+    "type": "position",
+    "meeting": "MTG-1",
+    "item": 2,
+    "round": 1,
+    "by": "dev-1"
+   },
+   {
+    "seq": 36,
+    "t": 29876920.601616666,
+    "type": "launch",
+    "role": "lead",
+    "msgs": [],
+    "tasks": [
+     {
+      "kind": "chair",
+      "ref": "MTG-1",
+      "items": [
+       1,
+       2
+      ]
+     },
+     {
+      "kind": "delegate",
+      "ref": "O-1"
+     },
+     {
+      "kind": "delegate",
+      "ref": "O-2"
+     },
+     {
+      "kind": "delegate",
+      "ref": "O-3"
+     },
+     {
+      "kind": "delegate",
+      "ref": "O-4"
+     },
+     {
+      "kind": "delegate",
+      "ref": "O-5"
+     },
+     {
+      "kind": "delegate",
+      "ref": "O-6"
+     }
+    ],
+    "why": "plan: chair: MTG-1; delegate: O-1, O-2, O-3, O-4, O-5, O-6"
+   },
+   {
+    "seq": 37,
+    "t": 29876920.636233333,
+    "type": "usage",
+    "role": "reviewer",
+    "tokens": 35858,
+    "label": "outside a room",
+    "source": "launcher",
+    "launch": "0029-reviewer"
+   },
+   {
+    "seq": 38,
+    "t": 29876920.636233333,
+    "type": "launch-finished",
+    "launch": "0029-reviewer",
+    "role": "reviewer",
+    "ok": true,
+    "tokens": 35858,
+    "cumulative": 103634,
+    "cost": 0.157,
+    "sessions": [],
+    "abandoned": [],
+    "reason": null
+   },
+   {
+    "seq": 39,
+    "t": 29876920.762616668,
+    "type": "usage",
+    "role": "dev-2",
+    "tokens": 36426,
+    "label": "outside a room",
+    "source": "launcher",
+    "launch": "0028-dev-2"
+   },
+   {
+    "seq": 40,
+    "t": 29876920.762616668,
+    "type": "launch-finished",
+    "launch": "0028-dev-2",
+    "role": "dev-2",
+    "ok": true,
+    "tokens": 36426,
+    "cumulative": 104831,
+    "cost": 0.1723,
+    "sessions": [],
+    "abandoned": [],
+    "reason": null
    }
   ]
  },
