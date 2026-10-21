@@ -16,11 +16,19 @@ Code does every step a rule can decide; agents do only what needs judgment; ever
 | `lib.mjs` | The engine: `Mailbox`, `Org`, `Engine` (flows, orders, stages, approvals), `Rooms` (enter, leave, sessions, recovery), `Rituals`, `flowMetrics`. No I/O. |
 | `policy.mjs` | Lane policy: allowlisted knobs, validation, versions, the manager report and cycle |
 | `contractor.mjs` | Contractor engagements outside the flow; templates (`manager-onboarding`) |
-| `state.mjs` | The live org and `task` flow; load/save of the JSON state under an O_EXCL lock; `runTests` |
+| `specs.mjs` | Company specs as data (`toy`, `storybook`): rooms, skills, roles, the flow. `init --spec=<name>` |
+| `state.mjs` | Builds a company from a spec; load/save of the JSON state under an O_EXCL lock; `runTests`, `runTextChecks` (test1 for text work) |
+| `building.mjs` | Floors (founder-approved), rooms (add, rename, retire), bookings |
+| `channels.mjs` | Channels (company, lane, role, topic), posts fanned out to the mailbox, read and ack tracking |
+| `tracker.mjs` | Linear-like items (issue, order, ask, action), projects, cycles, links, comments, board, search; orders mirrored by code |
+| `goals.mjs` | Goals with levels, a contributes-to tree, RAG status, auto-red, divergence, roll-up review |
+| `meetings.mjs` | Group meetings: rounds of private-then-revealed positions, whiteboard, objections, decisions → actions, minutes |
+| `asks.mjs` | Leadership asks routed to the lowest level that can decide |
+| `rituals.mjs` | WBR (code-built pack + meeting + chair's summary), goal review, digests |
 | `meta.mjs` | The CLI agents and people use |
 | `supervisor.mjs` | The code supervisor: `tick`, `watch`, `launched` |
 | `sim.mjs`, `run.mjs`, `toy.mjs` | The simulator, its arms by iteration, and the toy org used by tests and the simulator |
-| `tests/*.test.mjs` | `node --test tests/*.test.mjs` (35 tests on 2026-10-21) |
+| `tests/*.test.mjs` | `node --test tests/*.test.mjs` (46 tests on 2026-10-21) |
 | `live/` | Live-run state (`state*.json`), work (`work/<task>/`), shipped modules (`shipped/<task>/`), engagements (`contracts/<C>/`) |
 
 **Environment:**
@@ -196,3 +204,43 @@ Every accepted command writes events to `log.events` (in the state file). These 
 4. **When it exits with a plan,** start exactly the named sessions, record each with `supervisor.mjs launched`, then restart `watch`.
 5. **When each agent finishes,** record its harness usage: `room session-usage`, or `usage add` for a session outside a room.
 6. **At the end:** `flow metrics`, then score every prediction in the `LIVEn.md`.
+
+## 11. Company tools (built 2026-10-21)
+
+Every command takes `--by=<role>`. Code checks that the role may do it; otherwise it refuses (exit 1, a `refuse` event). Each file's header comment holds its full rules.
+
+**Building** (`building.mjs`)
+```
+building plan · building floor-propose --floor=<n> --name=…   (an approval for the founder: FLOOR-n)
+building room-add --id --floor --kind=lane|meeting|quality|lobby|launch|office [--capacity] [--lane]
+building room-rename --id --to · room-retire --id   (refused while roles are seated, runs are open or it is booked)
+building book --room --minutes [--start] --attendees=a,b --purpose · building cancel --id
+approval queue · approval decide --ids=A-1,A-2 --by=founder --decision=approve|reject --words=… --channel=…
+```
+
+**Channels** (`channels.mjs`): `channel create --id --kind=company|lane|role|topic [--members]` · `channel post --channel --title --body [--ack]` (one mailbox message per member, keyed, so a repeat post is a no-op) · `channel read --post [--ack]` · `channel status --post` (who has read and acked) · `channel inbox`. Only the founder and the chief of staff post to `company`; a lane channel takes its manager and members.
+
+**Tracker** (`tracker.mjs`): `item create --kind=issue|ask|action --title [--assignee --due --project --labels --goal]` · `item update --id --state=backlog|todo|in-progress|in-review|done|cancelled` · `item comment` · `item link --id --to --rel=blocks|parent` · `item show|search` · `project create` · `cycle create` (cycles may not overlap) · `board [--assignee --project --state]`. Orders appear as `order` items, mirrored by the supervisor (`syncOrders`); only the engine moves them.
+
+**Goals** (`goals.mjs`): `goal create --title --level=company|org|lane|team --owner --why --what --success='[{metric,target,current?,source?}]' --due=YYYY-MM-DD [--contributes-to=G-n] [--status=green|yellow|red --reason --path]` · `goal update` (owner only; `--bind='{"<metric>":"shipped:<task prefix>"}'` makes code measure a criterion) · `goal show|board` · `goal review --by`.
+- Owner by level: company → founder; org → chief of staff; lane → its manager; team → a builder or checker.
+- A contributor sits at or below its parent's level and is due no later than its parent.
+- Yellow and red need a reason and a path to green. Past due and not done is red, by code (auto-red).
+- A criterion with a `source` (`shipped:<task prefix>`, `done:<tracker label>`) is measured by code; nobody types over it. Green with an unmeasured criterion is an exception that rolls up.
+- Done needs every success measure met. Green over a red contributor needs a written divergence.
+- `goal review` gives each level its own goals plus only the exceptions from the level below.
+
+**Meetings** (`meetings.mjs`): `meeting open --title --room --invitees --agenda='[{title,item?,goal?}]' [--channel]` · `meeting position --id --n --text` · `meeting read` (before the reveal you see only your own position) · `meeting reveal [--force]` (chair; the missing are named) · `meeting round` · `meeting board --section --text` · `meeting object` · `meeting decide --n --decision --answers='{k:{how,text}}' --actions='[{title,owner,due}]'` (every objection is answered or carried; each action becomes a tracker item) · `meeting defer` · `meeting close` (minutes posted to the channel; the room booking is released) · `meeting show`.
+
+**Leadership asks** (`asks.mjs`): `ask route|raise --kind=deploy|org-change|budget|cross-lane|priority|lane|decision --title --why --due [--amount --lane --to --escalate=<reason>]` · `ask answer` · `ask summary`. Routing:
+- deploy and org change → the founder;
+- budget over 500k → the founder; over 250k → the chief of staff; otherwise the lane manager;
+- cross-lane and priority → the chief of staff;
+- lane → that lane's manager;
+- a decision → the asker's manager.
+
+An ask addressed higher than it needs is rerouted down unless `--escalate` gives a reason. `info` is not an ask.
+
+**Rituals** (`rituals.mjs`): `wbr page0` · `wbr open --by=<cos> [--room --start=<ISO> --invitees --channel]` (code builds the pack: page 0 metrics, hits and misses, roadmap and goals, leadership asks with how many reached the founder; then a four-item meeting) · `wbr close --meeting --summary` (the chair writes only the summary; the document is rendered from the record and posted to `company`) · `goal-review --by` (lane → org → company) · `digest --audience=founder|lane:<l>|company [--channel=<id> to publish]`.
+
+**Text checks as test1** (`state.mjs runTextChecks`): `order new … [--project=PRJ-n --goal=G-n] --checks='{"file":"page.md","minWords","maxWords","mustInclude":[…],"banned":[…],"minReadingEase","titleLine":true}'`. The supervisor runs them in place of `node --test` (Flesch reading ease).

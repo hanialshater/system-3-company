@@ -106,7 +106,7 @@ export function syncOrders(co) {
   const byOrder = new Map([...s.items.values()].filter((i) => i.kind === "order").map((i) => [i.order, i]));
   for (const o of co.engine.orders.values()) {
     let it = byOrder.get(o.id);
-    if (!it) it = create(co, { by: "engine", kind: "order", title: o.title || o.id, order: o.id, assignee: o.builder && co.org.role(o.builder)?.active ? o.builder : null, state: "todo", labels: o.loops ? ["revised"] : [] });
+    if (!it) it = create(co, { by: "engine", kind: "order", title: o.title || o.id, order: o.id, project: o.project ?? null, goal: o.goal ?? null, assignee: o.builder && co.org.role(o.builder)?.active ? o.builder : null, state: "todo", labels: o.loops ? ["revised"] : [] });
     const st = o.blocked ? "backlog" : STAGE_STATE[o.stage] ?? "in-progress";
     if (it.state !== st) update(co, { by: "engine", id: it.id, state: st });
     if (o.builder && it.assignee !== o.builder && co.org.role(o.builder)?.active) update(co, { by: "engine", id: it.id, assignee: o.builder });

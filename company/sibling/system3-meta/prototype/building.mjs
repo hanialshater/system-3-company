@@ -119,6 +119,17 @@ export function cancelBooking(co, { by, id }) {
   return bk;
 }
 
+/** A meeting that ends early frees its room (benchmark 1: a closed kickoff kept the story room booked for the WBR). */
+export function releaseBooking(co, id) {
+  const bk = building(co).bookings.get(id);
+  if (!bk || bk.state !== "booked") return null;
+  const t = co.engine.clock.now();
+  if (bk.end > t) bk.end = Math.max(bk.start, t);
+  bk.state = "used";
+  co.log.add({ type: "room-release", booking: id, room: bk.room });
+  return bk;
+}
+
 /** The building as a plan: floors, their rooms, who sits where, what is booked. */
 export function plan(co) {
   const b = building(co);

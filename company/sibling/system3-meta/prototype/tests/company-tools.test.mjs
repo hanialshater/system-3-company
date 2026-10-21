@@ -203,3 +203,41 @@ test("WBR: code builds page 0, hits and misses, roadmap, goals and asks; the cha
   assert.equal(rev.steps.at(-1).level, "company");
   assert.match(RIT.digest(co, { audience: "founder" }), /## Company and org goals/);
 });
+
+test("goals: a criterion with a source is measured by code from the record and cannot be typed over", () => {
+  const co = build();
+  assert.throws(() => G.createGoal(co, { by: "founder", title: "x", level: "company", owner: "founder", why: "w", what: "w", success: [{ metric: "pages", target: 2, source: "vibes:x" }], due: iso(co, 30) }), /a source is/);
+  const g = G.createGoal(co, { by: "founder", title: "Book", level: "company", owner: "founder", why: "w", what: "w", success: [{ metric: "pages", target: 2, source: "shipped:PAGE" }, { metric: "bible", target: 1 }], due: iso(co, 30) });
+  const a = co.engine.orderNew({ flow: "item", by: "cos", to: "mgr-w", budget: 100, accept: "x", title: "p1" });
+  const b = co.engine.orderNew({ flow: "item", by: "cos", to: "mgr-w", budget: 100, accept: "x", title: "p2" });
+  a.task = "PAGE1"; b.task = "PAGE2";
+  assert.equal(G.view(co, g).success[0].current, 0);
+  a.stage = "done";
+  assert.equal(G.view(co, g).success[0].current, 1);
+  assert.throws(() => G.updateGoal(co, { by: "founder", id: g.id, current: { pages: 2 } }), /computed by code/);
+  b.stage = "done";
+  assert.throws(() => G.updateGoal(co, { by: "founder", id: g.id, done: true }), /not met: bible/);
+  G.updateGoal(co, { by: "founder", id: g.id, bind: { bible: "shipped:BIBLE" } });
+  assert.throws(() => G.updateGoal(co, { by: "founder", id: g.id, done: true }), /bible 0\/1/);
+});
+
+test("benchmark 1 fixes: a closed meeting frees its room; orders carry their project; green-but-unmeasured is an exception", () => {
+  const co = build();
+  B.proposeFloor(co, { by: "cos", floor: 4, name: "Rooms" });
+  co.engine.decide(co.engine.queue("founder").map((a) => a.id), { by: "founder", decision: "approve", words: "ok", channel: "test" });
+  B.addRoom(co, { by: "cos", id: "story-room", floor: 4, kind: "meeting", capacity: 6 });
+  const m = M.openMeeting(co, { by: "mgr-w", title: "Kickoff", room: "story-room", minutes: 60, invitees: ["b-w1"], agenda: [{ title: "a" }] });
+  M.reveal(co, { id: m.id, by: "mgr-w", n: 1, force: true });
+  M.decide(co, { id: m.id, by: "mgr-w", n: 1, decision: "d" });
+  M.closeMeeting(co, { id: m.id, by: "mgr-w" });
+  assert.ok(M.openMeeting(co, { by: "mgr-w", title: "Next", room: "story-room", invitees: ["b-w1"], agenda: [{ title: "b" }] }).booking);
+  const prj = T.createProject(co, { by: "mgr-w", name: "Book", lead: "mgr-w" });
+  const o = co.engine.orderNew({ flow: "item", by: "cos", to: "mgr-w", budget: 100, accept: "x", title: "p1" });
+  o.project = prj.id;
+  T.syncOrders(co);
+  assert.equal([...co.data.tracker.items.values()].filter((i) => i.kind === "order" && i.project === prj.id).length, 1);
+  const top = G.createGoal(co, { by: "founder", title: "Book", level: "company", owner: "founder", why: "w", what: "w", success: [{ metric: "pages", target: 5 }], due: iso(co, 30) });
+  G.createGoal(co, { by: "cos", title: "Pipe", level: "org", owner: "cos", why: "w", what: "w", success: [{ metric: "orders", target: 5 }], due: iso(co, 20), contributesTo: [top.id] });
+  const ceo = G.rollUp(co).at(-1);
+  assert.ok(ceo.exceptions.some((g) => g.why_here.some((w) => /unmeasured: orders/.test(w))));
+});

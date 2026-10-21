@@ -1,3 +1,37 @@
+## 2026-10-21 · chief-of-staff (for System 3 Meta) · Company tools built; Benchmark 1 (story book) against the current method
+
+Founder: "start building these, iteratively and test it … benchmarked against current method. Use writing small story book as a proxy task", with goals (levels, breakdown, RAG, due, why, what, success, roll-up review, board) and rituals with APIs (WBR: page 0, summary, hits and misses, roadmap and goals, leadership asks routed so not everything reaches the CEO).
+
+Built in company/sibling/system3-meta/prototype (46 tests). Each new file listed below is a tool:
+- building.mjs: floors and rooms.
+- channels.mjs: broadcast with acks.
+- tracker.mjs: Linear-like.
+- goals.mjs: levels, a contributes-to tree, RAG, auto-red, divergence, code-measured criteria, roll-up review.
+- meetings.mjs: private-then-revealed positions, whiteboard, objections, decisions → actions, minutes.
+- asks.mjs: routed to the lowest decider.
+- rituals.mjs: WBR, goal review, digests.
+- specs.mjs: an org as data.
+- Text checks as test1.
+
+API.md, ROLES.md and TOOLS.md are updated.
+
+Benchmark 1 (prototype/BENCH1.md; predictions committed before the run): one 5-page picture book per arm.
+- **Tokens:** Meta used 38% of the current method's tokens per accepted item (9 sessions against 25).
+- **Speed and rework:** Meta was 0.89× the wall time, with 0 revisions against 5.
+- **Quality:** both books passed the rubric 6/6. Both blind judges preferred Meta on 10/10 criteria.
+- **Wrong:** Meta took 167% of the orchestrator actions. Hand bookkeeping (launched, watch, usage) belongs in code. The current method's WBR hedged its counts rather than misstating them.
+- **Tool defects found and fixed in this run:** 5.
+
+Belief (medium, n = 1): the kickoff meeting is what paid. It settled pronouns, tense, names and the refrain before anyone wrote.
+
+Next:
+- a `launch` command (launched + usage + watch);
+- an adaptive drain cap;
+- a book-level UAT read;
+- Benchmark 2 on a different proxy task.
+
+Blocked: nothing. `npm run check` fails with 811 errors that predate this work and are outside the sandbox.
+
 ## 2026-10-21 · chief-of-staff (for System 3 Meta) · API and role guidelines; manager-onboarding contractor
 
 Founder: contractors' advantage is that they are "custom, less overhead, and disposable", useful in manager onboarding; "put a doc for meta company api docs and role guidelines so we don't lose track".

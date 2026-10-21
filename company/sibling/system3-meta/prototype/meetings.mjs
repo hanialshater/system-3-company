@@ -12,7 +12,7 @@
 //   close     only when every item is decided or deferred; writes the minutes (markdown) from the record, and posts a
 //             summary to the meeting's channel if one is given
 import { Refused } from "./lib.mjs";
-import { book } from "./building.mjs";
+import { book, releaseBooking } from "./building.mjs";
 import { create as createItem } from "./tracker.mjs";
 import { post, mayPost } from "./channels.mjs";
 
@@ -146,6 +146,7 @@ export function closeMeeting(co, { id, by }) {
   if (open.length) refuse(`items not decided or deferred: ${open.map((a) => a.n).join(", ")}`);
   m.state = "closed";
   m.closed = now(co);
+  if (m.booking) releaseBooking(co, m.booking);
   const absent = m.invitees.filter((i) => !m.present.has(i));
   m.minutes = minutes(co, m, absent);
   co.log.add({ type: "meeting-close", meeting: id, by, decided: m.agenda.filter((a) => a.decision).length, deferred: m.agenda.filter((a) => a.deferred).length, absent });

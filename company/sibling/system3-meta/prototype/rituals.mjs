@@ -70,13 +70,13 @@ export function roadmap(co) {
   });
 }
 
-export function wbrOpen(co, { by, room = null, invitees = null, channel = null }) {
+export function wbrOpen(co, { by, room = null, start = null, invitees = null, channel = null }) {
   if (co.org.role(by)?.level !== "chief-of-staff") refuse("the chief of staff chairs the WBR");
   const s = store(co);
   const since = s.wbr.at(-1)?.closed ?? -Infinity;
   const pack = { page0: page0(co, since), ...hitsAndMisses(co, since), roadmap: roadmap(co), goals: goalBoard(co).rows.filter((r) => r.level !== "team"), asks: askSummary(co) };
   const who = invitees ?? co.org.active().filter((r) => r.level === "manager").map((r) => r.id);
-  const m = openMeeting(co, { by, title: `WBR ${new Date(now(co) * 60000).toISOString().slice(0, 10)}`, room, invitees: who, channel, kind: "wbr",
+  const m = openMeeting(co, { by, title: `WBR ${new Date(now(co) * 60000).toISOString().slice(0, 10)}`, room, start, invitees: who, channel, kind: "wbr",
     agenda: [{ title: "Page 0: metrics" }, { title: "Hits and misses" }, { title: "Roadmap and goal status" }, { title: "Leadership asks" }] });
   m.pack = pack;
   co.log.add({ type: "wbr-open", meeting: m.id, since });

@@ -14,6 +14,8 @@
 //   - a goal shown green while a contributor is red is a *divergence*: allowed, but it must carry a reason, and the
 //     review shows it to the level above
 //   - progress = the share of linked tracker items done; met = every success criterion's current value reaches target
+//   - a criterion may name a `source` ("shipped:<task prefix>", "done:<tracker label>"): code computes its current value
+//     from the record, and the owner cannot overwrite it (benchmark 1: goals sat at current=null while the book shipped)
 // Review: each level reviews its own goals, and only exceptions roll up: red, yellow, divergent, due soon, or status
 // changed since the last review. The CEO sees the company goals plus every exception that reached that level.
 import { Refused } from "./lib.mjs";
@@ -37,6 +39,7 @@ export function createGoal(co, { by, title, level, owner, why, what, success, du
   if (!OWNER_LEVEL[level].includes(o.level)) refuse(`a ${level} goal is tracked by ${OWNER_LEVEL[level].join(" or ")}, not ${o.level}`);
   if (!title || !why || !what) refuse("a goal states its title, why it matters and what is to be done");
   if (!Array.isArray(success) || !success.length || success.some((c) => !c.metric || c.target == null)) refuse("success is a list of {metric, target} criteria");
+  for (const c of success) checkSource(c.source);
   if (!/^\d{4}-\d{2}-\d{2}$/.test(due ?? "")) refuse("due is a delivery date, YYYY-MM-DD");
   if (level === "company" && contributesTo.length) refuse("a company goal is the top: it contributes to nothing");
   if (level !== "company" && !contributesTo.length) refuse("every goal below company contributes to at least one goal");
@@ -49,7 +52,7 @@ export function createGoal(co, { by, title, level, owner, why, what, success, du
   checkStatus(status, reason, path);
   if (level === "lane" && by !== owner && co.org.role(by)?.level !== "chief-of-staff") refuse(`${by} may not set lane goals for ${owner}`);
   const id = `G-${++s.n}`;
-  const g = { id, title, level, owner, why, what, success: success.map((c) => ({ metric: c.metric, target: c.target, current: c.current ?? null, unit: c.unit ?? null })), due, contributesTo, status, reason, path, created: nowMin(co), updates: [{ t: nowMin(co), by, status, reason }], reviewedStatus: null, done: false };
+  const g = { id, title, level, owner, why, what, success: success.map((c) => ({ metric: c.metric, target: c.target, current: c.current ?? null, unit: c.unit ?? null, source: c.source ?? null })), due, contributesTo, status, reason, path, created: nowMin(co), updates: [{ t: nowMin(co), by, status, reason }], reviewedStatus: null, done: false };
   s.goals.set(id, g);
   co.log.add({ type: "goal-create", goal: id, level, owner, due, contributesTo, by });
   return g;
@@ -63,10 +66,12 @@ function checkStatus(status, reason, path) {
 export function getGoal(co, id) { const g = store(co).goals.get(id); if (!g) refuse(`no goal ${id}`); return g; }
 
 /** The owner updates status, criteria values or done; others may comment through the tracker, not change the goal. */
-export function updateGoal(co, { by, id, status, reason = null, path = null, current = {}, done = null, divergence = null }) {
+export function updateGoal(co, { by, id, status, reason = null, path = null, current = {}, bind = {}, done = null, divergence = null }) {
   const g = getGoal(co, id);
   if (by !== g.owner && co.org.role(by)?.level !== "founder") refuse(`${by} does not own ${id} (owner ${g.owner})`);
-  for (const [metric, v] of Object.entries(current)) { const c = g.success.find((x) => x.metric === metric); if (!c) refuse(`${id} has no criterion ${metric}`); c.current = v; }
+  for (const [metric, src] of Object.entries(bind)) { const c = g.success.find((x) => x.metric === metric); if (!c) refuse(`${id} has no criterion ${metric}`); checkSource(src); c.source = src; }
+  for (const [metric, v] of Object.entries(current)) { const c = g.success.find((x) => x.metric === metric); if (!c) refuse(`${id} has no criterion ${metric}`); if (c.source) refuse(`${metric} is computed by code from ${c.source}`); c.current = v; }
+  measure(co, g);
   if (status) { checkStatus(status, reason, path); g.status = status; g.reason = reason; g.path = path; }
   if (done != null) {
     if (done && !met(g)) refuse(`${id} is not met: ${g.success.filter((c) => !reached(c)).map((c) => `${c.metric} ${c.current ?? "?"}/${c.target}`).join(", ")}`);
@@ -91,6 +96,20 @@ export function effective(co, g) {
 }
 
 /** Linked tracker items' progress for a goal (items with goal = id). */
+const SOURCES = ["shipped", "done"];
+function checkSource(src) { if (src != null && !SOURCES.includes(String(src).split(":")[0])) refuse(`a source is ${SOURCES.map((k) => k + ":<arg>").join(" or ")}`); }
+
+/** Criteria with a source get their current value from the record. */
+export function measure(co, g) {
+  for (const c of g.success) {
+    if (!c.source) continue;
+    const [kind, arg = ""] = c.source.split(":");
+    if (kind === "shipped") c.current = [...co.engine.orders.values()].filter((o) => o.stage === "done" && String(o.task).startsWith(arg)).length;
+    else if (kind === "done") c.current = [...(co.data.tracker?.items?.values() ?? [])].filter((i) => i.state === "done" && (i.labels ?? []).includes(arg)).length;
+  }
+  return g;
+}
+
 export function progress(co, id) {
   const items = [...(co.data.tracker?.items?.values() ?? [])].filter((i) => i.goal === id && i.state !== "cancelled");
   return items.length ? { done: items.filter((i) => i.state === "done").length, total: items.length } : null;
@@ -100,12 +119,14 @@ export function progress(co, id) {
 export function sweepGoals(co) {
   const out = [];
   for (const g of store(co).goals.values()) {
+    measure(co, g);
     if (effective(co, g) === "red" && g.status !== "red" && !g.autoRed) { g.autoRed = true; co.log.add({ type: "goal-auto-red", goal: g.id, due: g.due }); out.push(g.id); }
   }
   return out;
 }
 
 export function view(co, g) {
+  measure(co, g);
   const eff = effective(co, g);
   const kids = children(co, g.id);
   return { id: g.id, title: g.title, level: g.level, owner: g.owner, due: g.due, status: eff, ownerStatus: g.status, autoRed: eff === "red" && g.status !== "red", reason: g.reason, path: g.path, divergence: g.divergence ?? null, contributorsWorst: kids.length ? worst(kids.map((k) => effective(co, k))) : null, progress: progress(co, g.id), met: met(g), done: g.done, why: g.why, what: g.what, success: g.success, contributesTo: g.contributesTo };
@@ -124,9 +145,11 @@ export function goalBoard(co, { level = null, owner = null } = {}) {
   return { counts, rows: filtered };
 }
 
+// green with a criterion nobody measures is a claim, not a status (benchmark 1: the founder saw green with no numbers)
+const unmeasured = (g) => g.success.some((c) => c.current == null);
 const isException = (co, g, soonDays = 7) => {
   const eff = effective(co, g);
-  return eff !== "green" || !!g.divergence || (!g.done && dueMin(g.due) - nowMin(co) < soonDays * 24 * 60) || (g.reviewedStatus != null && g.reviewedStatus !== eff);
+  return eff !== "green" || !!g.divergence || (eff === "green" && !g.done && unmeasured(g)) || (!g.done && dueMin(g.due) - nowMin(co) < soonDays * 24 * 60) || (g.reviewedStatus != null && g.reviewedStatus !== eff);
 };
 
 /** One level's goal review: its own goals in full, plus the exceptions from the level below that roll up to it.
@@ -151,6 +174,7 @@ function whyHere(co, g) {
   const w = [];
   if (eff !== "green") w.push(eff === "red" && g.status !== "red" ? "auto-red: past due" : eff);
   if (g.divergence) w.push("divergent: green over a red contributor");
+  if (eff === "green" && !g.done && unmeasured(g)) w.push(`green but unmeasured: ${g.success.filter((c) => c.current == null).map((c) => c.metric).join(", ")}`);
   if (g.reviewedStatus != null && g.reviewedStatus !== eff) w.push(`changed since last review (${g.reviewedStatus} → ${eff})`);
   if (!g.done && dueMin(g.due) - nowMin(co) < 7 * 24 * 60) w.push("due within 7 days");
   return w;

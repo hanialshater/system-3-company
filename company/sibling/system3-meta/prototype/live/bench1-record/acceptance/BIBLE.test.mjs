@@ -1,0 +1,2 @@
+import { test } from "node:test"; import assert from "node:assert/strict"; import { bible } from "./rubric.mjs";
+test("bible has characters, setting, and a 5-beat page plan naming Pip", () => { const b = bible(); assert.ok(!b.missing, "missing"); assert.ok(b.characters, "## Characters"); assert.ok(b.setting, "## Setting"); assert.ok(b.plan, "## Page plan"); assert.equal(b.beats, 5, "5 beats, one line per page starting 'Page n'"); assert.ok(b.pip, "Pip"); });

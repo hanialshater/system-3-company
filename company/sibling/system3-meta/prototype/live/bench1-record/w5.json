@@ -1,0 +1,67 @@
+{
+  "exit": "agent sessions needed",
+  "steps": [
+    {
+      "step": "uat",
+      "order": "O-2",
+      "result": "pass",
+      "output": "# tests 1 # pass 1 # fail 0"
+    },
+    {
+      "step": "uat",
+      "order": "O-3",
+      "result": "pass",
+      "output": "# tests 1 # pass 1 # fail 0"
+    },
+    {
+      "step": "uat",
+      "order": "O-4",
+      "result": "pass",
+      "output": "# tests 1 # pass 1 # fail 0"
+    },
+    {
+      "step": "uat",
+      "order": "O-5",
+      "result": "pass",
+      "output": "# tests 1 # pass 1 # fail 0"
+    },
+    {
+      "step": "ship",
+      "order": "O-2",
+      "files": [
+        "page.md"
+      ]
+    },
+    {
+      "step": "ship",
+      "order": "O-3",
+      "files": [
+        "page.md"
+      ]
+    },
+    {
+      "step": "ship",
+      "order": "O-4",
+      "files": [
+        "page.md"
+      ]
+    },
+    {
+      "step": "ship",
+      "order": "O-5",
+      "files": [
+        "page.md"
+      ]
+    }
+  ],
+  "plan": [
+    {
+      "role": "reader",
+      "why": "next: 1 waiting, no session running",
+      "msgs": [
+        "M-24"
+      ],
+      "cap": 1
+    }
+  ]
+}

@@ -123,6 +123,20 @@ companions: [API.md](API.md) (every command and rule) · [design and scenarios](
 - **Ends:** on accept, reject or expiry. A handoff goes to the manager, and no memory is kept.
 - **Commands:** `contract brief`, `contract deliver`.
 
+## Who uses the company tools (built 2026-10-21)
+
+| Tool | Founder | Chief of staff | Manager | Builder, checker |
+|---|---|---|---|---|
+| Goals | owns company goals; reads the goal review's exceptions | owns org goals; runs `goal-review` | owns lane goals; splits them into team goals and orders | owns team goals assigned to it; updates RAG with a reason and a path |
+| Meetings | may chair | chairs the WBR and cross-lane meetings | chairs lane meetings (kickoffs, crits); decides; answers every objection | writes positions privately; objects; owns the actions it is given |
+| Channels | posts to `company` | posts to `company`; publishes digests | posts to its lane channel | reads; acks when asked |
+| Tracker | - | reads the board; places orders | files issues; delegates; links work | updates its own items (orders move only by code) |
+| Asks | answers deploy, org-change and big-budget asks | answers cross-lane, priority and mid-budget asks | answers its lane's asks and decisions from its reports | raises asks; code routes them to the lowest level that can decide |
+| WBR | reads it on the company channel | opens it (code builds the pack); writes only the summary; closes it | writes positions on each agenda item | - |
+| Building | approves new floors | adds and retires rooms | books meeting rooms; adds meeting rooms on its floor | - |
+
+**Rule for every role:** if a number appears in a status report, code wrote it. People write positions, decisions, reasons and summaries.
+
 ## Changing a role
 
 **Roles:** a role is added, changed or retired through the org change process (`Org.propose` → founder approval → onboarding or offboarding steps in code; see API.md §9 for the events). What a manager may tune lives in the lane policy (API.md §6). What no one but engineering may change lives in `lib.mjs` (API.md §4).

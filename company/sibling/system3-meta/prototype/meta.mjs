@@ -59,9 +59,10 @@ function pack(co, run, ctx, session, item) {
   // Live run 2 findings: the workdir did not exist; the commands omitted the state prefix; cap and times were unclear.
   const dir = path.join(LIVE, "work", o.task);
   if (ctx.stage === "build") fs.mkdirSync(dir, { recursive: true });
-  const pre = process.env.META_STATE ? `META_STATE=${process.env.META_STATE} ` : "";
+  // Benchmark 1 finding (writer-1): the prefix dropped META_LIVE_DIR, so a copied command wrote to the wrong state
+  const pre = [process.env.META_LIVE_DIR && `META_LIVE_DIR=${process.env.META_LIVE_DIR}`, process.env.META_STATE && `META_STATE=${process.env.META_STATE}`].filter(Boolean).map((x) => x + " ").join("");
   const iso = (m) => new Date(m * 60000).toISOString();
-  return { run, session, item, lease_min: Number(opt.lease ?? 30), order: o.id, task: o.task, title: o.title, priority: o.priority, stage: ctx.stage, accept: o.accept, workdir: `live/work/${o.task}/`, workdir_exists: fs.existsSync(dir), findings: o.findings ?? null, memory: ctx.memory.map((e) => ({ ...e, t: iso(e.t) })), history: o.history.map((h) => ({ ...h, t: iso(h.t) })),
+  return { run, session, item, lease_min: Number(opt.lease ?? 30), order: o.id, task: o.task, title: o.title, priority: o.priority, stage: ctx.stage, accept: o.accept, workdir: dir + "/", workdir_exists: fs.existsSync(dir), findings: o.findings ?? null, memory: ctx.memory.map((e) => ({ ...e, t: iso(e.t) })), history: o.history.map((h) => ({ ...h, t: iso(h.t) })),
     cap_means: "--cap counts every item in this session, including the first one you entered",
     leave_with: `${pre}node meta.mjs room leave --run=${run} --evidence=<path>${ctx.stage === "check" ? " --verdict=pass|revise --findings='…'" : ""} --learned='…'`,
     next_with: `${pre}node meta.mjs room next --run=${run} --cap=<cap from your brief> --evidence=<path>${ctx.stage === "check" ? " --verdict=pass|revise --findings='…'" : ""} --learned='…'` };
@@ -104,6 +105,8 @@ function dispatch(co, cmd, sub, arg) {
     need("to", "title", "task", "accept");
     const o = engine.orderNew({ flow: "task", by: opt.by ?? "cos", to: opt.to, budget: Number(opt.budget ?? 200_000), accept: opt.accept, title: opt.title, priority: opt.priority ?? "next", dueMin: opt.due ? Number(opt.due) : null, after: opt.after ? String(opt.after).split(",") : [], fromContract: opt["from-contract"] ?? null });
     o.task = opt.task;
+    if (opt.project) o.project = opt.project; // mirrored onto its tracker item, so the roadmap counts it
+    if (opt.goal) o.goal = opt.goal;
     if (opt.checks) o.checks = JSON.parse(opt.checks); // test1 by declared checks (non-code work), not the builder's tests
     return { order: o.id, stage: o.stage, priority: o.priority, after: o.after, blocked: o.blocked };
   }
@@ -234,7 +237,7 @@ function dispatch(co, cmd, sub, arg) {
   if (cmd === "board") { T.syncOrders(co); return T.board(co, { assignee: opt.assignee, project: opt.project, label: opt.label, cycle: opt.cycle, goal: opt.goal, kind: opt.kind }); }
   // ---- goals
   if (cmd === "goal" && sub === "create") { need("by", "title", "level", "owner", "why", "what", "success", "due"); return G.createGoal(co, { by: opt.by, title: opt.title, level: opt.level, owner: opt.owner, why: opt.why, what: opt.what, success: J("success"), due: opt.due, contributesTo: L("contributes-to") ?? [], status: opt.status ?? "green", reason: opt.reason ?? null, path: opt.path ?? null }); }
-  if (cmd === "goal" && sub === "update") { need("by", "id"); return G.updateGoal(co, { by: opt.by, id: opt.id, status: opt.status, reason: opt.reason ?? null, path: opt.path ?? null, current: J("current") ?? {}, done: opt.done == null ? null : opt.done === "true" || opt.done === true, divergence: opt.divergence ?? null }); }
+  if (cmd === "goal" && sub === "update") { need("by", "id"); return G.updateGoal(co, { by: opt.by, id: opt.id, status: opt.status, reason: opt.reason ?? null, path: opt.path ?? null, current: J("current") ?? {}, bind: J("bind") ?? {}, done: opt.done == null ? null : opt.done === "true" || opt.done === true, divergence: opt.divergence ?? null }); }
   if (cmd === "goal" && sub === "show") { need("id"); return G.view(co, G.getGoal(co, opt.id)); }
   if (cmd === "goal" && sub === "board") return G.goalBoard(co, { level: opt.level ?? null, owner: opt.owner ?? null });
   if (cmd === "goal" && sub === "review") { need("by", "level"); return G.reviewLevel(co, { by: opt.by, level: opt.level }); }
@@ -249,13 +252,13 @@ function dispatch(co, cmd, sub, arg) {
   if (cmd === "meeting" && sub === "decide") { need("id", "by", "item", "decision"); return M.decide(co, { id: opt.id, by: opt.by, n: N("item"), decision: opt.decision, answers: J("answers") ?? {}, actions: J("actions") ?? [] }); }
   if (cmd === "meeting" && sub === "defer") { need("id", "by", "item", "reason"); return M.defer(co, { id: opt.id, by: opt.by, n: N("item"), reason: opt.reason }); }
   if (cmd === "meeting" && sub === "close") { need("id", "by"); return { minutes: M.closeMeeting(co, { id: opt.id, by: opt.by }).minutes }; }
-  if (cmd === "meeting" && sub === "show") { need("id"); const m = M.getMeeting(co, opt.id); return { id: m.id, title: m.title, kind: m.kind, chair: m.chair, state: m.state, invitees: m.invitees, agenda: m.agenda.map((a) => ({ n: a.n, title: a.title, rounds: a.rounds.length, revealed: a.rounds.at(-1).revealed, written: Object.keys(a.rounds.at(-1).positions), objections: a.objections.length, decided: !!a.decision })), pack: m.pack ?? null, minutes: m.minutes ?? null }; }
+  if (cmd === "meeting" && sub === "show") { need("id"); const m = M.getMeeting(co, opt.id); return { id: m.id, title: m.title, kind: m.kind, chair: m.chair, state: m.state, invitees: m.invitees, agenda: m.agenda.map((a) => ({ n: a.n, title: a.title, rounds: a.rounds.length, revealed: a.rounds.at(-1).revealed, written: Object.keys(a.rounds.at(-1).positions), objections: a.objections.length, decided: !!a.decision })), whiteboard: m.board, pack: m.pack ?? null, minutes: m.minutes ?? null }; }
   // ---- asks and rituals
   if (cmd === "ask" && sub === "raise") { need("by", "kind", "title", "why", "due"); return A.raise(co, { by: opt.by, kind: opt.kind, title: opt.title, why: opt.why, due: opt.due, to: opt.to ?? null, amount: N("amount") ?? 0, lane: opt.lane ?? null, escalate: opt.escalate ?? null, goal: opt.goal ?? null }); }
   if (cmd === "ask" && sub === "route") { need("by", "kind"); return { decider: A.route(co, { by: opt.by, kind: opt.kind, amount: N("amount") ?? 0, lane: opt.lane ?? null }) }; }
   if (cmd === "ask" && sub === "answer") { need("by", "id", "decision", "text"); return A.answer(co, { by: opt.by, id: opt.id, decision: opt.decision, text: opt.text }); }
   if (cmd === "ask" && sub === "summary") return A.askSummary(co);
-  if (cmd === "wbr" && sub === "open") { need("by"); T.syncOrders(co); return RIT.wbrOpen(co, { by: opt.by, room: opt.room ?? null, invitees: L("invitees") ?? null, channel: opt.channel ?? null }); }
+  if (cmd === "wbr" && sub === "open") { need("by"); T.syncOrders(co); return RIT.wbrOpen(co, { by: opt.by, room: opt.room ?? null, start: opt.start ? Date.parse(opt.start) / 60000 : null, invitees: L("invitees") ?? null, channel: opt.channel ?? null }); }
   if (cmd === "wbr" && sub === "close") { need("by", "meeting", "summary"); return { doc: RIT.wbrClose(co, { by: opt.by, meeting: opt.meeting, summary: opt.summary }).doc }; }
   if (cmd === "wbr" && sub === "page0") return RIT.page0(co);
   if (cmd === "goal-review") { need("by"); return RIT.goalReview(co, { by: opt.by }); }

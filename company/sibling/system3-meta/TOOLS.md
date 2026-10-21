@@ -7,6 +7,9 @@ founder, 2026-10-21: "not so fast, we have a lot to do for tools … still dont 
 
 | Area | State | Where |
 |---|---|---|
+| Goals (levels, contributes-to tree, RAG, auto-red, divergence, roll-up review) | built, tested; used in benchmark 1 | prototype/goals.mjs |
+| Leadership asks (routed to the lowest level that can decide) | built, tested | prototype/asks.mjs |
+| Company specs (an org as data: `init --spec=`) and text checks as test1 | built; `toy`, `storybook` | prototype/specs.mjs, state.mjs |
 | Supervision (code supervisor, launch plan, wake) | built, tested, used live (run 3) | prototype/supervisor.mjs |
 | Flows and orders (stages, signers, versions, `--after`) | built, tested, used live (runs 1-3) | lib.mjs Engine |
 | Rooms and sessions (enter, leave, next, leases, recovery) | built, tested, used live | lib.mjs Rooms |
@@ -14,14 +17,14 @@ founder, 2026-10-21: "not so fast, we have a lot to do for tools … still dont 
 | Lane policy and manager cycle | built, tested, simulator only | policy.mjs |
 | Contractors (outside the flow; onboarding template) | built, tested via CLI; no live run | contractor.mjs |
 | Measurement (usage, flow metrics, manager report) | built, used live | lib.mjs flowMetrics, policy.mjs |
-| Approvals (founder queue, callbacks, timeouts) | in the engine and tests; **not in the CLI; never live** | lib.mjs Engine.request/decide |
-| Org changes (propose, approve, onboarding and offboarding, gaps) | in the engine and tests; **not in the CLI; never live** | lib.mjs Org |
-| Rituals (three clocks, cycles) | in the engine; simulator only; **no CLI; positions are one line, not a meeting** | lib.mjs Rituals |
-| **Channels, broadcast, announcements** | **missing** | - |
-| **Tracker (Linear-like)** | **missing:** orders are flow items only, with no projects, labels, assignees, cycles, comments, links, search or board | - |
-| **Group meetings** | **missing:** no rounds, whiteboard, private-then-revealed positions, minutes | - |
-| **Newsletter and digests** | **missing** | - |
-| **Building (floors and rooms)** | **missing:** rooms and floors are a hard-coded list (`LIVE_ROOMS`, toy `ROOMS`); nothing can add, change, book or retire them | state.mjs, toy.mjs |
+| Approvals (founder queue, callbacks, timeouts) | built; in the CLI (`approval queue`, `approval decide`); a prefix registry routes approved refs (FLOOR-) | lib.mjs Engine, `onApproved` |
+| Org changes (propose, approve, onboarding and offboarding, gaps) | built; in the CLI (`org propose`, `org roles`, `org gaps`); not yet used live | lib.mjs Org |
+| Rituals: WBR, goal review, digests | built, tested; WBR is a meeting with a code-built pack (page 0, hits and misses, roadmap and goals, leadership asks); used in benchmark 1 | prototype/rituals.mjs |
+| Channels, broadcast, announcements | built, tested; company, lane, role and topic channels; ack tracking; used in benchmark 1 | prototype/channels.mjs |
+| Tracker (Linear-like) | built, tested; issues, orders (mirrored by code), asks and actions; projects, cycles, labels, links, comments, search, board, overdue | prototype/tracker.mjs |
+| Group meetings | built, tested; private-then-revealed rounds, whiteboard, objections that need answers, decisions → tracker actions, minutes to a channel; used live (benchmark 1 kickoff) | prototype/meetings.mjs |
+| Newsletter and digests | built, tested; written by code per audience (founder, lane, company), published to a channel | prototype/rituals.mjs digest |
+| Building (floors and rooms) | built, tested; floors through founder approval, rooms add, rename, retire (refused while in use), bookings with capacity | prototype/building.mjs |
 | Document registry and review | designed (scenario S11), not built | - |
 | Notifications and subscriptions | not designed | - |
 | Calendar of human slots | not designed (the simulator models founder sittings) | - |
@@ -32,6 +35,8 @@ founder, 2026-10-21: "not so fast, we have a lot to do for tools … still dont 
 | Per-role permissions on tools | partly: the engine's rules; no general tool permissions | - |
 
 ## Build order
+
+Status 2026-10-21: steps 0-5 built and tested (46 tests) and used in Benchmark 1 (prototype/BENCH1.md); step 6 approvals and org changes are in the CLI; the document registry is not built.
 
 Each step builds on the one before. Each gets a committed prediction, tests, and one small live run with real agents before the next starts.
 
