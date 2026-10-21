@@ -74,3 +74,72 @@ test('invalid dates throw RangeError', () => {
   ];
   for (const args of bad) assert.throws(() => isoWeek(...args), RangeError, String(args));
 });
+
+// Independent BigInt reference: exact days-from-civil for any year, then the ISO rule
+// (the Thursday of the date's week decides the ISO year).
+const bigRef = (y, m, d) => {
+  const Y = BigInt(y), M = BigInt(m), D = BigInt(d);
+  const fl = (a, b) => (a >= 0n ? a / b : -((-a + b - 1n) / b));
+  const civ = (y, m, d) => { // days since 1970-01-01
+    const yy = m <= 2n ? y - 1n : y;
+    const era = fl(yy, 400n), yoe = yy - era * 400n;
+    const doy = (153n * (m + (m > 2n ? -3n : 9n)) + 2n) / 5n + d - 1n;
+    const doe = yoe * 365n + yoe / 4n - yoe / 100n + doy;
+    return era * 146097n + doe - 719468n;
+  };
+  const days = civ(Y, M, D);
+  const wd = ((((days + 3n) % 7n) + 7n) % 7n) + 1n; // 1=Mon
+  const thu = days + 4n - wd;
+  // ISO year = civil year of the Thursday; it is Y-1, Y or Y+1
+  let iy = Y + 1n;
+  while (civ(iy, 1n, 1n) > thu) iy -= 1n;
+  const wk = (thu - civ(iy, 1n, 1n)) / 7n + 1n;
+  return [iy, wk];
+};
+const check = (y, m, d) => {
+  const [iy, wk] = bigRef(y, m, d);
+  const safe = iy >= BigInt(-Number.MAX_SAFE_INTEGER) && iy <= BigInt(Number.MAX_SAFE_INTEGER);
+  if (safe) assert.deepEqual(isoWeek(y, m, d), [Number(iy), Number(wk)], `${y}-${m}-${d}`);
+  else assert.throws(() => isoWeek(y, m, d), RangeError, `${y}-${m}-${d}`);
+};
+test('BigInt reference agrees with Date reference on small years (validates the reference)', () => {
+  for (let y = -50; y <= 50; y++) for (const [m, d] of [[1, 1], [1, 3], [6, 15], [12, 29], [12, 31]])
+    assert.deepEqual(bigRef(y, m, d).map(Number), ref(y, m, d), `${y}-${m}-${d}`);
+});
+test('large years: checker cases', () => {
+  assert.deepEqual(isoWeek(24663691497547, 1, 1), [24663691497547, 1]);
+  assert.deepEqual(isoWeek(140737488355327, 1, 1), [140737488355327, 1]);
+  assert.deepEqual(isoWeek(562949953421311, 6, 15), [562949953421311, 25]);
+  assert.deepEqual(isoWeek(-35184372088831, 12, 31), [-35184372088830, 1]);
+});
+test('large years: around 2.5e13, 2^47, 2^49, 2^52 and +-MAX_SAFE_INTEGER agree with BigInt reference', () => {
+  const M = Number.MAX_SAFE_INTEGER;
+  const centres = [2.466e13, 2.5e13, 2 ** 45, 2 ** 47, 2 ** 49, 2 ** 52, M - 500];
+  const days = [[1, 1], [1, 2], [1, 3], [1, 4], [2, 28], [3, 1], [6, 15], [12, 28], [12, 29], [12, 30], [12, 31]];
+  for (const c of centres) for (let y = c - 450; y <= Math.min(c + 450, M); y++) for (const [m, d] of days) {
+    if (m === 2 && d === 29) continue;
+    check(y, m, d); check(-y, m, d);
+  }
+  for (let y = M - 450; y <= M; y++) for (const [m, d] of days) { check(y, m, d); check(-y, m, d); }
+});
+test('every day of a few huge years agrees with BigInt reference', () => {
+  const M = Number.MAX_SAFE_INTEGER;
+  for (const y of [24663691497547, 562949953421311, M - 1, M, -M, -(M - 1), -35184372088831]) {
+    for (let m = 1; m <= 12; m++) {
+      const dim = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][m - 1];
+      for (let d = 1; d <= dim; d++) {
+        let ok = true;
+        try { isoWeek(y, m, d); } catch (e) { if (m === 2 && d === 29) { ok = false; assert.ok(e instanceof RangeError); } else if (!(e instanceof RangeError)) throw e; }
+        if (ok) check(y, m, d);
+      }
+    }
+  }
+});
+test('ISO year outside safe range throws RangeError, never returns an unsafe integer', () => {
+  const M = Number.MAX_SAFE_INTEGER;
+  assert.throws(() => isoWeek(M, 12, 31), RangeError);
+  assert.throws(() => isoWeek(-M, 1, 1), RangeError);
+  for (const y of [M, -M]) for (let m = 1; m <= 12; m++) for (let d = 1; d <= 28; d++) {
+    try { const [iy] = isoWeek(y, m, d); assert.ok(Number.isSafeInteger(iy)); } catch (e) { assert.ok(e instanceof RangeError); }
+  }
+});

@@ -1396,6 +1396,188 @@
     "tokens": 62960,
     "items": 1,
     "source": "harness"
+   },
+   {
+    "seq": 139,
+    "t": 29876394.10745,
+    "type": "advance",
+    "order": "O-2",
+    "stage": "check",
+    "by": "toy-checker",
+    "verdict": "pass"
+   },
+   {
+    "seq": 140,
+    "t": 29876394.10745,
+    "type": "send",
+    "msg": "M-27",
+    "from": "mgr-live",
+    "to": "mgr-live",
+    "kind": "work",
+    "key": "O-2:uat:1",
+    "ref": "O-2",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 141,
+    "t": 29876394.10745,
+    "type": "done",
+    "msg": "M-26",
+    "run": "R-12"
+   },
+   {
+    "seq": 142,
+    "t": 29876394.10745,
+    "type": "send",
+    "msg": "M-28",
+    "from": "pool:checker",
+    "to": "mgr-live",
+    "kind": "report",
+    "key": null,
+    "ref": "O-2",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 143,
+    "t": 29876394.10745,
+    "type": "leave",
+    "run": "R-12",
+    "role": "toy-checker",
+    "order": "O-2",
+    "stage": "check",
+    "verdict": "pass",
+    "minutes": 0.9256500005722046
+   },
+   {
+    "seq": 144,
+    "t": 29876394.10745,
+    "type": "session-close",
+    "session": "S-6",
+    "role": "toy-checker",
+    "items": 1,
+    "reason": "queue empty",
+    "minutes": 0.9256500005722046
+   },
+   {
+    "seq": 145,
+    "t": 29876394.115783334,
+    "type": "advance",
+    "order": "O-2",
+    "stage": "uat",
+    "by": "mgr-live",
+    "verdict": "pass"
+   },
+   {
+    "seq": 146,
+    "t": 29876394.1158,
+    "type": "send",
+    "msg": "M-29",
+    "from": "mgr-live",
+    "to": "pool:release",
+    "kind": "work",
+    "key": "O-2:ship:1",
+    "ref": "O-2",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 147,
+    "t": 29876394.1158,
+    "type": "session-open",
+    "session": "S-8",
+    "role": "toy-release"
+   },
+   {
+    "seq": 148,
+    "t": 29876394.1158,
+    "type": "claim",
+    "msg": "M-29",
+    "run": "R-14"
+   },
+   {
+    "seq": 149,
+    "t": 29876394.1158,
+    "type": "enter",
+    "run": "R-14",
+    "msg": "M-29",
+    "role": "toy-release",
+    "by": "toy-release",
+    "room": "launch",
+    "order": "O-2",
+    "stage": "ship",
+    "mode": "work",
+    "session": "S-8",
+    "item": 1
+   },
+   {
+    "seq": 150,
+    "t": 29876394.115816668,
+    "type": "advance",
+    "order": "O-2",
+    "stage": "ship",
+    "by": "toy-release",
+    "verdict": "pass"
+   },
+   {
+    "seq": 151,
+    "t": 29876394.115816668,
+    "type": "shipped",
+    "order": "O-2",
+    "lead": 5.8040166683495045,
+    "loops": 1,
+    "priority": "next"
+   },
+   {
+    "seq": 152,
+    "t": 29876394.115816668,
+    "type": "done",
+    "msg": "M-29",
+    "run": "R-14"
+   },
+   {
+    "seq": 153,
+    "t": 29876394.115816668,
+    "type": "send",
+    "msg": "M-30",
+    "from": "pool:release",
+    "to": "mgr-live",
+    "kind": "report",
+    "key": null,
+    "ref": "O-2",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 154,
+    "t": 29876394.115816668,
+    "type": "leave",
+    "run": "R-14",
+    "role": "toy-release",
+    "order": "O-2",
+    "stage": "ship",
+    "verdict": "pass",
+    "minutes": 0.000016666948795318604
+   },
+   {
+    "seq": 155,
+    "t": 29876394.115816668,
+    "type": "session-close",
+    "session": "S-8",
+    "role": "toy-release",
+    "items": 1,
+    "reason": "ship done",
+    "minutes": 0.000016666948795318604
+   },
+   {
+    "seq": 156,
+    "t": 29876394.115816668,
+    "type": "supervisor-tick",
+    "steps": [
+     "uat:O-2",
+     "ship:O-2"
+    ]
    }
   ]
  },
@@ -1979,11 +2161,98 @@
       },
       "priority": "next",
       "ts": 29876392.6725,
-      "state": "open",
+      "state": "done",
       "lease": {
        "run": "R-12",
        "until": 29876423.1818
       },
+      "acked": false
+     }
+    ],
+    [
+     "M-27",
+     {
+      "id": "M-27",
+      "from": "mgr-live",
+      "to": "mgr-live",
+      "kind": "work",
+      "key": "O-2:uat:1",
+      "due": null,
+      "ref": "O-2",
+      "body": {
+       "stage": "uat",
+       "loops": 1
+      },
+      "priority": "next",
+      "ts": 29876394.10745,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-28",
+     {
+      "id": "M-28",
+      "from": "pool:checker",
+      "to": "mgr-live",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-2",
+      "body": {
+       "stage": "check",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876394.10745,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-29",
+     {
+      "id": "M-29",
+      "from": "mgr-live",
+      "to": "pool:release",
+      "kind": "work",
+      "key": "O-2:ship:1",
+      "due": null,
+      "ref": "O-2",
+      "body": {
+       "stage": "ship",
+       "loops": 1
+      },
+      "priority": "next",
+      "ts": 29876394.1158,
+      "state": "done",
+      "lease": {
+       "run": "R-14",
+       "until": 29876424.1158
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-30",
+     {
+      "id": "M-30",
+      "from": "pool:release",
+      "to": "mgr-live",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-2",
+      "body": {
+       "stage": "ship",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876394.115816668,
+      "state": "open",
+      "lease": null,
       "acked": false
      }
     ]
@@ -2050,10 +2319,18 @@
     [
      "O-2:check:1",
      "M-26"
+    ],
+    [
+     "O-2:uat:1",
+     "M-27"
+    ],
+    [
+     "O-2:ship:1",
+     "M-29"
     ]
    ]
   },
-  "n": 26
+  "n": 30
  },
  "org": {
   "roles": {
@@ -2310,7 +2587,7 @@
       "spent": 0,
       "accept": "live/work/T12/rle.mjs exports encode(s) and decode(s). encode writes each run of the same character as its decimal count followed by the character (aaabbc gives 3a2b1c; the empty string gives the empty string); characters are whole Unicode code points (an emoji is one character), and input containing a decimal digit throws TypeError. decode is the exact inverse; malformed input (a character without a count, a count without a character, a count of 0) throws SyntaxError. node:test tests in live/work/T12/*.test.mjs",
       "words": null,
-      "stage": "check",
+      "stage": "done",
       "loops": 1,
       "created": 29876388.3118,
       "history": [
@@ -2343,6 +2620,24 @@
         "by": "code",
         "verdict": "pass",
         "t": 29876392.6725
+       },
+       {
+        "stage": "check",
+        "by": "toy-checker",
+        "verdict": "pass",
+        "t": 29876394.10745
+       },
+       {
+        "stage": "uat",
+        "by": "mgr-live",
+        "verdict": "pass",
+        "t": 29876394.115783334
+       },
+       {
+        "stage": "ship",
+        "by": "toy-release",
+        "verdict": "pass",
+        "t": 29876394.115816668
        }
       ],
       "priority": "next",
@@ -2669,7 +2964,7 @@
       "stage": "check",
       "loops": 1,
       "entered": 29876393.1818,
-      "state": "running",
+      "state": "left",
       "session": "S-6"
      }
     ],
@@ -2688,10 +2983,26 @@
       "state": "running",
       "session": "S-7"
      }
+    ],
+    [
+     "R-14",
+     {
+      "run": "R-14",
+      "msg": "M-29",
+      "role": "toy-release",
+      "by": "toy-release",
+      "consult": false,
+      "order": "O-2",
+      "stage": "ship",
+      "loops": 1,
+      "entered": 29876394.1158,
+      "state": "left",
+      "session": "S-8"
+     }
     ]
    ]
   },
-  "n": 13,
+  "n": 14,
   "memory": {
    "__map": [
     [
@@ -2755,6 +3066,12 @@
        "did": "check on O-4: revise (loop 0)",
        "learned": "For calendar code that claims \"any safe integer year\", check that the intermediate day counts stay below 2^53 (about 2.47e13 years). Reduce the year mod 400 for the weekday instead of trusting the claim.",
        "mistake": null
+      },
+      {
+       "t": 29876394.10745,
+       "did": "check on O-2: pass (loop 1)",
+       "learned": "Once a codec length guard uses MAX_STRING_LENGTH, test the exact boundary with a two-byte char (é) as well as ASCII and an astral char: guards that divide by ch.length are right in code units, and the boundary allocation still fits in the default heap.",
+       "mistake": null
       }
      ]
     ],
@@ -2770,6 +3087,12 @@
       {
        "t": 29876391.8318,
        "did": "ship on O-3: pass (loop 0)",
+       "learned": null,
+       "mistake": null
+      },
+      {
+       "t": 29876394.115816668,
+       "did": "ship on O-2: pass (loop 1)",
        "learned": null,
        "mistake": null
       }
@@ -2835,7 +3158,7 @@
       "id": "S-6",
       "role": "toy-checker",
       "items": 1,
-      "open": true,
+      "open": false,
       "started": 29876393.1818
      }
     ],
@@ -2848,9 +3171,19 @@
       "open": true,
       "started": 29876393.21295
      }
+    ],
+    [
+     "S-8",
+     {
+      "id": "S-8",
+      "role": "toy-release",
+      "items": 1,
+      "open": false,
+      "started": 29876394.1158
+     }
     ]
    ]
   },
-  "nS": 7
+  "nS": 8
  }
 }
