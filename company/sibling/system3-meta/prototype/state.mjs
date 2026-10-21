@@ -129,7 +129,11 @@ export function runTextChecks(task, checks) {
   // sheet sent 3 of 5 rounds back at the check, after test1 had passed them)
   for (const r of checks.lineMaxWords ?? []) for (const [i, l] of lines.entries()) {
     if (!l.trimStart().startsWith(r.prefix)) continue;
-    const n = l.trimStart().slice(r.prefix.length).split(/\s+/).filter((w) => /[\p{L}\p{N}]/u.test(w)).length;
+    let rest = l.trimStart().slice(r.prefix.length);
+    // a prefix that opens bold ("**Q") leaves the label's tail ("1.**") behind; it is not a word (benchmark 3: a chair
+    // coded 17 for a 16-word decision)
+    if ((r.prefix.match(/\*\*/g) ?? []).length % 2 === 1) rest = rest.replace(/^[^\s]*?\*\*/, "");
+    const n = rest.split(/\s+/).filter((w) => /[\p{L}\p{N}]/u.test(w)).length;
     if (n > r.maxWords) fails.push(`line ${i + 1} (${r.prefix}) has ${n} words > ${r.maxWords}`);
   }
   if (checks.distinctAnswers) fails.push(...answerClashes(task, text, checks.distinctAnswers));
@@ -178,6 +182,9 @@ const words = (s) => s.toLowerCase().replace(/[^\p{L}\p{N} ]/gu, " ").split(/\s+
 export function answerClashes(task, text, { prefix, split = null, across = null, question = "**Q" }) {
   const secs = [];
   const own = split ? text.split(new RegExp(`(?=${split})`, "m")).filter((p) => new RegExp(split, "m").test(p)) : [text];
+  // a section ends at the next heading that is not itself a section (benchmark 3: PACK's "## Changes" notes were read
+  // as part of Round 5, so a note quoting another round's answer failed as a giveaway)
+  if (split) own.forEach((t, i) => { const lines = t.split("\n"); const k = lines.findIndex((l, j) => j > 0 && /^#{1,6}\s/.test(l) && !new RegExp(split).test(l)); if (k > 0) own[i] = lines.slice(0, k).join("\n"); });
   own.forEach((t, i) => secs.push({ name: split ? t.match(new RegExp(split, "m"))[0].replace(/^#+\s*|:\s*$/g, "").trim() : task, text: t, mine: true }));
   if (across) for (const d of fs.existsSync(path.join(LIVE, "work")) ? fs.readdirSync(path.join(LIVE, "work")) : []) {
     if (d === task || !d.startsWith(across)) continue;
@@ -194,13 +201,16 @@ export function answerClashes(task, text, { prefix, split = null, across = null,
   const df = new Map();
   for (const s of secs) for (const w of new Set(words(s.text))) df.set(w, (df.get(w) ?? 0) + 1);
   const keyOf = (q) => words(q).filter((w) => w.length >= 4 && !STOP.has(w) && (df.get(w) ?? 0) <= 2);
+  // an answer whose every word is in more than two sections (the Sun, in a solar-system pack) is common ground, not a
+  // giveaway (benchmark 3: "The Sun" could not be an answer at all, so a writer dropped a listed fact)
+  const common = (a) => secs.length > 3 && words(a).every((w) => (df.get(w) ?? 0) > 2);
   const out = [];
   for (const [i, x] of secs.entries()) for (const { a, q } of x.qa) {
     if (!a) continue;
     for (const [j, y] of secs.entries()) {
       if (i === j || !(x.mine || y.mine)) continue;
       if (j > i && y.qa.some((z) => z.a === a)) out.push(`answer "${a}" is in both ${x.name} and ${y.name}`);
-      if (!/\p{L}/u.test(a) || a.length < 3) continue;
+      if (!/\p{L}/u.test(a) || a.length < 3 || common(a)) continue;
       const re = new RegExp(`\\b${a.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "i");
       const keys = keyOf(q);
       const hit = y.other.find((l) => re.test(l) && keys.some((k) => words(l).includes(k)));
@@ -219,7 +229,7 @@ export function answerClashes(task, text, { prefix, split = null, across = null,
         if (i === j) continue;
         if (q.a && q.a !== p.a && re.test(q.a)) out.push(`${x.name}: answer "${p.a}" is part of answer "${q.a}"`);
         // only an earlier question gives a later answer away; a later question naming an answer already given is fine
-        if (j < i && q.q && re.test(q.q.replace(/^\*\*Q\d+\.\*\*/, ""))) out.push(`${x.name}: answer "${p.a}" is named in an earlier question: "${q.q.slice(0, 80)}"`);
+        if (j < i && q.q && !common(p.a) && re.test(q.q.replace(/^\*\*Q\d+\.\*\*/, ""))) out.push(`${x.name}: answer "${p.a}" is named in an earlier question: "${q.q.slice(0, 80)}"`);
       }
     }
   }

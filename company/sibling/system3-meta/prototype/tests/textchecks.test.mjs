@@ -53,3 +53,23 @@ test("text checks: allowedLines rejects a line outside the decided kinds", async
   assert.equal(r.pass, false); assert.match(r.output, /^line 3 is not an allowed kind of line/);
   assert.deepEqual(mergeChecks({ allowedLines: ["# ", "**Q", "> "] }, { allowedLines: ["# ", "**Q"] }).allowedLines, ["# ", "**Q"]);
 });
+
+test("benchmark 3 fixes: bold label tail is not a word; a common answer is no giveaway; a split section ends at a heading", () => {
+  write("QB", "# Round 1: Sun\n**Q1.** one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen?\n");
+  assert.equal(runTextChecks("QB", { lineMaxWords: [{ prefix: "**Q", maxWords: 16 }] }).pass, true);
+  const round = (n, q1, a1, q2, a2) => `# Round ${n}: Topic ${n}\n**Q1.** ${q1}\n**Answer:** ${a1}\n**Why:** It is so.\n**Q2.** ${q2}\n**Answer:** ${a2}\n**Why:** It is so.\n`;
+  const pack = (tail) => [
+    round(1, "What star lights our sky?", "The Sun", "Which planet is red?", "Mars"),
+    round(2, "Which planet is hottest?", "Venus", "What warms Venus, the Sun or Mars?", "Its air"),
+    round(3, "Which planet has rings?", "Saturn", "Does the Sun shine on Saturn?", "Yes"),
+    round(4, "What do planets circle around?", "Ceres belt", "Which dwarf world is Pluto's friend?", "Eris"),
+    round(5, "Which ice world circles the Sun far out?", "Pluto", "Which way does a comet tail point, toward or away from the Sun?", "The Sun"),
+  ].join("\n") + tail;
+  const checks = { distinctAnswers: { prefix: "**Answer:**", split: "^# Round \\d+:" } };
+  write("PK1", pack(""));
+  const r1 = runTextChecks("PK1", checks);
+  assert.doesNotMatch(r1.output, /gives away.*"sun"|answer "sun" is named/i);
+  assert.match(r1.output, /answer "sun" is in both/i); // a repeated answer is still a repeat
+  write("PK2", pack("\n## Changes\n- Round 4: kept the dwarf world answer Eris as is.\n"));
+  assert.doesNotMatch(runTextChecks("PK2", checks).output, /gives away Round 4's answer "eris"/i);
+});

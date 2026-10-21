@@ -112,3 +112,10 @@ The org evaluator's second pack is in `live/orgeval-2/`.
 1. Fix the four tool findings.
 2. **Cost is sessions now.** Let `serve` batch a role's queued revise and re-check work when a second item is due within a minute, rather than launching at once.
 3. Add a company escape list that seeds the `banned` checks.
+
+**After the run:**
+- Three of the four tool findings are fixed in `state.mjs`, with a test that fails on the old code (66 tests):
+  - the bold label tail;
+  - common-word answers;
+  - a split section now ends at the next heading.
+- The orgeval attribution finding is still open.
