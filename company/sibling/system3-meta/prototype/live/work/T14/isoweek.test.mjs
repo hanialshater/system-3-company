@@ -137,8 +137,12 @@ test('every day of a few huge years agrees with BigInt reference', () => {
 });
 test('ISO year outside safe range throws RangeError, never returns an unsafe integer', () => {
   const M = Number.MAX_SAFE_INTEGER;
-  assert.throws(() => isoWeek(M, 12, 31), RangeError);
+  // Per the BigInt reference, MAX_SAFE_INTEGER-12-31 is in ISO week 52 of year M (no spill into 2^53);
+  // the old code returned 2^53 here only because its weekday was wrong.
+  assert.deepEqual(isoWeek(M, 12, 31), [M, 52]);
+  // -MAX_SAFE_INTEGER-01-01 belongs to ISO year -2^53, which is unsafe: rejected.
   assert.throws(() => isoWeek(-M, 1, 1), RangeError);
+  assert.deepEqual(isoWeek(-M, 1, 2), [-M, 1]);
   for (const y of [M, -M]) for (let m = 1; m <= 12; m++) for (let d = 1; d <= 28; d++) {
     try { const [iy] = isoWeek(y, m, d); assert.ok(Number.isSafeInteger(iy)); } catch (e) { assert.ok(e instanceof RangeError); }
   }
