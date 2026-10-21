@@ -1,6 +1,6 @@
 # Org evaluation pack (numbers by code)
 
-generated 2026-10-21T17:37:21.454Z · runs: bench2-meta, live4, bench3-a, bench3-b
+generated 2026-10-21T17:39:43.551Z · runs: bench2-meta, live4, bench3-a, bench3-b
 
 ## Trend across runs (oldest first)
 | measure | bench2-meta | live4 | bench3-a | bench3-b |
@@ -8,10 +8,10 @@ generated 2026-10-21T17:37:21.454Z · runs: bench2-meta, live4, bench3-a, bench3
 | defectsFound | 4 | 3 | 16 | 17 |
 | tokensPerShipped | 167822 | 193177 | 174122 | 201292 |
 | firstPassYield | 0.43 | 0.75 | 0.57 | 0.57 |
-| caughtBeforeShip | 0.5 | 0.75 | 1 | 1 |
+| caughtBeforeShip | 0.5 | 0.75 | 0.89 | 0.89 |
 | codeShareOfCatches | 0 | 0 | 0.81 | 0.47 |
 | humanCatchesCodeCouldHaveMade | 3 | 1 | 1 | 4 |
-| escaped | 4 | 1 | 0 | 0 |
+| escaped | 4 | 1 | 2 | 2 |
 | rulesApplied | 0 | 7 | 18 | 0 |
 
 ## bench2-meta
@@ -38,7 +38,7 @@ generated 2026-10-21T17:37:21.454Z · runs: bench2-meta, live4, bench3-a, bench3
 
 ## bench3-a
 - items: 7/7 shipped (integration: PACK); 18 sessions, 1218857 tokens, 174122 per shipped item, 18.17 min to the last ship
-- auto-correction: first-pass yield 0.57; 3 revises caught by {"checker":3,"code (self-check)":13}; 0 escaped {} found by {}; caught before ship 1; 1 of 3 human catches were a class code can check
+- auto-correction: first-pass yield 0.57; 3 revises caught by {"checker":3,"code (self-check)":13}; 2 escaped {"fact":2} found by {"fact-check":2}; caught before ship 0.89; 1 of 3 human catches were a class code can check
 - revises by class: {"numbers":1,"fact":2,"consistency":1}
   - O-2 ROUND1 (checker, numbers): Class: rounded number stated as exact (Why not true on its own). 1 instance: Q3 Why says "the trip takes 8 minutes" -> must say "about 8 minutes" (light takes a
   - O-5 ROUND4 (checker, fact/consistency): Class A, untrue fact (every fact must be true): (1) Q4 Why "its lakes are filled with liquid gas" -> "liquid gas" is a contradiction and misleading; Titan lakes
@@ -49,7 +49,7 @@ generated 2026-10-21T17:37:21.454Z · runs: bench2-meta, live4, bench3-a, bench3
 
 ## bench3-b
 - items: 7/7 shipped (integration: PACK); 22 sessions, 1409043 tokens, 201292 per shipped item, 23 min to the last ship
-- auto-correction: first-pass yield 0.57; 6 revises caught by {"checker":6,"code (self-check)":8,"integration":3}; 0 escaped {} found by {}; caught before ship 1; 4 of 6 human catches were a class code can check
+- auto-correction: first-pass yield 0.57; 6 revises caught by {"checker":6,"code (self-check)":8,"integration":3}; 2 escaped {"fact":1,"format":1} found by {"fact-check":1,"integration":1}; caught before ship 0.89; 4 of 6 human catches were a class code can check
 - revises by class: {"other":2,"length":3,"duplicate":1,"format":1}
   - O-5 ROUND4 (checker, other): CLASS 1 wrong topic: title "# Round 4: Space Rocks" -> must be "# Round 4: Moons" per work/STYLE/page.md (Rounds list). CLASS 2 answers owned by another round (
   - O-6 ROUND5 (checker, length): Class 1, giveaway of another answer (1 instance): Q4 question says "flew past Pluto in 2015", which hands over the answer to Q2 (Pluto) in the same round → requ
