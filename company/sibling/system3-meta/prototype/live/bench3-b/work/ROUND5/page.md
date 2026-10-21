@@ -1,6 +1,6 @@
 # Round 5: Dwarf planets, asteroids and comets
 
-**Q1.** Lots of space rocks go around the Sun in a wide band between Mars and Jupiter. What is this band called?
+**Q1.** Many space rocks circle the Sun in a wide band between Mars and Jupiter. What is this band called?
 
 **Answer:** The asteroid belt
 
@@ -18,8 +18,8 @@
 
 **Why:** People on Earth last saw it in 1986, and it should be back again in 2061.
 
-**Q4.** Which NASA spacecraft flew past Pluto in 2015 and sent back the first close-up pictures of it?
+**Q4.** When a comet comes near the Sun, it grows a long, glowing tail. Which way does that tail point?
 
-**Answer:** New Horizons
+**Answer:** Away from the Sun
 
-**Why:** It took more than nine years to get there, and its pictures showed a big heart-shaped patch of ice on Pluto.
+**Why:** Sunlight and a wind of tiny bits from the Sun push the comet's gas and dust outward, so the tail always faces away.
