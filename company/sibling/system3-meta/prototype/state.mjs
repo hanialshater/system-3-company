@@ -10,6 +10,9 @@ import { applyFloor } from "./building.mjs";
 export const HERE = path.dirname(fileURLToPath(import.meta.url));
 export const LIVE = process.env.META_LIVE_DIR || path.join(HERE, "live");
 export const STATE = path.join(LIVE, process.env.META_STATE || "state.json");
+/** The company's known false claims, kept across runs (benchmark 3): every text order is checked against them. */
+export const ESCAPES = process.env.META_ESCAPES || path.join(HERE, "escapes.json");
+export const readEscapes = () => (fs.existsSync(ESCAPES) ? JSON.parse(fs.readFileSync(ESCAPES, "utf8")) : []);
 export const LOCK = path.join(LIVE, "state.lock");
 
 export const LIVE_ROOMS = [{ id: "lobby", floor: 1 }, { id: "ceo-office", floor: 1 }, { id: "sandbox", floor: 2 }, { id: "quality", floor: 3 }, { id: "launch", floor: 3 }];
@@ -125,6 +128,8 @@ export function runTextChecks(task, checks) {
   const lit = (m) => `${/^\w/.test(m) ? "\\b" : ""}${m.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}${/\w$/.test(m) ? "\\b" : ""}`;
   for (const m of checks.mustInclude ?? []) if (!new RegExp(lit(m), "i").test(text)) fails.push(`does not mention ${m}`);
   for (const b of checks.banned ?? []) if (new RegExp(`\\b${b}\\b`, "i").test(text)) fails.push(`uses banned word ${b}`);
+  // claims that escaped earlier runs (benchmark 3: "thick clouds trap the heat" on Venus escaped three runs running)
+  for (const x of checks.knownFalse ?? []) { const m = text.match(new RegExp(x.pattern, "i")); if (m) fails.push(`known false claim "${m[0]}": ${x.why}`); }
   // a rule on some lines, e.g. {prefix: "**Why:**", maxWords: 20} (benchmark 2: a 20-word why-line rule in the style
   // sheet sent 3 of 5 rounds back at the check, after test1 had passed them)
   for (const r of checks.lineMaxWords ?? []) for (const [i, l] of lines.entries()) {
@@ -145,7 +150,7 @@ export function runTextChecks(task, checks) {
 }
 
 // ---- checks as data: validated, merged (a decision tightens them), and the cross-section answer check ----------------
-export const CHECK_KEYS = ["file", "minWords", "maxWords", "mustInclude", "banned", "minReadingEase", "titleLine", "lineMaxWords", "distinctAnswers", "allowedLines"];
+export const CHECK_KEYS = ["file", "minWords", "maxWords", "mustInclude", "banned", "minReadingEase", "titleLine", "lineMaxWords", "distinctAnswers", "allowedLines", "knownFalse"];
 export function validateChecks(c) {
   if (!c || typeof c !== "object" || Array.isArray(c)) return "checks are an object";
   const bad = Object.keys(c).filter((k) => !CHECK_KEYS.includes(k));
@@ -154,6 +159,7 @@ export function validateChecks(c) {
   if (c.lineMaxWords != null && (!Array.isArray(c.lineMaxWords) || c.lineMaxWords.some((r) => !r.prefix || !(r.maxWords > 0)))) return "lineMaxWords is a list of {prefix, maxWords}";
   if (c.distinctAnswers != null && !c.distinctAnswers.prefix) return "distinctAnswers needs a prefix";
   if (c.allowedLines != null && (!Array.isArray(c.allowedLines) || !c.allowedLines.length)) return "allowedLines is a list of line prefixes";
+  if (c.knownFalse != null && (!Array.isArray(c.knownFalse) || c.knownFalse.some((x) => !x.pattern || !x.why || (() => { try { new RegExp(x.pattern, "i"); return false; } catch { return true; } })()))) return "knownFalse is a list of {pattern (a regular expression), why}";
   return null;
 }
 /** Merge b into a: lists join, limits take the stricter value. A decision can only tighten an order's checks. */
@@ -166,6 +172,7 @@ export function mergeChecks(a = {}, b = {}) {
     else if (k === "maxWords") out[k] = Math.min(v, a[k] ?? Infinity);
     else if (k === "titleLine") out[k] = !!(v || a[k]);
     else if (k === "allowedLines") out[k] = a[k] ? a[k].filter((x) => v.includes(x)) : v; // stricter: only prefixes both allow
+    else if (k === "knownFalse") { const m = new Map((a[k] ?? []).map((x) => [x.pattern, x])); for (const x of v) m.set(x.pattern, x); out[k] = [...m.values()]; }
     else out[k] = v;
   }
   return out;
@@ -247,6 +254,7 @@ export function describeChecks(c = {}) {
   for (const r of c.lineMaxWords ?? []) L.push(`each line starting ${JSON.stringify(r.prefix)} has at most ${r.maxWords} words after it`);
   if (c.minReadingEase) L.push(`Flesch reading ease at least ${c.minReadingEase} (short sentences, short words)`);
   if (c.allowedLines) L.push(`every non-empty line starts with one of: ${c.allowedLines.map((x) => JSON.stringify(x)).join(", ")}`);
+  for (const x of c.knownFalse ?? []) L.push(`no known false claim matching /${x.pattern}/i (${x.why})`);
   if (c.distinctAnswers) L.push(`no ${JSON.stringify(c.distinctAnswers.prefix)} answer repeats ${c.distinctAnswers.across ? `another ${c.distinctAnswers.across}* task's` : "another section's"}, and no line names another ${c.distinctAnswers.across ? "task" : "section"}'s answer together with a distinctive word of that answer's question (a give-away)`);
   return L;
 }

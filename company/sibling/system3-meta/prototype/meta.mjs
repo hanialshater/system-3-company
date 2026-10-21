@@ -7,7 +7,10 @@
 //   node meta.mjs order delegate <O> --by=<manager> --to=<builder> [--budget=150000]
 //   node meta.mjs queue <role|pool:level>                     open work messages
 //   node meta.mjs room enter --msg=<M> --role=<role> [--lease=30] [--as=<role> --mode=consult]
-//   node meta.mjs room next --run=<R> --cap=<n> --evidence=… [leave flags]   leave, then take the next item in the same session
+//   node meta.mjs room next --run=<R> --cap=<n> [--wait=<s>] --evidence=… [leave flags]   leave, then take the next item in the
+//        same session; --wait keeps the session up to <s> seconds for the role's next item (benchmark 3: ~60k per new session)
+//   node meta.mjs escape add --by=<role> --pattern=<regex> --why=… [--runs=a,b] | escape list   the company's known false
+//        claims (escapes.json, kept across runs); every text order is checked against them
 //   node meta.mjs room session-usage --session=<S> --tokens=<n>   the harness count for a whole agent process (supervisor)
 //   node meta.mjs room wake-plan                              seconds until the next lease expiry: when to run recover
 //   node meta.mjs flow metrics                                lead, work, critical path (--after), flow efficiency, cost
@@ -48,7 +51,7 @@ import path from "node:path";
 import { Refused, flowMetrics } from "./lib.mjs";
 import { proposePolicy, activatePolicy, managerReport, recordCycle, KNOBS } from "./policy.mjs";
 import { engage, engageTemplate, briefFor, deliver, decideContract, TEMPLATES } from "./contractor.mjs";
-import { LIVE, STATE, LIVE_ROLES, TASK_FLOW, clock, make, rep, save, load, withLock, runTests, runTest1, validateChecks, describeChecks } from "./state.mjs";
+import { LIVE, STATE, LIVE_ROLES, TASK_FLOW, clock, make, rep, save, load, withLock, runTests, runTest1, validateChecks, describeChecks, mergeChecks, ESCAPES, readEscapes } from "./state.mjs";
 import * as B from "./building.mjs";
 import * as CH from "./channels.mjs";
 import * as T from "./tracker.mjs";
@@ -76,7 +79,7 @@ function pack(co, run, ctx, session, item) {
   return { run, session, item, lease_min: Number(opt.lease ?? 30), order: o.id, task: o.task, title: o.title, priority: o.priority, stage: ctx.stage, accept: o.accept, workdir: dir + "/", workdir_exists: fs.existsSync(dir), findings: o.findings ?? null, memory: ctx.memory.map((e) => ({ ...e, t: iso(e.t) })), history: o.history.map((h) => ({ ...h, t: iso(h.t) })),
     cap_means: "--cap counts every item in this session, including the first one you entered",
     leave_with: `${pre}node meta.mjs room leave --run=${run} --evidence=<path>${ctx.stage === "check" ? " --verdict=pass|revise --findings='…'" : ""} --learned='…'`,
-    next_with: `${pre}node meta.mjs room next --run=${run} --cap=<cap from your brief> --evidence=<path>${ctx.stage === "check" ? " --verdict=pass|revise --findings='…'" : ""} --learned='…'` };
+    next_with: `${pre}node meta.mjs room next --run=${run} --cap=<cap from your brief> --wait=90 --evidence=<path>${ctx.stage === "check" ? " --verdict=pass|revise --findings='…'" : ""} --learned='…'` };
 }
 
 function main() {
@@ -133,7 +136,18 @@ function main() {
       throw e;
     }
   };
-  return readOnly ? act() : withLock(act);
+  const r = readOnly ? act() : withLock(act);
+  // room next --wait: the hand-in is saved; poll (outside the lock) until the role's next item or the end of the wait
+  if (cmd === "room" && sub === "next" && r?.waiting) {
+    for (;;) {
+      Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 2000);
+      const w = withLock(() => { const co = load(); const x = co.rooms.resume(r.waiting, { leaseMin: Number(opt.lease ?? 30) }); if (!x.waiting) save(co); return { co, x }; });
+      if (w.x.waiting) continue;
+      if (w.x.next) return { left: r.left, waited: true, ...pack(w.co, w.x.next.run, w.x.next.ctx, w.x.next.session, w.x.next.item) };
+      return { left: r.left, session_closed: r.waiting, reason: w.x.reason, note: "your session is over: stop now" };
+    }
+  }
+  return r;
 }
 
 function dispatch(co, cmd, sub, arg) {
@@ -146,6 +160,10 @@ function dispatch(co, cmd, sub, arg) {
     if (opt.goal) o.goal = opt.goal;
     if (opt.checks) { o.checks = JSON.parse(opt.checks); const e = validateChecks(o.checks); if (e) throw new Refused(`HARD: ${e}`); } // test1 by declared checks (non-code work)
     M.applyStandingRules(co, o); // decisions made before this order was placed
+    // the company's known false claims travel to every text order (benchmark 3: room memory is per run, so an escape
+    // found by one run's fact-check reached the next run unchanged)
+    const kf = readEscapes();
+    if (o.checks && kf.length) { o.checks = mergeChecks(o.checks, { knownFalse: kf.map(({ pattern, why }) => ({ pattern, why })) }); log.add({ type: "rule-applied", order: o.id, task: o.task, source: "escapes", keys: ["knownFalse"] }); }
     return { order: o.id, stage: o.stage, priority: o.priority, after: o.after, blocked: o.blocked };
   }
   if (cmd === "order" && sub === "delegate") {
@@ -161,8 +179,9 @@ function dispatch(co, cmd, sub, arg) {
   }
   if (cmd === "room" && sub === "next") {
     need("run", "evidence");
-    const r = rooms.next(opt.run, { verdict: opt.verdict ?? "pass", evidence: opt.evidence, findings: opt.findings ?? null, learned: opt.learned ?? null, mistake: opt.mistake ?? null }, { cap: Number(opt.cap ?? 3), leaseMin: Number(opt.lease ?? 30) });
+    const r = rooms.next(opt.run, { verdict: opt.verdict ?? "pass", evidence: opt.evidence, findings: opt.findings ?? null, learned: opt.learned ?? null, mistake: opt.mistake ?? null }, { cap: Number(opt.cap ?? 3), leaseMin: Number(opt.lease ?? 30), waitMin: Number(opt.wait ?? 0) / 60 });
     const left = r.left ? { order: r.left.id, next_stage: r.left.stage, loops: r.left.loops } : { stale: true };
+    if (r.waiting) return { left, waiting: r.waiting.id };
     if (!r.next) return { left, session_closed: r.closed?.id ?? true, reason: r.closed ? (r.closed.items >= Number(opt.cap ?? 3) ? "cap reached" : "queue empty") : "closed", note: "your session is over: stop now" };
     return { left, ...pack(co, r.next.run, r.next.ctx, r.next.session, r.next.item) };
   }
@@ -306,6 +325,16 @@ function dispatch(co, cmd, sub, arg) {
   if (cmd === "wbr" && sub === "page0") return RIT.page0(co);
   if (cmd === "goal-review") { need("by"); return RIT.goalReview(co, { by: opt.by }); }
   if (cmd === "digest") { need("audience"); return { doc: opt.channel ? RIT.publishDigest(co, { by: opt.by ?? "cos", audience: opt.audience, channel: opt.channel }).body : RIT.digest(co, { audience: opt.audience }) }; }
+  if (cmd === "escape" && sub === "list") return readEscapes();
+  if (cmd === "escape" && sub === "add") {
+    need("by", "pattern", "why");
+    const e = validateChecks({ knownFalse: [{ pattern: opt.pattern, why: opt.why }] }); if (e) throw new Refused(e);
+    const list = readEscapes().filter((x) => x.pattern !== opt.pattern);
+    list.push({ pattern: opt.pattern, why: opt.why, by: opt.by, runs: opt.runs ? String(opt.runs).split(",") : [], added: new Date().toISOString().slice(0, 10) });
+    fs.writeFileSync(ESCAPES, JSON.stringify(list, null, 1) + "\n");
+    log.add({ type: "escape-added", by: opt.by, pattern: opt.pattern });
+    return { ok: true, escapes: list.length };
+  }
   if (cmd === "events") return log.events.filter((e) => !opt.type || e.type === opt.type);
   if (cmd === "memory") return rooms.memory.get(sub) ?? [];
   if (cmd === "org" && sub === "activity") return org.activity(log.events, arg);

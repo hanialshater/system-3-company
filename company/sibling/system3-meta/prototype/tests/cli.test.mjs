@@ -47,3 +47,17 @@ test("a refused command saves only its refusal, not the changes it made before r
   assert.equal(JSON.stringify(state.data.tracker ?? {}).includes('"ok"'), false, "no partial action");
   assert.ok(state.log.events.some((e) => e.type === "refuse"), "the refusal is recorded");
 });
+
+test("escape add: the company's known false claims are added to every new text order", () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "meta-esc-"));
+  process.env.META_ESCAPES = path.join(dir, "escapes.json");
+  try {
+    assert.equal(cli(dir, "init", "--spec=storybook").code, 0);
+    assert.notEqual(cli(dir, "escape", "add", "--by=org-evaluator", "--pattern=(", "--why=x").code, 0);
+    assert.equal(cli(dir, "escape", "add", "--by=org-evaluator", "--pattern=clouds trap", "--why=the air traps heat").code, 0);
+    const o = cli(dir, "order", "new", "--by=cos", "--to=editor", "--title=R", "--task=R1", "--accept=a round", `--checks=${JSON.stringify({ titleLine: true })}`);
+    assert.equal(o.code, 0, o.err);
+    const state = JSON.parse(fs.readFileSync(path.join(dir, "state.json"), "utf8"));
+    assert.match(JSON.stringify(state), /"knownFalse":\[\{"pattern":"clouds trap","why":"the air traps heat"\}\]/);
+  } finally { delete process.env.META_ESCAPES; }
+});

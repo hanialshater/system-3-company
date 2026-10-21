@@ -93,6 +93,8 @@ export function plan(co, { batchLater: batchDefault = 3, cap: capDefault = 4 } =
   for (const l of log.events.filter((e) => e.type === "launch" && now - e.t < LAUNCH_GRACE_MIN && !(e.tasks?.length && !e.msgs?.length))) {
     if (!log.events.some((e) => e.type === "enter" && e.role === l.role && e.t >= l.t)) running.add(l.role);
   }
+  // a session waiting for its role's next item will take it (room next --wait)
+  for (const s of rooms.sessions.values()) if (s.open && s.waitUntil != null && s.waitUntil > now) running.add(s.role);
   const out = [];
   const consider = (role, msgs) => {
     if (!msgs.length) return;
@@ -110,7 +112,8 @@ export function plan(co, { batchLater: batchDefault = 3, cap: capDefault = 4 } =
       // is small, the session takes it all: half a cap more costs less than a fresh session's start-up.
       const all = [...next, ...later];
       const take = all.length - cap <= Math.ceil(cap / 2) ? all : all.slice(0, cap);
-      out.push({ role, why: next.length ? `next: ${next.length} waiting, no session running` : `later: a batch of ${later.length}`, msgs: take.map((m) => m.id), cap: take.length });
+      // the cap leaves room for items that arrive while the session waits (room next --wait)
+      out.push({ role, why: next.length ? `next: ${next.length} waiting, no session running` : `later: a batch of ${later.length}`, msgs: take.map((m) => m.id), cap: Math.max(take.length, cap) });
     }
   };
   for (const r of org.active()) {
@@ -178,8 +181,8 @@ export function briefFor(co, item, { context = null } = {}) {
     L.push(`Read your brief: \`node meta.mjs contract brief --id=${item.contract}\`. Work only in its folder; deliver with the \`contract deliver\` command it names, before the timebox ends.`);
   } else {
     L.push(`1. Enter: \`node meta.mjs room enter --msg=${item.msgs[0]} --role=${item.role}\`. The JSON pack gives the order, stage, workdir, accept criteria, findings, history, memory and the exact \`next_with\` and \`leave_with\` commands. Your session cap is ${item.cap} (${item.msgs.length} item${item.msgs.length > 1 ? "s" : ""} queued${o ? `, starting with ${o.task}` : ""}).`);
-    if (r.level === "checker") L.push("2. Check the work against its accept criteria and the shipped work it must agree with. Never fix it. Report defects by class: list every instance of a class, each as what is wrong → what is required.", `3. Hand in with \`next_with\` (\`--cap=${item.cap} --verdict=pass\` or \`--verdict=revise --findings='…'\`, \`--evidence=<path>\`, \`--learned='one line'\`) to take the next item in this session; on the last item, or when nothing is queued, use \`leave_with\`.`);
-    else L.push("2. Do the work the accept criteria ask, in the workdir only. If the order has `checks`, run `node meta.mjs check --order=<O>` before you hand in: it runs the same test1 code will run.", `3. Hand in with \`next_with\` (\`--cap=${item.cap} --evidence=<path> --learned='one line'\`) to take the next item in this session; on the last item use \`leave_with\`.`);
+    if (r.level === "checker") L.push("2. Check the work against its accept criteria and the shipped work it must agree with. Never fix it. Report defects by class: list every instance of a class, each as what is wrong → what is required.", `3. Hand in with \`next_with\` (\`--cap=${item.cap} --verdict=pass\` or \`--verdict=revise --findings='…'\`, \`--evidence=<path>\`, \`--learned='one line'\`) to take the next item in this session: it waits up to 90 s for one, so always hand in with it, and stop only when it says your session is over.`);
+    else L.push("2. Do the work the accept criteria ask, in the workdir only. If the order has `checks`, run `node meta.mjs check --order=<O>` before you hand in: it runs the same test1 code will run.", `3. Hand in with \`next_with\` (\`--cap=${item.cap} --evidence=<path> --learned='one line'\`) to take the next item in this session: it waits up to 90 s for one (a revise of your work often arrives then), so always hand in with it, and stop only when it says your session is over.`);
     L.push("If a command refuses, read the message and fix what it names.");
   }
   L.push("", "Report back briefly: each item, its outcome, and anything that confused you.");

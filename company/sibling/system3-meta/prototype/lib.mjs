@@ -511,15 +511,33 @@ export class Rooms {
   }
 
   /** room next: leave this run as usual, then take the next eligible item in the same session, up to `cap` items. */
-  next(run, leaveOpts = {}, { cap = Infinity, leaseMin = 30, filter = () => true } = {}) {
+  next(run, leaveOpts = {}, { cap = Infinity, leaseMin = 30, filter = () => true, waitMin = 0 } = {}) {
     const x = this.runs.get(run);
     hard(x, `no run ${run}`);
     const left = this.leave(run, leaveOpts);
     const s = this.sessions.get(x.session);
     if (s.items >= cap) return { left, next: null, closed: this.closeSession(s.id, "cap") };
     const m = this.eligible(x.role).find(filter);
+    if (!m && waitMin > 0) {
+      // benchmark 3: every revise and re-check was a fresh session (~60k start-up) because its item arrived a minute
+      // after the last one left. A session that waits a little for its role's next item costs one tool call.
+      s.waitUntil = this.engine.clock.now() + waitMin;
+      this.log.add({ type: "session-wait", session: s.id, role: s.role, minutes: waitMin });
+      return { left, next: null, waiting: s };
+    }
     if (!m) return { left, next: null, closed: this.closeSession(s.id, "queue empty") };
     return { left, next: this.enter({ msg: m.id, role: x.role, session: s.id, leaseMin }) };
+  }
+
+  /** A waiting session takes its role's next eligible item, or closes once its wait is over. */
+  resume(session, { leaseMin = 30 } = {}) {
+    const s = this.sessions.get(session);
+    hard(s, `no session ${session}`);
+    if (!s.open) return { closed: s, reason: "closed" };
+    const m = this.eligible(s.role)[0];
+    if (m) { s.waitUntil = null; return { next: this.enter({ msg: m.id, role: s.role, session: s.id, leaseMin }) }; }
+    if (this.engine.clock.now() >= (s.waitUntil ?? 0)) { s.waitUntil = null; return { closed: this.closeSession(s.id, "queue empty after wait"), reason: "queue empty" }; }
+    return { waiting: true };
   }
 
   closeSession(id, reason) {

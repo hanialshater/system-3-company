@@ -73,3 +73,13 @@ test("benchmark 3 fixes: bold label tail is not a word; a common answer is no gi
   write("PK2", pack("\n## Changes\n- Round 4: kept the dwarf world answer Eris as is.\n"));
   assert.doesNotMatch(runTextChecks("PK2", checks).output, /gives away Round 4's answer "eris"/i);
 });
+
+test("knownFalse: a claim on the company escape list fails the check, with the reason", () => {
+  write("KF", "# Round 2: Planets\n**Why:** Its thick clouds trap the heat like a blanket.\n");
+  const checks = { knownFalse: [{ pattern: "clouds?\\b[^.]{0,40}\\btraps?\\b[^.]{0,20}\\bheat", why: "the thick air traps the heat" }] };
+  const r = runTextChecks("KF", checks);
+  assert.equal(r.pass, false);
+  assert.match(r.output, /known false claim "clouds trap the heat": the thick air traps the heat/);
+  write("KF2", "# Round 2: Planets\n**Why:** Its thick air traps the heat like a blanket.\n");
+  assert.equal(runTextChecks("KF2", checks).pass, true);
+});

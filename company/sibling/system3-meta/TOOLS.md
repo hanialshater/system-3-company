@@ -25,6 +25,16 @@ founder, 2026-10-21: "not so fast, we have a lot to do for tools … still dont 
 | Group meetings | built, tested; private-then-revealed rounds, whiteboard, objections that need answers, decisions → tracker actions, minutes to a channel; used live (benchmark 1 kickoff) | prototype/meetings.mjs |
 | Newsletter and digests | built, tested; written by code per audience (founder, lane, company), published to a channel | prototype/rituals.mjs digest |
 | Building (floors and rooms) | built, tested; floors through founder approval, rooms add, rename, retire (refused while in use), bookings with capacity | prototype/building.mjs |
+| Decisions as checks (`meeting decide --rules`) | built, tested; a meeting decision code can check becomes `checks` on every matching order, open or later, with the stricter value winning; the minutes show what each rule tightened; used live (live run 4, benchmark 3) | prototype/meetings.mjs applyRules, meta.mjs |
+| Text checks, full set | built, tested: file, word limits, literal mustInclude, whole-word banned, reading ease, title line, lineMaxWords, allowedLines, distinctAnswers (across orders, split sections, within a section, giveaways with distinctive words, common answers exempt); `check` lists them in plain words and logs a self-check event | prototype/state.mjs |
+| Supervisor as a service (`serve`) | built, tested; long-running, writes every launch brief to an outbox and one JSON line per event for a monitor; pid guard; adaptive drain cap; 0 typed commands per wake (live run 4, benchmark 3) | prototype/supervisor.mjs serve |
+| Harness usage (`supervisor.mjs usage`) | built, tested; by session id or role, `--outside` for work outside rooms | prototype/supervisor.mjs |
+| Org evaluation (`orgeval.mjs`) | built, tested; per run: cost, auto-correction (caught by code, self-check, checker, integration; escapes), learning (repeats after being told), collaboration, trend; two packs (live/orgeval-1, -2) | prototype/orgeval.mjs |
+| Hidden acceptance (UAT) per task | built; `serve --acceptance=<dir>` runs the orderer's tests; agents never see them | prototype/supervisor.mjs |
+| Batching of revise work into fewer sessions | not built (benchmark 3: cost is sessions × ~65k; every launch drained one item) | - |
+| Company escape list (known false claims as checks) | not built (benchmark 3: the Venus "thick clouds" claim escaped three runs) | - |
+| Automatic launcher (Agent SDK) | not built; founder chose the Agent SDK for M3 (2026-10-21) | - |
+| Regression gate and watchdog | not built (needed by benchmark 4's injected faults) | - |
 | Document registry and review | designed (scenario S11), not built | - |
 | Notifications and subscriptions | not designed | - |
 | Calendar of human slots | not designed (the simulator models founder sittings) | - |
@@ -36,7 +46,7 @@ founder, 2026-10-21: "not so fast, we have a lot to do for tools … still dont 
 
 ## Build order
 
-Status 2026-10-21: steps 0-5 built and tested (46 tests) and used in Benchmark 1 (prototype/BENCH1.md); step 6 approvals and org changes are in the CLI; the document registry is not built.
+Status 2026-10-21 (updated after benchmark 3): steps 0-6 built except the document registry; since then, decisions as checks, the full text checks, `serve`, harness usage and the org evaluator (rows above). Steps 0-5 were built and tested (46 tests) and used in Benchmark 1 (prototype/BENCH1.md); step 6 approvals and org changes are in the CLI; the document registry is not built.
 
 Each step builds on the one before. Each gets a committed prediction, tests, and one small live run with real agents before the next starts.
 
