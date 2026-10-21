@@ -638,6 +638,100 @@
     "order": "O-2",
     "stage": "build",
     "mode": "work"
+   },
+   {
+    "seq": 68,
+    "t": 29876079,
+    "type": "advance",
+    "order": "O-2",
+    "stage": "build",
+    "by": "toy-builder-2",
+    "verdict": "pass"
+   },
+   {
+    "seq": 69,
+    "t": 29876079,
+    "type": "code-stage",
+    "order": "O-2",
+    "stage": "test1"
+   },
+   {
+    "seq": 70,
+    "t": 29876079,
+    "type": "done",
+    "msg": "M-11",
+    "run": "R-8"
+   },
+   {
+    "seq": 71,
+    "t": 29876079,
+    "type": "send",
+    "msg": "M-13",
+    "from": "toy-builder-2",
+    "to": "mgr-live",
+    "kind": "report",
+    "key": null,
+    "ref": "O-2"
+   },
+   {
+    "seq": 72,
+    "t": 29876079,
+    "type": "leave",
+    "run": "R-8",
+    "role": "toy-builder-2",
+    "order": "O-2",
+    "stage": "build",
+    "verdict": "pass",
+    "minutes": 1
+   },
+   {
+    "seq": 73,
+    "t": 29876079,
+    "type": "advance",
+    "order": "O-2",
+    "stage": "test1",
+    "by": "code",
+    "verdict": "pass"
+   },
+   {
+    "seq": 74,
+    "t": 29876079,
+    "type": "send",
+    "msg": "M-14",
+    "from": "mgr-live",
+    "to": "pool:checker",
+    "kind": "work",
+    "key": "O-2:check:1",
+    "ref": "O-2"
+   },
+   {
+    "seq": 75,
+    "t": 29876079,
+    "type": "usage",
+    "run": "R-8",
+    "role": "toy-builder-2",
+    "tokens": 61240,
+    "source": "harness"
+   },
+   {
+    "seq": 76,
+    "t": 29876079,
+    "type": "claim",
+    "msg": "M-14",
+    "run": "R-9"
+   },
+   {
+    "seq": 77,
+    "t": 29876079,
+    "type": "enter",
+    "run": "R-9",
+    "msg": "M-14",
+    "role": "toy-checker",
+    "by": "toy-checker",
+    "room": "quality",
+    "order": "O-2",
+    "stage": "check",
+    "mode": "work"
    }
   ]
  },
@@ -874,7 +968,7 @@
        "loops": 1
       },
       "ts": 29876078,
-      "state": "open",
+      "state": "done",
       "lease": {
        "run": "R-8",
        "until": 29876108
@@ -899,6 +993,49 @@
       "ts": 29876078,
       "state": "open",
       "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-13",
+     {
+      "id": "M-13",
+      "from": "toy-builder-2",
+      "to": "mgr-live",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-2",
+      "body": {
+       "stage": "build",
+       "verdict": "pass"
+      },
+      "ts": 29876079,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-14",
+     {
+      "id": "M-14",
+      "from": "mgr-live",
+      "to": "pool:checker",
+      "kind": "work",
+      "key": "O-2:check:1",
+      "due": null,
+      "ref": "O-2",
+      "body": {
+       "stage": "check",
+       "loops": 1
+      },
+      "ts": 29876079,
+      "state": "open",
+      "lease": {
+       "run": "R-9",
+       "until": 29876109
+      },
       "acked": false
      }
     ]
@@ -933,10 +1070,14 @@
     [
      "O-2:build:1",
      "M-11"
+    ],
+    [
+     "O-2:check:1",
+     "M-14"
     ]
    ]
   },
-  "n": 12
+  "n": 14
  },
  "org": {
   "roles": {
@@ -1189,7 +1330,7 @@
       "spent": 0,
       "accept": "live/work/T2/wrap.mjs exports wrap(text, width): lines at most width chars, broken at spaces; a word longer than width is split hard into width-sized chunks; runs of whitespace inside a paragraph (including single newlines) collapse to one space; leading/trailing whitespace trimmed; paragraphs separated by a blank line stay separated by one blank line; no trailing spaces; empty text gives empty string; width must be an integer >= 1 else RangeError; with node:test tests in live/work/T2/*.test.mjs",
       "words": null,
-      "stage": "build",
+      "stage": "check",
       "loops": 1,
       "created": 29876073,
       "history": [
@@ -1210,6 +1351,18 @@
         "by": "toy-checker",
         "verdict": "revise",
         "t": 29876078
+       },
+       {
+        "stage": "build",
+        "by": "toy-builder-2",
+        "verdict": "pass",
+        "t": 29876079
+       },
+       {
+        "stage": "test1",
+        "by": "code",
+        "verdict": "pass",
+        "t": 29876079
        }
       ],
       "task": "T2",
@@ -1350,12 +1503,27 @@
       "stage": "build",
       "loops": 1,
       "entered": 29876078,
+      "state": "left"
+     }
+    ],
+    [
+     "R-9",
+     {
+      "run": "R-9",
+      "msg": "M-14",
+      "role": "toy-checker",
+      "by": "toy-checker",
+      "consult": false,
+      "order": "O-2",
+      "stage": "check",
+      "loops": 1,
+      "entered": 29876079,
       "state": "running"
      }
     ]
    ]
   },
-  "n": 8,
+  "n": 9,
   "memory": {
    "__map": [
     [
@@ -1404,6 +1572,12 @@
        "t": 29876076,
        "did": "build on O-2: pass (loop 0)",
        "learned": "Split paragraphs on whitespace-only blank lines before collapsing whitespace, else the separator is lost.",
+       "mistake": null
+      },
+      {
+       "t": 29876079,
+       "did": "build on O-2: pass (loop 1)",
+       "learned": "Count and slice text by code points (Array.from), and detect blank lines with the same whitespace definition (trim/\\s) used for collapsing.",
        "mistake": null
       }
      ]

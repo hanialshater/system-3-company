@@ -30,3 +30,34 @@ test('width 1', () => {
 test('invalid width throws RangeError', () => {
   for (const w of [0, -1, 1.5, NaN, '3', undefined]) assert.throws(() => wrap('x', w), RangeError);
 });
+
+const cp = (s) => Array.from(s).length;
+const wellFormed = (s) => !/[\ud800-\udbff](?![\udc00-\udfff])|(?<![\ud800-\udbff])[\udc00-\udfff]/.test(s);
+
+test('hard split never cuts an astral character (finding 1)', () => {
+  assert.equal(wrap('😀😀😀', 1), '😀\n😀\n😀');
+  assert.equal(wrap('😀😀😀', 3), '😀😀😀');
+  assert.equal(wrap('😀😀😀😀😀', 2), '😀😀\n😀😀\n😀');
+  assert.equal(wrap('a😀 b😀', 2), 'a😀\nb😀');
+  assert.equal(wrap('😀 😀', 3), '😀 😀');
+});
+test('output is well-formed and width is counted in code points', () => {
+  const inputs = ['𝒜𝒷𝒸𝒹𝑒 𝒻𝑔 😀x😀y😀', 'héllo wörld 日本語テキスト', '🎉🎉 🎉🎉🎉🎉 a'];
+  for (const s of inputs) for (let w = 1; w <= 6; w++) {
+    const out = wrap(s, w);
+    assert.ok(wellFormed(out), `malformed for ${JSON.stringify(s)} w=${w}`);
+    for (const l of out.split('\n')) { assert.ok(cp(l) <= w); assert.equal(l, l.trimEnd()); }
+    assert.equal(out.replace(/\s+/g, ''), s.replace(/\s+/g, ''));
+  }
+});
+test('a line of only non-ASCII whitespace is a blank line (finding 2)', () => {
+  assert.equal(wrap('a\n \nb', 5), 'a\n\nb');
+  assert.equal(wrap('a\n　\nb', 5), 'a\n\nb');
+  assert.equal(wrap('a\n  　\t\nb', 5), 'a\n\nb');
+  assert.equal(wrap('a\r\n\r\nb', 5), 'a\n\nb');
+});
+test('non-ASCII whitespace inside a paragraph collapses to one space', () => {
+  assert.equal(wrap('a  b　c\nd', 80), 'a b c d');
+  assert.equal(wrap('　 a b  ', 80), 'a b');
+  assert.equal(wrap(' \n　\n', 5), '');
+});
