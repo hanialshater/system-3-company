@@ -1,0 +1,184 @@
+{
+  "plumbing": false,
+  "criterionStatus": "frozen (eval-s1-1020, 2026-10-20). The freeze is the commit that first adds this file with this line; its hash and this file's sha256 at that commit go in §11, written in the next commit. Nothing below changes after the first scored number; a change after that is a new criterion and the old result stands.",
+  "criterionSha256": "1798c8c28d4bebb1b65dc3c3eb514773191e93d0879af711be8611baeb2f6973",
+  "e1Sha256": "c8c09eac7613720c7d1499958d5c416b57ed7d614e7e68eb8a132068f7482840",
+  "e3Sha256": "0e120add6ada34da159d77bc7d994f092318b4bba802941f4477a4273fc1927a",
+  "commit": "743379aa6154bf7eadc6400b65897b5a851b6371",
+  "node": "v22.22.0",
+  "S": 2000,
+  "seedList": "70001..72000",
+  "criterionS": {
+    "k2FamilyAlpha": 0.05,
+    "k3FamilyAlpha": 0.05,
+    "k4Margin": 0.05,
+    "nearTie": 1e-9
+  },
+  "candidatePin": {
+    "files": {
+      "company/personalization/model/model.ts": "8b922c726ca92d5021d5787bbd9bb8ec941bc9345e89e0c67f69389348a2c62a",
+      "company/personalization/model/sim/composer-session.ts": "0eeb1a2f18c0492f48cfb52dbd8aeaf5a7c8dfbef5cc4cc9d5db50869da0aad4",
+      "company/personalization/model/sim/composer.ts": "a092c3b9b52411add0e61851753e29a760d8c4527699f2d7f2a73c7e72801141",
+      "company/personalization/model/sim/simulate.mjs": "83b2a45ddc186f3ee282a8ca976d80c2bcadf6d487ccb2e66db61ba6015d43ba",
+      "company/personalization/model/sim/catalog.mjs": "877b0807cdd77a1ad9e11457524eae23b5a352c56f3b7c8dcd00b556413effc9"
+    },
+    "catalogSha256": "c65feabb2277d214a324e9869cfda1a6170fb1729b820fa5c823f3f515f8ff5f",
+    "lessons": 231,
+    "modelVersion": "model-v0.4.4",
+    "phaseAModelVersion": "model-v0.2.2",
+    "composer": "composer-v0.3-session",
+    "servingMode": "compose-session-serve-in-order",
+    "sessionSize": 5,
+    "variants": {
+      "gam-session": {
+        "variant": "v1",
+        "off": [],
+        "coefficientsSha256": "2e9edd1cc77f6a53be4c3e162a7e99e7e9d34a546e8679cfacdd16d47618cafd"
+      },
+      "gam-session-v3": {
+        "variant": "v3",
+        "off": [],
+        "coefficientsSha256": "6846d86add581ff1356f241181b03b2b3ef1671e019095f4a2a7d572c3291361"
+      },
+      "gam-session-no-cov": {
+        "variant": "v1",
+        "off": [
+          "cov:repair",
+          "cov:build",
+          "cov:breadth",
+          "cov:stretch"
+        ],
+        "coefficientsSha256": "2e9edd1cc77f6a53be4c3e162a7e99e7e9d34a546e8679cfacdd16d47618cafd"
+      },
+      "gam-session-v3-edpbase": {
+        "variant": "v3-edpbase",
+        "off": [],
+        "coefficientsSha256": "18f337b7bba70233e111dbb73311de108aa7e9d928cca89217b0fa5cf3873450"
+      }
+    }
+  },
+  "pinCheck": {
+    "ok": true,
+    "bad": []
+  },
+  "modelVersion": "model-v0.4.4",
+  "fileSha256": {
+    "harnessS.mjs": "e1927b22024e29fbf3829e3e81f6c91a456fc12af025cae76d420e2d8fa2e79f",
+    "checksS.mjs": "fc0d26a1c66d4c0968ab5343e2537a48108efbb57eb234500a8540aba667b463",
+    "runS.mjs": "04b69568f219982378af7b6dcf2b2a8a2d8aa9ddd01c140a47128457df0b6648",
+    "runS-worker.mjs": "b7cba36dc4bb7d951ff7044b4ee520bcacae239dece84567e98e4e45d8b86b68",
+    "../c3/harness3.mjs": "fc9a98ca7138a7e4a88ed05146c052c839f0d093020b968c1b4b278d9d95fa51",
+    "../c3/learner3.mjs": "90925edaff5830f06ccba7a8a6940614ce29c1ebeed82564f28bf8d39af629e9",
+    "../c3/world3.mjs": "0f0d3dbfd4983e56fcffca3252a243ac6819b5d4fb2201a95162918c8094175f",
+    "../c3/checks3.mjs": "872c469a6d71995d893750bb6f108851bb94b58527e91b8ac1434a9c5050aa71",
+    "../c3b/checks3b.mjs": "3a18559c00dc561b93e06ed2f1f3f420fd01ab358a021d9aa4339c5c11376595",
+    "../c3b/harness3b.mjs": "5ff1137a568f524cdb8be061eac17e0c7955a4f33183f2cf068b928dab113527",
+    "../c2/harness2.mjs": "8140f5bf72cfabc45f8859fb1bae0d0237916bfaa2044a78e341fd0caf180458",
+    "../c2/learner2.mjs": "36b4839ca97d9da8f9ebba3356d450d9256a7e4ef716af490a4b3d12a2ffdc6e",
+    "../c2/scorer2.mjs": "2518ae27f4b442f9101e5c492182f1961199cc9a86064b3250abcc1b694f075d",
+    "../c2/world2.mjs": "876aa1b875ae8d60a15bb05de8a38f72750dca291ee8fe597ca183872418650c",
+    "../harness.mjs": "458f3dc19b1048f2110573b4befb17dd0b8f74ac9ac0fa7a58428057f74b1864",
+    "../personas.copy.mjs": "9cb7a911a5aa03a4537b0dabc7383c3a87faf91fa05b1792009abee0c9d18770"
+  },
+  "seconds": 0.095,
+  "merged": [
+    "/home/user/s1-run/out/A1",
+    "/home/user/s1-run/out/A2",
+    "/home/user/s1-run/out/A3",
+    "/home/user/s1-run/out/A4",
+    "/home/user/s1-run/out/A5",
+    "/home/user/s1-run/out/B1",
+    "/home/user/s1-run/out/B2",
+    "/home/user/s1-run/out/B3",
+    "/home/user/s1-run/out/C1",
+    "/home/user/s1-run/out/C2",
+    "/home/user/s1-run/out/C3"
+  ],
+  "parts": [
+    {
+      "cells": [
+        "interleave:base",
+        "interleave:price-corner"
+      ],
+      "seconds": 2777.154
+    },
+    {
+      "cells": [
+        "interleave:forgetScale-low",
+        "interleave:forgetScale-high"
+      ],
+      "seconds": 2067.63
+    },
+    {
+      "cells": [
+        "interleave:forgetShape-low",
+        "interleave:forgetShape-high"
+      ],
+      "seconds": 2024.305
+    },
+    {
+      "cells": [
+        "interleave:kSpread-low",
+        "interleave:kSpread-high",
+        "interleave:priorRateMult-outer"
+      ],
+      "seconds": 3027.897
+    },
+    {
+      "cells": [
+        "interleave:revisitStrengthen-low",
+        "interleave:revisitStrengthen-high"
+      ],
+      "seconds": 2048.527
+    },
+    {
+      "cells": [
+        "interleave:relearn-low",
+        "interleave:relearn-high",
+        "interleave:priorKnowledgeMean-low"
+      ],
+      "seconds": 2897.392
+    },
+    {
+      "cells": [
+        "interleave:priorKnowledgeMean-high",
+        "interleave:learnRate-low",
+        "interleave:learnRate-high"
+      ],
+      "seconds": 2880.393
+    },
+    {
+      "cells": [
+        "interleave:prereqPenalty-low",
+        "interleave:prereqPenalty-high",
+        "interleave:pullScale-low"
+      ],
+      "seconds": 2885.324
+    },
+    {
+      "cells": [
+        "interleave:pullScale-high",
+        "interleave:revisitSlotCost-low",
+        "interleave:revisitSlotCost-high"
+      ],
+      "seconds": 2899.576
+    },
+    {
+      "cells": [
+        "interleave:revisitStopScale-low",
+        "interleave:revisitStopScale-high",
+        "interleave:slots-low"
+      ],
+      "seconds": 2609.965
+    },
+    {
+      "cells": [
+        "interleave:slots-high",
+        "interleave:priorRateMult-low",
+        "interleave:priorRateMult-high"
+      ],
+      "seconds": 3125.514
+    }
+  ],
+  "errors": {}
+}

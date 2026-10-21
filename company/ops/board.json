@@ -22513,10 +22513,11 @@
       "id": "W-2013",
       "title": "Session readout (W-1996/W-2005): after the freeze commit, write and hash the tables formatter, then run runS.mjs in the three named parts at S=2000 (about 10-13 h at --jobs=4) and merge; readout to vp-personalization unedited (company/personalization/eval/2026-10-20-session-criterion.md §8)",
       "owner": "personalization-eval",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-20",
-      "links": []
+      "links": [],
+      "updated": "2026-10-21"
     },
     {
       "id": "W-2014",
@@ -22607,6 +22608,24 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-20",
+      "links": []
+    },
+    {
+      "id": "W-2024",
+      "title": "HQ lab banner is stale: src/lib/hq-personalization.ts UNSCORED_LABEL (and the matching 'unscored' string in company/personalization/model/sim/hq-cli.mjs) still says 'UNSCORED: no committed criterion; provisional simulated learner'. The session composer variants now have a frozen criterion and a readout: company/personalization/eval/2026-10-21-session-readout.md (criterion company/personalization/eval/2026-10-20-session-criterion.md). Update the label to point at that readout without restating its verdicts; do not edit any file in the readout's candidate pin (criterion §6), which includes sim/simulate.mjs, composer-session.ts, composer.ts, catalog.mjs, model.ts",
+      "owner": "hq-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-21",
+      "links": []
+    },
+    {
+      "id": "W-2025",
+      "title": "Reproduce the session readout (determinism only): fresh worktree at 743379aa, RUN-PLAN-s1.md §1-§4, compare every sha256 in company/personalization/eval/2026-10-21-session-readout.md §6 (about 8 h at --jobs=4); any difference is the eval's to fix",
+      "owner": "learner-model-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-21",
       "links": []
     }
   ]
