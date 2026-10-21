@@ -26,12 +26,14 @@
 //   node meta.mjs policy propose --lane=<l> --by=<manager> --knobs='{…}' --reason=… --prediction=…
 //   node meta.mjs policy activate --lane=<l> --version=<n> --by=<manager>   new orders pin it; orders in flight keep theirs
 //   node meta.mjs manager report --lane=<l>   ·   manager cycle --lane=<l> --by=<manager> --belief=… --decision=keep|change [--version=<n>]
+//   node meta.mjs contractor hire --by=<manager> --order=<O> --budget=<n> [--onboarding='{"docs":[…],"laneMemory":true,"brief":"…"}']
 //   node meta.mjs events [--type=<t>]   ·   node meta.mjs memory <role>   ·   node meta.mjs org activity <role>
 // Exit: 0 ok, 1 refused, 2 usage or state error.
 import fs from "node:fs";
 import path from "node:path";
 import { Refused, flowMetrics } from "./lib.mjs";
 import { proposePolicy, activatePolicy, managerReport, recordCycle, KNOBS } from "./policy.mjs";
+import { hireContractor } from "./contractor.mjs";
 import { LIVE, STATE, LIVE_ROLES, TASK_FLOW, clock, make, rep, save, load, withLock, runTests } from "./state.mjs";
 export { LIVE_ROOMS, LIVE_ROLES, TASK_FLOW } from "./state.mjs";
 
@@ -163,6 +165,11 @@ function dispatch(co, cmd, sub, arg) {
     need("lane", "by", "belief", "decision");
     const report = managerReport(engine, opt.lane);
     return recordCycle(engine, { lane: opt.lane, by: opt.by, report, belief: opt.belief, decision: opt.decision, version: opt.version ? Number(opt.version) : null });
+  }
+  if (cmd === "contractor" && sub === "hire") {
+    need("by", "order", "budget");
+    const r = hireContractor(co, { by: opt.by, order: opt.order, budget: Number(opt.budget), onboarding: opt.onboarding ? JSON.parse(opt.onboarding) : {} });
+    return { contractor: r.id, order: r.contractFor, queue: mailbox.queue(r.id, "work").map((m) => m.id) };
   }
   if (cmd === "events") return log.events.filter((e) => !opt.type || e.type === opt.type);
   if (cmd === "memory") return rooms.memory.get(sub) ?? [];

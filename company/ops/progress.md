@@ -1,3 +1,11 @@
+## 2026-10-21 · chief-of-staff (for System 3 Meta) · Manager-owned lane policy; contractors
+
+Founder: the manager writes and updates the code for their lane; and "all managers are allowed to hire a one time contractor and decide on how to onboard them". Prototype (company/sibling/system3-meta/prototype, tests 33/33):
+- **policy.mjs:** the knobs a lane manager may set (drain cap, later batch, how revisions queue, staffing threshold, a narrower `now` list), validated against an allowlist so a policy cannot touch signers, independence or leases; versioned and pinned per order; a manager cycle records numbers, belief and decision.
+- **contractor.mjs:** a one-order hire by any lane manager, with manager-chosen onboarding validated by code; it builds only, never checks; the contract ends at ship with a handoff.
+
+Simulator iteration 5 tested the first policy change (revisions as `later`, batch 2): no saving (I5-1 wrong, +3.6% tokens in a quiet lane). Holding pays only if a partner arrives within the hold. So the manager decides from the lane's arrival gaps, and the next candidate needs an engineering change to the allowlist. Nothing in the current company changed.
+
 ## 2026-10-21 · chief-of-staff (for System 3 Meta) · Meta live run 3: the supervisor as code
 
 Founder: "Yes go ahead" (the supervisor as a script). Built `supervisor.mjs` in company/sibling/system3-meta/prototype, with `state.mjs` shared with meta.mjs; tests 25/25. It does:

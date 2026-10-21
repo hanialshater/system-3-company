@@ -138,7 +138,7 @@ export class Mailbox {
 
 // ------------------------------------------------------------------ org: roles as data, changes through approval
 
-export const LEVELS = ["founder", "chief-of-staff", "manager", "builder", "checker", "release"];
+export const LEVELS = ["founder", "chief-of-staff", "manager", "builder", "checker", "release", "contractor"];
 
 export class Org {
   constructor({ log, rooms = [], skills = [], rituals = [] }) {
@@ -474,6 +474,7 @@ export class Rooms {
     const r = this.org.role(actor);
     hard(r?.active, `no active role ${actor}`);
     this.guard(m.to === actor || m.to === `pool:${r.level}`, "lane", `${actor} may not take ${msg} (for ${m.to})`, { order: o.id, by: actor });
+    if (r.level === "contractor") hard(r.contractFor === o.id && m.body.stage === "build", `contractor ${actor} works only on the build of ${r.contractFor}`);
     if (m.body.stage === "check") this.guard(actor !== o.builder, "independence", `${actor} built ${o.id}`, { order: o.id, by: actor });
     let s;
     if (session) { s = this.sessions.get(session); hard(s?.open && s.role === actor, `session ${session} is not open for ${actor}`); }
@@ -484,7 +485,11 @@ export class Rooms {
     // The run works on the stage and loop the message was sent for, not on wherever the order is now: a late
     // duplicate of a finished stage is a stale run, and its leave signs nothing.
     const { stage, loops } = m.body;
-    const ctx = { roleDoc: `company/roles/${actor}.md`, memory: this.memory.get(actor) ?? [], order: o.id, stage, findings: o.findings ?? null };
+    // A contractor's pack is what its manager chose to onboard it with, not a role doc and not the org's memory.
+    const lane = r.level === "contractor" ? r.lane : null;
+    const ctx = r.level === "contractor"
+      ? { roleDoc: null, contract: { order: r.contractFor, budget: r.budget, manager: r.reportsTo }, onboarding: { docs: r.onboarding?.docs ?? [], brief: r.onboarding?.brief ?? null }, laneMemory: r.onboarding?.laneMemory ? this.org.active().filter((x) => x.lane === lane && x.level === "builder").flatMap((x) => (this.memory.get(x.id) ?? []).filter((e) => e.learned).map((e) => ({ from: x.id, learned: e.learned }))) : [], memory: [], order: o.id, stage, findings: o.findings ?? null }
+      : { roleDoc: `company/roles/${actor}.md`, memory: this.memory.get(actor) ?? [], order: o.id, stage, findings: o.findings ?? null };
     this.runs.set(run, { run, msg, role: actor, by: role, consult: mode === "consult", order: o.id, stage, loops, entered: this.clock.now(), state: "running", session: s.id });
     this.log.add({ type: "enter", run, msg, role: actor, by: role, room: r.room, order: o.id, stage, mode, session: s.id, item: s.items });
     return { run, ctx, session: s.id, item: s.items };

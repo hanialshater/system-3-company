@@ -405,6 +405,23 @@ A finding from a consult becomes an order to the real role. If you want the role
 | `org` | `tools/org/roles.mjs`, `generate.mjs`, `people.mjs`, `memory.mjs init`, `ROOM_BY_ROLE` (moved into the role record) |
 | measurement | `reconcile.mjs`, `metrics.mjs`, `ops-health.mjs`, `triage.mjs` |
 
+## S15. Contractors: one order, onboarded by the manager (founder, 2026-10-21)
+
+```bash
+node meta.mjs contractor hire --by=mgr-live --order=O-12 --budget=80000 \
+  --onboarding='{"docs":["live/work/T12/","company/product/demo-standard.md"],"laneMemory":true,"brief":"Unicode edge cases matter"}'
+# → ctr-1, reports to mgr-live, contracted for O-12 only; O-12's build message is withdrawn from its builder and re-sent to ctr-1
+node meta.mjs room enter --msg=<M> --role=ctr-1
+# → the pack holds the manager's onboarding (docs, brief, the lane builders' learned notes), not a role doc or org memory
+```
+- **The manager decides:** whether to hire, the budget (within the manager limit) and the onboarding.
+- **Code enforces:**
+  - a fresh, isolated order in the manager's own lane;
+  - onboarding limited to the lane's own work and handbook areas (no acceptance tests, state, parent paths or other lanes);
+  - the contractor builds only its order and never checks;
+  - the same test1, check and UAT apply.
+- **The contract ends when the order ships:** the contractor is deactivated, a `handoff` with its learned notes goes to the manager, and no memory is kept. Prototype: company/sibling/system3-meta/prototype/contractor.mjs.
+
 ## What every command writes
 
 Every accepted command writes one event (`order`, `approve`, `escalate`, `request`, `decide`, `callback`, `timeout`, `enter`, `heartbeat`, `leave`, `advance`, `refuse`, `recover`) with order id, run id, role, room and evidence paths. Refusals are events too: they show where the rules bite. These events are what EXP-009's reconciliation and the efficiency report read.

@@ -20,6 +20,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { LIVE, STATE, load, save, withLock, runTests, rep } from "./state.mjs";
+import { endContracts } from "./contractor.mjs";
 
 const STAGE_SIGNER = { test1: "code", uat: "orderer", ship: "release" };
 
@@ -61,6 +62,7 @@ export function tick(co, { acceptance = null } = {}) {
       }
     }
   }
+  for (const id of endContracts(co)) steps.push({ step: "contract-ended", role: id });
   if (steps.length) log.add({ type: "supervisor-tick", steps: steps.map((s) => `${s.step}:${s.order ?? s.msg ?? s.run}`) });
   return steps;
 }

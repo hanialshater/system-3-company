@@ -214,3 +214,45 @@ Founder, 2026-10-21: the manager "need also to think about strategy … probably
 | I5-3 | Busy lane: v2 changes tokens per item by < 5% (revisions already share sessions with queued work) | ≥ 10% either way |
 | I5-4 | No revision waits more than its due (30 min) plus one wake before work starts | any does |
 | I5-5 | Policy validation refuses every policy that would widen `now` beyond the flow, drop a due time from `later`, or set an unknown knob | any such policy accepted |
+
+## Iteration 5: results (20 seeds)
+
+| arm | k tok/item | lead p50 h | p50 next / later h | items per session | build wait h | escaped/item |
+|---|---|---|---|---|---|---|
+| 5a busy, v1 | 193 | 3.9 | 3.9 / – | 1.66 | 0.42 | 0.058 |
+| 5b busy, v2 | 194 | 4.1 | 2.8 / 4.9 | 1.66 | 0.50 | 0.063 |
+| 5c quiet, v1 | 223 | 2.4 | 2.4 / – | 1.40 | 0.08 | 0.061 |
+| 5d quiet, v2 | 231 | 2.5 | 2.3 / 3.9 | 1.34 | 0.21 | 0.048 |
+
+| # | Prediction | Result | Verdict |
+|---|---|---|---|
+| I5-1 | quiet lane: v2 cuts tokens per item ≥ 15% | **+3.6%** (231k vs 223k) | **wrong** |
+| I5-2 | quiet lane: lead p50 +≤ 30% | +4% | right |
+| I5-3 | busy lane: tokens change < 5% | +0.5% | right |
+| I5-4 | no revision waits past its due plus one wake | max lateness 0 | right |
+| I5-5 | validation refuses widening `now`, `later` without due, unknown knobs | all refused (tests/policy.test.mjs) | right |
+
+**Why I5-1 was wrong:** in the quiet lane, orders arrive once a day. A revision held for 30 minutes waiting for a partner almost never gets one, so it runs alone anyway, now 30 minutes later and with the same session cost. Holding work only pays when a partner is likely to arrive within the wait. **A batching rule is only as good as its fit to the arrival rate.** In live run 3 the two revisions came back to the same builder minutes apart, and v2 would have merged them: saving one session, about 60k. The simulator's revisions arrive spread through the day. Both observations are real, so the manager should decide from their own lane's numbers, not from a general rule.
+
+**The manager's cycle on this evidence:**
+- Decision: keep v1 for both simulated lanes.
+- Belief: holding revisions pays only when the lane's typical gap between revisions for the same role is shorter than the hold.
+- Next candidate (v3, not run): hold a revision only while the role has another item queued or a session is about to start, and never past the lane's median gap between revisions. This needs a new knob, `revisionHold: "piggyback"`, which is a change to the allowlist in policy.mjs: an engineering review, not a manager edit.
+
+## Contractors (2026-10-21, added; no simulation yet)
+
+Founder: "allow for contractors (off the org workers to take isolated problem to solve) all managers are allowed to hire a one time contractor and decide on how to onboard them". Implemented in contractor.mjs, with tests/contractor.test.mjs 4/4 passing.
+
+**The manager decides:**
+- whether to hire, for one of their own orders;
+- the budget, within the manager's limit;
+- the onboarding: which docs, whether to share the lane's builder notes, and a brief.
+
+**Code enforces:**
+- the order is fresh (build, loop 0) and isolated (nothing waits for it, it waits for nothing);
+- onboarding paths are limited to the lane's own work and handbook areas, never acceptance tests, state files, parent paths or other lanes' work;
+- the contractor takes only its order's build message and cannot take or sign a check;
+- the same test1, check and UAT apply;
+- when the order ships, `supervisor.mjs` ends the contract: the contractor is deactivated, its learned notes go to the manager as a `handoff` message, and no memory is kept.
+
+**Found while building it:** reassigning an order re-sent its message under the same idempotency key, so dedupe returned the withdrawn message and the contractor never got the work. A reassignment now has its own key.
