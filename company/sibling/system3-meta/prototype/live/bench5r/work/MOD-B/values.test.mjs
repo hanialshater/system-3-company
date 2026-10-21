@@ -83,7 +83,15 @@ test("operators", () => {
   assert.equal(binary("+", 1, ERR.NAME), ERR.NAME);
   assert.equal(binary("&", ERR.VALUE, ERR.DIV0), ERR.VALUE);
   assert.equal(binary("=", 1, ERR.DIV0), ERR.DIV0);
-  assert.equal(binary("+", "x", ERR.DIV0), ERR.DIV0);
+  assert.equal(binary("+", "x", ERR.DIV0), ERR.VALUE);
+  assert.equal(binary("+", "5", ERR.DIV0), ERR.DIV0);
+  assert.equal(binary("<", "a", ERR.DIV0), ERR.VALUE);
+  assert.equal(binary("<", "5", ERR.DIV0), ERR.DIV0);
+  assert.equal(binary("=", "a", ERR.NAME), ERR.VALUE);
+  assert.equal(compare("a", ERR.DIV0), ERR.VALUE);
+  assert.equal(compare(true, ERR.DIV0), ERR.DIV0);
+  assert.equal(binary("&", "a", ERR.DIV0), ERR.DIV0);
+  assert.equal(binary("^", "q", ERR.NAME), ERR.VALUE);
   assert.equal(binary("-", "x", "y"), ERR.VALUE);
   assert.equal(unary("-", "x"), ERR.VALUE);
   assert.equal(unary("+", "3"), 3);

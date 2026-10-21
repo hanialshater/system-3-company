@@ -58,7 +58,11 @@ export function toText(v) {
 
 export function compare(a, b) {
   if (isError(a)) return a;
-  if (isError(b)) return b;
+  if (isError(b)) {
+    // left operand is coerced first: if it fails as a number, its error wins
+    const x = toNumber(a);
+    return isError(x) ? x : b;
+  }
   if (typeof a === "string" && typeof b === "string") {
     const x = a.toLowerCase(), y = b.toLowerCase();
     return x < y ? -1 : x > y ? 1 : 0;
@@ -85,7 +89,6 @@ export function unary(op, v) {
 
 export function binary(op, a, b) {
   if (isError(a)) return a;
-  if (isError(b)) return b;
   switch (op) {
     case "+": case "-": case "*": case "/": case "^": {
       const x = toNumber(a);

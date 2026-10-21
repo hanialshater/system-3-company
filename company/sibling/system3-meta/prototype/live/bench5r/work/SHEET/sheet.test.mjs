@@ -1,7 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { createSheet } from "./sheet.mjs";
-import { ERR } from "../MOD-B/values.mjs";
 
 const ev = (f) => { const s = createSheet(); s.set("A1", f); return s; };
 
@@ -23,9 +22,9 @@ test("literals", () => {
 
 test("spec examples", () => {
   const cases = [["=2+3*4", 14], ["=2^3^2", 512], ["=-2^2", 4], ['="n="&5', "n=5"], ['="a"="A"', true],
-    ['="a"+1', ERR.VALUE], ["=1/0", ERR.DIV0], ["=(1+2", ERR.VALUE], ["=FOO(1)", ERR.NAME], ["=TRUE+1", 2],
-    ["=(-8)^(1/3)", ERR.VALUE], ["=1.2.3", ERR.VALUE], ["=1/0+FOO()", ERR.DIV0], ['=""+1', 1], ['="3"*2', 6]];
-  for (const [f, v] of cases) assert.equal(ev(f).get("A1"), v, f);
+    ['="a"+1', "#VALUE!"], ["=1/0", "#DIV/0!"], ["=(1+2", "#VALUE!"], ["=FOO(1)", "#NAME?"], ["=TRUE+1", 2],
+    ["=(-8)^(1/3)", "#VALUE!"], ["=1.2.3", "#VALUE!"], ["=1/0+FOO()", "#DIV/0!"], ['="a"+1/0', "#VALUE!"], ['=""+1', 1], ['="3"*2', 6]];
+  for (const [f, v] of cases) assert.strictEqual(ev(f).get("A1"), v, f);
 });
 
 test("display", () => {
@@ -35,4 +34,11 @@ test("display", () => {
   assert.equal(ev("=1/0").display("A1"), "#DIV/0!");
   assert.equal(ev("#DIV/0!").get("A1"), "#DIV/0!");
   assert.equal(ev("=0.1+0.2").get("A1"), 0.3);
+});
+
+test("errors leave get() as code strings", () => {
+  for (const [f, c] of [["=1/0", "#DIV/0!"], ['="a"+1', "#VALUE!"], ["=FOO(1)", "#NAME?"]]) {
+    const s = ev(f); assert.strictEqual(s.get("A1"), c); assert.strictEqual(typeof s.get("A1"), "string");
+    assert.strictEqual(s.display("A1"), c);
+  }
 });

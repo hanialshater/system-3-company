@@ -44,7 +44,10 @@ A value is one of:
 - Every error object has `toString()` returning its code.
 - `isError(v)` is the only test for an error. Errors are objects, so text the user typed such as
   `"#DIV/0!"` stays text and is not an error.
-- `get()` returns the error object itself; `display()` returns its code.
+- Public boundary (MTG-1 decision 2, amended by lead): SHEET `get()` returns the error's code
+  string (`isError(v) ? v.error : v`, e.g. `=1/0` → `"#DIV/0!"`); `display()` returns its code.
+  Internally (stored values, `ctx.get`/`ctx.range`, `evaluate`, B operators) errors stay `ERR`
+  objects, so they pass through references.
 
 ## Slot A: parse.mjs
 
@@ -175,12 +178,14 @@ coercion or operator logic of its own.
   - otherwise → `value = parseInput(text)`, `ast = null`, `graph.setDeps(cell, [])`.
   - then for each `c` of `graph.recalcOrder(cell)`: re-evaluate formula cells with
     `evaluate(ast, ctx)` (cells in `graph.cyclic()` get `ERR.CYCLE` once later waves define it).
-    The stored value is what `evaluate` returned (already `round9`ed), so a reference sees the
-    same value `get` returns.
+    The stored value is what `evaluate` returned (already `round9`ed); a reference sees that
+    stored value (errors as `ERR` objects).
 - `ctx.get(c)` → the stored value of `c`, or `""` if empty; `ctx.range(from, to)` → rows of stored
   values (wave 2).
-- `get(cell)` → the stored value, `""` for an empty cell (errors as the `ERR` object).
-- `display(cell)` → `display(get(cell))` from B.
+- `get(cell)` → the stored value `v`, `""` for an empty cell; an error is returned as its code
+  string: `isError(v) ? v.error : v` (e.g. `"#DIV/0!"`). Only this public boundary converts;
+  stored values and `ctx` keep the `ERR` object.
+- `display(cell)` → `display(v)` from B on the stored value `v` (unchanged).
 
 ## Ownership summary
 
