@@ -11559,6 +11559,59 @@
     "sessions": [],
     "abandoned": [],
     "reason": null
+   },
+   {
+    "seq": 979,
+    "t": 29876947.189266667,
+    "type": "usage",
+    "role": "lead",
+    "tokens": 33604,
+    "label": "outside a room",
+    "source": "launcher",
+    "launch": "0943-lead"
+   },
+   {
+    "seq": 980,
+    "t": 29876947.189266667,
+    "type": "launch-finished",
+    "launch": "0943-lead",
+    "role": "lead",
+    "ok": true,
+    "tokens": 33604,
+    "cumulative": 166251,
+    "cost": 0.0803,
+    "sessions": [],
+    "abandoned": [],
+    "reason": null
+   },
+   {
+    "seq": 981,
+    "t": 29876947.264266666,
+    "type": "session-open",
+    "session": "S-31",
+    "role": "reviewer"
+   },
+   {
+    "seq": 982,
+    "t": 29876947.264266666,
+    "type": "claim",
+    "msg": "M-155",
+    "run": "R-59"
+   },
+   {
+    "seq": 983,
+    "t": 29876947.264266666,
+    "type": "enter",
+    "run": "R-59",
+    "msg": "M-155",
+    "role": "reviewer",
+    "by": "reviewer",
+    "room": "review",
+    "order": "O-6",
+    "stage": "check",
+    "mode": "work",
+    "session": "S-31",
+    "item": 1
    }
   ]
  },
@@ -15003,7 +15056,10 @@
       "priority": "next",
       "ts": 29876946.085333332,
       "state": "open",
-      "lease": null,
+      "lease": {
+       "run": "R-59",
+       "until": 29876977.264266666
+      },
       "acked": false
      }
     ],
@@ -17556,10 +17612,26 @@
       "state": "left",
       "session": "S-30"
      }
+    ],
+    [
+     "R-59",
+     {
+      "run": "R-59",
+      "msg": "M-155",
+      "role": "reviewer",
+      "by": "reviewer",
+      "consult": false,
+      "order": "O-6",
+      "stage": "check",
+      "loops": 5,
+      "entered": 29876947.264266666,
+      "state": "running",
+      "session": "S-31"
+     }
     ]
    ]
   },
-  "n": 58,
+  "n": 59,
   "memory": {
    "__map": [
     [
@@ -18260,9 +18332,20 @@
       "launch": "0938-dev-2",
       "waitUntil": 29876947.7855
      }
+    ],
+    [
+     "S-31",
+     {
+      "id": "S-31",
+      "role": "reviewer",
+      "items": 1,
+      "open": true,
+      "started": 29876947.264266666,
+      "launch": "0962-reviewer"
+     }
     ]
    ]
   },
-  "nS": 30
+  "nS": 31
  }
 }
