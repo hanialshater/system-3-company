@@ -37,13 +37,11 @@ A2: =A1&" world"
 A2 shows Hello world
 ```
 
-You can compare two values with `=`, `<>`, `<`, `>`, `<=` and `>=`. The answer is `TRUE` or `FALSE`. Text is compared without caring about case.
+You can compare two values with `=`, `<>`, `<`, `>`, `<=` and `>=`. The answer is `TRUE` or `FALSE`.
 
 ```
 A1: =3>2
 A1 shows TRUE
-A2: ="cat"="CAT"
-A2 shows TRUE
 ```
 
 Sheet shows at most nine digits after the dot:
@@ -84,11 +82,8 @@ A5 shows 6
 `MIN` gives the smallest number. `MIN()` with nothing in it is 0.
 
 ```
-A1: 7
-A2: 3
-A3: 9
-A4: =MIN(A1:A3)
-A4 shows 3
+A1: =MIN(7,3,9)
+A1 shows 3
 ```
 
 ### MAX
@@ -96,11 +91,8 @@ A4 shows 3
 `MAX` gives the largest number. `MAX()` with nothing in it is 0.
 
 ```
-A1: 7
-A2: 3
-A3: 9
-A4: =MAX(A1:A3)
-A4 shows 9
+A1: =MAX(7,3,9)
+A1 shows 9
 ```
 
 ### AVERAGE
@@ -169,8 +161,6 @@ A2 shows 3
 A1: hello
 A2: =LEN(A1)
 A2 shows 5
-A3: =LEN(12.5)
-A3 shows 4
 ```
 
 ## Errors
@@ -194,8 +184,6 @@ A4: ="cat"+1
 A4 shows #VALUE!
 A5: =2+
 A5 shows #VALUE!
-A6: =A1+1
-A6 shows #DIV/0!
 ```
 
 Here is a loop. `B1` reads `B2`, and `B2` reads `B1`. `B3` reads the loop, so it shows the error too.
