@@ -39,3 +39,7 @@ test("each slot section has exactly one exports: line and an owner", () => {
     assert.match(sec, /Owner: dev-[12]/);
   }
 });
+
+test("SHEET get returns errors as code strings (ISS-9)", () => {
+  assert.ok(md.includes("isError(v) ? v.error : v"));
+});

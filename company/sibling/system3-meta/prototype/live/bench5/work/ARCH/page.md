@@ -32,7 +32,8 @@ Relative ES-module paths from the importing file; no barrels. Import graph:
 
 - Values are JS number, string, boolean; `""` = empty.
 - Errors are frozen singleton objects `{error:"#DIV/0!"}` owned by B: `ERR.DIV0` = `{error:"#DIV/0!"}`, `ERR.VALUE` = `{error:"#VALUE!"}`, `ERR.NAME` = `{error:"#NAME?"}`. Waves 2/3 add `ERR.REF` and the cycle error, only in B.
-- Errors are never strings, so typed text `"#DIV/0!"` stays text. Test with `isError(v)`.
+- Internally (inside A-D and between them) errors are never strings, so typed text `"#DIV/0!"` stays text in formulas. Test with `isError(v)`.
+- The one exception is the public `get()` of SHEET: there, and only there, an error becomes its code string (`"#DIV/0!"`, `"#VALUE!"`, `"#NAME?"`). (ARCH amendment ISS-9, lead.)
 - Only `normalizeCell` throws; everything else returns values.
 
 ## Slot A: syntax.mjs
@@ -108,7 +109,7 @@ Owns across waves: per-cell raw text, parsed AST and cached value; waves 2/3 add
 
 ## SHEET: sheet.mjs
 
-File: live/bench5/work/SHEET/sheet.mjs. Owner: dev-1. Imports `../MOD-A/syntax.mjs`, `../MOD-B/values.mjs`, `../MOD-C/eval.mjs`, `../MOD-D/store.mjs`. Thin wiring only.
+File: live/bench5/work/SHEET/sheet.mjs. Owner: dev-1. Imports `../MOD-A/syntax.mjs` (normalizeCell, parseFormula, refsOf), `../MOD-B/values.mjs` (parseLiteral, round9, display, isError), `../MOD-C/eval.mjs`, `../MOD-D/store.mjs`. Thin wiring only.
 
 `createSheet() -> {set, get, display}`; store = `createStore({evaluate})`.
 
@@ -116,5 +117,5 @@ File: live/bench5/work/SHEET/sheet.mjs. Owner: dev-1. Imports `../MOD-A/syntax.m
   - text `""` -> `store.clear(key)`;
   - starts with `=` -> `ast = parseFormula(text.slice(1))`, `store.set(key, {raw:text, ast, refs:refsOf(ast)})`;
   - else `store.set(key, {raw:text, ast:null, refs:[], value:parseLiteral(text)})`.
-- `get(cell)`: `v = store.get(normalizeCell(cell))`; numbers returned as `round9(v)`.
-- `display(cell)` = `display(get(cell))`.
+- `get(cell)`: `v = store.get(normalizeCell(cell))`; numbers returned as `round9(v)`; errors returned as their code string (`isError(v) ? v.error : v`, so `"#DIV/0!"`, `"#VALUE!"`, `"#NAME?"`); everything else unchanged. This is the only place errors become strings (amendment ISS-9).
+- `display(cell)` = `display(store.get(normalizeCell(cell)))` (B's display of the stored value; gives the same strings).

@@ -286,10 +286,12 @@
        "kind": "order",
        "title": "ARCH: the design as decided",
        "body": "",
-       "state": "done",
+       "state": "in-review",
        "assignee": "dev-1",
        "project": null,
-       "labels": [],
+       "labels": [
+        "revised"
+       ],
        "priority": 3,
        "cycle": null,
        "due": null,
@@ -299,7 +301,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876923.44165,
-       "updated": 29876928.227033332,
+       "updated": 29876935.836516667,
        "history": [
         {
          "t": 29876923.44165,
@@ -320,6 +322,11 @@
          "t": 29876928.227033332,
          "by": "engine",
          "state": "done"
+        },
+        {
+         "t": 29876935.836516667,
+         "by": "engine",
+         "state": "in-review"
         }
        ]
       }
@@ -531,7 +538,7 @@
        "kind": "order",
        "title": "SHEET: the integrated sheet",
        "body": "",
-       "state": "in-review",
+       "state": "in-progress",
        "assignee": "dev-1",
        "project": null,
        "labels": [
@@ -546,7 +553,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876923.441666666,
-       "updated": 29876934.404183332,
+       "updated": 29876935.836516667,
        "history": [
         {
          "t": 29876923.441666666,
@@ -577,6 +584,11 @@
          "t": 29876934.404183332,
          "by": "engine",
          "state": "in-review"
+        },
+        {
+         "t": 29876935.836516667,
+         "by": "engine",
+         "state": "in-progress"
         }
        ]
       }
@@ -4500,6 +4512,284 @@
     "item": "ISS-9",
     "by": "lead",
     "decision": "redirect"
+   },
+   {
+    "seq": 344,
+    "t": 29876935.502616666,
+    "type": "claim",
+    "msg": "M-47",
+    "run": "R-20"
+   },
+   {
+    "seq": 345,
+    "t": 29876935.502616666,
+    "type": "enter",
+    "run": "R-20",
+    "msg": "M-47",
+    "role": "dev-1",
+    "by": "dev-1",
+    "room": "workshop",
+    "order": "O-1",
+    "stage": "build",
+    "mode": "work",
+    "session": "S-10",
+    "item": 3
+   },
+   {
+    "seq": 346,
+    "t": 29876935.696133334,
+    "type": "usage",
+    "role": "lead",
+    "tokens": 59028,
+    "label": "outside a room",
+    "source": "launcher",
+    "launch": "0322-lead"
+   },
+   {
+    "seq": 347,
+    "t": 29876935.69615,
+    "type": "launch-finished",
+    "launch": "0322-lead",
+    "role": "lead",
+    "ok": true,
+    "tokens": 59028,
+    "cumulative": 441878,
+    "cost": 0.4742,
+    "sessions": [],
+    "abandoned": [],
+    "reason": null
+   },
+   {
+    "seq": 348,
+    "t": 29876935.72325,
+    "type": "advance",
+    "order": "O-6",
+    "stage": "check",
+    "by": "reviewer",
+    "verdict": "revise"
+   },
+   {
+    "seq": 349,
+    "t": 29876935.72325,
+    "type": "reopen",
+    "order": "O-6",
+    "from": "check",
+    "loops": 2,
+    "priority": "next"
+   },
+   {
+    "seq": 350,
+    "t": 29876935.72325,
+    "type": "send",
+    "msg": "M-48",
+    "from": "lead",
+    "to": "dev-1",
+    "kind": "work",
+    "key": "O-6:build:2",
+    "ref": "O-6",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 351,
+    "t": 29876935.72325,
+    "type": "done",
+    "msg": "M-46",
+    "run": "R-19"
+   },
+   {
+    "seq": 352,
+    "t": 29876935.72325,
+    "type": "send",
+    "msg": "M-49",
+    "from": "pool:checker",
+    "to": "lead",
+    "kind": "report",
+    "key": null,
+    "ref": "O-6",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 353,
+    "t": 29876935.72325,
+    "type": "leave",
+    "run": "R-19",
+    "role": "reviewer",
+    "order": "O-6",
+    "stage": "check",
+    "verdict": "revise",
+    "minutes": 1.318066667765379
+   },
+   {
+    "seq": 354,
+    "t": 29876935.72325,
+    "type": "session-wait",
+    "session": "S-8",
+    "role": "reviewer",
+    "minutes": 1.5
+   },
+   {
+    "seq": 355,
+    "t": 29876935.75075,
+    "type": "self-check",
+    "order": "O-1",
+    "task": "ARCH",
+    "by": "dev-1",
+    "stage": "build",
+    "pass": true,
+    "output": "ok: 833 words, reading ease 33"
+   },
+   {
+    "seq": 356,
+    "t": 29876935.832933333,
+    "type": "advance",
+    "order": "O-1",
+    "stage": "build",
+    "by": "dev-1",
+    "verdict": "pass"
+   },
+   {
+    "seq": 357,
+    "t": 29876935.832933333,
+    "type": "code-stage",
+    "order": "O-1",
+    "stage": "test1"
+   },
+   {
+    "seq": 358,
+    "t": 29876935.832933333,
+    "type": "done",
+    "msg": "M-47",
+    "run": "R-20"
+   },
+   {
+    "seq": 359,
+    "t": 29876935.832933333,
+    "type": "send",
+    "msg": "M-50",
+    "from": "dev-1",
+    "to": "lead",
+    "kind": "report",
+    "key": null,
+    "ref": "O-1",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 360,
+    "t": 29876935.832933333,
+    "type": "leave",
+    "run": "R-20",
+    "role": "dev-1",
+    "order": "O-1",
+    "stage": "build",
+    "verdict": "pass",
+    "minutes": 0.3303166665136814
+   },
+   {
+    "seq": 361,
+    "t": 29876935.83295,
+    "type": "claim",
+    "msg": "M-48",
+    "run": "R-21"
+   },
+   {
+    "seq": 362,
+    "t": 29876935.83295,
+    "type": "enter",
+    "run": "R-21",
+    "msg": "M-48",
+    "role": "dev-1",
+    "by": "dev-1",
+    "room": "workshop",
+    "order": "O-6",
+    "stage": "build",
+    "mode": "work",
+    "session": "S-10",
+    "item": 4
+   },
+   {
+    "seq": 363,
+    "t": 29876935.836516667,
+    "type": "advance",
+    "order": "O-1",
+    "stage": "test1",
+    "by": "code",
+    "verdict": "pass"
+   },
+   {
+    "seq": 364,
+    "t": 29876935.836516667,
+    "type": "send",
+    "msg": "M-51",
+    "from": "lead",
+    "to": "pool:checker",
+    "kind": "work",
+    "key": "O-1:check:1",
+    "ref": "O-1",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 365,
+    "t": 29876935.836516667,
+    "type": "item-update",
+    "item": "ISS-1",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 366,
+    "t": 29876935.836516667,
+    "type": "item-update",
+    "item": "ISS-1",
+    "by": "engine",
+    "changes": [
+     "addLabels"
+    ]
+   },
+   {
+    "seq": 367,
+    "t": 29876935.836516667,
+    "type": "item-update",
+    "item": "ISS-6",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 368,
+    "t": 29876935.836516667,
+    "type": "supervisor-tick",
+    "steps": [
+     "test1:O-1"
+    ]
+   },
+   {
+    "seq": 369,
+    "t": 29876935.8576,
+    "type": "claim",
+    "msg": "M-51",
+    "run": "R-22"
+   },
+   {
+    "seq": 370,
+    "t": 29876935.8576,
+    "type": "enter",
+    "run": "R-22",
+    "msg": "M-51",
+    "role": "reviewer",
+    "by": "reviewer",
+    "room": "review",
+    "order": "O-1",
+    "stage": "check",
+    "mode": "work",
+    "session": "S-8",
+    "item": 4
    }
   ]
  },
@@ -5503,7 +5793,7 @@
       },
       "priority": "next",
       "ts": 29876934.404183332,
-      "state": "open",
+      "state": "done",
       "lease": {
        "run": "R-19",
        "until": 29876964.405183334
@@ -5527,8 +5817,101 @@
       },
       "priority": "next",
       "ts": 29876935.472683333,
+      "state": "done",
+      "lease": {
+       "run": "R-20",
+       "until": 29876965.502616666
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-48",
+     {
+      "id": "M-48",
+      "from": "lead",
+      "to": "dev-1",
+      "kind": "work",
+      "key": "O-6:build:2",
+      "due": null,
+      "ref": "O-6",
+      "body": {
+       "stage": "build",
+       "loops": 2
+      },
+      "priority": "next",
+      "ts": 29876935.72325,
+      "state": "open",
+      "lease": {
+       "run": "R-21",
+       "until": 29876965.83295
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-49",
+     {
+      "id": "M-49",
+      "from": "pool:checker",
+      "to": "lead",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-6",
+      "body": {
+       "stage": "check",
+       "verdict": "revise"
+      },
+      "priority": "next",
+      "ts": 29876935.72325,
       "state": "open",
       "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-50",
+     {
+      "id": "M-50",
+      "from": "dev-1",
+      "to": "lead",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-1",
+      "body": {
+       "stage": "build",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876935.832933333,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-51",
+     {
+      "id": "M-51",
+      "from": "lead",
+      "to": "pool:checker",
+      "kind": "work",
+      "key": "O-1:check:1",
+      "due": null,
+      "ref": "O-1",
+      "body": {
+       "stage": "check",
+       "loops": 1
+      },
+      "priority": "next",
+      "ts": 29876935.836516667,
+      "state": "open",
+      "lease": {
+       "run": "R-22",
+       "until": 29876965.8576
+      },
       "acked": false
      }
     ]
@@ -5647,10 +6030,18 @@
     [
      "O-1:build:1",
      "M-47"
+    ],
+    [
+     "O-6:build:2",
+     "M-48"
+    ],
+    [
+     "O-1:check:1",
+     "M-51"
     ]
    ]
   },
-  "n": 47
+  "n": 51
  },
  "org": {
   "roles": {
@@ -5900,7 +6291,7 @@
       "spent": 0,
       "accept": "live/bench5/work/ARCH/ARCH.md: the kickoff's decisions (MTG-1 minutes) as the contract. For each slot A-D a section '## Slot X: <file>.mjs' with a line 'exports: <name>, <name>' then the signature and behaviour of each export, what the slot owns across the waves, and its owner; a section on SHEET (live/bench5/work/SHEET/sheet.mjs, createSheet) saying how it uses the slots; the import paths (../MOD-X/<file>.mjs). Plus one arch.test.mjs that checks ARCH.md has all four slots.",
       "words": null,
-      "stage": "build",
+      "stage": "check",
       "loops": 1,
       "created": 29876923.25735,
       "history": [
@@ -5940,6 +6331,18 @@
         "verdict": "reopen",
         "t": 29876935.472683333,
         "findings": "ARCH amendment (lead, ISS-9): wrong: the public get() has no defined form for errors, so it leaks the internal {error:\"#DIV/0!\"} object; a test that only knows SPEC5 cannot match it, and hidden wave1/errors fails. Required: in the SHEET section, get(cell) returns numbers as round9(v), errors as their code string (isError(v) ? v.error : v, so \"#DIV/0!\", \"#VALUE!\", \"#NAME?\"), everything else unchanged. Inside the modules nothing changes: B/C/D still pass ERR singletons around and test them with isError, so typed text \"#DIV/0!\" stays text in formulas (this matters once wave 2 adds refs). Add to SHEET imports: isError from ../MOD-B/values.mjs. display(cell) = display(store value), which gives the same strings. Keep the \"Errors are never strings\" line, but limit it to internal values and say the public get() is the one place where errors become code strings. Update arch.test.mjs if it checks the SHEET get line."
+       },
+       {
+        "stage": "build",
+        "by": "dev-1",
+        "verdict": "pass",
+        "t": 29876935.832933333
+       },
+       {
+        "stage": "test1",
+        "by": "code",
+        "verdict": "pass",
+        "t": 29876935.836516667
        }
       ],
       "priority": "next",
@@ -6265,8 +6668,8 @@
       "spent": 0,
       "accept": "live/bench5/work/SHEET/sheet.mjs exporting createSheet() as live/bench5/SPEC5.md describes it, for every wave released so far, built only from the slot modules as ARCH.md wires them, plus your own sheet.test.mjs. The hidden acceptance tests run on this sheet and report failing categories: when one is in another slot's module, raise it with the lead.",
       "words": null,
-      "stage": "check",
-      "loops": 1,
+      "stage": "build",
+      "loops": 2,
       "created": 29876923.25736667,
       "history": [
        {
@@ -6305,6 +6708,13 @@
         "by": "code",
         "verdict": "pass",
         "t": 29876934.404183332
+       },
+       {
+        "stage": "check",
+        "by": "reviewer",
+        "verdict": "revise",
+        "t": 29876935.723233335,
+        "findings": "Class: left-operand type error loses to a right-hand error (wave1/errors). Defect is in slot B (live/bench5/work/MOD-B/values.mjs, binary(), owner dev-2), not in sheet.mjs, whose wiring matches ARCH. binary() returns isError(b) before it coerces a, so: (1) =\"a\"+1/0 -> #DIV/0!, required #VALUE!; (2) =\"a\"-1/0 -> #DIV/0!, required #VALUE!; (3) =\"a\"*(1/0) -> #DIV/0!, required #VALUE!; (4) =\"a\"/(1/0) -> #DIV/0!, required #VALUE!; (5) =\"a\"^(1/0) -> #DIV/0!, required #VALUE!; (6) =\"a\"<1/0 (and other comparisons with a number/bool on the other side) -> #DIV/0!, required #VALUE!; (7) =\"a\"+FOO() and =\"a\"=FOO() -> #NAME?, required #VALUE!. Required: work out the left operand fully (error value or its coercion error) before looking at the right one, for arithmetic and for non-string comparisons. SPEC: an error in an operand is the result; with errors on both sides, the left one wins."
        }
       ],
       "priority": "next",
@@ -6320,7 +6730,7 @@
       "fromContract": null,
       "task": "SHEET",
       "orphanSince": null,
-      "findings": "not ok 5 - wave1/errors\n  error: |-\n# tests 7\n# pass 6\n# fail 1"
+      "findings": "Class: left-operand type error loses to a right-hand error (wave1/errors). Defect is in slot B (live/bench5/work/MOD-B/values.mjs, binary(), owner dev-2), not in sheet.mjs, whose wiring matches ARCH. binary() returns isError(b) before it coerces a, so: (1) =\"a\"+1/0 -> #DIV/0!, required #VALUE!; (2) =\"a\"-1/0 -> #DIV/0!, required #VALUE!; (3) =\"a\"*(1/0) -> #DIV/0!, required #VALUE!; (4) =\"a\"/(1/0) -> #DIV/0!, required #VALUE!; (5) =\"a\"^(1/0) -> #DIV/0!, required #VALUE!; (6) =\"a\"<1/0 (and other comparisons with a number/bool on the other side) -> #DIV/0!, required #VALUE!; (7) =\"a\"+FOO() and =\"a\"=FOO() -> #NAME?, required #VALUE!. Required: work out the left operand fully (error value or its coercion error) before looking at the right one, for arithmetic and for non-string comparisons. SPEC: an error in an operand is the result; with errors on both sides, the left one wins."
      }
     ]
    ]
@@ -6646,13 +7056,61 @@
       "stage": "check",
       "loops": 1,
       "entered": 29876934.405183334,
+      "state": "left",
+      "session": "S-8"
+     }
+    ],
+    [
+     "R-20",
+     {
+      "run": "R-20",
+      "msg": "M-47",
+      "role": "dev-1",
+      "by": "dev-1",
+      "consult": false,
+      "order": "O-1",
+      "stage": "build",
+      "loops": 1,
+      "entered": 29876935.502616666,
+      "state": "left",
+      "session": "S-10"
+     }
+    ],
+    [
+     "R-21",
+     {
+      "run": "R-21",
+      "msg": "M-48",
+      "role": "dev-1",
+      "by": "dev-1",
+      "consult": false,
+      "order": "O-6",
+      "stage": "build",
+      "loops": 2,
+      "entered": 29876935.83295,
+      "state": "running",
+      "session": "S-10"
+     }
+    ],
+    [
+     "R-22",
+     {
+      "run": "R-22",
+      "msg": "M-51",
+      "role": "reviewer",
+      "by": "reviewer",
+      "consult": false,
+      "order": "O-1",
+      "stage": "check",
+      "loops": 1,
+      "entered": 29876935.8576,
       "state": "running",
       "session": "S-8"
      }
     ]
    ]
   },
-  "n": 19,
+  "n": 22,
   "memory": {
    "__map": [
     [
@@ -6686,6 +7144,12 @@
        "t": 29876934.39725,
        "did": "build on O-6: pass (loop 1)",
        "learned": "wave1/errors hidden failure is not in SHEET wiring; raised error-representation (slot B/ARCH) with lead",
+       "mistake": null
+      },
+      {
+       "t": 29876935.832933333,
+       "did": "build on O-1: pass (loop 1)",
+       "learned": "ISS-9: public get() returns errors as code strings; internal values keep ERR singletons",
        "mistake": null
       }
      ]
@@ -6727,6 +7191,12 @@
        "t": 29876932.894233335,
        "did": "check on O-6: pass (loop 0)",
        "learned": "SHEET is a literal transcription of ARCH wiring; an end-to-end createSheet script over SPEC examples plus bad cell names is the quickest check.",
+       "mistake": null
+      },
+      {
+       "t": 29876935.72325,
+       "did": "check on O-6: revise (loop 1)",
+       "learned": "I missed this when I passed MOD-B: left-wins means the left operand coercion error beats a right error value; test text-op-error pairs such as =\"a\"+1/0 for every operator.",
        "mistake": null
       }
      ]
@@ -6868,7 +7338,7 @@
      {
       "id": "S-8",
       "role": "reviewer",
-      "items": 3,
+      "items": 4,
       "open": true,
       "started": 29876931.3748,
       "launch": "0261-reviewer",
@@ -6890,11 +7360,11 @@
      {
       "id": "S-10",
       "role": "dev-1",
-      "items": 2,
+      "items": 4,
       "open": true,
       "started": 29876932.077716667,
       "launch": "0289-dev-1",
-      "waitUntil": 29876935.89725
+      "waitUntil": null
      }
     ]
    ]
