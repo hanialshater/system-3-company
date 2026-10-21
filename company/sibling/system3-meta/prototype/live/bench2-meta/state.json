@@ -121,7 +121,9 @@
        "state": "in-review",
        "assignee": "writer-1",
        "project": "PRJ-1",
-       "labels": [],
+       "labels": [
+        "revised"
+       ],
        "priority": 3,
        "cycle": null,
        "due": null,
@@ -131,7 +133,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876647.86725,
-       "updated": 29876654.334416665,
+       "updated": 29876656.415916666,
        "history": [
         {
          "t": 29876647.86725,
@@ -145,6 +147,16 @@
         },
         {
          "t": 29876654.334416665,
+         "by": "engine",
+         "state": "in-review"
+        },
+        {
+         "t": 29876655.661533333,
+         "by": "engine",
+         "state": "in-progress"
+        },
+        {
+         "t": 29876656.415916666,
          "by": "engine",
          "state": "in-review"
         }
@@ -1874,6 +1886,213 @@
     "stage": "check",
     "verdict": "revise",
     "minutes": 0.595216665416956
+   },
+   {
+    "seq": 105,
+    "t": 29876655.661316667,
+    "type": "session-close",
+    "session": "S-2",
+    "role": "reader",
+    "items": 1,
+    "reason": "finished (harness)",
+    "minutes": 1.1192333325743675
+   },
+   {
+    "seq": 106,
+    "t": 29876655.661316667,
+    "type": "usage",
+    "session": "S-2",
+    "role": "reader",
+    "tokens": 68999,
+    "items": 1,
+    "source": "harness"
+   },
+   {
+    "seq": 107,
+    "t": 29876655.661533333,
+    "type": "item-update",
+    "item": "ISS-1",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 108,
+    "t": 29876655.661533333,
+    "type": "item-update",
+    "item": "ISS-1",
+    "by": "engine",
+    "changes": [
+     "addLabels"
+    ]
+   },
+   {
+    "seq": 109,
+    "t": 29876655.66175,
+    "type": "launch",
+    "role": "writer-1",
+    "msgs": [
+     "M-6"
+    ],
+    "tasks": [],
+    "why": "cycle: next: 1 waiting, no session running"
+   },
+   {
+    "seq": 110,
+    "t": 29876655.876533333,
+    "type": "session-open",
+    "session": "S-3",
+    "role": "writer-1"
+   },
+   {
+    "seq": 111,
+    "t": 29876655.876533333,
+    "type": "claim",
+    "msg": "M-6",
+    "run": "R-3"
+   },
+   {
+    "seq": 112,
+    "t": 29876655.876533333,
+    "type": "enter",
+    "run": "R-3",
+    "msg": "M-6",
+    "role": "writer-1",
+    "by": "writer-1",
+    "room": "editorial",
+    "order": "O-1",
+    "stage": "build",
+    "mode": "work",
+    "session": "S-3",
+    "item": 1
+   },
+   {
+    "seq": 113,
+    "t": 29876656.160833333,
+    "type": "advance",
+    "order": "O-1",
+    "stage": "build",
+    "by": "writer-1",
+    "verdict": "pass"
+   },
+   {
+    "seq": 114,
+    "t": 29876656.160833333,
+    "type": "code-stage",
+    "order": "O-1",
+    "stage": "test1"
+   },
+   {
+    "seq": 115,
+    "t": 29876656.160833333,
+    "type": "done",
+    "msg": "M-6",
+    "run": "R-3"
+   },
+   {
+    "seq": 116,
+    "t": 29876656.160833333,
+    "type": "send",
+    "msg": "M-8",
+    "from": "writer-1",
+    "to": "editor",
+    "kind": "report",
+    "key": null,
+    "ref": "O-1",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 117,
+    "t": 29876656.160833333,
+    "type": "leave",
+    "run": "R-3",
+    "role": "writer-1",
+    "order": "O-1",
+    "stage": "build",
+    "verdict": "pass",
+    "minutes": 0.2842999994754791
+   },
+   {
+    "seq": 118,
+    "t": 29876656.415866666,
+    "type": "advance",
+    "order": "O-1",
+    "stage": "test1",
+    "by": "code",
+    "verdict": "pass"
+   },
+   {
+    "seq": 119,
+    "t": 29876656.4159,
+    "type": "send",
+    "msg": "M-9",
+    "from": "editor",
+    "to": "pool:checker",
+    "kind": "work",
+    "key": "O-1:check:1",
+    "ref": "O-1",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 120,
+    "t": 29876656.415916666,
+    "type": "item-update",
+    "item": "ISS-1",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 121,
+    "t": 29876656.415916666,
+    "type": "supervisor-tick",
+    "steps": [
+     "test1:O-1"
+    ]
+   },
+   {
+    "seq": 122,
+    "t": 29876656.4161,
+    "type": "launch",
+    "role": "reader",
+    "msgs": [
+     "M-9"
+    ],
+    "tasks": [],
+    "why": "cycle: next: 1 waiting, no session running"
+   },
+   {
+    "seq": 123,
+    "t": 29876656.653133333,
+    "type": "session-open",
+    "session": "S-4",
+    "role": "reader"
+   },
+   {
+    "seq": 124,
+    "t": 29876656.65315,
+    "type": "claim",
+    "msg": "M-9",
+    "run": "R-4"
+   },
+   {
+    "seq": 125,
+    "t": 29876656.65315,
+    "type": "enter",
+    "run": "R-4",
+    "msg": "M-9",
+    "role": "reader",
+    "by": "reader",
+    "room": "quality",
+    "order": "O-1",
+    "stage": "check",
+    "mode": "work",
+    "session": "S-4",
+    "item": 1
    }
   ]
  },
@@ -2009,8 +2228,11 @@
       },
       "priority": "next",
       "ts": 29876655.137316667,
-      "state": "open",
-      "lease": null,
+      "state": "done",
+      "lease": {
+       "run": "R-3",
+       "until": 29876685.876533333
+      },
       "acked": false
      }
     ],
@@ -2032,6 +2254,51 @@
       "ts": 29876655.137316667,
       "state": "open",
       "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-8",
+     {
+      "id": "M-8",
+      "from": "writer-1",
+      "to": "editor",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-1",
+      "body": {
+       "stage": "build",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876656.160833333,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-9",
+     {
+      "id": "M-9",
+      "from": "editor",
+      "to": "pool:checker",
+      "kind": "work",
+      "key": "O-1:check:1",
+      "due": null,
+      "ref": "O-1",
+      "body": {
+       "stage": "check",
+       "loops": 1
+      },
+      "priority": "next",
+      "ts": 29876656.4159,
+      "state": "open",
+      "lease": {
+       "run": "R-4",
+       "until": 29876686.653133333
+      },
       "acked": false
      }
     ]
@@ -2058,10 +2325,14 @@
     [
      "O-1:build:1",
      "M-6"
+    ],
+    [
+     "O-1:check:1",
+     "M-9"
     ]
    ]
   },
-  "n": 7
+  "n": 9
  },
  "org": {
   "roles": {
@@ -2311,7 +2582,7 @@
       "spent": 0,
       "accept": "live/bench2-meta/work/STYLE/page.md: the style sheet for 'Solar System Quiz Pack' (ages 8-10), following the kickoff decisions (MTG-1 minutes in the lane:e channel). Sections: '## Format' (how a question, its answer and its one-sentence why look: '**Qn.**', '**Answer:**', '**Why:**'), '## Rounds' with exactly five lines '- Round 1: <topic>' to '- Round 5: <topic>', topics that do not overlap, each with the facts it owns, and a difficulty rule. No words like stupid, dumb, kill, dead, blood, hate.",
       "words": null,
-      "stage": "build",
+      "stage": "check",
       "loops": 1,
       "created": 29876647.767983332,
       "history": [
@@ -2332,6 +2603,18 @@
         "by": "reader",
         "verdict": "revise",
         "t": 29876655.137316667
+       },
+       {
+        "stage": "build",
+        "by": "writer-1",
+        "verdict": "pass",
+        "t": 29876656.160833333
+       },
+       {
+        "stage": "test1",
+        "by": "code",
+        "verdict": "pass",
+        "t": 29876656.415866666
        }
       ],
       "priority": "next",
@@ -2752,10 +3035,42 @@
       "state": "left",
       "session": "S-2"
      }
+    ],
+    [
+     "R-3",
+     {
+      "run": "R-3",
+      "msg": "M-6",
+      "role": "writer-1",
+      "by": "writer-1",
+      "consult": false,
+      "order": "O-1",
+      "stage": "build",
+      "loops": 1,
+      "entered": 29876655.876533333,
+      "state": "left",
+      "session": "S-3"
+     }
+    ],
+    [
+     "R-4",
+     {
+      "run": "R-4",
+      "msg": "M-9",
+      "role": "reader",
+      "by": "reader",
+      "consult": false,
+      "order": "O-1",
+      "stage": "check",
+      "loops": 1,
+      "entered": 29876656.65315,
+      "state": "running",
+      "session": "S-4"
+     }
     ]
    ]
   },
-  "n": 2,
+  "n": 4,
   "memory": {
    "__map": [
     [
@@ -2765,6 +3080,12 @@
        "t": 29876653.80295,
        "did": "build on O-1: pass (loop 0)",
        "learned": "The banned-word check scans the style sheet itself, so a banned-words list must be spelled letter by letter to pass.",
+       "mistake": null
+      },
+      {
+       "t": 29876656.160833333,
+       "did": "build on O-1: pass (loop 1)",
+       "learned": "A blanket number rule must name its exemptions (exact dates and counts vs rounded measurements) or it contradicts the sheet own reserved answers.",
        "mistake": null
       }
      ]
@@ -2800,12 +3121,32 @@
       "id": "S-2",
       "role": "reader",
       "items": 1,
-      "open": true,
+      "open": false,
       "started": 29876654.542083334
+     }
+    ],
+    [
+     "S-3",
+     {
+      "id": "S-3",
+      "role": "writer-1",
+      "items": 1,
+      "open": true,
+      "started": 29876655.876533333
+     }
+    ],
+    [
+     "S-4",
+     {
+      "id": "S-4",
+      "role": "reader",
+      "items": 1,
+      "open": true,
+      "started": 29876656.653133333
      }
     ]
    ]
   },
-  "nS": 2
+  "nS": 4
  }
 }

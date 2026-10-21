@@ -82,7 +82,9 @@ Every round climbs the same ladder:
 | Q4 | Stretch | A wow fact a curious 10-year-old enjoys learning. |
 
 - Every question is answerable from a good kids' book.
-- No question needs a precise number. Any number is rounded and says "about" (about 8 minutes; about 1,300 Earths fit inside Jupiter).
+- Numbers come in two kinds, with two rules:
+  - Measurements (distances, times, sizes, temperatures) are never precise. Round them and say "about" (about 8 minutes; about 1,300 Earths fit inside Jupiter). No question needs a precise measurement.
+  - Dates and counts are exact and exempt from the "about" rule, because they have one true value: the first Moon landing was in 1969; Pluto has been a dwarf planet since 2006; there are eight planets. Write them exactly, never with "about". Only textbook-stable counts qualify (never moon counts; see Fact traps).
 - Only textbook-stable facts. No hedged or disputed facts, and no numbers that keep changing.
 - The writer notes a source for every number in the order notes.
 - Never mock a wrong guess.
