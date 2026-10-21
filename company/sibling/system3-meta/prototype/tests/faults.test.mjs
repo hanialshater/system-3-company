@@ -114,3 +114,12 @@ test("injected drop inside the tick: the message is gone before any launch is pl
   assert.ok(t3.plan.some((p) => p.role === "writer-1"), "the resent message is planned");
   assert.equal(state(dir).log.events.filter((e) => e.type === "fault-injected").length, 1, "a fault fires once");
 });
+
+test("an ask from a builder to its manager is planned as the manager's work, with the reopen command in the brief", () => {
+  const dir = company();
+  const r = cli(dir, ["ask", "raise", "--by=writer-1", "--kind=decision", "--title=SHEET fails: GRAPH misses self-loops", "--why=slot C cycleCells ignores A1=A1; required: a self-reading cell is on a cycle", "--due=2026-10-22"]);
+  assert.equal(r.code, 0, r.err);
+  const t = tick(dir);
+  const p = t.plan.find((x) => x.role === "editor");
+  assert.ok(p && p.tasks.some((k) => k.kind === "ask"), JSON.stringify(t.plan));
+});

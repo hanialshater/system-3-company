@@ -48,8 +48,32 @@ The founder asked for a task that "needs agent collaboration and self improvemen
 | H5 | All waves ship, and the final hidden suite (208 cases under `#CIRC!`) passes 100% | any wave unshipped or any case failing |
 | H6 | 0 typed commands after the start; cost ≤ 2× Benchmark 4b per shipped module | any command, or > 2× |
 
-## Open before it runs
+## Built for it (before the run)
 
-- Write `SPEC5.md`: the behaviour, derived from the 208 cases' categories, with examples.
-- The wave orders need a release step: `serve` must place the next wave's order when the last one ships. This needs a small "on shipped" rule.
-- A UAT for module orders: the meeting's decided exports, checked by a test the chair writes as a rule. Or else module orders skip UAT and only INTEGRATION has hidden tests.
+**The company** is `specs/sheetco.json`, generated with M2's generator.
+- The org: lead (the manager), dev-1, dev-2, reviewer and release, plus a meeting room.
+- Agents load only this company's own context (ORG.md, CONTEXT.md), not System 3 Company's: 4b's cost lever.
+
+**The orders:**
+- the kickoff MTG-1 (the lead chairs; dev-1, dev-2 and the reviewer write positions);
+- `ARCH` (ARCH.md: four slots, each `## Slot X: <file>.mjs` + `exports:`);
+- `MOD-A`…`MOD-D` (after ARCH);
+- `SHEET` (after the four modules).
+
+**The hidden acceptance** is in the session scratchpad.
+- ARCH: four slots with exports.
+- Each slot: the module ARCH.md names loads and has its listed exports.
+- SHEET: the 208-case suite filtered to the released waves, plus display and bad cell names.
+- It passes on the reference at waves 1, 2 and 3.
+
+**The waves, from the founder's schedule** (`release.mjs`). When SHEET ships at wave n, wave n+1 is appended to SPEC5.md, the hidden tests move to wave n+1, a company post goes out, and every module and SHEET is reopened.
+
+**Faults:**
+- **F1:** the 4th launch is killed after 60 s.
+- **F2:** after wave 1 ships, the shipped SHEET is wrapped so a value of 10 reads as 11.
+- **F3:** slot B's check message is dropped, inside the tick.
+- **F4:** at the first ship in wave 3, `#CYCLE!` is renamed `#CIRC!`. Only SHEET is reopened; the team must find the owner.
+
+**New in the kernel for it:**
+- An open **ask** to an agent decider is planned as that role's work; the manager's brief carries `order reopen`.
+- Builders' briefs say how to raise one instead of editing another order's module.
