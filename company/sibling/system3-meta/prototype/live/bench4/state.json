@@ -6226,6 +6226,42 @@
     ],
     "abandoned": [],
     "reason": null
+   },
+   {
+    "seq": 546,
+    "t": 29876801.91965,
+    "type": "session-close",
+    "session": "S-19",
+    "role": "toy-builder-1",
+    "items": 1,
+    "reason": "queue empty after wait",
+    "minutes": 2.6499500013887882
+   },
+   {
+    "seq": 547,
+    "t": 29876802.100333333,
+    "type": "usage",
+    "session": "S-19",
+    "role": "toy-builder-1",
+    "tokens": 45966,
+    "items": 1,
+    "source": "launcher"
+   },
+   {
+    "seq": 548,
+    "t": 29876802.100333333,
+    "type": "launch-finished",
+    "launch": "0504-toy-builder-1",
+    "role": "toy-builder-1",
+    "ok": true,
+    "tokens": 45966,
+    "cumulative": 405214,
+    "cost": 0.3869,
+    "sessions": [
+     "S-19"
+    ],
+    "abandoned": [],
+    "reason": null
    }
   ]
  },
@@ -10500,10 +10536,10 @@
       "id": "S-19",
       "role": "toy-builder-1",
       "items": 1,
-      "open": true,
+      "open": false,
       "started": 29876799.2697,
       "launch": "0504-toy-builder-1",
-      "waitUntil": 29876801.917416666
+      "waitUntil": null
      }
     ],
     [
