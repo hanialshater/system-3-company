@@ -33,7 +33,7 @@
        "title": "TOKENIZER: tokenize.mjs",
        "body": "",
        "state": "in-progress",
-       "assignee": null,
+       "assignee": "toy-builder-1",
        "project": null,
        "labels": [],
        "priority": 3,
@@ -45,7 +45,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876791.730083335,
-       "updated": 29876791.730083335,
+       "updated": 29876792.691283334,
        "history": [
         {
          "t": 29876791.730083335,
@@ -68,7 +68,7 @@
        "title": "PARSER: parse.mjs",
        "body": "",
        "state": "backlog",
-       "assignee": null,
+       "assignee": "toy-builder-1",
        "project": null,
        "labels": [],
        "priority": 3,
@@ -80,7 +80,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876791.730083335,
-       "updated": 29876791.730083335,
+       "updated": 29876792.691283334,
        "history": [
         {
          "t": 29876791.730083335,
@@ -103,7 +103,7 @@
        "title": "VALUES: values.mjs",
        "body": "",
        "state": "in-progress",
-       "assignee": null,
+       "assignee": "toy-builder-2",
        "project": null,
        "labels": [],
        "priority": 3,
@@ -115,7 +115,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876791.730083335,
-       "updated": 29876791.730083335,
+       "updated": 29876792.69935,
        "history": [
         {
          "t": 29876791.730083335,
@@ -138,7 +138,7 @@
        "title": "CELLS: cells.mjs",
        "body": "",
        "state": "in-progress",
-       "assignee": null,
+       "assignee": "toy-builder-2",
        "project": null,
        "labels": [],
        "priority": 3,
@@ -150,7 +150,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876791.730083335,
-       "updated": 29876791.730083335,
+       "updated": 29876792.69935,
        "history": [
         {
          "t": 29876791.730083335,
@@ -173,7 +173,7 @@
        "title": "FUNCTIONS: functions.mjs",
        "body": "",
        "state": "backlog",
-       "assignee": null,
+       "assignee": "toy-builder-2",
        "project": null,
        "labels": [],
        "priority": 3,
@@ -185,7 +185,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876791.730083335,
-       "updated": 29876791.730083335,
+       "updated": 29876792.69935,
        "history": [
         {
          "t": 29876791.730083335,
@@ -208,7 +208,7 @@
        "title": "EVALUATOR: evaluate.mjs",
        "body": "",
        "state": "backlog",
-       "assignee": null,
+       "assignee": "toy-builder-1",
        "project": null,
        "labels": [],
        "priority": 3,
@@ -220,7 +220,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876791.7301,
-       "updated": 29876791.7301,
+       "updated": 29876792.691283334,
        "history": [
         {
          "t": 29876791.7301,
@@ -313,7 +313,7 @@
        "title": "SHEET: sheet.mjs",
        "body": "",
        "state": "backlog",
-       "assignee": null,
+       "assignee": "toy-builder-1",
        "project": null,
        "labels": [],
        "priority": 3,
@@ -325,7 +325,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876791.7301,
-       "updated": 29876791.7301,
+       "updated": 29876792.69935,
        "history": [
         {
          "t": 29876791.7301,
@@ -348,7 +348,7 @@
        "title": "GUIDE: guide.md",
        "body": "",
        "state": "backlog",
-       "assignee": null,
+       "assignee": "toy-builder-1",
        "project": null,
        "labels": [],
        "priority": 3,
@@ -360,7 +360,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876791.7301,
-       "updated": 29876791.7301,
+       "updated": 29876792.69935,
        "history": [
         {
          "t": 29876791.7301,
@@ -854,17 +854,483 @@
      }
     ],
     "why": "plan: delegate: O-1, O-2, O-3, O-4, O-5, O-6, O-7, O-8, O-9, O-10"
+   },
+   {
+    "seq": 37,
+    "t": 29876792.687,
+    "type": "delegate",
+    "order": "O-1",
+    "by": "mgr-live",
+    "to": "toy-builder-1",
+    "budget": 150000
+   },
+   {
+    "seq": 38,
+    "t": 29876792.687,
+    "type": "send",
+    "msg": "M-1",
+    "from": "mgr-live",
+    "to": "toy-builder-1",
+    "kind": "work",
+    "key": "O-1:build:0",
+    "ref": "O-1",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 39,
+    "t": 29876792.688533332,
+    "type": "delegate",
+    "order": "O-2",
+    "by": "mgr-live",
+    "to": "toy-builder-1",
+    "budget": 150000
+   },
+   {
+    "seq": 40,
+    "t": 29876792.688533332,
+    "type": "blocked",
+    "order": "O-2",
+    "after": [
+     "O-1"
+    ]
+   },
+   {
+    "seq": 41,
+    "t": 29876792.6904,
+    "type": "delegate",
+    "order": "O-6",
+    "by": "mgr-live",
+    "to": "toy-builder-1",
+    "budget": 150000
+   },
+   {
+    "seq": 42,
+    "t": 29876792.6904,
+    "type": "blocked",
+    "order": "O-6",
+    "after": [
+     "O-2",
+     "O-3",
+     "O-4",
+     "O-5"
+    ]
+   },
+   {
+    "seq": 43,
+    "t": 29876792.691283334,
+    "type": "item-update",
+    "item": "ISS-1",
+    "by": "engine",
+    "changes": [
+     "assignee"
+    ]
+   },
+   {
+    "seq": 44,
+    "t": 29876792.691283334,
+    "type": "item-update",
+    "item": "ISS-2",
+    "by": "engine",
+    "changes": [
+     "assignee"
+    ]
+   },
+   {
+    "seq": 45,
+    "t": 29876792.691283334,
+    "type": "item-update",
+    "item": "ISS-6",
+    "by": "engine",
+    "changes": [
+     "assignee"
+    ]
+   },
+   {
+    "seq": 46,
+    "t": 29876792.691333335,
+    "type": "launch",
+    "role": "toy-builder-1",
+    "msgs": [
+     "M-1"
+    ],
+    "tasks": [],
+    "why": "plan: next: 1 waiting, no session running"
+   },
+   {
+    "seq": 47,
+    "t": 29876792.692166667,
+    "type": "delegate",
+    "order": "O-9",
+    "by": "mgr-live",
+    "to": "toy-builder-1",
+    "budget": 150000
+   },
+   {
+    "seq": 48,
+    "t": 29876792.692166667,
+    "type": "blocked",
+    "order": "O-9",
+    "after": [
+     "O-6",
+     "O-7",
+     "O-8"
+    ]
+   },
+   {
+    "seq": 49,
+    "t": 29876792.694,
+    "type": "delegate",
+    "order": "O-10",
+    "by": "mgr-live",
+    "to": "toy-builder-1",
+    "budget": 150000
+   },
+   {
+    "seq": 50,
+    "t": 29876792.694,
+    "type": "blocked",
+    "order": "O-10",
+    "after": [
+     "O-9"
+    ]
+   },
+   {
+    "seq": 51,
+    "t": 29876792.69595,
+    "type": "delegate",
+    "order": "O-3",
+    "by": "mgr-live",
+    "to": "toy-builder-2",
+    "budget": 150000
+   },
+   {
+    "seq": 52,
+    "t": 29876792.69595,
+    "type": "send",
+    "msg": "M-2",
+    "from": "mgr-live",
+    "to": "toy-builder-2",
+    "kind": "work",
+    "key": "O-3:build:0",
+    "ref": "O-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 53,
+    "t": 29876792.697566666,
+    "type": "delegate",
+    "order": "O-4",
+    "by": "mgr-live",
+    "to": "toy-builder-2",
+    "budget": 150000
+   },
+   {
+    "seq": 54,
+    "t": 29876792.697566666,
+    "type": "send",
+    "msg": "M-3",
+    "from": "mgr-live",
+    "to": "toy-builder-2",
+    "kind": "work",
+    "key": "O-4:build:0",
+    "ref": "O-4",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 55,
+    "t": 29876792.69925,
+    "type": "delegate",
+    "order": "O-5",
+    "by": "mgr-live",
+    "to": "toy-builder-2",
+    "budget": 150000
+   },
+   {
+    "seq": 56,
+    "t": 29876792.69925,
+    "type": "blocked",
+    "order": "O-5",
+    "after": [
+     "O-3",
+     "O-4"
+    ]
+   },
+   {
+    "seq": 57,
+    "t": 29876792.69935,
+    "type": "item-update",
+    "item": "ISS-3",
+    "by": "engine",
+    "changes": [
+     "assignee"
+    ]
+   },
+   {
+    "seq": 58,
+    "t": 29876792.69935,
+    "type": "item-update",
+    "item": "ISS-4",
+    "by": "engine",
+    "changes": [
+     "assignee"
+    ]
+   },
+   {
+    "seq": 59,
+    "t": 29876792.69935,
+    "type": "item-update",
+    "item": "ISS-5",
+    "by": "engine",
+    "changes": [
+     "assignee"
+    ]
+   },
+   {
+    "seq": 60,
+    "t": 29876792.69935,
+    "type": "item-update",
+    "item": "ISS-9",
+    "by": "engine",
+    "changes": [
+     "assignee"
+    ]
+   },
+   {
+    "seq": 61,
+    "t": 29876792.69935,
+    "type": "item-update",
+    "item": "ISS-10",
+    "by": "engine",
+    "changes": [
+     "assignee"
+    ]
+   },
+   {
+    "seq": 62,
+    "t": 29876792.699366666,
+    "type": "launch",
+    "role": "toy-builder-2",
+    "msgs": [
+     "M-2",
+     "M-3"
+    ],
+    "tasks": [],
+    "why": "plan: next: 2 waiting, no session running"
+   },
+   {
+    "seq": 63,
+    "t": 29876792.70115,
+    "type": "delegate",
+    "order": "O-7",
+    "by": "mgr-live",
+    "to": "toy-builder-2",
+    "budget": 150000
+   },
+   {
+    "seq": 64,
+    "t": 29876792.70115,
+    "type": "blocked",
+    "order": "O-7",
+    "after": [
+     "O-4"
+    ]
+   },
+   {
+    "seq": 65,
+    "t": 29876792.703783333,
+    "type": "delegate",
+    "order": "O-8",
+    "by": "mgr-live",
+    "to": "toy-builder-2",
+    "budget": 150000
+   },
+   {
+    "seq": 66,
+    "t": 29876792.703783333,
+    "type": "blocked",
+    "order": "O-8",
+    "after": [
+     "O-3"
+    ]
+   },
+   {
+    "seq": 67,
+    "t": 29876792.778183334,
+    "type": "session-open",
+    "session": "S-1",
+    "role": "toy-builder-1"
+   },
+   {
+    "seq": 68,
+    "t": 29876792.778183334,
+    "type": "claim",
+    "msg": "M-1",
+    "run": "R-1"
+   },
+   {
+    "seq": 69,
+    "t": 29876792.778183334,
+    "type": "enter",
+    "run": "R-1",
+    "msg": "M-1",
+    "role": "toy-builder-1",
+    "by": "toy-builder-1",
+    "room": "sandbox",
+    "order": "O-1",
+    "stage": "build",
+    "mode": "work",
+    "session": "S-1",
+    "item": 1
+   },
+   {
+    "seq": 70,
+    "t": 29876792.787683334,
+    "type": "session-open",
+    "session": "S-2",
+    "role": "toy-builder-2"
+   },
+   {
+    "seq": 71,
+    "t": 29876792.787683334,
+    "type": "claim",
+    "msg": "M-2",
+    "run": "R-2"
+   },
+   {
+    "seq": 72,
+    "t": 29876792.787683334,
+    "type": "enter",
+    "run": "R-2",
+    "msg": "M-2",
+    "role": "toy-builder-2",
+    "by": "toy-builder-2",
+    "room": "sandbox",
+    "order": "O-3",
+    "stage": "build",
+    "mode": "work",
+    "session": "S-2",
+    "item": 1
+   },
+   {
+    "seq": 73,
+    "t": 29876792.92995,
+    "type": "usage",
+    "role": "mgr-live",
+    "tokens": 38827,
+    "label": "outside a room",
+    "source": "launcher",
+    "launch": "0036-mgr-live"
+   },
+   {
+    "seq": 74,
+    "t": 29876792.92995,
+    "type": "launch-finished",
+    "launch": "0036-mgr-live",
+    "role": "mgr-live",
+    "ok": true,
+    "tokens": 38827,
+    "cumulative": 289817,
+    "cost": 0.2162,
+    "sessions": [],
+    "abandoned": [],
+    "reason": null
    }
   ]
  },
  "mailbox": {
   "msgs": {
-   "__map": []
+   "__map": [
+    [
+     "M-1",
+     {
+      "id": "M-1",
+      "from": "mgr-live",
+      "to": "toy-builder-1",
+      "kind": "work",
+      "key": "O-1:build:0",
+      "due": null,
+      "ref": "O-1",
+      "body": {
+       "stage": "build",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876792.687,
+      "state": "open",
+      "lease": {
+       "run": "R-1",
+       "until": 29876822.778183334
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-2",
+     {
+      "id": "M-2",
+      "from": "mgr-live",
+      "to": "toy-builder-2",
+      "kind": "work",
+      "key": "O-3:build:0",
+      "due": null,
+      "ref": "O-3",
+      "body": {
+       "stage": "build",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876792.69595,
+      "state": "open",
+      "lease": {
+       "run": "R-2",
+       "until": 29876822.787683334
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-3",
+     {
+      "id": "M-3",
+      "from": "mgr-live",
+      "to": "toy-builder-2",
+      "kind": "work",
+      "key": "O-4:build:0",
+      "due": null,
+      "ref": "O-4",
+      "body": {
+       "stage": "build",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876792.697566666,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ]
+   ]
   },
   "keys": {
-   "__map": []
+   "__map": [
+    [
+     "O-1:build:0",
+     "M-1"
+    ],
+    [
+     "O-3:build:0",
+     "M-2"
+    ],
+    [
+     "O-4:build:0",
+     "M-3"
+    ]
+   ]
   },
-  "n": 0
+  "n": 3
  },
  "org": {
   "roles": {
@@ -1094,11 +1560,12 @@
       "title": "TOKENIZER: tokenize.mjs",
       "chain": [
        "cos",
-       "mgr-live"
+       "mgr-live",
+       "toy-builder-1"
       ],
       "orderer": "cos",
       "manager": "mgr-live",
-      "builder": null,
+      "builder": "toy-builder-1",
       "checker": null,
       "budget": 200000,
       "spent": 0,
@@ -1126,11 +1593,12 @@
       "title": "PARSER: parse.mjs",
       "chain": [
        "cos",
-       "mgr-live"
+       "mgr-live",
+       "toy-builder-1"
       ],
       "orderer": "cos",
       "manager": "mgr-live",
-      "builder": null,
+      "builder": "toy-builder-1",
       "checker": null,
       "budget": 200000,
       "spent": 0,
@@ -1160,11 +1628,12 @@
       "title": "VALUES: values.mjs",
       "chain": [
        "cos",
-       "mgr-live"
+       "mgr-live",
+       "toy-builder-2"
       ],
       "orderer": "cos",
       "manager": "mgr-live",
-      "builder": null,
+      "builder": "toy-builder-2",
       "checker": null,
       "budget": 200000,
       "spent": 0,
@@ -1192,11 +1661,12 @@
       "title": "CELLS: cells.mjs",
       "chain": [
        "cos",
-       "mgr-live"
+       "mgr-live",
+       "toy-builder-2"
       ],
       "orderer": "cos",
       "manager": "mgr-live",
-      "builder": null,
+      "builder": "toy-builder-2",
       "checker": null,
       "budget": 200000,
       "spent": 0,
@@ -1224,11 +1694,12 @@
       "title": "FUNCTIONS: functions.mjs",
       "chain": [
        "cos",
-       "mgr-live"
+       "mgr-live",
+       "toy-builder-2"
       ],
       "orderer": "cos",
       "manager": "mgr-live",
-      "builder": null,
+      "builder": "toy-builder-2",
       "checker": null,
       "budget": 200000,
       "spent": 0,
@@ -1259,11 +1730,12 @@
       "title": "EVALUATOR: evaluate.mjs",
       "chain": [
        "cos",
-       "mgr-live"
+       "mgr-live",
+       "toy-builder-1"
       ],
       "orderer": "cos",
       "manager": "mgr-live",
-      "builder": null,
+      "builder": "toy-builder-1",
       "checker": null,
       "budget": 200000,
       "spent": 0,
@@ -1296,11 +1768,12 @@
       "title": "GRAPH: graph.mjs",
       "chain": [
        "cos",
-       "mgr-live"
+       "mgr-live",
+       "toy-builder-2"
       ],
       "orderer": "cos",
       "manager": "mgr-live",
-      "builder": null,
+      "builder": "toy-builder-2",
       "checker": null,
       "budget": 200000,
       "spent": 0,
@@ -1330,11 +1803,12 @@
       "title": "FORMAT: format.mjs",
       "chain": [
        "cos",
-       "mgr-live"
+       "mgr-live",
+       "toy-builder-2"
       ],
       "orderer": "cos",
       "manager": "mgr-live",
-      "builder": null,
+      "builder": "toy-builder-2",
       "checker": null,
       "budget": 200000,
       "spent": 0,
@@ -1364,11 +1838,12 @@
       "title": "SHEET: sheet.mjs",
       "chain": [
        "cos",
-       "mgr-live"
+       "mgr-live",
+       "toy-builder-1"
       ],
       "orderer": "cos",
       "manager": "mgr-live",
-      "builder": null,
+      "builder": "toy-builder-1",
       "checker": null,
       "budget": 200000,
       "spent": 0,
@@ -1400,11 +1875,12 @@
       "title": "GUIDE: guide.md",
       "chain": [
        "cos",
-       "mgr-live"
+       "mgr-live",
+       "toy-builder-1"
       ],
       "orderer": "cos",
       "manager": "mgr-live",
-      "builder": null,
+      "builder": "toy-builder-1",
       "checker": null,
       "budget": 200000,
       "spent": 0,
@@ -1471,15 +1947,71 @@
  },
  "rooms": {
   "runs": {
-   "__map": []
+   "__map": [
+    [
+     "R-1",
+     {
+      "run": "R-1",
+      "msg": "M-1",
+      "role": "toy-builder-1",
+      "by": "toy-builder-1",
+      "consult": false,
+      "order": "O-1",
+      "stage": "build",
+      "loops": 0,
+      "entered": 29876792.778183334,
+      "state": "running",
+      "session": "S-1"
+     }
+    ],
+    [
+     "R-2",
+     {
+      "run": "R-2",
+      "msg": "M-2",
+      "role": "toy-builder-2",
+      "by": "toy-builder-2",
+      "consult": false,
+      "order": "O-3",
+      "stage": "build",
+      "loops": 0,
+      "entered": 29876792.787683334,
+      "state": "running",
+      "session": "S-2"
+     }
+    ]
+   ]
   },
-  "n": 0,
+  "n": 2,
   "memory": {
    "__map": []
   },
   "sessions": {
-   "__map": []
+   "__map": [
+    [
+     "S-1",
+     {
+      "id": "S-1",
+      "role": "toy-builder-1",
+      "items": 1,
+      "open": true,
+      "started": 29876792.778183334,
+      "launch": "0046-toy-builder-1"
+     }
+    ],
+    [
+     "S-2",
+     {
+      "id": "S-2",
+      "role": "toy-builder-2",
+      "items": 1,
+      "open": true,
+      "started": 29876792.787683334,
+      "launch": "0062-toy-builder-2"
+     }
+    ]
+   ]
   },
-  "nS": 0
+  "nS": 2
  }
 }
