@@ -22275,38 +22275,53 @@
       "id": "W-1988",
       "title": "EDD-016 G0/G1/G4 (session composer serving): before the criterion for composer-v0.3-session freezes, require the readout to score the frozen single-file candidate by sha256 and record it in the manifest (EDD-016 §4.2); after a PASS, register the experiment (card S8): prediction first, arms/O2, arm holding per privacy N5, counters only. A FAIL is reported unedited and ends the path. See company/engineering/edd/EDD-016-session-composer-serving.md §10.2",
       "owner": "personalization-eval",
-      "state": "doing",
+      "state": "dropped",
       "domain": null,
       "created": "2026-10-20",
-      "links": [],
-      "updated": "2026-10-20"
+      "links": [
+        "company/decisions/2026-10-21-vp-personalization-session-readout-decisions.md"
+      ],
+      "updated": "2026-10-21",
+      "note": "Closed 2026-10-21 by vp-personalization: G0 cleared (criterion frozen bdebacc2); G1 FAIL (session readout, all four variants K1 FAIL + K2 VETO), which ends the path; nothing to register (G4). company/decisions/2026-10-21-vp-personalization-session-readout-decisions.md §4"
     },
     {
       "id": "W-1989",
       "title": "EDD-016 G3 (session composer serving): privacy read of the serving inputs (§6 table), the new local off-switch key s3c:order:v1, the frozen candidate's input list, reason key set and copy slots; state whether the W-1916 phase-B rulings stand while AMD-008 part P (F-19) is unratified. After G1 passes; nothing serves before it. See company/engineering/edd/EDD-016-session-composer-serving.md §6, §10.2",
       "owner": "privacy-reviewer",
-      "state": "backlog",
+      "state": "dropped",
       "domain": null,
       "created": "2026-10-20",
-      "links": []
+      "links": [
+        "company/decisions/2026-10-21-vp-personalization-session-readout-decisions.md"
+      ],
+      "updated": "2026-10-21",
+      "note": "Closed 2026-10-21: G1 did not pass, so no serving inputs to read; a future candidate gets its own read. company/decisions/2026-10-21-vp-personalization-session-readout-decisions.md §4"
     },
     {
       "id": "W-1990",
       "title": "EDD-016 G4 (session composer serving): EXP format and index entry, and event/counter semantics for the experiment personalization-eval registers (cards moved by reason per day, cells under 20 suppressed, recall #4/#5 by arm); confirm registrar per card S8 vs the founder record naming analytics-steward (EDD-016 O3). See company/engineering/edd/EDD-016-session-composer-serving.md §10.2, §13",
       "owner": "analytics-steward",
-      "state": "backlog",
+      "state": "dropped",
       "domain": null,
       "created": "2026-10-20",
-      "links": []
+      "links": [
+        "company/decisions/2026-10-21-vp-personalization-session-readout-decisions.md"
+      ],
+      "updated": "2026-10-21",
+      "note": "Closed 2026-10-21: no experiment to register after the G1 FAIL; registrar question (EDD-016 O3) goes to any future serving EDD. company/decisions/2026-10-21-vp-personalization-session-readout-decisions.md §4"
     },
     {
       "id": "W-1991",
       "title": "EDD-016 build (after G1-G4 clear, not before): flag-off build of the session composer serving path: byte copy under src/lib/learner/policies/ with T1 hash lock, candidate-agnostic glue, off switch, reason keys, precedence with AMD-016 (§7), tests T1-T18, self-check gateway hunk in the same commit (co-signed by learner-model-engineer), paths.json rule; then tier-2 merge review and readiness. See company/engineering/edd/EDD-016-session-composer-serving.md §4, §9, §10",
       "owner": "personalization-engineer",
-      "state": "backlog",
+      "state": "dropped",
       "domain": null,
       "created": "2026-10-20",
-      "links": []
+      "links": [
+        "company/decisions/2026-10-21-vp-personalization-session-readout-decisions.md"
+      ],
+      "updated": "2026-10-21",
+      "note": "Closed 2026-10-21: G1-G4 will not clear for composer-v0.3-session. company/decisions/2026-10-21-vp-personalization-session-readout-decisions.md §4"
     },
     {
       "id": "W-1992",
@@ -22315,25 +22330,36 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-20",
-      "links": []
+      "links": [
+        "company/decisions/2026-10-21-vp-personalization-session-readout-decisions.md"
+      ],
+      "note": "Parked 2026-10-21 (backlog, do not start): the serving home and gateway rule are candidate-agnostic and may be reused; unpark only when a candidate passes G1 under a new frozen criterion. Binding addendum void for this candidate. company/decisions/2026-10-21-vp-personalization-session-readout-decisions.md §4"
     },
     {
       "id": "W-1993",
       "title": "EDD-016 G4b: draft the surface-value.md amendment the session composer needs before any flag-on deploy (AMD-015 A1: a different candidate needs a further amendment; AMD-016: no combining): candidate id, per-learner precedence with AMD-016, the off switch (or not), cold start, whether AMD-015 Part B withdrawal covers it. Founder ratifies. See company/engineering/edd/EDD-016-session-composer-serving.md §7, §8, §13 O1",
       "owner": "evaluation-steward",
-      "state": "backlog",
+      "state": "dropped",
       "domain": null,
       "created": "2026-10-20",
-      "links": []
+      "links": [
+        "company/decisions/2026-10-21-vp-personalization-session-readout-decisions.md"
+      ],
+      "updated": "2026-10-21",
+      "note": "Closed 2026-10-21: no candidate to name in surface-value.md; a future candidate needs its own amendment (AMD-015 A1). company/decisions/2026-10-21-vp-personalization-session-readout-decisions.md §4"
     },
     {
       "id": "W-1994",
       "title": "EDD-016 Q1 (before freeze): freeze composer-v0.3-session as one import-free file in company/personalization/policies/ with build note sha256 and an equivalence test vs model.ts + sim/composer.ts; interface takes shown slugs (EDD-010 Q-A1 (i)), exports CANDIDATE_ID, reason key set and a marker; attention budget a constant, never from session length. See company/engineering/edd/EDD-016-session-composer-serving.md §4.1, §4.3, §4.4",
       "owner": "learner-model-engineer",
-      "state": "backlog",
+      "state": "dropped",
       "domain": null,
       "created": "2026-10-20",
-      "links": []
+      "links": [
+        "company/decisions/2026-10-21-vp-personalization-session-readout-decisions.md"
+      ],
+      "updated": "2026-10-21",
+      "note": "Closed 2026-10-21: no serving file for a killed candidate; the arms stay in sim/ for reproduction and reference. company/decisions/2026-10-21-vp-personalization-session-readout-decisions.md §4"
     },
     {
       "id": "W-1995",
@@ -22349,11 +22375,14 @@
       "id": "W-1996",
       "title": "c2 harness pins M.MODEL_VERSION==model-v0.2.2 (run2.mjs:79, tests2.test.mjs:119, gamFingerprint); model-v0.3.0 is additive, use M.PHASE_A_MODEL_VERSION if the harness must run on the live tree (gam-session-build-note.md §7 O-1); then score gam-session/-v3/-no-cov under a frozen criterion",
       "owner": "personalization-eval",
-      "state": "doing",
+      "state": "done",
       "domain": null,
       "created": "2026-10-20",
-      "links": [],
-      "updated": "2026-10-20"
+      "links": [
+        "company/decisions/2026-10-21-vp-personalization-session-readout-decisions.md"
+      ],
+      "updated": "2026-10-21",
+      "note": "Session variants scored (company/personalization/eval/2026-10-21-session-readout.md); applied in company/decisions/2026-10-21-vp-personalization-session-readout-decisions.md"
     },
     {
       "id": "W-1997",
@@ -22436,11 +22465,14 @@
       "id": "W-2005",
       "title": "Session criterion (W-1996/W-1988): before freezing, include arm gam-session-v3-edpbase (if built and hashed; else freeze without it, vp withdraws it) and the vp keep/kill roles K1-K5 (company/decisions/2026-10-20-vp-personalization-session-base.md §4: vs default-order gate, per-persona harm veto, K3 attribution contrasts, served subject-mix guardrail, reasonCarriesMove copy gate), or record why one cannot be measured. Statistics stay eval's",
       "owner": "personalization-eval",
-      "state": "review",
+      "state": "done",
       "domain": null,
       "created": "2026-10-20",
-      "links": [],
-      "updated": "2026-10-20"
+      "links": [
+        "company/decisions/2026-10-21-vp-personalization-session-readout-decisions.md"
+      ],
+      "updated": "2026-10-21",
+      "note": "Criterion frozen and scored; read-back in session-base §9; applied in company/decisions/2026-10-21-vp-personalization-session-readout-decisions.md"
     },
     {
       "id": "W-2006",
@@ -22495,29 +22527,40 @@
       "id": "W-2011",
       "title": "EDD-016 §4.4 says the served session recomposes the next K on every reveal or recall; the session criterion scores the build's serving mode compose-session-serve-in-order (sessionSize 5, recompose after 5 served or at session end), and a result binds only that mode (company/personalization/eval/2026-10-20-session-criterion.md §1.3). Align the EDD's glue with the scored mode, or name the recompose-on-reveal glue as a separate candidate needing its own readout row",
       "owner": "principal-engineer",
-      "state": "backlog",
+      "state": "dropped",
       "domain": null,
       "created": "2026-10-20",
-      "links": []
+      "links": [
+        "company/decisions/2026-10-21-vp-personalization-session-readout-decisions.md"
+      ],
+      "updated": "2026-10-21",
+      "note": "Closed 2026-10-21: nothing to align for; recompose-on-reveal is not opened (needs a new frozen criterion and a founder note). company/decisions/2026-10-21-vp-personalization-session-readout-decisions.md §1.3"
     },
     {
       "id": "W-2012",
       "title": "W-1994 single-file freeze: to serve on the session readout, the equivalence test must meet the bridge in company/personalization/eval/2026-10-20-session-criterion.md §6 (byte-identical compositions vs composeSessionFor on the variant's own episodes, every persona, seeds 70001-70010, interleave:base and slots-high, at a commit where the five pinned files and the catalogue hash still match); eval then records the file's sha256 in a readout addendum",
       "owner": "learner-model-engineer",
-      "state": "backlog",
+      "state": "dropped",
       "domain": null,
       "created": "2026-10-20",
-      "links": []
+      "links": [
+        "company/decisions/2026-10-21-vp-personalization-session-readout-decisions.md"
+      ],
+      "updated": "2026-10-21",
+      "note": "Closed 2026-10-21: only served W-1994. company/decisions/2026-10-21-vp-personalization-session-readout-decisions.md §4"
     },
     {
       "id": "W-2013",
       "title": "Session readout (W-1996/W-2005): after the freeze commit, write and hash the tables formatter, then run runS.mjs in the three named parts at S=2000 (about 10-13 h at --jobs=4) and merge; readout to vp-personalization unedited (company/personalization/eval/2026-10-20-session-criterion.md §8)",
       "owner": "personalization-eval",
-      "state": "review",
+      "state": "done",
       "domain": null,
       "created": "2026-10-20",
-      "links": [],
-      "updated": "2026-10-21"
+      "links": [
+        "company/decisions/2026-10-21-vp-personalization-session-readout-decisions.md"
+      ],
+      "updated": "2026-10-21",
+      "note": "Read and applied by vp-personalization 2026-10-21: company/decisions/2026-10-21-vp-personalization-session-readout-decisions.md"
     },
     {
       "id": "W-2014",
@@ -22617,12 +22660,45 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-21",
-      "links": []
+      "links": [
+        "company/decisions/2026-10-21-vp-personalization-session-readout-decisions.md"
+      ],
+      "note": "Further stale lab labels are W-2026 (same owner). company/decisions/2026-10-21-vp-personalization-session-readout-decisions.md §6"
     },
     {
       "id": "W-2025",
       "title": "Reproduce the session readout (determinism only): fresh worktree at 743379aa, RUN-PLAN-s1.md §1-§4, compare every sha256 in company/personalization/eval/2026-10-21-session-readout.md §6 (about 8 h at --jobs=4); any difference is the eval's to fix",
       "owner": "learner-model-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-21",
+      "links": [
+        "company/decisions/2026-10-21-vp-personalization-session-readout-decisions.md"
+      ],
+      "note": "Not on a critical path (FAIL closes serving either way), but a verdict-changing difference voids company/decisions/2026-10-21-vp-personalization-session-readout-decisions.md"
+    },
+    {
+      "id": "W-2026",
+      "title": "HQ lab session-composer labels beyond the W-2024 banner: hq-personalization.ts group label 'Session policies (offline, UNSCORED…)', Personalization.tsx line ~273 'session policies … offline and UNSCORED', ComposerLab.tsx line ~405 and header comment 'unscored until its readout … the readout decides what could ever serve'. Say: scored under a frozen criterion, closed for serving (link the VP record and readout, no numbers), offline inspection only; sandbox drags stay 'unscored'; show when reasonCarriesMove is false that the named reason alone did not carry the move. Do not edit criterion §6 pin files. Spec: company/decisions/2026-10-21-vp-personalization-session-readout-decisions.md §6",
+      "owner": "hq-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-21",
+      "links": []
+    },
+    {
+      "id": "W-2027",
+      "title": "EDD-016 status line: record that G1 failed for composer-v0.3-session on 2026-10-21 (session readout FAIL, VP keep/kill) and the path ended per §10.2; W-1992 parked, other gates closed. Spec: company/decisions/2026-10-21-vp-personalization-session-readout-decisions.md §4",
+      "owner": "principal-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-21",
+      "links": []
+    },
+    {
+      "id": "W-2028",
+      "title": "Founder question (via chief-of-staff): after the session readout FAIL, next cycle for ordering: (A) close ordering-for-recall for now, redirect to phase C/learning paths/revisit card (VP recommends); (B) measurement-only criterion on which observable signal raises the reachable ceiling; (C) one more candidate toward the reachable oracle (not recommended). No commitment; nothing built or scored on ordering before the answer. company/decisions/2026-10-21-vp-personalization-session-readout-decisions.md §5",
+      "owner": "vp-personalization",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-21",
