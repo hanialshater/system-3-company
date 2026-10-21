@@ -193,3 +193,24 @@ The simulated WBR also met a real org refusal: adding a second manager to a lane
 
 ## Live run 2: next
 Draining against single runs with real agents; a `now` order mid-batch; a dependency (`--after`); the supervisor as an agent, so its tokens are measured. Predictions in LIVE2.md before the run.
+
+## Iteration 5: committed predictions (before any code for it exists)
+
+Founder, 2026-10-21: the manager "need also to think about strategy … probably the manager write the code, update it if needed?" Plan:
+- the manager owns a **lane policy**, a small versioned file of knobs, validated so it cannot weaken the invariants. The engine and its rules stay with engineering; the constitution with the founder;
+- a **manager cycle** reads the lane's numbers, records a belief, and changes the policy with a committed prediction;
+- first real use: live run 3 found cost sitting in single-item revisions.
+
+**The change under test (policy v2):** a revision is sent as `later`, due in 30 min, and a `later` batch is 2. A revision then waits briefly for another item to share its session, instead of starting a session of its own.
+
+**Arms** (2d engine, session token model; same seeds):
+- **5a / 5b:** busy lane (waves of 4-20 a day), policy v1 (revisions `next`) against v2;
+- **5c / 5d:** quiet lane (waves of 2-6 a day), v1 against v2.
+
+| # | Prediction | would_be_wrong_if |
+|---|---|---|
+| I5-1 | Quiet lane: v2 cuts tokens per item by ≥ 15% against v1 | < 5% |
+| I5-2 | Quiet lane: v2 raises lead p50 by ≤ 30% | > 50% |
+| I5-3 | Busy lane: v2 changes tokens per item by < 5% (revisions already share sessions with queued work) | ≥ 10% either way |
+| I5-4 | No revision waits more than its due (30 min) plus one wake before work starts | any does |
+| I5-5 | Policy validation refuses every policy that would widen `now` beyond the flow, drop a due time from `later`, or set an unknown knob | any such policy accepted |
