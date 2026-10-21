@@ -194,6 +194,88 @@
     "mode": "work",
     "session": "S-1",
     "item": 1
+   },
+   {
+    "seq": 19,
+    "t": 29876388.8859,
+    "type": "advance",
+    "order": "O-1",
+    "stage": "build",
+    "by": "toy-builder-1",
+    "verdict": "pass"
+   },
+   {
+    "seq": 20,
+    "t": 29876388.8859,
+    "type": "code-stage",
+    "order": "O-1",
+    "stage": "test1"
+   },
+   {
+    "seq": 21,
+    "t": 29876388.8859,
+    "type": "done",
+    "msg": "M-1",
+    "run": "R-1"
+   },
+   {
+    "seq": 22,
+    "t": 29876388.8859,
+    "type": "send",
+    "msg": "M-5",
+    "from": "toy-builder-1",
+    "to": "mgr-live",
+    "kind": "report",
+    "key": null,
+    "ref": "O-1",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 23,
+    "t": 29876388.8859,
+    "type": "leave",
+    "run": "R-1",
+    "role": "toy-builder-1",
+    "order": "O-1",
+    "stage": "build",
+    "verdict": "pass",
+    "minutes": 0.3023666664958
+   },
+   {
+    "seq": 24,
+    "t": 29876388.885916665,
+    "type": "claim",
+    "msg": "M-2",
+    "run": "R-2"
+   },
+   {
+    "seq": 25,
+    "t": 29876388.885916665,
+    "type": "enter",
+    "run": "R-2",
+    "msg": "M-2",
+    "role": "toy-builder-1",
+    "by": "toy-builder-1",
+    "room": "sandbox",
+    "order": "O-2",
+    "stage": "build",
+    "mode": "work",
+    "session": "S-1",
+    "item": 2
+   },
+   {
+    "seq": 26,
+    "t": 29876389.15065,
+    "type": "launch",
+    "role": "toy-builder-1",
+    "msgs": [
+     "M-1",
+     "M-2",
+     "M-3",
+     "M-4"
+    ],
+    "why": "plan at start"
    }
   ]
  },
@@ -216,7 +298,7 @@
       },
       "priority": "next",
       "ts": 29876388.315533333,
-      "state": "open",
+      "state": "done",
       "lease": {
        "run": "R-1",
        "until": 29876418.58353333
@@ -241,7 +323,10 @@
       "priority": "next",
       "ts": 29876388.316883333,
       "state": "open",
-      "lease": null,
+      "lease": {
+       "run": "R-2",
+       "until": 29876418.885916665
+      },
       "acked": false
      }
     ],
@@ -286,6 +371,27 @@
       "lease": null,
       "acked": false
      }
+    ],
+    [
+     "M-5",
+     {
+      "id": "M-5",
+      "from": "toy-builder-1",
+      "to": "mgr-live",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-1",
+      "body": {
+       "stage": "build",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876388.8859,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
     ]
    ]
   },
@@ -309,7 +415,7 @@
     ]
    ]
   },
-  "n": 4
+  "n": 5
  },
  "org": {
   "roles": {
@@ -505,10 +611,17 @@
       "spent": 0,
       "accept": "live/work/T11/luhn.mjs exports isValidLuhn(s) returning true or false and never throwing. s is a string of decimal digits; spaces anywhere are ignored. After removing spaces, fewer than 2 digits, or any character other than a digit, gives false. Otherwise it is the Luhn checksum test (double every second digit from the right, subtract 9 from results above 9, valid when the sum is divisible by 10). Non-string input gives false. node:test tests in live/work/T11/*.test.mjs",
       "words": null,
-      "stage": "build",
+      "stage": "test1",
       "loops": 0,
       "created": 29876388.310283333,
-      "history": [],
+      "history": [
+       {
+        "stage": "build",
+        "by": "toy-builder-1",
+        "verdict": "pass",
+        "t": 29876388.8859
+       }
+      ],
       "priority": "next",
       "due": null,
       "after": [],
@@ -635,15 +748,43 @@
       "stage": "build",
       "loops": 0,
       "entered": 29876388.58353333,
+      "state": "left",
+      "session": "S-1"
+     }
+    ],
+    [
+     "R-2",
+     {
+      "run": "R-2",
+      "msg": "M-2",
+      "role": "toy-builder-1",
+      "by": "toy-builder-1",
+      "consult": false,
+      "order": "O-2",
+      "stage": "build",
+      "loops": 0,
+      "entered": 29876388.885916665,
       "state": "running",
       "session": "S-1"
      }
     ]
    ]
   },
-  "n": 1,
+  "n": 2,
   "memory": {
-   "__map": []
+   "__map": [
+    [
+     "toy-builder-1",
+     [
+      {
+       "t": 29876388.8859,
+       "did": "build on O-1: pass (loop 0)",
+       "learned": "Only U+0020 counts as a space; tabs, NBSP and Unicode digits must give false.",
+       "mistake": null
+      }
+     ]
+    ]
+   ]
   },
   "sessions": {
    "__map": [
@@ -652,7 +793,7 @@
      {
       "id": "S-1",
       "role": "toy-builder-1",
-      "items": 1,
+      "items": 2,
       "open": true,
       "started": 29876388.58353333
      }

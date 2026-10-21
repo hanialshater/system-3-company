@@ -105,3 +105,14 @@ test("state round trip through save/load keeps the supervisor's view", () => {
   const back = load();
   assert.equal(plan(back).length, 1);
 });
+
+test("a launched session that has not entered yet is not planned again; after the grace period it is", () => {
+  const co = fresh();
+  order(co, "L1");
+  assert.equal(plan(co).length, 1);
+  co.log.add({ type: "launch", role: "toy-builder-1", msgs: [] });
+  assert.equal(plan(co).length, 0, "starting: no duplicate");
+  const t0 = co.engine.clock.now();
+  co.engine.clock = { now: () => t0 + 6 };
+  assert.equal(plan(co).length, 1, "no enter within 5 min: the launch failed, plan it again");
+});

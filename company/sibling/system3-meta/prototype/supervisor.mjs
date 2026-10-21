@@ -10,6 +10,7 @@
 //   plan    which agent sessions to start: `now` items get a fresh session at once; `next` items get a session if the
 //           role has none running; `later` items wait for a batch (--batch-later=N) or their due time
 //
+//   node supervisor.mjs launched --role=<role> [--msgs=…]   the orchestrator started a session: plan it as starting
 //   node supervisor.mjs tick  [--acceptance=<dir>] [--batch-later=3] [--cap=4]   one pass; prints steps and the plan
 //   node supervisor.mjs watch [--acceptance=<dir>] [--batch-later=3] [--cap=4] [--max-min=30]
 //        tick, then wait for a change to the state file or the next lease expiry or due time (a wake, not a poll), and
@@ -65,9 +66,17 @@ export function tick(co, { acceptance = null } = {}) {
 }
 
 /** Which agent sessions to start now. Pure: reads the state, changes nothing. */
+export const LAUNCH_GRACE_MIN = 5;
 export function plan(co, { batchLater = 3, cap = 4 } = {}) {
-  const { org, rooms, mailbox } = co;
+  const { org, rooms, mailbox, log } = co;
   const running = new Set([...rooms.runs.values()].filter((x) => x.state === "running").map((x) => x.role));
+  // A session the orchestrator has started but that has not entered a room yet is starting, not missing (live run 3:
+  // the first watch fired 3 s after the launch and asked for the same session again). Past the grace period with no
+  // enter, the launch failed and the role is planned again.
+  const now = co.engine.clock.now();
+  for (const l of log.events.filter((e) => e.type === "launch" && now - e.t < LAUNCH_GRACE_MIN)) {
+    if (!log.events.some((e) => e.type === "enter" && e.role === l.role && e.t >= l.t)) running.add(l.role);
+  }
   const out = [];
   const consider = (role, msgs) => {
     if (!msgs.length) return;
@@ -134,7 +143,11 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const opts = { acceptance: opt.acceptance ?? null, batchLater: Number(opt["batch-later"] ?? 3), cap: Number(opt.cap ?? 4) };
   const cmd = argv.find((a) => !a.startsWith("--"));
   const print = (x) => console.log(JSON.stringify(x, rep, 2));
-  if (cmd === "tick") print(once(opts));
+  if (cmd === "launched") {
+    // The orchestrator records each session it starts, so the next plan does not ask for it again.
+    if (!opt.role) { console.error("usage: node supervisor.mjs launched --role=<role> [--msgs=M-1,M-2] [--why=…]"); process.exit(2); }
+    print(withLock(() => { const co = load(); const e = co.log.add({ type: "launch", role: opt.role, msgs: opt.msgs ? String(opt.msgs).split(",") : [], why: opt.why ?? null }); save(co); return e; }));
+  } else if (cmd === "tick") print(once(opts));
   else if (cmd === "watch") watch(opts, Number(opt["max-min"] ?? 30)).then(print);
   else { console.error("usage: node supervisor.mjs tick|watch [--acceptance=<dir>] [--batch-later=3] [--cap=4] [--max-min=30]"); process.exit(2); }
 }
