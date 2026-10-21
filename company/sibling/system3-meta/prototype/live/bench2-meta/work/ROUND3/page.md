@@ -14,4 +14,4 @@
 
 **Q4.** Which planet spins tipped over on its side, like a rolling ball?
 **Answer:** Uranus
-**Why:** Because it is tipped over, each end of it takes turns pointing at the Sun for many years at a time.
+**Why:** Because it is tipped over, each end takes turns pointing at the Sun for many years at a time.

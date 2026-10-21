@@ -33,3 +33,13 @@ test("text checks: mustInclude is literal text (markdown markers and headings wo
   const r = runTextChecks("QZ", { mustInclude: ["**Q4.**", "Mar"] });
   assert.match(r.output, /does not mention \*\*Q4\.\*\*; does not mention Mar$/);
 });
+
+test("text checks: lineMaxWords limits the lines that start with a prefix", async () => {
+  const { runTextChecks, LIVE } = await import("../state.mjs");
+  const fs = await import("node:fs"); const path = await import("node:path");
+  const d = path.join(LIVE, "work", "QW"); fs.mkdirSync(d, { recursive: true });
+  fs.writeFileSync(path.join(d, "page.md"), "# Round 1: Sun\n**Why:** one two three.\n**Why:** one two three four five six.\n");
+  const r = runTextChecks("QW", { lineMaxWords: [{ prefix: "**Why:**", maxWords: 5 }] });
+  assert.equal(r.pass, false);
+  assert.match(r.output, /^line 3 \(\*\*Why:\*\*\) has 6 words > 5$/);
+});

@@ -2,7 +2,7 @@
 
 **Q1.** What is the real name for a shooting star?
 **Answer:** A meteor
-**Why:** It is a tiny space rock that burns up in our air and glows, so it is not a star at all.
+**Why:** It is a tiny space rock that glows as it burns up in our air, not a star.
 
 **Q2.** Which small, icy world far past Neptune has been called a dwarf planet since 2006?
 **Answer:** Pluto

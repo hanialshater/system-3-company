@@ -101,7 +101,7 @@ export function runTests(task, { dir = path.join(LIVE, "work", task), label = `l
 
 const syllables = (w) => Math.max(1, (w.toLowerCase().replace(/e\b/, "").match(/[aeiouy]+/g) || []).length);
 /** Readability and form checks on live/work/<task>/page.md, from the order's `checks`:
- *  { file, minWords, maxWords, mustInclude: [...], banned: [...], minReadingEase, titleLine } */
+ *  { file, minWords, maxWords, mustInclude: [...], banned: [...], minReadingEase, titleLine, lineMaxWords: [{prefix, maxWords}] } */
 export function runTextChecks(task, checks) {
   const file = path.join(LIVE, "work", task, checks.file ?? "page.md");
   if (!fs.existsSync(file)) return { pass: false, output: `missing live/work/${task}/${checks.file ?? "page.md"}` };
@@ -120,6 +120,13 @@ export function runTextChecks(task, checks) {
   const lit = (m) => `${/^\w/.test(m) ? "\\b" : ""}${m.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}${/\w$/.test(m) ? "\\b" : ""}`;
   for (const m of checks.mustInclude ?? []) if (!new RegExp(lit(m), "i").test(text)) fails.push(`does not mention ${m}`);
   for (const b of checks.banned ?? []) if (new RegExp(`\\b${b}\\b`, "i").test(text)) fails.push(`uses banned word ${b}`);
+  // a rule on some lines, e.g. {prefix: "**Why:**", maxWords: 20} (benchmark 2: a 20-word why-line rule in the style
+  // sheet sent 3 of 5 rounds back at the check, after test1 had passed them)
+  for (const r of checks.lineMaxWords ?? []) for (const [i, l] of lines.entries()) {
+    if (!l.trimStart().startsWith(r.prefix)) continue;
+    const n = l.trimStart().slice(r.prefix.length).split(/\s+/).filter((w) => /[\p{L}\p{N}]/u.test(w)).length;
+    if (n > r.maxWords) fails.push(`line ${i + 1} (${r.prefix}) has ${n} words > ${r.maxWords}`);
+  }
   if (checks.minReadingEase && ease < checks.minReadingEase) fails.push(`reading ease ${ease.toFixed(0)} < ${checks.minReadingEase}`);
   return { pass: !fails.length, output: fails.length ? fails.join("; ") : `ok: ${words.length} words, reading ease ${ease.toFixed(0)}` };
 }

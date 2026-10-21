@@ -2,7 +2,7 @@
 
 **Q1.** What kind of object is the Sun?
 **Answer:** A star
-**Why:** The Sun is a huge, hot ball of glowing gas, just like the stars you see at night, only much closer.
+**Why:** The Sun is a huge, hot ball of glowing gas, like the stars you see at night, only much closer.
 
 **Q2.** How many planets go around the Sun?
 **Answer:** Eight
@@ -14,4 +14,4 @@
 
 **Q4.** How long does sunlight take to reach Earth?
 **Answer:** About 8 minutes
-**Why:** Light is the fastest thing there is, but the Sun is so far away that the trip still takes a while.
+**Why:** Light is super fast, but the Sun is so far away that the trip still takes a while.
