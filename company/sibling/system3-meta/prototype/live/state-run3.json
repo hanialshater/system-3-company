@@ -1,0 +1,664 @@
+{
+ "log": {
+  "events": [
+   {
+    "seq": 1,
+    "t": 29876388.309016667,
+    "type": "org-genesis",
+    "roles": [
+     "founder",
+     "cos",
+     "mgr-live",
+     "toy-builder-1",
+     "toy-builder-2",
+     "toy-checker",
+     "toy-release"
+    ]
+   },
+   {
+    "seq": 2,
+    "t": 29876388.309016667,
+    "type": "flow-define",
+    "flow": "task@v1",
+    "by": "cos"
+   },
+   {
+    "seq": 3,
+    "t": 29876388.309016667,
+    "type": "flow-active",
+    "flow": "task@v1",
+    "by": "founder",
+    "words": "Approve the task flow for the Meta sandbox (founder: Decide for me, 2026-10-21)"
+   },
+   {
+    "seq": 4,
+    "t": 29876388.310283333,
+    "type": "order",
+    "order": "O-1",
+    "by": "cos",
+    "to": "mgr-live",
+    "budget": 200000,
+    "flow": "task@v1",
+    "priority": "next",
+    "after": []
+   },
+   {
+    "seq": 5,
+    "t": 29876388.3118,
+    "type": "order",
+    "order": "O-2",
+    "by": "cos",
+    "to": "mgr-live",
+    "budget": 200000,
+    "flow": "task@v1",
+    "priority": "next",
+    "after": []
+   },
+   {
+    "seq": 6,
+    "t": 29876388.313,
+    "type": "order",
+    "order": "O-3",
+    "by": "cos",
+    "to": "mgr-live",
+    "budget": 200000,
+    "flow": "task@v1",
+    "priority": "next",
+    "after": []
+   },
+   {
+    "seq": 7,
+    "t": 29876388.314283334,
+    "type": "order",
+    "order": "O-4",
+    "by": "cos",
+    "to": "mgr-live",
+    "budget": 200000,
+    "flow": "task@v1",
+    "priority": "next",
+    "after": []
+   },
+   {
+    "seq": 8,
+    "t": 29876388.315533333,
+    "type": "delegate",
+    "order": "O-1",
+    "by": "mgr-live",
+    "to": "toy-builder-1",
+    "budget": 150000
+   },
+   {
+    "seq": 9,
+    "t": 29876388.315533333,
+    "type": "send",
+    "msg": "M-1",
+    "from": "mgr-live",
+    "to": "toy-builder-1",
+    "kind": "work",
+    "key": "O-1:build:0",
+    "ref": "O-1",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 10,
+    "t": 29876388.316866666,
+    "type": "delegate",
+    "order": "O-2",
+    "by": "mgr-live",
+    "to": "toy-builder-1",
+    "budget": 150000
+   },
+   {
+    "seq": 11,
+    "t": 29876388.316883333,
+    "type": "send",
+    "msg": "M-2",
+    "from": "mgr-live",
+    "to": "toy-builder-1",
+    "kind": "work",
+    "key": "O-2:build:0",
+    "ref": "O-2",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 12,
+    "t": 29876388.318033334,
+    "type": "delegate",
+    "order": "O-3",
+    "by": "mgr-live",
+    "to": "toy-builder-1",
+    "budget": 150000
+   },
+   {
+    "seq": 13,
+    "t": 29876388.31805,
+    "type": "send",
+    "msg": "M-3",
+    "from": "mgr-live",
+    "to": "toy-builder-1",
+    "kind": "work",
+    "key": "O-3:build:0",
+    "ref": "O-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 14,
+    "t": 29876388.319283333,
+    "type": "delegate",
+    "order": "O-4",
+    "by": "mgr-live",
+    "to": "toy-builder-1",
+    "budget": 150000
+   },
+   {
+    "seq": 15,
+    "t": 29876388.319283333,
+    "type": "send",
+    "msg": "M-4",
+    "from": "mgr-live",
+    "to": "toy-builder-1",
+    "kind": "work",
+    "key": "O-4:build:0",
+    "ref": "O-4",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 16,
+    "t": 29876388.58353333,
+    "type": "session-open",
+    "session": "S-1",
+    "role": "toy-builder-1"
+   },
+   {
+    "seq": 17,
+    "t": 29876388.58353333,
+    "type": "claim",
+    "msg": "M-1",
+    "run": "R-1"
+   },
+   {
+    "seq": 18,
+    "t": 29876388.58353333,
+    "type": "enter",
+    "run": "R-1",
+    "msg": "M-1",
+    "role": "toy-builder-1",
+    "by": "toy-builder-1",
+    "room": "sandbox",
+    "order": "O-1",
+    "stage": "build",
+    "mode": "work",
+    "session": "S-1",
+    "item": 1
+   }
+  ]
+ },
+ "mailbox": {
+  "msgs": {
+   "__map": [
+    [
+     "M-1",
+     {
+      "id": "M-1",
+      "from": "mgr-live",
+      "to": "toy-builder-1",
+      "kind": "work",
+      "key": "O-1:build:0",
+      "due": null,
+      "ref": "O-1",
+      "body": {
+       "stage": "build",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876388.315533333,
+      "state": "open",
+      "lease": {
+       "run": "R-1",
+       "until": 29876418.58353333
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-2",
+     {
+      "id": "M-2",
+      "from": "mgr-live",
+      "to": "toy-builder-1",
+      "kind": "work",
+      "key": "O-2:build:0",
+      "due": null,
+      "ref": "O-2",
+      "body": {
+       "stage": "build",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876388.316883333,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-3",
+     {
+      "id": "M-3",
+      "from": "mgr-live",
+      "to": "toy-builder-1",
+      "kind": "work",
+      "key": "O-3:build:0",
+      "due": null,
+      "ref": "O-3",
+      "body": {
+       "stage": "build",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876388.31805,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-4",
+     {
+      "id": "M-4",
+      "from": "mgr-live",
+      "to": "toy-builder-1",
+      "kind": "work",
+      "key": "O-4:build:0",
+      "due": null,
+      "ref": "O-4",
+      "body": {
+       "stage": "build",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876388.319283333,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ]
+   ]
+  },
+  "keys": {
+   "__map": [
+    [
+     "O-1:build:0",
+     "M-1"
+    ],
+    [
+     "O-2:build:0",
+     "M-2"
+    ],
+    [
+     "O-3:build:0",
+     "M-3"
+    ],
+    [
+     "O-4:build:0",
+     "M-4"
+    ]
+   ]
+  },
+  "n": 4
+ },
+ "org": {
+  "roles": {
+   "__map": [
+    [
+     "founder",
+     {
+      "skills": [],
+      "rituals": [],
+      "active": true,
+      "id": "founder",
+      "level": "founder",
+      "human": true,
+      "room": "lobby",
+      "floor": 1
+     }
+    ],
+    [
+     "cos",
+     {
+      "skills": [],
+      "rituals": [],
+      "active": true,
+      "id": "cos",
+      "level": "chief-of-staff",
+      "reportsTo": "founder",
+      "room": "ceo-office",
+      "floor": 1
+     }
+    ],
+    [
+     "mgr-live",
+     {
+      "skills": [
+       "manage"
+      ],
+      "rituals": [],
+      "active": true,
+      "id": "mgr-live",
+      "level": "manager",
+      "reportsTo": "cos",
+      "lane": "s",
+      "room": "sandbox",
+      "floor": 2
+     }
+    ],
+    [
+     "toy-builder-1",
+     {
+      "skills": [
+       "js"
+      ],
+      "rituals": [],
+      "active": true,
+      "id": "toy-builder-1",
+      "level": "builder",
+      "reportsTo": "mgr-live",
+      "lane": "s",
+      "room": "sandbox",
+      "floor": 2
+     }
+    ],
+    [
+     "toy-builder-2",
+     {
+      "skills": [
+       "js"
+      ],
+      "rituals": [],
+      "active": true,
+      "id": "toy-builder-2",
+      "level": "builder",
+      "reportsTo": "mgr-live",
+      "lane": "s",
+      "room": "sandbox",
+      "floor": 2
+     }
+    ],
+    [
+     "toy-checker",
+     {
+      "skills": [
+       "review"
+      ],
+      "rituals": [],
+      "active": true,
+      "id": "toy-checker",
+      "level": "checker",
+      "reportsTo": "cos",
+      "lane": "q",
+      "room": "quality",
+      "floor": 3
+     }
+    ],
+    [
+     "toy-release",
+     {
+      "skills": [
+       "release"
+      ],
+      "rituals": [],
+      "active": true,
+      "id": "toy-release",
+      "level": "release",
+      "reportsTo": "cos",
+      "lane": "r",
+      "room": "launch",
+      "floor": 3
+     }
+    ]
+   ]
+  },
+  "changes": {
+   "__map": []
+  },
+  "n": 0
+ },
+ "engine": {
+  "flows": {
+   "__map": [
+    [
+     "task@v1",
+     {
+      "stages": [
+       {
+        "stage": "build",
+        "signer": "builder",
+        "evidence": [
+         "live/work/<task>/"
+        ]
+       },
+       {
+        "stage": "test1",
+        "signer": "code",
+        "evidence": []
+       },
+       {
+        "stage": "check",
+        "signer": "checker",
+        "evidence": [
+         "review notes"
+        ]
+       },
+       {
+        "stage": "uat",
+        "signer": "orderer",
+        "evidence": [
+         "hidden acceptance tests"
+        ]
+       },
+       {
+        "stage": "ship",
+        "signer": "release",
+        "evidence": [
+         "copied to live/shipped/"
+        ]
+       }
+      ],
+      "name": "task",
+      "key": "task@v1",
+      "state": "active",
+      "by": "cos"
+     }
+    ]
+   ]
+  },
+  "active": {
+   "__map": [
+    [
+     "task",
+     "task@v1"
+    ]
+   ]
+  },
+  "orders": {
+   "__map": [
+    [
+     "O-1",
+     {
+      "id": "O-1",
+      "flow": "task@v1",
+      "title": "Luhn check",
+      "chain": [
+       "cos",
+       "mgr-live",
+       "toy-builder-1"
+      ],
+      "orderer": "cos",
+      "manager": "mgr-live",
+      "builder": "toy-builder-1",
+      "checker": null,
+      "budget": 200000,
+      "spent": 0,
+      "accept": "live/work/T11/luhn.mjs exports isValidLuhn(s) returning true or false and never throwing. s is a string of decimal digits; spaces anywhere are ignored. After removing spaces, fewer than 2 digits, or any character other than a digit, gives false. Otherwise it is the Luhn checksum test (double every second digit from the right, subtract 9 from results above 9, valid when the sum is divisible by 10). Non-string input gives false. node:test tests in live/work/T11/*.test.mjs",
+      "words": null,
+      "stage": "build",
+      "loops": 0,
+      "created": 29876388.310283333,
+      "history": [],
+      "priority": "next",
+      "due": null,
+      "after": [],
+      "blocked": false,
+      "task": "T11"
+     }
+    ],
+    [
+     "O-2",
+     {
+      "id": "O-2",
+      "flow": "task@v1",
+      "title": "Run-length encoding",
+      "chain": [
+       "cos",
+       "mgr-live",
+       "toy-builder-1"
+      ],
+      "orderer": "cos",
+      "manager": "mgr-live",
+      "builder": "toy-builder-1",
+      "checker": null,
+      "budget": 200000,
+      "spent": 0,
+      "accept": "live/work/T12/rle.mjs exports encode(s) and decode(s). encode writes each run of the same character as its decimal count followed by the character (aaabbc gives 3a2b1c; the empty string gives the empty string); characters are whole Unicode code points (an emoji is one character), and input containing a decimal digit throws TypeError. decode is the exact inverse; malformed input (a character without a count, a count without a character, a count of 0) throws SyntaxError. node:test tests in live/work/T12/*.test.mjs",
+      "words": null,
+      "stage": "build",
+      "loops": 0,
+      "created": 29876388.3118,
+      "history": [],
+      "priority": "next",
+      "due": null,
+      "after": [],
+      "blocked": false,
+      "task": "T12"
+     }
+    ],
+    [
+     "O-3",
+     {
+      "id": "O-3",
+      "flow": "task@v1",
+      "title": "Byte formatting",
+      "chain": [
+       "cos",
+       "mgr-live",
+       "toy-builder-1"
+      ],
+      "orderer": "cos",
+      "manager": "mgr-live",
+      "builder": "toy-builder-1",
+      "checker": null,
+      "budget": 200000,
+      "spent": 0,
+      "accept": "live/work/T13/bytes.mjs exports formatBytes(n) for integer n >= 0. Below 1024 it gives n followed by a space and B (1023 B). Otherwise it uses the largest binary unit (KiB, MiB, GiB, TiB) where the value is at least 1, rounded half up to one decimal, with a trailing .0 dropped (1536 gives 1.5 KiB, 1024 gives 1 KiB); a value that rounds to 1024 moves to the next unit (1048575 gives 1 MiB); above TiB it stays in TiB. Any other input throws RangeError. node:test tests in live/work/T13/*.test.mjs",
+      "words": null,
+      "stage": "build",
+      "loops": 0,
+      "created": 29876388.313,
+      "history": [],
+      "priority": "next",
+      "due": null,
+      "after": [],
+      "blocked": false,
+      "task": "T13"
+     }
+    ],
+    [
+     "O-4",
+     {
+      "id": "O-4",
+      "flow": "task@v1",
+      "title": "ISO week number",
+      "chain": [
+       "cos",
+       "mgr-live",
+       "toy-builder-1"
+      ],
+      "orderer": "cos",
+      "manager": "mgr-live",
+      "builder": "toy-builder-1",
+      "checker": null,
+      "budget": 200000,
+      "spent": 0,
+      "accept": "live/work/T14/isoweek.mjs exports isoWeek(year, month, day) returning [isoYear, week] per ISO 8601 (weeks start on Monday; week 1 is the week with the year's first Thursday; dates near the year boundary can belong to the previous or next ISO year). month is 1-12. Any invalid date (non-integer parts, month or day out of range, 30 February) throws RangeError. node:test tests in live/work/T14/*.test.mjs",
+      "words": null,
+      "stage": "build",
+      "loops": 0,
+      "created": 29876388.314283334,
+      "history": [],
+      "priority": "next",
+      "due": null,
+      "after": [],
+      "blocked": false,
+      "task": "T14"
+     }
+    ]
+   ]
+  },
+  "approvals": {
+   "__map": []
+  },
+  "n": {
+   "O": 4,
+   "A": 0
+  },
+  "limits": {
+   "chief-of-staff": 500000,
+   "manager": 250000
+  }
+ },
+ "rooms": {
+  "runs": {
+   "__map": [
+    [
+     "R-1",
+     {
+      "run": "R-1",
+      "msg": "M-1",
+      "role": "toy-builder-1",
+      "by": "toy-builder-1",
+      "consult": false,
+      "order": "O-1",
+      "stage": "build",
+      "loops": 0,
+      "entered": 29876388.58353333,
+      "state": "running",
+      "session": "S-1"
+     }
+    ]
+   ]
+  },
+  "n": 1,
+  "memory": {
+   "__map": []
+  },
+  "sessions": {
+   "__map": [
+    [
+     "S-1",
+     {
+      "id": "S-1",
+      "role": "toy-builder-1",
+      "items": 1,
+      "open": true,
+      "started": 29876388.58353333
+     }
+    ]
+   ]
+  },
+  "nS": 1
+ }
+}
