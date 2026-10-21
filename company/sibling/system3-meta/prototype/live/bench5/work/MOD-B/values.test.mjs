@@ -102,3 +102,19 @@ test("wave 2: ERR.REF", () => {
   assert.equal(display(ERR.REF), "#REF!");
   assert.equal(binary("+", ERR.REF, ERR.DIV0), ERR.REF);
 });
+
+test("wave 3: ERR.CYCLE is #CIRC! and odd input owned by B", () => {
+  assert.deepEqual(ERR.CYCLE, { error: "#CIRC!" });
+  assert.ok(Object.isFrozen(ERR.CYCLE));
+  assert.ok(isError(ERR.CYCLE));
+  assert.equal(errorFromCode("#CIRC!"), ERR.CYCLE);
+  assert.equal(errorFromCode("#CYCLE!"), ERR.VALUE);
+  assert.equal(display(ERR.CYCLE), "#CIRC!");
+  assert.equal(binary("+", ERR.CYCLE, ERR.DIV0), ERR.CYCLE);
+  assert.equal(binary("+", 1, ERR.CYCLE), ERR.CYCLE);
+  assert.equal(binary("^", 0, 0), 1);
+  assert.equal(binary("+", "5", 1), 6);
+  assert.equal(toNumber("1e3"), ERR.VALUE);
+  assert.equal(toNumber("1.2.3"), ERR.VALUE);
+  assert.equal(parseLiteral("1e3"), "1e3");
+});

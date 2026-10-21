@@ -515,7 +515,7 @@
        "kind": "order",
        "title": "MOD-B: the module in slot B",
        "body": "",
-       "state": "in-progress",
+       "state": "in-review",
        "assignee": "dev-2",
        "project": null,
        "labels": [
@@ -530,7 +530,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876923.441666666,
-       "updated": 29876945.499883335,
+       "updated": 29876946.293216668,
        "history": [
         {
          "t": 29876923.441666666,
@@ -591,6 +591,11 @@
          "t": 29876945.499883335,
          "by": "engine",
          "state": "in-progress"
+        },
+        {
+         "t": 29876946.293216668,
+         "by": "engine",
+         "state": "in-review"
         }
        ]
       }
@@ -766,7 +771,7 @@
        "kind": "order",
        "title": "SHEET: the integrated sheet",
        "body": "",
-       "state": "in-progress",
+       "state": "in-review",
        "assignee": "dev-1",
        "project": null,
        "labels": [
@@ -781,7 +786,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876923.441666666,
-       "updated": 29876944.81075,
+       "updated": 29876946.08535,
        "history": [
         {
          "t": 29876923.441666666,
@@ -857,6 +862,11 @@
          "t": 29876944.81075,
          "by": "engine",
          "state": "in-progress"
+        },
+        {
+         "t": 29876946.08535,
+         "by": "engine",
+         "state": "in-review"
         }
        ]
       }
@@ -1218,7 +1228,7 @@
        "kind": "ask",
        "title": "ISS-13 update: cycle code is now #CIRC! (P-4); B must add ERR.CIRC",
        "body": "Per P-4/SPEC5 Changed, the cycle error is #CIRC!, not #CYCLE!. D store.mjs now evaluates {type:\"error\",code:\"#CIRC!\"} through the injected evaluate; C maps it via B errorFromCode. B values.mjs still has no #CIRC! entry, so cycle cells show #VALUE!. Required: dev-2 adds ERR.CIRC = {error:\"#CIRC!\"} to B ERR/BY_CODE. Supersedes ISS-13 (#CYCLE!).",
-       "state": "todo",
+       "state": "done",
        "assignee": "lead",
        "project": null,
        "labels": [
@@ -1230,15 +1240,26 @@
        "goal": null,
        "order": null,
        "links": [],
-       "comments": [],
+       "comments": [
+        {
+         "by": "lead",
+         "t": 29876946.478833333,
+         "text": "redirect: Already covered by ISS-13: O-3 (MOD-B) was reopened for #CIRC! and is now in check. work/MOD-B/values.mjs already has CYCLE: {error:\"#CIRC!\"} in ERR/BY_CODE, so errorFromCode(\"#CIRC!\") resolves; it reaches shipped when O-3 ships. Keep the key ERR.CYCLE as ruled in ISS-13 (C eval.test.mjs reads ERR.CYCLE), not ERR.CIRC. ARCH names no key, so no ARCH change. No further reopen."
+        }
+       ],
        "by": "dev-1",
        "created": 29876944.667983335,
-       "updated": 29876944.667983335,
+       "updated": 29876946.478833333,
        "history": [
         {
          "t": 29876944.667983335,
          "by": "dev-1",
          "state": "todo"
+        },
+        {
+         "t": 29876946.47885,
+         "by": "lead",
+         "state": "done"
         }
        ],
        "ask": {
@@ -1248,7 +1269,11 @@
         "addressedTo": null,
         "decider": "lead",
         "escalate": null,
-        "answer": null
+        "answer": {
+         "decision": "redirect",
+         "text": "Already covered by ISS-13: O-3 (MOD-B) was reopened for #CIRC! and is now in check. work/MOD-B/values.mjs already has CYCLE: {error:\"#CIRC!\"} in ERR/BY_CODE, so errorFromCode(\"#CIRC!\") resolves; it reaches shipped when O-3 ships. Keep the key ERR.CYCLE as ruled in ISS-13 (C eval.test.mjs reads ERR.CYCLE), not ERR.CIRC. ARCH names no key, so no ARCH change. No further reopen.",
+         "t": 29876946.478833333
+        }
        }
       }
      ]
@@ -11273,6 +11298,267 @@
     "stage": "build",
     "pass": true,
     "output": "# tests 9 # pass 9 # fail 0"
+   },
+   {
+    "seq": 952,
+    "t": 29876946.076783333,
+    "type": "advance",
+    "order": "O-6",
+    "stage": "build",
+    "by": "dev-1",
+    "verdict": "pass"
+   },
+   {
+    "seq": 953,
+    "t": 29876946.076783333,
+    "type": "code-stage",
+    "order": "O-6",
+    "stage": "test1"
+   },
+   {
+    "seq": 954,
+    "t": 29876946.076783333,
+    "type": "done",
+    "msg": "M-148",
+    "run": "R-57"
+   },
+   {
+    "seq": 955,
+    "t": 29876946.076783333,
+    "type": "send",
+    "msg": "M-154",
+    "from": "dev-1",
+    "to": "lead",
+    "kind": "report",
+    "key": null,
+    "ref": "O-6",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 956,
+    "t": 29876946.076783333,
+    "type": "leave",
+    "run": "R-57",
+    "role": "dev-1",
+    "order": "O-6",
+    "stage": "build",
+    "verdict": "pass",
+    "minutes": 0.8466666676104069
+   },
+   {
+    "seq": 957,
+    "t": 29876946.0768,
+    "type": "session-wait",
+    "session": "S-29",
+    "role": "dev-1",
+    "minutes": 1.5
+   },
+   {
+    "seq": 958,
+    "t": 29876946.085333332,
+    "type": "advance",
+    "order": "O-6",
+    "stage": "test1",
+    "by": "code",
+    "verdict": "pass"
+   },
+   {
+    "seq": 959,
+    "t": 29876946.085333332,
+    "type": "send",
+    "msg": "M-155",
+    "from": "lead",
+    "to": "pool:checker",
+    "kind": "work",
+    "key": "O-6:check:5",
+    "ref": "O-6",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 960,
+    "t": 29876946.08535,
+    "type": "item-update",
+    "item": "ISS-6",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 961,
+    "t": 29876946.08535,
+    "type": "supervisor-tick",
+    "steps": [
+     "test1:O-6"
+    ]
+   },
+   {
+    "seq": 962,
+    "t": 29876946.08535,
+    "type": "launch",
+    "role": "reviewer",
+    "msgs": [
+     "M-155"
+    ],
+    "tasks": [],
+    "why": "plan: next: 1 waiting, no session running"
+   },
+   {
+    "seq": 963,
+    "t": 29876946.19605,
+    "type": "self-check",
+    "order": "O-3",
+    "task": "MOD-B",
+    "by": "dev-2",
+    "stage": "build",
+    "pass": true,
+    "output": "# tests 9 # pass 9 # fail 0"
+   },
+   {
+    "seq": 964,
+    "t": 29876946.285483334,
+    "type": "advance",
+    "order": "O-3",
+    "stage": "build",
+    "by": "dev-2",
+    "verdict": "pass"
+   },
+   {
+    "seq": 965,
+    "t": 29876946.2855,
+    "type": "code-stage",
+    "order": "O-3",
+    "stage": "test1"
+   },
+   {
+    "seq": 966,
+    "t": 29876946.2855,
+    "type": "done",
+    "msg": "M-153",
+    "run": "R-58"
+   },
+   {
+    "seq": 967,
+    "t": 29876946.2855,
+    "type": "send",
+    "msg": "M-156",
+    "from": "dev-2",
+    "to": "lead",
+    "kind": "report",
+    "key": null,
+    "ref": "O-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 968,
+    "t": 29876946.2855,
+    "type": "leave",
+    "run": "R-58",
+    "role": "dev-2",
+    "order": "O-3",
+    "stage": "build",
+    "verdict": "pass",
+    "minutes": 0.5301666669547558
+   },
+   {
+    "seq": 969,
+    "t": 29876946.2855,
+    "type": "session-wait",
+    "session": "S-30",
+    "role": "dev-2",
+    "minutes": 1.5
+   },
+   {
+    "seq": 970,
+    "t": 29876946.293216668,
+    "type": "advance",
+    "order": "O-3",
+    "stage": "test1",
+    "by": "code",
+    "verdict": "pass"
+   },
+   {
+    "seq": 971,
+    "t": 29876946.293216668,
+    "type": "send",
+    "msg": "M-157",
+    "from": "lead",
+    "to": "pool:checker",
+    "kind": "work",
+    "key": "O-3:check:3",
+    "ref": "O-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 972,
+    "t": 29876946.293216668,
+    "type": "item-update",
+    "item": "ISS-3",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 973,
+    "t": 29876946.293216668,
+    "type": "supervisor-tick",
+    "steps": [
+     "test1:O-3"
+    ]
+   },
+   {
+    "seq": 974,
+    "t": 29876946.478833333,
+    "type": "item-comment",
+    "item": "ISS-14",
+    "by": "lead"
+   },
+   {
+    "seq": 975,
+    "t": 29876946.47885,
+    "type": "item-update",
+    "item": "ISS-14",
+    "by": "lead",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 976,
+    "t": 29876946.47885,
+    "type": "ask-answer",
+    "item": "ISS-14",
+    "by": "lead",
+    "decision": "redirect"
+   },
+   {
+    "seq": 977,
+    "t": 29876946.66536667,
+    "type": "usage",
+    "role": "lead",
+    "tokens": 40826,
+    "label": "outside a room",
+    "source": "launcher",
+    "launch": "0939-lead"
+   },
+   {
+    "seq": 978,
+    "t": 29876946.66536667,
+    "type": "launch-finished",
+    "launch": "0939-lead",
+    "role": "lead",
+    "ok": true,
+    "tokens": 40826,
+    "cumulative": 330599,
+    "cost": 0.238,
+    "sessions": [],
+    "abandoned": [],
+    "reason": null
    }
   ]
  },
@@ -14560,7 +14846,7 @@
       },
       "priority": "next",
       "ts": 29876944.81075,
-      "state": "open",
+      "state": "done",
       "lease": {
        "run": "R-57",
        "until": 29876975.230116665
@@ -14671,11 +14957,95 @@
       },
       "priority": "next",
       "ts": 29876945.496033333,
-      "state": "open",
+      "state": "done",
       "lease": {
        "run": "R-58",
        "until": 29876975.755333334
       },
+      "acked": false
+     }
+    ],
+    [
+     "M-154",
+     {
+      "id": "M-154",
+      "from": "dev-1",
+      "to": "lead",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-6",
+      "body": {
+       "stage": "build",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876946.076783333,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-155",
+     {
+      "id": "M-155",
+      "from": "lead",
+      "to": "pool:checker",
+      "kind": "work",
+      "key": "O-6:check:5",
+      "due": null,
+      "ref": "O-6",
+      "body": {
+       "stage": "check",
+       "loops": 5
+      },
+      "priority": "next",
+      "ts": 29876946.085333332,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-156",
+     {
+      "id": "M-156",
+      "from": "dev-2",
+      "to": "lead",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-3",
+      "body": {
+       "stage": "build",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876946.2855,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-157",
+     {
+      "id": "M-157",
+      "from": "lead",
+      "to": "pool:checker",
+      "kind": "work",
+      "key": "O-3:check:3",
+      "due": null,
+      "ref": "O-3",
+      "body": {
+       "stage": "check",
+       "loops": 3
+      },
+      "priority": "next",
+      "ts": 29876946.293216668,
+      "state": "open",
+      "lease": null,
       "acked": false
      }
     ]
@@ -15066,10 +15436,18 @@
     [
      "O-3:build:3",
      "M-153"
+    ],
+    [
+     "O-6:check:5",
+     "M-155"
+    ],
+    [
+     "O-3:check:3",
+     "M-157"
     ]
    ]
   },
-  "n": 153
+  "n": 157
  },
  "org": {
   "roles": {
@@ -15591,7 +15969,7 @@
       "spent": 0,
       "accept": "live/bench5/work/MOD-B/<the file ARCH.md names for slot B>, with exactly the exports and behaviour ARCH.md gives slot B, for every wave released so far (live/bench5/SPEC5.md), plus your own *.test.mjs in the same folder.",
       "words": null,
-      "stage": "build",
+      "stage": "check",
       "loops": 3,
       "created": 29876923.25736667,
       "history": [
@@ -15705,6 +16083,18 @@
         "verdict": "reopen",
         "t": 29876945.496016666,
         "findings": "Wave 3: B ERR has no cycle error, so errorFromCode(\"#CIRC!\") falls back to ERR.VALUE and cycle cells (D detects them, C maps via errorFromCode) show #VALUE! instead of #CIRC!. Required: add ERR.CYCLE = frozen {error:\"#CIRC!\"} (code #CIRC! per SPEC5 requirement change P-4, NOT #CYCLE!) to ERR so it is in BY_CODE; isError/errorFromCode/display must handle it. Keep the name ERR.CYCLE (C and SHEET tests use it). Also check the rest of Wave 3 that B owns (odd input: =1e3 / =1.2.3 #VALUE!, 0^0=1, \"5\"+1=6)."
+       },
+       {
+        "stage": "build",
+        "by": "dev-2",
+        "verdict": "pass",
+        "t": 29876946.285483334
+       },
+       {
+        "stage": "test1",
+        "by": "code",
+        "verdict": "pass",
+        "t": 29876946.2932
        }
       ],
       "priority": "next",
@@ -16040,7 +16430,7 @@
       "spent": 0,
       "accept": "live/bench5/work/SHEET/sheet.mjs exporting createSheet() as live/bench5/SPEC5.md describes it, for every wave released so far, built only from the slot modules as ARCH.md wires them, plus your own sheet.test.mjs. The hidden acceptance tests run on this sheet and report failing categories: when one is in another slot's module, raise it with the lead.",
       "words": null,
-      "stage": "build",
+      "stage": "check",
       "loops": 5,
       "created": 29876923.25736667,
       "history": [
@@ -16186,6 +16576,18 @@
         "verdict": "revise",
         "t": 29876944.81075,
         "findings": "not ok 9 - wave3/cycles\n  error: |-\nnot ok 10 - wave3/propagate\n  error: |-\nnot ok 12 - wave3/edges\n  error: |-\n# tests 14\n# pass 11\n# fail 3"
+       },
+       {
+        "stage": "build",
+        "by": "dev-1",
+        "verdict": "pass",
+        "t": 29876946.076783333
+       },
+       {
+        "stage": "test1",
+        "by": "code",
+        "verdict": "pass",
+        "t": 29876946.085333332
        }
       ],
       "priority": "next",
@@ -17135,7 +17537,7 @@
       "stage": "build",
       "loops": 5,
       "entered": 29876945.230116665,
-      "state": "running",
+      "state": "left",
       "session": "S-29"
      }
     ],
@@ -17151,7 +17553,7 @@
       "stage": "build",
       "loops": 3,
       "entered": 29876945.755333334,
-      "state": "running",
+      "state": "left",
       "session": "S-30"
      }
     ]
@@ -17245,6 +17647,12 @@
        "t": 29876944.786316667,
        "did": "build on O-5: pass (loop 3)",
        "learned": "cycle code changed to #CIRC! (P-4); read SPEC5 Changed section before each hand-in; B ERR.CIRC raised ISS-14",
+       "mistake": null
+      },
+      {
+       "t": 29876946.076783333,
+       "did": "build on O-6: pass (loop 5)",
+       "learned": "wave3 SHEET failures all trace to B missing ERR.CIRC (ISS-14); SHEET unchanged",
        "mistake": null
       }
      ]
@@ -17512,6 +17920,12 @@
        "t": 29876942.3604,
        "did": "build on O-4: pass (loop 2)",
        "learned": "C wave 3: eval.mjs unchanged (errors pass through refs/ranges/functions left-first; SUM(A1:Z10) ok); cycle detection is D, ERR.CYCLE is B; wave-3 cycle test skips until B adds ERR.CYCLE",
+       "mistake": null
+      },
+      {
+       "t": 29876946.2855,
+       "did": "build on O-3: pass (loop 3)",
+       "learned": "B wave 3: ERR.CYCLE={error:\"#CIRC!\"} in ERR/BY_CODE; 0^0, \"5\"+1, 1e3 coercion already correct; =1e3/=1.2.3 formula syntax is A",
        "mistake": null
       }
      ]
@@ -17831,7 +18245,8 @@
       "items": 1,
       "open": true,
       "started": 29876945.2301,
-      "launch": "0897-dev-1"
+      "launch": "0897-dev-1",
+      "waitUntil": 29876947.5768
      }
     ],
     [
@@ -17842,7 +18257,8 @@
       "items": 1,
       "open": true,
       "started": 29876945.755333334,
-      "launch": "0938-dev-2"
+      "launch": "0938-dev-2",
+      "waitUntil": 29876947.7855
      }
     ]
    ]
