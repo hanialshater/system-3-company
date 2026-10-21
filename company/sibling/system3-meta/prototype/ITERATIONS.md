@@ -153,3 +153,43 @@ Founder, 2026-10-21: batches vs a queue in the mailbox; priority flags ("force n
 | I4-4 | no `later` item waits past its due by more than one sweep (starvation 0) | any does |
 | I4-5 | 4e holds more WBRs in busy periods and fewer in quiet ones than a fixed cadence; lead p50 no worse than 2d's | p50 > 10% worse than 2d |
 | I4-6 | invariants hold in every arm: 0 duplicates, 0 violations, all crashes recovered | any non-zero |
+
+## Iteration 4: results (20 seeds; variable waves of 4-20 orders a day; session token model from live run 1)
+
+Two simulator bugs were found and fixed before this run, both in the new session code:
+- a session with a cap of 1 was reused by `pump` before it was closed, so cap-1 sessions averaged 1.48 items;
+- promotion lateness was measured from the order's due time instead of from when the message became eligible.
+
+Two modelling gaps were also closed before the run:
+- rituals cost nothing, so each attendee's position now costs a session (55k);
+- the busy/quiet ratio divided by zero, so it is replaced by WBRs per day on the busiest and the quietest third of days.
+
+The simulated WBR also met a real org refusal: adding a second manager to a lane with a POC. It now records the refusal as an objection; 0.1 per run on average.
+
+| arm | k tok/item | lead p50 h | lead p90 h | p50 now / next / later h | items per session | WBRs | WBR/day busy · quiet | escaped/item |
+|---|---|---|---|---|---|---|---|---|
+| 4a one per run | 276 | 3.7 | 5.9 | – / 3.7 / – | 1.00 | 3 | 0.24 · 0.23 | 0.053 |
+| 4b drain 3 | 193 | 3.9 | 6.0 | – / 3.9 / – | 1.66 | 3 | 0.19 · 0.23 | 0.058 |
+| 4c drain 5 | 187 | 3.7 | 5.9 | – / 3.7 / – | 1.88 | 3 | 0.23 · 0.17 | 0.055 |
+| 4d drain 3 + priority | 197 | 8.0 | 24.5 | 2.2 / 2.6 / 11.1 | 1.67 | 3 | 0.25 · 0.19 | 0.051 |
+| 4e drain 3 + progress WBR | 277 | 2.9 | 5.5 | – / 2.9 / – | 1.55 | 69 | 9.07 · 1.81 | 0.057 |
+
+4d tokens per shipped item by priority: now 279k, next 197k, later 170k. Stage waits (h): 4d build 1.87, approval 4.15 (4b: 0.42, 1.09). 4e ship 0.13 (4b 0.42).
+
+| # | Prediction | Result | Verdict |
+|---|---|---|---|
+| I4-1 | 4b ≤ 70% of 4a's tokens; 4c ≤ 60% | 4b 70%; 4c 68% | 4b right (on the bound); 4c missed (not wrong) |
+| I4-2 | draining does not slow p50 by > 15% | 3.9 vs 3.7 h (+5%) | right |
+| I4-3 | `now` p50 ≤ 50% of `later`, at ≥ 1.5× tokens | 2.2 vs 11.1 h (20%); 279k vs 170k (1.64×) | right |
+| I4-4 | no `later` item waits past its due by more than a sweep | max lateness 0.0 min (a wake at due time) | right |
+| I4-5 | progress-clock WBR: more meetings when busy, fewer when quiet; p50 no worse than 2d | busy 9.1/day vs 0.2 on the calendar, **but quiet 1.8/day, also more**; p50 2.9 h (2d 3.6, 4b 3.9), **at +84k tokens/item for the meetings** | half right |
+| I4-6 | invariants hold: 0 duplicates, 0 violations, all crashes recovered | 0 / 0 / all, recovery 24 min mean (lease wake) | right |
+
+**What it shows:**
+- **Draining saves about 30% of tokens, but its returns flatten quickly.** Sessions average 1.66 items with a cap of 3, and only 1.88 with a cap of 5. A worker's queue rarely holds more than 2 items ready at once, so the queue empties before the cap is reached. Draining pays in proportion to how much work is waiting; raising the cap past 3 buys little.
+- **Priority works as designed, and `later` is expensive in time:** `now` items ship in 2.2 h at 1.64× the tokens, `later` items in 11.1 h at the lowest cost. Overall p50 rose from 3.9 to 8.0 h, because 60% of the orders were `later`. A batch that waits also misses founder sittings: approval waits rose from 1.1 to 4.2 h, since items reached the founder's queue after the last sitting of the day. `later` belongs to work that really can wait. The default should stay `next`.
+- **The progress clock fires on activity, but the stuck rule (any work waiting > 60 min) also fires on quiet days.** 69 WBRs cost 84k tokens per item, a 43% increase, for a 26% shorter p50. As configured, that meeting load is too high. **The rule should be counted on the progress measure itself:** a WBR after 20 shipped or after a backlog grows. A single item waiting an hour should not call a meeting. That is the candidate for 4f.
+- Lease wakes recover crashes as fast as the 5-minute sweep (24 vs 26 min) with no polling.
+
+## Live run 2: next
+Draining against single runs with real agents; a `now` order mid-batch; a dependency (`--after`); the supervisor as an agent, so its tokens are measured. Predictions in LIVE2.md before the run.
