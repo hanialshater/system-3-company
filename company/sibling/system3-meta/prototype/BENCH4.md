@@ -173,3 +173,21 @@ The live dir is `live/bench4b`.
 - The import clash is fixed; there are now 79 tests.
 
 The arm is re-run below as `bench4b`.
+
+### Benchmark 4b, second attempt: stalled on a real watchdog bug, stopped at 20:12 UTC
+
+**What happened.**
+- On the frozen kernel, everything ran as designed until F3. Six orders shipped, and F1 was recovered.
+- F3 dropped PARSER's check message at 20:09:09 (`live/bench4b-stalled`). The watchdog then never re-sent it.
+
+**The bug.**
+- The watchdog marks an orphaned order (`orphanSince`). But `serve` saves only a tick that reports a step, so the mark was lost on every tick.
+- Only another order's activity would save it. The live test m3-watchdog had that activity; this run, waiting on PARSER alone, had none.
+- My unit test missed the bug because `supervisor.mjs tick` always saves.
+
+**Fixed, with a test that fails on the old code.**
+- Being first seen orphaned is now a step.
+- `serve`'s wake timer includes the watchdog's due time.
+- The new test (`tests/serve.test.mjs`) runs `serve` itself on a quiet company. There are now 80 tests.
+
+**What the stall shows.** It is exactly the failure a hands-free company must not have: work stopped and nobody noticed. The run is a finding, not a result. The arm is re-run below.

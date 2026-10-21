@@ -53,3 +53,18 @@ test("serve: a second supervisor on the same state refuses to start", async () =
   assert.match(b.stdout, /"event":"refused".*another serve/);
   assert.equal(b.status, 1);
 });
+
+test("serve: in a quiet company a lost message is sent again by the watchdog (benchmark 4b: the orphan mark was never saved)", async () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "meta-serve-wd-"));
+  cli(dir, "init", "--spec=storybook");
+  cli(dir, "order", "new", "--by=cos", "--to=editor", "--title=t", "--task=T1", "--accept=a page", `--checks={"titleLine":true}`);
+  cli(dir, "order", "delegate", "O-1", "--by=editor", "--to=writer-1");
+  const f = path.join(dir, "state.json"); const s = JSON.parse(fs.readFileSync(f, "utf8"));
+  s.mailbox.msgs.__map = s.mailbox.msgs.__map.filter(([, m]) => m.ref !== "O-1"); fs.writeFileSync(f, JSON.stringify(s)); // lost, and nothing else happens
+  const sv = spawn("node", [path.join(HERE, "..", "supervisor.mjs"), "serve", "--idle-min=1", "--max-min=0.5"], { env: { ...env(dir), META_WATCHDOG_MIN: "0.05" } });
+  let out = ""; sv.stdout.on("data", (d) => (out += d));
+  await new Promise((r) => sv.on("close", r));
+  const ev = JSON.parse(fs.readFileSync(f, "utf8")).log.events;
+  assert.ok(ev.some((e) => e.type === "watchdog-resend" && e.order === "O-1"), out);
+  assert.match(out, /"event":"launch","role":"writer-1"/, "the resent message is planned and briefed");
+});

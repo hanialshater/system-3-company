@@ -3771,6 +3771,57 @@
     ],
     "abandoned": [],
     "reason": null
+   },
+   {
+    "seq": 317,
+    "t": 29876891.865733333,
+    "type": "send",
+    "msg": "M-46",
+    "from": "mgr-live",
+    "to": "pool:checker",
+    "kind": "work",
+    "key": "O-2:check:0",
+    "ref": "O-2",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 318,
+    "t": 29876891.865733333,
+    "type": "watchdog-resend",
+    "order": "O-2",
+    "stage": "check",
+    "loops": 0
+   },
+   {
+    "seq": 319,
+    "t": 29876891.865733333,
+    "type": "supervisor-tick",
+    "steps": [
+     "watchdog:O-2"
+    ]
+   },
+   {
+    "seq": 320,
+    "t": 29876891.867733333,
+    "type": "claim",
+    "msg": "M-46",
+    "run": "R-21"
+   },
+   {
+    "seq": 321,
+    "t": 29876891.867733333,
+    "type": "enter",
+    "run": "R-21",
+    "msg": "M-46",
+    "role": "toy-checker",
+    "by": "toy-checker",
+    "room": "quality",
+    "order": "O-2",
+    "stage": "check",
+    "mode": "work",
+    "session": "S-9",
+    "item": 3
    }
   ]
  },
@@ -4757,6 +4808,30 @@
       "lease": null,
       "acked": false
      }
+    ],
+    [
+     "M-46",
+     {
+      "id": "M-46",
+      "from": "mgr-live",
+      "to": "pool:checker",
+      "kind": "work",
+      "key": "O-2:check:0",
+      "due": null,
+      "ref": "O-2",
+      "body": {
+       "stage": "check",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876891.865733333,
+      "state": "open",
+      "lease": {
+       "run": "R-21",
+       "until": 29876921.867733333
+      },
+      "acked": false
+     }
     ]
    ]
   },
@@ -4831,10 +4906,6 @@
      "M-27"
     ],
     [
-     "O-2:check:0",
-     "M-29"
-    ],
-    [
      "O-8:uat:0",
      "M-30"
     ],
@@ -4865,10 +4936,14 @@
     [
      "O-7:ship:0",
      "M-44"
+    ],
+    [
+     "O-2:check:0",
+     "M-46"
     ]
    ]
   },
-  "n": 45
+  "n": 46
  },
  "org": {
   "roles": {
@@ -5199,7 +5274,7 @@
       "policyVersion": null,
       "fromContract": null,
       "task": "PARSER",
-      "orphanSince": 29876889.245866667
+      "orphanSince": null
      }
     ],
     [
@@ -6004,10 +6079,26 @@
       "state": "left",
       "session": "S-11"
      }
+    ],
+    [
+     "R-21",
+     {
+      "run": "R-21",
+      "msg": "M-46",
+      "role": "toy-checker",
+      "by": "toy-checker",
+      "consult": false,
+      "order": "O-2",
+      "stage": "check",
+      "loops": 0,
+      "entered": 29876891.867733333,
+      "state": "running",
+      "session": "S-9"
+     }
     ]
    ]
   },
-  "n": 20,
+  "n": 21,
   "memory": {
    "__map": [
     [
@@ -6241,11 +6332,11 @@
      {
       "id": "S-9",
       "role": "toy-checker",
-      "items": 2,
+      "items": 3,
       "open": true,
       "started": 29876889.740033332,
       "launch": "0258-toy-checker",
-      "waitUntil": 29876892.329616666
+      "waitUntil": null
      }
     ],
     [

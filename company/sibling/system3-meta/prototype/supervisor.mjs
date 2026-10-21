@@ -96,7 +96,9 @@ export function tick(co, { acceptance = null, faults = null } = {}) {
       || [...rooms.runs.values()].some((x) => x.order === o.id && x.state === "running");
     if (carried) { o.orphanSince = null; continue; }
     const now = engine.clock.now();
-    if (o.orphanSince == null) { o.orphanSince = now; continue; }
+    // a step of its own, so `serve` saves it (benchmark 4b: in a quiet company nothing else changed, the mark was
+    // never saved, and the lost message was never sent again)
+    if (o.orphanSince == null) { o.orphanSince = now; steps.push({ step: "orphaned", order: o.id, stage: o.stage }); continue; }
     if (now - o.orphanSince >= WATCHDOG_MIN) { engine.notifyStage(o, { duplicate: true }); o.orphanSince = null; log.add({ type: "watchdog-resend", order: o.id, stage: o.stage, loops: o.loops }); steps.push({ step: "watchdog", order: o.id, stage: o.stage }); }
   }
   // injected faults for benchmarks (--faults=<json>): applied here, inside the tick, so a trigger cannot be missed
@@ -267,7 +269,9 @@ export function judgment(co) {
 /** When to wake next without polling: the nearest lease expiry or due time, in ms (null: only on a state change). */
 export function nextTimer(co) {
   const now = co.engine.clock.now();
-  const ts = [co.mailbox.nextExpiry(), ...[...co.mailbox.msgs.values()].filter((m) => m.state === "open" && m.priority === "later" && m.due != null).map((m) => m.due)].filter((t) => t != null);
+  const ts = [co.mailbox.nextExpiry(), ...[...co.mailbox.msgs.values()].filter((m) => m.state === "open" && m.priority === "later" && m.due != null).map((m) => m.due),
+    // the watchdog's resend is due WATCHDOG_MIN after an order was first seen orphaned
+    ...[...co.engine.orders.values()].filter((o) => o.orphanSince != null).map((o) => o.orphanSince + WATCHDOG_MIN)].filter((t) => t != null);
   if (!ts.length) return null;
   return Math.max(0, (Math.min(...ts) - now) * 60000) + 50;
 }
