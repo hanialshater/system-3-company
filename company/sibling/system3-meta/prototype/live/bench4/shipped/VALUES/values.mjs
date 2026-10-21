@@ -5,7 +5,7 @@ export const ERRORS = Object.freeze({
   REF: "#REF!",
   NAME: "#NAME?",
   VALUE: "#VALUE!",
-  CYCLE: "#CYCLE!",
+  CYCLE: "#CIRC!",
 });
 
 const ERROR_SET = new Set(Object.values(ERRORS));

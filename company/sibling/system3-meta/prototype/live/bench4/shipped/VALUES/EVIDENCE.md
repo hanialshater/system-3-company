@@ -1,0 +1,1 @@
+VALUES O-3 revise: ERRORS.CYCLE changed from "#CYCLE!" to "#CIRC!" per the founder's change note in SPEC.md. Updated values.mjs and the ERRORS test in values.test.mjs. No other module uses the literal string (I grepped work/ and shipped/). node --test passes.

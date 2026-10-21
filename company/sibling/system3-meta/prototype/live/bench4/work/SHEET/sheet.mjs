@@ -12,7 +12,7 @@ function round9(v) {
 }
 
 function cellName(cell) {
-  const name = typeof cell === "string" ? cell.trim().toUpperCase() : "";
+  const name = typeof cell === "string" ? cell.toUpperCase() : "";
   if (!isRef(name)) throw new Error(`Bad cell name: ${String(cell)}`);
   return name;
 }
