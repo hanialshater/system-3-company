@@ -44,7 +44,7 @@
        "title": "Style sheet",
        "body": "",
        "state": "in-progress",
-       "assignee": null,
+       "assignee": "writer-1",
        "project": "PRJ-1",
        "labels": [],
        "priority": 3,
@@ -56,7 +56,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876713.560066666,
-       "updated": 29876713.560066666,
+       "updated": 29876715.47775,
        "history": [
         {
          "t": 29876713.560066666,
@@ -79,7 +79,7 @@
        "title": "Round 1",
        "body": "",
        "state": "in-progress",
-       "assignee": null,
+       "assignee": "writer-1",
        "project": "PRJ-1",
        "labels": [],
        "priority": 3,
@@ -91,7 +91,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876713.560066666,
-       "updated": 29876713.560066666,
+       "updated": 29876715.47775,
        "history": [
         {
          "t": 29876713.560066666,
@@ -114,7 +114,7 @@
        "title": "Round 2",
        "body": "",
        "state": "in-progress",
-       "assignee": null,
+       "assignee": "writer-1",
        "project": "PRJ-1",
        "labels": [],
        "priority": 3,
@@ -126,7 +126,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876713.560066666,
-       "updated": 29876713.560066666,
+       "updated": 29876715.48163333,
        "history": [
         {
          "t": 29876713.560066666,
@@ -149,7 +149,7 @@
        "title": "Round 3",
        "body": "",
        "state": "in-progress",
-       "assignee": null,
+       "assignee": "writer-1",
        "project": "PRJ-1",
        "labels": [],
        "priority": 3,
@@ -161,7 +161,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876713.560066666,
-       "updated": 29876713.560066666,
+       "updated": 29876715.48163333,
        "history": [
         {
          "t": 29876713.560066666,
@@ -184,7 +184,7 @@
        "title": "Round 4",
        "body": "",
        "state": "in-progress",
-       "assignee": null,
+       "assignee": "writer-2",
        "project": "PRJ-1",
        "labels": [],
        "priority": 3,
@@ -196,7 +196,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876713.560066666,
-       "updated": 29876713.560066666,
+       "updated": 29876715.48163333,
        "history": [
         {
          "t": 29876713.560066666,
@@ -824,17 +824,397 @@
      }
     ],
     "why": "plan: delegate: O-1, O-2, O-3, O-4, O-5, O-6, O-7"
+   },
+   {
+    "seq": 32,
+    "t": 29876715.474333335,
+    "type": "delegate",
+    "order": "O-1",
+    "by": "editor",
+    "to": "writer-1",
+    "budget": 150000
+   },
+   {
+    "seq": 33,
+    "t": 29876715.47435,
+    "type": "send",
+    "msg": "M-1",
+    "from": "editor",
+    "to": "writer-1",
+    "kind": "work",
+    "key": "O-1:build:0",
+    "ref": "O-1",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 34,
+    "t": 29876715.47611667,
+    "type": "delegate",
+    "order": "O-2",
+    "by": "editor",
+    "to": "writer-1",
+    "budget": 150000
+   },
+   {
+    "seq": 35,
+    "t": 29876715.47613333,
+    "type": "send",
+    "msg": "M-2",
+    "from": "editor",
+    "to": "writer-1",
+    "kind": "work",
+    "key": "O-2:build:0",
+    "ref": "O-2",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 36,
+    "t": 29876715.47775,
+    "type": "item-update",
+    "item": "ISS-1",
+    "by": "engine",
+    "changes": [
+     "assignee"
+    ]
+   },
+   {
+    "seq": 37,
+    "t": 29876715.47775,
+    "type": "item-update",
+    "item": "ISS-2",
+    "by": "engine",
+    "changes": [
+     "assignee"
+    ]
+   },
+   {
+    "seq": 38,
+    "t": 29876715.477766667,
+    "type": "launch",
+    "role": "writer-1",
+    "msgs": [
+     "M-1",
+     "M-2"
+    ],
+    "tasks": [],
+    "why": "plan: next: 2 waiting, no session running"
+   },
+   {
+    "seq": 39,
+    "t": 29876715.478233334,
+    "type": "delegate",
+    "order": "O-3",
+    "by": "editor",
+    "to": "writer-1",
+    "budget": 150000
+   },
+   {
+    "seq": 40,
+    "t": 29876715.478233334,
+    "type": "send",
+    "msg": "M-3",
+    "from": "editor",
+    "to": "writer-1",
+    "kind": "work",
+    "key": "O-3:build:0",
+    "ref": "O-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 41,
+    "t": 29876715.47975,
+    "type": "delegate",
+    "order": "O-4",
+    "by": "editor",
+    "to": "writer-1",
+    "budget": 150000
+   },
+   {
+    "seq": 42,
+    "t": 29876715.47975,
+    "type": "send",
+    "msg": "M-4",
+    "from": "editor",
+    "to": "writer-1",
+    "kind": "work",
+    "key": "O-4:build:0",
+    "ref": "O-4",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 43,
+    "t": 29876715.48145,
+    "type": "delegate",
+    "order": "O-5",
+    "by": "editor",
+    "to": "writer-2",
+    "budget": 150000
+   },
+   {
+    "seq": 44,
+    "t": 29876715.481466666,
+    "type": "send",
+    "msg": "M-5",
+    "from": "editor",
+    "to": "writer-2",
+    "kind": "work",
+    "key": "O-5:build:0",
+    "ref": "O-5",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 45,
+    "t": 29876715.48163333,
+    "type": "item-update",
+    "item": "ISS-3",
+    "by": "engine",
+    "changes": [
+     "assignee"
+    ]
+   },
+   {
+    "seq": 46,
+    "t": 29876715.48163333,
+    "type": "item-update",
+    "item": "ISS-4",
+    "by": "engine",
+    "changes": [
+     "assignee"
+    ]
+   },
+   {
+    "seq": 47,
+    "t": 29876715.48163333,
+    "type": "item-update",
+    "item": "ISS-5",
+    "by": "engine",
+    "changes": [
+     "assignee"
+    ]
+   },
+   {
+    "seq": 48,
+    "t": 29876715.48165,
+    "type": "launch",
+    "role": "writer-2",
+    "msgs": [
+     "M-5"
+    ],
+    "tasks": [],
+    "why": "plan: next: 1 waiting, no session running"
+   },
+   {
+    "seq": 49,
+    "t": 29876715.483083334,
+    "type": "delegate",
+    "order": "O-6",
+    "by": "editor",
+    "to": "writer-2",
+    "budget": 150000
+   },
+   {
+    "seq": 50,
+    "t": 29876715.4831,
+    "type": "send",
+    "msg": "M-6",
+    "from": "editor",
+    "to": "writer-2",
+    "kind": "work",
+    "key": "O-6:build:0",
+    "ref": "O-6",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 51,
+    "t": 29876715.48465,
+    "type": "delegate",
+    "order": "O-7",
+    "by": "editor",
+    "to": "writer-2",
+    "budget": 150000
+   },
+   {
+    "seq": 52,
+    "t": 29876715.48465,
+    "type": "blocked",
+    "order": "O-7",
+    "after": [
+     "O-1",
+     "O-2",
+     "O-3",
+     "O-4",
+     "O-5",
+     "O-6"
+    ]
    }
   ]
  },
  "mailbox": {
   "msgs": {
-   "__map": []
+   "__map": [
+    [
+     "M-1",
+     {
+      "id": "M-1",
+      "from": "editor",
+      "to": "writer-1",
+      "kind": "work",
+      "key": "O-1:build:0",
+      "due": null,
+      "ref": "O-1",
+      "body": {
+       "stage": "build",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876715.47435,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-2",
+     {
+      "id": "M-2",
+      "from": "editor",
+      "to": "writer-1",
+      "kind": "work",
+      "key": "O-2:build:0",
+      "due": null,
+      "ref": "O-2",
+      "body": {
+       "stage": "build",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876715.47613333,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-3",
+     {
+      "id": "M-3",
+      "from": "editor",
+      "to": "writer-1",
+      "kind": "work",
+      "key": "O-3:build:0",
+      "due": null,
+      "ref": "O-3",
+      "body": {
+       "stage": "build",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876715.478233334,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-4",
+     {
+      "id": "M-4",
+      "from": "editor",
+      "to": "writer-1",
+      "kind": "work",
+      "key": "O-4:build:0",
+      "due": null,
+      "ref": "O-4",
+      "body": {
+       "stage": "build",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876715.47975,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-5",
+     {
+      "id": "M-5",
+      "from": "editor",
+      "to": "writer-2",
+      "kind": "work",
+      "key": "O-5:build:0",
+      "due": null,
+      "ref": "O-5",
+      "body": {
+       "stage": "build",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876715.481466666,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-6",
+     {
+      "id": "M-6",
+      "from": "editor",
+      "to": "writer-2",
+      "kind": "work",
+      "key": "O-6:build:0",
+      "due": null,
+      "ref": "O-6",
+      "body": {
+       "stage": "build",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876715.4831,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ]
+   ]
   },
   "keys": {
-   "__map": []
+   "__map": [
+    [
+     "O-1:build:0",
+     "M-1"
+    ],
+    [
+     "O-2:build:0",
+     "M-2"
+    ],
+    [
+     "O-3:build:0",
+     "M-3"
+    ],
+    [
+     "O-4:build:0",
+     "M-4"
+    ],
+    [
+     "O-5:build:0",
+     "M-5"
+    ],
+    [
+     "O-6:build:0",
+     "M-6"
+    ]
+   ]
   },
-  "n": 0
+  "n": 6
  },
  "org": {
   "roles": {
@@ -1073,11 +1453,12 @@
       "title": "Style sheet",
       "chain": [
        "cos",
-       "editor"
+       "editor",
+       "writer-1"
       ],
       "orderer": "cos",
       "manager": "editor",
-      "builder": null,
+      "builder": "writer-1",
       "checker": null,
       "budget": 200000,
       "spent": 0,
@@ -1121,11 +1502,12 @@
       "title": "Round 1",
       "chain": [
        "cos",
-       "editor"
+       "editor",
+       "writer-1"
       ],
       "orderer": "cos",
       "manager": "editor",
-      "builder": null,
+      "builder": "writer-1",
       "checker": null,
       "budget": 200000,
       "spent": 0,
@@ -1178,11 +1560,12 @@
       "title": "Round 2",
       "chain": [
        "cos",
-       "editor"
+       "editor",
+       "writer-1"
       ],
       "orderer": "cos",
       "manager": "editor",
-      "builder": null,
+      "builder": "writer-1",
       "checker": null,
       "budget": 200000,
       "spent": 0,
@@ -1235,11 +1618,12 @@
       "title": "Round 3",
       "chain": [
        "cos",
-       "editor"
+       "editor",
+       "writer-1"
       ],
       "orderer": "cos",
       "manager": "editor",
-      "builder": null,
+      "builder": "writer-1",
       "checker": null,
       "budget": 200000,
       "spent": 0,
@@ -1292,11 +1676,12 @@
       "title": "Round 4",
       "chain": [
        "cos",
-       "editor"
+       "editor",
+       "writer-2"
       ],
       "orderer": "cos",
       "manager": "editor",
-      "builder": null,
+      "builder": "writer-2",
       "checker": null,
       "budget": 200000,
       "spent": 0,
@@ -1349,11 +1734,12 @@
       "title": "Round 5",
       "chain": [
        "cos",
-       "editor"
+       "editor",
+       "writer-2"
       ],
       "orderer": "cos",
       "manager": "editor",
-      "builder": null,
+      "builder": "writer-2",
       "checker": null,
       "budget": 200000,
       "spent": 0,
@@ -1406,11 +1792,12 @@
       "title": "Assembled pack",
       "chain": [
        "cos",
-       "editor"
+       "editor",
+       "writer-2"
       ],
       "orderer": "cos",
       "manager": "editor",
-      "builder": null,
+      "builder": "writer-2",
       "checker": null,
       "budget": 200000,
       "spent": 0,

@@ -529,7 +529,16 @@
          "rounds": [
           {
            "n": 1,
-           "positions": {},
+           "positions": {
+            "writer-2": {
+             "text": "Split by object, so every answer has one owner. R1 The Sun (a star; light takes about 8 minutes to reach us; mostly hydrogen and helium; holds almost all the mass). R2 Rocky planets: Mercury, Venus, Earth, Mars (Mercury closest; Venus hottest; Mars red from rust/iron oxide; Olympus Mons). R3 Giant planets: Jupiter, Saturn, Uranus, Neptune (Jupiter biggest; Great Red Spot; Saturn rings; Uranus spins on its side; Neptune farthest planet). R4 Moons: our Moon, Ganymede (largest moon), Titan (thick air), Europa (ice over an ocean). R5 Small worlds: Pluto (dwarf planet since 2006), asteroid belt between Mars and Jupiter, comets (ice and dust, tails point away from the Sun), meteors/shooting stars. Ownership rules: (a) a planet or moon name may be an Answer only in its owning round; (b) superlatives (biggest, hottest, closest, farthest, largest moon) belong only to the round that owns that object; (c) other rounds should not name another round answer in a Q or Why line, because the give-away check flags a line that names another round answer plus a distinctive word of its question (e.g. R4 \"Ganymede orbits Jupiter, the biggest planet\" would trip it; say \"orbits Jupiter\" only if R3 does not ask \"biggest\"). Safer: R4 Why lines avoid host-planet superlatives. (d) Numbers carry units and are used once in the pack (8 planets vs about 8 minutes must not both be answers). (e) No volatile facts: no moon counts (Saturn count keeps changing), no \"Pluto is the ninth planet\". Code-checkable ask: test that ROUNDn first line equals \"# Round n: <topic>\" from STYLE, and that there is no **Q5.**; today the ROUND check only requires Q1 and Q4, so a 5-question round or wrong topic would pass.",
+             "t": 29876715.812683333
+            },
+            "writer-1": {
+             "text": "Five topics, split by kind of object so answers cannot collide: R1 The Sun (star, its light and heat, 8 minutes for light to reach us, center of the solar system). R2 Rocky planets (Mercury, Venus, Earth, Mars only; e.g. Mercury closest, Venus hottest, Mars red from rust). R3 Giant planets (Jupiter, Saturn, Uranus, Neptune only; Jupiter largest, Saturn rings, Uranus tilted on its side, Neptune farthest planet). R4 Moons (Earth Moon, its phases, Titan, Europa, Io; a planet name may appear only as context, never as an answer). R5 Small bodies and exploring space (dwarf planets incl. Pluto, asteroid belt, comets, astronauts/rovers/probes). Ownership rule: every answer word belongs to exactly one round; a planet or body name is an Answer only in the round that owns it (e.g. \"Mars\" only in R2, \"Moon\" only in R4, \"Pluto\" only in R5). Superlatives (\"largest planet\", \"hottest planet\", \"farthest\") live only in the owner round, and no question in another round may mention an owned answer next to its distinctive clue (the check flags answer + distinctive question word in one line as a give-away). The style sheet should list each round owned answers so writers can check before writing, and the code rule (no Answer repeats another ROUND task) backs it. Avoid trap facts: Venus, not Mercury, is hottest; Pluto is a dwarf planet; Saturn is not the only ringed planet, so ask \"best-known rings\", not \"only rings\".",
+             "t": 29876715.85185
+            }
+           },
            "revealed": false
           }
          ],
@@ -545,7 +554,16 @@
          "rounds": [
           {
            "n": 1,
-           "positions": {},
+           "positions": {
+            "writer-2": {
+             "text": "Format: open answers, no multiple choice. Choice lists would name other rounds answers and trip the cross-round give-away check, and they add words. Each question is three lines: \"**Qn.** question?\" then \"**Answer:** short canonical name (1-4 words, e.g. Venus, not \"It is Venus\")\" then \"**Why:** one sentence\". Canonical short answers make the repeat check meaningful. Difficulty for 8-10: per round Q1-Q2 easy (things a child may have heard: the Sun is a star, Mars is red), Q3 medium, Q4 a stretch with a vivid reason (Venus is hotter than Mercury because thick clouds trap heat). Reading ease >= 60: questions <= 14 words, Why <= 20 words, one clause where possible, everyday words; proper nouns like Ganymede are fine but explain nothing with jargon (say \"air\" not \"atmosphere\" where it fits). Target about 140-200 words per round, inside the 100-300 limit. Voice of Why: warm and concrete, a picture or comparison a child can hold (\"Jupiter is so big that more than 1,000 Earths could fit inside\"), never talking down, no \"obviously\" or \"easy\". Avoid banned words in natural space phrasing: no \"dead star\", \"dead planet\", \"kill\", or \"blood-red\" (say \"rusty red\"). Every Why must be true on its own, not just plausible; writers cite a source (NASA Solar System pages) in builder notes for each Answer.",
+             "t": 29876715.81415
+            },
+            "writer-1": {
+             "text": "Format exactly as the orders say: \"# Round n: <topic>\", then 4 blocks of **Qn.** question / **Answer:** short answer (one to three words, a name or number) / **Why:** one sentence. 100-300 words per round, Flesch reading ease 60+, which means short sentences and everyday words: aim for 10-14 words per sentence, explain any space word in plain terms (\"a dwarf planet is a small round world\"). Difficulty: Q1-Q2 easy (most 8-year-olds might guess), Q3 medium, Q4 a stretch with a fun surprise; mostly direct questions, at most one multiple choice (A/B/C) per round to vary pace. Numbers rounded and kid-sized (\"about 8 minutes\", \"more than 1,000 Earths\"), never long decimals; note \"about\" so the fact stays true. Voice of the Why line: warm, curious, second person where it helps (\"If you could stand on Venus, you would...\"), one surprising fact that teaches, never scolds a wrong guess, no scary framing; banned words stupid, dumb, kill, dead, blood, hate, and I suggest also avoiding \"die\"/\"burn up\" style phrasing. The Why must not name another round owned answer. Each round self-checks with \"node meta.mjs check --order=<O>\" before handing in.",
+             "t": 29876715.8535
+            }
+           },
            "revealed": false
           }
          ],
@@ -557,7 +575,9 @@
        "board": {},
        "present": {
         "__set": [
-         "editor"
+         "editor",
+         "writer-2",
+         "writer-1"
         ]
        }
       }
@@ -962,6 +982,156 @@
      }
     ],
     "why": "plan: positions: MTG-1"
+   },
+   {
+    "seq": 35,
+    "t": 29876714.921216667,
+    "type": "refuse",
+    "rule": "hard",
+    "msg": "no order STYLE",
+    "argv": "check --order=STYLE"
+   },
+   {
+    "seq": 36,
+    "t": 29876714.92285,
+    "type": "refuse",
+    "rule": "hard",
+    "msg": "no order ROUND1",
+    "argv": "check --order=ROUND1"
+   },
+   {
+    "seq": 37,
+    "t": 29876714.925566666,
+    "type": "refuse",
+    "rule": "hard",
+    "msg": "no order PACK",
+    "argv": "check --order=PACK"
+   },
+   {
+    "seq": 38,
+    "t": 29876715.199116666,
+    "type": "self-check",
+    "order": "O-1",
+    "task": "STYLE",
+    "by": null,
+    "stage": "build",
+    "pass": false,
+    "output": "missing live/work/STYLE/page.md"
+   },
+   {
+    "seq": 39,
+    "t": 29876715.2035,
+    "type": "self-check",
+    "order": "O-2",
+    "task": "ROUND1",
+    "by": null,
+    "stage": "build",
+    "pass": false,
+    "output": "missing live/work/ROUND1/page.md"
+   },
+   {
+    "seq": 40,
+    "t": 29876715.206483334,
+    "type": "self-check",
+    "order": "O-7",
+    "task": "PACK",
+    "by": null,
+    "stage": "build",
+    "pass": false,
+    "output": "missing live/work/PACK/page.md"
+   },
+   {
+    "seq": 41,
+    "t": 29876715.504666667,
+    "type": "self-check",
+    "order": "O-2",
+    "task": "ROUND1",
+    "by": null,
+    "stage": "build",
+    "pass": false,
+    "output": "missing live/work/ROUND1/page.md"
+   },
+   {
+    "seq": 42,
+    "t": 29876715.812683333,
+    "type": "position",
+    "meeting": "MTG-1",
+    "item": 1,
+    "round": 1,
+    "by": "writer-2"
+   },
+   {
+    "seq": 43,
+    "t": 29876715.81415,
+    "type": "position",
+    "meeting": "MTG-1",
+    "item": 2,
+    "round": 1,
+    "by": "writer-2"
+   },
+   {
+    "seq": 44,
+    "t": 29876715.85185,
+    "type": "position",
+    "meeting": "MTG-1",
+    "item": 1,
+    "round": 1,
+    "by": "writer-1"
+   },
+   {
+    "seq": 45,
+    "t": 29876715.8535,
+    "type": "position",
+    "meeting": "MTG-1",
+    "item": 2,
+    "round": 1,
+    "by": "writer-1"
+   },
+   {
+    "seq": 46,
+    "t": 29876715.855283335,
+    "type": "launch",
+    "role": "editor",
+    "msgs": [],
+    "tasks": [
+     {
+      "kind": "chair",
+      "ref": "MTG-1",
+      "items": [
+       1,
+       2
+      ]
+     },
+     {
+      "kind": "delegate",
+      "ref": "O-1"
+     },
+     {
+      "kind": "delegate",
+      "ref": "O-2"
+     },
+     {
+      "kind": "delegate",
+      "ref": "O-3"
+     },
+     {
+      "kind": "delegate",
+      "ref": "O-4"
+     },
+     {
+      "kind": "delegate",
+      "ref": "O-5"
+     },
+     {
+      "kind": "delegate",
+      "ref": "O-6"
+     },
+     {
+      "kind": "delegate",
+      "ref": "O-7"
+     }
+    ],
+    "why": "plan: chair: MTG-1; delegate: O-1, O-2, O-3, O-4, O-5, O-6, O-7"
    }
   ]
  },
