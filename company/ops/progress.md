@@ -4,7 +4,7 @@ Added ships, a Normandy landing craft, horse, camp, fire, crossed swords and cas
 
 Verification: build and TypeScript pass; 128 history regression tests, 48 full phone/desktop flows, 48 protected contract checks and 57 feed tests pass. Visual inspection covered all seven assets and campaign/ship/castle/fire phone screens. Global check remains exactly 811 errors and four warnings, zero new errors. Full verify stops on two existing publication-readiness failures. The prior history figure test assumed every map lived directly in Demo.tsx; it now follows the story engine and verifies real coastlines/markers. Protected files untouched.
 
-Next: deploy this refinement to the existing site under the ongoing founder history fix/deploy request, then record actual live checks. Independent historical reviews remain with W-2024; these tests are implementation evidence, not editorial approval. Preflight: company/ops/deployments/2026-10-21-r21-verification.json.
+Production is READY at https://system-3-company.vercel.app/history: commit 57230dad9052f21eea9fbe0322047780bdf027e7, deployment dpl_AKCZ1SGmu4HRE4aGtPJtsLzUH5hh. All seven public SVG assets match the source bytes; 18 atlas previews show artwork; all seven symbol types pass 14 live phone/desktop checkpoint-to-reveal flows without page errors or horizontal overflow. Receipt: company/ops/deployments/2026-10-21-r21-production.json. Independent historical reviews remain with W-2024; these tests are implementation evidence, not editorial approval. Preflight: company/ops/deployments/2026-10-21-r21-verification.json.
 
 ## 2026-10-21 · history map stories · 24 drafts and a 200-topic curriculum (W-2024)
 
