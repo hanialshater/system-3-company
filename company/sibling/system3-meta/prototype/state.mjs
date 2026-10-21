@@ -110,8 +110,8 @@ export function runTests(task, { dir = path.join(LIVE, "work", task), label = `l
 const syllables = (w) => Math.max(1, (w.toLowerCase().replace(/e\b/, "").match(/[aeiouy]+/g) || []).length);
 /** Readability and form checks on live/work/<task>/page.md, from the order's `checks`:
  *  { file, minWords, maxWords, mustInclude: [...], banned: [...], minReadingEase, titleLine, lineMaxWords: [{prefix, maxWords}] } */
-export function runTextChecks(task, checks) {
-  const file = path.join(LIVE, "work", task, checks.file ?? "page.md");
+export function runTextChecks(task, checks, { dir = path.join(LIVE, "work", task) } = {}) {
+  const file = path.join(dir, checks.file ?? "page.md");
   // the real path (benchmark 3: "missing live/work/…" made two agents doubt that the check reads META_LIVE_DIR)
   if (!fs.existsSync(file)) return { pass: false, output: `missing ${file}` };
   const text = fs.readFileSync(file, "utf8");
@@ -261,7 +261,10 @@ export function describeChecks(c = {}) {
 }
 
 /** test1 for an order: its declared text checks if it has them, otherwise the builder's tests. */
-export function runTest1(o) { return o.checks ? runTextChecks(o.task, o.checks) : runTests(o.task); }
+export function runTest1(o) {
+  const at = o.workdir ? { dir: o.workdir, label: o.workdir } : {}; // K5: an order with a worktree is tested there
+  return o.checks ? runTextChecks(o.task, o.checks, at) : runTests(o.task, at);
+}
 
 // ---- K1: a stage `run` as a command (plan 2026-10-21 §3: lesson stages 2, 3, 4, 8 and 9 are scripts, and test1 only
 // knew `node --test` or page.md). A cmd comes from the spec, never from an agent: it is not a CHECK_KEY, because order
@@ -302,7 +305,8 @@ export function prepareCmd(o, s) {
   const cwd = c.cwd ? path.resolve(vars.workdir, interpolate(c.cwd, vars)) : vars.workdir;
   // a child of a node --test process would report to it and exit 0 whatever its tests do (see runTests)
   const { NODE_TEST_CONTEXT, ...base } = process.env;
-  const env = { ...base, ...Object.fromEntries(Object.entries(c.env ?? {}).map(([k, v]) => [k, interpolate(v, vars)])) };
+  // K5: the order workspace's env (NEXT_DIST_DIR, QA_PORT, QA_OUT per order) under the stage's own
+  const env = { ...base, ...(o.workspace?.env ?? {}), ...Object.fromEntries(Object.entries(c.env ?? {}).map(([k, v]) => [k, interpolate(v, vars)])) };
   // "node" is this node (a launcher PATH may lack it, or hold another version)
   return { c, argv, bin: argv[0] === "node" ? process.execPath : argv[0], cwd, env, label: argv.join(" ").slice(0, 160) };
 }

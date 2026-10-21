@@ -7,6 +7,7 @@
 import fs from "node:fs";
 import { SPECS } from "./specs.mjs";
 import { validateCmd } from "./state.mjs";
+import { validateWorkspace } from "./workspace.mjs";
 
 const SIGNERS = ["builder", "code", "checker", "orderer", "release", "founder"];
 const LEVELS = ["founder", "chief-of-staff", "vp", "manager", "builder", "checker", "release", "evaluator", "contractor"];
@@ -62,6 +63,8 @@ export function validateSpec(s) {
   // independence (S8): someone other than every builder can check
   if (st.some((x) => x.signer === "checker")) need(s.roles.some((r) => r.level === "checker" && r.level !== "builder"), "a checker who is not a builder");
   for (const c of s.channels ?? []) { need(["company", "lane", "role", "topic"].includes(c.kind), `channel ${c.id}: kind is company, lane, role or topic`); for (const m of c.members ?? []) need(roles.has(m), `channel ${c.id}: member ${m} exists`); }
+  // K5: an order workspace (one git worktree per order, workspace.mjs)
+  if (s.workspace != null) { const e = validateWorkspace(s.workspace); need(!e, `workspace: ${e}`); }
   for (const r of s.rules ?? []) need(!!r.tasks && r.checks && typeof r.checks === "object", "a standing rule is {tasks, checks}");
   return v;
 }

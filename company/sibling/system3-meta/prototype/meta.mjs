@@ -52,9 +52,10 @@ import fs from "node:fs";
 import path from "node:path";
 import { Refused, flowMetrics } from "./lib.mjs";
 import * as GEN from "./generator.mjs";
+import * as WS from "./workspace.mjs";
 import { proposePolicy, activatePolicy, managerReport, recordCycle, KNOBS } from "./policy.mjs";
 import { engage, engageTemplate, briefFor, deliver, decideContract, TEMPLATES } from "./contractor.mjs";
-import { LIVE, STATE, LIVE_ROLES, TASK_FLOW, clock, make, rep, save, load, withLock, runTests, runTest1, validateChecks, describeChecks, mergeChecks, ESCAPES, readEscapes } from "./state.mjs";
+import { HERE, LIVE, STATE, LIVE_ROLES, TASK_FLOW, clock, make, rep, interpolate, save, load, withLock, runTests, runTest1, validateChecks, describeChecks, mergeChecks, ESCAPES, readEscapes } from "./state.mjs";
 import * as B from "./building.mjs";
 import * as CH from "./channels.mjs";
 import * as T from "./tracker.mjs";
@@ -74,12 +75,16 @@ const need = (...ks) => { const miss = ks.filter((k) => opt[k] == null || opt[k]
 function pack(co, run, ctx, session, item) {
   const o = co.engine.orders.get(ctx.order);
   // Live run 2 findings: the workdir did not exist; the commands omitted the state prefix; cap and times were unclear.
-  const dir = path.join(LIVE, "work", o.task);
-  if (ctx.stage === "build") fs.mkdirSync(dir, { recursive: true });
+  // K5: with a spec workspace the workdir is the order's git worktree (made by the supervisor's tick, or here if it ran
+  // first); a git failure is reported in the pack, not as a refusal: the run is already entered
+  const ws = WS.ensure(co, o);
+  const dir = ws ? ws.workdir ?? path.join(WS.specOf(co).root, o.task) : path.join(LIVE, "work", o.task);
+  if (ctx.stage === "build" && !ws) fs.mkdirSync(dir, { recursive: true });
+  const vars = { workdir: dir, task: o.task ?? "", slug: o.slug ?? o.task ?? "" };
   // Benchmark 1 finding (writer-1): the prefix dropped META_LIVE_DIR, so a copied command wrote to the wrong state
   const pre = [process.env.META_LIVE_DIR && `META_LIVE_DIR=${process.env.META_LIVE_DIR}`, process.env.META_STATE && `META_STATE=${process.env.META_STATE}`].filter(Boolean).map((x) => x + " ").join("");
   const iso = (m) => new Date(m * 60000).toISOString();
-  return { run, session, item, lease_min: Number(opt.lease ?? 30), order: o.id, task: o.task, title: o.title, priority: o.priority, stage: ctx.stage, accept: o.accept, workdir: dir + "/", workdir_exists: fs.existsSync(dir), findings: o.findings ?? null, memory: ctx.memory.map((e) => ({ ...e, t: iso(e.t) })), history: o.history.map((h) => ({ ...h, t: iso(h.t) })),
+  return { run, session, item, lease_min: Number(opt.lease ?? 30), order: o.id, task: o.task, title: o.title, priority: o.priority, stage: ctx.stage, accept: ws ? interpolate(o.accept ?? "", vars) : o.accept, workdir: dir + "/", workdir_exists: fs.existsSync(dir), ...(ws ? (ws.error ? { workspace_error: ws.error } : { branch: o.workspace.branch, base_sha: o.workspace.sha, env: o.workspace.env, run_meta_from: HERE }) : {}), findings: o.findings ?? null, memory: ctx.memory.map((e) => ({ ...e, t: iso(e.t) })), history: o.history.map((h) => ({ ...h, t: iso(h.t) })),
     cap_means: "--cap counts every item in this session, including the first one you entered",
     leave_with: `${pre}node meta.mjs room leave --run=${run} --evidence=<path>${ctx.stage === "check" ? " --verdict=pass|revise --findings='…'" : ""} --learned='…'`,
     next_with: `${pre}node meta.mjs room next --run=${run} --cap=<cap from your brief> --wait=90 --evidence=<path>${ctx.stage === "check" ? " --verdict=pass|revise --findings='…'" : ""} --learned='…'` };

@@ -4,6 +4,8 @@
 //   test1   runs the builder's tests and signs as `code`
 //   run     K1: any stage signed by code, or with a `run` cmd in the spec, runs by code (runCodeStage; the cmd check is
 //           state.mjs runCmdCheck: {argv, cwd, env, timeoutMs, pass, findings, route}, with ${slug}/${task}/${workdir})
+//   workspace  K5: with a spec `workspace`, each order with a builder gets its git worktree once (workspace.mjs ensure);
+//           its cmd stages run there with its env, and its brief names it; a git failure is a stage-error (retry)
 //   jobs    K2: a run stage with `async: true` starts its cmd detached (jobs.mjs) and a later tick collects it; the tick
 //           never waits. A timeout, a cmd that cannot start or a job that died is a stage-error (the order holds at its
 //           stage), not a revise: `node supervisor.mjs retry --order=<O>` runs it again; `node supervisor.mjs jobs` lists them
@@ -34,12 +36,13 @@
 // Same state as meta.mjs (META_LIVE_DIR, META_STATE). Exit 0 always unless the state cannot be read.
 import fs from "node:fs";
 import path from "node:path";
-import { HERE, LIVE, STATE, load, save, withLock, runTests, runTest1, runCmdCheck, rep, CHECK_KEYS } from "./state.mjs";
+import { HERE, LIVE, STATE, load, save, withLock, runTests, runTest1, runCmdCheck, rep, CHECK_KEYS, interpolate } from "./state.mjs";
 import { syncOrders } from "./tracker.mjs";
 import { sweepGoals } from "./goals.mjs";
 import { expireContracts } from "./contractor.mjs";
 import * as CH from "./channels.mjs";
 import * as JOBS from "./jobs.mjs";
+import * as WS from "./workspace.mjs";
 
 /** K1: a stage signed by code, or any stage with a `run` cmd (plan 2026-10-21 §3: the lesson flow's stages 2, 3, 4, 8 and 9
  *  are scripts; the old table only knew test1/uat/ship by name). No `run`: test1 as before (the order's text checks or
@@ -111,6 +114,18 @@ export function tick(co, { acceptance = null, faults = null } = {}) {
     for (const o of engine.orders.values()) {
       if (o.blocked || o.stage === "done") continue;
       if (o.stageError?.stage === o.stage && o.stageError?.loops === o.loops) continue; // K2: held until a retry
+      // K5: the order's worktree, made once when it has a builder (before its first brief names it); a git failure
+      // holds the order at its stage, as a K2 stage-error does, until `supervisor.mjs retry`
+      if (o.builder && WS.specOf(co) && !o.workdir) {
+        const w = WS.ensure(co, o);
+        if (w?.error) {
+          o.stageError = { stage: o.stage, loops: o.loops, why: `workspace: ${w.error}`, t: engine.clock.now() };
+          log.add({ type: "stage-error", order: o.id, stage: o.stage, loops: o.loops, why: o.stageError.why });
+          steps.push({ step: o.stage, kind: "workspace", order: o.id, result: "stage-error", output: o.stageError.why });
+          continue;
+        }
+        if (w) steps.push({ step: "workspace", order: o.id, result: w.created ? "created" : "reused", output: `${w.workdir} (${w.branch} at ${w.sha.slice(0, 7)})` });
+      }
       const sd = engine.stageDef(o);
       if (sd?.run || sd?.signer === "code" || o.stage === "test1") {
         const st = runCodeStage(co, o, sd);
@@ -273,8 +288,14 @@ export function briefFor(co, item, { context = null } = {}) {
   const pre = [process.env.META_LIVE_DIR && `META_LIVE_DIR=${process.env.META_LIVE_DIR}`, process.env.META_STATE && `META_STATE=${process.env.META_STATE}`].filter(Boolean).join(" ");
   const first = co.mailbox.msgs.get(item.msgs[0]);
   const o = first ? co.engine.orders.get(first.ref) : null;
-  const L = [`You are \`${item.role}\` (${r.level}) in a company run by a CLI.`, "", `Run every command from: ${HERE}`, pre ? `Prefix every command with: ${pre}` : "", ""];
-  if (context) L.push(context.trim(), "");
+  // K5: an order with a worktree is worked in it; meta.mjs still runs from HERE (its state is the live dir's)
+  const ws = o?.workspace ? o : null;
+  const L = [`You are \`${item.role}\` (${r.level}) in a company run by a CLI.`, "", ws ? `Run every \`node meta.mjs\` command from: ${HERE}` : `Run every command from: ${HERE}`, pre ? `Prefix every command with: ${pre}` : "", ""];
+  if (ws) {
+    L.push(`Your workdir for ${o.task} is ${o.workdir}: a git worktree of ${o.workspace.repo} on branch ${o.workspace.branch} (from ${o.workspace.base} at ${o.workspace.sha.slice(0, 7)}). Do the work there, and run the repo's own commands from it; never edit another checkout.${Object.keys(o.workspace.env).length ? ` Its env (set it for the repo's commands): ${Object.entries(o.workspace.env).map(([k, v]) => `${k}=${v}`).join(" ")}.` : ""}${item.msgs.length > 1 ? " Each item's pack names its own workdir." : ""}`, "");
+  }
+  // briefs name ${workdir}, ${task} and ${slug} (K5): CONTEXT.md is written once per company, the workdir once per order
+  if (context) L.push((o ? interpolate(context, { workdir: o.workdir ?? path.join(LIVE, "work", o.task ?? ""), task: o.task ?? "", slug: o.slug ?? o.task ?? "" }) : context).trim(), "");
   const closed = [...(co.data?.meetings?.meetings?.values() ?? [])].filter((m) => m.state === "closed").map((m) => m.id);
   if (closed.length) L.push(`Minutes of closed meetings (decisions you follow): ${closed.map((id) => path.join(LIVE, "minutes", `${id}.md`)).join(", ")}. Never read state files.`, "");
   // open tracker actions assigned to this role travel with the brief (benchmark 2: the kickoff gave writer-1 actions
