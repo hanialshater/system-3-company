@@ -142,8 +142,32 @@ test("wave 2: IF ABS ROUND LEN", () => {
   assert.equal(ev("LEN()"), ERR.VALUE);
 });
 
-// Slot B behaviour (ARCH: an error operand is the result). Real MOD-B coerces the left side first;
-// raised with the lead (MOD-B binary issue). todo until slot B is fixed.
-test("an operand error beats a type error (slot B)", { todo: "MOD-B binary checks only the left operand for errors" }, () => {
+// Slot B behaviour (ARCH: an error operand is the result); fixed in MOD-B (ISS-14).
+test("an operand error beats a type error (slot B)", () => {
   assert.equal(evaluate(bin("+", str("x"), bin("/", num(1), num(0))), ctx), ERR.DIV0);
+});
+
+test("wave 3: errors propagate through chains and functions, left first", () => {
+  const cells = { A1: ERR.CYCLE, A2: ERR.DIV0, A3: 1 };
+  assert.equal(ev("A1+A2", cells), ERR.CYCLE);
+  assert.equal(ev("A2+A1", cells), ERR.DIV0);
+  assert.equal(ev("SUM(A3,A1:A2)", cells), ERR.CYCLE);
+  assert.equal(ev("SUM(A2,A1)", cells), ERR.DIV0);
+  assert.equal(ev("ABS(-A1)", cells), ERR.CYCLE);
+  assert.equal(ev("IF(A1,1,2)", cells), ERR.CYCLE);
+  assert.equal(ev("LEN(A1&\"x\")", cells), ERR.CYCLE);
+  assert.equal(ev("ROUND(A3,A2)", cells), ERR.DIV0);
+  assert.equal(ev("1e3"), ERR.VALUE);
+  assert.equal(ev("1.2.3"), ERR.VALUE);
+  assert.equal(ev("0^0"), 1);
+  assert.equal(ev('"5"+1'), 6);
+});
+
+test("wave 3: scale (SUM over the whole sheet, deep nesting)", () => {
+  const cells = {};
+  for (const c of "ABCDEFGHIJKLMNOPQRSTUVWXYZ") for (let r = 1; r <= 10; r++) cells[c + r] = 1;
+  assert.equal(ev("SUM(A1:Z10)", cells), 260);
+  assert.equal(ev("COUNT(A1:Z99)", cells), 260);
+  assert.equal(ev("MAX(Z99:A1)", cells), 1);
+  assert.equal(ev("1" + "+1".repeat(500)), 501);
 });

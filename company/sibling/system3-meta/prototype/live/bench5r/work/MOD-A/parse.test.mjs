@@ -78,3 +78,13 @@ test("wave 2: refs() lists cells, ranges column by column, no duplicates", () =>
   assert.deepEqual(refs(parse("IF(C1, A100, D4)")), ["C1", "D4"]);
   assert.deepEqual(refs(parse("-A1")), ["A1"]);
 });
+
+test("wave 3: odd input and scale", () => {
+  assert.deepEqual(parse("1e3"), { type: "error", code: "#VALUE!" });
+  assert.deepEqual(parse("1.2.3"), { type: "error", code: "#VALUE!" });
+  assert.equal(parse("0^0").type, "binary");
+  assert.equal(parse('"5"+1').type, "binary");
+  assert.deepEqual(refs(parse("A1:A2")), ["A1", "A2"]);
+  assert.equal(refs(parse("SUM(A1:Z10)")).length, 260);
+  assert.deepEqual(parse("(".repeat(300) + "1" + ")".repeat(300)), { type: "num", value: 1 });
+});

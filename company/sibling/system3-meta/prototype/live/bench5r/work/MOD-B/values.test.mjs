@@ -116,3 +116,15 @@ test("round9 / display", () => {
   assert.equal(display(ERR.DIV0), "#DIV/0!");
   assert.equal(display(14), "14");
 });
+
+test("wave 3: cycle error, odd input, left error first", () => {
+  assert.equal(String(ERR.CYCLE), "#CYCLE!");
+  assert.equal(display(ERR.CYCLE), "#CYCLE!");
+  assert.ok(isError(ERR.CYCLE));
+  assert.equal(binary("^", 0, 0), 1);
+  assert.equal(binary("+", "5", 1), 6);
+  assert.equal(binary("+", ERR.CYCLE, ERR.DIV0), ERR.CYCLE);
+  assert.equal(binary("&", ERR.DIV0, ERR.CYCLE), ERR.DIV0);
+  assert.equal(unary("-", ERR.CYCLE), ERR.CYCLE);
+  assert.equal(parseInput("1e3"), "1e3");
+});

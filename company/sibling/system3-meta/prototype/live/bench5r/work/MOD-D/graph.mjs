@@ -100,6 +100,13 @@ export function createGraph() {
         }
       }
     }
+    // wave 3: every cell that reads a cycle cell, directly or transitively, is cyclic too
+    const queue = [...result];
+    for (let i = 0; i < queue.length; i++) {
+      for (const d of dependents.get(queue[i]) || []) {
+        if (!result.has(d)) { result.add(d); queue.push(d); }
+      }
+    }
     return result;
   }
 
