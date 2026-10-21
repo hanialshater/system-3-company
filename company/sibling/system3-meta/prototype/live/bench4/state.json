@@ -267,7 +267,7 @@
        "kind": "order",
        "title": "EVALUATOR: evaluate.mjs",
        "body": "",
-       "state": "in-progress",
+       "state": "in-review",
        "assignee": "toy-builder-1",
        "project": null,
        "labels": [],
@@ -280,7 +280,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876791.7301,
-       "updated": 29876795.831216667,
+       "updated": 29876796.444166668,
        "history": [
         {
          "t": 29876791.7301,
@@ -296,6 +296,11 @@
          "t": 29876795.831216667,
          "by": "engine",
          "state": "in-progress"
+        },
+        {
+         "t": 29876796.444166668,
+         "by": "engine",
+         "state": "in-review"
         }
        ]
       }
@@ -307,7 +312,7 @@
        "kind": "order",
        "title": "GRAPH: graph.mjs",
        "body": "",
-       "state": "in-review",
+       "state": "done",
        "assignee": "toy-builder-2",
        "project": null,
        "labels": [],
@@ -320,7 +325,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876791.7301,
-       "updated": 29876795.575766668,
+       "updated": 29876796.140766665,
        "history": [
         {
          "t": 29876791.7301,
@@ -341,6 +346,11 @@
          "t": 29876795.575766668,
          "by": "engine",
          "state": "in-review"
+        },
+        {
+         "t": 29876796.140766665,
+         "by": "engine",
+         "state": "done"
         }
        ]
       }
@@ -3797,6 +3807,324 @@
     "mode": "work",
     "session": "S-1",
     "item": 3
+   },
+   {
+    "seq": 319,
+    "t": 29876796.11005,
+    "type": "advance",
+    "order": "O-7",
+    "stage": "check",
+    "by": "toy-checker",
+    "verdict": "pass"
+   },
+   {
+    "seq": 320,
+    "t": 29876796.11005,
+    "type": "send",
+    "msg": "M-47",
+    "from": "mgr-live",
+    "to": "mgr-live",
+    "kind": "work",
+    "key": "O-7:uat:0",
+    "ref": "O-7",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 321,
+    "t": 29876796.11005,
+    "type": "done",
+    "msg": "M-41",
+    "run": "R-20"
+   },
+   {
+    "seq": 322,
+    "t": 29876796.11005,
+    "type": "send",
+    "msg": "M-48",
+    "from": "pool:checker",
+    "to": "mgr-live",
+    "kind": "report",
+    "key": null,
+    "ref": "O-7",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 323,
+    "t": 29876796.11005,
+    "type": "leave",
+    "run": "R-20",
+    "role": "toy-checker",
+    "order": "O-7",
+    "stage": "check",
+    "verdict": "pass",
+    "minutes": 0.30683333426713943
+   },
+   {
+    "seq": 324,
+    "t": 29876796.11005,
+    "type": "session-wait",
+    "session": "S-9",
+    "role": "toy-checker",
+    "minutes": 1.5
+   },
+   {
+    "seq": 325,
+    "t": 29876796.1172,
+    "type": "advance",
+    "order": "O-7",
+    "stage": "uat",
+    "by": "mgr-live",
+    "verdict": "pass"
+   },
+   {
+    "seq": 326,
+    "t": 29876796.1172,
+    "type": "send",
+    "msg": "M-49",
+    "from": "mgr-live",
+    "to": "pool:release",
+    "kind": "work",
+    "key": "O-7:ship:0",
+    "ref": "O-7",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 327,
+    "t": 29876796.1172,
+    "type": "session-open",
+    "session": "S-12",
+    "role": "toy-release"
+   },
+   {
+    "seq": 328,
+    "t": 29876796.1172,
+    "type": "claim",
+    "msg": "M-49",
+    "run": "R-23"
+   },
+   {
+    "seq": 329,
+    "t": 29876796.1172,
+    "type": "enter",
+    "run": "R-23",
+    "msg": "M-49",
+    "role": "toy-release",
+    "by": "toy-release",
+    "room": "launch",
+    "order": "O-7",
+    "stage": "ship",
+    "mode": "work",
+    "session": "S-12",
+    "item": 1
+   },
+   {
+    "seq": 330,
+    "t": 29876796.117216665,
+    "type": "advance",
+    "order": "O-7",
+    "stage": "ship",
+    "by": "toy-release",
+    "verdict": "pass"
+   },
+   {
+    "seq": 331,
+    "t": 29876796.117216665,
+    "type": "shipped",
+    "order": "O-7",
+    "lead": 4.389983333647251,
+    "loops": 0,
+    "priority": "next"
+   },
+   {
+    "seq": 332,
+    "t": 29876796.117216665,
+    "type": "done",
+    "msg": "M-49",
+    "run": "R-23"
+   },
+   {
+    "seq": 333,
+    "t": 29876796.117216665,
+    "type": "send",
+    "msg": "M-50",
+    "from": "pool:release",
+    "to": "mgr-live",
+    "kind": "report",
+    "key": null,
+    "ref": "O-7",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 334,
+    "t": 29876796.117216665,
+    "type": "leave",
+    "run": "R-23",
+    "role": "toy-release",
+    "order": "O-7",
+    "stage": "ship",
+    "verdict": "pass",
+    "minutes": 0.000016666948795318604
+   },
+   {
+    "seq": 335,
+    "t": 29876796.117216665,
+    "type": "session-close",
+    "session": "S-12",
+    "role": "toy-release",
+    "items": 1,
+    "reason": "ship done",
+    "minutes": 0.000016666948795318604
+   },
+   {
+    "seq": 336,
+    "t": 29876796.140766665,
+    "type": "item-update",
+    "item": "ISS-7",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 337,
+    "t": 29876796.140766665,
+    "type": "supervisor-tick",
+    "steps": [
+     "uat:O-7",
+     "ship:O-7"
+    ]
+   },
+   {
+    "seq": 338,
+    "t": 29876796.36985,
+    "type": "self-check",
+    "order": "O-6",
+    "task": "EVALUATOR",
+    "by": "toy-builder-1",
+    "stage": "build",
+    "pass": true,
+    "output": "# tests 7 # pass 7 # fail 0"
+   },
+   {
+    "seq": 339,
+    "t": 29876796.43718333,
+    "type": "advance",
+    "order": "O-6",
+    "stage": "build",
+    "by": "toy-builder-1",
+    "verdict": "pass"
+   },
+   {
+    "seq": 340,
+    "t": 29876796.43718333,
+    "type": "code-stage",
+    "order": "O-6",
+    "stage": "test1"
+   },
+   {
+    "seq": 341,
+    "t": 29876796.43718333,
+    "type": "done",
+    "msg": "M-45",
+    "run": "R-22"
+   },
+   {
+    "seq": 342,
+    "t": 29876796.43718333,
+    "type": "send",
+    "msg": "M-51",
+    "from": "toy-builder-1",
+    "to": "mgr-live",
+    "kind": "report",
+    "key": null,
+    "ref": "O-6",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 343,
+    "t": 29876796.43718333,
+    "type": "leave",
+    "run": "R-22",
+    "role": "toy-builder-1",
+    "order": "O-6",
+    "stage": "build",
+    "verdict": "pass",
+    "minutes": 0.6054333299398422
+   },
+   {
+    "seq": 344,
+    "t": 29876796.43718333,
+    "type": "session-wait",
+    "session": "S-1",
+    "role": "toy-builder-1",
+    "minutes": 1.5
+   },
+   {
+    "seq": 345,
+    "t": 29876796.444166668,
+    "type": "advance",
+    "order": "O-6",
+    "stage": "test1",
+    "by": "code",
+    "verdict": "pass"
+   },
+   {
+    "seq": 346,
+    "t": 29876796.444166668,
+    "type": "send",
+    "msg": "M-52",
+    "from": "mgr-live",
+    "to": "pool:checker",
+    "kind": "work",
+    "key": "O-6:check:0",
+    "ref": "O-6",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 347,
+    "t": 29876796.444166668,
+    "type": "item-update",
+    "item": "ISS-6",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 348,
+    "t": 29876796.444166668,
+    "type": "supervisor-tick",
+    "steps": [
+     "test1:O-6"
+    ]
+   },
+   {
+    "seq": 349,
+    "t": 29876796.445216667,
+    "type": "claim",
+    "msg": "M-52",
+    "run": "R-24"
+   },
+   {
+    "seq": 350,
+    "t": 29876796.445233334,
+    "type": "enter",
+    "run": "R-24",
+    "msg": "M-52",
+    "role": "toy-checker",
+    "by": "toy-checker",
+    "room": "quality",
+    "order": "O-6",
+    "stage": "check",
+    "mode": "work",
+    "session": "S-9",
+    "item": 4
    }
   ]
  },
@@ -4713,7 +5041,7 @@
       },
       "priority": "next",
       "ts": 29876795.575766668,
-      "state": "open",
+      "state": "done",
       "lease": {
        "run": "R-20",
        "until": 29876825.803216666
@@ -4803,7 +5131,7 @@
       },
       "priority": "next",
       "ts": 29876795.810183335,
-      "state": "open",
+      "state": "done",
       "lease": {
        "run": "R-22",
        "until": 29876825.83175
@@ -4829,6 +5157,138 @@
       "ts": 29876795.810183335,
       "state": "open",
       "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-47",
+     {
+      "id": "M-47",
+      "from": "mgr-live",
+      "to": "mgr-live",
+      "kind": "work",
+      "key": "O-7:uat:0",
+      "due": null,
+      "ref": "O-7",
+      "body": {
+       "stage": "uat",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876796.11005,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-48",
+     {
+      "id": "M-48",
+      "from": "pool:checker",
+      "to": "mgr-live",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-7",
+      "body": {
+       "stage": "check",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876796.11005,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-49",
+     {
+      "id": "M-49",
+      "from": "mgr-live",
+      "to": "pool:release",
+      "kind": "work",
+      "key": "O-7:ship:0",
+      "due": null,
+      "ref": "O-7",
+      "body": {
+       "stage": "ship",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876796.1172,
+      "state": "done",
+      "lease": {
+       "run": "R-23",
+       "until": 29876826.1172
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-50",
+     {
+      "id": "M-50",
+      "from": "pool:release",
+      "to": "mgr-live",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-7",
+      "body": {
+       "stage": "ship",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876796.117216665,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-51",
+     {
+      "id": "M-51",
+      "from": "toy-builder-1",
+      "to": "mgr-live",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-6",
+      "body": {
+       "stage": "build",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876796.43718333,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-52",
+     {
+      "id": "M-52",
+      "from": "mgr-live",
+      "to": "pool:checker",
+      "kind": "work",
+      "key": "O-6:check:0",
+      "due": null,
+      "ref": "O-6",
+      "body": {
+       "stage": "check",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876796.444166668,
+      "state": "open",
+      "lease": {
+       "run": "R-24",
+       "until": 29876826.445216667
+      },
       "acked": false
      }
     ]
@@ -4943,10 +5403,22 @@
     [
      "O-6:build:0",
      "M-45"
+    ],
+    [
+     "O-7:uat:0",
+     "M-47"
+    ],
+    [
+     "O-7:ship:0",
+     "M-49"
+    ],
+    [
+     "O-6:check:0",
+     "M-52"
     ]
    ]
   },
-  "n": 46
+  "n": 52
  },
  "org": {
   "roles": {
@@ -5512,10 +5984,23 @@
       "spent": 0,
       "accept": "live/bench4/work/EVALUATOR/evaluate.mjs, exactly as the \"EVALUATOR\" section of live/bench4/SPEC.md says, plus at least one evaluator.test.mjs of your own (node --test) in the same folder. Import other modules only by the relative paths SPEC.md gives. Hidden acceptance tests check the behaviour SPEC.md states and report only failing categories.",
       "words": null,
-      "stage": "build",
+      "stage": "check",
       "loops": 0,
       "created": 29876791.72723333,
-      "history": [],
+      "history": [
+       {
+        "stage": "build",
+        "by": "toy-builder-1",
+        "verdict": "pass",
+        "t": 29876796.43718333
+       },
+       {
+        "stage": "test1",
+        "by": "code",
+        "verdict": "pass",
+        "t": 29876796.444166668
+       }
+      ],
       "priority": "next",
       "due": null,
       "after": [
@@ -5545,12 +6030,12 @@
       "orderer": "cos",
       "manager": "mgr-live",
       "builder": "toy-builder-2",
-      "checker": null,
+      "checker": "toy-checker",
       "budget": 200000,
       "spent": 0,
       "accept": "live/bench4/work/GRAPH/graph.mjs, exactly as the \"GRAPH\" section of live/bench4/SPEC.md says, plus at least one graph.test.mjs of your own (node --test) in the same folder. Import other modules only by the relative paths SPEC.md gives. Hidden acceptance tests check the behaviour SPEC.md states and report only failing categories.",
       "words": null,
-      "stage": "check",
+      "stage": "done",
       "loops": 0,
       "created": 29876791.72723333,
       "history": [
@@ -5565,6 +6050,24 @@
         "by": "code",
         "verdict": "pass",
         "t": 29876795.575766668
+       },
+       {
+        "stage": "check",
+        "by": "toy-checker",
+        "verdict": "pass",
+        "t": 29876796.11005
+       },
+       {
+        "stage": "uat",
+        "by": "mgr-live",
+        "verdict": "pass",
+        "t": 29876796.1172
+       },
+       {
+        "stage": "ship",
+        "by": "toy-release",
+        "verdict": "pass",
+        "t": 29876796.117216665
        }
       ],
       "priority": "next",
@@ -6079,7 +6582,7 @@
       "stage": "check",
       "loops": 0,
       "entered": 29876795.803216666,
-      "state": "running",
+      "state": "left",
       "session": "S-9"
      }
     ],
@@ -6111,13 +6614,45 @@
       "stage": "build",
       "loops": 0,
       "entered": 29876795.83175,
-      "state": "running",
+      "state": "left",
       "session": "S-1"
+     }
+    ],
+    [
+     "R-23",
+     {
+      "run": "R-23",
+      "msg": "M-49",
+      "role": "toy-release",
+      "by": "toy-release",
+      "consult": false,
+      "order": "O-7",
+      "stage": "ship",
+      "loops": 0,
+      "entered": 29876796.1172,
+      "state": "left",
+      "session": "S-12"
+     }
+    ],
+    [
+     "R-24",
+     {
+      "run": "R-24",
+      "msg": "M-52",
+      "role": "toy-checker",
+      "by": "toy-checker",
+      "consult": false,
+      "order": "O-6",
+      "stage": "check",
+      "loops": 0,
+      "entered": 29876796.445216667,
+      "state": "running",
+      "session": "S-9"
      }
     ]
    ]
   },
-  "n": 22,
+  "n": 24,
   "memory": {
    "__map": [
     [
@@ -6133,6 +6668,12 @@
        "t": 29876794.424016666,
        "did": "build on O-2: pass (loop 0)",
        "learned": "Parser: recursive descent, unary binds tighter than ^ (atom-level), ^ right-assoc via recursion, range = id : id.",
+       "mistake": null
+      },
+      {
+       "t": 29876796.43718333,
+       "did": "build on O-6: pass (loop 0)",
+       "learned": "Evaluator: check left/right errors before any conversion; string-vs-string compare lowercased, else toNumber; non-finite arithmetic -> VALUE.",
        "mistake": null
       }
      ]
@@ -6210,6 +6751,12 @@
        "did": "check on O-5: pass (loop 0)",
        "learned": "FUNCTIONS matches spec: range numbers only, AA1 range -> #REF!, IF lazy with false default, arity checks give #VALUE!",
        "mistake": null
+      },
+      {
+       "t": 29876796.11005,
+       "did": "check on O-7: pass (loop 0)",
+       "learned": "GRAPH matches spec: iterative Tarjan, self-loops counted, dependents of cycles excluded; fuzz vs brute force is a quick check",
+       "mistake": null
       }
      ]
     ],
@@ -6251,6 +6798,12 @@
        "did": "ship on O-5: pass (loop 0)",
        "learned": null,
        "mistake": null
+      },
+      {
+       "t": 29876796.117216665,
+       "did": "ship on O-7: pass (loop 0)",
+       "learned": null,
+       "mistake": null
       }
      ]
     ]
@@ -6267,7 +6820,7 @@
       "open": true,
       "started": 29876792.778183334,
       "launch": "0046-toy-builder-1",
-      "waitUntil": null
+      "waitUntil": 29876797.93718333
      }
     ],
     [
@@ -6350,7 +6903,7 @@
      {
       "id": "S-9",
       "role": "toy-checker",
-      "items": 3,
+      "items": 4,
       "open": true,
       "started": 29876794.8013,
       "launch": "0242-toy-checker",
@@ -6376,9 +6929,19 @@
       "open": false,
       "started": 29876795.81016667
      }
+    ],
+    [
+     "S-12",
+     {
+      "id": "S-12",
+      "role": "toy-release",
+      "items": 1,
+      "open": false,
+      "started": 29876796.1172
+     }
     ]
    ]
   },
-  "nS": 11
+  "nS": 12
  }
 }
