@@ -20,6 +20,8 @@
 //   node meta.mjs flow advance <O> --stage=<s> --by=<role> --evidence=… [--verdict=…] [--findings=…]
 //   node meta.mjs flow show <O> | flow status
 //   node meta.mjs mail dup <O>                                send the current stage's notification again (fault F1)
+//   node meta.mjs batch --file=<ops.json>   [{cmd, sub?, arg?, args:{…}}, …] on one state, all or nothing; ${n.field} reads result n
+//   node meta.mjs check --order=<O>                          run the order's test1 (tests or text checks) without signing: builders self-check
 //   node meta.mjs usage add --role=<role> --tokens=<n> --label=…   harness usage of a session outside any room (the supervisor)
 //   node meta.mjs usage correct --from-session=<S> --to-session=<S> --tokens=<n> --reason=…   append a correction (never edit)
 //   node meta.mjs policy knobs | policy show --lane=<l>       the knobs a lane policy may set; the lane's versions
@@ -79,7 +81,26 @@ function main() {
     save(co);
     return { ok: true, spec: co.data.spec, flow: key, roles: co.spec.roles.map((r) => r.id) };
   });
-  const readOnly = ["queue", "events", "memory"].includes(cmd) || (cmd === "flow" && ["show", "status"].includes(sub)) || (cmd === "org" && sub !== "propose") || (cmd === "building" && sub === "plan") || (cmd === "item" && ["show", "search"].includes(sub)) || (cmd === "goal" && ["show", "board"].includes(sub)) || (cmd === "ask" && ["route", "summary"].includes(sub)) || (cmd === "channel" && ["status", "inbox"].includes(sub)) || (cmd === "meeting" && sub === "show") || (cmd === "wbr" && sub === "page0");
+  if (cmd === "batch") return withLock(() => {
+    // Benchmark 1: set-up took 15 separate commands. A batch runs a list of commands on one state, all or nothing:
+    // any refusal saves nothing. `${n.path}` in an argument is replaced by a field of the n-th result (0-based).
+    need("file");
+    const ops = JSON.parse(fs.readFileSync(opt.file, "utf8"));
+    const co = load();
+    const results = [];
+    const sub$ = (v) => typeof v === "string" ? v.replace(/\$\{(\d+)\.([\w.]+)\}/g, (_, n, f) => { let x = results[Number(n)]; for (const k of f.split(".")) x = x?.[k]; if (x == null) throw new Error(`batch: \${${n}.${f}} is empty`); return String(x); }) : v;
+    for (const [i, op] of ops.entries()) {
+      for (const k of Object.keys(opt)) delete opt[k];
+      try {
+        for (const [k, v] of Object.entries(op.args ?? {})) opt[k] = typeof v === "object" && v !== null ? JSON.stringify(v) : sub$(String(v));
+        results.push(dispatch(co, op.cmd, op.sub, sub$(op.arg)));
+      }
+      catch (e) { e.message = `batch op ${i} (${op.cmd} ${op.sub ?? ""}): ${e.message}; nothing saved`; throw e; }
+    }
+    save(co);
+    return { ok: true, ops: ops.length, results };
+  });
+  const readOnly = ["queue", "events", "memory", "check"].includes(cmd) || (cmd === "flow" && ["show", "status"].includes(sub)) || (cmd === "org" && sub !== "propose") || (cmd === "building" && sub === "plan") || (cmd === "item" && ["show", "search"].includes(sub)) || (cmd === "goal" && ["show", "board"].includes(sub)) || (cmd === "ask" && ["route", "summary"].includes(sub)) || (cmd === "channel" && ["status", "inbox"].includes(sub)) || (cmd === "meeting" && sub === "show") || (cmd === "wbr" && sub === "page0");
   const act = () => {
     const co = load();
     const before = co.log.events.length;
@@ -130,6 +151,7 @@ function dispatch(co, cmd, sub, arg) {
   }
   if (cmd === "room" && sub === "session-usage") { need("session", "tokens"); rooms.recordSessionUsage(opt.session, Number(opt.tokens)); return { ok: true }; }
   if (cmd === "room" && sub === "wake-plan") { const t = mailbox.nextExpiry(); return { next_expiry_in_s: t == null ? null : Math.max(0, Math.round((t - clock.now()) * 60)) }; }
+  if (cmd === "check") { need("order"); const o = engine.orders.get(opt.order); if (!o) throw new Refused(`no order ${opt.order}`); const t = runTest1(o); return { order: o.id, task: o.task, pass: t.pass, output: t.output, note: "the same check test1 will run; nothing is signed" }; }
   if (cmd === "flow" && sub === "metrics") { const m = flowMetrics(log, engine.orders); const r1 = (x) => Math.round(x * 100) / 100; return { ...m, orders: m.orders.map((o) => ({ ...o, lead_min: r1(o.lead), work_min: r1(o.work), critical_min: r1(o.critical), flowEfficiency: r1(o.flowEfficiency) })) }; }
   if (cmd === "room" && sub === "heartbeat") { need("run"); rooms.heartbeat(opt.run, { leaseMin: 30 }); return { ok: true }; }
   if (cmd === "room" && sub === "leave") {

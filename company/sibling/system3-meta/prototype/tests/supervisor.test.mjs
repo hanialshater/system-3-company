@@ -7,7 +7,7 @@ import path from "node:path";
 const LIVE = fs.mkdtempSync(path.join(os.tmpdir(), "meta-sup-"));
 process.env.META_LIVE_DIR = LIVE;
 const { make, save, load, LIVE_ROLES, TASK_FLOW } = await import("../state.mjs");
-const { tick, plan, nextTimer } = await import("../supervisor.mjs");
+const { tick, plan, nextTimer, recordFinished, briefFor } = await import("../supervisor.mjs");
 const ACC = path.join(LIVE, "acceptance");
 
 function fresh() {
@@ -115,4 +115,32 @@ test("a launched session that has not entered yet is not planned again; after th
   const t0 = co.engine.clock.now();
   co.engine.clock = { now: () => t0 + 6 };
   assert.equal(plan(co).length, 1, "no enter within 5 min: the launch failed, plan it again");
+});
+
+test("plan: a small remainder joins the drain (5 queued, cap 4 → one session of 5); a big one does not (8 → 4)", () => {
+  const co = fresh();
+  for (let i = 0; i < 5; i++) order(co, `T${i}`);
+  assert.deepEqual(plan(co, { cap: 4 }).map((p) => [p.role, p.msgs.length, p.cap]), [["toy-builder-1", 5, 5]]);
+  for (let i = 5; i < 8; i++) order(co, `T${i}`);
+  assert.deepEqual(plan(co, { cap: 4 }).map((p) => [p.role, p.msgs.length, p.cap]), [["toy-builder-1", 4, 4]]);
+});
+
+test("cycle parts: usage goes to the role's latest session without usage (closing it); no session → a plain usage event; briefs are written by code", () => {
+  const co = fresh();
+  const a = order(co, "U1"), b = order(co, "U2");
+  const m = co.mailbox.queue("toy-builder-1", "work").find((x) => x.ref === a.id);
+  const { run } = co.rooms.enter({ msg: m.id, role: "toy-builder-1" });
+  co.rooms.leave(run, { evidence: "w" });
+  const u = recordFinished(co, [["toy-builder-1", 1000], ["toy-checker", 500]]);
+  assert.equal(u[0].session, co.rooms.runs.get(run).session);
+  assert.equal(co.rooms.sessions.get(u[0].session).open, false);
+  assert.equal(u[1].session, null);
+  assert.throws(() => recordFinished(co, [["nobody", 1]]), /no role/);
+  const p = plan(co)[0];
+  const brief = briefFor(co, p, { context: "The book: a fox." });
+  assert.match(brief, /You are `toy-builder-1` \(builder\)/);
+  assert.match(brief, new RegExp(`room enter --msg=${p.msgs[0]} --role=toy-builder-1`));
+  assert.match(brief, /The book: a fox\./);
+  assert.match(brief, /meta\.mjs check --order/);
+  assert.ok(b);
 });

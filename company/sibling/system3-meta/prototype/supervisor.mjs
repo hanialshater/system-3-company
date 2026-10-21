@@ -11,6 +11,10 @@
 //           role has none running; `later` items wait for a batch (--batch-later=N) or their due time
 //
 //   node supervisor.mjs launched --role=<role> [--msgs=…]   the orchestrator started a session: plan it as starting
+//   node supervisor.mjs cycle [--finished=<role>:<tokens>,…] [watch flags]   the orchestrator's one command per wake
+//        (benchmark 1: 20 of 45 orchestrator actions were bookkeeping by hand): records the harness usage of the
+//        sessions that finished, watches until a session is needed, reserves every planned launch, and prints a brief
+//        per launch, written by code from the order, the pack commands and live/<dir>/CONTEXT.md if present
 //   node supervisor.mjs tick  [--acceptance=<dir>] [--batch-later=3] [--cap=4]   one pass; prints steps and the plan
 //   node supervisor.mjs watch [--acceptance=<dir>] [--batch-later=3] [--cap=4] [--max-min=30]
 //        tick, then wait for a change to the state file or the next lease expiry or due time (a wake, not a poll), and
@@ -19,7 +23,7 @@
 // Same state as meta.mjs (META_LIVE_DIR, META_STATE). Exit 0 always unless the state cannot be read.
 import fs from "node:fs";
 import path from "node:path";
-import { LIVE, STATE, load, save, withLock, runTests, runTest1, rep } from "./state.mjs";
+import { HERE, LIVE, STATE, load, save, withLock, runTests, runTest1, rep } from "./state.mjs";
 import { syncOrders } from "./tracker.mjs";
 import { sweepGoals } from "./goals.mjs";
 import { expireContracts } from "./contractor.mjs";
@@ -95,8 +99,11 @@ export function plan(co, { batchLater: batchDefault = 3, cap: capDefault = 4 } =
     const later = msgs.filter((m) => m.priority === "later");
     const dueLater = later.filter((m) => m.due != null && m.due <= co.engine.clock.now());
     if (next.length || later.length >= batchLater || dueLater.length) {
-      const take = [...next, ...later].slice(0, cap);
-      out.push({ role, why: next.length ? `next: ${next.length} waiting, no session running` : `later: a batch of ${later.length}`, msgs: take.map((m) => m.id), cap: Math.min(cap, take.length) });
+      // benchmark 1: a cap of 4 left 1 of 5 pages to a whole new reader session (63k for one page). When the remainder
+      // is small, the session takes it all: half a cap more costs less than a fresh session's start-up.
+      const all = [...next, ...later];
+      const take = all.length - cap <= Math.ceil(cap / 2) ? all : all.slice(0, cap);
+      out.push({ role, why: next.length ? `next: ${next.length} waiting, no session running` : `later: a batch of ${later.length}`, msgs: take.map((m) => m.id), cap: take.length });
     }
   };
   for (const r of org.active()) {
@@ -113,6 +120,40 @@ export function plan(co, { batchLater: batchDefault = 3, cap: capDefault = 4 } =
   const checker = org.byLevel("checker")[0];
   if (checker) consider(checker.id, mailbox.queue("pool:checker", "work").filter((m) => co.engine.orders.get(m.ref).builder !== checker.id));
   return out;
+}
+
+/** Harness usage for sessions that finished, as role:tokens. The role's latest session without usage gets it; a
+ *  role with no such session (work outside a room, such as a meeting position) gets a usage event of its own. */
+export function recordFinished(co, finished) {
+  const out = [];
+  for (const [role, tokens] of finished) {
+    if (!co.org.role(role)) throw new Error(`no role ${role}`);
+    const has = (id) => co.log.events.some((e) => e.type === "usage" && e.session === id);
+    const s = [...co.rooms.sessions.values()].filter((x) => x.role === role && !has(x.id)).at(-1);
+    if (s) { if (s.open) co.rooms.closeSession(s.id, "finished (harness)"); co.rooms.recordSessionUsage(s.id, tokens); out.push({ role, session: s.id, tokens }); }
+    else { co.log.add({ type: "usage", role, tokens, label: "outside a room", source: "harness", supervisor: true }); out.push({ role, session: null, tokens }); }
+  }
+  return out;
+}
+
+/** The brief for one planned session, written by code: who you are, where, the exact first command, the cap. */
+export function briefFor(co, item, { context = null } = {}) {
+  const r = co.org.role(item.role);
+  const pre = [process.env.META_LIVE_DIR && `META_LIVE_DIR=${process.env.META_LIVE_DIR}`, process.env.META_STATE && `META_STATE=${process.env.META_STATE}`].filter(Boolean).join(" ");
+  const first = co.mailbox.msgs.get(item.msgs[0]);
+  const o = first ? co.engine.orders.get(first.ref) : null;
+  const L = [`You are \`${item.role}\` (${r.level}) in a company run by a CLI.`, "", `Run every command from: ${HERE}`, pre ? `Prefix every command with: ${pre}` : "", ""];
+  if (context) L.push(context.trim(), "");
+  if (item.contract) {
+    L.push(`Read your brief: \`node meta.mjs contract brief --id=${item.contract}\`. Work only in its folder; deliver with the \`contract deliver\` command it names, before the timebox ends.`);
+  } else {
+    L.push(`1. Enter: \`node meta.mjs room enter --msg=${item.msgs[0]} --role=${item.role}\`. The JSON pack gives the order, stage, workdir, accept criteria, findings, history, memory and the exact \`next_with\` and \`leave_with\` commands. Your session cap is ${item.cap} (${item.msgs.length} item${item.msgs.length > 1 ? "s" : ""} queued${o ? `, starting with ${o.task}` : ""}).`);
+    if (r.level === "checker") L.push("2. Check the work against its accept criteria and the shipped work it must agree with. Never fix it. Report defects by class: list every instance of a class, each as what is wrong → what is required.", `3. Hand in with \`next_with\` (\`--cap=${item.cap} --verdict=pass\` or \`--verdict=revise --findings='…'\`, \`--evidence=<path>\`, \`--learned='one line'\`) to take the next item in this session; on the last item, or when nothing is queued, use \`leave_with\`.`);
+    else L.push("2. Do the work the accept criteria ask, in the workdir only. If the order has `checks`, run `node meta.mjs check --order=<O>` before you hand in: it runs the same test1 code will run.", `3. Hand in with \`next_with\` (\`--cap=${item.cap} --evidence=<path> --learned='one line'\`) to take the next item in this session; on the last item use \`leave_with\`.`);
+    L.push("If a command refuses, read the message and fix what it names.");
+  }
+  L.push("", "Report back briefly: each item, its outcome, and anything that confused you.");
+  return L.filter((x, i, a) => !(x === "" && a[i - 1] === "")).join("\n");
 }
 
 /** When to wake next without polling: the nearest lease expiry or due time, in ms (null: only on a state change). */
@@ -161,6 +202,20 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     // The orchestrator records each session it starts, so the next plan does not ask for it again.
     if (!opt.role) { console.error("usage: node supervisor.mjs launched --role=<role> [--msgs=M-1,M-2] [--why=…]"); process.exit(2); }
     print(withLock(() => { const co = load(); const e = co.log.add({ type: "launch", role: opt.role, msgs: opt.msgs ? String(opt.msgs).split(",") : [], why: opt.why ?? null }); save(co); return e; }));
+  } else if (cmd === "cycle") {
+    const finished = opt.finished ? String(opt.finished).split(",").map((x) => { const [r, t] = x.split(":"); return [r, Number(t)]; }) : [];
+    const usage = finished.length ? withLock(() => { const co = load(); const u = recordFinished(co, finished); save(co); return u; }) : [];
+    const ctxFile = path.join(LIVE, "CONTEXT.md");
+    const context = fs.existsSync(ctxFile) ? fs.readFileSync(ctxFile, "utf8") : null;
+    watch(opts, Number(opt["max-min"] ?? 30)).then((w) => {
+      const launches = w.plan.length ? withLock(() => {
+        const co = load();
+        const out = w.plan.map((p) => { co.log.add({ type: "launch", role: p.role, msgs: p.msgs, why: `cycle: ${p.why}` }); return { ...p, brief: briefFor(co, p, { context }) }; });
+        save(co);
+        return out;
+      }) : [];
+      print({ usage, exit: w.exit, steps: w.steps, launch: launches });
+    });
   } else if (cmd === "tick") print(once(opts));
   else if (cmd === "watch") watch(opts, Number(opt["max-min"] ?? 30)).then(print);
   else { console.error("usage: node supervisor.mjs tick|watch [--acceptance=<dir>] [--batch-later=3] [--cap=4] [--max-min=30]"); process.exit(2); }
