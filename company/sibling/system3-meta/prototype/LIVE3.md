@@ -28,12 +28,9 @@ owner: chief-of-staff, for System 3 Meta · date: 2026-10-21 · founder: "Yes go
 
 **Outcome:** all 4 orders shipped; T12 and T14 were revised once each.
 
-**Sessions:** 7 agent sessions, every one named by the supervisor's plan:
-- 1 builder drain of 4;
-- 2 builder revisions;
-- 1 checker drain of 4;
-- 2 checker re-checks;
-- the 7th was the checker re-check recorded as S-9.
+**Sessions:** 6 agent sessions, every one named by the supervisor's plan:
+- builders: S-1, a drain of 4; S-5 and S-7, the two revisions;
+- checkers: S-2, a drain of 4; S-6 and S-9, the two re-checks.
 
 **The supervisor did 10 ticks, all by `supervisor.mjs`:** 6 test1, 4 UAT and 4 ship steps, plus the release sessions S-3, S-4, S-8 and S-10. It cost 0 model tokens. Shipped folders hold the module only (no builder tests).
 
@@ -62,7 +59,7 @@ owner: chief-of-staff, for System 3 Meta · date: 2026-10-21 · founder: "Yes go
 | S3 | median flow efficiency ≥ 30% | 43.5% (run 2: 12%) | right |
 | S4 | code step within 5 s (median) | 0.5 s | right |
 | S5 | ≤ 0.5 revise loops per order | 0.5; each revision closed its finding class in one loop | right (on the bound) |
-| S6 | only plan-named sessions, never a duplicate | 7 sessions, all plan-named. **But the first watch named a duplicate:** it fired 3 s after the builder launch, before the builder entered, so the plan saw no running session. Not launched; fixed with launch reservations and a test. I also chose the first checker's cap (4) above the plan's 1, so it could drain builds landing meanwhile | half right |
+| S6 | only plan-named sessions, never a duplicate | 6 sessions, all plan-named. **But the first watch named a duplicate:** it fired 3 s after the builder launch, before the builder entered, so the plan saw no running session. Not launched; fixed with launch reservations and a test. I also chose the first checker's cap (4) above the plan's 1, so it could drain builds landing meanwhile | half right |
 
 **What it shows:**
 - **The waiting is gone where code can remove it.** Code steps run in half a second, and flow efficiency rose from 12% to 44%. Lead times were 2-8 min against 6-15 min in run 2. What waiting is left is agent start-up and the gap until the orchestrator starts the next session.

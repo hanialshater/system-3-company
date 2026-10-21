@@ -5,7 +5,7 @@ Founder: "Yes go ahead" (the supervisor as a script). Built `supervisor.mjs` in 
 - a launch plan;
 - `watch`, which wakes on a state-file change or a timer and exits when an agent session is needed.
 
-Live run 3: 4 orders, 7 agent sessions, all shipped. The supervisor cost 0 tokens, ran code steps in a median 0.5 s, and lifted flow efficiency from 12% to 44% (lead 2-8 min). S2 was wrong: 102.6k per order, because each revision needed its own builder and checker session (~64k each, nothing to drain). Class-level findings closed each revision in one loop. Found and fixed:
+Live run 3: 4 orders, 6 agent sessions, all shipped. The supervisor cost 0 tokens, ran code steps in a median 0.5 s, and lifted flow efficiency from 12% to 44% (lead 2-8 min). S2 was wrong: 102.6k per order, because each revision needed its own builder and checker session (~64k each, nothing to drain). Class-level findings closed each revision in one loop. Found and fixed:
 - the plan re-requested a launched-but-not-entered session (launch reservations added);
 - runTests passed failing tests under a test runner (NODE_TEST_CONTEXT).
 
