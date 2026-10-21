@@ -21,6 +21,7 @@ founder, 2026-10-21: "not so fast, we have a lot to do for tools … still dont 
 | **Tracker (Linear-like)** | **missing:** orders are flow items only, with no projects, labels, assignees, cycles, comments, links, search or board | - |
 | **Group meetings** | **missing:** no rounds, whiteboard, private-then-revealed positions, minutes | - |
 | **Newsletter and digests** | **missing** | - |
+| **Building (floors and rooms)** | **missing:** rooms and floors are a hard-coded list (`LIVE_ROOMS`, toy `ROOMS`); nothing can add, change, book or retire them | state.mjs, toy.mjs |
 | Document registry and review | designed (scenario S11), not built | - |
 | Notifications and subscriptions | not designed | - |
 | Calendar of human slots | not designed (the simulator models founder sittings) | - |
@@ -34,6 +35,12 @@ founder, 2026-10-21: "not so fast, we have a lot to do for tools … still dont 
 
 Each step builds on the one before. Each gets a committed prediction, tests, and one small live run with real agents before the next starts.
 
+0. **Building API.** Floors and rooms as data, through the org change process:
+   - `building floor add`, `room add --floor --kind=lane|meeting|quality|lobby|launch --capacity`, `room rename`, `room retire`;
+   - `room book` for meeting rooms (a slot; used by group meetings);
+   - **code refuses:** retiring a room with seated roles or running runs; a room on a missing floor; a lane room without a lane; booking past capacity;
+   - **who may:** adding or retiring floors is an org change (the founder approves); a lane manager may add or book meeting rooms on its own floor;
+   - every change is an event, so HQ can draw the building from the log.
 1. **Channels and broadcast.** Pub/sub on top of the mailbox:
    - channels (lane, company, role), subscriptions and announcements;
    - read and ack tracking, so "everyone was told" is checkable.
