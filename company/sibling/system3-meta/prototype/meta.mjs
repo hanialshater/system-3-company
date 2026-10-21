@@ -51,7 +51,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { Refused, flowMetrics } from "./lib.mjs";
-import * as G from "./generator.mjs";
+import * as GEN from "./generator.mjs";
 import { proposePolicy, activatePolicy, managerReport, recordCycle, KNOBS } from "./policy.mjs";
 import { engage, engageTemplate, briefFor, deliver, decideContract, TEMPLATES } from "./contractor.mjs";
 import { LIVE, STATE, LIVE_ROLES, TASK_FLOW, clock, make, rep, save, load, withLock, runTests, runTest1, validateChecks, describeChecks, mergeChecks, ESCAPES, readEscapes } from "./state.mjs";
@@ -95,7 +95,7 @@ function main() {
     let def = null, name = opt.spec ?? "toy";
     if (opt["spec-file"]) {
       def = JSON.parse(fs.readFileSync(opt["spec-file"], "utf8"));
-      const v = G.validateSpec(def);
+      const v = GEN.validateSpec(def);
       if (v.length) throw new Refused(`spec ${opt["spec-file"]} breaks ${v.length} invariant(s): ${v.join("; ")}`);
       name = def.name ?? path.basename(opt["spec-file"], ".json");
     }
@@ -107,7 +107,7 @@ function main() {
       co.writeFile = (rel, text) => { const f = path.join(LIVE, rel); fs.mkdirSync(path.dirname(f), { recursive: true }); fs.writeFileSync(f, text); };
       for (const c of def.channels ?? []) CH.createChannel(co, { by: "cos", id: c.id, kind: c.kind, members: c.members ?? [], title: c.title ?? "" });
       if (def.rules?.length) co.data.rules = def.rules.map((r) => ({ ...r, source: `spec ${name}` }));
-      co.writeFile("ORG.md", G.orgDoc(def, name));
+      co.writeFile("ORG.md", GEN.orgDoc(def, name));
       if (def.context) co.writeFile("CONTEXT.md", def.context + "\n");
     }
     save(co);
@@ -172,7 +172,7 @@ function dispatch(co, cmd, sub, arg) {
   const { engine, rooms, mailbox, org, log } = co;
   if (cmd === "order" && sub === "new") {
     need("to", "title", "task", "accept");
-    const o = engine.orderNew({ flow: "task", by: opt.by ?? "cos", to: opt.to, budget: Number(opt.budget ?? 200_000), accept: opt.accept, title: opt.title, priority: opt.priority ?? "next", dueMin: opt.due ? Number(opt.due) : null, after: opt.after ? String(opt.after).split(",") : [], fromContract: opt["from-contract"] ?? null });
+    const o = engine.orderNew({ flow: co.spec.flow?.name ?? "task", by: opt.by ?? "cos", to: opt.to, budget: Number(opt.budget ?? 200_000), accept: opt.accept, title: opt.title, priority: opt.priority ?? "next", dueMin: opt.due ? Number(opt.due) : null, after: opt.after ? String(opt.after).split(",") : [], fromContract: opt["from-contract"] ?? null });
     o.task = opt.task;
     if (opt.project) o.project = opt.project; // mirrored onto its tracker item, so the roadmap counts it
     if (opt.goal) o.goal = opt.goal;

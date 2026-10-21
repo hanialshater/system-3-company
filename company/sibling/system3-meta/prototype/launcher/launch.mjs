@@ -23,11 +23,22 @@ import fs from "node:fs";
 import path from "node:path";
 import readline from "node:readline";
 
+import crypto from "node:crypto";
 const HERE = path.dirname(new URL(import.meta.url).pathname);
-const PROTO = path.join(HERE, "..");
+const SRC = path.join(HERE, "..");
 const opt = Object.fromEntries(process.argv.slice(2).filter((a) => a.startsWith("--")).map((a) => { const [k, ...v] = a.slice(2).split("="); return [k, v.join("=") || true]; }));
 if (!opt.live) { console.error("usage: node launcher/launch.mjs --live=<dir> [--acceptance=<dir>] [--model=…] [--max-parallel=4] [--kill=<n>:<s>]"); process.exit(2); }
 const LIVE = path.resolve(opt.live);
+// the run uses a frozen copy of the kernel (benchmark 4b: I edited meta.mjs while a run was live and broke every
+// agent's commands for half an hour). Agents and serve run from live/<dir>/kernel/; its hash goes in the ledger.
+const PROTO = path.join(LIVE, "kernel");
+const KERNEL_FILES = fs.readdirSync(SRC).filter((f) => f.endsWith(".mjs") || f === "escapes.json");
+fs.mkdirSync(PROTO, { recursive: true });
+for (const f of KERNEL_FILES) fs.copyFileSync(path.join(SRC, f), path.join(PROTO, f));
+fs.cpSync(path.join(SRC, "specs"), path.join(PROTO, "specs"), { recursive: true });
+// briefs and specs name paths like live/<dir>/SPEC.md, relative to the prototype: the copy sees the same live/
+if (!fs.existsSync(path.join(PROTO, "live"))) fs.symlinkSync(path.join(SRC, "live"), path.join(PROTO, "live"));
+const KERNEL_HASH = crypto.createHash("sha256").update(KERNEL_FILES.sort().map((f) => fs.readFileSync(path.join(PROTO, f))).join("\0")).digest("hex").slice(0, 12);
 const MODEL = opt.model ?? "claude-opus-5-5";
 const MAX_PAR = Number(opt["max-parallel"] ?? 4);
 const SESSION_MIN = Number(opt["session-min"] ?? 20);
@@ -102,7 +113,7 @@ function finish() {
 
 const serveArgs = [path.join(PROTO, "supervisor.mjs"), "serve", `--idle-min=${opt["idle-min"] ?? 1}`, `--max-min=${opt["max-min"] ?? 90}`, ...(opt.acceptance ? [`--acceptance=${path.resolve(opt.acceptance)}`] : []), ...(opt.faults ? [`--faults=${path.resolve(opt.faults)}`] : [])];
 const serve = spawn("node", serveArgs, { env, stdio: ["ignore", "pipe", "inherit"] });
-note({ event: "launcher-up", live: LIVE, model: MODEL, maxParallel: MAX_PAR, kills: [...kills.entries()], settingSources: SOURCES });
+note({ event: "launcher-up", live: LIVE, kernel: KERNEL_HASH, model: MODEL, maxParallel: MAX_PAR, kills: [...kills.entries()], settingSources: SOURCES });
 readline.createInterface({ input: serve.stdout }).on("line", (line) => {
   let ev; try { ev = JSON.parse(line); } catch { return; }
   fs.appendFileSync(path.join(LIVE, "serve.log"), line + "\n");

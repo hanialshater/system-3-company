@@ -157,3 +157,19 @@ The live dir is `live/bench4b`.
 | E7 | With the company context loaded, tokens per shipped order rise, and stay ≤ 113k. I expect 60-90k. Waiting sessions keep the saving | > 113k |
 | E8 | All four faults are recovered by code with no person. F3 is recovered by the watchdog within 4 min (live test m3-watchdog: 3 min 4 s) | any fault needs an agent workaround or a person |
 | E9 | 10/10 ship, and every hidden test passes at the end under `#CIRC!` | any order or test fails |
+
+### Benchmark 4b, first attempt: invalid (my error), aborted at 20:04 UTC
+
+**What went wrong.**
+- I edited `meta.mjs` while the run was live (M2's `init --spec-file`). The new import name `G` clashed with an existing one, so `meta.mjs` stopped loading.
+- From about 19:31 to 20:03, every agent command and every usage report failed. The work stalled until the 30-minute leases expired and `serve` recovered the items.
+
+**What happened to the run.** It is not scored. Its record stays in `live/bench4b-invalid/`.
+- Before the break: the manager delegated, F1 was injected and recovered in 0.2 s, and the first sessions cost about 52-60k each with the company context loaded.
+- The break itself was handled by the existing lease recovery, slowly, with no person. That proves only that the 30-minute lease is far too long for a hands-free company.
+
+**Fixed in the tooling, not just by care.**
+- The launcher now runs every benchmark from a **frozen copy of the kernel** in `live/<dir>/kernel/` (its hash is in the ledger). Editing the prototype during a run can no longer touch it.
+- The import clash is fixed; there are now 79 tests.
+
+The arm is re-run below as `bench4b`.
