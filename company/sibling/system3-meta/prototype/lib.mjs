@@ -434,14 +434,22 @@ export class Rooms {
     if (this.config.leases) this.mailbox.heartbeat(x.msg, { run, leaseMin });
   }
 
-  leave(run, { verdict = "pass", evidence = null, learned = null, mistake = null, tokens = 0, findings = null }) {
+  /** Usage from the harness (it counts an agent's tokens; the agent cannot). Once per run. */
+  recordUsage(run, tokens, source = "harness") {
+    const x = this.runs.get(run);
+    hard(x, `no run ${run}`);
+    hard(!this.log.events.some((e) => e.type === "usage" && e.run === run), `usage for ${run} already recorded`);
+    this.log.add({ type: "usage", run, role: x.role, tokens, source });
+  }
+
+  leave(run, { verdict = "pass", evidence = null, learned = null, mistake = null, tokens = null, findings = null }) {
     const x = this.runs.get(run);
     hard(x && x.state === "running", `run ${run} not running`);
     const o = this.engine.orders.get(x.order);
     if (o.stage !== x.stage || o.loops !== x.loops) {
       x.state = "stale";
       this.log.add({ type: "stale-leave", run, order: o.id, role: x.role });
-      if (this.config.autoBookkeeping) this.log.add({ type: "usage", run, role: x.role, tokens, auto: true });
+      if (this.config.autoBookkeeping && tokens != null) this.log.add({ type: "usage", run, role: x.role, tokens, auto: true });
       return null;
     }
     this.engine.advance(o.id, { stage: x.stage, by: x.role, verdict, evidence, findings, consult: x.consult });
@@ -451,7 +459,7 @@ export class Rooms {
     if (this.config.autoBookkeeping) {
       const did = `${x.stage} on ${o.id}: ${verdict} (loop ${x.loops})`;
       (this.memory.get(x.role) ?? this.memory.set(x.role, []).get(x.role)).push({ t: this.clock.now(), did, learned, mistake });
-      this.log.add({ type: "usage", run, role: x.role, tokens, auto: true });
+      if (tokens != null) this.log.add({ type: "usage", run, role: x.role, tokens, auto: true });
       this.log.add({ type: "leave", run, role: x.role, order: o.id, stage: x.stage, verdict, minutes: this.clock.now() - x.entered });
     }
     return o;
