@@ -200,5 +200,19 @@ export function answerClashes(task, text, { prefix, split = null, across = null,
   return [...new Set(out)];
 }
 
+/** The checks in plain words, so agents read what code enforces instead of guessing (live run 4: three agents believed
+ *  banned words matched inside longer words, and avoided "warm-blooded" and "endangered"). */
+export function describeChecks(c = {}) {
+  const L = [];
+  if (c.titleLine) L.push("the first line is a '# Title'");
+  if (c.minWords || c.maxWords) L.push(`${c.minWords ?? 0}-${c.maxWords ?? "any"} words, not counting heading lines or markdown markers`);
+  if (c.mustInclude?.length) L.push(`must contain, as exact text (case does not matter): ${c.mustInclude.map((x) => JSON.stringify(x)).join(", ")}`);
+  if (c.banned?.length) L.push(`must not contain these as whole words (case does not matter; "kill" does not match "skill", "blood" does not match "warm-blooded"; plurals and other forms are not matched either): ${c.banned.join(", ")}`);
+  for (const r of c.lineMaxWords ?? []) L.push(`each line starting ${JSON.stringify(r.prefix)} has at most ${r.maxWords} words after it`);
+  if (c.minReadingEase) L.push(`Flesch reading ease at least ${c.minReadingEase} (short sentences, short words)`);
+  if (c.distinctAnswers) L.push(`no ${JSON.stringify(c.distinctAnswers.prefix)} answer repeats ${c.distinctAnswers.across ? `another ${c.distinctAnswers.across}* task's` : "another section's"}, and no line names another ${c.distinctAnswers.across ? "task" : "section"}'s answer together with a distinctive word of that answer's question (a give-away)`);
+  return L;
+}
+
 /** test1 for an order: its declared text checks if it has them, otherwise the builder's tests. */
 export function runTest1(o) { return o.checks ? runTextChecks(o.task, o.checks) : runTests(o.task); }

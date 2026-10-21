@@ -48,7 +48,7 @@ import path from "node:path";
 import { Refused, flowMetrics } from "./lib.mjs";
 import { proposePolicy, activatePolicy, managerReport, recordCycle, KNOBS } from "./policy.mjs";
 import { engage, engageTemplate, briefFor, deliver, decideContract, TEMPLATES } from "./contractor.mjs";
-import { LIVE, STATE, LIVE_ROLES, TASK_FLOW, clock, make, rep, save, load, withLock, runTests, runTest1, validateChecks } from "./state.mjs";
+import { LIVE, STATE, LIVE_ROLES, TASK_FLOW, clock, make, rep, save, load, withLock, runTests, runTest1, validateChecks, describeChecks } from "./state.mjs";
 import * as B from "./building.mjs";
 import * as CH from "./channels.mjs";
 import * as T from "./tracker.mjs";
@@ -168,7 +168,7 @@ function dispatch(co, cmd, sub, arg) {
   }
   if (cmd === "room" && sub === "session-usage") { need("session", "tokens"); rooms.recordSessionUsage(opt.session, Number(opt.tokens)); return { ok: true }; }
   if (cmd === "room" && sub === "wake-plan") { const t = mailbox.nextExpiry(); return { next_expiry_in_s: t == null ? null : Math.max(0, Math.round((t - clock.now()) * 60)) }; }
-  if (cmd === "check") { need("order"); const o = engine.orders.get(opt.order); if (!o) throw new Refused(`no order ${opt.order}`); const t = runTest1(o); return { order: o.id, task: o.task, pass: t.pass, output: t.output, note: "the same check test1 will run; nothing is signed" }; }
+  if (cmd === "check") { need("order"); const o = engine.orders.get(opt.order); if (!o) throw new Refused(`no order ${opt.order}`); const t = runTest1(o); return { order: o.id, task: o.task, pass: t.pass, output: t.output, rules: o.checks ? describeChecks(o.checks) : ["the builder's own tests (node --test)"], note: "the same check test1 will run; nothing is signed" }; }
   if (cmd === "flow" && sub === "metrics") { const m = flowMetrics(log, engine.orders); const r1 = (x) => Math.round(x * 100) / 100; return { ...m, orders: m.orders.map((o) => ({ ...o, lead_min: r1(o.lead), work_min: r1(o.work), critical_min: r1(o.critical), flowEfficiency: r1(o.flowEfficiency) })) }; }
   if (cmd === "room" && sub === "heartbeat") { need("run"); rooms.heartbeat(opt.run, { leaseMin: 30 }); return { ok: true }; }
   if (cmd === "room" && sub === "leave") {
