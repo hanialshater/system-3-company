@@ -517,7 +517,7 @@
        "kind": "order",
        "title": "MOD-C: the module in slot C",
        "body": "",
-       "state": "in-review",
+       "state": "done",
        "assignee": "dev-2",
        "project": null,
        "labels": [
@@ -532,7 +532,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876923.441666666,
-       "updated": 29876938.876966666,
+       "updated": 29876940.55875,
        "history": [
         {
          "t": 29876923.441666666,
@@ -568,6 +568,11 @@
          "t": 29876938.876966666,
          "by": "engine",
          "state": "in-review"
+        },
+        {
+         "t": 29876940.55875,
+         "by": "engine",
+         "state": "done"
         }
        ]
       }
@@ -966,7 +971,7 @@
        "kind": "ask",
        "title": "Wave 2: B needs ERR.REF; C needs range and functions",
        "body": "A now parses invalid cell names (AA1, A100, A0) to {type:\"error\",code:\"#REF!\"}, also for a range with an invalid corner, and valid ranges to {type:\"range\",from,to} with corners normalised. B ERR has no REF yet, so errorFromCode(\"#REF!\") falls back to #VALUE! and =A100 shows #VALUE! (slot B, dev-2). C has no range handling (a range outside a function should give #VALUE!) and no SUM/MIN/MAX/AVERAGE/COUNT/IF/ABS/ROUND/LEN, which is slot C, dev-2. D ctx.range(from,to) now returns value[][] rows (top row first); C has to flatten it column by column. Separately, shipped SHEET/sheet.mjs had a wrapper that returned 11 for any value of 10; removed in O-6.",
-       "state": "todo",
+       "state": "done",
        "assignee": "lead",
        "project": null,
        "labels": [
@@ -978,15 +983,26 @@
        "goal": null,
        "order": null,
        "links": [],
-       "comments": [],
+       "comments": [
+        {
+         "by": "lead",
+         "t": 29876940.055466667,
+         "text": "yes: Agreed on the routing: #REF! is slot B (dev-2), ranges and functions are slot C (dev-2), and the shipped SHEET wrapper (any 10 returned as 11) is a SHEET defect (dev-1). I checked work/: B ERR.REF exists and errorFromCode(\"#REF!\") returns it. C handles ranges (#VALUE! outside a function, #REF! on a bad corner, values read column by column through ctx.get) and has all 9 functions. work/SHEET/sheet.mjs has no wrapper. Integrated work sheet passes the spec examples (=A100 #REF!, SUM 10, COUNT, AVERAGE of blanks #DIV/0!, IF, ROUND(1234,-2)=1200, recalc), and the unit tests for B, C and SHEET pass. O-3, O-4 and O-6 are already back in flow at the check stage, so I am not reopening anything: reviewer, please check them and release, please ship all three together so the shipped wrapper goes away. Interface note: ARCH has no rule on how C reads a range, so C reading cells through ctx.get is fine; D ctx.range staying value[][] rows is fine too."
+        }
+       ],
        "by": "dev-1",
        "created": 29876939.091183335,
-       "updated": 29876939.091183335,
+       "updated": 29876940.055483334,
        "history": [
         {
          "t": 29876939.091183335,
          "by": "dev-1",
          "state": "todo"
+        },
+        {
+         "t": 29876940.055483334,
+         "by": "lead",
+         "state": "done"
         }
        ],
        "ask": {
@@ -996,7 +1012,11 @@
         "addressedTo": null,
         "decider": "lead",
         "escalate": null,
-        "answer": null
+        "answer": {
+         "decision": "yes",
+         "text": "Agreed on the routing: #REF! is slot B (dev-2), ranges and functions are slot C (dev-2), and the shipped SHEET wrapper (any 10 returned as 11) is a SHEET defect (dev-1). I checked work/: B ERR.REF exists and errorFromCode(\"#REF!\") returns it. C handles ranges (#VALUE! outside a function, #REF! on a bad corner, values read column by column through ctx.get) and has all 9 functions. work/SHEET/sheet.mjs has no wrapper. Integrated work sheet passes the spec examples (=A100 #REF!, SUM 10, COUNT, AVERAGE of blanks #DIV/0!, IF, ROUND(1234,-2)=1200, recalc), and the unit tests for B, C and SHEET pass. O-3, O-4 and O-6 are already back in flow at the check stage, so I am not reopening anything: reviewer, please check them and release, please ship all three together so the shipped wrapper goes away. Interface note: ARCH has no rule on how C reads a range, so C reading cells through ctx.get is fine; D ctx.range staying value[][] rows is fine too.",
+         "t": 29876940.055466667
+        }
        }
       }
      ]
@@ -7705,6 +7725,342 @@
     "steps": [
      "test1:O-3"
     ]
+   },
+   {
+    "seq": 629,
+    "t": 29876939.585466668,
+    "type": "usage",
+    "session": "S-12",
+    "role": "reviewer",
+    "tokens": 83368,
+    "items": 4,
+    "source": "launcher"
+   },
+   {
+    "seq": 630,
+    "t": 29876939.585466668,
+    "type": "launch-finished",
+    "launch": "0404-reviewer",
+    "role": "reviewer",
+    "ok": true,
+    "tokens": 83368,
+    "cumulative": 1026754,
+    "cost": 0.888,
+    "sessions": [
+     "S-12"
+    ],
+    "abandoned": [],
+    "reason": null
+   },
+   {
+    "seq": 631,
+    "t": 29876939.589183334,
+    "type": "launch",
+    "role": "reviewer",
+    "msgs": [
+     "M-88",
+     "M-91",
+     "M-97"
+    ],
+    "tasks": [],
+    "why": "plan: next: 3 waiting, no session running"
+   },
+   {
+    "seq": 632,
+    "t": 29876939.698316667,
+    "type": "post-read",
+    "post": "P-2",
+    "by": "reviewer"
+   },
+   {
+    "seq": 633,
+    "t": 29876939.698316667,
+    "type": "ack",
+    "msg": "M-67",
+    "by": "reviewer",
+    "post": "P-2"
+   },
+   {
+    "seq": 634,
+    "t": 29876939.700416666,
+    "type": "session-open",
+    "session": "S-19",
+    "role": "reviewer"
+   },
+   {
+    "seq": 635,
+    "t": 29876939.700416666,
+    "type": "claim",
+    "msg": "M-88",
+    "run": "R-38"
+   },
+   {
+    "seq": 636,
+    "t": 29876939.700416666,
+    "type": "enter",
+    "run": "R-38",
+    "msg": "M-88",
+    "role": "reviewer",
+    "by": "reviewer",
+    "room": "review",
+    "order": "O-4",
+    "stage": "check",
+    "mode": "work",
+    "session": "S-19",
+    "item": 1
+   },
+   {
+    "seq": 637,
+    "t": 29876940.055466667,
+    "type": "item-comment",
+    "item": "ISS-12",
+    "by": "lead"
+   },
+   {
+    "seq": 638,
+    "t": 29876940.055483334,
+    "type": "item-update",
+    "item": "ISS-12",
+    "by": "lead",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 639,
+    "t": 29876940.055483334,
+    "type": "ask-answer",
+    "item": "ISS-12",
+    "by": "lead",
+    "decision": "yes"
+   },
+   {
+    "seq": 640,
+    "t": 29876940.3112,
+    "type": "usage",
+    "role": "lead",
+    "tokens": 59429,
+    "label": "outside a room",
+    "source": "launcher",
+    "launch": "0593-lead"
+   },
+   {
+    "seq": 641,
+    "t": 29876940.3112,
+    "type": "launch-finished",
+    "launch": "0593-lead",
+    "role": "lead",
+    "ok": true,
+    "tokens": 59429,
+    "cumulative": 384786,
+    "cost": 0.4018,
+    "sessions": [],
+    "abandoned": [],
+    "reason": null
+   },
+   {
+    "seq": 642,
+    "t": 29876940.5364,
+    "type": "advance",
+    "order": "O-4",
+    "stage": "check",
+    "by": "reviewer",
+    "verdict": "pass"
+   },
+   {
+    "seq": 643,
+    "t": 29876940.5364,
+    "type": "send",
+    "msg": "M-98",
+    "from": "lead",
+    "to": "lead",
+    "kind": "work",
+    "key": "O-4:uat:1",
+    "ref": "O-4",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 644,
+    "t": 29876940.5364,
+    "type": "done",
+    "msg": "M-88",
+    "run": "R-38"
+   },
+   {
+    "seq": 645,
+    "t": 29876940.5364,
+    "type": "send",
+    "msg": "M-99",
+    "from": "pool:checker",
+    "to": "lead",
+    "kind": "report",
+    "key": null,
+    "ref": "O-4",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 646,
+    "t": 29876940.5364,
+    "type": "leave",
+    "run": "R-38",
+    "role": "reviewer",
+    "order": "O-4",
+    "stage": "check",
+    "verdict": "pass",
+    "minutes": 0.8359833359718323
+   },
+   {
+    "seq": 647,
+    "t": 29876940.53641667,
+    "type": "claim",
+    "msg": "M-91",
+    "run": "R-39"
+   },
+   {
+    "seq": 648,
+    "t": 29876940.53641667,
+    "type": "enter",
+    "run": "R-39",
+    "msg": "M-91",
+    "role": "reviewer",
+    "by": "reviewer",
+    "room": "review",
+    "order": "O-6",
+    "stage": "check",
+    "mode": "work",
+    "session": "S-19",
+    "item": 2
+   },
+   {
+    "seq": 649,
+    "t": 29876940.54325,
+    "type": "advance",
+    "order": "O-4",
+    "stage": "uat",
+    "by": "lead",
+    "verdict": "pass"
+   },
+   {
+    "seq": 650,
+    "t": 29876940.54325,
+    "type": "send",
+    "msg": "M-100",
+    "from": "lead",
+    "to": "pool:release",
+    "kind": "work",
+    "key": "O-4:ship:1",
+    "ref": "O-4",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 651,
+    "t": 29876940.543266665,
+    "type": "session-open",
+    "session": "S-20",
+    "role": "release"
+   },
+   {
+    "seq": 652,
+    "t": 29876940.543266665,
+    "type": "claim",
+    "msg": "M-100",
+    "run": "R-40"
+   },
+   {
+    "seq": 653,
+    "t": 29876940.543266665,
+    "type": "enter",
+    "run": "R-40",
+    "msg": "M-100",
+    "role": "release",
+    "by": "release",
+    "room": "launch",
+    "order": "O-4",
+    "stage": "ship",
+    "mode": "work",
+    "session": "S-20",
+    "item": 1
+   },
+   {
+    "seq": 654,
+    "t": 29876940.543283332,
+    "type": "advance",
+    "order": "O-4",
+    "stage": "ship",
+    "by": "release",
+    "verdict": "pass"
+   },
+   {
+    "seq": 655,
+    "t": 29876940.543283332,
+    "type": "shipped",
+    "order": "O-4",
+    "lead": 17.285916663706303,
+    "loops": 1,
+    "priority": "next"
+   },
+   {
+    "seq": 656,
+    "t": 29876940.543283332,
+    "type": "done",
+    "msg": "M-100",
+    "run": "R-40"
+   },
+   {
+    "seq": 657,
+    "t": 29876940.543283332,
+    "type": "send",
+    "msg": "M-101",
+    "from": "pool:release",
+    "to": "lead",
+    "kind": "report",
+    "key": null,
+    "ref": "O-4",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 658,
+    "t": 29876940.543283332,
+    "type": "leave",
+    "run": "R-40",
+    "role": "release",
+    "order": "O-4",
+    "stage": "ship",
+    "verdict": "pass",
+    "minutes": 0.000016666948795318604
+   },
+   {
+    "seq": 659,
+    "t": 29876940.543283332,
+    "type": "session-close",
+    "session": "S-20",
+    "role": "release",
+    "items": 1,
+    "reason": "ship done",
+    "minutes": 0.00003333389759063721
+   },
+   {
+    "seq": 660,
+    "t": 29876940.55875,
+    "type": "item-update",
+    "item": "ISS-4",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 661,
+    "t": 29876940.55875,
+    "type": "supervisor-tick",
+    "steps": [
+     "uat:O-4",
+     "ship:O-4"
+    ]
    }
   ]
  },
@@ -9183,7 +9539,8 @@
       "ts": 29876936.984783333,
       "state": "open",
       "lease": null,
-      "acked": false
+      "acked": true,
+      "readAt": 29876939.6983
      }
     ],
     [
@@ -9650,8 +10007,11 @@
       },
       "priority": "next",
       "ts": 29876938.87695,
-      "state": "open",
-      "lease": null,
+      "state": "done",
+      "lease": {
+       "run": "R-38",
+       "until": 29876969.700416666
+      },
       "acked": false
      }
     ],
@@ -9717,7 +10077,10 @@
       "priority": "next",
       "ts": 29876939.16915,
       "state": "open",
-      "lease": null,
+      "lease": {
+       "run": "R-39",
+       "until": 29876970.53641667
+      },
       "acked": false
      }
     ],
@@ -9845,6 +10208,93 @@
       },
       "priority": "next",
       "ts": 29876939.406016666,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-98",
+     {
+      "id": "M-98",
+      "from": "lead",
+      "to": "lead",
+      "kind": "work",
+      "key": "O-4:uat:1",
+      "due": null,
+      "ref": "O-4",
+      "body": {
+       "stage": "uat",
+       "loops": 1
+      },
+      "priority": "next",
+      "ts": 29876940.5364,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-99",
+     {
+      "id": "M-99",
+      "from": "pool:checker",
+      "to": "lead",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-4",
+      "body": {
+       "stage": "check",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876940.5364,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-100",
+     {
+      "id": "M-100",
+      "from": "lead",
+      "to": "pool:release",
+      "kind": "work",
+      "key": "O-4:ship:1",
+      "due": null,
+      "ref": "O-4",
+      "body": {
+       "stage": "ship",
+       "loops": 1
+      },
+      "priority": "next",
+      "ts": 29876940.54325,
+      "state": "done",
+      "lease": {
+       "run": "R-40",
+       "until": 29876970.543266665
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-101",
+     {
+      "id": "M-101",
+      "from": "pool:release",
+      "to": "lead",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-4",
+      "body": {
+       "stage": "ship",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876940.543283332,
       "state": "open",
       "lease": null,
       "acked": false
@@ -10089,10 +10539,18 @@
     [
      "O-3:check:2",
      "M-97"
+    ],
+    [
+     "O-4:uat:1",
+     "M-98"
+    ],
+    [
+     "O-4:ship:1",
+     "M-100"
     ]
    ]
   },
-  "n": 97
+  "n": 101
  },
  "org": {
   "roles": {
@@ -10700,7 +11158,7 @@
       "spent": 0,
       "accept": "live/bench5/work/MOD-C/<the file ARCH.md names for slot C>, with exactly the exports and behaviour ARCH.md gives slot C, for every wave released so far (live/bench5/SPEC5.md), plus your own *.test.mjs in the same folder.",
       "words": null,
-      "stage": "check",
+      "stage": "done",
       "loops": 1,
       "created": 29876923.25736667,
       "history": [
@@ -10752,6 +11210,24 @@
         "by": "code",
         "verdict": "pass",
         "t": 29876938.87695
+       },
+       {
+        "stage": "check",
+        "by": "reviewer",
+        "verdict": "pass",
+        "t": 29876940.5364
+       },
+       {
+        "stage": "uat",
+        "by": "lead",
+        "verdict": "pass",
+        "t": 29876940.54325
+       },
+       {
+        "stage": "ship",
+        "by": "release",
+        "verdict": "pass",
+        "t": 29876940.543283332
        }
       ],
       "priority": "next",
@@ -11618,10 +12094,58 @@
       "state": "left",
       "session": "S-18"
      }
+    ],
+    [
+     "R-38",
+     {
+      "run": "R-38",
+      "msg": "M-88",
+      "role": "reviewer",
+      "by": "reviewer",
+      "consult": false,
+      "order": "O-4",
+      "stage": "check",
+      "loops": 1,
+      "entered": 29876939.700416666,
+      "state": "left",
+      "session": "S-19"
+     }
+    ],
+    [
+     "R-39",
+     {
+      "run": "R-39",
+      "msg": "M-91",
+      "role": "reviewer",
+      "by": "reviewer",
+      "consult": false,
+      "order": "O-6",
+      "stage": "check",
+      "loops": 3,
+      "entered": 29876940.53641667,
+      "state": "running",
+      "session": "S-19"
+     }
+    ],
+    [
+     "R-40",
+     {
+      "run": "R-40",
+      "msg": "M-100",
+      "role": "release",
+      "by": "release",
+      "consult": false,
+      "order": "O-4",
+      "stage": "ship",
+      "loops": 1,
+      "entered": 29876940.543266665,
+      "state": "left",
+      "session": "S-20"
+     }
     ]
    ]
   },
-  "n": 37,
+  "n": 40,
   "memory": {
    "__map": [
     [
@@ -11763,6 +12287,12 @@
        "did": "check on O-5: pass (loop 1)",
        "learned": "D range() gives rows per ARCH while SPEC orders ranges column by column; check C walks ranges column-major when it picks the first error.",
        "mistake": null
+      },
+      {
+       "t": 29876940.5364,
+       "did": "check on O-4: pass (loop 1)",
+       "learned": "C wave 2 walks ranges itself via ctx.get column-major, so D.range row order is moot; #REF! correctness depends on B shipping ERR.REF.",
+       "mistake": null
       }
      ]
     ],
@@ -11826,6 +12356,12 @@
       {
        "t": 29876939.287766665,
        "did": "ship on O-5: pass (loop 1)",
+       "learned": null,
+       "mistake": null
+      },
+      {
+       "t": 29876940.543283332,
+       "did": "ship on O-4: pass (loop 1)",
        "learned": null,
        "mistake": null
       }
@@ -12065,9 +12601,30 @@
       "open": false,
       "started": 29876939.287733335
      }
+    ],
+    [
+     "S-19",
+     {
+      "id": "S-19",
+      "role": "reviewer",
+      "items": 2,
+      "open": true,
+      "started": 29876939.700416666,
+      "launch": "0615-reviewer"
+     }
+    ],
+    [
+     "S-20",
+     {
+      "id": "S-20",
+      "role": "release",
+      "items": 1,
+      "open": false,
+      "started": 29876940.54325
+     }
     ]
    ]
   },
-  "nS": 18
+  "nS": 20
  }
 }
