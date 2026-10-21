@@ -1,0 +1,1504 @@
+{
+ "data": {
+  "spec": "storybook",
+  "tracker": {
+   "items": {
+    "__map": [
+     [
+      "ISS-1",
+      {
+       "id": "ISS-1",
+       "kind": "order",
+       "title": "Page about cats",
+       "body": "",
+       "state": "done",
+       "assignee": "writer-1",
+       "project": null,
+       "labels": [
+        "revised"
+       ],
+       "priority": 3,
+       "cycle": null,
+       "due": null,
+       "goal": null,
+       "order": "O-1",
+       "links": [],
+       "comments": [],
+       "by": "engine",
+       "created": 29876803.44925,
+       "updated": 29876804.636966668,
+       "history": [
+        {
+         "t": 29876803.44925,
+         "by": "engine",
+         "state": "todo"
+        },
+        {
+         "t": 29876803.44926667,
+         "by": "engine",
+         "state": "in-progress"
+        },
+        {
+         "t": 29876803.8491,
+         "by": "engine",
+         "state": "in-review"
+        },
+        {
+         "t": 29876804.636966668,
+         "by": "engine",
+         "state": "done"
+        }
+       ]
+      }
+     ]
+    ]
+   },
+   "projects": {
+    "__map": []
+   },
+   "cycles": {
+    "__map": []
+   },
+   "n": 1,
+   "nP": 0,
+   "nC": 0
+  },
+  "goals": {
+   "goals": {
+    "__map": []
+   },
+   "n": 0,
+   "reviews": []
+  }
+ },
+ "log": {
+  "events": [
+   {
+    "seq": 1,
+    "t": 29876803.44093333,
+    "type": "org-genesis",
+    "roles": [
+     "founder",
+     "cos",
+     "editor",
+     "writer-1",
+     "writer-2",
+     "reader",
+     "release"
+    ]
+   },
+   {
+    "seq": 2,
+    "t": 29876803.44093333,
+    "type": "flow-define",
+    "flow": "task@v1",
+    "by": "cos"
+   },
+   {
+    "seq": 3,
+    "t": 29876803.44093333,
+    "type": "flow-active",
+    "flow": "task@v1",
+    "by": "founder",
+    "words": "Approve the task flow for the Meta sandbox (founder: Decide for me, 2026-10-21)"
+   },
+   {
+    "seq": 4,
+    "t": 29876803.442366667,
+    "type": "order",
+    "order": "O-1",
+    "by": "cos",
+    "to": "editor",
+    "budget": 200000,
+    "flow": "task@v1",
+    "priority": "next",
+    "after": [],
+    "policy": null
+   },
+   {
+    "seq": 5,
+    "t": 29876803.442366667,
+    "type": "rule-applied",
+    "order": "O-1",
+    "task": "P1",
+    "source": "escapes",
+    "keys": [
+     "knownFalse"
+    ]
+   },
+   {
+    "seq": 6,
+    "t": 29876803.443683334,
+    "type": "delegate",
+    "order": "O-1",
+    "by": "editor",
+    "to": "writer-1",
+    "budget": 150000
+   },
+   {
+    "seq": 7,
+    "t": 29876803.443683334,
+    "type": "send",
+    "msg": "M-1",
+    "from": "editor",
+    "to": "writer-1",
+    "kind": "work",
+    "key": "O-1:build:0",
+    "ref": "O-1",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 8,
+    "t": 29876803.44925,
+    "type": "item-create",
+    "item": "ISS-1",
+    "kind": "order",
+    "by": "engine",
+    "assignee": "writer-1",
+    "project": null,
+    "goal": null
+   },
+   {
+    "seq": 9,
+    "t": 29876803.44926667,
+    "type": "item-update",
+    "item": "ISS-1",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 10,
+    "t": 29876803.44928333,
+    "type": "launch",
+    "role": "writer-1",
+    "msgs": [
+     "M-1"
+    ],
+    "tasks": [],
+    "why": "plan: next: 1 waiting, no session running"
+   },
+   {
+    "seq": 11,
+    "t": 29876803.51461667,
+    "type": "session-open",
+    "session": "S-1",
+    "role": "writer-1"
+   },
+   {
+    "seq": 12,
+    "t": 29876803.51461667,
+    "type": "claim",
+    "msg": "M-1",
+    "run": "R-1"
+   },
+   {
+    "seq": 13,
+    "t": 29876803.51461667,
+    "type": "enter",
+    "run": "R-1",
+    "msg": "M-1",
+    "role": "writer-1",
+    "by": "writer-1",
+    "room": "editorial",
+    "order": "O-1",
+    "stage": "build",
+    "mode": "work",
+    "session": "S-1",
+    "item": 1
+   },
+   {
+    "seq": 14,
+    "t": 29876803.688066665,
+    "type": "self-check",
+    "order": "O-1",
+    "task": "P1",
+    "by": "writer-1",
+    "stage": "build",
+    "pass": false,
+    "output": "missing /home/user/system-3-company/company/sibling/system3-meta/prototype/live/m3-drop/work/P1/page.md"
+   },
+   {
+    "seq": 15,
+    "t": 29876803.689533334,
+    "type": "advance",
+    "order": "O-1",
+    "stage": "build",
+    "by": "writer-1",
+    "verdict": "pass"
+   },
+   {
+    "seq": 16,
+    "t": 29876803.689533334,
+    "type": "code-stage",
+    "order": "O-1",
+    "stage": "test1"
+   },
+   {
+    "seq": 17,
+    "t": 29876803.689533334,
+    "type": "done",
+    "msg": "M-1",
+    "run": "R-1"
+   },
+   {
+    "seq": 18,
+    "t": 29876803.689533334,
+    "type": "send",
+    "msg": "M-2",
+    "from": "writer-1",
+    "to": "editor",
+    "kind": "report",
+    "key": null,
+    "ref": "O-1",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 19,
+    "t": 29876803.689533334,
+    "type": "leave",
+    "run": "R-1",
+    "role": "writer-1",
+    "order": "O-1",
+    "stage": "build",
+    "verdict": "pass",
+    "minutes": 0.17491666600108147
+   },
+   {
+    "seq": 20,
+    "t": 29876803.689533334,
+    "type": "session-wait",
+    "session": "S-1",
+    "role": "writer-1",
+    "minutes": 1.5
+   },
+   {
+    "seq": 21,
+    "t": 29876803.691483334,
+    "type": "advance",
+    "order": "O-1",
+    "stage": "test1",
+    "by": "code",
+    "verdict": "revise"
+   },
+   {
+    "seq": 22,
+    "t": 29876803.691483334,
+    "type": "reopen",
+    "order": "O-1",
+    "from": "test1",
+    "loops": 1,
+    "priority": "next"
+   },
+   {
+    "seq": 23,
+    "t": 29876803.6915,
+    "type": "send",
+    "msg": "M-3",
+    "from": "editor",
+    "to": "writer-1",
+    "kind": "work",
+    "key": "O-1:build:1",
+    "ref": "O-1",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 24,
+    "t": 29876803.6915,
+    "type": "item-update",
+    "item": "ISS-1",
+    "by": "engine",
+    "changes": [
+     "addLabels"
+    ]
+   },
+   {
+    "seq": 25,
+    "t": 29876803.6915,
+    "type": "supervisor-tick",
+    "steps": [
+     "test1:O-1"
+    ]
+   },
+   {
+    "seq": 26,
+    "t": 29876803.722966667,
+    "type": "claim",
+    "msg": "M-3",
+    "run": "R-2"
+   },
+   {
+    "seq": 27,
+    "t": 29876803.722966667,
+    "type": "enter",
+    "run": "R-2",
+    "msg": "M-3",
+    "role": "writer-1",
+    "by": "writer-1",
+    "room": "editorial",
+    "order": "O-1",
+    "stage": "build",
+    "mode": "work",
+    "session": "S-1",
+    "item": 2
+   },
+   {
+    "seq": 28,
+    "t": 29876803.787316665,
+    "type": "self-check",
+    "order": "O-1",
+    "task": "P1",
+    "by": "writer-1",
+    "stage": "build",
+    "pass": true,
+    "output": "ok: 72 words, reading ease 92"
+   },
+   {
+    "seq": 29,
+    "t": 29876803.845666666,
+    "type": "advance",
+    "order": "O-1",
+    "stage": "build",
+    "by": "writer-1",
+    "verdict": "pass"
+   },
+   {
+    "seq": 30,
+    "t": 29876803.845666666,
+    "type": "code-stage",
+    "order": "O-1",
+    "stage": "test1"
+   },
+   {
+    "seq": 31,
+    "t": 29876803.845666666,
+    "type": "done",
+    "msg": "M-3",
+    "run": "R-2"
+   },
+   {
+    "seq": 32,
+    "t": 29876803.845666666,
+    "type": "send",
+    "msg": "M-4",
+    "from": "writer-1",
+    "to": "editor",
+    "kind": "report",
+    "key": null,
+    "ref": "O-1",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 33,
+    "t": 29876803.845666666,
+    "type": "leave",
+    "run": "R-2",
+    "role": "writer-1",
+    "order": "O-1",
+    "stage": "build",
+    "verdict": "pass",
+    "minutes": 0.12269999831914902
+   },
+   {
+    "seq": 34,
+    "t": 29876803.845683333,
+    "type": "session-wait",
+    "session": "S-1",
+    "role": "writer-1",
+    "minutes": 1.5
+   },
+   {
+    "seq": 35,
+    "t": 29876803.8491,
+    "type": "advance",
+    "order": "O-1",
+    "stage": "test1",
+    "by": "code",
+    "verdict": "pass"
+   },
+   {
+    "seq": 36,
+    "t": 29876803.8491,
+    "type": "send",
+    "msg": "M-5",
+    "from": "editor",
+    "to": "pool:checker",
+    "kind": "work",
+    "key": "O-1:check:1",
+    "ref": "O-1",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 37,
+    "t": 29876803.849116668,
+    "type": "item-update",
+    "item": "ISS-1",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 38,
+    "t": 29876803.849116668,
+    "type": "supervisor-tick",
+    "steps": [
+     "test1:O-1"
+    ]
+   },
+   {
+    "seq": 39,
+    "t": 29876803.849116668,
+    "type": "launch",
+    "role": "reader",
+    "msgs": [
+     "M-5"
+    ],
+    "tasks": [],
+    "why": "plan: next: 1 waiting, no session running"
+   },
+   {
+    "seq": 40,
+    "t": 29876803.916333333,
+    "type": "refuse",
+    "rule": "hard",
+    "msg": "HARD: no work message M-5",
+    "argv": "room enter --msg=M-5 --role=reader"
+   },
+   {
+    "seq": 41,
+    "t": 29876804.259966668,
+    "type": "send",
+    "msg": "M-6",
+    "from": "editor",
+    "to": "pool:checker",
+    "kind": "work",
+    "key": "O-1:check:1",
+    "ref": "O-1",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 42,
+    "t": 29876804.31438333,
+    "type": "session-open",
+    "session": "S-2",
+    "role": "reader"
+   },
+   {
+    "seq": 43,
+    "t": 29876804.3144,
+    "type": "claim",
+    "msg": "M-6",
+    "run": "R-3"
+   },
+   {
+    "seq": 44,
+    "t": 29876804.3144,
+    "type": "enter",
+    "run": "R-3",
+    "msg": "M-6",
+    "role": "reader",
+    "by": "reader",
+    "room": "quality",
+    "order": "O-1",
+    "stage": "check",
+    "mode": "work",
+    "session": "S-2",
+    "item": 1
+   },
+   {
+    "seq": 45,
+    "t": 29876804.6271,
+    "type": "advance",
+    "order": "O-1",
+    "stage": "check",
+    "by": "reader",
+    "verdict": "pass"
+   },
+   {
+    "seq": 46,
+    "t": 29876804.627116665,
+    "type": "send",
+    "msg": "M-7",
+    "from": "editor",
+    "to": "editor",
+    "kind": "work",
+    "key": "O-1:uat:1",
+    "ref": "O-1",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 47,
+    "t": 29876804.627116665,
+    "type": "done",
+    "msg": "M-6",
+    "run": "R-3"
+   },
+   {
+    "seq": 48,
+    "t": 29876804.627116665,
+    "type": "send",
+    "msg": "M-8",
+    "from": "pool:checker",
+    "to": "editor",
+    "kind": "report",
+    "key": null,
+    "ref": "O-1",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 49,
+    "t": 29876804.627116665,
+    "type": "leave",
+    "run": "R-3",
+    "role": "reader",
+    "order": "O-1",
+    "stage": "check",
+    "verdict": "pass",
+    "minutes": 0.31271666660904884
+   },
+   {
+    "seq": 50,
+    "t": 29876804.627116665,
+    "type": "session-wait",
+    "session": "S-2",
+    "role": "reader",
+    "minutes": 1.5
+   },
+   {
+    "seq": 51,
+    "t": 29876804.63385,
+    "type": "advance",
+    "order": "O-1",
+    "stage": "uat",
+    "by": "editor",
+    "verdict": "pass"
+   },
+   {
+    "seq": 52,
+    "t": 29876804.63385,
+    "type": "send",
+    "msg": "M-9",
+    "from": "editor",
+    "to": "pool:release",
+    "kind": "work",
+    "key": "O-1:ship:1",
+    "ref": "O-1",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 53,
+    "t": 29876804.63385,
+    "type": "session-open",
+    "session": "S-3",
+    "role": "release"
+   },
+   {
+    "seq": 54,
+    "t": 29876804.63385,
+    "type": "claim",
+    "msg": "M-9",
+    "run": "R-4"
+   },
+   {
+    "seq": 55,
+    "t": 29876804.63385,
+    "type": "enter",
+    "run": "R-4",
+    "msg": "M-9",
+    "role": "release",
+    "by": "release",
+    "room": "launch",
+    "order": "O-1",
+    "stage": "ship",
+    "mode": "work",
+    "session": "S-3",
+    "item": 1
+   },
+   {
+    "seq": 56,
+    "t": 29876804.633866668,
+    "type": "advance",
+    "order": "O-1",
+    "stage": "ship",
+    "by": "release",
+    "verdict": "pass"
+   },
+   {
+    "seq": 57,
+    "t": 29876804.633866668,
+    "type": "shipped",
+    "order": "O-1",
+    "lead": 1.191500000655651,
+    "loops": 1,
+    "priority": "next"
+   },
+   {
+    "seq": 58,
+    "t": 29876804.633866668,
+    "type": "done",
+    "msg": "M-9",
+    "run": "R-4"
+   },
+   {
+    "seq": 59,
+    "t": 29876804.633866668,
+    "type": "send",
+    "msg": "M-10",
+    "from": "pool:release",
+    "to": "editor",
+    "kind": "report",
+    "key": null,
+    "ref": "O-1",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 60,
+    "t": 29876804.633866668,
+    "type": "leave",
+    "run": "R-4",
+    "role": "release",
+    "order": "O-1",
+    "stage": "ship",
+    "verdict": "pass",
+    "minutes": 0.000016666948795318604
+   },
+   {
+    "seq": 61,
+    "t": 29876804.633866668,
+    "type": "session-close",
+    "session": "S-3",
+    "role": "release",
+    "items": 1,
+    "reason": "ship done",
+    "minutes": 0.000016666948795318604
+   },
+   {
+    "seq": 62,
+    "t": 29876804.636966668,
+    "type": "item-update",
+    "item": "ISS-1",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 63,
+    "t": 29876804.636966668,
+    "type": "supervisor-tick",
+    "steps": [
+     "uat:O-1",
+     "ship:O-1"
+    ]
+   },
+   {
+    "seq": 64,
+    "t": 29876805.347533334,
+    "type": "session-close",
+    "session": "S-1",
+    "role": "writer-1",
+    "items": 2,
+    "reason": "queue empty after wait",
+    "minutes": 1.8329166658222675
+   },
+   {
+    "seq": 65,
+    "t": 29876805.52335,
+    "type": "usage",
+    "session": "S-1",
+    "role": "writer-1",
+    "tokens": 34506,
+    "items": 2,
+    "source": "launcher"
+   },
+   {
+    "seq": 66,
+    "t": 29876805.52335,
+    "type": "launch-finished",
+    "launch": "0010-writer-1",
+    "role": "writer-1",
+    "ok": true,
+    "tokens": 34506,
+    "cumulative": 197892,
+    "cost": 0.1445,
+    "sessions": [
+     "S-1"
+    ],
+    "abandoned": [],
+    "reason": null
+   },
+   {
+    "seq": 67,
+    "t": 29876806.129116666,
+    "type": "session-close",
+    "session": "S-2",
+    "role": "reader",
+    "items": 1,
+    "reason": "queue empty after wait",
+    "minutes": 1.8147333338856697
+   },
+   {
+    "seq": 68,
+    "t": 29876806.302333333,
+    "type": "usage",
+    "session": "S-2",
+    "role": "reader",
+    "tokens": 39017,
+    "items": 1,
+    "source": "launcher"
+   },
+   {
+    "seq": 69,
+    "t": 29876806.302333333,
+    "type": "launch-finished",
+    "launch": "0039-reader",
+    "role": "reader",
+    "ok": true,
+    "tokens": 39017,
+    "cumulative": 390782,
+    "cost": 0.2548,
+    "sessions": [
+     "S-2"
+    ],
+    "abandoned": [],
+    "reason": null
+   }
+  ]
+ },
+ "mailbox": {
+  "msgs": {
+   "__map": [
+    [
+     "M-1",
+     {
+      "id": "M-1",
+      "from": "editor",
+      "to": "writer-1",
+      "kind": "work",
+      "key": "O-1:build:0",
+      "due": null,
+      "ref": "O-1",
+      "body": {
+       "stage": "build",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876803.443683334,
+      "state": "done",
+      "lease": {
+       "run": "R-1",
+       "until": 29876833.51461667
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-2",
+     {
+      "id": "M-2",
+      "from": "writer-1",
+      "to": "editor",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-1",
+      "body": {
+       "stage": "build",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876803.689533334,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-3",
+     {
+      "id": "M-3",
+      "from": "editor",
+      "to": "writer-1",
+      "kind": "work",
+      "key": "O-1:build:1",
+      "due": null,
+      "ref": "O-1",
+      "body": {
+       "stage": "build",
+       "loops": 1
+      },
+      "priority": "next",
+      "ts": 29876803.6915,
+      "state": "done",
+      "lease": {
+       "run": "R-2",
+       "until": 29876833.722966667
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-4",
+     {
+      "id": "M-4",
+      "from": "writer-1",
+      "to": "editor",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-1",
+      "body": {
+       "stage": "build",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876803.845666666,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-6",
+     {
+      "id": "M-6",
+      "from": "editor",
+      "to": "pool:checker",
+      "kind": "work",
+      "key": "O-1:check:1",
+      "due": null,
+      "ref": "O-1",
+      "body": {
+       "stage": "check",
+       "loops": 1
+      },
+      "priority": "next",
+      "ts": 29876804.259966668,
+      "state": "done",
+      "lease": {
+       "run": "R-3",
+       "until": 29876834.3144
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-7",
+     {
+      "id": "M-7",
+      "from": "editor",
+      "to": "editor",
+      "kind": "work",
+      "key": "O-1:uat:1",
+      "due": null,
+      "ref": "O-1",
+      "body": {
+       "stage": "uat",
+       "loops": 1
+      },
+      "priority": "next",
+      "ts": 29876804.6271,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-8",
+     {
+      "id": "M-8",
+      "from": "pool:checker",
+      "to": "editor",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-1",
+      "body": {
+       "stage": "check",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876804.627116665,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-9",
+     {
+      "id": "M-9",
+      "from": "editor",
+      "to": "pool:release",
+      "kind": "work",
+      "key": "O-1:ship:1",
+      "due": null,
+      "ref": "O-1",
+      "body": {
+       "stage": "ship",
+       "loops": 1
+      },
+      "priority": "next",
+      "ts": 29876804.63385,
+      "state": "done",
+      "lease": {
+       "run": "R-4",
+       "until": 29876834.63385
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-10",
+     {
+      "id": "M-10",
+      "from": "pool:release",
+      "to": "editor",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-1",
+      "body": {
+       "stage": "ship",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876804.633866668,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ]
+   ]
+  },
+  "keys": {
+   "__map": [
+    [
+     "O-1:build:0",
+     "M-1"
+    ],
+    [
+     "O-1:build:1",
+     "M-3"
+    ],
+    [
+     "O-1:check:1",
+     "M-6"
+    ],
+    [
+     "O-1:uat:1",
+     "M-7"
+    ],
+    [
+     "O-1:ship:1",
+     "M-9"
+    ]
+   ]
+  },
+  "n": 10
+ },
+ "org": {
+  "roles": {
+   "__map": [
+    [
+     "founder",
+     {
+      "skills": [],
+      "rituals": [],
+      "active": true,
+      "id": "founder",
+      "level": "founder",
+      "human": true,
+      "room": "lobby",
+      "floor": 1
+     }
+    ],
+    [
+     "cos",
+     {
+      "skills": [],
+      "rituals": [],
+      "active": true,
+      "id": "cos",
+      "level": "chief-of-staff",
+      "reportsTo": "founder",
+      "room": "ceo-office",
+      "floor": 1
+     }
+    ],
+    [
+     "editor",
+     {
+      "skills": [
+       "manage"
+      ],
+      "rituals": [],
+      "active": true,
+      "id": "editor",
+      "level": "manager",
+      "reportsTo": "cos",
+      "lane": "e",
+      "room": "editorial",
+      "floor": 2
+     }
+    ],
+    [
+     "writer-1",
+     {
+      "skills": [
+       "write"
+      ],
+      "rituals": [],
+      "active": true,
+      "id": "writer-1",
+      "level": "builder",
+      "reportsTo": "editor",
+      "lane": "e",
+      "room": "editorial",
+      "floor": 2
+     }
+    ],
+    [
+     "writer-2",
+     {
+      "skills": [
+       "write"
+      ],
+      "rituals": [],
+      "active": true,
+      "id": "writer-2",
+      "level": "builder",
+      "reportsTo": "editor",
+      "lane": "e",
+      "room": "editorial",
+      "floor": 2
+     }
+    ],
+    [
+     "reader",
+     {
+      "skills": [
+       "read"
+      ],
+      "rituals": [],
+      "active": true,
+      "id": "reader",
+      "level": "checker",
+      "reportsTo": "cos",
+      "lane": "q",
+      "room": "quality",
+      "floor": 3
+     }
+    ],
+    [
+     "release",
+     {
+      "skills": [
+       "release"
+      ],
+      "rituals": [],
+      "active": true,
+      "id": "release",
+      "level": "release",
+      "reportsTo": "cos",
+      "lane": "r",
+      "room": "launch",
+      "floor": 3
+     }
+    ]
+   ]
+  },
+  "changes": {
+   "__map": []
+  },
+  "n": 0,
+  "rooms": {
+   "__map": [
+    [
+     "lobby",
+     {
+      "id": "lobby",
+      "floor": 1,
+      "kind": "lobby"
+     }
+    ],
+    [
+     "ceo-office",
+     {
+      "id": "ceo-office",
+      "floor": 1,
+      "kind": "office"
+     }
+    ],
+    [
+     "editorial",
+     {
+      "id": "editorial",
+      "floor": 2,
+      "kind": "lane",
+      "lane": "e"
+     }
+    ],
+    [
+     "story-room",
+     {
+      "id": "story-room",
+      "floor": 2,
+      "kind": "meeting",
+      "capacity": 6
+     }
+    ],
+    [
+     "quality",
+     {
+      "id": "quality",
+      "floor": 3,
+      "kind": "quality"
+     }
+    ],
+    [
+     "launch",
+     {
+      "id": "launch",
+      "floor": 3,
+      "kind": "launch"
+     }
+    ]
+   ]
+  }
+ },
+ "engine": {
+  "flows": {
+   "__map": [
+    [
+     "task@v1",
+     {
+      "stages": [
+       {
+        "stage": "build",
+        "signer": "builder",
+        "evidence": [
+         "live/work/<task>/page.md"
+        ]
+       },
+       {
+        "stage": "test1",
+        "signer": "code",
+        "evidence": []
+       },
+       {
+        "stage": "check",
+        "signer": "checker",
+        "evidence": [
+         "review notes"
+        ]
+       },
+       {
+        "stage": "uat",
+        "signer": "orderer",
+        "evidence": [
+         "hidden acceptance tests"
+        ]
+       },
+       {
+        "stage": "ship",
+        "signer": "release",
+        "evidence": [
+         "copied to live/shipped/"
+        ]
+       }
+      ],
+      "name": "task",
+      "key": "task@v1",
+      "state": "active",
+      "by": "cos"
+     }
+    ]
+   ]
+  },
+  "active": {
+   "__map": [
+    [
+     "task",
+     "task@v1"
+    ]
+   ]
+  },
+  "orders": {
+   "__map": [
+    [
+     "O-1",
+     {
+      "id": "O-1",
+      "flow": "task@v1",
+      "title": "Page about cats",
+      "chain": [
+       "cos",
+       "editor",
+       "writer-1"
+      ],
+      "orderer": "cos",
+      "manager": "editor",
+      "builder": "writer-1",
+      "checker": "reader",
+      "budget": 200000,
+      "spent": 0,
+      "accept": "A page for ages 5-7: a '# Title' line, then 30-90 words about why cats purr.",
+      "words": null,
+      "stage": "done",
+      "loops": 1,
+      "created": 29876803.442366667,
+      "history": [
+       {
+        "stage": "build",
+        "by": "writer-1",
+        "verdict": "pass",
+        "t": 29876803.689533334
+       },
+       {
+        "stage": "test1",
+        "by": "code",
+        "verdict": "revise",
+        "t": 29876803.691483334,
+        "findings": "missing /home/user/system-3-company/company/sibling/system3-meta/prototype/live/m3-drop/work/P1/page.md"
+       },
+       {
+        "stage": "build",
+        "by": "writer-1",
+        "verdict": "pass",
+        "t": 29876803.845666666
+       },
+       {
+        "stage": "test1",
+        "by": "code",
+        "verdict": "pass",
+        "t": 29876803.8491
+       },
+       {
+        "stage": "check",
+        "by": "reader",
+        "verdict": "pass",
+        "t": 29876804.6271
+       },
+       {
+        "stage": "uat",
+        "by": "editor",
+        "verdict": "pass",
+        "t": 29876804.63385
+       },
+       {
+        "stage": "ship",
+        "by": "release",
+        "verdict": "pass",
+        "t": 29876804.633866668
+       }
+      ],
+      "priority": "next",
+      "due": null,
+      "after": [],
+      "blocked": false,
+      "policyVersion": null,
+      "fromContract": null,
+      "task": "P1",
+      "checks": {
+       "titleLine": true,
+       "minWords": 30,
+       "maxWords": 90,
+       "minReadingEase": 60,
+       "knownFalse": [
+        {
+         "pattern": "clouds?\\b[^.]{0,40}\\btraps?\\b[^.]{0,20}\\bheat",
+         "why": "on Venus the thick carbon dioxide air traps the heat; its clouds reflect most sunlight away"
+        }
+       ]
+      },
+      "orphanSince": null,
+      "findings": "missing /home/user/system-3-company/company/sibling/system3-meta/prototype/live/m3-drop/work/P1/page.md"
+     }
+    ]
+   ]
+  },
+  "approvals": {
+   "__map": []
+  },
+  "n": {
+   "O": 1,
+   "A": 0
+  },
+  "limits": {
+   "chief-of-staff": 500000,
+   "manager": 250000
+  },
+  "policies": {
+   "__map": []
+  },
+  "contracts": {
+   "__map": []
+  }
+ },
+ "rooms": {
+  "runs": {
+   "__map": [
+    [
+     "R-1",
+     {
+      "run": "R-1",
+      "msg": "M-1",
+      "role": "writer-1",
+      "by": "writer-1",
+      "consult": false,
+      "order": "O-1",
+      "stage": "build",
+      "loops": 0,
+      "entered": 29876803.51461667,
+      "state": "left",
+      "session": "S-1"
+     }
+    ],
+    [
+     "R-2",
+     {
+      "run": "R-2",
+      "msg": "M-3",
+      "role": "writer-1",
+      "by": "writer-1",
+      "consult": false,
+      "order": "O-1",
+      "stage": "build",
+      "loops": 1,
+      "entered": 29876803.722966667,
+      "state": "left",
+      "session": "S-1"
+     }
+    ],
+    [
+     "R-3",
+     {
+      "run": "R-3",
+      "msg": "M-6",
+      "role": "reader",
+      "by": "reader",
+      "consult": false,
+      "order": "O-1",
+      "stage": "check",
+      "loops": 1,
+      "entered": 29876804.3144,
+      "state": "left",
+      "session": "S-2"
+     }
+    ],
+    [
+     "R-4",
+     {
+      "run": "R-4",
+      "msg": "M-9",
+      "role": "release",
+      "by": "release",
+      "consult": false,
+      "order": "O-1",
+      "stage": "ship",
+      "loops": 1,
+      "entered": 29876804.63385,
+      "state": "left",
+      "session": "S-3"
+     }
+    ]
+   ]
+  },
+  "n": 4,
+  "memory": {
+   "__map": [
+    [
+     "writer-1",
+     [
+      {
+       "t": 29876803.689533334,
+       "did": "build on O-1: pass (loop 0)",
+       "learned": "Count body words excluding the title line to verify the 30-90 range.",
+       "mistake": null
+      },
+      {
+       "t": 29876803.845666666,
+       "did": "build on O-1: pass (loop 1)",
+       "learned": "Run check and read its result before handing in; the deliverable must be named page.md.",
+       "mistake": null
+      }
+     ]
+    ],
+    [
+     "reader",
+     [
+      {
+       "t": 29876804.627116665,
+       "did": "check on O-1: pass (loop 1)",
+       "learned": "If room enter says the message is missing, check faults.jsonl; a dropped check message can be resent with mail dup <O>.",
+       "mistake": null
+      }
+     ]
+    ],
+    [
+     "release",
+     [
+      {
+       "t": 29876804.633866668,
+       "did": "ship on O-1: pass (loop 1)",
+       "learned": null,
+       "mistake": null
+      }
+     ]
+    ]
+   ]
+  },
+  "sessions": {
+   "__map": [
+    [
+     "S-1",
+     {
+      "id": "S-1",
+      "role": "writer-1",
+      "items": 2,
+      "open": false,
+      "started": 29876803.51461667,
+      "launch": "0010-writer-1",
+      "waitUntil": null
+     }
+    ],
+    [
+     "S-2",
+     {
+      "id": "S-2",
+      "role": "reader",
+      "items": 1,
+      "open": false,
+      "started": 29876804.31438333,
+      "launch": "0039-reader",
+      "waitUntil": null
+     }
+    ],
+    [
+     "S-3",
+     {
+      "id": "S-3",
+      "role": "release",
+      "items": 1,
+      "open": false,
+      "started": 29876804.63385
+     }
+    ]
+   ]
+  },
+  "nS": 3
+ }
+}

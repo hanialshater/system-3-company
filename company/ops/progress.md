@@ -1,3 +1,37 @@
+## 2026-10-21 · chief-of-staff (for System 3 Meta, as vp-meta) · M3 reached: the hands-free company (Benchmark 4)
+
+Founder: "update tools.md, then go with Agent SDK for M3, also continue previous tasks, keep going decide for me until we reach a big milestone".
+
+**Built** (company/sibling/system3-meta/prototype, 75 tests):
+- **Sessions that wait for their next item** (`room next --wait`). This is the token lever.
+- **The company escape list.** `escape add` adds `knownFalse` checks to every text order; it is seeded with the Venus claim.
+- **The Agent SDK launcher** (`launcher/`, pinned 0.3.293, decision `decisions/2026-10-21-agent-sdk-launcher.md`).
+- **Fault recovery in the supervisor:** the regression gate, the watchdog, `order reopen`, and announcements in briefs.
+- **`mail dup`** is now managers-only.
+- **TOOLS.md** is current.
+
+**Ran:**
+- Benchmark 4 as the M3 exit run (prototype/BENCH4.md, record in live/bench4-record): a 10-order spreadsheet engine with injected faults.
+- Results:
+  - 10/10 shipped, and every hidden test passes under the changed requirement;
+  - 9 sessions, 0 typed commands, 8 min 52 s;
+  - 45.3k tokens per order (live run 3: 102.6k), $3.88 in all.
+- Faults: crash, corruption and changed requirement were recovered by code. The lost-message fault never fired in the run.
+
+**Believe (sure on the mechanics, n = 1 on cost):**
+- M3 is met.
+- The cost figure is not like for like: these sessions carry no company CLAUDE.md.
+- The task proved too easy with a precise spec: 0 revise loops.
+
+**Next:**
+1. A live watchdog test, injected from the tick.
+2. A like-for-like cost run.
+3. A harder task built on an ambiguous spec.
+4. M1 (kernel repo) and M2 (generator).
+
+**Blocked:** nothing.
+
+**Note:** `npm run check` reports 811 errors that predate this work; none are in company/sibling.
 ## 2026-10-21 · chief-of-staff (for System 3 Meta, as vp-meta's ISS-1/ISS-3) · Benchmark 3: the kickoff ablation
 
 **Done:**

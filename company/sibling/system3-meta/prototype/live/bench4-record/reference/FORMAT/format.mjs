@@ -1,0 +1,1 @@
+export function display(v) { if (v === "" || v == null) return ""; if (typeof v === "boolean") return v ? "TRUE" : "FALSE"; if (typeof v === "number") return String(Math.round(v * 1e9) / 1e9); return String(v); }

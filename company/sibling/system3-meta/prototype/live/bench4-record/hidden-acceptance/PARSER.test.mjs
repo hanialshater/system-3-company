@@ -1,0 +1,8 @@
+import { load, category, THROWS } from "./kit.mjs";
+const m = await load("PARSER", "parse.mjs");
+const P = (s) => m.parse(s);
+const n = (v) => ({ type: "num", value: v }), b = (op, left, right) => ({ type: "bin", op, left, right }), r = (ref) => ({ type: "ref", ref });
+category(m, "atoms", [["1", n(1)], ['"x"', { type: "str", value: "x" }], ["TRUE", { type: "bool", value: true }], ["false", { type: "bool", value: false }], ["a1", r("A1")], ["AA1", r("AA1")], ["A1:B3", { type: "range", from: "A1", to: "B3" }], ["(((2)))", n(2)]], P);
+category(m, "calls", [["SUM()", { type: "call", name: "SUM", args: [] }], ["sum(1,A1:A2)", { type: "call", name: "SUM", args: [n(1), { type: "range", from: "A1", to: "A2" }] }], ["IF(1,2,3)", { type: "call", name: "IF", args: [n(1), n(2), n(3)] }], ["ABS(-1)", { type: "call", name: "ABS", args: [{ type: "neg", arg: n(1) }] }]], P);
+category(m, "precedence", [["1+2*3", b("+", n(1), b("*", n(2), n(3)))], ["(1+2)*3", b("*", b("+", n(1), n(2)), n(3))], ["10-4-3", b("-", b("-", n(10), n(4)), n(3))], ["2^3^2", b("^", n(2), b("^", n(3), n(2)))], ["-2^2", b("^", { type: "neg", arg: n(2) }, n(2))], ["1+1=2", b("=", b("+", n(1), n(1)), n(2))], ['"a"&1+2', b("&", { type: "str", value: "a" }, b("+", n(1), n(2)))], ["+5", n(5)], ["--4", { type: "neg", arg: { type: "neg", arg: n(4) } }], ["8/2/2", b("/", b("/", n(8), n(2)), n(2))], ["1<2&3", b("<", n(1), b("&", n(2), n(3)))]], P);
+category(m, "bad syntax throws", [["1+", THROWS], ["(1+2", THROWS], ["1 2", THROWS], [")", THROWS], ["", THROWS], ["SUM(1,", THROWS], ["A1:", THROWS], ["1.2.3", THROWS]], (s) => { m.parse(s); return "returned"; });

@@ -92,3 +92,11 @@ test("order reopen: only the manager or the founder reopens a shipped order, wit
   assert.equal(r.out.stage, "build");
   assert.equal(queue(dir, "writer-1")[0].order, a.o);
 });
+
+test("mail dup: only a manager (or above) resends work, and the resend is recorded", () => {
+  const dir = company();
+  const o = order(dir, "P1");
+  assert.notEqual(cli(dir, ["mail", "dup", o, "--by=reader"]).code, 0);
+  assert.equal(cli(dir, ["mail", "dup", o, "--by=editor"]).code, 0);
+  assert.ok(state(dir).log.events.some((e) => e.type === "mail-dup" && e.by === "editor"));
+});

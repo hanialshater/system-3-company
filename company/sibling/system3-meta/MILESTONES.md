@@ -52,16 +52,27 @@ Each milestone gets a committed prediction before it starts, and is judged on it
 |---|---|---|---|
 | M1 | Kernel v1: the prototype in its own repo, durable store | All tests and the live-run procedure pass from the new repo | 1-2 weeks |
 | M2 | Company spec and generator | One spec regenerates the toy company exactly; a second spec (e.g. a research-report company) generates and validates | 1-2 weeks |
-| M3 | Hands-free operation: an automatic launcher (workflow or Agent SDK); the supervisor unattended | 10-order live run, zero manual launches, every crash recovered, cost per order within 10% of live run 3 | about 1 week |
+| M3 | Hands-free operation: an automatic launcher (workflow or Agent SDK); the supervisor unattended | 10-order live run, zero manual launches, every crash recovered, cost per order within 10% of live run 3 | **reached 2026-10-21** (prototype/BENCH4.md: 10/10 shipped, 9 sessions, 0 typed commands, 45.3k per order, crash + corruption + changed requirement recovered by code) |
 | M4 | Second domain: non-code check adapters; acceptance tests written with the order | A non-code company ships 10 accepted outcomes; defects, cost and lead time measured | 2-3 weeks |
 | M5 | Governance and budgets: lane budgets, external-action approvals, a human inbox, an HQ view | Over-budget and boundary-crossing actions refused or escalated in tests; the founder runs a week from the queue alone | 1-2 weeks |
 | M6 | Another operator, another use case (roadmap phase 12) | Someone other than the founder generates and runs a company from a spec, and it delivers outcomes they accept; founder interventions counted | open |
 
 **Recommended next (revised 2026-10-21, founder: "not so fast"):** finish the tools first, in the order in [TOOLS.md](TOOLS.md): channels and broadcast, tracker, group meetings, rituals, newsletter, approvals and org changes in the CLI, document registry. M1-M6 follow.
 
+## Status after M3 (2026-10-21)
+
+- **Done:**
+  - The launcher is the Agent SDK (founder's choice; `prototype/launcher/`, decision `decisions/2026-10-21-agent-sdk-launcher.md`).
+  - Benchmark 4 is M3's exit run.
+- **Open from it:**
+  - a live test of the watchdog;
+  - a like-for-like cost run;
+  - a harder, ambiguous task.
+- **Next milestone:** M1 (the kernel in its own repo) and M2 (spec → generator). Both are mechanical now that the kernel runs unattended.
+
 ## Founder decisions needed
 
 1. Approve, change or decline the Meta VP design (2026-10-17-vp-design.md), so Meta has an owner.
 2. Choose the first non-lesson use case for M4, and its external acceptance measure.
-3. Choose the launcher for M3: Claude Code workflows or the Agent SDK.
+3. ~~Choose the launcher for M3~~: the Agent SDK (founder, 2026-10-21).
 4. Set the budget for M1-M3.

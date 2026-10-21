@@ -1,0 +1,10 @@
+import { load, category } from "./kit.mjs";
+const m = await load("EVALUATOR", "evaluate.mjs");
+const cells = { A1: 5, A2: "hi", A3: "", B1: "#DIV/0!", B2: true };
+const n = (v) => ({ type: "num", value: v }), s = (v) => ({ type: "str", value: v }), r = (ref) => ({ type: "ref", ref }), b = (op, left, right) => ({ type: "bin", op, left, right });
+const ev = (ast) => m.evaluate(ast, (c) => cells[c] ?? "");
+category(m, "atoms and refs", [[n(1), 1], [s("x"), "x"], [{ type: "bool", value: true }, true], [r("A1"), 5], [r("C9"), ""], [r("AA1"), "#REF!"], [{ type: "range", from: "A1", to: "A2" }, "#VALUE!"]], ev);
+category(m, "arithmetic", [[b("+", n(1), n(2)), 3], [b("-", r("A1"), n(2)), 3], [b("*", r("A3"), n(4)), 0], [b("/", n(7), n(2)), 3.5], [b("^", n(2), n(10)), 1024], [{ type: "neg", arg: r("A1") }, -5], [b("+", r("B2"), n(1)), 2], [b("+", s("5"), n(1)), 6], [b("^", n(-8), n(1 / 3)), "#VALUE!"]], ev);
+category(m, "text and comparison", [[b("&", s("a"), n(1)), "a1"], [b("&", r("A2"), r("A3")), "hi"], [b("&", s("x"), { type: "bool", value: true }), "xTRUE"], [b("=", s("a"), s("A")), true], [b(">", s("b"), s("a")), true], [b("<", n(1), n(2)), true], [b("<>", n(2), n(2)), false], [b("<=", r("A3"), n(0)), true]], ev);
+category(m, "errors", [[b("/", n(1), n(0)), "#DIV/0!"], [b("+", s("a"), n(1)), "#VALUE!"], [{ type: "neg", arg: s("x") }, "#VALUE!"], [b("+", r("B1"), n(1)), "#DIV/0!"], [b("+", b("/", n(1), n(0)), r("AA1")), "#DIV/0!"], [b("+", r("AA1"), b("/", n(1), n(0))), "#REF!"], [b("=", r("B1"), r("B1")), "#DIV/0!"]], ev);
+category(m, "calls", [[{ type: "call", name: "SUM", args: [n(1), r("A1")] }, 6], [{ type: "call", name: "IF", args: [b(">", r("A1"), n(1)), s("big"), s("small")] }, "big"], [{ type: "call", name: "NOPE", args: [] }, "#NAME?"], [{ type: "call", name: "LEN", args: [r("A2")] }, 2]], ev);

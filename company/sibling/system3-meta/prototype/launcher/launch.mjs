@@ -76,7 +76,7 @@ async function run(ev) {
   const cost = mu.reduce((a, u) => a + (u.costUSD ?? 0), 0);
   const reason = ok ? null : (error ?? result?.subtype ?? "no result");
   const rec = meta("launch", "finished", `--launch=${id}`, `--role=${ev.role}`, `--tokens=${tokens}`, `--cumulative=${cumulative}`, `--cost=${cost.toFixed(4)}`, `--ok=${ok}`, ...(reason ? [`--reason=${reason}`] : []));
-  note({ event: "finish", launch: id, n: k, role: ev.role, ok, reason, tokens, cumulative, cost: Number(cost.toFixed(4)), turns: result?.num_turns ?? null, minutes: Math.round((Date.now() - t0) / 600) / 100, sessions: rec?.sessions ?? [], abandoned: rec?.abandoned ?? [], said: String(result?.result ?? "").slice(0, 600) });
+  note({ event: "finish", launch: id, n: k, role: ev.role, ok, reason, tokens, cumulative, cost: Number(cost.toFixed(4)), turns: result?.num_turns ?? null, minutes: Math.round((Date.now() - t0) / 600) / 100, sessions: rec?.sessions ?? [], abandoned: rec?.abandoned ?? [], said: String(result?.result ?? "").slice(0, 4000) });
 }
 
 function pump() {

@@ -23,7 +23,7 @@
 //   node meta.mjs flow advance <O> --stage=test1 --by=code    runs the builder's tests itself; signs pass or revise
 //   node meta.mjs flow advance <O> --stage=<s> --by=<role> --evidence=… [--verdict=…] [--findings=…]
 //   node meta.mjs flow show <O> | flow status
-//   node meta.mjs mail dup <O>                                send the current stage's notification again (fault F1)
+//   node meta.mjs mail dup <O> --by=<manager>                 send the current stage's notification again (managers only)
 //   node meta.mjs batch --file=<ops.json>   [{cmd, sub?, arg?, args:{…}}, …] on one state, all or nothing; ${n.field} reads result n
 //   node meta.mjs building plan|floor-propose|room-add|room-rename|room-retire|book|cancel …   floors, rooms, bookings (API.md §11)
 //   node meta.mjs approval queue --approver=<role>  ·  approval decide --ids=… --by --decision --words --channel
@@ -228,7 +228,11 @@ function dispatch(co, cmd, sub, arg) {
   }
   if (cmd === "flow" && sub === "show") { const o = engine.orders.get(arg); return { ...o, messages: mailbox.thread(arg).map((m) => ({ id: m.id, stage: m.body?.stage, state: m.state, lease: m.lease })) }; }
   if (cmd === "flow" && sub === "status") return engine.status();
-  if (cmd === "mail" && sub === "dup") { const o = engine.orders.get(arg); const m = engine.notifyStage(o, { duplicate: true }); return { order: arg, msg: m?.id, open_work_messages: mailbox.thread(arg).filter((x) => x.kind === "work" && x.state === "open").length }; }
+  // a resend is a manager's act, recorded with who did it (benchmark 4's F3 test: a checker resent its own lost
+  // message with an unguarded `mail dup`; the watchdog does it by code)
+  if (cmd === "mail" && sub === "dup") { need("by"); const o = engine.orders.get(arg); if (!o) throw new Refused(`no order ${arg}`);
+    const lvl = org.role(opt.by)?.level; if (!["founder", "chief-of-staff", "manager"].includes(lvl)) throw new Refused(`${opt.by} may not resend work: a manager, the chief of staff or the founder may (the supervisor's watchdog resends lost messages by itself)`);
+    log.add({ type: "mail-dup", order: arg, by: opt.by }); const m = engine.notifyStage(o, { duplicate: true }); return { order: arg, msg: m?.id, open_work_messages: mailbox.thread(arg).filter((x) => x.kind === "work" && x.state === "open").length }; }
   if (cmd === "usage" && sub === "add") { need("role", "tokens", "label"); log.add({ type: "usage", role: opt.role, tokens: Number(opt.tokens), label: opt.label, source: "harness", supervisor: true }); return { ok: true }; }
   if (cmd === "usage" && sub === "correct") {
     // The log is append-only: a wrong usage record is corrected by two new events, never by editing the old one.

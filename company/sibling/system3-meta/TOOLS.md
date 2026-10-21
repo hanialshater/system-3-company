@@ -31,10 +31,10 @@ founder, 2026-10-21: "not so fast, we have a lot to do for tools … still dont 
 | Harness usage (`supervisor.mjs usage`) | built, tested; by session id or role, `--outside` for work outside rooms | prototype/supervisor.mjs |
 | Org evaluation (`orgeval.mjs`) | built, tested; per run: cost, auto-correction (caught by code, self-check, checker, integration; escapes), learning (repeats after being told), collaboration, trend; two packs (live/orgeval-1, -2) | prototype/orgeval.mjs |
 | Hidden acceptance (UAT) per task | built; `serve --acceptance=<dir>` runs the orderer's tests; agents never see them | prototype/supervisor.mjs |
-| Batching of revise work into fewer sessions | not built (benchmark 3: cost is sessions × ~65k; every launch drained one item) | - |
-| Company escape list (known false claims as checks) | not built (benchmark 3: the Venus "thick clouds" claim escaped three runs) | - |
-| Automatic launcher (Agent SDK) | not built; founder chose the Agent SDK for M3 (2026-10-21) | - |
-| Regression gate and watchdog | not built (needed by benchmark 4's injected faults) | - |
+| Sessions that wait for their next item (`room next --wait`) | built, tested; a session keeps up to 90 s for its role's next item and the planner counts it as running; benchmark 4: 9 sessions did 22 items | prototype/lib.mjs Rooms.next/resume, meta.mjs |
+| Company escape list (`escape add`, `knownFalse` checks) | built, tested; prototype/escapes.json is merged into every new text order's checks; seeded with the Venus claim | prototype/escapes.json, state.mjs |
+| Automatic launcher (Agent SDK) | built; runs `serve`, starts every planned session from its brief, tags sessions (META_LAUNCH), records usage, abandons a crashed process's work; M3 reached with it (benchmark 4) | prototype/launcher/launch.mjs |
+| Regression gate, watchdog, `order reopen`, announcements in briefs | built, tested; the gate caught benchmark 4's corrupted GRAPH at the next ship; the watchdog is unit-tested only (its live fault never fired); `mail dup` is managers-only | prototype/supervisor.mjs, meta.mjs |
 | Document registry and review | designed (scenario S11), not built | - |
 | Notifications and subscriptions | not designed | - |
 | Calendar of human slots | not designed (the simulator models founder sittings) | - |
