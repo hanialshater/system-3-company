@@ -1,3 +1,26 @@
+## 2026-10-21 · chief-of-staff (for System 3 Meta, as vp-meta's ISS-1/ISS-3) · Benchmark 3: the kickoff ablation
+
+**Done:**
+- Benchmark 2's quiz task re-run on the current tools, in two arms: A with the kickoff meeting, B without it.
+- Predictions D1-D6 were committed first. Results are in `company/sibling/system3-meta/prototype/BENCH3.md`, the record in `live/bench3-record/`, and the second org evaluation pack in `live/orgeval-2/`.
+
+**Believe (n = 1 per arm, moderately sure):**
+- **The kickoff pays.**
+  - Half the revise loops: 3 against 6.
+  - 13% fewer tokens and 21% less time.
+  - Both blind judges preferred A, in both orderings (9 of 12 criteria).
+  - Facts are a draw.
+- **Orchestration is solved:** 0 typed commands per wake and 3 in all.
+- **Cost is not solved.** A used 84% of the current method's tokens. Cost is now sessions × about 65k, because every launch drained one item.
+
+**Next:**
+1. Fix the four tool findings listed in BENCH3.md.
+2. Batch revise and re-check work into fewer sessions.
+3. Add a company escape list. The Venus "thick clouds" claim has escaped three runs running.
+4. Then Benchmark 4 (spreadsheet engine with injected faults). Its hidden suite (208 cases) and reference are in the session scratchpad, not yet in the repo.
+
+**Blocked:** nothing.
+
 ## 2026-10-21 · chief-of-staff (for System 3 Meta) · The three Benchmark 2 fixes, built and run live (live run 4)
 
 Founder: "go ahead with the 3 fixes".
