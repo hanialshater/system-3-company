@@ -118,7 +118,7 @@
        "kind": "order",
        "title": "Style sheet",
        "body": "",
-       "state": "in-progress",
+       "state": "in-review",
        "assignee": "writer-1",
        "project": "PRJ-1",
        "labels": [],
@@ -131,7 +131,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876647.86725,
-       "updated": 29876650.818466667,
+       "updated": 29876654.334416665,
        "history": [
         {
          "t": 29876647.86725,
@@ -142,6 +142,11 @@
          "t": 29876647.86725,
          "by": "engine",
          "state": "in-progress"
+        },
+        {
+         "t": 29876654.334416665,
+         "by": "engine",
+         "state": "in-review"
         }
        ]
       }
@@ -363,7 +368,7 @@
        "kind": "action",
        "title": "STYLE: publish per-round reserved-answers list and superlative owners from MTG-1 item 1",
        "body": "From MTG-1 item 1: Rounds: five topics with no overlap, and which facts each round owns",
-       "state": "backlog",
+       "state": "done",
        "assignee": "writer-1",
        "project": null,
        "labels": [],
@@ -376,12 +381,17 @@
        "comments": [],
        "by": "editor",
        "created": 29876650.08035,
-       "updated": 29876650.08035,
+       "updated": 29876653.799533334,
        "history": [
         {
          "t": 29876650.08035,
          "by": "editor",
          "state": "backlog"
+        },
+        {
+         "t": 29876653.799533334,
+         "by": "writer-1",
+         "state": "done"
         }
        ]
       }
@@ -423,7 +433,7 @@
        "kind": "action",
        "title": "STYLE: write difficulty ladder, exact Q/Answer/Why format, why-line voice rules and banned-words list from MTG-1 item 2",
        "body": "From MTG-1 item 2: Difficulty, format and the voice of the 'why' line for ages 8-10",
-       "state": "backlog",
+       "state": "done",
        "assignee": "writer-1",
        "project": null,
        "labels": [],
@@ -436,12 +446,17 @@
        "comments": [],
        "by": "editor",
        "created": 29876650.24655,
-       "updated": 29876650.24655,
+       "updated": 29876653.801016666,
        "history": [
         {
          "t": 29876650.24655,
          "by": "editor",
          "state": "backlog"
+        },
+        {
+         "t": 29876653.801016666,
+         "by": "writer-1",
+         "state": "done"
         }
        ]
       }
@@ -1630,6 +1645,173 @@
     "mode": "work",
     "session": "S-1",
     "item": 1
+   },
+   {
+    "seq": 82,
+    "t": 29876653.799533334,
+    "type": "item-update",
+    "item": "ISS-8",
+    "by": "writer-1",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 83,
+    "t": 29876653.801016666,
+    "type": "item-update",
+    "item": "ISS-10",
+    "by": "writer-1",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 84,
+    "t": 29876653.80293333,
+    "type": "advance",
+    "order": "O-1",
+    "stage": "build",
+    "by": "writer-1",
+    "verdict": "pass"
+   },
+   {
+    "seq": 85,
+    "t": 29876653.80293333,
+    "type": "code-stage",
+    "order": "O-1",
+    "stage": "test1"
+   },
+   {
+    "seq": 86,
+    "t": 29876653.80293333,
+    "type": "done",
+    "msg": "M-3",
+    "run": "R-1"
+   },
+   {
+    "seq": 87,
+    "t": 29876653.80295,
+    "type": "send",
+    "msg": "M-4",
+    "from": "writer-1",
+    "to": "editor",
+    "kind": "report",
+    "key": null,
+    "ref": "O-1",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 88,
+    "t": 29876653.80295,
+    "type": "leave",
+    "run": "R-1",
+    "role": "writer-1",
+    "order": "O-1",
+    "stage": "build",
+    "verdict": "pass",
+    "minutes": 0.964649997651577
+   },
+   {
+    "seq": 89,
+    "t": 29876654.33418333,
+    "type": "session-close",
+    "session": "S-1",
+    "role": "writer-1",
+    "items": 1,
+    "reason": "finished (harness)",
+    "minutes": 1.495899997651577
+   },
+   {
+    "seq": 90,
+    "t": 29876654.3342,
+    "type": "usage",
+    "session": "S-1",
+    "role": "writer-1",
+    "tokens": 69438,
+    "items": 1,
+    "source": "harness"
+   },
+   {
+    "seq": 91,
+    "t": 29876654.3344,
+    "type": "advance",
+    "order": "O-1",
+    "stage": "test1",
+    "by": "code",
+    "verdict": "pass"
+   },
+   {
+    "seq": 92,
+    "t": 29876654.3344,
+    "type": "send",
+    "msg": "M-5",
+    "from": "editor",
+    "to": "pool:checker",
+    "kind": "work",
+    "key": "O-1:check:0",
+    "ref": "O-1",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 93,
+    "t": 29876654.334416665,
+    "type": "item-update",
+    "item": "ISS-1",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 94,
+    "t": 29876654.334416665,
+    "type": "supervisor-tick",
+    "steps": [
+     "test1:O-1"
+    ]
+   },
+   {
+    "seq": 95,
+    "t": 29876654.334533334,
+    "type": "launch",
+    "role": "reader",
+    "msgs": [
+     "M-5"
+    ],
+    "tasks": [],
+    "why": "cycle: next: 1 waiting, no session running"
+   },
+   {
+    "seq": 96,
+    "t": 29876654.5421,
+    "type": "session-open",
+    "session": "S-2",
+    "role": "reader"
+   },
+   {
+    "seq": 97,
+    "t": 29876654.5421,
+    "type": "claim",
+    "msg": "M-5",
+    "run": "R-2"
+   },
+   {
+    "seq": 98,
+    "t": 29876654.5421,
+    "type": "enter",
+    "run": "R-2",
+    "msg": "M-5",
+    "role": "reader",
+    "by": "reader",
+    "room": "quality",
+    "order": "O-1",
+    "stage": "check",
+    "mode": "work",
+    "session": "S-2",
+    "item": 1
    }
   ]
  },
@@ -1696,10 +1878,55 @@
       },
       "priority": "next",
       "ts": 29876650.338316668,
-      "state": "open",
+      "state": "done",
       "lease": {
        "run": "R-1",
        "until": 29876682.838283334
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-4",
+     {
+      "id": "M-4",
+      "from": "writer-1",
+      "to": "editor",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-1",
+      "body": {
+       "stage": "build",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876653.80295,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-5",
+     {
+      "id": "M-5",
+      "from": "editor",
+      "to": "pool:checker",
+      "kind": "work",
+      "key": "O-1:check:0",
+      "due": null,
+      "ref": "O-1",
+      "body": {
+       "stage": "check",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876654.3344,
+      "state": "open",
+      "lease": {
+       "run": "R-2",
+       "until": 29876684.5421
       },
       "acked": false
      }
@@ -1719,10 +1946,14 @@
     [
      "O-1:build:0",
      "M-3"
+    ],
+    [
+     "O-1:check:0",
+     "M-5"
     ]
    ]
   },
-  "n": 3
+  "n": 5
  },
  "org": {
   "roles": {
@@ -1972,10 +2203,23 @@
       "spent": 0,
       "accept": "live/bench2-meta/work/STYLE/page.md: the style sheet for 'Solar System Quiz Pack' (ages 8-10), following the kickoff decisions (MTG-1 minutes in the lane:e channel). Sections: '## Format' (how a question, its answer and its one-sentence why look: '**Qn.**', '**Answer:**', '**Why:**'), '## Rounds' with exactly five lines '- Round 1: <topic>' to '- Round 5: <topic>', topics that do not overlap, each with the facts it owns, and a difficulty rule. No words like stupid, dumb, kill, dead, blood, hate.",
       "words": null,
-      "stage": "build",
+      "stage": "check",
       "loops": 0,
       "created": 29876647.767983332,
-      "history": [],
+      "history": [
+       {
+        "stage": "build",
+        "by": "writer-1",
+        "verdict": "pass",
+        "t": 29876653.80293333
+       },
+       {
+        "stage": "test1",
+        "by": "code",
+        "verdict": "pass",
+        "t": 29876654.3344
+       }
+      ],
       "priority": "next",
       "due": null,
       "after": [],
@@ -2374,15 +2618,43 @@
       "stage": "build",
       "loops": 0,
       "entered": 29876652.8383,
-      "state": "running",
+      "state": "left",
       "session": "S-1"
+     }
+    ],
+    [
+     "R-2",
+     {
+      "run": "R-2",
+      "msg": "M-5",
+      "role": "reader",
+      "by": "reader",
+      "consult": false,
+      "order": "O-1",
+      "stage": "check",
+      "loops": 0,
+      "entered": 29876654.5421,
+      "state": "running",
+      "session": "S-2"
      }
     ]
    ]
   },
-  "n": 1,
+  "n": 2,
   "memory": {
-   "__map": []
+   "__map": [
+    [
+     "writer-1",
+     [
+      {
+       "t": 29876653.80295,
+       "did": "build on O-1: pass (loop 0)",
+       "learned": "The banned-word check scans the style sheet itself, so a banned-words list must be spelled letter by letter to pass.",
+       "mistake": null
+      }
+     ]
+    ]
+   ]
   },
   "sessions": {
    "__map": [
@@ -2392,12 +2664,22 @@
       "id": "S-1",
       "role": "writer-1",
       "items": 1,
-      "open": true,
+      "open": false,
       "started": 29876652.838283334
+     }
+    ],
+    [
+     "S-2",
+     {
+      "id": "S-2",
+      "role": "reader",
+      "items": 1,
+      "open": true,
+      "started": 29876654.542083334
      }
     ]
    ]
   },
-  "nS": 1
+  "nS": 2
  }
 }
