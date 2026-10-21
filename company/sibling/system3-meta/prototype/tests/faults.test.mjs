@@ -133,6 +133,6 @@ test("a judgment launch that crashed reserves nothing: the meeting's chair is pl
   assert.ok(chair?.tasks.some((t) => t.kind === "chair"), JSON.stringify(plan1));
   assert.equal(spawnSync("node", [path.join(HERE, "..", "supervisor.mjs"), "launched", "--role=editor", "--tasks=chair:MTG-1"], { env: envOf(dir), encoding: "utf8" }).status, 0);
   assert.equal(tick(dir).plan.some((p) => p.role === "editor"), false, "reserved while it runs");
-  assert.equal(cli(dir, ["launch", "finished", "--launch=0001-editor", "--role=editor", "--tokens=40000", "--ok=false", "--reason=killed"]).code, 0);
+  assert.equal(cli(dir, ["launch", "finished", `--launch=${String(state(dir).log.events.filter((e) => e.type === "launch").at(-1).seq).padStart(4, "0")}-editor`, "--role=editor", "--tokens=40000", "--ok=false", "--reason=killed"]).code, 0);
   assert.ok(tick(dir).plan.some((p) => p.role === "editor" && p.tasks.some((t) => t.kind === "chair")), "planned again after the crash");
 });

@@ -26,3 +26,14 @@ Examples: `=2+3*4` → 14 · `=2^3^2` → 512 · `=-2^2` → 4 · `="n="&5` → 
   - `ABS(x)` and `LEN(x)` take exactly one argument; `ROUND(x[, d])` one or two (`Math.round(x·10^d)/10^d`, d defaults to 0). LEN is the length of the value's text form. Wrong counts → `#VALUE!`; errors propagate.
 
 Examples: A1=5, `=A1*2` → 10 · `=SUM(A1:A4)` over 1,2,3,4 → 10 · `=COUNT(A1:A3)` over 1,"word",3 → 2 · `=AVERAGE(A5:A9)` over blanks → #DIV/0! · `=IF(1,2,1/0)` → 2 · `=ROUND(1234,-2)` → 1200 · `=A100` → #REF!.
+
+## Wave 3 (released after wave 2 shipped): cycles, error propagation, scale
+
+- A cell on a reference cycle (it reads itself, directly or through other cells, including through a range) is the error `#CIRC!`, and so is every cell that reads one. Breaking the cycle (changing or clearing a cell in it) recalculates everything back to normal values.
+- Errors propagate through any chain of formulas and functions, the left operand's error first.
+- Scale: chains 99 rows long and formulas over the whole sheet (`=SUM(A1:Z10)`) must work.
+- Odd input: `=1e3` and `=1.2.3` are `#VALUE!`; `=0^0` is 1; `="5"+1` is 6; a formula `=A1:A2` in A1 is a cycle.
+
+## Changed (founder, during wave 3)
+
+The cycle error is now `#CIRC!` (it was `#CYCLE!`). Everything else stands.

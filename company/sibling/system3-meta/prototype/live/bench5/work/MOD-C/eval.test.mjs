@@ -127,3 +127,31 @@ test("#REF! (needs ERR.REF from slot B)", { skip: REF ? false : "ERR.REF not yet
   assert.equal(evaluate(ref("AA1"), c), REF);
   assert.equal(evaluate(call("SUM", rng("A1", "A100")), c), REF);
 });
+
+const CYC = ERR.CYCLE;
+test("wave 3: errors from cells (incl. #CYCLE!) propagate, left first", { skip: CYC ? false : "ERR.CYCLE not yet in MOD-B" }, () => {
+  const c = sheet({ A1: CYC, A2: 1, A3: ERR.DIV0 });
+  assert.equal(evaluate(ref("A1"), c), CYC);
+  assert.equal(evaluate(bin("+", ref("A1"), ref("A3")), c), CYC);
+  assert.equal(evaluate(bin("+", ref("A3"), ref("A1")), c), ERR.DIV0);
+  assert.equal(evaluate(bin("&", ref("A1"), str("x")), c), CYC);
+  assert.equal(evaluate(call("SUM", rng("A1", "A3")), c), CYC);
+  assert.equal(evaluate(call("SUM", rng("A2", "A3"), ref("A1")), c), ERR.DIV0);
+  assert.equal(evaluate(call("IF", ref("A1"), num(1), num(2)), c), CYC);
+  assert.equal(evaluate(call("IF", num(1), ref("A1"), num(2)), c), CYC);
+  assert.equal(evaluate(call("ABS", ref("A1")), c), CYC);
+  assert.equal(evaluate(call("LEN", ref("A1")), c), CYC);
+  assert.equal(evaluate(call("ROUND", num(1), ref("A1")), c), CYC);
+  assert.equal(evaluate(un("-", ref("A1")), c), CYC);
+});
+
+test("wave 3: whole-sheet range and odd input", () => {
+  const vals = {};
+  for (let c = 65; c <= 90; c++) for (let r = 1; r <= 10; r++) vals[String.fromCharCode(c) + r] = 1;
+  const c = sheet(vals);
+  assert.equal(evaluate(call("SUM", rng("A1", "Z10")), c), 260);
+  assert.equal(evaluate(call("COUNT", rng("Z10", "A1")), c), 260);
+  assert.equal(evaluate(bin("^", num(0), num(0)), c), 1);
+  assert.equal(evaluate(bin("+", str("5"), num(1)), c), 6);
+  assert.equal(evaluate(rng("A1", "A2"), c), ERR.VALUE);
+});

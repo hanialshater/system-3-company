@@ -136,7 +136,10 @@ export function plan(co, { batchLater: batchDefault = 3, cap: capDefault = 4 } =
   // writer-1's kickoff launch kept its STYLE build unplanned for the grace period)
   // a launch the launcher reports finished (ok or crashed) reserves nothing any more (benchmark 5: a chair killed
   // mid-meeting held its meeting for the 30-minute grace period)
-  const ended = (l) => log.events.some((e) => e.type === "launch-finished" && e.role === l.role && e.t >= l.t);
+  // matched by the launch's own id (<seq>-<role>, the brief's name): benchmark 5, an older lead session's finish freed a
+  // newer one's reservation and the same ask was planned twice. A finish without that id falls back to role and time.
+  const lid = (l) => `${String(l.seq).padStart(4, "0")}-${l.role}`;
+  const ended = (l) => log.events.some((e) => e.type === "launch-finished" && (e.launch ? e.launch === lid(l) : e.role === l.role && e.t >= l.t));
   for (const l of log.events.filter((e) => e.type === "launch" && now - e.t < LAUNCH_GRACE_MIN && !(e.tasks?.length && !e.msgs?.length))) {
     if (!log.events.some((e) => e.type === "enter" && e.role === l.role && e.t >= l.t) && !ended(l)) running.add(l.role);
   }

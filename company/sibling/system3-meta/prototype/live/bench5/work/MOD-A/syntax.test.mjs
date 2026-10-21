@@ -85,3 +85,16 @@ test("wave 2: refsOf", () => {
   assert.deepEqual(refsOf(parseFormula("IF(A1, B1, C1)")), ["A1", "B1", "C1"]);
   assert.deepEqual(refsOf(parseFormula("A100+B1")), ["B1"]);
 });
+
+test("wave 3: odd input and cycle-relevant refs", () => {
+  assert.deepEqual(parseFormula("1e3"), { type: "error", code: "#VALUE!" });
+  assert.deepEqual(parseFormula("1.2.3"), { type: "error", code: "#VALUE!" });
+  assert.deepEqual(parseFormula("0^0"), { type: "binary", op: "^", left: { type: "num", value: 0 }, right: { type: "num", value: 0 } });
+  // a bare range (outside a call) still reports its cells, so =A1:A2 in A1 is a cycle
+  assert.deepEqual(refsOf(parseFormula("A1:A2")), ["A1", "A2"]);
+  assert.deepEqual(refsOf(parseFormula("A1")), ["A1"]);
+  assert.equal(refsOf(parseFormula("SUM(A1:Z10)")).length, 260);
+  assert.equal(refsOf(parseFormula("SUM(A1:Z99)")).length, 26 * 99);
+  const deep = "(".repeat(200) + "1" + ")".repeat(200);
+  assert.deepEqual(parseFormula(deep), { type: "num", value: 1 });
+});
