@@ -20,6 +20,7 @@
 //   node meta.mjs flow advance <O> --stage=<s> --by=<role> --evidence=… [--verdict=…] [--findings=…]
 //   node meta.mjs flow show <O> | flow status
 //   node meta.mjs mail dup <O>                                send the current stage's notification again (fault F1)
+//   node meta.mjs usage add --role=<role> --tokens=<n> --label=…   harness usage of a session outside any room (the supervisor)
 //   node meta.mjs events [--type=<t>]   ·   node meta.mjs memory <role>   ·   node meta.mjs org activity <role>
 // Exit: 0 ok, 1 refused, 2 usage or state error.
 import fs from "node:fs";
@@ -204,6 +205,7 @@ function dispatch(co, cmd, sub, arg) {
   if (cmd === "flow" && sub === "show") { const o = engine.orders.get(arg); return { ...o, messages: mailbox.thread(arg).map((m) => ({ id: m.id, stage: m.body?.stage, state: m.state, lease: m.lease })) }; }
   if (cmd === "flow" && sub === "status") return engine.status();
   if (cmd === "mail" && sub === "dup") { const o = engine.orders.get(arg); const m = engine.notifyStage(o, { duplicate: true }); return { order: arg, msg: m?.id, open_work_messages: mailbox.thread(arg).filter((x) => x.kind === "work" && x.state === "open").length }; }
+  if (cmd === "usage" && sub === "add") { need("role", "tokens", "label"); log.add({ type: "usage", role: opt.role, tokens: Number(opt.tokens), label: opt.label, source: "harness", supervisor: true }); return { ok: true }; }
   if (cmd === "events") return log.events.filter((e) => !opt.type || e.type === opt.type);
   if (cmd === "memory") return rooms.memory.get(sub) ?? [];
   if (cmd === "org" && sub === "activity") return org.activity(log.events, arg);

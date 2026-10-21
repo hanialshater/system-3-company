@@ -1031,6 +1031,45 @@
     "ref": "O-8",
     "priority": "now",
     "due": null
+   },
+   {
+    "seq": 102,
+    "t": 29876175.086883333,
+    "type": "usage",
+    "role": "cos",
+    "tokens": 55708,
+    "label": "supervisor A: test1 x7",
+    "source": "harness",
+    "supervisor": true
+   },
+   {
+    "seq": 103,
+    "t": 29876175.107683334,
+    "type": "session-open",
+    "session": "S-6",
+    "role": "toy-checker"
+   },
+   {
+    "seq": 104,
+    "t": 29876175.107683334,
+    "type": "claim",
+    "msg": "M-21",
+    "run": "R-8"
+   },
+   {
+    "seq": 105,
+    "t": 29876175.107683334,
+    "type": "enter",
+    "run": "R-8",
+    "msg": "M-21",
+    "role": "toy-checker",
+    "by": "toy-checker",
+    "room": "quality",
+    "order": "O-8",
+    "stage": "check",
+    "mode": "work",
+    "session": "S-6",
+    "item": 1
    }
   ]
  },
@@ -1495,7 +1534,10 @@
       "priority": "now",
       "ts": 29876174.541216668,
       "state": "open",
-      "lease": null,
+      "lease": {
+       "run": "R-8",
+       "until": 29876205.107683334
+      },
       "acked": false
      }
     ]
@@ -2199,10 +2241,26 @@
       "state": "left",
       "session": "S-4"
      }
+    ],
+    [
+     "R-8",
+     {
+      "run": "R-8",
+      "msg": "M-21",
+      "role": "toy-checker",
+      "by": "toy-checker",
+      "consult": false,
+      "order": "O-8",
+      "stage": "check",
+      "loops": 0,
+      "entered": 29876175.107683334,
+      "state": "running",
+      "session": "S-6"
+     }
     ]
    ]
   },
-  "n": 7,
+  "n": 8,
   "memory": {
    "__map": [
     [
@@ -2310,9 +2368,19 @@
       "open": true,
       "started": 29876173.196716666
      }
+    ],
+    [
+     "S-6",
+     {
+      "id": "S-6",
+      "role": "toy-checker",
+      "items": 1,
+      "open": true,
+      "started": 29876175.107683334
+     }
     ]
    ]
   },
-  "nS": 5
+  "nS": 6
  }
 }
