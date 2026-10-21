@@ -191,3 +191,32 @@ The arm is re-run below as `bench4b`.
 - The new test (`tests/serve.test.mjs`) runs `serve` itself on a quiet company. There are now 80 tests.
 
 **What the stall shows.** It is exactly the failure a hands-free company must not have: work stopped and nobody noticed. The run is a finding, not a result. The arm is re-run below.
+
+### Benchmark 4b, results (third attempt: run 20:15:07-20:27:34 UTC, frozen kernel 37f18a00b4d5, company settings loaded)
+
+| Measure | 4 (no company context) | **4b (company context)** | Live run 3 |
+|---|---|---|---|
+| Orders shipped | 10/10 | **10/10** | 4/4 |
+| Agent sessions | 9 | 12 (1 killed by F1) | 6 |
+| Typed commands after the start | 0 | **0** | many |
+| Wall time to last ship | 8 min 52 s | 12 min 27 s | - |
+| Tokens per shipped order (final context) | 45.3k | **80.7k** | 102.6k |
+| Cumulative tokens · cost | 4.90M · $3.88 | 7.98M · $5.90 | - |
+| Revise loops not caused by a fault | 0 | 2 (the checker sent SHEET back once; GUIDE failed its text checks once) | 0.5 per order |
+| Final hidden acceptance under `#CIRC!` | all pass | **all pass**, shipped and work, all 208 SHEET cases | - |
+
+**The faults, all recovered by code with no person:**
+- **F1:** the killed builder's item was re-planned at once.
+- **F3:** PARSER's check message was dropped at 20:17:30. **The watchdog re-sent it at 20:19:36 (2 min 6 s)**, and PARSER shipped at 20:20:10.
+- **F2:** GRAPH was corrupted at 20:19:31. The gate reopened it at 20:20:11 (40 s), and it re-shipped at 20:21:27.
+- **F4:** the requirement changed at 20:22:29. VALUES re-shipped at 20:23:22 (53 s), and SHEET and GUIDE shipped on `#CIRC!`.
+
+**Scoring:**
+- **E7 right.** 80.7k per shipped order, within the 60-90k I expected and under the 113k bound.
+- **E8 right.** All four faults recovered by code; F3 by the watchdog in 2 min 6 s, against ≤ 4 min.
+- **E9 right.** 10/10 shipped, and every hidden test passes at the end.
+
+**The like-for-like answer to Benchmark 4's caveat:**
+- **The company context costs a lot.** CLAUDE.md and settings added 78% to tokens per order (45.3k → 80.7k).
+- **The real saving is smaller.** On equal context, the hands-free company used **79% of live run 3's tokens per order**, a 21% saving, not the 56% Benchmark 4 suggested. The saving comes from sessions that wait and drain, and from code doing every rule step.
+- **The cheapest lever left is the context.** A company's agents should load the company's own context, not the parent repository's. M2's generated CONTEXT.md and ORG.md are that context.
