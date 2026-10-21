@@ -5,7 +5,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import type { FounderItem, HqEvent, OrgRole, Room } from "@/lib/hq";
 import { teamColor } from "@/lib/hq-colors";
 import { FLOORS, FLOOR_NAMES, stairsTo, type Floor } from "@/lib/hq-floors";
@@ -66,6 +66,15 @@ export default function HQ({ events, rooms, founderQueue, due, org, now, press }
     if (q.get("view") === "people") setView("people");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // The sidebar links here with ?view= and ?room=; follow them while the page stays mounted.
+  const params = useSearchParams();
+  const qView = params?.get("view") ?? null;
+  const qRoom = params?.get("room") ?? null;
+  useEffect(() => {
+    setView(qView === "people" ? "people" : "office");
+    if (qRoom) (setRoom(qRoom), setFloor(rooms.find((r) => r.id === qRoom)?.floor ?? 1));
+  }, [qView, qRoom, rooms]);
 
   // Live: follow the newest event and refresh the log every 20 s.
   useEffect(() => {
@@ -142,15 +151,13 @@ export default function HQ({ events, rooms, founderQueue, due, org, now, press }
     setRoom(id);
     setFloor(floorOf(id));
     setView("office");
+    if (qView === "people") router.replace(`/hq?room=${encodeURIComponent(id)}`, { scroll: false });
   };
   const pickPerson = (p: Person) => setRoom(p.room);
 
   return (
     <main className={s.hq}>
       <nav className={s.top}>
-        <Link className="brand" href="/">
-          S3
-        </Link>
         <div className={s.title}>
           <strong>System 3 HQ</strong>
           <span className={s.muted}>
@@ -164,48 +171,6 @@ export default function HQ({ events, rooms, founderQueue, due, org, now, press }
             · {upto.length} events
           </span>
         </div>
-        <span className={s.spacer} />
-        <div className={s.tabs} role="tablist">
-          <button role="tab" aria-selected={view === "office"} className={view === "office" ? s.tabOn : s.tab} onClick={() => setView("office")}>
-            Office
-          </button>
-          <button role="tab" aria-selected={view === "people"} className={view === "people" ? s.tabOn : s.tab} onClick={() => setView("people")}>
-            People
-          </button>
-          <Link role="tab" aria-selected={false} className={s.tab} href="/hq/kudos">
-            🎉 Kudos
-          </Link>
-          <Link role="tab" aria-selected={false} className={s.tab} href="/hq/design">
-            Design
-          </Link>
-          <Link role="tab" aria-selected={false} className={s.tab} href="/hq/curriculum">
-            Curriculum
-          </Link>
-          <Link role="tab" aria-selected={false} className={s.tab} href="/hq/library">
-            Library
-          </Link>
-          <Link role="tab" aria-selected={false} className={s.tab} href="/hq/releases">
-            Releases
-          </Link>
-          <Link role="tab" aria-selected={false} className={s.tab} href="/hq/first-light">
-            First Light
-          </Link>
-          <Link role="tab" aria-selected={false} className={s.tab} href="/hq/personalization">
-            Personalization
-          </Link>
-          <Link role="tab" aria-selected={false} className={s.tab} href="/hq/rnd">
-            R&amp;D
-          </Link>
-          <Link role="tab" aria-selected={false} className={s.tab} href="/hq/evaluation">
-            Evaluation
-          </Link>
-          <Link role="tab" aria-selected={false} className={s.tab} href="/hq/strategy">
-            Strategy
-          </Link>
-        </div>
-        <Link className="brand-link" href="/catalog">
-          Map
-        </Link>
       </nav>
 
       {founderQueue.length > 0 && (

@@ -1,5 +1,5 @@
 // HQ Evaluation page (W-1841): the data it renders equals `tools/eval/bt.mjs` run on the committed records,
-// the tab is wired in both bars, the page is gated by hqEnabled, and the README's rule is on the page.
+// the page is in the HQ sidebar, the page is gated by hqEnabled, and the README's rule is on the page.
 // Run: npm run test:hq
 import test from "node:test";
 import assert from "node:assert/strict";
@@ -29,9 +29,10 @@ test("every criterion has rows with intervals and record counts, and no overall 
   }
 });
 
-test("the tab is in both bars and the page is gated by hqEnabled", () => {
-  assert.match(fs.readFileSync("src/app/hq/HqTop.tsx", "utf8"), /id: "evaluation", label: "Evaluation", href: "\/hq\/evaluation"/);
-  assert.match(fs.readFileSync("src/app/hq/HQ.tsx", "utf8"), /href="\/hq\/evaluation"/);
+test("the page is in the HQ sidebar and gated by hqEnabled", () => {
+  // One sidebar (layout.tsx → HqSidebar.tsx) serves every /hq page, Office included.
+  assert.match(fs.readFileSync("src/app/hq/HqSidebar.tsx", "utf8"), /label: "Evaluation", href: "\/hq\/evaluation"/);
+  assert.match(fs.readFileSync("src/app/hq/layout.tsx", "utf8"), /<HqSidebar /);
   assert.match(fs.readFileSync("src/app/hq/evaluation/page.tsx", "utf8"), /if \(!hqEnabled\(\)\) notFound\(\)/);
 });
 

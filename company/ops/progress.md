@@ -1,3 +1,17 @@
+## 2026-10-21 · HQ navigation: sidebar, foldable org tree, read-only chat (W-2026)
+
+Founder ask: small HQ UI changes, an org hierarchy that folds and can be navigated (like Workday), a Linear-style sidebar and a chat-like view even if read-only. Done as hq-engineer, inside src/app/hq/** plus one HQ test.
+
+- **Sidebar** (`src/app/hq/layout.tsx`, `HqSidebar.tsx`): one grouped sidebar beside every /hq page (Company, Work, Product & science) replaces the two tab rows (HQ.tsx's own and HqTop's). "Waiting on you" with the founder queue count sits at the top on every page, outlined amber when something is P1. Below 760px it becomes a scrolling strip. HQ.tsx now follows `?view=` and `?room=` from the URL while mounted, so sidebar links work from /hq itself.
+- **People** (`PeoplePanel.tsx`): branches fold (one level open by default), Expand all / Collapse all, "Focus ›" opens one manager's team with the reporting line as a breadcrumb, and search covers the whole company and unfolds the path to each match. Each manager shows direct, team size and how many below are working, so folding does not hide activity. Pool roles list three names and "+N more".
+- **Chat** (`/hq/chat`): the event log as channels (rooms) and direct threads (roles), grouped by sender and day, bodies unfold in place through the existing `/api/hq/event/<id>`, links like `/hq/chat?c=room:lobby`. Read-only: it writes nothing and says so.
+- One fix found on the way: long unbroken event summaries made /hq scroll sideways on phones (now wrap).
+- `tests/hq/evaluation.test.mjs` "tab in both bars" now asserts the Evaluation link in the sidebar and that the layout renders it.
+
+Verification: typecheck and build pass; test:hq 107 pass, 13 fail, the same 13 as before the change (eval index, releases history and personalization-lab scans, unrelated). `npm run check` stays at exactly 811 errors and 4 warnings, none new. Built server with HQ_PUBLIC=1: every /hq page 200; Playwright desktop and 390px screenshots of People (fold, focus, search), Chat and Evaluation; no horizontal overflow at 390px on /hq, people, chat, evaluation. No deploy, no new dependencies, no protected path touched. Change tier 1 (HQ UI only, no event API, auth or learner data).
+
+What I believe: navigation is clearer and the founder queue is now visible on every HQ page (high confidence; seen in screenshots). Not checked: keyboard arrow-key tree navigation (folds are buttons, Tab works; no roving focus) and screen-reader pass; accessibility-reviewer could look. Open observation, not fixed: presence says "1021 working" because pool roles count every recent run as working; worth a look by hq-engineer separately.
+
 ## 2026-10-21 · history map illustrations · seven original SVGs (W-2025)
 
 Added ships, a Normandy landing craft, horse, camp, fire, crossed swords and castle illustrations. Eighteen stories select artwork by checkpoint; atlas previews use the same vector source. Placement avoids labels and geographic points. Camps are unlocated illustrative vignettes. Standalone reusable SVGs and their generator are included. No historical dates, routes or coordinates changed; changed lessons remain drafts with unverified art-convention claims and bumped versions.
