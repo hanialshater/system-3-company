@@ -158,7 +158,7 @@
        "kind": "order",
        "title": "VALUES: values.mjs",
        "body": "",
-       "state": "in-progress",
+       "state": "in-review",
        "assignee": "toy-builder-2",
        "project": null,
        "labels": [
@@ -173,7 +173,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876895.1195,
-       "updated": 29876902.492283333,
+       "updated": 29876902.976983335,
        "history": [
         {
          "t": 29876895.1195,
@@ -199,6 +199,11 @@
          "t": 29876902.492283333,
          "by": "engine",
          "state": "in-progress"
+        },
+        {
+         "t": 29876902.976983335,
+         "by": "engine",
+         "state": "in-review"
         }
        ]
       }
@@ -5207,6 +5212,134 @@
     ],
     "abandoned": [],
     "reason": null
+   },
+   {
+    "seq": 449,
+    "t": 29876902.903166667,
+    "type": "self-check",
+    "order": "O-3",
+    "task": "VALUES",
+    "by": "toy-builder-2",
+    "stage": "build",
+    "pass": true,
+    "output": "# tests 5 # pass 5 # fail 0"
+   },
+   {
+    "seq": 450,
+    "t": 29876902.969333332,
+    "type": "advance",
+    "order": "O-3",
+    "stage": "build",
+    "by": "toy-builder-2",
+    "verdict": "pass"
+   },
+   {
+    "seq": 451,
+    "t": 29876902.969333332,
+    "type": "code-stage",
+    "order": "O-3",
+    "stage": "test1"
+   },
+   {
+    "seq": 452,
+    "t": 29876902.96935,
+    "type": "done",
+    "msg": "M-72",
+    "run": "R-30"
+   },
+   {
+    "seq": 453,
+    "t": 29876902.96935,
+    "type": "send",
+    "msg": "M-73",
+    "from": "toy-builder-2",
+    "to": "mgr-live",
+    "kind": "report",
+    "key": null,
+    "ref": "O-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 454,
+    "t": 29876902.96935,
+    "type": "leave",
+    "run": "R-30",
+    "role": "toy-builder-2",
+    "order": "O-3",
+    "stage": "build",
+    "verdict": "pass",
+    "minutes": 0.32766666635870934
+   },
+   {
+    "seq": 455,
+    "t": 29876902.96935,
+    "type": "session-wait",
+    "session": "S-18",
+    "role": "toy-builder-2",
+    "minutes": 1.5
+   },
+   {
+    "seq": 456,
+    "t": 29876902.976966668,
+    "type": "advance",
+    "order": "O-3",
+    "stage": "test1",
+    "by": "code",
+    "verdict": "pass"
+   },
+   {
+    "seq": 457,
+    "t": 29876902.976966668,
+    "type": "send",
+    "msg": "M-74",
+    "from": "mgr-live",
+    "to": "pool:checker",
+    "kind": "work",
+    "key": "O-3:check:1",
+    "ref": "O-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 458,
+    "t": 29876902.976983335,
+    "type": "item-update",
+    "item": "ISS-3",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 459,
+    "t": 29876902.976983335,
+    "type": "supervisor-tick",
+    "steps": [
+     "test1:O-3"
+    ]
+   },
+   {
+    "seq": 460,
+    "t": 29876902.981066667,
+    "type": "claim",
+    "msg": "M-74",
+    "run": "R-31"
+   },
+   {
+    "seq": 461,
+    "t": 29876902.981083333,
+    "type": "enter",
+    "run": "R-31",
+    "msg": "M-74",
+    "role": "toy-checker",
+    "by": "toy-checker",
+    "room": "quality",
+    "order": "O-3",
+    "stage": "check",
+    "mode": "work",
+    "session": "S-16",
+    "item": 2
    }
   ]
  },
@@ -6790,10 +6923,55 @@
       },
       "priority": "next",
       "ts": 29876902.490466665,
-      "state": "open",
+      "state": "done",
       "lease": {
        "run": "R-30",
        "until": 29876932.641683333
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-73",
+     {
+      "id": "M-73",
+      "from": "toy-builder-2",
+      "to": "mgr-live",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-3",
+      "body": {
+       "stage": "build",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876902.96935,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-74",
+     {
+      "id": "M-74",
+      "from": "mgr-live",
+      "to": "pool:checker",
+      "kind": "work",
+      "key": "O-3:check:1",
+      "due": null,
+      "ref": "O-3",
+      "body": {
+       "stage": "check",
+       "loops": 1
+      },
+      "priority": "next",
+      "ts": 29876902.976966668,
+      "state": "open",
+      "lease": {
+       "run": "R-31",
+       "until": 29876932.981066667
       },
       "acked": false
      }
@@ -6977,10 +7155,14 @@
     [
      "O-3:build:1",
      "M-72"
+    ],
+    [
+     "O-3:check:1",
+     "M-74"
     ]
    ]
   },
-  "n": 72
+  "n": 74
  },
  "org": {
   "roles": {
@@ -7351,7 +7533,7 @@
       "spent": 0,
       "accept": "live/bench4b/work/VALUES/values.mjs, exactly as the \"VALUES\" section of live/bench4b/SPEC.md says, plus at least one values.test.mjs of your own (node --test) in the same folder. Import other modules only by the relative paths SPEC.md gives. Hidden acceptance tests check the behaviour SPEC.md states and report only failing categories.",
       "words": null,
-      "stage": "build",
+      "stage": "check",
       "loops": 1,
       "created": 29876894.984966666,
       "history": [
@@ -7391,6 +7573,18 @@
         "verdict": "reopen",
         "t": 29876902.49045,
         "findings": "Requirement change from the founder: ERRORS.CYCLE is now \"#CIRC!\" (was \"#CYCLE!\"). Update values.mjs and your tests; see the Changed note at the end of live/bench4/SPEC.md."
+       },
+       {
+        "stage": "build",
+        "by": "toy-builder-2",
+        "verdict": "pass",
+        "t": 29876902.969333332
+       },
+       {
+        "stage": "test1",
+        "by": "code",
+        "verdict": "pass",
+        "t": 29876902.976966668
        }
       ],
       "priority": "next",
@@ -8368,13 +8562,29 @@
       "stage": "build",
       "loops": 1,
       "entered": 29876902.641683333,
-      "state": "running",
+      "state": "left",
       "session": "S-18"
+     }
+    ],
+    [
+     "R-31",
+     {
+      "run": "R-31",
+      "msg": "M-74",
+      "role": "toy-checker",
+      "by": "toy-checker",
+      "consult": false,
+      "order": "O-3",
+      "stage": "check",
+      "loops": 1,
+      "entered": 29876902.981066667,
+      "state": "running",
+      "session": "S-16"
      }
     ]
    ]
   },
-  "n": 30,
+  "n": 31,
   "memory": {
    "__map": [
     [
@@ -8414,6 +8624,12 @@
        "t": 29876900.948783334,
        "did": "build on O-7: pass (loop 1)",
        "learned": "GRAPH regression: post-ship graph.mjs wrapper dropped size-2 cycle sets; restored Tarjan impl into graph.mjs, removed wrapper, added lone 2-cycle test",
+       "mistake": null
+      },
+      {
+       "t": 29876902.96935,
+       "did": "build on O-3: pass (loop 1)",
+       "learned": "VALUES: ERRORS.CYCLE is now \"#CIRC!\" (founder change 2026-10-21); other modules must reference the constant",
        "mistake": null
       }
      ]
@@ -8731,11 +8947,11 @@
      {
       "id": "S-16",
       "role": "toy-checker",
-      "items": 1,
+      "items": 2,
       "open": true,
       "started": 29876901.604233332,
       "launch": "0399-toy-checker",
-      "waitUntil": 29876903.90656667
+      "waitUntil": null
      }
     ],
     [
@@ -8756,7 +8972,8 @@
       "items": 1,
       "open": true,
       "started": 29876902.641666666,
-      "launch": "0441-toy-builder-2"
+      "launch": "0441-toy-builder-2",
+      "waitUntil": 29876904.46935
      }
     ]
    ]

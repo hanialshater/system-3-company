@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { ERRORS, isError, toNumber, toText, parseLiteral } from "./values.mjs";
 
 test("ERRORS constants", () => {
-  assert.deepEqual({ ...ERRORS }, { DIV0: "#DIV/0!", REF: "#REF!", NAME: "#NAME?", VALUE: "#VALUE!", CYCLE: "#CYCLE!" });
+  assert.deepEqual({ ...ERRORS }, { DIV0: "#DIV/0!", REF: "#REF!", NAME: "#NAME?", VALUE: "#VALUE!", CYCLE: "#CIRC!" });
 });
 
 test("isError", () => {
