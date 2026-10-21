@@ -1,12 +1,12 @@
 # Round 5: Space exploration (rockets, astronauts, rovers)
 
-**Q1.** What do we call a person who is trained to travel into space?
-**Answer:** Astronaut
-**Why:** An astronaut is a person who trains for a long time to fly, live and work in space.
+**Q1.** Who was the first person to walk on the Moon?
+**Answer:** Neil Armstrong
+**Why:** Neil Armstrong stepped onto the Moon during the Apollo 11 mission, and Buzz Aldrin joined him soon after.
 
-**Q2.** What big machine blasts off to carry people and spacecraft up into space?
-**Answer:** Rocket
-**Why:** A rocket pushes hot gas down very hard, and that push sends it up fast enough to reach space.
+**Q2.** What is the name of the big space station where astronauts live while it circles Earth?
+**Answer:** International Space Station
+**Why:** Many countries built the International Space Station together, and people have lived on it without a break for more than twenty years.
 
 **Q3.** Who was the very first person to travel into space?
 **Answer:** Yuri Gagarin
