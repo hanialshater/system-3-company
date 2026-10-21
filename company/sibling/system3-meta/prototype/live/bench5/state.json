@@ -515,7 +515,7 @@
        "kind": "order",
        "title": "MOD-B: the module in slot B",
        "body": "",
-       "state": "done",
+       "state": "in-progress",
        "assignee": "dev-2",
        "project": null,
        "labels": [
@@ -530,7 +530,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876923.441666666,
-       "updated": 29876941.340283334,
+       "updated": 29876945.499883335,
        "history": [
         {
          "t": 29876923.441666666,
@@ -586,6 +586,11 @@
          "t": 29876941.340283334,
          "by": "engine",
          "state": "done"
+        },
+        {
+         "t": 29876945.499883335,
+         "by": "engine",
+         "state": "in-progress"
         }
        ]
       }
@@ -1157,7 +1162,7 @@
        "kind": "ask",
        "title": "Wave 3: B must add ERR.CYCLE (#CYCLE!) so D cycle values surface",
        "body": "D (store.mjs) now detects cycles (SCC) and produces the cycle value via the injected evaluate on {type:\"error\",code:\"#CYCLE!\"}, which C maps with B errorFromCode. B values.mjs ERR has only DIV0/VALUE/NAME/REF, so errorFromCode(\"#CYCLE!\") falls back to ERR.VALUE and cycle cells show #VALUE!. Required: dev-2 adds ERR.CYCLE = {error:\"#CYCLE!\"} to B (in BY_CODE, so isError/errorFromCode/display work). No ARCH interface change needed beyond naming the code #CYCLE! (ARCH already says B adds the cycle error).",
-       "state": "todo",
+       "state": "done",
        "assignee": "lead",
        "project": null,
        "labels": [
@@ -1169,15 +1174,26 @@
        "goal": null,
        "order": null,
        "links": [],
-       "comments": [],
+       "comments": [
+        {
+         "by": "lead",
+         "t": 29876945.49811667,
+         "text": "yes: Yes, with one correction: the code is #CIRC! (SPEC5 change P-4), not #CYCLE!. O-3 (MOD-B) reopened for dev-2: add ERR.CYCLE = {error:\"#CIRC!\"} in ERR/BY_CODE. D already uses #CIRC!; C test comment still says #CYCLE! — update wording when C is touched. No ARCH interface change."
+        }
+       ],
        "by": "dev-1",
        "created": 29876943.295283332,
-       "updated": 29876943.295283332,
+       "updated": 29876945.49811667,
        "history": [
         {
          "t": 29876943.295283332,
          "by": "dev-1",
          "state": "todo"
+        },
+        {
+         "t": 29876945.49811667,
+         "by": "lead",
+         "state": "done"
         }
        ],
        "ask": {
@@ -1187,7 +1203,11 @@
         "addressedTo": null,
         "decider": "lead",
         "escalate": null,
-        "answer": null
+        "answer": {
+         "decision": "yes",
+         "text": "Yes, with one correction: the code is #CIRC! (SPEC5 change P-4), not #CYCLE!. O-3 (MOD-B) reopened for dev-2: add ERR.CYCLE = {error:\"#CIRC!\"} in ERR/BY_CODE. D already uses #CIRC!; C test comment still says #CYCLE! — update wording when C is touched. No ARCH interface change.",
+         "t": 29876945.49811667
+        }
        }
       }
      ],
@@ -10981,6 +11001,153 @@
      "uat:O-5",
      "ship:O-5"
     ]
+   },
+   {
+    "seq": 926,
+    "t": 29876945.230116665,
+    "type": "session-open",
+    "session": "S-29",
+    "role": "dev-1"
+   },
+   {
+    "seq": 927,
+    "t": 29876945.230116665,
+    "type": "claim",
+    "msg": "M-148",
+    "run": "R-57"
+   },
+   {
+    "seq": 928,
+    "t": 29876945.230116665,
+    "type": "enter",
+    "run": "R-57",
+    "msg": "M-148",
+    "role": "dev-1",
+    "by": "dev-1",
+    "room": "workshop",
+    "order": "O-6",
+    "stage": "build",
+    "mode": "work",
+    "session": "S-29",
+    "item": 1
+   },
+   {
+    "seq": 929,
+    "t": 29876945.3958,
+    "type": "usage",
+    "session": "S-26",
+    "role": "reviewer",
+    "tokens": 77141,
+    "items": 4,
+    "source": "launcher"
+   },
+   {
+    "seq": 930,
+    "t": 29876945.3958,
+    "type": "launch-finished",
+    "launch": "0800-reviewer",
+    "role": "reviewer",
+    "ok": true,
+    "tokens": 77141,
+    "cumulative": 1272711,
+    "cost": 0.8813,
+    "sessions": [
+     "S-26"
+    ],
+    "abandoned": [],
+    "reason": null
+   },
+   {
+    "seq": 931,
+    "t": 29876945.4912,
+    "type": "refuse",
+    "rule": "hard",
+    "msg": "HARD: M-148 is held by run R-57 until 29876975.230116665",
+    "argv": "room enter --msg=M-148 --role=dev-1"
+   },
+   {
+    "seq": 932,
+    "t": 29876945.496016666,
+    "type": "reopen",
+    "order": "O-3",
+    "from": "done",
+    "by": "lead",
+    "reason": "ISS-13",
+    "loops": 3,
+    "priority": "next"
+   },
+   {
+    "seq": 933,
+    "t": 29876945.496033333,
+    "type": "send",
+    "msg": "M-153",
+    "from": "lead",
+    "to": "dev-2",
+    "kind": "work",
+    "key": "O-3:build:3",
+    "ref": "O-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 934,
+    "t": 29876945.49811667,
+    "type": "item-comment",
+    "item": "ISS-13",
+    "by": "lead"
+   },
+   {
+    "seq": 935,
+    "t": 29876945.49811667,
+    "type": "item-update",
+    "item": "ISS-13",
+    "by": "lead",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 936,
+    "t": 29876945.49811667,
+    "type": "ask-answer",
+    "item": "ISS-13",
+    "by": "lead",
+    "decision": "yes"
+   },
+   {
+    "seq": 937,
+    "t": 29876945.499883335,
+    "type": "item-update",
+    "item": "ISS-3",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 938,
+    "t": 29876945.4999,
+    "type": "launch",
+    "role": "dev-2",
+    "msgs": [
+     "M-153"
+    ],
+    "tasks": [],
+    "why": "plan: next: 1 waiting, no session running"
+   },
+   {
+    "seq": 939,
+    "t": 29876945.4999,
+    "type": "launch",
+    "role": "lead",
+    "msgs": [],
+    "tasks": [
+     {
+      "kind": "ask",
+      "ref": "ISS-14"
+     }
+    ],
+    "why": "plan: ask: ISS-14"
    }
   ]
  },
@@ -14268,7 +14435,10 @@
       "priority": "next",
       "ts": 29876944.81075,
       "state": "open",
-      "lease": null,
+      "lease": {
+       "run": "R-57",
+       "until": 29876975.230116665
+      },
       "acked": false
      }
     ],
@@ -14354,6 +14524,27 @@
       },
       "priority": "next",
       "ts": 29876945.097566668,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-153",
+     {
+      "id": "M-153",
+      "from": "lead",
+      "to": "dev-2",
+      "kind": "work",
+      "key": "O-3:build:3",
+      "due": null,
+      "ref": "O-3",
+      "body": {
+       "stage": "build",
+       "loops": 3
+      },
+      "priority": "next",
+      "ts": 29876945.496033333,
       "state": "open",
       "lease": null,
       "acked": false
@@ -14742,10 +14933,14 @@
     [
      "O-5:ship:3",
      "M-151"
+    ],
+    [
+     "O-3:build:3",
+     "M-153"
     ]
    ]
   },
-  "n": 152
+  "n": 153
  },
  "org": {
   "roles": {
@@ -15267,8 +15462,8 @@
       "spent": 0,
       "accept": "live/bench5/work/MOD-B/<the file ARCH.md names for slot B>, with exactly the exports and behaviour ARCH.md gives slot B, for every wave released so far (live/bench5/SPEC5.md), plus your own *.test.mjs in the same folder.",
       "words": null,
-      "stage": "done",
-      "loops": 2,
+      "stage": "build",
+      "loops": 3,
       "created": 29876923.25736667,
       "history": [
        {
@@ -15374,6 +15569,13 @@
         "by": "release",
         "verdict": "pass",
         "t": 29876941.333166666
+       },
+       {
+        "stage": "done",
+        "by": "lead",
+        "verdict": "reopen",
+        "t": 29876945.496016666,
+        "findings": "Wave 3: B ERR has no cycle error, so errorFromCode(\"#CIRC!\") falls back to ERR.VALUE and cycle cells (D detects them, C maps via errorFromCode) show #VALUE! instead of #CIRC!. Required: add ERR.CYCLE = frozen {error:\"#CIRC!\"} (code #CIRC! per SPEC5 requirement change P-4, NOT #CYCLE!) to ERR so it is in BY_CODE; isError/errorFromCode/display must handle it. Keep the name ERR.CYCLE (C and SHEET tests use it). Also check the rest of Wave 3 that B owns (odd input: =1e3 / =1.2.3 #VALUE!, 0^0=1, \"5\"+1=6)."
        }
       ],
       "priority": "next",
@@ -15386,7 +15588,7 @@
       "fromContract": null,
       "task": "MOD-B",
       "orphanSince": null,
-      "findings": "Wave 2: values.mjs (slot B) lacks ERR.REF. A emits {type:\"error\",code:\"#REF!\"} and C resolves via errorFromCode(\"#REF!\"), which currently falls back to #VALUE!. Required: add ERR.REF = frozen {error:\"#REF!\"} to ERR and to the errorFromCode lookup (ARCH Slot B, \"later REF\"). Keep the left-error fix already in progress; no other B change for wave 2."
+      "findings": "Wave 3: B ERR has no cycle error, so errorFromCode(\"#CIRC!\") falls back to ERR.VALUE and cycle cells (D detects them, C maps via errorFromCode) show #VALUE! instead of #CIRC!. Required: add ERR.CYCLE = frozen {error:\"#CIRC!\"} (code #CIRC! per SPEC5 requirement change P-4, NOT #CYCLE!) to ERR so it is in BY_CODE; isError/errorFromCode/display must handle it. Keep the name ERR.CYCLE (C and SHEET tests use it). Also check the rest of Wave 3 that B owns (odd input: =1e3 / =1.2.3 #VALUE!, 0^0=1, \"5\"+1=6)."
      }
     ],
     [
@@ -16791,10 +16993,26 @@
       "state": "left",
       "session": "S-28"
      }
+    ],
+    [
+     "R-57",
+     {
+      "run": "R-57",
+      "msg": "M-148",
+      "role": "dev-1",
+      "by": "dev-1",
+      "consult": false,
+      "order": "O-6",
+      "stage": "build",
+      "loops": 5,
+      "entered": 29876945.230116665,
+      "state": "running",
+      "session": "S-29"
+     }
     ]
    ]
   },
-  "n": 56,
+  "n": 57,
   "memory": {
    "__map": [
     [
@@ -17459,9 +17677,20 @@
       "open": false,
       "started": 29876945.09755
      }
+    ],
+    [
+     "S-29",
+     {
+      "id": "S-29",
+      "role": "dev-1",
+      "items": 1,
+      "open": true,
+      "started": 29876945.2301,
+      "launch": "0897-dev-1"
+     }
     ]
    ]
   },
-  "nS": 28
+  "nS": 29
  }
 }
