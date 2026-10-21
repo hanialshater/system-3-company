@@ -367,10 +367,12 @@
        "kind": "order",
        "title": "Assembled pack",
        "body": "",
-       "state": "in-review",
+       "state": "in-progress",
        "assignee": "writer-2",
        "project": "PRJ-1",
-       "labels": [],
+       "labels": [
+        "revised"
+       ],
        "priority": 3,
        "cycle": null,
        "due": null,
@@ -380,7 +382,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876713.560083333,
-       "updated": 29876733.73116667,
+       "updated": 29876734.843133334,
        "history": [
         {
          "t": 29876713.560083333,
@@ -401,6 +403,11 @@
          "t": 29876733.73116667,
          "by": "engine",
          "state": "in-review"
+        },
+        {
+         "t": 29876734.843133334,
+         "by": "engine",
+         "state": "in-progress"
         }
        ]
       }
@@ -4979,6 +4986,139 @@
     "mode": "work",
     "session": "S-25",
     "item": 1
+   },
+   {
+    "seq": 430,
+    "t": 29876734.60025,
+    "type": "self-check",
+    "order": "O-7",
+    "task": "PACK",
+    "by": "reader",
+    "stage": "check",
+    "pass": true,
+    "output": "ok: 890 words, reading ease 76"
+   },
+   {
+    "seq": 431,
+    "t": 29876734.839516666,
+    "type": "advance",
+    "order": "O-7",
+    "stage": "check",
+    "by": "reader",
+    "verdict": "revise"
+   },
+   {
+    "seq": 432,
+    "t": 29876734.839516666,
+    "type": "reopen",
+    "order": "O-7",
+    "from": "check",
+    "loops": 1,
+    "priority": "next"
+   },
+   {
+    "seq": 433,
+    "t": 29876734.839516666,
+    "type": "send",
+    "msg": "M-66",
+    "from": "editor",
+    "to": "writer-2",
+    "kind": "work",
+    "key": "O-7:build:1",
+    "ref": "O-7",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 434,
+    "t": 29876734.839516666,
+    "type": "done",
+    "msg": "M-65",
+    "run": "R-30"
+   },
+   {
+    "seq": 435,
+    "t": 29876734.839516666,
+    "type": "send",
+    "msg": "M-67",
+    "from": "pool:checker",
+    "to": "editor",
+    "kind": "report",
+    "key": null,
+    "ref": "O-7",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 436,
+    "t": 29876734.839516666,
+    "type": "leave",
+    "run": "R-30",
+    "role": "reader",
+    "order": "O-7",
+    "stage": "check",
+    "verdict": "revise",
+    "minutes": 0.831416666507721
+   },
+   {
+    "seq": 437,
+    "t": 29876734.843133334,
+    "type": "item-update",
+    "item": "ISS-7",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 438,
+    "t": 29876734.843133334,
+    "type": "item-update",
+    "item": "ISS-7",
+    "by": "engine",
+    "changes": [
+     "addLabels"
+    ]
+   },
+   {
+    "seq": 439,
+    "t": 29876734.843133334,
+    "type": "launch",
+    "role": "writer-2",
+    "msgs": [
+     "M-66"
+    ],
+    "tasks": [],
+    "why": "plan: next: 1 waiting, no session running"
+   },
+   {
+    "seq": 440,
+    "t": 29876735.213183332,
+    "type": "session-open",
+    "session": "S-26",
+    "role": "writer-2"
+   },
+   {
+    "seq": 441,
+    "t": 29876735.2132,
+    "type": "claim",
+    "msg": "M-66",
+    "run": "R-31"
+   },
+   {
+    "seq": 442,
+    "t": 29876735.2132,
+    "type": "enter",
+    "run": "R-31",
+    "msg": "M-66",
+    "role": "writer-2",
+    "by": "writer-2",
+    "room": "editorial",
+    "order": "O-7",
+    "stage": "build",
+    "mode": "work",
+    "session": "S-26",
+    "item": 1
    }
   ]
  },
@@ -6432,11 +6572,56 @@
       },
       "priority": "next",
       "ts": 29876733.73115,
-      "state": "open",
+      "state": "done",
       "lease": {
        "run": "R-30",
        "until": 29876764.0081
       },
+      "acked": false
+     }
+    ],
+    [
+     "M-66",
+     {
+      "id": "M-66",
+      "from": "editor",
+      "to": "writer-2",
+      "kind": "work",
+      "key": "O-7:build:1",
+      "due": null,
+      "ref": "O-7",
+      "body": {
+       "stage": "build",
+       "loops": 1
+      },
+      "priority": "next",
+      "ts": 29876734.839516666,
+      "state": "open",
+      "lease": {
+       "run": "R-31",
+       "until": 29876765.2132
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-67",
+     {
+      "id": "M-67",
+      "from": "pool:checker",
+      "to": "editor",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-7",
+      "body": {
+       "stage": "check",
+       "verdict": "revise"
+      },
+      "priority": "next",
+      "ts": 29876734.839516666,
+      "state": "open",
+      "lease": null,
       "acked": false
      }
     ]
@@ -6587,10 +6772,14 @@
     [
      "O-7:check:0",
      "M-65"
+    ],
+    [
+     "O-7:build:1",
+     "M-66"
     ]
    ]
   },
-  "n": 65
+  "n": 67
  },
  "org": {
   "roles": {
@@ -7457,13 +7646,13 @@
       "orderer": "cos",
       "manager": "editor",
       "builder": "writer-2",
-      "checker": null,
+      "checker": "reader",
       "budget": 200000,
       "spent": 0,
       "accept": "live/bench3-b/work/PACK/page.md: the assembled pack. First line '# Solar System Quiz Pack'; then the five shipped rounds (live/bench3-b/shipped/ROUND1..ROUND5/page.md) in order, each starting '# Round n: <topic>', 20 questions in all. Read them as one pack and fix what clashes across rounds: an answer used in two rounds, a fact that contradicts another round, a format slip; keep each round's 4 questions. End with '## Changes' listing each change and why (or 'none'). No words like stupid, dumb, kill, dead, blood, hate.",
       "words": null,
-      "stage": "check",
-      "loops": 0,
+      "stage": "build",
+      "loops": 1,
       "created": 29876713.3489,
       "history": [
        {
@@ -7477,6 +7666,13 @@
         "by": "code",
         "verdict": "pass",
         "t": 29876733.73115
+       },
+       {
+        "stage": "check",
+        "by": "reader",
+        "verdict": "revise",
+        "t": 29876734.839516666,
+        "findings": "Class: format slip, Answer over the STYLE 1-3 word cap (1 instance). Round 3 Q3 \"**Answer:** The Great Red Spot\" is 4 words -> required: an answer of at most 3 words, e.g. \"**Answer:** Great Red Spot\" (keep the Why, which already says \"This red storm\"), and add the change and why to ## Changes. The ## Changes line that says every round keeps its format must then be accurate. Everything else checked and fine: the 20 rounds text matches shipped ROUND1-5 except the Round 5 heading capitalisation (listed in Changes); 20 distinct answers; no cross-round giveaways or contradicting facts; all questions <=20 words ending in ?; each Why is one sentence; no banned words."
        }
       ],
       "priority": "next",
@@ -7515,7 +7711,8 @@
         "prefix": "**Answer:**",
         "split": "^# Round \\d+:"
        }
-      }
+      },
+      "findings": "Class: format slip, Answer over the STYLE 1-3 word cap (1 instance). Round 3 Q3 \"**Answer:** The Great Red Spot\" is 4 words -> required: an answer of at most 3 words, e.g. \"**Answer:** Great Red Spot\" (keep the Why, which already says \"This red storm\"), and add the change and why to ## Changes. The ## Changes line that says every round keeps its format must then be accurate. Everything else checked and fine: the 20 rounds text matches shipped ROUND1-5 except the Round 5 heading capitalisation (listed in Changes); 20 distinct answers; no cross-round giveaways or contradicting facts; all questions <=20 words ending in ?; each Why is one sentence; no banned words."
      }
     ]
    ]
@@ -8017,13 +8214,29 @@
       "stage": "check",
       "loops": 0,
       "entered": 29876734.0081,
-      "state": "running",
+      "state": "left",
       "session": "S-25"
+     }
+    ],
+    [
+     "R-31",
+     {
+      "run": "R-31",
+      "msg": "M-66",
+      "role": "writer-2",
+      "by": "writer-2",
+      "consult": false,
+      "order": "O-7",
+      "stage": "build",
+      "loops": 1,
+      "entered": 29876735.2132,
+      "state": "running",
+      "session": "S-26"
      }
     ]
    ]
   },
-  "n": 30,
+  "n": 31,
   "memory": {
    "__map": [
     [
@@ -8175,6 +8388,12 @@
        "t": 29876732.8936,
        "did": "check on O-6: pass (loop 4)",
        "learned": "After a giveaway fix, re-check difficulty order across all four questions, not just the changed one: removing a clue can shift which question is hardest.",
+       "mistake": null
+      },
+      {
+       "t": 29876734.839516666,
+       "did": "check on O-7: revise (loop 0)",
+       "learned": "At PACK, re-run the STYLE word caps over all 20 answers: a slip passed in a shipped round (4-word answer) is still PACK to fix as a format slip.",
        "mistake": null
       }
      ]
@@ -8473,9 +8692,19 @@
       "open": true,
       "started": 29876734.0081
      }
+    ],
+    [
+     "S-26",
+     {
+      "id": "S-26",
+      "role": "writer-2",
+      "items": 1,
+      "open": true,
+      "started": 29876735.213183332
+     }
     ]
    ]
   },
-  "nS": 25
+  "nS": 26
  }
 }
