@@ -131,3 +131,25 @@ Stage waits (h): 2b approval 2.36 → 1.03, ship 0.64 → 0.32 (smaller batches 
 1. Calibrate: replace [a] parameters with pilot data once EXP-009's fixes land. Dispatch time and tokens, bookkeeping tokens and approval waits are the ones that drive the result.
 2. Iteration 4: the builder runs test1 inside its own room before `leave` (prevention), against 3a.
 3. A live run: the same tools with 2-3 real agents on a bounded batch (the Meta roadmap's first pilot), where the four fault checks are the S5/S9 tests above, done by real sessions.
+
+## Iteration 4: committed predictions (before any code for it exists)
+
+Founder, 2026-10-21: batches vs a queue in the mailbox; priority flags ("force now or for later"); time redefined for a fast, parallel company ("we can wait until Thursday to do a meeting … I would call it time but define it differently"). Plan: tools first (sessions and `room next`, priority flags, three ritual clocks with cycles, time measures with `--after` dependencies, a wake on lease expiry), then this simulation, then live run 2.
+
+**Calibration from live run 1** replaces the token model: a session costs 50k start-up plus the task's own tokens (build about 6k, check about 8k), plus context growth of about 5k per item already drained in the session.
+
+**Arms:** all on the 2d engine; the same seeds.
+- **4a** one task per run: today's prototype, recalibrated.
+- **4b** sessions drain up to 3 items.
+- **4c** sessions drain up to 5 items.
+- **4d** 4b plus priority: 10% of orders `now`, 60% `later` (due 8 h), the rest `next`.
+- **4e** 4b with the WBR on the progress clock: every 20 shipped, or a queue stuck over 1 h, with a 24 h fallback. This replaces "every 3.5 days".
+
+| # | Prediction | would_be_wrong_if |
+|---|---|---|
+| I4-1 | 4b tokens/item ≤ 70% of 4a; 4c ≤ 60% | 4b > 85% of 4a |
+| I4-2 | draining does not slow the median: 4b lead p50 within +15% of 4a | > +30% |
+| I4-3 | in 4d, `now` items have lead p50 ≤ 50% of `later` items, at ≥ 1.5× their tokens per item | `now` not faster, or not costlier |
+| I4-4 | no `later` item waits past its due by more than one sweep (starvation 0) | any does |
+| I4-5 | 4e holds more WBRs in busy periods and fewer in quiet ones than a fixed cadence; lead p50 no worse than 2d's | p50 > 10% worse than 2d |
+| I4-6 | invariants hold in every arm: 0 duplicates, 0 violations, all crashes recovered | any non-zero |
