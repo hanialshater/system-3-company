@@ -147,3 +147,37 @@ The record is in `live/bench5/`: the state, the serve log, the outbox briefs, an
   - Fixed in the launcher too: agents no longer inherit this session's `CLAUDE_AUTO_BACKGROUND_TASKS` (which let the wait go to the background) or `CLAUDE_CODE_SESSION_ID` (which put every agent's transcript in one file).
 
 **Final summary from the launcher:** 33 launches, 2 failed (F1's kill and the hung session's abort), 1,777,989 tokens, $14.15.
+
+## Benchmark 5R and 5V (predictions committed before either run)
+
+**5R, the re-run on the fixed kernel.** The task, faults, company spec and launcher are the same, plus the fixes found in attempt 2:
+- the wait-deadline race;
+- reservations matched by launch id;
+- no lease-waiting;
+- the launcher's agent environment.
+
+**5V, a vanilla agent.** One Claude Code agent (Agent SDK, same model, same tools, no settings) in one resumed session, with no company.
+- A script plays the founder and the hidden tests. It gives wave 1, then the failing-category lines after each turn: exactly what the company's UAT findings carry. It allows up to 5 rounds per wave, then releases the next wave.
+- The same faults where they apply:
+  - F1, the first turn killed after 60 s, then resumed;
+  - F2, sheet.mjs wrapped after wave 1;
+  - F4, the rename during wave 3.
+- F3 has no analogue for a single agent.
+
+| # | Prediction | would_be_wrong_if |
+|---|---|---|
+| R1 | 5R has 0 empty sessions and no hung session | any |
+| R2 | 5R ships all waves with 19/19 hidden categories, at ≤ 90k per ship (attempt 2: 98.8k) | any failure, or > 98.8k |
+| V1 | The vanilla agent also ends at 19/19. The task is within one agent's reach | it fails a wave after 5 rounds |
+| V2 | **The vanilla agent is cheaper**: ≤ 50% of the company's dollars ($14.15) | > 75% |
+| V3 | The vanilla agent is at least as fast as the company (≤ 25 min) | > 35 min |
+| V4 | The vanilla agent catches F2 only through the hidden-test feedback (no reviewer), and F4 in one round | F2 never detected, or F4 > 2 rounds |
+
+**What I expect this to show.** On a self-contained task of this size, a single strong agent beats a company on cost. The company's case rests elsewhere:
+- parallel hands;
+- independent review;
+- durable state and recovery when a process dies;
+- an audit trail;
+- requirement changes that reach every role.
+
+If V2 and V3 hold, Meta's cost has to be justified by those, or by tasks too big for one context.
