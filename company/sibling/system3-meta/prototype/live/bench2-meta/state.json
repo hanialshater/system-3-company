@@ -461,7 +461,7 @@
        "kind": "order",
        "title": "Assembled pack",
        "body": "",
-       "state": "in-progress",
+       "state": "in-review",
        "assignee": "writer-2",
        "project": "PRJ-1",
        "labels": [],
@@ -474,7 +474,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876647.86725,
-       "updated": 29876664.3726,
+       "updated": 29876666.53093333,
        "history": [
         {
          "t": 29876647.86725,
@@ -490,6 +490,11 @@
          "t": 29876664.3726,
          "by": "engine",
          "state": "in-progress"
+        },
+        {
+         "t": 29876666.53093333,
+         "by": "engine",
+         "state": "in-review"
         }
        ]
       }
@@ -536,7 +541,7 @@
        "kind": "action",
        "title": "PACK: list all 20 answers and confirm none repeats and each sits in its owning round",
        "body": "From MTG-1 item 1: Rounds: five topics with no overlap, and which facts each round owns",
-       "state": "backlog",
+       "state": "done",
        "assignee": "writer-2",
        "project": null,
        "labels": [],
@@ -549,12 +554,17 @@
        "comments": [],
        "by": "editor",
        "created": 29876650.080366667,
-       "updated": 29876650.080366667,
+       "updated": 29876666.01993333,
        "history": [
         {
          "t": 29876650.080366667,
          "by": "editor",
          "state": "backlog"
+        },
+        {
+         "t": 29876666.01993333,
+         "by": "writer-2",
+         "state": "done"
         }
        ]
       }
@@ -5015,6 +5025,163 @@
     "mode": "work",
     "session": "S-17",
     "item": 1
+   },
+   {
+    "seq": 401,
+    "t": 29876666.01993333,
+    "type": "item-update",
+    "item": "ISS-9",
+    "by": "writer-2",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 402,
+    "t": 29876666.022066668,
+    "type": "advance",
+    "order": "O-7",
+    "stage": "build",
+    "by": "writer-2",
+    "verdict": "pass"
+   },
+   {
+    "seq": 403,
+    "t": 29876666.022066668,
+    "type": "code-stage",
+    "order": "O-7",
+    "stage": "test1"
+   },
+   {
+    "seq": 404,
+    "t": 29876666.022066668,
+    "type": "done",
+    "msg": "M-60",
+    "run": "R-27"
+   },
+   {
+    "seq": 405,
+    "t": 29876666.022066668,
+    "type": "send",
+    "msg": "M-62",
+    "from": "writer-2",
+    "to": "editor",
+    "kind": "report",
+    "key": null,
+    "ref": "O-7",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 406,
+    "t": 29876666.022066668,
+    "type": "leave",
+    "run": "R-27",
+    "role": "writer-2",
+    "order": "O-7",
+    "stage": "build",
+    "verdict": "pass",
+    "minutes": 0.8172333352267742
+   },
+   {
+    "seq": 407,
+    "t": 29876666.53055,
+    "type": "session-close",
+    "session": "S-13",
+    "role": "reader",
+    "items": 3,
+    "reason": "finished (harness)",
+    "minutes": 3.329349998384714
+   },
+   {
+    "seq": 408,
+    "t": 29876666.530566666,
+    "type": "usage",
+    "session": "S-13",
+    "role": "reader",
+    "tokens": 73745,
+    "items": 3,
+    "source": "harness"
+   },
+   {
+    "seq": 409,
+    "t": 29876666.53091667,
+    "type": "advance",
+    "order": "O-7",
+    "stage": "test1",
+    "by": "code",
+    "verdict": "pass"
+   },
+   {
+    "seq": 410,
+    "t": 29876666.53091667,
+    "type": "send",
+    "msg": "M-63",
+    "from": "editor",
+    "to": "pool:checker",
+    "kind": "work",
+    "key": "O-7:check:0",
+    "ref": "O-7",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 411,
+    "t": 29876666.53093333,
+    "type": "item-update",
+    "item": "ISS-7",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 412,
+    "t": 29876666.53093333,
+    "type": "supervisor-tick",
+    "steps": [
+     "test1:O-7"
+    ]
+   },
+   {
+    "seq": 413,
+    "t": 29876666.5312,
+    "type": "launch",
+    "role": "reader",
+    "msgs": [
+     "M-63"
+    ],
+    "tasks": [],
+    "why": "cycle: next: 1 waiting, no session running"
+   },
+   {
+    "seq": 414,
+    "t": 29876666.781516667,
+    "type": "session-open",
+    "session": "S-18",
+    "role": "reader"
+   },
+   {
+    "seq": 415,
+    "t": 29876666.781533334,
+    "type": "claim",
+    "msg": "M-63",
+    "run": "R-28"
+   },
+   {
+    "seq": 416,
+    "t": 29876666.781533334,
+    "type": "enter",
+    "run": "R-28",
+    "msg": "M-63",
+    "role": "reader",
+    "by": "reader",
+    "room": "quality",
+    "order": "O-7",
+    "stage": "check",
+    "mode": "work",
+    "session": "S-18",
+    "item": 1
    }
   ]
  },
@@ -6356,7 +6523,7 @@
       },
       "priority": "next",
       "ts": 29876664.372583333,
-      "state": "open",
+      "state": "done",
       "lease": {
        "run": "R-27",
        "until": 29876695.204816666
@@ -6382,6 +6549,51 @@
       "ts": 29876664.372583333,
       "state": "open",
       "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-62",
+     {
+      "id": "M-62",
+      "from": "writer-2",
+      "to": "editor",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-7",
+      "body": {
+       "stage": "build",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876666.022066668,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-63",
+     {
+      "id": "M-63",
+      "from": "editor",
+      "to": "pool:checker",
+      "kind": "work",
+      "key": "O-7:check:0",
+      "due": null,
+      "ref": "O-7",
+      "body": {
+       "stage": "check",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876666.53091667,
+      "state": "open",
+      "lease": {
+       "run": "R-28",
+       "until": 29876696.781533334
+      },
       "acked": false
      }
     ]
@@ -6528,10 +6740,14 @@
     [
      "O-7:build:0",
      "M-60"
+    ],
+    [
+     "O-7:check:0",
+     "M-63"
     ]
    ]
   },
-  "n": 61
+  "n": 63
  },
  "org": {
   "roles": {
@@ -7372,10 +7588,23 @@
       "spent": 0,
       "accept": "live/bench2-meta/work/PACK/page.md: the assembled pack. First line '# Solar System Quiz Pack'; then the five shipped rounds (live/bench2-meta/shipped/ROUND1..ROUND5/page.md) in order, each starting '# Round n: <topic>', 20 questions in all. Read them as one pack and fix what clashes across rounds: an answer used in two rounds, a fact that contradicts another round, a format slip; keep each round's 4 questions. End with '## Changes' listing each change and why (or 'none'). No words like stupid, dumb, kill, dead, blood, hate.",
       "words": null,
-      "stage": "build",
+      "stage": "check",
       "loops": 0,
       "created": 29876647.768,
-      "history": [],
+      "history": [
+       {
+        "stage": "build",
+        "by": "writer-2",
+        "verdict": "pass",
+        "t": 29876666.022066668
+       },
+       {
+        "stage": "test1",
+        "by": "code",
+        "verdict": "pass",
+        "t": 29876666.53091667
+       }
+      ],
       "priority": "next",
       "due": null,
       "after": [
@@ -7861,13 +8090,29 @@
       "stage": "build",
       "loops": 0,
       "entered": 29876665.204833332,
-      "state": "running",
+      "state": "left",
       "session": "S-17"
+     }
+    ],
+    [
+     "R-28",
+     {
+      "run": "R-28",
+      "msg": "M-63",
+      "role": "reader",
+      "by": "reader",
+      "consult": false,
+      "order": "O-7",
+      "stage": "check",
+      "loops": 0,
+      "entered": 29876666.781533334,
+      "state": "running",
+      "session": "S-18"
      }
     ]
    ]
   },
-  "n": 27,
+  "n": 28,
   "memory": {
    "__map": [
     [
@@ -8043,6 +8288,12 @@
        "did": "build on O-6: pass (loop 1)",
        "learned": "Count Why-line words against the STYLE 20-word cap before hand-in; check does not catch it",
        "mistake": null
+      },
+      {
+       "t": 29876666.022066668,
+       "did": "build on O-7: pass (loop 0)",
+       "learned": "PACK: tabulate all 20 answers against STYLE reserved lists in notes.md before writing Changes; rounds built to reserved lists assemble with no clashes",
+       "mistake": null
       }
      ]
     ]
@@ -8176,7 +8427,7 @@
       "id": "S-13",
       "role": "reader",
       "items": 3,
-      "open": true,
+      "open": false,
       "started": 29876663.2012
      }
     ],
@@ -8219,9 +8470,19 @@
       "open": true,
       "started": 29876665.204816666
      }
+    ],
+    [
+     "S-18",
+     {
+      "id": "S-18",
+      "role": "reader",
+      "items": 1,
+      "open": true,
+      "started": 29876666.781516667
+     }
     ]
    ]
   },
-  "nS": 17
+  "nS": 18
  }
 }
