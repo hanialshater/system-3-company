@@ -12088,6 +12088,42 @@
      "uat:O-3",
      "ship:O-3"
     ]
+   },
+   {
+    "seq": 1029,
+    "t": 29876949.87105,
+    "type": "session-close",
+    "session": "S-31",
+    "role": "reviewer",
+    "items": 2,
+    "reason": "queue empty after wait",
+    "minutes": 2.6067833341658115
+   },
+   {
+    "seq": 1030,
+    "t": 29876950.04605,
+    "type": "usage",
+    "session": "S-31",
+    "role": "reviewer",
+    "tokens": 56562,
+    "items": 2,
+    "source": "launcher"
+   },
+   {
+    "seq": 1031,
+    "t": 29876950.04605,
+    "type": "launch-finished",
+    "launch": "0962-reviewer",
+    "role": "reviewer",
+    "ok": true,
+    "tokens": 56562,
+    "cumulative": 458359,
+    "cost": 0.4698,
+    "sessions": [
+     "S-31"
+    ],
+    "abandoned": [],
+    "reason": null
    }
   ]
  },
@@ -19116,10 +19152,10 @@
       "id": "S-31",
       "role": "reviewer",
       "items": 2,
-      "open": true,
+      "open": false,
       "started": 29876947.264266666,
       "launch": "0962-reviewer",
-      "waitUntil": 29876949.85505
+      "waitUntil": null
      }
     ],
     [
