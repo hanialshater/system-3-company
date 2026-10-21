@@ -381,7 +381,7 @@
        "kind": "order",
        "title": "MOD-B: the module in slot B",
        "body": "",
-       "state": "in-review",
+       "state": "done",
        "assignee": "dev-2",
        "project": null,
        "labels": [],
@@ -394,7 +394,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876923.441666666,
-       "updated": 29876929.259333335,
+       "updated": 29876931.9949,
        "history": [
         {
          "t": 29876923.441666666,
@@ -415,6 +415,11 @@
          "t": 29876929.259333335,
          "by": "engine",
          "state": "in-review"
+        },
+        {
+         "t": 29876931.9949,
+         "by": "engine",
+         "state": "done"
         }
        ]
       }
@@ -526,10 +531,12 @@
        "kind": "order",
        "title": "SHEET: the integrated sheet",
        "body": "",
-       "state": "backlog",
+       "state": "in-review",
        "assignee": "dev-1",
        "project": null,
-       "labels": [],
+       "labels": [
+        "revised"
+       ],
        "priority": 3,
        "cycle": null,
        "due": null,
@@ -539,7 +546,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876923.441666666,
-       "updated": 29876927.68305,
+       "updated": 29876934.404183332,
        "history": [
         {
          "t": 29876923.441666666,
@@ -550,6 +557,26 @@
          "t": 29876923.441666666,
          "by": "engine",
          "state": "backlog"
+        },
+        {
+         "t": 29876931.9949,
+         "by": "engine",
+         "state": "in-progress"
+        },
+        {
+         "t": 29876932.555283334,
+         "by": "engine",
+         "state": "in-review"
+        },
+        {
+         "t": 29876932.9013,
+         "by": "engine",
+         "state": "in-progress"
+        },
+        {
+         "t": 29876934.404183332,
+         "by": "engine",
+         "state": "in-review"
         }
        ]
       }
@@ -623,6 +650,62 @@
         }
        ]
       }
+     ],
+     [
+      "ISS-9",
+      {
+       "id": "ISS-9",
+       "kind": "ask",
+       "title": "O-6 uat: hidden wave1/errors fails; likely error-value representation (slot B, dev-2)",
+       "body": "Hidden acceptance reports only wave1/errors failing (6/7 pass). SHEET is pure ARCH wiring and every spec error case behaves right via display(): #DIV/0!, #VALUE! (wrong type, non-finite, parse failure), #NAME?, left error wins, invalid names throw from set/get. What remains is the representation: get() returns ARCH error objects {error:\"#DIV/0!\"}, so a behaviour-only test comparing get() to the code (== or String(v)) fails. Required: an ARCH amendment decision by lead. Option 1 (minimal, keeps ARCH): B gives each frozen ERR singleton a non-enumerable toString/valueOf returning the code, so String(v) and v==\"#DIV/0!\" work and deepEqual to {error:..} still holds. Option 2: get() returns the code string, which makes typed text \"#DIV/0!\" look like an error. Either way it is a change in MOD-B (owner dev-2) or in ARCH, not in SHEET.",
+       "state": "done",
+       "assignee": "lead",
+       "project": null,
+       "labels": [
+        "ask:decision"
+       ],
+       "priority": 2,
+       "cycle": null,
+       "due": "2026-10-22",
+       "goal": null,
+       "order": null,
+       "links": [],
+       "comments": [
+        {
+         "by": "lead",
+         "t": 29876935.4743,
+         "text": "redirect: Checked: SHEET wiring and every wave-1 error case are right in display() and inside the modules (left error wins, #DIV/0!, non-finite and parse failure give #VALUE!, calls give #NAME?, bad names throw). The failure is how get() shows errors. Neither option as written: Option 1 still fails strict equality and deepStrictEqual against \"#DIV/0!\", and Option 2 done in B would merge errors with text inside the modules. Decision: an ARCH amendment at the public boundary only. SHEET get() returns the error code string (isError(v) ? v.error : v); B, C and D keep the ERR singletons unchanged. MOD-B needs no change. O-1 (ARCH) is reopened for dev-1 to record this. dev-1 then changes SHEET get() in O-6 to match, adds a sheet.test asserting get(\"A1\")===\"#DIV/0!\" after set(\"A1\",\"=1/0\"), and runs uat again."
+        }
+       ],
+       "by": "dev-1",
+       "created": 29876934.282116666,
+       "updated": 29876935.474316668,
+       "history": [
+        {
+         "t": 29876934.282116666,
+         "by": "dev-1",
+         "state": "todo"
+        },
+        {
+         "t": 29876935.474316668,
+         "by": "lead",
+         "state": "done"
+        }
+       ],
+       "ask": {
+        "kind": "decision",
+        "amount": 0,
+        "from": "dev-1",
+        "addressedTo": null,
+        "decider": "lead",
+        "escalate": null,
+        "answer": {
+         "decision": "redirect",
+         "text": "Checked: SHEET wiring and every wave-1 error case are right in display() and inside the modules (left error wins, #DIV/0!, non-finite and parse failure give #VALUE!, calls give #NAME?, bad names throw). The failure is how get() shows errors. Neither option as written: Option 1 still fails strict equality and deepStrictEqual against \"#DIV/0!\", and Option 2 done in B would merge errors with text inside the modules. Decision: an ARCH amendment at the public boundary only. SHEET get() returns the error code string (isError(v) ? v.error : v); B, C and D keep the ERR singletons unchanged. MOD-B needs no change. O-1 (ARCH) is reopened for dev-1 to record this. dev-1 then changes SHEET get() in O-6 to match, adds a sheet.test asserting get(\"A1\")===\"#DIV/0!\" after set(\"A1\",\"=1/0\"), and runs uat again.",
+         "t": 29876935.4743
+        }
+       }
+      }
      ]
     ]
    },
@@ -632,7 +715,7 @@
    "cycles": {
     "__map": []
    },
-   "n": 8,
+   "n": 9,
    "nP": 0,
    "nC": 0
   },
@@ -3644,6 +3727,779 @@
     "mode": "work",
     "session": "S-8",
     "item": 1
+   },
+   {
+    "seq": 267,
+    "t": 29876931.9688,
+    "type": "advance",
+    "order": "O-3",
+    "stage": "check",
+    "by": "reviewer",
+    "verdict": "pass"
+   },
+   {
+    "seq": 268,
+    "t": 29876931.9688,
+    "type": "send",
+    "msg": "M-35",
+    "from": "lead",
+    "to": "lead",
+    "kind": "work",
+    "key": "O-3:uat:0",
+    "ref": "O-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 269,
+    "t": 29876931.9688,
+    "type": "done",
+    "msg": "M-34",
+    "run": "R-14"
+   },
+   {
+    "seq": 270,
+    "t": 29876931.9688,
+    "type": "send",
+    "msg": "M-36",
+    "from": "pool:checker",
+    "to": "lead",
+    "kind": "report",
+    "key": null,
+    "ref": "O-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 271,
+    "t": 29876931.9688,
+    "type": "leave",
+    "run": "R-14",
+    "role": "reviewer",
+    "order": "O-3",
+    "stage": "check",
+    "verdict": "pass",
+    "minutes": 0.5940000005066395
+   },
+   {
+    "seq": 272,
+    "t": 29876931.9688,
+    "type": "session-wait",
+    "session": "S-8",
+    "role": "reviewer",
+    "minutes": 1.5
+   },
+   {
+    "seq": 273,
+    "t": 29876931.975866668,
+    "type": "advance",
+    "order": "O-3",
+    "stage": "uat",
+    "by": "lead",
+    "verdict": "pass"
+   },
+   {
+    "seq": 274,
+    "t": 29876931.975866668,
+    "type": "send",
+    "msg": "M-37",
+    "from": "lead",
+    "to": "pool:release",
+    "kind": "work",
+    "key": "O-3:ship:0",
+    "ref": "O-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 275,
+    "t": 29876931.975866668,
+    "type": "session-open",
+    "session": "S-9",
+    "role": "release"
+   },
+   {
+    "seq": 276,
+    "t": 29876931.975866668,
+    "type": "claim",
+    "msg": "M-37",
+    "run": "R-15"
+   },
+   {
+    "seq": 277,
+    "t": 29876931.975866668,
+    "type": "enter",
+    "run": "R-15",
+    "msg": "M-37",
+    "role": "release",
+    "by": "release",
+    "room": "launch",
+    "order": "O-3",
+    "stage": "ship",
+    "mode": "work",
+    "session": "S-9",
+    "item": 1
+   },
+   {
+    "seq": 278,
+    "t": 29876931.975883335,
+    "type": "advance",
+    "order": "O-3",
+    "stage": "ship",
+    "by": "release",
+    "verdict": "pass"
+   },
+   {
+    "seq": 279,
+    "t": 29876931.975883335,
+    "type": "shipped",
+    "order": "O-3",
+    "lead": 8.718516666442156,
+    "loops": 0,
+    "priority": "next"
+   },
+   {
+    "seq": 280,
+    "t": 29876931.975883335,
+    "type": "unblocked",
+    "order": "O-6",
+    "by": "O-3"
+   },
+   {
+    "seq": 281,
+    "t": 29876931.975883335,
+    "type": "send",
+    "msg": "M-38",
+    "from": "lead",
+    "to": "dev-1",
+    "kind": "work",
+    "key": "O-6:build:0",
+    "ref": "O-6",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 282,
+    "t": 29876931.975883335,
+    "type": "done",
+    "msg": "M-37",
+    "run": "R-15"
+   },
+   {
+    "seq": 283,
+    "t": 29876931.975883335,
+    "type": "send",
+    "msg": "M-39",
+    "from": "pool:release",
+    "to": "lead",
+    "kind": "report",
+    "key": null,
+    "ref": "O-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 284,
+    "t": 29876931.975883335,
+    "type": "leave",
+    "run": "R-15",
+    "role": "release",
+    "order": "O-3",
+    "stage": "ship",
+    "verdict": "pass",
+    "minutes": 0.000016666948795318604
+   },
+   {
+    "seq": 285,
+    "t": 29876931.975883335,
+    "type": "session-close",
+    "session": "S-9",
+    "role": "release",
+    "items": 1,
+    "reason": "ship done",
+    "minutes": 0.000016666948795318604
+   },
+   {
+    "seq": 286,
+    "t": 29876931.9949,
+    "type": "item-update",
+    "item": "ISS-3",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 287,
+    "t": 29876931.9949,
+    "type": "item-update",
+    "item": "ISS-6",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 288,
+    "t": 29876931.9949,
+    "type": "supervisor-tick",
+    "steps": [
+     "uat:O-3",
+     "ship:O-3"
+    ]
+   },
+   {
+    "seq": 289,
+    "t": 29876931.994916666,
+    "type": "launch",
+    "role": "dev-1",
+    "msgs": [
+     "M-38"
+    ],
+    "tasks": [],
+    "why": "plan: next: 1 waiting, no session running"
+   },
+   {
+    "seq": 290,
+    "t": 29876932.077716667,
+    "type": "session-open",
+    "session": "S-10",
+    "role": "dev-1"
+   },
+   {
+    "seq": 291,
+    "t": 29876932.077716667,
+    "type": "claim",
+    "msg": "M-38",
+    "run": "R-16"
+   },
+   {
+    "seq": 292,
+    "t": 29876932.077716667,
+    "type": "enter",
+    "run": "R-16",
+    "msg": "M-38",
+    "role": "dev-1",
+    "by": "dev-1",
+    "room": "workshop",
+    "order": "O-6",
+    "stage": "build",
+    "mode": "work",
+    "session": "S-10",
+    "item": 1
+   },
+   {
+    "seq": 293,
+    "t": 29876932.48655,
+    "type": "self-check",
+    "order": "O-6",
+    "task": "SHEET",
+    "by": "dev-1",
+    "stage": "build",
+    "pass": true,
+    "output": "# tests 3 # pass 3 # fail 0"
+   },
+   {
+    "seq": 294,
+    "t": 29876932.54835,
+    "type": "advance",
+    "order": "O-6",
+    "stage": "build",
+    "by": "dev-1",
+    "verdict": "pass"
+   },
+   {
+    "seq": 295,
+    "t": 29876932.54835,
+    "type": "code-stage",
+    "order": "O-6",
+    "stage": "test1"
+   },
+   {
+    "seq": 296,
+    "t": 29876932.54835,
+    "type": "done",
+    "msg": "M-38",
+    "run": "R-16"
+   },
+   {
+    "seq": 297,
+    "t": 29876932.548366666,
+    "type": "send",
+    "msg": "M-40",
+    "from": "dev-1",
+    "to": "lead",
+    "kind": "report",
+    "key": null,
+    "ref": "O-6",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 298,
+    "t": 29876932.548366666,
+    "type": "leave",
+    "run": "R-16",
+    "role": "dev-1",
+    "order": "O-6",
+    "stage": "build",
+    "verdict": "pass",
+    "minutes": 0.47064999863505363
+   },
+   {
+    "seq": 299,
+    "t": 29876932.548366666,
+    "type": "session-wait",
+    "session": "S-10",
+    "role": "dev-1",
+    "minutes": 1.5
+   },
+   {
+    "seq": 300,
+    "t": 29876932.555266667,
+    "type": "advance",
+    "order": "O-6",
+    "stage": "test1",
+    "by": "code",
+    "verdict": "pass"
+   },
+   {
+    "seq": 301,
+    "t": 29876932.555283334,
+    "type": "send",
+    "msg": "M-41",
+    "from": "lead",
+    "to": "pool:checker",
+    "kind": "work",
+    "key": "O-6:check:0",
+    "ref": "O-6",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 302,
+    "t": 29876932.555283334,
+    "type": "item-update",
+    "item": "ISS-6",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 303,
+    "t": 29876932.555283334,
+    "type": "supervisor-tick",
+    "steps": [
+     "test1:O-6"
+    ]
+   },
+   {
+    "seq": 304,
+    "t": 29876932.57175,
+    "type": "claim",
+    "msg": "M-41",
+    "run": "R-17"
+   },
+   {
+    "seq": 305,
+    "t": 29876932.57175,
+    "type": "enter",
+    "run": "R-17",
+    "msg": "M-41",
+    "role": "reviewer",
+    "by": "reviewer",
+    "room": "review",
+    "order": "O-6",
+    "stage": "check",
+    "mode": "work",
+    "session": "S-8",
+    "item": 2
+   },
+   {
+    "seq": 306,
+    "t": 29876932.894233335,
+    "type": "advance",
+    "order": "O-6",
+    "stage": "check",
+    "by": "reviewer",
+    "verdict": "pass"
+   },
+   {
+    "seq": 307,
+    "t": 29876932.894233335,
+    "type": "send",
+    "msg": "M-42",
+    "from": "lead",
+    "to": "lead",
+    "kind": "work",
+    "key": "O-6:uat:0",
+    "ref": "O-6",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 308,
+    "t": 29876932.894233335,
+    "type": "done",
+    "msg": "M-41",
+    "run": "R-17"
+   },
+   {
+    "seq": 309,
+    "t": 29876932.894233335,
+    "type": "send",
+    "msg": "M-43",
+    "from": "pool:checker",
+    "to": "lead",
+    "kind": "report",
+    "key": null,
+    "ref": "O-6",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 310,
+    "t": 29876932.894233335,
+    "type": "leave",
+    "run": "R-17",
+    "role": "reviewer",
+    "order": "O-6",
+    "stage": "check",
+    "verdict": "pass",
+    "minutes": 0.3224833346903324
+   },
+   {
+    "seq": 311,
+    "t": 29876932.89425,
+    "type": "session-wait",
+    "session": "S-8",
+    "role": "reviewer",
+    "minutes": 1.5
+   },
+   {
+    "seq": 312,
+    "t": 29876932.901283335,
+    "type": "advance",
+    "order": "O-6",
+    "stage": "uat",
+    "by": "lead",
+    "verdict": "revise"
+   },
+   {
+    "seq": 313,
+    "t": 29876932.901283335,
+    "type": "reopen",
+    "order": "O-6",
+    "from": "uat",
+    "loops": 1,
+    "priority": "next"
+   },
+   {
+    "seq": 314,
+    "t": 29876932.901283335,
+    "type": "send",
+    "msg": "M-44",
+    "from": "lead",
+    "to": "dev-1",
+    "kind": "work",
+    "key": "O-6:build:1",
+    "ref": "O-6",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 315,
+    "t": 29876932.9013,
+    "type": "item-update",
+    "item": "ISS-6",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 316,
+    "t": 29876932.9013,
+    "type": "item-update",
+    "item": "ISS-6",
+    "by": "engine",
+    "changes": [
+     "addLabels"
+    ]
+   },
+   {
+    "seq": 317,
+    "t": 29876932.9013,
+    "type": "supervisor-tick",
+    "steps": [
+     "uat:O-6"
+    ]
+   },
+   {
+    "seq": 318,
+    "t": 29876932.916866668,
+    "type": "claim",
+    "msg": "M-44",
+    "run": "R-18"
+   },
+   {
+    "seq": 319,
+    "t": 29876932.916866668,
+    "type": "enter",
+    "run": "R-18",
+    "msg": "M-44",
+    "role": "dev-1",
+    "by": "dev-1",
+    "room": "workshop",
+    "order": "O-6",
+    "stage": "build",
+    "mode": "work",
+    "session": "S-10",
+    "item": 2
+   },
+   {
+    "seq": 320,
+    "t": 29876934.282116666,
+    "type": "item-create",
+    "item": "ISS-9",
+    "kind": "ask",
+    "by": "dev-1",
+    "assignee": "lead",
+    "project": null,
+    "goal": null
+   },
+   {
+    "seq": 321,
+    "t": 29876934.282116666,
+    "type": "ask",
+    "item": "ISS-9",
+    "from": "dev-1",
+    "to": "lead",
+    "kind": "decision"
+   },
+   {
+    "seq": 322,
+    "t": 29876934.285666667,
+    "type": "launch",
+    "role": "lead",
+    "msgs": [],
+    "tasks": [
+     {
+      "kind": "ask",
+      "ref": "ISS-9"
+     }
+    ],
+    "why": "plan: ask: ISS-9"
+   },
+   {
+    "seq": 323,
+    "t": 29876934.397233333,
+    "type": "advance",
+    "order": "O-6",
+    "stage": "build",
+    "by": "dev-1",
+    "verdict": "pass"
+   },
+   {
+    "seq": 324,
+    "t": 29876934.39725,
+    "type": "code-stage",
+    "order": "O-6",
+    "stage": "test1"
+   },
+   {
+    "seq": 325,
+    "t": 29876934.39725,
+    "type": "done",
+    "msg": "M-44",
+    "run": "R-18"
+   },
+   {
+    "seq": 326,
+    "t": 29876934.39725,
+    "type": "send",
+    "msg": "M-45",
+    "from": "dev-1",
+    "to": "lead",
+    "kind": "report",
+    "key": null,
+    "ref": "O-6",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 327,
+    "t": 29876934.39725,
+    "type": "leave",
+    "run": "R-18",
+    "role": "dev-1",
+    "order": "O-6",
+    "stage": "build",
+    "verdict": "pass",
+    "minutes": 1.4803833328187466
+   },
+   {
+    "seq": 328,
+    "t": 29876934.39725,
+    "type": "session-wait",
+    "session": "S-10",
+    "role": "dev-1",
+    "minutes": 1.5
+   },
+   {
+    "seq": 329,
+    "t": 29876934.404183332,
+    "type": "advance",
+    "order": "O-6",
+    "stage": "test1",
+    "by": "code",
+    "verdict": "pass"
+   },
+   {
+    "seq": 330,
+    "t": 29876934.404183332,
+    "type": "send",
+    "msg": "M-46",
+    "from": "lead",
+    "to": "pool:checker",
+    "kind": "work",
+    "key": "O-6:check:1",
+    "ref": "O-6",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 331,
+    "t": 29876934.404183332,
+    "type": "item-update",
+    "item": "ISS-6",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 332,
+    "t": 29876934.404183332,
+    "type": "supervisor-tick",
+    "steps": [
+     "test1:O-6"
+    ]
+   },
+   {
+    "seq": 333,
+    "t": 29876934.4042,
+    "type": "launch",
+    "role": "reviewer",
+    "msgs": [
+     "M-46"
+    ],
+    "tasks": [],
+    "why": "plan: next: 1 waiting, no session running"
+   },
+   {
+    "seq": 334,
+    "t": 29876934.405183334,
+    "type": "claim",
+    "msg": "M-46",
+    "run": "R-19"
+   },
+   {
+    "seq": 335,
+    "t": 29876934.405183334,
+    "type": "enter",
+    "run": "R-19",
+    "msg": "M-46",
+    "role": "reviewer",
+    "by": "reviewer",
+    "room": "review",
+    "order": "O-6",
+    "stage": "check",
+    "mode": "work",
+    "session": "S-8",
+    "item": 3
+   },
+   {
+    "seq": 336,
+    "t": 29876934.47955,
+    "type": "refuse",
+    "rule": "hard",
+    "msg": "HARD: M-46 is held by run R-19 until 29876964.405183334",
+    "argv": "room enter --msg=M-46 --role=reviewer"
+   },
+   {
+    "seq": 337,
+    "t": 29876934.698,
+    "type": "usage",
+    "role": "reviewer",
+    "tokens": 31429,
+    "label": "outside a room",
+    "source": "launcher",
+    "launch": "0333-reviewer"
+   },
+   {
+    "seq": 338,
+    "t": 29876934.698016666,
+    "type": "launch-finished",
+    "launch": "0333-reviewer",
+    "role": "reviewer",
+    "ok": true,
+    "tokens": 31429,
+    "cumulative": 96378,
+    "cost": 0.0815,
+    "sessions": [],
+    "abandoned": [],
+    "reason": null
+   },
+   {
+    "seq": 339,
+    "t": 29876935.472683333,
+    "type": "reopen",
+    "order": "O-1",
+    "from": "done",
+    "by": "lead",
+    "reason": "changed requirement",
+    "loops": 1,
+    "priority": "next"
+   },
+   {
+    "seq": 340,
+    "t": 29876935.472683333,
+    "type": "send",
+    "msg": "M-47",
+    "from": "lead",
+    "to": "dev-1",
+    "kind": "work",
+    "key": "O-1:build:1",
+    "ref": "O-1",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 341,
+    "t": 29876935.474316668,
+    "type": "item-comment",
+    "item": "ISS-9",
+    "by": "lead"
+   },
+   {
+    "seq": 342,
+    "t": 29876935.474316668,
+    "type": "item-update",
+    "item": "ISS-9",
+    "by": "lead",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 343,
+    "t": 29876935.474316668,
+    "type": "ask-answer",
+    "item": "ISS-9",
+    "by": "lead",
+    "decision": "redirect"
    }
   ]
  },
@@ -4380,11 +5236,299 @@
       },
       "priority": "next",
       "ts": 29876931.2999,
-      "state": "open",
+      "state": "done",
       "lease": {
        "run": "R-14",
        "until": 29876961.3748
       },
+      "acked": false
+     }
+    ],
+    [
+     "M-35",
+     {
+      "id": "M-35",
+      "from": "lead",
+      "to": "lead",
+      "kind": "work",
+      "key": "O-3:uat:0",
+      "due": null,
+      "ref": "O-3",
+      "body": {
+       "stage": "uat",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876931.9688,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-36",
+     {
+      "id": "M-36",
+      "from": "pool:checker",
+      "to": "lead",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-3",
+      "body": {
+       "stage": "check",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876931.9688,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-37",
+     {
+      "id": "M-37",
+      "from": "lead",
+      "to": "pool:release",
+      "kind": "work",
+      "key": "O-3:ship:0",
+      "due": null,
+      "ref": "O-3",
+      "body": {
+       "stage": "ship",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876931.975866668,
+      "state": "done",
+      "lease": {
+       "run": "R-15",
+       "until": 29876961.975866668
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-38",
+     {
+      "id": "M-38",
+      "from": "lead",
+      "to": "dev-1",
+      "kind": "work",
+      "key": "O-6:build:0",
+      "due": null,
+      "ref": "O-6",
+      "body": {
+       "stage": "build",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876931.975883335,
+      "state": "done",
+      "lease": {
+       "run": "R-16",
+       "until": 29876962.077716667
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-39",
+     {
+      "id": "M-39",
+      "from": "pool:release",
+      "to": "lead",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-3",
+      "body": {
+       "stage": "ship",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876931.975883335,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-40",
+     {
+      "id": "M-40",
+      "from": "dev-1",
+      "to": "lead",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-6",
+      "body": {
+       "stage": "build",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876932.548366666,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-41",
+     {
+      "id": "M-41",
+      "from": "lead",
+      "to": "pool:checker",
+      "kind": "work",
+      "key": "O-6:check:0",
+      "due": null,
+      "ref": "O-6",
+      "body": {
+       "stage": "check",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876932.555283334,
+      "state": "done",
+      "lease": {
+       "run": "R-17",
+       "until": 29876962.57175
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-42",
+     {
+      "id": "M-42",
+      "from": "lead",
+      "to": "lead",
+      "kind": "work",
+      "key": "O-6:uat:0",
+      "due": null,
+      "ref": "O-6",
+      "body": {
+       "stage": "uat",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876932.894233335,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-43",
+     {
+      "id": "M-43",
+      "from": "pool:checker",
+      "to": "lead",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-6",
+      "body": {
+       "stage": "check",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876932.894233335,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-44",
+     {
+      "id": "M-44",
+      "from": "lead",
+      "to": "dev-1",
+      "kind": "work",
+      "key": "O-6:build:1",
+      "due": null,
+      "ref": "O-6",
+      "body": {
+       "stage": "build",
+       "loops": 1
+      },
+      "priority": "next",
+      "ts": 29876932.901283335,
+      "state": "done",
+      "lease": {
+       "run": "R-18",
+       "until": 29876962.916866668
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-45",
+     {
+      "id": "M-45",
+      "from": "dev-1",
+      "to": "lead",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-6",
+      "body": {
+       "stage": "build",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876934.39725,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-46",
+     {
+      "id": "M-46",
+      "from": "lead",
+      "to": "pool:checker",
+      "kind": "work",
+      "key": "O-6:check:1",
+      "due": null,
+      "ref": "O-6",
+      "body": {
+       "stage": "check",
+       "loops": 1
+      },
+      "priority": "next",
+      "ts": 29876934.404183332,
+      "state": "open",
+      "lease": {
+       "run": "R-19",
+       "until": 29876964.405183334
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-47",
+     {
+      "id": "M-47",
+      "from": "lead",
+      "to": "dev-1",
+      "kind": "work",
+      "key": "O-1:build:1",
+      "due": null,
+      "ref": "O-1",
+      "body": {
+       "stage": "build",
+       "loops": 1
+      },
+      "priority": "next",
+      "ts": 29876935.472683333,
+      "state": "open",
+      "lease": null,
       "acked": false
      }
     ]
@@ -4471,10 +5615,42 @@
     [
      "O-3:check:0",
      "M-34"
+    ],
+    [
+     "O-3:uat:0",
+     "M-35"
+    ],
+    [
+     "O-3:ship:0",
+     "M-37"
+    ],
+    [
+     "O-6:build:0",
+     "M-38"
+    ],
+    [
+     "O-6:check:0",
+     "M-41"
+    ],
+    [
+     "O-6:uat:0",
+     "M-42"
+    ],
+    [
+     "O-6:build:1",
+     "M-44"
+    ],
+    [
+     "O-6:check:1",
+     "M-46"
+    ],
+    [
+     "O-1:build:1",
+     "M-47"
     ]
    ]
   },
-  "n": 34
+  "n": 47
  },
  "org": {
   "roles": {
@@ -4724,8 +5900,8 @@
       "spent": 0,
       "accept": "live/bench5/work/ARCH/ARCH.md: the kickoff's decisions (MTG-1 minutes) as the contract. For each slot A-D a section '## Slot X: <file>.mjs' with a line 'exports: <name>, <name>' then the signature and behaviour of each export, what the slot owns across the waves, and its owner; a section on SHEET (live/bench5/work/SHEET/sheet.mjs, createSheet) saying how it uses the slots; the import paths (../MOD-X/<file>.mjs). Plus one arch.test.mjs that checks ARCH.md has all four slots.",
       "words": null,
-      "stage": "done",
-      "loops": 0,
+      "stage": "build",
+      "loops": 1,
       "created": 29876923.25735,
       "history": [
        {
@@ -4757,6 +5933,13 @@
         "by": "release",
         "verdict": "pass",
         "t": 29876928.223683335
+       },
+       {
+        "stage": "done",
+        "by": "lead",
+        "verdict": "reopen",
+        "t": 29876935.472683333,
+        "findings": "ARCH amendment (lead, ISS-9): wrong: the public get() has no defined form for errors, so it leaks the internal {error:\"#DIV/0!\"} object; a test that only knows SPEC5 cannot match it, and hidden wave1/errors fails. Required: in the SHEET section, get(cell) returns numbers as round9(v), errors as their code string (isError(v) ? v.error : v, so \"#DIV/0!\", \"#VALUE!\", \"#NAME?\"), everything else unchanged. Inside the modules nothing changes: B/C/D still pass ERR singletons around and test them with isError, so typed text \"#DIV/0!\" stays text in formulas (this matters once wave 2 adds refs). Add to SHEET imports: isError from ../MOD-B/values.mjs. display(cell) = display(store value), which gives the same strings. Keep the \"Errors are never strings\" line, but limit it to internal values and say the public get() is the one place where errors become code strings. Update arch.test.mjs if it checks the SHEET get line."
        }
       ],
       "priority": "next",
@@ -4795,7 +5978,8 @@
         }
        ]
       },
-      "orphanSince": null
+      "orphanSince": null,
+      "findings": "ARCH amendment (lead, ISS-9): wrong: the public get() has no defined form for errors, so it leaks the internal {error:\"#DIV/0!\"} object; a test that only knows SPEC5 cannot match it, and hidden wave1/errors fails. Required: in the SHEET section, get(cell) returns numbers as round9(v), errors as their code string (isError(v) ? v.error : v, so \"#DIV/0!\", \"#VALUE!\", \"#NAME?\"), everything else unchanged. Inside the modules nothing changes: B/C/D still pass ERR singletons around and test them with isError, so typed text \"#DIV/0!\" stays text in formulas (this matters once wave 2 adds refs). Add to SHEET imports: isError from ../MOD-B/values.mjs. display(cell) = display(store value), which gives the same strings. Keep the \"Errors are never strings\" line, but limit it to internal values and say the public get() is the one place where errors become code strings. Update arch.test.mjs if it checks the SHEET get line."
      }
     ],
     [
@@ -4878,12 +6062,12 @@
       "orderer": "cos",
       "manager": "lead",
       "builder": "dev-2",
-      "checker": null,
+      "checker": "reviewer",
       "budget": 200000,
       "spent": 0,
       "accept": "live/bench5/work/MOD-B/<the file ARCH.md names for slot B>, with exactly the exports and behaviour ARCH.md gives slot B, for every wave released so far (live/bench5/SPEC5.md), plus your own *.test.mjs in the same folder.",
       "words": null,
-      "stage": "check",
+      "stage": "done",
       "loops": 0,
       "created": 29876923.25736667,
       "history": [
@@ -4898,6 +6082,24 @@
         "by": "code",
         "verdict": "pass",
         "t": 29876929.259316668
+       },
+       {
+        "stage": "check",
+        "by": "reviewer",
+        "verdict": "pass",
+        "t": 29876931.9688
+       },
+       {
+        "stage": "uat",
+        "by": "lead",
+        "verdict": "pass",
+        "t": 29876931.975866668
+       },
+       {
+        "stage": "ship",
+        "by": "release",
+        "verdict": "pass",
+        "t": 29876931.975883335
        }
       ],
       "priority": "next",
@@ -5058,15 +6260,53 @@
       "orderer": "cos",
       "manager": "lead",
       "builder": "dev-1",
-      "checker": null,
+      "checker": "reviewer",
       "budget": 200000,
       "spent": 0,
       "accept": "live/bench5/work/SHEET/sheet.mjs exporting createSheet() as live/bench5/SPEC5.md describes it, for every wave released so far, built only from the slot modules as ARCH.md wires them, plus your own sheet.test.mjs. The hidden acceptance tests run on this sheet and report failing categories: when one is in another slot's module, raise it with the lead.",
       "words": null,
-      "stage": "build",
-      "loops": 0,
+      "stage": "check",
+      "loops": 1,
       "created": 29876923.25736667,
-      "history": [],
+      "history": [
+       {
+        "stage": "build",
+        "by": "dev-1",
+        "verdict": "pass",
+        "t": 29876932.54835
+       },
+       {
+        "stage": "test1",
+        "by": "code",
+        "verdict": "pass",
+        "t": 29876932.555266667
+       },
+       {
+        "stage": "check",
+        "by": "reviewer",
+        "verdict": "pass",
+        "t": 29876932.894233335
+       },
+       {
+        "stage": "uat",
+        "by": "lead",
+        "verdict": "revise",
+        "t": 29876932.901283335,
+        "findings": "not ok 5 - wave1/errors\n  error: |-\n# tests 7\n# pass 6\n# fail 1"
+       },
+       {
+        "stage": "build",
+        "by": "dev-1",
+        "verdict": "pass",
+        "t": 29876934.397233333
+       },
+       {
+        "stage": "test1",
+        "by": "code",
+        "verdict": "pass",
+        "t": 29876934.404183332
+       }
+      ],
       "priority": "next",
       "due": null,
       "after": [
@@ -5075,11 +6315,12 @@
        "O-4",
        "O-5"
       ],
-      "blocked": true,
+      "blocked": false,
       "policyVersion": null,
       "fromContract": null,
       "task": "SHEET",
-      "orphanSince": null
+      "orphanSince": null,
+      "findings": "not ok 5 - wave1/errors\n  error: |-\n# tests 7\n# pass 6\n# fail 1"
      }
     ]
    ]
@@ -5325,13 +6566,93 @@
       "stage": "check",
       "loops": 0,
       "entered": 29876931.3748,
+      "state": "left",
+      "session": "S-8"
+     }
+    ],
+    [
+     "R-15",
+     {
+      "run": "R-15",
+      "msg": "M-37",
+      "role": "release",
+      "by": "release",
+      "consult": false,
+      "order": "O-3",
+      "stage": "ship",
+      "loops": 0,
+      "entered": 29876931.975866668,
+      "state": "left",
+      "session": "S-9"
+     }
+    ],
+    [
+     "R-16",
+     {
+      "run": "R-16",
+      "msg": "M-38",
+      "role": "dev-1",
+      "by": "dev-1",
+      "consult": false,
+      "order": "O-6",
+      "stage": "build",
+      "loops": 0,
+      "entered": 29876932.077716667,
+      "state": "left",
+      "session": "S-10"
+     }
+    ],
+    [
+     "R-17",
+     {
+      "run": "R-17",
+      "msg": "M-41",
+      "role": "reviewer",
+      "by": "reviewer",
+      "consult": false,
+      "order": "O-6",
+      "stage": "check",
+      "loops": 0,
+      "entered": 29876932.57175,
+      "state": "left",
+      "session": "S-8"
+     }
+    ],
+    [
+     "R-18",
+     {
+      "run": "R-18",
+      "msg": "M-44",
+      "role": "dev-1",
+      "by": "dev-1",
+      "consult": false,
+      "order": "O-6",
+      "stage": "build",
+      "loops": 1,
+      "entered": 29876932.916866668,
+      "state": "left",
+      "session": "S-10"
+     }
+    ],
+    [
+     "R-19",
+     {
+      "run": "R-19",
+      "msg": "M-46",
+      "role": "reviewer",
+      "by": "reviewer",
+      "consult": false,
+      "order": "O-6",
+      "stage": "check",
+      "loops": 1,
+      "entered": 29876934.405183334,
       "state": "running",
       "session": "S-8"
      }
     ]
    ]
   },
-  "n": 14,
+  "n": 19,
   "memory": {
    "__map": [
     [
@@ -5353,6 +6674,18 @@
        "t": 29876929.32515,
        "did": "build on O-5: pass (loop 0)",
        "learned": "D has no error values of its own; wave 3 cycle error must be injected or come via an ARCH amendment since D imports nothing",
+       "mistake": null
+      },
+      {
+       "t": 29876932.548366666,
+       "did": "build on O-6: pass (loop 0)",
+       "learned": "SHEET is pure wiring per ARCH; get rounds numbers with round9, display delegates to B",
+       "mistake": null
+      },
+      {
+       "t": 29876934.39725,
+       "did": "build on O-6: pass (loop 1)",
+       "learned": "wave1/errors hidden failure is not in SHEET wiring; raised error-representation (slot B/ARCH) with lead",
        "mistake": null
       }
      ]
@@ -5383,6 +6716,18 @@
        "did": "check on O-4: pass (loop 0)",
        "learned": "Fastest wave check for C: pipe SPEC5 examples through A.parseFormula -> C.evaluate -> B.display; all wave-1 examples pass, prototype names like toString() safely give #NAME?.",
        "mistake": null
+      },
+      {
+       "t": 29876931.9688,
+       "did": "check on O-3: pass (loop 0)",
+       "learned": "MOD-B matches ARCH slot B for wave 1; node --test needs file paths not a dir arg; errorFromCode falls back to ERR.VALUE for unknown codes.",
+       "mistake": null
+      },
+      {
+       "t": 29876932.894233335,
+       "did": "check on O-6: pass (loop 0)",
+       "learned": "SHEET is a literal transcription of ARCH wiring; an end-to-end createSheet script over SPEC examples plus bad cell names is the quickest check.",
+       "mistake": null
       }
      ]
     ],
@@ -5410,6 +6755,12 @@
       {
        "t": 29876929.88715,
        "did": "ship on O-4: pass (loop 0)",
+       "learned": null,
+       "mistake": null
+      },
+      {
+       "t": 29876931.975883335,
+       "did": "ship on O-3: pass (loop 0)",
        "learned": null,
        "mistake": null
       }
@@ -5517,14 +6868,37 @@
      {
       "id": "S-8",
       "role": "reviewer",
-      "items": 1,
+      "items": 3,
       "open": true,
       "started": 29876931.3748,
-      "launch": "0261-reviewer"
+      "launch": "0261-reviewer",
+      "waitUntil": null
+     }
+    ],
+    [
+     "S-9",
+     {
+      "id": "S-9",
+      "role": "release",
+      "items": 1,
+      "open": false,
+      "started": 29876931.975866668
+     }
+    ],
+    [
+     "S-10",
+     {
+      "id": "S-10",
+      "role": "dev-1",
+      "items": 2,
+      "open": true,
+      "started": 29876932.077716667,
+      "launch": "0289-dev-1",
+      "waitUntil": 29876935.89725
      }
     ]
    ]
   },
-  "nS": 8
+  "nS": 10
  }
 }

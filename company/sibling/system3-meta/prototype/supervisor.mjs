@@ -141,7 +141,9 @@ export function plan(co, { batchLater: batchDefault = 3, cap: capDefault = 4 } =
     if (!log.events.some((e) => e.type === "enter" && e.role === l.role && e.t >= l.t) && !ended(l)) running.add(l.role);
   }
   // a session waiting for its role's next item will take it (room next --wait)
-  for (const s of rooms.sessions.values()) if (s.open && s.waitUntil != null && s.waitUntil > now) running.add(s.role);
+  // until it closes, and for 30 s past its deadline: its last poll can still take an item (benchmark 5: an item that
+  // arrived 1 s after a wait ended was taken by the waiting session and by a fresh launch)
+  for (const s of rooms.sessions.values()) if (s.open && s.waitUntil != null && s.waitUntil > now - 0.5) running.add(s.role);
   const out = [];
   const consider = (role, msgs) => {
     if (!msgs.length) return;
