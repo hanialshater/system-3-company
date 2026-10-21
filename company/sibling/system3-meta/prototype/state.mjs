@@ -37,8 +37,9 @@ export const TASK_FLOW = {
 
 export const clock = { now: () => Date.now() / 60000 }; // minutes, to the millisecond (live run 1 used whole minutes: too coarse for agents)
 
-export function make(specName = "toy") {
-  const spec = SPECS[specName];
+export function make(specName = "toy", specDef = null) {
+  // a generated company (M2) keeps its spec in the state; a built-in one is looked up by name
+  const spec = specDef ?? SPECS[specName];
   if (!spec) throw new Error(`no company spec ${specName} (have: ${Object.keys(SPECS).join(", ")})`);
   const config = DEFAULT_CONFIG;
   const log = new Log(clock);
@@ -46,14 +47,14 @@ export function make(specName = "toy") {
   const org = new Org({ log, rooms: spec.rooms, skills: spec.skills, rituals: [] });
   const engine = new Engine({ log, clock, config, mailbox, org });
   const rooms = new Rooms({ log, clock, config, mailbox, engine, org });
-  const co = { log, mailbox, org, engine, rooms, data: { spec: specName }, spec };
+  const co = { log, mailbox, org, engine, rooms, data: { spec: specName, ...(specDef ? { specDef } : {}) }, spec };
   engine.onApproved.push({ prefix: "FLOOR-", fn: (ref) => applyFloor(co, ref) });
   return co;
 }
 
 export const rep = (k, v) => (v instanceof Map ? { __map: [...v] } : v instanceof Set ? { __set: [...v] } : v);
 export const rev = (k, v) => (v && v.__map ? new Map(v.__map) : v && v.__set ? new Set(v.__set) : v);
-export const FIELDS = { data: ["spec", "building", "channels", "tracker", "goals", "meetings", "rituals", "rules"], log: ["events"], mailbox: ["msgs", "keys", "n"], org: ["roles", "changes", "n", "rooms"], engine: ["flows", "active", "orders", "approvals", "n", "limits", "policies", "contracts"], rooms: ["runs", "n", "memory", "sessions", "nS"] };
+export const FIELDS = { data: ["spec", "specDef", "building", "channels", "tracker", "goals", "meetings", "rituals", "rules"], log: ["events"], mailbox: ["msgs", "keys", "n"], org: ["roles", "changes", "n", "rooms"], engine: ["flows", "active", "orders", "approvals", "n", "limits", "policies", "contracts"], rooms: ["runs", "n", "memory", "sessions", "nS"] };
 
 export function save(co) {
   const data = Object.fromEntries(Object.entries(FIELDS).map(([o, fs_]) => [o, Object.fromEntries(fs_.map((f) => [f, co[o][f]]))]));
@@ -66,7 +67,7 @@ const writeFile = (rel, text) => { const f = path.join(LIVE, rel); fs.mkdirSync(
 
 export function load() {
   const data = JSON.parse(fs.readFileSync(STATE, "utf8"), rev);
-  const co = make(data.data?.spec ?? "toy");
+  const co = make(data.data?.spec ?? "toy", data.data?.specDef ?? null);
   for (const [o, fs_] of Object.entries(FIELDS)) for (const f of fs_) if (data[o]?.[f] !== undefined) co[o][f] = data[o][f];
   co.mailbox.promote(); // due `later` items become `next` on every command: time is checked when anything happens
   co.writeFile = writeFile;

@@ -1,0 +1,96 @@
+{
+ "rooms": [
+  {
+   "id": "lobby",
+   "floor": 1,
+   "kind": "lobby"
+  },
+  {
+   "id": "vp-office",
+   "floor": 1,
+   "kind": "office"
+  },
+  {
+   "id": "eval-room",
+   "floor": 2,
+   "kind": "quality"
+  },
+  {
+   "id": "review-room",
+   "floor": 2,
+   "kind": "meeting",
+   "capacity": 4
+  }
+ ],
+ "skills": [
+  "manage",
+  "evaluate"
+ ],
+ "roles": [
+  {
+   "id": "founder",
+   "level": "founder",
+   "human": true,
+   "room": "lobby",
+   "floor": 1
+  },
+  {
+   "id": "vp-meta",
+   "level": "vp",
+   "reportsTo": "founder",
+   "room": "vp-office",
+   "floor": 1,
+   "skills": [
+    "manage"
+   ]
+  },
+  {
+   "id": "org-evaluator",
+   "level": "evaluator",
+   "reportsTo": "vp-meta",
+   "room": "eval-room",
+   "floor": 2,
+   "skills": [
+    "evaluate"
+   ]
+  }
+ ],
+ "flow": {
+  "name": "task",
+  "stages": [
+   {
+    "stage": "build",
+    "signer": "builder",
+    "evidence": [
+     "live/work/<task>/page.md"
+    ]
+   },
+   {
+    "stage": "test1",
+    "signer": "code",
+    "evidence": []
+   },
+   {
+    "stage": "check",
+    "signer": "checker",
+    "evidence": [
+     "review notes"
+    ]
+   },
+   {
+    "stage": "uat",
+    "signer": "orderer",
+    "evidence": [
+     "hidden acceptance tests"
+    ]
+   },
+   {
+    "stage": "ship",
+    "signer": "release",
+    "evidence": [
+     "copied to live/shipped/"
+    ]
+   }
+  ]
+ }
+}

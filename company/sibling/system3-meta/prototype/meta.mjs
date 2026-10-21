@@ -2,7 +2,8 @@
 // CLI over the prototype tools for live runs: state in live/state.json, one writer at a time (O_EXCL lock file).
 // Every command loads the state, acts through lib.mjs, saves, and prints JSON. Time is real minutes.
 //
-//   node meta.mjs init                                        a fresh live org and the `task` flow (refuses if state exists)
+//   node meta.mjs init [--spec=<built-in> | --spec-file=<json>]   a fresh live org and its flow (refuses if state exists);
+//        --spec-file generates a company from a spec file, validated against the invariants (generator.mjs, M2)
 //   node meta.mjs order new --to=<manager> --title=… --task=<T> --accept=… [--budget=200000] [--priority=now|next|later --due=<min>] [--after=O-1,O-2]
 //   node meta.mjs order delegate <O> --by=<manager> --to=<builder> [--budget=150000]
 //   node meta.mjs order reopen <O> --by=<manager|founder> --findings=… [--reason=…]   a shipped order back to build
@@ -50,6 +51,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { Refused, flowMetrics } from "./lib.mjs";
+import * as G from "./generator.mjs";
 import { proposePolicy, activatePolicy, managerReport, recordCycle, KNOBS } from "./policy.mjs";
 import { engage, engageTemplate, briefFor, deliver, decideContract, TEMPLATES } from "./contractor.mjs";
 import { LIVE, STATE, LIVE_ROLES, TASK_FLOW, clock, make, rep, save, load, withLock, runTests, runTest1, validateChecks, describeChecks, mergeChecks, ESCAPES, readEscapes } from "./state.mjs";
@@ -89,12 +91,27 @@ function main() {
   if (!cmd || cmd === "help") return fs.readFileSync(new URL(import.meta.url), "utf8").split("\n").filter((l) => l.startsWith("//   node ")).map((l) => l.slice(5)).filter((l) => !sub || l.includes(` ${sub}`));
   if (cmd === "init") return withLock(() => {
     if (fs.existsSync(STATE)) throw new Error("state exists; refusing to overwrite");
-    const co = make(opt.spec ?? "toy");
+    // M2: --spec-file=<json> generates a company from a spec file, validated first
+    let def = null, name = opt.spec ?? "toy";
+    if (opt["spec-file"]) {
+      def = JSON.parse(fs.readFileSync(opt["spec-file"], "utf8"));
+      const v = G.validateSpec(def);
+      if (v.length) throw new Refused(`spec ${opt["spec-file"]} breaks ${v.length} invariant(s): ${v.join("; ")}`);
+      name = def.name ?? path.basename(opt["spec-file"], ".json");
+    }
+    const co = make(name, def);
     co.org.genesis(co.spec.roles.map((r) => ({ ...r })));
     const key = co.engine.define(co.spec.flow.name, { stages: co.spec.flow.stages }, { by: "cos" });
     co.engine.approveDef(key, { by: "founder", words: "Approve the task flow for the Meta sandbox (founder: Decide for me, 2026-10-21)" });
+    if (def) {
+      co.writeFile = (rel, text) => { const f = path.join(LIVE, rel); fs.mkdirSync(path.dirname(f), { recursive: true }); fs.writeFileSync(f, text); };
+      for (const c of def.channels ?? []) CH.createChannel(co, { by: "cos", id: c.id, kind: c.kind, members: c.members ?? [], title: c.title ?? "" });
+      if (def.rules?.length) co.data.rules = def.rules.map((r) => ({ ...r, source: `spec ${name}` }));
+      co.writeFile("ORG.md", G.orgDoc(def, name));
+      if (def.context) co.writeFile("CONTEXT.md", def.context + "\n");
+    }
     save(co);
-    return { ok: true, spec: co.data.spec, flow: key, roles: co.spec.roles.map((r) => r.id) };
+    return { ok: true, spec: co.data.spec, generated: !!def, flow: key, roles: co.spec.roles.map((r) => r.id), files: def ? ["ORG.md", ...(def.context ? ["CONTEXT.md"] : [])] : [] };
   });
   if (cmd === "batch") return withLock(() => {
     // Benchmark 1: set-up took 15 separate commands. A batch runs a list of commands on one state, all or nothing:
