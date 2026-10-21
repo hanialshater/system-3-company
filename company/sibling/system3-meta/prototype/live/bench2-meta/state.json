@@ -48,10 +48,26 @@
        "purpose": "Kickoff: Solar System Quiz Pack",
        "state": "used"
       }
+     ],
+     [
+      "BK-2",
+      {
+       "id": "BK-2",
+       "room": "story-room",
+       "start": 29876668.375633333,
+       "end": 29876698.375633333,
+       "by": "cos",
+       "attendees": [
+        "cos",
+        "editor"
+       ],
+       "purpose": "WBR 2026-10-21",
+       "state": "booked"
+      }
      ]
     ]
    },
-   "n": 1
+   "n": 2
   },
   "channels": {
    "channels": {
@@ -461,7 +477,7 @@
        "kind": "order",
        "title": "Assembled pack",
        "body": "",
-       "state": "in-review",
+       "state": "done",
        "assignee": "writer-2",
        "project": "PRJ-1",
        "labels": [],
@@ -474,7 +490,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876647.86725,
-       "updated": 29876666.53093333,
+       "updated": 29876667.98381667,
        "history": [
         {
          "t": 29876647.86725,
@@ -495,6 +511,11 @@
          "t": 29876666.53093333,
          "by": "engine",
          "state": "in-review"
+        },
+        {
+         "t": 29876667.98381667,
+         "by": "engine",
+         "state": "done"
         }
        ]
       }
@@ -653,7 +674,7 @@
         {
          "metric": "pack shipped",
          "target": 1,
-         "current": 0,
+         "current": 1,
          "unit": null,
          "source": "shipped:PACK"
         }
@@ -689,7 +710,7 @@
         {
          "metric": "orders shipped",
          "target": 7,
-         "current": 6,
+         "current": 7,
          "unit": null,
          "source": "shipped:"
         }
@@ -741,7 +762,7 @@
         {
          "metric": "pack shipped",
          "target": 1,
-         "current": 0,
+         "current": 1,
          "unit": null,
          "source": "shipped:PACK"
         }
@@ -877,10 +898,281 @@
        "closed": 29876650.248533335,
        "minutes": "# Kickoff: Solar System Quiz Pack (MTG-1)\n\nchair: editor · invited: editor, writer-1, writer-2 · absent: none · room: story-room\n\n## 1. Rounds: five topics with no overlap, and which facts each round owns\nRound 1:\n- writer-1: Propose five topics split by kind of object, so each answer has exactly one home: R1 The Sun (a star; light takes about 8 minutes to reach us; mostly hydrogen and helium; the biggest thing in our solar system). R2 Rocky planets: Mercury, Venus, Earth, Mars (Mercury closest to the Sun; Venus hottest planet, thick clouds trap heat; Mars red from rusty dust, Olympus Mons). R3 Giant planets: Jupiter, Saturn, Uranus, Neptune (Jupiter biggest planet and Great Red Spot; Saturn brightest rings; Uranus spins on its side; Neptune farthest planet). R4 Moons (our Moon and its phases, Ganymede largest moon, Titan thick air, Io volcanoes, Europa ice). R5 Small worlds: dwarf planets, asteroids, comets, meteors (Pluto a dwarf planet since 2006, Ceres, asteroid belt between Mars and Jupiter, comet tails point away from the Sun, shooting stars are meteors). Ownership rule: an answer word belongs to one round only, so Sun is only an answer in R1, planet names only in R2/R3, moon names only in R4, Pluto and asteroid belt only in R5; other rounds may mention them in a question but never as the answer. STYLE should carry a reserved-answers list per round so PACK can check clashes mechanically. Fact traps to ban: Mercury as hottest (it is Venus), most moons (counts keep changing), Pluto as a planet, dark side of the Moon.\n- writer-2: Five topics split by object, so every answer has one home: R1 The Sun and the solar system as a whole (Sun is a star, light takes about 8 minutes to reach us, eight planets, order of planets); R2 Rocky planets (Mercury, Venus, Earth, Mars and their features: Olympus Mons, red rust dust, Venus hottest); R3 Giant planets (Jupiter, Saturn, Uranus, Neptune: biggest planet, Great Red Spot, rings, Uranus on its side); R4 Moons (our Moon, phases, first Moon landing 1969, plus Ganymede, Titan, Europa, Io, Phobos); R5 Small worlds (dwarf planets Pluto and Ceres, asteroid belt, comets, meteors/shooting stars). Ownership rules for STYLE: (a) a planet name may be an Answer only in R2 or R3, never in R1 (so R1 asks about the Sun and the system, not \"which planet is closest\"); (b) all moons, including a giant planet moon, belong to R4, not to their planet round; (c) each superlative has one owner: hottest planet R2, biggest planet R3, biggest moon R4, biggest dwarf planet R5; (d) no Answer string appears twice in the pack, and PACK checks this with a list of all 20 answers. Pluto belongs only to R5 and is called a dwarf planet everywhere. Why: the order says no answer may appear in two rounds; splitting by object makes clashes rare and easy to spot at PACK.\n- editor: Five rounds, each owning a fixed set of objects so answers cannot repeat: R1 The Sun (the Sun only: star, size, light, heat). R2 Rocky planets (Mercury, Venus, Earth, Mars as planets; not their moons). R3 Giant planets (Jupiter, Saturn, Uranus, Neptune as planets incl. rings; not their moons). R4 Moons (every moon incl. Earth Moon, Io, Europa, Titan, Ganymede, Phobos). R5 Small bodies and exploration (dwarf planets incl. Pluto, asteroids, comets, asteroid belt, spacecraft/astronauts). An answer belongs to the round that owns that object; no answer word may be used as an answer twice anywhere in the pack.\n**Decision:** Topics split by object; every answer has exactly one home round. R1 THE SUN AND THE SOLAR SYSTEM AS A WHOLE: the Sun is a star, the biggest thing in the solar system, mostly hydrogen and helium, light takes about 8 minutes to reach Earth, there are eight planets. No planet, moon or dwarf-planet name may be an R1 answer. R2 ROCKY PLANETS: Mercury, Venus, Earth, Mars as planets (Mercury closest to the Sun; Venus hottest, thick clouds trap heat; Mars red from rusty dust; Olympus Mons). R3 GIANT PLANETS: Jupiter, Saturn, Uranus, Neptune incl. rings and storms (Jupiter biggest, Great Red Spot; Saturn rings; Uranus spins on its side; Neptune farthest planet). R4 MOONS: every moon, including our Moon, its phases, the first Moon landing (1969), Ganymede (largest moon), Titan, Io, Europa, Phobos; moons never appear as answers in R2/R3. R5 SMALL WORLDS: dwarf planets (Pluto, Ceres), asteroids and the asteroid belt (between Mars and Jupiter), comets (tails point away from the Sun), meteors/shooting stars. No spacecraft or space-exploration round. Superlative owners: hottest planet R2, biggest planet R3, biggest moon R4, biggest dwarf planet R5, biggest thing in the solar system R1. Rules: other rounds may mention an object in a question but never use it as the answer; no Answer string appears twice in the pack. STYLE must carry a reserved-answers list per round (as above) and PACK checks all 20 answers against each other and against facts. Banned fact traps: Mercury as hottest, moon counts, Pluto as a planet, \"dark side of the Moon\". · actions: ISS-8, ISS-9\n\n## 2. Difficulty, format and the voice of the 'why' line for ages 8-10\nRound 1:\n- writer-1: Difficulty: each round runs easy to hard, Q1-Q2 easy (things most 8-year-olds have heard), Q3 medium, Q4 a stretch with a wow fact; no question needs a precise number, and any number is rounded and says about. Format exactly as the order: **Qn.** one short question, **Answer:** 1-4 words, **Why:** one sentence of 20 words or fewer, so rounds land in the 100-300 word band and pass reading ease 60 (short sentences, everyday words; name a hard word once and explain it). Voice of the why line: a friendly, curious guide giving the reason, not just repeating the answer, e.g. Why: Its thick clouds trap heat like a blanket. No scary or harsh words: the banned list (stupid, dumb, kill, dead, blood, hate) also rules out phrases like dead star or a planet that would kill you, so say cold, too hot for people, or no air instead. No trick questions and no answer that mocks a wrong guess.\n- writer-2: Difficulty: each round goes easy, easy, medium, stretch (Q1-Q4), and every question is answerable from a good kids book, no trick questions. Format exactly: \"**Q1.** question?\" line, \"**Answer:** one word or short name\" line, \"**Why:** one sentence\" line, blank line between questions; open questions, no multiple choice (keeps rounds well under 300 words). Facts: use only stable, textbook facts; round numbers with \"about\" (about 8 minutes, about 1,300 Earths fit in Jupiter); avoid moon counts and other numbers that keep changing; each writer names a source for any number. Why line voice: friendly, speaks to \"you\", says the reason not just the fact again, at most 20 words, short everyday words so the round passes reading ease 60 (e.g. \"Its thick clouds trap heat like a blanket, so it is even hotter than Mercury.\"). Banned-word traps to watch: no \"dead star\", \"kills\", \"blood red\"; say \"rusty red\" and \"no life we know of\" instead. Why: the round orders check 100-300 words, reading ease 60+ and the banned list, so the style sheet should make these hard to miss.\n- editor: Age 8-10, mostly easy-to-medium: 4 questions per round, each a short question with one clear answer (a single word or name where possible). Format exactly: **Qn.** question / **Answer:** answer / **Why:** one sentence, max ~20 words, plain words a 9-year-old reads alone, friendly and concrete (compare to everyday things), no jokes that confuse, no hedged or disputed facts. Use only facts that are textbook-stable; avoid numbers that change (moon counts) or give them as approximations only if well established.\n**Decision:** Difficulty: each round runs Q1 easy, Q2 easy, Q3 medium, Q4 stretch (a wow fact); every question answerable from a good kids book; open questions, no multiple choice, no trick questions, never mock a wrong guess. Format, exactly, one line each with a blank line between questions: \"**Q1.** short question?\" / \"**Answer:** 1-4 words (a name or short phrase)\" / \"**Why:** one sentence\". Why line: one sentence, at most 20 words, friendly guide voice that may speak to \"you\", gives the reason rather than repeating the answer, compares to everyday things (e.g. \"Its thick clouds trap heat like a blanket, so it is even hotter than Mercury.\"). Each round 100-300 words, reading ease 60+: short sentences, everyday words; a hard word is explained the first time. Facts: textbook-stable only; any number is rounded and says \"about\" (about 8 minutes; about 1,300 Earths fit inside Jupiter); no moon counts or other changing numbers; the writer notes a source for every number in the order notes. Banned words and phrases: stupid, dumb, kill/kills, dead (incl. \"dead star\"), blood (incl. \"blood red\"), hate; say \"rusty red\", \"too hot for people\", \"no air\", \"no life we know of\" instead. · actions: ISS-10\n"
       }
+     ],
+     [
+      "MTG-2",
+      {
+       "id": "MTG-2",
+       "kind": "wbr",
+       "title": "WBR 2026-10-21",
+       "chair": "cos",
+       "invitees": [
+        "cos",
+        "editor"
+       ],
+       "booking": "BK-2",
+       "room": "story-room",
+       "channel": "company",
+       "opened": 29876668.37565,
+       "state": "open",
+       "agenda": [
+        {
+         "n": 1,
+         "title": "Page 0: metrics",
+         "item": null,
+         "goal": null,
+         "rounds": [
+          {
+           "n": 1,
+           "positions": {},
+           "revealed": false
+          }
+         ],
+         "objections": [],
+         "decision": null,
+         "deferred": null
+        },
+        {
+         "n": 2,
+         "title": "Hits and misses",
+         "item": null,
+         "goal": null,
+         "rounds": [
+          {
+           "n": 1,
+           "positions": {},
+           "revealed": false
+          }
+         ],
+         "objections": [],
+         "decision": null,
+         "deferred": null
+        },
+        {
+         "n": 3,
+         "title": "Roadmap and goal status",
+         "item": null,
+         "goal": null,
+         "rounds": [
+          {
+           "n": 1,
+           "positions": {},
+           "revealed": false
+          }
+         ],
+         "objections": [],
+         "decision": null,
+         "deferred": null
+        },
+        {
+         "n": 4,
+         "title": "Leadership asks",
+         "item": null,
+         "goal": null,
+         "rounds": [
+          {
+           "n": 1,
+           "positions": {},
+           "revealed": false
+          }
+         ],
+         "objections": [],
+         "decision": null,
+         "deferred": null
+        }
+       ],
+       "board": {},
+       "present": {
+        "__set": [
+         "cos"
+        ]
+       },
+       "pack": {
+        "page0": {
+         "window": {
+          "from": null,
+          "to": "2026-10-21T16:28:22.536Z"
+         },
+         "shipped": 7,
+         "tokensPerShipped": 134483,
+         "leadP50Min": 16.6,
+         "flowEfficiencyMedian": 0.22,
+         "revisionsPerShipped": 0.57,
+         "refusals": 0,
+         "work": {
+          "backlog": 0,
+          "todo": 0,
+          "in-progress": 0,
+          "in-review": 0,
+          "done": 10,
+          "cancelled": 0
+         },
+         "overdue": 0,
+         "goals": {
+          "green": 3,
+          "yellow": 0,
+          "red": 0
+         }
+        },
+        "hits": [
+         "O-3 shipped first time",
+         "O-5 shipped first time",
+         "O-7 shipped first time"
+        ],
+        "misses": [],
+        "roadmap": [
+         {
+          "project": "PRJ-1",
+          "name": "Solar System Quiz Pack",
+          "lead": "editor",
+          "done": 7,
+          "total": 7,
+          "goals": [
+           {
+            "id": "G-3",
+            "status": "green"
+           }
+          ]
+         }
+        ],
+        "goals": [
+         {
+          "depth": 0,
+          "id": "G-1",
+          "title": "Solar System Quiz Pack: five rounds, true and fun",
+          "level": "company",
+          "owner": "founder",
+          "due": "2026-11-20",
+          "status": "green",
+          "ownerStatus": "green",
+          "autoRed": false,
+          "reason": null,
+          "path": null,
+          "divergence": null,
+          "contributorsWorst": "green",
+          "progress": null,
+          "met": true,
+          "done": false,
+          "why": "the second proxy task: does Meta's advantage hold on factual work",
+          "what": "a style sheet, five rounds, an assembled pack",
+          "success": [
+           {
+            "metric": "rounds shipped",
+            "target": 5,
+            "current": 5,
+            "unit": null,
+            "source": "shipped:ROUND"
+           },
+           {
+            "metric": "pack shipped",
+            "target": 1,
+            "current": 1,
+            "unit": null,
+            "source": "shipped:PACK"
+           }
+          ],
+          "contributesTo": []
+         },
+         {
+          "depth": 1,
+          "id": "G-2",
+          "title": "Quiz pipeline runs on cycle and batch",
+          "level": "org",
+          "owner": "cos",
+          "due": "2026-11-10",
+          "status": "green",
+          "ownerStatus": "green",
+          "autoRed": false,
+          "reason": null,
+          "path": null,
+          "divergence": null,
+          "contributorsWorst": "green",
+          "progress": null,
+          "met": true,
+          "done": false,
+          "why": "Benchmark 1 found the orchestrator's bookkeeping by hand",
+          "what": "orders, supervisor cycle, meetings, WBR",
+          "success": [
+           {
+            "metric": "orders shipped",
+            "target": 7,
+            "current": 7,
+            "unit": null,
+            "source": "shipped:"
+           }
+          ],
+          "contributesTo": [
+           "G-1"
+          ]
+         },
+         {
+          "depth": 2,
+          "id": "G-3",
+          "title": "Quiz pack accepted",
+          "level": "lane",
+          "owner": "editor",
+          "due": "2026-10-31",
+          "status": "green",
+          "ownerStatus": "green",
+          "autoRed": false,
+          "reason": null,
+          "path": null,
+          "divergence": null,
+          "contributorsWorst": null,
+          "progress": {
+           "done": 7,
+           "total": 7
+          },
+          "met": true,
+          "done": false,
+          "why": "the lane's deliverable",
+          "what": "style sheet, rounds 1-5, the pack",
+          "success": [
+           {
+            "metric": "style shipped",
+            "target": 1,
+            "current": 1,
+            "unit": null,
+            "source": "shipped:STYLE"
+           },
+           {
+            "metric": "rounds shipped",
+            "target": 5,
+            "current": 5,
+            "unit": null,
+            "source": "shipped:ROUND"
+           },
+           {
+            "metric": "pack shipped",
+            "target": 1,
+            "current": 1,
+            "unit": null,
+            "source": "shipped:PACK"
+           }
+          ],
+          "contributesTo": [
+           "G-2"
+          ]
+         }
+        ],
+        "asks": {
+         "open": [],
+         "total": 0,
+         "toFounder": 0,
+         "rerouted": 0,
+         "escalated": 0
+        }
+       }
+      }
      ]
     ]
    },
-   "n": 1
+   "n": 2
+  },
+  "rituals": {
+   "wbr": [],
+   "goalReviews": [],
+   "digests": []
   }
  },
  "log": {
@@ -5182,6 +5474,277 @@
     "mode": "work",
     "session": "S-18",
     "item": 1
+   },
+   {
+    "seq": 417,
+    "t": 29876667.639633335,
+    "type": "advance",
+    "order": "O-7",
+    "stage": "check",
+    "by": "reader",
+    "verdict": "pass"
+   },
+   {
+    "seq": 418,
+    "t": 29876667.639633335,
+    "type": "send",
+    "msg": "M-64",
+    "from": "editor",
+    "to": "editor",
+    "kind": "work",
+    "key": "O-7:uat:0",
+    "ref": "O-7",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 419,
+    "t": 29876667.639633335,
+    "type": "done",
+    "msg": "M-63",
+    "run": "R-28"
+   },
+   {
+    "seq": 420,
+    "t": 29876667.639633335,
+    "type": "send",
+    "msg": "M-65",
+    "from": "pool:checker",
+    "to": "editor",
+    "kind": "report",
+    "key": null,
+    "ref": "O-7",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 421,
+    "t": 29876667.639633335,
+    "type": "leave",
+    "run": "R-28",
+    "role": "reader",
+    "order": "O-7",
+    "stage": "check",
+    "verdict": "pass",
+    "minutes": 0.8581000007688999
+   },
+   {
+    "seq": 422,
+    "t": 29876667.97915,
+    "type": "session-close",
+    "session": "S-17",
+    "role": "writer-2",
+    "items": 1,
+    "reason": "finished (harness)",
+    "minutes": 2.7743333354592323
+   },
+   {
+    "seq": 423,
+    "t": 29876667.97915,
+    "type": "usage",
+    "session": "S-17",
+    "role": "writer-2",
+    "tokens": 69829,
+    "items": 1,
+    "source": "harness"
+   },
+   {
+    "seq": 424,
+    "t": 29876667.983766668,
+    "type": "advance",
+    "order": "O-7",
+    "stage": "uat",
+    "by": "editor",
+    "verdict": "pass"
+   },
+   {
+    "seq": 425,
+    "t": 29876667.983766668,
+    "type": "send",
+    "msg": "M-66",
+    "from": "editor",
+    "to": "pool:release",
+    "kind": "work",
+    "key": "O-7:ship:0",
+    "ref": "O-7",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 426,
+    "t": 29876667.983783334,
+    "type": "session-open",
+    "session": "S-19",
+    "role": "release"
+   },
+   {
+    "seq": 427,
+    "t": 29876667.983783334,
+    "type": "claim",
+    "msg": "M-66",
+    "run": "R-29"
+   },
+   {
+    "seq": 428,
+    "t": 29876667.983783334,
+    "type": "enter",
+    "run": "R-29",
+    "msg": "M-66",
+    "role": "release",
+    "by": "release",
+    "room": "launch",
+    "order": "O-7",
+    "stage": "ship",
+    "mode": "work",
+    "session": "S-19",
+    "item": 1
+   },
+   {
+    "seq": 429,
+    "t": 29876667.9838,
+    "type": "advance",
+    "order": "O-7",
+    "stage": "ship",
+    "by": "release",
+    "verdict": "pass"
+   },
+   {
+    "seq": 430,
+    "t": 29876667.9838,
+    "type": "shipped",
+    "order": "O-7",
+    "lead": 20.215800002217293,
+    "loops": 0,
+    "priority": "next"
+   },
+   {
+    "seq": 431,
+    "t": 29876667.9838,
+    "type": "done",
+    "msg": "M-66",
+    "run": "R-29"
+   },
+   {
+    "seq": 432,
+    "t": 29876667.9838,
+    "type": "send",
+    "msg": "M-67",
+    "from": "pool:release",
+    "to": "editor",
+    "kind": "report",
+    "key": null,
+    "ref": "O-7",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 433,
+    "t": 29876667.9838,
+    "type": "leave",
+    "run": "R-29",
+    "role": "release",
+    "order": "O-7",
+    "stage": "ship",
+    "verdict": "pass",
+    "minutes": 0.000016666948795318604
+   },
+   {
+    "seq": 434,
+    "t": 29876667.9838,
+    "type": "session-close",
+    "session": "S-19",
+    "role": "release",
+    "items": 1,
+    "reason": "ship done",
+    "minutes": 0.000016666948795318604
+   },
+   {
+    "seq": 435,
+    "t": 29876667.98381667,
+    "type": "item-update",
+    "item": "ISS-7",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 436,
+    "t": 29876667.98381667,
+    "type": "supervisor-tick",
+    "steps": [
+     "uat:O-7",
+     "ship:O-7"
+    ]
+   },
+   {
+    "seq": 437,
+    "t": 29876668.37565,
+    "type": "room-book",
+    "booking": "BK-2",
+    "room": "story-room",
+    "start": 29876668.375633333,
+    "end": 29876698.375633333,
+    "by": "cos",
+    "attendees": 2
+   },
+   {
+    "seq": 438,
+    "t": 29876668.37565,
+    "type": "meeting-open",
+    "meeting": "MTG-2",
+    "kind": "wbr",
+    "chair": "cos",
+    "invitees": 2,
+    "agenda": 4,
+    "room": "story-room"
+   },
+   {
+    "seq": 439,
+    "t": 29876668.37565,
+    "type": "wbr-open",
+    "meeting": "MTG-2",
+    "since": null
+   },
+   {
+    "seq": 440,
+    "t": 29876668.377716668,
+    "type": "session-close",
+    "session": "S-18",
+    "role": "reader",
+    "items": 1,
+    "reason": "finished (harness)",
+    "minutes": 1.5962000004947186
+   },
+   {
+    "seq": 441,
+    "t": 29876668.377733335,
+    "type": "usage",
+    "session": "S-18",
+    "role": "reader",
+    "tokens": 70642,
+    "items": 1,
+    "source": "harness"
+   },
+   {
+    "seq": 442,
+    "t": 29876668.378333334,
+    "type": "launch",
+    "role": "editor",
+    "msgs": [],
+    "tasks": [
+     {
+      "kind": "positions",
+      "ref": "MTG-2",
+      "items": [
+       1,
+       2,
+       3,
+       4
+      ]
+     }
+    ],
+    "why": "cycle: positions: MTG-2"
    }
   ]
  },
@@ -6589,11 +7152,98 @@
       },
       "priority": "next",
       "ts": 29876666.53091667,
-      "state": "open",
+      "state": "done",
       "lease": {
        "run": "R-28",
        "until": 29876696.781533334
       },
+      "acked": false
+     }
+    ],
+    [
+     "M-64",
+     {
+      "id": "M-64",
+      "from": "editor",
+      "to": "editor",
+      "kind": "work",
+      "key": "O-7:uat:0",
+      "due": null,
+      "ref": "O-7",
+      "body": {
+       "stage": "uat",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876667.639633335,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-65",
+     {
+      "id": "M-65",
+      "from": "pool:checker",
+      "to": "editor",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-7",
+      "body": {
+       "stage": "check",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876667.639633335,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-66",
+     {
+      "id": "M-66",
+      "from": "editor",
+      "to": "pool:release",
+      "kind": "work",
+      "key": "O-7:ship:0",
+      "due": null,
+      "ref": "O-7",
+      "body": {
+       "stage": "ship",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876667.983766668,
+      "state": "done",
+      "lease": {
+       "run": "R-29",
+       "until": 29876697.983783334
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-67",
+     {
+      "id": "M-67",
+      "from": "pool:release",
+      "to": "editor",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-7",
+      "body": {
+       "stage": "ship",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876667.9838,
+      "state": "open",
+      "lease": null,
       "acked": false
      }
     ]
@@ -6744,10 +7394,18 @@
     [
      "O-7:check:0",
      "M-63"
+    ],
+    [
+     "O-7:uat:0",
+     "M-64"
+    ],
+    [
+     "O-7:ship:0",
+     "M-66"
     ]
    ]
   },
-  "n": 63
+  "n": 67
  },
  "org": {
   "roles": {
@@ -7583,12 +8241,12 @@
       "orderer": "cos",
       "manager": "editor",
       "builder": "writer-2",
-      "checker": null,
+      "checker": "reader",
       "budget": 200000,
       "spent": 0,
       "accept": "live/bench2-meta/work/PACK/page.md: the assembled pack. First line '# Solar System Quiz Pack'; then the five shipped rounds (live/bench2-meta/shipped/ROUND1..ROUND5/page.md) in order, each starting '# Round n: <topic>', 20 questions in all. Read them as one pack and fix what clashes across rounds: an answer used in two rounds, a fact that contradicts another round, a format slip; keep each round's 4 questions. End with '## Changes' listing each change and why (or 'none'). No words like stupid, dumb, kill, dead, blood, hate.",
       "words": null,
-      "stage": "check",
+      "stage": "done",
       "loops": 0,
       "created": 29876647.768,
       "history": [
@@ -7603,6 +8261,24 @@
         "by": "code",
         "verdict": "pass",
         "t": 29876666.53091667
+       },
+       {
+        "stage": "check",
+        "by": "reader",
+        "verdict": "pass",
+        "t": 29876667.639633335
+       },
+       {
+        "stage": "uat",
+        "by": "editor",
+        "verdict": "pass",
+        "t": 29876667.983766668
+       },
+       {
+        "stage": "ship",
+        "by": "release",
+        "verdict": "pass",
+        "t": 29876667.9838
        }
       ],
       "priority": "next",
@@ -8106,13 +8782,29 @@
       "stage": "check",
       "loops": 0,
       "entered": 29876666.781533334,
-      "state": "running",
+      "state": "left",
       "session": "S-18"
+     }
+    ],
+    [
+     "R-29",
+     {
+      "run": "R-29",
+      "msg": "M-66",
+      "role": "release",
+      "by": "release",
+      "consult": false,
+      "order": "O-7",
+      "stage": "ship",
+      "loops": 0,
+      "entered": 29876667.983783334,
+      "state": "left",
+      "session": "S-19"
      }
     ]
    ]
   },
-  "n": 28,
+  "n": 29,
   "memory": {
    "__map": [
     [
@@ -8224,6 +8916,12 @@
        "did": "check on O-6: pass (loop 1)",
        "learned": "A Why line may say not a star when R1 owns A star as an Answer; ownership limits Answer strings, not mentions.",
        "mistake": null
+      },
+      {
+       "t": 29876667.639633335,
+       "did": "check on O-7: pass (loop 0)",
+       "learned": "At PACK, diff the assembled rounds against shipped first; when they are identical the check reduces to cross-round answer uniqueness, shared-fact agreement and the added title and Changes section.",
+       "mistake": null
       }
      ]
     ],
@@ -8263,6 +8961,12 @@
       {
        "t": 29876664.372583333,
        "did": "ship on O-6: pass (loop 1)",
+       "learned": null,
+       "mistake": null
+      },
+      {
+       "t": 29876667.9838,
+       "did": "ship on O-7: pass (loop 0)",
        "learned": null,
        "mistake": null
       }
@@ -8467,7 +9171,7 @@
       "id": "S-17",
       "role": "writer-2",
       "items": 1,
-      "open": true,
+      "open": false,
       "started": 29876665.204816666
      }
     ],
@@ -8477,12 +9181,22 @@
       "id": "S-18",
       "role": "reader",
       "items": 1,
-      "open": true,
+      "open": false,
       "started": 29876666.781516667
+     }
+    ],
+    [
+     "S-19",
+     {
+      "id": "S-19",
+      "role": "release",
+      "items": 1,
+      "open": false,
+      "started": 29876667.983783334
      }
     ]
    ]
   },
-  "nS": 18
+  "nS": 19
  }
 }
