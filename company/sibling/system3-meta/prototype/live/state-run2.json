@@ -770,6 +770,267 @@
     "mode": "work",
     "session": "S-4",
     "item": 3
+   },
+   {
+    "seq": 77,
+    "t": 29876173.7921,
+    "type": "usage",
+    "session": "S-2",
+    "role": "toy-builder-2",
+    "tokens": 56961,
+    "items": 1,
+    "source": "harness"
+   },
+   {
+    "seq": 78,
+    "t": 29876173.794266667,
+    "type": "usage",
+    "session": "S-1",
+    "role": "toy-builder-2",
+    "tokens": 58189,
+    "items": 1,
+    "source": "harness"
+   },
+   {
+    "seq": 79,
+    "t": 29876173.796266668,
+    "type": "usage",
+    "session": "S-3",
+    "role": "toy-builder-2",
+    "tokens": 56953,
+    "items": 1,
+    "source": "harness"
+   },
+   {
+    "seq": 80,
+    "t": 29876173.798733335,
+    "type": "usage",
+    "session": "S-5",
+    "role": "toy-builder-2",
+    "tokens": 56605,
+    "items": 1,
+    "source": "harness"
+   },
+   {
+    "seq": 81,
+    "t": 29876173.935066666,
+    "type": "advance",
+    "order": "O-3",
+    "stage": "build",
+    "by": "toy-builder-1",
+    "verdict": "pass"
+   },
+   {
+    "seq": 82,
+    "t": 29876173.935083333,
+    "type": "code-stage",
+    "order": "O-3",
+    "stage": "test1"
+   },
+   {
+    "seq": 83,
+    "t": 29876173.935083333,
+    "type": "done",
+    "msg": "M-3",
+    "run": "R-7"
+   },
+   {
+    "seq": 84,
+    "t": 29876173.935083333,
+    "type": "send",
+    "msg": "M-14",
+    "from": "toy-builder-1",
+    "to": "mgr-live",
+    "kind": "report",
+    "key": null,
+    "ref": "O-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 85,
+    "t": 29876173.935083333,
+    "type": "leave",
+    "run": "R-7",
+    "role": "toy-builder-1",
+    "order": "O-3",
+    "stage": "build",
+    "verdict": "pass",
+    "minutes": 0.39071666821837425
+   },
+   {
+    "seq": 86,
+    "t": 29876173.935083333,
+    "type": "session-close",
+    "session": "S-4",
+    "role": "toy-builder-1",
+    "items": 3,
+    "reason": "cap",
+    "minutes": 0.9364666678011417
+   },
+   {
+    "seq": 87,
+    "t": 29876174.4463,
+    "type": "usage",
+    "session": "S-4",
+    "role": "toy-builder-1",
+    "tokens": 63038,
+    "items": 3,
+    "source": "harness"
+   },
+   {
+    "seq": 88,
+    "t": 29876174.51726667,
+    "type": "advance",
+    "order": "O-1",
+    "stage": "test1",
+    "by": "code",
+    "verdict": "pass"
+   },
+   {
+    "seq": 89,
+    "t": 29876174.51728333,
+    "type": "send",
+    "msg": "M-15",
+    "from": "mgr-live",
+    "to": "pool:checker",
+    "kind": "work",
+    "key": "O-1:check:0",
+    "ref": "O-1",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 90,
+    "t": 29876174.521333333,
+    "type": "advance",
+    "order": "O-2",
+    "stage": "test1",
+    "by": "code",
+    "verdict": "pass"
+   },
+   {
+    "seq": 91,
+    "t": 29876174.521333333,
+    "type": "send",
+    "msg": "M-16",
+    "from": "mgr-live",
+    "to": "pool:checker",
+    "kind": "work",
+    "key": "O-2:check:0",
+    "ref": "O-2",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 92,
+    "t": 29876174.5253,
+    "type": "advance",
+    "order": "O-3",
+    "stage": "test1",
+    "by": "code",
+    "verdict": "pass"
+   },
+   {
+    "seq": 93,
+    "t": 29876174.5253,
+    "type": "send",
+    "msg": "M-17",
+    "from": "mgr-live",
+    "to": "pool:checker",
+    "kind": "work",
+    "key": "O-3:check:0",
+    "ref": "O-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 94,
+    "t": 29876174.529316667,
+    "type": "advance",
+    "order": "O-4",
+    "stage": "test1",
+    "by": "code",
+    "verdict": "pass"
+   },
+   {
+    "seq": 95,
+    "t": 29876174.529333334,
+    "type": "send",
+    "msg": "M-18",
+    "from": "mgr-live",
+    "to": "pool:checker",
+    "kind": "work",
+    "key": "O-4:check:0",
+    "ref": "O-4",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 96,
+    "t": 29876174.5332,
+    "type": "advance",
+    "order": "O-5",
+    "stage": "test1",
+    "by": "code",
+    "verdict": "pass"
+   },
+   {
+    "seq": 97,
+    "t": 29876174.5332,
+    "type": "send",
+    "msg": "M-19",
+    "from": "mgr-live",
+    "to": "pool:checker",
+    "kind": "work",
+    "key": "O-5:check:0",
+    "ref": "O-5",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 98,
+    "t": 29876174.53755,
+    "type": "advance",
+    "order": "O-6",
+    "stage": "test1",
+    "by": "code",
+    "verdict": "pass"
+   },
+   {
+    "seq": 99,
+    "t": 29876174.53755,
+    "type": "send",
+    "msg": "M-20",
+    "from": "mgr-live",
+    "to": "pool:checker",
+    "kind": "work",
+    "key": "O-6:check:0",
+    "ref": "O-6",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 100,
+    "t": 29876174.5412,
+    "type": "advance",
+    "order": "O-8",
+    "stage": "test1",
+    "by": "code",
+    "verdict": "pass"
+   },
+   {
+    "seq": 101,
+    "t": 29876174.541216668,
+    "type": "send",
+    "msg": "M-21",
+    "from": "mgr-live",
+    "to": "pool:checker",
+    "kind": "work",
+    "key": "O-8:check:0",
+    "ref": "O-8",
+    "priority": "now",
+    "due": null
    }
   ]
  },
@@ -840,7 +1101,7 @@
       },
       "priority": "next",
       "ts": 29876172.509683333,
-      "state": "open",
+      "state": "done",
       "lease": {
        "run": "R-7",
        "until": 29876203.544366665
@@ -1069,6 +1330,174 @@
       "lease": null,
       "acked": false
      }
+    ],
+    [
+     "M-14",
+     {
+      "id": "M-14",
+      "from": "toy-builder-1",
+      "to": "mgr-live",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-3",
+      "body": {
+       "stage": "build",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876173.935083333,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-15",
+     {
+      "id": "M-15",
+      "from": "mgr-live",
+      "to": "pool:checker",
+      "kind": "work",
+      "key": "O-1:check:0",
+      "due": null,
+      "ref": "O-1",
+      "body": {
+       "stage": "check",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876174.51728333,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-16",
+     {
+      "id": "M-16",
+      "from": "mgr-live",
+      "to": "pool:checker",
+      "kind": "work",
+      "key": "O-2:check:0",
+      "due": null,
+      "ref": "O-2",
+      "body": {
+       "stage": "check",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876174.521333333,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-17",
+     {
+      "id": "M-17",
+      "from": "mgr-live",
+      "to": "pool:checker",
+      "kind": "work",
+      "key": "O-3:check:0",
+      "due": null,
+      "ref": "O-3",
+      "body": {
+       "stage": "check",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876174.5253,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-18",
+     {
+      "id": "M-18",
+      "from": "mgr-live",
+      "to": "pool:checker",
+      "kind": "work",
+      "key": "O-4:check:0",
+      "due": null,
+      "ref": "O-4",
+      "body": {
+       "stage": "check",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876174.529333334,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-19",
+     {
+      "id": "M-19",
+      "from": "mgr-live",
+      "to": "pool:checker",
+      "kind": "work",
+      "key": "O-5:check:0",
+      "due": null,
+      "ref": "O-5",
+      "body": {
+       "stage": "check",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876174.5332,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-20",
+     {
+      "id": "M-20",
+      "from": "mgr-live",
+      "to": "pool:checker",
+      "kind": "work",
+      "key": "O-6:check:0",
+      "due": null,
+      "ref": "O-6",
+      "body": {
+       "stage": "check",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876174.53755,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-21",
+     {
+      "id": "M-21",
+      "from": "mgr-live",
+      "to": "pool:checker",
+      "kind": "work",
+      "key": "O-8:check:0",
+      "due": null,
+      "ref": "O-8",
+      "body": {
+       "stage": "check",
+       "loops": 0
+      },
+      "priority": "now",
+      "ts": 29876174.541216668,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
     ]
    ]
   },
@@ -1101,10 +1530,38 @@
     [
      "O-8:build:0",
      "M-7"
+    ],
+    [
+     "O-1:check:0",
+     "M-15"
+    ],
+    [
+     "O-2:check:0",
+     "M-16"
+    ],
+    [
+     "O-3:check:0",
+     "M-17"
+    ],
+    [
+     "O-4:check:0",
+     "M-18"
+    ],
+    [
+     "O-5:check:0",
+     "M-19"
+    ],
+    [
+     "O-6:check:0",
+     "M-20"
+    ],
+    [
+     "O-8:check:0",
+     "M-21"
     ]
    ]
   },
-  "n": 13
+  "n": 21
  },
  "org": {
   "roles": {
@@ -1300,7 +1757,7 @@
       "spent": 0,
       "accept": "live/work/T3/csvline.mjs exports parseCsvLine(line) returning an array of field strings. Fields are separated by commas. A field may be wrapped in double quotes; inside quotes a comma is literal and two double quotes stand for one. Unquoted fields are taken exactly as written (no trimming). An empty line gives [\"\"]. Throws SyntaxError on an unterminated quote, a quote inside an unquoted field, or characters after a closing quote before the next comma. node:test tests in live/work/T3/*.test.mjs",
       "words": null,
-      "stage": "test1",
+      "stage": "check",
       "loops": 0,
       "created": 29876172.4992,
       "history": [
@@ -1309,6 +1766,12 @@
         "by": "toy-builder-1",
         "verdict": "pass",
         "t": 29876173.249533333
+       },
+       {
+        "stage": "test1",
+        "by": "code",
+        "verdict": "pass",
+        "t": 29876174.51726667
        }
       ],
       "priority": "next",
@@ -1337,7 +1800,7 @@
       "spent": 0,
       "accept": "live/work/T4/dedent.mjs exports dedent(text): removes the longest common leading whitespace (spaces and tabs compared literally: a tab is not equal to spaces) from every non-blank line. Whitespace-only lines become empty and do not count for the common prefix. One leading newline is removed, and a final whitespace-only line is removed. node:test tests in live/work/T4/*.test.mjs",
       "words": null,
-      "stage": "test1",
+      "stage": "check",
       "loops": 0,
       "created": 29876172.500266667,
       "history": [
@@ -1346,6 +1809,12 @@
         "by": "toy-builder-1",
         "verdict": "pass",
         "t": 29876173.544366665
+       },
+       {
+        "stage": "test1",
+        "by": "code",
+        "verdict": "pass",
+        "t": 29876174.521333333
        }
       ],
       "priority": "next",
@@ -1374,10 +1843,23 @@
       "spent": 0,
       "accept": "live/work/T5/semver.mjs exports compare(a, b) returning -1, 0 or 1 for Semantic Versioning 2.0.0 strings MAJOR.MINOR.PATCH with optional -prerelease and optional +build (build is ignored). Precedence follows the semver 2.0.0 spec section 11 exactly (numeric identifiers compare numerically and rank below alphanumeric ones; a larger set of identifiers ranks higher when all preceding are equal; a prerelease ranks below its release). Throws TypeError on any invalid version (missing parts, leading zeros in numeric parts or numeric prerelease identifiers, empty identifiers). node:test tests in live/work/T5/*.test.mjs",
       "words": null,
-      "stage": "build",
+      "stage": "check",
       "loops": 0,
       "created": 29876172.501266666,
-      "history": [],
+      "history": [
+       {
+        "stage": "build",
+        "by": "toy-builder-1",
+        "verdict": "pass",
+        "t": 29876173.935066666
+       },
+       {
+        "stage": "test1",
+        "by": "code",
+        "verdict": "pass",
+        "t": 29876174.525283333
+       }
+      ],
       "priority": "next",
       "due": null,
       "after": [],
@@ -1404,7 +1886,7 @@
       "spent": 0,
       "accept": "live/work/T6/ini.mjs exports parseIni(text) returning an object of sections, each an object of key to string value. Keys before any [section] go into the section named \"\" (omit it if empty). Lines key = value are trimmed on both sides of key and value. Lines starting with ; or # are comments; blank lines are ignored. A repeated key: the last one wins. Any other line throws SyntaxError whose message contains its 1-based line number. node:test tests in live/work/T6/*.test.mjs",
       "words": null,
-      "stage": "test1",
+      "stage": "check",
       "loops": 0,
       "created": 29876172.502466667,
       "history": [
@@ -1413,6 +1895,12 @@
         "by": "toy-builder-2",
         "verdict": "pass",
         "t": 29876173.299
+       },
+       {
+        "stage": "test1",
+        "by": "code",
+        "verdict": "pass",
+        "t": 29876174.529316667
        }
       ],
       "priority": "next",
@@ -1441,7 +1929,7 @@
       "spent": 0,
       "accept": "live/work/T7/kebab.mjs exports toKebab(s): splits words at camelCase boundaries, at acronym ends (XMLHttpRequest gives xml-http-request), and at spaces, underscores and hyphens; lowercases; joins with single hyphens; trims leading and trailing separators; digits stay attached to the word before them (v2Api gives v2-api). Non-string input throws TypeError. node:test tests in live/work/T7/*.test.mjs",
       "words": null,
-      "stage": "test1",
+      "stage": "check",
       "loops": 0,
       "created": 29876172.503733333,
       "history": [
@@ -1450,6 +1938,12 @@
         "by": "toy-builder-2",
         "verdict": "pass",
         "t": 29876173.399466667
+       },
+       {
+        "stage": "test1",
+        "by": "code",
+        "verdict": "pass",
+        "t": 29876174.5332
        }
       ],
       "priority": "next",
@@ -1478,7 +1972,7 @@
       "spent": 0,
       "accept": "live/work/T8/duration.mjs exports parseDuration(s) returning milliseconds. s is one or more integer+unit parts with units d, h, m, s, ms, written in that descending order, each unit at most once, with no spaces (e.g. 1h30m, 2d, 500ms, 0s, 1d2h3m4s5ms). Anything else throws SyntaxError: empty string, decimals, spaces, unknown units, a unit out of order or repeated, a number without a unit. node:test tests in live/work/T8/*.test.mjs",
       "words": null,
-      "stage": "test1",
+      "stage": "check",
       "loops": 0,
       "created": 29876172.505016666,
       "history": [
@@ -1487,6 +1981,12 @@
         "by": "toy-builder-2",
         "verdict": "pass",
         "t": 29876173.299283333
+       },
+       {
+        "stage": "test1",
+        "by": "code",
+        "verdict": "pass",
+        "t": 29876174.53755
        }
       ],
       "priority": "next",
@@ -1547,7 +2047,7 @@
       "spent": 0,
       "accept": "live/work/T9/leap.mjs exports isLeapYear(year) for integer years >= 1 by the Gregorian rules (divisible by 4, except centuries, except every 400 years). Any other input (0, negative, non-integer, non-number) throws RangeError. node:test tests in live/work/T9/*.test.mjs",
       "words": null,
-      "stage": "test1",
+      "stage": "check",
       "loops": 0,
       "created": 29876173.0215,
       "history": [
@@ -1556,6 +2056,12 @@
         "by": "toy-builder-2",
         "verdict": "pass",
         "t": 29876173.427983332
+       },
+       {
+        "stage": "test1",
+        "by": "code",
+        "verdict": "pass",
+        "t": 29876174.5412
        }
       ],
       "priority": "now",
@@ -1690,7 +2196,7 @@
       "stage": "build",
       "loops": 0,
       "entered": 29876173.544366665,
-      "state": "running",
+      "state": "left",
       "session": "S-4"
      }
     ]
@@ -1712,6 +2218,12 @@
        "t": 29876173.544366665,
        "did": "build on O-2: pass (loop 0)",
        "learned": "Dedent: strip leading newline and final blank line first, then compute literal char-by-char common prefix over non-blank lines.",
+       "mistake": null
+      },
+      {
+       "t": 29876173.935083333,
+       "did": "build on O-3: pass (loop 0)",
+       "learned": "Semver: split +build then first -prerelease; BigInt for numeric parts; numeric ids only if all digits (0a is alphanumeric).",
        "mistake": null
       }
      ]
@@ -1785,7 +2297,7 @@
       "id": "S-4",
       "role": "toy-builder-1",
       "items": 3,
-      "open": true,
+      "open": false,
       "started": 29876172.998616666
      }
     ],
