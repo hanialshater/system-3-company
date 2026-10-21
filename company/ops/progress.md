@@ -1,3 +1,18 @@
+## 2026-10-21 · chief-of-staff (for System 3 Meta) · Meta live run 1: real agents through the prototype tools
+
+Founder: "Decide for me". I chose a live run before calibration, recorded in company/sibling/system3-meta/prototype/LIVE.md, with predictions committed first. Setup:
+- 2 toy tasks;
+- 7 fresh subagent runs as builder and checker; this session as manager, release and supervisor;
+- state shared across processes through meta.mjs (locked JSON);
+- injected faults: duplicate notification, crash, boundary.
+
+Both orders shipped. T2 went round a revise loop on real Unicode defects that the hidden UAT tests would have missed. 0 failed CLI calls by agents. Usage was recorded from the harness for 7/7 agent runs (413,587 tokens). Tool defects found and fixed:
+- `--as` usable outside consult;
+- refusals not persisted;
+- no `room abandon`.
+
+Biggest learning: about 50k of each 55-64k run is fixed start-up cost, so run count drives cost. Also: the supervisor's own tokens are unmeasured, and the recovery sweep polls in code. Next: wake on lease expiry; supervisor usage; simulator iteration 4 with fixed per-run cost (batching). Nothing in the current company changed.
+
 ## 2026-10-20 · chief-of-staff (for System 3 Meta) · Meta prototype: tools, toy org, simulator, three iterations
 
 Founder: "experiment with these tools create a toy org, simulate building and observe and iterate on performance. This is meta company, current company is not affected". Built in company/sibling/system3-meta/prototype/ (plain Node, no dependencies; nothing in the company imports it; no company tool, gate or data changed):

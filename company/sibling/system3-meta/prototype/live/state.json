@@ -732,6 +732,150 @@
     "order": "O-2",
     "stage": "check",
     "mode": "work"
+   },
+   {
+    "seq": 78,
+    "t": 29876080,
+    "type": "advance",
+    "order": "O-2",
+    "stage": "check",
+    "by": "toy-checker",
+    "verdict": "pass"
+   },
+   {
+    "seq": 79,
+    "t": 29876080,
+    "type": "send",
+    "msg": "M-15",
+    "from": "mgr-live",
+    "to": "mgr-live",
+    "kind": "work",
+    "key": "O-2:uat:1",
+    "ref": "O-2"
+   },
+   {
+    "seq": 80,
+    "t": 29876080,
+    "type": "done",
+    "msg": "M-14",
+    "run": "R-9"
+   },
+   {
+    "seq": 81,
+    "t": 29876080,
+    "type": "send",
+    "msg": "M-16",
+    "from": "pool:checker",
+    "to": "mgr-live",
+    "kind": "report",
+    "key": null,
+    "ref": "O-2"
+   },
+   {
+    "seq": 82,
+    "t": 29876080,
+    "type": "leave",
+    "run": "R-9",
+    "role": "toy-checker",
+    "order": "O-2",
+    "stage": "check",
+    "verdict": "pass",
+    "minutes": 1
+   },
+   {
+    "seq": 83,
+    "t": 29876081,
+    "type": "usage",
+    "run": "R-9",
+    "role": "toy-checker",
+    "tokens": 63554,
+    "source": "harness"
+   },
+   {
+    "seq": 84,
+    "t": 29876081,
+    "type": "advance",
+    "order": "O-2",
+    "stage": "uat",
+    "by": "mgr-live",
+    "verdict": "pass"
+   },
+   {
+    "seq": 85,
+    "t": 29876081,
+    "type": "send",
+    "msg": "M-17",
+    "from": "mgr-live",
+    "to": "pool:release",
+    "kind": "work",
+    "key": "O-2:ship:1",
+    "ref": "O-2"
+   },
+   {
+    "seq": 86,
+    "t": 29876081,
+    "type": "claim",
+    "msg": "M-17",
+    "run": "R-10"
+   },
+   {
+    "seq": 87,
+    "t": 29876081,
+    "type": "enter",
+    "run": "R-10",
+    "msg": "M-17",
+    "role": "toy-release",
+    "by": "toy-release",
+    "room": "launch",
+    "order": "O-2",
+    "stage": "ship",
+    "mode": "work"
+   },
+   {
+    "seq": 88,
+    "t": 29876081,
+    "type": "advance",
+    "order": "O-2",
+    "stage": "ship",
+    "by": "toy-release",
+    "verdict": "pass"
+   },
+   {
+    "seq": 89,
+    "t": 29876081,
+    "type": "shipped",
+    "order": "O-2",
+    "lead": 8,
+    "loops": 1
+   },
+   {
+    "seq": 90,
+    "t": 29876081,
+    "type": "done",
+    "msg": "M-17",
+    "run": "R-10"
+   },
+   {
+    "seq": 91,
+    "t": 29876081,
+    "type": "send",
+    "msg": "M-18",
+    "from": "pool:release",
+    "to": "mgr-live",
+    "kind": "report",
+    "key": null,
+    "ref": "O-2"
+   },
+   {
+    "seq": 92,
+    "t": 29876081,
+    "type": "leave",
+    "run": "R-10",
+    "role": "toy-release",
+    "order": "O-2",
+    "stage": "ship",
+    "verdict": "pass",
+    "minutes": 0
    }
   ]
  },
@@ -1031,11 +1175,94 @@
        "loops": 1
       },
       "ts": 29876079,
-      "state": "open",
+      "state": "done",
       "lease": {
        "run": "R-9",
        "until": 29876109
       },
+      "acked": false
+     }
+    ],
+    [
+     "M-15",
+     {
+      "id": "M-15",
+      "from": "mgr-live",
+      "to": "mgr-live",
+      "kind": "work",
+      "key": "O-2:uat:1",
+      "due": null,
+      "ref": "O-2",
+      "body": {
+       "stage": "uat",
+       "loops": 1
+      },
+      "ts": 29876080,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-16",
+     {
+      "id": "M-16",
+      "from": "pool:checker",
+      "to": "mgr-live",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-2",
+      "body": {
+       "stage": "check",
+       "verdict": "pass"
+      },
+      "ts": 29876080,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-17",
+     {
+      "id": "M-17",
+      "from": "mgr-live",
+      "to": "pool:release",
+      "kind": "work",
+      "key": "O-2:ship:1",
+      "due": null,
+      "ref": "O-2",
+      "body": {
+       "stage": "ship",
+       "loops": 1
+      },
+      "ts": 29876081,
+      "state": "done",
+      "lease": {
+       "run": "R-10",
+       "until": 29876111
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-18",
+     {
+      "id": "M-18",
+      "from": "pool:release",
+      "to": "mgr-live",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-2",
+      "body": {
+       "stage": "ship",
+       "verdict": "pass"
+      },
+      "ts": 29876081,
+      "state": "open",
+      "lease": null,
       "acked": false
      }
     ]
@@ -1074,10 +1301,18 @@
     [
      "O-2:check:1",
      "M-14"
+    ],
+    [
+     "O-2:uat:1",
+     "M-15"
+    ],
+    [
+     "O-2:ship:1",
+     "M-17"
     ]
    ]
   },
-  "n": 14
+  "n": 18
  },
  "org": {
   "roles": {
@@ -1330,7 +1565,7 @@
       "spent": 0,
       "accept": "live/work/T2/wrap.mjs exports wrap(text, width): lines at most width chars, broken at spaces; a word longer than width is split hard into width-sized chunks; runs of whitespace inside a paragraph (including single newlines) collapse to one space; leading/trailing whitespace trimmed; paragraphs separated by a blank line stay separated by one blank line; no trailing spaces; empty text gives empty string; width must be an integer >= 1 else RangeError; with node:test tests in live/work/T2/*.test.mjs",
       "words": null,
-      "stage": "check",
+      "stage": "done",
       "loops": 1,
       "created": 29876073,
       "history": [
@@ -1363,6 +1598,24 @@
         "by": "code",
         "verdict": "pass",
         "t": 29876079
+       },
+       {
+        "stage": "check",
+        "by": "toy-checker",
+        "verdict": "pass",
+        "t": 29876080
+       },
+       {
+        "stage": "uat",
+        "by": "mgr-live",
+        "verdict": "pass",
+        "t": 29876081
+       },
+       {
+        "stage": "ship",
+        "by": "toy-release",
+        "verdict": "pass",
+        "t": 29876081
        }
       ],
       "task": "T2",
@@ -1518,12 +1771,27 @@
       "stage": "check",
       "loops": 1,
       "entered": 29876079,
-      "state": "running"
+      "state": "left"
+     }
+    ],
+    [
+     "R-10",
+     {
+      "run": "R-10",
+      "msg": "M-17",
+      "role": "toy-release",
+      "by": "toy-release",
+      "consult": false,
+      "order": "O-2",
+      "stage": "ship",
+      "loops": 1,
+      "entered": 29876081,
+      "state": "left"
      }
     ]
    ]
   },
-  "n": 9,
+  "n": 10,
   "memory": {
    "__map": [
     [
@@ -1551,6 +1819,12 @@
        "did": "check on O-2: revise (loop 0)",
        "learned": "Random property checks over a small ASCII alphabet pass cleanly yet miss Unicode: always add astral characters and non-ASCII whitespace to a text module edge-case list.",
        "mistake": null
+      },
+      {
+       "t": 29876080,
+       "did": "check on O-2: pass (loop 1)",
+       "learned": "A re-check should rerun the earlier failing inputs exactly and then widen the property alphabet with the classes that failed (astral, U+00A0, U+3000, CRLF); width in code points still splits combining marks and ZWJ emoji, a grapheme question accept does not settle, so flag it for the order owner rather than fail on it.",
+       "mistake": null
       }
      ]
     ],
@@ -1561,6 +1835,12 @@
        "t": 29876076,
        "did": "ship on O-1: pass (loop 0)",
        "learned": "ship is a copy; nothing deploys",
+       "mistake": null
+      },
+      {
+       "t": 29876081,
+       "did": "ship on O-2: pass (loop 1)",
+       "learned": "ship is a copy",
        "mistake": null
       }
      ]

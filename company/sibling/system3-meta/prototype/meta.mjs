@@ -122,9 +122,19 @@ function main() {
   const readOnly = ["queue", "events", "memory"].includes(cmd) || (cmd === "flow" && ["show", "status"].includes(sub)) || (cmd === "org");
   const act = () => {
     const co = load();
-    const r = dispatch(co, cmd, sub, arg);
-    if (!readOnly) save(co);
-    return r;
+    const before = co.log.events.length;
+    try {
+      const r = dispatch(co, cmd, sub, arg);
+      if (!readOnly) save(co);
+      return r;
+    } catch (e) {
+      // A refusal is an event too (live run 1 lost every refusal by not saving on error). HARD refusals get one here.
+      if (e.refused && !readOnly) {
+        if (!co.log.events.slice(before).some((x) => x.type === "refuse")) co.log.add({ type: "refuse", rule: "hard", msg: e.message, argv: argv.join(" ") });
+        save(co);
+      }
+      throw e;
+    }
   };
   return readOnly ? act() : withLock(act);
 }
