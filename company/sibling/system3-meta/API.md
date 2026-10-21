@@ -269,3 +269,22 @@ An ask addressed higher than it needs is rerouted down unless `--escalate` gives
   - `lineMaxWords: [{prefix, maxWords}]` limits lines that start with a prefix, e.g. `**Why:**` ≤ 20.
 - **A refused command saves only its refusal events.** Partial changes are discarded.
 - **Goal criteria** may carry `source` (`shipped:<prefix>`, `done:<label>`) and are measured by code.
+
+## 13. Decisions as checks, giveaways, and the supervisor as a service (built after Benchmark 2, used in live run 4)
+
+- **`meeting decide … --rules='[{"tasks":"<task prefix>","checks":{…}}]'`:** the decision's checkable rules are validated, then merged into every open order whose task starts with the prefix. Lists join, and limits take the stricter value (`mergeChecks`). The rules stand for orders placed later, applied at `order new`, and the minutes list what each rule tightened.
+- **Text checks** (`CHECK_KEYS`):
+  - `file`, `minWords`, `maxWords`, `titleLine`, `minReadingEase`;
+  - `mustInclude`: exact text, case-insensitive;
+  - `banned`: whole words, case-insensitive;
+  - `lineMaxWords: [{prefix, maxWords}]`;
+  - `allowedLines: [prefixes]`: every non-empty line starts with one of them;
+  - `distinctAnswers: {prefix, split?, across?}`: no answer repeats across sections or tasks, and no line gives one away. A giveaway is the answer together with a distinctive word of its own question.
+- **`meta.mjs check --order=<O>`** also returns `rules`, the checks in plain words.
+- **Minutes:** closing a meeting writes `live/<dir>/minutes/<MTG>.md`, and briefs name these files.
+- **`node supervisor.mjs serve [--acceptance=<dir>] [--idle-min=2] [--max-min=120]`:**
+  - one per state (`serve.pid`);
+  - on every state change it ticks, reserves each planned launch and writes its brief to `live/<dir>/outbox/<seq>-<role>.md`;
+  - it prints one JSON line per event (`serving`, `steps`, `launch`, `done`, `stopped`, `refused`); run it under a monitor;
+  - it ends when every order is done and no meeting is open.
+- **`node supervisor.mjs usage --finished=S-n:tokens|role:tokens,… [--outside=role:tokens,…]`:** records harness usage in a batch.

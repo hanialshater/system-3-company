@@ -1,3 +1,35 @@
+## 2026-10-21 · chief-of-staff (for System 3 Meta) · The three Benchmark 2 fixes, built and run live (live run 4)
+
+Founder: "go ahead with the 3 fixes".
+
+**Built** (company/sibling/system3-meta/prototype, 60 tests):
+- **Decisions become checks:** `meeting decide --rules`, which tighten open and later orders.
+- **Giveaway check:** the `distinctAnswers` text check. It flags Benchmark 2's Pluto giveaway and nothing in the baseline pack.
+- **No command per wake:** `supervisor.mjs serve`, which streams launches and briefs to a monitor.
+- **Gaps found live, also fixed:**
+  - `allowedLines`;
+  - minutes written as files;
+  - `check` rules stated in plain words;
+  - one `serve` per state;
+  - batch usage by session.
+
+**Live run 4** (LIVE4.md; predictions committed first):
+- **The run:** a 3-round quiz plus pack, all shipped in 11.5 minutes, with 11 sessions, 773k tokens and 0 typed commands per wake.
+- **Rules:** the kickoff's rules became code checks on every order.
+- **Revisions:** one, for two decisions the chair did not carry, one of which no check could express then.
+- **Shipped pack:** clean by the code check.
+- **Predictions:** L4-1 refuted and L4-4 wrong, both by my own operator errors (a refused set-up, a missing flag, a wrong kill); L4-2 wrong; L4-3 right.
+
+**Belief** (medium):
+- The loop now runs on code end to end. What remains is decision quality: carrying every rule. The operator's mistakes now cost more than the tools'.
+
+**Next:**
+- A within-round answer check.
+- Launch briefs from the file unchanged.
+- Re-run the Benchmark 2 task on these tools.
+
+**Blocked:** nothing.
+
 ## 2026-10-21 · chief-of-staff (for System 3 Meta) · Benchmark 2 (quiz pack): the loop in code, and an honest second result
 
 Founder: "Don't stop".

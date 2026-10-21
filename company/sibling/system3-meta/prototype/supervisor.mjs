@@ -321,8 +321,20 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   } else if (cmd === "serve") {
     serve(opts, { idleMin: Number(opt["idle-min"] ?? 2), maxMin: Number(opt["max-min"] ?? 120) });
   } else if (cmd === "usage") {
-    const finished = String(opt.finished ?? "").split(",").filter(Boolean).map((x) => { const [r, t] = x.split(":"); return [r, Number(t)]; });
-    print(withLock(() => { const co = load(); const u = recordFinished(co, finished); save(co); return u; }));
+    // a batch after the run (live run 4): by session id (S-n:tokens) is exact; by role (role:tokens) takes the role's
+    // latest session without usage; --outside=role:tokens is work outside any room (meeting positions, chairing)
+    const pairs = (v) => String(v ?? "").split(",").filter(Boolean).map((x) => { const [r, t] = x.split(":"); return [r, Number(t)]; });
+    print(withLock(() => {
+      const co = load();
+      const out = [];
+      for (const [k, t] of pairs(opt.finished)) {
+        if (/^S-\d+$/.test(k)) { co.rooms.recordSessionUsage(k, t); out.push({ session: k, tokens: t }); }
+        else out.push(...recordFinished(co, [[k, t]]));
+      }
+      for (const [r, t] of pairs(opt.outside)) { if (!co.org.role(r)) throw new Error(`no role ${r}`); co.log.add({ type: "usage", role: r, tokens: t, label: "outside a room", source: "harness", supervisor: true }); out.push({ role: r, session: null, tokens: t }); }
+      save(co);
+      return out;
+    }));
   } else if (cmd === "cycle") {
     const finished = opt.finished ? String(opt.finished).split(",").map((x) => { const [r, t] = x.split(":"); return [r, Number(t)]; }) : [];
     const usage = finished.length ? withLock(() => { const co = load(); const u = recordFinished(co, finished); save(co); return u; }) : [];
