@@ -42,3 +42,14 @@ test("serve: plans, briefs and code steps stream as events with no command per w
   const u = spawnSync("node", [path.join(HERE, "..", "supervisor.mjs"), "usage", "--finished=writer-1:1000,reader:900"], { env: env(dir), encoding: "utf8" });
   assert.equal(JSON.parse(u.stdout).filter((x) => x.session).length, 2);
 });
+
+test("serve: a second supervisor on the same state refuses to start", async () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "meta-serve2-"));
+  cli(dir, "init", "--spec=storybook");
+  const a = spawn("node", [path.join(HERE, "..", "supervisor.mjs"), "serve", "--max-min=0.2"], { env: env(dir) });
+  await new Promise((r) => a.stdout.once("data", r));
+  const b = spawnSync("node", [path.join(HERE, "..", "supervisor.mjs"), "serve", "--max-min=0.1"], { env: env(dir), encoding: "utf8" });
+  a.kill();
+  assert.match(b.stdout, /"event":"refused".*another serve/);
+  assert.equal(b.status, 1);
+});

@@ -267,6 +267,16 @@ async function serve(opts, { idleMin = 2, maxMin = 120 } = {}) {
   const ctxFile = path.join(LIVE, "CONTEXT.md");
   const outbox = path.join(LIVE, "outbox");
   const say = (x) => console.log(JSON.stringify(x));
+  // one supervisor per state (live run 4: two serves on one state would reserve the same launches twice)
+  const pidFile = path.join(LIVE, "serve.pid");
+  if (fs.existsSync(pidFile)) {
+    const other = Number(fs.readFileSync(pidFile, "utf8"));
+    let alive = false; try { process.kill(other, 0); alive = other !== process.pid; } catch { alive = false; }
+    if (alive) { say({ event: "refused", why: `another serve (pid ${other}) runs on this state` }); process.exitCode = 1; return; }
+  }
+  fs.writeFileSync(pidFile, String(process.pid));
+  const release = () => { try { if (Number(fs.readFileSync(pidFile, "utf8")) === process.pid) fs.unlinkSync(pidFile); } catch {} };
+  process.on("exit", release); for (const sig of ["SIGINT", "SIGTERM"]) process.on(sig, () => { release(); process.exit(0); });
   let quietSince = Date.now();
   say({ event: "serving", live: LIVE, outbox });
   for (;;) {
