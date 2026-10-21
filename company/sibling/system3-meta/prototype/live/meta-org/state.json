@@ -56,7 +56,7 @@
        "kind": "ask",
        "title": "Rerun Benchmark 2 task on current tools; fix one task as the eval baseline",
        "body": "orgeval-1 pack: tokensPerShipped 105106, 167822, 193177 and caughtBeforeShip null, 0.5, 0.75 across bench1-meta, bench2-meta, live4, each a different task with n=1. No trend can be separated from the change of task until one task is repeated.",
-       "state": "todo",
+       "state": "done",
        "assignee": "vp-meta",
        "project": null,
        "labels": [
@@ -68,15 +68,26 @@
        "goal": null,
        "order": null,
        "links": [],
-       "comments": [],
+       "comments": [
+        {
+         "by": "vp-meta",
+         "t": 29876709.723066665,
+         "text": "yes: Founder approved, 2026-10-21. Re-run the Benchmark 2 task (quiz pack) on the current tools as Benchmark 3, with predictions committed first. That task is now the fixed yardstick for every later evaluation."
+        }
+       ],
        "by": "org-evaluator",
        "created": 29876705.56283333,
-       "updated": 29876705.56283333,
+       "updated": 29876709.723066665,
        "history": [
         {
          "t": 29876705.56283333,
          "by": "org-evaluator",
          "state": "todo"
+        },
+        {
+         "t": 29876709.723066665,
+         "by": "vp-meta",
+         "state": "done"
         }
        ],
        "ask": {
@@ -86,7 +97,11 @@
         "addressedTo": null,
         "decider": "vp-meta",
         "escalate": null,
-        "answer": null
+        "answer": {
+         "decision": "yes",
+         "text": "Founder approved, 2026-10-21. Re-run the Benchmark 2 task (quiz pack) on the current tools as Benchmark 3, with predictions committed first. That task is now the fixed yardstick for every later evaluation.",
+         "t": 29876709.723066665
+        }
        }
       }
      ],
@@ -97,7 +112,7 @@
        "kind": "ask",
        "title": "Make code the first gate for checkable classes and credit its catches as code",
        "body": "orgeval-1 pack: codeShareOfCatches 0 in bench2-meta and live4, while humanCatchesCodeCouldHaveMade is 3 of 4 (bench2-meta) and 1 of 1 (live4), even with rulesApplied 7 in live4. Target next pack: codeShareOfCatches above 0, humanCatchesCodeCouldHaveMade 0.",
-       "state": "todo",
+       "state": "done",
        "assignee": "vp-meta",
        "project": null,
        "labels": [
@@ -109,15 +124,26 @@
        "goal": null,
        "order": null,
        "links": [],
-       "comments": [],
+       "comments": [
+        {
+         "by": "vp-meta",
+         "t": 29876709.724533334,
+         "text": "yes: Founder approved. Code is the first gate. Log every builder self-check, so code's pre-hand-in catches count as code's in the pack. Every checkable decision becomes a rule."
+        }
+       ],
        "by": "org-evaluator",
        "created": 29876705.564583335,
-       "updated": 29876705.564583335,
+       "updated": 29876709.724533334,
        "history": [
         {
          "t": 29876705.564583335,
          "by": "org-evaluator",
          "state": "todo"
+        },
+        {
+         "t": 29876709.724533334,
+         "by": "vp-meta",
+         "state": "done"
         }
        ],
        "ask": {
@@ -127,7 +153,11 @@
         "addressedTo": null,
         "decider": "vp-meta",
         "escalate": null,
-        "answer": null
+        "answer": {
+         "decision": "yes",
+         "text": "Founder approved. Code is the first gate. Log every builder self-check, so code's pre-hand-in catches count as code's in the pack. Every checkable decision becomes a rule.",
+         "t": 29876709.724533334
+        }
        }
       }
      ],
@@ -138,7 +168,7 @@
        "kind": "ask",
        "title": "Run a collaboration ablation (same task, with and without kickoff) and record objections",
        "body": "orgeval-1 pack: 0 objections in every meeting across all three runs; meeting actions done 0/4, 3/12, 0/1; the comparison with the current method (e.g. 1481983 vs 630638 tokens in bench1) changes many things at once, so no outcome can be credited to collaboration.",
-       "state": "todo",
+       "state": "done",
        "assignee": "vp-meta",
        "project": null,
        "labels": [
@@ -150,15 +180,26 @@
        "goal": null,
        "order": null,
        "links": [],
-       "comments": [],
+       "comments": [
+        {
+         "by": "vp-meta",
+         "t": 29876709.726166666,
+         "text": "yes: Founder approved. Run the same task without the kickoff meeting, as an ablation arm of Benchmark 3, and compare it with the kickoff arm. Record objections."
+        }
+       ],
        "by": "org-evaluator",
        "created": 29876705.566083334,
-       "updated": 29876705.566083334,
+       "updated": 29876709.726166666,
        "history": [
         {
          "t": 29876705.566083334,
          "by": "org-evaluator",
          "state": "todo"
+        },
+        {
+         "t": 29876709.726166666,
+         "by": "vp-meta",
+         "state": "done"
         }
        ],
        "ask": {
@@ -168,7 +209,11 @@
         "addressedTo": null,
         "decider": "vp-meta",
         "escalate": null,
-        "answer": null
+        "answer": {
+         "decision": "yes",
+         "text": "Founder approved. Run the same task without the kickoff meeting, as an ablation arm of Benchmark 3, and compare it with the kickoff arm. Record objections.",
+         "t": 29876709.726166666
+        }
        }
       }
      ]
@@ -303,6 +348,81 @@
     "title": "Org evaluation 1",
     "recipients": 1,
     "ack": false
+   },
+   {
+    "seq": 13,
+    "t": 29876709.723066665,
+    "type": "item-comment",
+    "item": "ISS-1",
+    "by": "vp-meta"
+   },
+   {
+    "seq": 14,
+    "t": 29876709.723066665,
+    "type": "item-update",
+    "item": "ISS-1",
+    "by": "vp-meta",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 15,
+    "t": 29876709.723066665,
+    "type": "ask-answer",
+    "item": "ISS-1",
+    "by": "vp-meta",
+    "decision": "yes"
+   },
+   {
+    "seq": 16,
+    "t": 29876709.724533334,
+    "type": "item-comment",
+    "item": "ISS-2",
+    "by": "vp-meta"
+   },
+   {
+    "seq": 17,
+    "t": 29876709.724533334,
+    "type": "item-update",
+    "item": "ISS-2",
+    "by": "vp-meta",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 18,
+    "t": 29876709.724533334,
+    "type": "ask-answer",
+    "item": "ISS-2",
+    "by": "vp-meta",
+    "decision": "yes"
+   },
+   {
+    "seq": 19,
+    "t": 29876709.726166666,
+    "type": "item-comment",
+    "item": "ISS-3",
+    "by": "vp-meta"
+   },
+   {
+    "seq": 20,
+    "t": 29876709.726166666,
+    "type": "item-update",
+    "item": "ISS-3",
+    "by": "vp-meta",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 21,
+    "t": 29876709.726166666,
+    "type": "ask-answer",
+    "item": "ISS-3",
+    "by": "vp-meta",
+    "decision": "yes"
    }
   ]
  },

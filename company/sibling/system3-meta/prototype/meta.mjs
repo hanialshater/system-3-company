@@ -111,7 +111,7 @@ function main() {
     save(co);
     return { ok: true, ops: ops.length, results };
   });
-  const readOnly = ["queue", "events", "memory", "check"].includes(cmd) || (cmd === "flow" && ["show", "status"].includes(sub)) || (cmd === "org" && sub !== "propose") || (cmd === "building" && sub === "plan") || (cmd === "item" && ["show", "search"].includes(sub)) || (cmd === "goal" && ["show", "board"].includes(sub)) || (cmd === "ask" && ["route", "summary"].includes(sub)) || (cmd === "channel" && ["status", "inbox"].includes(sub)) || (cmd === "meeting" && sub === "show") || (cmd === "wbr" && sub === "page0");
+  const readOnly = ["queue", "events", "memory"].includes(cmd) || (cmd === "flow" && ["show", "status"].includes(sub)) || (cmd === "org" && sub !== "propose") || (cmd === "building" && sub === "plan") || (cmd === "item" && ["show", "search"].includes(sub)) || (cmd === "goal" && ["show", "board"].includes(sub)) || (cmd === "ask" && ["route", "summary"].includes(sub)) || (cmd === "channel" && ["status", "inbox"].includes(sub)) || (cmd === "meeting" && sub === "show") || (cmd === "wbr" && sub === "page0");
   const act = () => {
     const co = load();
     const before = co.log.events.length;
@@ -168,7 +168,11 @@ function dispatch(co, cmd, sub, arg) {
   }
   if (cmd === "room" && sub === "session-usage") { need("session", "tokens"); rooms.recordSessionUsage(opt.session, Number(opt.tokens)); return { ok: true }; }
   if (cmd === "room" && sub === "wake-plan") { const t = mailbox.nextExpiry(); return { next_expiry_in_s: t == null ? null : Math.max(0, Math.round((t - clock.now()) * 60)) }; }
-  if (cmd === "check") { need("order"); const o = engine.orders.get(opt.order); if (!o) throw new Refused(`no order ${opt.order}`); const t = runTest1(o); return { order: o.id, task: o.task, pass: t.pass, output: t.output, rules: o.checks ? describeChecks(o.checks) : ["the builder's own tests (node --test)"], note: "the same check test1 will run; nothing is signed" }; }
+  if (cmd === "check") { need("order"); const o = engine.orders.get(opt.order); if (!o) throw new Refused(`no order ${opt.order}`); const t = runTest1(o);
+    // every self-check is a record (org evaluation, ISS-2): a failed one is a defect code caught before hand-in
+    const by = [...rooms.runs.values()].find((r) => r.state === "running" && r.order === o.id)?.role ?? opt.by ?? null;
+    log.add({ type: "self-check", order: o.id, task: o.task, by, stage: o.stage, pass: t.pass, output: String(t.output).slice(0, 400) });
+    return { order: o.id, task: o.task, pass: t.pass, output: t.output, rules: o.checks ? describeChecks(o.checks) : ["the builder's own tests (node --test)"], note: "the same check test1 will run; nothing is signed" }; }
   if (cmd === "flow" && sub === "metrics") { const m = flowMetrics(log, engine.orders); const r1 = (x) => Math.round(x * 100) / 100; return { ...m, orders: m.orders.map((o) => ({ ...o, lead_min: r1(o.lead), work_min: r1(o.work), critical_min: r1(o.critical), flowEfficiency: r1(o.flowEfficiency) })) }; }
   if (cmd === "room" && sub === "heartbeat") { need("run"); rooms.heartbeat(opt.run, { leaseMin: 30 }); return { ok: true }; }
   if (cmd === "room" && sub === "leave") {

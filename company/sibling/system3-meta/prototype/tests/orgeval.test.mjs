@@ -39,3 +39,12 @@ test("integration fixes and escapes count in auto-correction; the pack renders",
   assert.equal(e.autoCorrection.caughtBeforeShip, 0.5);
   assert.match(render(pack({ runs: [run], escapes: { r: [{ class: "fact", what: "x", found_by: "fact-check" }] } })), /fixed at integration: fact/);
 });
+
+test("failed self-checks count as code's catches, by class", () => {
+  const run = fakeRun({ histories: [["O-1", "R1", "w", [{ stage: "build", by: "w", verdict: "pass", t: 1 }]]] });
+  run.s.log.events.push({ t: 2, type: "self-check", order: "O-1", task: "R1", by: "w", pass: false, output: "line 4 (**Why:**) has 22 words > 20" }, { t: 3, type: "self-check", order: "O-1", task: "R1", by: "w", pass: true, output: "ok" });
+  const e = evaluateRun(run);
+  assert.equal(e.autoCorrection.caughtBy["code (self-check)"], 1);
+  assert.deepEqual(e.autoCorrection.selfChecks, { runs: 2, failed: 1, byClass: { length: 1 } });
+  assert.equal(e.autoCorrection.codeShareOfCatches, 1);
+});

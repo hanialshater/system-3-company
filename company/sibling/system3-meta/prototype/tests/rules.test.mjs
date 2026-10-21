@@ -67,3 +67,18 @@ test("closing a meeting writes its minutes to live/<dir>/minutes/<MTG>.md", () =
   assert.equal(cli(dir, "meeting", "close", "--id=MTG-1", "--by=editor").code, 0);
   assert.match(fs.readFileSync(path.join(dir, "minutes", "MTG-1.md"), "utf8"), /Round topics: mammals, fish, shells/);
 });
+
+test("distinctAnswers within a round: an answer inside another answer, or named in another question", () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "meta-within-"));
+  cli(dir, "init", "--spec=storybook");
+  cli(dir, "order", "new", "--by=cos", "--to=editor", "--title=R2", "--task=ROUND2", "--accept=x", `--checks={"distinctAnswers":{"prefix":"**Answer:**","across":"ROUND"}}`);
+  write(dir, "ROUND2", "# Round 2: Fish\n**Q2.** Which fish has a tall fin?\n**Answer:** A shark\n**Why:** Fins.\n**Q3.** Which is the biggest fish?\n**Answer:** A whale shark\n**Why:** Big.\n");
+  const r = cli(dir, "check", "--order=O-1").out;
+  assert.equal(r.pass, false); assert.match(r.output, /answer "shark" is part of answer "whale shark"/);
+  write(dir, "ROUND2", "# Round 2: Fish\n**Q2.** Which fish carries eggs in a pouch?\n**Answer:** A seahorse\n**Why:** Pouch.\n**Q3.** Unlike a seahorse, which fish is biggest?\n**Answer:** A whale shark\n**Why:** Big.\n");
+  assert.equal(cli(dir, "check", "--order=O-1").out.pass, true, "a later question may name an earlier answer");
+  write(dir, "ROUND2", "# Round 2: Fish\n**Q2.** Unlike a seahorse, which fish is biggest?\n**Answer:** A whale shark\n**Why:** Big.\n**Q3.** Which fish carries eggs in a pouch?\n**Answer:** A seahorse\n**Why:** Pouch.\n");
+  assert.match(cli(dir, "check", "--order=O-1").out.output, /answer "seahorse" is named in an earlier question/);
+  write(dir, "ROUND2", "# Round 2: Fish\n**Q2.** Which fish carries eggs in a pouch?\n**Answer:** A seahorse\n**Why:** Pouch.\n**Q3.** Which fish is biggest?\n**Answer:** A whale shark\n**Why:** Big.\n");
+  assert.equal(cli(dir, "check", "--order=O-1").out.pass, true);
+});

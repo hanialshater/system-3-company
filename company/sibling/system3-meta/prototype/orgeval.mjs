@@ -27,6 +27,7 @@ export const CLASSES = [
   { id: "format", re: /\b(heading|title line|format|intro line|outside the decided|layout|first line)\b/i, checkable: true },
   { id: "numbers", re: /\b(digits?|numbers? (as|are|is)|spelled|"about"|rounded|precise number|exact (date|count))\b/i, checkable: true },
   { id: "banned", re: /\bbanned\b/i, checkable: true },
+  { id: "readability", re: /\breading ease\b/i, checkable: true },
   { id: "duplicate", re: /\b(repeats? (an|another|the same)|duplicate|appears twice|give[- ]?s? away|give-away|spoiler)\b/i, checkable: true },
   { id: "fact", re: /\b(not (quite )?true|isn't (quite )?true|untrue|wrong fact|incorrect|false|actually|in fact|misleading|myth|only an? [\w -]{1,24}'s|do(es)? (breathe|have))\b/i, checkable: false },
   { id: "consistency", re: /\b(pronouns?|tense|inconsistent|contradict\w*|clash\w*|does not match|mismatch)\b/i, checkable: false },
@@ -115,6 +116,9 @@ export function evaluateRun({ name, s, dir }, escapes = []) {
   const actions = [...(s.data?.tracker?.items?.values() ?? [])].filter((i) => i.kind === "action");
   const ruleHits = ev.filter((e) => e.type === "rule-applied").length;
 
+  // code's catches before hand-in: failed self-checks (meta.mjs check logs every run of it, from ISS-2 on)
+  const selfChecks = ev.filter((e) => e.type === "self-check");
+  const codeCatches = selfChecks.filter((e) => !e.pass).map((e) => ({ order: e.order, task: e.task, by: e.by, classes: classify(e.output, { whole: true }), text: e.output.slice(0, 160) }));
   const integrationFixes = [];
   for (const t of integration) {
     const f = path.join(dir, "shipped", t, "page.md");
@@ -123,17 +127,18 @@ export function evaluateRun({ name, s, dir }, escapes = []) {
     for (const l of ch) integrationFixes.push({ task: t, classes: classify(l, { whole: true }), text: l.trim().slice(0, 160) });
   }
   const esc = escapes ?? [];
-  const defectsFound = revises.length + integrationFixes.length;
+  const defectsFound = revises.length + integrationFixes.length + codeCatches.length;
   return {
     run: name,
     items: { ordered: orders.length, shipped: shipped.length, integration },
     cost: { sessions: usage.length, tokens, tokensPerShipped: shipped.length ? Math.round(tokens / shipped.length) : null, minutesToLastShip: r2(lastShip - t0) },
     autoCorrection: {
       firstPassYield: share(shipped.filter((o) => o.loops === 0).length, shipped.length),
-      revises: revises.length, caughtBy: { ...caughtBy, ...(integrationFixes.length ? { integration: integrationFixes.length } : {}) }, integrationFixes,
+      revises: revises.length, caughtBy: { ...caughtBy, ...(codeCatches.length ? { "code (self-check)": codeCatches.length } : {}), ...(integrationFixes.length ? { integration: integrationFixes.length } : {}) }, integrationFixes,
+      selfChecks: { runs: selfChecks.length, failed: codeCatches.length, byClass: codeCatches.flatMap((c) => c.classes).reduce((a, c) => ({ ...a, [c]: (a[c] ?? 0) + 1 }), {}) },
       escaped: esc.length, escapedByClass: esc.reduce((a, e) => ({ ...a, [e.class]: (a[e.class] ?? 0) + 1 }), {}), escapedFoundBy: esc.reduce((a, e) => ({ ...a, [e.found_by]: (a[e.found_by] ?? 0) + 1 }), {}),
       caughtBeforeShip: share(defectsFound, defectsFound + esc.length),
-      codeShareOfCatches: share(caughtBy.code ?? 0, defectsFound),
+      codeShareOfCatches: share((caughtBy.code ?? 0) + codeCatches.length, defectsFound),
       defectsFound,
       humanCatchesCodeCouldHaveMade: humanCheckable.length, ofHumanCatches: humanCaught.length,
       revisesByClass: revises.flatMap((r) => r.classes).reduce((a, c) => ({ ...a, [c]: (a[c] ?? 0) + 1 }), {}),
@@ -168,6 +173,7 @@ export function render(p) {
     L.push("", `## ${r.run}`, `- items: ${r.items.shipped}/${r.items.ordered} shipped${r.items.integration.length ? ` (integration: ${r.items.integration.join(", ")})` : ""}; ${r.cost.sessions} sessions, ${r.cost.tokens} tokens, ${r.cost.tokensPerShipped} per shipped item, ${r.cost.minutesToLastShip} min to the last ship`);
     L.push(`- auto-correction: first-pass yield ${a.firstPassYield}; ${a.revises} revises caught by ${JSON.stringify(a.caughtBy)}; ${a.escaped} escaped ${JSON.stringify(a.escapedByClass)} found by ${JSON.stringify(a.escapedFoundBy)}; caught before ship ${a.caughtBeforeShip}; ${a.humanCatchesCodeCouldHaveMade} of ${a.ofHumanCatches} human catches were a class code can check`);
     L.push(`- revises by class: ${JSON.stringify(a.revisesByClass)}`, ...a.revisesList.map((x) => `  - ${x.order} ${x.task} (${x.by}, ${x.classes.join("/")}): ${x.text ?? "-"}`));
+    L.push(`- self-checks (code, before hand-in): ${a.selfChecks.runs} run, ${a.selfChecks.failed} failed ${JSON.stringify(a.selfChecks.byClass)}${a.selfChecks.runs ? "" : " (not logged in this run)"}`);
     if (a.integrationFixes.length) L.push(`- fixed at integration: ${a.integrationFixes.map((x) => `${x.classes.join("/")}: ${x.text}`).join(" | ")}`);
     L.push(`- learning: repeats after being told: ${r.learning.repeatsAfterBeingTold.length ? r.learning.repeatsAfterBeingTold.map((x) => `${x.role} ${x.class} (told on ${x.told_at}, again on ${x.repeated_on.join(",")})`).join("; ") : "none"}; same class on several items before any telling: ${r.learning.sameClassBeforeBeingTold.map((x) => `${x.role} ${x.class} ${x.orders.join(",")}`).join("; ") || "none"}; roles with more than one session: ${r.learning.rolesWithRepeatSessions.join(", ") || "none"}; memory ${r.learning.memory.map((m) => `${m.role} ${m.learned}/${m.entries} learned`).join(", ")}`);
     L.push(`- collaboration: ${r.collaboration.meetings.map((m) => `${m.id} (${m.kind}): ${m.positions} positions, ${m.objections} objections, ${m.decisions} decisions, ${m.rules} rules, ${m.actions} actions`).join("; ") || "no meetings"}; rules applied to orders ${r.collaboration.rulesApplied}; actions ${r.collaboration.actions.done}/${r.collaboration.actions.total} done`);

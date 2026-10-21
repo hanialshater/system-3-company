@@ -206,6 +206,22 @@ export function answerClashes(task, text, { prefix, split = null, across = null,
       if (hit) out.push(`${y.name} gives away ${x.name}'s answer "${a}": "${hit.trim().slice(0, 80)}"`);
     }
   }
+  // within one section (live run 4: Round 2's "shark" answer sat inside its own "whale shark" answer, and the clue fit
+  // both): an answer that is part of another answer in the section, or named in another question of the section
+  for (const x of secs) {
+    if (!x.mine) continue;
+    const qs = x.qa;
+    for (const [i, p] of qs.entries()) {
+      if (!p.a || !/\p{L}/u.test(p.a) || p.a.length < 3) continue;
+      const re = new RegExp(`\\b${p.a.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "i");
+      for (const [j, q] of qs.entries()) {
+        if (i === j) continue;
+        if (q.a && q.a !== p.a && re.test(q.a)) out.push(`${x.name}: answer "${p.a}" is part of answer "${q.a}"`);
+        // only an earlier question gives a later answer away; a later question naming an answer already given is fine
+        if (j < i && q.q && re.test(q.q.replace(/^\*\*Q\d+\.\*\*/, ""))) out.push(`${x.name}: answer "${p.a}" is named in an earlier question: "${q.q.slice(0, 80)}"`);
+      }
+    }
+  }
   return [...new Set(out)];
 }
 
