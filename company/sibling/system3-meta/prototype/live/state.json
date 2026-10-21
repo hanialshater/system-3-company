@@ -438,6 +438,120 @@
     "role": "toy-builder-2",
     "order": "O-2",
     "after": 3
+   },
+   {
+    "seq": 47,
+    "t": 29876076,
+    "type": "claim",
+    "msg": "M-2",
+    "run": "R-6"
+   },
+   {
+    "seq": 48,
+    "t": 29876076,
+    "type": "enter",
+    "run": "R-6",
+    "msg": "M-2",
+    "role": "toy-builder-2",
+    "by": "toy-builder-2",
+    "room": "sandbox",
+    "order": "O-2",
+    "stage": "build",
+    "mode": "work"
+   },
+   {
+    "seq": 49,
+    "t": 29876076,
+    "type": "advance",
+    "order": "O-2",
+    "stage": "build",
+    "by": "toy-builder-2",
+    "verdict": "pass"
+   },
+   {
+    "seq": 50,
+    "t": 29876076,
+    "type": "code-stage",
+    "order": "O-2",
+    "stage": "test1"
+   },
+   {
+    "seq": 51,
+    "t": 29876076,
+    "type": "done",
+    "msg": "M-2",
+    "run": "R-6"
+   },
+   {
+    "seq": 52,
+    "t": 29876076,
+    "type": "send",
+    "msg": "M-9",
+    "from": "toy-builder-2",
+    "to": "mgr-live",
+    "kind": "report",
+    "key": null,
+    "ref": "O-2"
+   },
+   {
+    "seq": 53,
+    "t": 29876076,
+    "type": "leave",
+    "run": "R-6",
+    "role": "toy-builder-2",
+    "order": "O-2",
+    "stage": "build",
+    "verdict": "pass",
+    "minutes": 0
+   },
+   {
+    "seq": 54,
+    "t": 29876077,
+    "type": "advance",
+    "order": "O-2",
+    "stage": "test1",
+    "by": "code",
+    "verdict": "pass"
+   },
+   {
+    "seq": 55,
+    "t": 29876077,
+    "type": "send",
+    "msg": "M-10",
+    "from": "mgr-live",
+    "to": "pool:checker",
+    "kind": "work",
+    "key": "O-2:check:0",
+    "ref": "O-2"
+   },
+   {
+    "seq": 56,
+    "t": 29876077,
+    "type": "usage",
+    "run": "R-6",
+    "role": "toy-builder-2",
+    "tokens": 57069,
+    "source": "harness"
+   },
+   {
+    "seq": 57,
+    "t": 29876077,
+    "type": "claim",
+    "msg": "M-10",
+    "run": "R-7"
+   },
+   {
+    "seq": 58,
+    "t": 29876077,
+    "type": "enter",
+    "run": "R-7",
+    "msg": "M-10",
+    "role": "toy-checker",
+    "by": "toy-checker",
+    "room": "quality",
+    "order": "O-2",
+    "stage": "check",
+    "mode": "work"
    }
   ]
  },
@@ -482,8 +596,11 @@
        "loops": 0
       },
       "ts": 29876073,
-      "state": "open",
-      "lease": null,
+      "state": "done",
+      "lease": {
+       "run": "R-6",
+       "until": 29876106
+      },
       "acked": false
      }
     ],
@@ -612,6 +729,49 @@
       "lease": null,
       "acked": false
      }
+    ],
+    [
+     "M-9",
+     {
+      "id": "M-9",
+      "from": "toy-builder-2",
+      "to": "mgr-live",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-2",
+      "body": {
+       "stage": "build",
+       "verdict": "pass"
+      },
+      "ts": 29876076,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-10",
+     {
+      "id": "M-10",
+      "from": "mgr-live",
+      "to": "pool:checker",
+      "kind": "work",
+      "key": "O-2:check:0",
+      "due": null,
+      "ref": "O-2",
+      "body": {
+       "stage": "check",
+       "loops": 0
+      },
+      "ts": 29876077,
+      "state": "open",
+      "lease": {
+       "run": "R-7",
+       "until": 29876107
+      },
+      "acked": false
+     }
     ]
    ]
   },
@@ -636,10 +796,14 @@
     [
      "O-1:ship:0",
      "M-7"
+    ],
+    [
+     "O-2:check:0",
+     "M-10"
     ]
    ]
   },
-  "n": 8
+  "n": 10
  },
  "org": {
   "roles": {
@@ -892,10 +1056,23 @@
       "spent": 0,
       "accept": "live/work/T2/wrap.mjs exports wrap(text, width): lines at most width chars, broken at spaces; a word longer than width is split hard into width-sized chunks; runs of whitespace inside a paragraph (including single newlines) collapse to one space; leading/trailing whitespace trimmed; paragraphs separated by a blank line stay separated by one blank line; no trailing spaces; empty text gives empty string; width must be an integer >= 1 else RangeError; with node:test tests in live/work/T2/*.test.mjs",
       "words": null,
-      "stage": "build",
+      "stage": "check",
       "loops": 0,
       "created": 29876073,
-      "history": [],
+      "history": [
+       {
+        "stage": "build",
+        "by": "toy-builder-2",
+        "verdict": "pass",
+        "t": 29876076
+       },
+       {
+        "stage": "test1",
+        "by": "code",
+        "verdict": "pass",
+        "t": 29876077
+       }
+      ],
       "task": "T2"
      }
     ]
@@ -990,10 +1167,40 @@
       "entered": 29876076,
       "state": "left"
      }
+    ],
+    [
+     "R-6",
+     {
+      "run": "R-6",
+      "msg": "M-2",
+      "role": "toy-builder-2",
+      "by": "toy-builder-2",
+      "consult": false,
+      "order": "O-2",
+      "stage": "build",
+      "loops": 0,
+      "entered": 29876076,
+      "state": "left"
+     }
+    ],
+    [
+     "R-7",
+     {
+      "run": "R-7",
+      "msg": "M-10",
+      "role": "toy-checker",
+      "by": "toy-checker",
+      "consult": false,
+      "order": "O-2",
+      "stage": "check",
+      "loops": 0,
+      "entered": 29876077,
+      "state": "running"
+     }
     ]
    ]
   },
-  "n": 5,
+  "n": 7,
   "memory": {
    "__map": [
     [
@@ -1025,6 +1232,17 @@
        "t": 29876076,
        "did": "ship on O-1: pass (loop 0)",
        "learned": "ship is a copy; nothing deploys",
+       "mistake": null
+      }
+     ]
+    ],
+    [
+     "toy-builder-2",
+     [
+      {
+       "t": 29876076,
+       "did": "build on O-2: pass (loop 0)",
+       "learned": "Split paragraphs on whitespace-only blank lines before collapsing whitespace, else the separator is lost.",
        "mistake": null
       }
      ]
