@@ -9,6 +9,7 @@
 //   node meta.mjs room enter --msg=<M> --role=<role> [--lease=30] [--as=<role> --mode=consult]
 //   node meta.mjs room heartbeat --run=<R>
 //   node meta.mjs room leave --run=<R> [--verdict=pass|revise] --evidence=<path> [--findings=…] [--learned=…] [--mistake=…]
+//   node meta.mjs room abandon --run=<R> --by=<role> --reason=…   supervisor: end a bad run, sign nothing
 //   node meta.mjs room recover                                expired leases → left-without-leave, order back in the queue
 //   node meta.mjs room usage --run=<R> --tokens=<n>           the harness's token count for a run (supervisor only)
 //   node meta.mjs flow advance <O> --stage=test1 --by=code    runs the builder's tests itself; signs pass or revise
@@ -154,6 +155,7 @@ function dispatch(co, cmd, sub, arg) {
     const o = rooms.leave(opt.run, { verdict: opt.verdict ?? "pass", evidence: opt.evidence, findings: opt.findings ?? null, learned: opt.learned ?? null, mistake: opt.mistake ?? null });
     return o ? { order: o.id, next_stage: o.stage, loops: o.loops } : { stale: true, note: "the stage moved on while you worked; nothing was signed" };
   }
+  if (cmd === "room" && sub === "abandon") { need("run", "by", "reason"); rooms.abandon(opt.run, { by: opt.by, reason: opt.reason }); return { ok: true }; }
   if (cmd === "room" && sub === "recover") return rooms.recover().map((x) => ({ run: x.run, role: x.role, order: x.order, msg: x.msg }));
   if (cmd === "room" && sub === "usage") { need("run", "tokens"); rooms.recordUsage(opt.run, Number(opt.tokens)); return { ok: true }; }
   if (cmd === "flow" && sub === "advance") {

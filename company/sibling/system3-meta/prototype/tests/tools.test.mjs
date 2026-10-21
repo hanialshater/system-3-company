@@ -175,3 +175,15 @@ test("a late duplicate of a finished stage is a stale run: its leave signs nothi
   assert.equal(o.stage, "test1");
   assert.equal(co.log.of("stale-leave").length, 1);
 });
+
+test("--as without consult mode is refused (found in live run 1); abandon releases a bad run without signing", () => {
+  const co = build();
+  const o = orderToBuilder(co);
+  for (const [stage, by] of [["build", "b-w1"], ["test1", "code"]]) co.engine.advance(o.id, { stage, by, evidence: "e" });
+  const m = workMsg(co, "pool:checker");
+  assert.throws(() => co.rooms.enter({ msg: m.id, role: "b-w2", as: "chk-1" }), /needs --mode=consult/);
+  const { run } = co.rooms.enter({ msg: m.id, role: "chk-1" });
+  co.rooms.abandon(run, { by: "cos", reason: "test" });
+  assert.equal(o.stage, "check");
+  assert.ok(co.rooms.enter({ msg: m.id, role: "chk-1" }).run);
+});

@@ -413,6 +413,8 @@ export class Rooms {
     const m = this.mailbox.msgs.get(msg);
     hard(m && m.kind === "work", `no work message ${msg}`);
     const o = this.engine.orders.get(m.ref);
+    // Impersonation is consult-only (S14): `as` with work mode would let any role sign as another.
+    hard(!as || mode === "consult", `--as=${as} needs --mode=consult: a role works only as itself`);
     const actor = as ?? role;
     const r = this.org.role(actor);
     hard(r?.active, `no active role ${actor}`);
@@ -463,6 +465,15 @@ export class Rooms {
       this.log.add({ type: "leave", run, role: x.role, order: o.id, stage: x.stage, verdict, minutes: this.clock.now() - x.entered });
     }
     return o;
+  }
+
+  /** Supervisor: end a run without signing anything (a bad start). The work goes back to the queue. */
+  abandon(run, { by, reason }) {
+    const x = this.runs.get(run);
+    hard(x && x.state === "running", `run ${run} not running`);
+    x.state = "abandoned";
+    if (this.config.leases) this.mailbox.release(x.msg, { run, reason });
+    this.log.add({ type: "abandon", run, role: x.role, order: x.order, by, reason });
   }
 
   /** Lease expiry: the run left without leave; its order goes back to the queue. `usage(run)` is the harness's own
