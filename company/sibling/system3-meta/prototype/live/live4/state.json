@@ -320,7 +320,12 @@
          "rounds": [
           {
            "n": 1,
-           "positions": {},
+           "positions": {
+            "writer-2": {
+             "text": "Split by animal group so no animal can sit in two rounds. Round 1: Ocean Mammals (owns blue whale, dolphin, orca, sea otter): blue whale is the largest animal ever; dolphins breathe air through a blowhole; orcas are the largest dolphins; sea otters hold paws while they sleep. Round 2: Fish and Sharks (owns shark, whale shark, seahorse, clownfish): shark skeletons are cartilage not bone; whale shark is the largest fish; seahorse fathers carry the babies; clownfish live in sea anemones. Round 3: Animals Without Backbones (owns octopus, sea star, jellyfish, hermit crab): octopus has three hearts; sea stars can regrow an arm; jellyfish have no brain; hermit crabs move into empty shells. Cross-round guards: Round 2 must say whale shark is the largest FISH and never the largest animal (that is Round 1s answer); Round 1 must not say sharks are fish or mention whale shark; Round 3 owns the word \"backbone\" so Rounds 1-2 should not quiz it; no round names another rounds animals in a question or Why line. Call the orca \"orca\" only: \"killer whale\" contains \"kill\", which every order bans as a substring.",
+             "t": 29876686.096366666
+            }
+           },
            "revealed": false
           }
          ],
@@ -336,7 +341,12 @@
          "rounds": [
           {
            "n": 1,
-           "positions": {},
+           "positions": {
+            "writer-2": {
+             "text": "Format (the orders already fix: title line, exactly 4 questions as **Qn.** / **Answer:** / one-sentence **Why:**, 100-300 words, reading ease >= 60). Limits I propose on top: question at most 20 words and ends with \"?\"; answer 1-4 words, a name or number, no full sentence; Why line one sentence of 12-25 words, with one plain fact and no new quiz-able fact from another round. That puts a round near 160-220 words, safely inside 100-300. Difficulty: per round Q1-Q2 easy (most 8-year-olds can guess), Q3 medium, Q4 a surprising fact; no trick questions and no multiple-negative wording. Words: besides the banned list (stupid, dumb, kill, dead, blood, hate, matched as substrings, so no \"killer whale\", \"skill\", \"deadly\"), avoid scary words like attack, bite, prey, die, danger; use \"eat\" or \"hunt\" plainly. Avoid jargon (cartilage, cephalopod, invertebrate) unless the Why line explains it in kid words, e.g. \"the bendy stuff in your nose\". Prefer short words to keep reading ease at 60+. Numbers as digits. Code-checkable rules worth carrying on the orders: max question words, max Why words, banned substrings incl. \"killer\".",
+             "t": 29876686.10068333
+            }
+           },
            "revealed": false
           }
          ],
@@ -348,7 +358,8 @@
        "board": {},
        "present": {
         "__set": [
-         "editor"
+         "editor",
+         "writer-2"
         ]
        }
       }
@@ -613,6 +624,24 @@
      }
     ],
     "why": "plan: positions: MTG-1"
+   },
+   {
+    "seq": 23,
+    "t": 29876686.096366666,
+    "type": "position",
+    "meeting": "MTG-1",
+    "item": 1,
+    "round": 1,
+    "by": "writer-2"
+   },
+   {
+    "seq": 24,
+    "t": 29876686.10068333,
+    "type": "position",
+    "meeting": "MTG-1",
+    "item": 2,
+    "round": 1,
+    "by": "writer-2"
    }
   ]
  },
