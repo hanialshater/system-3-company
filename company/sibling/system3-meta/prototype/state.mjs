@@ -292,15 +292,17 @@ export function validateCmd(c, { stages = null } = {}) {
   }
   return null;
 }
-/** ${slug}, ${task}, ${workdir} in a cmd string; slug is the order's slug if set (lessons), else its task. */
-export const interpolate = (s, vars) => s.replace(/\$\{(slug|task|workdir)\}/g, (_, k) => vars[k] ?? "");
+/** ${slug}, ${task}, ${workdir} in a cmd string; slug is the order's slug if set (lessons), else its task. With a K5
+ *  workspace also ${run}, ${n} and ${port} (o.workspace.vars: one vocabulary for workspace env, cmds and briefs, K5
+ *  review); a variable the order does not have stays as written. */
+export const interpolate = (s, vars) => s.replace(/\$\{(slug|task|workdir|run|n|port)\}/g, (m, k) => (k in vars ? vars[k] ?? "" : m));
 const dig = (x, p) => p.split(".").filter(Boolean).reduce((v, k) => (v == null ? undefined : k === "length" && (Array.isArray(v) || typeof v === "string") ? v.length : v[k]), x);
 const parseJson = (t) => { try { return JSON.parse(t); } catch {} const l = t.trim().split("\n").reverse().find((x) => /^[[{]/.test(x.trim())); try { return l ? JSON.parse(l) : undefined; } catch { return undefined; } };
 /** A cmd ready to run for order `o`: argv/cwd/env interpolated, `node` as this node. Shared by runCmdCheck (sync) and
  *  jobs.mjs (K2: the same cmd started detached, judged on a later tick by judgeCmd). */
 export function prepareCmd(o, s) {
   const c = s.run ?? s;
-  const vars = { slug: o.slug ?? o.task ?? "", task: o.task ?? "", workdir: o.workdir ?? path.join(LIVE, "work", o.task ?? "") };
+  const vars = { ...(o.workspace?.vars ?? {}), slug: o.slug ?? o.task ?? "", task: o.task ?? "", workdir: o.workdir ?? path.join(LIVE, "work", o.task ?? "") };
   const argv = c.argv.map((a) => interpolate(a, vars));
   const cwd = c.cwd ? path.resolve(vars.workdir, interpolate(c.cwd, vars)) : vars.workdir;
   // a child of a node --test process would report to it and exit 0 whatever its tests do (see runTests)

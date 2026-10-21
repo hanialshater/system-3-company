@@ -545,11 +545,11 @@ export class Rooms {
   }
 
   /** A waiting session takes its role's next eligible item, or closes once its wait is over. */
-  resume(session, { leaseMin = 30 } = {}) {
+  resume(session, { leaseMin = 30, filter = () => true } = {}) {
     const s = this.sessions.get(session);
     hard(s, `no session ${session}`);
     if (!s.open) return { closed: s, reason: "closed" };
-    const m = this.eligible(s.role)[0];
+    const m = this.eligible(s.role).find(filter); // K5: meta.mjs skips items of an order held on its workspace
     if (m) { s.waitUntil = null; return { next: this.enter({ msg: m.id, role: s.role, session: s.id, leaseMin }) }; }
     if (this.engine.clock.now() >= (s.waitUntil ?? 0)) { s.waitUntil = null; return { closed: this.closeSession(s.id, "queue empty after wait"), reason: "queue empty" }; }
     return { waiting: true };

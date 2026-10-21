@@ -72,11 +72,13 @@ const out = (x) => console.log(JSON.stringify(x, rep, 2));
 const need = (...ks) => { const miss = ks.filter((k) => opt[k] == null || opt[k] === true); if (miss.length) throw new Error(`missing ${miss.map((k) => `--${k}`).join(" ")}`); };
 
 
+/** K5: why message `m`'s order may not be worked yet (its workspace is held or cannot be made), or null. */
+const wsBlocker = (co, m) => (m && WS.specOf(co) ? WS.blocker(co, co.engine.orders.get(m.ref)) : null);
 function pack(co, run, ctx, session, item) {
   const o = co.engine.orders.get(ctx.order);
   // Live run 2 findings: the workdir did not exist; the commands omitted the state prefix; cap and times were unclear.
-  // K5: with a spec workspace the workdir is the order's git worktree (made by the supervisor's tick, or here if it ran
-  // first); a git failure is reported in the pack, not as a refusal: the run is already entered
+  // K5: with a spec workspace the workdir is the order's git worktree (made by the supervisor's tick, or by the room
+  // enter/next gate, wsBlocker); a git failure after that gate is reported in the pack: the run is already entered
   const ws = WS.ensure(co, o);
   const dir = ws ? ws.workdir ?? path.join(WS.specOf(co).root, o.task) : path.join(LIVE, "work", o.task);
   if (ctx.stage === "build" && !ws) fs.mkdirSync(dir, { recursive: true });
@@ -164,9 +166,15 @@ function main() {
   if (cmd === "room" && sub === "next" && r?.waiting) {
     for (;;) {
       Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 2000);
-      const w = withLock(() => { const co = load(); const x = co.rooms.resume(r.waiting, { leaseMin: Number(opt.lease ?? 30) }); if (!x.waiting) save(co); return { co, x }; });
+      // the pack is made under the lock and saved (K5 review: a worktree made by it, and its event, were lost)
+      const w = withLock(() => {
+        const co = load(); const x = co.rooms.resume(r.waiting, { leaseMin: Number(opt.lease ?? 30), filter: (m) => !wsBlocker(co, m) });
+        if (x.waiting) return { x };
+        const p = x.next ? pack(co, x.next.run, x.next.ctx, x.next.session, x.next.item) : null;
+        save(co); return { x, p };
+      });
       if (w.x.waiting) continue;
-      if (w.x.next) return { left: r.left, waited: true, ...pack(w.co, w.x.next.run, w.x.next.ctx, w.x.next.session, w.x.next.item) };
+      if (w.p) return { left: r.left, waited: true, ...w.p };
       return { left: r.left, session_closed: r.waiting, reason: w.x.reason, note: "your session is over: stop now" };
     }
   }
@@ -205,6 +213,10 @@ function dispatch(co, cmd, sub, arg) {
   if (cmd === "queue") return mailbox.queue(sub, "work").map((m) => ({ msg: m.id, order: m.ref, stage: m.body.stage, loop: m.body.loops, priority: m.priority, title: engine.orders.get(m.ref).title }));
   if (cmd === "room" && sub === "enter") {
     need("msg", "role");
+    // K5 review: a workspace failure held the order only in tick, and `room enter` went ahead with no worktree. A
+    // refusal would drop the hold (a refused command saves only its refusal), so this saves it and exits 1
+    const held = wsBlocker(co, mailbox.msgs.get(opt.msg));
+    if (held) { process.exitCode = 1; return { refused: `order ${mailbox.msgs.get(opt.msg).ref} is held: ${held}`, note: "do not start this item: the supervisor retries it (node supervisor.mjs retry --order=<O>)" }; }
     const { run, ctx, session, item } = rooms.enter({ msg: opt.msg, role: opt.role, as: opt.as ?? null, mode: opt.mode ?? "work", leaseMin: Number(opt.lease ?? 30) });
     // the launcher (M3) names each agent process; its usage and its crash are then this session's, exactly
     const s = rooms.sessions.get(session);
@@ -213,7 +225,7 @@ function dispatch(co, cmd, sub, arg) {
   }
   if (cmd === "room" && sub === "next") {
     need("run", "evidence");
-    const r = rooms.next(opt.run, { verdict: opt.verdict ?? "pass", evidence: opt.evidence, findings: opt.findings ?? null, learned: opt.learned ?? null, mistake: opt.mistake ?? null }, { cap: Number(opt.cap ?? 3), leaseMin: Number(opt.lease ?? 30), waitMin: Number(opt.wait ?? 0) / 60 });
+    const r = rooms.next(opt.run, { verdict: opt.verdict ?? "pass", evidence: opt.evidence, findings: opt.findings ?? null, learned: opt.learned ?? null, mistake: opt.mistake ?? null }, { cap: Number(opt.cap ?? 3), leaseMin: Number(opt.lease ?? 30), waitMin: Number(opt.wait ?? 0) / 60, filter: (m) => !wsBlocker(co, m) });
     const left = r.left ? { order: r.left.id, next_stage: r.left.stage, loops: r.left.loops } : { stale: true };
     if (r.waiting) return { left, waiting: r.waiting.id };
     if (!r.next) return { left, session_closed: r.closed?.id ?? true, reason: r.closed ? (r.closed.items >= Number(opt.cap ?? 3) ? "cap reached" : "queue empty") : "closed", note: "your session is over: stop now" };
