@@ -1,4 +1,5 @@
 // Evaluates an AST. ctx: { getCell(name) -> value, functions: Map }.
+import { rangeCells } from './deps.mjs';
 import { err, ERR, isError, toNumber, toText } from './values.mjs';
 
 function arith(op, a, b) {
@@ -76,13 +77,7 @@ function makeApi(ctx) {
     // Values of a range node, column by column; or a SheetError (#REF!) for a bad corner.
     rangeValues(node) {
       if (!node.valid) return err(ERR.REF);
-      const c1 = node.from.charCodeAt(0), c2 = node.to.charCodeAt(0);
-      const r1 = Number(node.from.slice(1)), r2 = Number(node.to.slice(1));
-      const out = [];
-      for (let c = Math.min(c1, c2); c <= Math.max(c1, c2); c++)
-        for (let r = Math.min(r1, r2); r <= Math.max(r1, r2); r++)
-          out.push(ctx.getCell(String.fromCharCode(c) + r));
-      return out;
+      return rangeCells(node.from, node.to).map((c) => ctx.getCell(c));
     },
   };
 }

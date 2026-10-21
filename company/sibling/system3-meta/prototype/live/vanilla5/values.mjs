@@ -13,7 +13,7 @@ export const ERR = {
   VALUE: '#VALUE!',
   NAME: '#NAME?',
   REF: '#REF!',
-  CIRC: '#CIRC!',
+  CYCLE: '#CYCLE!',
 };
 export const isError = (v) => v instanceof SheetError;
 
