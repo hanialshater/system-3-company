@@ -119,6 +119,12 @@ export function plan(co, { batchLater: batchDefault = 3, cap: capDefault = 4 } =
   }
   const checker = org.byLevel("checker")[0];
   if (checker) consider(checker.id, mailbox.queue("pool:checker", "work").filter((m) => co.engine.orders.get(m.ref).builder !== checker.id));
+  for (const j of judgment(co)) {
+    // a launch reserves non-room work until the work is done or NON_ROOM_GRACE_MIN passes (no room enter to watch for)
+    if (log.events.some((e) => e.type === "launch" && e.role === j.role && now - e.t < NON_ROOM_GRACE_MIN && (e.tasks ?? []).some((t) => j.tasks.some((u) => u.kind === t.kind && u.ref === t.ref)))) continue;
+    const same = out.find((p) => p.role === j.role);
+    if (same) same.tasks = [...(same.tasks ?? []), ...j.tasks]; else out.push(j);
+  }
   return out;
 }
 
@@ -144,7 +150,18 @@ export function briefFor(co, item, { context = null } = {}) {
   const o = first ? co.engine.orders.get(first.ref) : null;
   const L = [`You are \`${item.role}\` (${r.level}) in a company run by a CLI.`, "", `Run every command from: ${HERE}`, pre ? `Prefix every command with: ${pre}` : "", ""];
   if (context) L.push(context.trim(), "");
-  if (item.contract) {
+  for (const t of item.tasks ?? []) {
+    if (t.kind === "positions") L.push(`Meeting ${t.ref}: read it with \`node meta.mjs meeting show --id=${t.ref}\` (agenda, and the pack if any). For each item ${t.items.join(", ")}, write your own position: \`node meta.mjs meeting position --id=${t.ref} --by=${item.role} --item=<n> --text='…'\`. Positions stay private until the chair reveals them; argue from the order, the goals and what you know, and be specific.`);
+    if (t.kind === "chair") L.push(`You chair meeting ${t.ref}: \`node meta.mjs meeting show --id=${t.ref}\`. For each item ${t.items.join(", ")}: write your own position (\`meeting position\`), then \`meeting reveal --id=${t.ref} --by=${item.role} --item=<n>\` (add \`--force\` if someone is missing; they are named in the minutes), read them (\`meeting read\`), and \`meeting decide --id=${t.ref} --by=${item.role} --item=<n> --decision='…'\` (answer every objection with \`--answers\`; follow-ups as \`--actions='[{"title":"…","owner":"<role>","due":"YYYY-MM-DD"}]'\`). Then \`meeting close --id=${t.ref} --by=${item.role}\`. The decision text is what builders will follow: make it concrete.`);
+  }
+  const dlg = (item.tasks ?? []).filter((t) => t.kind === "delegate").map((t) => t.ref);
+  if (dlg.length) {
+    const lane = r.lane, builders = co.org.active().filter((x) => x.level === "builder" && x.lane === lane).map((x) => x.id);
+    L.push(`Orders waiting for a builder: ${dlg.map((id) => `${id} (${co.engine.orders.get(id).task})`).join(", ")}. Split them across your builders (${builders.join(", ")}) and delegate each: \`node meta.mjs order delegate <O> --by=${item.role} --to=<builder> --budget=150000\`. Dependent orders (\`--after\`) wait by themselves; give one builder a run of related items so its session can drain them.`);
+  }
+  if ((item.tasks ?? []).length) {
+    // judgment outside rooms ends here
+  } else if (item.contract) {
     L.push(`Read your brief: \`node meta.mjs contract brief --id=${item.contract}\`. Work only in its folder; deliver with the \`contract deliver\` command it names, before the timebox ends.`);
   } else {
     L.push(`1. Enter: \`node meta.mjs room enter --msg=${item.msgs[0]} --role=${item.role}\`. The JSON pack gives the order, stage, workdir, accept criteria, findings, history, memory and the exact \`next_with\` and \`leave_with\` commands. Your session cap is ${item.cap} (${item.msgs.length} item${item.msgs.length > 1 ? "s" : ""} queued${o ? `, starting with ${o.task}` : ""}).`);
@@ -154,6 +171,33 @@ export function briefFor(co, item, { context = null } = {}) {
   }
   L.push("", "Report back briefly: each item, its outcome, and anything that confused you.");
   return L.filter((x, i, a) => !(x === "" && a[i - 1] === "")).join("\n");
+}
+
+export const NON_ROOM_GRACE_MIN = 30;
+/** Judgment work that happens outside rooms, found from the record (benchmark 1: I planned these by hand):
+ *  - an open meeting's invitees with positions still to write (agents only; a missing person is named at reveal)
+ *  - an open meeting whose positions are all in: the chair reveals, decides and closes
+ *  - orders at build with no builder: their manager delegates
+ *  One plan item per role, with its tasks in order (chair before delegate: decisions shape delegation). */
+export function judgment(co) {
+  const { org, engine } = co;
+  const by = new Map();
+  const add = (role, task) => { if (!org.role(role)?.active || org.role(role).human) return; (by.get(role) ?? by.set(role, []).get(role)).push(task); };
+  for (const m of co.data?.meetings?.meetings?.values() ?? []) {
+    if (m.state !== "open") continue;
+    const open = m.agenda.filter((a) => !a.decision && !a.deferred);
+    const waiting = new Set();
+    for (const a of open) { const r = a.rounds.at(-1); if (r.revealed) continue; for (const i of m.invitees) if (i !== m.chair && !r.positions[i] && !org.role(i)?.human) waiting.add(i); }
+    for (const i of waiting) add(i, { kind: "positions", ref: m.id, items: open.filter((a) => !a.rounds.at(-1).revealed && !a.rounds.at(-1).positions[i]).map((a) => a.n) });
+    if (!waiting.size && open.length) add(m.chair, { kind: "chair", ref: m.id, items: open.map((a) => a.n) });
+  }
+  // a manager chairing an open meeting delegates after it decides (the kickoff's decisions shape who builds what)
+  const chairing = new Set([...(co.data?.meetings?.meetings?.values() ?? [])].filter((m) => m.state === "open").map((m) => m.chair));
+  for (const o of engine.orders.values()) if (o.stage === "build" && !o.builder) { if (chairing.has(o.manager) && !by.get(o.manager)?.some((t) => t.kind === "chair")) continue; add(o.manager, { kind: "delegate", ref: o.id }); }
+  return [...by].map(([role, tasks]) => {
+    tasks.sort((a, b) => ["chair", "positions", "delegate"].indexOf(a.kind) - ["chair", "positions", "delegate"].indexOf(b.kind));
+    return { role, why: [...new Set(tasks.map((t) => t.kind))].map((k) => `${k}: ${tasks.filter((t) => t.kind === k).map((t) => t.ref).join(", ")}`).join("; "), msgs: [], cap: 1, tasks };
+  });
 }
 
 /** When to wake next without polling: the nearest lease expiry or due time, in ms (null: only on a state change). */
@@ -210,7 +254,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     watch(opts, Number(opt["max-min"] ?? 30)).then((w) => {
       const launches = w.plan.length ? withLock(() => {
         const co = load();
-        const out = w.plan.map((p) => { co.log.add({ type: "launch", role: p.role, msgs: p.msgs, why: `cycle: ${p.why}` }); return { ...p, brief: briefFor(co, p, { context }) }; });
+        const out = w.plan.map((p) => { co.log.add({ type: "launch", role: p.role, msgs: p.msgs, tasks: p.tasks ?? [], why: `cycle: ${p.why}` }); return { ...p, brief: briefFor(co, p, { context }) }; });
         save(co);
         return out;
       }) : [];

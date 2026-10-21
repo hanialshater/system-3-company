@@ -115,7 +115,10 @@ export function runTextChecks(task, checks) {
   if (checks.titleLine && !/^# \S/.test(lines[0] ?? "")) fails.push("first line is not a '# Title'");
   if (checks.minWords && words.length < checks.minWords) fails.push(`${words.length} words < ${checks.minWords}`);
   if (checks.maxWords && words.length > checks.maxWords) fails.push(`${words.length} words > ${checks.maxWords}`);
-  for (const m of checks.mustInclude ?? []) if (!new RegExp(`\\b${m}\\b`, "i").test(text)) fails.push(`does not mention ${m}`);
+  // literal text; word boundaries only where the text starts or ends with a word character (benchmark 2: "**Q1.**"
+  // threw and "## Format" could never match under a bare \b…\b)
+  const lit = (m) => `${/^\w/.test(m) ? "\\b" : ""}${m.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}${/\w$/.test(m) ? "\\b" : ""}`;
+  for (const m of checks.mustInclude ?? []) if (!new RegExp(lit(m), "i").test(text)) fails.push(`does not mention ${m}`);
   for (const b of checks.banned ?? []) if (new RegExp(`\\b${b}\\b`, "i").test(text)) fails.push(`uses banned word ${b}`);
   if (checks.minReadingEase && ease < checks.minReadingEase) fails.push(`reading ease ${ease.toFixed(0)} < ${checks.minReadingEase}`);
   return { pass: !fails.length, output: fails.length ? fails.join("; ") : `ok: ${words.length} words, reading ease ${ease.toFixed(0)}` };

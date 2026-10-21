@@ -23,3 +23,13 @@ test("text checks: a good page passes; each rule names its failure", () => {
   assert.match(runTextChecks("P3", { minReadingEase: 70, mustInclude: ["Pip"] }).output, /reading ease .* < 70.*|does not mention Pip/);
   assert.match(runTextChecks("NOPE", C).output, /missing/);
 });
+
+test("text checks: mustInclude is literal text (markdown markers and headings work)", async () => {
+  const { runTextChecks, LIVE } = await import("../state.mjs");
+  const fs = await import("node:fs"); const path = await import("node:path");
+  const d = path.join(LIVE, "work", "QZ"); fs.mkdirSync(d, { recursive: true });
+  fs.writeFileSync(path.join(d, "page.md"), "# Round 1: Planets\n\n## Format\n**Q1.** Which?\n**Answer:** Mars\n**Why:** Red.\n");
+  assert.equal(runTextChecks("QZ", { mustInclude: ["**Q1.**", "## Format", "**Answer:**", "Mars"] }).pass, true);
+  const r = runTextChecks("QZ", { mustInclude: ["**Q4.**", "Mar"] });
+  assert.match(r.output, /does not mention \*\*Q4\.\*\*; does not mention Mar$/);
+});

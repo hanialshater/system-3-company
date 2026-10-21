@@ -144,3 +144,25 @@ test("cycle parts: usage goes to the role's latest session without usage (closin
   assert.match(brief, /meta\.mjs check --order/);
   assert.ok(b);
 });
+
+test("judgment: meeting positions, then the chair, then delegation are planned from the record, with briefs", async () => {
+  const { make: mk } = await import("../state.mjs");
+  const M = await import("../meetings.mjs");
+  const co = mk("storybook");
+  co.org.genesis(co.spec.roles.map((r) => ({ ...r })));
+  co.engine.approveDef(co.engine.define("task", { stages: co.spec.flow.stages }, { by: "cos" }), { by: "founder", words: "ok" });
+  const o = co.engine.orderNew({ flow: "task", by: "cos", to: "editor", budget: 100, accept: "x", title: "Bible" }); o.task = "BIBLE";
+  const m = M.openMeeting(co, { by: "editor", title: "Kickoff", invitees: ["writer-1", "writer-2", "founder"], agenda: [{ title: "Arc" }, { title: "Tone" }] });
+  let p = plan(co);
+  assert.deepEqual(p.map((x) => [x.role, x.tasks.map((t) => t.kind)]).sort(), [["writer-1", ["positions"]], ["writer-2", ["positions"]]]);
+  assert.match(briefFor(co, p[0]), /meeting position --id=MTG-1 --by=writer-\d --item=<n>/);
+  for (const w of ["writer-1", "writer-2"]) for (const n of [1, 2]) M.writePosition(co, { id: m.id, by: w, n, text: "t" });
+  p = plan(co);
+  assert.deepEqual(p.map((x) => [x.role, x.tasks.map((t) => t.kind)]), [["editor", ["chair", "delegate"]]]);
+  const b = briefFor(co, p[0]);
+  assert.match(b, /You chair meeting MTG-1/);
+  assert.match(b, /order delegate <O> --by=editor --to=<builder>/);
+  assert.match(b, /writer-1, writer-2/);
+  co.log.add({ type: "launch", role: "editor", msgs: [], tasks: p[0].tasks });
+  assert.deepEqual(plan(co), [], "a launched judgment session is reserved");
+});

@@ -21,6 +21,15 @@
 //   node meta.mjs flow show <O> | flow status
 //   node meta.mjs mail dup <O>                                send the current stage's notification again (fault F1)
 //   node meta.mjs batch --file=<ops.json>   [{cmd, sub?, arg?, args:{…}}, …] on one state, all or nothing; ${n.field} reads result n
+//   node meta.mjs building plan|floor-propose|room-add|room-rename|room-retire|book|cancel …   floors, rooms, bookings (API.md §11)
+//   node meta.mjs approval queue --approver=<role>  ·  approval decide --ids=… --by --decision --words --channel
+//   node meta.mjs channel create|post|read|status|inbox …     channels, posts fanned out to members, acks
+//   node meta.mjs item create|update|comment|link|show|search …  ·  project create  ·  cycle create  ·  board [filters]
+//   node meta.mjs goal create|update|show|board|review …      goals: levels, contributes-to, RAG, code-measured criteria
+//   node meta.mjs meeting open|position|read|reveal|round|board|object|decide|defer|close|show --id=<MTG> …
+//   node meta.mjs ask raise|route|answer|summary …            leadership asks, routed to the lowest decider
+//   node meta.mjs wbr open|close|page0 …  ·  goal-review --by  ·  digest --audience=founder|lane:<l>|company [--channel]
+//   node meta.mjs help [<command>]                            these lines
 //   node meta.mjs check --order=<O>                          run the order's test1 (tests or text checks) without signing: builders self-check
 //   node meta.mjs usage add --role=<role> --tokens=<n> --label=…   harness usage of a session outside any room (the supervisor)
 //   node meta.mjs usage correct --from-session=<S> --to-session=<S> --tokens=<n> --reason=…   append a correction (never edit)
@@ -72,6 +81,8 @@ function pack(co, run, ctx, session, item) {
 
 function main() {
   const [cmd, sub, arg] = pos;
+  // benchmark 2 (writer-1): with no command or `help` the CLI printed only an error; the usage is this file's header
+  if (!cmd || cmd === "help") return fs.readFileSync(new URL(import.meta.url), "utf8").split("\n").filter((l) => l.startsWith("//   node ")).map((l) => l.slice(5)).filter((l) => !sub || l.includes(` ${sub}`));
   if (cmd === "init") return withLock(() => {
     if (fs.existsSync(STATE)) throw new Error("state exists; refusing to overwrite");
     const co = make(opt.spec ?? "toy");
