@@ -1,0 +1,1415 @@
+{
+ "data": {
+  "spec": "sheetco",
+  "specDef": {
+   "name": "sheetco",
+   "title": "SheetCo",
+   "product": "SheetCo builds a small spreadsheet engine. The team designs its own module split and interfaces in the kickoff meeting; requirements arrive in waves.",
+   "rooms": [
+    {
+     "id": "lobby",
+     "floor": 1,
+     "kind": "lobby"
+    },
+    {
+     "id": "ceo-office",
+     "floor": 1,
+     "kind": "office"
+    },
+    {
+     "id": "workshop",
+     "floor": 2,
+     "kind": "lane",
+     "lane": "s"
+    },
+    {
+     "id": "design-room",
+     "floor": 2,
+     "kind": "meeting",
+     "capacity": 5
+    },
+    {
+     "id": "review",
+     "floor": 3,
+     "kind": "quality"
+    },
+    {
+     "id": "launch",
+     "floor": 3,
+     "kind": "launch"
+    }
+   ],
+   "skills": [
+    "manage",
+    "js",
+    "review",
+    "release"
+   ],
+   "roles": [
+    {
+     "id": "founder",
+     "level": "founder",
+     "human": true,
+     "room": "lobby",
+     "floor": 1
+    },
+    {
+     "id": "cos",
+     "level": "chief-of-staff",
+     "reportsTo": "founder",
+     "room": "ceo-office",
+     "floor": 1
+    },
+    {
+     "id": "lead",
+     "level": "manager",
+     "reportsTo": "cos",
+     "lane": "s",
+     "room": "workshop",
+     "floor": 2,
+     "skills": [
+      "manage"
+     ]
+    },
+    {
+     "id": "dev-1",
+     "level": "builder",
+     "reportsTo": "lead",
+     "lane": "s",
+     "room": "workshop",
+     "floor": 2,
+     "skills": [
+      "js"
+     ]
+    },
+    {
+     "id": "dev-2",
+     "level": "builder",
+     "reportsTo": "lead",
+     "lane": "s",
+     "room": "workshop",
+     "floor": 2,
+     "skills": [
+      "js"
+     ]
+    },
+    {
+     "id": "reviewer",
+     "level": "checker",
+     "reportsTo": "cos",
+     "lane": "q",
+     "room": "review",
+     "floor": 3,
+     "skills": [
+      "review"
+     ]
+    },
+    {
+     "id": "release",
+     "level": "release",
+     "reportsTo": "cos",
+     "lane": "r",
+     "room": "launch",
+     "floor": 3,
+     "skills": [
+      "release"
+     ]
+    }
+   ],
+   "flow": {
+    "name": "task",
+    "stages": [
+     {
+      "stage": "build",
+      "signer": "builder",
+      "evidence": [
+       "live/work/<task>/"
+      ]
+     },
+     {
+      "stage": "test1",
+      "signer": "code",
+      "evidence": []
+     },
+     {
+      "stage": "check",
+      "signer": "checker",
+      "evidence": [
+       "review notes"
+      ]
+     },
+     {
+      "stage": "uat",
+      "signer": "orderer",
+      "evidence": [
+       "hidden acceptance tests"
+      ]
+     },
+     {
+      "stage": "ship",
+      "signer": "release",
+      "evidence": [
+       "copied to live/shipped/"
+      ]
+     }
+    ]
+   },
+   "channels": [
+    {
+     "id": "company",
+     "kind": "company",
+     "title": "announcements"
+    },
+    {
+     "id": "lane:s",
+     "kind": "lane",
+     "title": "the workshop"
+    }
+   ],
+   "context": "The product: Sheet, a spreadsheet engine, specified by behaviour only in live/bench5/SPEC5.md (read all of it; it grows by waves, and every new wave is announced on the company channel and in your brief). There is no module spec: the kickoff meeting MTG-1 decides the split into four module slots (A-D) plus the integration module (SHEET), every interface between them, and which slot owns which behaviour; ARCH.md (order ARCH, in live/bench5/work/ARCH/) records those decisions and is the contract. Each slot's module lives in live/bench5/work/MOD-<slot>/<file named in ARCH.md>; modules import each other by relative paths ARCH.md gives. Shipped modules are in live/bench5/shipped/. Hidden acceptance tests run only on the integrated sheet and report failing categories; every shipped order is tested again after each later ship. When a wave's failure is in another slot's module, say so in your report: the slot's owner fixes it. The org is in ORG.md."
+  },
+  "building": {
+   "floors": {
+    "__map": [
+     [
+      1,
+      {
+       "floor": 1,
+       "name": "Floor 1",
+       "active": true
+      }
+     ],
+     [
+      2,
+      {
+       "floor": 2,
+       "name": "Floor 2",
+       "active": true
+      }
+     ],
+     [
+      3,
+      {
+       "floor": 3,
+       "name": "Floor 3",
+       "active": true
+      }
+     ]
+    ]
+   },
+   "bookings": {
+    "__map": [
+     [
+      "BK-1",
+      {
+       "id": "BK-1",
+       "room": "design-room",
+       "start": 29876919.85045,
+       "end": 29876949.85045,
+       "by": "lead",
+       "attendees": [
+        "lead",
+        "dev-1",
+        "dev-2",
+        "reviewer"
+       ],
+       "purpose": "Kickoff: Sheet's design",
+       "state": "booked"
+      }
+     ]
+    ]
+   },
+   "n": 1
+  },
+  "channels": {
+   "channels": {
+    "__map": [
+     [
+      "company",
+      {
+       "id": "company",
+       "kind": "company",
+       "title": "announcements",
+       "by": "cos",
+       "members": null,
+       "created": 29876919.684333332
+      }
+     ],
+     [
+      "lane:s",
+      {
+       "id": "lane:s",
+       "kind": "lane",
+       "title": "the workshop",
+       "by": "cos",
+       "members": null,
+       "created": 29876919.684333332
+      }
+     ]
+    ]
+   },
+   "posts": {
+    "__map": []
+   },
+   "n": 0
+  },
+  "tracker": {
+   "items": {
+    "__map": [
+     [
+      "ISS-1",
+      {
+       "id": "ISS-1",
+       "kind": "order",
+       "title": "ARCH: the design as decided",
+       "body": "",
+       "state": "in-progress",
+       "assignee": null,
+       "project": null,
+       "labels": [],
+       "priority": 3,
+       "cycle": null,
+       "due": null,
+       "goal": null,
+       "order": "O-1",
+       "links": [],
+       "comments": [],
+       "by": "engine",
+       "created": 29876919.85265,
+       "updated": 29876919.85265,
+       "history": [
+        {
+         "t": 29876919.85265,
+         "by": "engine",
+         "state": "todo"
+        },
+        {
+         "t": 29876919.85265,
+         "by": "engine",
+         "state": "in-progress"
+        }
+       ]
+      }
+     ],
+     [
+      "ISS-2",
+      {
+       "id": "ISS-2",
+       "kind": "order",
+       "title": "MOD-A: the module in slot A",
+       "body": "",
+       "state": "backlog",
+       "assignee": null,
+       "project": null,
+       "labels": [],
+       "priority": 3,
+       "cycle": null,
+       "due": null,
+       "goal": null,
+       "order": "O-2",
+       "links": [],
+       "comments": [],
+       "by": "engine",
+       "created": 29876919.85265,
+       "updated": 29876919.85265,
+       "history": [
+        {
+         "t": 29876919.85265,
+         "by": "engine",
+         "state": "todo"
+        },
+        {
+         "t": 29876919.85265,
+         "by": "engine",
+         "state": "backlog"
+        }
+       ]
+      }
+     ],
+     [
+      "ISS-3",
+      {
+       "id": "ISS-3",
+       "kind": "order",
+       "title": "MOD-B: the module in slot B",
+       "body": "",
+       "state": "backlog",
+       "assignee": null,
+       "project": null,
+       "labels": [],
+       "priority": 3,
+       "cycle": null,
+       "due": null,
+       "goal": null,
+       "order": "O-3",
+       "links": [],
+       "comments": [],
+       "by": "engine",
+       "created": 29876919.85265,
+       "updated": 29876919.85265,
+       "history": [
+        {
+         "t": 29876919.85265,
+         "by": "engine",
+         "state": "todo"
+        },
+        {
+         "t": 29876919.85265,
+         "by": "engine",
+         "state": "backlog"
+        }
+       ]
+      }
+     ],
+     [
+      "ISS-4",
+      {
+       "id": "ISS-4",
+       "kind": "order",
+       "title": "MOD-C: the module in slot C",
+       "body": "",
+       "state": "backlog",
+       "assignee": null,
+       "project": null,
+       "labels": [],
+       "priority": 3,
+       "cycle": null,
+       "due": null,
+       "goal": null,
+       "order": "O-4",
+       "links": [],
+       "comments": [],
+       "by": "engine",
+       "created": 29876919.85265,
+       "updated": 29876919.85265,
+       "history": [
+        {
+         "t": 29876919.85265,
+         "by": "engine",
+         "state": "todo"
+        },
+        {
+         "t": 29876919.85265,
+         "by": "engine",
+         "state": "backlog"
+        }
+       ]
+      }
+     ],
+     [
+      "ISS-5",
+      {
+       "id": "ISS-5",
+       "kind": "order",
+       "title": "MOD-D: the module in slot D",
+       "body": "",
+       "state": "backlog",
+       "assignee": null,
+       "project": null,
+       "labels": [],
+       "priority": 3,
+       "cycle": null,
+       "due": null,
+       "goal": null,
+       "order": "O-5",
+       "links": [],
+       "comments": [],
+       "by": "engine",
+       "created": 29876919.85265,
+       "updated": 29876919.85265,
+       "history": [
+        {
+         "t": 29876919.85265,
+         "by": "engine",
+         "state": "todo"
+        },
+        {
+         "t": 29876919.85265,
+         "by": "engine",
+         "state": "backlog"
+        }
+       ]
+      }
+     ],
+     [
+      "ISS-6",
+      {
+       "id": "ISS-6",
+       "kind": "order",
+       "title": "SHEET: the integrated sheet",
+       "body": "",
+       "state": "backlog",
+       "assignee": null,
+       "project": null,
+       "labels": [],
+       "priority": 3,
+       "cycle": null,
+       "due": null,
+       "goal": null,
+       "order": "O-6",
+       "links": [],
+       "comments": [],
+       "by": "engine",
+       "created": 29876919.852666665,
+       "updated": 29876919.852666665,
+       "history": [
+        {
+         "t": 29876919.852666665,
+         "by": "engine",
+         "state": "todo"
+        },
+        {
+         "t": 29876919.852666665,
+         "by": "engine",
+         "state": "backlog"
+        }
+       ]
+      }
+     ]
+    ]
+   },
+   "projects": {
+    "__map": []
+   },
+   "cycles": {
+    "__map": []
+   },
+   "n": 6,
+   "nP": 0,
+   "nC": 0
+  },
+  "goals": {
+   "goals": {
+    "__map": []
+   },
+   "n": 0,
+   "reviews": []
+  },
+  "meetings": {
+   "meetings": {
+    "__map": [
+     [
+      "MTG-1",
+      {
+       "id": "MTG-1",
+       "kind": "meeting",
+       "title": "Kickoff: Sheet's design",
+       "chair": "lead",
+       "invitees": [
+        "lead",
+        "dev-1",
+        "dev-2",
+        "reviewer"
+       ],
+       "booking": "BK-1",
+       "room": "design-room",
+       "channel": "lane:s",
+       "opened": 29876919.85045,
+       "state": "open",
+       "agenda": [
+        {
+         "n": 1,
+         "title": "The module split: what behaviour each of slots A-D owns, now (wave 1) and as later waves add references, functions, recalculation and cycles; which slot each builder owns",
+         "item": null,
+         "goal": null,
+         "rounds": [
+          {
+           "n": 1,
+           "positions": {
+            "reviewer": {
+             "text": "Split by pipeline stage so each wave lands mostly in one slot and every slot is unit-testable alone. A = values: error constants, coercion (toNumber/toText/toBool, \"\" as 0, numeric text, case-insensitive compare), parseLiteral for non-= input (\" -2.5 \", .5, \"12abc\" stays text), round9 and display formatting. Pure, no imports. B = parser: tokenizer + precedence parser (cmp < & < +- < */ < ^ right-assoc; unary binds to the atom so -2^2=4; 1.2.3 and unbalanced parens are parse errors). Grammar must ALREADY accept cell refs (A1, case-insensitive), ranges (A1:B3) and calls NAME(args,...) in wave 1, so waves 2/3 do not reopen it; wave 1 just evaluates calls to #NAME?. C = evaluator: walks AST with a resolver callback for refs/ranges, applies operator semantics via A, left error wins, non-finite -> #VALUE!, function registry (wave-1 registry empty -> #NAME?; wave 2 functions are added here as registry entries). D = cell addressing + dependency graph: parse/normalise cell names (A1..Z99, no leading zero, throws otherwise), dependency extraction from AST, recalc order (topological), cycle detection (wave 3). SHEET = store of raw text/AST/value per cell, wires A-D, implements set/get/display. Owners: dev-1 owns B and C (AST shape is shared between them, one head avoids drift); dev-2 owns A and D; lead owns SHEET and ARCH.md. Reviewer checks each slot against SPEC5 examples plus edge cases before check stage, and flags cross-slot failures to the owning slot.",
+             "t": 29876920.306033332
+            }
+           },
+           "revealed": false
+          }
+         ],
+         "objections": [],
+         "decision": null,
+         "deferred": null
+        },
+        {
+         "n": 2,
+         "title": "The interfaces: every exported function with its arguments and results, how values and errors are represented, how modules import each other (relative paths), and who writes ARCH.md",
+         "item": null,
+         "goal": null,
+         "rounds": [
+          {
+           "n": 1,
+           "positions": {},
+           "revealed": false
+          }
+         ],
+         "objections": [],
+         "decision": null,
+         "deferred": null
+        }
+       ],
+       "board": {},
+       "present": {
+        "__set": [
+         "lead",
+         "reviewer"
+        ]
+       }
+      }
+     ]
+    ]
+   },
+   "n": 1
+  }
+ },
+ "log": {
+  "events": [
+   {
+    "seq": 1,
+    "t": 29876919.684316665,
+    "type": "org-genesis",
+    "roles": [
+     "founder",
+     "cos",
+     "lead",
+     "dev-1",
+     "dev-2",
+     "reviewer",
+     "release"
+    ]
+   },
+   {
+    "seq": 2,
+    "t": 29876919.684316665,
+    "type": "flow-define",
+    "flow": "task@v1",
+    "by": "cos"
+   },
+   {
+    "seq": 3,
+    "t": 29876919.684333332,
+    "type": "flow-active",
+    "flow": "task@v1",
+    "by": "founder",
+    "words": "Approve the task flow for the Meta sandbox (founder: Decide for me, 2026-10-21)"
+   },
+   {
+    "seq": 4,
+    "t": 29876919.684333332,
+    "type": "channel-create",
+    "channel": "company",
+    "kind": "company",
+    "by": "cos"
+   },
+   {
+    "seq": 5,
+    "t": 29876919.684333332,
+    "type": "channel-create",
+    "channel": "lane:s",
+    "kind": "lane",
+    "by": "cos"
+   },
+   {
+    "seq": 6,
+    "t": 29876919.85045,
+    "type": "room-book",
+    "booking": "BK-1",
+    "room": "design-room",
+    "start": 29876919.85045,
+    "end": 29876949.85045,
+    "by": "lead",
+    "attendees": 4
+   },
+   {
+    "seq": 7,
+    "t": 29876919.85045,
+    "type": "meeting-open",
+    "meeting": "MTG-1",
+    "kind": "meeting",
+    "chair": "lead",
+    "invitees": 4,
+    "agenda": 2,
+    "room": "design-room"
+   },
+   {
+    "seq": 8,
+    "t": 29876919.85045,
+    "type": "order",
+    "order": "O-1",
+    "by": "cos",
+    "to": "lead",
+    "budget": 200000,
+    "flow": "task@v1",
+    "priority": "next",
+    "after": [],
+    "policy": null
+   },
+   {
+    "seq": 9,
+    "t": 29876919.850466665,
+    "type": "rule-applied",
+    "order": "O-1",
+    "task": "ARCH",
+    "source": "escapes",
+    "keys": [
+     "knownFalse"
+    ]
+   },
+   {
+    "seq": 10,
+    "t": 29876919.850466665,
+    "type": "order",
+    "order": "O-2",
+    "by": "cos",
+    "to": "lead",
+    "budget": 200000,
+    "flow": "task@v1",
+    "priority": "next",
+    "after": [
+     "O-1"
+    ],
+    "policy": null
+   },
+   {
+    "seq": 11,
+    "t": 29876919.850466665,
+    "type": "order",
+    "order": "O-3",
+    "by": "cos",
+    "to": "lead",
+    "budget": 200000,
+    "flow": "task@v1",
+    "priority": "next",
+    "after": [
+     "O-1"
+    ],
+    "policy": null
+   },
+   {
+    "seq": 12,
+    "t": 29876919.850466665,
+    "type": "order",
+    "order": "O-4",
+    "by": "cos",
+    "to": "lead",
+    "budget": 200000,
+    "flow": "task@v1",
+    "priority": "next",
+    "after": [
+     "O-1"
+    ],
+    "policy": null
+   },
+   {
+    "seq": 13,
+    "t": 29876919.850466665,
+    "type": "order",
+    "order": "O-5",
+    "by": "cos",
+    "to": "lead",
+    "budget": 200000,
+    "flow": "task@v1",
+    "priority": "next",
+    "after": [
+     "O-1"
+    ],
+    "policy": null
+   },
+   {
+    "seq": 14,
+    "t": 29876919.85048333,
+    "type": "order",
+    "order": "O-6",
+    "by": "cos",
+    "to": "lead",
+    "budget": 200000,
+    "flow": "task@v1",
+    "priority": "next",
+    "after": [
+     "O-2",
+     "O-3",
+     "O-4",
+     "O-5"
+    ],
+    "policy": null
+   },
+   {
+    "seq": 15,
+    "t": 29876919.85265,
+    "type": "item-create",
+    "item": "ISS-1",
+    "kind": "order",
+    "by": "engine",
+    "assignee": null,
+    "project": null,
+    "goal": null
+   },
+   {
+    "seq": 16,
+    "t": 29876919.85265,
+    "type": "item-update",
+    "item": "ISS-1",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 17,
+    "t": 29876919.85265,
+    "type": "item-create",
+    "item": "ISS-2",
+    "kind": "order",
+    "by": "engine",
+    "assignee": null,
+    "project": null,
+    "goal": null
+   },
+   {
+    "seq": 18,
+    "t": 29876919.85265,
+    "type": "item-update",
+    "item": "ISS-2",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 19,
+    "t": 29876919.85265,
+    "type": "item-create",
+    "item": "ISS-3",
+    "kind": "order",
+    "by": "engine",
+    "assignee": null,
+    "project": null,
+    "goal": null
+   },
+   {
+    "seq": 20,
+    "t": 29876919.85265,
+    "type": "item-update",
+    "item": "ISS-3",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 21,
+    "t": 29876919.85265,
+    "type": "item-create",
+    "item": "ISS-4",
+    "kind": "order",
+    "by": "engine",
+    "assignee": null,
+    "project": null,
+    "goal": null
+   },
+   {
+    "seq": 22,
+    "t": 29876919.85265,
+    "type": "item-update",
+    "item": "ISS-4",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 23,
+    "t": 29876919.85265,
+    "type": "item-create",
+    "item": "ISS-5",
+    "kind": "order",
+    "by": "engine",
+    "assignee": null,
+    "project": null,
+    "goal": null
+   },
+   {
+    "seq": 24,
+    "t": 29876919.85265,
+    "type": "item-update",
+    "item": "ISS-5",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 25,
+    "t": 29876919.852666665,
+    "type": "item-create",
+    "item": "ISS-6",
+    "kind": "order",
+    "by": "engine",
+    "assignee": null,
+    "project": null,
+    "goal": null
+   },
+   {
+    "seq": 26,
+    "t": 29876919.852666665,
+    "type": "item-update",
+    "item": "ISS-6",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 27,
+    "t": 29876920.022433333,
+    "type": "launch",
+    "role": "dev-1",
+    "msgs": [],
+    "tasks": [
+     {
+      "kind": "positions",
+      "ref": "MTG-1",
+      "items": [
+       1,
+       2
+      ]
+     }
+    ],
+    "why": "plan: positions: MTG-1"
+   },
+   {
+    "seq": 28,
+    "t": 29876920.022433333,
+    "type": "launch",
+    "role": "dev-2",
+    "msgs": [],
+    "tasks": [
+     {
+      "kind": "positions",
+      "ref": "MTG-1",
+      "items": [
+       1,
+       2
+      ]
+     }
+    ],
+    "why": "plan: positions: MTG-1"
+   },
+   {
+    "seq": 29,
+    "t": 29876920.022433333,
+    "type": "launch",
+    "role": "reviewer",
+    "msgs": [],
+    "tasks": [
+     {
+      "kind": "positions",
+      "ref": "MTG-1",
+      "items": [
+       1,
+       2
+      ]
+     }
+    ],
+    "why": "plan: positions: MTG-1"
+   },
+   {
+    "seq": 30,
+    "t": 29876920.306033332,
+    "type": "position",
+    "meeting": "MTG-1",
+    "item": 1,
+    "round": 1,
+    "by": "reviewer"
+   }
+  ]
+ },
+ "mailbox": {
+  "msgs": {
+   "__map": []
+  },
+  "keys": {
+   "__map": []
+  },
+  "n": 0
+ },
+ "org": {
+  "roles": {
+   "__map": [
+    [
+     "founder",
+     {
+      "skills": [],
+      "rituals": [],
+      "active": true,
+      "id": "founder",
+      "level": "founder",
+      "human": true,
+      "room": "lobby",
+      "floor": 1
+     }
+    ],
+    [
+     "cos",
+     {
+      "skills": [],
+      "rituals": [],
+      "active": true,
+      "id": "cos",
+      "level": "chief-of-staff",
+      "reportsTo": "founder",
+      "room": "ceo-office",
+      "floor": 1
+     }
+    ],
+    [
+     "lead",
+     {
+      "skills": [
+       "manage"
+      ],
+      "rituals": [],
+      "active": true,
+      "id": "lead",
+      "level": "manager",
+      "reportsTo": "cos",
+      "lane": "s",
+      "room": "workshop",
+      "floor": 2
+     }
+    ],
+    [
+     "dev-1",
+     {
+      "skills": [
+       "js"
+      ],
+      "rituals": [],
+      "active": true,
+      "id": "dev-1",
+      "level": "builder",
+      "reportsTo": "lead",
+      "lane": "s",
+      "room": "workshop",
+      "floor": 2
+     }
+    ],
+    [
+     "dev-2",
+     {
+      "skills": [
+       "js"
+      ],
+      "rituals": [],
+      "active": true,
+      "id": "dev-2",
+      "level": "builder",
+      "reportsTo": "lead",
+      "lane": "s",
+      "room": "workshop",
+      "floor": 2
+     }
+    ],
+    [
+     "reviewer",
+     {
+      "skills": [
+       "review"
+      ],
+      "rituals": [],
+      "active": true,
+      "id": "reviewer",
+      "level": "checker",
+      "reportsTo": "cos",
+      "lane": "q",
+      "room": "review",
+      "floor": 3
+     }
+    ],
+    [
+     "release",
+     {
+      "skills": [
+       "release"
+      ],
+      "rituals": [],
+      "active": true,
+      "id": "release",
+      "level": "release",
+      "reportsTo": "cos",
+      "lane": "r",
+      "room": "launch",
+      "floor": 3
+     }
+    ]
+   ]
+  },
+  "changes": {
+   "__map": []
+  },
+  "n": 0,
+  "rooms": {
+   "__map": [
+    [
+     "lobby",
+     {
+      "id": "lobby",
+      "floor": 1,
+      "kind": "lobby"
+     }
+    ],
+    [
+     "ceo-office",
+     {
+      "id": "ceo-office",
+      "floor": 1,
+      "kind": "office"
+     }
+    ],
+    [
+     "workshop",
+     {
+      "id": "workshop",
+      "floor": 2,
+      "kind": "lane",
+      "lane": "s"
+     }
+    ],
+    [
+     "design-room",
+     {
+      "id": "design-room",
+      "floor": 2,
+      "kind": "meeting",
+      "capacity": 5
+     }
+    ],
+    [
+     "review",
+     {
+      "id": "review",
+      "floor": 3,
+      "kind": "quality"
+     }
+    ],
+    [
+     "launch",
+     {
+      "id": "launch",
+      "floor": 3,
+      "kind": "launch"
+     }
+    ]
+   ]
+  }
+ },
+ "engine": {
+  "flows": {
+   "__map": [
+    [
+     "task@v1",
+     {
+      "stages": [
+       {
+        "stage": "build",
+        "signer": "builder",
+        "evidence": [
+         "live/work/<task>/"
+        ]
+       },
+       {
+        "stage": "test1",
+        "signer": "code",
+        "evidence": []
+       },
+       {
+        "stage": "check",
+        "signer": "checker",
+        "evidence": [
+         "review notes"
+        ]
+       },
+       {
+        "stage": "uat",
+        "signer": "orderer",
+        "evidence": [
+         "hidden acceptance tests"
+        ]
+       },
+       {
+        "stage": "ship",
+        "signer": "release",
+        "evidence": [
+         "copied to live/shipped/"
+        ]
+       }
+      ],
+      "name": "task",
+      "key": "task@v1",
+      "state": "active",
+      "by": "cos"
+     }
+    ]
+   ]
+  },
+  "active": {
+   "__map": [
+    [
+     "task",
+     "task@v1"
+    ]
+   ]
+  },
+  "orders": {
+   "__map": [
+    [
+     "O-1",
+     {
+      "id": "O-1",
+      "flow": "task@v1",
+      "title": "ARCH: the design as decided",
+      "chain": [
+       "cos",
+       "lead"
+      ],
+      "orderer": "cos",
+      "manager": "lead",
+      "builder": null,
+      "checker": null,
+      "budget": 200000,
+      "spent": 0,
+      "accept": "live/bench5/work/ARCH/ARCH.md: the kickoff's decisions (MTG-1 minutes) as the contract. For each slot A-D a section '## Slot X: <file>.mjs' with a line 'exports: <name>, <name>' then the signature and behaviour of each export, what the slot owns across the waves, and its owner; a section on SHEET (live/bench5/work/SHEET/sheet.mjs, createSheet) saying how it uses the slots; the import paths (../MOD-X/<file>.mjs). Plus one arch.test.mjs that checks ARCH.md has all four slots.",
+      "words": null,
+      "stage": "build",
+      "loops": 0,
+      "created": 29876919.85045,
+      "history": [],
+      "priority": "next",
+      "due": null,
+      "after": [],
+      "blocked": false,
+      "policyVersion": null,
+      "fromContract": null,
+      "task": "ARCH",
+      "checks": {
+       "mustInclude": [
+        "## Slot A:",
+        "## Slot B:",
+        "## Slot C:",
+        "## Slot D:",
+        "exports:"
+       ],
+       "knownFalse": [
+        {
+         "pattern": "clouds?\\b[^.]{0,40}\\btraps?\\b[^.]{0,20}\\bheat",
+         "why": "on Venus the thick carbon dioxide air traps the heat; its clouds reflect most sunlight away"
+        }
+       ]
+      },
+      "orphanSince": null
+     }
+    ],
+    [
+     "O-2",
+     {
+      "id": "O-2",
+      "flow": "task@v1",
+      "title": "MOD-A: the module in slot A",
+      "chain": [
+       "cos",
+       "lead"
+      ],
+      "orderer": "cos",
+      "manager": "lead",
+      "builder": null,
+      "checker": null,
+      "budget": 200000,
+      "spent": 0,
+      "accept": "live/bench5/work/MOD-A/<the file ARCH.md names for slot A>, with exactly the exports and behaviour ARCH.md gives slot A, for every wave released so far (live/bench5/SPEC5.md), plus your own *.test.mjs in the same folder.",
+      "words": null,
+      "stage": "build",
+      "loops": 0,
+      "created": 29876919.850466665,
+      "history": [],
+      "priority": "next",
+      "due": null,
+      "after": [
+       "O-1"
+      ],
+      "blocked": true,
+      "policyVersion": null,
+      "fromContract": null,
+      "task": "MOD-A",
+      "orphanSince": null
+     }
+    ],
+    [
+     "O-3",
+     {
+      "id": "O-3",
+      "flow": "task@v1",
+      "title": "MOD-B: the module in slot B",
+      "chain": [
+       "cos",
+       "lead"
+      ],
+      "orderer": "cos",
+      "manager": "lead",
+      "builder": null,
+      "checker": null,
+      "budget": 200000,
+      "spent": 0,
+      "accept": "live/bench5/work/MOD-B/<the file ARCH.md names for slot B>, with exactly the exports and behaviour ARCH.md gives slot B, for every wave released so far (live/bench5/SPEC5.md), plus your own *.test.mjs in the same folder.",
+      "words": null,
+      "stage": "build",
+      "loops": 0,
+      "created": 29876919.850466665,
+      "history": [],
+      "priority": "next",
+      "due": null,
+      "after": [
+       "O-1"
+      ],
+      "blocked": true,
+      "policyVersion": null,
+      "fromContract": null,
+      "task": "MOD-B",
+      "orphanSince": null
+     }
+    ],
+    [
+     "O-4",
+     {
+      "id": "O-4",
+      "flow": "task@v1",
+      "title": "MOD-C: the module in slot C",
+      "chain": [
+       "cos",
+       "lead"
+      ],
+      "orderer": "cos",
+      "manager": "lead",
+      "builder": null,
+      "checker": null,
+      "budget": 200000,
+      "spent": 0,
+      "accept": "live/bench5/work/MOD-C/<the file ARCH.md names for slot C>, with exactly the exports and behaviour ARCH.md gives slot C, for every wave released so far (live/bench5/SPEC5.md), plus your own *.test.mjs in the same folder.",
+      "words": null,
+      "stage": "build",
+      "loops": 0,
+      "created": 29876919.850466665,
+      "history": [],
+      "priority": "next",
+      "due": null,
+      "after": [
+       "O-1"
+      ],
+      "blocked": true,
+      "policyVersion": null,
+      "fromContract": null,
+      "task": "MOD-C",
+      "orphanSince": null
+     }
+    ],
+    [
+     "O-5",
+     {
+      "id": "O-5",
+      "flow": "task@v1",
+      "title": "MOD-D: the module in slot D",
+      "chain": [
+       "cos",
+       "lead"
+      ],
+      "orderer": "cos",
+      "manager": "lead",
+      "builder": null,
+      "checker": null,
+      "budget": 200000,
+      "spent": 0,
+      "accept": "live/bench5/work/MOD-D/<the file ARCH.md names for slot D>, with exactly the exports and behaviour ARCH.md gives slot D, for every wave released so far (live/bench5/SPEC5.md), plus your own *.test.mjs in the same folder.",
+      "words": null,
+      "stage": "build",
+      "loops": 0,
+      "created": 29876919.850466665,
+      "history": [],
+      "priority": "next",
+      "due": null,
+      "after": [
+       "O-1"
+      ],
+      "blocked": true,
+      "policyVersion": null,
+      "fromContract": null,
+      "task": "MOD-D",
+      "orphanSince": null
+     }
+    ],
+    [
+     "O-6",
+     {
+      "id": "O-6",
+      "flow": "task@v1",
+      "title": "SHEET: the integrated sheet",
+      "chain": [
+       "cos",
+       "lead"
+      ],
+      "orderer": "cos",
+      "manager": "lead",
+      "builder": null,
+      "checker": null,
+      "budget": 200000,
+      "spent": 0,
+      "accept": "live/bench5/work/SHEET/sheet.mjs exporting createSheet() as live/bench5/SPEC5.md describes it, for every wave released so far, built only from the slot modules as ARCH.md wires them, plus your own sheet.test.mjs. The hidden acceptance tests run on this sheet and report failing categories: when one is in another slot's module, raise it with the lead.",
+      "words": null,
+      "stage": "build",
+      "loops": 0,
+      "created": 29876919.85048333,
+      "history": [],
+      "priority": "next",
+      "due": null,
+      "after": [
+       "O-2",
+       "O-3",
+       "O-4",
+       "O-5"
+      ],
+      "blocked": true,
+      "policyVersion": null,
+      "fromContract": null,
+      "task": "SHEET",
+      "orphanSince": null
+     }
+    ]
+   ]
+  },
+  "approvals": {
+   "__map": []
+  },
+  "n": {
+   "O": 6,
+   "A": 0
+  },
+  "limits": {
+   "chief-of-staff": 500000,
+   "manager": 250000
+  },
+  "policies": {
+   "__map": []
+  },
+  "contracts": {
+   "__map": []
+  }
+ },
+ "rooms": {
+  "runs": {
+   "__map": []
+  },
+  "n": 0,
+  "memory": {
+   "__map": []
+  },
+  "sessions": {
+   "__map": []
+  },
+  "nS": 0
+ }
+}
