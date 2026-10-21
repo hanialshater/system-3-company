@@ -13,7 +13,7 @@ Founder asked about batches vs a mailbox queue, priority flags ("force now or fo
 
 **Simulator iteration 4** (ITERATIONS.md): draining cut tokens 30%, with flat returns past a cap of 3. `now` gave a 2.2 h p50 at 1.64× the tokens. The progress-clock WBR met 69 times, too often: its stuck rule fires on quiet days.
 
-**Live run 2** (LIVE2.md), 8 orders through 13 real agent sessions plus 4 supervisor sessions, all shipped:
+**Live run 2** (LIVE2.md), 8 orders through 10 builder and checker sessions plus 4 supervisor sessions, all shipped:
 - a 3-build drain session cost 37% of three single sessions;
 - draining checks cost 14k each against 60k;
 - 110.5k per shipped order including the supervisor, against 207k without it in run 1.

@@ -43,7 +43,7 @@ The task pairs are matched for difficulty, drain against single: CSV and INI, de
 - T6 (INI) and T7 (kebab), once each;
 - T9 (the `now` order), twice.
 
-13 agent sessions in total:
+14 agent sessions in total:
 - 7 builder sessions: 1 drain of 3; 3 single; 1 `now`; 1 drain of 4 for the revisions and T10; 1 T9 fix;
 - 3 checker sessions: a drain of 7, a drain of 4, 1 single;
 - 4 supervisor sessions (test1; UAT and ship; test1; UAT and ship).
@@ -86,7 +86,7 @@ Live run 1 cost 206.8k per shipped order (413,587 for 2), *without* the supervis
 | M4 | T10 blocked until T5 ships, released automatically, critical path = T5 + T10 | `unblocked` by O-3 at T5's ship; 1.71 = 0.72 + 0.99 | right |
 | M5 | supervisor ≤ 30k per order | 34.0k | missed (not wrong: bound 60k) |
 | M6 | median flow efficiency ≤ 50% | 12% | right |
-| M7 | ≤ 1 tool-caused failed call per session | 0 in 13 sessions | right |
+| M7 | ≤ 1 tool-caused failed call per session | 0 in 14 sessions | right |
 | M8 | draining checker ≤ 25k per check | 14.1k | right |
 
 **What it shows:**
