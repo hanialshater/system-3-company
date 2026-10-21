@@ -84,3 +84,63 @@ The founder asked for a task that "needs agent collaboration and self improvemen
 - **The hole.** Chairing is judgment work outside a room, so there was no run to abandon. Its launch reservation would have held the meeting for the full 30-minute grace period, and nothing would have relaunched the chair.
 - **The fix.** A launch the launcher reports finished, ok or crashed, reserves nothing. 82 tests (`tests/faults.test.mjs`: the chair is planned again at once).
 - The record is in `live/bench5-attempt1/`. Restarted from scratch.
+
+## Results (attempt 2, run 20:43-21:08 UTC; scored after the run, predictions above unchanged)
+
+The record is in `live/bench5/`: the state, the serve log, the outbox briefs, and the launcher ledger `launches.jsonl`. The wave releaser's log, the hidden acceptance and the wave files are in the session scratchpad; they are copied to `live/bench5-record/`.
+
+| Measure | Result |
+|---|---|
+| Waves shipped | **3 / 3**: wave 1 at 20:56:58 (13 min), wave 2 at 21:01:02 (4 min), wave 3 at 21:08:10 (7 min). That is 24 min 44 s from the start |
+| Final hidden acceptance (wave 3, `#CIRC!`) | **19 / 19 categories**, shipped and work copies alike: the 208 SHEET cases, display, bad names, ARCH and all four slots |
+| Orders shipped (ARCH, four slots, SHEET, each per wave) | 18 ships |
+| Typed commands after the start | **0** |
+| Agent sessions | 33 (lead 10, reviewer 10, dev-1 7, dev-2 6). One is a dev-2 session still hung after the run, below |
+| Tokens (final context) | 1,721,943 for the 32 finished sessions: **95.7k per ship** (4b: 80.7k per order) |
+| Cumulative tokens · cost | 17.2M · **$13.84** |
+| Revise loops | 4 (hidden tests 2, the reviewer 2). Plus **4 reopens by the lead** from builders' asks, and the founder's 8 wave reopens |
+| Asks from builders to the lead | **6**: 4 answered yes with a reopen, 2 redirected as duplicates |
+| Self-checks | 24, of which 2 failed |
+
+**What the team did, by itself:**
+1. **Designed the system** in MTG-1:
+   - four slots (A syntax, B values and errors, C evaluation, D the graph);
+   - an ARCH.md contract;
+   - errors as objects (`{error:"#DIV/0!"}`), which every position proposed.
+2. **Found that the design broke the spec** from the hidden tests' category names alone.
+   - SHEET failed `wave1/errors`, and dev-1 asked the lead (ISS-9).
+   - The lead ran about 40 error cases, concluded that objects cannot match a spec that says "the error value `#DIV/0!`", and **reopened ARCH**. `get()` now returns strings.
+3. **Routed defects across modules without anyone editing another's code:**
+   - ISS-10, the left-error precedence in slot B;
+   - ISS-11 and ISS-12, wave 2 needed `#REF!` in B;
+   - ISS-13, wave 3's `#CIRC!` in B.
+
+   Each went builder → lead → reopen of the owning slot.
+4. **Corrected itself.** The reviewer reported that its own earlier SHEET pass was wrong. Later it re-read the spec and withdrew a claim that went too far.
+
+**Faults:**
+- **F1:** the lead was killed while chairing. It was relaunched in 0.2 s and continued from item 2 (its killed predecessor had decided item 1). In attempt 1 the same fault would have held the meeting for 30 min; that is fixed.
+- **F2:** the corrupted SHEET was **caught by agents**: dev-1 in ISS-12, and the reviewer, who wrote "the shipped copy of SHEET has been altered". Wave 2's reopen of SHEET came at the same moment, and the rebuilt sheet removed the wrapper. The regression gate never had a later ship to catch it on.
+- **F3:** slot B's check message was dropped at 20:49:15. **The watchdog re-sent it at 20:51:17 (2 min 2 s).**
+- **F4:** `#CIRC!` was posted. The founder's reopen of SHEET was refused because SHEET was already open; the post and the briefs carried the change. The team found the owner (slot B, ISS-13) and fixed it in about 7 min.
+
+**Scoring:**
+- **H1 right.** No revise loop came from two modules disagreeing on ARCH. The failures were spec-versus-design (errors as objects) and a defect inside one module.
+- **H2 right.** 4 revise loops and 4 ask-driven reopens. **The task was finally hard enough to need rework.**
+- **H3 right, by judgment.**
+  - One class repeated: "slot B lacks an error kind" (wave 2's `#REF!`, then wave 3's `#CIRC!`, which F4 caused).
+  - No defect class from wave 1 (error representation, precedence) recurred.
+  - The lessons were in ARCH.md and room memory.
+- **H4 partly right.**
+  - No person was needed for any fault.
+  - F1 and F3 were recovered by code.
+  - F2 was caught by agents, not by the gate: the wave reopen pre-empted it.
+  - F4 was recovered by the team, as designed.
+- **H5 right.** All waves shipped, and 19/19 hidden categories pass under `#CIRC!`.
+- **H6 right.** 0 commands, and 95.7k per ship against ≤ 161k (2 × 4b).
+
+**What it cost that it should not have** (kernel bugs, all fixed in the source after the run started; this run's kernel was frozen):
+- **5 empty sessions (about 172k, 10%).** Three reviewers and one dev-1 found their item already taken: the waiting session's deadline race. One lead was planned twice for one ask, because an older launch's finish freed a newer reservation.
+- **A hung session.**
+  - dev-2's 0715 launch ran a long command that Claude Code moved to the background. Under the SDK it then waited for a notice that never came, idle from 21:02:33 until the 30-minute session cap.
+  - The launcher passed this session's `CLAUDE_AUTO_BACKGROUND_TASKS` and `CLAUDE_CODE_SESSION_ID` on to every agent. That also put every agent's transcript in one file. Both are now dropped from agents' environments.

@@ -48,6 +48,9 @@ const SOURCES = opt["setting-sources"] ? String(opt["setting-sources"]).split(",
 const kills = new Map(String(opt.kill ?? "").split(",").filter(Boolean).map((x) => x.split(":").map(Number)));
 const env = { ...process.env, META_LIVE_DIR: LIVE, BOOK_ROOT: process.env.BOOK_ROOT ?? path.join(LIVE, "work") };
 delete env.CLAUDECODE; // the agents are their own Claude Code processes, not children of this session's
+// benchmark 5: inherited, these made every agent write one shared transcript (this session's id), and let a long
+// command move to the background, where an SDK agent waited for a notice that never came (a 30-minute hang)
+for (const k of ["CLAUDE_CODE_SESSION_ID", "CLAUDE_AUTO_BACKGROUND_TASKS", "CLAUDE_CODE_BG_TASKS_REPORT_RUNNING"]) delete env[k];
 const ledger = path.join(LIVE, "launches.jsonl");
 const note = (x) => { const line = JSON.stringify({ t: new Date().toISOString(), ...x }); fs.appendFileSync(ledger, line + "\n"); console.log(line); };
 
