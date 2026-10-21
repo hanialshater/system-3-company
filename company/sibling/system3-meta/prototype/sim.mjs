@@ -26,6 +26,16 @@ export const PARAMS = {
   wakeFrom: 8 * 60, wakeTo: 20 * 60,
   iterate: false, wbrEveryMin: 3.5 * 24 * 60, maxAdds: 2, wbrWaitMin: 60, // P8: WBR reads org gaps and proposes staff
   recordLostUsage: false, // iteration 2a: room recover records the harness usage of a run that left without leave
+  // iteration 4 (calibrated from live run 1, LIVE.md): an agent session costs a fixed start plus each item's own work,
+  // plus context that grows with every item already drained in the session.
+  tokenModel: "stage", sessionStart: 50_000, taskTokens: { build: 6_000, check: 8_000, uat: 3_000, ship: 2_000 }, contextPerItem: 5_000,
+  drainCap: 1, // items one session may take (room next); 1 = one task per run
+  priorityMix: null, // e.g. { now: 0.1, later: 0.6, laterDueMin: 480 }
+  batchLaterN: 3, // a `later` item waits until this many are queued for the same worker, or its due time
+  waveSizeRange: null, // e.g. [4, 20]: busy and quiet days
+  leaseWake: false, // recover at lease expiry (a wake) instead of a sweep every 5 min
+  wbrClock: "calendar", // "progress": every 20 shipped, or work waiting > 60 min, with a 24 h fallback
+  ritualTokensPerPosition: 0, // iteration 4: each attendee's position is an agent session (live run 1: about 55k)
 };
 
 const DAY = 24 * 60;
@@ -72,15 +82,30 @@ export function simulate({ config, seed = 1, params = {} }) {
   };
 
   const candidates = (r) => [`pool:${r.level}`, r.id];
+  const RANK = { now: 0, next: 1, later: 2 };
+  const sessionOf = new Map(); // worker instance → { id, items }
+  let nowInstances = 0;
+  /** What this worker may take now: priority order; a `later` item only once enough of them are queued for it
+   *  (a batch worth a session), or when the worker is already draining a session. */
+  function pick(r, { draining = false } = {}) {
+    const ms = candidates(r).flatMap((to) => mailbox.queue(to, "work")).filter((m) => launched.has(m.id))
+      .filter((m) => !(m.body.stage === "check" && engine.orders.get(m.ref).builder === r.id))
+      .sort((a, b) => (RANK[a.priority] - RANK[b.priority]) || a.ts - b.ts);
+    const later = ms.filter((m) => m.priority === "later").length;
+    return ms.find((m) => m.priority !== "later" || draining || later >= P.batchLaterN);
+  }
   function pump() {
+    mailbox.promote();
     for (const r of org.active()) {
-      if (r.human || busy.has(r.id) || ["chief-of-staff", "founder"].includes(r.level)) continue;
-      const m = candidates(r).flatMap((to) => mailbox.queue(to, "work")).filter((m) => launched.has(m.id)).sort((a, b) => a.ts - b.ts)[0];
-      if (m) startRun(r, m);
+      if (r.human || ["chief-of-staff", "founder"].includes(r.level)) continue;
+      if (!busy.has(r.id)) { const m = pick(r); if (m) startRun(r, m, { inst: r.id }); continue; }
+      // `now` does not interrupt the running agent: it wakes a fresh, parallel session for the one item
+      const urgent = candidates(r).flatMap((to) => mailbox.queue(to, "work")).find((m) => m.priority === "now" && launched.has(m.id) && !(m.body.stage === "check" && engine.orders.get(m.ref).builder === r.id));
+      if (urgent) startRun(r, urgent, { inst: `${r.id}+now${++nowInstances}`, cap: 1 });
     }
   }
 
-  function startRun(r, m) {
+  function startRun(r, m, { inst = r.id, cap = P.drainCap } = {}) {
     const o = engine.orders.get(m.ref);
     const stage = m.body.stage;
     // baseline-only fault: the builder checks its own work (a prose rule someone forgot)
@@ -89,15 +114,23 @@ export function simulate({ config, seed = 1, params = {} }) {
       try { co.rooms.guard(false, "independence", `${o.builder} checks its own ${o.id}`, { order: o.id, by: o.builder }); actor = o.builder; truth.violations++; }
       catch (e) { if (!(e instanceof Refused)) throw e; spend(P.refusedTokens, o.builder, true); }
     }
+    const key = actor === r.id ? inst : actor;
+    const cont = sessionOf.get(key);
     let run;
-    try { run = rooms.enter({ msg: m.id, role: actor, leaseMin: P.leaseMin }).run; }
+    try { run = rooms.enter({ msg: m.id, role: actor, leaseMin: P.leaseMin, session: cont?.id ?? null }).run; }
     catch (e) { if (e instanceof Refused) return; throw e; }
-    busy.set(actor, run); // a self-check is the builder's run: the checker stays free
+    const sess = cont ?? { id: rooms.runs.get(run).session, items: 0, cap };
+    sess.items++;
+    sessionOf.set(key, sess);
+    busy.set(key, run); // a self-check is the builder's run: the checker stays free
     launched.delete(m.id);
     const dur = U(stage === "build" ? P.buildMin : stage === "check" ? P.checkMin : stage === "uat" ? P.uatMin : P.shipMin);
-    const tokens = (stage === "build" ? P.buildTokens * (0.5 + item(o).d) : stage === "check" ? P.checkTokens : stage === "uat" ? P.uatTokens : P.shipTokens);
+    const tokens = P.tokenModel === "session"
+      ? (sess.items === 1 ? P.sessionStart : 0) + P.taskTokens[stage] * (stage === "build" ? 0.5 + item(o).d : 1) + P.contextPerItem * (sess.items - 1)
+      : (stage === "build" ? P.buildTokens * (0.5 + item(o).d) : stage === "check" ? P.checkTokens : stage === "uat" ? P.uatTokens : P.shipTokens);
     const crashAt = R() < P.crash ? clock.now() + dur * R() : null;
-    const free = () => busy.delete(actor);
+    const free = () => busy.delete(key);
+    const endSession = () => { sessionOf.delete(key); rooms.closeSession(sess.id, "done"); };
     if (config.leases) for (let h = clock.now() + P.heartbeatMin; h < (crashAt ?? clock.now() + dur); h += P.heartbeatMin) at(h, () => { if (rooms.runs.get(run).state === "running") rooms.heartbeat(run, { leaseMin: P.leaseMin }); });
     if (crashAt) {
       at(crashAt, () => {
@@ -105,6 +138,7 @@ export function simulate({ config, seed = 1, params = {} }) {
         truth.tokens += tokens * 0.5;
         lostSpend.set(run, tokens * 0.5);
         free();
+        endSession(); // the process died: the next item needs a new session
         const crashed = { at: clock.now(), msg: m.id, order: o.id, stage };
         if (!config.leases) at(clock.now() + expo(P.noticeMeanMin), () => { rooms.runs.get(run).state = "lost"; log.add({ type: "noticed-dead", run }); recoverAt(crashed); launch(m.id); });
         else pendingCrash.push(crashed);
@@ -112,7 +146,17 @@ export function simulate({ config, seed = 1, params = {} }) {
       });
       return;
     }
-    at(clock.now() + dur, () => finishRun(r, actor, run, o, stage, tokens, free, m));
+    at(clock.now() + dur, () => finishRun(r, actor, run, o, stage, tokens, free, m, { key, sess, endSession }));
+  }
+
+  /** room next: drain the next item in the same session, or end the session. */
+  function continueOrEnd(r, s) {
+    if (sessionOf.get(s.key) !== s.sess || busy.has(s.key)) return; // ended, or already continued by pump
+    if (s.key === r.id && s.sess.items < s.sess.cap) {
+      const m = pick(r, { draining: true });
+      if (m) return startRun(r, m, { inst: r.id, cap: s.sess.cap });
+    }
+    s.endSession();
   }
 
   const pendingCrash = [];
@@ -121,8 +165,9 @@ export function simulate({ config, seed = 1, params = {} }) {
 
   function item(o) { return truth.items.get(o.id); }
 
-  function finishRun(r, actor, run, o, stage, tokens, free, m) {
+  function finishRun(r, actor, run, o, stage, tokens, free, m, s) {
     free();
+    if (s.sess.items >= s.sess.cap || s.key !== r.id) s.endSession(); // the cap is reached before anything else can reuse it
     const it = item(o);
     const isStale = o.stage !== stage || rooms.runs.get(run).loops !== o.loops;
     if (!config.autoBookkeeping) truth.tokens += P.bookTokens;
@@ -131,6 +176,7 @@ export function simulate({ config, seed = 1, params = {} }) {
       truth.dupRuns++;
       rooms.leave(run, { tokens });
       if (!config.autoBookkeeping && R() < P.recordProb) log.add({ type: "usage", role: actor, tokens, manual: true });
+      continueOrEnd(r, s);
       return pump();
     }
     let verdict = "pass", findings = null;
@@ -148,6 +194,7 @@ export function simulate({ config, seed = 1, params = {} }) {
     rooms.leave(run, { verdict, evidence: `${stage} record`, tokens, findings, learned: stage === "build" && o.loops > 0 ? "fix before resubmitting" : null });
     if (!config.autoBookkeeping && R() < P.recordProb) log.add({ type: "usage", role: actor, tokens, manual: true });
     afterAdvance(o);
+    if (!busy.has(s.key)) continueOrEnd(r, s);
   }
 
   function afterAdvance(o) {
@@ -204,10 +251,14 @@ export function simulate({ config, seed = 1, params = {} }) {
   // ---- orders arrive in waves
   const lanes = ["w", "g"];
   for (let d = 0; d < P.days; d++) at(d * DAY + P.waveAt, () => {
-    for (let i = 0; i < P.waveSize; i++) {
+    const size = P.waveSizeRange ? Math.round(U(P.waveSizeRange)) : P.waveSize;
+    for (let i = 0; i < size; i++) {
       const lane = lanes[i % 2];
       const mgr = org.lanePOC(lane).id;
-      const o = engine.orderNew({ flow: "item", by: "cos", to: mgr, budget: 300_000, accept: "passes check and uat", words: `Build item ${d}-${i}` });
+      const u = R();
+      const pr = !P.priorityMix ? "next" : u < P.priorityMix.now ? "now" : u < P.priorityMix.now + P.priorityMix.later ? "later" : "next";
+      const o = engine.orderNew({ flow: "item", by: "cos", to: mgr, budget: 300_000, accept: "passes check and uat", words: `Build item ${d}-${i}`, priority: pr, dueMin: pr === "later" ? P.priorityMix.laterDueMin : null });
+      if (pr === "later") at(clock.now() + P.priorityMix.laterDueMin + 0.01, pump); // promotion is due then: wake, do not poll
       truth.items.set(o.id, { d: R(), defects: null, loopAt: { build: 0 }, wrongLane: false });
       const pool = org.active().filter((r) => r.level === "builder" && r.lane === lane);
       let to = pool[Math.floor(R() * pool.length)].id;
@@ -222,30 +273,47 @@ export function simulate({ config, seed = 1, params = {} }) {
     pump();
   });
 
-  // ---- lease recovery sweep (only meaningful with leases)
-  if (config.leases) for (let t = 5; t < P.days * DAY; t += 5) at(t, () => {
+  // ---- lease recovery: a sweep every 5 min, or (leaseWake) a wake exactly at each lease's expiry
+  const sweep = () => {
     const lost = rooms.recover({ usage: P.recordLostUsage ? (run) => lostSpend.get(run) ?? null : null });
     for (const x of lost) {
       const c = pendingCrash.find((c) => c.msg === x.msg);
       if (c) { recoverAt(c); pendingCrash.splice(pendingCrash.indexOf(c), 1); }
       launch(x.msg);
     }
-  });
+  };
+  if (config.leases && P.leaseWake) mailbox.onLease = (id, until) => at(until + 0.01, sweep);
+  else if (config.leases) for (let t = 5; t < P.days * DAY; t += 5) at(t, sweep);
 
   // ---- P8: the WBR reads org gaps and proposes staff; the founder approves at the next sitting
   if (P.iterate) {
-    rituals.register({ id: "wbr", everyMin: P.wbrEveryMin, chair: "cos", invite: (r) => r.rituals.some((x) => x.startsWith("wbr")) });
+    const invite = (r) => r.rituals.some((x) => x.startsWith("wbr"));
+    if (P.wbrClock === "progress") rituals.register({ id: "wbr", chair: "cos", invite, every: { shipped: 20 }, stuckMin: 60, fallbackMin: 24 * 60, minEvidence: 5 });
+    else rituals.register({ id: "wbr", everyMin: P.wbrEveryMin, chair: "cos", invite });
     let since = 0;
-    for (let t = P.wbrEveryMin; t < P.days * DAY; t += P.wbrEveryMin) at(t, () => {
+    // the trigger is checked on the ritual's clocks; in the simulator that check runs every 15 min
+    for (let t = 15; t < P.days * DAY; t += 15) at(t, () => { if (rituals.due().includes("wbr")) holdWbr(); });
+    function holdWbr() {
       const rid = rituals.open("wbr", { agenda: ["efficiency", "flow status --stuck", "org gaps"] });
       const g = org.gaps(log.events, { since, waitP50Min: P.wbrWaitMin });
-      for (const inv of rituals.open_.get(rid).invitees) if (inv !== "cos" && R() < 0.8) rituals.position(rid, { by: inv, position: "ok" });
+      for (const inv of rituals.open_.get(rid).invitees) if (inv !== "cos" && R() < 0.8) { rituals.position(rid, { by: inv, position: "ok" }); spend(P.ritualTokensPerPosition, inv, config.autoBookkeeping); }
+      spend(P.ritualTokensPerPosition, "cos", config.autoBookkeeping); // the chair
       const top = g.overloaded[0];
       if (top && truth.adds.filter((a) => a.pool === top.pool).length < P.maxAdds) {
         const level = top.pool.startsWith("pool:") ? top.pool.slice(5) : org.role(top.pool)?.level;
         const like = org.role(top.pool) ?? org.active().find((r) => r.level === level);
         const id = `${like.id.split("-")[0]}-x${truth.adds.length + 1}`;
-        const cid = org.propose({ op: "add", role: { ...like, id, skill: like.skill ?? 0.6, rituals: [] }, by: "cos", reason: `${top.pool} wait p50 ${Math.round(top.waitP50)} min` });
+        let cid;
+        try { cid = org.propose({ op: "add", role: { ...like, id, skill: like.skill ?? 0.6, rituals: [] }, by: "cos", reason: `${top.pool} wait p50 ${Math.round(top.waitP50)} min` }); }
+        catch (e) {
+          if (!(e instanceof Refused)) throw e;
+          // e.g. an overloaded manager: one POC per lane, so this is an org-design question, not a hire
+          rituals.position(rid, { by: "cos", position: `no automatic fix for ${top.pool}`, objection: e.message });
+          log.add({ type: "staffing-refused", pool: top.pool, msg: e.message });
+          rituals.close(rid, { by: "cos" });
+          since = clock.now();
+          return;
+        }
         rituals.position(rid, { by: "cos", position: `propose ${id}`, action: { owner: "founder", due: 24 * 60, what: cid } });
         const a = engine.request({ approver: "founder", kind: "org-change", ref: cid, dueMin: 24 * 60, key: `${cid}:approve` });
         truth.adds.push({ pool: top.pool, id, proposedAt: clock.now() });
@@ -253,7 +321,7 @@ export function simulate({ config, seed = 1, params = {} }) {
       } else rituals.position(rid, { by: "cos", position: "no staffing change" });
       rituals.close(rid, { by: "cos" });
       since = clock.now();
-    });
+    }
   }
 
   // ---- run
@@ -288,6 +356,12 @@ export function summarize({ truth, log }) {
     recoverMeanMin: truth.recovered.length ? truth.recovered.reduce((s, x) => s + x, 0) / truth.recovered.length : 0,
     refusals: log.of("refuse").length, adds: truth.adds.map((a) => a.id),
     ...waitsByStage(log),
+    ...byPriority(shipped),
+    maxPromoteLateMin: Math.max(0, ...log.of("promote").map((e) => e.late)),
+    itemsPerSession: (() => { const xs = log.of("session-close").map((e) => e.items); return xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : 0; })(),
+    wbrs: log.of("ritual-close").length,
+    staffingRefused: log.of("staffing-refused").length,
+    ...wbrBusyQuiet(log),
   };
 }
 
@@ -302,4 +376,26 @@ export function waitsByStage(log) {
   const out = {};
   for (const k of ["build", "check", "uat", "approval", "ship"]) out[`wait_${k}_h`] = acc[k]?.length ? acc[k].reduce((x, y) => x + y, 0) / acc[k].length : 0;
   return out;
+}
+
+function byPriority(shipped) {
+  const out = {};
+  for (const p of ["now", "next", "later"]) {
+    const ls = shipped.filter((e) => (e.priority ?? "next") === p).map((e) => e.lead).sort((a, b) => a - b);
+    out[`leadP50h_${p}`] = ls.length ? ls[Math.floor(ls.length / 2)] / 60 : NaN;
+  }
+  return out;
+}
+
+/** WBRs per day on the busiest and the quietest third of days (by items shipped). */
+function wbrBusyQuiet(log) {
+  const DAYM = 24 * 60;
+  const days = {};
+  for (const e of log.of("shipped")) (days[Math.floor(e.t / DAYM)] ??= { s: 0, w: 0 }).s++;
+  for (const e of log.of("ritual-close")) (days[Math.floor(e.t / DAYM)] ??= { s: 0, w: 0 }).w++;
+  const xs = Object.values(days).sort((a, b) => a.s - b.s);
+  if (xs.length < 3) return { wbrPerDayBusy: NaN, wbrPerDayQuiet: NaN };
+  const k = Math.floor(xs.length / 3);
+  const w = (ys) => ys.reduce((a, y) => a + y.w, 0) / Math.max(1, ys.length);
+  return { wbrPerDayBusy: w(xs.slice(-k)), wbrPerDayQuiet: w(xs.slice(0, k)) };
 }

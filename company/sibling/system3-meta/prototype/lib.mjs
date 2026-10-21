@@ -42,19 +42,24 @@ const hard = (ok, msg) => { if (!ok) throw new Refused(`HARD: ${msg}`); };
 
 // ------------------------------------------------------------------ mailbox: delivery layer for everything
 
-export class Mailbox {
-  constructor({ log, clock, config }) { Object.assign(this, { log, clock, config }); this.msgs = new Map(); this.keys = new Map(); this.n = 0; }
+export const PRIORITY = { now: 0, next: 1, later: 2 };
+const byPriority = (a, b) => (PRIORITY[a.priority ?? "next"] - PRIORITY[b.priority ?? "next"]) || a.ts - b.ts;
 
-  send({ from, to, kind, key = null, due = null, ref = null, body = null }) {
+export class Mailbox {
+  constructor({ log, clock, config }) { Object.assign(this, { log, clock, config }); this.msgs = new Map(); this.keys = new Map(); this.n = 0; this.onLease = null; }
+
+  /** priority: now (wake a session at once), next (default: front of the next drain), later (wait for a batch or the due time). */
+  send({ from, to, kind, key = null, due = null, ref = null, body = null, priority = "next" }) {
+    hard(priority in PRIORITY, `unknown priority ${priority}`);
     if (this.config.dedupe && key && this.keys.has(key)) {
       const m = this.msgs.get(this.keys.get(key));
       this.log.add({ type: "dedupe", msg: m.id, key });
       return m;
     }
-    const m = { id: `M-${++this.n}`, from, to, kind, key, due, ref, body, ts: this.clock.now(), state: "open", lease: null, acked: false };
+    const m = { id: `M-${++this.n}`, from, to, kind, key, due, ref, body, priority, ts: this.clock.now(), state: "open", lease: null, acked: false };
     this.msgs.set(m.id, m);
     if (key) this.keys.set(key, m.id);
-    this.log.add({ type: "send", msg: m.id, from, to, kind, key, ref });
+    this.log.add({ type: "send", msg: m.id, from, to, kind, key, ref, priority, due });
     return m;
   }
 
@@ -67,6 +72,7 @@ export class Mailbox {
     hard(this.leaseFree(m), `${id} is held by run ${m.lease?.run} until ${m.lease?.until}`);
     m.lease = { run, until: this.clock.now() + leaseMin };
     this.log.add({ type: "claim", msg: id, run });
+    this.onLease?.(id, m.lease.until); // a wake at expiry, instead of a sweep that polls
     return m;
   }
 
@@ -74,6 +80,26 @@ export class Mailbox {
     const m = this.msgs.get(id);
     hard(m?.lease?.run === run, `${id} not held by ${run}`);
     m.lease.until = this.clock.now() + leaseMin;
+    this.onLease?.(id, m.lease.until);
+  }
+
+  /** A `later` message past its due time becomes `next`: nothing waits forever for a batch. */
+  promote() {
+    const out = [];
+    for (const m of this.msgs.values()) {
+      if (m.state === "open" && m.priority === "later" && m.due != null && m.due <= this.clock.now()) {
+        m.priority = "next";
+        this.log.add({ type: "promote", msg: m.id, late: this.clock.now() - Math.max(m.due, m.ts) }); // late from when it became eligible
+        out.push(m);
+      }
+    }
+    return out;
+  }
+
+  /** The earliest lease expiry among held messages, or null: when the supervisor should next wake. */
+  nextExpiry() {
+    const xs = [...this.msgs.values()].filter((m) => m.state === "open" && m.lease).map((m) => m.lease.until);
+    return xs.length ? Math.min(...xs) : null;
   }
 
   release(id, { run, reason }) {
@@ -94,9 +120,9 @@ export class Mailbox {
 
   ack(id, by) { const m = this.msgs.get(id); hard(m, `no message ${id}`); m.acked = true; this.log.add({ type: "ack", msg: id, by }); }
 
-  /** Open messages for a recipient (or a pool), oldest first, whose lease is free. */
+  /** Open messages for a recipient (or a pool) whose lease is free: now, then next, then later; oldest first within each. */
   queue(to, kind = null) {
-    return [...this.msgs.values()].filter((m) => m.to === to && m.state === "open" && (!kind || m.kind === kind) && this.leaseFree(m));
+    return [...this.msgs.values()].filter((m) => m.to === to && m.state === "open" && (!kind || m.kind === kind) && this.leaseFree(m)).sort(byPriority);
   }
 
   thread(ref) { return [...this.msgs.values()].filter((m) => m.ref === ref); }
@@ -268,16 +294,20 @@ export class Engine {
   nextStage(o) { const st = this.flows.get(o.flow).stages; return st[st.findIndex((s) => s.stage === o.stage) + 1]?.stage ?? "done"; }
 
   // ---- orders, down the chain
-  orderNew({ flow, by, to, budget, accept, words = null, title = "" }) {
+  orderNew({ flow, by, to, budget, accept, words = null, title = "", priority = "next", dueMin = null, after = [] }) {
     const key = this.active.get(flow);
     hard(key, `no active flow ${flow}`);
     const byRole = this.org.role(by), toRole = this.org.role(to);
     hard(byRole && toRole, "unknown role");
     this.guard(toRole.level === "manager", "chain", `${by} orders a manager, not ${to}`);
+    hard(priority in PRIORITY, `unknown priority ${priority}`);
+    const nowBy = this.flows.get(key).nowBy ?? ["founder", "chief-of-staff"];
+    this.guard(priority !== "now" || nowBy.includes(byRole.level), "priority", `${by} may not order with priority now (flow allows: ${nowBy.join(", ")})`, { by });
+    for (const d of after) hard(this.orders.has(d), `--after ${d}: no such order`);
     const overLimit = budget > (this.limits[byRole.level] ?? Infinity);
-    const o = { id: `O-${++this.n.O}`, flow: key, title, chain: [by, to], orderer: by, manager: to, builder: null, checker: null, budget, spent: 0, accept, words, stage: overLimit ? "budget" : "build", loops: 0, created: this.clock.now(), history: [] };
+    const o = { id: `O-${++this.n.O}`, flow: key, title, chain: [by, to], orderer: by, manager: to, builder: null, checker: null, budget, spent: 0, accept, words, stage: overLimit ? "budget" : "build", loops: 0, created: this.clock.now(), history: [], priority, due: dueMin != null ? this.clock.now() + dueMin : null, after, blocked: after.some((d) => this.orders.get(d).stage !== "done") };
     this.orders.set(o.id, o);
-    this.log.add({ type: "order", order: o.id, by, to, budget, flow: key });
+    this.log.add({ type: "order", order: o.id, by, to, budget, flow: key, priority, after });
     if (overLimit) this.request({ order: o.id, stage: "budget", approver: "founder", kind: "budget", dueMin: 24 * 60, key: `${o.id}:budget` });
     return o;
   }
@@ -293,7 +323,8 @@ export class Engine {
     o.builder = to;
     o.chain.push(to);
     this.log.add({ type: "delegate", order: id, by, to, budget });
-    this.notifyStage(o);
+    if (o.blocked) this.log.add({ type: "blocked", order: id, after: o.after.filter((d) => this.orders.get(d).stage !== "done") });
+    else this.notifyStage(o);
     return o;
   }
 
@@ -305,7 +336,7 @@ export class Engine {
     if (s.signer === "code") return this.log.add({ type: "code-stage", order: o.id, stage: o.stage });
     if (s.signer === "founder") return this.request({ order: o.id, stage: o.stage, approver: "founder", kind: "release", dueMin: 24 * 60, key });
     const to = s.signer === "builder" ? o.builder : s.signer === "orderer" ? o.manager : `pool:${s.signer}`;
-    return this.mailbox.send({ from: o.manager, to, kind: "work", key: duplicate ? (this.config.dedupe ? key : `${key}:dup${this.mailbox.n}`) : key, ref: o.id, body: { stage: o.stage, loops: o.loops } });
+    return this.mailbox.send({ from: o.manager, to, kind: "work", key: duplicate ? (this.config.dedupe ? key : `${key}:dup${this.mailbox.n}`) : key, ref: o.id, body: { stage: o.stage, loops: o.loops }, priority: o.priority ?? "next", due: o.due ?? null });
   }
 
   mayAssign(o, stage, roleId) {
@@ -334,8 +365,16 @@ export class Engine {
     this.log.add({ type: "advance", order: id, stage, by, verdict });
     if (verdict === "pass") o.stage = this.nextStage(o);
     else { o.stage = "build"; o.loops++; o.findings = findings; this.log.add({ type: "reopen", order: id, from: stage, loops: o.loops }); }
-    if (o.stage === "done") this.log.add({ type: "shipped", order: id, lead: this.clock.now() - o.created, loops: o.loops });
-    else this.notifyStage(o);
+    if (o.stage === "done") {
+      this.log.add({ type: "shipped", order: id, lead: this.clock.now() - o.created, loops: o.loops, priority: o.priority ?? "next" });
+      for (const d of this.orders.values()) {
+        if (d.blocked && d.after.includes(id) && d.after.every((x) => this.orders.get(x).stage === "done")) {
+          d.blocked = false;
+          this.log.add({ type: "unblocked", order: d.id, by: id });
+          if (d.builder) this.notifyStage(d);
+        }
+      }
+    } else this.notifyStage(o);
     return o;
   }
 
@@ -407,9 +446,11 @@ export class Rooms {
     this.runs = new Map();
     this.n = 0;
     this.memory = new Map(); // role → entries
+    this.sessions = new Map(); // a session is one agent process; a run is one item it works on
+    this.nS = 0;
   }
 
-  enter({ msg, role, mode = "work", as = null, leaseMin = 30 }) {
+  enter({ msg, role, mode = "work", as = null, leaseMin = 30, session = null }) {
     const m = this.mailbox.msgs.get(msg);
     hard(m && m.kind === "work", `no work message ${msg}`);
     const o = this.engine.orders.get(m.ref);
@@ -420,15 +461,55 @@ export class Rooms {
     hard(r?.active, `no active role ${actor}`);
     this.guard(m.to === actor || m.to === `pool:${r.level}`, "lane", `${actor} may not take ${msg} (for ${m.to})`, { order: o.id, by: actor });
     if (m.body.stage === "check") this.guard(actor !== o.builder, "independence", `${actor} built ${o.id}`, { order: o.id, by: actor });
+    let s;
+    if (session) { s = this.sessions.get(session); hard(s?.open && s.role === actor, `session ${session} is not open for ${actor}`); }
+    else { s = { id: `S-${++this.nS}`, role: actor, items: 0, open: true, started: this.clock.now() }; this.sessions.set(s.id, s); this.log.add({ type: "session-open", session: s.id, role: actor }); }
     const run = `R-${++this.n}`;
     if (this.config.leases) this.mailbox.claim(msg, { run, leaseMin });
+    s.items++;
     // The run works on the stage and loop the message was sent for, not on wherever the order is now: a late
     // duplicate of a finished stage is a stale run, and its leave signs nothing.
     const { stage, loops } = m.body;
     const ctx = { roleDoc: `company/roles/${actor}.md`, memory: this.memory.get(actor) ?? [], order: o.id, stage, findings: o.findings ?? null };
-    this.runs.set(run, { run, msg, role: actor, by: role, consult: mode === "consult", order: o.id, stage, loops, entered: this.clock.now(), state: "running" });
-    this.log.add({ type: "enter", run, msg, role: actor, by: role, room: r.room, order: o.id, stage, mode });
-    return { run, ctx };
+    this.runs.set(run, { run, msg, role: actor, by: role, consult: mode === "consult", order: o.id, stage, loops, entered: this.clock.now(), state: "running", session: s.id });
+    this.log.add({ type: "enter", run, msg, role: actor, by: role, room: r.room, order: o.id, stage, mode, session: s.id, item: s.items });
+    return { run, ctx, session: s.id, item: s.items };
+  }
+
+  /** Messages this role may take next, best first (priority, then age), skipping checks of its own builds. */
+  eligible(role) {
+    const r = this.org.role(role);
+    return [...this.mailbox.queue(role, "work"), ...this.mailbox.queue(`pool:${r.level}`, "work")]
+      .filter((m) => !(m.body.stage === "check" && this.engine.orders.get(m.ref).builder === role))
+      .sort((a, b) => (PRIORITY[a.priority] - PRIORITY[b.priority]) || a.ts - b.ts);
+  }
+
+  /** room next: leave this run as usual, then take the next eligible item in the same session, up to `cap` items. */
+  next(run, leaveOpts = {}, { cap = Infinity, leaseMin = 30, filter = () => true } = {}) {
+    const x = this.runs.get(run);
+    hard(x, `no run ${run}`);
+    const left = this.leave(run, leaveOpts);
+    const s = this.sessions.get(x.session);
+    if (s.items >= cap) return { left, next: null, closed: this.closeSession(s.id, "cap") };
+    const m = this.eligible(x.role).find(filter);
+    if (!m) return { left, next: null, closed: this.closeSession(s.id, "queue empty") };
+    return { left, next: this.enter({ msg: m.id, role: x.role, session: s.id, leaseMin }) };
+  }
+
+  closeSession(id, reason) {
+    const s = this.sessions.get(id);
+    if (!s?.open) return null;
+    s.open = false;
+    this.log.add({ type: "session-close", session: id, role: s.role, items: s.items, reason, minutes: this.clock.now() - s.started });
+    return s;
+  }
+
+  /** The harness reports usage per agent process (session), not per item. Recorded once per session. */
+  recordSessionUsage(session, tokens, source = "harness") {
+    const s = this.sessions.get(session);
+    hard(s, `no session ${session}`);
+    hard(!this.log.events.some((e) => e.type === "usage" && e.session === session), `usage for ${session} already recorded`);
+    this.log.add({ type: "usage", session, role: s.role, tokens, items: s.items, source });
   }
 
   heartbeat(run, { leaseMin = 30 } = {}) {
@@ -501,17 +582,47 @@ export class Rooms {
 
 // ------------------------------------------------------------------ rituals: trigger → open → rounds → close
 
+// Company time is counted in cycles, not dates. A ritual says which clocks it runs on:
+//   progress  every: { shipped: n, tokens: n }      enough has happened to be worth deciding on
+//   event     or: ["incident", "refuse", …]           something happened that cannot wait
+//             stuckMin: n                             open work has waited longer than this
+//   fallback  fallbackMin: n                          the calendar backstop: silence is a signal too
+//   human     needs: "founder-slot" | "none"          whether closing waits for a person's slot
+// minEvidence: a token-only trigger does not fire with fewer shipped outcomes than this.
 export class Rituals {
-  constructor({ log, clock, mailbox, org }) { Object.assign(this, { log, clock, mailbox, org }); this.defs = new Map(); this.held = new Map(); this.open_ = new Map(); this.n = 0; }
-  register({ id, everyMin, chair, invite }) { this.defs.set(id, { id, everyMin, chair, invite }); }
-  due() { return [...this.defs.values()].filter((d) => this.clock.now() - (this.held.get(d.id) ?? 0) >= d.everyMin).map((d) => d.id); }
+  constructor({ log, clock, mailbox, org }) { Object.assign(this, { log, clock, mailbox, org }); this.defs = new Map(); this.held = new Map(); this.open_ = new Map(); this.n = 0; this.cycles = new Map(); }
+  register({ id, chair, invite, everyMin = null, every = {}, or = [], stuckMin = null, fallbackMin = null, minEvidence = 0, needs = "none" }) {
+    this.defs.set(id, { id, chair, invite, everyMin, every, or, stuckMin, fallbackMin, minEvidence, needs, registered: this.clock.now() });
+  }
+  reasons(id) {
+    const d = this.defs.get(id);
+    // Events count from the last holding (never held: from the start); calendar time from the last holding or registration.
+    const since = this.held.get(id) ?? -Infinity;
+    const clockSince = this.held.get(id) ?? d.registered;
+    const ev = this.log.events.filter((e) => (e.t ?? -Infinity) > since || (since === -Infinity));
+    const shipped = ev.filter((e) => e.type === "shipped").length;
+    const tokens = ev.filter((e) => e.type === "usage").reduce((x, e) => x + e.tokens, 0);
+    const out = [];
+    if (d.everyMin != null && this.clock.now() - clockSince >= d.everyMin) out.push(`calendar ${d.everyMin} min`);
+    if (d.every.shipped && shipped >= d.every.shipped) out.push(`progress: ${shipped} shipped`);
+    if (d.every.tokens && tokens >= d.every.tokens && shipped >= d.minEvidence) out.push(`progress: ${tokens} tokens`);
+    for (const t of d.or) if (ev.some((e) => e.type === t)) out.push(`event: ${t}`);
+    if (d.stuckMin != null) {
+      const stuck = [...this.mailbox.msgs.values()].filter((m) => m.kind === "work" && m.state === "open" && this.clock.now() - m.ts > d.stuckMin);
+      if (stuck.length) out.push(`event: ${stuck.length} work items waiting > ${d.stuckMin} min`);
+    }
+    if (d.fallbackMin != null && this.clock.now() - clockSince >= d.fallbackMin) out.push(`fallback ${d.fallbackMin} min`);
+    return out;
+  }
+  due() { return [...this.defs.keys()].filter((id) => this.reasons(id).length); }
   open(id, { agenda }) {
     const d = this.defs.get(id);
     const rid = `RIT-${++this.n}`;
     const invitees = this.org.active().filter(d.invite).map((r) => r.id);
     for (const r of invitees) this.mailbox.send({ from: d.chair, to: r, kind: "invite", key: `${rid}:${r}`, ref: rid });
-    this.open_.set(rid, { rid, id, invitees, positions: [], actions: [], agenda });
-    this.log.add({ type: "ritual-open", ritual: id, rid, invitees, agenda });
+    const why = this.reasons(id);
+    this.open_.set(rid, { rid, id, invitees, positions: [], actions: [], agenda, why, opened: this.clock.now() });
+    this.log.add({ type: "ritual-open", ritual: id, rid, invitees, agenda, why });
     return rid;
   }
   position(rid, { by, position, objection = null, action = null }) {
@@ -527,10 +638,15 @@ export class Rituals {
     hard(by === this.defs.get(r.id).chair, `${by} does not chair ${r.id}`);
     const came = new Set(r.positions.map((p) => p.by));
     const absent = r.invitees.filter((x) => !came.has(x));
+    const since = this.held.get(r.id) ?? -Infinity;
+    const ev = this.log.events.filter((e) => since === -Infinity || e.t > since);
+    const cycle = (this.cycles.get(r.id) ?? 0) + 1;
+    this.cycles.set(r.id, cycle);
+    const metrics = { shipped: ev.filter((e) => e.type === "shipped").length, tokens: ev.filter((e) => e.type === "usage").reduce((x, e) => x + e.tokens, 0), decisions: ev.filter((e) => e.type === "decide").length, minutes: this.clock.now() - (this.held.get(r.id) ?? this.defs.get(r.id).registered), openedAfter: r.opened - (this.held.get(r.id) ?? this.defs.get(r.id).registered) };
     this.held.set(r.id, this.clock.now());
     this.open_.delete(rid);
-    this.log.add({ type: "ritual-close", ritual: r.id, rid, positions: r.positions.length, objections: r.positions.filter((p) => p.objection).length, actions: r.actions.length, absent });
-    return { ...r, absent };
+    this.log.add({ type: "ritual-close", ritual: r.id, rid, cycle, why: r.why, metrics, positions: r.positions.length, objections: r.positions.filter((p) => p.objection).length, actions: r.actions.length, absent });
+    return { ...r, absent, cycle, metrics };
   }
 }
 
@@ -539,4 +655,40 @@ export function makeCompany(config = DEFAULT_CONFIG, { start = 0 } = {}) {
   const log = new Log(clock);
   const mailbox = new Mailbox({ log, clock, config });
   return { clock, log, config, mailbox };
+}
+
+// ------------------------------------------------------------------ time: what "fast" means for a parallel company
+
+/** Per order and overall, from events only:
+ *  lead      wall time from order to shipped
+ *  work      sum of run durations on the order (time an agent was actually on it)
+ *  critical  the order's work plus the longest critical path among the orders it waits for (--after):
+ *            the lead time unlimited parallel agents could reach
+ *  flow efficiency = critical / lead: the rest is waiting (queues, approvals, crashes, dispatch)
+ *  cost      tokens per shipped item; attention = founder decisions and sittings per shipped item */
+export function flowMetrics(log, orders) {
+  const ev = log.events;
+  const work = {};
+  for (const e of ev) if (e.type === "leave" && e.order) work[e.order] = (work[e.order] ?? 0) + (e.minutes ?? 0);
+  const memo = {};
+  const crit = (id) => memo[id] ??= (work[id] ?? 0) + Math.max(0, ...((orders.get(id)?.after ?? []).map(crit)));
+  const per = [];
+  for (const e of ev.filter((x) => x.type === "shipped")) {
+    const o = orders.get(e.order);
+    per.push({ order: e.order, priority: e.priority ?? "next", lead: e.lead, work: work[e.order] ?? 0, critical: crit(e.order), flowEfficiency: e.lead ? crit(e.order) / e.lead : 1, loops: e.loops, after: o?.after ?? [] });
+  }
+  const shipped = per.length || 1;
+  const first = Math.min(...ev.filter((x) => x.type === "order").map((x) => x.t));
+  const last = Math.max(...ev.filter((x) => x.type === "shipped").map((x) => x.t));
+  return {
+    orders: per,
+    shipped: per.length,
+    makespan: per.length ? last - first : 0,
+    criticalPath: Math.max(0, ...per.map((p) => p.critical)),
+    flowEfficiency: per.length ? per.reduce((x, p) => x + p.flowEfficiency, 0) / per.length : 0,
+    tokensPerShipped: ev.filter((x) => x.type === "usage").reduce((x, e) => x + e.tokens, 0) / shipped,
+    founderDecisionsPerShipped: ev.filter((x) => x.type === "decide" && x.by === "founder").length / shipped,
+    loopsPerShipped: per.reduce((x, p) => x + p.loops, 0) / shipped,
+    sessions: ev.filter((x) => x.type === "session-close").map((x) => x.items),
+  };
 }

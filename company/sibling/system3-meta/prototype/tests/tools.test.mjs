@@ -187,3 +187,91 @@ test("--as without consult mode is refused (found in live run 1); abandon releas
   assert.equal(o.stage, "check");
   assert.ok(co.rooms.enter({ msg: m.id, role: "chk-1" }).run);
 });
+
+// ---------------------------------------------------------------- iteration 4: sessions, priority, clocks, time
+import { flowMetrics } from "../lib.mjs";
+
+test("priority: queue order is now > next > later; a manager may not order now; later is promoted at its due time", () => {
+  const co = build();
+  const mk = (priority, dueMin = null) => { const o = co.engine.orderNew({ flow: "item", by: "cos", to: "mgr-w", budget: 100, accept: "x", priority, dueMin }); co.engine.delegate(o.id, { by: "mgr-w", to: "b-w1", budget: 100 }); return o; };
+  const later = mk("later", 60), next = mk("next"), now = mk("now");
+  assert.deepEqual(co.mailbox.queue("b-w1", "work").map((m) => m.ref), [now.id, next.id, later.id]);
+  assert.throws(() => co.engine.orderNew({ flow: "item", by: "mgr-w", to: "mgr-g", budget: 100, accept: "x", priority: "now" }), /chain|priority/);
+  co.clock.t += 61;
+  assert.equal(co.mailbox.promote().length, 1);
+  assert.equal(co.mailbox.queue("b-w1", "work").find((m) => m.ref === later.id).priority, "next");
+});
+
+test("--after: an order waits for its dependency and is released when it ships", () => {
+  const co = build();
+  const a = orderToBuilder(co);
+  const b = co.engine.orderNew({ flow: "item", by: "cos", to: "mgr-w", budget: 100, accept: "x", after: [a.id] });
+  co.engine.delegate(b.id, { by: "mgr-w", to: "b-w2", budget: 100 });
+  assert.equal(co.mailbox.queue("b-w2", "work").length, 0);
+  for (const [stage, by] of [["build", "b-w1"], ["test1", "code"], ["check", "chk-1"], ["uat", "mgr-w"]]) co.engine.advance(a.id, { stage, by, evidence: "e" });
+  co.engine.decide(co.engine.queue("founder")[0].id, { by: "founder", decision: "approve", words: "Approve deploy", channel: "chat" });
+  co.engine.advance(a.id, { stage: "ship", by: "rel-1", evidence: "e" });
+  assert.equal(co.mailbox.queue("b-w2", "work").length, 1);
+  assert.equal(co.log.of("unblocked").length, 1);
+});
+
+test("room next: one session drains items up to its cap; each item keeps its own run, sign-off and memory line", () => {
+  const co = build();
+  const os = [1, 2, 3].map(() => orderToBuilder(co));
+  const first = co.rooms.enter({ msg: co.rooms.eligible("b-w1")[0].id, role: "b-w1" });
+  const r2 = co.rooms.next(first.run, { evidence: "a" }, { cap: 2 });
+  assert.equal(r2.next.session, first.session);
+  const r3 = co.rooms.next(r2.next.run, { evidence: "b" }, { cap: 2 });
+  assert.equal(r3.next, null);
+  assert.equal(r3.closed.reason ?? "cap", "cap");
+  assert.deepEqual(os.map((o) => o.stage), ["test1", "test1", "build"]);
+  assert.equal(co.rooms.memory.get("b-w1").length, 2);
+  co.rooms.recordSessionUsage(first.session, 70_000);
+  assert.throws(() => co.rooms.recordSessionUsage(first.session, 1), /already recorded/);
+});
+
+test("room next never hands a checker its own build; the lease hook gives the expiry time (wake, not sweep)", () => {
+  const co = build();
+  const wakes = [];
+  co.mailbox.onLease = (id, until) => wakes.push(until);
+  const o = orderToBuilder(co);
+  const { run } = co.rooms.enter({ msg: co.rooms.eligible("b-w1")[0].id, role: "b-w1", leaseMin: 30 });
+  assert.deepEqual(wakes, [30]);
+  assert.equal(co.mailbox.nextExpiry(), 30);
+  co.rooms.leave(run, { evidence: "a" });
+  co.engine.advance(o.id, { stage: "test1", by: "code" });
+  co.org.roles.get("b-w1").level = "checker"; // a builder who is also a checker must still not get its own check
+  assert.equal(co.rooms.eligible("b-w1").length, 0);
+});
+
+test("rituals on three clocks: progress, event and fallback; cycles carry their metrics", () => {
+  const co = build();
+  co.rituals.register({ id: "wbr", chair: "cos", invite: () => false, every: { shipped: 2, tokens: 1000 }, or: ["incident"], fallbackMin: 600, minEvidence: 1 });
+  co.log.add({ type: "usage", tokens: 5000 });
+  assert.deepEqual(co.rituals.reasons("wbr"), [], "tokens alone, under the evidence minimum, do not fire");
+  co.log.add({ type: "shipped", order: "x", lead: 1 });
+  assert.ok(co.rituals.reasons("wbr").some((r) => r.startsWith("progress: 5000 tokens")));
+  co.log.add({ type: "incident" });
+  assert.ok(co.rituals.reasons("wbr").includes("event: incident"));
+  const rid = co.rituals.open("wbr", { agenda: [] });
+  const r = co.rituals.close(rid, { by: "cos" });
+  assert.equal(r.cycle, 1);
+  assert.equal(r.metrics.shipped, 1);
+  co.clock.t += 601;
+  assert.deepEqual(co.rituals.reasons("wbr"), ["fallback 600 min"]);
+});
+
+test("flowMetrics: critical path follows --after; flow efficiency = critical / lead", () => {
+  const log = { events: [
+    { type: "order", order: "A", t: 0 }, { type: "order", order: "B", t: 0 },
+    { type: "leave", order: "A", minutes: 10 }, { type: "leave", order: "B", minutes: 5 },
+    { type: "shipped", order: "A", lead: 20, loops: 0, t: 20 }, { type: "shipped", order: "B", lead: 30, loops: 1, t: 30 },
+    { type: "usage", tokens: 100 },
+  ] };
+  const orders = new Map([["A", { after: [] }], ["B", { after: ["A"] }]]);
+  const m = flowMetrics(log, orders);
+  assert.equal(m.orders.find((o) => o.order === "B").critical, 15);
+  assert.equal(m.criticalPath, 15);
+  assert.equal(m.makespan, 30);
+  assert.equal(m.orders.find((o) => o.order === "A").flowEfficiency, 0.5);
+});

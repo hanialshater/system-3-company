@@ -42,12 +42,22 @@ export const ITERATION3 = {
   "3a code-first test1": { config: DEFAULT_CONFIG, params: { ...ITERATION2["2d all three"].params, mechShare: 0.7 } },
 };
 
+const I4 = { ...ITERATION2["2d all three"].params, tokenModel: "session", waveSizeRange: [4, 20], leaseWake: true, ritualTokensPerPosition: 55_000 };
+export const ITERATION4 = {
+  "4a one per run": { config: DEFAULT_CONFIG, params: { ...I4, drainCap: 1 } },
+  "4b drain 3": { config: DEFAULT_CONFIG, params: { ...I4, drainCap: 3 } },
+  "4c drain 5": { config: DEFAULT_CONFIG, params: { ...I4, drainCap: 5 } },
+  "4d drain 3+priority": { config: DEFAULT_CONFIG, params: { ...I4, drainCap: 3, priorityMix: { now: 0.1, later: 0.6, laterDueMin: 480 } } },
+  "4e drain 3+progress WBR": { config: DEFAULT_CONFIG, params: { ...I4, drainCap: 3, wbrClock: "progress" } },
+};
+
 if (import.meta.url === `file://${process.argv[1]}`) {
   const it = arg("iteration", "1");
-  const res = runArms(it === "3" ? ITERATION3 : it === "2" ? ITERATION2 : ARMS);
+  const res = runArms(it === "4" ? ITERATION4 : it === "3" ? ITERATION3 : it === "2" ? ITERATION2 : ARMS);
   if (process.argv.includes("--json")) console.log(JSON.stringify(res, null, 2));
   else {
     const cols = [["shipped", 0], ["tokensPerShipped", -3, "k tok/item"], ["leadP50h", 1], ["leadP90h", 1], ["founderPerShipped", 2], ["escapedPerShipped", 3], ["reworkPerShipped", 2], ["measureError", 2, "meas err"], ["dupRuns", 1], ["violations", 1], ["unrecovered", 1], ["recoverMeanMin", 0, "recover min"], ["adds", null]];
+    if (process.argv.includes("--i4")) cols.splice(0, cols.length, ["shipped", 0], ["tokensPerShipped", -3, "k tok/item"], ["leadP50h", 1], ["leadP90h", 1], ["leadP50h_now", 1, "p50 now"], ["leadP50h_next", 1, "p50 next"], ["leadP50h_later", 1, "p50 later"], ["itemsPerSession", 2, "items/sess"], ["maxPromoteLateMin", 1, "promo late"], ["wbrs", 1], ["wbrPerDayBusy", 2, "wbr/d busy"], ["wbrPerDayQuiet", 2, "wbr/d quiet"], ["staffingRefused", 1, "staff refused"], ["escapedPerShipped", 3], ["dupRuns", 1], ["violations", 1], ["unrecovered", 1], ["recoverMeanMin", 0, "recover min"]);
     if (process.argv.includes("--waits")) cols.splice(0, cols.length, ["leadP50h", 1], ...["build", "check", "uat", "approval", "ship"].map((k) => [`wait_${k}_h`, 2, `wait ${k}`]));
     console.log(["arm".padEnd(26), ...cols.map(([k, , h]) => (h ?? k).slice(0, 11).padStart(12))].join(""));
     for (const [n, m] of Object.entries(res)) console.log([n.padEnd(26), ...cols.map(([k, d]) => (d === null ? (m[k] ?? []).join(",") || "-" : d < 0 ? (m[k] / 1000).toFixed(0) : m[k].toFixed(d)).padStart(12))].join(""));

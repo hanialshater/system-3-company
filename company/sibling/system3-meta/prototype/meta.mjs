@@ -3,10 +3,14 @@
 // Every command loads the state, acts through lib.mjs, saves, and prints JSON. Time is real minutes.
 //
 //   node meta.mjs init                                        a fresh live org and the `task` flow (refuses if state exists)
-//   node meta.mjs order new --to=<manager> --title=… --task=<T> --accept=… [--budget=200000]
+//   node meta.mjs order new --to=<manager> --title=… --task=<T> --accept=… [--budget=200000] [--priority=now|next|later --due=<min>] [--after=O-1,O-2]
 //   node meta.mjs order delegate <O> --by=<manager> --to=<builder> [--budget=150000]
 //   node meta.mjs queue <role|pool:level>                     open work messages
 //   node meta.mjs room enter --msg=<M> --role=<role> [--lease=30] [--as=<role> --mode=consult]
+//   node meta.mjs room next --run=<R> --cap=<n> --evidence=… [leave flags]   leave, then take the next item in the same session
+//   node meta.mjs room session-usage --session=<S> --tokens=<n>   the harness count for a whole agent process (supervisor)
+//   node meta.mjs room wake-plan                              seconds until the next lease expiry: when to run recover
+//   node meta.mjs flow metrics                                lead, work, critical path (--after), flow efficiency, cost
 //   node meta.mjs room heartbeat --run=<R>
 //   node meta.mjs room leave --run=<R> [--verdict=pass|revise] --evidence=<path> [--findings=…] [--learned=…] [--mistake=…]
 //   node meta.mjs room abandon --run=<R> --by=<role> --reason=…   supervisor: end a bad run, sign nothing
@@ -22,11 +26,11 @@ import fs from "node:fs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
-import { Log, Mailbox, Org, Engine, Rooms, DEFAULT_CONFIG, Refused } from "./lib.mjs";
+import { Log, Mailbox, Org, Engine, Rooms, DEFAULT_CONFIG, Refused, flowMetrics } from "./lib.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const LIVE = process.env.META_LIVE_DIR || path.join(HERE, "live");
-const STATE = path.join(LIVE, "state.json");
+const STATE = path.join(LIVE, process.env.META_STATE || "state.json");
 const LOCK = path.join(LIVE, "state.lock");
 
 export const LIVE_ROOMS = [{ id: "lobby", floor: 1 }, { id: "ceo-office", floor: 1 }, { id: "sandbox", floor: 2 }, { id: "quality", floor: 3 }, { id: "launch", floor: 3 }];
@@ -49,7 +53,7 @@ export const TASK_FLOW = {
   ],
 };
 
-const clock = { now: () => Math.floor(Date.now() / 60000) };
+const clock = { now: () => Date.now() / 60000 }; // minutes, to the millisecond (live run 1 used whole minutes: too coarse for agents)
 
 function make() {
   const config = DEFAULT_CONFIG;
@@ -63,7 +67,7 @@ function make() {
 
 const rep = (k, v) => (v instanceof Map ? { __map: [...v] } : v instanceof Set ? { __set: [...v] } : v);
 const rev = (k, v) => (v && v.__map ? new Map(v.__map) : v && v.__set ? new Set(v.__set) : v);
-const FIELDS = { log: ["events"], mailbox: ["msgs", "keys", "n"], org: ["roles", "changes", "n"], engine: ["flows", "active", "orders", "approvals", "n", "limits"], rooms: ["runs", "n", "memory"] };
+const FIELDS = { log: ["events"], mailbox: ["msgs", "keys", "n"], org: ["roles", "changes", "n"], engine: ["flows", "active", "orders", "approvals", "n", "limits"], rooms: ["runs", "n", "memory", "sessions", "nS"] };
 
 function save(co) {
   const data = Object.fromEntries(Object.entries(FIELDS).map(([o, fs_]) => [o, Object.fromEntries(fs_.map((f) => [f, co[o][f]]))]));
@@ -74,7 +78,8 @@ function save(co) {
 function load() {
   const co = make();
   const data = JSON.parse(fs.readFileSync(STATE, "utf8"), rev);
-  for (const [o, fs_] of Object.entries(FIELDS)) for (const f of fs_) co[o][f] = data[o][f];
+  for (const [o, fs_] of Object.entries(FIELDS)) for (const f of fs_) if (data[o][f] !== undefined) co[o][f] = data[o][f];
+  co.mailbox.promote(); // due `later` items become `next` on every command: time is checked when anything happens
   return co;
 }
 
@@ -106,6 +111,13 @@ function runTests(task) {
   if (!files.length) return { pass: false, output: `no *.test.mjs in live/work/${task}` };
   try { return { pass: true, output: execFileSync(process.execPath, ["--test", ...files], { cwd: dir, encoding: "utf8", stdio: "pipe", timeout: 60_000 }).split("\n").filter((l) => /^# (tests|pass|fail)/.test(l)).join(" ") }; }
   catch (e) { return { pass: false, output: String(e.stdout || e.message).split("\n").filter((l) => /^not ok|^# (tests|pass|fail)|error:/.test(l)).slice(0, 12).join("\n") }; }
+}
+
+function pack(co, run, ctx, session, item) {
+  const o = co.engine.orders.get(ctx.order);
+  return { run, session, item, lease_min: Number(opt.lease ?? 30), order: o.id, task: o.task, title: o.title, priority: o.priority, stage: ctx.stage, accept: o.accept, workdir: `live/work/${o.task}/`, findings: o.findings ?? null, memory: ctx.memory, history: o.history,
+    leave_with: `node meta.mjs room leave --run=${run} --evidence=<path>${ctx.stage === "check" ? " --verdict=pass|revise --findings='…'" : ""} --learned='…'`,
+    next_with: `node meta.mjs room next --run=${run} --cap=<cap from your brief> --evidence=<path>${ctx.stage === "check" ? " --verdict=pass|revise --findings='…'" : ""} --learned='…'` };
 }
 
 function main() {
@@ -143,22 +155,31 @@ function dispatch(co, cmd, sub, arg) {
   const { engine, rooms, mailbox, org, log } = co;
   if (cmd === "order" && sub === "new") {
     need("to", "title", "task", "accept");
-    const o = engine.orderNew({ flow: "task", by: "cos", to: opt.to, budget: Number(opt.budget ?? 200_000), accept: opt.accept, title: opt.title });
+    const o = engine.orderNew({ flow: "task", by: opt.by ?? "cos", to: opt.to, budget: Number(opt.budget ?? 200_000), accept: opt.accept, title: opt.title, priority: opt.priority ?? "next", dueMin: opt.due ? Number(opt.due) : null, after: opt.after ? String(opt.after).split(",") : [] });
     o.task = opt.task;
-    return { order: o.id, stage: o.stage };
+    return { order: o.id, stage: o.stage, priority: o.priority, after: o.after, blocked: o.blocked };
   }
   if (cmd === "order" && sub === "delegate") {
     need("by", "to");
     const o = engine.delegate(arg, { by: opt.by, to: opt.to, budget: Number(opt.budget ?? 150_000) });
     return { order: o.id, builder: o.builder, messages: mailbox.thread(o.id).map((m) => m.id) };
   }
-  if (cmd === "queue") return mailbox.queue(sub, "work").map((m) => ({ msg: m.id, order: m.ref, stage: m.body.stage, loop: m.body.loops, title: engine.orders.get(m.ref).title }));
+  if (cmd === "queue") return mailbox.queue(sub, "work").map((m) => ({ msg: m.id, order: m.ref, stage: m.body.stage, loop: m.body.loops, priority: m.priority, title: engine.orders.get(m.ref).title }));
   if (cmd === "room" && sub === "enter") {
     need("msg", "role");
-    const { run, ctx } = rooms.enter({ msg: opt.msg, role: opt.role, as: opt.as ?? null, mode: opt.mode ?? "work", leaseMin: Number(opt.lease ?? 30) });
-    const o = engine.orders.get(ctx.order);
-    return { run, lease_min: Number(opt.lease ?? 30), order: o.id, task: o.task, title: o.title, stage: ctx.stage, accept: o.accept, workdir: `live/work/${o.task}/`, findings: o.findings ?? null, memory: ctx.memory, history: o.history, leave_with: `node meta.mjs room leave --run=${run} --evidence=<path>${ctx.stage === "check" ? " --verdict=pass|revise --findings='…'" : ""} --learned='…'` };
+    const { run, ctx, session, item } = rooms.enter({ msg: opt.msg, role: opt.role, as: opt.as ?? null, mode: opt.mode ?? "work", leaseMin: Number(opt.lease ?? 30) });
+    return pack(co, run, ctx, session, item);
   }
+  if (cmd === "room" && sub === "next") {
+    need("run", "evidence");
+    const r = rooms.next(opt.run, { verdict: opt.verdict ?? "pass", evidence: opt.evidence, findings: opt.findings ?? null, learned: opt.learned ?? null, mistake: opt.mistake ?? null }, { cap: Number(opt.cap ?? 3), leaseMin: Number(opt.lease ?? 30) });
+    const left = r.left ? { order: r.left.id, next_stage: r.left.stage, loops: r.left.loops } : { stale: true };
+    if (!r.next) return { left, session_closed: r.closed?.id ?? true, reason: r.closed ? (r.closed.items >= Number(opt.cap ?? 3) ? "cap reached" : "queue empty") : "closed", note: "your session is over: stop now" };
+    return { left, ...pack(co, r.next.run, r.next.ctx, r.next.session, r.next.item) };
+  }
+  if (cmd === "room" && sub === "session-usage") { need("session", "tokens"); rooms.recordSessionUsage(opt.session, Number(opt.tokens)); return { ok: true }; }
+  if (cmd === "room" && sub === "wake-plan") { const t = mailbox.nextExpiry(); return { next_expiry_in_s: t == null ? null : Math.max(0, Math.round((t - clock.now()) * 60)) }; }
+  if (cmd === "flow" && sub === "metrics") { const m = flowMetrics(log, engine.orders); const r1 = (x) => Math.round(x * 100) / 100; return { ...m, orders: m.orders.map((o) => ({ ...o, lead_min: r1(o.lead), work_min: r1(o.work), critical_min: r1(o.critical), flowEfficiency: r1(o.flowEfficiency) })) }; }
   if (cmd === "room" && sub === "heartbeat") { need("run"); rooms.heartbeat(opt.run, { leaseMin: 30 }); return { ok: true }; }
   if (cmd === "room" && sub === "leave") {
     need("run", "evidence");
