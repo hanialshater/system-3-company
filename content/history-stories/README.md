@@ -29,3 +29,9 @@ All 24 lessons are drafts. Source-opening by the implementer is not independent 
 ## Verification commands
 
 `npm run test:history` checks the actual built/planned boundary, evidence addressing and geographic invariants. `STORY_BASE_URL=http://127.0.0.1:<port> node tests/history/story-flow.mjs` checks all 24 complete flows on phone and desktop, including repeat/skip/reset gating, the Suez closure, Panama elevation and reveal fit. The unchanged protected contract is also run with `QA_ONLY` set to collection.json slugs. Screenshots and browser results are generated locally in artifacts, not fabricated editorial reviews.
+
+## Illustrated symbols (2026-10-21)
+
+`symbol-art.json` is the original vector artwork shared by the React renderer and standalone assets in `public/history-symbols/`. `symbols.json` chooses the illustration for each of four checkpoints and the atlas cover. Seven drawings cover ships, a Normandy landing craft, horse, camp, fire, crossed swords and castle. These are illustrative motifs, not historical reconstructions or quantitative encodings. No map dot, route, event date or claim of a precise building/campsite is changed. Camps use unlocated corner vignettes; other motifs fit around the active marker's labels. Artwork stays hidden before prediction. Screen readers use the dated map description; these redundant illustrations are aria-hidden. Existing reduced-motion rules disable the brief opacity entrance.
+
+Rebuild standalone assets with `node tools/generate-history-symbols.mjs` after editing the shared vector source.

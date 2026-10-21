@@ -25,3 +25,6 @@
 .story[data-story-phase=reveal] .timeline, .story[data-story-phase=reveal] .progress { display:none; }
 .story[data-story-phase=reveal] .tools > label, .story[data-story-phase=reveal] .tools > button:last-child { display:none; }
 .story[data-story-phase=reveal] .tools { justify-content:flex-end; }
+
+.map [data-story-symbol] { animation:symbol-appear .22s ease-out; }
+@keyframes symbol-appear { from { opacity:0; } to { opacity:1; } }

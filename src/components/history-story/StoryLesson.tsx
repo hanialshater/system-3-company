@@ -3,6 +3,7 @@
 import { useState, type ReactNode, type ComponentProps } from "react";
 import { type StageContext } from "@/kit/Lesson";
 import { Control, Slider } from "@/kit/controls";
+import { StorySymbol, storySymbol, symbolPosition } from "./StorySymbol";
 import type { Story, StoryMap } from "./types";
 import styles from "./story.module.css";
 
@@ -18,6 +19,8 @@ export function StoryStage({ story, map, ctx, checkpoint }: { story: Story; map:
   // The reveal's explanation always has the final, cumulative evidence beside it.
   const index = ctx.phase === "reveal" ? story.frames.length - 1 : selected;
   const frame = story.frames[index];
+  const symbol = storySymbol(story.slug, index);
+  const symbolBox = symbol ? symbolPosition(map, story.nodes, frame.active, symbol) : null;
   const prior = story.frames[Math.max(0, index - 1)];
   const closed = story.closedFrames?.includes(index) ?? false;
   const past = new Set(story.frames.slice(0, index + 1).flatMap(f => f.active));
@@ -59,11 +62,12 @@ export function StoryStage({ story, map, ctx, checkpoint }: { story: Story; map:
               fill="#fff1d6" stroke="#142b36" strokeWidth="3.5" paintOrder="stroke" fontSize="13" fontWeight="650">{node.name}</text>}
           </g>;
         })}
+        {symbol && symbolBox && <StorySymbol key={`${symbol}-${index}`} kind={symbol} x={symbolBox.x} y={symbolBox.y} />}
         {closed && <g><rect x="132" y="78" width="96" height="30" rx="6" fill="#142b36" /><text x="180" y="98" textAnchor="middle" fontSize="14" fill="#ffc5ab">Closed</text></g>}
         {story.heights && <g><rect x="235" y="144" width="112" height="30" rx="6" fill="#142b36" /><text x="291" y="164" textAnchor="middle" fontSize="13" fill="#ffd18b">{story.heights[index]} m elevation</text></g>}
       </g>}
     </svg>
-    <div className={styles.legend}>Schematic · modern coastlines{compare ? " · white: earlier" : ""}</div>
+    <div className={styles.legend}>Schematic · modern coastlines{symbol && !ctx.locked ? " · illustrations" : ""}{compare ? " · white: earlier" : ""}</div>
     <div className={styles.timeline} role="group" aria-label="Story checkpoints">
       {story.frames.map((f, i) => <span key={i} className={styles.checkpointWrap}>{checkpoint({
         disabled: ctx.locked || ctx.phase === "reveal",
