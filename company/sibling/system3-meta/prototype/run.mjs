@@ -51,9 +51,18 @@ export const ITERATION4 = {
   "4e drain 3+progress WBR": { config: DEFAULT_CONFIG, params: { ...I4, drainCap: 3, wbrClock: "progress" } },
 };
 
+const I5 = { ...I4, drainCap: 3 };
+const V2 = { revisionPriority: "later", revisionDueMin: 30, batchLater: 2 };
+export const ITERATION5 = {
+  "5a busy v1": { config: DEFAULT_CONFIG, params: { ...I5 } },
+  "5b busy v2": { config: DEFAULT_CONFIG, params: { ...I5, policy: V2 } },
+  "5c quiet v1": { config: DEFAULT_CONFIG, params: { ...I5, waveSizeRange: [2, 6] } },
+  "5d quiet v2": { config: DEFAULT_CONFIG, params: { ...I5, waveSizeRange: [2, 6], policy: V2 } },
+};
+
 if (import.meta.url === `file://${process.argv[1]}`) {
   const it = arg("iteration", "1");
-  const res = runArms(it === "4" ? ITERATION4 : it === "3" ? ITERATION3 : it === "2" ? ITERATION2 : ARMS);
+  const res = runArms(it === "5" ? ITERATION5 : it === "4" ? ITERATION4 : it === "3" ? ITERATION3 : it === "2" ? ITERATION2 : ARMS);
   if (process.argv.includes("--json")) console.log(JSON.stringify(res, null, 2));
   else {
     const cols = [["shipped", 0], ["tokensPerShipped", -3, "k tok/item"], ["leadP50h", 1], ["leadP90h", 1], ["founderPerShipped", 2], ["escapedPerShipped", 3], ["reworkPerShipped", 2], ["measureError", 2, "meas err"], ["dupRuns", 1], ["violations", 1], ["unrecovered", 1], ["recoverMeanMin", 0, "recover min"], ["adds", null]];

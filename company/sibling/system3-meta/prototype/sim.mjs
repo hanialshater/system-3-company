@@ -8,6 +8,7 @@
 // The gap between them is what EXP-009 measures in the real company.
 import { rng, Refused } from "./lib.mjs";
 import { build } from "./toy.mjs";
+import { proposePolicy, activatePolicy } from "./policy.mjs";
 
 // Every assumption, in one place. [m] = from the real company's metrics (tools/metrics.mjs, 2026-10-20);
 // [a] = assumption, to be replaced by pilot data.
@@ -36,6 +37,7 @@ export const PARAMS = {
   leaseWake: false, // recover at lease expiry (a wake) instead of a sweep every 5 min
   wbrClock: "calendar", // "progress": every 20 shipped, or work waiting > 60 min, with a 24 h fallback
   ritualTokensPerPosition: 0, // iteration 4: each attendee's position is an agent session (live run 1: about 55k)
+  policy: null, // iteration 5: lane policy knobs, proposed and activated by each lane's manager before the first wave
 };
 
 const DAY = 24 * 60;
@@ -45,6 +47,12 @@ export function simulate({ config, seed = 1, params = {} }) {
   const R = rng(seed);
   const co = build(config);
   const { clock, log, engine, rooms, mailbox, org, rituals } = co;
+  if (P.policy) for (const lane of ["w", "g"]) {
+    const mgr = org.lanePOC(lane).id;
+    const v = proposePolicy(engine, { lane, by: mgr, knobs: P.policy, reason: "iteration 5 arm", prediction: "ITERATIONS.md I5" });
+    activatePolicy(engine, { lane, version: v.version, by: mgr });
+  }
+  const batchFor = (r) => (P.policy?.batchLater ?? P.batchLaterN);
   const U = ([a, b]) => a + (b - a) * R();
   const poisson = (l) => { let k = 0, p = Math.exp(-l), s = p, u = R(); while (u > s) { k++; p *= l / k; s += p; } return k; };
   const expo = (mean) => -mean * Math.log(1 - R());
@@ -92,7 +100,7 @@ export function simulate({ config, seed = 1, params = {} }) {
       .filter((m) => !(m.body.stage === "check" && engine.orders.get(m.ref).builder === r.id))
       .sort((a, b) => (RANK[a.priority] - RANK[b.priority]) || a.ts - b.ts);
     const later = ms.filter((m) => m.priority === "later").length;
-    return ms.find((m) => m.priority !== "later" || draining || later >= P.batchLaterN);
+    return ms.find((m) => m.priority !== "later" || draining || later >= batchFor(r));
   }
   function pump() {
     mailbox.promote();
@@ -210,6 +218,7 @@ export function simulate({ config, seed = 1, params = {} }) {
       return;
     }
     if (o.stage === "release") requestRelease(o);
+    if (o.stage === "build" && o.priority === "later" && o.due != null) at(o.due + 0.01, pump); // a later revision is due: wake then
     if (o.stage === "done") truth.escaped += it.defects.filter((d) => !d.found).length;
     watchMail();
     pump();

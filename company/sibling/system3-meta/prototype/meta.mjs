@@ -22,11 +22,16 @@
 //   node meta.mjs mail dup <O>                                send the current stage's notification again (fault F1)
 //   node meta.mjs usage add --role=<role> --tokens=<n> --label=…   harness usage of a session outside any room (the supervisor)
 //   node meta.mjs usage correct --from-session=<S> --to-session=<S> --tokens=<n> --reason=…   append a correction (never edit)
+//   node meta.mjs policy knobs | policy show --lane=<l>       the knobs a lane policy may set; the lane's versions
+//   node meta.mjs policy propose --lane=<l> --by=<manager> --knobs='{…}' --reason=… --prediction=…
+//   node meta.mjs policy activate --lane=<l> --version=<n> --by=<manager>   new orders pin it; orders in flight keep theirs
+//   node meta.mjs manager report --lane=<l>   ·   manager cycle --lane=<l> --by=<manager> --belief=… --decision=keep|change [--version=<n>]
 //   node meta.mjs events [--type=<t>]   ·   node meta.mjs memory <role>   ·   node meta.mjs org activity <role>
 // Exit: 0 ok, 1 refused, 2 usage or state error.
 import fs from "node:fs";
 import path from "node:path";
 import { Refused, flowMetrics } from "./lib.mjs";
+import { proposePolicy, activatePolicy, managerReport, recordCycle, KNOBS } from "./policy.mjs";
 import { LIVE, STATE, LIVE_ROLES, TASK_FLOW, clock, make, rep, save, load, withLock, runTests } from "./state.mjs";
 export { LIVE_ROOMS, LIVE_ROLES, TASK_FLOW } from "./state.mjs";
 
@@ -144,6 +149,20 @@ function dispatch(co, cmd, sub, arg) {
     log.add({ type: "usage", session: from.id, role: from.role, tokens: -n, correction: true, reason: opt.reason });
     log.add({ type: "usage", session: to.id, role: to.role, tokens: n, items: to.items, source: "harness", correction: true, reason: opt.reason });
     return { ok: true, moved: n, from: from.id, to: to.id };
+  }
+  // ---- the manager's code: lane policy, and the cycle that changes it
+  if (cmd === "policy" && sub === "knobs") return KNOBS;
+  if (cmd === "policy" && sub === "show") { need("lane"); return engine.policies.get(opt.lane) ?? { versions: [], active: null }; }
+  if (cmd === "policy" && sub === "propose") {
+    need("lane", "by", "knobs", "reason", "prediction");
+    return proposePolicy(engine, { lane: opt.lane, by: opt.by, knobs: JSON.parse(opt.knobs), reason: opt.reason, prediction: opt.prediction });
+  }
+  if (cmd === "policy" && sub === "activate") { need("lane", "version", "by"); return activatePolicy(engine, { lane: opt.lane, version: Number(opt.version), by: opt.by }); }
+  if (cmd === "manager" && sub === "report") { need("lane"); return managerReport(engine, opt.lane, { since: opt.since ? Number(opt.since) : -Infinity }); }
+  if (cmd === "manager" && sub === "cycle") {
+    need("lane", "by", "belief", "decision");
+    const report = managerReport(engine, opt.lane);
+    return recordCycle(engine, { lane: opt.lane, by: opt.by, report, belief: opt.belief, decision: opt.decision, version: opt.version ? Number(opt.version) : null });
   }
   if (cmd === "events") return log.events.filter((e) => !opt.type || e.type === opt.type);
   if (cmd === "memory") return rooms.memory.get(sub) ?? [];

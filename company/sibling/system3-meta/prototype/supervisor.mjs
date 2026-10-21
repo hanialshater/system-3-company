@@ -67,7 +67,7 @@ export function tick(co, { acceptance = null } = {}) {
 
 /** Which agent sessions to start now. Pure: reads the state, changes nothing. */
 export const LAUNCH_GRACE_MIN = 5;
-export function plan(co, { batchLater = 3, cap = 4 } = {}) {
+export function plan(co, { batchLater: batchDefault = 3, cap: capDefault = 4 } = {}) {
   const { org, rooms, mailbox, log } = co;
   const running = new Set([...rooms.runs.values()].filter((x) => x.state === "running").map((x) => x.role));
   // A session the orchestrator has started but that has not entered a room yet is starting, not missing (live run 3:
@@ -80,6 +80,9 @@ export function plan(co, { batchLater = 3, cap = 4 } = {}) {
   const out = [];
   const consider = (role, msgs) => {
     if (!msgs.length) return;
+    // the lane's policy, when it sets them, overrides the command-line defaults
+    const k = co.engine.policies.get(org.role(role)?.lane)?.active ? co.engine.policies.get(org.role(role).lane).versions[co.engine.policies.get(org.role(role).lane).active - 1].knobs : {};
+    const batchLater = k.batchLater ?? batchDefault, cap = k.drainCap ?? capDefault;
     const now = msgs.filter((m) => m.priority === "now");
     for (const m of now) out.push({ role, why: "now: a fresh session at once", msgs: [m.id], cap: 1 });
     if (running.has(role)) return; // its running session drains next and later items itself

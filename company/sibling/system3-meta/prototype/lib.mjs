@@ -270,6 +270,13 @@ export class Engine {
     this.approvals = new Map();
     this.n = { O: 0, A: 0 };
     this.limits = { "chief-of-staff": 500_000, manager: 250_000 };
+    this.policies = new Map(); // lane → { versions, active }: the manager's knobs (policy.mjs validates them)
+  }
+
+  /** The policy an order runs under: the lane's active version when the order was made (pinned; never moves). */
+  policyOf(o) {
+    const b = this.policies.get(this.org.role(o.manager)?.lane);
+    return b && o.policyVersion ? b.versions[o.policyVersion - 1]?.knobs ?? {} : {};
   }
 
   // ---- definitions
@@ -306,8 +313,9 @@ export class Engine {
     for (const d of after) hard(this.orders.has(d), `--after ${d}: no such order`);
     const overLimit = budget > (this.limits[byRole.level] ?? Infinity);
     const o = { id: `O-${++this.n.O}`, flow: key, title, chain: [by, to], orderer: by, manager: to, builder: null, checker: null, budget, spent: 0, accept, words, stage: overLimit ? "budget" : "build", loops: 0, created: this.clock.now(), history: [], priority, due: dueMin != null ? this.clock.now() + dueMin : null, after, blocked: after.some((d) => this.orders.get(d).stage !== "done") };
+    o.policyVersion = this.policies.get(toRole.lane)?.active ?? null;
     this.orders.set(o.id, o);
-    this.log.add({ type: "order", order: o.id, by, to, budget, flow: key, priority, after });
+    this.log.add({ type: "order", order: o.id, by, to, budget, flow: key, priority, after, policy: o.policyVersion });
     if (overLimit) this.request({ order: o.id, stage: "budget", approver: "founder", kind: "budget", dueMin: 24 * 60, key: `${o.id}:budget` });
     return o;
   }
@@ -364,7 +372,13 @@ export class Engine {
     o.history.push({ stage, by, verdict, t: this.clock.now() });
     this.log.add({ type: "advance", order: id, stage, by, verdict });
     if (verdict === "pass") o.stage = this.nextStage(o);
-    else { o.stage = "build"; o.loops++; o.findings = findings; this.log.add({ type: "reopen", order: id, from: stage, loops: o.loops }); }
+    else {
+      o.stage = "build"; o.loops++; o.findings = findings;
+      // The lane's policy decides how a revision is queued; an urgent (`now`) order stays urgent.
+      const pol = this.policyOf(o);
+      if (pol.revisionPriority && o.priority !== "now") { o.priority = pol.revisionPriority; o.due = pol.revisionPriority === "later" ? this.clock.now() + pol.revisionDueMin : null; }
+      this.log.add({ type: "reopen", order: id, from: stage, loops: o.loops, priority: o.priority });
+    }
     if (o.stage === "done") {
       this.log.add({ type: "shipped", order: id, lead: this.clock.now() - o.created, loops: o.loops, priority: o.priority ?? "next" });
       for (const d of this.orders.values()) {
