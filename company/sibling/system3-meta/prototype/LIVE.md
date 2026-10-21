@@ -71,7 +71,7 @@ owner: chief-of-staff, for System 3 Meta · date: 2026-10-21 · founder: "Decide
 
 **Calibration for the simulator (replaces [a] values):**
 - tokens per run ≈ 50k fixed + task size;
-- runs per item at loop 0 = 4 agent runs (build, check) plus supervisor steps;
+- agent runs per item = 2 at loop 0 (build, check), plus 2 per revise loop; test1, UAT and ship are supervisor or code steps;
 - crash recovery = lease plus the sweep interval.
 
 **Next:**
