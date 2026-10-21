@@ -1,3 +1,16 @@
+## 2026-10-21 · chief-of-staff (for System 3 Meta) · Meta live run 3: the supervisor as code
+
+Founder: "Yes go ahead" (the supervisor as a script). Built `supervisor.mjs` in company/sibling/system3-meta/prototype, with `state.mjs` shared with meta.mjs; tests 25/25. It does:
+- test1, UAT from hidden tests, ship (module only), lease recovery and promotion;
+- a launch plan;
+- `watch`, which wakes on a state-file change or a timer and exits when an agent session is needed.
+
+Live run 3: 4 orders, 7 agent sessions, all shipped. The supervisor cost 0 tokens, ran code steps in a median 0.5 s, and lifted flow efficiency from 12% to 44% (lead 2-8 min). S2 was wrong: 102.6k per order, because each revision needed its own builder and checker session (~64k each, nothing to drain). Class-level findings closed each revision in one loop. Found and fixed:
+- the plan re-requested a launched-but-not-entered session (launch reservations added);
+- runTests passed failing tests under a test runner (NODE_TEST_CONTEXT).
+
+Next: cut revision cost (hold revisions as `later` so they share sessions; builder self-check against the class); the remaining manual link is starting agents (only the orchestrating session holds the Agent tool). Nothing in the current company changed.
+
 ## 2026-10-21 · chief-of-staff (for System 3 Meta) · Meta iteration 4 and live run 2: batching, priority, time
 
 Founder asked about batches vs a mailbox queue, priority flags ("force now or for later"), and time redefined for a fast, parallel company.

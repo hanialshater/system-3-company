@@ -1714,6 +1714,188 @@
     "mode": "work",
     "session": "S-9",
     "item": 1
+   },
+   {
+    "seq": 171,
+    "t": 29876396.029916666,
+    "type": "advance",
+    "order": "O-4",
+    "stage": "check",
+    "by": "toy-checker",
+    "verdict": "pass"
+   },
+   {
+    "seq": 172,
+    "t": 29876396.029916666,
+    "type": "send",
+    "msg": "M-33",
+    "from": "mgr-live",
+    "to": "mgr-live",
+    "kind": "work",
+    "key": "O-4:uat:1",
+    "ref": "O-4",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 173,
+    "t": 29876396.029916666,
+    "type": "done",
+    "msg": "M-32",
+    "run": "R-15"
+   },
+   {
+    "seq": 174,
+    "t": 29876396.029916666,
+    "type": "send",
+    "msg": "M-34",
+    "from": "pool:checker",
+    "to": "mgr-live",
+    "kind": "report",
+    "key": null,
+    "ref": "O-4",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 175,
+    "t": 29876396.029916666,
+    "type": "leave",
+    "run": "R-15",
+    "role": "toy-checker",
+    "order": "O-4",
+    "stage": "check",
+    "verdict": "pass",
+    "minutes": 0.6744333319365978
+   },
+   {
+    "seq": 176,
+    "t": 29876396.03735,
+    "type": "advance",
+    "order": "O-4",
+    "stage": "uat",
+    "by": "mgr-live",
+    "verdict": "pass"
+   },
+   {
+    "seq": 177,
+    "t": 29876396.03735,
+    "type": "send",
+    "msg": "M-35",
+    "from": "mgr-live",
+    "to": "pool:release",
+    "kind": "work",
+    "key": "O-4:ship:1",
+    "ref": "O-4",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 178,
+    "t": 29876396.037366666,
+    "type": "session-open",
+    "session": "S-10",
+    "role": "toy-release"
+   },
+   {
+    "seq": 179,
+    "t": 29876396.037366666,
+    "type": "claim",
+    "msg": "M-35",
+    "run": "R-16"
+   },
+   {
+    "seq": 180,
+    "t": 29876396.037366666,
+    "type": "enter",
+    "run": "R-16",
+    "msg": "M-35",
+    "role": "toy-release",
+    "by": "toy-release",
+    "room": "launch",
+    "order": "O-4",
+    "stage": "ship",
+    "mode": "work",
+    "session": "S-10",
+    "item": 1
+   },
+   {
+    "seq": 181,
+    "t": 29876396.0374,
+    "type": "advance",
+    "order": "O-4",
+    "stage": "ship",
+    "by": "toy-release",
+    "verdict": "pass"
+   },
+   {
+    "seq": 182,
+    "t": 29876396.0374,
+    "type": "shipped",
+    "order": "O-4",
+    "lead": 7.7231166660785675,
+    "loops": 1,
+    "priority": "next"
+   },
+   {
+    "seq": 183,
+    "t": 29876396.0374,
+    "type": "done",
+    "msg": "M-35",
+    "run": "R-16"
+   },
+   {
+    "seq": 184,
+    "t": 29876396.0374,
+    "type": "send",
+    "msg": "M-36",
+    "from": "pool:release",
+    "to": "mgr-live",
+    "kind": "report",
+    "key": null,
+    "ref": "O-4",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 185,
+    "t": 29876396.0374,
+    "type": "leave",
+    "run": "R-16",
+    "role": "toy-release",
+    "order": "O-4",
+    "stage": "ship",
+    "verdict": "pass",
+    "minutes": 0.00003333389759063721
+   },
+   {
+    "seq": 186,
+    "t": 29876396.0374,
+    "type": "session-close",
+    "session": "S-10",
+    "role": "toy-release",
+    "items": 1,
+    "reason": "ship done",
+    "minutes": 0.00003333389759063721
+   },
+   {
+    "seq": 187,
+    "t": 29876396.0374,
+    "type": "supervisor-tick",
+    "steps": [
+     "uat:O-4",
+     "ship:O-4"
+    ]
+   },
+   {
+    "seq": 188,
+    "t": 29876396.558116667,
+    "type": "usage",
+    "session": "S-9",
+    "role": "toy-checker",
+    "tokens": 65528,
+    "items": 1,
+    "source": "harness"
    }
   ]
  },
@@ -2429,11 +2611,98 @@
       },
       "priority": "next",
       "ts": 29876394.67245,
-      "state": "open",
+      "state": "done",
       "lease": {
        "run": "R-15",
        "until": 29876425.355483335
       },
+      "acked": false
+     }
+    ],
+    [
+     "M-33",
+     {
+      "id": "M-33",
+      "from": "mgr-live",
+      "to": "mgr-live",
+      "kind": "work",
+      "key": "O-4:uat:1",
+      "due": null,
+      "ref": "O-4",
+      "body": {
+       "stage": "uat",
+       "loops": 1
+      },
+      "priority": "next",
+      "ts": 29876396.029916666,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-34",
+     {
+      "id": "M-34",
+      "from": "pool:checker",
+      "to": "mgr-live",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-4",
+      "body": {
+       "stage": "check",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876396.029916666,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-35",
+     {
+      "id": "M-35",
+      "from": "mgr-live",
+      "to": "pool:release",
+      "kind": "work",
+      "key": "O-4:ship:1",
+      "due": null,
+      "ref": "O-4",
+      "body": {
+       "stage": "ship",
+       "loops": 1
+      },
+      "priority": "next",
+      "ts": 29876396.03735,
+      "state": "done",
+      "lease": {
+       "run": "R-16",
+       "until": 29876426.037366666
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-36",
+     {
+      "id": "M-36",
+      "from": "pool:release",
+      "to": "mgr-live",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-4",
+      "body": {
+       "stage": "ship",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876396.0374,
+      "state": "open",
+      "lease": null,
       "acked": false
      }
     ]
@@ -2512,10 +2781,18 @@
     [
      "O-4:check:1",
      "M-32"
+    ],
+    [
+     "O-4:uat:1",
+     "M-33"
+    ],
+    [
+     "O-4:ship:1",
+     "M-35"
     ]
    ]
   },
-  "n": 32
+  "n": 36
  },
  "org": {
   "roles": {
@@ -2913,7 +3190,7 @@
       "spent": 0,
       "accept": "live/work/T14/isoweek.mjs exports isoWeek(year, month, day) returning [isoYear, week] per ISO 8601 (weeks start on Monday; week 1 is the week with the year's first Thursday; dates near the year boundary can belong to the previous or next ISO year). month is 1-12. Any invalid date (non-integer parts, month or day out of range, 30 February) throws RangeError. node:test tests in live/work/T14/*.test.mjs",
       "words": null,
-      "stage": "check",
+      "stage": "done",
       "loops": 1,
       "created": 29876388.314283334,
       "history": [
@@ -2946,6 +3223,24 @@
         "by": "code",
         "verdict": "pass",
         "t": 29876394.67245
+       },
+       {
+        "stage": "check",
+        "by": "toy-checker",
+        "verdict": "pass",
+        "t": 29876396.029916666
+       },
+       {
+        "stage": "uat",
+        "by": "mgr-live",
+        "verdict": "pass",
+        "t": 29876396.03735
+       },
+       {
+        "stage": "ship",
+        "by": "toy-release",
+        "verdict": "pass",
+        "t": 29876396.0374
        }
       ],
       "priority": "next",
@@ -3209,13 +3504,29 @@
       "stage": "check",
       "loops": 1,
       "entered": 29876395.355483335,
-      "state": "running",
+      "state": "left",
       "session": "S-9"
+     }
+    ],
+    [
+     "R-16",
+     {
+      "run": "R-16",
+      "msg": "M-35",
+      "role": "toy-release",
+      "by": "toy-release",
+      "consult": false,
+      "order": "O-4",
+      "stage": "ship",
+      "loops": 1,
+      "entered": 29876396.037366666,
+      "state": "left",
+      "session": "S-10"
      }
     ]
    ]
   },
-  "n": 15,
+  "n": 16,
   "memory": {
    "__map": [
     [
@@ -3291,6 +3602,12 @@
        "did": "check on O-2: pass (loop 1)",
        "learned": "Once a codec length guard uses MAX_STRING_LENGTH, test the exact boundary with a two-byte char (é) as well as ASCII and an astral char: guards that divide by ch.length are right in code units, and the boundary allocation still fits in the default heap.",
        "mistake": null
+      },
+      {
+       "t": 29876396.029916666,
+       "did": "check on O-4: pass (loop 1)",
+       "learned": "When re-checking a precision fix, fuzz every day of log-uniformly spread years against a BigInt reference built a different way (week-1 Monday rule, not the Thursday rule the builder used), so the reference does not share the fix's assumptions.",
+       "mistake": null
       }
      ]
     ],
@@ -3312,6 +3629,12 @@
       {
        "t": 29876394.115816668,
        "did": "ship on O-2: pass (loop 1)",
+       "learned": null,
+       "mistake": null
+      },
+      {
+       "t": 29876396.0374,
+       "did": "ship on O-4: pass (loop 1)",
        "learned": null,
        "mistake": null
       }
@@ -3410,9 +3733,19 @@
       "open": true,
       "started": 29876395.355433334
      }
+    ],
+    [
+     "S-10",
+     {
+      "id": "S-10",
+      "role": "toy-release",
+      "items": 1,
+      "open": false,
+      "started": 29876396.037366666
+     }
     ]
    ]
   },
-  "nS": 9
+  "nS": 10
  }
 }
