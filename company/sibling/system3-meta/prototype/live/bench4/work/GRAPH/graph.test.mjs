@@ -32,3 +32,8 @@ test("deep chain does not overflow", () => {
   deps.set("n20000", ["n0"]);
   assert.equal(cycleCells(deps).size, 20001);
 });
+
+test("a lone two-cell cycle is reported", () => {
+  assert.deepEqual(sorted(cycleCells(new Map([["A1", ["B1"]], ["B1", ["A1"]], ["C1", ["A1"]]]))), ["A1", "B1"]);
+  assert.deepEqual(sorted(cycleCells(new Map([["A1", ["A1"]], ["B1", ["B1"]]]))), ["A1", "B1"]);
+});
