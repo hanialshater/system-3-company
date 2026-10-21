@@ -3244,6 +3244,302 @@
     "mode": "work",
     "session": "S-8",
     "item": 2
+   },
+   {
+    "seq": 234,
+    "t": 29876660.540666666,
+    "type": "advance",
+    "order": "O-3",
+    "stage": "check",
+    "by": "reader",
+    "verdict": "pass"
+   },
+   {
+    "seq": 235,
+    "t": 29876660.540683333,
+    "type": "send",
+    "msg": "M-31",
+    "from": "editor",
+    "to": "editor",
+    "kind": "work",
+    "key": "O-3:uat:0",
+    "ref": "O-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 236,
+    "t": 29876660.540683333,
+    "type": "done",
+    "msg": "M-25",
+    "run": "R-12"
+   },
+   {
+    "seq": 237,
+    "t": 29876660.540683333,
+    "type": "send",
+    "msg": "M-32",
+    "from": "pool:checker",
+    "to": "editor",
+    "kind": "report",
+    "key": null,
+    "ref": "O-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 238,
+    "t": 29876660.540683333,
+    "type": "leave",
+    "run": "R-12",
+    "role": "reader",
+    "order": "O-3",
+    "stage": "check",
+    "verdict": "pass",
+    "minutes": 0.6446833312511444
+   },
+   {
+    "seq": 239,
+    "t": 29876660.5407,
+    "type": "claim",
+    "msg": "M-26",
+    "run": "R-13"
+   },
+   {
+    "seq": 240,
+    "t": 29876660.5407,
+    "type": "enter",
+    "run": "R-13",
+    "msg": "M-26",
+    "role": "reader",
+    "by": "reader",
+    "room": "quality",
+    "order": "O-4",
+    "stage": "check",
+    "mode": "work",
+    "session": "S-8",
+    "item": 3
+   },
+   {
+    "seq": 241,
+    "t": 29876660.649183333,
+    "type": "advance",
+    "order": "O-4",
+    "stage": "check",
+    "by": "reader",
+    "verdict": "revise"
+   },
+   {
+    "seq": 242,
+    "t": 29876660.649183333,
+    "type": "reopen",
+    "order": "O-4",
+    "from": "check",
+    "loops": 1,
+    "priority": "next"
+   },
+   {
+    "seq": 243,
+    "t": 29876660.649183333,
+    "type": "send",
+    "msg": "M-33",
+    "from": "editor",
+    "to": "writer-1",
+    "kind": "work",
+    "key": "O-4:build:1",
+    "ref": "O-4",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 244,
+    "t": 29876660.649183333,
+    "type": "done",
+    "msg": "M-26",
+    "run": "R-13"
+   },
+   {
+    "seq": 245,
+    "t": 29876660.649183333,
+    "type": "send",
+    "msg": "M-34",
+    "from": "pool:checker",
+    "to": "editor",
+    "kind": "report",
+    "key": null,
+    "ref": "O-4",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 246,
+    "t": 29876660.649183333,
+    "type": "leave",
+    "run": "R-13",
+    "role": "reader",
+    "order": "O-4",
+    "stage": "check",
+    "verdict": "revise",
+    "minutes": 0.10848333314061165
+   },
+   {
+    "seq": 247,
+    "t": 29876660.6492,
+    "type": "claim",
+    "msg": "M-27",
+    "run": "R-14"
+   },
+   {
+    "seq": 248,
+    "t": 29876660.6492,
+    "type": "enter",
+    "run": "R-14",
+    "msg": "M-27",
+    "role": "reader",
+    "by": "reader",
+    "room": "quality",
+    "order": "O-5",
+    "stage": "check",
+    "mode": "work",
+    "session": "S-8",
+    "item": 4
+   },
+   {
+    "seq": 249,
+    "t": 29876660.727133334,
+    "type": "advance",
+    "order": "O-5",
+    "stage": "check",
+    "by": "reader",
+    "verdict": "pass"
+   },
+   {
+    "seq": 250,
+    "t": 29876660.72715,
+    "type": "send",
+    "msg": "M-35",
+    "from": "editor",
+    "to": "editor",
+    "kind": "work",
+    "key": "O-5:uat:0",
+    "ref": "O-5",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 251,
+    "t": 29876660.72715,
+    "type": "done",
+    "msg": "M-27",
+    "run": "R-14"
+   },
+   {
+    "seq": 252,
+    "t": 29876660.72715,
+    "type": "send",
+    "msg": "M-36",
+    "from": "pool:checker",
+    "to": "editor",
+    "kind": "report",
+    "key": null,
+    "ref": "O-5",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 253,
+    "t": 29876660.72715,
+    "type": "leave",
+    "run": "R-14",
+    "role": "reader",
+    "order": "O-5",
+    "stage": "check",
+    "verdict": "pass",
+    "minutes": 0.07795000076293945
+   },
+   {
+    "seq": 254,
+    "t": 29876660.727166668,
+    "type": "claim",
+    "msg": "M-28",
+    "run": "R-15"
+   },
+   {
+    "seq": 255,
+    "t": 29876660.727166668,
+    "type": "enter",
+    "run": "R-15",
+    "msg": "M-28",
+    "role": "reader",
+    "by": "reader",
+    "room": "quality",
+    "order": "O-6",
+    "stage": "check",
+    "mode": "work",
+    "session": "S-8",
+    "item": 5
+   },
+   {
+    "seq": 256,
+    "t": 29876660.8434,
+    "type": "advance",
+    "order": "O-6",
+    "stage": "check",
+    "by": "reader",
+    "verdict": "revise"
+   },
+   {
+    "seq": 257,
+    "t": 29876660.8434,
+    "type": "reopen",
+    "order": "O-6",
+    "from": "check",
+    "loops": 1,
+    "priority": "next"
+   },
+   {
+    "seq": 258,
+    "t": 29876660.8434,
+    "type": "send",
+    "msg": "M-37",
+    "from": "editor",
+    "to": "writer-2",
+    "kind": "work",
+    "key": "O-6:build:1",
+    "ref": "O-6",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 259,
+    "t": 29876660.8434,
+    "type": "done",
+    "msg": "M-28",
+    "run": "R-15"
+   },
+   {
+    "seq": 260,
+    "t": 29876660.8434,
+    "type": "send",
+    "msg": "M-38",
+    "from": "pool:checker",
+    "to": "editor",
+    "kind": "report",
+    "key": null,
+    "ref": "O-6",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 261,
+    "t": 29876660.8434,
+    "type": "leave",
+    "run": "R-15",
+    "role": "reader",
+    "order": "O-6",
+    "stage": "check",
+    "verdict": "revise",
+    "minutes": 0.11623333394527435
    }
   ]
  },
@@ -3805,7 +4101,7 @@
       },
       "priority": "next",
       "ts": 29876659.287166666,
-      "state": "open",
+      "state": "done",
       "lease": {
        "run": "R-12",
        "until": 29876689.896
@@ -3829,8 +4125,11 @@
       },
       "priority": "next",
       "ts": 29876659.287183333,
-      "state": "open",
-      "lease": null,
+      "state": "done",
+      "lease": {
+       "run": "R-13",
+       "until": 29876690.5407
+      },
       "acked": false
      }
     ],
@@ -3850,8 +4149,11 @@
       },
       "priority": "next",
       "ts": 29876659.287183333,
-      "state": "open",
-      "lease": null,
+      "state": "done",
+      "lease": {
+       "run": "R-14",
+       "until": 29876690.6492
+      },
       "acked": false
      }
     ],
@@ -3871,8 +4173,11 @@
       },
       "priority": "next",
       "ts": 29876659.2872,
-      "state": "open",
-      "lease": null,
+      "state": "done",
+      "lease": {
+       "run": "R-15",
+       "until": 29876690.727166668
+      },
       "acked": false
      }
     ],
@@ -3913,6 +4218,174 @@
       },
       "priority": "next",
       "ts": 29876659.896,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-31",
+     {
+      "id": "M-31",
+      "from": "editor",
+      "to": "editor",
+      "kind": "work",
+      "key": "O-3:uat:0",
+      "due": null,
+      "ref": "O-3",
+      "body": {
+       "stage": "uat",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876660.540683333,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-32",
+     {
+      "id": "M-32",
+      "from": "pool:checker",
+      "to": "editor",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-3",
+      "body": {
+       "stage": "check",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876660.540683333,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-33",
+     {
+      "id": "M-33",
+      "from": "editor",
+      "to": "writer-1",
+      "kind": "work",
+      "key": "O-4:build:1",
+      "due": null,
+      "ref": "O-4",
+      "body": {
+       "stage": "build",
+       "loops": 1
+      },
+      "priority": "next",
+      "ts": 29876660.649183333,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-34",
+     {
+      "id": "M-34",
+      "from": "pool:checker",
+      "to": "editor",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-4",
+      "body": {
+       "stage": "check",
+       "verdict": "revise"
+      },
+      "priority": "next",
+      "ts": 29876660.649183333,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-35",
+     {
+      "id": "M-35",
+      "from": "editor",
+      "to": "editor",
+      "kind": "work",
+      "key": "O-5:uat:0",
+      "due": null,
+      "ref": "O-5",
+      "body": {
+       "stage": "uat",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876660.72715,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-36",
+     {
+      "id": "M-36",
+      "from": "pool:checker",
+      "to": "editor",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-5",
+      "body": {
+       "stage": "check",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876660.72715,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-37",
+     {
+      "id": "M-37",
+      "from": "editor",
+      "to": "writer-2",
+      "kind": "work",
+      "key": "O-6:build:1",
+      "due": null,
+      "ref": "O-6",
+      "body": {
+       "stage": "build",
+       "loops": 1
+      },
+      "priority": "next",
+      "ts": 29876660.8434,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-38",
+     {
+      "id": "M-38",
+      "from": "pool:checker",
+      "to": "editor",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-6",
+      "body": {
+       "stage": "check",
+       "verdict": "revise"
+      },
+      "priority": "next",
+      "ts": 29876660.8434,
       "state": "open",
       "lease": null,
       "acked": false
@@ -3997,10 +4470,26 @@
     [
      "O-2:build:1",
      "M-29"
+    ],
+    [
+     "O-3:uat:0",
+     "M-31"
+    ],
+    [
+     "O-4:build:1",
+     "M-33"
+    ],
+    [
+     "O-5:uat:0",
+     "M-35"
+    ],
+    [
+     "O-6:build:1",
+     "M-37"
     ]
    ]
   },
-  "n": 30
+  "n": 38
  },
  "org": {
   "roles": {
@@ -4420,12 +4909,12 @@
       "orderer": "cos",
       "manager": "editor",
       "builder": "writer-1",
-      "checker": null,
+      "checker": "reader",
       "budget": 200000,
       "spent": 0,
       "accept": "live/bench2-meta/work/ROUND2/page.md: round 2 of the pack, on the round 2 topic in the shipped style sheet (live/bench2-meta/shipped/STYLE/page.md) and the kickoff decisions. First line '# Round 2: <topic>'; exactly 4 questions, each '**Qn.** …' then '**Answer:** …' then a one-sentence '**Why:** …'; 100-300 words; reading ease at least 60 (short sentences, everyday words); every fact true; only facts this round's topic owns, so no answer repeats another round's; no words like stupid, dumb, kill, dead, blood, hate.",
       "words": null,
-      "stage": "check",
+      "stage": "uat",
       "loops": 0,
       "created": 29876647.768,
       "history": [
@@ -4440,6 +4929,12 @@
         "by": "code",
         "verdict": "pass",
         "t": 29876659.287166666
+       },
+       {
+        "stage": "check",
+        "by": "reader",
+        "verdict": "pass",
+        "t": 29876660.540666666
        }
       ],
       "priority": "next",
@@ -4489,13 +4984,13 @@
       "orderer": "cos",
       "manager": "editor",
       "builder": "writer-1",
-      "checker": null,
+      "checker": "reader",
       "budget": 200000,
       "spent": 0,
       "accept": "live/bench2-meta/work/ROUND3/page.md: round 3 of the pack, on the round 3 topic in the shipped style sheet (live/bench2-meta/shipped/STYLE/page.md) and the kickoff decisions. First line '# Round 3: <topic>'; exactly 4 questions, each '**Qn.** …' then '**Answer:** …' then a one-sentence '**Why:** …'; 100-300 words; reading ease at least 60 (short sentences, everyday words); every fact true; only facts this round's topic owns, so no answer repeats another round's; no words like stupid, dumb, kill, dead, blood, hate.",
       "words": null,
-      "stage": "check",
-      "loops": 0,
+      "stage": "build",
+      "loops": 1,
       "created": 29876647.768,
       "history": [
        {
@@ -4509,6 +5004,12 @@
         "by": "code",
         "verdict": "pass",
         "t": 29876659.287183333
+       },
+       {
+        "stage": "check",
+        "by": "reader",
+        "verdict": "revise",
+        "t": 29876660.649183333
        }
       ],
       "priority": "next",
@@ -4541,7 +5042,8 @@
         "hate"
        ],
        "minReadingEase": 60
-      }
+      },
+      "findings": "Class: Why line over the 20-word limit (STYLE Why-line voice: one sentence, at most 20 words). Instances: (1) Q4 Why \"Because it is tipped over, each end of it takes turns pointing at the Sun for many years at a time.\" is 21 words -> required at most 20 words. Only instance; Q1-Q3 Why lines are 18, 20, 16 words. Everything else checked and fine: title, format, 147 words, reading ease 82, answers all from R3 reserved list with no clash, facts true (about 1,300 Earths, Great Red Spot watched 150+ years and wider than Earth, Uranus poles take turns facing the Sun), no banned words."
      }
     ],
     [
@@ -4558,12 +5060,12 @@
       "orderer": "cos",
       "manager": "editor",
       "builder": "writer-2",
-      "checker": null,
+      "checker": "reader",
       "budget": 200000,
       "spent": 0,
       "accept": "live/bench2-meta/work/ROUND4/page.md: round 4 of the pack, on the round 4 topic in the shipped style sheet (live/bench2-meta/shipped/STYLE/page.md) and the kickoff decisions. First line '# Round 4: <topic>'; exactly 4 questions, each '**Qn.** …' then '**Answer:** …' then a one-sentence '**Why:** …'; 100-300 words; reading ease at least 60 (short sentences, everyday words); every fact true; only facts this round's topic owns, so no answer repeats another round's; no words like stupid, dumb, kill, dead, blood, hate.",
       "words": null,
-      "stage": "check",
+      "stage": "uat",
       "loops": 0,
       "created": 29876647.768,
       "history": [
@@ -4578,6 +5080,12 @@
         "by": "code",
         "verdict": "pass",
         "t": 29876659.287183333
+       },
+       {
+        "stage": "check",
+        "by": "reader",
+        "verdict": "pass",
+        "t": 29876660.727133334
        }
       ],
       "priority": "next",
@@ -4627,13 +5135,13 @@
       "orderer": "cos",
       "manager": "editor",
       "builder": "writer-2",
-      "checker": null,
+      "checker": "reader",
       "budget": 200000,
       "spent": 0,
       "accept": "live/bench2-meta/work/ROUND5/page.md: round 5 of the pack, on the round 5 topic in the shipped style sheet (live/bench2-meta/shipped/STYLE/page.md) and the kickoff decisions. First line '# Round 5: <topic>'; exactly 4 questions, each '**Qn.** …' then '**Answer:** …' then a one-sentence '**Why:** …'; 100-300 words; reading ease at least 60 (short sentences, everyday words); every fact true; only facts this round's topic owns, so no answer repeats another round's; no words like stupid, dumb, kill, dead, blood, hate.",
       "words": null,
-      "stage": "check",
-      "loops": 0,
+      "stage": "build",
+      "loops": 1,
       "created": 29876647.768,
       "history": [
        {
@@ -4647,6 +5155,12 @@
         "by": "code",
         "verdict": "pass",
         "t": 29876659.2872
+       },
+       {
+        "stage": "check",
+        "by": "reader",
+        "verdict": "revise",
+        "t": 29876660.8434
        }
       ],
       "priority": "next",
@@ -4679,7 +5193,8 @@
         "hate"
        ],
        "minReadingEase": 60
-      }
+      },
+      "findings": "Class: Why line over the 20-word limit (STYLE Why-line voice: one sentence, at most 20 words). Instances: (1) Q1 Why \"It is a tiny space rock that burns up in our air and glows, so it is not a star at all.\" is 22 words -> required at most 20 words. Only instance; Q2-Q4 Why lines are 20, 18, 16 words. Everything else checked and fine: title, format, 147 words, reading ease 84, answers (A meteor, Pluto, The asteroid belt, Ceres) all R5-owned and unique across all five rounds, facts true, Pluto called a dwarf planet, no banned words."
      }
     ],
     [
@@ -4950,13 +5465,61 @@
       "stage": "check",
       "loops": 0,
       "entered": 29876659.896,
-      "state": "running",
+      "state": "left",
+      "session": "S-8"
+     }
+    ],
+    [
+     "R-13",
+     {
+      "run": "R-13",
+      "msg": "M-26",
+      "role": "reader",
+      "by": "reader",
+      "consult": false,
+      "order": "O-4",
+      "stage": "check",
+      "loops": 0,
+      "entered": 29876660.5407,
+      "state": "left",
+      "session": "S-8"
+     }
+    ],
+    [
+     "R-14",
+     {
+      "run": "R-14",
+      "msg": "M-27",
+      "role": "reader",
+      "by": "reader",
+      "consult": false,
+      "order": "O-5",
+      "stage": "check",
+      "loops": 0,
+      "entered": 29876660.6492,
+      "state": "left",
+      "session": "S-8"
+     }
+    ],
+    [
+     "R-15",
+     {
+      "run": "R-15",
+      "msg": "M-28",
+      "role": "reader",
+      "by": "reader",
+      "consult": false,
+      "order": "O-6",
+      "stage": "check",
+      "loops": 0,
+      "entered": 29876660.727166668,
+      "state": "left",
       "session": "S-8"
      }
     ]
    ]
   },
-  "n": 12,
+  "n": 15,
   "memory": {
    "__map": [
     [
@@ -5013,6 +5576,30 @@
        "t": 29876659.896,
        "did": "check on O-2: revise (loop 0)",
        "learned": "Count every Why line word by word; 21-word lines slip past at a glance and the 20-word cap is a hard STYLE rule.",
+       "mistake": null
+      },
+      {
+       "t": 29876660.540683333,
+       "did": "check on O-3: pass (loop 0)",
+       "learned": "Check each superlative and number in a Why line against a real value (Mercury year ~88 days, Olympus Mons ~2.5x Everest) and the STYLE superlative owner table.",
+       "mistake": null
+      },
+      {
+       "t": 29876660.649183333,
+       "did": "check on O-4: revise (loop 0)",
+       "learned": "A Why line that opens with a restated cause (Because it is tipped over) is where word counts creep past 20.",
+       "mistake": null
+      },
+      {
+       "t": 29876660.72715,
+       "did": "check on O-5: pass (loop 0)",
+       "learned": "Moon rounds may name planets in questions and Why lines (Jupiter, Mercury) as long as every Answer is a moon fact R4 owns.",
+       "mistake": null
+      },
+      {
+       "t": 29876660.8434,
+       "did": "check on O-6: revise (loop 0)",
+       "learned": "Across a full set of rounds the same defect class (Why line over 20 words) recurred in 3 of 5; the test1 code check does not count Why-line words, so the checker must.",
        "mistake": null
       }
      ]
@@ -5124,7 +5711,7 @@
      {
       "id": "S-8",
       "role": "reader",
-      "items": 2,
+      "items": 5,
       "open": true,
       "started": 29876659.535066668
      }
