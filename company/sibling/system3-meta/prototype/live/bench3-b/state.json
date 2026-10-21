@@ -280,7 +280,7 @@
        "kind": "order",
        "title": "Round 5",
        "body": "",
-       "state": "in-review",
+       "state": "done",
        "assignee": "writer-2",
        "project": "PRJ-1",
        "labels": [
@@ -295,7 +295,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876713.560083333,
-       "updated": 29876726.406866666,
+       "updated": 29876732.900666665,
        "history": [
         {
          "t": 29876713.560083333,
@@ -331,6 +331,31 @@
          "t": 29876726.406866666,
          "by": "engine",
          "state": "in-review"
+        },
+        {
+         "t": 29876728.754133333,
+         "by": "engine",
+         "state": "in-progress"
+        },
+        {
+         "t": 29876730.243516665,
+         "by": "engine",
+         "state": "in-review"
+        },
+        {
+         "t": 29876731.360766668,
+         "by": "engine",
+         "state": "in-progress"
+        },
+        {
+         "t": 29876731.811016668,
+         "by": "engine",
+         "state": "in-review"
+        },
+        {
+         "t": 29876732.900666665,
+         "by": "engine",
+         "state": "done"
         }
        ]
       }
@@ -342,7 +367,7 @@
        "kind": "order",
        "title": "Assembled pack",
        "body": "",
-       "state": "backlog",
+       "state": "in-progress",
        "assignee": "writer-2",
        "project": "PRJ-1",
        "labels": [],
@@ -355,7 +380,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876713.560083333,
-       "updated": 29876717.61735,
+       "updated": 29876732.900666665,
        "history": [
         {
          "t": 29876713.560083333,
@@ -366,6 +391,11 @@
          "t": 29876713.560083333,
          "by": "engine",
          "state": "backlog"
+        },
+        {
+         "t": 29876732.900666665,
+         "by": "engine",
+         "state": "in-progress"
         }
        ]
       }
@@ -412,7 +442,7 @@
         {
          "metric": "rounds shipped",
          "target": 5,
-         "current": 4,
+         "current": 5,
          "unit": null,
          "source": "shipped:ROUND"
         },
@@ -455,7 +485,7 @@
         {
          "metric": "orders shipped",
          "target": 7,
-         "current": 5,
+         "current": 6,
          "unit": null,
          "source": "shipped:"
         }
@@ -500,7 +530,7 @@
         {
          "metric": "rounds shipped",
          "target": 5,
-         "current": 4,
+         "current": 5,
          "unit": null,
          "source": "shipped:ROUND"
         },
@@ -3970,6 +4000,842 @@
     ],
     "tasks": [],
     "why": "plan: next: 1 waiting, no session running"
+   },
+   {
+    "seq": 333,
+    "t": 29876728.26155,
+    "type": "session-open",
+    "session": "S-18",
+    "role": "reader"
+   },
+   {
+    "seq": 334,
+    "t": 29876728.26155,
+    "type": "claim",
+    "msg": "M-50",
+    "run": "R-23"
+   },
+   {
+    "seq": 335,
+    "t": 29876728.26155,
+    "type": "enter",
+    "run": "R-23",
+    "msg": "M-50",
+    "role": "reader",
+    "by": "reader",
+    "room": "quality",
+    "order": "O-6",
+    "stage": "check",
+    "mode": "work",
+    "session": "S-18",
+    "item": 1
+   },
+   {
+    "seq": 336,
+    "t": 29876728.5042,
+    "type": "self-check",
+    "order": "O-6",
+    "task": "ROUND5",
+    "by": "reader",
+    "stage": "check",
+    "pass": true,
+    "output": "ok: 174 words, reading ease 82"
+   },
+   {
+    "seq": 337,
+    "t": 29876728.750533335,
+    "type": "advance",
+    "order": "O-6",
+    "stage": "check",
+    "by": "reader",
+    "verdict": "revise"
+   },
+   {
+    "seq": 338,
+    "t": 29876728.750533335,
+    "type": "reopen",
+    "order": "O-6",
+    "from": "check",
+    "loops": 3,
+    "priority": "next"
+   },
+   {
+    "seq": 339,
+    "t": 29876728.75055,
+    "type": "send",
+    "msg": "M-51",
+    "from": "editor",
+    "to": "writer-2",
+    "kind": "work",
+    "key": "O-6:build:3",
+    "ref": "O-6",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 340,
+    "t": 29876728.75055,
+    "type": "done",
+    "msg": "M-50",
+    "run": "R-23"
+   },
+   {
+    "seq": 341,
+    "t": 29876728.75055,
+    "type": "send",
+    "msg": "M-52",
+    "from": "pool:checker",
+    "to": "editor",
+    "kind": "report",
+    "key": null,
+    "ref": "O-6",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 342,
+    "t": 29876728.75055,
+    "type": "leave",
+    "run": "R-23",
+    "role": "reader",
+    "order": "O-6",
+    "stage": "check",
+    "verdict": "revise",
+    "minutes": 0.48900000005960464
+   },
+   {
+    "seq": 343,
+    "t": 29876728.754133333,
+    "type": "item-update",
+    "item": "ISS-6",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 344,
+    "t": 29876728.75415,
+    "type": "launch",
+    "role": "writer-2",
+    "msgs": [
+     "M-51"
+    ],
+    "tasks": [],
+    "why": "plan: next: 1 waiting, no session running"
+   },
+   {
+    "seq": 345,
+    "t": 29876729.522166666,
+    "type": "session-open",
+    "session": "S-19",
+    "role": "writer-2"
+   },
+   {
+    "seq": 346,
+    "t": 29876729.522166666,
+    "type": "claim",
+    "msg": "M-51",
+    "run": "R-24"
+   },
+   {
+    "seq": 347,
+    "t": 29876729.522166666,
+    "type": "enter",
+    "run": "R-24",
+    "msg": "M-51",
+    "role": "writer-2",
+    "by": "writer-2",
+    "room": "editorial",
+    "order": "O-6",
+    "stage": "build",
+    "mode": "work",
+    "session": "S-19",
+    "item": 1
+   },
+   {
+    "seq": 348,
+    "t": 29876729.847016666,
+    "type": "self-check",
+    "order": "O-6",
+    "task": "ROUND5",
+    "by": "writer-2",
+    "stage": "build",
+    "pass": false,
+    "output": "ROUND1 gives away ROUND5's answer \"sun\": \"**Why:** The Sun is a huge ball of hot, glowing gas, just like the stars we see \"; ROUND5: answer \"sun\" is named in an earlier question: \"**Q1.** Many space rocks circle the Sun in a wide band between Mars and Jupiter.\""
+   },
+   {
+    "seq": 349,
+    "t": 29876730.10288333,
+    "type": "self-check",
+    "order": "O-6",
+    "task": "ROUND5",
+    "by": "writer-2",
+    "stage": "build",
+    "pass": true,
+    "output": "ok: 168 words, reading ease 80"
+   },
+   {
+    "seq": 350,
+    "t": 29876730.23995,
+    "type": "advance",
+    "order": "O-6",
+    "stage": "build",
+    "by": "writer-2",
+    "verdict": "pass"
+   },
+   {
+    "seq": 351,
+    "t": 29876730.23995,
+    "type": "code-stage",
+    "order": "O-6",
+    "stage": "test1"
+   },
+   {
+    "seq": 352,
+    "t": 29876730.23995,
+    "type": "done",
+    "msg": "M-51",
+    "run": "R-24"
+   },
+   {
+    "seq": 353,
+    "t": 29876730.23995,
+    "type": "send",
+    "msg": "M-53",
+    "from": "writer-2",
+    "to": "editor",
+    "kind": "report",
+    "key": null,
+    "ref": "O-6",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 354,
+    "t": 29876730.23995,
+    "type": "leave",
+    "run": "R-24",
+    "role": "writer-2",
+    "order": "O-6",
+    "stage": "build",
+    "verdict": "pass",
+    "minutes": 0.717783335596323
+   },
+   {
+    "seq": 355,
+    "t": 29876730.2435,
+    "type": "advance",
+    "order": "O-6",
+    "stage": "test1",
+    "by": "code",
+    "verdict": "pass"
+   },
+   {
+    "seq": 356,
+    "t": 29876730.243516665,
+    "type": "send",
+    "msg": "M-54",
+    "from": "editor",
+    "to": "pool:checker",
+    "kind": "work",
+    "key": "O-6:check:3",
+    "ref": "O-6",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 357,
+    "t": 29876730.243516665,
+    "type": "item-update",
+    "item": "ISS-6",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 358,
+    "t": 29876730.243516665,
+    "type": "supervisor-tick",
+    "steps": [
+     "test1:O-6"
+    ]
+   },
+   {
+    "seq": 359,
+    "t": 29876730.243516665,
+    "type": "launch",
+    "role": "reader",
+    "msgs": [
+     "M-54"
+    ],
+    "tasks": [],
+    "why": "plan: next: 1 waiting, no session running"
+   },
+   {
+    "seq": 360,
+    "t": 29876730.852616668,
+    "type": "session-open",
+    "session": "S-20",
+    "role": "reader"
+   },
+   {
+    "seq": 361,
+    "t": 29876730.852616668,
+    "type": "claim",
+    "msg": "M-54",
+    "run": "R-25"
+   },
+   {
+    "seq": 362,
+    "t": 29876730.852616668,
+    "type": "enter",
+    "run": "R-25",
+    "msg": "M-54",
+    "role": "reader",
+    "by": "reader",
+    "room": "quality",
+    "order": "O-6",
+    "stage": "check",
+    "mode": "work",
+    "session": "S-20",
+    "item": 1
+   },
+   {
+    "seq": 363,
+    "t": 29876731.132966667,
+    "type": "self-check",
+    "order": "O-6",
+    "task": "ROUND5",
+    "by": "reader",
+    "stage": "check",
+    "pass": true,
+    "output": "ok: 168 words, reading ease 80"
+   },
+   {
+    "seq": 364,
+    "t": 29876731.357183333,
+    "type": "advance",
+    "order": "O-6",
+    "stage": "check",
+    "by": "reader",
+    "verdict": "revise"
+   },
+   {
+    "seq": 365,
+    "t": 29876731.3572,
+    "type": "reopen",
+    "order": "O-6",
+    "from": "check",
+    "loops": 4,
+    "priority": "next"
+   },
+   {
+    "seq": 366,
+    "t": 29876731.3572,
+    "type": "send",
+    "msg": "M-55",
+    "from": "editor",
+    "to": "writer-2",
+    "kind": "work",
+    "key": "O-6:build:4",
+    "ref": "O-6",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 367,
+    "t": 29876731.3572,
+    "type": "done",
+    "msg": "M-54",
+    "run": "R-25"
+   },
+   {
+    "seq": 368,
+    "t": 29876731.3572,
+    "type": "send",
+    "msg": "M-56",
+    "from": "pool:checker",
+    "to": "editor",
+    "kind": "report",
+    "key": null,
+    "ref": "O-6",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 369,
+    "t": 29876731.3572,
+    "type": "leave",
+    "run": "R-25",
+    "role": "reader",
+    "order": "O-6",
+    "stage": "check",
+    "verdict": "revise",
+    "minutes": 0.5045833326876163
+   },
+   {
+    "seq": 370,
+    "t": 29876731.360766668,
+    "type": "item-update",
+    "item": "ISS-6",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 371,
+    "t": 29876731.360766668,
+    "type": "launch",
+    "role": "writer-2",
+    "msgs": [
+     "M-55"
+    ],
+    "tasks": [],
+    "why": "plan: next: 1 waiting, no session running"
+   },
+   {
+    "seq": 372,
+    "t": 29876731.619933333,
+    "type": "session-open",
+    "session": "S-21",
+    "role": "writer-2"
+   },
+   {
+    "seq": 373,
+    "t": 29876731.619933333,
+    "type": "claim",
+    "msg": "M-55",
+    "run": "R-26"
+   },
+   {
+    "seq": 374,
+    "t": 29876731.619933333,
+    "type": "enter",
+    "run": "R-26",
+    "msg": "M-55",
+    "role": "writer-2",
+    "by": "writer-2",
+    "room": "editorial",
+    "order": "O-6",
+    "stage": "build",
+    "mode": "work",
+    "session": "S-21",
+    "item": 1
+   },
+   {
+    "seq": 375,
+    "t": 29876731.744266666,
+    "type": "self-check",
+    "order": "O-6",
+    "task": "ROUND5",
+    "by": "writer-2",
+    "stage": "build",
+    "pass": true,
+    "output": "ok: 163 words, reading ease 82"
+   },
+   {
+    "seq": 376,
+    "t": 29876731.807283334,
+    "type": "advance",
+    "order": "O-6",
+    "stage": "build",
+    "by": "writer-2",
+    "verdict": "pass"
+   },
+   {
+    "seq": 377,
+    "t": 29876731.8073,
+    "type": "code-stage",
+    "order": "O-6",
+    "stage": "test1"
+   },
+   {
+    "seq": 378,
+    "t": 29876731.8073,
+    "type": "done",
+    "msg": "M-55",
+    "run": "R-26"
+   },
+   {
+    "seq": 379,
+    "t": 29876731.8073,
+    "type": "send",
+    "msg": "M-57",
+    "from": "writer-2",
+    "to": "editor",
+    "kind": "report",
+    "key": null,
+    "ref": "O-6",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 380,
+    "t": 29876731.8073,
+    "type": "leave",
+    "run": "R-26",
+    "role": "writer-2",
+    "order": "O-6",
+    "stage": "build",
+    "verdict": "pass",
+    "minutes": 0.18736666813492775
+   },
+   {
+    "seq": 381,
+    "t": 29876731.811,
+    "type": "advance",
+    "order": "O-6",
+    "stage": "test1",
+    "by": "code",
+    "verdict": "pass"
+   },
+   {
+    "seq": 382,
+    "t": 29876731.811016668,
+    "type": "send",
+    "msg": "M-58",
+    "from": "editor",
+    "to": "pool:checker",
+    "kind": "work",
+    "key": "O-6:check:4",
+    "ref": "O-6",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 383,
+    "t": 29876731.811016668,
+    "type": "item-update",
+    "item": "ISS-6",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 384,
+    "t": 29876731.811016668,
+    "type": "supervisor-tick",
+    "steps": [
+     "test1:O-6"
+    ]
+   },
+   {
+    "seq": 385,
+    "t": 29876731.811016668,
+    "type": "launch",
+    "role": "reader",
+    "msgs": [
+     "M-58"
+    ],
+    "tasks": [],
+    "why": "plan: next: 1 waiting, no session running"
+   },
+   {
+    "seq": 386,
+    "t": 29876732.489,
+    "type": "session-open",
+    "session": "S-22",
+    "role": "reader"
+   },
+   {
+    "seq": 387,
+    "t": 29876732.489016667,
+    "type": "claim",
+    "msg": "M-58",
+    "run": "R-27"
+   },
+   {
+    "seq": 388,
+    "t": 29876732.489016667,
+    "type": "enter",
+    "run": "R-27",
+    "msg": "M-58",
+    "role": "reader",
+    "by": "reader",
+    "room": "quality",
+    "order": "O-6",
+    "stage": "check",
+    "mode": "work",
+    "session": "S-22",
+    "item": 1
+   },
+   {
+    "seq": 389,
+    "t": 29876732.7399,
+    "type": "self-check",
+    "order": "O-6",
+    "task": "ROUND5",
+    "by": "reader",
+    "stage": "check",
+    "pass": true,
+    "output": "ok: 163 words, reading ease 82"
+   },
+   {
+    "seq": 390,
+    "t": 29876732.893583335,
+    "type": "advance",
+    "order": "O-6",
+    "stage": "check",
+    "by": "reader",
+    "verdict": "pass"
+   },
+   {
+    "seq": 391,
+    "t": 29876732.8936,
+    "type": "send",
+    "msg": "M-59",
+    "from": "editor",
+    "to": "editor",
+    "kind": "work",
+    "key": "O-6:uat:4",
+    "ref": "O-6",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 392,
+    "t": 29876732.8936,
+    "type": "done",
+    "msg": "M-58",
+    "run": "R-27"
+   },
+   {
+    "seq": 393,
+    "t": 29876732.8936,
+    "type": "send",
+    "msg": "M-60",
+    "from": "pool:checker",
+    "to": "editor",
+    "kind": "report",
+    "key": null,
+    "ref": "O-6",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 394,
+    "t": 29876732.8936,
+    "type": "leave",
+    "run": "R-27",
+    "role": "reader",
+    "order": "O-6",
+    "stage": "check",
+    "verdict": "pass",
+    "minutes": 0.40458333119750023
+   },
+   {
+    "seq": 395,
+    "t": 29876732.90065,
+    "type": "advance",
+    "order": "O-6",
+    "stage": "uat",
+    "by": "editor",
+    "verdict": "pass"
+   },
+   {
+    "seq": 396,
+    "t": 29876732.90065,
+    "type": "send",
+    "msg": "M-61",
+    "from": "editor",
+    "to": "pool:release",
+    "kind": "work",
+    "key": "O-6:ship:4",
+    "ref": "O-6",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 397,
+    "t": 29876732.90065,
+    "type": "session-open",
+    "session": "S-23",
+    "role": "release"
+   },
+   {
+    "seq": 398,
+    "t": 29876732.90065,
+    "type": "claim",
+    "msg": "M-61",
+    "run": "R-28"
+   },
+   {
+    "seq": 399,
+    "t": 29876732.90065,
+    "type": "enter",
+    "run": "R-28",
+    "msg": "M-61",
+    "role": "release",
+    "by": "release",
+    "room": "launch",
+    "order": "O-6",
+    "stage": "ship",
+    "mode": "work",
+    "session": "S-23",
+    "item": 1
+   },
+   {
+    "seq": 400,
+    "t": 29876732.900666665,
+    "type": "advance",
+    "order": "O-6",
+    "stage": "ship",
+    "by": "release",
+    "verdict": "pass"
+   },
+   {
+    "seq": 401,
+    "t": 29876732.900666665,
+    "type": "shipped",
+    "order": "O-6",
+    "lead": 19.551783330738544,
+    "loops": 4,
+    "priority": "next"
+   },
+   {
+    "seq": 402,
+    "t": 29876732.900666665,
+    "type": "unblocked",
+    "order": "O-7",
+    "by": "O-6"
+   },
+   {
+    "seq": 403,
+    "t": 29876732.900666665,
+    "type": "send",
+    "msg": "M-62",
+    "from": "editor",
+    "to": "writer-2",
+    "kind": "work",
+    "key": "O-7:build:0",
+    "ref": "O-7",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 404,
+    "t": 29876732.900666665,
+    "type": "done",
+    "msg": "M-61",
+    "run": "R-28"
+   },
+   {
+    "seq": 405,
+    "t": 29876732.900666665,
+    "type": "send",
+    "msg": "M-63",
+    "from": "pool:release",
+    "to": "editor",
+    "kind": "report",
+    "key": null,
+    "ref": "O-6",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 406,
+    "t": 29876732.900666665,
+    "type": "leave",
+    "run": "R-28",
+    "role": "release",
+    "order": "O-6",
+    "stage": "ship",
+    "verdict": "pass",
+    "minutes": 0.000016666948795318604
+   },
+   {
+    "seq": 407,
+    "t": 29876732.900666665,
+    "type": "session-close",
+    "session": "S-23",
+    "role": "release",
+    "items": 1,
+    "reason": "ship done",
+    "minutes": 0.000016666948795318604
+   },
+   {
+    "seq": 408,
+    "t": 29876732.900666665,
+    "type": "item-update",
+    "item": "ISS-6",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 409,
+    "t": 29876732.900666665,
+    "type": "item-update",
+    "item": "ISS-7",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 410,
+    "t": 29876732.900666665,
+    "type": "supervisor-tick",
+    "steps": [
+     "uat:O-6",
+     "ship:O-6"
+    ]
+   },
+   {
+    "seq": 411,
+    "t": 29876732.900666665,
+    "type": "launch",
+    "role": "writer-2",
+    "msgs": [
+     "M-62"
+    ],
+    "tasks": [],
+    "why": "plan: next: 1 waiting, no session running"
+   },
+   {
+    "seq": 412,
+    "t": 29876733.148783334,
+    "type": "session-open",
+    "session": "S-24",
+    "role": "writer-2"
+   },
+   {
+    "seq": 413,
+    "t": 29876733.1488,
+    "type": "claim",
+    "msg": "M-62",
+    "run": "R-29"
+   },
+   {
+    "seq": 414,
+    "t": 29876733.1488,
+    "type": "enter",
+    "run": "R-29",
+    "msg": "M-62",
+    "role": "writer-2",
+    "by": "writer-2",
+    "room": "editorial",
+    "order": "O-7",
+    "stage": "build",
+    "mode": "work",
+    "session": "S-24",
+    "item": 1
+   },
+   {
+    "seq": 415,
+    "t": 29876733.21225,
+    "type": "self-check",
+    "order": "O-7",
+    "task": "PACK",
+    "by": "writer-2",
+    "stage": "build",
+    "pass": false,
+    "output": "missing /home/user/system-3-company/company/sibling/system3-meta/prototype/live/bench3-b/work/PACK/page.md"
    }
   ]
  },
@@ -5087,6 +5953,300 @@
       },
       "priority": "next",
       "ts": 29876726.406866666,
+      "state": "done",
+      "lease": {
+       "run": "R-23",
+       "until": 29876758.26155
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-51",
+     {
+      "id": "M-51",
+      "from": "editor",
+      "to": "writer-2",
+      "kind": "work",
+      "key": "O-6:build:3",
+      "due": null,
+      "ref": "O-6",
+      "body": {
+       "stage": "build",
+       "loops": 3
+      },
+      "priority": "next",
+      "ts": 29876728.75055,
+      "state": "done",
+      "lease": {
+       "run": "R-24",
+       "until": 29876759.522166666
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-52",
+     {
+      "id": "M-52",
+      "from": "pool:checker",
+      "to": "editor",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-6",
+      "body": {
+       "stage": "check",
+       "verdict": "revise"
+      },
+      "priority": "next",
+      "ts": 29876728.75055,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-53",
+     {
+      "id": "M-53",
+      "from": "writer-2",
+      "to": "editor",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-6",
+      "body": {
+       "stage": "build",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876730.23995,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-54",
+     {
+      "id": "M-54",
+      "from": "editor",
+      "to": "pool:checker",
+      "kind": "work",
+      "key": "O-6:check:3",
+      "due": null,
+      "ref": "O-6",
+      "body": {
+       "stage": "check",
+       "loops": 3
+      },
+      "priority": "next",
+      "ts": 29876730.2435,
+      "state": "done",
+      "lease": {
+       "run": "R-25",
+       "until": 29876760.852616668
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-55",
+     {
+      "id": "M-55",
+      "from": "editor",
+      "to": "writer-2",
+      "kind": "work",
+      "key": "O-6:build:4",
+      "due": null,
+      "ref": "O-6",
+      "body": {
+       "stage": "build",
+       "loops": 4
+      },
+      "priority": "next",
+      "ts": 29876731.3572,
+      "state": "done",
+      "lease": {
+       "run": "R-26",
+       "until": 29876761.619933333
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-56",
+     {
+      "id": "M-56",
+      "from": "pool:checker",
+      "to": "editor",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-6",
+      "body": {
+       "stage": "check",
+       "verdict": "revise"
+      },
+      "priority": "next",
+      "ts": 29876731.3572,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-57",
+     {
+      "id": "M-57",
+      "from": "writer-2",
+      "to": "editor",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-6",
+      "body": {
+       "stage": "build",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876731.8073,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-58",
+     {
+      "id": "M-58",
+      "from": "editor",
+      "to": "pool:checker",
+      "kind": "work",
+      "key": "O-6:check:4",
+      "due": null,
+      "ref": "O-6",
+      "body": {
+       "stage": "check",
+       "loops": 4
+      },
+      "priority": "next",
+      "ts": 29876731.811016668,
+      "state": "done",
+      "lease": {
+       "run": "R-27",
+       "until": 29876762.489016667
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-59",
+     {
+      "id": "M-59",
+      "from": "editor",
+      "to": "editor",
+      "kind": "work",
+      "key": "O-6:uat:4",
+      "due": null,
+      "ref": "O-6",
+      "body": {
+       "stage": "uat",
+       "loops": 4
+      },
+      "priority": "next",
+      "ts": 29876732.8936,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-60",
+     {
+      "id": "M-60",
+      "from": "pool:checker",
+      "to": "editor",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-6",
+      "body": {
+       "stage": "check",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876732.8936,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-61",
+     {
+      "id": "M-61",
+      "from": "editor",
+      "to": "pool:release",
+      "kind": "work",
+      "key": "O-6:ship:4",
+      "due": null,
+      "ref": "O-6",
+      "body": {
+       "stage": "ship",
+       "loops": 4
+      },
+      "priority": "next",
+      "ts": 29876732.90065,
+      "state": "done",
+      "lease": {
+       "run": "R-28",
+       "until": 29876762.90065
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-62",
+     {
+      "id": "M-62",
+      "from": "editor",
+      "to": "writer-2",
+      "kind": "work",
+      "key": "O-7:build:0",
+      "due": null,
+      "ref": "O-7",
+      "body": {
+       "stage": "build",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876732.900666665,
+      "state": "open",
+      "lease": {
+       "run": "R-29",
+       "until": 29876763.1488
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-63",
+     {
+      "id": "M-63",
+      "from": "pool:release",
+      "to": "editor",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-6",
+      "body": {
+       "stage": "ship",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876732.900666665,
       "state": "open",
       "lease": null,
       "acked": false
@@ -5207,10 +6367,38 @@
     [
      "O-6:check:2",
      "M-50"
+    ],
+    [
+     "O-6:build:3",
+     "M-51"
+    ],
+    [
+     "O-6:check:3",
+     "M-54"
+    ],
+    [
+     "O-6:build:4",
+     "M-55"
+    ],
+    [
+     "O-6:check:4",
+     "M-58"
+    ],
+    [
+     "O-6:uat:4",
+     "M-59"
+    ],
+    [
+     "O-6:ship:4",
+     "M-61"
+    ],
+    [
+     "O-7:build:0",
+     "M-62"
     ]
    ]
   },
-  "n": 50
+  "n": 63
  },
  "org": {
   "roles": {
@@ -5916,8 +7104,8 @@
       "spent": 0,
       "accept": "live/bench3-b/work/ROUND5/page.md: round 5 of the pack, on the round 5 topic in the style sheet if it exists yet (live/bench3-b/work/STYLE or shipped/STYLE), otherwise chosen to fit with the other rounds on disk. First line '# Round 5: <topic>'; exactly 4 questions, each '**Qn.** …' then '**Answer:** …' then a one-sentence '**Why:** …'; 100-300 words; reading ease at least 60 (short sentences, everyday words); every fact true; only facts this round's topic owns, so no answer repeats another round's; no words like stupid, dumb, kill, dead, blood, hate.",
       "words": null,
-      "stage": "check",
-      "loops": 2,
+      "stage": "done",
+      "loops": 4,
       "created": 29876713.348883335,
       "history": [
        {
@@ -5969,6 +7157,62 @@
         "by": "code",
         "verdict": "pass",
         "t": 29876726.406866666
+       },
+       {
+        "stage": "check",
+        "by": "reader",
+        "verdict": "revise",
+        "t": 29876728.750533335,
+        "findings": "Prior class fixed: Q4 answer is now 3 words. Class 1, answer that does not name what it means (1 instance): Q4 \"**Answer:** Away from it\" — in the question, \"it\" refers back to the comet (\"When a comet comes near the Sun, it grows...\"), so the answer reads as \"away from the comet\" and never names the Sun; the Why line also ends \"so the tail always faces away\" without saying from what. (This came from my own loop-1 suggestion, which was wrong.) → required: an answer of 1-3 words that names the Sun on its own, e.g. reword Q4 to \"A comet near the Sun grows a glowing tail. Which way does that tail always point?\" is still pronoun-free only if the answer names the Sun, so better ask \"A comet grows a long, glowing tail. That tail always points away from what?\" with **Answer:** The Sun; and make the Why say the tail points away from the Sun. Nothing else wrong: title matches STYLE Round 5; all questions <=20 words; all answers 1-3 words; facts true; no answer repeats or giveaway against shipped Rounds 1-4; 174 words, reading ease 82; no banned words."
+       },
+       {
+        "stage": "build",
+        "by": "writer-2",
+        "verdict": "pass",
+        "t": 29876730.23995
+       },
+       {
+        "stage": "test1",
+        "by": "code",
+        "verdict": "pass",
+        "t": 29876730.2435
+       },
+       {
+        "stage": "check",
+        "by": "reader",
+        "verdict": "revise",
+        "t": 29876731.357183333,
+        "findings": "Prior class fixed: Q4 no longer has the pronoun answer; it now asks what comets are made of (Answer: Ice and dust), a true fact that fits Round 5 and is on no other round list. Class 1, question that gives away its own answer, breaking the STYLE difficulty rule that Q4 is the hardest (1 instance): Q4 \"Scientists call comets \\\"dirty snowballs.\\\" What two things are comets mostly made of?\" — \"snowball\" says ice and \"dirty\" says dirt/dust, so an 8-year-old can answer from the clue alone and Q4 becomes easier than Q3 (Halley 76 years) → required: a Q4 that a 10-year-old space fan could answer but the wording does not hand over, e.g. drop the first sentence and ask \"What two things are comets mostly made of?\" keeping Answer: Ice and dust and the current Why (do not switch to Ceres with the asteroid belt named, as that would give away Q1). Nothing else wrong: title matches STYLE Round 5; Q1 19, Q2 20, Q3 13, Q4 12 words; all answers 1-3 words; each Why is one sentence; facts true (asteroid belt between Mars and Jupiter, Pluto dwarf planet 2006, Halley about 76 years, seen 1986, due 2061, comets mostly ice and dust); no answer repeats or giveaway against shipped Rounds 1-4 (STYLE work and shipped identical); 168 words, reading ease 80; no banned words."
+       },
+       {
+        "stage": "build",
+        "by": "writer-2",
+        "verdict": "pass",
+        "t": 29876731.807283334
+       },
+       {
+        "stage": "test1",
+        "by": "code",
+        "verdict": "pass",
+        "t": 29876731.811
+       },
+       {
+        "stage": "check",
+        "by": "reader",
+        "verdict": "pass",
+        "t": 29876732.893583335
+       },
+       {
+        "stage": "uat",
+        "by": "editor",
+        "verdict": "pass",
+        "t": 29876732.90065
+       },
+       {
+        "stage": "ship",
+        "by": "release",
+        "verdict": "pass",
+        "t": 29876732.900666665
        }
       ],
       "priority": "next",
@@ -6004,7 +7248,7 @@
         "across": "ROUND"
        }
       },
-      "findings": "Both prior classes fixed: Q4 no longer names Pluto (now asks which way a comet tail points), and Q1 is 19 words (all four questions are at most 20 words). Class 1, answer over the STYLE one-to-three-word limit (1 instance): Q4 \"**Answer:** Away from the Sun\" is 4 words → required: an answer of one to three words (for example \"Away from Sun\" is clumsy; better reword so the answer is short, e.g. keep the question and answer \"Away from it\" or ask a question whose answer is 1-3 words). No other defects: title matches the STYLE Round 5 topic; all four answers are Round 5 owned facts and none repeats Rounds 1-4; no question states or hints at another round owned fact (Q1 names Mars and Jupiter only as landmarks); facts true (asteroid belt between Mars and Jupiter, Pluto reclassified 2006, Halley about 76 years with 1986 and 2061, comet tail pushed away from the Sun by sunlight and solar wind); each Why is one sentence; difficulty order fits; 175 words, reading ease 82; no banned words."
+      "findings": "Prior class fixed: Q4 no longer has the pronoun answer; it now asks what comets are made of (Answer: Ice and dust), a true fact that fits Round 5 and is on no other round list. Class 1, question that gives away its own answer, breaking the STYLE difficulty rule that Q4 is the hardest (1 instance): Q4 \"Scientists call comets \\\"dirty snowballs.\\\" What two things are comets mostly made of?\" — \"snowball\" says ice and \"dirty\" says dirt/dust, so an 8-year-old can answer from the clue alone and Q4 becomes easier than Q3 (Halley 76 years) → required: a Q4 that a 10-year-old space fan could answer but the wording does not hand over, e.g. drop the first sentence and ask \"What two things are comets mostly made of?\" keeping Answer: Ice and dust and the current Why (do not switch to Ceres with the asteroid belt named, as that would give away Q1). Nothing else wrong: title matches STYLE Round 5; Q1 19, Q2 20, Q3 13, Q4 12 words; all answers 1-3 words; each Why is one sentence; facts true (asteroid belt between Mars and Jupiter, Pluto dwarf planet 2006, Halley about 76 years, seen 1986, due 2061, comets mostly ice and dust); no answer repeats or giveaway against shipped Rounds 1-4 (STYLE work and shipped identical); 168 words, reading ease 80; no banned words."
      }
     ],
     [
@@ -6040,7 +7284,7 @@
        "O-5",
        "O-6"
       ],
-      "blocked": true,
+      "blocked": false,
       "policyVersion": null,
       "fromContract": null,
       "task": "PACK",
@@ -6443,10 +7687,122 @@
       "state": "left",
       "session": "S-17"
      }
+    ],
+    [
+     "R-23",
+     {
+      "run": "R-23",
+      "msg": "M-50",
+      "role": "reader",
+      "by": "reader",
+      "consult": false,
+      "order": "O-6",
+      "stage": "check",
+      "loops": 2,
+      "entered": 29876728.26155,
+      "state": "left",
+      "session": "S-18"
+     }
+    ],
+    [
+     "R-24",
+     {
+      "run": "R-24",
+      "msg": "M-51",
+      "role": "writer-2",
+      "by": "writer-2",
+      "consult": false,
+      "order": "O-6",
+      "stage": "build",
+      "loops": 3,
+      "entered": 29876729.522166666,
+      "state": "left",
+      "session": "S-19"
+     }
+    ],
+    [
+     "R-25",
+     {
+      "run": "R-25",
+      "msg": "M-54",
+      "role": "reader",
+      "by": "reader",
+      "consult": false,
+      "order": "O-6",
+      "stage": "check",
+      "loops": 3,
+      "entered": 29876730.852616668,
+      "state": "left",
+      "session": "S-20"
+     }
+    ],
+    [
+     "R-26",
+     {
+      "run": "R-26",
+      "msg": "M-55",
+      "role": "writer-2",
+      "by": "writer-2",
+      "consult": false,
+      "order": "O-6",
+      "stage": "build",
+      "loops": 4,
+      "entered": 29876731.619933333,
+      "state": "left",
+      "session": "S-21"
+     }
+    ],
+    [
+     "R-27",
+     {
+      "run": "R-27",
+      "msg": "M-58",
+      "role": "reader",
+      "by": "reader",
+      "consult": false,
+      "order": "O-6",
+      "stage": "check",
+      "loops": 4,
+      "entered": 29876732.489016667,
+      "state": "left",
+      "session": "S-22"
+     }
+    ],
+    [
+     "R-28",
+     {
+      "run": "R-28",
+      "msg": "M-61",
+      "role": "release",
+      "by": "release",
+      "consult": false,
+      "order": "O-6",
+      "stage": "ship",
+      "loops": 4,
+      "entered": 29876732.90065,
+      "state": "left",
+      "session": "S-23"
+     }
+    ],
+    [
+     "R-29",
+     {
+      "run": "R-29",
+      "msg": "M-62",
+      "role": "writer-2",
+      "by": "writer-2",
+      "consult": false,
+      "order": "O-7",
+      "stage": "build",
+      "loops": 0,
+      "entered": 29876733.1488,
+      "state": "running",
+      "session": "S-24"
+     }
     ]
    ]
   },
-  "n": 22,
+  "n": 29,
   "memory": {
    "__map": [
     [
@@ -6480,6 +7836,18 @@
        "t": 29876726.403316665,
        "did": "build on O-6: pass (loop 2)",
        "learned": "STYLE caps answers at 1-3 words; when the question already names the Sun, \"Away from it\" keeps the fact and fits the limit.",
+       "mistake": null
+      },
+      {
+       "t": 29876730.23995,
+       "did": "build on O-6: pass (loop 3)",
+       "learned": "\"The Sun\" cannot be any answer: the giveaway check flags it because Sun appears in Round 1 lines and in this round own Q1, so I swapped the comet-tail Q4 for a new topic-fitting fact (comets are mostly ice and dust).",
+       "mistake": null
+      },
+      {
+       "t": 29876731.8073,
+       "did": "build on O-6: pass (loop 4)",
+       "learned": "A nickname in the question can hand over the answer (dirty snowballs = ice and dust); ask the fact plainly so Q4 stays the hardest.",
        "mistake": null
       }
      ]
@@ -6563,6 +7931,24 @@
        "did": "check on O-6: revise (loop 1)",
        "learned": "Count Answer words against the STYLE 1-3 word cap too, not only question words; the mechanical check tests neither.",
        "mistake": null
+      },
+      {
+       "t": 29876728.75055,
+       "did": "check on O-6: revise (loop 2)",
+       "learned": "When suggesting a fix, test it as a standalone answer-key line: a pronoun in a short answer can point at the wrong noun in its question.",
+       "mistake": null
+      },
+      {
+       "t": 29876731.3572,
+       "did": "check on O-6: revise (loop 3)",
+       "learned": "When a revision swaps in a new question, check it against the STYLE difficulty rule too: a nickname clue (dirty snowballs) can answer the question by itself.",
+       "mistake": null
+      },
+      {
+       "t": 29876732.8936,
+       "did": "check on O-6: pass (loop 4)",
+       "learned": "After a giveaway fix, re-check difficulty order across all four questions, not just the changed one: removing a clue can shift which question is hardest.",
+       "mistake": null
       }
      ]
     ],
@@ -6596,6 +7982,12 @@
       {
        "t": 29876724.443866666,
        "did": "ship on O-5: pass (loop 1)",
+       "learned": null,
+       "mistake": null
+      },
+      {
+       "t": 29876732.900666665,
+       "did": "ship on O-6: pass (loop 4)",
        "learned": null,
        "mistake": null
       }
@@ -6774,9 +8166,79 @@
       "open": true,
       "started": 29876726.124983333
      }
+    ],
+    [
+     "S-18",
+     {
+      "id": "S-18",
+      "role": "reader",
+      "items": 1,
+      "open": true,
+      "started": 29876728.26155
+     }
+    ],
+    [
+     "S-19",
+     {
+      "id": "S-19",
+      "role": "writer-2",
+      "items": 1,
+      "open": true,
+      "started": 29876729.522166666
+     }
+    ],
+    [
+     "S-20",
+     {
+      "id": "S-20",
+      "role": "reader",
+      "items": 1,
+      "open": true,
+      "started": 29876730.852616668
+     }
+    ],
+    [
+     "S-21",
+     {
+      "id": "S-21",
+      "role": "writer-2",
+      "items": 1,
+      "open": true,
+      "started": 29876731.619933333
+     }
+    ],
+    [
+     "S-22",
+     {
+      "id": "S-22",
+      "role": "reader",
+      "items": 1,
+      "open": true,
+      "started": 29876732.489
+     }
+    ],
+    [
+     "S-23",
+     {
+      "id": "S-23",
+      "role": "release",
+      "items": 1,
+      "open": false,
+      "started": 29876732.90065
+     }
+    ],
+    [
+     "S-24",
+     {
+      "id": "S-24",
+      "role": "writer-2",
+      "items": 1,
+      "open": true,
+      "started": 29876733.148783334
+     }
     ]
    ]
   },
-  "nS": 17
+  "nS": 24
  }
 }

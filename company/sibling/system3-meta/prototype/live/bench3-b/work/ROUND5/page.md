@@ -18,8 +18,8 @@
 
 **Why:** People on Earth last saw it in 1986, and it should be back again in 2061.
 
-**Q4.** When a comet comes near the Sun, it grows a long, glowing tail. Which way does that tail point?
+**Q4.** What two things are comets mostly made of?
 
-**Answer:** Away from it
+**Answer:** Ice and dust
 
-**Why:** Sunlight and a wind of tiny bits from the Sun push the comet's gas and dust outward, so the tail always faces away.
+**Why:** A comet is a frozen lump of ice mixed with dust and bits of rock, a bit like a snowball rolled in dirt.
