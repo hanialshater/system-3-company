@@ -7,7 +7,15 @@
 // SIMULATED PERSONAS ONLY: nothing on this page reads or shows real learner data.
 
 export const NEED_ORDER = ["repair", "build", "breadth", "stretch"] as const;
+/** The WIRE label: the string hq-cli.mjs stamps into the precomputed documents and the live CLI output (tests compare it). Do not show it:
+ *  after the 2026-10-21 session readout it is no longer the whole truth (W-2024). The pages show LAB_BANNER. Changing the wire string means
+ *  editing hq-cli.mjs and regenerating src/data/hq-personalization (tools/hq-lab-precompute.mjs). */
 export const UNSCORED_LABEL = "UNSCORED: no committed criterion; provisional simulated learner";
+/** What the lab pages show instead (W-2024, W-2026; decision company/decisions/2026-10-21-vp-personalization-session-readout-decisions.md §6). */
+export const LAB_BANNER = "Offline inspection only: simulated personas, not serving, not evidence of learning. The simulated learner and scorer are provisional. A sandbox drag or edit is still unscored.";
+export const SESSION_CLOSED_NOTE = "The four session variants (gam-session, gam-session-v3, gam-session-no-cov, gam-session-v3-edpbase) were scored under a frozen criterion and are closed for serving.";
+export const SESSION_DECISION_HREF = "/hq/library/decisions/2026-10-21-vp-personalization-session-readout-decisions.md";
+export const SESSION_READOUT_HREF = "/hq/library/personalization/eval/2026-10-21-session-readout.md";
 
 export type Pt = { x: number; y: number };
 export type CurveView = { need: string; signal: string; w: number; why: string; points: Pt[]; privacy: string };
@@ -181,7 +189,7 @@ export function policyGroups(p: SimMeta["policies"]): { label: string; items: st
   return [
     { label: "Model policies (model.ts POLICIES)", items: p.model },
     { label: "GAM ablations (one or more terms off)", items: abl },
-    ...(session.length ? [{ label: "Session policies (offline, UNSCORED; model-v0.3.0)", items: session }] : []),
+    ...(session.length ? [{ label: "Session policies (offline inspection; scored, closed for serving; model-v0.3.0)", items: session }] : []),
     ...(rest.length ? [{ label: "Other", items: rest }] : []),
   ];
 }

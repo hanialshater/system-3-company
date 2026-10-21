@@ -4,11 +4,12 @@
 // toggle with its edit table, and a curves sandbox where knots and session coefficients are dragged and the session
 // recomposes live in this browser tab, by the port in @/lib/hq-personalization-sandbox.
 // NOTHING IS SAVED and the sandbox is not the model: the curves change only by the change rule (model/README.md);
-// "copy as code diff" is the whole export. Offline and UNSCORED until its readout: never serving, never evidence of learning.
+// "copy as code diff" is the whole export. Offline inspection only (2026-10-21: the four session variants were scored under a frozen criterion and are closed for serving; a sandbox drag or edit is still unscored): never serving, never evidence of learning.
 // SIMULATED PERSONAS ONLY: the documents are simulator output for the personas in personas.ts.
 import { useEffect, useMemo, useRef, useState } from "react";
 import hq from "../hq.module.css";
-import { NEED_ORDER, UNSCORED_LABEL, curvePath, fmt, type SimMeta } from "@/lib/hq-personalization";
+import Link from "next/link";
+import { NEED_ORDER, LAB_BANNER, SESSION_CLOSED_NOTE, SESSION_DECISION_HREF, SESSION_READOUT_HREF, curvePath, fmt, type SimMeta } from "@/lib/hq-personalization";
 import {
   CIRCULAR_LABEL, COEF_KEYS, eligibility as elig, resolvableGain, NEEDS, SANDBOX_BADGE, SESSION_LAB_TITLE, VAL_STEP, codeDiff, emptyEdit, explainNeeds, getCoef, isEdited, pwl, recompose, sandboxRefusal, withCoef, withKnot,
   type CoefKey, type SCurve, type SNeed, type SandboxDoc, type SandboxEdit, type SandboxVariant,
@@ -99,7 +100,7 @@ function SlotCard({ slot, base }: { slot: ReturnType<typeof recompose>["slots"][
         <div><dt>default card</dt><dd>{slot.defaultCard}</dd></div>
         <div><dt>decided by</dt><dd>{slot.constraint ?? "score (no hard constraint applied)"}</dd></div>
         <div><dt>margin of best departure over default</dt><dd>{fmt(slot.margin)}</dd></div>
-        {slot.moved && <div><dt>reason carries the move</dt><dd>{slot.reasonCarriesMove === null ? "–" : slot.reasonCarriesMove ? "yes" : "no"}{slot.reasonCarriesMove === false ? " (the named reason alone is below the margin; other terms did the work)" : ""}</dd></div>}
+        {slot.moved && <div><dt>reason carries the move</dt><dd>{slot.reasonCarriesMove === null ? "–" : slot.reasonCarriesMove ? "yes" : <span className={s.badgeWarn}>NO</span>}{slot.reasonCarriesMove === false ? " The named reason alone did not carry this move; other terms did the work, so do not show this reason to a learner." : ""}</dd></div>}
         <div><dt>score of the winner · resolvable need</dt><dd>{fmt(slot.winnerScore)} · {fmt(slot.gain, 3)}</dd></div>
       </dl>
       <p className={s.mono}>remaining: {NEEDS.map((n) => `${n} ${fmt(slot.remainingBefore[n], 3)}→${fmt(slot.remainingAfter[n], 3)}`).join(" · ")}</p>
@@ -232,7 +233,7 @@ function Variants({ docs, variant, setVariant }: { docs: Partial<Record<Variant,
   const edits = b.session.edits;
   const eEdits = e3?.session.edpBaseEdits ?? [];
   const eCoefs = e3?.session["v3-edpbase"] ?? e3?.session.coefficients;
-  const cell = (r: ReturnType<typeof recompose> | null, i: number) => { const q = r?.picks[i]; return q ? <><span className={s.slug}>{q.slug}</span> <span className={s.muted}>{q.moved ? `moved: ${q.reason}` : q.reason}{q.moved && q.reasonCarriesMove !== null ? ` · reason carries the move: ${q.reasonCarriesMove ? "yes" : "no"}` : ""}</span></> : "–"; };
+  const cell = (r: ReturnType<typeof recompose> | null, i: number) => { const q = r?.picks[i]; return q ? <><span className={s.slug}>{q.slug}</span> <span className={s.muted}>{q.moved ? `moved: ${q.reason}` : q.reason}{q.moved && q.reasonCarriesMove !== null ? ` · reason carries the move: ${q.reasonCarriesMove ? "yes" : "NO (the named reason alone did not carry it)"}` : ""}</span></> : "–"; };
   return (
     <div>
       <fieldset className={s.radio}>
@@ -273,7 +274,7 @@ function Variants({ docs, variant, setVariant }: { docs: Partial<Record<Variant,
               <td>{cell(ra, i)}</td><td>{cell(rb, i)}</td><td>{cell(re, i)}</td></tr>); })}</tbody>
         </table>
       </div>
-      <p className={s.circ} role="note">{CIRCULAR_LABEL}: session need coverage v1 {fmt(ra.circular.coverageRate, 3)} · v3 {fmt(rb.circular.coverageRate, 3)}{re ? ` · v3 + EDP prior ${fmt(re.circular.coverageRate, 3)}` : ""}. Not a pass score; simulated recall is in the policy comparison below. {UNSCORED_LABEL}.</p>
+      <p className={s.circ} role="note">{CIRCULAR_LABEL}: session need coverage v1 {fmt(ra.circular.coverageRate, 3)} · v3 {fmt(rb.circular.coverageRate, 3)}{re ? ` · v3 + EDP prior ${fmt(re.circular.coverageRate, 3)}` : ""}. Not a pass score; simulated recall is in the policy comparison below. {LAB_BANNER}</p>
     </div>
   );
 }
@@ -402,9 +403,9 @@ export default function ComposerLab({ meta, personaIds, initialPersona }: { meta
       <Badge />
       <p>
         The EDP Orchestrator&apos;s session machinery on simulated personas ({meta.session?.version ?? meta.composerVersion}, {meta.modelVersion}): a session of {doc?.session.size ?? meta.session?.size ?? 5} cards filled greedily with
-        remaining need, coverage, complementarity, slot decay and an attention cost. It is offline and unscored until its readout. It is not serving anything and it is not evidence of learning: the Phase A GAM failed its readout, and the readout, not this view, decides what could ever serve.
+        remaining need, coverage, complementarity, slot decay and an attention cost. {SESSION_CLOSED_NOTE} See the <Link href={SESSION_DECISION_HREF}>decision</Link> and the <Link href={SESSION_READOUT_HREF}>readout</Link>. This lab is offline inspection only: it shows how an EDP-style session composer composes and why a move happened. It is not serving anything and it is not evidence of learning. A sandbox drag or edit is still unscored.
       </p>
-      <p className={s.unscored} role="note">{UNSCORED_LABEL}</p>
+      <p className={s.unscored} role="note">{LAB_BANNER}</p>
       <div className={s.controls}>
         <label>Simulated persona
           <select value={personaId} onChange={(e) => setPersonaId(e.target.value)}>

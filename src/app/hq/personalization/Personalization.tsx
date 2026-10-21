@@ -9,7 +9,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { HqTop } from "../HqTop";
 import hq from "../hq.module.css";
 import {
-  NEED_ORDER, UNSCORED_LABEL, curvePath, fmt, precomputedLine, pwlAt, servableGroups, stepLine, yesNo,
+  NEED_ORDER, LAB_BANNER, SESSION_DECISION_HREF, SESSION_READOUT_HREF, curvePath, fmt, precomputedLine, pwlAt, servableGroups, stepLine, yesNo,
   type CurveView, type NeedExplanation, type NewStep, type PersonaView, type SimCompare, type SimMeta, type SimTrace, type SlotTrace, type Step,
 } from "@/lib/hq-personalization";
 import { CIRCULAR_LABEL } from "@/lib/hq-personalization-sandbox";
@@ -218,7 +218,7 @@ function Compare({ meta, persona, days: liveDays }: { meta: SimMeta; persona: st
   return (
     <section className={s.panel} aria-labelledby="cmp-h">
       <h2 id="cmp-h">Policy comparison</h2>
-      <p className={s.unscored} role="note">{UNSCORED_LABEL}</p>
+      <p className={s.unscored} role="note">{LAB_BANNER}</p>
       <p className={s.muted}>{meta.provisional}. No row is better than another until a criterion is committed (W-1496).</p>
       <form className={s.controls} onSubmit={(e) => { e.preventDefault(); run(); }}>
         <label>Simulated personas
@@ -248,7 +248,7 @@ function Compare({ meta, persona, days: liveDays }: { meta: SimMeta; persona: st
         <div className={s.scroll} tabIndex={0} role="region" aria-label="Policy comparison table">
           <table className={s.table}>
             <caption className={s.cap}>
-              {UNSCORED_LABEL}. {res.personas.length === 1 ? `simulated persona ${name(res.personas[0])}` : `${res.personas.length} simulated personas`} × {res.seeds} seeds, {res.days} days ({meta.precomputed ? precomputedLine(meta.precomputed).replace(/, seed .*$/, "") : `${(res.ms / 1000).toFixed(1)} s, ${res.modelVersion}`})
+              {LAB_BANNER} {res.personas.length === 1 ? `simulated persona ${name(res.personas[0])}` : `${res.personas.length} simulated personas`} × {res.seeds} seeds, {res.days} days ({meta.precomputed ? precomputedLine(meta.precomputed).replace(/, seed .*$/, "") : `${(res.ms / 1000).toFixed(1)} s, ${res.modelVersion}`})
             </caption>
             <thead>
               <tr><th colSpan={2} />{<th colSpan={cols.length} scope="colgroup">simulated recall and guardrails (independent provisional learner)</th>}<th colSpan={2} scope="colgroup" className={s.circHead}>{CIRCULAR_LABEL}</th></tr>
@@ -270,7 +270,7 @@ function Compare({ meta, persona, days: liveDays }: { meta: SimMeta; persona: st
           </table>
           <p className={s.circ} role="note">
             {CIRCULAR_LABEL}: need coverage and domain diversity are EDP-style numbers graded by the model&apos;s own detect() and addr(), not by the simulated learner. They are never a pass score and always sit beside simulated recall.
-            The session policies (gam-session, gam-session-v3, gam-session-no-cov, gam-session-v3-edpbase) are offline and {UNSCORED_LABEL}; a higher circular number is not evidence that a policy helps a learner.
+            The session policies (gam-session, gam-session-v3, gam-session-no-cov, gam-session-v3-edpbase) were scored under a frozen criterion and are closed for serving (<Link href={SESSION_DECISION_HREF}>decision</Link>, <Link href={SESSION_READOUT_HREF}>readout</Link>). The lab is offline inspection only; a higher circular number is not evidence that a policy helps a learner.
           </p>
           <ul className={s.legend}>
             {Object.entries(res.columns).map(([k, v]) => <li key={k}><code>{k}</code>: {v}</li>)}
@@ -399,7 +399,7 @@ export default function Personalization({ meta, error, initial }: { meta: SimMet
             add a line to <Link href={`/hq/library/${meta.decision.replace(/^company\//, "")}`}>the decision record</Link> (
             <Link href="/hq/library/personalization/model/README.md">change rule</Link>).
           </p>
-          <p className={s.unscored} role="note">{UNSCORED_LABEL}</p>
+          <p className={s.unscored} role="note">{LAB_BANNER}</p>
           <p className={s.muted}>
             Also here, read-only: the <Link href="/hq/personalization/candidates">frozen candidates</Link> (reachable-v2, reachable-v3; not live, website NO-GO)
             and the <Link href="/hq/personalization/evaluation">Evaluation record</Link> (studies, reviews, decisions).
@@ -470,7 +470,7 @@ export default function Personalization({ meta, error, initial }: { meta: SimMet
           {trace && (
             <p className={s.muted} aria-live="polite">
               Showing {trace.persona.name} · {trace.run.policy} · seed {trace.run.seed}{trace.run.days ? ` · ${trace.run.days} days` : ""} · {trace.run.source} · {trace.modelVersion} ·
-              {" "}{trace.preHistoryCount} pre-history lessons · episode recall {fmt(trace.score.recall)} over {trace.score.nRecalls} revisits, {trace.score.cards} cards ({UNSCORED_LABEL})
+              {" "}{trace.preHistoryCount} pre-history lessons · episode recall {fmt(trace.score.recall)} over {trace.score.nRecalls} revisits, {trace.score.cards} cards (offline inspection)
             </p>
           )}
         </section>

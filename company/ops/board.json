@@ -22657,13 +22657,14 @@
       "id": "W-2024",
       "title": "HQ lab banner is stale: src/lib/hq-personalization.ts UNSCORED_LABEL (and the matching 'unscored' string in company/personalization/model/sim/hq-cli.mjs) still says 'UNSCORED: no committed criterion; provisional simulated learner'. The session composer variants now have a frozen criterion and a readout: company/personalization/eval/2026-10-21-session-readout.md (criterion company/personalization/eval/2026-10-20-session-criterion.md). Update the label to point at that readout without restating its verdicts; do not edit any file in the readout's candidate pin (criterion §6), which includes sim/simulate.mjs, composer-session.ts, composer.ts, catalog.mjs, model.ts",
       "owner": "hq-engineer",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-21",
       "links": [
         "company/decisions/2026-10-21-vp-personalization-session-readout-decisions.md"
       ],
-      "note": "Further stale lab labels are W-2026 (same owner). company/decisions/2026-10-21-vp-personalization-session-readout-decisions.md §6"
+      "note": "Further stale lab labels are W-2026 (same owner). company/decisions/2026-10-21-vp-personalization-session-readout-decisions.md §6",
+      "updated": "2026-10-21"
     },
     {
       "id": "W-2025",
@@ -22682,10 +22683,11 @@
       "id": "W-2026",
       "title": "HQ lab session-composer labels beyond the W-2024 banner: hq-personalization.ts group label 'Session policies (offline, UNSCORED…)', Personalization.tsx line ~273 'session policies … offline and UNSCORED', ComposerLab.tsx line ~405 and header comment 'unscored until its readout … the readout decides what could ever serve'. Say: scored under a frozen criterion, closed for serving (link the VP record and readout, no numbers), offline inspection only; sandbox drags stay 'unscored'; show when reasonCarriesMove is false that the named reason alone did not carry the move. Do not edit criterion §6 pin files. Spec: company/decisions/2026-10-21-vp-personalization-session-readout-decisions.md §6",
       "owner": "hq-engineer",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-21",
-      "links": []
+      "links": [],
+      "updated": "2026-10-21"
     },
     {
       "id": "W-2027",

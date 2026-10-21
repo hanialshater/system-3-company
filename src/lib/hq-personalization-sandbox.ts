@@ -11,14 +11,14 @@
 // document (history, fingerprint, pool, addr, floor streak) is fixed for the session. NOTHING IS SAVED: the edit lives
 // in component state and in the "copy as code diff" text; the curves change only by the change rule
 // (company/personalization/model/README.md). SIMULATED PERSONAS ONLY.
-// Offline and UNSCORED: this is not serving and not evidence of learning.
+// Offline inspection only (the session variants are scored and closed for serving, 2026-10-21; a sandbox edit is unscored): this is not serving and not evidence of learning.
 
 export const NEEDS = ["repair", "build", "breadth", "stretch"] as const;
 export type SNeed = (typeof NEEDS)[number];
 export const SANDBOX_SCHEMA = "personalization-hq-sandbox-v0";
 export const SANDBOX_BADGE = "sandbox: not saved, not the model";
 export const CIRCULAR_LABEL = "circular: diagnostic only";
-export const SESSION_LAB_TITLE = "EDP-faithful session composer — offline, unscored until its readout";
+export const SESSION_LAB_TITLE = "EDP-faithful session composer — offline inspection only; the variants are closed for serving";
 
 export type SandboxVariant = "v1" | "v3" | "edpbase";
 export type SCurve = { bps: number[]; vals: number[] };
