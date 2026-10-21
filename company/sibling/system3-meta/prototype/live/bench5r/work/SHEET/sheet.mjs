@@ -39,11 +39,12 @@ export function createSheet() {
   };
 
   function recalc(cell) {
-    // No #CYCLE! marking before wave 3 defines it (ARCH): every formula cell is just evaluated.
+    // Wave 3: cells on a cycle, and every cell that reads one (graph.cyclic()), are #CYCLE!.
+    const cyc = graph.cyclic();
     for (const c of graph.recalcOrder(cell)) {
       const rec = cells.get(c);
       if (!rec || rec.ast === null) continue;
-      rec.value = evaluate(rec.ast, ctx);
+      rec.value = cyc.has(c) ? ERR.CYCLE : evaluate(rec.ast, ctx);
     }
   }
 
