@@ -367,7 +367,7 @@
        "kind": "order",
        "title": "Assembled pack",
        "body": "",
-       "state": "in-progress",
+       "state": "in-review",
        "assignee": "writer-2",
        "project": "PRJ-1",
        "labels": [],
@@ -380,7 +380,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876713.560083333,
-       "updated": 29876732.900666665,
+       "updated": 29876733.73116667,
        "history": [
         {
          "t": 29876713.560083333,
@@ -396,6 +396,11 @@
          "t": 29876732.900666665,
          "by": "engine",
          "state": "in-progress"
+        },
+        {
+         "t": 29876733.73116667,
+         "by": "engine",
+         "state": "in-review"
         }
        ]
       }
@@ -4836,6 +4841,144 @@
     "stage": "build",
     "pass": false,
     "output": "missing /home/user/system-3-company/company/sibling/system3-meta/prototype/live/bench3-b/work/PACK/page.md"
+   },
+   {
+    "seq": 416,
+    "t": 29876733.650216665,
+    "type": "self-check",
+    "order": "O-7",
+    "task": "PACK",
+    "by": "writer-2",
+    "stage": "build",
+    "pass": true,
+    "output": "ok: 890 words, reading ease 76"
+   },
+   {
+    "seq": 417,
+    "t": 29876733.7274,
+    "type": "advance",
+    "order": "O-7",
+    "stage": "build",
+    "by": "writer-2",
+    "verdict": "pass"
+   },
+   {
+    "seq": 418,
+    "t": 29876733.727416668,
+    "type": "code-stage",
+    "order": "O-7",
+    "stage": "test1"
+   },
+   {
+    "seq": 419,
+    "t": 29876733.727416668,
+    "type": "done",
+    "msg": "M-62",
+    "run": "R-29"
+   },
+   {
+    "seq": 420,
+    "t": 29876733.727416668,
+    "type": "send",
+    "msg": "M-64",
+    "from": "writer-2",
+    "to": "editor",
+    "kind": "report",
+    "key": null,
+    "ref": "O-7",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 421,
+    "t": 29876733.727416668,
+    "type": "leave",
+    "run": "R-29",
+    "role": "writer-2",
+    "order": "O-7",
+    "stage": "build",
+    "verdict": "pass",
+    "minutes": 0.5786166675388813
+   },
+   {
+    "seq": 422,
+    "t": 29876733.73115,
+    "type": "advance",
+    "order": "O-7",
+    "stage": "test1",
+    "by": "code",
+    "verdict": "pass"
+   },
+   {
+    "seq": 423,
+    "t": 29876733.73115,
+    "type": "send",
+    "msg": "M-65",
+    "from": "editor",
+    "to": "pool:checker",
+    "kind": "work",
+    "key": "O-7:check:0",
+    "ref": "O-7",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 424,
+    "t": 29876733.73116667,
+    "type": "item-update",
+    "item": "ISS-7",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 425,
+    "t": 29876733.73116667,
+    "type": "supervisor-tick",
+    "steps": [
+     "test1:O-7"
+    ]
+   },
+   {
+    "seq": 426,
+    "t": 29876733.73116667,
+    "type": "launch",
+    "role": "reader",
+    "msgs": [
+     "M-65"
+    ],
+    "tasks": [],
+    "why": "plan: next: 1 waiting, no session running"
+   },
+   {
+    "seq": 427,
+    "t": 29876734.0081,
+    "type": "session-open",
+    "session": "S-25",
+    "role": "reader"
+   },
+   {
+    "seq": 428,
+    "t": 29876734.0081,
+    "type": "claim",
+    "msg": "M-65",
+    "run": "R-30"
+   },
+   {
+    "seq": 429,
+    "t": 29876734.0081,
+    "type": "enter",
+    "run": "R-30",
+    "msg": "M-65",
+    "role": "reader",
+    "by": "reader",
+    "room": "quality",
+    "order": "O-7",
+    "stage": "check",
+    "mode": "work",
+    "session": "S-25",
+    "item": 1
    }
   ]
  },
@@ -6223,7 +6366,7 @@
       },
       "priority": "next",
       "ts": 29876732.900666665,
-      "state": "open",
+      "state": "done",
       "lease": {
        "run": "R-29",
        "until": 29876763.1488
@@ -6249,6 +6392,51 @@
       "ts": 29876732.900666665,
       "state": "open",
       "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-64",
+     {
+      "id": "M-64",
+      "from": "writer-2",
+      "to": "editor",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-7",
+      "body": {
+       "stage": "build",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876733.727416668,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-65",
+     {
+      "id": "M-65",
+      "from": "editor",
+      "to": "pool:checker",
+      "kind": "work",
+      "key": "O-7:check:0",
+      "due": null,
+      "ref": "O-7",
+      "body": {
+       "stage": "check",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876733.73115,
+      "state": "open",
+      "lease": {
+       "run": "R-30",
+       "until": 29876764.0081
+      },
       "acked": false
      }
     ]
@@ -6395,10 +6583,14 @@
     [
      "O-7:build:0",
      "M-62"
+    ],
+    [
+     "O-7:check:0",
+     "M-65"
     ]
    ]
   },
-  "n": 63
+  "n": 65
  },
  "org": {
   "roles": {
@@ -7270,10 +7462,23 @@
       "spent": 0,
       "accept": "live/bench3-b/work/PACK/page.md: the assembled pack. First line '# Solar System Quiz Pack'; then the five shipped rounds (live/bench3-b/shipped/ROUND1..ROUND5/page.md) in order, each starting '# Round n: <topic>', 20 questions in all. Read them as one pack and fix what clashes across rounds: an answer used in two rounds, a fact that contradicts another round, a format slip; keep each round's 4 questions. End with '## Changes' listing each change and why (or 'none'). No words like stupid, dumb, kill, dead, blood, hate.",
       "words": null,
-      "stage": "build",
+      "stage": "check",
       "loops": 0,
       "created": 29876713.3489,
-      "history": [],
+      "history": [
+       {
+        "stage": "build",
+        "by": "writer-2",
+        "verdict": "pass",
+        "t": 29876733.7274
+       },
+       {
+        "stage": "test1",
+        "by": "code",
+        "verdict": "pass",
+        "t": 29876733.73115
+       }
+      ],
       "priority": "next",
       "due": null,
       "after": [
@@ -7796,13 +8001,29 @@
       "stage": "build",
       "loops": 0,
       "entered": 29876733.1488,
-      "state": "running",
+      "state": "left",
       "session": "S-24"
+     }
+    ],
+    [
+     "R-30",
+     {
+      "run": "R-30",
+      "msg": "M-65",
+      "role": "reader",
+      "by": "reader",
+      "consult": false,
+      "order": "O-7",
+      "stage": "check",
+      "loops": 0,
+      "entered": 29876734.0081,
+      "state": "running",
+      "session": "S-25"
      }
     ]
    ]
   },
-  "n": 29,
+  "n": 30,
   "memory": {
    "__map": [
     [
@@ -7848,6 +8069,12 @@
        "t": 29876731.8073,
        "did": "build on O-6: pass (loop 4)",
        "learned": "A nickname in the question can hand over the answer (dirty snowballs = ice and dust); ask the fact plainly so Q4 stays the hardest.",
+       "mistake": null
+      },
+      {
+       "t": 29876733.727416668,
+       "did": "build on O-7: pass (loop 0)",
+       "learned": "The shipped rounds were already clash-free after the round-level fixes, so PACK needed only a heading-case normalisation; read every Why line across rounds for answer words before assuming a clash.",
        "mistake": null
       }
      ]
@@ -8236,9 +8463,19 @@
       "open": true,
       "started": 29876733.148783334
      }
+    ],
+    [
+     "S-25",
+     {
+      "id": "S-25",
+      "role": "reader",
+      "items": 1,
+      "open": true,
+      "started": 29876734.0081
+     }
     ]
    ]
   },
-  "nS": 24
+  "nS": 25
  }
 }
