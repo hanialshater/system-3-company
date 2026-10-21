@@ -35,3 +35,22 @@ test('non-string throws TypeError', () => {
     assert.throws(() => toKebab(v), TypeError);
   }
 });
+test('non-ASCII camelCase boundaries split', () => {
+  assert.equal(toKebab('caféBar'), 'café-bar');
+  assert.equal(toKebab('ÉtéÀ'), 'été-à');
+  assert.equal(toKebab('straßeName'), 'straße-name');
+  assert.equal(toKebab('привітСвіт'), 'привіт-світ');
+  assert.equal(toKebab('ünïcödeTëst'), 'ünïcöde-tëst');
+  assert.equal(toKebab('caféBar'), 'café-bar');
+});
+test('non-ASCII acronym ends', () => {
+  assert.equal(toKebab('ÉTÉCafé'), 'été-café');
+  assert.equal(toKebab('parseÜBER'), 'parse-über');
+  assert.equal(toKebab('ÀÉÎÔùx'), 'àéî-ôùx');
+  assert.equal(toKebab('XMLΑπόφαση'), 'xml-απόφαση');
+});
+test('non-ASCII digits stay attached and separators still work', () => {
+  assert.equal(toKebab('v٢Api'), 'v٢-api');
+  assert.equal(toKebab('crème_brûlée'), 'crème-brûlée');
+  assert.equal(toKebab('  naïve Test '), 'naïve-test');
+});

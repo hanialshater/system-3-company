@@ -42,3 +42,38 @@ test('invalid line throws SyntaxError with 1-based line number', () => {
 test('empty input returns empty object', () => {
   assert.deepEqual(parseIni(''), {});
 });
+
+test('section names that shadow Object.prototype members are real sections', () => {
+  for (const name of ['constructor', 'toString', 'hasOwnProperty', 'valueOf', '__proto__']) {
+    const r = parseIni(`[${name}]\na=1`);
+    assert.deepEqual(Object.keys(r), [name], name);
+    assert.equal(Object.hasOwn(r, name), true, name);
+    assert.deepEqual({ ...r[name] }, { a: '1' }, name);
+  }
+});
+
+test('no prototype pollution from section or key names', () => {
+  parseIni('[__proto__]\npolluted=yes');
+  parseIni('__proto__=x\n[s]\n__proto__=1\nconstructor=2');
+  assert.equal(Object.hasOwn(Object.prototype, 'polluted'), false);
+  assert.equal({}.polluted, undefined);
+  assert.equal(typeof Object.prototype.toString, 'function');
+  assert.equal(Object.prototype.toString.a, undefined);
+});
+
+test('keys named like Object.prototype members are kept as string values', () => {
+  const r = parseIni('[s]\n__proto__=1\nb=2\nconstructor=c\ntoString=t');
+  assert.deepEqual(Object.keys(r.s), ['__proto__', 'b', 'constructor', 'toString']);
+  assert.equal(Object.getOwnPropertyDescriptor(r.s, '__proto__').value, '1');
+  assert.equal(r.s.b, '2');
+  assert.equal(r.s.constructor, 'c');
+  assert.equal(r.s.toString, 't');
+  const g = parseIni('__proto__=g');
+  assert.deepEqual(Object.keys(g), ['']);
+  assert.equal(Object.getOwnPropertyDescriptor(g[''], '__proto__').value, 'g');
+});
+
+test('repeated prototype-named key: last wins', () => {
+  const r = parseIni('[s]\nconstructor=1\nconstructor=2');
+  assert.equal(r.s.constructor, '2');
+});

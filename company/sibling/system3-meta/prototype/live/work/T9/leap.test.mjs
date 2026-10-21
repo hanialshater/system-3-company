@@ -17,3 +17,10 @@ test('invalid inputs throw RangeError', () => {
     assert.throws(() => isLeapYear(v), RangeError, String(v));
   }
 });
+test('non-coercible inputs throw RangeError, not TypeError', () => {
+  const throwing = { toString() { throw new Error('boom'); }, valueOf() { throw new Error('boom'); } };
+  const proxy = new Proxy({}, { get() { throw new Error('trap'); } });
+  for (const v of [Object.create(null), throwing, proxy, Symbol('y'), () => 2000, new Number(2000)]) {
+    assert.throws(() => isLeapYear(v), RangeError, typeof v);
+  }
+});
