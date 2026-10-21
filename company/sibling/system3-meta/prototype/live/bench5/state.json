@@ -11148,6 +11148,131 @@
      }
     ],
     "why": "plan: ask: ISS-14"
+   },
+   {
+    "seq": 940,
+    "t": 29876945.629433334,
+    "type": "refuse",
+    "rule": "hard",
+    "msg": "HARD: M-148 is held by run R-57 until 29876975.230116665",
+    "argv": "room enter --msg=M-148 --role=dev-1"
+   },
+   {
+    "seq": 941,
+    "t": 29876945.672,
+    "type": "usage",
+    "role": "lead",
+    "tokens": 42205,
+    "label": "outside a room",
+    "source": "launcher",
+    "launch": "0813-lead"
+   },
+   {
+    "seq": 942,
+    "t": 29876945.672,
+    "type": "launch-finished",
+    "launch": "0813-lead",
+    "role": "lead",
+    "ok": true,
+    "tokens": 42205,
+    "cumulative": 299079,
+    "cost": 0.2378,
+    "sessions": [],
+    "abandoned": [],
+    "reason": null
+   },
+   {
+    "seq": 943,
+    "t": 29876945.675766665,
+    "type": "launch",
+    "role": "lead",
+    "msgs": [],
+    "tasks": [
+     {
+      "kind": "ask",
+      "ref": "ISS-14"
+     }
+    ],
+    "why": "plan: ask: ISS-14"
+   },
+   {
+    "seq": 944,
+    "t": 29876945.752616666,
+    "type": "post-read",
+    "post": "P-4",
+    "by": "dev-2"
+   },
+   {
+    "seq": 945,
+    "t": 29876945.752633333,
+    "type": "ack",
+    "msg": "M-123",
+    "by": "dev-2",
+    "post": "P-4"
+   },
+   {
+    "seq": 946,
+    "t": 29876945.755333334,
+    "type": "session-open",
+    "session": "S-30",
+    "role": "dev-2"
+   },
+   {
+    "seq": 947,
+    "t": 29876945.755333334,
+    "type": "claim",
+    "msg": "M-153",
+    "run": "R-58"
+   },
+   {
+    "seq": 948,
+    "t": 29876945.755333334,
+    "type": "enter",
+    "run": "R-58",
+    "msg": "M-153",
+    "role": "dev-2",
+    "by": "dev-2",
+    "room": "workshop",
+    "order": "O-3",
+    "stage": "build",
+    "mode": "work",
+    "session": "S-30",
+    "item": 1
+   },
+   {
+    "seq": 949,
+    "t": 29876945.81195,
+    "type": "usage",
+    "role": "dev-1",
+    "tokens": 31919,
+    "label": "outside a room",
+    "source": "launcher",
+    "launch": "0906-dev-1"
+   },
+   {
+    "seq": 950,
+    "t": 29876945.81195,
+    "type": "launch-finished",
+    "launch": "0906-dev-1",
+    "role": "dev-1",
+    "ok": true,
+    "tokens": 31919,
+    "cumulative": 129037,
+    "cost": 0.0513,
+    "sessions": [],
+    "abandoned": [],
+    "reason": null
+   },
+   {
+    "seq": 951,
+    "t": 29876945.922783334,
+    "type": "self-check",
+    "order": "O-6",
+    "task": "SHEET",
+    "by": "dev-1",
+    "stage": "build",
+    "pass": true,
+    "output": "# tests 9 # pass 9 # fail 0"
    }
   ]
  },
@@ -13884,7 +14009,8 @@
       "ts": 29876941.353683334,
       "state": "open",
       "lease": null,
-      "acked": false
+      "acked": true,
+      "readAt": 29876945.752616666
      }
     ],
     [
@@ -14546,7 +14672,10 @@
       "priority": "next",
       "ts": 29876945.496033333,
       "state": "open",
-      "lease": null,
+      "lease": {
+       "run": "R-58",
+       "until": 29876975.755333334
+      },
       "acked": false
      }
     ]
@@ -17009,10 +17138,26 @@
       "state": "running",
       "session": "S-29"
      }
+    ],
+    [
+     "R-58",
+     {
+      "run": "R-58",
+      "msg": "M-153",
+      "role": "dev-2",
+      "by": "dev-2",
+      "consult": false,
+      "order": "O-3",
+      "stage": "build",
+      "loops": 3,
+      "entered": 29876945.755333334,
+      "state": "running",
+      "session": "S-30"
+     }
     ]
    ]
   },
-  "n": 57,
+  "n": 58,
   "memory": {
    "__map": [
     [
@@ -17688,9 +17833,20 @@
       "started": 29876945.2301,
       "launch": "0897-dev-1"
      }
+    ],
+    [
+     "S-30",
+     {
+      "id": "S-30",
+      "role": "dev-2",
+      "items": 1,
+      "open": true,
+      "started": 29876945.755333334,
+      "launch": "0938-dev-2"
+     }
     ]
    ]
   },
-  "nS": 29
+  "nS": 30
  }
 }
