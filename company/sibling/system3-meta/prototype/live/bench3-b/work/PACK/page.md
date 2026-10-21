@@ -68,7 +68,7 @@
 
 **Q3.** What is the name of the huge storm that has swirled on Jupiter for well over a hundred years?
 
-**Answer:** The Great Red Spot
+**Answer:** Great Red Spot
 
 **Why:** This red storm is wider than our whole planet, and people have watched it through telescopes for more than 150 years.
 
@@ -133,4 +133,5 @@
 ## Changes
 
 - Round 5 heading: changed "Dwarf planets, asteroids and comets" to "Dwarf Planets, Asteroids and Comets", so all five round titles use the same capitalisation (format slip).
-- No other changes. Read as one pack, the 20 answers are all different, no question or Why line hints at another round's answer, the facts agree across rounds (for example Jupiter is the biggest planet only in Round 3, and Round 4 names Jupiter only as the host of its moons), and every round keeps its 4 questions with the Qn, Answer and one-sentence Why lines.
+- Round 3 Q3 answer: dropped the leading "The", because the style sheet caps answers at three words and the old answer had four (format slip); the Why line already says "This red storm", so the question and Why are unchanged.
+- No other changes. Read as one pack, the 20 answers are all different, no question or Why line hints at another round's answer, the facts agree across rounds (for example Jupiter is the biggest planet only in Round 3, and Round 4 names Jupiter only as the host of its moons), and every round keeps its 4 questions with the Qn, Answer and one-sentence Why lines, with every answer now one to three words.
