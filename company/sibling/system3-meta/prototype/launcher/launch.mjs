@@ -3,7 +3,8 @@
 // person in the loop. Benchmark 3: `serve` planned and briefed every launch, and I still launched all 18 by hand.
 //
 //   node launcher/launch.mjs --live=<dir> [--acceptance=<dir>] [--model=claude-opus-5-5] [--max-parallel=4]
-//        [--max-min=90] [--idle-min=1] [--session-min=20] [--kill=<n>:<seconds>,…]
+//        [--max-min=90] [--idle-min=1] [--session-min=20] [--kill=<n>:<seconds>,…] [--faults=<json>]
+//        [--setting-sources=user,project,local]
 //
 // It runs `supervisor.mjs serve` as a child and reads its JSON lines. Each {"event":"launch"} becomes one Agent SDK
 // query() whose prompt is the brief file exactly as code wrote it (benchmark 3: two of my hand launches were retyped
@@ -30,6 +31,9 @@ const LIVE = path.resolve(opt.live);
 const MODEL = opt.model ?? "claude-opus-5-5";
 const MAX_PAR = Number(opt["max-parallel"] ?? 4);
 const SESSION_MIN = Number(opt["session-min"] ?? 20);
+// --setting-sources=user,project,local loads what an interactive session loads (System 3 Company's CLAUDE.md and
+// settings): the like-for-like arm for cost comparisons with the earlier benchmarks (benchmark 4's caveat)
+const SOURCES = opt["setting-sources"] ? String(opt["setting-sources"]).split(",").filter(Boolean) : [];
 const kills = new Map(String(opt.kill ?? "").split(",").filter(Boolean).map((x) => x.split(":").map(Number)));
 const env = { ...process.env, META_LIVE_DIR: LIVE, BOOK_ROOT: process.env.BOOK_ROOT ?? path.join(LIVE, "work") };
 delete env.CLAUDECODE; // the agents are their own Claude Code processes, not children of this session's
@@ -59,7 +63,7 @@ async function run(ev) {
       cwd: PROTO, model: MODEL, abortController: ac,
       env: { ...env, META_LAUNCH: id },
       // the brief is the whole job: no project settings or CLAUDE.md (they belong to System 3 Company, not this run)
-      settingSources: [],
+      settingSources: SOURCES,
       allowedTools: ["Bash", "Read", "Write", "Edit", "Glob", "Grep"],
       permissionMode: "dontAsk", permissionPrompts: "none",
       maxTurns: 80,
@@ -96,9 +100,9 @@ function finish() {
   process.exit(0);
 }
 
-const serveArgs = [path.join(PROTO, "supervisor.mjs"), "serve", `--idle-min=${opt["idle-min"] ?? 1}`, `--max-min=${opt["max-min"] ?? 90}`, ...(opt.acceptance ? [`--acceptance=${path.resolve(opt.acceptance)}`] : [])];
+const serveArgs = [path.join(PROTO, "supervisor.mjs"), "serve", `--idle-min=${opt["idle-min"] ?? 1}`, `--max-min=${opt["max-min"] ?? 90}`, ...(opt.acceptance ? [`--acceptance=${path.resolve(opt.acceptance)}`] : []), ...(opt.faults ? [`--faults=${path.resolve(opt.faults)}`] : [])];
 const serve = spawn("node", serveArgs, { env, stdio: ["ignore", "pipe", "inherit"] });
-note({ event: "launcher-up", live: LIVE, model: MODEL, maxParallel: MAX_PAR, kills: [...kills.entries()] });
+note({ event: "launcher-up", live: LIVE, model: MODEL, maxParallel: MAX_PAR, kills: [...kills.entries()], settingSources: SOURCES });
 readline.createInterface({ input: serve.stdout }).on("line", (line) => {
   let ev; try { ev = JSON.parse(line); } catch { return; }
   fs.appendFileSync(path.join(LIVE, "serve.log"), line + "\n");

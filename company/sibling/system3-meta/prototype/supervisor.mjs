@@ -11,7 +11,8 @@
 //           role has none running; `later` items wait for a batch (--batch-later=N) or their due time
 //
 //   node supervisor.mjs launched --role=<role> [--msgs=…]   the orchestrator started a session: plan it as starting
-//   node supervisor.mjs serve [--acceptance=<dir>] [--idle-min=2] [--max-min=120]   the supervisor as a service
+//   node supervisor.mjs serve [--acceptance=<dir>] [--idle-min=2] [--max-min=120] [--faults=<json>]   the supervisor as a service
+//        (--faults: benchmark fault injection inside the tick, e.g. [{"id":"F3","kind":"drop","task":"P1","stage":"check"}])
 //        (benchmark 2: one typed `cycle` per wake made 142% of the current method's actions): runs until the work is
 //        done; at every state change it ticks, reserves each planned launch, writes its brief to live/<dir>/outbox/
 //        and prints one JSON line per launch: a stream for the orchestrator's monitor, so a wake needs no command
@@ -37,7 +38,7 @@ import * as CH from "./channels.mjs";
 const STAGE_SIGNER = { test1: "code", uat: "orderer", ship: "release" };
 
 /** One pass over every order; repeated until nothing changes (an accepted UAT makes a ship step possible). */
-export function tick(co, { acceptance = null } = {}) {
+export function tick(co, { acceptance = null, faults = null } = {}) {
   const { engine, rooms, mailbox, log } = co;
   const steps = [];
   for (const m of mailbox.promote()) steps.push({ step: "promote", msg: m.id, order: m.ref });
@@ -97,6 +98,21 @@ export function tick(co, { acceptance = null } = {}) {
     const now = engine.clock.now();
     if (o.orphanSince == null) { o.orphanSince = now; continue; }
     if (now - o.orphanSince >= WATCHDOG_MIN) { engine.notifyStage(o, { duplicate: true }); o.orphanSince = null; log.add({ type: "watchdog-resend", order: o.id, stage: o.stage, loops: o.loops }); steps.push({ step: "watchdog", order: o.id, stage: o.stage }); }
+  }
+  // injected faults for benchmarks (--faults=<json>): applied here, inside the tick, so a trigger cannot be missed
+  // between polls (benchmark 4: the poller missed F3's trigger). `drop` deletes the order's open message for a stage
+  // as soon as it is sent, before any launch is planned for it.
+  if (faults) {
+    const fired = new Set(log.events.filter((e) => e.type === "fault-injected").map((e) => e.fault)); // once each
+    for (const f of faults) {
+      if (fired.has(f.id) || f.kind !== "drop") continue;
+      const o = [...engine.orders.values()].find((x) => x.task === f.task && x.stage === f.stage);
+      const m = o && [...mailbox.msgs.values()].find((x) => x.ref === o.id && x.kind === "work" && x.state === "open" && x.body?.stage === f.stage && !x.lease);
+      if (!m) continue;
+      mailbox.msgs.delete(m.id);
+      log.add({ type: "fault-injected", fault: f.id, kind: f.kind, order: o.id, msg: m.id });
+      steps.push({ step: "fault", fault: f.id, order: o.id, msg: m.id });
+    }
   }
   for (const id of expireContracts(co)) steps.push({ step: "contract-expired", contract: id });
   if (co.data) { syncOrders(co); for (const g of sweepGoals(co)) steps.push({ step: "goal-auto-red", goal: g }); }
@@ -346,7 +362,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const argv = process.argv.slice(2);
   const opt = {};
   for (const a of argv) if (a.startsWith("--")) { const [k, ...v] = a.slice(2).split("="); opt[k] = v.length ? v.join("=") : true; }
-  const opts = { acceptance: opt.acceptance ?? null, batchLater: Number(opt["batch-later"] ?? 3), cap: Number(opt.cap ?? 4) };
+  const opts = { acceptance: opt.acceptance ?? null, batchLater: Number(opt["batch-later"] ?? 3), cap: Number(opt.cap ?? 4), faults: opt.faults ? JSON.parse(fs.readFileSync(opt.faults, "utf8")) : null };
   const cmd = argv.find((a) => !a.startsWith("--"));
   const print = (x) => console.log(JSON.stringify(x, rep, 2));
   if (cmd === "launched") {

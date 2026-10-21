@@ -100,3 +100,17 @@ test("mail dup: only a manager (or above) resends work, and the resend is record
   assert.equal(cli(dir, ["mail", "dup", o, "--by=editor"]).code, 0);
   assert.ok(state(dir).log.events.some((e) => e.type === "mail-dup" && e.by === "editor"));
 });
+
+test("injected drop inside the tick: the message is gone before any launch is planned, and the watchdog sends it again", () => {
+  const dir = company();
+  const o = order(dir, "P1");
+  const f = path.join(dir, "faults.json"); fs.writeFileSync(f, JSON.stringify([{ id: "F3", kind: "drop", task: "P1", stage: "build" }]));
+  const t1 = tick(dir, [`--faults=${f}`], { META_WATCHDOG_MIN: "0" });
+  assert.ok(t1.steps.some((x) => x.step === "fault" && x.order === o));
+  assert.equal(t1.plan.some((p) => p.role === "writer-1"), false, "nothing to launch for: the message is gone");
+  tick(dir, [`--faults=${f}`], { META_WATCHDOG_MIN: "0" }); // orphan seen
+  const t3 = tick(dir, [`--faults=${f}`], { META_WATCHDOG_MIN: "0" });
+  assert.ok(state(dir).log.events.some((e) => e.type === "watchdog-resend" && e.order === o));
+  assert.ok(t3.plan.some((p) => p.role === "writer-1"), "the resent message is planned");
+  assert.equal(state(dir).log.events.filter((e) => e.type === "fault-injected").length, 1, "a fault fires once");
+});
