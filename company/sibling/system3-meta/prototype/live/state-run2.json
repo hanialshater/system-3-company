@@ -1705,6 +1705,377 @@
     "ref": "O-6",
     "priority": "next",
     "due": null
+   },
+   {
+    "seq": 166,
+    "t": 29876178.534333333,
+    "type": "session-open",
+    "session": "S-7",
+    "role": "toy-release"
+   },
+   {
+    "seq": 167,
+    "t": 29876178.534333333,
+    "type": "claim",
+    "msg": "M-36",
+    "run": "R-15"
+   },
+   {
+    "seq": 168,
+    "t": 29876178.534333333,
+    "type": "enter",
+    "run": "R-15",
+    "msg": "M-36",
+    "role": "toy-release",
+    "by": "toy-release",
+    "room": "launch",
+    "order": "O-1",
+    "stage": "ship",
+    "mode": "work",
+    "session": "S-7",
+    "item": 1
+   },
+   {
+    "seq": 169,
+    "t": 29876178.59645,
+    "type": "advance",
+    "order": "O-1",
+    "stage": "ship",
+    "by": "toy-release",
+    "verdict": "pass"
+   },
+   {
+    "seq": 170,
+    "t": 29876178.59645,
+    "type": "shipped",
+    "order": "O-1",
+    "lead": 6.097249999642372,
+    "loops": 0,
+    "priority": "next"
+   },
+   {
+    "seq": 171,
+    "t": 29876178.59645,
+    "type": "done",
+    "msg": "M-36",
+    "run": "R-15"
+   },
+   {
+    "seq": 172,
+    "t": 29876178.596466668,
+    "type": "send",
+    "msg": "M-40",
+    "from": "pool:release",
+    "to": "mgr-live",
+    "kind": "report",
+    "key": null,
+    "ref": "O-1",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 173,
+    "t": 29876178.596466668,
+    "type": "leave",
+    "run": "R-15",
+    "role": "toy-release",
+    "order": "O-1",
+    "stage": "ship",
+    "verdict": "pass",
+    "minutes": 0.06213333457708359
+   },
+   {
+    "seq": 174,
+    "t": 29876178.6872,
+    "type": "session-open",
+    "session": "S-8",
+    "role": "toy-release"
+   },
+   {
+    "seq": 175,
+    "t": 29876178.6872,
+    "type": "claim",
+    "msg": "M-37",
+    "run": "R-16"
+   },
+   {
+    "seq": 176,
+    "t": 29876178.6872,
+    "type": "enter",
+    "run": "R-16",
+    "msg": "M-37",
+    "role": "toy-release",
+    "by": "toy-release",
+    "room": "launch",
+    "order": "O-2",
+    "stage": "ship",
+    "mode": "work",
+    "session": "S-8",
+    "item": 1
+   },
+   {
+    "seq": 177,
+    "t": 29876178.68965,
+    "type": "advance",
+    "order": "O-2",
+    "stage": "ship",
+    "by": "toy-release",
+    "verdict": "pass"
+   },
+   {
+    "seq": 178,
+    "t": 29876178.68965,
+    "type": "shipped",
+    "order": "O-2",
+    "lead": 6.189383331686258,
+    "loops": 0,
+    "priority": "next"
+   },
+   {
+    "seq": 179,
+    "t": 29876178.68965,
+    "type": "done",
+    "msg": "M-37",
+    "run": "R-16"
+   },
+   {
+    "seq": 180,
+    "t": 29876178.68965,
+    "type": "send",
+    "msg": "M-41",
+    "from": "pool:release",
+    "to": "mgr-live",
+    "kind": "report",
+    "key": null,
+    "ref": "O-2",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 181,
+    "t": 29876178.68965,
+    "type": "leave",
+    "run": "R-16",
+    "role": "toy-release",
+    "order": "O-2",
+    "stage": "ship",
+    "verdict": "pass",
+    "minutes": 0.0024500004947185516
+   },
+   {
+    "seq": 182,
+    "t": 29876178.690683335,
+    "type": "session-open",
+    "session": "S-9",
+    "role": "toy-release"
+   },
+   {
+    "seq": 183,
+    "t": 29876178.690683335,
+    "type": "claim",
+    "msg": "M-38",
+    "run": "R-17"
+   },
+   {
+    "seq": 184,
+    "t": 29876178.690683335,
+    "type": "enter",
+    "run": "R-17",
+    "msg": "M-38",
+    "role": "toy-release",
+    "by": "toy-release",
+    "room": "launch",
+    "order": "O-3",
+    "stage": "ship",
+    "mode": "work",
+    "session": "S-9",
+    "item": 1
+   },
+   {
+    "seq": 185,
+    "t": 29876178.693233334,
+    "type": "advance",
+    "order": "O-3",
+    "stage": "ship",
+    "by": "toy-release",
+    "verdict": "pass"
+   },
+   {
+    "seq": 186,
+    "t": 29876178.693233334,
+    "type": "shipped",
+    "order": "O-3",
+    "lead": 6.191966667771339,
+    "loops": 0,
+    "priority": "next"
+   },
+   {
+    "seq": 187,
+    "t": 29876178.693233334,
+    "type": "unblocked",
+    "order": "O-7",
+    "by": "O-3"
+   },
+   {
+    "seq": 188,
+    "t": 29876178.693233334,
+    "type": "send",
+    "msg": "M-42",
+    "from": "mgr-live",
+    "to": "toy-builder-2",
+    "kind": "work",
+    "key": "O-7:build:0",
+    "ref": "O-7",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 189,
+    "t": 29876178.693233334,
+    "type": "done",
+    "msg": "M-38",
+    "run": "R-17"
+   },
+   {
+    "seq": 190,
+    "t": 29876178.693233334,
+    "type": "send",
+    "msg": "M-43",
+    "from": "pool:release",
+    "to": "mgr-live",
+    "kind": "report",
+    "key": null,
+    "ref": "O-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 191,
+    "t": 29876178.693233334,
+    "type": "leave",
+    "run": "R-17",
+    "role": "toy-release",
+    "order": "O-3",
+    "stage": "ship",
+    "verdict": "pass",
+    "minutes": 0.002549998462200165
+   },
+   {
+    "seq": 192,
+    "t": 29876178.694316667,
+    "type": "session-open",
+    "session": "S-10",
+    "role": "toy-release"
+   },
+   {
+    "seq": 193,
+    "t": 29876178.694316667,
+    "type": "claim",
+    "msg": "M-39",
+    "run": "R-18"
+   },
+   {
+    "seq": 194,
+    "t": 29876178.694316667,
+    "type": "enter",
+    "run": "R-18",
+    "msg": "M-39",
+    "role": "toy-release",
+    "by": "toy-release",
+    "room": "launch",
+    "order": "O-6",
+    "stage": "ship",
+    "mode": "work",
+    "session": "S-10",
+    "item": 1
+   },
+   {
+    "seq": 195,
+    "t": 29876178.696233332,
+    "type": "advance",
+    "order": "O-6",
+    "stage": "ship",
+    "by": "toy-release",
+    "verdict": "pass"
+   },
+   {
+    "seq": 196,
+    "t": 29876178.696233332,
+    "type": "shipped",
+    "order": "O-6",
+    "lead": 6.191216666251421,
+    "loops": 0,
+    "priority": "next"
+   },
+   {
+    "seq": 197,
+    "t": 29876178.696233332,
+    "type": "done",
+    "msg": "M-39",
+    "run": "R-18"
+   },
+   {
+    "seq": 198,
+    "t": 29876178.696233332,
+    "type": "send",
+    "msg": "M-44",
+    "from": "pool:release",
+    "to": "mgr-live",
+    "kind": "report",
+    "key": null,
+    "ref": "O-6",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 199,
+    "t": 29876178.696233332,
+    "type": "leave",
+    "run": "R-18",
+    "role": "toy-release",
+    "order": "O-6",
+    "stage": "ship",
+    "verdict": "pass",
+    "minutes": 0.0019166655838489532
+   },
+   {
+    "seq": 200,
+    "t": 29876179.437716667,
+    "type": "usage",
+    "role": "cos",
+    "tokens": 62701,
+    "label": "supervisor B: UAT+ship x4",
+    "source": "harness",
+    "supervisor": true
+   },
+   {
+    "seq": 201,
+    "t": 29876179.58701667,
+    "type": "session-open",
+    "session": "S-11",
+    "role": "toy-builder-2"
+   },
+   {
+    "seq": 202,
+    "t": 29876179.58701667,
+    "type": "claim",
+    "msg": "M-22",
+    "run": "R-19"
+   },
+   {
+    "seq": 203,
+    "t": 29876179.58701667,
+    "type": "enter",
+    "run": "R-19",
+    "msg": "M-22",
+    "role": "toy-builder-2",
+    "by": "toy-builder-2",
+    "room": "sandbox",
+    "order": "O-8",
+    "stage": "build",
+    "mode": "work",
+    "session": "S-11",
+    "item": 1
    }
   ]
  },
@@ -2211,7 +2582,10 @@
       "priority": "now",
       "ts": 29876175.437416665,
       "state": "open",
-      "lease": null,
+      "lease": {
+       "run": "R-19",
+       "until": 29876209.58701667
+      },
       "acked": false
      }
     ],
@@ -2504,8 +2878,11 @@
       },
       "priority": "next",
       "ts": 29876178.3248,
-      "state": "open",
-      "lease": null,
+      "state": "done",
+      "lease": {
+       "run": "R-15",
+       "until": 29876208.534333333
+      },
       "acked": false
      }
     ],
@@ -2525,8 +2902,11 @@
       },
       "priority": "next",
       "ts": 29876178.32583333,
-      "state": "open",
-      "lease": null,
+      "state": "done",
+      "lease": {
+       "run": "R-16",
+       "until": 29876208.6872
+      },
       "acked": false
      }
     ],
@@ -2546,8 +2926,11 @@
       },
       "priority": "next",
       "ts": 29876178.326816667,
-      "state": "open",
-      "lease": null,
+      "state": "done",
+      "lease": {
+       "run": "R-17",
+       "until": 29876208.690683335
+      },
       "acked": false
      }
     ],
@@ -2567,6 +2950,114 @@
       },
       "priority": "next",
       "ts": 29876178.3281,
+      "state": "done",
+      "lease": {
+       "run": "R-18",
+       "until": 29876208.694316667
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-40",
+     {
+      "id": "M-40",
+      "from": "pool:release",
+      "to": "mgr-live",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-1",
+      "body": {
+       "stage": "ship",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876178.596466668,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-41",
+     {
+      "id": "M-41",
+      "from": "pool:release",
+      "to": "mgr-live",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-2",
+      "body": {
+       "stage": "ship",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876178.68965,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-42",
+     {
+      "id": "M-42",
+      "from": "mgr-live",
+      "to": "toy-builder-2",
+      "kind": "work",
+      "key": "O-7:build:0",
+      "due": null,
+      "ref": "O-7",
+      "body": {
+       "stage": "build",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876178.693233334,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-43",
+     {
+      "id": "M-43",
+      "from": "pool:release",
+      "to": "mgr-live",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-3",
+      "body": {
+       "stage": "ship",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876178.693233334,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-44",
+     {
+      "id": "M-44",
+      "from": "pool:release",
+      "to": "mgr-live",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-6",
+      "body": {
+       "stage": "ship",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876178.696233332,
       "state": "open",
       "lease": null,
       "acked": false
@@ -2675,10 +3166,14 @@
     [
      "O-6:ship:0",
      "M-39"
+    ],
+    [
+     "O-7:build:0",
+     "M-42"
     ]
    ]
   },
-  "n": 39
+  "n": 44
  },
  "org": {
   "roles": {
@@ -2874,7 +3369,7 @@
       "spent": 0,
       "accept": "live/work/T3/csvline.mjs exports parseCsvLine(line) returning an array of field strings. Fields are separated by commas. A field may be wrapped in double quotes; inside quotes a comma is literal and two double quotes stand for one. Unquoted fields are taken exactly as written (no trimming). An empty line gives [\"\"]. Throws SyntaxError on an unterminated quote, a quote inside an unquoted field, or characters after a closing quote before the next comma. node:test tests in live/work/T3/*.test.mjs",
       "words": null,
-      "stage": "ship",
+      "stage": "done",
       "loops": 0,
       "created": 29876172.4992,
       "history": [
@@ -2901,6 +3396,12 @@
         "by": "mgr-live",
         "verdict": "pass",
         "t": 29876178.324783333
+       },
+       {
+        "stage": "ship",
+        "by": "toy-release",
+        "verdict": "pass",
+        "t": 29876178.59645
        }
       ],
       "priority": "next",
@@ -2929,7 +3430,7 @@
       "spent": 0,
       "accept": "live/work/T4/dedent.mjs exports dedent(text): removes the longest common leading whitespace (spaces and tabs compared literally: a tab is not equal to spaces) from every non-blank line. Whitespace-only lines become empty and do not count for the common prefix. One leading newline is removed, and a final whitespace-only line is removed. node:test tests in live/work/T4/*.test.mjs",
       "words": null,
-      "stage": "ship",
+      "stage": "done",
       "loops": 0,
       "created": 29876172.500266667,
       "history": [
@@ -2956,6 +3457,12 @@
         "by": "mgr-live",
         "verdict": "pass",
         "t": 29876178.325816665
+       },
+       {
+        "stage": "ship",
+        "by": "toy-release",
+        "verdict": "pass",
+        "t": 29876178.68965
        }
       ],
       "priority": "next",
@@ -2984,7 +3491,7 @@
       "spent": 0,
       "accept": "live/work/T5/semver.mjs exports compare(a, b) returning -1, 0 or 1 for Semantic Versioning 2.0.0 strings MAJOR.MINOR.PATCH with optional -prerelease and optional +build (build is ignored). Precedence follows the semver 2.0.0 spec section 11 exactly (numeric identifiers compare numerically and rank below alphanumeric ones; a larger set of identifiers ranks higher when all preceding are equal; a prerelease ranks below its release). Throws TypeError on any invalid version (missing parts, leading zeros in numeric parts or numeric prerelease identifiers, empty identifiers). node:test tests in live/work/T5/*.test.mjs",
       "words": null,
-      "stage": "ship",
+      "stage": "done",
       "loops": 0,
       "created": 29876172.501266666,
       "history": [
@@ -3011,6 +3518,12 @@
         "by": "mgr-live",
         "verdict": "pass",
         "t": 29876178.326816667
+       },
+       {
+        "stage": "ship",
+        "by": "toy-release",
+        "verdict": "pass",
+        "t": 29876178.693233334
        }
       ],
       "priority": "next",
@@ -3139,7 +3652,7 @@
       "spent": 0,
       "accept": "live/work/T8/duration.mjs exports parseDuration(s) returning milliseconds. s is one or more integer+unit parts with units d, h, m, s, ms, written in that descending order, each unit at most once, with no spaces (e.g. 1h30m, 2d, 500ms, 0s, 1d2h3m4s5ms). Anything else throws SyntaxError: empty string, decimals, spaces, unknown units, a unit out of order or repeated, a number without a unit. node:test tests in live/work/T8/*.test.mjs",
       "words": null,
-      "stage": "ship",
+      "stage": "done",
       "loops": 0,
       "created": 29876172.505016666,
       "history": [
@@ -3166,6 +3679,12 @@
         "by": "mgr-live",
         "verdict": "pass",
         "t": 29876178.3281
+       },
+       {
+        "stage": "ship",
+        "by": "toy-release",
+        "verdict": "pass",
+        "t": 29876178.696233332
        }
       ],
       "priority": "next",
@@ -3203,7 +3722,7 @@
       "after": [
        "O-3"
       ],
-      "blocked": true,
+      "blocked": false,
       "task": "T10"
      }
     ],
@@ -3497,10 +4016,90 @@
       "state": "left",
       "session": "S-6"
      }
+    ],
+    [
+     "R-15",
+     {
+      "run": "R-15",
+      "msg": "M-36",
+      "role": "toy-release",
+      "by": "toy-release",
+      "consult": false,
+      "order": "O-1",
+      "stage": "ship",
+      "loops": 0,
+      "entered": 29876178.534333333,
+      "state": "left",
+      "session": "S-7"
+     }
+    ],
+    [
+     "R-16",
+     {
+      "run": "R-16",
+      "msg": "M-37",
+      "role": "toy-release",
+      "by": "toy-release",
+      "consult": false,
+      "order": "O-2",
+      "stage": "ship",
+      "loops": 0,
+      "entered": 29876178.6872,
+      "state": "left",
+      "session": "S-8"
+     }
+    ],
+    [
+     "R-17",
+     {
+      "run": "R-17",
+      "msg": "M-38",
+      "role": "toy-release",
+      "by": "toy-release",
+      "consult": false,
+      "order": "O-3",
+      "stage": "ship",
+      "loops": 0,
+      "entered": 29876178.690683335,
+      "state": "left",
+      "session": "S-9"
+     }
+    ],
+    [
+     "R-18",
+     {
+      "run": "R-18",
+      "msg": "M-39",
+      "role": "toy-release",
+      "by": "toy-release",
+      "consult": false,
+      "order": "O-6",
+      "stage": "ship",
+      "loops": 0,
+      "entered": 29876178.694316667,
+      "state": "left",
+      "session": "S-10"
+     }
+    ],
+    [
+     "R-19",
+     {
+      "run": "R-19",
+      "msg": "M-22",
+      "role": "toy-builder-2",
+      "by": "toy-builder-2",
+      "consult": false,
+      "order": "O-8",
+      "stage": "build",
+      "loops": 1,
+      "entered": 29876179.58701667,
+      "state": "running",
+      "session": "S-11"
+     }
     ]
    ]
   },
-  "n": 14,
+  "n": 19,
   "memory": {
    "__map": [
     [
@@ -3601,6 +4200,35 @@
        "mistake": null
       }
      ]
+    ],
+    [
+     "toy-release",
+     [
+      {
+       "t": 29876178.596466668,
+       "did": "ship on O-1: pass (loop 0)",
+       "learned": "ship is a copy",
+       "mistake": null
+      },
+      {
+       "t": 29876178.68965,
+       "did": "ship on O-2: pass (loop 0)",
+       "learned": "ship is a copy",
+       "mistake": null
+      },
+      {
+       "t": 29876178.693233334,
+       "did": "ship on O-3: pass (loop 0)",
+       "learned": "ship is a copy",
+       "mistake": null
+      },
+      {
+       "t": 29876178.696233332,
+       "did": "ship on O-6: pass (loop 0)",
+       "learned": "ship is a copy",
+       "mistake": null
+      }
+     ]
     ]
    ]
   },
@@ -3665,9 +4293,59 @@
       "open": false,
       "started": 29876175.107683334
      }
+    ],
+    [
+     "S-7",
+     {
+      "id": "S-7",
+      "role": "toy-release",
+      "items": 1,
+      "open": true,
+      "started": 29876178.534333333
+     }
+    ],
+    [
+     "S-8",
+     {
+      "id": "S-8",
+      "role": "toy-release",
+      "items": 1,
+      "open": true,
+      "started": 29876178.6872
+     }
+    ],
+    [
+     "S-9",
+     {
+      "id": "S-9",
+      "role": "toy-release",
+      "items": 1,
+      "open": true,
+      "started": 29876178.690683335
+     }
+    ],
+    [
+     "S-10",
+     {
+      "id": "S-10",
+      "role": "toy-release",
+      "items": 1,
+      "open": true,
+      "started": 29876178.694316667
+     }
+    ],
+    [
+     "S-11",
+     {
+      "id": "S-11",
+      "role": "toy-builder-2",
+      "items": 1,
+      "open": true,
+      "started": 29876179.58701667
+     }
     ]
    ]
   },
-  "nS": 6
+  "nS": 11
  }
 }
