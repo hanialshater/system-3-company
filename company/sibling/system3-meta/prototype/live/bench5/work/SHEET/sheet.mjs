@@ -1,14 +1,16 @@
 // SHEET: thin wiring of slots A-D (see work/ARCH/ARCH.md). No spreadsheet logic here.
 import { normalizeCell, parseFormula, refsOf } from "../MOD-A/syntax.mjs";
-import { parseLiteral, round9, display as displayValue } from "../MOD-B/values.mjs";
+import { parseLiteral, round9, isError, display as displayValue } from "../MOD-B/values.mjs";
 import { evaluate } from "../MOD-C/eval.mjs";
 import { createStore } from "../MOD-D/store.mjs";
 
 export function createSheet() {
   const store = createStore({ evaluate });
+  // Public get(): numbers rounded, errors as their code string (ARCH amendment ISS-9).
   function get(cell) {
     const v = store.get(normalizeCell(cell));
-    return typeof v === "number" ? round9(v) : v;
+    if (typeof v === "number") return round9(v);
+    return isError(v) ? v.error : v;
   }
   return {
     set(cell, text) {
@@ -24,7 +26,7 @@ export function createSheet() {
     },
     get,
     display(cell) {
-      return displayValue(get(cell));
+      return displayValue(store.get(normalizeCell(cell)));
     },
   };
 }

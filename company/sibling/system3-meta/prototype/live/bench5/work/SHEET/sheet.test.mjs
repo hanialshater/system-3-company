@@ -32,8 +32,13 @@ test("spec examples", () => {
 });
 test("errors", () => {
   assert.equal(d("=FOO(1)+1/0"), "#NAME?"); assert.equal(d("=1/0&FOO()"), "#DIV/0!");
-  assert.equal(d('="a"<1/0'), "#DIV/0!"); assert.equal(d("=-FOO()"), "#NAME?");
+  assert.equal(d("=-FOO()"), "#NAME?");
   assert.equal(d("=2^1024"), "#VALUE!"); assert.equal(d("=FOO(1,)"), "#VALUE!"); assert.equal(d("=FOO"), "#VALUE!");
   assert.equal(d("=0/0"), "#DIV/0!"); assert.equal(d('="a"=1'), "#VALUE!");
   const s = createSheet(); s.set("A1", "#DIV/0!"); assert.equal(s.get("A1"), "#DIV/0!"); // typed text stays text
+});
+
+test("get returns errors as code strings (ISS-9)", () => {
+  assert.equal(g("=1/0"), "#DIV/0!"); assert.equal(g('="a"+1'), "#VALUE!"); assert.equal(g("=FOO(1)"), "#NAME?");
+  assert.equal(g("=(1+2"), "#VALUE!");
 });
