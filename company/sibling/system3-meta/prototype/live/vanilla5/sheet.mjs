@@ -56,7 +56,7 @@ export function createSheet() {
     if (!c.formula) return c.value;
     if (!c.ast) return err(ERR.VALUE);
     if (memo.has(name)) return memo.get(name);
-    if (evaluating.has(name) || resolveCycles(name, depsOf, cycleStatus)) return err(ERR.CYCLE);
+    if (evaluating.has(name) || resolveCycles(name, depsOf, cycleStatus)) return err(ERR.CIRC);
     evaluating.add(name);
     try {
       let v = evaluate(c.ast, ctx);

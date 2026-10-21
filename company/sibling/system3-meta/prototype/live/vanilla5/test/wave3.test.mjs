@@ -6,32 +6,32 @@ const sheet = (cells) => { const s = createSheet(); for (const [k, v] of Object.
 
 test('direct and indirect cycles', () => {
   const s = sheet({ A1: '=A1' });
-  assert.equal(s.get('A1'), '#CYCLE!');
-  assert.equal(s.display('A1'), '#CYCLE!');
+  assert.equal(s.get('A1'), '#CIRC!');
+  assert.equal(s.display('A1'), '#CIRC!');
   const t = sheet({ A1: '=B1+1', B1: '=C1', C1: '=A1', D1: '=A1*2', E1: '=D1', F1: '5' });
-  for (const c of ['A1', 'B1', 'C1', 'D1', 'E1']) assert.equal(t.get(c), '#CYCLE!', c);
+  for (const c of ['A1', 'B1', 'C1', 'D1', 'E1']) assert.equal(t.get(c), '#CIRC!', c);
   assert.equal(t.get('F1'), 5);
   t.set('C1', '10');
   assert.equal(t.get('A1'), 11);
   assert.equal(t.get('B1'), 10);
   assert.equal(t.get('E1'), 22);
   t.set('C1', '=A1');
-  assert.equal(t.get('E1'), '#CYCLE!');
+  assert.equal(t.get('E1'), '#CIRC!');
   t.set('B1', '');
   assert.equal(t.get('A1'), 1);
   assert.equal(t.get('C1'), 1);
 });
 
 test('cycles through ranges and unevaluated branches', () => {
-  assert.equal(sheet({ A1: '=A1:A2' }).get('A1'), '#CYCLE!');
-  assert.equal(sheet({ A3: '=SUM(A1:A5)' }).get('A3'), '#CYCLE!');
+  assert.equal(sheet({ A1: '=A1:A2' }).get('A1'), '#CIRC!');
+  assert.equal(sheet({ A3: '=SUM(A1:A5)' }).get('A3'), '#CIRC!');
   const s = sheet({ B1: '=SUM(A1:A3)', A2: '=B1' });
-  assert.equal(s.get('B1'), '#CYCLE!');
-  assert.equal(s.get('A2'), '#CYCLE!');
-  assert.equal(sheet({ A1: '=IF(1,5,A1)' }).get('A1'), '#CYCLE!');
-  assert.equal(sheet({ A1: '=COUNT(B1:B2)', B1: '=A1' }).get('A1'), '#CYCLE!');
+  assert.equal(s.get('B1'), '#CIRC!');
+  assert.equal(s.get('A2'), '#CIRC!');
+  assert.equal(sheet({ A1: '=IF(1,5,A1)' }).get('A1'), '#CIRC!');
+  assert.equal(sheet({ A1: '=COUNT(B1:B2)', B1: '=A1' }).get('A1'), '#CIRC!');
   // reading a cycle even where another error would come first
-  assert.equal(sheet({ A1: '=A1', B1: '=(1/0)+A1' }).get('B1'), '#CYCLE!');
+  assert.equal(sheet({ A1: '=A1', B1: '=(1/0)+A1' }).get('B1'), '#CIRC!');
   // not a cycle: invalid refs/ranges, references to value cells
   assert.equal(sheet({ A1: '=SUM(A1:A100)' }).get('A1'), '#REF!');
   assert.equal(sheet({ A1: '=B1', B1: '3' }).get('A1'), 3);
@@ -72,7 +72,7 @@ test('scale', () => {
   u.set('Z99', '=SUM(A1:Z98)');
   assert.equal(u.get('Z99'), 540);
   u.set('A1', '=Z99');
-  assert.equal(u.get('Z99'), '#CYCLE!');
+  assert.equal(u.get('Z99'), '#CIRC!');
   u.set('A1', '1');
   assert.equal(u.get('Z99'), 540);
 });
@@ -95,7 +95,7 @@ test('one chain through all 2574 cells, then a giant cycle', () => {
   }
   assert.equal(s.get('Z99'), 2574);
   s.set('A1', '=Z99');
-  assert.equal(s.get('M50'), '#CYCLE!');
+  assert.equal(s.get('M50'), '#CIRC!');
   s.set('A1', '0');
   assert.equal(s.get('Z99'), 2573);
 });
