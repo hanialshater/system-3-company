@@ -1,3 +1,34 @@
+## 2026-10-21 · chief-of-staff (for System 3 Meta, as vp-meta) · M2 reached, M1 export ready, Benchmarks 4b and 5
+
+Founder: "Go go", then "Yes system 3 meta co".
+
+**Done** (company/sibling/system3-meta/prototype, 82 tests):
+- **M2.** `generator.mjs` and `init --spec-file`: companies from JSON specs, validated against invariants (`specs/toy.json`, `research.json`, `sheetco.json`).
+- **M1 export.** `export-kernel.mjs` writes a standalone tree; 80/80 tests and a live run pass from it.
+  - The repository `hanialshater/system3-meta-co` could not be created: the GitHub integration got a 403 on create.
+  - **The founder creates it empty and gives the Claude app access, then I push** (the tree is committed locally in the session scratchpad).
+- **Benchmark 4b, like for like.** With company context: 80.7k per order, 79% of live run 3. All four faults were recovered by code, the watchdog live.
+- **Benchmark 5, hard.** The team designed the modules, shipped three waves in 24 min, and every hidden test passes. The rework was real:
+  - 6 builder→lead asks;
+  - the design reopened after the hidden tests exposed a spec mismatch.
+
+  BENCH5.md has the details.
+- **Kernel bugs found by these runs, all fixed with tests:**
+  - the frozen kernel per run (after I broke a live run by editing meta.mjs);
+  - the watchdog's orphan mark was never saved;
+  - a crashed judgment launch held its reservation for 30 min;
+  - the wait-deadline double launch;
+  - reservations ended by the wrong launch;
+  - the launcher passed this session's env to agents.
+
+**Believe:** the mechanics are sound and fault recovery is real. Cost is about 80-95k per order with full context. n = 1 per benchmark.
+
+**Next:**
+1. Push M1 once the repository exists.
+2. Re-run Benchmark 5 on the fixed kernel, to see the empty sessions and the hang gone.
+3. M4: a second domain with an external acceptance measure. The founder picks the use case.
+
+**Blocked:** M1's remote, on the founder.
 ## 2026-10-21 · chief-of-staff (for System 3 Meta, as vp-meta) · M3 reached: the hands-free company (Benchmark 4)
 
 Founder: "update tools.md, then go with Agent SDK for M3, also continue previous tasks, keep going decide for me until we reach a big milestone".
