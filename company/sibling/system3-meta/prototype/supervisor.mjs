@@ -19,7 +19,9 @@
 // Same state as meta.mjs (META_LIVE_DIR, META_STATE). Exit 0 always unless the state cannot be read.
 import fs from "node:fs";
 import path from "node:path";
-import { LIVE, STATE, load, save, withLock, runTests, rep } from "./state.mjs";
+import { LIVE, STATE, load, save, withLock, runTests, runTest1, rep } from "./state.mjs";
+import { syncOrders } from "./tracker.mjs";
+import { sweepGoals } from "./goals.mjs";
 import { expireContracts } from "./contractor.mjs";
 
 const STAGE_SIGNER = { test1: "code", uat: "orderer", ship: "release" };
@@ -35,7 +37,7 @@ export function tick(co, { acceptance = null } = {}) {
     for (const o of engine.orders.values()) {
       if (o.blocked || o.stage === "done") continue;
       if (o.stage === "test1") {
-        const t = runTests(o.task);
+        const t = runTest1(o);
         engine.advance(o.id, { stage: "test1", by: "code", verdict: t.pass ? "pass" : "revise", findings: t.pass ? null : t.output });
         steps.push({ step: "test1", order: o.id, result: t.pass ? "pass" : "revise", output: t.output });
         changed = true;
@@ -53,7 +55,7 @@ export function tick(co, { acceptance = null } = {}) {
         const { run } = rooms.enter({ msg: m.id, role: rel.id });
         const src = path.join(LIVE, "work", o.task), dst = path.join(LIVE, "shipped", o.task);
         fs.mkdirSync(dst, { recursive: true });
-        const files = fs.readdirSync(src).filter((f) => f.endsWith(".mjs") && !f.endsWith(".test.mjs"));
+        const files = fs.readdirSync(src).filter((f) => (f.endsWith(".mjs") || f.endsWith(".md")) && !f.endsWith(".test.mjs"));
         for (const f of files) fs.copyFileSync(path.join(src, f), path.join(dst, f));
         rooms.leave(run, { evidence: `live/shipped/${o.task}/ (${files.join(", ")})`, learned: null });
         rooms.closeSession(rooms.runs.get(run).session, "ship done");
@@ -63,7 +65,8 @@ export function tick(co, { acceptance = null } = {}) {
     }
   }
   for (const id of expireContracts(co)) steps.push({ step: "contract-expired", contract: id });
-  if (steps.length) log.add({ type: "supervisor-tick", steps: steps.map((s) => `${s.step}:${s.order ?? s.msg ?? s.run ?? s.contract}`) });
+  if (co.data) { syncOrders(co); for (const g of sweepGoals(co)) steps.push({ step: "goal-auto-red", goal: g }); }
+  if (steps.length) log.add({ type: "supervisor-tick", steps: steps.map((s) => `${s.step}:${s.order ?? s.msg ?? s.run ?? s.contract ?? s.goal}`) });
   return steps;
 }
 

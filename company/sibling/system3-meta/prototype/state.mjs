@@ -5,6 +5,8 @@ import path from "node:path";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { Log, Mailbox, Org, Engine, Rooms, DEFAULT_CONFIG } from "./lib.mjs";
+import { SPECS } from "./specs.mjs";
+import { applyFloor } from "./building.mjs";
 export const HERE = path.dirname(fileURLToPath(import.meta.url));
 export const LIVE = process.env.META_LIVE_DIR || path.join(HERE, "live");
 export const STATE = path.join(LIVE, process.env.META_STATE || "state.json");
@@ -32,19 +34,23 @@ export const TASK_FLOW = {
 
 export const clock = { now: () => Date.now() / 60000 }; // minutes, to the millisecond (live run 1 used whole minutes: too coarse for agents)
 
-export function make() {
+export function make(specName = "toy") {
+  const spec = SPECS[specName];
+  if (!spec) throw new Error(`no company spec ${specName} (have: ${Object.keys(SPECS).join(", ")})`);
   const config = DEFAULT_CONFIG;
   const log = new Log(clock);
   const mailbox = new Mailbox({ log, clock, config });
-  const org = new Org({ log, rooms: LIVE_ROOMS, skills: ["manage", "js", "review", "release"], rituals: [] });
+  const org = new Org({ log, rooms: spec.rooms, skills: spec.skills, rituals: [] });
   const engine = new Engine({ log, clock, config, mailbox, org });
   const rooms = new Rooms({ log, clock, config, mailbox, engine, org });
-  return { log, mailbox, org, engine, rooms };
+  const co = { log, mailbox, org, engine, rooms, data: { spec: specName }, spec };
+  engine.onApproved.push({ prefix: "FLOOR-", fn: (ref) => applyFloor(co, ref) });
+  return co;
 }
 
 export const rep = (k, v) => (v instanceof Map ? { __map: [...v] } : v instanceof Set ? { __set: [...v] } : v);
 export const rev = (k, v) => (v && v.__map ? new Map(v.__map) : v && v.__set ? new Set(v.__set) : v);
-export const FIELDS = { log: ["events"], mailbox: ["msgs", "keys", "n"], org: ["roles", "changes", "n"], engine: ["flows", "active", "orders", "approvals", "n", "limits", "policies", "contracts"], rooms: ["runs", "n", "memory", "sessions", "nS"] };
+export const FIELDS = { data: ["spec", "building", "channels", "tracker", "goals", "meetings", "rituals"], log: ["events"], mailbox: ["msgs", "keys", "n"], org: ["roles", "changes", "n", "rooms"], engine: ["flows", "active", "orders", "approvals", "n", "limits", "policies", "contracts"], rooms: ["runs", "n", "memory", "sessions", "nS"] };
 
 export function save(co) {
   const data = Object.fromEntries(Object.entries(FIELDS).map(([o, fs_]) => [o, Object.fromEntries(fs_.map((f) => [f, co[o][f]]))]));
@@ -53,9 +59,9 @@ export function save(co) {
   fs.renameSync(tmp, STATE); // atomic replace: a crash mid-write leaves the old state
 }
 export function load() {
-  const co = make();
   const data = JSON.parse(fs.readFileSync(STATE, "utf8"), rev);
-  for (const [o, fs_] of Object.entries(FIELDS)) for (const f of fs_) if (data[o][f] !== undefined) co[o][f] = data[o][f];
+  const co = make(data.data?.spec ?? "toy");
+  for (const [o, fs_] of Object.entries(FIELDS)) for (const f of fs_) if (data[o]?.[f] !== undefined) co[o][f] = data[o][f];
   co.mailbox.promote(); // due `later` items become `next` on every command: time is checked when anything happens
   return co;
 }
@@ -90,3 +96,30 @@ export function runTests(task, { dir = path.join(LIVE, "work", task), label = `l
   const output = pass ? text.split("\n").filter((l) => /^# (tests|pass|fail)/.test(l)).join(" ") : text.split("\n").filter((l) => /^not ok|^# (tests|pass|fail)|error:/.test(l)).slice(0, 12).join("\n");
   return { pass, output };
 }
+
+// ---------------------------------------------------------------- test1 for non-code work: text checks
+
+const syllables = (w) => Math.max(1, (w.toLowerCase().replace(/e\b/, "").match(/[aeiouy]+/g) || []).length);
+/** Readability and form checks on live/work/<task>/page.md, from the order's `checks`:
+ *  { file, minWords, maxWords, mustInclude: [...], banned: [...], minReadingEase, titleLine } */
+export function runTextChecks(task, checks) {
+  const file = path.join(LIVE, "work", task, checks.file ?? "page.md");
+  if (!fs.existsSync(file)) return { pass: false, output: `missing live/work/${task}/${checks.file ?? "page.md"}` };
+  const text = fs.readFileSync(file, "utf8");
+  const lines = text.split("\n");
+  const body = lines.filter((l) => !/^#/.test(l)).join(" ");
+  const words = body.split(/\s+/).filter((w) => /[\p{L}\p{N}]/u.test(w));
+  const sentences = Math.max(1, (body.match(/[.!?]+(\s|$)/g) || []).length);
+  const ease = 206.835 - 1.015 * (words.length / sentences) - 84.6 * (words.reduce((s, w) => s + syllables(w.replace(/[^\p{L}]/gu, "")), 0) / Math.max(1, words.length));
+  const fails = [];
+  if (checks.titleLine && !/^# \S/.test(lines[0] ?? "")) fails.push("first line is not a '# Title'");
+  if (checks.minWords && words.length < checks.minWords) fails.push(`${words.length} words < ${checks.minWords}`);
+  if (checks.maxWords && words.length > checks.maxWords) fails.push(`${words.length} words > ${checks.maxWords}`);
+  for (const m of checks.mustInclude ?? []) if (!new RegExp(`\\b${m}\\b`, "i").test(text)) fails.push(`does not mention ${m}`);
+  for (const b of checks.banned ?? []) if (new RegExp(`\\b${b}\\b`, "i").test(text)) fails.push(`uses banned word ${b}`);
+  if (checks.minReadingEase && ease < checks.minReadingEase) fails.push(`reading ease ${ease.toFixed(0)} < ${checks.minReadingEase}`);
+  return { pass: !fails.length, output: fails.length ? fails.join("; ") : `ok: ${words.length} words, reading ease ${ease.toFixed(0)}` };
+}
+
+/** test1 for an order: its declared text checks if it has them, otherwise the builder's tests. */
+export function runTest1(o) { return o.checks ? runTextChecks(o.task, o.checks) : runTests(o.task); }

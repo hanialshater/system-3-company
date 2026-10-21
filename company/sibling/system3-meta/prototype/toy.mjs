@@ -1,5 +1,6 @@
 // The toy org and its flow, shared by the tests and the simulator.
 import { makeCompany, Org, Engine, Rooms, Rituals, DEFAULT_CONFIG } from "./lib.mjs";
+import { applyFloor } from "./building.mjs";
 
 export const ROOMS = [
   { id: "lobby", floor: 1 }, { id: "ceo-office", floor: 1 },
@@ -42,5 +43,7 @@ export function build(config = DEFAULT_CONFIG) {
   const rituals = new Rituals({ ...c, org });
   const key = engine.define("item", ITEM_FLOW, { by: "cos" });
   engine.approveDef(key, { by: "founder", words: "Approve the item flow" });
-  return { ...c, org, engine, rooms, rituals };
+  const co = { ...c, org, engine, rooms, rituals, data: {} };
+  engine.onApproved.push({ prefix: "FLOOR-", fn: (ref) => applyFloor(co, ref) });
+  return co;
 }

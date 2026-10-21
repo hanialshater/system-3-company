@@ -37,7 +37,14 @@ import path from "node:path";
 import { Refused, flowMetrics } from "./lib.mjs";
 import { proposePolicy, activatePolicy, managerReport, recordCycle, KNOBS } from "./policy.mjs";
 import { engage, engageTemplate, briefFor, deliver, decideContract, TEMPLATES } from "./contractor.mjs";
-import { LIVE, STATE, LIVE_ROLES, TASK_FLOW, clock, make, rep, save, load, withLock, runTests } from "./state.mjs";
+import { LIVE, STATE, LIVE_ROLES, TASK_FLOW, clock, make, rep, save, load, withLock, runTests, runTest1 } from "./state.mjs";
+import * as B from "./building.mjs";
+import * as CH from "./channels.mjs";
+import * as T from "./tracker.mjs";
+import * as G from "./goals.mjs";
+import * as M from "./meetings.mjs";
+import * as A from "./asks.mjs";
+import * as RIT from "./rituals.mjs";
 export { LIVE_ROOMS, LIVE_ROLES, TASK_FLOW } from "./state.mjs";
 
 const argv = process.argv.slice(2);
@@ -64,14 +71,14 @@ function main() {
   const [cmd, sub, arg] = pos;
   if (cmd === "init") return withLock(() => {
     if (fs.existsSync(STATE)) throw new Error("state exists; refusing to overwrite");
-    const co = make();
-    co.org.genesis(LIVE_ROLES);
-    const key = co.engine.define("task", TASK_FLOW, { by: "cos" });
+    const co = make(opt.spec ?? "toy");
+    co.org.genesis(co.spec.roles.map((r) => ({ ...r })));
+    const key = co.engine.define(co.spec.flow.name, { stages: co.spec.flow.stages }, { by: "cos" });
     co.engine.approveDef(key, { by: "founder", words: "Approve the task flow for the Meta sandbox (founder: Decide for me, 2026-10-21)" });
     save(co);
-    return { ok: true, flow: key, roles: LIVE_ROLES.map((r) => r.id) };
+    return { ok: true, spec: co.data.spec, flow: key, roles: co.spec.roles.map((r) => r.id) };
   });
-  const readOnly = ["queue", "events", "memory"].includes(cmd) || (cmd === "flow" && ["show", "status"].includes(sub)) || (cmd === "org");
+  const readOnly = ["queue", "events", "memory"].includes(cmd) || (cmd === "flow" && ["show", "status"].includes(sub)) || (cmd === "org" && sub !== "propose") || (cmd === "building" && sub === "plan") || (cmd === "item" && ["show", "search"].includes(sub)) || (cmd === "goal" && ["show", "board"].includes(sub)) || (cmd === "ask" && ["route", "summary"].includes(sub)) || (cmd === "channel" && ["status", "inbox"].includes(sub)) || (cmd === "meeting" && sub === "show") || (cmd === "wbr" && sub === "page0");
   const act = () => {
     const co = load();
     const before = co.log.events.length;
@@ -97,6 +104,7 @@ function dispatch(co, cmd, sub, arg) {
     need("to", "title", "task", "accept");
     const o = engine.orderNew({ flow: "task", by: opt.by ?? "cos", to: opt.to, budget: Number(opt.budget ?? 200_000), accept: opt.accept, title: opt.title, priority: opt.priority ?? "next", dueMin: opt.due ? Number(opt.due) : null, after: opt.after ? String(opt.after).split(",") : [], fromContract: opt["from-contract"] ?? null });
     o.task = opt.task;
+    if (opt.checks) o.checks = JSON.parse(opt.checks); // test1 by declared checks (non-code work), not the builder's tests
     return { order: o.id, stage: o.stage, priority: o.priority, after: o.after, blocked: o.blocked };
   }
   if (cmd === "order" && sub === "delegate") {
@@ -134,7 +142,7 @@ function dispatch(co, cmd, sub, arg) {
     const o = engine.orders.get(arg);
     if (opt.stage === "test1" && opt.by === "code") {
       if (!o || o.stage !== "test1") throw new Refused(`HARD: ${arg} is not at test1`);
-      const t = runTests(o.task);
+      const t = runTest1(o);
       engine.advance(arg, { stage: "test1", by: "code", verdict: t.pass ? "pass" : "revise", findings: t.pass ? null : t.output });
       return { order: arg, test1: t.pass ? "pass" : "revise", output: t.output, next_stage: o.stage };
     }
@@ -186,6 +194,72 @@ function dispatch(co, cmd, sub, arg) {
   }
   if (cmd === "contract" && sub === "decide") { need("id", "by", "decision", "reason"); return decideContract(co, { cid: opt.id, by: opt.by, decision: opt.decision, reason: opt.reason }); }
   if (cmd === "contract" && sub === "show") { need("id"); return engine.contracts.get(opt.id) ?? null; }
+  const J = (k) => (opt[k] != null && opt[k] !== true ? JSON.parse(opt[k]) : undefined);
+  const N = (k) => (opt[k] != null && opt[k] !== true ? Number(opt[k]) : undefined);
+  const L = (k) => (opt[k] != null && opt[k] !== true ? String(opt[k]).split(",").filter(Boolean) : undefined);
+  // ---- building
+  if (cmd === "building" && sub === "plan") return B.plan(co);
+  if (cmd === "building" && sub === "floor-propose") { need("by", "floor"); return B.proposeFloor(co, { by: opt.by, floor: N("floor"), name: opt.name }); }
+  if (cmd === "building" && sub === "room-add") { need("by", "id", "floor", "kind"); return B.addRoom(co, { by: opt.by, id: opt.id, floor: N("floor"), kind: opt.kind, capacity: N("capacity") ?? 6, lane: opt.lane ?? null }); }
+  if (cmd === "building" && sub === "room-rename") { need("by", "id", "to"); return B.renameRoom(co, { by: opt.by, id: opt.id, to: opt.to }); }
+  if (cmd === "building" && sub === "room-retire") { need("by", "id"); return B.retireRoom(co, { by: opt.by, id: opt.id }); }
+  if (cmd === "building" && sub === "book") { need("by", "room", "minutes"); const start = N("start") ?? clock.now(); return B.book(co, { by: opt.by, room: opt.room, start, end: start + N("minutes"), attendees: L("attendees") ?? [], purpose: opt.purpose ?? "" }); }
+  if (cmd === "building" && sub === "cancel") { need("by", "id"); return B.cancelBooking(co, { by: opt.by, id: opt.id }); }
+  // ---- approvals (the founder's queue) and org changes
+  if (cmd === "approval" && sub === "queue") { need("approver"); return engine.queue(opt.approver).map((a) => ({ id: a.id, kind: a.kind, order: a.order, stage: a.stage, ref: a.ref, due: new Date(a.due * 60000).toISOString() })); }
+  if (cmd === "approval" && sub === "decide") { need("ids", "by", "decision", "words", "channel"); return engine.decide(L("ids"), { by: opt.by, decision: opt.decision, words: opt.words, channel: opt.channel }).map((a) => ({ id: a.id, state: a.state })); }
+  if (cmd === "org" && sub === "propose") {
+    need("by", "op", "role");
+    const id = org.propose({ op: opt.op, role: J("role"), reason: opt.reason ?? "", by: opt.by, to: opt.to ?? null });
+    const a = engine.request({ approver: "founder", kind: "org-change", ref: id, dueMin: 24 * 60, key: `${id}:approve` });
+    return { change: id, approval: a.id };
+  }
+  if (cmd === "org" && sub === "roles") return org.active().map((r) => ({ id: r.id, level: r.level, lane: r.lane ?? null, room: r.room }));
+  if (cmd === "org" && sub === "gaps") return org.gaps(log.events, { waitP50Min: N("wait") ?? 60 });
+  // ---- channels
+  if (cmd === "channel" && sub === "create") { need("by", "id", "kind"); return CH.createChannel(co, { by: opt.by, id: opt.id, kind: opt.kind, members: L("members") ?? [], title: opt.title ?? "" }); }
+  if (cmd === "channel" && sub === "post") { need("by", "channel", "title"); return CH.post(co, { by: opt.by, channel: opt.channel, title: opt.title, body: opt.body ?? "", ack: !!opt.ack, key: opt.key ?? null }); }
+  if (cmd === "channel" && sub === "read") { need("by", "post"); return CH.read(co, { by: opt.by, post: opt.post, ackIt: !!opt.ack }); }
+  if (cmd === "channel" && sub === "status") { need("post"); return CH.status(co, opt.post); }
+  if (cmd === "channel" && sub === "inbox") { need("by"); return CH.inbox(co, opt.by); }
+  // ---- tracker
+  if (cmd === "item" && sub === "create") { need("by", "title"); return T.create(co, { by: opt.by, kind: opt.kind ?? "issue", title: opt.title, body: opt.body ?? "", assignee: opt.assignee ?? null, project: opt.project ?? null, labels: L("labels") ?? [], priority: N("priority") ?? 3, cycle: opt.cycle ?? null, due: opt.due ?? null, goal: opt.goal ?? null, state: opt.state ?? "backlog" }); }
+  if (cmd === "item" && sub === "update") { need("by", "id"); const ch = {}; for (const k of ["title", "body", "state", "assignee", "project", "cycle", "due", "goal"]) if (opt[k] != null && opt[k] !== true) ch[k] = opt[k]; if (N("priority") != null) ch.priority = N("priority"); if (L("add-labels")) ch.addLabels = L("add-labels"); if (L("remove-labels")) ch.removeLabels = L("remove-labels"); return T.update(co, { by: opt.by, id: opt.id, ...ch }); }
+  if (cmd === "item" && sub === "comment") { need("by", "id", "text"); return T.comment(co, { by: opt.by, id: opt.id, text: opt.text }); }
+  if (cmd === "item" && sub === "link") { need("by", "id", "type", "to"); return T.link(co, { by: opt.by, id: opt.id, type: opt.type, to: opt.to }); }
+  if (cmd === "item" && sub === "show") { need("id"); return T.get(co, opt.id); }
+  if (cmd === "item" && sub === "search") { need("q"); return T.search(co, opt.q); }
+  if (cmd === "project" && sub === "create") { need("by", "name", "lead"); return T.createProject(co, { by: opt.by, name: opt.name, lead: opt.lead, goals: L("goals") ?? [] }); }
+  if (cmd === "cycle" && sub === "create") { need("by", "name", "minutes"); const start = N("start") ?? clock.now(); return T.createCycle(co, { by: opt.by, name: opt.name, start, end: start + N("minutes") }); }
+  if (cmd === "board") { T.syncOrders(co); return T.board(co, { assignee: opt.assignee, project: opt.project, label: opt.label, cycle: opt.cycle, goal: opt.goal, kind: opt.kind }); }
+  // ---- goals
+  if (cmd === "goal" && sub === "create") { need("by", "title", "level", "owner", "why", "what", "success", "due"); return G.createGoal(co, { by: opt.by, title: opt.title, level: opt.level, owner: opt.owner, why: opt.why, what: opt.what, success: J("success"), due: opt.due, contributesTo: L("contributes-to") ?? [], status: opt.status ?? "green", reason: opt.reason ?? null, path: opt.path ?? null }); }
+  if (cmd === "goal" && sub === "update") { need("by", "id"); return G.updateGoal(co, { by: opt.by, id: opt.id, status: opt.status, reason: opt.reason ?? null, path: opt.path ?? null, current: J("current") ?? {}, done: opt.done == null ? null : opt.done === "true" || opt.done === true, divergence: opt.divergence ?? null }); }
+  if (cmd === "goal" && sub === "show") { need("id"); return G.view(co, G.getGoal(co, opt.id)); }
+  if (cmd === "goal" && sub === "board") return G.goalBoard(co, { level: opt.level ?? null, owner: opt.owner ?? null });
+  if (cmd === "goal" && sub === "review") { need("by", "level"); return G.reviewLevel(co, { by: opt.by, level: opt.level }); }
+  // ---- meetings
+  if (cmd === "meeting" && sub === "open") { need("by", "title", "invitees", "agenda"); return M.openMeeting(co, { by: opt.by, title: opt.title, room: opt.room ?? null, start: N("start"), minutes: N("minutes") ?? 30, invitees: L("invitees"), agenda: J("agenda"), channel: opt.channel ?? null }); }
+  if (cmd === "meeting" && sub === "position") { need("id", "by", "item", "text"); return M.writePosition(co, { id: opt.id, by: opt.by, n: N("item"), text: opt.text }); }
+  if (cmd === "meeting" && sub === "read") { need("id", "by", "item"); return M.readRound(co, { id: opt.id, by: opt.by, n: N("item"), round: N("round") ?? null }); }
+  if (cmd === "meeting" && sub === "reveal") { need("id", "by", "item"); return M.reveal(co, { id: opt.id, by: opt.by, n: N("item"), force: !!opt.force }); }
+  if (cmd === "meeting" && sub === "round") { need("id", "by", "item"); return M.nextRound(co, { id: opt.id, by: opt.by, n: N("item") }); }
+  if (cmd === "meeting" && sub === "board") { need("id", "by", "section", "text"); return M.whiteboard(co, { id: opt.id, by: opt.by, section: opt.section, text: opt.text }); }
+  if (cmd === "meeting" && sub === "object") { need("id", "by", "item", "text"); return M.object(co, { id: opt.id, by: opt.by, n: N("item"), text: opt.text }); }
+  if (cmd === "meeting" && sub === "decide") { need("id", "by", "item", "decision"); return M.decide(co, { id: opt.id, by: opt.by, n: N("item"), decision: opt.decision, answers: J("answers") ?? {}, actions: J("actions") ?? [] }); }
+  if (cmd === "meeting" && sub === "defer") { need("id", "by", "item", "reason"); return M.defer(co, { id: opt.id, by: opt.by, n: N("item"), reason: opt.reason }); }
+  if (cmd === "meeting" && sub === "close") { need("id", "by"); return { minutes: M.closeMeeting(co, { id: opt.id, by: opt.by }).minutes }; }
+  if (cmd === "meeting" && sub === "show") { need("id"); const m = M.getMeeting(co, opt.id); return { id: m.id, title: m.title, kind: m.kind, chair: m.chair, state: m.state, invitees: m.invitees, agenda: m.agenda.map((a) => ({ n: a.n, title: a.title, rounds: a.rounds.length, revealed: a.rounds.at(-1).revealed, written: Object.keys(a.rounds.at(-1).positions), objections: a.objections.length, decided: !!a.decision })), pack: m.pack ?? null, minutes: m.minutes ?? null }; }
+  // ---- asks and rituals
+  if (cmd === "ask" && sub === "raise") { need("by", "kind", "title", "why", "due"); return A.raise(co, { by: opt.by, kind: opt.kind, title: opt.title, why: opt.why, due: opt.due, to: opt.to ?? null, amount: N("amount") ?? 0, lane: opt.lane ?? null, escalate: opt.escalate ?? null, goal: opt.goal ?? null }); }
+  if (cmd === "ask" && sub === "route") { need("by", "kind"); return { decider: A.route(co, { by: opt.by, kind: opt.kind, amount: N("amount") ?? 0, lane: opt.lane ?? null }) }; }
+  if (cmd === "ask" && sub === "answer") { need("by", "id", "decision", "text"); return A.answer(co, { by: opt.by, id: opt.id, decision: opt.decision, text: opt.text }); }
+  if (cmd === "ask" && sub === "summary") return A.askSummary(co);
+  if (cmd === "wbr" && sub === "open") { need("by"); T.syncOrders(co); return RIT.wbrOpen(co, { by: opt.by, room: opt.room ?? null, invitees: L("invitees") ?? null, channel: opt.channel ?? null }); }
+  if (cmd === "wbr" && sub === "close") { need("by", "meeting", "summary"); return { doc: RIT.wbrClose(co, { by: opt.by, meeting: opt.meeting, summary: opt.summary }).doc }; }
+  if (cmd === "wbr" && sub === "page0") return RIT.page0(co);
+  if (cmd === "goal-review") { need("by"); return RIT.goalReview(co, { by: opt.by }); }
+  if (cmd === "digest") { need("audience"); return { doc: opt.channel ? RIT.publishDigest(co, { by: opt.by ?? "cos", audience: opt.audience, channel: opt.channel }).body : RIT.digest(co, { audience: opt.audience }) }; }
   if (cmd === "events") return log.events.filter((e) => !opt.type || e.type === opt.type);
   if (cmd === "memory") return rooms.memory.get(sub) ?? [];
   if (cmd === "org" && sub === "activity") return org.activity(log.events, arg);

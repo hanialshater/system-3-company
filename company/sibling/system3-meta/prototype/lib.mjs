@@ -272,6 +272,7 @@ export class Engine {
     this.limits = { "chief-of-staff": 500_000, manager: 250_000 };
     this.policies = new Map(); // lane → { versions, active }: the manager's knobs (policy.mjs validates them)
     this.contracts = new Map(); // contractor engagements (contractor.mjs): outside the delivery flow
+    this.onApproved = []; // [{ prefix, fn }]: handlers for approved org changes owned by other tools (not persisted)
   }
 
   /** The policy an order runs under: the lane's active version when the order was made (pinned; never moves). */
@@ -431,7 +432,13 @@ export class Engine {
     if (a.fired) return;
     a.fired = true;
     this.log.add({ type: "callback", approval: a.id, kind: a.kind, decision: a.state });
-    if (a.kind === "org-change") { if (a.state === "approved") this.org.apply(a.ref, { by, words }); return; }
+    if (a.kind === "org-change") {
+      if (a.state !== "approved") return;
+      // other tools register what an approved change of theirs does (e.g. the building's FLOOR-n refs)
+      const h = this.onApproved.find((x) => String(a.ref).startsWith(x.prefix));
+      if (h) h.fn(a.ref, { by, words }); else this.org.apply(a.ref, { by, words });
+      return;
+    }
     const o = this.orders.get(a.order);
     if (a.kind === "budget") { if (a.state === "approved") { o.stage = "build"; this.log.add({ type: "budget-approved", order: o.id }); } return; }
     if (a.state === "approved") this.advance(o.id, { stage: a.stage, by, evidence: `decision ${a.id}: "${words}"` });
