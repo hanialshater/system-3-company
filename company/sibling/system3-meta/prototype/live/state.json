@@ -277,6 +277,167 @@
     "order": "O-1",
     "stage": "check",
     "mode": "work"
+   },
+   {
+    "seq": 30,
+    "t": 29876075,
+    "type": "advance",
+    "order": "O-1",
+    "stage": "check",
+    "by": "toy-checker",
+    "verdict": "pass"
+   },
+   {
+    "seq": 31,
+    "t": 29876075,
+    "type": "send",
+    "msg": "M-5",
+    "from": "mgr-live",
+    "to": "mgr-live",
+    "kind": "work",
+    "key": "O-1:uat:0",
+    "ref": "O-1"
+   },
+   {
+    "seq": 32,
+    "t": 29876075,
+    "type": "done",
+    "msg": "M-4",
+    "run": "R-4"
+   },
+   {
+    "seq": 33,
+    "t": 29876075,
+    "type": "send",
+    "msg": "M-6",
+    "from": "pool:checker",
+    "to": "mgr-live",
+    "kind": "report",
+    "key": null,
+    "ref": "O-1"
+   },
+   {
+    "seq": 34,
+    "t": 29876075,
+    "type": "leave",
+    "run": "R-4",
+    "role": "toy-checker",
+    "order": "O-1",
+    "stage": "check",
+    "verdict": "pass",
+    "minutes": 0
+   },
+   {
+    "seq": 35,
+    "t": 29876076,
+    "type": "usage",
+    "run": "R-4",
+    "role": "toy-checker",
+    "tokens": 59487,
+    "source": "harness"
+   },
+   {
+    "seq": 36,
+    "t": 29876076,
+    "type": "advance",
+    "order": "O-1",
+    "stage": "uat",
+    "by": "mgr-live",
+    "verdict": "pass"
+   },
+   {
+    "seq": 37,
+    "t": 29876076,
+    "type": "send",
+    "msg": "M-7",
+    "from": "mgr-live",
+    "to": "pool:release",
+    "kind": "work",
+    "key": "O-1:ship:0",
+    "ref": "O-1"
+   },
+   {
+    "seq": 38,
+    "t": 29876076,
+    "type": "claim",
+    "msg": "M-7",
+    "run": "R-5"
+   },
+   {
+    "seq": 39,
+    "t": 29876076,
+    "type": "enter",
+    "run": "R-5",
+    "msg": "M-7",
+    "role": "toy-release",
+    "by": "toy-release",
+    "room": "launch",
+    "order": "O-1",
+    "stage": "ship",
+    "mode": "work"
+   },
+   {
+    "seq": 40,
+    "t": 29876076,
+    "type": "advance",
+    "order": "O-1",
+    "stage": "ship",
+    "by": "toy-release",
+    "verdict": "pass"
+   },
+   {
+    "seq": 41,
+    "t": 29876076,
+    "type": "shipped",
+    "order": "O-1",
+    "lead": 3,
+    "loops": 0
+   },
+   {
+    "seq": 42,
+    "t": 29876076,
+    "type": "done",
+    "msg": "M-7",
+    "run": "R-5"
+   },
+   {
+    "seq": 43,
+    "t": 29876076,
+    "type": "send",
+    "msg": "M-8",
+    "from": "pool:release",
+    "to": "mgr-live",
+    "kind": "report",
+    "key": null,
+    "ref": "O-1"
+   },
+   {
+    "seq": 44,
+    "t": 29876076,
+    "type": "leave",
+    "run": "R-5",
+    "role": "toy-release",
+    "order": "O-1",
+    "stage": "ship",
+    "verdict": "pass",
+    "minutes": 0
+   },
+   {
+    "seq": 45,
+    "t": 29876076,
+    "type": "release",
+    "msg": "M-2",
+    "run": "R-1",
+    "reason": "lease expired"
+   },
+   {
+    "seq": 46,
+    "t": 29876076,
+    "type": "left-without-leave",
+    "run": "R-1",
+    "role": "toy-builder-2",
+    "order": "O-2",
+    "after": 3
    }
   ]
  },
@@ -322,10 +483,7 @@
       },
       "ts": 29876073,
       "state": "open",
-      "lease": {
-       "run": "R-1",
-       "until": 29876076
-      },
+      "lease": null,
       "acked": false
      }
     ],
@@ -364,11 +522,94 @@
        "loops": 0
       },
       "ts": 29876074,
-      "state": "open",
+      "state": "done",
       "lease": {
        "run": "R-4",
        "until": 29876105
       },
+      "acked": false
+     }
+    ],
+    [
+     "M-5",
+     {
+      "id": "M-5",
+      "from": "mgr-live",
+      "to": "mgr-live",
+      "kind": "work",
+      "key": "O-1:uat:0",
+      "due": null,
+      "ref": "O-1",
+      "body": {
+       "stage": "uat",
+       "loops": 0
+      },
+      "ts": 29876075,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-6",
+     {
+      "id": "M-6",
+      "from": "pool:checker",
+      "to": "mgr-live",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-1",
+      "body": {
+       "stage": "check",
+       "verdict": "pass"
+      },
+      "ts": 29876075,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-7",
+     {
+      "id": "M-7",
+      "from": "mgr-live",
+      "to": "pool:release",
+      "kind": "work",
+      "key": "O-1:ship:0",
+      "due": null,
+      "ref": "O-1",
+      "body": {
+       "stage": "ship",
+       "loops": 0
+      },
+      "ts": 29876076,
+      "state": "done",
+      "lease": {
+       "run": "R-5",
+       "until": 29876106
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-8",
+     {
+      "id": "M-8",
+      "from": "pool:release",
+      "to": "mgr-live",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-1",
+      "body": {
+       "stage": "ship",
+       "verdict": "pass"
+      },
+      "ts": 29876076,
+      "state": "open",
+      "lease": null,
       "acked": false
      }
     ]
@@ -387,10 +628,18 @@
     [
      "O-1:check:0",
      "M-4"
+    ],
+    [
+     "O-1:uat:0",
+     "M-5"
+    ],
+    [
+     "O-1:ship:0",
+     "M-7"
     ]
    ]
   },
-  "n": 4
+  "n": 8
  },
  "org": {
   "roles": {
@@ -581,12 +830,12 @@
       "orderer": "cos",
       "manager": "mgr-live",
       "builder": "toy-builder-1",
-      "checker": null,
+      "checker": "toy-checker",
       "budget": 200000,
       "spent": 0,
       "accept": "live/work/T1/roman.mjs exports toRoman(n) for integers 1..3999 returning canonical subtractive numerals (RangeError otherwise, including non-integers) and fromRoman(s) returning the integer for canonical uppercase numerals only (throws on any non-canonical or invalid input, e.g. IIII, IC, MMMM, lowercase, empty); with node:test tests in live/work/T1/*.test.mjs",
       "words": null,
-      "stage": "check",
+      "stage": "done",
       "loops": 0,
       "created": 29876073,
       "history": [
@@ -601,6 +850,24 @@
         "by": "code",
         "verdict": "pass",
         "t": 29876074
+       },
+       {
+        "stage": "check",
+        "by": "toy-checker",
+        "verdict": "pass",
+        "t": 29876075
+       },
+       {
+        "stage": "uat",
+        "by": "mgr-live",
+        "verdict": "pass",
+        "t": 29876076
+       },
+       {
+        "stage": "ship",
+        "by": "toy-release",
+        "verdict": "pass",
+        "t": 29876076
        }
       ],
       "task": "T1"
@@ -661,7 +928,7 @@
       "stage": "build",
       "loops": 0,
       "entered": 29876073,
-      "state": "running"
+      "state": "lost"
      }
     ],
     [
@@ -706,12 +973,27 @@
       "stage": "check",
       "loops": 0,
       "entered": 29876075,
-      "state": "running"
+      "state": "left"
+     }
+    ],
+    [
+     "R-5",
+     {
+      "run": "R-5",
+      "msg": "M-7",
+      "role": "toy-release",
+      "by": "toy-release",
+      "consult": false,
+      "order": "O-1",
+      "stage": "ship",
+      "loops": 0,
+      "entered": 29876076,
+      "state": "left"
      }
     ]
    ]
   },
-  "n": 4,
+  "n": 5,
   "memory": {
    "__map": [
     [
@@ -721,6 +1003,28 @@
        "t": 29876074,
        "did": "build on O-1: pass (loop 0)",
        "learned": "A canonical-form regex makes fromRoman strict cheaply; a 1..3999 round-trip test covers toRoman fully.",
+       "mistake": null
+      }
+     ]
+    ],
+    [
+     "toy-checker",
+     [
+      {
+       "t": 29876075,
+       "did": "check on O-1: pass (loop 0)",
+       "learned": "Exhaustive enumeration of short strings against the toRoman image is a cheap complete check of a canonical-form regex; node 22 --test needs a file path, not a bare directory.",
+       "mistake": null
+      }
+     ]
+    ],
+    [
+     "toy-release",
+     [
+      {
+       "t": 29876076,
+       "did": "ship on O-1: pass (loop 0)",
+       "learned": "ship is a copy; nothing deploys",
        "mistake": null
       }
      ]
