@@ -1,0 +1,785 @@
+{
+ "data": {
+  "spec": "storybook",
+  "building": {
+   "floors": {
+    "__map": [
+     [
+      1,
+      {
+       "floor": 1,
+       "name": "Floor 1",
+       "active": true
+      }
+     ],
+     [
+      2,
+      {
+       "floor": 2,
+       "name": "Floor 2",
+       "active": true
+      }
+     ],
+     [
+      3,
+      {
+       "floor": 3,
+       "name": "Floor 3",
+       "active": true
+      }
+     ]
+    ]
+   },
+   "bookings": {
+    "__map": [
+     [
+      "BK-1",
+      {
+       "id": "BK-1",
+       "room": "story-room",
+       "start": 29876523.62005,
+       "end": 29876553.62005,
+       "by": "editor",
+       "attendees": [
+        "editor",
+        "writer-1",
+        "writer-2"
+       ],
+       "purpose": "Kickoff: Pip and the Night",
+       "state": "booked"
+      }
+     ]
+    ]
+   },
+   "n": 1
+  },
+  "channels": {
+   "channels": {
+    "__map": [
+     [
+      "company",
+      {
+       "id": "company",
+       "kind": "company",
+       "title": "",
+       "by": "cos",
+       "members": null,
+       "created": 29876523.60946667
+      }
+     ],
+     [
+      "lane:e",
+      {
+       "id": "lane:e",
+       "kind": "lane",
+       "title": "",
+       "by": "editor",
+       "members": null,
+       "created": 29876523.610983334
+      }
+     ]
+    ]
+   },
+   "posts": {
+    "__map": []
+   },
+   "n": 0
+  },
+  "tracker": {
+   "items": {
+    "__map": []
+   },
+   "projects": {
+    "__map": [
+     [
+      "PRJ-1",
+      {
+       "id": "PRJ-1",
+       "name": "Pip and the Night",
+       "lead": "editor",
+       "goals": [
+        "G-1",
+        "G-3"
+       ],
+       "by": "editor",
+       "created": 29876523.61805
+      }
+     ]
+    ]
+   },
+   "cycles": {
+    "__map": []
+   },
+   "n": 0,
+   "nP": 1,
+   "nC": 0
+  },
+  "goals": {
+   "goals": {
+    "__map": [
+     [
+      "G-1",
+      {
+       "id": "G-1",
+       "title": "Pip and the Night: a 5-page picture book",
+       "level": "company",
+       "owner": "founder",
+       "why": "the proxy task that tells us whether Meta's tools beat the current method",
+       "what": "a story bible and five pages, accepted",
+       "success": [
+        {
+         "metric": "pages accepted",
+         "target": 5,
+         "current": null,
+         "unit": null
+        },
+        {
+         "metric": "bible accepted",
+         "target": 1,
+         "current": null,
+         "unit": null
+        }
+       ],
+       "due": "2026-11-20",
+       "contributesTo": [],
+       "status": "green",
+       "reason": null,
+       "path": null,
+       "created": 29876523.612616666,
+       "updates": [
+        {
+         "t": 29876523.612616666,
+         "by": "founder",
+         "status": "green",
+         "reason": null
+        }
+       ],
+       "reviewedStatus": null,
+       "done": false
+      }
+     ],
+     [
+      "G-2",
+      {
+       "id": "G-2",
+       "title": "Book pipeline runs on Meta tools",
+       "level": "org",
+       "owner": "cos",
+       "why": "the benchmark arm",
+       "what": "orders, supervisor, meetings, WBR",
+       "success": [
+        {
+         "metric": "orders shipped",
+         "target": 6,
+         "current": null,
+         "unit": null
+        }
+       ],
+       "due": "2026-11-10",
+       "contributesTo": [
+        "G-1"
+       ],
+       "status": "green",
+       "reason": null,
+       "path": null,
+       "created": 29876523.614533335,
+       "updates": [
+        {
+         "t": 29876523.614533335,
+         "by": "cos",
+         "status": "green",
+         "reason": null
+        }
+       ],
+       "reviewedStatus": null,
+       "done": false
+      }
+     ],
+     [
+      "G-3",
+      {
+       "id": "G-3",
+       "title": "Bible and five pages written, checked and accepted",
+       "level": "lane",
+       "owner": "editor",
+       "why": "the book itself",
+       "what": "kickoff, bible, five pages",
+       "success": [
+        {
+         "metric": "pages accepted",
+         "target": 5,
+         "current": null,
+         "unit": null
+        },
+        {
+         "metric": "bible accepted",
+         "target": 1,
+         "current": null,
+         "unit": null
+        }
+       ],
+       "due": "2026-10-31",
+       "contributesTo": [
+        "G-2"
+       ],
+       "status": "green",
+       "reason": null,
+       "path": null,
+       "created": 29876523.615933333,
+       "updates": [
+        {
+         "t": 29876523.615933333,
+         "by": "editor",
+         "status": "green",
+         "reason": null
+        }
+       ],
+       "reviewedStatus": null,
+       "done": false
+      }
+     ]
+    ]
+   },
+   "n": 3,
+   "reviews": []
+  },
+  "meetings": {
+   "meetings": {
+    "__map": [
+     [
+      "MTG-1",
+      {
+       "id": "MTG-1",
+       "kind": "meeting",
+       "title": "Kickoff: Pip and the Night",
+       "chair": "editor",
+       "invitees": [
+        "editor",
+        "writer-1",
+        "writer-2"
+       ],
+       "booking": "BK-1",
+       "room": "story-room",
+       "channel": "lane:e",
+       "opened": 29876523.62005,
+       "state": "open",
+       "agenda": [
+        {
+         "n": 1,
+         "title": "The arc: what happens on each of the five pages (Pip afraid → meets night friends → not afraid)",
+         "item": null,
+         "goal": "G-3",
+         "rounds": [
+          {
+           "n": 1,
+           "positions": {
+            "writer-2": {
+             "text": "P1: Bedtime in the den. Pip pulls his tail over his eyes; outside, the dark is big and full of sounds. P2: A crackle! Pip peeks out, shaking. A glow blinks by: a firefly, lost from her friends. P3: Pip forgets to be scared and follows her into the dark to help. P4: The sounds turn out to be friends: an owl hooting hello, crickets singing, a hedgehog snuffling. P5: Firefly home, Pip curls up outside under the stars, listening. \"Goodnight, night.\"",
+             "t": 29876524.64435
+            },
+            "writer-1": {
+             "text": "P1: Bedtime in the den. Shadows look huge; Pip pulls her tail over her eyes: The dark is too big. P2: A soft hoo-hoo. Pip peeks out the den door and meets Owl, who says wait and look; slowly the stars appear. P3: Fireflies blink a little path just outside the den, and Pip takes three brave steps. P4: The rustle is Hedgehog; the chirring is Cricket. Scary sounds now have names. P5: Back in bed, door open a crack, Pip says goodnight to each friend and sleeps.",
+             "t": 29876524.746183332
+            }
+           },
+           "revealed": false
+          }
+         ],
+         "objections": [],
+         "decision": null,
+         "deferred": null
+        },
+        {
+         "n": 2,
+         "title": "Tone and the night friends: who they are, how they sound",
+         "item": null,
+         "goal": "G-3",
+         "rounds": [
+          {
+           "n": 1,
+           "positions": {
+            "writer-2": {
+             "text": "Tone: warm, hushed, a whisper-to-read-aloud book; short sentences, gentle repetition (\"Who is there?\"), soft sound words a 4-year-old can join in on. Friends, each turning a scary sound into a kind one: Glim the firefly (small, brave, chirpy, speaks in quick bright bits), Old Hoo the owl (slow, deep, kind: \"Hoo-hoo, hello\"), the cricket choir (a chorus, \"cree-cree\"), Bristle the hedgehog (shy, snuffly, like Pip). No villain; the dark itself is never punished or explained away.",
+             "t": 29876524.6461
+            },
+            "writer-1": {
+             "text": "Tone: hushed and warm, read-aloud rhythm, short lines, one refrain per page: What is that in the night? No villain, no real danger, and nobody tells Pip her fear is silly; friends show, they do not lecture. Friends: Owl (slow, low, kind; Hoo is there? Only me), Fireflies (tiny, giggly, rhyming: blink, wink, follow the light), Cricket (rhythmic sound words: chirr-chirr, sing-song), Hedgehog (shy and snuffly, scared of Pip at first, which mirrors her).",
+             "t": 29876524.748316668
+            }
+           },
+           "revealed": false
+          }
+         ],
+         "objections": [],
+         "decision": null,
+         "deferred": null
+        }
+       ],
+       "board": {
+        "ideas": [
+         {
+          "by": "writer-2",
+          "text": "Refrain on every page: \"Who is there?\" Pages 1-2 it is scared, pages 4-5 it is curious; the same words show the change.",
+          "t": 29876524.6475
+         },
+         {
+          "by": "writer-1",
+          "text": "Keep Pip within sight of the den (and a grown-up fox) the whole time: ages 4-6 should not see wandering off alone at night modelled as brave. Bravery = peeking and a few steps, not a journey.",
+          "t": 29876524.7501
+         }
+        ]
+       },
+       "present": {
+        "__set": [
+         "editor",
+         "writer-2",
+         "writer-1"
+        ]
+       }
+      }
+     ]
+    ]
+   },
+   "n": 1
+  }
+ },
+ "log": {
+  "events": [
+   {
+    "seq": 1,
+    "t": 29876523.60785,
+    "type": "org-genesis",
+    "roles": [
+     "founder",
+     "cos",
+     "editor",
+     "writer-1",
+     "writer-2",
+     "reader",
+     "release"
+    ]
+   },
+   {
+    "seq": 2,
+    "t": 29876523.607866667,
+    "type": "flow-define",
+    "flow": "task@v1",
+    "by": "cos"
+   },
+   {
+    "seq": 3,
+    "t": 29876523.607866667,
+    "type": "flow-active",
+    "flow": "task@v1",
+    "by": "founder",
+    "words": "Approve the task flow for the Meta sandbox (founder: Decide for me, 2026-10-21)"
+   },
+   {
+    "seq": 4,
+    "t": 29876523.60946667,
+    "type": "channel-create",
+    "channel": "company",
+    "kind": "company",
+    "by": "cos"
+   },
+   {
+    "seq": 5,
+    "t": 29876523.610983334,
+    "type": "channel-create",
+    "channel": "lane:e",
+    "kind": "lane",
+    "by": "editor"
+   },
+   {
+    "seq": 6,
+    "t": 29876523.612616666,
+    "type": "goal-create",
+    "goal": "G-1",
+    "level": "company",
+    "owner": "founder",
+    "due": "2026-11-20",
+    "contributesTo": [],
+    "by": "founder"
+   },
+   {
+    "seq": 7,
+    "t": 29876523.614533335,
+    "type": "goal-create",
+    "goal": "G-2",
+    "level": "org",
+    "owner": "cos",
+    "due": "2026-11-10",
+    "contributesTo": [
+     "G-1"
+    ],
+    "by": "cos"
+   },
+   {
+    "seq": 8,
+    "t": 29876523.615933333,
+    "type": "goal-create",
+    "goal": "G-3",
+    "level": "lane",
+    "owner": "editor",
+    "due": "2026-10-31",
+    "contributesTo": [
+     "G-2"
+    ],
+    "by": "editor"
+   },
+   {
+    "seq": 9,
+    "t": 29876523.61805,
+    "type": "project-create",
+    "project": "PRJ-1",
+    "name": "Pip and the Night",
+    "lead": "editor",
+    "by": "editor"
+   },
+   {
+    "seq": 10,
+    "t": 29876523.62005,
+    "type": "room-book",
+    "booking": "BK-1",
+    "room": "story-room",
+    "start": 29876523.62005,
+    "end": 29876553.62005,
+    "by": "editor",
+    "attendees": 3
+   },
+   {
+    "seq": 11,
+    "t": 29876523.620066665,
+    "type": "meeting-open",
+    "meeting": "MTG-1",
+    "kind": "meeting",
+    "chair": "editor",
+    "invitees": 3,
+    "agenda": 2,
+    "room": "story-room"
+   },
+   {
+    "seq": 12,
+    "t": 29876524.64435,
+    "type": "position",
+    "meeting": "MTG-1",
+    "item": 1,
+    "round": 1,
+    "by": "writer-2"
+   },
+   {
+    "seq": 13,
+    "t": 29876524.6461,
+    "type": "position",
+    "meeting": "MTG-1",
+    "item": 2,
+    "round": 1,
+    "by": "writer-2"
+   },
+   {
+    "seq": 14,
+    "t": 29876524.6475,
+    "type": "whiteboard",
+    "meeting": "MTG-1",
+    "section": "ideas",
+    "by": "writer-2"
+   },
+   {
+    "seq": 15,
+    "t": 29876524.746183332,
+    "type": "position",
+    "meeting": "MTG-1",
+    "item": 1,
+    "round": 1,
+    "by": "writer-1"
+   },
+   {
+    "seq": 16,
+    "t": 29876524.748316668,
+    "type": "position",
+    "meeting": "MTG-1",
+    "item": 2,
+    "round": 1,
+    "by": "writer-1"
+   },
+   {
+    "seq": 17,
+    "t": 29876524.7501,
+    "type": "whiteboard",
+    "meeting": "MTG-1",
+    "section": "ideas",
+    "by": "writer-1"
+   }
+  ]
+ },
+ "mailbox": {
+  "msgs": {
+   "__map": []
+  },
+  "keys": {
+   "__map": []
+  },
+  "n": 0
+ },
+ "org": {
+  "roles": {
+   "__map": [
+    [
+     "founder",
+     {
+      "skills": [],
+      "rituals": [],
+      "active": true,
+      "id": "founder",
+      "level": "founder",
+      "human": true,
+      "room": "lobby",
+      "floor": 1
+     }
+    ],
+    [
+     "cos",
+     {
+      "skills": [],
+      "rituals": [],
+      "active": true,
+      "id": "cos",
+      "level": "chief-of-staff",
+      "reportsTo": "founder",
+      "room": "ceo-office",
+      "floor": 1
+     }
+    ],
+    [
+     "editor",
+     {
+      "skills": [
+       "manage"
+      ],
+      "rituals": [],
+      "active": true,
+      "id": "editor",
+      "level": "manager",
+      "reportsTo": "cos",
+      "lane": "e",
+      "room": "editorial",
+      "floor": 2
+     }
+    ],
+    [
+     "writer-1",
+     {
+      "skills": [
+       "write"
+      ],
+      "rituals": [],
+      "active": true,
+      "id": "writer-1",
+      "level": "builder",
+      "reportsTo": "editor",
+      "lane": "e",
+      "room": "editorial",
+      "floor": 2
+     }
+    ],
+    [
+     "writer-2",
+     {
+      "skills": [
+       "write"
+      ],
+      "rituals": [],
+      "active": true,
+      "id": "writer-2",
+      "level": "builder",
+      "reportsTo": "editor",
+      "lane": "e",
+      "room": "editorial",
+      "floor": 2
+     }
+    ],
+    [
+     "reader",
+     {
+      "skills": [
+       "read"
+      ],
+      "rituals": [],
+      "active": true,
+      "id": "reader",
+      "level": "checker",
+      "reportsTo": "cos",
+      "lane": "q",
+      "room": "quality",
+      "floor": 3
+     }
+    ],
+    [
+     "release",
+     {
+      "skills": [
+       "release"
+      ],
+      "rituals": [],
+      "active": true,
+      "id": "release",
+      "level": "release",
+      "reportsTo": "cos",
+      "lane": "r",
+      "room": "launch",
+      "floor": 3
+     }
+    ]
+   ]
+  },
+  "changes": {
+   "__map": []
+  },
+  "n": 0,
+  "rooms": {
+   "__map": [
+    [
+     "lobby",
+     {
+      "id": "lobby",
+      "floor": 1,
+      "kind": "lobby"
+     }
+    ],
+    [
+     "ceo-office",
+     {
+      "id": "ceo-office",
+      "floor": 1,
+      "kind": "office"
+     }
+    ],
+    [
+     "editorial",
+     {
+      "id": "editorial",
+      "floor": 2,
+      "kind": "lane",
+      "lane": "e"
+     }
+    ],
+    [
+     "story-room",
+     {
+      "id": "story-room",
+      "floor": 2,
+      "kind": "meeting",
+      "capacity": 6
+     }
+    ],
+    [
+     "quality",
+     {
+      "id": "quality",
+      "floor": 3,
+      "kind": "quality"
+     }
+    ],
+    [
+     "launch",
+     {
+      "id": "launch",
+      "floor": 3,
+      "kind": "launch"
+     }
+    ]
+   ]
+  }
+ },
+ "engine": {
+  "flows": {
+   "__map": [
+    [
+     "task@v1",
+     {
+      "stages": [
+       {
+        "stage": "build",
+        "signer": "builder",
+        "evidence": [
+         "live/work/<task>/page.md"
+        ]
+       },
+       {
+        "stage": "test1",
+        "signer": "code",
+        "evidence": []
+       },
+       {
+        "stage": "check",
+        "signer": "checker",
+        "evidence": [
+         "review notes"
+        ]
+       },
+       {
+        "stage": "uat",
+        "signer": "orderer",
+        "evidence": [
+         "hidden acceptance tests"
+        ]
+       },
+       {
+        "stage": "ship",
+        "signer": "release",
+        "evidence": [
+         "copied to live/shipped/"
+        ]
+       }
+      ],
+      "name": "task",
+      "key": "task@v1",
+      "state": "active",
+      "by": "cos"
+     }
+    ]
+   ]
+  },
+  "active": {
+   "__map": [
+    [
+     "task",
+     "task@v1"
+    ]
+   ]
+  },
+  "orders": {
+   "__map": []
+  },
+  "approvals": {
+   "__map": []
+  },
+  "n": {
+   "O": 0,
+   "A": 0
+  },
+  "limits": {
+   "chief-of-staff": 500000,
+   "manager": 250000
+  },
+  "policies": {
+   "__map": []
+  },
+  "contracts": {
+   "__map": []
+  }
+ },
+ "rooms": {
+  "runs": {
+   "__map": []
+  },
+  "n": 0,
+  "memory": {
+   "__map": []
+  },
+  "sessions": {
+   "__map": []
+  },
+  "nS": 0
+ }
+}
