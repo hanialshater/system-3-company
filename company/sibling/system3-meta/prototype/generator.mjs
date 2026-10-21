@@ -6,6 +6,7 @@
 //   node generator.mjs export <name>            a built-in spec (specs.mjs) as JSON
 import fs from "node:fs";
 import { SPECS } from "./specs.mjs";
+import { validateCmd } from "./state.mjs";
 
 const SIGNERS = ["builder", "code", "checker", "orderer", "release", "founder"];
 const LEVELS = ["founder", "chief-of-staff", "vp", "manager", "builder", "checker", "release", "evaluator", "contractor"];
@@ -43,6 +44,14 @@ export function validateSpec(s) {
   need(st[0]?.stage === "build" && st[0]?.signer === "builder", "the first stage is build, signed by the builder");
   for (const x of st) need(SIGNERS.includes(x.signer), `stage ${x.stage}: signer is one of ${SIGNERS.join(", ")}`);
   need(new Set(st.map((x) => x.stage)).size === st.length, "stage names are unique");
+  // K1: a stage `run` is a valid cmd, on a stage code may execute (code, orderer, release: never an agent's own stage or
+  // the founder's), and its routes go back to an earlier stage only (plan 2026-10-21 §3, K1/K11)
+  for (const [i, x] of st.entries()) {
+    if (x.run == null) continue;
+    need(["code", "orderer", "release"].includes(x.signer), `stage ${x.stage}: a run is for a stage signed by code, orderer or release, not ${x.signer}`);
+    const e = validateCmd(x.run, { stages: st.slice(0, i).map((y) => y.stage) });
+    need(!e, `stage ${x.stage}: run: ${e}`);
+  }
   const has = (lvl) => s.roles.some((r) => r.level === lvl);
   if (st.some((x) => x.signer === "builder")) need(has("builder"), "a builder exists to sign build");
   if (st.some((x) => x.signer === "checker")) need(has("checker"), "a checker exists to sign check");

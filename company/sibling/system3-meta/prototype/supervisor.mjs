@@ -2,6 +2,8 @@
 // The supervisor as code (live run 2: as an agent it cost 34k tokens an order for steps that need no judgment).
 // It does every step a rule can decide, and plans the ones only an agent can do:
 //   test1   runs the builder's tests and signs as `code`
+//   run     K1: any stage signed by code, or with a `run` cmd in the spec, runs by code (runCodeStage; the cmd check is
+//           state.mjs runCmdCheck: {argv, cwd, env, timeoutMs, pass, findings, route}, with ${slug}/${task}/${workdir})
 //   uat     runs the orderer's hidden acceptance tests (--acceptance=<dir>/<task>.test.mjs) and signs as the orderer;
 //           no acceptance file for a task: the order waits at uat for a person (it is never passed by default)
 //   ship    claims the release message, copies the module (not the builder's tests) to live/shipped/<task>/, leaves
@@ -29,13 +31,49 @@
 // Same state as meta.mjs (META_LIVE_DIR, META_STATE). Exit 0 always unless the state cannot be read.
 import fs from "node:fs";
 import path from "node:path";
-import { HERE, LIVE, STATE, load, save, withLock, runTests, runTest1, rep, CHECK_KEYS } from "./state.mjs";
+import { HERE, LIVE, STATE, load, save, withLock, runTests, runTest1, runCmdCheck, rep, CHECK_KEYS } from "./state.mjs";
 import { syncOrders } from "./tracker.mjs";
 import { sweepGoals } from "./goals.mjs";
 import { expireContracts } from "./contractor.mjs";
 import * as CH from "./channels.mjs";
 
-const STAGE_SIGNER = { test1: "code", uat: "orderer", ship: "release" };
+/** K1: a stage signed by code, or any stage with a `run` cmd (plan 2026-10-21 §3: the lesson flow's stages 2, 3, 4, 8 and 9
+ *  are scripts; the old table only knew test1/uat/ship by name). No `run`: test1 as before (the order's text checks or
+ *  the builder's tests). With `run`: the cmd decides; code signs a code stage, the orderer a uat-like one, and a release
+ *  stage is entered and left by the release role as ship is (code executes, release signs). null: nothing to do yet. */
+export function runCodeStage(co, o, s) {
+  const { engine, rooms, mailbox } = co;
+  const stage = o.stage;
+  if (!s?.run) {
+    const t = runTest1(o);
+    engine.advance(o.id, { stage, by: "code", verdict: t.pass ? "pass" : "revise", findings: t.pass ? null : t.output });
+    return { step: stage, order: o.id, result: t.pass ? "pass" : "revise", output: t.output };
+  }
+  const say = (t) => ({ step: stage, kind: "cmd", order: o.id, result: t.pass ? "pass" : "revise", output: t.output, findings: t.findings, route: t.route });
+  // a routed failure names where it belongs (K11 sends it there; until then it goes to build with the route in findings)
+  const why = (t) => (t.pass ? null : `${t.output}${t.route ? ` [route: ${t.route}]` : ""}${t.findings ? `\n${t.findings}` : ""}`);
+  if (s.signer === "code") {
+    const t = runCmdCheck(o, s);
+    engine.advance(o.id, { stage, by: "code", verdict: t.pass ? "pass" : "revise", findings: why(t) });
+    return say(t);
+  }
+  if (s.signer === "orderer") {
+    const t = runCmdCheck(o, s);
+    engine.advance(o.id, { stage, by: o.manager, verdict: t.pass ? "pass" : "revise", evidence: `${t.output} (supervisor.mjs)`, findings: why(t) });
+    return say(t);
+  }
+  if (s.signer === "release") {
+    const m = mailbox.queue("pool:release", "work").find((x) => x.ref === o.id);
+    const rel = co.org.byLevel("release")[0];
+    if (!m || !rel) return null;
+    const { run } = rooms.enter({ msg: m.id, role: rel.id });
+    const t = runCmdCheck(o, s);
+    rooms.leave(run, { verdict: t.pass ? "pass" : "revise", evidence: `${t.output} (supervisor.mjs)`, findings: why(t), learned: null });
+    rooms.closeSession(rooms.runs.get(run).session, `${stage} done`);
+    return say(t);
+  }
+  return null; // validateSpec allows `run` only on code, orderer and release stages
+}
 
 /** One pass over every order; repeated until nothing changes (an accepted UAT makes a ship step possible). */
 export function tick(co, { acceptance = null, faults = null } = {}) {
@@ -47,11 +85,10 @@ export function tick(co, { acceptance = null, faults = null } = {}) {
     changed = false;
     for (const o of engine.orders.values()) {
       if (o.blocked || o.stage === "done") continue;
-      if (o.stage === "test1") {
-        const t = runTest1(o);
-        engine.advance(o.id, { stage: "test1", by: "code", verdict: t.pass ? "pass" : "revise", findings: t.pass ? null : t.output });
-        steps.push({ step: "test1", order: o.id, result: t.pass ? "pass" : "revise", output: t.output });
-        changed = true;
+      const sd = engine.stageDef(o);
+      if (sd?.run || sd?.signer === "code" || o.stage === "test1") {
+        const st = runCodeStage(co, o, sd);
+        if (st) { steps.push(st); changed = true; }
       } else if (o.stage === "uat") {
         const file = acceptance && path.join(acceptance, `${o.task}.test.mjs`);
         if (!file || !fs.existsSync(file)) { if (!o.uatWaiting) { o.uatWaiting = true; steps.push({ step: "uat-needs-a-person", order: o.id, task: o.task }); } continue; }

@@ -2,7 +2,7 @@
 // task flow, load/save of the JSON state under an O_EXCL lock, and running a task's tests.
 import fs from "node:fs";
 import path from "node:path";
-import { execFileSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { Log, Mailbox, Org, Engine, Rooms, DEFAULT_CONFIG } from "./lib.mjs";
 import { SPECS } from "./specs.mjs";
@@ -262,3 +262,63 @@ export function describeChecks(c = {}) {
 
 /** test1 for an order: its declared text checks if it has them, otherwise the builder's tests. */
 export function runTest1(o) { return o.checks ? runTextChecks(o.task, o.checks) : runTests(o.task); }
+
+// ---- K1: a stage `run` as a command (plan 2026-10-21 §3: lesson stages 2, 3, 4, 8 and 9 are scripts, and test1 only
+// knew `node --test` or page.md). A cmd comes from the spec, never from an agent: it is not a CHECK_KEY, because order
+// checks and meeting rules are agent-written (a chair's --rules would otherwise make code run any argv).
+export const CMD_KEYS = ["argv", "cwd", "env", "timeoutMs", "pass", "findings", "route"];
+const badRe = (x) => { try { new RegExp(x, "m"); return false; } catch { return true; } };
+/** Why a cmd is invalid, or null. `stages`: the flow's stage names before this one (a route only goes back). */
+export function validateCmd(c, { stages = null } = {}) {
+  if (!c || typeof c !== "object" || Array.isArray(c)) return "a cmd is an object";
+  const bad = Object.keys(c).filter((k) => !CMD_KEYS.includes(k));
+  if (bad.length) return `unknown cmd field ${bad.join(", ")} (known: ${CMD_KEYS.join(", ")})`;
+  if (!Array.isArray(c.argv) || !c.argv.length || c.argv.some((a) => typeof a !== "string" || !a)) return "argv is a non-empty list of strings";
+  if (c.cwd != null && typeof c.cwd !== "string") return "cwd is a string";
+  if (c.env != null && (typeof c.env !== "object" || Array.isArray(c.env) || Object.values(c.env).some((v) => typeof v !== "string"))) return "env is an object of strings";
+  if (c.timeoutMs != null && !(Number.isFinite(c.timeoutMs) && c.timeoutMs > 0)) return "timeoutMs is a positive number";
+  const p = c.pass ?? "exit0";
+  if (!(p === "exit0" || (p && typeof p === "object" && ((p.tap === true && Object.keys(p).length === 1) || (typeof p.json === "string" && "equals" in p && Object.keys(p).length === 2))))) return `pass is "exit0", {tap: true} or {json: "<dotted path into stdout JSON>", equals: <value>}`;
+  if (c.findings != null && (typeof c.findings !== "object" || typeof c.findings.fromStdout !== "string" || badRe(c.findings.fromStdout))) return "findings is {fromStdout: <regular expression>}";
+  if (c.route != null) {
+    if (typeof c.route !== "object" || Array.isArray(c.route)) return "route is {<regular expression>: <stage>}";
+    for (const [re, to] of Object.entries(c.route)) {
+      if (badRe(re)) return `route ${JSON.stringify(re)} is not a regular expression`;
+      if (stages && !stages.includes(to)) return `route ${JSON.stringify(re)} goes to ${to}, not an earlier stage (${stages.join(", ") || "none"})`;
+    }
+  }
+  return null;
+}
+/** ${slug}, ${task}, ${workdir} in a cmd string; slug is the order's slug if set (lessons), else its task. */
+export const interpolate = (s, vars) => s.replace(/\$\{(slug|task|workdir)\}/g, (_, k) => vars[k] ?? "");
+const dig = (x, p) => p.split(".").filter(Boolean).reduce((v, k) => (v == null ? undefined : k === "length" && (Array.isArray(v) || typeof v === "string") ? v.length : v[k]), x);
+const parseJson = (t) => { try { return JSON.parse(t); } catch {} const l = t.trim().split("\n").reverse().find((x) => /^[[{]/.test(x.trim())); try { return l ? JSON.parse(l) : undefined; } catch { return undefined; } };
+/** Run stage `s`'s `run` cmd for order `o`: { pass, output, findings, route, code, timedOut }. findings are advisory on a
+ *  pass (copy-tells, a11y) and the reason on a fail; route is the earlier stage the first matching route regex names. */
+export function runCmdCheck(o, s) {
+  const c = s.run ?? s;
+  const vars = { slug: o.slug ?? o.task ?? "", task: o.task ?? "", workdir: o.workdir ?? path.join(LIVE, "work", o.task ?? "") };
+  const argv = c.argv.map((a) => interpolate(a, vars));
+  const cwd = c.cwd ? path.resolve(vars.workdir, interpolate(c.cwd, vars)) : vars.workdir;
+  // a child of a node --test process would report to it and exit 0 whatever its tests do (see runTests)
+  const { NODE_TEST_CONTEXT, ...base } = process.env;
+  const env = { ...base, ...Object.fromEntries(Object.entries(c.env ?? {}).map(([k, v]) => [k, interpolate(v, vars)])) };
+  const label = argv.join(" ").slice(0, 160);
+  if (!fs.existsSync(cwd)) return { pass: false, output: `${label}: no directory ${cwd}`, findings: null, route: null, code: null, timedOut: false };
+  // "node" is this node (a launcher PATH may lack it, or hold another version)
+  const r = spawnSync(argv[0] === "node" ? process.execPath : argv[0], argv.slice(1), { cwd, env, encoding: "utf8", timeout: c.timeoutMs ?? 60_000, maxBuffer: 64 * 1024 * 1024 });
+  const out = String(r.stdout ?? ""), err = String(r.stderr ?? ""), both = `${out}\n${err}`;
+  const timedOut = r.error?.code === "ETIMEDOUT";
+  const p = c.pass ?? "exit0";
+  let pass, why;
+  if (r.error && !timedOut) { pass = false; why = `could not start: ${r.error.message}`; }
+  else if (timedOut) { pass = false; why = `timed out after ${c.timeoutMs ?? 60_000} ms`; }
+  else if (p === "exit0") { pass = r.status === 0; why = `exit ${r.status}`; }
+  else if (p.tap) { const n = (k) => Number((out.match(new RegExp(`^# ${k} (\\d+)`, "m")) || [])[1] ?? NaN); pass = r.status === 0 && n("fail") === 0 && n("pass") > 0; why = `exit ${r.status}, ${out.split("\n").filter((l) => /^# (tests|pass|fail)/.test(l)).join(" ") || "no TAP counts"}`; }
+  else { const j = parseJson(out); const v = j === undefined ? undefined : dig(j, p.json); pass = j !== undefined && JSON.stringify(v) === JSON.stringify(p.equals); why = j === undefined ? "stdout is not JSON" : `${p.json} = ${JSON.stringify(v)?.slice(0, 200)}${pass ? "" : `, wanted ${JSON.stringify(p.equals)}`}`; }
+  let findings = null;
+  if (c.findings?.fromStdout) { const m = [...out.matchAll(new RegExp(c.findings.fromStdout, "gm"))].map((x) => (x[1] ?? x[0]).trim()).filter(Boolean); findings = m.length ? m.join("\n").slice(0, 2000) : null; }
+  if (!pass && !findings) findings = both.trim().split("\n").filter(Boolean).slice(-20).join("\n").slice(0, 2000) || null;
+  const route = pass ? null : Object.entries(c.route ?? {}).find(([re]) => new RegExp(re, "m").test(both))?.[1] ?? null;
+  return { pass, output: `${label}: ${why}`, findings, route, code: r.status ?? null, timedOut };
+}
