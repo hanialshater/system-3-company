@@ -38,7 +38,7 @@ A value is one of:
 | `ERR.DIV0`  | `{ error: "#DIV/0!" }`  | 1    |
 | `ERR.VALUE` | `{ error: "#VALUE!" }`  | 1    |
 | `ERR.NAME`  | `{ error: "#NAME?" }`   | 1    |
-| `ERR.REF`   | `{ error: "#REF!" }`    | reserved (later waves) |
+| `ERR.REF`   | `{ error: "#REF!" }`    | 2    |
 | `ERR.CYCLE` | `{ error: "#CYCLE!" }`  | reserved (later waves) |
 
 - Every error object has `toString()` returning its code.
@@ -78,13 +78,16 @@ Owns: formula syntax and cell names, in every wave. Wave 2 adds ref/range nodes 
     - `{ type: "unary", op: "-" | "+", arg: AST }`
     - `{ type: "binary", op: "+"|"-"|"*"|"/"|"^"|"&"|"="|"<>"|"<"|">"|"<="|">=", left: AST, right: AST }`
     - `{ type: "call", name: string /* uppercase */, args: AST[] }`
-    - `{ type: "error", code: "#VALUE!" }` (bad syntax)
+    - `{ type: "error", code: "#VALUE!" | "#REF!" }` — `"#VALUE!"` = bad syntax (always the
+      whole AST); wave 2: `"#REF!"` = a name that is not a valid cell (`AA1`, `A100`, `A0`) or a
+      range with an invalid corner. A `"#REF!"` node may be a subtree (`=1+AA1`,
+      `=SUM(A1:A100)`), not only the whole AST.
     - wave 2: `{ type: "ref", cell: "A1" }` (normalised), `{ type: "range", from: "A1", to: "B2" }`
 - `normCell(name) -> "A1" | null` — validates and normalises a cell name: one letter A-Z
   (any case), then 1-99 with no leading zero. Returns the uppercase name, or `null` if invalid
   (non-string input → `null`). Never throws.
 - `refs(ast) -> string[]` — the normalised cells an AST references (ranges expanded),
-  without duplicates. Wave 1 returns `[]`.
+  without duplicates; error nodes are skipped. Wave 1 returns `[]`.
 
 ## Slot B: values.mjs
 
@@ -129,14 +132,19 @@ Owns: walking the AST and the function table, in every wave. Wave 2 functions ar
 `FUNCTIONS` here only. C never sees storage: references are resolved only through `ctx`.
 
 - `evaluate(ast, ctx) -> value` — never throws.
-  - `num`/`str`/`bool` → their value; `error` node → `ERR.VALUE`.
+  - `num`/`str`/`bool` → their value; `error` node → the `ERR` singleton with its code
+    (`"#VALUE!"` → `ERR.VALUE`, `"#REF!"` → `ERR.REF`), propagating like any operand error
+    (left wins).
   - `unary` → `unary(op, evaluate(arg))`; `binary` → evaluates `left` before `right`, then
     `binary(op, l, r)` from B (left error wins).
   - `call` → looks up `FUNCTIONS[name]`; unknown name → `ERR.NAME` (wave 1: always).
-  - wave 2: `ref` → `ctx.get(cell)`; `range` → `ctx.range(from, to)`.
+  - wave 2: `ref` → `ctx.get(cell)`. A `range` is read with `ctx.range(from, to)` only by a
+    function given it as an argument; a range anywhere else evaluates to `ERR.VALUE`.
   - A number result of the whole evaluation goes through `round9` (intermediate values are not
     rounded).
-- `ctx = { get(cell) -> value, range(from, to) -> value[][] }` — supplied by SHEET; unused in
+- `ctx = { get(cell) -> value, range(from, to) -> value[][] }` — supplied by SHEET; `range`
+  returns the rectangle's values column by column (one inner array per column, left to right,
+  each top to bottom; any two corners, empty cells as `""`); unused in
   wave 1 (SHEET may pass a ctx whose methods return `""` / `[]`).
 - `FUNCTIONS` — a plain object mapping an uppercase name to `fn(args, ctx) -> value`, where
   `args` is the array of argument ASTs (so a function can decide evaluation order, ranges and
@@ -180,8 +188,8 @@ coercion or operator logic of its own.
     `evaluate(ast, ctx)` (cells in `graph.cyclic()` get `ERR.CYCLE` once later waves define it).
     The stored value is what `evaluate` returned (already `round9`ed); a reference sees that
     stored value (errors as `ERR` objects).
-- `ctx.get(c)` → the stored value of `c`, or `""` if empty; `ctx.range(from, to)` → rows of stored
-  values (wave 2).
+- `ctx.get(c)` → the stored value of `c`, or `""` if empty; `ctx.range(from, to)` → the stored
+  values column by column, as Slot C gives (wave 2).
 - `get(cell)` → the stored value `v`, `""` for an empty cell; an error is returned as its code
   string: `isError(v) ? v.error : v` (e.g. `"#DIV/0!"`). Only this public boundary converts;
   stored values and `ctx` keep the `ERR` object.

@@ -50,13 +50,31 @@ test("calls", () => {
 });
 
 test("bad syntax", () => {
-  for (const s of ["", "   ", "1.2.3", "(1+2", "1+2)", "1+", "*2", '"abc', "1 2", "f(1,", "f(,)", "abc", "1$", "()", "1..2"]) {
+  for (const s of ["", "   ", "1.2.3", "(1+2", "1+2)", "1+", "*2", '"abc', "1 2", "f(1,", "f(,)", "1$", "A1:", "A1:5", ":A1", "()", "1..2"]) {
     assert.deepEqual(parse(s), BAD, JSON.stringify(s));
   }
   assert.deepEqual(parse(undefined), BAD);
 });
 
-test("refs: wave 1 has none", () => {
+test("refs: literals have none", () => {
   assert.deepEqual(refs(parse("1+2")), []);
   assert.deepEqual(refs(BAD), []);
+});
+
+const REF = { type: "error", code: "#REF!" };
+
+test("wave 2: refs and ranges", () => {
+  assert.deepEqual(parse("a1*2"), { type: "binary", op: "*", left: { type: "ref", cell: "A1" }, right: { type: "num", value: 2 } });
+  assert.deepEqual(parse("SUM(b3 : a1)"), { type: "call", name: "SUM", args: [{ type: "range", from: "B3", to: "A1" }] });
+  for (const s of ["AA1", "A100", "A0", "abc", "A01"]) assert.deepEqual(parse(s), REF, s);
+  assert.deepEqual(parse("SUM(A1:AA1)"), { type: "call", name: "SUM", args: [REF] });
+  assert.deepEqual(parse("A100+1"), { type: "binary", op: "+", left: REF, right: { type: "num", value: 1 } });
+  assert.deepEqual(parse("true"), { type: "bool", value: true });
+});
+
+test("wave 2: refs() lists cells, ranges column by column, no duplicates", () => {
+  assert.deepEqual(refs(parse("A1+a1*B2")), ["A1", "B2"]);
+  assert.deepEqual(refs(parse("SUM(B2:A1, A1)")), ["A1", "A2", "B1", "B2"]);
+  assert.deepEqual(refs(parse("IF(C1, A100, D4)")), ["C1", "D4"]);
+  assert.deepEqual(refs(parse("-A1")), ["A1"]);
 });

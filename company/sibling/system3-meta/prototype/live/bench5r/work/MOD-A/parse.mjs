@@ -108,7 +108,19 @@ export function parse(src) {
         }
         const up = tok.v.toUpperCase();
         if (up === "TRUE" || up === "FALSE") return { type: "bool", value: up === "TRUE" };
-        // wave 1: no cell references (ref/range nodes arrive in wave 2)
+        // wave 2: a bare name is a cell reference; a name that is not a valid cell
+        // (AA1, A100, A0, foo) is #REF!. `X:Y` is a range; an invalid corner is #REF!.
+        const cell = normCell(tok.v);
+        if (isOp(":")) {
+          p++;
+          const end = toks[p++];
+          if (!end || end.t !== "id") throw new SyntaxFail();
+          const to = normCell(end.v);
+          if (cell === null || to === null) return { type: "error", code: "#REF!" };
+          return { type: "range", from: cell, to };
+        }
+        if (cell === null) return { type: "error", code: "#REF!" };
+        return { type: "ref", cell };
       }
       throw new SyntaxFail();
     }
@@ -125,10 +137,23 @@ export function refs(ast) {
   const walk = (n) => {
     if (!n || typeof n !== "object") return;
     if (n.type === "ref") out.add(n.cell);
+    else if (n.type === "range") rangeCells(n.from, n.to).forEach((c) => out.add(c));
     else if (n.type === "unary") walk(n.arg);
     else if (n.type === "binary") { walk(n.left); walk(n.right); }
     else if (n.type === "call") n.args.forEach(walk);
   };
   walk(ast);
   return [...out];
+}
+
+// The cells of the rectangle with corners `from` and `to`, column by column.
+function rangeCells(from, to) {
+  const a = normCell(from), b = normCell(to);
+  if (a === null || b === null) return [];
+  const c1 = a.charCodeAt(0), c2 = b.charCodeAt(0);
+  const r1 = Number(a.slice(1)), r2 = Number(b.slice(1));
+  const out = [];
+  for (let c = Math.min(c1, c2); c <= Math.max(c1, c2); c++)
+    for (let r = Math.min(r1, r2); r <= Math.max(r1, r2); r++) out.push(String.fromCharCode(c) + r);
+  return out;
 }

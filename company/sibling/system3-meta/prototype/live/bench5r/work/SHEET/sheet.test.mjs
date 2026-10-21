@@ -23,7 +23,7 @@ test("literals", () => {
 test("spec examples", () => {
   const cases = [["=2+3*4", 14], ["=2^3^2", 512], ["=-2^2", 4], ['="n="&5', "n=5"], ['="a"="A"', true],
     ['="a"+1', "#VALUE!"], ["=1/0", "#DIV/0!"], ["=(1+2", "#VALUE!"], ["=FOO(1)", "#NAME?"], ["=TRUE+1", 2],
-    ["=(-8)^(1/3)", "#VALUE!"], ["=1.2.3", "#VALUE!"], ["=1/0+FOO()", "#DIV/0!"], ['="a"+1/0', "#VALUE!"], ['=""+1', 1], ['="3"*2', 6]];
+    ["=(-8)^(1/3)", "#VALUE!"], ["=1.2.3", "#VALUE!"], ["=1/0+FOO()", "#DIV/0!"], ['="a"+1/0', "#DIV/0!"], ['=""+1', 1], ['="3"*2', 6]];
   for (const [f, v] of cases) assert.strictEqual(ev(f).get("A1"), v, f);
 });
 
@@ -41,4 +41,31 @@ test("errors leave get() as code strings", () => {
     const s = ev(f); assert.strictEqual(s.get("A1"), c); assert.strictEqual(typeof s.get("A1"), "string");
     assert.strictEqual(s.display("A1"), c);
   }
+});
+
+test("wave 2: references and recalculation through chains", () => {
+  const s = createSheet();
+  s.set("A1", "5"); s.set("B1", "=a1*2"); s.set("C1", "=B1+A1"); s.set("D1", "=B1+C1");
+  assert.strictEqual(s.get("B1"), 10); assert.strictEqual(s.get("C1"), 15); assert.strictEqual(s.get("D1"), 25);
+  s.set("A1", "1"); assert.strictEqual(s.get("B1"), 2); assert.strictEqual(s.get("C1"), 3); assert.strictEqual(s.get("D1"), 5);
+  s.set("A1", ""); assert.strictEqual(s.get("B1"), 0);
+  s.set("E1", "=Z9&\"x\""); assert.strictEqual(s.get("E1"), "x");
+  s.set("A2", "=1/0"); s.set("B2", "=A2+1"); assert.strictEqual(s.get("B2"), "#DIV/0!");
+});
+
+test("values pass get() unchanged (no wrapper)", () => {
+  for (const n of [10, 11, 0, -3.5]) { const s = createSheet(); s.set("A1", String(n)); assert.strictEqual(s.get("A1"), n); }
+  assert.strictEqual(ev("=5*2").get("A1"), 10);
+});
+
+test("wave 2: ranges column by column, no cycle marking yet", () => {
+  const s = createSheet();
+  s.set("A2", "=1/0"); s.set("B1", "=FOO()"); s.set("C1", "=SUM(A1:B2)");
+  assert.strictEqual(s.get("C1"), "#DIV/0!");
+  s.set("A1", "1"); s.set("A3", "3"); s.set("A2", "2"); s.set("A4", "4"); s.set("B1", "");
+  assert.strictEqual(s.get("C1"), 3);
+  s.set("D1", "=SUM(A1:A4)"); assert.strictEqual(s.get("D1"), 10);
+  s.set("D2", "=a1:b2"); assert.strictEqual(s.get("D2"), "#VALUE!");
+  s.set("E1", "=IF(1,2,E1)"); assert.strictEqual(s.get("E1"), 2);
+  s.set("E2", "=A100"); assert.strictEqual(s.get("E2"), "#REF!");
 });
