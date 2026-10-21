@@ -42,7 +42,7 @@ Cells are `A1` to `Z99`: one letter, then 1 to 99. Cell names and function names
 
 ## VALUES: `values.mjs`
 
-- `export const ERRORS = { DIV0: "#DIV/0!", REF: "#REF!", NAME: "#NAME?", VALUE: "#VALUE!", CYCLE: "#CYCLE!" }`.
+- `export const ERRORS = { DIV0: "#DIV/0!", REF: "#REF!", NAME: "#NAME?", VALUE: "#VALUE!", CYCLE: "#CIRC!" }`.
 - `export function isError(v)`: true for a string that is one of the ERRORS values.
 - `export function toNumber(v)`:
   - `""` becomes 0; `true` and `false` become 1 and 0;
@@ -131,3 +131,7 @@ A user guide for people who have never used a spreadsheet:
 - 300 to 900 words, reading ease at least 50.
 
 Every example in it must be true of the shipped SHEET.
+
+## Changed 2026-10-21T18:36Z (founder)
+
+The cycle error is now `#CIRC!` (it was `#CYCLE!`): `ERRORS.CYCLE` is "#CIRC!". Every module uses the ERRORS constant.
