@@ -4,6 +4,9 @@
 //   test1   runs the builder's tests and signs as `code`
 //   run     K1: any stage signed by code, or with a `run` cmd in the spec, runs by code (runCodeStage; the cmd check is
 //           state.mjs runCmdCheck: {argv, cwd, env, timeoutMs, pass, findings, route}, with ${slug}/${task}/${workdir})
+//   jobs    K2: a run stage with `async: true` starts its cmd detached (jobs.mjs) and a later tick collects it; the tick
+//           never waits. A timeout, a cmd that cannot start or a job that died is a stage-error (the order holds at its
+//           stage), not a revise: `node supervisor.mjs retry --order=<O>` runs it again; `node supervisor.mjs jobs` lists them
 //   uat     runs the orderer's hidden acceptance tests (--acceptance=<dir>/<task>.test.mjs) and signs as the orderer;
 //           no acceptance file for a task: the order waits at uat for a person (it is never passed by default)
 //   ship    claims the release message, copies the module (not the builder's tests) to live/shipped/<task>/, leaves
@@ -36,6 +39,7 @@ import { syncOrders } from "./tracker.mjs";
 import { sweepGoals } from "./goals.mjs";
 import { expireContracts } from "./contractor.mjs";
 import * as CH from "./channels.mjs";
+import * as JOBS from "./jobs.mjs";
 
 /** K1: a stage signed by code, or any stage with a `run` cmd (plan 2026-10-21 §3: the lesson flow's stages 2, 3, 4, 8 and 9
  *  are scripts; the old table only knew test1/uat/ship by name). No `run`: test1 as before (the order's text checks or
@@ -49,16 +53,35 @@ export function runCodeStage(co, o, s) {
     engine.advance(o.id, { stage, by: "code", verdict: t.pass ? "pass" : "revise", findings: t.pass ? null : t.output });
     return { step: stage, order: o.id, result: t.pass ? "pass" : "revise", output: t.output };
   }
-  const say = (t) => ({ step: stage, kind: "cmd", order: o.id, result: t.pass ? "pass" : "revise", output: t.output, findings: t.findings, route: t.route });
+  if (s.async) {
+    // K2: started detached, collected by a later tick (jobs.collect → applyCmdResult); one job per stage and loop
+    if (JOBS.jobFor(co, o)) return null;
+    if (s.signer === "release" && (!mailbox.queue("pool:release", "work").some((x) => x.ref === o.id) || !co.org.byLevel("release")[0])) return null;
+    const { job, result } = JOBS.start(co, o, s);
+    if (result) return applyCmdResult(co, o, s, result);
+    return { step: stage, kind: "job", order: o.id, result: "started", job: job.id, output: job.label };
+  }
+  return applyCmdResult(co, o, s, null);
+}
+
+/** Sign stage `s` of order `o` with a cmd result `t` (null: run it now, sync). Shared by the sync path and K2's
+ *  collector. A stage-error holds the order where it is (o.stageError), with nothing signed. */
+export function applyCmdResult(co, o, s, t) {
+  const { engine, rooms, mailbox } = co;
+  const stage = o.stage;
+  const say = (t) => ({ step: stage, kind: "cmd", order: o.id, result: t.stageError ? "stage-error" : t.pass ? "pass" : "revise", output: t.output, findings: t.findings, route: t.route });
   // a routed failure names where it belongs (K11 sends it there; until then it goes to build with the route in findings)
   const why = (t) => (t.pass ? null : `${t.output}${t.route ? ` [route: ${t.route}]` : ""}${t.findings ? `\n${t.findings}` : ""}`);
+  const err = (t) => { o.stageError = { stage, loops: o.loops, why: t.output, t: engine.clock.now() }; co.log.add({ type: "stage-error", order: o.id, stage, loops: o.loops, why: t.output }); return say(t); };
   if (s.signer === "code") {
-    const t = runCmdCheck(o, s);
+    t ??= runCmdCheck(o, s);
+    if (t.stageError) return err(t);
     engine.advance(o.id, { stage, by: "code", verdict: t.pass ? "pass" : "revise", findings: why(t) });
     return say(t);
   }
   if (s.signer === "orderer") {
-    const t = runCmdCheck(o, s);
+    t ??= runCmdCheck(o, s);
+    if (t.stageError) return err(t);
     engine.advance(o.id, { stage, by: o.manager, verdict: t.pass ? "pass" : "revise", evidence: `${t.output} (supervisor.mjs)`, findings: why(t) });
     return say(t);
   }
@@ -66,8 +89,9 @@ export function runCodeStage(co, o, s) {
     const m = mailbox.queue("pool:release", "work").find((x) => x.ref === o.id);
     const rel = co.org.byLevel("release")[0];
     if (!m || !rel) return null;
+    t ??= runCmdCheck(o, s);
+    if (t.stageError) return err(t); // the release role enters only to sign
     const { run } = rooms.enter({ msg: m.id, role: rel.id });
-    const t = runCmdCheck(o, s);
     rooms.leave(run, { verdict: t.pass ? "pass" : "revise", evidence: `${t.output} (supervisor.mjs)`, findings: why(t), learned: null });
     rooms.closeSession(rooms.runs.get(run).session, `${stage} done`);
     return say(t);
@@ -81,10 +105,12 @@ export function tick(co, { acceptance = null, faults = null } = {}) {
   const steps = [];
   for (const m of mailbox.promote()) steps.push({ step: "promote", msg: m.id, order: m.ref });
   for (const x of rooms.recover()) steps.push({ step: "recover", run: x.run, role: x.role, order: x.order });
+  steps.push(...JOBS.collect(co, { apply: applyCmdResult })); // K2: only what has ended; a running job is left alone
   for (let changed = true; changed;) {
     changed = false;
     for (const o of engine.orders.values()) {
       if (o.blocked || o.stage === "done") continue;
+      if (o.stageError?.stage === o.stage && o.stageError?.loops === o.loops) continue; // K2: held until a retry
       const sd = engine.stageDef(o);
       if (sd?.run || sd?.signer === "code" || o.stage === "test1") {
         const st = runCodeStage(co, o, sd);
@@ -321,7 +347,9 @@ export function nextTimer(co) {
   const now = co.engine.clock.now();
   const ts = [co.mailbox.nextExpiry(), ...[...co.mailbox.msgs.values()].filter((m) => m.state === "open" && m.priority === "later" && m.due != null).map((m) => m.due),
     // the watchdog's resend is due WATCHDOG_MIN after an order was first seen orphaned
-    ...[...co.engine.orders.values()].filter((o) => o.orphanSince != null).map((o) => o.orphanSince + WATCHDOG_MIN)].filter((t) => t != null);
+    ...[...co.engine.orders.values()].filter((o) => o.orphanSince != null).map((o) => o.orphanSince + WATCHDOG_MIN),
+    // K2: a running job's backstop (its wrapper died or hangs past its timeout); a job that ends wakes waitForChange
+    ...JOBS.deadlines(co)].filter((t) => t != null);
   if (!ts.length) return null;
   return Math.max(0, (Math.min(...ts) - now) * 60000) + 50;
 }
@@ -343,14 +371,21 @@ async function watch(opts, maxMin) {
     all.push(...r.steps);
     if (r.plan.length) return { exit: "agent sessions needed", steps: all, plan: r.plan };
     if (Date.now() >= end) return { exit: "idle", steps: all, plan: [] };
-    const wait = Math.min(r.wakeInMs ?? Infinity, end - Date.now());
-    await new Promise((resolve) => {
-      const name = path.basename(STATE);
-      const w = fs.watch(path.dirname(STATE), (ev, f) => { if (f === name) done(); });
-      const t = Number.isFinite(wait) ? setTimeout(done, wait) : null;
-      function done() { w.close(); if (t) clearTimeout(t); setTimeout(resolve, 200); } // let the writer finish
-    });
+    await waitForChange(Math.min(r.wakeInMs ?? Infinity, end - Date.now()));
   }
+}
+
+/** Sleep until the state file changes, a job writes its exit record (K2: a QA that ends must not wait for the 60 s
+ *  fallback or a lease), or `ms` passes (Infinity: no timer). */
+function waitForChange(ms) {
+  fs.mkdirSync(JOBS.JOBS, { recursive: true });
+  return new Promise((resolve) => {
+    const name = path.basename(STATE);
+    const ws = [fs.watch(path.dirname(STATE), (ev, f) => { if (f === name) done(); }), fs.watch(JOBS.JOBS, (ev, f) => { if (String(f).endsWith(".exit.json")) done(); })];
+    const t = Number.isFinite(ms) ? setTimeout(done, Math.max(50, ms)) : null;
+    let fired = false;
+    function done() { if (fired) return; fired = true; for (const w of ws) w.close(); if (t) clearTimeout(t); setTimeout(resolve, 200); } // let the writer finish
+  });
 }
 
 /** Reserve each planned launch and write its brief; returns the launches. Shared by `cycle` and `serve`. */
@@ -401,14 +436,7 @@ async function serve(opts, { idleMin = 2, maxMin = 120 } = {}) {
     if (r.settled && Date.now() - quietSince >= idleMin * 60000) { say({ event: "done", why: "every order is done and no meeting is open" }); return; }
     if (Date.now() >= end) { say({ event: "stopped", why: `--max-min=${maxMin}` }); return; }
     // wake on a state change, the next lease or due time, or a minute (launch reservations expire by time)
-    const wait = Math.min(r.wakeInMs ?? Infinity, 60000, end - Date.now(), r.settled ? idleMin * 60000 : Infinity);
-    await new Promise((resolve) => {
-      const name = path.basename(STATE);
-      const w = fs.watch(path.dirname(STATE), (ev, f) => { if (f === name) done(); });
-      const t = setTimeout(done, Math.max(50, wait));
-      let fired = false;
-      function done() { if (fired) return; fired = true; w.close(); clearTimeout(t); setTimeout(resolve, 200); }
-    });
+    await waitForChange(Math.min(r.wakeInMs ?? Infinity, 60000, end - Date.now(), r.settled ? idleMin * 60000 : Infinity));
   }
 }
 
@@ -454,7 +482,19 @@ if (import.meta.url === `file://${process.argv[1]}`) {
       }) : [];
       print({ usage, exit: w.exit, steps: w.steps, launch: launches });
     });
-  } else if (cmd === "tick") print(once(opts));
+  } else if (cmd === "retry") {
+    // K2: a stage-error (a job that timed out, could not start or died) holds the order; this clears it, and the next
+    // tick runs the stage again, as the same loop (it was not the work's fault)
+    if (!opt.order) { console.error("usage: node supervisor.mjs retry --order=<O>"); process.exit(2); }
+    print(withLock(() => {
+      const co = load(); const o = co.engine.orders.get(opt.order);
+      if (!o?.stageError) { process.exitCode = 1; return { refused: `${opt.order} has no stage-error` }; }
+      const was = o.stageError; delete o.stageError;
+      co.log.add({ type: "stage-retry", order: o.id, stage: was.stage, loops: was.loops, by: opt.by ?? null });
+      save(co); return { order: o.id, stage: o.stage, retried: was.why };
+    }));
+  } else if (cmd === "jobs") print(withLock(() => Object.values(JOBS.jobsOf(load()))));
+  else if (cmd === "tick") print(once(opts));
   else if (cmd === "watch") watch(opts, Number(opt["max-min"] ?? 30)).then(print);
-  else { console.error("usage: node supervisor.mjs tick|watch [--acceptance=<dir>] [--batch-later=3] [--cap=4] [--max-min=30]"); process.exit(2); }
+  else { console.error("usage: node supervisor.mjs tick|watch|serve|cycle|retry|jobs [--acceptance=<dir>] [--batch-later=3] [--cap=4] [--max-min=30]"); process.exit(2); }
 }

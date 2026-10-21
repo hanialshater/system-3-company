@@ -54,7 +54,7 @@ export function make(specName = "toy", specDef = null) {
 
 export const rep = (k, v) => (v instanceof Map ? { __map: [...v] } : v instanceof Set ? { __set: [...v] } : v);
 export const rev = (k, v) => (v && v.__map ? new Map(v.__map) : v && v.__set ? new Set(v.__set) : v);
-export const FIELDS = { data: ["spec", "specDef", "building", "channels", "tracker", "goals", "meetings", "rituals", "rules"], log: ["events"], mailbox: ["msgs", "keys", "n"], org: ["roles", "changes", "n", "rooms"], engine: ["flows", "active", "orders", "approvals", "n", "limits", "policies", "contracts"], rooms: ["runs", "n", "memory", "sessions", "nS"] };
+export const FIELDS = { data: ["spec", "specDef", "building", "channels", "tracker", "goals", "meetings", "rituals", "rules", "jobs"], log: ["events"], mailbox: ["msgs", "keys", "n"], org: ["roles", "changes", "n", "rooms"], engine: ["flows", "active", "orders", "approvals", "n", "limits", "policies", "contracts"], rooms: ["runs", "n", "memory", "sessions", "nS"] };
 
 export function save(co) {
   const data = Object.fromEntries(Object.entries(FIELDS).map(([o, fs_]) => [o, Object.fromEntries(fs_.map((f) => [f, co[o][f]]))]));
@@ -293,9 +293,9 @@ export function validateCmd(c, { stages = null } = {}) {
 export const interpolate = (s, vars) => s.replace(/\$\{(slug|task|workdir)\}/g, (_, k) => vars[k] ?? "");
 const dig = (x, p) => p.split(".").filter(Boolean).reduce((v, k) => (v == null ? undefined : k === "length" && (Array.isArray(v) || typeof v === "string") ? v.length : v[k]), x);
 const parseJson = (t) => { try { return JSON.parse(t); } catch {} const l = t.trim().split("\n").reverse().find((x) => /^[[{]/.test(x.trim())); try { return l ? JSON.parse(l) : undefined; } catch { return undefined; } };
-/** Run stage `s`'s `run` cmd for order `o`: { pass, output, findings, route, code, timedOut }. findings are advisory on a
- *  pass (copy-tells, a11y) and the reason on a fail; route is the earlier stage the first matching route regex names. */
-export function runCmdCheck(o, s) {
+/** A cmd ready to run for order `o`: argv/cwd/env interpolated, `node` as this node. Shared by runCmdCheck (sync) and
+ *  jobs.mjs (K2: the same cmd started detached, judged on a later tick by judgeCmd). */
+export function prepareCmd(o, s) {
   const c = s.run ?? s;
   const vars = { slug: o.slug ?? o.task ?? "", task: o.task ?? "", workdir: o.workdir ?? path.join(LIVE, "work", o.task ?? "") };
   const argv = c.argv.map((a) => interpolate(a, vars));
@@ -303,16 +303,20 @@ export function runCmdCheck(o, s) {
   // a child of a node --test process would report to it and exit 0 whatever its tests do (see runTests)
   const { NODE_TEST_CONTEXT, ...base } = process.env;
   const env = { ...base, ...Object.fromEntries(Object.entries(c.env ?? {}).map(([k, v]) => [k, interpolate(v, vars)])) };
-  const label = argv.join(" ").slice(0, 160);
-  if (!fs.existsSync(cwd)) return { pass: false, output: `${label}: no directory ${cwd}`, findings: null, route: null, code: null, timedOut: false };
   // "node" is this node (a launcher PATH may lack it, or hold another version)
-  const r = spawnSync(argv[0] === "node" ? process.execPath : argv[0], argv.slice(1), { cwd, env, encoding: "utf8", timeout: c.timeoutMs ?? 60_000, maxBuffer: 64 * 1024 * 1024 });
+  return { c, argv, bin: argv[0] === "node" ? process.execPath : argv[0], cwd, env, label: argv.join(" ").slice(0, 160) };
+}
+/** A missing cwd is the work's fault (no workdir built yet): a revise, as K1 had it. */
+export const noCwd = (p) => ({ pass: false, output: `${p.label}: no directory ${p.cwd}`, findings: null, route: null, code: null, timedOut: false, stageError: false });
+/** Judge a finished cmd {stdout, stderr, status, error: "<why it never ran or died>"|null, timedOut} by its pass rule.
+ *  stageError (K2): the stage itself failed (timed out, could not start, died), not the work; the caller holds the order
+ *  at its stage instead of revising (plan 2026-10-21 §3 K2: a `next build` over the limit was a false revise). */
+export function judgeCmd(c, label, r, timeoutMs = c.timeoutMs ?? 60_000) {
   const out = String(r.stdout ?? ""), err = String(r.stderr ?? ""), both = `${out}\n${err}`;
-  const timedOut = r.error?.code === "ETIMEDOUT";
   const p = c.pass ?? "exit0";
   let pass, why;
-  if (r.error && !timedOut) { pass = false; why = `could not start: ${r.error.message}`; }
-  else if (timedOut) { pass = false; why = `timed out after ${c.timeoutMs ?? 60_000} ms`; }
+  if (r.error) { pass = false; why = r.error; }
+  else if (r.timedOut) { pass = false; why = `timed out after ${timeoutMs} ms`; }
   else if (p === "exit0") { pass = r.status === 0; why = `exit ${r.status}`; }
   else if (p.tap) { const n = (k) => Number((out.match(new RegExp(`^# ${k} (\\d+)`, "m")) || [])[1] ?? NaN); pass = r.status === 0 && n("fail") === 0 && n("pass") > 0; why = `exit ${r.status}, ${out.split("\n").filter((l) => /^# (tests|pass|fail)/.test(l)).join(" ") || "no TAP counts"}`; }
   else { const j = parseJson(out); const v = j === undefined ? undefined : dig(j, p.json); pass = j !== undefined && JSON.stringify(v) === JSON.stringify(p.equals); why = j === undefined ? "stdout is not JSON" : `${p.json} = ${JSON.stringify(v)?.slice(0, 200)}${pass ? "" : `, wanted ${JSON.stringify(p.equals)}`}`; }
@@ -320,5 +324,16 @@ export function runCmdCheck(o, s) {
   if (c.findings?.fromStdout) { const m = [...out.matchAll(new RegExp(c.findings.fromStdout, "gm"))].map((x) => (x[1] ?? x[0]).trim()).filter(Boolean); findings = m.length ? m.join("\n").slice(0, 2000) : null; }
   if (!pass && !findings) findings = both.trim().split("\n").filter(Boolean).slice(-20).join("\n").slice(0, 2000) || null;
   const route = pass ? null : Object.entries(c.route ?? {}).find(([re]) => new RegExp(re, "m").test(both))?.[1] ?? null;
-  return { pass, output: `${label}: ${why}`, findings, route, code: r.status ?? null, timedOut };
+  return { pass, output: `${label}: ${why}`, findings, route, code: r.status ?? null, timedOut: !!r.timedOut, stageError: !!(r.error || r.timedOut) };
+}
+/** Run stage `s`'s `run` cmd for order `o` and wait: { pass, output, findings, route, code, timedOut, stageError }.
+ *  findings are advisory on a pass (copy-tells, a11y) and the reason on a fail; route is the earlier stage the first
+ *  matching route regex names. */
+export function runCmdCheck(o, s) {
+  const p = prepareCmd(o, s);
+  if (!fs.existsSync(p.cwd)) return noCwd(p);
+  const timeoutMs = p.c.timeoutMs ?? 60_000;
+  const r = spawnSync(p.bin, p.argv.slice(1), { cwd: p.cwd, env: p.env, encoding: "utf8", timeout: timeoutMs, maxBuffer: 64 * 1024 * 1024 });
+  const timedOut = r.error?.code === "ETIMEDOUT";
+  return judgeCmd(p.c, p.label, { stdout: r.stdout, stderr: r.stderr, status: r.status, error: r.error && !timedOut ? `could not start: ${r.error.message}` : null, timedOut }, timeoutMs);
 }

@@ -47,6 +47,8 @@ export function validateSpec(s) {
   // K1: a stage `run` is a valid cmd, on a stage code may execute (code, orderer, release: never an agent's own stage or
   // the founder's), and its routes go back to an earlier stage only (plan 2026-10-21 §3, K1/K11)
   for (const [i, x] of st.entries()) {
+    // K2: `async: true` runs the stage's cmd as a job outside the lock (jobs.mjs); it needs a cmd to run
+    if (x.async != null) need(typeof x.async === "boolean" && (!x.async || x.run != null), `stage ${x.stage}: async is true or false, and async needs a run`);
     if (x.run == null) continue;
     need(["code", "orderer", "release"].includes(x.signer), `stage ${x.stage}: a run is for a stage signed by code, orderer or release, not ${x.signer}`);
     const e = validateCmd(x.run, { stages: st.slice(0, i).map((y) => y.stage) });
