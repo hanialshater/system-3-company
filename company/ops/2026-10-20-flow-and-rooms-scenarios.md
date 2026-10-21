@@ -405,22 +405,29 @@ A finding from a consult becomes an order to the real role. If you want the role
 | `org` | `tools/org/roles.mjs`, `generate.mjs`, `people.mjs`, `memory.mjs init`, `ROOM_BY_ROLE` (moved into the role record) |
 | measurement | `reconcile.mjs`, `metrics.mjs`, `ops-health.mjs`, `triage.mjs` |
 
-## S15. Contractors: one order, onboarded by the manager (founder, 2026-10-21)
+## S15. Contractors: prototypes, research and spikes outside the flow (founder, 2026-10-21)
 
 ```bash
-node meta.mjs contractor hire --by=mgr-live --order=O-12 --budget=80000 \
-  --onboarding='{"docs":["live/work/T12/","company/product/demo-standard.md"],"laneMemory":true,"brief":"Unicode edge cases matter"}'
-# → ctr-1, reports to mgr-live, contracted for O-12 only; O-12's build message is withdrawn from its builder and re-sent to ctr-1
-node meta.mjs room enter --msg=<M> --role=ctr-1
-# → the pack holds the manager's onboarding (docs, brief, the lane builders' learned notes), not a role doc or org memory
+node meta.mjs contract open --by=mgr-live --kind=research --goal="Which ISO-week rules trip common libraries?" \
+  --deliverable="findings with sources" --budget=60000 --timebox=60 \
+  --onboarding='{"docs":["company/product/demo-standard.md"],"laneMemory":true,"brief":"Cite primary sources"}'
+# → C-1, contractor ctr-1, folder live/contracts/C-1/, due in 60 min; the supervisor plans its session once
+node meta.mjs contract brief --id=C-1                       # what ctr-1 sees: the manager's onboarding, its folder, the rules
+node meta.mjs contract deliver --id=C-1 --by=ctr-1 --summary=… --path=live/contracts/C-1/findings.md \
+  --findings='[{"claim":"…","source":"ISO 8601-1 §5.2.2","confidence":"high"}]'
+node meta.mjs contract decide --id=C-1 --by=mgr-live --decision=accept --reason=…
+node meta.mjs order new --to=mgr-live --title=… --task=… --accept="per C-1" --from-contract=C-1   # only now does it enter the flow
 ```
-- **The manager decides:** whether to hire, the budget (within the manager limit) and the onboarding.
+- **Not an order:** no test1, check, UAT or ship. The output never reaches the product by itself.
+- **The manager decides** the kind, goal, deliverable, budget, timebox and onboarding, and accepts or rejects the result.
 - **Code enforces:**
-  - a fresh, isolated order in the manager's own lane;
-  - onboarding limited to the lane's own work and handbook areas (no acceptance tests, state, parent paths or other lanes);
-  - the contractor builds only its order and never checks;
-  - the same test1, check and UAT apply.
-- **The contract ends when the order ships:** the contractor is deactivated, a `handoff` with its learned notes goes to the manager, and no memory is kept. Prototype: company/sibling/system3-meta/prototype/contractor.mjs.
+  - only out-of-process kinds;
+  - onboarding limited to the lane's own work and the handbook;
+  - no flow access: no work, no signing, no shipping; writes only to its own folder;
+  - sourced findings for research;
+  - expiry at the timebox;
+  - when it ends: a handoff to the manager, no memory kept.
+- Prototype: company/sibling/system3-meta/prototype/contractor.mjs.
 
 ## What every command writes
 

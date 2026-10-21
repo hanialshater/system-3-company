@@ -271,6 +271,7 @@ export class Engine {
     this.n = { O: 0, A: 0 };
     this.limits = { "chief-of-staff": 500_000, manager: 250_000 };
     this.policies = new Map(); // lane → { versions, active }: the manager's knobs (policy.mjs validates them)
+    this.contracts = new Map(); // contractor engagements (contractor.mjs): outside the delivery flow
   }
 
   /** The policy an order runs under: the lane's active version when the order was made (pinned; never moves). */
@@ -301,7 +302,7 @@ export class Engine {
   nextStage(o) { const st = this.flows.get(o.flow).stages; return st[st.findIndex((s) => s.stage === o.stage) + 1]?.stage ?? "done"; }
 
   // ---- orders, down the chain
-  orderNew({ flow, by, to, budget, accept, words = null, title = "", priority = "next", dueMin = null, after = [] }) {
+  orderNew({ flow, by, to, budget, accept, words = null, title = "", priority = "next", dueMin = null, after = [], fromContract = null }) {
     const key = this.active.get(flow);
     hard(key, `no active flow ${flow}`);
     const byRole = this.org.role(by), toRole = this.org.role(to);
@@ -311,9 +312,12 @@ export class Engine {
     const nowBy = this.flows.get(key).nowBy ?? ["founder", "chief-of-staff"];
     this.guard(priority !== "now" || nowBy.includes(byRole.level), "priority", `${by} may not order with priority now (flow allows: ${nowBy.join(", ")})`, { by });
     for (const d of after) hard(this.orders.has(d), `--after ${d}: no such order`);
+    // A contractor's result enters the product only as a normal order that cites an accepted engagement.
+    if (fromContract) hard(this.contracts?.get(fromContract)?.state === "accepted", `--from-contract ${fromContract} is not an accepted engagement`);
     const overLimit = budget > (this.limits[byRole.level] ?? Infinity);
     const o = { id: `O-${++this.n.O}`, flow: key, title, chain: [by, to], orderer: by, manager: to, builder: null, checker: null, budget, spent: 0, accept, words, stage: overLimit ? "budget" : "build", loops: 0, created: this.clock.now(), history: [], priority, due: dueMin != null ? this.clock.now() + dueMin : null, after, blocked: after.some((d) => this.orders.get(d).stage !== "done") };
     o.policyVersion = this.policies.get(toRole.lane)?.active ?? null;
+    o.fromContract = fromContract;
     this.orders.set(o.id, o);
     this.log.add({ type: "order", order: o.id, by, to, budget, flow: key, priority, after, policy: o.policyVersion });
     if (overLimit) this.request({ order: o.id, stage: "budget", approver: "founder", kind: "budget", dueMin: 24 * 60, key: `${o.id}:budget` });
@@ -474,7 +478,7 @@ export class Rooms {
     const r = this.org.role(actor);
     hard(r?.active, `no active role ${actor}`);
     this.guard(m.to === actor || m.to === `pool:${r.level}`, "lane", `${actor} may not take ${msg} (for ${m.to})`, { order: o.id, by: actor });
-    if (r.level === "contractor") hard(r.contractFor === o.id && m.body.stage === "build", `contractor ${actor} works only on the build of ${r.contractFor}`);
+    hard(r.level !== "contractor", `contractor ${actor} works outside the delivery flow: it enters no flow work`);
     if (m.body.stage === "check") this.guard(actor !== o.builder, "independence", `${actor} built ${o.id}`, { order: o.id, by: actor });
     let s;
     if (session) { s = this.sessions.get(session); hard(s?.open && s.role === actor, `session ${session} is not open for ${actor}`); }
@@ -485,11 +489,7 @@ export class Rooms {
     // The run works on the stage and loop the message was sent for, not on wherever the order is now: a late
     // duplicate of a finished stage is a stale run, and its leave signs nothing.
     const { stage, loops } = m.body;
-    // A contractor's pack is what its manager chose to onboard it with, not a role doc and not the org's memory.
-    const lane = r.level === "contractor" ? r.lane : null;
-    const ctx = r.level === "contractor"
-      ? { roleDoc: null, contract: { order: r.contractFor, budget: r.budget, manager: r.reportsTo }, onboarding: { docs: r.onboarding?.docs ?? [], brief: r.onboarding?.brief ?? null }, laneMemory: r.onboarding?.laneMemory ? this.org.active().filter((x) => x.lane === lane && x.level === "builder").flatMap((x) => (this.memory.get(x.id) ?? []).filter((e) => e.learned).map((e) => ({ from: x.id, learned: e.learned }))) : [], memory: [], order: o.id, stage, findings: o.findings ?? null }
-      : { roleDoc: `company/roles/${actor}.md`, memory: this.memory.get(actor) ?? [], order: o.id, stage, findings: o.findings ?? null };
+    const ctx = { roleDoc: `company/roles/${actor}.md`, memory: this.memory.get(actor) ?? [], order: o.id, stage, findings: o.findings ?? null };
     this.runs.set(run, { run, msg, role: actor, by: role, consult: mode === "consult", order: o.id, stage, loops, entered: this.clock.now(), state: "running", session: s.id });
     this.log.add({ type: "enter", run, msg, role: actor, by: role, room: r.room, order: o.id, stage, mode, session: s.id, item: s.items });
     return { run, ctx, session: s.id, item: s.items };

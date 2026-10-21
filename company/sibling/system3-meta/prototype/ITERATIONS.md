@@ -239,20 +239,27 @@ Founder, 2026-10-21: the manager "need also to think about strategy … probably
 - Belief: holding revisions pays only when the lane's typical gap between revisions for the same role is shorter than the hold.
 - Next candidate (v3, not run): hold a revision only while the role has another item queued or a session is about to start, and never past the lane's median gap between revisions. This needs a new knob, `revisionHold: "piggyback"`, which is a change to the allowlist in policy.mjs: an engineering review, not a manager edit.
 
-## Contractors (2026-10-21, added; no simulation yet)
+## Contractors (2026-10-21; corrected the same day)
 
-Founder: "allow for contractors (off the org workers to take isolated problem to solve) all managers are allowed to hire a one time contractor and decide on how to onboard them". Implemented in contractor.mjs, with tests/contractor.test.mjs 4/4 passing.
+**Founder:**
+- "allow for contractors (off the org workers to take isolated problem to solve) all managers are allowed to hire a one time contractor and decide on how to onboard them";
+- then: "Contractor is for task that are not in the process, quick prototype, research etc."
+
+**The first version was the wrong model.** It used contractors as substitute builders for in-flow orders. Replaced the same day: a contractor engagement is **not an order**. Implemented in contractor.mjs, with tests/contractor.test.mjs 5/5 passing.
 
 **The manager decides:**
-- whether to hire, for one of their own orders;
-- the budget, within the manager's limit;
-- the onboarding: which docs, whether to share the lane's builder notes, and a brief.
+- the kind (`prototype`, `research` or `spike`);
+- the goal, and the stated deliverable;
+- the budget (within the manager limit) and the timebox;
+- the onboarding: docs, the lane builders' learned notes, a brief.
 
 **Code enforces:**
-- the order is fresh (build, loop 0) and isolated (nothing waits for it, it waits for nothing);
-- onboarding paths are limited to the lane's own work and handbook areas, never acceptance tests, state files, parent paths or other lanes' work;
-- the contractor takes only its order's build message and cannot take or sign a check;
-- the same test1, check and UAT apply;
-- when the order ships, `supervisor.mjs` ends the contract: the contractor is deactivated, its learned notes go to the manager as a `handoff` message, and no memory is kept.
+- **Kinds:** any other kind is refused. In-process work is an order.
+- **Onboarding:** paths are limited to the lane's own work and the handbook, never acceptance tests, state files, parent paths or other lanes' work.
+- **No flow access:** the contractor enters no flow work, signs no stage and ships nothing. It writes only to `live/contracts/<id>/`.
+- **Research is checkable:** a research deliverable must give every finding with a source and a confidence (high, medium or low), or it is refused.
+- **The manager decides:** accept or reject, with a reason. A timebox with no delivery expires; `supervisor.mjs` checks this on every tick. Either way the contractor is deactivated, a `handoff` goes to the manager, and no memory is kept.
+- **Into the product only by an order:** a result reaches the product only through `order new --from-contract=C-n`, which requires an accepted engagement and runs the full flow.
+- **Started once:** the supervisor's plan names each open contractor once, until a launch is recorded.
 
-**Found while building it:** reassigning an order re-sent its message under the same idempotency key, so dedupe returned the withdrawn message and the contractor never got the work. A reassignment now has its own key.
+**Found while building it** (first version): reassigning an order's build message reused its idempotency key, so dedupe returned the withdrawn message. The corrected model does not reassign orders at all, so the case is gone.

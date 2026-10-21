@@ -20,7 +20,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { LIVE, STATE, load, save, withLock, runTests, rep } from "./state.mjs";
-import { endContracts } from "./contractor.mjs";
+import { expireContracts } from "./contractor.mjs";
 
 const STAGE_SIGNER = { test1: "code", uat: "orderer", ship: "release" };
 
@@ -62,8 +62,8 @@ export function tick(co, { acceptance = null } = {}) {
       }
     }
   }
-  for (const id of endContracts(co)) steps.push({ step: "contract-ended", role: id });
-  if (steps.length) log.add({ type: "supervisor-tick", steps: steps.map((s) => `${s.step}:${s.order ?? s.msg ?? s.run}`) });
+  for (const id of expireContracts(co)) steps.push({ step: "contract-expired", contract: id });
+  if (steps.length) log.add({ type: "supervisor-tick", steps: steps.map((s) => `${s.step}:${s.order ?? s.msg ?? s.run ?? s.contract}`) });
   return steps;
 }
 
@@ -100,6 +100,12 @@ export function plan(co, { batchLater: batchDefault = 3, cap: capDefault = 4 } =
     if (r.human || ["founder", "chief-of-staff", "manager", "release"].includes(r.level)) continue;
     if (r.level === "checker") continue; // the pool is planned once, below
     consider(r.id, mailbox.queue(r.id, "work"));
+  }
+  // An open engagement needs its contractor started once; a launch (any time) counts while the engagement is open.
+  for (const c of co.engine.contracts?.values() ?? []) {
+    if (c.state !== "open") continue;
+    if (log.events.some((e) => e.type === "launch" && e.role === c.contractor)) continue;
+    out.push({ role: c.contractor, why: `contract ${c.id} (${c.kind}) open, not started`, msgs: [], contract: c.id, cap: 1 });
   }
   const checker = org.byLevel("checker")[0];
   if (checker) consider(checker.id, mailbox.queue("pool:checker", "work").filter((m) => co.engine.orders.get(m.ref).builder !== checker.id));

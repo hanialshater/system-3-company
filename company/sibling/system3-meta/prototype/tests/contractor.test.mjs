@@ -1,66 +1,70 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { hireContractor, endContracts, onboardingProblems } from "../contractor.mjs";
+import { engage, briefFor, deliver, decideContract, expireContracts, onboardingProblems, deliverableProblems } from "../contractor.mjs";
 import { build } from "../toy.mjs";
+import { plan } from "../supervisor.mjs";
 
-function setup() {
+const open = (co, extra = {}) => engage(co, { by: "mgr-w", kind: "research", goal: "Which ISO week rules trip libraries?", deliverable: "findings with sources", budget: 50_000, timeboxMin: 60, onboarding: { docs: ["company/product/demo-standard.md"], laneMemory: true, brief: "Be brief" }, ...extra });
+const finding = { claim: "Week 1 holds the first Thursday", source: "ISO 8601-1:2019 §5.2.2", confidence: "high" };
+
+test("onboarding and deliverable validation", () => {
+  assert.deepEqual(onboardingProblems({ docs: ["company/roles/b-w1.md", "docs/x.md"] }), []);
+  for (const d of ["scratchpad/acceptance3/T1.test.mjs", "live/state-run3.json", "../x", "/etc/passwd", "tools/company.mjs", "live/work/OTHER/"]) assert.ok(onboardingProblems({ docs: [d] }).length, d);
+  assert.match(deliverableProblems("research", { summary: "s", path: "live/contracts/C-1/r.md", findings: [{ claim: "x" }] }).join(), /no source.*confidence/);
+  assert.match(deliverableProblems("prototype", { summary: "s", path: "live/work/T1/x.mjs" }).join(), /own folder/);
+  assert.deepEqual(deliverableProblems("prototype", { summary: "s", path: "live/contracts/C-1/proto.mjs" }), []);
+});
+
+test("only a lane manager opens an engagement, for out-of-process kinds, within limit and timebox", () => {
   const co = build();
+  assert.throws(() => open(co, { by: "b-w1" }), /not a lane manager/);
+  assert.throws(() => open(co, { kind: "build" }), /in-process work is an order/);
+  assert.throws(() => open(co, { budget: 999_999 }), /manager limit/);
+  assert.throws(() => open(co, { timeboxMin: 0 }), /timebox/);
+  const c = open(co);
+  assert.equal(c.id, "C-1");
+  assert.equal(co.org.role(c.contractor).level, "contractor");
+  assert.equal(co.mailbox.queue(c.contractor, "contract").length, 1);
+});
+
+test("a contractor enters no flow work and signs nothing", () => {
+  const co = build();
+  const c = open(co);
   const o = co.engine.orderNew({ flow: "item", by: "cos", to: "mgr-w", budget: 100, accept: "x" });
-  o.task = "TX";
   co.engine.delegate(o.id, { by: "mgr-w", to: "b-w1", budget: 100 });
-  return { co, o };
-}
-const hire = (co, o, extra = {}) => hireContractor(co, { by: "mgr-w", order: o.id, budget: 50_000, onboarding: { docs: ["live/work/TX/"], laneMemory: true, brief: "Fix it fast" }, ...extra });
-
-test("onboarding validation: no acceptance tests, state, parent paths, other lanes' work, unknown fields", () => {
-  assert.deepEqual(onboardingProblems({ docs: ["live/work/TX/", "company/roles/b-w1.md"] }, { ownTasks: ["TX"] }), []);
-  for (const d of ["scratchpad/acceptance3/T1.test.mjs", "live/state-run3.json", "../secrets", "/etc/passwd", "live/work/OTHER/x.mjs", "tools/company.mjs"]) assert.ok(onboardingProblems({ docs: [d] }, { ownTasks: ["TX"] }).length, d);
-  assert.match(onboardingProblems({ access: "all" }).join(), /unknown onboarding field/);
+  const m = co.mailbox.queue("b-w1", "work")[0];
+  assert.throws(() => co.rooms.enter({ msg: m.id, role: c.contractor }), /lane|outside the delivery flow/);
+  assert.throws(() => co.engine.advance(o.id, { stage: "build", by: c.contractor, evidence: "e" }), /signer/);
 });
 
-test("any lane manager may hire for its own fresh, isolated order within its limit; others are refused", () => {
-  const { co, o } = setup();
-  assert.throws(() => hireContractor(co, { by: "mgr-g", order: o.id, budget: 10 }), /not in mgr-g's lane/);
-  assert.throws(() => hireContractor(co, { by: "b-w1", order: o.id, budget: 10 }), /not a lane manager/);
-  assert.throws(() => hire(co, o, { budget: 999_999 }), /over the manager limit/);
-  const dep = co.engine.orderNew({ flow: "item", by: "cos", to: "mgr-w", budget: 100, accept: "x", after: [o.id] });
-  assert.throws(() => hire(co, o), /not isolated/);
-  dep.stage = "done";
-  const c = hire(co, o);
-  assert.equal(c.level, "contractor");
-  assert.equal(o.builder, c.id);
-  assert.equal(co.mailbox.queue("b-w1", "work").length, 0, "the previous builder's message is withdrawn");
-  assert.equal(co.mailbox.queue(c.id, "work").length, 1);
+test("brief = the manager's onboarding; research needs sourced findings; the manager decides; the result enters only as a cited order", () => {
+  const co = build();
+  co.rooms.memory.set("b-w1", [{ did: "x", learned: "dates near new year are tricky" }]);
+  const c = open(co);
+  const b = briefFor(co, c.id);
+  assert.equal(b.write_only_to, "live/contracts/C-1/");
+  assert.deepEqual(b.laneMemory, [{ from: "b-w1", learned: "dates near new year are tricky" }]);
+  assert.throws(() => deliver(co, { cid: c.id, by: c.contractor, summary: "s", path: "live/contracts/C-1/r.md", findings: [{ claim: "x" }] }), /deliverable/);
+  assert.throws(() => deliver(co, { cid: c.id, by: "b-w1", summary: "s", path: "live/contracts/C-1/r.md", findings: [finding] }), /not the contractor/);
+  assert.throws(() => co.engine.orderNew({ flow: "item", by: "cos", to: "mgr-w", budget: 100, accept: "x", fromContract: c.id }), /not an accepted engagement/);
+  deliver(co, { cid: c.id, by: c.contractor, summary: "Three rules", path: "live/contracts/C-1/r.md", findings: [finding] });
+  assert.throws(() => decideContract(co, { cid: c.id, by: "mgr-g", decision: "accept", reason: "r" }), /did not open/);
+  decideContract(co, { cid: c.id, by: "mgr-w", decision: "accept", reason: "sourced and useful" });
+  assert.equal(co.org.role(c.contractor).active, false);
+  assert.equal(co.mailbox.queue("mgr-w", "handoff").length, 1);
+  const o = co.engine.orderNew({ flow: "item", by: "cos", to: "mgr-w", budget: 100, accept: "build it per C-1", fromContract: c.id });
+  assert.equal(o.fromContract, "C-1");
+  assert.equal(o.stage, "build", "the cited work starts at build like any order");
 });
 
-test("a contractor works only on its order's build, gets its manager's onboarding, and cannot check", () => {
-  const { co, o } = setup();
-  co.rooms.memory.set("b-w1", [{ did: "x", learned: "use code points" }]);
-  const c = hire(co, o);
-  const m = co.mailbox.queue(c.id, "work")[0];
-  const { run, ctx } = co.rooms.enter({ msg: m.id, role: c.id });
-  assert.equal(ctx.roleDoc, null);
-  assert.deepEqual(ctx.onboarding.docs, ["live/work/TX/"]);
-  assert.deepEqual(ctx.laneMemory, [{ from: "b-w1", learned: "use code points" }]);
-  co.rooms.leave(run, { evidence: "w", learned: "the spec hides a unicode case" });
-  co.engine.advance(o.id, { stage: "test1", by: "code" });
-  const chk = co.mailbox.queue("pool:checker", "work")[0];
-  assert.throws(() => co.rooms.enter({ msg: chk.id, role: c.id }), /lane|contractor/);
-  assert.throws(() => co.engine.advance(o.id, { stage: "check", by: c.id, evidence: "e" }), /signer|independence/);
-});
-
-test("the contract ends when the order ships: offboarded, a handoff to the manager, no memory kept", () => {
-  const { co, o } = setup();
-  const c = hire(co, o);
-  const { run } = co.rooms.enter({ msg: co.mailbox.queue(c.id, "work")[0].id, role: c.id });
-  co.rooms.leave(run, { evidence: "w", learned: "boundary at 2^53" });
-  for (const [stage, by] of [["test1", "code"], ["check", "chk-1"], ["uat", "mgr-w"]]) co.engine.advance(o.id, { stage, by, evidence: "e" });
-  co.engine.decide(co.engine.queue("founder")[0].id, { by: "founder", decision: "approve", words: "Approve deploy", channel: "chat" });
-  co.engine.advance(o.id, { stage: "ship", by: "rel-1", evidence: "e" });
-  assert.deepEqual(endContracts(co), [c.id]);
-  assert.equal(co.org.role(c.id).active, false);
-  assert.equal(co.rooms.memory.has(c.id), false);
-  const h = co.mailbox.queue("mgr-w", "handoff")[0];
-  assert.deepEqual(h.body.learned, ["boundary at 2^53"]);
-  assert.deepEqual(endContracts(co), [], "once");
+test("timebox: no delivery by the due time expires the engagement; the plan starts each open contractor once", () => {
+  const co = build();
+  const c = open(co, { timeboxMin: 10 });
+  assert.ok(plan(co).some((p) => p.role === c.contractor));
+  co.log.add({ type: "launch", role: c.contractor });
+  assert.ok(!plan(co).some((p) => p.role === c.contractor), "launched: not planned again");
+  co.clock.t += 11;
+  assert.deepEqual(expireContracts(co), ["C-1"]);
+  assert.equal(co.engine.contracts.get("C-1").state, "expired");
+  assert.throws(() => deliver(co, { cid: c.id, by: c.contractor, summary: "s", path: "live/contracts/C-1/r.md", findings: [finding] }), /expired|timed out/);
 });

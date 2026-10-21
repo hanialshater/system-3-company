@@ -2,7 +2,7 @@
 
 Founder: the manager writes and updates the code for their lane; and "all managers are allowed to hire a one time contractor and decide on how to onboard them". Prototype (company/sibling/system3-meta/prototype, tests 33/33):
 - **policy.mjs:** the knobs a lane manager may set (drain cap, later batch, how revisions queue, staffing threshold, a narrower `now` list), validated against an allowlist so a policy cannot touch signers, independence or leases; versioned and pinned per order; a manager cycle records numbers, belief and decision.
-- **contractor.mjs:** a one-order hire by any lane manager, with manager-chosen onboarding validated by code; it builds only, never checks; the contract ends at ship with a handoff.
+- **contractor.mjs** (corrected after the founder's "Contractor is for task that are not in the process, quick prototype, research etc."): any lane manager opens a prototype, research or spike engagement with chosen onboarding; it sits outside the flow (own folder only, no flow work, no signing, no shipping); research needs sourced findings; the manager accepts or rejects; it expires at its timebox; a result enters the product only as an order citing it (`--from-contract`).
 
 Simulator iteration 5 tested the first policy change (revisions as `later`, batch 2): no saving (I5-1 wrong, +3.6% tokens in a quiet lane). Holding pays only if a partner arrives within the hold. So the manager decides from the lane's arrival gaps, and the next candidate needs an engineering change to the allowlist. Nothing in the current company changed.
 

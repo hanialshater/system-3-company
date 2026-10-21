@@ -44,7 +44,7 @@ export function make() {
 
 export const rep = (k, v) => (v instanceof Map ? { __map: [...v] } : v instanceof Set ? { __set: [...v] } : v);
 export const rev = (k, v) => (v && v.__map ? new Map(v.__map) : v && v.__set ? new Set(v.__set) : v);
-export const FIELDS = { log: ["events"], mailbox: ["msgs", "keys", "n"], org: ["roles", "changes", "n"], engine: ["flows", "active", "orders", "approvals", "n", "limits", "policies"], rooms: ["runs", "n", "memory", "sessions", "nS"] };
+export const FIELDS = { log: ["events"], mailbox: ["msgs", "keys", "n"], org: ["roles", "changes", "n"], engine: ["flows", "active", "orders", "approvals", "n", "limits", "policies", "contracts"], rooms: ["runs", "n", "memory", "sessions", "nS"] };
 
 export function save(co) {
   const data = Object.fromEntries(Object.entries(FIELDS).map(([o, fs_]) => [o, Object.fromEntries(fs_.map((f) => [f, co[o][f]]))]));

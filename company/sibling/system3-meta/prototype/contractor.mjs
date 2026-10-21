@@ -1,75 +1,129 @@
-// Contractors: off-org workers hired once, for one isolated order (founder, 2026-10-21: "all managers are allowed to
-// hire a one time contractor and decide on how to onboard them").
+// Contractors: off-org workers for work that is NOT in the delivery process: a quick prototype, a research question,
+// a spike (founder, 2026-10-21: "all managers are allowed to hire a one time contractor and decide on how to onboard
+// them … Contractor is for task that are not in the process, quick prototype, research etc.").
 //
-// What the manager decides: who (a contractor id is made for them), the budget (within the manager's own limit), and the
-// onboarding: the docs the contractor may read, whether it sees the lane's memory notes, and a short brief.
-// What code decides, whatever the manager wants:
-//   - the order is in the manager's own lane, at build, and isolated: nothing in flight depends on it
-//   - onboarding paths are inside the repository's lesson/work and handbook areas; never hidden acceptance tests,
-//     state files, or another lane's work
-//   - the contractor takes only its order's work, signs only its build, never a check (its level is not checker), and
-//     its work goes through the same test1, independent check and UAT as anyone's
-//   - the contract ends when the order ships: the contractor is offboarded, its learned notes go to the manager as a
-//     handoff message, and nothing of it stays in role memory
+// An engagement is not an order. It has no test1, check, UAT or ship, and its output never reaches the product by
+// itself: to use it, the manager places a normal order that cites the engagement (`order new --from-contract=C-n`),
+// and that order goes through the whole flow like any other.
+//
+// The manager decides: the kind, the goal, what comes back, the budget (within the manager limit), the timebox and the
+// onboarding (docs, whether to share the lane's builder notes, a brief). Code decides, whatever the manager wants:
+//   - onboarding paths stay inside the lane's own work and the handbook; never acceptance tests, state, parent paths,
+//     another lane's work
+//   - the contractor writes only to live/contracts/<id>/ and can enter no flow work, sign no stage and ship nothing
+//   - a research deliverable states every finding with a source and a confidence; without them it is refused
+//   - the engagement ends on accept, reject or timeout: the contractor is deactivated, a handoff goes to the manager,
+//     and no memory of it is kept
 import { Refused } from "./lib.mjs";
 
 const refuse = (msg) => { throw new Refused(`HARD: ${msg}`); };
-export const ONBOARDING_ALLOWED = [/^live\/work\/[^/]+\/?/, /^company\/(roles|product|knowledge|design)\//, /^docs\//];
+export const KINDS = ["prototype", "research", "spike"];
+export const ONBOARDING_ALLOWED = [/^live\/work\/[^/]+\/?/, /^live\/shipped\/[^/]+\/?/, /^company\/(roles|product|knowledge|design)\//, /^docs\//];
 export const ONBOARDING_DENIED = [/acceptance/i, /state[^/]*\.json$/i, /\.\./, /^\//, /scratchpad/i, /\.lock$/];
+export const CONFIDENCE = ["high", "medium", "low"];
 
 export function onboardingProblems(onb, { ownTasks = [] } = {}) {
   const p = [];
-  const allowedKeys = ["docs", "laneMemory", "brief"];
-  for (const k of Object.keys(onb)) if (!allowedKeys.includes(k)) p.push(`unknown onboarding field ${k}`);
+  for (const k of Object.keys(onb)) if (!["docs", "laneMemory", "brief"].includes(k)) p.push(`unknown onboarding field ${k}`);
   for (const d of onb.docs ?? []) {
     if (ONBOARDING_DENIED.some((r) => r.test(d))) p.push(`${d}: never shown to a contractor`);
     else if (!ONBOARDING_ALLOWED.some((r) => r.test(d))) p.push(`${d}: outside what a contractor may read`);
-    else { const m = d.match(/^live\/work\/([^/]+)/); if (m && !ownTasks.includes(m[1])) p.push(`${d}: another lane's work`); }
+    else { const m = d.match(/^live\/(?:work|shipped)\/([^/]+)/); if (m && !ownTasks.includes(m[1])) p.push(`${d}: another lane's work`); }
   }
   if (onb.laneMemory != null && typeof onb.laneMemory !== "boolean") p.push("laneMemory is true or false");
   if (onb.brief != null && (typeof onb.brief !== "string" || onb.brief.length > 2000)) p.push("brief is a string of at most 2000 characters");
   return p;
 }
 
-export function hireContractor({ engine, org, mailbox, log }, { by, order, budget, onboarding = {} }) {
-  const mgr = org.role(by);
-  if (!mgr || mgr.level !== "manager" || org.lanePOC(mgr.lane)?.id !== by) refuse(`${by} is not a lane manager`);
-  const o = engine.orders.get(order);
-  if (!o) refuse(`no order ${order}`);
-  if (o.manager !== by) refuse(`${order} is not in ${by}'s lane`);
-  if (o.stage !== "build" || o.loops !== 0) refuse(`${order} is at ${o.stage} (loop ${o.loops}): a contractor takes a fresh build`);
-  const dependents = [...engine.orders.values()].filter((x) => x.after?.includes(order) && x.stage !== "done");
-  if (dependents.length) refuse(`${order} is not isolated: ${dependents.map((x) => x.id).join(", ")} wait for it`);
-  if (o.after?.some((d) => engine.orders.get(d).stage !== "done")) refuse(`${order} still waits for ${o.after.join(", ")}`);
-  if (!(budget > 0 && budget <= engine.limits.manager)) refuse(`budget ${budget} is over the manager limit ${engine.limits.manager}`);
-  const ownTasks = [...engine.orders.values()].filter((x) => x.manager === by && x.task).map((x) => x.task);
-  const problems = onboardingProblems(onboarding, { ownTasks });
-  if (problems.length) { log.add({ type: "refuse", rule: "onboarding", msg: problems.join("; "), by, order }); throw new Refused(`onboarding: ${problems.join("; ")}`); }
-  const id = `ctr-${[...org.roles.values()].filter((r) => r.level === "contractor").length + 1}`;
-  org.roles.set(id, { id, level: "contractor", reportsTo: by, lane: mgr.lane, room: mgr.room, floor: mgr.floor, skills: [], rituals: [], active: true, contractFor: order, budget, onboarding, hiredAt: engine.clock.now() });
-  log.add({ type: "contractor-hire", role: id, by, order, budget, onboarding: { docs: onboarding.docs ?? [], laneMemory: !!onboarding.laneMemory, brief: !!onboarding.brief } });
-  // the order's current build message is withdrawn from the previous builder and re-sent to the contractor
-  for (const m of mailbox.msgs.values()) if (m.ref === order && m.kind === "work" && m.state === "open" && !m.lease) { m.state = "withdrawn"; log.add({ type: "withdraw", msg: m.id, reason: `assigned to contractor ${id}` }); }
-  o.builder = id;
-  o.chain.push(id);
-  // a reassignment is a new delivery, so it gets its own idempotency key (the old key would dedupe to the withdrawn message)
-  mailbox.send({ from: by, to: id, kind: "work", key: `${o.id}:${o.stage}:${o.loops}:${id}`, ref: o.id, body: { stage: o.stage, loops: o.loops }, priority: o.priority ?? "next", due: o.due ?? null });
-  return org.role(id);
+/** A research deliverable is checkable: every finding has a source and a confidence. */
+export function deliverableProblems(kind, d) {
+  const p = [];
+  if (!d?.summary) p.push("a deliverable needs a summary");
+  if (!d?.path || !/^live\/contracts\/C-\d+\//.test(d.path)) p.push("the deliverable lives in the engagement's own folder, live/contracts/<id>/");
+  if (kind === "research") {
+    if (!Array.isArray(d.findings) || !d.findings.length) p.push("research returns findings");
+    for (const [i, f] of (d.findings ?? []).entries()) {
+      if (!f.claim) p.push(`finding ${i + 1}: no claim`);
+      if (!f.source) p.push(`finding ${i + 1}: no source`);
+      if (!CONFIDENCE.includes(f.confidence)) p.push(`finding ${i + 1}: confidence is ${CONFIDENCE.join(", ")}`);
+    }
+  }
+  return p;
 }
 
-/** Called after every advance: a contract whose order shipped ends here. */
-export function endContracts({ engine, org, mailbox, log, rooms }) {
-  const ended = [];
-  for (const r of org.roles.values()) {
-    if (r.level !== "contractor" || !r.active) continue;
-    const o = engine.orders.get(r.contractFor);
-    if (o?.stage !== "done") continue;
-    r.active = false;
-    const notes = (rooms.memory.get(r.id) ?? []).filter((e) => e.learned || e.mistake);
-    rooms.memory.delete(r.id);
-    mailbox.send({ from: r.id, to: r.reportsTo, kind: "handoff", key: `${r.id}:handoff`, ref: o.id, body: { learned: notes.map((e) => e.learned).filter(Boolean), mistakes: notes.map((e) => e.mistake).filter(Boolean) } });
-    log.add({ type: "offboard", role: r.id, order: o.id, contractor: true, steps: ["handoff-to-manager", "memory-not-kept", "deactivated"] });
-    ended.push(r.id);
-  }
-  return ended;
+const contracts = (engine) => engine.contracts ?? (engine.contracts = new Map());
+
+export function engage({ engine, org, mailbox, log }, { by, kind, goal, deliverable, budget, timeboxMin, onboarding = {} }) {
+  const mgr = org.role(by);
+  if (!mgr || mgr.level !== "manager" || org.lanePOC(mgr.lane)?.id !== by) refuse(`${by} is not a lane manager`);
+  if (!KINDS.includes(kind)) refuse(`kind is ${KINDS.join(", ")}: in-process work is an order, not a contract`);
+  if (!goal || !deliverable) refuse("an engagement needs a goal and a stated deliverable");
+  if (!(budget > 0 && budget <= engine.limits.manager)) refuse(`budget ${budget} is over the manager limit ${engine.limits.manager}`);
+  if (!(timeboxMin > 0 && timeboxMin <= 7 * 24 * 60)) refuse("timebox is 1 minute to 7 days");
+  const ownTasks = [...engine.orders.values()].filter((x) => x.manager === by && x.task).map((x) => x.task);
+  const problems = onboardingProblems(onboarding, { ownTasks });
+  if (problems.length) { log.add({ type: "refuse", rule: "onboarding", msg: problems.join("; "), by }); throw new Refused(`onboarding: ${problems.join("; ")}`); }
+  const cid = `C-${contracts(engine).size + 1}`;
+  const rid = `ctr-${cid.slice(2)}`;
+  org.roles.set(rid, { id: rid, level: "contractor", reportsTo: by, lane: mgr.lane, room: mgr.room, floor: mgr.floor, skills: [], rituals: [], active: true, contract: cid });
+  const c = { id: cid, contractor: rid, by, lane: mgr.lane, kind, goal, deliverable, budget, timeboxMin, onboarding, state: "open", opened: engine.clock.now(), due: engine.clock.now() + timeboxMin, delivered: null, decision: null };
+  contracts(engine).set(cid, c);
+  mailbox.send({ from: by, to: rid, kind: "contract", key: `${cid}:open`, ref: cid, body: { kind, goal, deliverable, timeboxMin }, due: c.due });
+  log.add({ type: "contract-open", contract: cid, contractor: rid, by, kind, budget, timeboxMin, onboarding: { docs: onboarding.docs ?? [], laneMemory: !!onboarding.laneMemory, brief: !!onboarding.brief } });
+  return c;
+}
+
+/** What the contractor gets: the manager's onboarding, its own folder, nothing of the org's memory or process. */
+export function briefFor({ engine, org, rooms }, cid) {
+  const c = contracts(engine).get(cid);
+  if (!c) refuse(`no contract ${cid}`);
+  const lane = c.lane;
+  const laneMemory = c.onboarding.laneMemory
+    ? org.active().filter((x) => x.lane === lane && x.level === "builder").flatMap((x) => (rooms.memory.get(x.id) ?? []).filter((e) => e.learned).map((e) => ({ from: x.id, learned: e.learned })))
+    : [];
+  return { contract: cid, contractor: c.contractor, kind: c.kind, goal: c.goal, deliverable: c.deliverable, timebox_ends: new Date(c.due * 60000).toISOString(), write_only_to: `live/contracts/${cid}/`, docs: c.onboarding.docs ?? [], brief: c.onboarding.brief ?? null, laneMemory, rules: "no flow work, no signing, no shipping; research findings need a source and a confidence" };
+}
+
+export function deliver({ engine, log }, { cid, by, summary, path, findings = null }) {
+  const c = contracts(engine).get(cid);
+  if (!c) refuse(`no contract ${cid}`);
+  if (by !== c.contractor) refuse(`${by} is not the contractor on ${cid}`);
+  if (c.state !== "open") refuse(`${cid} is ${c.state}`);
+  if (engine.clock.now() > c.due) refuse(`${cid} timed out: its timebox ended`);
+  const d = { summary, path, findings };
+  const problems = deliverableProblems(c.kind, d);
+  if (problems.length) { log.add({ type: "refuse", rule: "deliverable", msg: problems.join("; "), contract: cid }); throw new Refused(`deliverable: ${problems.join("; ")}`); }
+  c.delivered = { ...d, t: engine.clock.now() };
+  c.state = "delivered";
+  log.add({ type: "contract-deliver", contract: cid, by, path, findings: findings?.length ?? 0 });
+  return c;
+}
+
+/** The manager's judgment: accept or reject. Either ends the engagement. Nothing ships from here. */
+export function decideContract(co, { cid, by, decision, reason }) {
+  const c = contracts(co.engine).get(cid);
+  if (!c) refuse(`no contract ${cid}`);
+  if (by !== c.by) refuse(`${by} did not open ${cid}`);
+  if (c.state !== "delivered") refuse(`${cid} is ${c.state}: decide after delivery`);
+  if (!["accept", "reject"].includes(decision) || !reason) refuse("decision is accept or reject, with a reason");
+  c.decision = { decision, reason, t: co.engine.clock.now() };
+  c.state = decision === "accept" ? "accepted" : "rejected";
+  co.log.add({ type: "contract-decide", contract: cid, by, decision, reason });
+  close(co, c, c.state);
+  return c;
+}
+
+/** Timebox ends with no delivery: the engagement expires. Called by the supervisor's tick. */
+export function expireContracts(co) {
+  const out = [];
+  for (const c of contracts(co.engine).values()) if (c.state === "open" && co.engine.clock.now() > c.due) { c.state = "expired"; close(co, c, "expired"); out.push(c.id); }
+  return out;
+}
+
+function close(co, c, why) {
+  const r = co.org.role(c.contractor);
+  r.active = false;
+  co.rooms.memory.delete(c.contractor);
+  co.mailbox.send({ from: c.contractor, to: c.by, kind: "handoff", key: `${c.id}:handoff`, ref: c.id, body: { why, deliverable: c.delivered ?? null } });
+  co.log.add({ type: "offboard", role: c.contractor, contract: c.id, contractor: true, why, steps: ["handoff-to-manager", "memory-not-kept", "deactivated"] });
 }

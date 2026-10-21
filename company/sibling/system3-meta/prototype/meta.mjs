@@ -26,14 +26,16 @@
 //   node meta.mjs policy propose --lane=<l> --by=<manager> --knobs='{…}' --reason=… --prediction=…
 //   node meta.mjs policy activate --lane=<l> --version=<n> --by=<manager>   new orders pin it; orders in flight keep theirs
 //   node meta.mjs manager report --lane=<l>   ·   manager cycle --lane=<l> --by=<manager> --belief=… --decision=keep|change [--version=<n>]
-//   node meta.mjs contractor hire --by=<manager> --order=<O> --budget=<n> [--onboarding='{"docs":[…],"laneMemory":true,"brief":"…"}']
+//   node meta.mjs contract open --by=<manager> --kind=prototype|research|spike --goal=… --deliverable=… --budget=<n> --timebox=<min> [--onboarding='{…}']
+//   node meta.mjs contract brief --id=<C>   ·   contract deliver --id=<C> --by=<ctr> --summary=… --path=live/contracts/<C>/… [--findings='[{claim,source,confidence}]']
+//   node meta.mjs contract decide --id=<C> --by=<manager> --decision=accept|reject --reason=…   ·   contract show --id=<C>
 //   node meta.mjs events [--type=<t>]   ·   node meta.mjs memory <role>   ·   node meta.mjs org activity <role>
 // Exit: 0 ok, 1 refused, 2 usage or state error.
 import fs from "node:fs";
 import path from "node:path";
 import { Refused, flowMetrics } from "./lib.mjs";
 import { proposePolicy, activatePolicy, managerReport, recordCycle, KNOBS } from "./policy.mjs";
-import { hireContractor } from "./contractor.mjs";
+import { engage, briefFor, deliver, decideContract } from "./contractor.mjs";
 import { LIVE, STATE, LIVE_ROLES, TASK_FLOW, clock, make, rep, save, load, withLock, runTests } from "./state.mjs";
 export { LIVE_ROOMS, LIVE_ROLES, TASK_FLOW } from "./state.mjs";
 
@@ -92,7 +94,7 @@ function dispatch(co, cmd, sub, arg) {
   const { engine, rooms, mailbox, org, log } = co;
   if (cmd === "order" && sub === "new") {
     need("to", "title", "task", "accept");
-    const o = engine.orderNew({ flow: "task", by: opt.by ?? "cos", to: opt.to, budget: Number(opt.budget ?? 200_000), accept: opt.accept, title: opt.title, priority: opt.priority ?? "next", dueMin: opt.due ? Number(opt.due) : null, after: opt.after ? String(opt.after).split(",") : [] });
+    const o = engine.orderNew({ flow: "task", by: opt.by ?? "cos", to: opt.to, budget: Number(opt.budget ?? 200_000), accept: opt.accept, title: opt.title, priority: opt.priority ?? "next", dueMin: opt.due ? Number(opt.due) : null, after: opt.after ? String(opt.after).split(",") : [], fromContract: opt["from-contract"] ?? null });
     o.task = opt.task;
     return { order: o.id, stage: o.stage, priority: o.priority, after: o.after, blocked: o.blocked };
   }
@@ -166,11 +168,20 @@ function dispatch(co, cmd, sub, arg) {
     const report = managerReport(engine, opt.lane);
     return recordCycle(engine, { lane: opt.lane, by: opt.by, report, belief: opt.belief, decision: opt.decision, version: opt.version ? Number(opt.version) : null });
   }
-  if (cmd === "contractor" && sub === "hire") {
-    need("by", "order", "budget");
-    const r = hireContractor(co, { by: opt.by, order: opt.order, budget: Number(opt.budget), onboarding: opt.onboarding ? JSON.parse(opt.onboarding) : {} });
-    return { contractor: r.id, order: r.contractFor, queue: mailbox.queue(r.id, "work").map((m) => m.id) };
+  // ---- contractors: prototypes, research and spikes outside the delivery flow
+  if (cmd === "contract" && sub === "open") {
+    need("by", "kind", "goal", "deliverable", "budget", "timebox");
+    const c = engage(co, { by: opt.by, kind: opt.kind, goal: opt.goal, deliverable: opt.deliverable, budget: Number(opt.budget), timeboxMin: Number(opt.timebox), onboarding: opt.onboarding ? JSON.parse(opt.onboarding) : {} });
+    fs.mkdirSync(path.join(LIVE, "contracts", c.id), { recursive: true });
+    return { contract: c.id, contractor: c.contractor, due: new Date(c.due * 60000).toISOString(), folder: `live/contracts/${c.id}/` };
   }
+  if (cmd === "contract" && sub === "brief") { need("id"); return briefFor(co, opt.id); }
+  if (cmd === "contract" && sub === "deliver") {
+    need("id", "by", "summary", "path");
+    return deliver(co, { cid: opt.id, by: opt.by, summary: opt.summary, path: opt.path, findings: opt.findings ? JSON.parse(opt.findings) : null });
+  }
+  if (cmd === "contract" && sub === "decide") { need("id", "by", "decision", "reason"); return decideContract(co, { cid: opt.id, by: opt.by, decision: opt.decision, reason: opt.reason }); }
+  if (cmd === "contract" && sub === "show") { need("id"); return engine.contracts.get(opt.id) ?? null; }
   if (cmd === "events") return log.events.filter((e) => !opt.type || e.type === opt.type);
   if (cmd === "memory") return rooms.memory.get(sub) ?? [];
   if (cmd === "org" && sub === "activity") return org.activity(log.events, arg);
