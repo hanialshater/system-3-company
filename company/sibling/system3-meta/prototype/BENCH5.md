@@ -96,8 +96,8 @@ The record is in `live/bench5/`: the state, the serve log, the outbox briefs, an
 | Orders shipped (ARCH, four slots, SHEET, each per wave) | 18 ships |
 | Typed commands after the start | **0** |
 | Agent sessions | 33 (lead 10, reviewer 10, dev-1 7, dev-2 6). One is a dev-2 session still hung after the run, below |
-| Tokens (final context) | 1,721,943 for the 32 finished sessions: **95.7k per ship** (4b: 80.7k per order) |
-| Cumulative tokens · cost | 17.2M · **$13.84** |
+| Tokens (final context) | **1,777,989** for all 33 sessions: **98.8k per ship** (4b: 80.7k per order) |
+| Cumulative tokens · cost | 17.5M · **$14.15** |
 | Revise loops | 4 (hidden tests 2, the reviewer 2). Plus **4 reopens by the lead** from builders' asks, and the founder's 8 wave reopens |
 | Asks from builders to the lead | **6**: 4 answered yes with a reopen, 2 redirected as duplicates |
 | Self-checks | 24, of which 2 failed |
@@ -137,10 +137,13 @@ The record is in `live/bench5/`: the state, the serve log, the outbox briefs, an
   - F2 was caught by agents, not by the gate: the wave reopen pre-empted it.
   - F4 was recovered by the team, as designed.
 - **H5 right.** All waves shipped, and 19/19 hidden categories pass under `#CIRC!`.
-- **H6 right.** 0 commands, and 95.7k per ship against ≤ 161k (2 × 4b).
+- **H6 right.** 0 commands, and 98.8k per ship against ≤ 161k (2 × 4b).
 
 **What it cost that it should not have** (kernel bugs, all fixed in the source after the run started; this run's kernel was frozen):
 - **5 empty sessions (about 172k, 10%).** Three reviewers and one dev-1 found their item already taken: the waiting session's deadline race. One lead was planned twice for one ask, because an older launch's finish freed a newer reservation.
-- **A hung session.**
-  - dev-2's 0715 launch ran a long command that Claude Code moved to the background. Under the SDK it then waited for a notice that never came, idle from 21:02:33 until the 30-minute session cap.
-  - The launcher passed this session's `CLAUDE_AUTO_BACKGROUND_TASKS` and `CLAUDE_CODE_SESSION_ID` on to every agent. That also put every agent's transcript in one file. Both are now dropped from agents' environments.
+- **A hung session (56k, and 30 minutes of its slot).**
+  - dev-2's 0715 launch had its `room enter` refused because another session held the item. It then chose to **wait for that session's 30-minute lease**, sleeping in the background until the session cap aborted it at 21:31:55. Its last words: "The lease on M-113 runs out in about 29 minutes. I'm waiting for it."
+  - Fixed in the briefs: if an item is held or already done, stop and report; never wait for a lease.
+  - Fixed in the launcher too: agents no longer inherit this session's `CLAUDE_AUTO_BACKGROUND_TASKS` (which let the wait go to the background) or `CLAUDE_CODE_SESSION_ID` (which put every agent's transcript in one file).
+
+**Final summary from the launcher:** 33 launches, 2 failed (F1's kill and the hung session's abort), 1,777,989 tokens, $14.15.
