@@ -3503,6 +3503,147 @@
     ],
     "abandoned": [],
     "reason": null
+   },
+   {
+    "seq": 254,
+    "t": 29876930.838483334,
+    "type": "session-close",
+    "session": "S-1",
+    "role": "dev-1",
+    "items": 3,
+    "reason": "queue empty after wait",
+    "minutes": 4.1271166652441025
+   },
+   {
+    "seq": 255,
+    "t": 29876931.091016665,
+    "type": "usage",
+    "session": "S-1",
+    "role": "dev-1",
+    "tokens": 67110,
+    "items": 3,
+    "source": "launcher"
+   },
+   {
+    "seq": 256,
+    "t": 29876931.091016665,
+    "type": "launch-finished",
+    "launch": "0064-dev-1",
+    "role": "dev-1",
+    "ok": true,
+    "tokens": 67110,
+    "cumulative": 680876,
+    "cost": 0.7448,
+    "sessions": [
+     "S-1"
+    ],
+    "abandoned": [],
+    "reason": null
+   },
+   {
+    "seq": 257,
+    "t": 29876931.10675,
+    "type": "session-close",
+    "session": "S-4",
+    "role": "dev-2",
+    "items": 2,
+    "reason": "queue empty after wait",
+    "minutes": 2.798916667699814
+   },
+   {
+    "seq": 258,
+    "t": 29876931.2999,
+    "type": "send",
+    "msg": "M-34",
+    "from": "lead",
+    "to": "pool:checker",
+    "kind": "work",
+    "key": "O-3:check:0",
+    "ref": "O-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 259,
+    "t": 29876931.2999,
+    "type": "watchdog-resend",
+    "order": "O-3",
+    "stage": "check",
+    "loops": 0
+   },
+   {
+    "seq": 260,
+    "t": 29876931.2999,
+    "type": "supervisor-tick",
+    "steps": [
+     "watchdog:O-3"
+    ]
+   },
+   {
+    "seq": 261,
+    "t": 29876931.2999,
+    "type": "launch",
+    "role": "reviewer",
+    "msgs": [
+     "M-34"
+    ],
+    "tasks": [],
+    "why": "plan: next: 1 waiting, no session running"
+   },
+   {
+    "seq": 262,
+    "t": 29876931.344116665,
+    "type": "usage",
+    "session": "S-4",
+    "role": "dev-2",
+    "tokens": 54815,
+    "items": 2,
+    "source": "launcher"
+   },
+   {
+    "seq": 263,
+    "t": 29876931.344116665,
+    "type": "launch-finished",
+    "launch": "0135-dev-2",
+    "role": "dev-2",
+    "ok": true,
+    "tokens": 54815,
+    "cumulative": 386687,
+    "cost": 0.4634,
+    "sessions": [
+     "S-4"
+    ],
+    "abandoned": [],
+    "reason": null
+   },
+   {
+    "seq": 264,
+    "t": 29876931.3748,
+    "type": "session-open",
+    "session": "S-8",
+    "role": "reviewer"
+   },
+   {
+    "seq": 265,
+    "t": 29876931.3748,
+    "type": "claim",
+    "msg": "M-34",
+    "run": "R-14"
+   },
+   {
+    "seq": 266,
+    "t": 29876931.3748,
+    "type": "enter",
+    "run": "R-14",
+    "msg": "M-34",
+    "role": "reviewer",
+    "by": "reviewer",
+    "room": "review",
+    "order": "O-3",
+    "stage": "check",
+    "mode": "work",
+    "session": "S-8",
+    "item": 1
    }
   ]
  },
@@ -4222,6 +4363,30 @@
       "lease": null,
       "acked": false
      }
+    ],
+    [
+     "M-34",
+     {
+      "id": "M-34",
+      "from": "lead",
+      "to": "pool:checker",
+      "kind": "work",
+      "key": "O-3:check:0",
+      "due": null,
+      "ref": "O-3",
+      "body": {
+       "stage": "check",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876931.2999,
+      "state": "open",
+      "lease": {
+       "run": "R-14",
+       "until": 29876961.3748
+      },
+      "acked": false
+     }
     ]
    ]
   },
@@ -4272,10 +4437,6 @@
      "M-15"
     ],
     [
-     "O-3:check:0",
-     "M-17"
-    ],
-    [
      "O-2:uat:0",
      "M-18"
     ],
@@ -4306,10 +4467,14 @@
     [
      "O-4:ship:0",
      "M-32"
+    ],
+    [
+     "O-3:check:0",
+     "M-34"
     ]
    ]
   },
-  "n": 33
+  "n": 34
  },
  "org": {
   "roles": {
@@ -4744,7 +4909,7 @@
       "policyVersion": null,
       "fromContract": null,
       "task": "MOD-B",
-      "orphanSince": 29876929.295416668
+      "orphanSince": null
      }
     ],
     [
@@ -5147,10 +5312,26 @@
       "state": "left",
       "session": "S-7"
      }
+    ],
+    [
+     "R-14",
+     {
+      "run": "R-14",
+      "msg": "M-34",
+      "role": "reviewer",
+      "by": "reviewer",
+      "consult": false,
+      "order": "O-3",
+      "stage": "check",
+      "loops": 0,
+      "entered": 29876931.3748,
+      "state": "running",
+      "session": "S-8"
+     }
     ]
    ]
   },
-  "n": 13,
+  "n": 14,
   "memory": {
    "__map": [
     [
@@ -5261,10 +5442,10 @@
       "id": "S-1",
       "role": "dev-1",
       "items": 3,
-      "open": true,
+      "open": false,
       "started": 29876926.71136667,
       "launch": "0064-dev-1",
-      "waitUntil": 29876930.82515
+      "waitUntil": null
      }
     ],
     [
@@ -5295,10 +5476,10 @@
       "id": "S-4",
       "role": "dev-2",
       "items": 2,
-      "open": true,
+      "open": false,
       "started": 29876928.307833333,
       "launch": "0135-dev-2",
-      "waitUntil": 29876931.089233335
+      "waitUntil": null
      }
     ],
     [
@@ -5330,9 +5511,20 @@
       "open": false,
       "started": 29876929.887133334
      }
+    ],
+    [
+     "S-8",
+     {
+      "id": "S-8",
+      "role": "reviewer",
+      "items": 1,
+      "open": true,
+      "started": 29876931.3748,
+      "launch": "0261-reviewer"
+     }
     ]
    ]
   },
-  "nS": 7
+  "nS": 8
  }
 }
