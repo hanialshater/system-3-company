@@ -73,6 +73,30 @@ export function tick(co, { acceptance = null } = {}) {
       }
     }
   }
+  // regression gate (benchmark 4): after a ship, every shipped order's hidden acceptance runs again; a shipped module
+  // that a later change broke goes back to its builder with the failing categories
+  if (acceptance && steps.some((x) => x.step === "ship")) {
+    for (const o of engine.orders.values()) {
+      if (o.stage !== "done") continue;
+      const file = path.join(acceptance, `${o.task}.test.mjs`);
+      if (!fs.existsSync(file)) continue;
+      const t = runTests(o.task, { dir: path.dirname(file), files: [path.basename(file)], label: file });
+      if (!t.pass) { engine.reopen(o.id, { by: "code", reason: "regression", findings: `regression: a shipped module no longer passes its acceptance. ${t.output}` }); steps.push({ step: "regression", order: o.id, output: t.output }); }
+    }
+  }
+  // watchdog (benchmark 4): an open order that no message and no run carries is stuck for good (a lost message);
+  // after WATCHDOG_MIN it is sent again
+  for (const o of engine.orders.values()) {
+    if (o.stage === "done" || o.blocked || !o.builder) { o.orphanSince = null; continue; }
+    const s = engine.stageDef(o);
+    if (!s || s.signer === "code" || s.signer === "orderer" || s.signer === "founder") { o.orphanSince = null; continue; }
+    const carried = [...mailbox.msgs.values()].some((m) => m.ref === o.id && m.kind === "work" && m.state === "open" && m.body?.stage === o.stage && m.body?.loops === o.loops)
+      || [...rooms.runs.values()].some((x) => x.order === o.id && x.state === "running");
+    if (carried) { o.orphanSince = null; continue; }
+    const now = engine.clock.now();
+    if (o.orphanSince == null) { o.orphanSince = now; continue; }
+    if (now - o.orphanSince >= WATCHDOG_MIN) { engine.notifyStage(o, { duplicate: true }); o.orphanSince = null; log.add({ type: "watchdog-resend", order: o.id, stage: o.stage, loops: o.loops }); steps.push({ step: "watchdog", order: o.id, stage: o.stage }); }
+  }
   for (const id of expireContracts(co)) steps.push({ step: "contract-expired", contract: id });
   if (co.data) { syncOrders(co); for (const g of sweepGoals(co)) steps.push({ step: "goal-auto-red", goal: g }); }
   if (steps.length) log.add({ type: "supervisor-tick", steps: steps.map((s) => `${s.step}:${s.order ?? s.msg ?? s.run ?? s.contract ?? s.goal}`) });
@@ -81,6 +105,7 @@ export function tick(co, { acceptance = null } = {}) {
 
 /** Which agent sessions to start now. Pure: reads the state, changes nothing. */
 export const LAUNCH_GRACE_MIN = 5;
+export const WATCHDOG_MIN = Number(process.env.META_WATCHDOG_MIN ?? 2);
 export function plan(co, { batchLater: batchDefault = 3, cap: capDefault = 4 } = {}) {
   const { org, rooms, mailbox, log } = co;
   const running = new Set([...rooms.runs.values()].filter((x) => x.state === "running").map((x) => x.role));

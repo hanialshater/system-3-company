@@ -1,0 +1,110 @@
+#!/usr/bin/env node
+// The launcher (M3, founder 2026-10-21: "go with Agent SDK"): starts every agent session the supervisor plans, with no
+// person in the loop. Benchmark 3: `serve` planned and briefed every launch, and I still launched all 18 by hand.
+//
+//   node launcher/launch.mjs --live=<dir> [--acceptance=<dir>] [--model=claude-opus-5-5] [--max-parallel=4]
+//        [--max-min=90] [--idle-min=1] [--session-min=20] [--kill=<n>:<seconds>,…]
+//
+// It runs `supervisor.mjs serve` as a child and reads its JSON lines. Each {"event":"launch"} becomes one Agent SDK
+// query() whose prompt is the brief file exactly as code wrote it (benchmark 3: two of my hand launches were retyped
+// wrong). Each agent process is named META_LAUNCH=<brief>, so `room enter` tags its session; when the process ends the
+// launcher reports its tokens through `meta.mjs launch finished`, and a failed process abandons what it left running,
+// so the work goes back to its queue and `serve` plans it again (crash recovery).
+//
+// Tokens: `tokens` is the agent's final context (input + cache + output of its last main-loop call), the measure the
+// earlier live runs used (the Agent tool's subagent count); `cumulative` sums every call and `cost` is the SDK's
+// estimate. Both are kept in live/<dir>/launches.jsonl with each launch's outcome.
+//
+// --kill=<n>:<s> aborts the n-th launch (1-based) after s seconds: an injected crash, to prove recovery.
+import { query } from "@anthropic-ai/claude-agent-sdk";
+import { spawn, spawnSync } from "node:child_process";
+import fs from "node:fs";
+import path from "node:path";
+import readline from "node:readline";
+
+const HERE = path.dirname(new URL(import.meta.url).pathname);
+const PROTO = path.join(HERE, "..");
+const opt = Object.fromEntries(process.argv.slice(2).filter((a) => a.startsWith("--")).map((a) => { const [k, ...v] = a.slice(2).split("="); return [k, v.join("=") || true]; }));
+if (!opt.live) { console.error("usage: node launcher/launch.mjs --live=<dir> [--acceptance=<dir>] [--model=…] [--max-parallel=4] [--kill=<n>:<s>]"); process.exit(2); }
+const LIVE = path.resolve(opt.live);
+const MODEL = opt.model ?? "claude-opus-5-5";
+const MAX_PAR = Number(opt["max-parallel"] ?? 4);
+const SESSION_MIN = Number(opt["session-min"] ?? 20);
+const kills = new Map(String(opt.kill ?? "").split(",").filter(Boolean).map((x) => x.split(":").map(Number)));
+const env = { ...process.env, META_LIVE_DIR: LIVE, BOOK_ROOT: process.env.BOOK_ROOT ?? path.join(LIVE, "work") };
+delete env.CLAUDECODE; // the agents are their own Claude Code processes, not children of this session's
+const ledger = path.join(LIVE, "launches.jsonl");
+const note = (x) => { const line = JSON.stringify({ t: new Date().toISOString(), ...x }); fs.appendFileSync(ledger, line + "\n"); console.log(line); };
+
+const meta = (...args) => {
+  const r = spawnSync("node", [path.join(PROTO, "meta.mjs"), ...args], { env, encoding: "utf8" });
+  if (r.status !== 0) note({ event: "meta-error", args: args.join(" "), err: r.stderr.trim().slice(0, 300) });
+  return r.status === 0 ? JSON.parse(r.stdout) : null;
+};
+
+let n = 0, done = false, serveExit = null;
+const active = new Set(), waiting = [];
+
+async function run(ev) {
+  const id = path.basename(ev.brief, ".md"), k = ++n;
+  const prompt = fs.readFileSync(ev.brief, "utf8");
+  const ac = new AbortController();
+  const limit = setTimeout(() => ac.abort(new Error(`session over ${SESSION_MIN} min`)), SESSION_MIN * 60_000);
+  const kill = kills.has(k) ? setTimeout(() => ac.abort(new Error("injected crash (--kill)")), kills.get(k) * 1000) : null;
+  note({ event: "start", launch: id, n: k, role: ev.role, msgs: ev.msgs ?? [], tasks: (ev.tasks ?? []).map((t) => `${t.kind}:${t.ref}`) });
+  let last = null, result = null, error = null;
+  const t0 = Date.now();
+  try {
+    for await (const m of query({ prompt, options: {
+      cwd: PROTO, model: MODEL, abortController: ac,
+      env: { ...env, META_LAUNCH: id },
+      // the brief is the whole job: no project settings or CLAUDE.md (they belong to System 3 Company, not this run)
+      settingSources: [],
+      allowedTools: ["Bash", "Read", "Write", "Edit", "Glob", "Grep"],
+      permissionMode: "dontAsk", permissionPrompts: "none",
+      maxTurns: 80,
+    } })) {
+      if (m.type === "assistant" && m.parent_tool_use_id == null && m.message?.usage) last = m.message.usage;
+      if (m.type === "result") result = m;
+    }
+  } catch (e) { error = e?.message ?? String(e); }
+  clearTimeout(limit); if (kill) clearTimeout(kill);
+  const ok = !error && result && !result.is_error;
+  const tokens = last ? (last.input_tokens ?? 0) + (last.cache_read_input_tokens ?? 0) + (last.cache_creation_input_tokens ?? 0) + (last.output_tokens ?? 0) : 0;
+  const mu = Object.values(result?.modelUsage ?? {});
+  const cumulative = mu.reduce((a, u) => a + u.inputTokens + u.outputTokens + u.cacheReadInputTokens + u.cacheCreationInputTokens, 0);
+  const cost = mu.reduce((a, u) => a + (u.costUSD ?? 0), 0);
+  const reason = ok ? null : (error ?? result?.subtype ?? "no result");
+  const rec = meta("launch", "finished", `--launch=${id}`, `--role=${ev.role}`, `--tokens=${tokens}`, `--cumulative=${cumulative}`, `--cost=${cost.toFixed(4)}`, `--ok=${ok}`, ...(reason ? [`--reason=${reason}`] : []));
+  note({ event: "finish", launch: id, n: k, role: ev.role, ok, reason, tokens, cumulative, cost: Number(cost.toFixed(4)), turns: result?.num_turns ?? null, minutes: Math.round((Date.now() - t0) / 600) / 100, sessions: rec?.sessions ?? [], abandoned: rec?.abandoned ?? [], said: String(result?.result ?? "").slice(0, 600) });
+}
+
+function pump() {
+  while (active.size < MAX_PAR && waiting.length) {
+    const ev = waiting.shift();
+    const p = run(ev).catch((e) => note({ event: "launcher-error", err: String(e) })).finally(() => { active.delete(p); pump(); });
+    active.add(p);
+  }
+  if (done && !active.size && !waiting.length) finish();
+}
+
+let finished = false;
+function finish() {
+  if (finished) return; finished = true;
+  const lines = fs.readFileSync(ledger, "utf8").trim().split("\n").map((l) => JSON.parse(l)).filter((x) => x.event === "finish");
+  note({ event: "summary", launches: lines.length, failed: lines.filter((x) => !x.ok).length, tokens: lines.reduce((a, x) => a + x.tokens, 0), cumulative: lines.reduce((a, x) => a + x.cumulative, 0), cost: Number(lines.reduce((a, x) => a + x.cost, 0).toFixed(2)), serve: serveExit });
+  process.exit(0);
+}
+
+const serveArgs = [path.join(PROTO, "supervisor.mjs"), "serve", `--idle-min=${opt["idle-min"] ?? 1}`, `--max-min=${opt["max-min"] ?? 90}`, ...(opt.acceptance ? [`--acceptance=${path.resolve(opt.acceptance)}`] : [])];
+const serve = spawn("node", serveArgs, { env, stdio: ["ignore", "pipe", "inherit"] });
+note({ event: "launcher-up", live: LIVE, model: MODEL, maxParallel: MAX_PAR, kills: [...kills.entries()] });
+readline.createInterface({ input: serve.stdout }).on("line", (line) => {
+  let ev; try { ev = JSON.parse(line); } catch { return; }
+  fs.appendFileSync(path.join(LIVE, "serve.log"), line + "\n");
+  if (ev.event === "launch") { waiting.push(ev); pump(); }
+  if (ev.event === "done" || ev.event === "stopped") { done = true; pump(); }
+});
+serve.on("exit", (code) => { serveExit = code; done = true; pump(); });
+// a launch planned while every slot is busy waits here; serve keeps reserving it, so it is not planned twice
+process.on("SIGINT", () => { serve.kill(); done = true; finish(); });

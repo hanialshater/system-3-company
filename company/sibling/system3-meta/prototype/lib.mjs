@@ -51,6 +51,8 @@ export class Mailbox {
   /** priority: now (wake a session at once), next (default: front of the next drain), later (wait for a batch or the due time). */
   send({ from, to, kind, key = null, due = null, ref = null, body = null, priority = "next" }) {
     hard(priority in PRIORITY, `unknown priority ${priority}`);
+    // a key whose message is gone (lost: benchmark 4's dropped message) no longer dedupes
+    if (key && this.keys.has(key) && !this.msgs.has(this.keys.get(key))) this.keys.delete(key);
     if (this.config.dedupe && key && this.keys.has(key)) {
       const m = this.msgs.get(this.keys.get(key));
       this.log.add({ type: "dedupe", msg: m.id, key });
@@ -394,6 +396,19 @@ export class Engine {
         }
       }
     } else this.notifyStage(o);
+    return o;
+  }
+
+  /** A shipped order goes back to build: a regression found by code, or a changed requirement (benchmark 4). */
+  reopen(id, { by, findings, reason }) {
+    const o = this.orders.get(id);
+    hard(o, `no order ${id}`);
+    hard(o.stage === "done", `${id} is at ${o.stage}: only a shipped order is reopened (a open one is revised)`);
+    hard(!!findings, "a reopen says what is wrong (findings)");
+    o.stage = "build"; o.loops++; o.findings = findings;
+    o.history.push({ stage: "done", by, verdict: "reopen", t: this.clock.now(), findings: String(findings).slice(0, 2000) });
+    this.log.add({ type: "reopen", order: id, from: "done", by, reason: reason ?? null, loops: o.loops, priority: o.priority });
+    this.notifyStage(o);
     return o;
   }
 

@@ -5,6 +5,7 @@
 //   node meta.mjs init                                        a fresh live org and the `task` flow (refuses if state exists)
 //   node meta.mjs order new --to=<manager> --title=… --task=<T> --accept=… [--budget=200000] [--priority=now|next|later --due=<min>] [--after=O-1,O-2]
 //   node meta.mjs order delegate <O> --by=<manager> --to=<builder> [--budget=150000]
+//   node meta.mjs order reopen <O> --by=<manager|founder> --findings=… [--reason=…]   a shipped order back to build
 //   node meta.mjs queue <role|pool:level>                     open work messages
 //   node meta.mjs room enter --msg=<M> --role=<role> [--lease=30] [--as=<role> --mode=consult]
 //   node meta.mjs room next --run=<R> --cap=<n> [--wait=<s>] --evidence=… [leave flags]   leave, then take the next item in the
@@ -166,6 +167,14 @@ function dispatch(co, cmd, sub, arg) {
     if (o.checks && kf.length) { o.checks = mergeChecks(o.checks, { knownFalse: kf.map(({ pattern, why }) => ({ pattern, why })) }); log.add({ type: "rule-applied", order: o.id, task: o.task, source: "escapes", keys: ["knownFalse"] }); }
     return { order: o.id, stage: o.stage, priority: o.priority, after: o.after, blocked: o.blocked };
   }
+  if (cmd === "order" && sub === "reopen") {
+    need("by", "findings");
+    const o = engine.orders.get(arg);
+    if (!o) throw new Refused(`no order ${arg}`);
+    if (opt.by !== o.manager && opt.by !== "founder") throw new Refused(`${opt.by} may not reopen ${arg}: its manager (${o.manager}) or the founder may`);
+    const r = engine.reopen(arg, { by: opt.by, findings: opt.findings, reason: opt.reason ?? "changed requirement" });
+    return { order: r.id, stage: r.stage, loops: r.loops };
+  }
   if (cmd === "order" && sub === "delegate") {
     need("by", "to");
     const o = engine.delegate(arg, { by: opt.by, to: opt.to, budget: Number(opt.budget ?? 150_000) });
@@ -175,6 +184,9 @@ function dispatch(co, cmd, sub, arg) {
   if (cmd === "room" && sub === "enter") {
     need("msg", "role");
     const { run, ctx, session, item } = rooms.enter({ msg: opt.msg, role: opt.role, as: opt.as ?? null, mode: opt.mode ?? "work", leaseMin: Number(opt.lease ?? 30) });
+    // the launcher (M3) names each agent process; its usage and its crash are then this session's, exactly
+    const s = rooms.sessions.get(session);
+    if (process.env.META_LAUNCH && s.launch == null) s.launch = process.env.META_LAUNCH;
     return pack(co, run, ctx, session, item);
   }
   if (cmd === "room" && sub === "next") {
@@ -325,6 +337,22 @@ function dispatch(co, cmd, sub, arg) {
   if (cmd === "wbr" && sub === "page0") return RIT.page0(co);
   if (cmd === "goal-review") { need("by"); return RIT.goalReview(co, { by: opt.by }); }
   if (cmd === "digest") { need("audience"); return { doc: opt.channel ? RIT.publishDigest(co, { by: opt.by ?? "cos", audience: opt.audience, channel: opt.channel }).body : RIT.digest(co, { audience: opt.audience }) }; }
+  // the launcher reports a finished agent process: usage to its session(s); a crash abandons what it left running and
+  // closes its session, so the work goes back to the queue and the supervisor plans it again
+  if (cmd === "launch" && sub === "finished") {
+    need("launch", "role", "tokens");
+    const ok = opt.ok !== "false", tokens = Number(opt.tokens);
+    const ss = [...rooms.sessions.values()].filter((s) => s.launch === opt.launch);
+    const abandoned = [];
+    for (const s of ss) {
+      if (!ok) for (const x of rooms.runs.values()) if (x.session === s.id && x.state === "running") { rooms.abandon(x.run, { by: "launcher", reason: opt.reason ?? "agent process failed" }); abandoned.push(x.run); }
+      if (!ok || s.waitUntil != null) { s.waitUntil = null; rooms.closeSession(s.id, ok ? "process ended" : "process failed"); }
+    }
+    if (ss.length) rooms.recordSessionUsage(ss[0].id, tokens, "launcher");
+    else log.add({ type: "usage", role: opt.role, tokens, label: "outside a room", source: "launcher", launch: opt.launch });
+    log.add({ type: "launch-finished", launch: opt.launch, role: opt.role, ok, tokens, cumulative: N("cumulative") ?? null, cost: N("cost") ?? null, sessions: ss.map((s) => s.id), abandoned, reason: opt.reason ?? null });
+    return { sessions: ss.map((s) => s.id), abandoned };
+  }
   if (cmd === "escape" && sub === "list") return readEscapes();
   if (cmd === "escape" && sub === "add") {
     need("by", "pattern", "why");
