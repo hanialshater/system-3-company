@@ -1,0 +1,155 @@
+[
+ {
+  "cmd": "channel",
+  "sub": "create",
+  "args": {
+   "by": "cos",
+   "id": "company",
+   "kind": "company"
+  }
+ },
+ {
+  "cmd": "order",
+  "sub": "new",
+  "args": {
+   "by": "cos",
+   "to": "mgr-live",
+   "title": "TOKENIZER: tokenize.mjs",
+   "task": "TOKENIZER",
+   "budget": 200000,
+   "accept": "live/bench4b/work/TOKENIZER/tokenize.mjs, exactly as the \"TOKENIZER\" section of live/bench4b/SPEC.md says, plus at least one tokenizer.test.mjs of your own (node --test) in the same folder. Import other modules only by the relative paths SPEC.md gives. Hidden acceptance tests check the behaviour SPEC.md states and report only failing categories."
+  }
+ },
+ {
+  "cmd": "order",
+  "sub": "new",
+  "args": {
+   "by": "cos",
+   "to": "mgr-live",
+   "title": "PARSER: parse.mjs",
+   "task": "PARSER",
+   "budget": 200000,
+   "accept": "live/bench4b/work/PARSER/parse.mjs, exactly as the \"PARSER\" section of live/bench4b/SPEC.md says, plus at least one parser.test.mjs of your own (node --test) in the same folder. Import other modules only by the relative paths SPEC.md gives. Hidden acceptance tests check the behaviour SPEC.md states and report only failing categories.",
+   "after": "${1.order}"
+  }
+ },
+ {
+  "cmd": "order",
+  "sub": "new",
+  "args": {
+   "by": "cos",
+   "to": "mgr-live",
+   "title": "VALUES: values.mjs",
+   "task": "VALUES",
+   "budget": 200000,
+   "accept": "live/bench4b/work/VALUES/values.mjs, exactly as the \"VALUES\" section of live/bench4b/SPEC.md says, plus at least one values.test.mjs of your own (node --test) in the same folder. Import other modules only by the relative paths SPEC.md gives. Hidden acceptance tests check the behaviour SPEC.md states and report only failing categories."
+  }
+ },
+ {
+  "cmd": "order",
+  "sub": "new",
+  "args": {
+   "by": "cos",
+   "to": "mgr-live",
+   "title": "CELLS: cells.mjs",
+   "task": "CELLS",
+   "budget": 200000,
+   "accept": "live/bench4b/work/CELLS/cells.mjs, exactly as the \"CELLS\" section of live/bench4b/SPEC.md says, plus at least one cells.test.mjs of your own (node --test) in the same folder. Import other modules only by the relative paths SPEC.md gives. Hidden acceptance tests check the behaviour SPEC.md states and report only failing categories."
+  }
+ },
+ {
+  "cmd": "order",
+  "sub": "new",
+  "args": {
+   "by": "cos",
+   "to": "mgr-live",
+   "title": "FUNCTIONS: functions.mjs",
+   "task": "FUNCTIONS",
+   "budget": 200000,
+   "accept": "live/bench4b/work/FUNCTIONS/functions.mjs, exactly as the \"FUNCTIONS\" section of live/bench4b/SPEC.md says, plus at least one functions.test.mjs of your own (node --test) in the same folder. Import other modules only by the relative paths SPEC.md gives. Hidden acceptance tests check the behaviour SPEC.md states and report only failing categories.",
+   "after": "${3.order},${4.order}"
+  }
+ },
+ {
+  "cmd": "order",
+  "sub": "new",
+  "args": {
+   "by": "cos",
+   "to": "mgr-live",
+   "title": "EVALUATOR: evaluate.mjs",
+   "task": "EVALUATOR",
+   "budget": 200000,
+   "accept": "live/bench4b/work/EVALUATOR/evaluate.mjs, exactly as the \"EVALUATOR\" section of live/bench4b/SPEC.md says, plus at least one evaluator.test.mjs of your own (node --test) in the same folder. Import other modules only by the relative paths SPEC.md gives. Hidden acceptance tests check the behaviour SPEC.md states and report only failing categories.",
+   "after": "${2.order},${3.order},${4.order},${5.order}"
+  }
+ },
+ {
+  "cmd": "order",
+  "sub": "new",
+  "args": {
+   "by": "cos",
+   "to": "mgr-live",
+   "title": "GRAPH: graph.mjs",
+   "task": "GRAPH",
+   "budget": 200000,
+   "accept": "live/bench4b/work/GRAPH/graph.mjs, exactly as the \"GRAPH\" section of live/bench4b/SPEC.md says, plus at least one graph.test.mjs of your own (node --test) in the same folder. Import other modules only by the relative paths SPEC.md gives. Hidden acceptance tests check the behaviour SPEC.md states and report only failing categories.",
+   "after": "${4.order}"
+  }
+ },
+ {
+  "cmd": "order",
+  "sub": "new",
+  "args": {
+   "by": "cos",
+   "to": "mgr-live",
+   "title": "FORMAT: format.mjs",
+   "task": "FORMAT",
+   "budget": 200000,
+   "accept": "live/bench4b/work/FORMAT/format.mjs, exactly as the \"FORMAT\" section of live/bench4b/SPEC.md says, plus at least one format.test.mjs of your own (node --test) in the same folder. Import other modules only by the relative paths SPEC.md gives. Hidden acceptance tests check the behaviour SPEC.md states and report only failing categories.",
+   "after": "${3.order}"
+  }
+ },
+ {
+  "cmd": "order",
+  "sub": "new",
+  "args": {
+   "by": "cos",
+   "to": "mgr-live",
+   "title": "SHEET: sheet.mjs",
+   "task": "SHEET",
+   "budget": 200000,
+   "accept": "live/bench4b/work/SHEET/sheet.mjs, exactly as the \"SHEET\" section of live/bench4b/SPEC.md says, plus at least one sheet.test.mjs of your own (node --test) in the same folder. Import other modules only by the relative paths SPEC.md gives. Hidden acceptance tests check the behaviour SPEC.md states and report only failing categories.",
+   "after": "${6.order},${7.order},${8.order}"
+  }
+ },
+ {
+  "cmd": "order",
+  "sub": "new",
+  "args": {
+   "by": "cos",
+   "to": "mgr-live",
+   "title": "GUIDE: guide.md",
+   "task": "GUIDE",
+   "budget": 200000,
+   "accept": "live/bench4b/work/GUIDE/guide.md, the user guide the \"GUIDE\" section of live/bench4b/SPEC.md describes. Every example must be true of the shipped SHEET: try each one with live/bench4b/shipped/SHEET/sheet.mjs.",
+   "checks": {
+    "titleLine": true,
+    "minWords": 300,
+    "maxWords": 900,
+    "minReadingEase": 50,
+    "mustInclude": [
+     "SUM",
+     "MIN",
+     "MAX",
+     "AVERAGE",
+     "COUNT",
+     "IF",
+     "ABS",
+     "ROUND",
+     "LEN"
+    ]
+   },
+   "after": "${9.order}"
+  }
+ }
+]
