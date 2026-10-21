@@ -8,6 +8,7 @@ export const ERR = Object.freeze({
   VALUE: mk("#VALUE!"),
   NAME: mk("#NAME?"),
   REF: mk("#REF!"),
+  CYCLE: mk("#CIRC!"),
 });
 
 const BY_CODE = new Map(Object.values(ERR).map((e) => [e.error, e]));
