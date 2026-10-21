@@ -271,10 +271,40 @@
         "dev-2": "M-2"
        }
       }
+     ],
+     [
+      "P-2",
+      {
+       "id": "P-2",
+       "channel": "company",
+       "by": "founder",
+       "title": "Wave 2 is released: SPEC5.md now has a Wave 2 section. Every module and SHEET is reopened; change what your slot owns (ARCH.md), hand in unchanged what it does not.",
+       "body": "",
+       "ack": true,
+       "key": null,
+       "ref": null,
+       "t": 29876936.984783333,
+       "to": [
+        "cos",
+        "lead",
+        "dev-1",
+        "dev-2",
+        "reviewer",
+        "release"
+       ],
+       "msgs": {
+        "cos": "M-63",
+        "lead": "M-64",
+        "dev-1": "M-65",
+        "dev-2": "M-66",
+        "reviewer": "M-67",
+        "release": "M-68"
+       }
+      }
      ]
     ]
    },
-   "n": 1
+   "n": 2
   },
   "tracker": {
    "items": {
@@ -343,10 +373,12 @@
        "kind": "order",
        "title": "MOD-A: the module in slot A",
        "body": "",
-       "state": "done",
+       "state": "in-progress",
        "assignee": "dev-1",
        "project": null,
-       "labels": [],
+       "labels": [
+        "revised"
+       ],
        "priority": 3,
        "cycle": null,
        "due": null,
@@ -356,7 +388,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876923.441666666,
-       "updated": 29876929.295416668,
+       "updated": 29876936.9892,
        "history": [
         {
          "t": 29876923.441666666,
@@ -382,6 +414,11 @@
          "t": 29876929.295416668,
          "by": "engine",
          "state": "done"
+        },
+        {
+         "t": 29876936.9892,
+         "by": "engine",
+         "state": "in-progress"
         }
        ]
       }
@@ -393,7 +430,7 @@
        "kind": "order",
        "title": "MOD-B: the module in slot B",
        "body": "",
-       "state": "in-progress",
+       "state": "in-review",
        "assignee": "dev-2",
        "project": null,
        "labels": [
@@ -408,7 +445,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876923.441666666,
-       "updated": 29876936.687866665,
+       "updated": 29876937.274816666,
        "history": [
         {
          "t": 29876923.441666666,
@@ -439,6 +476,11 @@
          "t": 29876936.687866665,
          "by": "engine",
          "state": "in-progress"
+        },
+        {
+         "t": 29876937.274816666,
+         "by": "engine",
+         "state": "in-review"
         }
        ]
       }
@@ -450,10 +492,12 @@
        "kind": "order",
        "title": "MOD-C: the module in slot C",
        "body": "",
-       "state": "done",
+       "state": "in-progress",
        "assignee": "dev-2",
        "project": null,
-       "labels": [],
+       "labels": [
+        "revised"
+       ],
        "priority": 3,
        "cycle": null,
        "due": null,
@@ -463,7 +507,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876923.441666666,
-       "updated": 29876929.900633335,
+       "updated": 29876937.274816666,
        "history": [
         {
          "t": 29876923.441666666,
@@ -489,6 +533,11 @@
          "t": 29876929.900633335,
          "by": "engine",
          "state": "done"
+        },
+        {
+         "t": 29876937.274816666,
+         "by": "engine",
+         "state": "in-progress"
         }
        ]
       }
@@ -500,10 +549,12 @@
        "kind": "order",
        "title": "MOD-D: the module in slot D",
        "body": "",
-       "state": "done",
+       "state": "in-progress",
        "assignee": "dev-1",
        "project": null,
-       "labels": [],
+       "labels": [
+        "revised"
+       ],
        "priority": 3,
        "cycle": null,
        "due": null,
@@ -513,7 +564,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876923.441666666,
-       "updated": 29876929.662666667,
+       "updated": 29876937.274816666,
        "history": [
         {
          "t": 29876923.441666666,
@@ -539,6 +590,11 @@
          "t": 29876929.662666667,
          "by": "engine",
          "state": "done"
+        },
+        {
+         "t": 29876937.274816666,
+         "by": "engine",
+         "state": "in-progress"
         }
        ]
       }
@@ -550,7 +606,7 @@
        "kind": "order",
        "title": "SHEET: the integrated sheet",
        "body": "",
-       "state": "in-review",
+       "state": "in-progress",
        "assignee": "dev-1",
        "project": null,
        "labels": [
@@ -565,7 +621,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876923.441666666,
-       "updated": 29876936.12248333,
+       "updated": 29876937.274816666,
        "history": [
         {
          "t": 29876923.441666666,
@@ -606,6 +662,16 @@
          "t": 29876936.12248333,
          "by": "engine",
          "state": "in-review"
+        },
+        {
+         "t": 29876936.982466668,
+         "by": "engine",
+         "state": "done"
+        },
+        {
+         "t": 29876937.274816666,
+         "by": "engine",
+         "state": "in-progress"
         }
        ]
       }
@@ -5369,6 +5435,724 @@
     ],
     "tasks": [],
     "why": "plan: next: 1 waiting, no session running"
+   },
+   {
+    "seq": 420,
+    "t": 29876936.7716,
+    "type": "refuse",
+    "rule": "hard",
+    "msg": "HARD: P-1 does not ask for acks",
+    "argv": "channel read --by=dev-2 --post=P-1 --ack"
+   },
+   {
+    "seq": 421,
+    "t": 29876936.904883333,
+    "type": "post-read",
+    "post": "P-1",
+    "by": "dev-2"
+   },
+   {
+    "seq": 422,
+    "t": 29876936.906666666,
+    "type": "session-open",
+    "session": "S-13",
+    "role": "dev-2"
+   },
+   {
+    "seq": 423,
+    "t": 29876936.906666666,
+    "type": "claim",
+    "msg": "M-58",
+    "run": "R-25"
+   },
+   {
+    "seq": 424,
+    "t": 29876936.906666666,
+    "type": "enter",
+    "run": "R-25",
+    "msg": "M-58",
+    "role": "dev-2",
+    "by": "dev-2",
+    "room": "workshop",
+    "order": "O-3",
+    "stage": "build",
+    "mode": "work",
+    "session": "S-13",
+    "item": 1
+   },
+   {
+    "seq": 425,
+    "t": 29876936.926566668,
+    "type": "usage",
+    "role": "lead",
+    "tokens": 47249,
+    "label": "outside a room",
+    "source": "launcher",
+    "launch": "0374-lead"
+   },
+   {
+    "seq": 426,
+    "t": 29876936.926566668,
+    "type": "launch-finished",
+    "launch": "0374-lead",
+    "role": "lead",
+    "ok": true,
+    "tokens": 47249,
+    "cumulative": 320794,
+    "cost": 0.2909,
+    "sessions": [],
+    "abandoned": [],
+    "reason": null
+   },
+   {
+    "seq": 427,
+    "t": 29876936.957166668,
+    "type": "advance",
+    "order": "O-6",
+    "stage": "check",
+    "by": "reviewer",
+    "verdict": "pass"
+   },
+   {
+    "seq": 428,
+    "t": 29876936.957166668,
+    "type": "send",
+    "msg": "M-59",
+    "from": "lead",
+    "to": "lead",
+    "kind": "work",
+    "key": "O-6:uat:2",
+    "ref": "O-6",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 429,
+    "t": 29876936.957183335,
+    "type": "done",
+    "msg": "M-53",
+    "run": "R-24"
+   },
+   {
+    "seq": 430,
+    "t": 29876936.957183335,
+    "type": "send",
+    "msg": "M-60",
+    "from": "pool:checker",
+    "to": "lead",
+    "kind": "report",
+    "key": null,
+    "ref": "O-6",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 431,
+    "t": 29876936.957183335,
+    "type": "leave",
+    "run": "R-24",
+    "role": "reviewer",
+    "order": "O-6",
+    "stage": "check",
+    "verdict": "pass",
+    "minutes": 0.6836333349347115
+   },
+   {
+    "seq": 432,
+    "t": 29876936.957183335,
+    "type": "session-wait",
+    "session": "S-12",
+    "role": "reviewer",
+    "minutes": 1.5
+   },
+   {
+    "seq": 433,
+    "t": 29876936.96435,
+    "type": "advance",
+    "order": "O-6",
+    "stage": "uat",
+    "by": "lead",
+    "verdict": "pass"
+   },
+   {
+    "seq": 434,
+    "t": 29876936.96435,
+    "type": "send",
+    "msg": "M-61",
+    "from": "lead",
+    "to": "pool:release",
+    "kind": "work",
+    "key": "O-6:ship:2",
+    "ref": "O-6",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 435,
+    "t": 29876936.96435,
+    "type": "session-open",
+    "session": "S-14",
+    "role": "release"
+   },
+   {
+    "seq": 436,
+    "t": 29876936.96435,
+    "type": "claim",
+    "msg": "M-61",
+    "run": "R-26"
+   },
+   {
+    "seq": 437,
+    "t": 29876936.96435,
+    "type": "enter",
+    "run": "R-26",
+    "msg": "M-61",
+    "role": "release",
+    "by": "release",
+    "room": "launch",
+    "order": "O-6",
+    "stage": "ship",
+    "mode": "work",
+    "session": "S-14",
+    "item": 1
+   },
+   {
+    "seq": 438,
+    "t": 29876936.964366667,
+    "type": "advance",
+    "order": "O-6",
+    "stage": "ship",
+    "by": "release",
+    "verdict": "pass"
+   },
+   {
+    "seq": 439,
+    "t": 29876936.964366667,
+    "type": "shipped",
+    "order": "O-6",
+    "lead": 13.706999998539686,
+    "loops": 2,
+    "priority": "next"
+   },
+   {
+    "seq": 440,
+    "t": 29876936.964366667,
+    "type": "done",
+    "msg": "M-61",
+    "run": "R-26"
+   },
+   {
+    "seq": 441,
+    "t": 29876936.964366667,
+    "type": "send",
+    "msg": "M-62",
+    "from": "pool:release",
+    "to": "lead",
+    "kind": "report",
+    "key": null,
+    "ref": "O-6",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 442,
+    "t": 29876936.964366667,
+    "type": "leave",
+    "run": "R-26",
+    "role": "release",
+    "order": "O-6",
+    "stage": "ship",
+    "verdict": "pass",
+    "minutes": 0.000016666948795318604
+   },
+   {
+    "seq": 443,
+    "t": 29876936.964366667,
+    "type": "session-close",
+    "session": "S-14",
+    "role": "release",
+    "items": 1,
+    "reason": "ship done",
+    "minutes": 0.000016666948795318604
+   },
+   {
+    "seq": 444,
+    "t": 29876936.982466668,
+    "type": "item-update",
+    "item": "ISS-6",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 445,
+    "t": 29876936.982466668,
+    "type": "supervisor-tick",
+    "steps": [
+     "uat:O-6",
+     "ship:O-6"
+    ]
+   },
+   {
+    "seq": 446,
+    "t": 29876936.984783333,
+    "type": "send",
+    "msg": "M-63",
+    "from": "founder",
+    "to": "cos",
+    "kind": "post",
+    "key": "P-2:cos",
+    "ref": "P-2",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 447,
+    "t": 29876936.984783333,
+    "type": "send",
+    "msg": "M-64",
+    "from": "founder",
+    "to": "lead",
+    "kind": "post",
+    "key": "P-2:lead",
+    "ref": "P-2",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 448,
+    "t": 29876936.984783333,
+    "type": "send",
+    "msg": "M-65",
+    "from": "founder",
+    "to": "dev-1",
+    "kind": "post",
+    "key": "P-2:dev-1",
+    "ref": "P-2",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 449,
+    "t": 29876936.984783333,
+    "type": "send",
+    "msg": "M-66",
+    "from": "founder",
+    "to": "dev-2",
+    "kind": "post",
+    "key": "P-2:dev-2",
+    "ref": "P-2",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 450,
+    "t": 29876936.984783333,
+    "type": "send",
+    "msg": "M-67",
+    "from": "founder",
+    "to": "reviewer",
+    "kind": "post",
+    "key": "P-2:reviewer",
+    "ref": "P-2",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 451,
+    "t": 29876936.984783333,
+    "type": "send",
+    "msg": "M-68",
+    "from": "founder",
+    "to": "release",
+    "kind": "post",
+    "key": "P-2:release",
+    "ref": "P-2",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 452,
+    "t": 29876936.984783333,
+    "type": "post",
+    "post": "P-2",
+    "channel": "company",
+    "by": "founder",
+    "title": "Wave 2 is released: SPEC5.md now has a Wave 2 section. Every module and SHEET is reopened; change what your slot owns (ARCH.md), hand in unchanged what it does not.",
+    "recipients": 6,
+    "ack": true
+   },
+   {
+    "seq": 453,
+    "t": 29876936.986616667,
+    "type": "reopen",
+    "order": "O-2",
+    "from": "done",
+    "by": "founder",
+    "reason": "wave release",
+    "loops": 1,
+    "priority": "next"
+   },
+   {
+    "seq": 454,
+    "t": 29876936.986616667,
+    "type": "send",
+    "msg": "M-69",
+    "from": "lead",
+    "to": "dev-1",
+    "kind": "work",
+    "key": "O-2:build:1",
+    "ref": "O-2",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 455,
+    "t": 29876936.988666665,
+    "type": "refuse",
+    "rule": "hard",
+    "msg": "HARD: O-3 is at build: only a shipped order is reopened (a open one is revised)",
+    "argv": "order reopen O-3 --by=founder --reason=wave release --findings=Wave 2 is released (see the Wave 2 section at the end of live/bench5/SPEC5.md). Change what your slot owns under ARCH.md for it; if your module needs nothing, hand it in unchanged and say so. If the wave needs a change to the interfaces, raise it with the lead."
+   },
+   {
+    "seq": 456,
+    "t": 29876936.9892,
+    "type": "item-update",
+    "item": "ISS-2",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 457,
+    "t": 29876936.9892,
+    "type": "item-update",
+    "item": "ISS-2",
+    "by": "engine",
+    "changes": [
+     "addLabels"
+    ]
+   },
+   {
+    "seq": 458,
+    "t": 29876936.9892,
+    "type": "launch",
+    "role": "dev-1",
+    "msgs": [
+     "M-69"
+    ],
+    "tasks": [],
+    "why": "plan: next: 1 waiting, no session running"
+   },
+   {
+    "seq": 459,
+    "t": 29876936.99045,
+    "type": "reopen",
+    "order": "O-4",
+    "from": "done",
+    "by": "founder",
+    "reason": "wave release",
+    "loops": 1,
+    "priority": "next"
+   },
+   {
+    "seq": 460,
+    "t": 29876936.990466665,
+    "type": "send",
+    "msg": "M-70",
+    "from": "lead",
+    "to": "dev-2",
+    "kind": "work",
+    "key": "O-4:build:1",
+    "ref": "O-4",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 461,
+    "t": 29876936.993033335,
+    "type": "reopen",
+    "order": "O-5",
+    "from": "done",
+    "by": "founder",
+    "reason": "wave release",
+    "loops": 1,
+    "priority": "next"
+   },
+   {
+    "seq": 462,
+    "t": 29876936.99305,
+    "type": "send",
+    "msg": "M-71",
+    "from": "lead",
+    "to": "dev-1",
+    "kind": "work",
+    "key": "O-5:build:1",
+    "ref": "O-5",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 463,
+    "t": 29876936.99546667,
+    "type": "reopen",
+    "order": "O-6",
+    "from": "done",
+    "by": "founder",
+    "reason": "wave release",
+    "loops": 3,
+    "priority": "next"
+   },
+   {
+    "seq": 464,
+    "t": 29876936.995483335,
+    "type": "send",
+    "msg": "M-72",
+    "from": "lead",
+    "to": "dev-1",
+    "kind": "work",
+    "key": "O-6:build:3",
+    "ref": "O-6",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 465,
+    "t": 29876937.07978333,
+    "type": "post-read",
+    "post": "P-2",
+    "by": "dev-1"
+   },
+   {
+    "seq": 466,
+    "t": 29876937.07978333,
+    "type": "ack",
+    "msg": "M-65",
+    "by": "dev-1",
+    "post": "P-2"
+   },
+   {
+    "seq": 467,
+    "t": 29876937.081733335,
+    "type": "session-open",
+    "session": "S-15",
+    "role": "dev-1"
+   },
+   {
+    "seq": 468,
+    "t": 29876937.081733335,
+    "type": "claim",
+    "msg": "M-69",
+    "run": "R-27"
+   },
+   {
+    "seq": 469,
+    "t": 29876937.081733335,
+    "type": "enter",
+    "run": "R-27",
+    "msg": "M-69",
+    "role": "dev-1",
+    "by": "dev-1",
+    "room": "workshop",
+    "order": "O-2",
+    "stage": "build",
+    "mode": "work",
+    "session": "S-15",
+    "item": 1
+   },
+   {
+    "seq": 470,
+    "t": 29876937.201,
+    "type": "self-check",
+    "order": "O-3",
+    "task": "MOD-B",
+    "by": "dev-2",
+    "stage": "build",
+    "pass": true,
+    "output": "# tests 7 # pass 7 # fail 0"
+   },
+   {
+    "seq": 471,
+    "t": 29876937.267183334,
+    "type": "advance",
+    "order": "O-3",
+    "stage": "build",
+    "by": "dev-2",
+    "verdict": "pass"
+   },
+   {
+    "seq": 472,
+    "t": 29876937.2672,
+    "type": "code-stage",
+    "order": "O-3",
+    "stage": "test1"
+   },
+   {
+    "seq": 473,
+    "t": 29876937.2672,
+    "type": "done",
+    "msg": "M-58",
+    "run": "R-25"
+   },
+   {
+    "seq": 474,
+    "t": 29876937.2672,
+    "type": "send",
+    "msg": "M-73",
+    "from": "dev-2",
+    "to": "lead",
+    "kind": "report",
+    "key": null,
+    "ref": "O-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 475,
+    "t": 29876937.2672,
+    "type": "leave",
+    "run": "R-25",
+    "role": "dev-2",
+    "order": "O-3",
+    "stage": "build",
+    "verdict": "pass",
+    "minutes": 0.36053333431482315
+   },
+   {
+    "seq": 476,
+    "t": 29876937.2672,
+    "type": "claim",
+    "msg": "M-70",
+    "run": "R-28"
+   },
+   {
+    "seq": 477,
+    "t": 29876937.2672,
+    "type": "enter",
+    "run": "R-28",
+    "msg": "M-70",
+    "role": "dev-2",
+    "by": "dev-2",
+    "room": "workshop",
+    "order": "O-4",
+    "stage": "build",
+    "mode": "work",
+    "session": "S-13",
+    "item": 2
+   },
+   {
+    "seq": 478,
+    "t": 29876937.274816666,
+    "type": "advance",
+    "order": "O-3",
+    "stage": "test1",
+    "by": "code",
+    "verdict": "pass"
+   },
+   {
+    "seq": 479,
+    "t": 29876937.274816666,
+    "type": "send",
+    "msg": "M-74",
+    "from": "lead",
+    "to": "pool:checker",
+    "kind": "work",
+    "key": "O-3:check:1",
+    "ref": "O-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 480,
+    "t": 29876937.274816666,
+    "type": "item-update",
+    "item": "ISS-3",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 481,
+    "t": 29876937.274816666,
+    "type": "item-update",
+    "item": "ISS-4",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 482,
+    "t": 29876937.274816666,
+    "type": "item-update",
+    "item": "ISS-4",
+    "by": "engine",
+    "changes": [
+     "addLabels"
+    ]
+   },
+   {
+    "seq": 483,
+    "t": 29876937.274816666,
+    "type": "item-update",
+    "item": "ISS-5",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 484,
+    "t": 29876937.274816666,
+    "type": "item-update",
+    "item": "ISS-5",
+    "by": "engine",
+    "changes": [
+     "addLabels"
+    ]
+   },
+   {
+    "seq": 485,
+    "t": 29876937.274816666,
+    "type": "item-update",
+    "item": "ISS-6",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 486,
+    "t": 29876937.274816666,
+    "type": "supervisor-tick",
+    "steps": [
+     "test1:O-3"
+    ]
+   },
+   {
+    "seq": 487,
+    "t": 29876937.29325,
+    "type": "claim",
+    "msg": "M-74",
+    "run": "R-29"
+   },
+   {
+    "seq": 488,
+    "t": 29876937.29325,
+    "type": "enter",
+    "run": "R-29",
+    "msg": "M-74",
+    "role": "reviewer",
+    "by": "reviewer",
+    "room": "review",
+    "order": "O-3",
+    "stage": "check",
+    "mode": "work",
+    "session": "S-12",
+    "item": 2
    }
   ]
  },
@@ -5417,7 +6201,8 @@
       "ts": 29876926.5573,
       "state": "open",
       "lease": null,
-      "acked": false
+      "acked": false,
+      "readAt": 29876936.904883333
      }
     ],
     [
@@ -6531,7 +7316,7 @@
       },
       "priority": "next",
       "ts": 29876936.12248333,
-      "state": "open",
+      "state": "done",
       "lease": {
        "run": "R-24",
        "until": 29876966.27355
@@ -6642,8 +7427,366 @@
       },
       "priority": "next",
       "ts": 29876936.684233334,
+      "state": "done",
+      "lease": {
+       "run": "R-25",
+       "until": 29876966.906666666
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-59",
+     {
+      "id": "M-59",
+      "from": "lead",
+      "to": "lead",
+      "kind": "work",
+      "key": "O-6:uat:2",
+      "due": null,
+      "ref": "O-6",
+      "body": {
+       "stage": "uat",
+       "loops": 2
+      },
+      "priority": "next",
+      "ts": 29876936.957166668,
       "state": "open",
       "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-60",
+     {
+      "id": "M-60",
+      "from": "pool:checker",
+      "to": "lead",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-6",
+      "body": {
+       "stage": "check",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876936.957183335,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-61",
+     {
+      "id": "M-61",
+      "from": "lead",
+      "to": "pool:release",
+      "kind": "work",
+      "key": "O-6:ship:2",
+      "due": null,
+      "ref": "O-6",
+      "body": {
+       "stage": "ship",
+       "loops": 2
+      },
+      "priority": "next",
+      "ts": 29876936.96435,
+      "state": "done",
+      "lease": {
+       "run": "R-26",
+       "until": 29876966.96435
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-62",
+     {
+      "id": "M-62",
+      "from": "pool:release",
+      "to": "lead",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-6",
+      "body": {
+       "stage": "ship",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876936.964366667,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-63",
+     {
+      "id": "M-63",
+      "from": "founder",
+      "to": "cos",
+      "kind": "post",
+      "key": "P-2:cos",
+      "due": null,
+      "ref": "P-2",
+      "body": {
+       "channel": "company",
+       "title": "Wave 2 is released: SPEC5.md now has a Wave 2 section. Every module and SHEET is reopened; change what your slot owns (ARCH.md), hand in unchanged what it does not.",
+       "ack": true
+      },
+      "priority": "next",
+      "ts": 29876936.984783333,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-64",
+     {
+      "id": "M-64",
+      "from": "founder",
+      "to": "lead",
+      "kind": "post",
+      "key": "P-2:lead",
+      "due": null,
+      "ref": "P-2",
+      "body": {
+       "channel": "company",
+       "title": "Wave 2 is released: SPEC5.md now has a Wave 2 section. Every module and SHEET is reopened; change what your slot owns (ARCH.md), hand in unchanged what it does not.",
+       "ack": true
+      },
+      "priority": "next",
+      "ts": 29876936.984783333,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-65",
+     {
+      "id": "M-65",
+      "from": "founder",
+      "to": "dev-1",
+      "kind": "post",
+      "key": "P-2:dev-1",
+      "due": null,
+      "ref": "P-2",
+      "body": {
+       "channel": "company",
+       "title": "Wave 2 is released: SPEC5.md now has a Wave 2 section. Every module and SHEET is reopened; change what your slot owns (ARCH.md), hand in unchanged what it does not.",
+       "ack": true
+      },
+      "priority": "next",
+      "ts": 29876936.984783333,
+      "state": "open",
+      "lease": null,
+      "acked": true,
+      "readAt": 29876937.07978333
+     }
+    ],
+    [
+     "M-66",
+     {
+      "id": "M-66",
+      "from": "founder",
+      "to": "dev-2",
+      "kind": "post",
+      "key": "P-2:dev-2",
+      "due": null,
+      "ref": "P-2",
+      "body": {
+       "channel": "company",
+       "title": "Wave 2 is released: SPEC5.md now has a Wave 2 section. Every module and SHEET is reopened; change what your slot owns (ARCH.md), hand in unchanged what it does not.",
+       "ack": true
+      },
+      "priority": "next",
+      "ts": 29876936.984783333,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-67",
+     {
+      "id": "M-67",
+      "from": "founder",
+      "to": "reviewer",
+      "kind": "post",
+      "key": "P-2:reviewer",
+      "due": null,
+      "ref": "P-2",
+      "body": {
+       "channel": "company",
+       "title": "Wave 2 is released: SPEC5.md now has a Wave 2 section. Every module and SHEET is reopened; change what your slot owns (ARCH.md), hand in unchanged what it does not.",
+       "ack": true
+      },
+      "priority": "next",
+      "ts": 29876936.984783333,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-68",
+     {
+      "id": "M-68",
+      "from": "founder",
+      "to": "release",
+      "kind": "post",
+      "key": "P-2:release",
+      "due": null,
+      "ref": "P-2",
+      "body": {
+       "channel": "company",
+       "title": "Wave 2 is released: SPEC5.md now has a Wave 2 section. Every module and SHEET is reopened; change what your slot owns (ARCH.md), hand in unchanged what it does not.",
+       "ack": true
+      },
+      "priority": "next",
+      "ts": 29876936.984783333,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-69",
+     {
+      "id": "M-69",
+      "from": "lead",
+      "to": "dev-1",
+      "kind": "work",
+      "key": "O-2:build:1",
+      "due": null,
+      "ref": "O-2",
+      "body": {
+       "stage": "build",
+       "loops": 1
+      },
+      "priority": "next",
+      "ts": 29876936.986616667,
+      "state": "open",
+      "lease": {
+       "run": "R-27",
+       "until": 29876967.081733335
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-70",
+     {
+      "id": "M-70",
+      "from": "lead",
+      "to": "dev-2",
+      "kind": "work",
+      "key": "O-4:build:1",
+      "due": null,
+      "ref": "O-4",
+      "body": {
+       "stage": "build",
+       "loops": 1
+      },
+      "priority": "next",
+      "ts": 29876936.99045,
+      "state": "open",
+      "lease": {
+       "run": "R-28",
+       "until": 29876967.2672
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-71",
+     {
+      "id": "M-71",
+      "from": "lead",
+      "to": "dev-1",
+      "kind": "work",
+      "key": "O-5:build:1",
+      "due": null,
+      "ref": "O-5",
+      "body": {
+       "stage": "build",
+       "loops": 1
+      },
+      "priority": "next",
+      "ts": 29876936.99305,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-72",
+     {
+      "id": "M-72",
+      "from": "lead",
+      "to": "dev-1",
+      "kind": "work",
+      "key": "O-6:build:3",
+      "due": null,
+      "ref": "O-6",
+      "body": {
+       "stage": "build",
+       "loops": 3
+      },
+      "priority": "next",
+      "ts": 29876936.995483335,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-73",
+     {
+      "id": "M-73",
+      "from": "dev-2",
+      "to": "lead",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-3",
+      "body": {
+       "stage": "build",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876937.2672,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-74",
+     {
+      "id": "M-74",
+      "from": "lead",
+      "to": "pool:checker",
+      "kind": "work",
+      "key": "O-3:check:1",
+      "due": null,
+      "ref": "O-3",
+      "body": {
+       "stage": "check",
+       "loops": 1
+      },
+      "priority": "next",
+      "ts": 29876937.274816666,
+      "state": "open",
+      "lease": {
+       "run": "R-29",
+       "until": 29876967.29325
+      },
       "acked": false
      }
     ]
@@ -6786,10 +7929,62 @@
     [
      "O-3:build:1",
      "M-58"
+    ],
+    [
+     "O-6:uat:2",
+     "M-59"
+    ],
+    [
+     "O-6:ship:2",
+     "M-61"
+    ],
+    [
+     "P-2:cos",
+     "M-63"
+    ],
+    [
+     "P-2:lead",
+     "M-64"
+    ],
+    [
+     "P-2:dev-1",
+     "M-65"
+    ],
+    [
+     "P-2:dev-2",
+     "M-66"
+    ],
+    [
+     "P-2:reviewer",
+     "M-67"
+    ],
+    [
+     "P-2:release",
+     "M-68"
+    ],
+    [
+     "O-2:build:1",
+     "M-69"
+    ],
+    [
+     "O-4:build:1",
+     "M-70"
+    ],
+    [
+     "O-5:build:1",
+     "M-71"
+    ],
+    [
+     "O-6:build:3",
+     "M-72"
+    ],
+    [
+     "O-3:check:1",
+     "M-74"
     ]
    ]
   },
-  "n": 58
+  "n": 74
  },
  "org": {
   "roles": {
@@ -7170,8 +8365,8 @@
       "spent": 0,
       "accept": "live/bench5/work/MOD-A/<the file ARCH.md names for slot A>, with exactly the exports and behaviour ARCH.md gives slot A, for every wave released so far (live/bench5/SPEC5.md), plus your own *.test.mjs in the same folder.",
       "words": null,
-      "stage": "done",
-      "loops": 0,
+      "stage": "build",
+      "loops": 1,
       "created": 29876923.25735,
       "history": [
        {
@@ -7203,6 +8398,13 @@
         "by": "release",
         "verdict": "pass",
         "t": 29876929.288383335
+       },
+       {
+        "stage": "done",
+        "by": "founder",
+        "verdict": "reopen",
+        "t": 29876936.986616667,
+        "findings": "Wave 2 is released (see the Wave 2 section at the end of live/bench5/SPEC5.md). Change what your slot owns under ARCH.md for it; if your module needs nothing, hand it in unchanged and say so. If the wave needs a change to the interfaces, raise it with the lead."
        }
       ],
       "priority": "next",
@@ -7214,7 +8416,8 @@
       "policyVersion": null,
       "fromContract": null,
       "task": "MOD-A",
-      "orphanSince": null
+      "orphanSince": null,
+      "findings": "Wave 2 is released (see the Wave 2 section at the end of live/bench5/SPEC5.md). Change what your slot owns under ARCH.md for it; if your module needs nothing, hand it in unchanged and say so. If the wave needs a change to the interfaces, raise it with the lead."
      }
     ],
     [
@@ -7236,7 +8439,7 @@
       "spent": 0,
       "accept": "live/bench5/work/MOD-B/<the file ARCH.md names for slot B>, with exactly the exports and behaviour ARCH.md gives slot B, for every wave released so far (live/bench5/SPEC5.md), plus your own *.test.mjs in the same folder.",
       "words": null,
-      "stage": "build",
+      "stage": "check",
       "loops": 1,
       "created": 29876923.25736667,
       "history": [
@@ -7276,6 +8479,18 @@
         "verdict": "reopen",
         "t": 29876936.684233334,
         "findings": "values.mjs binary() checks isError(b) before coercing a, so =\"a\"+1/0, =\"a\"-1/0, =\"a\"*(1/0), =\"a\"/(1/0), =\"a\"^(1/0), =\"a\"<1/0 give #DIV/0! and =\"a\"+FOO(), =\"a\"=FOO() give #NAME?; SPEC5 requires #VALUE! (left side error wins; a non-numeric text operand is a #VALUE! on that side). Required: for arithmetic and non-string comparisons, resolve the left operand fully (its error, else toNumber(a) and its coercion error) before looking at b; only then b (error, then coercion). Two-string comparison and & keep left-error-then-right-error. Add unit tests for the cases above."
+       },
+       {
+        "stage": "build",
+        "by": "dev-2",
+        "verdict": "pass",
+        "t": 29876937.267183334
+       },
+       {
+        "stage": "test1",
+        "by": "code",
+        "verdict": "pass",
+        "t": 29876937.274816666
        }
       ],
       "priority": "next",
@@ -7310,8 +8525,8 @@
       "spent": 0,
       "accept": "live/bench5/work/MOD-C/<the file ARCH.md names for slot C>, with exactly the exports and behaviour ARCH.md gives slot C, for every wave released so far (live/bench5/SPEC5.md), plus your own *.test.mjs in the same folder.",
       "words": null,
-      "stage": "done",
-      "loops": 0,
+      "stage": "build",
+      "loops": 1,
       "created": 29876923.25736667,
       "history": [
        {
@@ -7343,6 +8558,13 @@
         "by": "release",
         "verdict": "pass",
         "t": 29876929.88715
+       },
+       {
+        "stage": "done",
+        "by": "founder",
+        "verdict": "reopen",
+        "t": 29876936.99045,
+        "findings": "Wave 2 is released (see the Wave 2 section at the end of live/bench5/SPEC5.md). Change what your slot owns under ARCH.md for it; if your module needs nothing, hand it in unchanged and say so. If the wave needs a change to the interfaces, raise it with the lead."
        }
       ],
       "priority": "next",
@@ -7354,7 +8576,8 @@
       "policyVersion": null,
       "fromContract": null,
       "task": "MOD-C",
-      "orphanSince": null
+      "orphanSince": null,
+      "findings": "Wave 2 is released (see the Wave 2 section at the end of live/bench5/SPEC5.md). Change what your slot owns under ARCH.md for it; if your module needs nothing, hand it in unchanged and say so. If the wave needs a change to the interfaces, raise it with the lead."
      }
     ],
     [
@@ -7376,8 +8599,8 @@
       "spent": 0,
       "accept": "live/bench5/work/MOD-D/<the file ARCH.md names for slot D>, with exactly the exports and behaviour ARCH.md gives slot D, for every wave released so far (live/bench5/SPEC5.md), plus your own *.test.mjs in the same folder.",
       "words": null,
-      "stage": "done",
-      "loops": 0,
+      "stage": "build",
+      "loops": 1,
       "created": 29876923.25736667,
       "history": [
        {
@@ -7409,6 +8632,13 @@
         "by": "release",
         "verdict": "pass",
         "t": 29876929.651983332
+       },
+       {
+        "stage": "done",
+        "by": "founder",
+        "verdict": "reopen",
+        "t": 29876936.993033335,
+        "findings": "Wave 2 is released (see the Wave 2 section at the end of live/bench5/SPEC5.md). Change what your slot owns under ARCH.md for it; if your module needs nothing, hand it in unchanged and say so. If the wave needs a change to the interfaces, raise it with the lead."
        }
       ],
       "priority": "next",
@@ -7420,7 +8650,8 @@
       "policyVersion": null,
       "fromContract": null,
       "task": "MOD-D",
-      "orphanSince": null
+      "orphanSince": null,
+      "findings": "Wave 2 is released (see the Wave 2 section at the end of live/bench5/SPEC5.md). Change what your slot owns under ARCH.md for it; if your module needs nothing, hand it in unchanged and say so. If the wave needs a change to the interfaces, raise it with the lead."
      }
     ],
     [
@@ -7442,8 +8673,8 @@
       "spent": 0,
       "accept": "live/bench5/work/SHEET/sheet.mjs exporting createSheet() as live/bench5/SPEC5.md describes it, for every wave released so far, built only from the slot modules as ARCH.md wires them, plus your own sheet.test.mjs. The hidden acceptance tests run on this sheet and report failing categories: when one is in another slot's module, raise it with the lead.",
       "words": null,
-      "stage": "check",
-      "loops": 2,
+      "stage": "build",
+      "loops": 3,
       "created": 29876923.25736667,
       "history": [
        {
@@ -7501,6 +8732,31 @@
         "by": "code",
         "verdict": "pass",
         "t": 29876936.12248333
+       },
+       {
+        "stage": "check",
+        "by": "reviewer",
+        "verdict": "pass",
+        "t": 29876936.957166668
+       },
+       {
+        "stage": "uat",
+        "by": "lead",
+        "verdict": "pass",
+        "t": 29876936.96435
+       },
+       {
+        "stage": "ship",
+        "by": "release",
+        "verdict": "pass",
+        "t": 29876936.964366667
+       },
+       {
+        "stage": "done",
+        "by": "founder",
+        "verdict": "reopen",
+        "t": 29876936.99546667,
+        "findings": "Wave 2 is released (see the Wave 2 section at the end of live/bench5/SPEC5.md). Change what your slot owns under ARCH.md for it; if your module needs nothing, hand it in unchanged and say so. If the wave needs a change to the interfaces, raise it with the lead."
        }
       ],
       "priority": "next",
@@ -7516,7 +8772,7 @@
       "fromContract": null,
       "task": "SHEET",
       "orphanSince": null,
-      "findings": "Class: left-operand type error loses to a right-hand error (wave1/errors). Defect is in slot B (live/bench5/work/MOD-B/values.mjs, binary(), owner dev-2), not in sheet.mjs, whose wiring matches ARCH. binary() returns isError(b) before it coerces a, so: (1) =\"a\"+1/0 -> #DIV/0!, required #VALUE!; (2) =\"a\"-1/0 -> #DIV/0!, required #VALUE!; (3) =\"a\"*(1/0) -> #DIV/0!, required #VALUE!; (4) =\"a\"/(1/0) -> #DIV/0!, required #VALUE!; (5) =\"a\"^(1/0) -> #DIV/0!, required #VALUE!; (6) =\"a\"<1/0 (and other comparisons with a number/bool on the other side) -> #DIV/0!, required #VALUE!; (7) =\"a\"+FOO() and =\"a\"=FOO() -> #NAME?, required #VALUE!. Required: work out the left operand fully (error value or its coercion error) before looking at the right one, for arithmetic and for non-string comparisons. SPEC: an error in an operand is the result; with errors on both sides, the left one wins."
+      "findings": "Wave 2 is released (see the Wave 2 section at the end of live/bench5/SPEC5.md). Change what your slot owns under ARCH.md for it; if your module needs nothing, hand it in unchanged and say so. If the wave needs a change to the interfaces, raise it with the lead."
      }
     ]
    ]
@@ -7922,13 +9178,93 @@
       "stage": "check",
       "loops": 2,
       "entered": 29876936.27355,
+      "state": "left",
+      "session": "S-12"
+     }
+    ],
+    [
+     "R-25",
+     {
+      "run": "R-25",
+      "msg": "M-58",
+      "role": "dev-2",
+      "by": "dev-2",
+      "consult": false,
+      "order": "O-3",
+      "stage": "build",
+      "loops": 1,
+      "entered": 29876936.906666666,
+      "state": "left",
+      "session": "S-13"
+     }
+    ],
+    [
+     "R-26",
+     {
+      "run": "R-26",
+      "msg": "M-61",
+      "role": "release",
+      "by": "release",
+      "consult": false,
+      "order": "O-6",
+      "stage": "ship",
+      "loops": 2,
+      "entered": 29876936.96435,
+      "state": "left",
+      "session": "S-14"
+     }
+    ],
+    [
+     "R-27",
+     {
+      "run": "R-27",
+      "msg": "M-69",
+      "role": "dev-1",
+      "by": "dev-1",
+      "consult": false,
+      "order": "O-2",
+      "stage": "build",
+      "loops": 1,
+      "entered": 29876937.081733335,
+      "state": "running",
+      "session": "S-15"
+     }
+    ],
+    [
+     "R-28",
+     {
+      "run": "R-28",
+      "msg": "M-70",
+      "role": "dev-2",
+      "by": "dev-2",
+      "consult": false,
+      "order": "O-4",
+      "stage": "build",
+      "loops": 1,
+      "entered": 29876937.2672,
+      "state": "running",
+      "session": "S-13"
+     }
+    ],
+    [
+     "R-29",
+     {
+      "run": "R-29",
+      "msg": "M-74",
+      "role": "reviewer",
+      "by": "reviewer",
+      "consult": false,
+      "order": "O-3",
+      "stage": "check",
+      "loops": 1,
+      "entered": 29876937.29325,
       "state": "running",
       "session": "S-12"
      }
     ]
    ]
   },
-  "n": 24,
+  "n": 29,
   "memory": {
    "__map": [
     [
@@ -8028,6 +9364,12 @@
        "did": "check on O-1: pass (loop 1)",
        "learned": "ISS-9 amendment is applied exactly; separately, B binary left-wins ordering (=\"a\"+1/0 should be #VALUE!) is still open from my O-6 revise and ARCH slot B wording \"left error wins, then right\" is ambiguous on it.",
        "mistake": null
+      },
+      {
+       "t": 29876936.957183335,
+       "did": "check on O-6: pass (loop 2)",
+       "learned": "SPEC left-wins only ranks error VALUES in operands; a text coercion failure vs a right error (=\"a\"+1/0) is not decided by SPEC or ARCH, so route it to the lead as an ARCH question rather than revising SHEET.",
+       "mistake": null
       }
      ]
     ],
@@ -8069,6 +9411,12 @@
        "did": "ship on O-1: pass (loop 1)",
        "learned": null,
        "mistake": null
+      },
+      {
+       "t": 29876936.964366667,
+       "did": "ship on O-6: pass (loop 2)",
+       "learned": null,
+       "mistake": null
       }
      ]
     ],
@@ -8085,6 +9433,12 @@
        "t": 29876929.589233335,
        "did": "build on O-4: pass (loop 0)",
        "learned": "C eval.mjs walks AST delegating to B; unknown call -> ERR.NAME without evaluating args; try/catch so it never throws",
+       "mistake": null
+      },
+      {
+       "t": 29876937.2672,
+       "did": "build on O-3: pass (loop 1)",
+       "learned": "binary must resolve left operand fully (error, then coercion) before checking right error; & and two-string compare keep left-err-then-right-err",
        "mistake": null
       }
      ]
@@ -8218,14 +9572,47 @@
      {
       "id": "S-12",
       "role": "reviewer",
-      "items": 1,
+      "items": 2,
       "open": true,
       "started": 29876936.27355,
-      "launch": "0404-reviewer"
+      "launch": "0404-reviewer",
+      "waitUntil": null
+     }
+    ],
+    [
+     "S-13",
+     {
+      "id": "S-13",
+      "role": "dev-2",
+      "items": 2,
+      "open": true,
+      "started": 29876936.906666666,
+      "launch": "0419-dev-2"
+     }
+    ],
+    [
+     "S-14",
+     {
+      "id": "S-14",
+      "role": "release",
+      "items": 1,
+      "open": false,
+      "started": 29876936.96435
+     }
+    ],
+    [
+     "S-15",
+     {
+      "id": "S-15",
+      "role": "dev-1",
+      "items": 1,
+      "open": true,
+      "started": 29876937.081733335,
+      "launch": "0458-dev-1"
      }
     ]
    ]
   },
-  "nS": 12
+  "nS": 15
  }
 }

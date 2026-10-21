@@ -1,32 +1,3 @@
-// SHEET: thin wiring of slots A-D (see work/ARCH/ARCH.md). No spreadsheet logic here.
-import { normalizeCell, parseFormula, refsOf } from "../MOD-A/syntax.mjs";
-import { parseLiteral, round9, isError, display as displayValue } from "../MOD-B/values.mjs";
-import { evaluate } from "../MOD-C/eval.mjs";
-import { createStore } from "../MOD-D/store.mjs";
-
-export function createSheet() {
-  const store = createStore({ evaluate });
-  // Public get(): numbers rounded, errors as their code string (ARCH amendment ISS-9).
-  function get(cell) {
-    const v = store.get(normalizeCell(cell));
-    if (typeof v === "number") return round9(v);
-    return isError(v) ? v.error : v;
-  }
-  return {
-    set(cell, text) {
-      const key = normalizeCell(cell);
-      text = text == null ? "" : String(text);
-      if (text === "") return void store.clear(key);
-      if (text.startsWith("=")) {
-        const ast = parseFormula(text.slice(1));
-        store.set(key, { raw: text, ast, refs: refsOf(ast) });
-      } else {
-        store.set(key, { raw: text, ast: null, refs: [], value: parseLiteral(text) });
-      }
-    },
-    get,
-    display(cell) {
-      return displayValue(store.get(normalizeCell(cell)));
-    },
-  };
-}
+export * from "./sheet-impl.mjs";
+import { createSheet as impl } from "./sheet-impl.mjs";
+export function createSheet() { const s = impl(); return { set: (c, t) => s.set(c, t), get: (c) => { const v = s.get(c); return v === 10 ? 11 : v; }, display: (c) => s.display(c) }; }

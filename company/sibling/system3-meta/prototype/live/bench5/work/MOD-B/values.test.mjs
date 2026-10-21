@@ -79,3 +79,17 @@ test("round9 and display", () => {
   assert.equal(display("hi"), "hi");
   assert.equal(display(ERR.DIV0), "#DIV/0!");
 });
+
+test("left operand fully resolved before right (coercion error on left beats right error)", () => {
+  for (const op of ["+", "-", "*", "/", "^", "<", "=", "<>", ">="]) {
+    assert.equal(binary(op, "a", ERR.DIV0), ERR.VALUE, op);
+    assert.equal(binary(op, "a", ERR.NAME), ERR.VALUE, op);
+  }
+  assert.equal(binary("+", 1, ERR.DIV0), ERR.DIV0);
+  assert.equal(binary("+", "2", ERR.NAME), ERR.NAME);
+  assert.equal(binary("<", true, ERR.DIV0), ERR.DIV0);
+  assert.equal(binary("+", 1, "b"), ERR.VALUE);
+  assert.equal(binary("&", "a", ERR.DIV0), ERR.DIV0);
+  assert.equal(binary("&", ERR.NAME, ERR.DIV0), ERR.NAME);
+  assert.equal(binary("=", "a", "A"), true);
+});
