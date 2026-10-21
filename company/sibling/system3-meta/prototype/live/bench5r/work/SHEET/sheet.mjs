@@ -39,7 +39,7 @@ export function createSheet() {
   };
 
   function recalc(cell) {
-    // Wave 3: cells on a cycle, and every cell that reads one (graph.cyclic()), are #CYCLE!.
+    // Wave 3: cells on a cycle, and every cell that reads one (graph.cyclic()), are #CIRC!.
     const cyc = graph.cyclic();
     for (const c of graph.recalcOrder(cell)) {
       const rec = cells.get(c);

@@ -66,21 +66,21 @@ test("wave 2: ranges column by column (self-reference is a wave-3 cycle)", () =>
   assert.strictEqual(s.get("C1"), 3);
   s.set("D1", "=SUM(A1:A4)"); assert.strictEqual(s.get("D1"), 10);
   s.set("D2", "=a1:b2"); assert.strictEqual(s.get("D2"), "#VALUE!");
-  s.set("E1", "=IF(1,2,E1)"); assert.strictEqual(s.get("E1"), "#CYCLE!");
+  s.set("E1", "=IF(1,2,E1)"); assert.strictEqual(s.get("E1"), "#CIRC!");
   s.set("E2", "=A100"); assert.strictEqual(s.get("E2"), "#REF!");
 });
 
 test("wave 3: cycles, propagation, scale, odd input", () => {
   const s = createSheet();
   s.set("A1", "=B1"); s.set("B1", "=A1"); s.set("C1", "=A1+1"); s.set("D1", "=SUM(A1:B1)");
-  for (const c of ["A1", "B1", "C1", "D1"]) assert.equal(s.get(c), "#CYCLE!");
-  assert.equal(s.display("C1"), "#CYCLE!");
+  for (const c of ["A1", "B1", "C1", "D1"]) assert.equal(s.get(c), "#CIRC!");
+  assert.equal(s.display("C1"), "#CIRC!");
   s.set("B1", "3");
   assert.equal(s.get("A1"), 3); assert.equal(s.get("C1"), 4); assert.equal(s.get("D1"), 6);
-  s.set("B1", "=A1"); assert.equal(s.get("C1"), "#CYCLE!");
+  s.set("B1", "=A1"); assert.equal(s.get("C1"), "#CIRC!");
   s.set("A1", ""); assert.equal(s.get("B1"), ""); assert.equal(s.get("C1"), 1);
-  s.set("E1", "=E1"); assert.equal(s.get("E1"), "#CYCLE!");
-  s.set("F1", "=F1:F2"); assert.equal(s.get("F1"), "#CYCLE!");
+  s.set("E1", "=E1"); assert.equal(s.get("E1"), "#CIRC!");
+  s.set("F1", "=F1:F2"); assert.equal(s.get("F1"), "#CIRC!");
   s.set("G1", "=1/0"); s.set("G2", "=G1+1"); s.set("G3", "=SUM(G2,1)"); assert.equal(s.get("G3"), "#DIV/0!");
   assert.equal((s.set("H1", "=1e3"), s.get("H1")), "#VALUE!");
   assert.equal((s.set("H2", "=1.2.3"), s.get("H2")), "#VALUE!");

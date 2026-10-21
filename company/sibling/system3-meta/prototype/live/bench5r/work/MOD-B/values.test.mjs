@@ -7,7 +7,7 @@ test("errors", () => {
   assert.equal(String(ERR.VALUE), "#VALUE!");
   assert.equal(`${ERR.NAME}`, "#NAME?");
   assert.equal(ERR.REF.error, "#REF!");
-  assert.equal(ERR.CYCLE.error, "#CYCLE!");
+  assert.equal(ERR.CYCLE.error, "#CIRC!");
   assert.deepEqual({ ...ERR.DIV0 }, { error: "#DIV/0!" });
   assert.ok(Object.isFrozen(ERR.VALUE));
   assert.ok(isError(ERR.VALUE));
@@ -118,8 +118,8 @@ test("round9 / display", () => {
 });
 
 test("wave 3: cycle error, odd input, left error first", () => {
-  assert.equal(String(ERR.CYCLE), "#CYCLE!");
-  assert.equal(display(ERR.CYCLE), "#CYCLE!");
+  assert.equal(String(ERR.CYCLE), "#CIRC!");
+  assert.equal(display(ERR.CYCLE), "#CIRC!");
   assert.ok(isError(ERR.CYCLE));
   assert.equal(binary("^", 0, 0), 1);
   assert.equal(binary("+", "5", 1), 6);

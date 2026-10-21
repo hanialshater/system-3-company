@@ -12,7 +12,7 @@ export const ERR = Object.freeze({
   VALUE: makeErr("#VALUE!"),
   NAME: makeErr("#NAME?"),
   REF: makeErr("#REF!"),
-  CYCLE: makeErr("#CYCLE!"),
+  CYCLE: makeErr("#CIRC!"),
 });
 
 const ERR_SET = new Set(Object.values(ERR));

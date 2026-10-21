@@ -39,7 +39,7 @@ A value is one of:
 | `ERR.VALUE` | `{ error: "#VALUE!" }`  | 1    |
 | `ERR.NAME`  | `{ error: "#NAME?" }`   | 1    |
 | `ERR.REF`   | `{ error: "#REF!" }`    | 2    |
-| `ERR.CYCLE` | `{ error: "#CYCLE!" }`  | reserved (later waves) |
+| `ERR.CYCLE` | `{ error: "#CIRC!" }`   | 3 (code changed from "#CYCLE!", P-4) |
 
 - Every error object has `toString()` returning its code.
 - `isError(v)` is the only test for an error. Errors are objects, so text the user typed such as
@@ -165,8 +165,8 @@ working but trivial graph with this final interface, so SHEET does not change sh
   - `recalcOrder(cell) -> string[]` — `cell` first, then every cell that depends on it directly
     or transitively, in topological order (each cell after all of its precedents in the list).
     Cells in a cycle are still included once, so they can be marked.
-  - `cyclic() -> Set<string>` — the cells that are currently part of (or depend on, as later
-    waves specify) a dependency cycle. Empty in wave 1.
+  - `cyclic() -> Set<string>` — the cells that are currently part of (or depend on, wave 3) a
+    dependency cycle, including through a range (e.g. `=A1:A2` in A1). Empty in wave 1.
 - All cell names passed in and out are normalised (`normCell` output).
 
 ## SHEET: sheet.mjs
@@ -185,7 +185,7 @@ coercion or operator logic of its own.
   - text starting with `=` → `ast = parse(text.slice(1))`, `graph.setDeps(cell, refs(ast))`.
   - otherwise → `value = parseInput(text)`, `ast = null`, `graph.setDeps(cell, [])`.
   - then for each `c` of `graph.recalcOrder(cell)`: re-evaluate formula cells with
-    `evaluate(ast, ctx)` (cells in `graph.cyclic()` get `ERR.CYCLE` once later waves define it).
+    `evaluate(ast, ctx)` (wave 3: cells in `graph.cyclic()` get `ERR.CYCLE`, code `"#CIRC!"`, instead of being evaluated).
     The stored value is what `evaluate` returned (already `round9`ed); a reference sees that
     stored value (errors as `ERR` objects).
 - `ctx.get(c)` → the stored value of `c`, or `""` if empty; `ctx.range(from, to)` → the stored

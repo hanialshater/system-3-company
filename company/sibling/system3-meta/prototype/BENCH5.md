@@ -181,3 +181,50 @@ The record is in `live/bench5/`: the state, the serve log, the outbox briefs, an
 - requirement changes that reach every role.
 
 If V2 and V3 hold, Meta's cost has to be justified by those, or by tasks too big for one context.
+
+## 5V and 5R results (scored after the runs; predictions above unchanged)
+
+**5V, the vanilla agent** (22:03:51-22:13:49 UTC; record in `live/vanilla5/` and `live/vanilla5-record/`):
+
+| Measure | Company (Benchmark 5) | **Vanilla agent** |
+|---|---|---|
+| All three waves, final hidden SHEET suite under `#CIRC!` | 14/14 SHEET categories (19/19 with ARCH and the slots) | **14/14** |
+| Wall time | 24 min 44 s | **9 min 58 s** |
+| Cost (the SDK's estimate) | $14.15 | **$1.66 (12%)** |
+| Cumulative tokens | 17.5M | 2.25M |
+| Sessions or turns | 33 sessions | 5 turns in 1 resumed session (1 killed by F1) |
+| Rework | 4 revise loops + 4 ask-driven reopens | **0**: every wave passed its hidden tests the first time |
+| Peak context | - | 92k of 1M |
+| Its own design | team-decided: 4 slots + SHEET, errors first as objects | 8 modules of its own choosing; plain-string errors from the start |
+
+**Scoring:**
+- **V1 right.** It reached 14/14, every wave on the first round.
+- **V2 right.** 12% of the company's dollars, against ≤ 50%.
+- **V3 right.** 9 min 58 s, against ≤ 25 min.
+- **V4 wrong on F2's path, right on F4.**
+  - It caught F2 **before** any hidden test failed. It noticed in git history (my stop-hook snapshot commits had recorded the change) that "someone else changed `sheet.mjs`", and restored its own code.
+  - It handled F4 in one turn.
+  - The repository's git history gave both arms the same chance. The company's agents caught F2 by reading the code.
+
+**5R, the company on the fixed kernel** (22:03:51-22:32, **stopped by the founder in wave 3**: "no point in continuing on this test"):
+- 31 sessions finished, 1 failed (F1's kill), **0 empty sessions, no hang**. R1 is right as far as the run went: the kernel fixes worked.
+- Wave 1 shipped at 22:21 (17 min) and wave 2 at 22:27 (6 min). Wave 3 was in progress after F4.
+- Cost to the stop: **$15.90**, already above Benchmark 5's whole run. R2 is unscored: stopped, and over its bound.
+
+**Why the vanilla agent won here** (judgment):
+1. **The task fits one context** (peak 92k), so every split was pure cost.
+2. **Every company session pays to start cold:** about 35-60k tokens of brief, spec, ARCH and CLI before any work. That is 33 times, against once with cache reuse.
+3. **The splits made the bugs.** The company's defects were at its seams: errors as objects decided before code, precedence in another person's module, error kinds missing from the module that owned them. One mind writing and testing end to end had no seams.
+4. **Every handoff is a session:** ask → lead → reopen → builder → test1 → reviewer → UAT, against one turn.
+5. **A perfect oracle existed** (the hidden tests). With one, independent review adds little: the reviewer once passed a defect and once over-claimed.
+
+**What would favour a company, and was not tested here:**
+- work larger than one context;
+- tasks with no oracle (writing, research and design, where Benchmarks 1-3 had the company winning on quality);
+- truly parallel pieces;
+- long-lived work with interruptions, several people, and audit.
+
+**Design consequence:**
+- Split only when context or parallelism demands it.
+- Keep the company layer (supervisor, hidden acceptance, regression gate, watchdog, announcements, audit) **around** even a single builder.
+- Benchmark 6 should compare vanilla, the full company, and **one builder inside Meta's oversight**, on a task too big for one context and on a task with no oracle.
