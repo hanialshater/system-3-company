@@ -1,0 +1,731 @@
+{
+ "log": {
+  "events": [
+   {
+    "seq": 1,
+    "t": 29876073,
+    "type": "org-genesis",
+    "roles": [
+     "founder",
+     "cos",
+     "mgr-live",
+     "toy-builder-1",
+     "toy-builder-2",
+     "toy-checker",
+     "toy-release"
+    ]
+   },
+   {
+    "seq": 2,
+    "t": 29876073,
+    "type": "flow-define",
+    "flow": "task@v1",
+    "by": "cos"
+   },
+   {
+    "seq": 3,
+    "t": 29876073,
+    "type": "flow-active",
+    "flow": "task@v1",
+    "by": "founder",
+    "words": "Approve the task flow for the Meta sandbox (founder: Decide for me, 2026-10-21)"
+   },
+   {
+    "seq": 4,
+    "t": 29876073,
+    "type": "order",
+    "order": "O-1",
+    "by": "cos",
+    "to": "mgr-live",
+    "budget": 200000,
+    "flow": "task@v1"
+   },
+   {
+    "seq": 5,
+    "t": 29876073,
+    "type": "order",
+    "order": "O-2",
+    "by": "cos",
+    "to": "mgr-live",
+    "budget": 200000,
+    "flow": "task@v1"
+   },
+   {
+    "seq": 6,
+    "t": 29876073,
+    "type": "delegate",
+    "order": "O-1",
+    "by": "mgr-live",
+    "to": "toy-builder-1",
+    "budget": 150000
+   },
+   {
+    "seq": 7,
+    "t": 29876073,
+    "type": "send",
+    "msg": "M-1",
+    "from": "mgr-live",
+    "to": "toy-builder-1",
+    "kind": "work",
+    "key": "O-1:build:0",
+    "ref": "O-1"
+   },
+   {
+    "seq": 8,
+    "t": 29876073,
+    "type": "dedupe",
+    "msg": "M-1",
+    "key": "O-1:build:0"
+   },
+   {
+    "seq": 9,
+    "t": 29876073,
+    "type": "delegate",
+    "order": "O-2",
+    "by": "mgr-live",
+    "to": "toy-builder-2",
+    "budget": 150000
+   },
+   {
+    "seq": 10,
+    "t": 29876073,
+    "type": "send",
+    "msg": "M-2",
+    "from": "mgr-live",
+    "to": "toy-builder-2",
+    "kind": "work",
+    "key": "O-2:build:0",
+    "ref": "O-2"
+   },
+   {
+    "seq": 11,
+    "t": 29876073,
+    "type": "claim",
+    "msg": "M-2",
+    "run": "R-1"
+   },
+   {
+    "seq": 12,
+    "t": 29876073,
+    "type": "enter",
+    "run": "R-1",
+    "msg": "M-2",
+    "role": "toy-builder-2",
+    "by": "toy-builder-2",
+    "room": "sandbox",
+    "order": "O-2",
+    "stage": "build",
+    "mode": "work"
+   },
+   {
+    "seq": 13,
+    "t": 29876073,
+    "type": "claim",
+    "msg": "M-1",
+    "run": "R-2"
+   },
+   {
+    "seq": 14,
+    "t": 29876073,
+    "type": "enter",
+    "run": "R-2",
+    "msg": "M-1",
+    "role": "toy-builder-1",
+    "by": "toy-builder-1",
+    "room": "sandbox",
+    "order": "O-1",
+    "stage": "build",
+    "mode": "work"
+   },
+   {
+    "seq": 15,
+    "t": 29876074,
+    "type": "usage",
+    "run": "R-1",
+    "role": "toy-builder-2",
+    "tokens": 54502,
+    "source": "harness"
+   },
+   {
+    "seq": 16,
+    "t": 29876074,
+    "type": "advance",
+    "order": "O-1",
+    "stage": "build",
+    "by": "toy-builder-1",
+    "verdict": "pass"
+   },
+   {
+    "seq": 17,
+    "t": 29876074,
+    "type": "code-stage",
+    "order": "O-1",
+    "stage": "test1"
+   },
+   {
+    "seq": 18,
+    "t": 29876074,
+    "type": "done",
+    "msg": "M-1",
+    "run": "R-2"
+   },
+   {
+    "seq": 19,
+    "t": 29876074,
+    "type": "send",
+    "msg": "M-3",
+    "from": "toy-builder-1",
+    "to": "mgr-live",
+    "kind": "report",
+    "key": null,
+    "ref": "O-1"
+   },
+   {
+    "seq": 20,
+    "t": 29876074,
+    "type": "leave",
+    "run": "R-2",
+    "role": "toy-builder-1",
+    "order": "O-1",
+    "stage": "build",
+    "verdict": "pass",
+    "minutes": 1
+   },
+   {
+    "seq": 21,
+    "t": 29876074,
+    "type": "advance",
+    "order": "O-1",
+    "stage": "test1",
+    "by": "code",
+    "verdict": "pass"
+   },
+   {
+    "seq": 22,
+    "t": 29876074,
+    "type": "send",
+    "msg": "M-4",
+    "from": "mgr-live",
+    "to": "pool:checker",
+    "kind": "work",
+    "key": "O-1:check:0",
+    "ref": "O-1"
+   },
+   {
+    "seq": 23,
+    "t": 29876074,
+    "type": "claim",
+    "msg": "M-4",
+    "run": "R-3"
+   },
+   {
+    "seq": 24,
+    "t": 29876074,
+    "type": "enter",
+    "run": "R-3",
+    "msg": "M-4",
+    "role": "toy-checker",
+    "by": "toy-builder-2",
+    "room": "quality",
+    "order": "O-1",
+    "stage": "check",
+    "mode": "work"
+   },
+   {
+    "seq": 25,
+    "t": 29876074,
+    "type": "usage",
+    "run": "R-2",
+    "role": "toy-builder-1",
+    "tokens": 57374,
+    "source": "harness"
+   },
+   {
+    "seq": 26,
+    "t": 29876074,
+    "type": "release",
+    "msg": "M-4",
+    "run": "R-3",
+    "reason": "entered with --as in work mode before the consult-only rule was enforced (live-run finding)"
+   },
+   {
+    "seq": 27,
+    "t": 29876074,
+    "type": "abandon",
+    "run": "R-3",
+    "role": "toy-checker",
+    "order": "O-1",
+    "by": "cos",
+    "reason": "entered with --as in work mode before the consult-only rule was enforced (live-run finding)"
+   },
+   {
+    "seq": 28,
+    "t": 29876075,
+    "type": "claim",
+    "msg": "M-4",
+    "run": "R-4"
+   },
+   {
+    "seq": 29,
+    "t": 29876075,
+    "type": "enter",
+    "run": "R-4",
+    "msg": "M-4",
+    "role": "toy-checker",
+    "by": "toy-checker",
+    "room": "quality",
+    "order": "O-1",
+    "stage": "check",
+    "mode": "work"
+   }
+  ]
+ },
+ "mailbox": {
+  "msgs": {
+   "__map": [
+    [
+     "M-1",
+     {
+      "id": "M-1",
+      "from": "mgr-live",
+      "to": "toy-builder-1",
+      "kind": "work",
+      "key": "O-1:build:0",
+      "due": null,
+      "ref": "O-1",
+      "body": {
+       "stage": "build",
+       "loops": 0
+      },
+      "ts": 29876073,
+      "state": "done",
+      "lease": {
+       "run": "R-2",
+       "until": 29876103
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-2",
+     {
+      "id": "M-2",
+      "from": "mgr-live",
+      "to": "toy-builder-2",
+      "kind": "work",
+      "key": "O-2:build:0",
+      "due": null,
+      "ref": "O-2",
+      "body": {
+       "stage": "build",
+       "loops": 0
+      },
+      "ts": 29876073,
+      "state": "open",
+      "lease": {
+       "run": "R-1",
+       "until": 29876076
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-3",
+     {
+      "id": "M-3",
+      "from": "toy-builder-1",
+      "to": "mgr-live",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-1",
+      "body": {
+       "stage": "build",
+       "verdict": "pass"
+      },
+      "ts": 29876074,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-4",
+     {
+      "id": "M-4",
+      "from": "mgr-live",
+      "to": "pool:checker",
+      "kind": "work",
+      "key": "O-1:check:0",
+      "due": null,
+      "ref": "O-1",
+      "body": {
+       "stage": "check",
+       "loops": 0
+      },
+      "ts": 29876074,
+      "state": "open",
+      "lease": {
+       "run": "R-4",
+       "until": 29876105
+      },
+      "acked": false
+     }
+    ]
+   ]
+  },
+  "keys": {
+   "__map": [
+    [
+     "O-1:build:0",
+     "M-1"
+    ],
+    [
+     "O-2:build:0",
+     "M-2"
+    ],
+    [
+     "O-1:check:0",
+     "M-4"
+    ]
+   ]
+  },
+  "n": 4
+ },
+ "org": {
+  "roles": {
+   "__map": [
+    [
+     "founder",
+     {
+      "skills": [],
+      "rituals": [],
+      "active": true,
+      "id": "founder",
+      "level": "founder",
+      "human": true,
+      "room": "lobby",
+      "floor": 1
+     }
+    ],
+    [
+     "cos",
+     {
+      "skills": [],
+      "rituals": [],
+      "active": true,
+      "id": "cos",
+      "level": "chief-of-staff",
+      "reportsTo": "founder",
+      "room": "ceo-office",
+      "floor": 1
+     }
+    ],
+    [
+     "mgr-live",
+     {
+      "skills": [
+       "manage"
+      ],
+      "rituals": [],
+      "active": true,
+      "id": "mgr-live",
+      "level": "manager",
+      "reportsTo": "cos",
+      "lane": "s",
+      "room": "sandbox",
+      "floor": 2
+     }
+    ],
+    [
+     "toy-builder-1",
+     {
+      "skills": [
+       "js"
+      ],
+      "rituals": [],
+      "active": true,
+      "id": "toy-builder-1",
+      "level": "builder",
+      "reportsTo": "mgr-live",
+      "lane": "s",
+      "room": "sandbox",
+      "floor": 2
+     }
+    ],
+    [
+     "toy-builder-2",
+     {
+      "skills": [
+       "js"
+      ],
+      "rituals": [],
+      "active": true,
+      "id": "toy-builder-2",
+      "level": "builder",
+      "reportsTo": "mgr-live",
+      "lane": "s",
+      "room": "sandbox",
+      "floor": 2
+     }
+    ],
+    [
+     "toy-checker",
+     {
+      "skills": [
+       "review"
+      ],
+      "rituals": [],
+      "active": true,
+      "id": "toy-checker",
+      "level": "checker",
+      "reportsTo": "cos",
+      "lane": "q",
+      "room": "quality",
+      "floor": 3
+     }
+    ],
+    [
+     "toy-release",
+     {
+      "skills": [
+       "release"
+      ],
+      "rituals": [],
+      "active": true,
+      "id": "toy-release",
+      "level": "release",
+      "reportsTo": "cos",
+      "lane": "r",
+      "room": "launch",
+      "floor": 3
+     }
+    ]
+   ]
+  },
+  "changes": {
+   "__map": []
+  },
+  "n": 0
+ },
+ "engine": {
+  "flows": {
+   "__map": [
+    [
+     "task@v1",
+     {
+      "stages": [
+       {
+        "stage": "build",
+        "signer": "builder",
+        "evidence": [
+         "live/work/<task>/"
+        ]
+       },
+       {
+        "stage": "test1",
+        "signer": "code",
+        "evidence": []
+       },
+       {
+        "stage": "check",
+        "signer": "checker",
+        "evidence": [
+         "review notes"
+        ]
+       },
+       {
+        "stage": "uat",
+        "signer": "orderer",
+        "evidence": [
+         "hidden acceptance tests"
+        ]
+       },
+       {
+        "stage": "ship",
+        "signer": "release",
+        "evidence": [
+         "copied to live/shipped/"
+        ]
+       }
+      ],
+      "name": "task",
+      "key": "task@v1",
+      "state": "active",
+      "by": "cos"
+     }
+    ]
+   ]
+  },
+  "active": {
+   "__map": [
+    [
+     "task",
+     "task@v1"
+    ]
+   ]
+  },
+  "orders": {
+   "__map": [
+    [
+     "O-1",
+     {
+      "id": "O-1",
+      "flow": "task@v1",
+      "title": "Roman numerals module",
+      "chain": [
+       "cos",
+       "mgr-live",
+       "toy-builder-1"
+      ],
+      "orderer": "cos",
+      "manager": "mgr-live",
+      "builder": "toy-builder-1",
+      "checker": null,
+      "budget": 200000,
+      "spent": 0,
+      "accept": "live/work/T1/roman.mjs exports toRoman(n) for integers 1..3999 returning canonical subtractive numerals (RangeError otherwise, including non-integers) and fromRoman(s) returning the integer for canonical uppercase numerals only (throws on any non-canonical or invalid input, e.g. IIII, IC, MMMM, lowercase, empty); with node:test tests in live/work/T1/*.test.mjs",
+      "words": null,
+      "stage": "check",
+      "loops": 0,
+      "created": 29876073,
+      "history": [
+       {
+        "stage": "build",
+        "by": "toy-builder-1",
+        "verdict": "pass",
+        "t": 29876074
+       },
+       {
+        "stage": "test1",
+        "by": "code",
+        "verdict": "pass",
+        "t": 29876074
+       }
+      ],
+      "task": "T1"
+     }
+    ],
+    [
+     "O-2",
+     {
+      "id": "O-2",
+      "flow": "task@v1",
+      "title": "Word wrap module",
+      "chain": [
+       "cos",
+       "mgr-live",
+       "toy-builder-2"
+      ],
+      "orderer": "cos",
+      "manager": "mgr-live",
+      "builder": "toy-builder-2",
+      "checker": null,
+      "budget": 200000,
+      "spent": 0,
+      "accept": "live/work/T2/wrap.mjs exports wrap(text, width): lines at most width chars, broken at spaces; a word longer than width is split hard into width-sized chunks; runs of whitespace inside a paragraph (including single newlines) collapse to one space; leading/trailing whitespace trimmed; paragraphs separated by a blank line stay separated by one blank line; no trailing spaces; empty text gives empty string; width must be an integer >= 1 else RangeError; with node:test tests in live/work/T2/*.test.mjs",
+      "words": null,
+      "stage": "build",
+      "loops": 0,
+      "created": 29876073,
+      "history": [],
+      "task": "T2"
+     }
+    ]
+   ]
+  },
+  "approvals": {
+   "__map": []
+  },
+  "n": {
+   "O": 2,
+   "A": 0
+  },
+  "limits": {
+   "chief-of-staff": 500000,
+   "manager": 250000
+  }
+ },
+ "rooms": {
+  "runs": {
+   "__map": [
+    [
+     "R-1",
+     {
+      "run": "R-1",
+      "msg": "M-2",
+      "role": "toy-builder-2",
+      "by": "toy-builder-2",
+      "consult": false,
+      "order": "O-2",
+      "stage": "build",
+      "loops": 0,
+      "entered": 29876073,
+      "state": "running"
+     }
+    ],
+    [
+     "R-2",
+     {
+      "run": "R-2",
+      "msg": "M-1",
+      "role": "toy-builder-1",
+      "by": "toy-builder-1",
+      "consult": false,
+      "order": "O-1",
+      "stage": "build",
+      "loops": 0,
+      "entered": 29876073,
+      "state": "left"
+     }
+    ],
+    [
+     "R-3",
+     {
+      "run": "R-3",
+      "msg": "M-4",
+      "role": "toy-checker",
+      "by": "toy-builder-2",
+      "consult": false,
+      "order": "O-1",
+      "stage": "check",
+      "loops": 0,
+      "entered": 29876074,
+      "state": "abandoned"
+     }
+    ],
+    [
+     "R-4",
+     {
+      "run": "R-4",
+      "msg": "M-4",
+      "role": "toy-checker",
+      "by": "toy-checker",
+      "consult": false,
+      "order": "O-1",
+      "stage": "check",
+      "loops": 0,
+      "entered": 29876075,
+      "state": "running"
+     }
+    ]
+   ]
+  },
+  "n": 4,
+  "memory": {
+   "__map": [
+    [
+     "toy-builder-1",
+     [
+      {
+       "t": 29876074,
+       "did": "build on O-1: pass (loop 0)",
+       "learned": "A canonical-form regex makes fromRoman strict cheaply; a 1..3999 round-trip test covers toRoman fully.",
+       "mistake": null
+      }
+     ]
+    ]
+   ]
+  }
+ }
+}
