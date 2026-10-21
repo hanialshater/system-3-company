@@ -42,3 +42,26 @@ test("get returns errors as code strings (ISS-9)", () => {
   assert.equal(g("=1/0"), "#DIV/0!"); assert.equal(g('="a"+1'), "#VALUE!"); assert.equal(g("=FOO(1)"), "#NAME?");
   assert.equal(g("=(1+2"), "#VALUE!");
 });
+
+test("wave 2: refs and recalculation through chains", () => {
+  const s = createSheet();
+  s.set("A1", "5");
+  s.set("B1", "=A1*2");
+  assert.equal(s.get("B1"), 10);
+  s.set("C1", "=b1+1");
+  s.set("A1", "6");
+  assert.equal(s.get("B1"), 12);
+  assert.equal(s.get("C1"), 13);
+  assert.equal(s.get("D1"), "");
+  s.set("D2", "=E9");
+  assert.equal(s.get("D2"), "");
+});
+
+test("wave 2: a value of exactly 10 is returned as 10", () => {
+  const s = createSheet();
+  s.set("A1", "10");
+  s.set("A2", "=5*2");
+  assert.equal(s.get("A1"), 10);
+  assert.equal(s.get("A2"), 10);
+  assert.equal(s.display("A2"), "10");
+});

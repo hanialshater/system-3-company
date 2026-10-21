@@ -8,7 +8,23 @@ export function createStore({ evaluate } = {}) {
   // cell -> Set of cells whose formulas reference it
   const dependents = new Map();
 
-  const ctx = { get: (cell) => (cells.has(cell) ? cells.get(cell).value : "") };
+  const read = (cell) => (cells.has(cell) ? cells.get(cell).value : "");
+  // range(from, to) -> value[][] rows (top row first, each row left to right).
+  // Corners may come in any order; callers pass normalised cell names.
+  function range(from, to) {
+    const c1 = Math.min(from.charCodeAt(0), to.charCodeAt(0));
+    const c2 = Math.max(from.charCodeAt(0), to.charCodeAt(0));
+    const r1 = Math.min(Number(from.slice(1)), Number(to.slice(1)));
+    const r2 = Math.max(Number(from.slice(1)), Number(to.slice(1)));
+    const rows = [];
+    for (let r = r1; r <= r2; r++) {
+      const row = [];
+      for (let c = c1; c <= c2; c++) row.push(read(String.fromCharCode(c) + r));
+      rows.push(row);
+    }
+    return rows;
+  }
+  const ctx = { get: read, range };
 
   function unlink(cell) {
     const old = cells.get(cell);

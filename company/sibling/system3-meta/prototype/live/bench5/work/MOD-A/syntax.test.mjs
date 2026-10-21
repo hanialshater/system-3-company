@@ -52,7 +52,36 @@ test("bad syntax gives an error node, never throws", () => {
   }
 });
 
-test("refsOf is empty in wave 1", () => {
+test("refsOf has no refs for literal formulas", () => {
   assert.deepEqual(refsOf(parseFormula("1+2")), []);
   assert.deepEqual(refsOf(ERR), []);
+});
+
+const REF = { type: "error", code: "#REF!" };
+
+test("wave 2: refs", () => {
+  assert.deepEqual(parseFormula("a1*2"), bin("*", { type: "ref", cell: "A1" }, num(2)));
+  assert.deepEqual(parseFormula("Z99"), { type: "ref", cell: "Z99" });
+  for (const bad of ["AA1", "A100", "A0", "a01"]) assert.deepEqual(parseFormula(bad), REF, bad);
+  assert.deepEqual(parseFormula("A100+1"), bin("+", REF, num(1)));
+  assert.deepEqual(parseFormula("-b2"), { type: "unary", op: "-", arg: { type: "ref", cell: "B2" } });
+  assert.deepEqual(parseFormula("abc"), ERR); // not cell-shaped: bad syntax
+  assert.deepEqual(parseFormula("A1B"), ERR);
+});
+
+test("wave 2: ranges", () => {
+  assert.deepEqual(parseFormula("sum(a1:b3)"),
+    { type: "call", name: "SUM", args: [{ type: "range", from: "A1", to: "B3" }] });
+  assert.deepEqual(parseFormula("B3:A1"), { type: "range", from: "A1", to: "B3" });
+  assert.deepEqual(parseFormula("A3:B1"), { type: "range", from: "A1", to: "B3" });
+  assert.deepEqual(parseFormula("SUM(A1:A100)").args[0], REF);
+  assert.deepEqual(parseFormula("SUM(AA1:A2)").args[0], REF);
+  for (const bad of ["A1:", ":A1", "A1:1", "A1:B2:C3", "SUM(A1:FOO)"]) assert.deepEqual(parseFormula(bad), ERR, bad);
+});
+
+test("wave 2: refsOf", () => {
+  assert.deepEqual(refsOf(parseFormula("A1+a1*B2")), ["A1", "B2"]);
+  assert.deepEqual(refsOf(parseFormula("SUM(B2:A1, C1)")), ["A1", "A2", "B1", "B2", "C1"]);
+  assert.deepEqual(refsOf(parseFormula("IF(A1, B1, C1)")), ["A1", "B1", "C1"]);
+  assert.deepEqual(refsOf(parseFormula("A100+B1")), ["B1"]);
 });

@@ -11,6 +11,17 @@ export function normalizeCell(name) {
 }
 
 const BAD = Object.freeze({ type: "error", code: "#VALUE!" });
+const REF_CODE = "#REF!";
+// Cell-shaped identifiers (letters then digits). Valid ones become ref nodes;
+// the rest (AA1, A100, A0, A01) evaluate to #REF!.
+const CELLISH_RE = /^[A-Za-z]+[0-9]+$/;
+
+function cellOrNull(text) {
+  try { return normalizeCell(text); } catch { return null; }
+}
+
+function colOf(cell) { return cell.charCodeAt(0); }
+function rowOf(cell) { return Number(cell.slice(1)); }
 
 class SyntaxFail extends Error {}
 
@@ -48,7 +59,7 @@ function tokenize(src) {
     }
     const two = src.slice(i, i + 2);
     if (two === "<>" || two === "<=" || two === ">=") { toks.push({ t: "op", v: two }); i += 2; continue; }
-    if ("+-*/^&=<>(),".includes(c)) { toks.push({ t: "op", v: c }); i++; continue; }
+    if ("+-*/^&=<>(),:".includes(c)) { toks.push({ t: "op", v: c }); i++; continue; }
     throw new SyntaxFail(`unexpected character ${c}`);
   }
   return toks;
@@ -111,6 +122,23 @@ function parser(toks) {
         expect(")");
         return { type: "call", name: t.v.toUpperCase(), args };
       }
+      if (CELLISH_RE.test(t.v)) {
+        const from = cellOrNull(t.v);
+        if (isOp(":")) {
+          p++;
+          const t2 = peek();
+          if (!t2 || t2.t !== "id" || !CELLISH_RE.test(t2.v)) throw new SyntaxFail("bad range");
+          p++;
+          const to = cellOrNull(t2.v);
+          if (!from || !to) return { type: "error", code: REF_CODE };
+          // normalise to top-left / bottom-right corners
+          const c1 = Math.min(colOf(from), colOf(to)), c2 = Math.max(colOf(from), colOf(to));
+          const r1 = Math.min(rowOf(from), rowOf(to)), r2 = Math.max(rowOf(from), rowOf(to));
+          return { type: "range", from: String.fromCharCode(c1) + r1, to: String.fromCharCode(c2) + r2 };
+        }
+        if (!from) return { type: "error", code: REF_CODE };
+        return { type: "ref", cell: from };
+      }
       const up = t.v.toUpperCase();
       if (up === "TRUE") return { type: "bool", value: true };
       if (up === "FALSE") return { type: "bool", value: false };
@@ -140,11 +168,21 @@ export function refsOf(ast) {
     if (!node || typeof node !== "object") return;
     switch (node.type) {
       case "ref": out.add(node.cell); break;
-      case "range": break; // wave 2: expand from..to
+      case "range": for (const c of expandRange(node.from, node.to)) out.add(c); break;
       case "unary": walk(node.arg); break;
       case "binary": walk(node.left); walk(node.right); break;
       case "call": node.args.forEach(walk); break;
     }
   })(ast);
   return [...out];
+}
+
+// Cells of a range, column by column (A1,A2,..,B1,B2,..). Corners in any order.
+function expandRange(from, to) {
+  const a = normalizeCell(from), b = normalizeCell(to);
+  const c1 = Math.min(colOf(a), colOf(b)), c2 = Math.max(colOf(a), colOf(b));
+  const r1 = Math.min(rowOf(a), rowOf(b)), r2 = Math.max(rowOf(a), rowOf(b));
+  const out = [];
+  for (let c = c1; c <= c2; c++) for (let r = r1; r <= r2; r++) out.push(String.fromCharCode(c) + r);
+  return out;
 }

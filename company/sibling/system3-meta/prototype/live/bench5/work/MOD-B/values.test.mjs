@@ -93,3 +93,12 @@ test("left operand fully resolved before right (coercion error on left beats rig
   assert.equal(binary("&", ERR.NAME, ERR.DIV0), ERR.NAME);
   assert.equal(binary("=", "a", "A"), true);
 });
+
+test("wave 2: ERR.REF", () => {
+  assert.deepEqual(ERR.REF, { error: "#REF!" });
+  assert.ok(Object.isFrozen(ERR.REF));
+  assert.ok(isError(ERR.REF));
+  assert.equal(errorFromCode("#REF!"), ERR.REF);
+  assert.equal(display(ERR.REF), "#REF!");
+  assert.equal(binary("+", ERR.REF, ERR.DIV0), ERR.REF);
+});

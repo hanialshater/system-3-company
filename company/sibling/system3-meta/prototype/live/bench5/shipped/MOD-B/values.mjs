@@ -64,8 +64,10 @@ function compare(op, a, b) {
     x = a.toLowerCase();
     y = b.toLowerCase();
   } else {
+    // left operand fully resolved (its error, then its coercion) before the right one
     x = toNumber(a);
     if (isError(x)) return x;
+    if (isError(b)) return b;
     y = toNumber(b);
     if (isError(y)) return y;
   }
@@ -82,11 +84,14 @@ function compare(op, a, b) {
 
 export function binary(op, a, b) {
   if (isError(a)) return a;
-  if (isError(b)) return b;
-  if (op === "&") return toText(a) + toText(b);
+  if (op === "&") {
+    if (isError(b)) return b;
+    return toText(a) + toText(b);
+  }
   if (CMP.has(op)) return compare(op, a, b);
   const x = toNumber(a);
   if (isError(x)) return x;
+  if (isError(b)) return b;
   const y = toNumber(b);
   if (isError(y)) return y;
   switch (op) {

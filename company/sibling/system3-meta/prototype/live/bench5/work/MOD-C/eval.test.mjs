@@ -37,7 +37,7 @@ test("left error wins", () => {
 test("error node and calls", () => {
   assert.equal(evaluate({ type: "error", code: "#VALUE!" }, ctx), ERR.VALUE);
   assert.equal(evaluate({ type: "call", name: "FOO", args: [num(1)] }, ctx), ERR.NAME);
-  assert.deepEqual(Object.keys(FUNCTIONS), []);
+  assert.deepEqual(Object.keys(FUNCTIONS).sort(), ["ABS", "AVERAGE", "COUNT", "IF", "LEN", "MAX", "MIN", "ROUND", "SUM"]);
   assert.equal(evaluate({ type: "call", name: "TOSTRING", args: [] }, ctx), ERR.NAME);
 });
 
@@ -45,4 +45,85 @@ test("never rounds intermediates, never throws", () => {
   assert.equal(evaluate(bin("/", num(1), num(3)), ctx), 1 / 3);
   assert.equal(evaluate(null, ctx), ERR.VALUE);
   assert.equal(evaluate({ type: "weird" }, ctx), ERR.VALUE);
+});
+
+// ---- wave 2 ----
+const ref = (cell) => ({ type: "ref", cell });
+const rng = (from, to) => ({ type: "range", from, to });
+const call = (name, ...args) => ({ type: "call", name, args });
+const sheet = (o) => ({ get: (c) => (c in o ? o[c] : "") });
+const REF = ERR.REF;
+
+test("refs read through ctx", () => {
+  const c = sheet({ A1: 5 });
+  assert.equal(evaluate(bin("*", ref("A1"), num(2)), c), 10);
+  assert.equal(evaluate(ref("B7"), c), "");
+  assert.equal(evaluate(ref("a1"), c), 5);
+  assert.equal(evaluate(rng("A1", "A2"), c), ERR.VALUE);
+  assert.equal(evaluate(bin("+", rng("A1", "A2"), num(1)), c), ERR.VALUE);
+});
+
+test("aggregates", () => {
+  const c = sheet({ A1: 1, A2: 2, A3: 3, A4: 4, B1: 1, B2: "word", B3: 3 });
+  assert.equal(evaluate(call("SUM", rng("A1", "A4")), c), 10);
+  assert.equal(evaluate(call("SUM", rng("A4", "A1")), c), 10);
+  assert.equal(evaluate(call("SUM"), c), 0);
+  assert.equal(evaluate(call("COUNT", rng("B1", "B3")), c), 2);
+  assert.equal(evaluate(call("AVERAGE", rng("A5", "A9")), c), ERR.DIV0);
+  assert.equal(evaluate(call("AVERAGE", rng("A1", "A4")), c), 2.5);
+  assert.equal(evaluate(call("MIN"), c), 0);
+  assert.equal(evaluate(call("MAX"), c), 0);
+  assert.equal(evaluate(call("MIN", rng("A1", "B3"), num(-1)), c), -1);
+  assert.equal(evaluate(call("MAX", rng("A1", "B3")), c), 3);
+  assert.equal(evaluate(call("SUM", num(1), str("2"), bool(true)), c), 4);
+  assert.equal(evaluate(call("SUM", str("x")), c), ERR.VALUE);
+  assert.equal(evaluate(call("SUM", num(1), bin("/", num(1), num(0))), c), ERR.DIV0);
+  const e = sheet({ A1: 1, A2: ERR.DIV0 });
+  assert.equal(evaluate(call("SUM", rng("A1", "A3")), e), ERR.DIV0);
+  assert.equal(evaluate(call("sum", rng("A1", "A1")), e), 1);
+});
+
+test("range covers rectangle column by column", () => {
+  const seen = [];
+  const c = { get: (cell) => (seen.push(cell), "") };
+  evaluate(call("SUM", rng("A1", "B2")), c);
+  assert.deepEqual(seen, ["A1", "A2", "B1", "B2"]);
+});
+
+test("IF", () => {
+  const c = sheet({});
+  assert.equal(evaluate(call("IF", num(1), num(2), bin("/", num(1), num(0))), c), 2);
+  assert.equal(evaluate(call("IF", num(0), bin("/", num(1), num(0)), num(3)), c), 3);
+  assert.equal(evaluate(call("IF", num(0), num(2)), c), false);
+  assert.equal(evaluate(call("IF", num(1)), c), ERR.VALUE);
+  assert.equal(evaluate(call("IF", num(1), num(2), num(3), num(4)), c), ERR.VALUE);
+  assert.equal(evaluate(call("IF", bin("/", num(1), num(0)), num(2)), c), ERR.DIV0);
+  assert.equal(evaluate(call("IF", str("x"), num(2)), c), ERR.VALUE);
+  assert.equal(evaluate(call("IF", ref("A1"), num(2), num(9)), c), 9);
+});
+
+test("ABS ROUND LEN", () => {
+  const c = sheet({ A1: "hello" });
+  assert.equal(evaluate(call("ABS", num(-3)), c), 3);
+  assert.equal(evaluate(call("ABS"), c), ERR.VALUE);
+  assert.equal(evaluate(call("ABS", num(1), num(2)), c), ERR.VALUE);
+  assert.equal(evaluate(call("ROUND", num(1234), un("-", num(2))), c), 1200);
+  assert.equal(evaluate(call("ROUND", num(2.567), num(2)), c), 2.57);
+  assert.equal(evaluate(call("ROUND", num(2.5)), c), 3);
+  assert.equal(evaluate(call("ROUND"), c), ERR.VALUE);
+  assert.equal(evaluate(call("ROUND", num(1), num(2), num(3)), c), ERR.VALUE);
+  assert.equal(evaluate(call("LEN", ref("A1")), c), 5);
+  assert.equal(evaluate(call("LEN", bool(true)), c), 4);
+  assert.equal(evaluate(call("LEN", num(12.5)), c), 4);
+  assert.equal(evaluate(call("LEN", ref("B1")), c), 0);
+  assert.equal(evaluate(call("LEN"), c), ERR.VALUE);
+  assert.equal(evaluate(call("LEN", bin("/", num(1), num(0))), c), ERR.DIV0);
+  assert.equal(evaluate(call("ABS", rng("A1", "A2")), c), ERR.VALUE);
+});
+
+test("#REF! (needs ERR.REF from slot B)", { skip: REF ? false : "ERR.REF not yet in MOD-B" }, () => {
+  const c = sheet({});
+  assert.equal(evaluate({ type: "error", code: "#REF!" }, c), REF);
+  assert.equal(evaluate(ref("AA1"), c), REF);
+  assert.equal(evaluate(call("SUM", rng("A1", "A100")), c), REF);
 });
