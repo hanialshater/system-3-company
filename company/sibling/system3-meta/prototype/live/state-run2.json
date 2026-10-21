@@ -3159,6 +3159,262 @@
     "stage": "ship",
     "verdict": "pass",
     "minutes": 0.07228333503007889
+   },
+   {
+    "seq": 311,
+    "t": 29876186.393633332,
+    "type": "usage",
+    "session": "S-13",
+    "role": "toy-builder-2",
+    "tokens": 61873,
+    "items": 1,
+    "source": "harness"
+   },
+   {
+    "seq": 312,
+    "t": 29876186.394883335,
+    "type": "usage",
+    "role": "cos",
+    "tokens": 64195,
+    "label": "supervisor D: UAT+ship x3",
+    "source": "harness",
+    "supervisor": true
+   },
+   {
+    "seq": 313,
+    "t": 29876186.399816666,
+    "type": "advance",
+    "order": "O-8",
+    "stage": "test1",
+    "by": "code",
+    "verdict": "pass"
+   },
+   {
+    "seq": 314,
+    "t": 29876186.399816666,
+    "type": "send",
+    "msg": "M-68",
+    "from": "mgr-live",
+    "to": "pool:checker",
+    "kind": "work",
+    "key": "O-8:check:2",
+    "ref": "O-8",
+    "priority": "now",
+    "due": null
+   },
+   {
+    "seq": 315,
+    "t": 29876186.8067,
+    "type": "session-open",
+    "session": "S-17",
+    "role": "toy-checker"
+   },
+   {
+    "seq": 316,
+    "t": 29876186.806716666,
+    "type": "claim",
+    "msg": "M-68",
+    "run": "R-31"
+   },
+   {
+    "seq": 317,
+    "t": 29876186.806716666,
+    "type": "enter",
+    "run": "R-31",
+    "msg": "M-68",
+    "role": "toy-checker",
+    "by": "toy-checker",
+    "room": "quality",
+    "order": "O-8",
+    "stage": "check",
+    "mode": "work",
+    "session": "S-17",
+    "item": 1
+   },
+   {
+    "seq": 318,
+    "t": 29876187.57405,
+    "type": "advance",
+    "order": "O-8",
+    "stage": "check",
+    "by": "toy-checker",
+    "verdict": "pass"
+   },
+   {
+    "seq": 319,
+    "t": 29876187.574066665,
+    "type": "send",
+    "msg": "M-69",
+    "from": "mgr-live",
+    "to": "mgr-live",
+    "kind": "work",
+    "key": "O-8:uat:2",
+    "ref": "O-8",
+    "priority": "now",
+    "due": null
+   },
+   {
+    "seq": 320,
+    "t": 29876187.574066665,
+    "type": "done",
+    "msg": "M-68",
+    "run": "R-31"
+   },
+   {
+    "seq": 321,
+    "t": 29876187.574066665,
+    "type": "send",
+    "msg": "M-70",
+    "from": "pool:checker",
+    "to": "mgr-live",
+    "kind": "report",
+    "key": null,
+    "ref": "O-8",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 322,
+    "t": 29876187.574066665,
+    "type": "leave",
+    "run": "R-31",
+    "role": "toy-checker",
+    "order": "O-8",
+    "stage": "check",
+    "verdict": "pass",
+    "minutes": 0.7673499993979931
+   },
+   {
+    "seq": 323,
+    "t": 29876188.02365,
+    "type": "advance",
+    "order": "O-8",
+    "stage": "uat",
+    "by": "mgr-live",
+    "verdict": "pass"
+   },
+   {
+    "seq": 324,
+    "t": 29876188.023666665,
+    "type": "send",
+    "msg": "M-71",
+    "from": "mgr-live",
+    "to": "pool:release",
+    "kind": "work",
+    "key": "O-8:ship:2",
+    "ref": "O-8",
+    "priority": "now",
+    "due": null
+   },
+   {
+    "seq": 325,
+    "t": 29876188.025866665,
+    "type": "session-open",
+    "session": "S-18",
+    "role": "toy-release"
+   },
+   {
+    "seq": 326,
+    "t": 29876188.025866665,
+    "type": "claim",
+    "msg": "M-71",
+    "run": "R-32"
+   },
+   {
+    "seq": 327,
+    "t": 29876188.025866665,
+    "type": "enter",
+    "run": "R-32",
+    "msg": "M-71",
+    "role": "toy-release",
+    "by": "toy-release",
+    "room": "launch",
+    "order": "O-8",
+    "stage": "ship",
+    "mode": "work",
+    "session": "S-18",
+    "item": 1
+   },
+   {
+    "seq": 328,
+    "t": 29876188.02705,
+    "type": "advance",
+    "order": "O-8",
+    "stage": "ship",
+    "by": "toy-release",
+    "verdict": "pass"
+   },
+   {
+    "seq": 329,
+    "t": 29876188.02705,
+    "type": "shipped",
+    "order": "O-8",
+    "lead": 15.005550000816584,
+    "loops": 2,
+    "priority": "now"
+   },
+   {
+    "seq": 330,
+    "t": 29876188.02705,
+    "type": "done",
+    "msg": "M-71",
+    "run": "R-32"
+   },
+   {
+    "seq": 331,
+    "t": 29876188.02705,
+    "type": "send",
+    "msg": "M-72",
+    "from": "pool:release",
+    "to": "mgr-live",
+    "kind": "report",
+    "key": null,
+    "ref": "O-8",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 332,
+    "t": 29876188.02705,
+    "type": "leave",
+    "run": "R-32",
+    "role": "toy-release",
+    "order": "O-8",
+    "stage": "ship",
+    "verdict": "pass",
+    "minutes": 0.0011833347380161285
+   },
+   {
+    "seq": 333,
+    "t": 29876188.43845,
+    "type": "usage",
+    "session": "S-14",
+    "role": "toy-release",
+    "tokens": 63931,
+    "items": 1,
+    "source": "harness"
+   },
+   {
+    "seq": 334,
+    "t": 29876188.939983334,
+    "type": "usage",
+    "session": "S-14",
+    "role": "toy-release",
+    "tokens": -63931,
+    "correction": true,
+    "reason": "supervisor recorded the T9 checker's harness usage on S-14 (a toy-release ship session) by mistake"
+   },
+   {
+    "seq": 335,
+    "t": 29876188.939983334,
+    "type": "usage",
+    "session": "S-17",
+    "role": "toy-checker",
+    "tokens": 63931,
+    "items": 1,
+    "source": "harness",
+    "correction": true,
+    "reason": "supervisor recorded the T9 checker's harness usage on S-14 (a toy-release ship session) by mistake"
    }
   ]
  },
@@ -4661,6 +4917,117 @@
       "lease": null,
       "acked": false
      }
+    ],
+    [
+     "M-68",
+     {
+      "id": "M-68",
+      "from": "mgr-live",
+      "to": "pool:checker",
+      "kind": "work",
+      "key": "O-8:check:2",
+      "due": null,
+      "ref": "O-8",
+      "body": {
+       "stage": "check",
+       "loops": 2
+      },
+      "priority": "now",
+      "ts": 29876186.399816666,
+      "state": "done",
+      "lease": {
+       "run": "R-31",
+       "until": 29876216.806716666
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-69",
+     {
+      "id": "M-69",
+      "from": "mgr-live",
+      "to": "mgr-live",
+      "kind": "work",
+      "key": "O-8:uat:2",
+      "due": null,
+      "ref": "O-8",
+      "body": {
+       "stage": "uat",
+       "loops": 2
+      },
+      "priority": "now",
+      "ts": 29876187.574066665,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-70",
+     {
+      "id": "M-70",
+      "from": "pool:checker",
+      "to": "mgr-live",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-8",
+      "body": {
+       "stage": "check",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876187.574066665,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-71",
+     {
+      "id": "M-71",
+      "from": "mgr-live",
+      "to": "pool:release",
+      "kind": "work",
+      "key": "O-8:ship:2",
+      "due": null,
+      "ref": "O-8",
+      "body": {
+       "stage": "ship",
+       "loops": 2
+      },
+      "priority": "now",
+      "ts": 29876188.023666665,
+      "state": "done",
+      "lease": {
+       "run": "R-32",
+       "until": 29876218.025866665
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-72",
+     {
+      "id": "M-72",
+      "from": "pool:release",
+      "to": "mgr-live",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-8",
+      "body": {
+       "stage": "ship",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876188.02705,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
     ]
    ]
   },
@@ -4813,10 +5180,22 @@
     [
      "O-7:ship:0",
      "M-63"
+    ],
+    [
+     "O-8:check:2",
+     "M-68"
+    ],
+    [
+     "O-8:uat:2",
+     "M-69"
+    ],
+    [
+     "O-8:ship:2",
+     "M-71"
     ]
    ]
   },
-  "n": 67
+  "n": 72
  },
  "org": {
   "roles": {
@@ -5479,7 +5858,7 @@
       "spent": 0,
       "accept": "live/work/T9/leap.mjs exports isLeapYear(year) for integer years >= 1 by the Gregorian rules (divisible by 4, except centuries, except every 400 years). Any other input (0, negative, non-integer, non-number) throws RangeError. node:test tests in live/work/T9/*.test.mjs",
       "words": null,
-      "stage": "test1",
+      "stage": "done",
       "loops": 2,
       "created": 29876173.0215,
       "history": [
@@ -5524,6 +5903,30 @@
         "by": "toy-builder-2",
         "verdict": "pass",
         "t": 29876185.740533333
+       },
+       {
+        "stage": "test1",
+        "by": "code",
+        "verdict": "pass",
+        "t": 29876186.399816666
+       },
+       {
+        "stage": "check",
+        "by": "toy-checker",
+        "verdict": "pass",
+        "t": 29876187.57405
+       },
+       {
+        "stage": "uat",
+        "by": "mgr-live",
+        "verdict": "pass",
+        "t": 29876188.02365
+       },
+       {
+        "stage": "ship",
+        "by": "toy-release",
+        "verdict": "pass",
+        "t": 29876188.02705
        }
       ],
       "priority": "now",
@@ -6030,10 +6433,42 @@
       "state": "left",
       "session": "S-16"
      }
+    ],
+    [
+     "R-31",
+     {
+      "run": "R-31",
+      "msg": "M-68",
+      "role": "toy-checker",
+      "by": "toy-checker",
+      "consult": false,
+      "order": "O-8",
+      "stage": "check",
+      "loops": 2,
+      "entered": 29876186.806716666,
+      "state": "left",
+      "session": "S-17"
+     }
+    ],
+    [
+     "R-32",
+     {
+      "run": "R-32",
+      "msg": "M-71",
+      "role": "toy-release",
+      "by": "toy-release",
+      "consult": false,
+      "order": "O-8",
+      "stage": "ship",
+      "loops": 2,
+      "entered": 29876188.025866665,
+      "state": "left",
+      "session": "S-18"
+     }
     ]
    ]
   },
-  "n": 30,
+  "n": 32,
   "memory": {
    "__map": [
     [
@@ -6186,6 +6621,12 @@
        "did": "check on O-7: pass (loop 0)",
        "learned": "composition tasks: check invalid entries in every position (first, lone, later, holes) surface the dependency own error message, and that the lone element is still validated",
        "mistake": null
+      },
+      {
+       "t": 29876187.574066665,
+       "did": "check on O-8: pass (loop 2)",
+       "learned": "once describe() uses only typeof plus a try/catch constant fallback, the whole non-number class is closed; re-check by class (revoked/cross-realm/boxed/tampered globals/stack depth) not single inputs",
+       "mistake": null
       }
      ]
     ],
@@ -6231,6 +6672,12 @@
       {
        "t": 29876185.756433334,
        "did": "ship on O-7: pass (loop 0)",
+       "learned": "ship is a copy",
+       "mistake": null
+      },
+      {
+       "t": 29876188.02705,
+       "did": "ship on O-8: pass (loop 2)",
        "learned": "ship is a copy",
        "mistake": null
       }
@@ -6399,9 +6846,29 @@
       "open": true,
       "started": 29876185.68415
      }
+    ],
+    [
+     "S-17",
+     {
+      "id": "S-17",
+      "role": "toy-checker",
+      "items": 1,
+      "open": true,
+      "started": 29876186.8067
+     }
+    ],
+    [
+     "S-18",
+     {
+      "id": "S-18",
+      "role": "toy-release",
+      "items": 1,
+      "open": true,
+      "started": 29876188.025866665
+     }
     ]
    ]
   },
-  "nS": 16
+  "nS": 18
  }
 }

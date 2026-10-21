@@ -1,3 +1,25 @@
+## 2026-10-21 · chief-of-staff (for System 3 Meta) · Meta iteration 4 and live run 2: batching, priority, time
+
+Founder asked about batches vs a mailbox queue, priority flags ("force now or for later"), and time redefined for a fast, parallel company.
+
+**Tools** (company/sibling/system3-meta/prototype; 19/19 tests):
+- sessions and `room next` (draining);
+- priority now/next/later, with promotion at the due time and limits on who may say `now`;
+- `--after` dependencies;
+- rituals on progress, event and calendar clocks, counted in cycles;
+- `flow metrics` (lead, work, critical path, flow efficiency, cost);
+- a wake at lease expiry instead of a sweep;
+- in the CLI: `usage add` and `usage correct`.
+
+**Simulator iteration 4** (ITERATIONS.md): draining cut tokens 30%, with flat returns past a cap of 3. `now` gave a 2.2 h p50 at 1.64× the tokens. The progress-clock WBR met 69 times, too often: its stuck rule fires on quiet days.
+
+**Live run 2** (LIVE2.md), 8 orders through 13 real agent sessions plus 4 supervisor sessions, all shipped:
+- a 3-build drain session cost 37% of three single sessions;
+- draining checks cost 14k each against 60k;
+- 110.5k per shipped order including the supervisor, against 207k without it in run 1.
+
+M3 was wrong: the `now` order was slowest because it failed its check twice. So checkers should report the class of a defect. Flow efficiency was 12%: waiting comes from batch orchestration. Next: a deterministic supervisor script (wake on message, ~0 tokens) and class-level findings. One recording mistake of mine (usage on the wrong session) was corrected by an appended event.
+
 ## 2026-10-21 · chief-of-staff (for System 3 Meta) · Meta live run 1: real agents through the prototype tools
 
 Founder: "Decide for me". I chose a live run before calibration, recorded in company/sibling/system3-meta/prototype/LIVE.md, with predictions committed first. Setup:

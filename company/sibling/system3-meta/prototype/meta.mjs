@@ -21,6 +21,7 @@
 //   node meta.mjs flow show <O> | flow status
 //   node meta.mjs mail dup <O>                                send the current stage's notification again (fault F1)
 //   node meta.mjs usage add --role=<role> --tokens=<n> --label=…   harness usage of a session outside any room (the supervisor)
+//   node meta.mjs usage correct --from-session=<S> --to-session=<S> --tokens=<n> --reason=…   append a correction (never edit)
 //   node meta.mjs events [--type=<t>]   ·   node meta.mjs memory <role>   ·   node meta.mjs org activity <role>
 // Exit: 0 ok, 1 refused, 2 usage or state error.
 import fs from "node:fs";
@@ -116,9 +117,15 @@ function runTests(task) {
 
 function pack(co, run, ctx, session, item) {
   const o = co.engine.orders.get(ctx.order);
-  return { run, session, item, lease_min: Number(opt.lease ?? 30), order: o.id, task: o.task, title: o.title, priority: o.priority, stage: ctx.stage, accept: o.accept, workdir: `live/work/${o.task}/`, findings: o.findings ?? null, memory: ctx.memory, history: o.history,
-    leave_with: `node meta.mjs room leave --run=${run} --evidence=<path>${ctx.stage === "check" ? " --verdict=pass|revise --findings='…'" : ""} --learned='…'`,
-    next_with: `node meta.mjs room next --run=${run} --cap=<cap from your brief> --evidence=<path>${ctx.stage === "check" ? " --verdict=pass|revise --findings='…'" : ""} --learned='…'` };
+  // Live run 2 findings: the workdir did not exist; the commands omitted the state prefix; cap and times were unclear.
+  const dir = path.join(LIVE, "work", o.task);
+  if (ctx.stage === "build") fs.mkdirSync(dir, { recursive: true });
+  const pre = process.env.META_STATE ? `META_STATE=${process.env.META_STATE} ` : "";
+  const iso = (m) => new Date(m * 60000).toISOString();
+  return { run, session, item, lease_min: Number(opt.lease ?? 30), order: o.id, task: o.task, title: o.title, priority: o.priority, stage: ctx.stage, accept: o.accept, workdir: `live/work/${o.task}/`, workdir_exists: fs.existsSync(dir), findings: o.findings ?? null, memory: ctx.memory.map((e) => ({ ...e, t: iso(e.t) })), history: o.history.map((h) => ({ ...h, t: iso(h.t) })),
+    cap_means: "--cap counts every item in this session, including the first one you entered",
+    leave_with: `${pre}node meta.mjs room leave --run=${run} --evidence=<path>${ctx.stage === "check" ? " --verdict=pass|revise --findings='…'" : ""} --learned='…'`,
+    next_with: `${pre}node meta.mjs room next --run=${run} --cap=<cap from your brief> --evidence=<path>${ctx.stage === "check" ? " --verdict=pass|revise --findings='…'" : ""} --learned='…'` };
 }
 
 function main() {
@@ -206,6 +213,16 @@ function dispatch(co, cmd, sub, arg) {
   if (cmd === "flow" && sub === "status") return engine.status();
   if (cmd === "mail" && sub === "dup") { const o = engine.orders.get(arg); const m = engine.notifyStage(o, { duplicate: true }); return { order: arg, msg: m?.id, open_work_messages: mailbox.thread(arg).filter((x) => x.kind === "work" && x.state === "open").length }; }
   if (cmd === "usage" && sub === "add") { need("role", "tokens", "label"); log.add({ type: "usage", role: opt.role, tokens: Number(opt.tokens), label: opt.label, source: "harness", supervisor: true }); return { ok: true }; }
+  if (cmd === "usage" && sub === "correct") {
+    // The log is append-only: a wrong usage record is corrected by two new events, never by editing the old one.
+    need("from-session", "to-session", "tokens", "reason");
+    const n = Number(opt.tokens);
+    const from = rooms.sessions.get(opt["from-session"]), to = rooms.sessions.get(opt["to-session"]);
+    if (!from || !to) throw new Refused("HARD: unknown session");
+    log.add({ type: "usage", session: from.id, role: from.role, tokens: -n, correction: true, reason: opt.reason });
+    log.add({ type: "usage", session: to.id, role: to.role, tokens: n, items: to.items, source: "harness", correction: true, reason: opt.reason });
+    return { ok: true, moved: n, from: from.id, to: to.id };
+  }
   if (cmd === "events") return log.events.filter((e) => !opt.type || e.type === opt.type);
   if (cmd === "memory") return rooms.memory.get(sub) ?? [];
   if (cmd === "org" && sub === "activity") return org.activity(log.events, arg);
