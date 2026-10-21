@@ -1,0 +1,69 @@
+// SHEET: sheet.mjs — the integrated sheet. Owner dev-2. Wiring only (ARCH.md).
+import { parse, normCell, refs } from "../MOD-A/parse.mjs";
+import { ERR, parseInput, display as displayValue } from "../MOD-B/values.mjs";
+import { evaluate } from "../MOD-C/eval.mjs";
+import { createGraph } from "../MOD-D/graph.mjs";
+
+export function createSheet() {
+  const cells = new Map(); // normalised name -> { text, ast, value }
+  const graph = createGraph();
+
+  function name(cell) {
+    const n = normCell(cell);
+    if (n === null) throw new Error(`bad cell name: ${String(cell)}`);
+    return n;
+  }
+
+  function stored(c) {
+    const rec = cells.get(c);
+    return rec ? rec.value : "";
+  }
+
+  const ctx = {
+    get(c) { const n = normCell(c); return n === null ? ERR.REF : stored(n); },
+    range(from, to) {
+      const a = normCell(from), b = normCell(to);
+      if (a === null || b === null) return [];
+      const c1 = a.charCodeAt(0), c2 = b.charCodeAt(0);
+      const r1 = Number(a.slice(1)), r2 = Number(b.slice(1));
+      const rows = [];
+      for (let r = Math.min(r1, r2); r <= Math.max(r1, r2); r++) {
+        const row = [];
+        for (let c = Math.min(c1, c2); c <= Math.max(c1, c2); c++) row.push(stored(String.fromCharCode(c) + r));
+        rows.push(row);
+      }
+      return rows;
+    },
+  };
+
+  function recalc(cell) {
+    const cyc = graph.cyclic();
+    for (const c of graph.recalcOrder(cell)) {
+      const rec = cells.get(c);
+      if (!rec || rec.ast === null) continue;
+      rec.value = cyc.has(c) ? ERR.CYCLE : evaluate(rec.ast, ctx);
+    }
+  }
+
+  function set(cell, text) {
+    const c = name(cell);
+    const t = text == null ? "" : String(text);
+    if (t === "") {
+      cells.delete(c);
+      graph.setDeps(c, []);
+    } else if (t.startsWith("=")) {
+      const ast = parse(t.slice(1));
+      cells.set(c, { text: t, ast, value: "" });
+      graph.setDeps(c, refs(ast));
+    } else {
+      cells.set(c, { text: t, ast: null, value: parseInput(t) });
+      graph.setDeps(c, []);
+    }
+    recalc(c);
+  }
+
+  function get(cell) { return stored(name(cell)); }
+  function display(cell) { return displayValue(get(cell)); }
+
+  return { set, get, display };
+}
