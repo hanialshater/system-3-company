@@ -18,8 +18,8 @@
 
 **Why:** A sea otter floats on its back, puts a rock on its belly, and bangs a shell on it until it opens.
 
-**Q4.** Which slow, gentle sea mammal eats only plants and is also called a sea cow?
+**Q4.** Which slow, gentle sea mammal eats plants and is also called a sea cow?
 
 **Answer:** A manatee
 
-**Why:** A manatee munches on sea grass and other water plants all day, and its calm grazing gave it the name sea cow.
+**Why:** A manatee munches sea grass for many hours each day, much like a cow grazing on a field, so people call it a sea cow.
