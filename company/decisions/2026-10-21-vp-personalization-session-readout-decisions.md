@@ -108,3 +108,10 @@ They travel with this decision.
 - **O4 Closing W-1992 throws away a reusable design (principal-engineer's interest).** **Answer:** that is why W-1992 is parked, not dropped. The candidate-specific gates are the ones dropped, because a future candidate restarts at G0 with its own privacy read, registration and amendment (EDD-016 §10.2).
 - **O5 A FAIL in one simulated world is not a fact about learners (eval's standing caveat, readout §2 and §3).** **Answer:** agreed. The kill is a decision not to serve, and it rests on the only evidence the rules allow. It is not a claim that EDP-style ordering cannot help real learners. Nothing here is learner copy, and the WBR shows the readout unedited.
 - **O6 Should the session composer arms be removed so nobody is tempted (mine)?** **Answer:** no. Deleting them breaks reproduction (W-2025) and loses reference arms. HQ labels (§6) and this record carry the "closed for serving" status. The serving gateway (EDD-016 §10.1) still forbids any `src/` import of the model.
+
+## 7. Founder answer (2026-10-21, recorded by chief-of-staff)
+
+Asked in conversation with the three options of §5 and whether to reproduce the run:
+
+- **Next cycle: (A).** Close ordering-for-recall as a research line for now. The default order and the AMD-016 saved-choices rule stay. Personalization effort moves to a definition of "learned" per category, learning paths and the revisit card. Nothing on ordering is built or scored. W-2028 done.
+- **Reproduction: skip.** W-2025 dropped. The run is seeded, hash-checked and its verdicts are not near a threshold. The 1.1 GB of results.ndjson outside the repository is deleted. The committed verdicts, manifests, parts check and tables in `company/personalization/eval/harness/records/2026-10-20-session-readout/` remain the record. Consequence, stated so it travels: the readout can still be reproduced from the pinned commit (743379aa) but has not been, so the "reproduced" step that phase A readout 1 had is absent here.
