@@ -243,7 +243,8 @@ function dispatch(co, cmd, sub, arg) {
   if (cmd === "room" && sub === "leave") {
     need("run", "evidence");
     const o = rooms.leave(opt.run, { verdict: opt.verdict ?? "pass", evidence: opt.evidence, findings: opt.findings ?? null, learned: opt.learned ?? null, mistake: opt.mistake ?? null });
-    return o ? { order: o.id, next_stage: o.stage, loops: o.loops } : { stale: true, note: "the stage moved on while you worked; nothing was signed" };
+    // K7: the stage's commit (code's, in the order's worktree), or why it was refused and the order held
+    return o ? { order: o.id, next_stage: o.stage, loops: o.loops, ...(o.workspace?.head ? { commit: o.workspace.head } : {}), ...(o.stageError?.kind === "workspace" ? { held: o.stageError.why } : {}) } : { stale: true, note: "the stage moved on while you worked; nothing was signed" };
   }
   if (cmd === "room" && sub === "abandon") { need("run", "by", "reason"); rooms.abandon(opt.run, { by: opt.by, reason: opt.reason }); return { ok: true }; }
   if (cmd === "room" && sub === "recover") return rooms.recover().map((x) => ({ run: x.run, role: x.role, order: x.order, msg: x.msg }));

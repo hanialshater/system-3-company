@@ -275,6 +275,7 @@ export class Engine {
     this.policies = new Map(); // lane → { versions, active }: the manager's knobs (policy.mjs validates them)
     this.contracts = new Map(); // contractor engagements (contractor.mjs): outside the delivery flow
     this.onApproved = []; // [{ prefix, fn }]: handlers for approved org changes owned by other tools (not persisted)
+    this.onAdvanced = []; // [fn(o, {stage, by, verdict})]: after a stage leaves (K7: the per-stage commit; not persisted)
   }
 
   /** The policy an order runs under: the lane's active version when the order was made (pinned; never moves). */
@@ -396,6 +397,7 @@ export class Engine {
         }
       }
     } else this.notifyStage(o);
+    for (const fn of this.onAdvanced) fn(o, { stage, by, verdict });
     return o;
   }
 

@@ -12,12 +12,18 @@
 // reach cmd stages (o.workspace.vars, state.mjs prepareCmd). The order keeps o.workdir and
 // o.workspace {dir, branch, base, sha, env}; cmd stages run there with that env (state.mjs prepareCmd), and the pack and
 // the brief name it. No spec `workspace`: nothing changes (live/work/<task>, as every run before K5).
+// K7 (plan §3): the integrator. With `workspace.commit` (true, or { protectedPaths: "<repo-relative file>" }), every
+// stage that leaves (engine.advance, pass or revise) is committed in the order's worktree by code: `git add -A` and
+// `git commit -m "meta: <O> <stage> <slug>"`. Refused (and the order held, as a workspace stage-error, until the change
+// is undone and `supervisor.mjs retry`; the next tick commits again): a message matching /\[deploy\]/i (vercel.json
+// builds only [deploy] commits; the slug is an agent's text), and any staged path matching a glob of the repo's
+// protected-paths.txt as of the order's base commit (the worktree's own copy is the agent's to edit). It never pushes.
 import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { LIVE } from "./state.mjs";
 
-export const WS_KEYS = ["kind", "repo", "base", "root", "branch", "env", "nodeModules", "run", "portBase"];
+export const WS_KEYS = ["kind", "repo", "base", "root", "branch", "env", "nodeModules", "run", "portBase", "commit"];
 export const WS_KINDS = ["git-worktree"];
 // K5 review: not `meta/${run}/${task}` (the plan's): the base checkout is on branch meta/m4, and a ref meta/m4 cannot
 // coexist with meta/m4/<task> ("cannot lock ref"), so every order of run m4 was a workspace stage-error
@@ -44,6 +50,11 @@ export function validateWorkspace(w) {
   if (w.env != null && (typeof w.env !== "object" || Array.isArray(w.env) || Object.values(w.env).some((v) => typeof v !== "string"))) return "env is an object of strings";
   for (const [k, v] of Object.entries(w.env ?? {})) if (unknownVar(v, ENV_VARS) != null) return `env ${k}: unknown variable \${${unknownVar(v, ENV_VARS)}} (known: ${ENV_VARS.join(", ")})`;
   if (w.nodeModules != null && !(typeof w.nodeModules === "string" && /^symlink:\//.test(w.nodeModules))) return 'nodeModules is "symlink:<absolute path>"';
+  if (w.commit != null && typeof w.commit !== "boolean") {
+    if (typeof w.commit !== "object" || Array.isArray(w.commit) || Object.keys(w.commit).some((k) => k !== "protectedPaths")) return "commit is true, false or { protectedPaths }";
+    const pp = w.commit.protectedPaths;
+    if (pp != null && (typeof pp !== "string" || !pp || path.isAbsolute(pp) || pp.split("/").includes(".."))) return "commit.protectedPaths is a path inside the repo";
+  }
   return null;
 }
 
@@ -182,4 +193,69 @@ export function ensure(co, o, { create = true } = {}) {
   o.workspace = { kind: w.kind, repo: w.repo, dir, branch, base, sha: at.sha, env, vars: all };
   co.log.add({ type: "workspace", order: o.id, task: o.task, dir, branch, base, sha: at.sha, created });
   return done(created);
+}
+
+// ---- K7: the per-stage commit
+export const DEFAULT_PROTECTED = "company/constitution/protected-paths.txt";
+export const DEPLOY = /\[deploy\]/i;
+/** The commit settings of spec workspace `w`, or null (no commits: every run before K7). */
+export const commitOf = (w) => (w?.commit ? { protectedPaths: (typeof w.commit === "object" && w.commit.protectedPaths) || DEFAULT_PROTECTED } : null);
+/** A protected-paths glob as a regex: the company hook's own translation (.claude/hooks/protect-constitution.mjs). */
+export const globRe = (g) => new RegExp("^" + g.replace(/[.+^${}()|[\]\\]/g, "\\$&").replace(/\*\*/g, "\u00a7").replace(/\*/g, "[^/]*").replace(/\u00a7/g, ".*") + "$");
+export const globsOf = (text) => text.split("\n").map((l) => l.trim()).filter((l) => l && !l.startsWith("#"));
+
+/** Commit order `o`'s worktree after `stage` left: { sha, files }, { skipped } (nothing changed: no empty commits),
+ *  { error, refused? } (nothing committed; a refusal unstages what it staged, the work tree is left as it was), or
+ *  null (no commit setting, or no worktree yet). Never pushes. */
+export function commit(co, o, stage) {
+  const c = commitOf(specOf(co));
+  if (!c || !o.workspace?.dir) return null;
+  const git = gitBy(Date.now() + ENSURE_BUDGET_MS), dir = o.workspace.dir;
+  const msg = `meta: ${o.id} ${stage} ${o.slug ?? o.task ?? ""}`.trim();
+  if (DEPLOY.test(msg)) return { refused: true, error: `commit message ${JSON.stringify(msg)} names [deploy] (a deploy needs the founder's approval): rename the order's slug` };
+  // the branch is checked again: a builder's `git checkout` would otherwise put the order's commit on another branch
+  const h = git(dir, "rev-parse", "--abbrev-ref", "HEAD");
+  if (!ok(h)) return { error: why(h, `git rev-parse in ${dir}`) };
+  if (out(h)[0] !== o.workspace.branch) return { error: `${dir} is on ${out(h)[0] === "HEAD" ? "a detached HEAD" : `branch ${out(h)[0]}`}, not ${o.workspace.branch}: switch it back and retry` };
+  const add = git(dir, "add", "-A");
+  if (!ok(add)) return { error: why(add, `git add -A in ${dir}`) };
+  const st = git(dir, "diff", "--cached", "--name-only", "--no-renames", "-z"); // a rename lists both paths: moving a protected file away is caught
+  if (!ok(st)) return { error: why(st, `git diff --cached in ${dir}`) };
+  const files = st.stdout.split("\0").filter(Boolean);
+  if (!files.length) return { skipped: true };
+  const unstage = () => git(dir, "reset", "-q");
+  const has = git(dir, "ls-tree", "--name-only", o.workspace.sha, "--", c.protectedPaths);
+  if (!ok(has)) { unstage(); return { error: why(has, `git ls-tree ${o.workspace.sha.slice(0, 7)}`) }; }
+  let globs = [];
+  if (has.stdout.trim()) {
+    const t = git(dir, "show", `${o.workspace.sha}:${c.protectedPaths}`);
+    if (!ok(t)) { unstage(); return { error: why(t, `git show ${c.protectedPaths}`) }; }
+    globs = globsOf(t.stdout).map(globRe);
+  }
+  const hit = files.filter((f) => globs.some((g) => g.test(f)));
+  if (hit.length) { unstage(); return { refused: true, error: `the commit would change protected paths ${hit.join(", ")} (${c.protectedPaths}: only a ratified amendment changes them): undo the change in ${dir}` }; }
+  // the repo's own identity when it has one; never --no-verify (the repo's hooks are its rules)
+  const id = git(dir, "config", "user.email").stdout?.trim() ? [] : ["-c", "user.name=System 3 Meta", "-c", "user.email=meta@localhost"];
+  const r = git(dir, ...id, "commit", "-q", "-m", msg);
+  if (!ok(r)) { unstage(); return { error: why(r, `git commit in ${dir}`) }; }
+  const sha = git(dir, "rev-parse", "HEAD");
+  if (!ok(sha)) return { error: why(sha, `git rev-parse HEAD in ${dir}`) };
+  o.workspace.head = out(sha)[0];
+  co.log.add({ type: "commit", order: o.id, stage, branch: o.workspace.branch, sha: o.workspace.head, files: files.length, message: msg });
+  return { sha: o.workspace.head, files };
+}
+
+/** engine.advance's hook (state.mjs make): commit after `stage`; a failure or refusal holds the order (hold) and
+ *  keeps the stage in o.workspace.pendingCommit, which the tick commits again after a retry. Never throws: the stage
+ *  has already been signed. */
+export function afterStage(co, o, stage) {
+  if (!commitOf(specOf(co)) || !o.workspace?.dir) return null;
+  let r;
+  try { r = commit(co, o, stage); } catch (e) { r = { error: `commit: ${e.message}` }; }
+  if (r?.error) {
+    o.workspace.pendingCommit = { stage };
+    if (r.refused) co.log.add({ type: "commit-refused", order: o.id, stage, why: r.error });
+    hold(co, o, `commit after ${stage}: ${r.error}`);
+  } else if (r) delete o.workspace.pendingCommit;
+  return r;
 }

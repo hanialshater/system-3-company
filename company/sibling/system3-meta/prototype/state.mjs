@@ -7,6 +7,7 @@ import { fileURLToPath } from "node:url";
 import { Log, Mailbox, Org, Engine, Rooms, DEFAULT_CONFIG } from "./lib.mjs";
 import { SPECS } from "./specs.mjs";
 import { applyFloor } from "./building.mjs";
+import { afterStage } from "./workspace.mjs";
 export const HERE = path.dirname(fileURLToPath(import.meta.url));
 export const LIVE = process.env.META_LIVE_DIR || path.join(HERE, "live");
 export const STATE = path.join(LIVE, process.env.META_STATE || "state.json");
@@ -49,6 +50,7 @@ export function make(specName = "toy", specDef = null) {
   const rooms = new Rooms({ log, clock, config, mailbox, engine, org });
   const co = { log, mailbox, org, engine, rooms, data: { spec: specName, ...(specDef ? { specDef } : {}) }, spec };
   engine.onApproved.push({ prefix: "FLOOR-", fn: (ref) => applyFloor(co, ref) });
+  engine.onAdvanced.push((o, { stage }) => afterStage(co, o, stage)); // K7: only with spec workspace.commit
   return co;
 }
 

@@ -131,6 +131,12 @@ export function tick(co, { acceptance = null, faults = null } = {}) {
         if (w?.created) madeOne = true;
         if (w) steps.push({ step: "workspace", order: o.id, result: w.created ? "created" : "reused", output: `${w.workdir} (${w.branch} at ${w.sha.slice(0, 7)})` });
       }
+      // K7: a commit refused or failed after a stage left; `retry` lifted the hold, so it is tried again here
+      if (o.workspace?.pendingCommit && WS.specOf(co)) {
+        const c = WS.afterStage(co, o, o.workspace.pendingCommit.stage);
+        if (o.stageError?.kind === "workspace") { steps.push({ step: o.stage, kind: "workspace", order: o.id, result: "stage-error", output: o.stageError.why }); continue; }
+        if (c) steps.push({ step: "commit", order: o.id, result: c.sha ? "committed" : "nothing to commit", output: c.sha ?? "" });
+      }
       const sd = engine.stageDef(o);
       if (sd?.run || sd?.signer === "code" || o.stage === "test1") {
         const st = runCodeStage(co, o, sd);
