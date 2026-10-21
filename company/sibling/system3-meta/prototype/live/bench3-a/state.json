@@ -38,7 +38,7 @@
        "id": "BK-1",
        "room": "story-room",
        "start": 29876713.345483333,
-       "end": 29876743.345483333,
+       "end": 29876718.261866666,
        "by": "editor",
        "attendees": [
         "editor",
@@ -46,7 +46,7 @@
         "writer-2"
        ],
        "purpose": "Kickoff: Solar System Quiz Pack",
-       "state": "booked"
+       "state": "used"
       }
      ]
     ]
@@ -81,9 +81,32 @@
     ]
    },
    "posts": {
-    "__map": []
+    "__map": [
+     [
+      "P-1",
+      {
+       "id": "P-1",
+       "channel": "lane:e",
+       "by": "editor",
+       "title": "Minutes: Kickoff: Solar System Quiz Pack",
+       "body": "# Kickoff: Solar System Quiz Pack (MTG-1)\n\nchair: editor · invited: editor, writer-1, writer-2 · absent: none · room: story-room\n\n## 1. Rounds: five topics with no overlap, and which facts each round owns\nRound 1:\n- writer-2: Split by object, so every answer has one owner. R1 The Sun (a star; light takes about 8 minutes to reach us; mostly hydrogen and helium; holds almost all the mass). R2 Rocky planets: Mercury, Venus, Earth, Mars (Mercury closest; Venus hottest; Mars red from rust/iron oxide; Olympus Mons). R3 Giant planets: Jupiter, Saturn, Uranus, Neptune (Jupiter biggest; Great Red Spot; Saturn rings; Uranus spins on its side; Neptune farthest planet). R4 Moons: our Moon, Ganymede (largest moon), Titan (thick air), Europa (ice over an ocean). R5 Small worlds: Pluto (dwarf planet since 2006), asteroid belt between Mars and Jupiter, comets (ice and dust, tails point away from the Sun), meteors/shooting stars. Ownership rules: (a) a planet or moon name may be an Answer only in its owning round; (b) superlatives (biggest, hottest, closest, farthest, largest moon) belong only to the round that owns that object; (c) other rounds should not name another round answer in a Q or Why line, because the give-away check flags a line that names another round answer plus a distinctive word of its question (e.g. R4 \"Ganymede orbits Jupiter, the biggest planet\" would trip it; say \"orbits Jupiter\" only if R3 does not ask \"biggest\"). Safer: R4 Why lines avoid host-planet superlatives. (d) Numbers carry units and are used once in the pack (8 planets vs about 8 minutes must not both be answers). (e) No volatile facts: no moon counts (Saturn count keeps changing), no \"Pluto is the ninth planet\". Code-checkable ask: test that ROUNDn first line equals \"# Round n: <topic>\" from STYLE, and that there is no **Q5.**; today the ROUND check only requires Q1 and Q4, so a 5-question round or wrong topic would pass.\n- writer-1: Five topics, split by kind of object so answers cannot collide: R1 The Sun (star, its light and heat, 8 minutes for light to reach us, center of the solar system). R2 Rocky planets (Mercury, Venus, Earth, Mars only; e.g. Mercury closest, Venus hottest, Mars red from rust). R3 Giant planets (Jupiter, Saturn, Uranus, Neptune only; Jupiter largest, Saturn rings, Uranus tilted on its side, Neptune farthest planet). R4 Moons (Earth Moon, its phases, Titan, Europa, Io; a planet name may appear only as context, never as an answer). R5 Small bodies and exploring space (dwarf planets incl. Pluto, asteroid belt, comets, astronauts/rovers/probes). Ownership rule: every answer word belongs to exactly one round; a planet or body name is an Answer only in the round that owns it (e.g. \"Mars\" only in R2, \"Moon\" only in R4, \"Pluto\" only in R5). Superlatives (\"largest planet\", \"hottest planet\", \"farthest\") live only in the owner round, and no question in another round may mention an owned answer next to its distinctive clue (the check flags answer + distinctive question word in one line as a give-away). The style sheet should list each round owned answers so writers can check before writing, and the code rule (no Answer repeats another ROUND task) backs it. Avoid trap facts: Venus, not Mercury, is hottest; Pluto is a dwarf planet; Saturn is not the only ringed planet, so ask \"best-known rings\", not \"only rings\".\n- editor: Five non-overlapping topics, each owning its facts: R1 The Sun (star, light, heat, size); R2 Rocky inner planets (Mercury, Venus, Earth, Mars); R3 Gas and ice giants (Jupiter, Saturn, Uranus, Neptune); R4 Moons (Earth's Moon and other planets' moons); R5 Small bodies and space exploration (dwarf planets, asteroids, comets, spacecraft, astronauts). A planet's moons belong to R4 only; Pluto to R5 only. No answer may repeat across rounds and no question may name another round's answer.\n**Decision:** Five rounds split by kind of object; every answer has exactly one owner round. Title lines exactly: \"# Round 1: The Sun\" (owns: the Sun is a star, about 8 minutes for its light to reach us, mostly hydrogen and helium, holds almost all the mass, center of the solar system). \"# Round 2: Rocky Planets\" (owns Mercury, Venus, Earth, Mars: Mercury closest to the Sun, Venus hottest because thick clouds trap heat, Mars red from rust, Olympus Mons). \"# Round 3: Giant Planets\" (owns Jupiter, Saturn, Uranus, Neptune: Jupiter biggest, Great Red Spot, Saturn best-known rings (never \"only rings\"), Uranus spins on its side, Neptune farthest planet). \"# Round 4: Moons\" (owns our Moon and its phases, Ganymede largest moon, Titan thick air, Europa ice over an ocean, Io volcanoes). \"# Round 5: Small Worlds and Space Travel\" (owns Pluto as a dwarf planet since 2006, the asteroid belt between Mars and Jupiter, comets of ice and dust with tails pointing away from the Sun, shooting stars, astronauts, rovers and probes). STYLE has the five lines \"- Round n: <topic>\" with exactly these topics, each followed by its owned facts. Ownership rules: a planet, moon or body name is an Answer only in its owner round; superlatives (biggest, hottest, closest, farthest, largest moon) live only in the owner round; no Q or Why line names another round answer (the give-away check flags answer plus a distinctive word of its question); no volatile facts (no moon counts, no \"ninth planet\"); a number is an answer at most once in the pack. Both writers proposed this split; I adopt it. writer-2 code ask (title equals the STYLE topic, no Q5) is now a rule.\n- rule for STYLE*: {\"mustInclude\":[\"- Round 1: The Sun\",\"- Round 2: Rocky Planets\",\"- Round 3: Giant Planets\",\"- Round 4: Moons\",\"- Round 5: Small Worlds and Space Travel\"]} (checked by code; tightened O-1)\n- rule for ROUND1*: {\"mustInclude\":[\"# Round 1: The Sun\"]} (checked by code; tightened O-2)\n- rule for ROUND2*: {\"mustInclude\":[\"# Round 2: Rocky Planets\"]} (checked by code; tightened O-3)\n- rule for ROUND3*: {\"mustInclude\":[\"# Round 3: Giant Planets\"]} (checked by code; tightened O-4)\n- rule for ROUND4*: {\"mustInclude\":[\"# Round 4: Moons\"]} (checked by code; tightened O-5)\n- rule for ROUND5*: {\"mustInclude\":[\"# Round 5: Small Worlds and Space Travel\"]} (checked by code; tightened O-6)\n- rule for ROUND*: {\"distinctAnswers\":{\"prefix\":\"**Answer:**\",\"across\":\"ROUND\"},\"banned\":[\"Q5\"]} (checked by code; tightened O-2, O-3, O-4, O-5, O-6)\n- rule for PACK*: {\"mustInclude\":[\"# Solar System Quiz Pack\",\"# Round 1: The Sun\",\"# Round 2: Rocky Planets\",\"# Round 3: Giant Planets\",\"# Round 4: Moons\",\"# Round 5: Small Worlds and Space Travel\"],\"banned\":[\"Q5\"]} (checked by code; tightened O-7)\n\n## 2. Difficulty, format and the voice of the 'why' line for ages 8-10\nRound 1:\n- writer-2: Format: open answers, no multiple choice. Choice lists would name other rounds answers and trip the cross-round give-away check, and they add words. Each question is three lines: \"**Qn.** question?\" then \"**Answer:** short canonical name (1-4 words, e.g. Venus, not \"It is Venus\")\" then \"**Why:** one sentence\". Canonical short answers make the repeat check meaningful. Difficulty for 8-10: per round Q1-Q2 easy (things a child may have heard: the Sun is a star, Mars is red), Q3 medium, Q4 a stretch with a vivid reason (Venus is hotter than Mercury because thick clouds trap heat). Reading ease >= 60: questions <= 14 words, Why <= 20 words, one clause where possible, everyday words; proper nouns like Ganymede are fine but explain nothing with jargon (say \"air\" not \"atmosphere\" where it fits). Target about 140-200 words per round, inside the 100-300 limit. Voice of Why: warm and concrete, a picture or comparison a child can hold (\"Jupiter is so big that more than 1,000 Earths could fit inside\"), never talking down, no \"obviously\" or \"easy\". Avoid banned words in natural space phrasing: no \"dead star\", \"dead planet\", \"kill\", or \"blood-red\" (say \"rusty red\"). Every Why must be true on its own, not just plausible; writers cite a source (NASA Solar System pages) in builder notes for each Answer.\n- writer-1: Format exactly as the orders say: \"# Round n: <topic>\", then 4 blocks of **Qn.** question / **Answer:** short answer (one to three words, a name or number) / **Why:** one sentence. 100-300 words per round, Flesch reading ease 60+, which means short sentences and everyday words: aim for 10-14 words per sentence, explain any space word in plain terms (\"a dwarf planet is a small round world\"). Difficulty: Q1-Q2 easy (most 8-year-olds might guess), Q3 medium, Q4 a stretch with a fun surprise; mostly direct questions, at most one multiple choice (A/B/C) per round to vary pace. Numbers rounded and kid-sized (\"about 8 minutes\", \"more than 1,000 Earths\"), never long decimals; note \"about\" so the fact stays true. Voice of the Why line: warm, curious, second person where it helps (\"If you could stand on Venus, you would...\"), one surprising fact that teaches, never scolds a wrong guess, no scary framing; banned words stupid, dumb, kill, dead, blood, hate, and I suggest also avoiding \"die\"/\"burn up\" style phrasing. The Why must not name another round owned answer. Each round self-checks with \"node meta.mjs check --order=<O>\" before handing in.\n- editor: Each round: title line '# Round n: <topic>', exactly 4 questions as '**Qn.** ...', '**Answer:** ...' (short, 1-5 words), '**Why:** ...' one sentence of at most 20 words, friendly and encouraging, everyday words, reading ease at least 60. Numbers as digits. No other kinds of line. Difficulty: Q1-Q2 easy, Q3-Q4 a little harder. No scary or rude words.\n**Decision:** Format for every round: line 1 is the title from item 1; then exactly 4 blocks, each three lines: \"**Qn.** question?\" (n = 1-4, at most 16 words), \"**Answer:** short canonical name or number\" (at most 4 words, e.g. \"Venus\", not \"It is Venus\"), \"**Why:** one sentence\" (at most 20 words). No other kinds of line: no intro, no notes, no multiple choice lists (open answers only; writer-1 suggested one A/B/C question per round for pace, but choice lists name other rounds answers and trip the give-away check, so pace comes from varied question forms instead). Difficulty: Q1-Q2 easy (things an 8-year-old may have heard), Q3 medium, Q4 a stretch with a fun surprise. Reading ease at least 60: short sentences, everyday words, explain any space word plainly (\"air\" rather than \"atmosphere\"). Numbers as digits (8, not eight; 1,000 not a thousand), rounded and kid-sized with \"about\" where needed to stay true; \"one\" is allowed only in phrases like \"one of\". Voice of the Why line: warm, curious and concrete, one surprising true fact or picture a child can hold, never talking down (no \"obviously\", \"easy\"), no scary framing (no \"dead star\", \"blood-red\"; say \"rusty red\"). Every Why is true on its own; writers note a source (NASA Solar System pages) for each answer in their builder notes, and self-check with node meta.mjs check --order=<O> before handing in. PACK keeps this same format plus \"## Changes\" with \"- \" lines.\n- rule for ROUND*: {\"allowedLines\":[\"# Round\",\"**Q\",\"**Answer:**\",\"**Why:**\"],\"lineMaxWords\":[{\"prefix\":\"**Why:**\",\"maxWords\":20},{\"prefix\":\"**Answer:**\",\"maxWords\":4},{\"prefix\":\"**Q\",\"maxWords\":17}],\"mustInclude\":[\"**Q2.**\",\"**Q3.**\"],\"minReadingEase\":60,\"banned\":[\"two\",\"three\",\"four\",\"five\",\"six\",\"seven\",\"eight\",\"nine\",\"ten\",\"eleven\",\"twelve\",\"twenty\",\"thirty\",\"forty\",\"fifty\",\"hundred\",\"thousand\",\"million\",\"billion\",\"obviously\",\"atmosphere\"]} (checked by code; tightened O-2, O-3, O-4, O-5, O-6)\n- rule for PACK*: {\"allowedLines\":[\"# \",\"## Changes\",\"- \",\"**Q\",\"**Answer:**\",\"**Why:**\"],\"lineMaxWords\":[{\"prefix\":\"**Why:**\",\"maxWords\":20},{\"prefix\":\"**Answer:**\",\"maxWords\":4},{\"prefix\":\"**Q\",\"maxWords\":17}],\"banned\":[\"two\",\"three\",\"four\",\"five\",\"six\",\"seven\",\"eight\",\"nine\",\"ten\",\"eleven\",\"twelve\",\"twenty\",\"thirty\",\"forty\",\"fifty\",\"hundred\",\"thousand\",\"million\",\"billion\",\"obviously\",\"atmosphere\"]} (checked by code; tightened O-7)\n",
+       "ack": false,
+       "key": "MTG-1:minutes",
+       "ref": "MTG-1",
+       "t": 29876718.261883333,
+       "to": [
+        "writer-1",
+        "writer-2"
+       ],
+       "msgs": {
+        "writer-1": "M-1",
+        "writer-2": "M-2"
+       }
+      }
+     ]
+    ]
    },
-   "n": 0
+   "n": 1
   },
   "tracker": {
    "items": {
@@ -95,8 +118,8 @@
        "kind": "order",
        "title": "Style sheet",
        "body": "",
-       "state": "in-progress",
-       "assignee": null,
+       "state": "done",
+       "assignee": "writer-1",
        "project": "PRJ-1",
        "labels": [],
        "priority": 3,
@@ -108,7 +131,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876713.559316665,
-       "updated": 29876713.559333332,
+       "updated": 29876720.901433334,
        "history": [
         {
          "t": 29876713.559316665,
@@ -119,6 +142,16 @@
          "t": 29876713.559333332,
          "by": "engine",
          "state": "in-progress"
+        },
+        {
+         "t": 29876719.705166668,
+         "by": "engine",
+         "state": "in-review"
+        },
+        {
+         "t": 29876720.901433334,
+         "by": "engine",
+         "state": "done"
         }
        ]
       }
@@ -131,9 +164,11 @@
        "title": "Round 1",
        "body": "",
        "state": "in-progress",
-       "assignee": null,
+       "assignee": "writer-1",
        "project": "PRJ-1",
-       "labels": [],
+       "labels": [
+        "revised"
+       ],
        "priority": 3,
        "cycle": null,
        "due": null,
@@ -143,7 +178,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876713.559333332,
-       "updated": 29876713.559333332,
+       "updated": 29876722.86195,
        "history": [
         {
          "t": 29876713.559333332,
@@ -152,6 +187,16 @@
         },
         {
          "t": 29876713.559333332,
+         "by": "engine",
+         "state": "in-progress"
+        },
+        {
+         "t": 29876720.151416667,
+         "by": "engine",
+         "state": "in-review"
+        },
+        {
+         "t": 29876722.86195,
          "by": "engine",
          "state": "in-progress"
         }
@@ -165,8 +210,8 @@
        "kind": "order",
        "title": "Round 2",
        "body": "",
-       "state": "in-progress",
-       "assignee": null,
+       "state": "in-review",
+       "assignee": "writer-1",
        "project": "PRJ-1",
        "labels": [],
        "priority": 3,
@@ -178,7 +223,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876713.559333332,
-       "updated": 29876713.559333332,
+       "updated": 29876722.163766667,
        "history": [
         {
          "t": 29876713.559333332,
@@ -189,6 +234,11 @@
          "t": 29876713.559333332,
          "by": "engine",
          "state": "in-progress"
+        },
+        {
+         "t": 29876722.163766667,
+         "by": "engine",
+         "state": "in-review"
         }
        ]
       }
@@ -200,8 +250,8 @@
        "kind": "order",
        "title": "Round 3",
        "body": "",
-       "state": "in-progress",
-       "assignee": null,
+       "state": "in-review",
+       "assignee": "writer-1",
        "project": "PRJ-1",
        "labels": [],
        "priority": 3,
@@ -213,7 +263,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876713.559333332,
-       "updated": 29876713.559333332,
+       "updated": 29876722.399433333,
        "history": [
         {
          "t": 29876713.559333332,
@@ -224,6 +274,11 @@
          "t": 29876713.559333332,
          "by": "engine",
          "state": "in-progress"
+        },
+        {
+         "t": 29876722.399433333,
+         "by": "engine",
+         "state": "in-review"
         }
        ]
       }
@@ -235,8 +290,8 @@
        "kind": "order",
        "title": "Round 4",
        "body": "",
-       "state": "in-progress",
-       "assignee": null,
+       "state": "in-review",
+       "assignee": "writer-2",
        "project": "PRJ-1",
        "labels": [],
        "priority": 3,
@@ -248,7 +303,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876713.559333332,
-       "updated": 29876713.559333332,
+       "updated": 29876720.996083334,
        "history": [
         {
          "t": 29876713.559333332,
@@ -259,6 +314,11 @@
          "t": 29876713.559333332,
          "by": "engine",
          "state": "in-progress"
+        },
+        {
+         "t": 29876720.996083334,
+         "by": "engine",
+         "state": "in-review"
         }
        ]
       }
@@ -271,7 +331,7 @@
        "title": "Round 5",
        "body": "",
        "state": "in-progress",
-       "assignee": null,
+       "assignee": "writer-2",
        "project": "PRJ-1",
        "labels": [],
        "priority": 3,
@@ -283,7 +343,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876713.559333332,
-       "updated": 29876713.559333332,
+       "updated": 29876719.705166668,
        "history": [
         {
          "t": 29876713.559333332,
@@ -306,7 +366,7 @@
        "title": "Assembled pack",
        "body": "",
        "state": "backlog",
-       "assignee": null,
+       "assignee": "writer-2",
        "project": "PRJ-1",
        "labels": [],
        "priority": 3,
@@ -318,7 +378,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876713.559333332,
-       "updated": 29876713.559333332,
+       "updated": 29876719.705166668,
        "history": [
         {
          "t": 29876713.559333332,
@@ -418,7 +478,7 @@
         {
          "metric": "orders shipped",
          "target": 7,
-         "current": 0,
+         "current": 1,
          "unit": null,
          "source": "shipped:"
         }
@@ -456,7 +516,7 @@
         {
          "metric": "style shipped",
          "target": 1,
-         "current": 0,
+         "current": 1,
          "unit": null,
          "source": "shipped:STYLE"
         },
@@ -519,7 +579,7 @@
        "room": "story-room",
        "channel": "lane:e",
        "opened": 29876713.3455,
-       "state": "open",
+       "state": "closed",
        "agenda": [
         {
          "n": 1,
@@ -537,13 +597,132 @@
             "writer-1": {
              "text": "Five topics, split by kind of object so answers cannot collide: R1 The Sun (star, its light and heat, 8 minutes for light to reach us, center of the solar system). R2 Rocky planets (Mercury, Venus, Earth, Mars only; e.g. Mercury closest, Venus hottest, Mars red from rust). R3 Giant planets (Jupiter, Saturn, Uranus, Neptune only; Jupiter largest, Saturn rings, Uranus tilted on its side, Neptune farthest planet). R4 Moons (Earth Moon, its phases, Titan, Europa, Io; a planet name may appear only as context, never as an answer). R5 Small bodies and exploring space (dwarf planets incl. Pluto, asteroid belt, comets, astronauts/rovers/probes). Ownership rule: every answer word belongs to exactly one round; a planet or body name is an Answer only in the round that owns it (e.g. \"Mars\" only in R2, \"Moon\" only in R4, \"Pluto\" only in R5). Superlatives (\"largest planet\", \"hottest planet\", \"farthest\") live only in the owner round, and no question in another round may mention an owned answer next to its distinctive clue (the check flags answer + distinctive question word in one line as a give-away). The style sheet should list each round owned answers so writers can check before writing, and the code rule (no Answer repeats another ROUND task) backs it. Avoid trap facts: Venus, not Mercury, is hottest; Pluto is a dwarf planet; Saturn is not the only ringed planet, so ask \"best-known rings\", not \"only rings\".",
              "t": 29876715.85185
+            },
+            "editor": {
+             "text": "Five non-overlapping topics, each owning its facts: R1 The Sun (star, light, heat, size); R2 Rocky inner planets (Mercury, Venus, Earth, Mars); R3 Gas and ice giants (Jupiter, Saturn, Uranus, Neptune); R4 Moons (Earth's Moon and other planets' moons); R5 Small bodies and space exploration (dwarf planets, asteroids, comets, spacecraft, astronauts). A planet's moons belong to R4 only; Pluto to R5 only. No answer may repeat across rounds and no question may name another round's answer.",
+             "t": 29876717.197766665
             }
            },
-           "revealed": false
+           "revealed": true,
+           "missing": []
           }
          ],
          "objections": [],
-         "decision": null,
+         "decision": {
+          "text": "Five rounds split by kind of object; every answer has exactly one owner round. Title lines exactly: \"# Round 1: The Sun\" (owns: the Sun is a star, about 8 minutes for its light to reach us, mostly hydrogen and helium, holds almost all the mass, center of the solar system). \"# Round 2: Rocky Planets\" (owns Mercury, Venus, Earth, Mars: Mercury closest to the Sun, Venus hottest because thick clouds trap heat, Mars red from rust, Olympus Mons). \"# Round 3: Giant Planets\" (owns Jupiter, Saturn, Uranus, Neptune: Jupiter biggest, Great Red Spot, Saturn best-known rings (never \"only rings\"), Uranus spins on its side, Neptune farthest planet). \"# Round 4: Moons\" (owns our Moon and its phases, Ganymede largest moon, Titan thick air, Europa ice over an ocean, Io volcanoes). \"# Round 5: Small Worlds and Space Travel\" (owns Pluto as a dwarf planet since 2006, the asteroid belt between Mars and Jupiter, comets of ice and dust with tails pointing away from the Sun, shooting stars, astronauts, rovers and probes). STYLE has the five lines \"- Round n: <topic>\" with exactly these topics, each followed by its owned facts. Ownership rules: a planet, moon or body name is an Answer only in its owner round; superlatives (biggest, hottest, closest, farthest, largest moon) live only in the owner round; no Q or Why line names another round answer (the give-away check flags answer plus a distinctive word of its question); no volatile facts (no moon counts, no \"ninth planet\"); a number is an answer at most once in the pack. Both writers proposed this split; I adopt it. writer-2 code ask (title equals the STYLE topic, no Q5) is now a rule.",
+          "t": 29876718.04185,
+          "actions": [],
+          "rules": [
+           {
+            "tasks": "STYLE",
+            "checks": {
+             "mustInclude": [
+              "- Round 1: The Sun",
+              "- Round 2: Rocky Planets",
+              "- Round 3: Giant Planets",
+              "- Round 4: Moons",
+              "- Round 5: Small Worlds and Space Travel"
+             ]
+            },
+            "tightened": [
+             "O-1"
+            ]
+           },
+           {
+            "tasks": "ROUND1",
+            "checks": {
+             "mustInclude": [
+              "# Round 1: The Sun"
+             ]
+            },
+            "tightened": [
+             "O-2"
+            ]
+           },
+           {
+            "tasks": "ROUND2",
+            "checks": {
+             "mustInclude": [
+              "# Round 2: Rocky Planets"
+             ]
+            },
+            "tightened": [
+             "O-3"
+            ]
+           },
+           {
+            "tasks": "ROUND3",
+            "checks": {
+             "mustInclude": [
+              "# Round 3: Giant Planets"
+             ]
+            },
+            "tightened": [
+             "O-4"
+            ]
+           },
+           {
+            "tasks": "ROUND4",
+            "checks": {
+             "mustInclude": [
+              "# Round 4: Moons"
+             ]
+            },
+            "tightened": [
+             "O-5"
+            ]
+           },
+           {
+            "tasks": "ROUND5",
+            "checks": {
+             "mustInclude": [
+              "# Round 5: Small Worlds and Space Travel"
+             ]
+            },
+            "tightened": [
+             "O-6"
+            ]
+           },
+           {
+            "tasks": "ROUND",
+            "checks": {
+             "distinctAnswers": {
+              "prefix": "**Answer:**",
+              "across": "ROUND"
+             },
+             "banned": [
+              "Q5"
+             ]
+            },
+            "tightened": [
+             "O-2",
+             "O-3",
+             "O-4",
+             "O-5",
+             "O-6"
+            ]
+           },
+           {
+            "tasks": "PACK",
+            "checks": {
+             "mustInclude": [
+              "# Solar System Quiz Pack",
+              "# Round 1: The Sun",
+              "# Round 2: Rocky Planets",
+              "# Round 3: Giant Planets",
+              "# Round 4: Moons",
+              "# Round 5: Small Worlds and Space Travel"
+             ],
+             "banned": [
+              "Q5"
+             ]
+            },
+            "tightened": [
+             "O-7"
+            ]
+           }
+          ]
+         },
          "deferred": null
         },
         {
@@ -562,13 +741,137 @@
             "writer-1": {
              "text": "Format exactly as the orders say: \"# Round n: <topic>\", then 4 blocks of **Qn.** question / **Answer:** short answer (one to three words, a name or number) / **Why:** one sentence. 100-300 words per round, Flesch reading ease 60+, which means short sentences and everyday words: aim for 10-14 words per sentence, explain any space word in plain terms (\"a dwarf planet is a small round world\"). Difficulty: Q1-Q2 easy (most 8-year-olds might guess), Q3 medium, Q4 a stretch with a fun surprise; mostly direct questions, at most one multiple choice (A/B/C) per round to vary pace. Numbers rounded and kid-sized (\"about 8 minutes\", \"more than 1,000 Earths\"), never long decimals; note \"about\" so the fact stays true. Voice of the Why line: warm, curious, second person where it helps (\"If you could stand on Venus, you would...\"), one surprising fact that teaches, never scolds a wrong guess, no scary framing; banned words stupid, dumb, kill, dead, blood, hate, and I suggest also avoiding \"die\"/\"burn up\" style phrasing. The Why must not name another round owned answer. Each round self-checks with \"node meta.mjs check --order=<O>\" before handing in.",
              "t": 29876715.8535
+            },
+            "editor": {
+             "text": "Each round: title line '# Round n: <topic>', exactly 4 questions as '**Qn.** ...', '**Answer:** ...' (short, 1-5 words), '**Why:** ...' one sentence of at most 20 words, friendly and encouraging, everyday words, reading ease at least 60. Numbers as digits. No other kinds of line. Difficulty: Q1-Q2 easy, Q3-Q4 a little harder. No scary or rude words.",
+             "t": 29876717.199366666
             }
            },
-           "revealed": false
+           "revealed": true,
+           "missing": []
           }
          ],
          "objections": [],
-         "decision": null,
+         "decision": {
+          "text": "Format for every round: line 1 is the title from item 1; then exactly 4 blocks, each three lines: \"**Qn.** question?\" (n = 1-4, at most 16 words), \"**Answer:** short canonical name or number\" (at most 4 words, e.g. \"Venus\", not \"It is Venus\"), \"**Why:** one sentence\" (at most 20 words). No other kinds of line: no intro, no notes, no multiple choice lists (open answers only; writer-1 suggested one A/B/C question per round for pace, but choice lists name other rounds answers and trip the give-away check, so pace comes from varied question forms instead). Difficulty: Q1-Q2 easy (things an 8-year-old may have heard), Q3 medium, Q4 a stretch with a fun surprise. Reading ease at least 60: short sentences, everyday words, explain any space word plainly (\"air\" rather than \"atmosphere\"). Numbers as digits (8, not eight; 1,000 not a thousand), rounded and kid-sized with \"about\" where needed to stay true; \"one\" is allowed only in phrases like \"one of\". Voice of the Why line: warm, curious and concrete, one surprising true fact or picture a child can hold, never talking down (no \"obviously\", \"easy\"), no scary framing (no \"dead star\", \"blood-red\"; say \"rusty red\"). Every Why is true on its own; writers note a source (NASA Solar System pages) for each answer in their builder notes, and self-check with node meta.mjs check --order=<O> before handing in. PACK keeps this same format plus \"## Changes\" with \"- \" lines.",
+          "t": 29876718.259783335,
+          "actions": [],
+          "rules": [
+           {
+            "tasks": "ROUND",
+            "checks": {
+             "allowedLines": [
+              "# Round",
+              "**Q",
+              "**Answer:**",
+              "**Why:**"
+             ],
+             "lineMaxWords": [
+              {
+               "prefix": "**Why:**",
+               "maxWords": 20
+              },
+              {
+               "prefix": "**Answer:**",
+               "maxWords": 4
+              },
+              {
+               "prefix": "**Q",
+               "maxWords": 17
+              }
+             ],
+             "mustInclude": [
+              "**Q2.**",
+              "**Q3.**"
+             ],
+             "minReadingEase": 60,
+             "banned": [
+              "two",
+              "three",
+              "four",
+              "five",
+              "six",
+              "seven",
+              "eight",
+              "nine",
+              "ten",
+              "eleven",
+              "twelve",
+              "twenty",
+              "thirty",
+              "forty",
+              "fifty",
+              "hundred",
+              "thousand",
+              "million",
+              "billion",
+              "obviously",
+              "atmosphere"
+             ]
+            },
+            "tightened": [
+             "O-2",
+             "O-3",
+             "O-4",
+             "O-5",
+             "O-6"
+            ]
+           },
+           {
+            "tasks": "PACK",
+            "checks": {
+             "allowedLines": [
+              "# ",
+              "## Changes",
+              "- ",
+              "**Q",
+              "**Answer:**",
+              "**Why:**"
+             ],
+             "lineMaxWords": [
+              {
+               "prefix": "**Why:**",
+               "maxWords": 20
+              },
+              {
+               "prefix": "**Answer:**",
+               "maxWords": 4
+              },
+              {
+               "prefix": "**Q",
+               "maxWords": 17
+              }
+             ],
+             "banned": [
+              "two",
+              "three",
+              "four",
+              "five",
+              "six",
+              "seven",
+              "eight",
+              "nine",
+              "ten",
+              "eleven",
+              "twelve",
+              "twenty",
+              "thirty",
+              "forty",
+              "fifty",
+              "hundred",
+              "thousand",
+              "million",
+              "billion",
+              "obviously",
+              "atmosphere"
+             ]
+            },
+            "tightened": [
+             "O-7"
+            ]
+           }
+          ]
+         },
          "deferred": null
         }
        ],
@@ -579,13 +882,210 @@
          "writer-2",
          "writer-1"
         ]
-       }
+       },
+       "closed": 29876718.261866666,
+       "minutes": "# Kickoff: Solar System Quiz Pack (MTG-1)\n\nchair: editor · invited: editor, writer-1, writer-2 · absent: none · room: story-room\n\n## 1. Rounds: five topics with no overlap, and which facts each round owns\nRound 1:\n- writer-2: Split by object, so every answer has one owner. R1 The Sun (a star; light takes about 8 minutes to reach us; mostly hydrogen and helium; holds almost all the mass). R2 Rocky planets: Mercury, Venus, Earth, Mars (Mercury closest; Venus hottest; Mars red from rust/iron oxide; Olympus Mons). R3 Giant planets: Jupiter, Saturn, Uranus, Neptune (Jupiter biggest; Great Red Spot; Saturn rings; Uranus spins on its side; Neptune farthest planet). R4 Moons: our Moon, Ganymede (largest moon), Titan (thick air), Europa (ice over an ocean). R5 Small worlds: Pluto (dwarf planet since 2006), asteroid belt between Mars and Jupiter, comets (ice and dust, tails point away from the Sun), meteors/shooting stars. Ownership rules: (a) a planet or moon name may be an Answer only in its owning round; (b) superlatives (biggest, hottest, closest, farthest, largest moon) belong only to the round that owns that object; (c) other rounds should not name another round answer in a Q or Why line, because the give-away check flags a line that names another round answer plus a distinctive word of its question (e.g. R4 \"Ganymede orbits Jupiter, the biggest planet\" would trip it; say \"orbits Jupiter\" only if R3 does not ask \"biggest\"). Safer: R4 Why lines avoid host-planet superlatives. (d) Numbers carry units and are used once in the pack (8 planets vs about 8 minutes must not both be answers). (e) No volatile facts: no moon counts (Saturn count keeps changing), no \"Pluto is the ninth planet\". Code-checkable ask: test that ROUNDn first line equals \"# Round n: <topic>\" from STYLE, and that there is no **Q5.**; today the ROUND check only requires Q1 and Q4, so a 5-question round or wrong topic would pass.\n- writer-1: Five topics, split by kind of object so answers cannot collide: R1 The Sun (star, its light and heat, 8 minutes for light to reach us, center of the solar system). R2 Rocky planets (Mercury, Venus, Earth, Mars only; e.g. Mercury closest, Venus hottest, Mars red from rust). R3 Giant planets (Jupiter, Saturn, Uranus, Neptune only; Jupiter largest, Saturn rings, Uranus tilted on its side, Neptune farthest planet). R4 Moons (Earth Moon, its phases, Titan, Europa, Io; a planet name may appear only as context, never as an answer). R5 Small bodies and exploring space (dwarf planets incl. Pluto, asteroid belt, comets, astronauts/rovers/probes). Ownership rule: every answer word belongs to exactly one round; a planet or body name is an Answer only in the round that owns it (e.g. \"Mars\" only in R2, \"Moon\" only in R4, \"Pluto\" only in R5). Superlatives (\"largest planet\", \"hottest planet\", \"farthest\") live only in the owner round, and no question in another round may mention an owned answer next to its distinctive clue (the check flags answer + distinctive question word in one line as a give-away). The style sheet should list each round owned answers so writers can check before writing, and the code rule (no Answer repeats another ROUND task) backs it. Avoid trap facts: Venus, not Mercury, is hottest; Pluto is a dwarf planet; Saturn is not the only ringed planet, so ask \"best-known rings\", not \"only rings\".\n- editor: Five non-overlapping topics, each owning its facts: R1 The Sun (star, light, heat, size); R2 Rocky inner planets (Mercury, Venus, Earth, Mars); R3 Gas and ice giants (Jupiter, Saturn, Uranus, Neptune); R4 Moons (Earth's Moon and other planets' moons); R5 Small bodies and space exploration (dwarf planets, asteroids, comets, spacecraft, astronauts). A planet's moons belong to R4 only; Pluto to R5 only. No answer may repeat across rounds and no question may name another round's answer.\n**Decision:** Five rounds split by kind of object; every answer has exactly one owner round. Title lines exactly: \"# Round 1: The Sun\" (owns: the Sun is a star, about 8 minutes for its light to reach us, mostly hydrogen and helium, holds almost all the mass, center of the solar system). \"# Round 2: Rocky Planets\" (owns Mercury, Venus, Earth, Mars: Mercury closest to the Sun, Venus hottest because thick clouds trap heat, Mars red from rust, Olympus Mons). \"# Round 3: Giant Planets\" (owns Jupiter, Saturn, Uranus, Neptune: Jupiter biggest, Great Red Spot, Saturn best-known rings (never \"only rings\"), Uranus spins on its side, Neptune farthest planet). \"# Round 4: Moons\" (owns our Moon and its phases, Ganymede largest moon, Titan thick air, Europa ice over an ocean, Io volcanoes). \"# Round 5: Small Worlds and Space Travel\" (owns Pluto as a dwarf planet since 2006, the asteroid belt between Mars and Jupiter, comets of ice and dust with tails pointing away from the Sun, shooting stars, astronauts, rovers and probes). STYLE has the five lines \"- Round n: <topic>\" with exactly these topics, each followed by its owned facts. Ownership rules: a planet, moon or body name is an Answer only in its owner round; superlatives (biggest, hottest, closest, farthest, largest moon) live only in the owner round; no Q or Why line names another round answer (the give-away check flags answer plus a distinctive word of its question); no volatile facts (no moon counts, no \"ninth planet\"); a number is an answer at most once in the pack. Both writers proposed this split; I adopt it. writer-2 code ask (title equals the STYLE topic, no Q5) is now a rule.\n- rule for STYLE*: {\"mustInclude\":[\"- Round 1: The Sun\",\"- Round 2: Rocky Planets\",\"- Round 3: Giant Planets\",\"- Round 4: Moons\",\"- Round 5: Small Worlds and Space Travel\"]} (checked by code; tightened O-1)\n- rule for ROUND1*: {\"mustInclude\":[\"# Round 1: The Sun\"]} (checked by code; tightened O-2)\n- rule for ROUND2*: {\"mustInclude\":[\"# Round 2: Rocky Planets\"]} (checked by code; tightened O-3)\n- rule for ROUND3*: {\"mustInclude\":[\"# Round 3: Giant Planets\"]} (checked by code; tightened O-4)\n- rule for ROUND4*: {\"mustInclude\":[\"# Round 4: Moons\"]} (checked by code; tightened O-5)\n- rule for ROUND5*: {\"mustInclude\":[\"# Round 5: Small Worlds and Space Travel\"]} (checked by code; tightened O-6)\n- rule for ROUND*: {\"distinctAnswers\":{\"prefix\":\"**Answer:**\",\"across\":\"ROUND\"},\"banned\":[\"Q5\"]} (checked by code; tightened O-2, O-3, O-4, O-5, O-6)\n- rule for PACK*: {\"mustInclude\":[\"# Solar System Quiz Pack\",\"# Round 1: The Sun\",\"# Round 2: Rocky Planets\",\"# Round 3: Giant Planets\",\"# Round 4: Moons\",\"# Round 5: Small Worlds and Space Travel\"],\"banned\":[\"Q5\"]} (checked by code; tightened O-7)\n\n## 2. Difficulty, format and the voice of the 'why' line for ages 8-10\nRound 1:\n- writer-2: Format: open answers, no multiple choice. Choice lists would name other rounds answers and trip the cross-round give-away check, and they add words. Each question is three lines: \"**Qn.** question?\" then \"**Answer:** short canonical name (1-4 words, e.g. Venus, not \"It is Venus\")\" then \"**Why:** one sentence\". Canonical short answers make the repeat check meaningful. Difficulty for 8-10: per round Q1-Q2 easy (things a child may have heard: the Sun is a star, Mars is red), Q3 medium, Q4 a stretch with a vivid reason (Venus is hotter than Mercury because thick clouds trap heat). Reading ease >= 60: questions <= 14 words, Why <= 20 words, one clause where possible, everyday words; proper nouns like Ganymede are fine but explain nothing with jargon (say \"air\" not \"atmosphere\" where it fits). Target about 140-200 words per round, inside the 100-300 limit. Voice of Why: warm and concrete, a picture or comparison a child can hold (\"Jupiter is so big that more than 1,000 Earths could fit inside\"), never talking down, no \"obviously\" or \"easy\". Avoid banned words in natural space phrasing: no \"dead star\", \"dead planet\", \"kill\", or \"blood-red\" (say \"rusty red\"). Every Why must be true on its own, not just plausible; writers cite a source (NASA Solar System pages) in builder notes for each Answer.\n- writer-1: Format exactly as the orders say: \"# Round n: <topic>\", then 4 blocks of **Qn.** question / **Answer:** short answer (one to three words, a name or number) / **Why:** one sentence. 100-300 words per round, Flesch reading ease 60+, which means short sentences and everyday words: aim for 10-14 words per sentence, explain any space word in plain terms (\"a dwarf planet is a small round world\"). Difficulty: Q1-Q2 easy (most 8-year-olds might guess), Q3 medium, Q4 a stretch with a fun surprise; mostly direct questions, at most one multiple choice (A/B/C) per round to vary pace. Numbers rounded and kid-sized (\"about 8 minutes\", \"more than 1,000 Earths\"), never long decimals; note \"about\" so the fact stays true. Voice of the Why line: warm, curious, second person where it helps (\"If you could stand on Venus, you would...\"), one surprising fact that teaches, never scolds a wrong guess, no scary framing; banned words stupid, dumb, kill, dead, blood, hate, and I suggest also avoiding \"die\"/\"burn up\" style phrasing. The Why must not name another round owned answer. Each round self-checks with \"node meta.mjs check --order=<O>\" before handing in.\n- editor: Each round: title line '# Round n: <topic>', exactly 4 questions as '**Qn.** ...', '**Answer:** ...' (short, 1-5 words), '**Why:** ...' one sentence of at most 20 words, friendly and encouraging, everyday words, reading ease at least 60. Numbers as digits. No other kinds of line. Difficulty: Q1-Q2 easy, Q3-Q4 a little harder. No scary or rude words.\n**Decision:** Format for every round: line 1 is the title from item 1; then exactly 4 blocks, each three lines: \"**Qn.** question?\" (n = 1-4, at most 16 words), \"**Answer:** short canonical name or number\" (at most 4 words, e.g. \"Venus\", not \"It is Venus\"), \"**Why:** one sentence\" (at most 20 words). No other kinds of line: no intro, no notes, no multiple choice lists (open answers only; writer-1 suggested one A/B/C question per round for pace, but choice lists name other rounds answers and trip the give-away check, so pace comes from varied question forms instead). Difficulty: Q1-Q2 easy (things an 8-year-old may have heard), Q3 medium, Q4 a stretch with a fun surprise. Reading ease at least 60: short sentences, everyday words, explain any space word plainly (\"air\" rather than \"atmosphere\"). Numbers as digits (8, not eight; 1,000 not a thousand), rounded and kid-sized with \"about\" where needed to stay true; \"one\" is allowed only in phrases like \"one of\". Voice of the Why line: warm, curious and concrete, one surprising true fact or picture a child can hold, never talking down (no \"obviously\", \"easy\"), no scary framing (no \"dead star\", \"blood-red\"; say \"rusty red\"). Every Why is true on its own; writers note a source (NASA Solar System pages) for each answer in their builder notes, and self-check with node meta.mjs check --order=<O> before handing in. PACK keeps this same format plus \"## Changes\" with \"- \" lines.\n- rule for ROUND*: {\"allowedLines\":[\"# Round\",\"**Q\",\"**Answer:**\",\"**Why:**\"],\"lineMaxWords\":[{\"prefix\":\"**Why:**\",\"maxWords\":20},{\"prefix\":\"**Answer:**\",\"maxWords\":4},{\"prefix\":\"**Q\",\"maxWords\":17}],\"mustInclude\":[\"**Q2.**\",\"**Q3.**\"],\"minReadingEase\":60,\"banned\":[\"two\",\"three\",\"four\",\"five\",\"six\",\"seven\",\"eight\",\"nine\",\"ten\",\"eleven\",\"twelve\",\"twenty\",\"thirty\",\"forty\",\"fifty\",\"hundred\",\"thousand\",\"million\",\"billion\",\"obviously\",\"atmosphere\"]} (checked by code; tightened O-2, O-3, O-4, O-5, O-6)\n- rule for PACK*: {\"allowedLines\":[\"# \",\"## Changes\",\"- \",\"**Q\",\"**Answer:**\",\"**Why:**\"],\"lineMaxWords\":[{\"prefix\":\"**Why:**\",\"maxWords\":20},{\"prefix\":\"**Answer:**\",\"maxWords\":4},{\"prefix\":\"**Q\",\"maxWords\":17}],\"banned\":[\"two\",\"three\",\"four\",\"five\",\"six\",\"seven\",\"eight\",\"nine\",\"ten\",\"eleven\",\"twelve\",\"twenty\",\"thirty\",\"forty\",\"fifty\",\"hundred\",\"thousand\",\"million\",\"billion\",\"obviously\",\"atmosphere\"]} (checked by code; tightened O-7)\n"
       }
      ]
     ]
    },
    "n": 1
-  }
+  },
+  "rules": [
+   {
+    "tasks": "STYLE",
+    "checks": {
+     "mustInclude": [
+      "- Round 1: The Sun",
+      "- Round 2: Rocky Planets",
+      "- Round 3: Giant Planets",
+      "- Round 4: Moons",
+      "- Round 5: Small Worlds and Space Travel"
+     ]
+    },
+    "source": "MTG-1 item 1"
+   },
+   {
+    "tasks": "ROUND1",
+    "checks": {
+     "mustInclude": [
+      "# Round 1: The Sun"
+     ]
+    },
+    "source": "MTG-1 item 1"
+   },
+   {
+    "tasks": "ROUND2",
+    "checks": {
+     "mustInclude": [
+      "# Round 2: Rocky Planets"
+     ]
+    },
+    "source": "MTG-1 item 1"
+   },
+   {
+    "tasks": "ROUND3",
+    "checks": {
+     "mustInclude": [
+      "# Round 3: Giant Planets"
+     ]
+    },
+    "source": "MTG-1 item 1"
+   },
+   {
+    "tasks": "ROUND4",
+    "checks": {
+     "mustInclude": [
+      "# Round 4: Moons"
+     ]
+    },
+    "source": "MTG-1 item 1"
+   },
+   {
+    "tasks": "ROUND5",
+    "checks": {
+     "mustInclude": [
+      "# Round 5: Small Worlds and Space Travel"
+     ]
+    },
+    "source": "MTG-1 item 1"
+   },
+   {
+    "tasks": "ROUND",
+    "checks": {
+     "distinctAnswers": {
+      "prefix": "**Answer:**",
+      "across": "ROUND"
+     },
+     "banned": [
+      "Q5"
+     ]
+    },
+    "source": "MTG-1 item 1"
+   },
+   {
+    "tasks": "PACK",
+    "checks": {
+     "mustInclude": [
+      "# Solar System Quiz Pack",
+      "# Round 1: The Sun",
+      "# Round 2: Rocky Planets",
+      "# Round 3: Giant Planets",
+      "# Round 4: Moons",
+      "# Round 5: Small Worlds and Space Travel"
+     ],
+     "banned": [
+      "Q5"
+     ]
+    },
+    "source": "MTG-1 item 1"
+   },
+   {
+    "tasks": "ROUND",
+    "checks": {
+     "allowedLines": [
+      "# Round",
+      "**Q",
+      "**Answer:**",
+      "**Why:**"
+     ],
+     "lineMaxWords": [
+      {
+       "prefix": "**Why:**",
+       "maxWords": 20
+      },
+      {
+       "prefix": "**Answer:**",
+       "maxWords": 4
+      },
+      {
+       "prefix": "**Q",
+       "maxWords": 17
+      }
+     ],
+     "mustInclude": [
+      "**Q2.**",
+      "**Q3.**"
+     ],
+     "minReadingEase": 60,
+     "banned": [
+      "two",
+      "three",
+      "four",
+      "five",
+      "six",
+      "seven",
+      "eight",
+      "nine",
+      "ten",
+      "eleven",
+      "twelve",
+      "twenty",
+      "thirty",
+      "forty",
+      "fifty",
+      "hundred",
+      "thousand",
+      "million",
+      "billion",
+      "obviously",
+      "atmosphere"
+     ]
+    },
+    "source": "MTG-1 item 2"
+   },
+   {
+    "tasks": "PACK",
+    "checks": {
+     "allowedLines": [
+      "# ",
+      "## Changes",
+      "- ",
+      "**Q",
+      "**Answer:**",
+      "**Why:**"
+     ],
+     "lineMaxWords": [
+      {
+       "prefix": "**Why:**",
+       "maxWords": 20
+      },
+      {
+       "prefix": "**Answer:**",
+       "maxWords": 4
+      },
+      {
+       "prefix": "**Q",
+       "maxWords": 17
+      }
+     ],
+     "banned": [
+      "two",
+      "three",
+      "four",
+      "five",
+      "six",
+      "seven",
+      "eight",
+      "nine",
+      "ten",
+      "eleven",
+      "twelve",
+      "twenty",
+      "thirty",
+      "forty",
+      "fifty",
+      "hundred",
+      "thousand",
+      "million",
+      "billion",
+      "obviously",
+      "atmosphere"
+     ]
+    },
+    "source": "MTG-1 item 2"
+   }
+  ]
  },
  "log": {
   "events": [
@@ -1132,17 +1632,2352 @@
      }
     ],
     "why": "plan: chair: MTG-1; delegate: O-1, O-2, O-3, O-4, O-5, O-6, O-7"
+   },
+   {
+    "seq": 47,
+    "t": 29876717.0371,
+    "type": "self-check",
+    "order": "O-2",
+    "task": "ROUND1",
+    "by": null,
+    "stage": "build",
+    "pass": false,
+    "output": "missing /home/user/system-3-company/company/sibling/system3-meta/prototype/live/bench3-a/work/ROUND1/page.md"
+   },
+   {
+    "seq": 48,
+    "t": 29876717.197766665,
+    "type": "position",
+    "meeting": "MTG-1",
+    "item": 1,
+    "round": 1,
+    "by": "editor"
+   },
+   {
+    "seq": 49,
+    "t": 29876717.199366666,
+    "type": "position",
+    "meeting": "MTG-1",
+    "item": 2,
+    "round": 1,
+    "by": "editor"
+   },
+   {
+    "seq": 50,
+    "t": 29876717.201083332,
+    "type": "reveal",
+    "meeting": "MTG-1",
+    "item": 1,
+    "round": 1,
+    "positions": 3,
+    "missing": 0
+   },
+   {
+    "seq": 51,
+    "t": 29876717.2027,
+    "type": "reveal",
+    "meeting": "MTG-1",
+    "item": 2,
+    "round": 1,
+    "positions": 3,
+    "missing": 0
+   },
+   {
+    "seq": 52,
+    "t": 29876717.557483334,
+    "type": "self-check",
+    "order": "O-7",
+    "task": "PACK",
+    "by": null,
+    "stage": "build",
+    "pass": false,
+    "output": "missing /home/user/system-3-company/company/sibling/system3-meta/prototype/live/bench3-a/work/PACK/page.md"
+   },
+   {
+    "seq": 53,
+    "t": 29876717.55915,
+    "type": "self-check",
+    "order": "O-1",
+    "task": "STYLE",
+    "by": null,
+    "stage": "build",
+    "pass": false,
+    "output": "missing /home/user/system-3-company/company/sibling/system3-meta/prototype/live/bench3-a/work/STYLE/page.md"
+   },
+   {
+    "seq": 54,
+    "t": 29876718.04185,
+    "type": "rule-applied",
+    "order": "O-1",
+    "task": "STYLE",
+    "source": "MTG-1 item 1",
+    "keys": [
+     "mustInclude"
+    ]
+   },
+   {
+    "seq": 55,
+    "t": 29876718.04185,
+    "type": "rule-applied",
+    "order": "O-2",
+    "task": "ROUND1",
+    "source": "MTG-1 item 1",
+    "keys": [
+     "mustInclude"
+    ]
+   },
+   {
+    "seq": 56,
+    "t": 29876718.04185,
+    "type": "rule-applied",
+    "order": "O-3",
+    "task": "ROUND2",
+    "source": "MTG-1 item 1",
+    "keys": [
+     "mustInclude"
+    ]
+   },
+   {
+    "seq": 57,
+    "t": 29876718.04185,
+    "type": "rule-applied",
+    "order": "O-4",
+    "task": "ROUND3",
+    "source": "MTG-1 item 1",
+    "keys": [
+     "mustInclude"
+    ]
+   },
+   {
+    "seq": 58,
+    "t": 29876718.04185,
+    "type": "rule-applied",
+    "order": "O-5",
+    "task": "ROUND4",
+    "source": "MTG-1 item 1",
+    "keys": [
+     "mustInclude"
+    ]
+   },
+   {
+    "seq": 59,
+    "t": 29876718.04185,
+    "type": "rule-applied",
+    "order": "O-6",
+    "task": "ROUND5",
+    "source": "MTG-1 item 1",
+    "keys": [
+     "mustInclude"
+    ]
+   },
+   {
+    "seq": 60,
+    "t": 29876718.04185,
+    "type": "rule-applied",
+    "order": "O-2",
+    "task": "ROUND1",
+    "source": "MTG-1 item 1",
+    "keys": [
+     "distinctAnswers",
+     "banned"
+    ]
+   },
+   {
+    "seq": 61,
+    "t": 29876718.04185,
+    "type": "rule-applied",
+    "order": "O-3",
+    "task": "ROUND2",
+    "source": "MTG-1 item 1",
+    "keys": [
+     "distinctAnswers",
+     "banned"
+    ]
+   },
+   {
+    "seq": 62,
+    "t": 29876718.04185,
+    "type": "rule-applied",
+    "order": "O-4",
+    "task": "ROUND3",
+    "source": "MTG-1 item 1",
+    "keys": [
+     "distinctAnswers",
+     "banned"
+    ]
+   },
+   {
+    "seq": 63,
+    "t": 29876718.04185,
+    "type": "rule-applied",
+    "order": "O-5",
+    "task": "ROUND4",
+    "source": "MTG-1 item 1",
+    "keys": [
+     "distinctAnswers",
+     "banned"
+    ]
+   },
+   {
+    "seq": 64,
+    "t": 29876718.04185,
+    "type": "rule-applied",
+    "order": "O-6",
+    "task": "ROUND5",
+    "source": "MTG-1 item 1",
+    "keys": [
+     "distinctAnswers",
+     "banned"
+    ]
+   },
+   {
+    "seq": 65,
+    "t": 29876718.04185,
+    "type": "rule-applied",
+    "order": "O-7",
+    "task": "PACK",
+    "source": "MTG-1 item 1",
+    "keys": [
+     "mustInclude",
+     "banned"
+    ]
+   },
+   {
+    "seq": 66,
+    "t": 29876718.04185,
+    "type": "meeting-decide",
+    "meeting": "MTG-1",
+    "item": 1,
+    "by": "editor",
+    "objections": 0,
+    "actions": 0
+   },
+   {
+    "seq": 67,
+    "t": 29876718.259783335,
+    "type": "rule-applied",
+    "order": "O-2",
+    "task": "ROUND1",
+    "source": "MTG-1 item 2",
+    "keys": [
+     "allowedLines",
+     "lineMaxWords",
+     "mustInclude",
+     "minReadingEase",
+     "banned"
+    ]
+   },
+   {
+    "seq": 68,
+    "t": 29876718.259783335,
+    "type": "rule-applied",
+    "order": "O-3",
+    "task": "ROUND2",
+    "source": "MTG-1 item 2",
+    "keys": [
+     "allowedLines",
+     "lineMaxWords",
+     "mustInclude",
+     "minReadingEase",
+     "banned"
+    ]
+   },
+   {
+    "seq": 69,
+    "t": 29876718.259783335,
+    "type": "rule-applied",
+    "order": "O-4",
+    "task": "ROUND3",
+    "source": "MTG-1 item 2",
+    "keys": [
+     "allowedLines",
+     "lineMaxWords",
+     "mustInclude",
+     "minReadingEase",
+     "banned"
+    ]
+   },
+   {
+    "seq": 70,
+    "t": 29876718.259783335,
+    "type": "rule-applied",
+    "order": "O-5",
+    "task": "ROUND4",
+    "source": "MTG-1 item 2",
+    "keys": [
+     "allowedLines",
+     "lineMaxWords",
+     "mustInclude",
+     "minReadingEase",
+     "banned"
+    ]
+   },
+   {
+    "seq": 71,
+    "t": 29876718.259783335,
+    "type": "rule-applied",
+    "order": "O-6",
+    "task": "ROUND5",
+    "source": "MTG-1 item 2",
+    "keys": [
+     "allowedLines",
+     "lineMaxWords",
+     "mustInclude",
+     "minReadingEase",
+     "banned"
+    ]
+   },
+   {
+    "seq": 72,
+    "t": 29876718.259783335,
+    "type": "rule-applied",
+    "order": "O-7",
+    "task": "PACK",
+    "source": "MTG-1 item 2",
+    "keys": [
+     "allowedLines",
+     "lineMaxWords",
+     "banned"
+    ]
+   },
+   {
+    "seq": 73,
+    "t": 29876718.259783335,
+    "type": "meeting-decide",
+    "meeting": "MTG-1",
+    "item": 2,
+    "by": "editor",
+    "objections": 0,
+    "actions": 0
+   },
+   {
+    "seq": 74,
+    "t": 29876718.261866666,
+    "type": "room-release",
+    "booking": "BK-1",
+    "room": "story-room"
+   },
+   {
+    "seq": 75,
+    "t": 29876718.261883333,
+    "type": "meeting-close",
+    "meeting": "MTG-1",
+    "by": "editor",
+    "decided": 2,
+    "deferred": 0,
+    "absent": []
+   },
+   {
+    "seq": 76,
+    "t": 29876718.261883333,
+    "type": "send",
+    "msg": "M-1",
+    "from": "editor",
+    "to": "writer-1",
+    "kind": "post",
+    "key": "P-1:writer-1",
+    "ref": "P-1",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 77,
+    "t": 29876718.261883333,
+    "type": "send",
+    "msg": "M-2",
+    "from": "editor",
+    "to": "writer-2",
+    "kind": "post",
+    "key": "P-1:writer-2",
+    "ref": "P-1",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 78,
+    "t": 29876718.261883333,
+    "type": "post",
+    "post": "P-1",
+    "channel": "lane:e",
+    "by": "editor",
+    "title": "Minutes: Kickoff: Solar System Quiz Pack",
+    "recipients": 2,
+    "ack": false
+   },
+   {
+    "seq": 79,
+    "t": 29876718.26396667,
+    "type": "self-check",
+    "order": "O-2",
+    "task": "ROUND1",
+    "by": null,
+    "stage": "build",
+    "pass": false,
+    "output": "missing /home/user/system-3-company/company/sibling/system3-meta/prototype/live/bench3-a/work/ROUND1/page.md"
+   },
+   {
+    "seq": 80,
+    "t": 29876718.341283333,
+    "type": "delegate",
+    "order": "O-1",
+    "by": "editor",
+    "to": "writer-1",
+    "budget": 150000
+   },
+   {
+    "seq": 81,
+    "t": 29876718.341283333,
+    "type": "send",
+    "msg": "M-3",
+    "from": "editor",
+    "to": "writer-1",
+    "kind": "work",
+    "key": "O-1:build:0",
+    "ref": "O-1",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 82,
+    "t": 29876718.343316667,
+    "type": "delegate",
+    "order": "O-2",
+    "by": "editor",
+    "to": "writer-1",
+    "budget": 150000
+   },
+   {
+    "seq": 83,
+    "t": 29876718.343316667,
+    "type": "send",
+    "msg": "M-4",
+    "from": "editor",
+    "to": "writer-1",
+    "kind": "work",
+    "key": "O-2:build:0",
+    "ref": "O-2",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 84,
+    "t": 29876718.344733335,
+    "type": "item-update",
+    "item": "ISS-1",
+    "by": "engine",
+    "changes": [
+     "assignee"
+    ]
+   },
+   {
+    "seq": 85,
+    "t": 29876718.344733335,
+    "type": "item-update",
+    "item": "ISS-2",
+    "by": "engine",
+    "changes": [
+     "assignee"
+    ]
+   },
+   {
+    "seq": 86,
+    "t": 29876718.344733335,
+    "type": "launch",
+    "role": "writer-1",
+    "msgs": [
+     "M-3",
+     "M-4"
+    ],
+    "tasks": [],
+    "why": "plan: next: 2 waiting, no session running"
+   },
+   {
+    "seq": 87,
+    "t": 29876718.345266666,
+    "type": "delegate",
+    "order": "O-3",
+    "by": "editor",
+    "to": "writer-1",
+    "budget": 150000
+   },
+   {
+    "seq": 88,
+    "t": 29876718.345283333,
+    "type": "send",
+    "msg": "M-5",
+    "from": "editor",
+    "to": "writer-1",
+    "kind": "work",
+    "key": "O-3:build:0",
+    "ref": "O-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 89,
+    "t": 29876718.346783333,
+    "type": "delegate",
+    "order": "O-4",
+    "by": "editor",
+    "to": "writer-1",
+    "budget": 150000
+   },
+   {
+    "seq": 90,
+    "t": 29876718.346783333,
+    "type": "send",
+    "msg": "M-6",
+    "from": "editor",
+    "to": "writer-1",
+    "kind": "work",
+    "key": "O-4:build:0",
+    "ref": "O-4",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 91,
+    "t": 29876718.348383334,
+    "type": "delegate",
+    "order": "O-5",
+    "by": "editor",
+    "to": "writer-2",
+    "budget": 150000
+   },
+   {
+    "seq": 92,
+    "t": 29876718.3484,
+    "type": "send",
+    "msg": "M-7",
+    "from": "editor",
+    "to": "writer-2",
+    "kind": "work",
+    "key": "O-5:build:0",
+    "ref": "O-5",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 93,
+    "t": 29876718.348716665,
+    "type": "item-update",
+    "item": "ISS-3",
+    "by": "engine",
+    "changes": [
+     "assignee"
+    ]
+   },
+   {
+    "seq": 94,
+    "t": 29876718.348716665,
+    "type": "item-update",
+    "item": "ISS-4",
+    "by": "engine",
+    "changes": [
+     "assignee"
+    ]
+   },
+   {
+    "seq": 95,
+    "t": 29876718.348716665,
+    "type": "item-update",
+    "item": "ISS-5",
+    "by": "engine",
+    "changes": [
+     "assignee"
+    ]
+   },
+   {
+    "seq": 96,
+    "t": 29876718.348733332,
+    "type": "launch",
+    "role": "writer-2",
+    "msgs": [
+     "M-7"
+    ],
+    "tasks": [],
+    "why": "plan: next: 1 waiting, no session running"
+   },
+   {
+    "seq": 97,
+    "t": 29876718.349966668,
+    "type": "delegate",
+    "order": "O-6",
+    "by": "editor",
+    "to": "writer-2",
+    "budget": 150000
+   },
+   {
+    "seq": 98,
+    "t": 29876718.349966668,
+    "type": "send",
+    "msg": "M-8",
+    "from": "editor",
+    "to": "writer-2",
+    "kind": "work",
+    "key": "O-6:build:0",
+    "ref": "O-6",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 99,
+    "t": 29876718.351733334,
+    "type": "delegate",
+    "order": "O-7",
+    "by": "editor",
+    "to": "writer-2",
+    "budget": 150000
+   },
+   {
+    "seq": 100,
+    "t": 29876718.351733334,
+    "type": "blocked",
+    "order": "O-7",
+    "after": [
+     "O-1",
+     "O-2",
+     "O-3",
+     "O-4",
+     "O-5",
+     "O-6"
+    ]
+   },
+   {
+    "seq": 101,
+    "t": 29876719.229133334,
+    "type": "session-open",
+    "session": "S-1",
+    "role": "writer-1"
+   },
+   {
+    "seq": 102,
+    "t": 29876719.229133334,
+    "type": "claim",
+    "msg": "M-3",
+    "run": "R-1"
+   },
+   {
+    "seq": 103,
+    "t": 29876719.229133334,
+    "type": "enter",
+    "run": "R-1",
+    "msg": "M-3",
+    "role": "writer-1",
+    "by": "writer-1",
+    "room": "editorial",
+    "order": "O-1",
+    "stage": "build",
+    "mode": "work",
+    "session": "S-1",
+    "item": 1
+   },
+   {
+    "seq": 104,
+    "t": 29876719.603716668,
+    "type": "self-check",
+    "order": "O-1",
+    "task": "STYLE",
+    "by": "writer-1",
+    "stage": "build",
+    "pass": true,
+    "output": "ok: 463 words, reading ease 73"
+   },
+   {
+    "seq": 105,
+    "t": 29876719.701516666,
+    "type": "advance",
+    "order": "O-1",
+    "stage": "build",
+    "by": "writer-1",
+    "verdict": "pass"
+   },
+   {
+    "seq": 106,
+    "t": 29876719.701516666,
+    "type": "code-stage",
+    "order": "O-1",
+    "stage": "test1"
+   },
+   {
+    "seq": 107,
+    "t": 29876719.701516666,
+    "type": "done",
+    "msg": "M-3",
+    "run": "R-1"
+   },
+   {
+    "seq": 108,
+    "t": 29876719.701533332,
+    "type": "send",
+    "msg": "M-9",
+    "from": "writer-1",
+    "to": "editor",
+    "kind": "report",
+    "key": null,
+    "ref": "O-1",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 109,
+    "t": 29876719.701533332,
+    "type": "leave",
+    "run": "R-1",
+    "role": "writer-1",
+    "order": "O-1",
+    "stage": "build",
+    "verdict": "pass",
+    "minutes": 0.4723999984562397
+   },
+   {
+    "seq": 110,
+    "t": 29876719.701533332,
+    "type": "claim",
+    "msg": "M-4",
+    "run": "R-2"
+   },
+   {
+    "seq": 111,
+    "t": 29876719.701533332,
+    "type": "enter",
+    "run": "R-2",
+    "msg": "M-4",
+    "role": "writer-1",
+    "by": "writer-1",
+    "room": "editorial",
+    "order": "O-2",
+    "stage": "build",
+    "mode": "work",
+    "session": "S-1",
+    "item": 2
+   },
+   {
+    "seq": 112,
+    "t": 29876719.705166668,
+    "type": "advance",
+    "order": "O-1",
+    "stage": "test1",
+    "by": "code",
+    "verdict": "pass"
+   },
+   {
+    "seq": 113,
+    "t": 29876719.705166668,
+    "type": "send",
+    "msg": "M-10",
+    "from": "editor",
+    "to": "pool:checker",
+    "kind": "work",
+    "key": "O-1:check:0",
+    "ref": "O-1",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 114,
+    "t": 29876719.705166668,
+    "type": "item-update",
+    "item": "ISS-1",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 115,
+    "t": 29876719.705166668,
+    "type": "item-update",
+    "item": "ISS-6",
+    "by": "engine",
+    "changes": [
+     "assignee"
+    ]
+   },
+   {
+    "seq": 116,
+    "t": 29876719.705166668,
+    "type": "item-update",
+    "item": "ISS-7",
+    "by": "engine",
+    "changes": [
+     "assignee"
+    ]
+   },
+   {
+    "seq": 117,
+    "t": 29876719.705166668,
+    "type": "supervisor-tick",
+    "steps": [
+     "test1:O-1"
+    ]
+   },
+   {
+    "seq": 118,
+    "t": 29876719.705183335,
+    "type": "launch",
+    "role": "reader",
+    "msgs": [
+     "M-10"
+    ],
+    "tasks": [],
+    "why": "plan: next: 1 waiting, no session running"
+   },
+   {
+    "seq": 119,
+    "t": 29876719.91015,
+    "type": "self-check",
+    "order": "O-2",
+    "task": "ROUND1",
+    "by": "writer-1",
+    "stage": "build",
+    "pass": false,
+    "output": "line 10 (**Why:**) has 21 words > 20; line 2 (**Q) has 20 words > 17; ROUND1: answer \"sun\" is named in an earlier question: \"**Q1.** The Sun looks like a big ball of fire in the sky, but what kind of objec\""
+   },
+   {
+    "seq": 120,
+    "t": 29876720.071983334,
+    "type": "self-check",
+    "order": "O-2",
+    "task": "ROUND1",
+    "by": "writer-1",
+    "stage": "build",
+    "pass": true,
+    "output": "ok: 148 words, reading ease 81"
+   },
+   {
+    "seq": 121,
+    "t": 29876720.1478,
+    "type": "advance",
+    "order": "O-2",
+    "stage": "build",
+    "by": "writer-1",
+    "verdict": "pass"
+   },
+   {
+    "seq": 122,
+    "t": 29876720.1478,
+    "type": "code-stage",
+    "order": "O-2",
+    "stage": "test1"
+   },
+   {
+    "seq": 123,
+    "t": 29876720.1478,
+    "type": "done",
+    "msg": "M-4",
+    "run": "R-2"
+   },
+   {
+    "seq": 124,
+    "t": 29876720.1478,
+    "type": "send",
+    "msg": "M-11",
+    "from": "writer-1",
+    "to": "editor",
+    "kind": "report",
+    "key": null,
+    "ref": "O-2",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 125,
+    "t": 29876720.147816665,
+    "type": "leave",
+    "run": "R-2",
+    "role": "writer-1",
+    "order": "O-2",
+    "stage": "build",
+    "verdict": "pass",
+    "minutes": 0.44628333300352097
+   },
+   {
+    "seq": 126,
+    "t": 29876720.1514,
+    "type": "advance",
+    "order": "O-2",
+    "stage": "test1",
+    "by": "code",
+    "verdict": "pass"
+   },
+   {
+    "seq": 127,
+    "t": 29876720.151416667,
+    "type": "send",
+    "msg": "M-12",
+    "from": "editor",
+    "to": "pool:checker",
+    "kind": "work",
+    "key": "O-2:check:0",
+    "ref": "O-2",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 128,
+    "t": 29876720.151416667,
+    "type": "item-update",
+    "item": "ISS-2",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 129,
+    "t": 29876720.151416667,
+    "type": "supervisor-tick",
+    "steps": [
+     "test1:O-2"
+    ]
+   },
+   {
+    "seq": 130,
+    "t": 29876720.151416667,
+    "type": "launch",
+    "role": "writer-1",
+    "msgs": [
+     "M-5",
+     "M-6"
+    ],
+    "tasks": [],
+    "why": "plan: next: 2 waiting, no session running"
+   },
+   {
+    "seq": 131,
+    "t": 29876720.48625,
+    "type": "session-open",
+    "session": "S-2",
+    "role": "writer-2"
+   },
+   {
+    "seq": 132,
+    "t": 29876720.48625,
+    "type": "claim",
+    "msg": "M-7",
+    "run": "R-3"
+   },
+   {
+    "seq": 133,
+    "t": 29876720.48625,
+    "type": "enter",
+    "run": "R-3",
+    "msg": "M-7",
+    "role": "writer-2",
+    "by": "writer-2",
+    "room": "editorial",
+    "order": "O-5",
+    "stage": "build",
+    "mode": "work",
+    "session": "S-2",
+    "item": 1
+   },
+   {
+    "seq": 134,
+    "t": 29876720.63625,
+    "type": "session-open",
+    "session": "S-3",
+    "role": "reader"
+   },
+   {
+    "seq": 135,
+    "t": 29876720.63625,
+    "type": "claim",
+    "msg": "M-10",
+    "run": "R-4"
+   },
+   {
+    "seq": 136,
+    "t": 29876720.63625,
+    "type": "enter",
+    "run": "R-4",
+    "msg": "M-10",
+    "role": "reader",
+    "by": "reader",
+    "room": "quality",
+    "order": "O-1",
+    "stage": "check",
+    "mode": "work",
+    "session": "S-3",
+    "item": 1
+   },
+   {
+    "seq": 137,
+    "t": 29876720.698833335,
+    "type": "self-check",
+    "order": "O-1",
+    "task": "STYLE",
+    "by": "reader",
+    "stage": "check",
+    "pass": true,
+    "output": "ok: 463 words, reading ease 73"
+   },
+   {
+    "seq": 138,
+    "t": 29876720.793233335,
+    "type": "self-check",
+    "order": "O-5",
+    "task": "ROUND4",
+    "by": "writer-2",
+    "stage": "build",
+    "pass": true,
+    "output": "ok: 147 words, reading ease 85"
+   },
+   {
+    "seq": 139,
+    "t": 29876720.86885,
+    "type": "self-check",
+    "order": "O-5",
+    "task": "ROUND4",
+    "by": "writer-2",
+    "stage": "build",
+    "pass": true,
+    "output": "ok: 147 words, reading ease 85"
+   },
+   {
+    "seq": 140,
+    "t": 29876720.8942,
+    "type": "advance",
+    "order": "O-1",
+    "stage": "check",
+    "by": "reader",
+    "verdict": "pass"
+   },
+   {
+    "seq": 141,
+    "t": 29876720.8942,
+    "type": "send",
+    "msg": "M-13",
+    "from": "editor",
+    "to": "editor",
+    "kind": "work",
+    "key": "O-1:uat:0",
+    "ref": "O-1",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 142,
+    "t": 29876720.8942,
+    "type": "done",
+    "msg": "M-10",
+    "run": "R-4"
+   },
+   {
+    "seq": 143,
+    "t": 29876720.8942,
+    "type": "send",
+    "msg": "M-14",
+    "from": "pool:checker",
+    "to": "editor",
+    "kind": "report",
+    "key": null,
+    "ref": "O-1",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 144,
+    "t": 29876720.894216668,
+    "type": "leave",
+    "run": "R-4",
+    "role": "reader",
+    "order": "O-1",
+    "stage": "check",
+    "verdict": "pass",
+    "minutes": 0.25796666741371155
+   },
+   {
+    "seq": 145,
+    "t": 29876720.9014,
+    "type": "advance",
+    "order": "O-1",
+    "stage": "uat",
+    "by": "editor",
+    "verdict": "pass"
+   },
+   {
+    "seq": 146,
+    "t": 29876720.901416667,
+    "type": "send",
+    "msg": "M-15",
+    "from": "editor",
+    "to": "pool:release",
+    "kind": "work",
+    "key": "O-1:ship:0",
+    "ref": "O-1",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 147,
+    "t": 29876720.901416667,
+    "type": "session-open",
+    "session": "S-4",
+    "role": "release"
+   },
+   {
+    "seq": 148,
+    "t": 29876720.901416667,
+    "type": "claim",
+    "msg": "M-15",
+    "run": "R-5"
+   },
+   {
+    "seq": 149,
+    "t": 29876720.901416667,
+    "type": "enter",
+    "run": "R-5",
+    "msg": "M-15",
+    "role": "release",
+    "by": "release",
+    "room": "launch",
+    "order": "O-1",
+    "stage": "ship",
+    "mode": "work",
+    "session": "S-4",
+    "item": 1
+   },
+   {
+    "seq": 150,
+    "t": 29876720.901433334,
+    "type": "advance",
+    "order": "O-1",
+    "stage": "ship",
+    "by": "release",
+    "verdict": "pass"
+   },
+   {
+    "seq": 151,
+    "t": 29876720.901433334,
+    "type": "shipped",
+    "order": "O-1",
+    "lead": 7.555933333933353,
+    "loops": 0,
+    "priority": "next"
+   },
+   {
+    "seq": 152,
+    "t": 29876720.901433334,
+    "type": "done",
+    "msg": "M-15",
+    "run": "R-5"
+   },
+   {
+    "seq": 153,
+    "t": 29876720.901433334,
+    "type": "send",
+    "msg": "M-16",
+    "from": "pool:release",
+    "to": "editor",
+    "kind": "report",
+    "key": null,
+    "ref": "O-1",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 154,
+    "t": 29876720.901433334,
+    "type": "leave",
+    "run": "R-5",
+    "role": "release",
+    "order": "O-1",
+    "stage": "ship",
+    "verdict": "pass",
+    "minutes": 0.000016666948795318604
+   },
+   {
+    "seq": 155,
+    "t": 29876720.901433334,
+    "type": "session-close",
+    "session": "S-4",
+    "role": "release",
+    "items": 1,
+    "reason": "ship done",
+    "minutes": 0.000016666948795318604
+   },
+   {
+    "seq": 156,
+    "t": 29876720.901433334,
+    "type": "item-update",
+    "item": "ISS-1",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 157,
+    "t": 29876720.901433334,
+    "type": "supervisor-tick",
+    "steps": [
+     "uat:O-1",
+     "ship:O-1"
+    ]
+   },
+   {
+    "seq": 158,
+    "t": 29876720.901433334,
+    "type": "launch",
+    "role": "reader",
+    "msgs": [
+     "M-12"
+    ],
+    "tasks": [],
+    "why": "plan: next: 1 waiting, no session running"
+   },
+   {
+    "seq": 159,
+    "t": 29876720.99255,
+    "type": "advance",
+    "order": "O-5",
+    "stage": "build",
+    "by": "writer-2",
+    "verdict": "pass"
+   },
+   {
+    "seq": 160,
+    "t": 29876720.99255,
+    "type": "code-stage",
+    "order": "O-5",
+    "stage": "test1"
+   },
+   {
+    "seq": 161,
+    "t": 29876720.99255,
+    "type": "done",
+    "msg": "M-7",
+    "run": "R-3"
+   },
+   {
+    "seq": 162,
+    "t": 29876720.99255,
+    "type": "send",
+    "msg": "M-17",
+    "from": "writer-2",
+    "to": "editor",
+    "kind": "report",
+    "key": null,
+    "ref": "O-5",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 163,
+    "t": 29876720.99255,
+    "type": "leave",
+    "run": "R-3",
+    "role": "writer-2",
+    "order": "O-5",
+    "stage": "build",
+    "verdict": "pass",
+    "minutes": 0.5063000023365021
+   },
+   {
+    "seq": 164,
+    "t": 29876720.996066667,
+    "type": "advance",
+    "order": "O-5",
+    "stage": "test1",
+    "by": "code",
+    "verdict": "pass"
+   },
+   {
+    "seq": 165,
+    "t": 29876720.996066667,
+    "type": "send",
+    "msg": "M-18",
+    "from": "editor",
+    "to": "pool:checker",
+    "kind": "work",
+    "key": "O-5:check:0",
+    "ref": "O-5",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 166,
+    "t": 29876720.996083334,
+    "type": "item-update",
+    "item": "ISS-5",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 167,
+    "t": 29876720.996083334,
+    "type": "supervisor-tick",
+    "steps": [
+     "test1:O-5"
+    ]
+   },
+   {
+    "seq": 168,
+    "t": 29876720.996083334,
+    "type": "launch",
+    "role": "writer-2",
+    "msgs": [
+     "M-8"
+    ],
+    "tasks": [],
+    "why": "plan: next: 1 waiting, no session running"
+   },
+   {
+    "seq": 169,
+    "t": 29876721.586966667,
+    "type": "session-open",
+    "session": "S-5",
+    "role": "writer-1"
+   },
+   {
+    "seq": 170,
+    "t": 29876721.586983334,
+    "type": "claim",
+    "msg": "M-5",
+    "run": "R-6"
+   },
+   {
+    "seq": 171,
+    "t": 29876721.586983334,
+    "type": "enter",
+    "run": "R-6",
+    "msg": "M-5",
+    "role": "writer-1",
+    "by": "writer-1",
+    "room": "editorial",
+    "order": "O-3",
+    "stage": "build",
+    "mode": "work",
+    "session": "S-5",
+    "item": 1
+   },
+   {
+    "seq": 172,
+    "t": 29876722.070433334,
+    "type": "self-check",
+    "order": "O-3",
+    "task": "ROUND2",
+    "by": "writer-1",
+    "stage": "build",
+    "pass": true,
+    "output": "ok: 127 words, reading ease 75"
+   },
+   {
+    "seq": 173,
+    "t": 29876722.160116665,
+    "type": "advance",
+    "order": "O-3",
+    "stage": "build",
+    "by": "writer-1",
+    "verdict": "pass"
+   },
+   {
+    "seq": 174,
+    "t": 29876722.160116665,
+    "type": "code-stage",
+    "order": "O-3",
+    "stage": "test1"
+   },
+   {
+    "seq": 175,
+    "t": 29876722.160133332,
+    "type": "done",
+    "msg": "M-5",
+    "run": "R-6"
+   },
+   {
+    "seq": 176,
+    "t": 29876722.160133332,
+    "type": "send",
+    "msg": "M-19",
+    "from": "writer-1",
+    "to": "editor",
+    "kind": "report",
+    "key": null,
+    "ref": "O-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 177,
+    "t": 29876722.160133332,
+    "type": "leave",
+    "run": "R-6",
+    "role": "writer-1",
+    "order": "O-3",
+    "stage": "build",
+    "verdict": "pass",
+    "minutes": 0.573149997740984
+   },
+   {
+    "seq": 178,
+    "t": 29876722.160133332,
+    "type": "claim",
+    "msg": "M-6",
+    "run": "R-7"
+   },
+   {
+    "seq": 179,
+    "t": 29876722.160133332,
+    "type": "enter",
+    "run": "R-7",
+    "msg": "M-6",
+    "role": "writer-1",
+    "by": "writer-1",
+    "room": "editorial",
+    "order": "O-4",
+    "stage": "build",
+    "mode": "work",
+    "session": "S-5",
+    "item": 2
+   },
+   {
+    "seq": 180,
+    "t": 29876722.163766667,
+    "type": "advance",
+    "order": "O-3",
+    "stage": "test1",
+    "by": "code",
+    "verdict": "pass"
+   },
+   {
+    "seq": 181,
+    "t": 29876722.163766667,
+    "type": "send",
+    "msg": "M-20",
+    "from": "editor",
+    "to": "pool:checker",
+    "kind": "work",
+    "key": "O-3:check:0",
+    "ref": "O-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 182,
+    "t": 29876722.163766667,
+    "type": "item-update",
+    "item": "ISS-3",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 183,
+    "t": 29876722.163766667,
+    "type": "supervisor-tick",
+    "steps": [
+     "test1:O-3"
+    ]
+   },
+   {
+    "seq": 184,
+    "t": 29876722.32755,
+    "type": "self-check",
+    "order": "O-4",
+    "task": "ROUND3",
+    "by": "writer-1",
+    "stage": "build",
+    "pass": true,
+    "output": "ok: 119 words, reading ease 85"
+   },
+   {
+    "seq": 185,
+    "t": 29876722.395916667,
+    "type": "advance",
+    "order": "O-4",
+    "stage": "build",
+    "by": "writer-1",
+    "verdict": "pass"
+   },
+   {
+    "seq": 186,
+    "t": 29876722.395916667,
+    "type": "code-stage",
+    "order": "O-4",
+    "stage": "test1"
+   },
+   {
+    "seq": 187,
+    "t": 29876722.395916667,
+    "type": "done",
+    "msg": "M-6",
+    "run": "R-7"
+   },
+   {
+    "seq": 188,
+    "t": 29876722.395916667,
+    "type": "send",
+    "msg": "M-21",
+    "from": "writer-1",
+    "to": "editor",
+    "kind": "report",
+    "key": null,
+    "ref": "O-4",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 189,
+    "t": 29876722.395916667,
+    "type": "leave",
+    "run": "R-7",
+    "role": "writer-1",
+    "order": "O-4",
+    "stage": "build",
+    "verdict": "pass",
+    "minutes": 0.23578333482146263
+   },
+   {
+    "seq": 190,
+    "t": 29876722.399433333,
+    "type": "advance",
+    "order": "O-4",
+    "stage": "test1",
+    "by": "code",
+    "verdict": "pass"
+   },
+   {
+    "seq": 191,
+    "t": 29876722.399433333,
+    "type": "send",
+    "msg": "M-22",
+    "from": "editor",
+    "to": "pool:checker",
+    "kind": "work",
+    "key": "O-4:check:0",
+    "ref": "O-4",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 192,
+    "t": 29876722.399433333,
+    "type": "item-update",
+    "item": "ISS-4",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 193,
+    "t": 29876722.399433333,
+    "type": "supervisor-tick",
+    "steps": [
+     "test1:O-4"
+    ]
+   },
+   {
+    "seq": 194,
+    "t": 29876722.443666667,
+    "type": "session-open",
+    "session": "S-6",
+    "role": "reader"
+   },
+   {
+    "seq": 195,
+    "t": 29876722.443683334,
+    "type": "claim",
+    "msg": "M-12",
+    "run": "R-8"
+   },
+   {
+    "seq": 196,
+    "t": 29876722.443683334,
+    "type": "enter",
+    "run": "R-8",
+    "msg": "M-12",
+    "role": "reader",
+    "by": "reader",
+    "room": "quality",
+    "order": "O-2",
+    "stage": "check",
+    "mode": "work",
+    "session": "S-6",
+    "item": 1
+   },
+   {
+    "seq": 197,
+    "t": 29876722.44753333,
+    "type": "session-open",
+    "session": "S-7",
+    "role": "writer-2"
+   },
+   {
+    "seq": 198,
+    "t": 29876722.44755,
+    "type": "claim",
+    "msg": "M-8",
+    "run": "R-9"
+   },
+   {
+    "seq": 199,
+    "t": 29876722.44755,
+    "type": "enter",
+    "run": "R-9",
+    "msg": "M-8",
+    "role": "writer-2",
+    "by": "writer-2",
+    "room": "editorial",
+    "order": "O-6",
+    "stage": "build",
+    "mode": "work",
+    "session": "S-7",
+    "item": 1
+   },
+   {
+    "seq": 200,
+    "t": 29876722.544283334,
+    "type": "self-check",
+    "order": "O-2",
+    "task": "ROUND1",
+    "by": "reader",
+    "stage": "check",
+    "pass": true,
+    "output": "ok: 148 words, reading ease 81"
+   },
+   {
+    "seq": 201,
+    "t": 29876722.85835,
+    "type": "advance",
+    "order": "O-2",
+    "stage": "check",
+    "by": "reader",
+    "verdict": "revise"
+   },
+   {
+    "seq": 202,
+    "t": 29876722.85835,
+    "type": "reopen",
+    "order": "O-2",
+    "from": "check",
+    "loops": 1,
+    "priority": "next"
+   },
+   {
+    "seq": 203,
+    "t": 29876722.85835,
+    "type": "send",
+    "msg": "M-23",
+    "from": "editor",
+    "to": "writer-1",
+    "kind": "work",
+    "key": "O-2:build:1",
+    "ref": "O-2",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 204,
+    "t": 29876722.85835,
+    "type": "done",
+    "msg": "M-12",
+    "run": "R-8"
+   },
+   {
+    "seq": 205,
+    "t": 29876722.85835,
+    "type": "send",
+    "msg": "M-24",
+    "from": "pool:checker",
+    "to": "editor",
+    "kind": "report",
+    "key": null,
+    "ref": "O-2",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 206,
+    "t": 29876722.85835,
+    "type": "leave",
+    "run": "R-8",
+    "role": "reader",
+    "order": "O-2",
+    "stage": "check",
+    "verdict": "revise",
+    "minutes": 0.41466666758060455
+   },
+   {
+    "seq": 207,
+    "t": 29876722.85835,
+    "type": "session-close",
+    "session": "S-6",
+    "role": "reader",
+    "items": 1,
+    "reason": "cap",
+    "minutes": 0.41468333452939987
+   },
+   {
+    "seq": 208,
+    "t": 29876722.86195,
+    "type": "item-update",
+    "item": "ISS-2",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 209,
+    "t": 29876722.86195,
+    "type": "item-update",
+    "item": "ISS-2",
+    "by": "engine",
+    "changes": [
+     "addLabels"
+    ]
+   },
+   {
+    "seq": 210,
+    "t": 29876722.86195,
+    "type": "launch",
+    "role": "writer-1",
+    "msgs": [
+     "M-23"
+    ],
+    "tasks": [],
+    "why": "plan: next: 1 waiting, no session running"
+   },
+   {
+    "seq": 211,
+    "t": 29876722.861966666,
+    "type": "launch",
+    "role": "reader",
+    "msgs": [
+     "M-18",
+     "M-20",
+     "M-22"
+    ],
+    "tasks": [],
+    "why": "plan: next: 3 waiting, no session running"
+   },
+   {
+    "seq": 212,
+    "t": 29876722.9289,
+    "type": "self-check",
+    "order": "O-6",
+    "task": "ROUND5",
+    "by": "writer-2",
+    "stage": "build",
+    "pass": false,
+    "output": "line 2 (**Q) has 18 words > 17"
    }
   ]
  },
  "mailbox": {
   "msgs": {
-   "__map": []
+   "__map": [
+    [
+     "M-1",
+     {
+      "id": "M-1",
+      "from": "editor",
+      "to": "writer-1",
+      "kind": "post",
+      "key": "P-1:writer-1",
+      "due": null,
+      "ref": "P-1",
+      "body": {
+       "channel": "lane:e",
+       "title": "Minutes: Kickoff: Solar System Quiz Pack",
+       "ack": false
+      },
+      "priority": "next",
+      "ts": 29876718.261883333,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-2",
+     {
+      "id": "M-2",
+      "from": "editor",
+      "to": "writer-2",
+      "kind": "post",
+      "key": "P-1:writer-2",
+      "due": null,
+      "ref": "P-1",
+      "body": {
+       "channel": "lane:e",
+       "title": "Minutes: Kickoff: Solar System Quiz Pack",
+       "ack": false
+      },
+      "priority": "next",
+      "ts": 29876718.261883333,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-3",
+     {
+      "id": "M-3",
+      "from": "editor",
+      "to": "writer-1",
+      "kind": "work",
+      "key": "O-1:build:0",
+      "due": null,
+      "ref": "O-1",
+      "body": {
+       "stage": "build",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876718.341283333,
+      "state": "done",
+      "lease": {
+       "run": "R-1",
+       "until": 29876749.229133334
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-4",
+     {
+      "id": "M-4",
+      "from": "editor",
+      "to": "writer-1",
+      "kind": "work",
+      "key": "O-2:build:0",
+      "due": null,
+      "ref": "O-2",
+      "body": {
+       "stage": "build",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876718.343316667,
+      "state": "done",
+      "lease": {
+       "run": "R-2",
+       "until": 29876749.701533332
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-5",
+     {
+      "id": "M-5",
+      "from": "editor",
+      "to": "writer-1",
+      "kind": "work",
+      "key": "O-3:build:0",
+      "due": null,
+      "ref": "O-3",
+      "body": {
+       "stage": "build",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876718.345283333,
+      "state": "done",
+      "lease": {
+       "run": "R-6",
+       "until": 29876751.586983334
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-6",
+     {
+      "id": "M-6",
+      "from": "editor",
+      "to": "writer-1",
+      "kind": "work",
+      "key": "O-4:build:0",
+      "due": null,
+      "ref": "O-4",
+      "body": {
+       "stage": "build",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876718.346783333,
+      "state": "done",
+      "lease": {
+       "run": "R-7",
+       "until": 29876752.160133332
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-7",
+     {
+      "id": "M-7",
+      "from": "editor",
+      "to": "writer-2",
+      "kind": "work",
+      "key": "O-5:build:0",
+      "due": null,
+      "ref": "O-5",
+      "body": {
+       "stage": "build",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876718.3484,
+      "state": "done",
+      "lease": {
+       "run": "R-3",
+       "until": 29876750.48625
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-8",
+     {
+      "id": "M-8",
+      "from": "editor",
+      "to": "writer-2",
+      "kind": "work",
+      "key": "O-6:build:0",
+      "due": null,
+      "ref": "O-6",
+      "body": {
+       "stage": "build",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876718.349966668,
+      "state": "open",
+      "lease": {
+       "run": "R-9",
+       "until": 29876752.44755
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-9",
+     {
+      "id": "M-9",
+      "from": "writer-1",
+      "to": "editor",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-1",
+      "body": {
+       "stage": "build",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876719.701533332,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-10",
+     {
+      "id": "M-10",
+      "from": "editor",
+      "to": "pool:checker",
+      "kind": "work",
+      "key": "O-1:check:0",
+      "due": null,
+      "ref": "O-1",
+      "body": {
+       "stage": "check",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876719.705166668,
+      "state": "done",
+      "lease": {
+       "run": "R-4",
+       "until": 29876750.63625
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-11",
+     {
+      "id": "M-11",
+      "from": "writer-1",
+      "to": "editor",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-2",
+      "body": {
+       "stage": "build",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876720.1478,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-12",
+     {
+      "id": "M-12",
+      "from": "editor",
+      "to": "pool:checker",
+      "kind": "work",
+      "key": "O-2:check:0",
+      "due": null,
+      "ref": "O-2",
+      "body": {
+       "stage": "check",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876720.151416667,
+      "state": "done",
+      "lease": {
+       "run": "R-8",
+       "until": 29876752.443683334
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-13",
+     {
+      "id": "M-13",
+      "from": "editor",
+      "to": "editor",
+      "kind": "work",
+      "key": "O-1:uat:0",
+      "due": null,
+      "ref": "O-1",
+      "body": {
+       "stage": "uat",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876720.8942,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-14",
+     {
+      "id": "M-14",
+      "from": "pool:checker",
+      "to": "editor",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-1",
+      "body": {
+       "stage": "check",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876720.8942,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-15",
+     {
+      "id": "M-15",
+      "from": "editor",
+      "to": "pool:release",
+      "kind": "work",
+      "key": "O-1:ship:0",
+      "due": null,
+      "ref": "O-1",
+      "body": {
+       "stage": "ship",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876720.901416667,
+      "state": "done",
+      "lease": {
+       "run": "R-5",
+       "until": 29876750.901416667
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-16",
+     {
+      "id": "M-16",
+      "from": "pool:release",
+      "to": "editor",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-1",
+      "body": {
+       "stage": "ship",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876720.901433334,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-17",
+     {
+      "id": "M-17",
+      "from": "writer-2",
+      "to": "editor",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-5",
+      "body": {
+       "stage": "build",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876720.99255,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-18",
+     {
+      "id": "M-18",
+      "from": "editor",
+      "to": "pool:checker",
+      "kind": "work",
+      "key": "O-5:check:0",
+      "due": null,
+      "ref": "O-5",
+      "body": {
+       "stage": "check",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876720.996066667,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-19",
+     {
+      "id": "M-19",
+      "from": "writer-1",
+      "to": "editor",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-3",
+      "body": {
+       "stage": "build",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876722.160133332,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-20",
+     {
+      "id": "M-20",
+      "from": "editor",
+      "to": "pool:checker",
+      "kind": "work",
+      "key": "O-3:check:0",
+      "due": null,
+      "ref": "O-3",
+      "body": {
+       "stage": "check",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876722.163766667,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-21",
+     {
+      "id": "M-21",
+      "from": "writer-1",
+      "to": "editor",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-4",
+      "body": {
+       "stage": "build",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876722.395916667,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-22",
+     {
+      "id": "M-22",
+      "from": "editor",
+      "to": "pool:checker",
+      "kind": "work",
+      "key": "O-4:check:0",
+      "due": null,
+      "ref": "O-4",
+      "body": {
+       "stage": "check",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876722.399433333,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-23",
+     {
+      "id": "M-23",
+      "from": "editor",
+      "to": "writer-1",
+      "kind": "work",
+      "key": "O-2:build:1",
+      "due": null,
+      "ref": "O-2",
+      "body": {
+       "stage": "build",
+       "loops": 1
+      },
+      "priority": "next",
+      "ts": 29876722.85835,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-24",
+     {
+      "id": "M-24",
+      "from": "pool:checker",
+      "to": "editor",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-2",
+      "body": {
+       "stage": "check",
+       "verdict": "revise"
+      },
+      "priority": "next",
+      "ts": 29876722.85835,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ]
+   ]
   },
   "keys": {
-   "__map": []
+   "__map": [
+    [
+     "P-1:writer-1",
+     "M-1"
+    ],
+    [
+     "P-1:writer-2",
+     "M-2"
+    ],
+    [
+     "O-1:build:0",
+     "M-3"
+    ],
+    [
+     "O-2:build:0",
+     "M-4"
+    ],
+    [
+     "O-3:build:0",
+     "M-5"
+    ],
+    [
+     "O-4:build:0",
+     "M-6"
+    ],
+    [
+     "O-5:build:0",
+     "M-7"
+    ],
+    [
+     "O-6:build:0",
+     "M-8"
+    ],
+    [
+     "O-1:check:0",
+     "M-10"
+    ],
+    [
+     "O-2:check:0",
+     "M-12"
+    ],
+    [
+     "O-1:uat:0",
+     "M-13"
+    ],
+    [
+     "O-1:ship:0",
+     "M-15"
+    ],
+    [
+     "O-5:check:0",
+     "M-18"
+    ],
+    [
+     "O-3:check:0",
+     "M-20"
+    ],
+    [
+     "O-4:check:0",
+     "M-22"
+    ],
+    [
+     "O-2:build:1",
+     "M-23"
+    ]
+   ]
   },
-  "n": 0
+  "n": 24
  },
  "org": {
   "roles": {
@@ -1381,20 +4216,52 @@
       "title": "Style sheet",
       "chain": [
        "cos",
-       "editor"
+       "editor",
+       "writer-1"
       ],
       "orderer": "cos",
       "manager": "editor",
-      "builder": null,
-      "checker": null,
+      "builder": "writer-1",
+      "checker": "reader",
       "budget": 200000,
       "spent": 0,
       "accept": "live/bench3-a/work/STYLE/page.md: the style sheet for 'Solar System Quiz Pack' (ages 8-10), following the kickoff decisions (MTG-1 minutes in the lane:e channel). Sections: '## Format' (how a question, its answer and its one-sentence why look: '**Qn.**', '**Answer:**', '**Why:**'), '## Rounds' with exactly five lines '- Round 1: <topic>' to '- Round 5: <topic>', topics that do not overlap, each with the facts it owns, and a difficulty rule. No words like stupid, dumb, kill, dead, blood, hate.",
       "words": null,
-      "stage": "build",
+      "stage": "done",
       "loops": 0,
       "created": 29876713.3455,
-      "history": [],
+      "history": [
+       {
+        "stage": "build",
+        "by": "writer-1",
+        "verdict": "pass",
+        "t": 29876719.701516666
+       },
+       {
+        "stage": "test1",
+        "by": "code",
+        "verdict": "pass",
+        "t": 29876719.705166668
+       },
+       {
+        "stage": "check",
+        "by": "reader",
+        "verdict": "pass",
+        "t": 29876720.8942
+       },
+       {
+        "stage": "uat",
+        "by": "editor",
+        "verdict": "pass",
+        "t": 29876720.9014
+       },
+       {
+        "stage": "ship",
+        "by": "release",
+        "verdict": "pass",
+        "t": 29876720.901433334
+       }
+      ],
       "priority": "next",
       "due": null,
       "after": [],
@@ -1408,7 +4275,12 @@
        "mustInclude": [
         "## Format",
         "## Rounds",
-        "Round 5"
+        "Round 5",
+        "- Round 1: The Sun",
+        "- Round 2: Rocky Planets",
+        "- Round 3: Giant Planets",
+        "- Round 4: Moons",
+        "- Round 5: Small Worlds and Space Travel"
        ],
        "banned": [
         "stupid",
@@ -1429,20 +4301,41 @@
       "title": "Round 1",
       "chain": [
        "cos",
-       "editor"
+       "editor",
+       "writer-1"
       ],
       "orderer": "cos",
       "manager": "editor",
-      "builder": null,
-      "checker": null,
+      "builder": "writer-1",
+      "checker": "reader",
       "budget": 200000,
       "spent": 0,
       "accept": "live/bench3-a/work/ROUND1/page.md: round 1 of the pack, on the round 1 topic the kickoff decided (MTG-1 minutes). First line '# Round 1: <topic>'; exactly 4 questions, each '**Qn.** …' then '**Answer:** …' then a one-sentence '**Why:** …'; 100-300 words; reading ease at least 60 (short sentences, everyday words); every fact true; only facts this round's topic owns, so no answer repeats another round's; no words like stupid, dumb, kill, dead, blood, hate.",
       "words": null,
       "stage": "build",
-      "loops": 0,
+      "loops": 1,
       "created": 29876713.345516667,
-      "history": [],
+      "history": [
+       {
+        "stage": "build",
+        "by": "writer-1",
+        "verdict": "pass",
+        "t": 29876720.1478
+       },
+       {
+        "stage": "test1",
+        "by": "code",
+        "verdict": "pass",
+        "t": 29876720.1514
+       },
+       {
+        "stage": "check",
+        "by": "reader",
+        "verdict": "revise",
+        "t": 29876722.858333334,
+        "findings": "Class: rounded number stated as exact (Why not true on its own). 1 instance: Q3 Why says \"the trip takes 8 minutes\" -> must say \"about 8 minutes\" (light takes about 8 min 20 s), per MTG-1/STYLE \"rounded, with about where needed to stay true\". No other defects: format, limits, ownership and other facts check out."
+       }
+      ],
       "priority": "next",
       "due": null,
       "after": [],
@@ -1460,7 +4353,10 @@
         "**Q1.**",
         "**Q4.**",
         "**Answer:**",
-        "**Why:**"
+        "**Why:**",
+        "# Round 1: The Sun",
+        "**Q2.**",
+        "**Q3.**"
        ],
        "banned": [
         "stupid",
@@ -1468,14 +4364,57 @@
         "kill",
         "dead",
         "blood",
-        "hate"
+        "hate",
+        "Q5",
+        "two",
+        "three",
+        "four",
+        "five",
+        "six",
+        "seven",
+        "eight",
+        "nine",
+        "ten",
+        "eleven",
+        "twelve",
+        "twenty",
+        "thirty",
+        "forty",
+        "fifty",
+        "hundred",
+        "thousand",
+        "million",
+        "billion",
+        "obviously",
+        "atmosphere"
        ],
        "minReadingEase": 60,
        "distinctAnswers": {
         "prefix": "**Answer:**",
         "across": "ROUND"
-       }
-      }
+       },
+       "allowedLines": [
+        "# Round",
+        "**Q",
+        "**Answer:**",
+        "**Why:**"
+       ],
+       "lineMaxWords": [
+        {
+         "prefix": "**Why:**",
+         "maxWords": 20
+        },
+        {
+         "prefix": "**Answer:**",
+         "maxWords": 4
+        },
+        {
+         "prefix": "**Q",
+         "maxWords": 17
+        }
+       ]
+      },
+      "findings": "Class: rounded number stated as exact (Why not true on its own). 1 instance: Q3 Why says \"the trip takes 8 minutes\" -> must say \"about 8 minutes\" (light takes about 8 min 20 s), per MTG-1/STYLE \"rounded, with about where needed to stay true\". No other defects: format, limits, ownership and other facts check out."
      }
     ],
     [
@@ -1486,20 +4425,34 @@
       "title": "Round 2",
       "chain": [
        "cos",
-       "editor"
+       "editor",
+       "writer-1"
       ],
       "orderer": "cos",
       "manager": "editor",
-      "builder": null,
+      "builder": "writer-1",
       "checker": null,
       "budget": 200000,
       "spent": 0,
       "accept": "live/bench3-a/work/ROUND2/page.md: round 2 of the pack, on the round 2 topic the kickoff decided (MTG-1 minutes). First line '# Round 2: <topic>'; exactly 4 questions, each '**Qn.** …' then '**Answer:** …' then a one-sentence '**Why:** …'; 100-300 words; reading ease at least 60 (short sentences, everyday words); every fact true; only facts this round's topic owns, so no answer repeats another round's; no words like stupid, dumb, kill, dead, blood, hate.",
       "words": null,
-      "stage": "build",
+      "stage": "check",
       "loops": 0,
       "created": 29876713.345516667,
-      "history": [],
+      "history": [
+       {
+        "stage": "build",
+        "by": "writer-1",
+        "verdict": "pass",
+        "t": 29876722.160116665
+       },
+       {
+        "stage": "test1",
+        "by": "code",
+        "verdict": "pass",
+        "t": 29876722.163766667
+       }
+      ],
       "priority": "next",
       "due": null,
       "after": [],
@@ -1517,7 +4470,10 @@
         "**Q1.**",
         "**Q4.**",
         "**Answer:**",
-        "**Why:**"
+        "**Why:**",
+        "# Round 2: Rocky Planets",
+        "**Q2.**",
+        "**Q3.**"
        ],
        "banned": [
         "stupid",
@@ -1525,13 +4481,55 @@
         "kill",
         "dead",
         "blood",
-        "hate"
+        "hate",
+        "Q5",
+        "two",
+        "three",
+        "four",
+        "five",
+        "six",
+        "seven",
+        "eight",
+        "nine",
+        "ten",
+        "eleven",
+        "twelve",
+        "twenty",
+        "thirty",
+        "forty",
+        "fifty",
+        "hundred",
+        "thousand",
+        "million",
+        "billion",
+        "obviously",
+        "atmosphere"
        ],
        "minReadingEase": 60,
        "distinctAnswers": {
         "prefix": "**Answer:**",
         "across": "ROUND"
-       }
+       },
+       "allowedLines": [
+        "# Round",
+        "**Q",
+        "**Answer:**",
+        "**Why:**"
+       ],
+       "lineMaxWords": [
+        {
+         "prefix": "**Why:**",
+         "maxWords": 20
+        },
+        {
+         "prefix": "**Answer:**",
+         "maxWords": 4
+        },
+        {
+         "prefix": "**Q",
+         "maxWords": 17
+        }
+       ]
       }
      }
     ],
@@ -1543,20 +4541,34 @@
       "title": "Round 3",
       "chain": [
        "cos",
-       "editor"
+       "editor",
+       "writer-1"
       ],
       "orderer": "cos",
       "manager": "editor",
-      "builder": null,
+      "builder": "writer-1",
       "checker": null,
       "budget": 200000,
       "spent": 0,
       "accept": "live/bench3-a/work/ROUND3/page.md: round 3 of the pack, on the round 3 topic the kickoff decided (MTG-1 minutes). First line '# Round 3: <topic>'; exactly 4 questions, each '**Qn.** …' then '**Answer:** …' then a one-sentence '**Why:** …'; 100-300 words; reading ease at least 60 (short sentences, everyday words); every fact true; only facts this round's topic owns, so no answer repeats another round's; no words like stupid, dumb, kill, dead, blood, hate.",
       "words": null,
-      "stage": "build",
+      "stage": "check",
       "loops": 0,
       "created": 29876713.345516667,
-      "history": [],
+      "history": [
+       {
+        "stage": "build",
+        "by": "writer-1",
+        "verdict": "pass",
+        "t": 29876722.395916667
+       },
+       {
+        "stage": "test1",
+        "by": "code",
+        "verdict": "pass",
+        "t": 29876722.399433333
+       }
+      ],
       "priority": "next",
       "due": null,
       "after": [],
@@ -1574,7 +4586,10 @@
         "**Q1.**",
         "**Q4.**",
         "**Answer:**",
-        "**Why:**"
+        "**Why:**",
+        "# Round 3: Giant Planets",
+        "**Q2.**",
+        "**Q3.**"
        ],
        "banned": [
         "stupid",
@@ -1582,13 +4597,55 @@
         "kill",
         "dead",
         "blood",
-        "hate"
+        "hate",
+        "Q5",
+        "two",
+        "three",
+        "four",
+        "five",
+        "six",
+        "seven",
+        "eight",
+        "nine",
+        "ten",
+        "eleven",
+        "twelve",
+        "twenty",
+        "thirty",
+        "forty",
+        "fifty",
+        "hundred",
+        "thousand",
+        "million",
+        "billion",
+        "obviously",
+        "atmosphere"
        ],
        "minReadingEase": 60,
        "distinctAnswers": {
         "prefix": "**Answer:**",
         "across": "ROUND"
-       }
+       },
+       "allowedLines": [
+        "# Round",
+        "**Q",
+        "**Answer:**",
+        "**Why:**"
+       ],
+       "lineMaxWords": [
+        {
+         "prefix": "**Why:**",
+         "maxWords": 20
+        },
+        {
+         "prefix": "**Answer:**",
+         "maxWords": 4
+        },
+        {
+         "prefix": "**Q",
+         "maxWords": 17
+        }
+       ]
       }
      }
     ],
@@ -1600,20 +4657,34 @@
       "title": "Round 4",
       "chain": [
        "cos",
-       "editor"
+       "editor",
+       "writer-2"
       ],
       "orderer": "cos",
       "manager": "editor",
-      "builder": null,
+      "builder": "writer-2",
       "checker": null,
       "budget": 200000,
       "spent": 0,
       "accept": "live/bench3-a/work/ROUND4/page.md: round 4 of the pack, on the round 4 topic the kickoff decided (MTG-1 minutes). First line '# Round 4: <topic>'; exactly 4 questions, each '**Qn.** …' then '**Answer:** …' then a one-sentence '**Why:** …'; 100-300 words; reading ease at least 60 (short sentences, everyday words); every fact true; only facts this round's topic owns, so no answer repeats another round's; no words like stupid, dumb, kill, dead, blood, hate.",
       "words": null,
-      "stage": "build",
+      "stage": "check",
       "loops": 0,
       "created": 29876713.345516667,
-      "history": [],
+      "history": [
+       {
+        "stage": "build",
+        "by": "writer-2",
+        "verdict": "pass",
+        "t": 29876720.99255
+       },
+       {
+        "stage": "test1",
+        "by": "code",
+        "verdict": "pass",
+        "t": 29876720.996066667
+       }
+      ],
       "priority": "next",
       "due": null,
       "after": [],
@@ -1631,7 +4702,10 @@
         "**Q1.**",
         "**Q4.**",
         "**Answer:**",
-        "**Why:**"
+        "**Why:**",
+        "# Round 4: Moons",
+        "**Q2.**",
+        "**Q3.**"
        ],
        "banned": [
         "stupid",
@@ -1639,13 +4713,55 @@
         "kill",
         "dead",
         "blood",
-        "hate"
+        "hate",
+        "Q5",
+        "two",
+        "three",
+        "four",
+        "five",
+        "six",
+        "seven",
+        "eight",
+        "nine",
+        "ten",
+        "eleven",
+        "twelve",
+        "twenty",
+        "thirty",
+        "forty",
+        "fifty",
+        "hundred",
+        "thousand",
+        "million",
+        "billion",
+        "obviously",
+        "atmosphere"
        ],
        "minReadingEase": 60,
        "distinctAnswers": {
         "prefix": "**Answer:**",
         "across": "ROUND"
-       }
+       },
+       "allowedLines": [
+        "# Round",
+        "**Q",
+        "**Answer:**",
+        "**Why:**"
+       ],
+       "lineMaxWords": [
+        {
+         "prefix": "**Why:**",
+         "maxWords": 20
+        },
+        {
+         "prefix": "**Answer:**",
+         "maxWords": 4
+        },
+        {
+         "prefix": "**Q",
+         "maxWords": 17
+        }
+       ]
       }
      }
     ],
@@ -1657,11 +4773,12 @@
       "title": "Round 5",
       "chain": [
        "cos",
-       "editor"
+       "editor",
+       "writer-2"
       ],
       "orderer": "cos",
       "manager": "editor",
-      "builder": null,
+      "builder": "writer-2",
       "checker": null,
       "budget": 200000,
       "spent": 0,
@@ -1688,7 +4805,10 @@
         "**Q1.**",
         "**Q4.**",
         "**Answer:**",
-        "**Why:**"
+        "**Why:**",
+        "# Round 5: Small Worlds and Space Travel",
+        "**Q2.**",
+        "**Q3.**"
        ],
        "banned": [
         "stupid",
@@ -1696,13 +4816,55 @@
         "kill",
         "dead",
         "blood",
-        "hate"
+        "hate",
+        "Q5",
+        "two",
+        "three",
+        "four",
+        "five",
+        "six",
+        "seven",
+        "eight",
+        "nine",
+        "ten",
+        "eleven",
+        "twelve",
+        "twenty",
+        "thirty",
+        "forty",
+        "fifty",
+        "hundred",
+        "thousand",
+        "million",
+        "billion",
+        "obviously",
+        "atmosphere"
        ],
        "minReadingEase": 60,
        "distinctAnswers": {
         "prefix": "**Answer:**",
         "across": "ROUND"
-       }
+       },
+       "allowedLines": [
+        "# Round",
+        "**Q",
+        "**Answer:**",
+        "**Why:**"
+       ],
+       "lineMaxWords": [
+        {
+         "prefix": "**Why:**",
+         "maxWords": 20
+        },
+        {
+         "prefix": "**Answer:**",
+         "maxWords": 4
+        },
+        {
+         "prefix": "**Q",
+         "maxWords": 17
+        }
+       ]
       }
      }
     ],
@@ -1714,11 +4876,12 @@
       "title": "Assembled pack",
       "chain": [
        "cos",
-       "editor"
+       "editor",
+       "writer-2"
       ],
       "orderer": "cos",
       "manager": "editor",
-      "builder": null,
+      "builder": "writer-2",
       "checker": null,
       "budget": 200000,
       "spent": 0,
@@ -1750,7 +4913,13 @@
        "mustInclude": [
         "# Round 1:",
         "# Round 5:",
-        "## Changes"
+        "## Changes",
+        "# Solar System Quiz Pack",
+        "# Round 1: The Sun",
+        "# Round 2: Rocky Planets",
+        "# Round 3: Giant Planets",
+        "# Round 4: Moons",
+        "# Round 5: Small Worlds and Space Travel"
        ],
        "banned": [
         "stupid",
@@ -1758,12 +4927,56 @@
         "kill",
         "dead",
         "blood",
-        "hate"
+        "hate",
+        "Q5",
+        "two",
+        "three",
+        "four",
+        "five",
+        "six",
+        "seven",
+        "eight",
+        "nine",
+        "ten",
+        "eleven",
+        "twelve",
+        "twenty",
+        "thirty",
+        "forty",
+        "fifty",
+        "hundred",
+        "thousand",
+        "million",
+        "billion",
+        "obviously",
+        "atmosphere"
        ],
        "distinctAnswers": {
         "prefix": "**Answer:**",
         "split": "^# Round \\d+:"
-       }
+       },
+       "allowedLines": [
+        "# ",
+        "## Changes",
+        "- ",
+        "**Q",
+        "**Answer:**",
+        "**Why:**"
+       ],
+       "lineMaxWords": [
+        {
+         "prefix": "**Why:**",
+         "maxWords": 20
+        },
+        {
+         "prefix": "**Answer:**",
+         "maxWords": 4
+        },
+        {
+         "prefix": "**Q",
+         "maxWords": 17
+        }
+       ]
       }
      }
     ]
@@ -1789,15 +5002,300 @@
  },
  "rooms": {
   "runs": {
-   "__map": []
+   "__map": [
+    [
+     "R-1",
+     {
+      "run": "R-1",
+      "msg": "M-3",
+      "role": "writer-1",
+      "by": "writer-1",
+      "consult": false,
+      "order": "O-1",
+      "stage": "build",
+      "loops": 0,
+      "entered": 29876719.229133334,
+      "state": "left",
+      "session": "S-1"
+     }
+    ],
+    [
+     "R-2",
+     {
+      "run": "R-2",
+      "msg": "M-4",
+      "role": "writer-1",
+      "by": "writer-1",
+      "consult": false,
+      "order": "O-2",
+      "stage": "build",
+      "loops": 0,
+      "entered": 29876719.701533332,
+      "state": "left",
+      "session": "S-1"
+     }
+    ],
+    [
+     "R-3",
+     {
+      "run": "R-3",
+      "msg": "M-7",
+      "role": "writer-2",
+      "by": "writer-2",
+      "consult": false,
+      "order": "O-5",
+      "stage": "build",
+      "loops": 0,
+      "entered": 29876720.48625,
+      "state": "left",
+      "session": "S-2"
+     }
+    ],
+    [
+     "R-4",
+     {
+      "run": "R-4",
+      "msg": "M-10",
+      "role": "reader",
+      "by": "reader",
+      "consult": false,
+      "order": "O-1",
+      "stage": "check",
+      "loops": 0,
+      "entered": 29876720.63625,
+      "state": "left",
+      "session": "S-3"
+     }
+    ],
+    [
+     "R-5",
+     {
+      "run": "R-5",
+      "msg": "M-15",
+      "role": "release",
+      "by": "release",
+      "consult": false,
+      "order": "O-1",
+      "stage": "ship",
+      "loops": 0,
+      "entered": 29876720.901416667,
+      "state": "left",
+      "session": "S-4"
+     }
+    ],
+    [
+     "R-6",
+     {
+      "run": "R-6",
+      "msg": "M-5",
+      "role": "writer-1",
+      "by": "writer-1",
+      "consult": false,
+      "order": "O-3",
+      "stage": "build",
+      "loops": 0,
+      "entered": 29876721.586983334,
+      "state": "left",
+      "session": "S-5"
+     }
+    ],
+    [
+     "R-7",
+     {
+      "run": "R-7",
+      "msg": "M-6",
+      "role": "writer-1",
+      "by": "writer-1",
+      "consult": false,
+      "order": "O-4",
+      "stage": "build",
+      "loops": 0,
+      "entered": 29876722.160133332,
+      "state": "left",
+      "session": "S-5"
+     }
+    ],
+    [
+     "R-8",
+     {
+      "run": "R-8",
+      "msg": "M-12",
+      "role": "reader",
+      "by": "reader",
+      "consult": false,
+      "order": "O-2",
+      "stage": "check",
+      "loops": 0,
+      "entered": 29876722.443683334,
+      "state": "left",
+      "session": "S-6"
+     }
+    ],
+    [
+     "R-9",
+     {
+      "run": "R-9",
+      "msg": "M-8",
+      "role": "writer-2",
+      "by": "writer-2",
+      "consult": false,
+      "order": "O-6",
+      "stage": "build",
+      "loops": 0,
+      "entered": 29876722.44755,
+      "state": "running",
+      "session": "S-7"
+     }
+    ]
+   ]
   },
-  "n": 0,
+  "n": 9,
   "memory": {
-   "__map": []
+   "__map": [
+    [
+     "writer-1",
+     [
+      {
+       "t": 29876719.701533332,
+       "did": "build on O-1: pass (loop 0)",
+       "learned": "STYLE topics must match MTG-1 title lines exactly; list owned facts under each round line",
+       "mistake": null
+      },
+      {
+       "t": 29876720.1478,
+       "did": "build on O-2: pass (loop 0)",
+       "learned": "In the Sun round, \"The Sun\" cannot be an answer because every question names it; use owned facts (star, mass, 8 minutes, hydrogen) as answers",
+       "mistake": null
+      },
+      {
+       "t": 29876722.160133332,
+       "did": "build on O-3: pass (loop 0)",
+       "learned": "Keep other rounds owned words (star, Moon, Sun-round answers) and superlatives out of Why lines; avoid naming a same-round answer in another question",
+       "mistake": null
+      },
+      {
+       "t": 29876722.395916667,
+       "did": "build on O-4: pass (loop 0)",
+       "learned": "Say \"best known for its rings\" never \"only rings\"; refer to the owned planet as \"it\" in Why lines to avoid cross-round give-aways",
+       "mistake": null
+      }
+     ]
+    ],
+    [
+     "reader",
+     [
+      {
+       "t": 29876720.8942,
+       "did": "check on O-1: pass (loop 0)",
+       "learned": "STYLE is the first item, so there is no shipped work to cross-check; compare it line by line to the MTG-1 decision text instead.",
+       "mistake": null
+      },
+      {
+       "t": 29876722.85835,
+       "did": "check on O-2: revise (loop 0)",
+       "learned": "Code check passes rounded numbers; read each Why for a flat number that needs \"about\" to stay true.",
+       "mistake": null
+      }
+     ]
+    ],
+    [
+     "release",
+     [
+      {
+       "t": 29876720.901433334,
+       "did": "ship on O-1: pass (loop 0)",
+       "learned": null,
+       "mistake": null
+      }
+     ]
+    ],
+    [
+     "writer-2",
+     [
+      {
+       "t": 29876720.99255,
+       "did": "build on O-5: pass (loop 0)",
+       "learned": "Moon Why lines can stay give-away-safe by never naming host planets; say \"wider than a small planet\" instead of naming Mercury.",
+       "mistake": null
+      }
+     ]
+    ]
+   ]
   },
   "sessions": {
-   "__map": []
+   "__map": [
+    [
+     "S-1",
+     {
+      "id": "S-1",
+      "role": "writer-1",
+      "items": 2,
+      "open": true,
+      "started": 29876719.229133334
+     }
+    ],
+    [
+     "S-2",
+     {
+      "id": "S-2",
+      "role": "writer-2",
+      "items": 1,
+      "open": true,
+      "started": 29876720.48625
+     }
+    ],
+    [
+     "S-3",
+     {
+      "id": "S-3",
+      "role": "reader",
+      "items": 1,
+      "open": true,
+      "started": 29876720.63625
+     }
+    ],
+    [
+     "S-4",
+     {
+      "id": "S-4",
+      "role": "release",
+      "items": 1,
+      "open": false,
+      "started": 29876720.901416667
+     }
+    ],
+    [
+     "S-5",
+     {
+      "id": "S-5",
+      "role": "writer-1",
+      "items": 2,
+      "open": true,
+      "started": 29876721.586966667
+     }
+    ],
+    [
+     "S-6",
+     {
+      "id": "S-6",
+      "role": "reader",
+      "items": 1,
+      "open": false,
+      "started": 29876722.443666667
+     }
+    ],
+    [
+     "S-7",
+     {
+      "id": "S-7",
+      "role": "writer-2",
+      "items": 1,
+      "open": true,
+      "started": 29876722.44753333
+     }
+    ]
+   ]
   },
-  "nS": 0
+  "nS": 7
  }
 }

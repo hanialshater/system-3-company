@@ -108,7 +108,8 @@ const syllables = (w) => Math.max(1, (w.toLowerCase().replace(/e\b/, "").match(/
  *  { file, minWords, maxWords, mustInclude: [...], banned: [...], minReadingEase, titleLine, lineMaxWords: [{prefix, maxWords}] } */
 export function runTextChecks(task, checks) {
   const file = path.join(LIVE, "work", task, checks.file ?? "page.md");
-  if (!fs.existsSync(file)) return { pass: false, output: `missing live/work/${task}/${checks.file ?? "page.md"}` };
+  // the real path (benchmark 3: "missing live/work/…" made two agents doubt that the check reads META_LIVE_DIR)
+  if (!fs.existsSync(file)) return { pass: false, output: `missing ${file}` };
   const text = fs.readFileSync(file, "utf8");
   const lines = text.split("\n");
   const body = lines.filter((l) => !/^#/.test(l)).join(" ");
