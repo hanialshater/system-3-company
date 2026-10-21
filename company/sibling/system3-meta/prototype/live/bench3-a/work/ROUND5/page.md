@@ -8,6 +8,6 @@
 **Q3.** What is the wide ring of space rocks between the rocky and giant planets?
 **Answer:** The asteroid belt
 **Why:** Its rocks are so spread out that spacecraft have flown right through it without hitting any.
-**Q4.** A comet has a long tail. Which way does that tail point?
+**Q4.** Near the Sun, a comet grows a long tail. Which way does that tail point?
 **Answer:** Away from the Sun
-**Why:** Sunlight and a wind of tiny bits from the Sun push its ice and dust outward, even as it leaves.
+**Why:** Sunlight and a wind from the Sun push its gas and dust away, even as the comet leaves.

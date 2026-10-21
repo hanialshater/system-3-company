@@ -20,6 +20,6 @@
 
 **Q4.** When a comet comes near the Sun, it grows a long, glowing tail. Which way does that tail point?
 
-**Answer:** Away from the Sun
+**Answer:** Away from it
 
 **Why:** Sunlight and a wind of tiny bits from the Sun push the comet's gas and dust outward, so the tail always faces away.
