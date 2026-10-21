@@ -32,6 +32,7 @@ import { HERE, LIVE, STATE, load, save, withLock, runTests, runTest1, rep, CHECK
 import { syncOrders } from "./tracker.mjs";
 import { sweepGoals } from "./goals.mjs";
 import { expireContracts } from "./contractor.mjs";
+import * as CH from "./channels.mjs";
 
 const STAGE_SIGNER = { test1: "code", uat: "orderer", ship: "release" };
 
@@ -191,6 +192,12 @@ export function briefFor(co, item, { context = null } = {}) {
   // its STYLE brief did not mention)
   const acts = [...(co.data?.tracker?.items?.values() ?? [])].filter((i) => i.kind === "action" && i.assignee === item.role && !["done", "cancelled"].includes(i.state));
   if (acts.length) L.push(`Your open actions (do them in this session when they touch this work; mark each done with \`node meta.mjs item update --id=<ISS> --by=${item.role} --state=done\`):`, ...acts.map((i) => `- ${i.id}: ${i.title}${i.due ? ` (due ${i.due})` : ""}${i.body ? ` · ${i.body}` : ""}`), "");
+  // unread announcements travel with the brief (benchmark 4: a changed requirement posted on a channel must reach a
+  // session that starts after the post)
+  if (co.data?.channels) {
+    const un = CH.inbox(co, item.role);
+    if (un.length) L.push("Unread announcements for you (read each before you start: `node meta.mjs channel read --by=" + item.role + " --post=<P> --ack`):", ...un.map((p) => `- ${p.post} on ${p.channel}: ${p.title}`), "");
+  }
   for (const t of item.tasks ?? []) {
     if (t.kind === "positions") L.push(`Meeting ${t.ref}: read it with \`node meta.mjs meeting show --id=${t.ref}\` (agenda, and the pack if any). For each item ${t.items.join(", ")}, write your own position: \`node meta.mjs meeting position --id=${t.ref} --by=${item.role} --item=<n> --text='…'\`. Positions stay private until the chair reveals them; argue from the order, the goals and what you know, and be specific.`);
     if (t.kind === "chair") L.push(`You chair meeting ${t.ref}: \`node meta.mjs meeting show --id=${t.ref}\`. For each item ${t.items.join(", ")}: write your own position (\`meeting position\`), then \`meeting reveal --id=${t.ref} --by=${item.role} --item=<n>\` (add \`--force\` if someone is missing; they are named in the minutes), read them (\`meeting read\`), and \`meeting decide --id=${t.ref} --by=${item.role} --item=<n> --decision='…'\` (answer every objection with \`--answers\`; follow-ups as \`--actions='[{"title":"…","owner":"<role>","due":"YYYY-MM-DD"}]'\`). Every decision code can check (word limits per line, required text, banned words, which kinds of line are allowed, answers unique across items; e.g. "numbers as digits" is a ban on the number words) also goes in \`--rules='[{"tasks":"<task prefix>","checks":{…}}]'\`: code then checks it on every matching order, open or later (checks: ${CHECK_KEYS.join(", ")}; e.g. \`{"lineMaxWords":[{"prefix":"**Why:**","maxWords":20}],"allowedLines":["# ","**Q","**Answer:**","**Why:**"],"distinctAnswers":{"prefix":"**Answer:**","across":"ROUND"}}\`). ${co.data?.meetings?.meetings?.get(t.ref)?.kind === "wbr" ? `This is a WBR: the pack (\`meeting show\`) holds page 0, hits and misses, roadmap and goals, and leadership asks, all computed by code; cite its numbers, never your own. Close it with \`node meta.mjs wbr close --by=${item.role} --meeting=${t.ref} --summary='3-5 sentences'\` (not \`meeting close\`: that would skip the WBR record), then run \`node meta.mjs goal-review --by=${item.role}\`.` : `Then \`meeting close --id=${t.ref} --by=${item.role}\`.`} The decision text is what builders will follow: make it concrete.`);
