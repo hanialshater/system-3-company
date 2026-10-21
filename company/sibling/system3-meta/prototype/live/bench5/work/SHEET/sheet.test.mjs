@@ -65,3 +65,32 @@ test("wave 2: a value of exactly 10 is returned as 10", () => {
   assert.equal(s.get("A2"), 10);
   assert.equal(s.display("A2"), "10");
 });
+
+// Wave 3. The exact code "#CYCLE!" comes from slot B's ERR (ISS-13); until B has it,
+// these assert only that cycle cells are errors and that breaking the cycle recovers.
+const isErrCode = (v) => typeof v === "string" && v.startsWith("#");
+
+test("wave 3: cycles are errors, readers too, and breaking restores values", () => {
+  const s = createSheet();
+  s.set("A1", "=A1:A2");
+  assert.ok(isErrCode(s.get("A1")));
+  s.set("A1", "=B1"); s.set("B1", "=A1+1"); s.set("C1", "=SUM(A1:B1)"); s.set("D1", "=C1*2");
+  for (const c of ["A1", "B1", "C1", "D1"]) assert.ok(isErrCode(s.get(c)), c);
+  s.set("B1", "5");
+  assert.equal(s.get("A1"), 5); assert.equal(s.get("C1"), 10); assert.equal(s.get("D1"), 20);
+  s.set("B1", "=A1"); assert.ok(isErrCode(s.get("D1")));
+  s.set("A1", ""); assert.equal(s.get("B1"), ""); assert.equal(s.get("D1"), 0);
+});
+
+test("wave 3: scale and odd input", () => {
+  const s = createSheet();
+  s.set("A1", "1");
+  for (let r = 2; r <= 99; r++) s.set("A" + r, `=A${r - 1}+1`);
+  assert.equal(s.get("A99"), 99);
+  s.set("A1", "101"); assert.equal(s.get("A99"), 199);
+  s.set("Z99", "=SUM(A1:Z10)"); assert.equal(s.get("Z99"), 1055);
+  assert.equal(g("=1e3"), "#VALUE!"); assert.equal(g("=1.2.3"), "#VALUE!");
+  assert.equal(g("=0^0"), 1); assert.equal(g('="5"+1'), 6);
+  const t = createSheet(); t.set("A1", "=1/0"); t.set("B1", "=A1+1"); t.set("C1", "=SUM(B1)&FOO()");
+  assert.equal(t.get("C1"), "#DIV/0!");
+});
