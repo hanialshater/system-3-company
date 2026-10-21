@@ -607,6 +607,169 @@
     "stage": "build",
     "verdict": "pass",
     "minutes": 0.30505000054836273
+   },
+   {
+    "seq": 60,
+    "t": 29876173.399466667,
+    "type": "advance",
+    "order": "O-5",
+    "stage": "build",
+    "by": "toy-builder-2",
+    "verdict": "pass"
+   },
+   {
+    "seq": 61,
+    "t": 29876173.399466667,
+    "type": "code-stage",
+    "order": "O-5",
+    "stage": "test1"
+   },
+   {
+    "seq": 62,
+    "t": 29876173.399466667,
+    "type": "done",
+    "msg": "M-5",
+    "run": "R-1"
+   },
+   {
+    "seq": 63,
+    "t": 29876173.399483334,
+    "type": "send",
+    "msg": "M-11",
+    "from": "toy-builder-2",
+    "to": "mgr-live",
+    "kind": "report",
+    "key": null,
+    "ref": "O-5",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 64,
+    "t": 29876173.399483334,
+    "type": "leave",
+    "run": "R-1",
+    "role": "toy-builder-2",
+    "order": "O-5",
+    "stage": "build",
+    "verdict": "pass",
+    "minutes": 0.41173333302140236
+   },
+   {
+    "seq": 65,
+    "t": 29876173.427983332,
+    "type": "advance",
+    "order": "O-8",
+    "stage": "build",
+    "by": "toy-builder-2",
+    "verdict": "pass"
+   },
+   {
+    "seq": 66,
+    "t": 29876173.427983332,
+    "type": "code-stage",
+    "order": "O-8",
+    "stage": "test1"
+   },
+   {
+    "seq": 67,
+    "t": 29876173.427983332,
+    "type": "done",
+    "msg": "M-7",
+    "run": "R-5"
+   },
+   {
+    "seq": 68,
+    "t": 29876173.427983332,
+    "type": "send",
+    "msg": "M-12",
+    "from": "toy-builder-2",
+    "to": "mgr-live",
+    "kind": "report",
+    "key": null,
+    "ref": "O-8",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 69,
+    "t": 29876173.427983332,
+    "type": "leave",
+    "run": "R-5",
+    "role": "toy-builder-2",
+    "order": "O-8",
+    "stage": "build",
+    "verdict": "pass",
+    "minutes": 0.23124999925494194
+   },
+   {
+    "seq": 70,
+    "t": 29876173.544366665,
+    "type": "advance",
+    "order": "O-2",
+    "stage": "build",
+    "by": "toy-builder-1",
+    "verdict": "pass"
+   },
+   {
+    "seq": 71,
+    "t": 29876173.544366665,
+    "type": "code-stage",
+    "order": "O-2",
+    "stage": "test1"
+   },
+   {
+    "seq": 72,
+    "t": 29876173.544366665,
+    "type": "done",
+    "msg": "M-2",
+    "run": "R-6"
+   },
+   {
+    "seq": 73,
+    "t": 29876173.544366665,
+    "type": "send",
+    "msg": "M-13",
+    "from": "toy-builder-1",
+    "to": "mgr-live",
+    "kind": "report",
+    "key": null,
+    "ref": "O-2",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 74,
+    "t": 29876173.544366665,
+    "type": "leave",
+    "run": "R-6",
+    "role": "toy-builder-1",
+    "order": "O-2",
+    "stage": "build",
+    "verdict": "pass",
+    "minutes": 0.29481666535139084
+   },
+   {
+    "seq": 75,
+    "t": 29876173.544366665,
+    "type": "claim",
+    "msg": "M-3",
+    "run": "R-7"
+   },
+   {
+    "seq": 76,
+    "t": 29876173.544366665,
+    "type": "enter",
+    "run": "R-7",
+    "msg": "M-3",
+    "role": "toy-builder-1",
+    "by": "toy-builder-1",
+    "room": "sandbox",
+    "order": "O-3",
+    "stage": "build",
+    "mode": "work",
+    "session": "S-4",
+    "item": 3
    }
   ]
  },
@@ -653,7 +816,7 @@
       },
       "priority": "next",
       "ts": 29876172.508683335,
-      "state": "open",
+      "state": "done",
       "lease": {
        "run": "R-6",
        "until": 29876203.24955
@@ -678,7 +841,10 @@
       "priority": "next",
       "ts": 29876172.509683333,
       "state": "open",
-      "lease": null,
+      "lease": {
+       "run": "R-7",
+       "until": 29876203.544366665
+      },
       "acked": false
      }
     ],
@@ -722,7 +888,7 @@
       },
       "priority": "next",
       "ts": 29876172.51165,
-      "state": "open",
+      "state": "done",
       "lease": {
        "run": "R-1",
        "until": 29876202.98775
@@ -770,7 +936,7 @@
       },
       "priority": "now",
       "ts": 29876173.022533335,
-      "state": "open",
+      "state": "done",
       "lease": {
        "run": "R-5",
        "until": 29876203.196733333
@@ -840,6 +1006,69 @@
       "lease": null,
       "acked": false
      }
+    ],
+    [
+     "M-11",
+     {
+      "id": "M-11",
+      "from": "toy-builder-2",
+      "to": "mgr-live",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-5",
+      "body": {
+       "stage": "build",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876173.399483334,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-12",
+     {
+      "id": "M-12",
+      "from": "toy-builder-2",
+      "to": "mgr-live",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-8",
+      "body": {
+       "stage": "build",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876173.427983332,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-13",
+     {
+      "id": "M-13",
+      "from": "toy-builder-1",
+      "to": "mgr-live",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-2",
+      "body": {
+       "stage": "build",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876173.544366665,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
     ]
    ]
   },
@@ -875,7 +1104,7 @@
     ]
    ]
   },
-  "n": 10
+  "n": 13
  },
  "org": {
   "roles": {
@@ -1108,10 +1337,17 @@
       "spent": 0,
       "accept": "live/work/T4/dedent.mjs exports dedent(text): removes the longest common leading whitespace (spaces and tabs compared literally: a tab is not equal to spaces) from every non-blank line. Whitespace-only lines become empty and do not count for the common prefix. One leading newline is removed, and a final whitespace-only line is removed. node:test tests in live/work/T4/*.test.mjs",
       "words": null,
-      "stage": "build",
+      "stage": "test1",
       "loops": 0,
       "created": 29876172.500266667,
-      "history": [],
+      "history": [
+       {
+        "stage": "build",
+        "by": "toy-builder-1",
+        "verdict": "pass",
+        "t": 29876173.544366665
+       }
+      ],
       "priority": "next",
       "due": null,
       "after": [],
@@ -1205,10 +1441,17 @@
       "spent": 0,
       "accept": "live/work/T7/kebab.mjs exports toKebab(s): splits words at camelCase boundaries, at acronym ends (XMLHttpRequest gives xml-http-request), and at spaces, underscores and hyphens; lowercases; joins with single hyphens; trims leading and trailing separators; digits stay attached to the word before them (v2Api gives v2-api). Non-string input throws TypeError. node:test tests in live/work/T7/*.test.mjs",
       "words": null,
-      "stage": "build",
+      "stage": "test1",
       "loops": 0,
       "created": 29876172.503733333,
-      "history": [],
+      "history": [
+       {
+        "stage": "build",
+        "by": "toy-builder-2",
+        "verdict": "pass",
+        "t": 29876173.399466667
+       }
+      ],
       "priority": "next",
       "due": null,
       "after": [],
@@ -1304,10 +1547,17 @@
       "spent": 0,
       "accept": "live/work/T9/leap.mjs exports isLeapYear(year) for integer years >= 1 by the Gregorian rules (divisible by 4, except centuries, except every 400 years). Any other input (0, negative, non-integer, non-number) throws RangeError. node:test tests in live/work/T9/*.test.mjs",
       "words": null,
-      "stage": "build",
+      "stage": "test1",
       "loops": 0,
       "created": 29876173.0215,
-      "history": [],
+      "history": [
+       {
+        "stage": "build",
+        "by": "toy-builder-2",
+        "verdict": "pass",
+        "t": 29876173.427983332
+       }
+      ],
       "priority": "now",
       "due": null,
       "after": [],
@@ -1344,7 +1594,7 @@
       "stage": "build",
       "loops": 0,
       "entered": 29876172.98775,
-      "state": "running",
+      "state": "left",
       "session": "S-1"
      }
     ],
@@ -1408,7 +1658,7 @@
       "stage": "build",
       "loops": 0,
       "entered": 29876173.196733333,
-      "state": "running",
+      "state": "left",
       "session": "S-5"
      }
     ],
@@ -1424,13 +1674,29 @@
       "stage": "build",
       "loops": 0,
       "entered": 29876173.24955,
+      "state": "left",
+      "session": "S-4"
+     }
+    ],
+    [
+     "R-7",
+     {
+      "run": "R-7",
+      "msg": "M-3",
+      "role": "toy-builder-1",
+      "by": "toy-builder-1",
+      "consult": false,
+      "order": "O-3",
+      "stage": "build",
+      "loops": 0,
+      "entered": 29876173.544366665,
       "state": "running",
       "session": "S-4"
      }
     ]
    ]
   },
-  "n": 6,
+  "n": 7,
   "memory": {
    "__map": [
     [
@@ -1440,6 +1706,12 @@
        "t": 29876173.24955,
        "did": "build on O-1: pass (loop 0)",
        "learned": "Hand-rolled index scanner handles quoted/unquoted CSV fields; escape \"\" checked before closing quote.",
+       "mistake": null
+      },
+      {
+       "t": 29876173.544366665,
+       "did": "build on O-2: pass (loop 0)",
+       "learned": "Dedent: strip leading newline and final blank line first, then compute literal char-by-char common prefix over non-blank lines.",
        "mistake": null
       }
      ]
@@ -1457,6 +1729,18 @@
        "t": 29876173.2993,
        "did": "build on O-6: pass (loop 0)",
        "learned": "A sticky regex scanned left to right plus a unit-index cursor enforces order and uniqueness in one pass; try ms before m.",
+       "mistake": null
+      },
+      {
+       "t": 29876173.399483334,
+       "did": "build on O-5: pass (loop 0)",
+       "learned": "Workdir is not pre-created by room enter; mkdir -p it first. Two regex passes (lower/digit->Upper, then ACRONYM->Word) cover camel and acronym splits.",
+       "mistake": null
+      },
+      {
+       "t": 29876173.427983332,
+       "did": "build on O-8: pass (loop 0)",
+       "learned": "Validate with typeof number + Number.isInteger + >=1 so NaN, Infinity, BigInt, strings and booleans all throw RangeError.",
        "mistake": null
       }
      ]
@@ -1500,7 +1784,7 @@
      {
       "id": "S-4",
       "role": "toy-builder-1",
-      "items": 2,
+      "items": 3,
       "open": true,
       "started": 29876172.998616666
      }
