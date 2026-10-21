@@ -26,6 +26,7 @@
 //   node meta.mjs policy propose --lane=<l> --by=<manager> --knobs='{…}' --reason=… --prediction=…
 //   node meta.mjs policy activate --lane=<l> --version=<n> --by=<manager>   new orders pin it; orders in flight keep theirs
 //   node meta.mjs manager report --lane=<l>   ·   manager cycle --lane=<l> --by=<manager> --belief=… --decision=keep|change [--version=<n>]
+//   node meta.mjs contract templates   ·   contract open --by=<manager> --template=manager-onboarding [overrides]
 //   node meta.mjs contract open --by=<manager> --kind=prototype|research|spike --goal=… --deliverable=… --budget=<n> --timebox=<min> [--onboarding='{…}']
 //   node meta.mjs contract brief --id=<C>   ·   contract deliver --id=<C> --by=<ctr> --summary=… --path=live/contracts/<C>/… [--findings='[{claim,source,confidence}]']
 //   node meta.mjs contract decide --id=<C> --by=<manager> --decision=accept|reject --reason=…   ·   contract show --id=<C>
@@ -35,7 +36,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { Refused, flowMetrics } from "./lib.mjs";
 import { proposePolicy, activatePolicy, managerReport, recordCycle, KNOBS } from "./policy.mjs";
-import { engage, briefFor, deliver, decideContract } from "./contractor.mjs";
+import { engage, engageTemplate, briefFor, deliver, decideContract, TEMPLATES } from "./contractor.mjs";
 import { LIVE, STATE, LIVE_ROLES, TASK_FLOW, clock, make, rep, save, load, withLock, runTests } from "./state.mjs";
 export { LIVE_ROOMS, LIVE_ROLES, TASK_FLOW } from "./state.mjs";
 
@@ -169,9 +170,12 @@ function dispatch(co, cmd, sub, arg) {
     return recordCycle(engine, { lane: opt.lane, by: opt.by, report, belief: opt.belief, decision: opt.decision, version: opt.version ? Number(opt.version) : null });
   }
   // ---- contractors: prototypes, research and spikes outside the delivery flow
+  if (cmd === "contract" && sub === "templates") return Object.fromEntries(Object.entries(TEMPLATES).map(([k, t]) => [k, { kind: t.kind, goal: t.goal, deliverable: t.deliverable, budget: t.budget, timeboxMin: t.timeboxMin }]));
   if (cmd === "contract" && sub === "open") {
-    need("by", "kind", "goal", "deliverable", "budget", "timebox");
-    const c = engage(co, { by: opt.by, kind: opt.kind, goal: opt.goal, deliverable: opt.deliverable, budget: Number(opt.budget), timeboxMin: Number(opt.timebox), onboarding: opt.onboarding ? JSON.parse(opt.onboarding) : {} });
+    need("by");
+    const over = Object.fromEntries(Object.entries({ kind: opt.kind, goal: opt.goal, deliverable: opt.deliverable, budget: opt.budget && Number(opt.budget), timeboxMin: opt.timebox && Number(opt.timebox), onboarding: opt.onboarding && JSON.parse(opt.onboarding) }).filter(([, v]) => v != null && v !== true));
+    if (!opt.template) need("kind", "goal", "deliverable", "budget", "timebox");
+    const c = opt.template ? engageTemplate(co, { template: opt.template, by: opt.by, ...over }) : engage(co, { by: opt.by, onboarding: {}, ...over });
     fs.mkdirSync(path.join(LIVE, "contracts", c.id), { recursive: true });
     return { contract: c.id, contractor: c.contractor, due: new Date(c.due * 60000).toISOString(), folder: `live/contracts/${c.id}/` };
   }

@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { engage, briefFor, deliver, decideContract, expireContracts, onboardingProblems, deliverableProblems } from "../contractor.mjs";
+import { engage, engageTemplate, briefFor, deliver, decideContract, expireContracts, onboardingProblems, deliverableProblems } from "../contractor.mjs";
 import { build } from "../toy.mjs";
 import { plan } from "../supervisor.mjs";
 
@@ -67,4 +67,19 @@ test("timebox: no delivery by the due time expires the engagement; the plan star
   assert.deepEqual(expireContracts(co), ["C-1"]);
   assert.equal(co.engine.contracts.get("C-1").state, "expired");
   assert.throws(() => deliver(co, { cid: c.id, by: c.contractor, summary: "s", path: "live/contracts/C-1/r.md", findings: [finding] }), /expired|timed out/);
+});
+
+test("manager-onboarding template: the brief carries the lane's data from code; findings cite it", () => {
+  const co = build();
+  const o = co.engine.orderNew({ flow: "item", by: "cos", to: "mgr-w", budget: 100, accept: "x", title: "Week numbers" });
+  co.engine.delegate(o.id, { by: "mgr-w", to: "b-w1", budget: 100 });
+  const c = engageTemplate(co, { template: "manager-onboarding", by: "mgr-w" });
+  assert.equal(c.kind, "research");
+  const b = briefFor(co, c.id);
+  assert.equal(b.template, "manager-onboarding");
+  assert.deepEqual(b.data.openOrders.map((x) => x.order), [o.id]);
+  assert.ok("report" in b.data && "policies" in b.data);
+  deliver(co, { cid: c.id, by: c.contractor, summary: "lane brief", path: `live/contracts/${c.id}/brief.md`, findings: [{ claim: "one order open, at build", source: `order ${o.id}`, confidence: "high" }] });
+  decideContract(co, { cid: c.id, by: "mgr-w", decision: "accept", reason: "accurate" });
+  assert.throws(() => engageTemplate(co, { template: "nope", by: "mgr-w" }), /no template/);
 });

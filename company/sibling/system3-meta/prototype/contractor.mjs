@@ -15,6 +15,7 @@
 //   - the engagement ends on accept, reject or timeout: the contractor is deactivated, a handoff goes to the manager,
 //     and no memory of it is kept
 import { Refused } from "./lib.mjs";
+import { managerReport } from "./policy.mjs";
 
 const refuse = (msg) => { throw new Refused(`HARD: ${msg}`); };
 export const KINDS = ["prototype", "research", "spike"];
@@ -53,6 +54,40 @@ export function deliverableProblems(kind, d) {
 
 const contracts = (engine) => engine.contracts ?? (engine.contracts = new Map());
 
+// Ready-made engagements. A contractor is custom, cheap to start and disposable, which suits preparation work: a new
+// manager has one study the lane and brief them, keeps the brief if it is good, and nothing of the contractor remains.
+// The lane's data is put in the brief by code (contractors may not read state files), so every finding can cite it.
+export const TEMPLATES = {
+  "manager-onboarding": {
+    kind: "research",
+    goal: "Brief the lane's manager: current state, numbers, open decisions, recurring defect classes, and the policy history with the reasons behind each change.",
+    deliverable: "a one-page brief in the engagement folder; every finding cites an order, a policy version or the manager report, with a confidence",
+    budget: 60_000,
+    timeboxMin: 45,
+    onboarding: { laneMemory: true, brief: "Read the data in this brief first. Do not guess: if the data does not show it, say so." },
+    data(co, lane) {
+      const { engine } = co;
+      const inLane = [...engine.orders.values()].filter((o) => engine.org.role(o.manager)?.lane === lane);
+      return {
+        report: managerReport(engine, lane),
+        policies: (engine.policies.get(lane)?.versions ?? []).map((v) => ({ version: v.version, state: v.state, knobs: v.knobs, reason: v.reason, prediction: v.prediction })),
+        openOrders: inLane.filter((o) => o.stage !== "done").map((o) => ({ order: o.id, title: o.title, stage: o.stage, loops: o.loops, priority: o.priority })),
+        recentFindings: inLane.filter((o) => o.findings).slice(-10).map((o) => ({ order: o.id, title: o.title, findings: String(o.findings).slice(0, 400) })),
+        cycles: engine.log.events.filter((e) => e.type === "manager-cycle" && e.lane === lane).slice(-5).map((e) => ({ belief: e.belief, decision: e.decision, version: e.version })),
+      };
+    },
+  },
+};
+
+/** Open an engagement from a template; any field given overrides the template's. */
+export function engageTemplate(co, { template, by, ...over }) {
+  const t = TEMPLATES[template];
+  if (!t) refuse(`no template ${template} (have: ${Object.keys(TEMPLATES).join(", ")})`);
+  const c = engage(co, { by, kind: t.kind, goal: t.goal, deliverable: t.deliverable, budget: t.budget, timeboxMin: t.timeboxMin, onboarding: t.onboarding, ...over });
+  c.template = template;
+  return c;
+}
+
 export function engage({ engine, org, mailbox, log }, { by, kind, goal, deliverable, budget, timeboxMin, onboarding = {} }) {
   const mgr = org.role(by);
   if (!mgr || mgr.level !== "manager" || org.lanePOC(mgr.lane)?.id !== by) refuse(`${by} is not a lane manager`);
@@ -81,7 +116,8 @@ export function briefFor({ engine, org, rooms }, cid) {
   const laneMemory = c.onboarding.laneMemory
     ? org.active().filter((x) => x.lane === lane && x.level === "builder").flatMap((x) => (rooms.memory.get(x.id) ?? []).filter((e) => e.learned).map((e) => ({ from: x.id, learned: e.learned })))
     : [];
-  return { contract: cid, contractor: c.contractor, kind: c.kind, goal: c.goal, deliverable: c.deliverable, timebox_ends: new Date(c.due * 60000).toISOString(), write_only_to: `live/contracts/${cid}/`, docs: c.onboarding.docs ?? [], brief: c.onboarding.brief ?? null, laneMemory, rules: "no flow work, no signing, no shipping; research findings need a source and a confidence" };
+  const data = c.template ? TEMPLATES[c.template].data({ engine, org, rooms }, lane) : null;
+  return { contract: cid, contractor: c.contractor, kind: c.kind, template: c.template ?? null, goal: c.goal, deliverable: c.deliverable, timebox_ends: new Date(c.due * 60000).toISOString(), write_only_to: `live/contracts/${cid}/`, docs: c.onboarding.docs ?? [], brief: c.onboarding.brief ?? null, laneMemory, data, rules: "no flow work, no signing, no shipping; research findings need a source and a confidence" };
 }
 
 export function deliver({ engine, log }, { cid, by, summary, path, findings = null }) {

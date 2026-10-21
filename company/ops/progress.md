@@ -1,3 +1,14 @@
+## 2026-10-21 · chief-of-staff (for System 3 Meta) · API and role guidelines; manager-onboarding contractor
+
+Founder: contractors' advantage is that they are "custom, less overhead, and disposable", useful in manager onboarding; "put a doc for meta company api docs and role guidelines so we don't lose track".
+
+Added:
+- **company/sibling/system3-meta/API.md:** files, concepts, the rules code enforces, every CLI and supervisor command, policy knobs, contractor engagements, event types, the live-round procedure;
+- **company/sibling/system3-meta/ROLES.md:** founder, chief of staff, manager (with onboarding), builder, checker, release, supervisor, contractor; does, may not, commands;
+- **the `manager-onboarding` contractor template** (contractor.mjs): a disposable research engagement whose brief carries the lane's data from code (report, policy history, open orders, findings, cycles), so a new manager gets a sourced lane brief. Tests 35/35.
+
+Rule kept in both docs: change them in the same commit as the code they describe.
+
 ## 2026-10-21 · chief-of-staff (for System 3 Meta) · Manager-owned lane policy; contractors
 
 Founder: the manager writes and updates the code for their lane; and "all managers are allowed to hire a one time contractor and decide on how to onboard them". Prototype (company/sibling/system3-meta/prototype, tests 33/33):
