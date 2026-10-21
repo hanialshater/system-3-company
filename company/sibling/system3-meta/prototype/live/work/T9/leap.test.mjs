@@ -24,3 +24,40 @@ test('non-coercible inputs throw RangeError, not TypeError', () => {
     assert.throws(() => isLeapYear(v), RangeError, typeof v);
   }
 });
+test('revoked proxies and other exotic objects throw RangeError', () => {
+  const { proxy: revokedObj, revoke: r1 } = Proxy.revocable({}, {});
+  r1();
+  const { proxy: revokedArr, revoke: r2 } = Proxy.revocable([], {});
+  r2();
+  const { proxy: revokedFn, revoke: r3 } = Proxy.revocable(function () {}, {});
+  r3();
+  const allTraps = new Proxy({}, new Proxy({}, { get() { throw new Error('any trap'); } }));
+  const badTag = { get [Symbol.toStringTag]() { throw new Error('tag'); }, [Symbol.toPrimitive]() { throw new Error('prim'); } };
+  const exotic = [
+    revokedObj, revokedArr, revokedFn, allTraps, badTag,
+    new Proxy([], {}), Object.create(null), new Date(2000, 0, 1), /2000/, new Map(), new Set(),
+    new WeakMap(), Promise.resolve(2000), new Uint8Array(4), new ArrayBuffer(8), new Error('e'),
+    Object(2000n), Object(Symbol('s')), new String('2000'), new Boolean(true), class {}, async () => {},
+    function* () {}, Symbol.iterator, Symbol.for('y'), -0, 0.1, 2000.0000001, Number.MAX_VALUE * 10,
+    Number.MIN_VALUE, 2 ** 51 + 0.5, -2000n, 0n, '', 'x'.repeat(1e6), '\u0000', false,
+  ];
+  for (const v of exotic) {
+    let caught;
+    try { isLeapYear(v); } catch (e) { caught = e; }
+    assert.ok(caught instanceof RangeError, `expected RangeError for typeof ${typeof v}, got ${caught && caught.constructor && caught.constructor.name}`);
+  }
+});
+test('error path survives tampered globals', () => {
+  const origIsArray = Array.isArray, origStringify = JSON.stringify, origString = String.prototype.toString;
+  try {
+    Array.isArray = () => { throw new TypeError('tampered'); };
+    JSON.stringify = () => { throw new TypeError('tampered'); };
+    for (const v of [{}, [], 'x', null]) assert.throws(() => isLeapYear(v), RangeError);
+  } finally {
+    Array.isArray = origIsArray; JSON.stringify = origStringify; String.prototype.toString = origString;
+  }
+});
+test('huge integers follow the rules and stay valid', () => {
+  assert.equal(isLeapYear(Number.MAX_SAFE_INTEGER), false);
+  assert.equal(isLeapYear(4e20), true); // integer-valued double, divisible by 400
+});
