@@ -1,0 +1,843 @@
+{
+ "data": {
+  "spec": "toy",
+  "channels": {
+   "channels": {
+    "__map": [
+     [
+      "company",
+      {
+       "id": "company",
+       "kind": "company",
+       "title": "",
+       "by": "cos",
+       "members": null,
+       "created": 29876846.925433334
+      }
+     ]
+    ]
+   },
+   "posts": {
+    "__map": []
+   },
+   "n": 0
+  }
+ },
+ "log": {
+  "events": [
+   {
+    "seq": 1,
+    "t": 29876846.923816666,
+    "type": "org-genesis",
+    "roles": [
+     "founder",
+     "cos",
+     "mgr-live",
+     "toy-builder-1",
+     "toy-builder-2",
+     "toy-checker",
+     "toy-release"
+    ]
+   },
+   {
+    "seq": 2,
+    "t": 29876846.923816666,
+    "type": "flow-define",
+    "flow": "task@v1",
+    "by": "cos"
+   },
+   {
+    "seq": 3,
+    "t": 29876846.923816666,
+    "type": "flow-active",
+    "flow": "task@v1",
+    "by": "founder",
+    "words": "Approve the task flow for the Meta sandbox (founder: Decide for me, 2026-10-21)"
+   },
+   {
+    "seq": 4,
+    "t": 29876846.925433334,
+    "type": "channel-create",
+    "channel": "company",
+    "kind": "company",
+    "by": "cos"
+   },
+   {
+    "seq": 5,
+    "t": 29876846.925433334,
+    "type": "order",
+    "order": "O-1",
+    "by": "cos",
+    "to": "mgr-live",
+    "budget": 200000,
+    "flow": "task@v1",
+    "priority": "next",
+    "after": [],
+    "policy": null
+   },
+   {
+    "seq": 6,
+    "t": 29876846.92545,
+    "type": "order",
+    "order": "O-2",
+    "by": "cos",
+    "to": "mgr-live",
+    "budget": 200000,
+    "flow": "task@v1",
+    "priority": "next",
+    "after": [
+     "O-1"
+    ],
+    "policy": null
+   },
+   {
+    "seq": 7,
+    "t": 29876846.92545,
+    "type": "order",
+    "order": "O-3",
+    "by": "cos",
+    "to": "mgr-live",
+    "budget": 200000,
+    "flow": "task@v1",
+    "priority": "next",
+    "after": [],
+    "policy": null
+   },
+   {
+    "seq": 8,
+    "t": 29876846.92545,
+    "type": "order",
+    "order": "O-4",
+    "by": "cos",
+    "to": "mgr-live",
+    "budget": 200000,
+    "flow": "task@v1",
+    "priority": "next",
+    "after": [],
+    "policy": null
+   },
+   {
+    "seq": 9,
+    "t": 29876846.92545,
+    "type": "order",
+    "order": "O-5",
+    "by": "cos",
+    "to": "mgr-live",
+    "budget": 200000,
+    "flow": "task@v1",
+    "priority": "next",
+    "after": [
+     "O-3",
+     "O-4"
+    ],
+    "policy": null
+   },
+   {
+    "seq": 10,
+    "t": 29876846.925466668,
+    "type": "order",
+    "order": "O-6",
+    "by": "cos",
+    "to": "mgr-live",
+    "budget": 200000,
+    "flow": "task@v1",
+    "priority": "next",
+    "after": [
+     "O-2",
+     "O-3",
+     "O-4",
+     "O-5"
+    ],
+    "policy": null
+   },
+   {
+    "seq": 11,
+    "t": 29876846.925466668,
+    "type": "order",
+    "order": "O-7",
+    "by": "cos",
+    "to": "mgr-live",
+    "budget": 200000,
+    "flow": "task@v1",
+    "priority": "next",
+    "after": [
+     "O-4"
+    ],
+    "policy": null
+   },
+   {
+    "seq": 12,
+    "t": 29876846.925466668,
+    "type": "order",
+    "order": "O-8",
+    "by": "cos",
+    "to": "mgr-live",
+    "budget": 200000,
+    "flow": "task@v1",
+    "priority": "next",
+    "after": [
+     "O-3"
+    ],
+    "policy": null
+   },
+   {
+    "seq": 13,
+    "t": 29876846.925466668,
+    "type": "order",
+    "order": "O-9",
+    "by": "cos",
+    "to": "mgr-live",
+    "budget": 200000,
+    "flow": "task@v1",
+    "priority": "next",
+    "after": [
+     "O-6",
+     "O-7",
+     "O-8"
+    ],
+    "policy": null
+   },
+   {
+    "seq": 14,
+    "t": 29876846.925466668,
+    "type": "order",
+    "order": "O-10",
+    "by": "cos",
+    "to": "mgr-live",
+    "budget": 200000,
+    "flow": "task@v1",
+    "priority": "next",
+    "after": [
+     "O-9"
+    ],
+    "policy": null
+   },
+   {
+    "seq": 15,
+    "t": 29876846.925483335,
+    "type": "rule-applied",
+    "order": "O-10",
+    "task": "GUIDE",
+    "source": "escapes",
+    "keys": [
+     "knownFalse"
+    ]
+   }
+  ]
+ },
+ "mailbox": {
+  "msgs": {
+   "__map": []
+  },
+  "keys": {
+   "__map": []
+  },
+  "n": 0
+ },
+ "org": {
+  "roles": {
+   "__map": [
+    [
+     "founder",
+     {
+      "skills": [],
+      "rituals": [],
+      "active": true,
+      "id": "founder",
+      "level": "founder",
+      "human": true,
+      "room": "lobby",
+      "floor": 1
+     }
+    ],
+    [
+     "cos",
+     {
+      "skills": [],
+      "rituals": [],
+      "active": true,
+      "id": "cos",
+      "level": "chief-of-staff",
+      "reportsTo": "founder",
+      "room": "ceo-office",
+      "floor": 1
+     }
+    ],
+    [
+     "mgr-live",
+     {
+      "skills": [
+       "manage"
+      ],
+      "rituals": [],
+      "active": true,
+      "id": "mgr-live",
+      "level": "manager",
+      "reportsTo": "cos",
+      "lane": "s",
+      "room": "sandbox",
+      "floor": 2
+     }
+    ],
+    [
+     "toy-builder-1",
+     {
+      "skills": [
+       "js"
+      ],
+      "rituals": [],
+      "active": true,
+      "id": "toy-builder-1",
+      "level": "builder",
+      "reportsTo": "mgr-live",
+      "lane": "s",
+      "room": "sandbox",
+      "floor": 2
+     }
+    ],
+    [
+     "toy-builder-2",
+     {
+      "skills": [
+       "js"
+      ],
+      "rituals": [],
+      "active": true,
+      "id": "toy-builder-2",
+      "level": "builder",
+      "reportsTo": "mgr-live",
+      "lane": "s",
+      "room": "sandbox",
+      "floor": 2
+     }
+    ],
+    [
+     "toy-checker",
+     {
+      "skills": [
+       "review"
+      ],
+      "rituals": [],
+      "active": true,
+      "id": "toy-checker",
+      "level": "checker",
+      "reportsTo": "cos",
+      "lane": "q",
+      "room": "quality",
+      "floor": 3
+     }
+    ],
+    [
+     "toy-release",
+     {
+      "skills": [
+       "release"
+      ],
+      "rituals": [],
+      "active": true,
+      "id": "toy-release",
+      "level": "release",
+      "reportsTo": "cos",
+      "lane": "r",
+      "room": "launch",
+      "floor": 3
+     }
+    ]
+   ]
+  },
+  "changes": {
+   "__map": []
+  },
+  "n": 0,
+  "rooms": {
+   "__map": [
+    [
+     "lobby",
+     {
+      "id": "lobby",
+      "floor": 1,
+      "kind": "lobby"
+     }
+    ],
+    [
+     "ceo-office",
+     {
+      "id": "ceo-office",
+      "floor": 1,
+      "kind": "office"
+     }
+    ],
+    [
+     "sandbox",
+     {
+      "id": "sandbox",
+      "floor": 2,
+      "kind": "lane",
+      "lane": "s"
+     }
+    ],
+    [
+     "quality",
+     {
+      "id": "quality",
+      "floor": 3,
+      "kind": "quality"
+     }
+    ],
+    [
+     "launch",
+     {
+      "id": "launch",
+      "floor": 3,
+      "kind": "launch"
+     }
+    ]
+   ]
+  }
+ },
+ "engine": {
+  "flows": {
+   "__map": [
+    [
+     "task@v1",
+     {
+      "stages": [
+       {
+        "stage": "build",
+        "signer": "builder",
+        "evidence": [
+         "live/work/<task>/"
+        ]
+       },
+       {
+        "stage": "test1",
+        "signer": "code",
+        "evidence": []
+       },
+       {
+        "stage": "check",
+        "signer": "checker",
+        "evidence": [
+         "review notes"
+        ]
+       },
+       {
+        "stage": "uat",
+        "signer": "orderer",
+        "evidence": [
+         "hidden acceptance tests"
+        ]
+       },
+       {
+        "stage": "ship",
+        "signer": "release",
+        "evidence": [
+         "copied to live/shipped/"
+        ]
+       }
+      ],
+      "name": "task",
+      "key": "task@v1",
+      "state": "active",
+      "by": "cos"
+     }
+    ]
+   ]
+  },
+  "active": {
+   "__map": [
+    [
+     "task",
+     "task@v1"
+    ]
+   ]
+  },
+  "orders": {
+   "__map": [
+    [
+     "O-1",
+     {
+      "id": "O-1",
+      "flow": "task@v1",
+      "title": "TOKENIZER: tokenize.mjs",
+      "chain": [
+       "cos",
+       "mgr-live"
+      ],
+      "orderer": "cos",
+      "manager": "mgr-live",
+      "builder": null,
+      "checker": null,
+      "budget": 200000,
+      "spent": 0,
+      "accept": "live/bench4b/work/TOKENIZER/tokenize.mjs, exactly as the \"TOKENIZER\" section of live/bench4b/SPEC.md says, plus at least one tokenizer.test.mjs of your own (node --test) in the same folder. Import other modules only by the relative paths SPEC.md gives. Hidden acceptance tests check the behaviour SPEC.md states and report only failing categories.",
+      "words": null,
+      "stage": "build",
+      "loops": 0,
+      "created": 29876846.925433334,
+      "history": [],
+      "priority": "next",
+      "due": null,
+      "after": [],
+      "blocked": false,
+      "policyVersion": null,
+      "fromContract": null,
+      "task": "TOKENIZER"
+     }
+    ],
+    [
+     "O-2",
+     {
+      "id": "O-2",
+      "flow": "task@v1",
+      "title": "PARSER: parse.mjs",
+      "chain": [
+       "cos",
+       "mgr-live"
+      ],
+      "orderer": "cos",
+      "manager": "mgr-live",
+      "builder": null,
+      "checker": null,
+      "budget": 200000,
+      "spent": 0,
+      "accept": "live/bench4b/work/PARSER/parse.mjs, exactly as the \"PARSER\" section of live/bench4b/SPEC.md says, plus at least one parser.test.mjs of your own (node --test) in the same folder. Import other modules only by the relative paths SPEC.md gives. Hidden acceptance tests check the behaviour SPEC.md states and report only failing categories.",
+      "words": null,
+      "stage": "build",
+      "loops": 0,
+      "created": 29876846.92545,
+      "history": [],
+      "priority": "next",
+      "due": null,
+      "after": [
+       "O-1"
+      ],
+      "blocked": true,
+      "policyVersion": null,
+      "fromContract": null,
+      "task": "PARSER"
+     }
+    ],
+    [
+     "O-3",
+     {
+      "id": "O-3",
+      "flow": "task@v1",
+      "title": "VALUES: values.mjs",
+      "chain": [
+       "cos",
+       "mgr-live"
+      ],
+      "orderer": "cos",
+      "manager": "mgr-live",
+      "builder": null,
+      "checker": null,
+      "budget": 200000,
+      "spent": 0,
+      "accept": "live/bench4b/work/VALUES/values.mjs, exactly as the \"VALUES\" section of live/bench4b/SPEC.md says, plus at least one values.test.mjs of your own (node --test) in the same folder. Import other modules only by the relative paths SPEC.md gives. Hidden acceptance tests check the behaviour SPEC.md states and report only failing categories.",
+      "words": null,
+      "stage": "build",
+      "loops": 0,
+      "created": 29876846.92545,
+      "history": [],
+      "priority": "next",
+      "due": null,
+      "after": [],
+      "blocked": false,
+      "policyVersion": null,
+      "fromContract": null,
+      "task": "VALUES"
+     }
+    ],
+    [
+     "O-4",
+     {
+      "id": "O-4",
+      "flow": "task@v1",
+      "title": "CELLS: cells.mjs",
+      "chain": [
+       "cos",
+       "mgr-live"
+      ],
+      "orderer": "cos",
+      "manager": "mgr-live",
+      "builder": null,
+      "checker": null,
+      "budget": 200000,
+      "spent": 0,
+      "accept": "live/bench4b/work/CELLS/cells.mjs, exactly as the \"CELLS\" section of live/bench4b/SPEC.md says, plus at least one cells.test.mjs of your own (node --test) in the same folder. Import other modules only by the relative paths SPEC.md gives. Hidden acceptance tests check the behaviour SPEC.md states and report only failing categories.",
+      "words": null,
+      "stage": "build",
+      "loops": 0,
+      "created": 29876846.92545,
+      "history": [],
+      "priority": "next",
+      "due": null,
+      "after": [],
+      "blocked": false,
+      "policyVersion": null,
+      "fromContract": null,
+      "task": "CELLS"
+     }
+    ],
+    [
+     "O-5",
+     {
+      "id": "O-5",
+      "flow": "task@v1",
+      "title": "FUNCTIONS: functions.mjs",
+      "chain": [
+       "cos",
+       "mgr-live"
+      ],
+      "orderer": "cos",
+      "manager": "mgr-live",
+      "builder": null,
+      "checker": null,
+      "budget": 200000,
+      "spent": 0,
+      "accept": "live/bench4b/work/FUNCTIONS/functions.mjs, exactly as the \"FUNCTIONS\" section of live/bench4b/SPEC.md says, plus at least one functions.test.mjs of your own (node --test) in the same folder. Import other modules only by the relative paths SPEC.md gives. Hidden acceptance tests check the behaviour SPEC.md states and report only failing categories.",
+      "words": null,
+      "stage": "build",
+      "loops": 0,
+      "created": 29876846.92545,
+      "history": [],
+      "priority": "next",
+      "due": null,
+      "after": [
+       "O-3",
+       "O-4"
+      ],
+      "blocked": true,
+      "policyVersion": null,
+      "fromContract": null,
+      "task": "FUNCTIONS"
+     }
+    ],
+    [
+     "O-6",
+     {
+      "id": "O-6",
+      "flow": "task@v1",
+      "title": "EVALUATOR: evaluate.mjs",
+      "chain": [
+       "cos",
+       "mgr-live"
+      ],
+      "orderer": "cos",
+      "manager": "mgr-live",
+      "builder": null,
+      "checker": null,
+      "budget": 200000,
+      "spent": 0,
+      "accept": "live/bench4b/work/EVALUATOR/evaluate.mjs, exactly as the \"EVALUATOR\" section of live/bench4b/SPEC.md says, plus at least one evaluator.test.mjs of your own (node --test) in the same folder. Import other modules only by the relative paths SPEC.md gives. Hidden acceptance tests check the behaviour SPEC.md states and report only failing categories.",
+      "words": null,
+      "stage": "build",
+      "loops": 0,
+      "created": 29876846.925466668,
+      "history": [],
+      "priority": "next",
+      "due": null,
+      "after": [
+       "O-2",
+       "O-3",
+       "O-4",
+       "O-5"
+      ],
+      "blocked": true,
+      "policyVersion": null,
+      "fromContract": null,
+      "task": "EVALUATOR"
+     }
+    ],
+    [
+     "O-7",
+     {
+      "id": "O-7",
+      "flow": "task@v1",
+      "title": "GRAPH: graph.mjs",
+      "chain": [
+       "cos",
+       "mgr-live"
+      ],
+      "orderer": "cos",
+      "manager": "mgr-live",
+      "builder": null,
+      "checker": null,
+      "budget": 200000,
+      "spent": 0,
+      "accept": "live/bench4b/work/GRAPH/graph.mjs, exactly as the \"GRAPH\" section of live/bench4b/SPEC.md says, plus at least one graph.test.mjs of your own (node --test) in the same folder. Import other modules only by the relative paths SPEC.md gives. Hidden acceptance tests check the behaviour SPEC.md states and report only failing categories.",
+      "words": null,
+      "stage": "build",
+      "loops": 0,
+      "created": 29876846.925466668,
+      "history": [],
+      "priority": "next",
+      "due": null,
+      "after": [
+       "O-4"
+      ],
+      "blocked": true,
+      "policyVersion": null,
+      "fromContract": null,
+      "task": "GRAPH"
+     }
+    ],
+    [
+     "O-8",
+     {
+      "id": "O-8",
+      "flow": "task@v1",
+      "title": "FORMAT: format.mjs",
+      "chain": [
+       "cos",
+       "mgr-live"
+      ],
+      "orderer": "cos",
+      "manager": "mgr-live",
+      "builder": null,
+      "checker": null,
+      "budget": 200000,
+      "spent": 0,
+      "accept": "live/bench4b/work/FORMAT/format.mjs, exactly as the \"FORMAT\" section of live/bench4b/SPEC.md says, plus at least one format.test.mjs of your own (node --test) in the same folder. Import other modules only by the relative paths SPEC.md gives. Hidden acceptance tests check the behaviour SPEC.md states and report only failing categories.",
+      "words": null,
+      "stage": "build",
+      "loops": 0,
+      "created": 29876846.925466668,
+      "history": [],
+      "priority": "next",
+      "due": null,
+      "after": [
+       "O-3"
+      ],
+      "blocked": true,
+      "policyVersion": null,
+      "fromContract": null,
+      "task": "FORMAT"
+     }
+    ],
+    [
+     "O-9",
+     {
+      "id": "O-9",
+      "flow": "task@v1",
+      "title": "SHEET: sheet.mjs",
+      "chain": [
+       "cos",
+       "mgr-live"
+      ],
+      "orderer": "cos",
+      "manager": "mgr-live",
+      "builder": null,
+      "checker": null,
+      "budget": 200000,
+      "spent": 0,
+      "accept": "live/bench4b/work/SHEET/sheet.mjs, exactly as the \"SHEET\" section of live/bench4b/SPEC.md says, plus at least one sheet.test.mjs of your own (node --test) in the same folder. Import other modules only by the relative paths SPEC.md gives. Hidden acceptance tests check the behaviour SPEC.md states and report only failing categories.",
+      "words": null,
+      "stage": "build",
+      "loops": 0,
+      "created": 29876846.925466668,
+      "history": [],
+      "priority": "next",
+      "due": null,
+      "after": [
+       "O-6",
+       "O-7",
+       "O-8"
+      ],
+      "blocked": true,
+      "policyVersion": null,
+      "fromContract": null,
+      "task": "SHEET"
+     }
+    ],
+    [
+     "O-10",
+     {
+      "id": "O-10",
+      "flow": "task@v1",
+      "title": "GUIDE: guide.md",
+      "chain": [
+       "cos",
+       "mgr-live"
+      ],
+      "orderer": "cos",
+      "manager": "mgr-live",
+      "builder": null,
+      "checker": null,
+      "budget": 200000,
+      "spent": 0,
+      "accept": "live/bench4b/work/GUIDE/guide.md, the user guide the \"GUIDE\" section of live/bench4b/SPEC.md describes. Every example must be true of the shipped SHEET: try each one with live/bench4b/shipped/SHEET/sheet.mjs.",
+      "words": null,
+      "stage": "build",
+      "loops": 0,
+      "created": 29876846.925466668,
+      "history": [],
+      "priority": "next",
+      "due": null,
+      "after": [
+       "O-9"
+      ],
+      "blocked": true,
+      "policyVersion": null,
+      "fromContract": null,
+      "task": "GUIDE",
+      "checks": {
+       "titleLine": true,
+       "minWords": 300,
+       "maxWords": 900,
+       "minReadingEase": 50,
+       "mustInclude": [
+        "SUM",
+        "MIN",
+        "MAX",
+        "AVERAGE",
+        "COUNT",
+        "IF",
+        "ABS",
+        "ROUND",
+        "LEN"
+       ],
+       "knownFalse": [
+        {
+         "pattern": "clouds?\\b[^.]{0,40}\\btraps?\\b[^.]{0,20}\\bheat",
+         "why": "on Venus the thick carbon dioxide air traps the heat; its clouds reflect most sunlight away"
+        }
+       ]
+      }
+     }
+    ]
+   ]
+  },
+  "approvals": {
+   "__map": []
+  },
+  "n": {
+   "O": 10,
+   "A": 0
+  },
+  "limits": {
+   "chief-of-staff": 500000,
+   "manager": 250000
+  },
+  "policies": {
+   "__map": []
+  },
+  "contracts": {
+   "__map": []
+  }
+ },
+ "rooms": {
+  "runs": {
+   "__map": []
+  },
+  "n": 0,
+  "memory": {
+   "__map": []
+  },
+  "sessions": {
+   "__map": []
+  },
+  "nS": 0
+ }
+}

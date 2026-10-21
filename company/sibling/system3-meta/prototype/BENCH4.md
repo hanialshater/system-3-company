@@ -143,3 +143,17 @@ The record is in `live/bench4-record/`:
 2. **F3 needs a deterministic trigger.** The fix is to inject from the supervisor's own tick, not from a poller.
 3. **The cost comparison is not like for like.** A same-launcher re-run of live run 3's task would settle it.
 4. **One model family, n = 1.**
+
+## Benchmark 4b: the like-for-like arm (predictions committed before the run)
+
+The task, faults and launcher are the same as above. Two things differ.
+- **Settings:** the launcher runs with `--setting-sources=user,project,local`. Every agent loads what an interactive session in this repository loads: System 3 Company's CLAUDE.md and settings.
+- **F3:** it is injected inside the supervisor's tick (`--faults`), so it cannot be missed. The drop is PARSER's check message.
+
+The live dir is `live/bench4b`.
+
+| # | Prediction | would_be_wrong_if |
+|---|---|---|
+| E7 | With the company context loaded, tokens per shipped order rise, and stay ≤ 113k. I expect 60-90k. Waiting sessions keep the saving | > 113k |
+| E8 | All four faults are recovered by code with no person. F3 is recovered by the watchdog within 4 min (live test m3-watchdog: 3 min 4 s) | any fault needs an agent workaround or a person |
+| E9 | 10/10 ship, and every hidden test passes at the end under `#CIRC!` | any order or test fails |
