@@ -1,0 +1,207 @@
+[
+ {
+  "cmd": "channel",
+  "sub": "create",
+  "args": {
+   "by": "cos",
+   "id": "company",
+   "kind": "company"
+  }
+ },
+ {
+  "cmd": "channel",
+  "sub": "create",
+  "args": {
+   "by": "editor",
+   "id": "lane:e",
+   "kind": "lane"
+  }
+ },
+ {
+  "cmd": "goal",
+  "sub": "create",
+  "args": {
+   "by": "editor",
+   "title": "Ocean Animals Quiz shipped",
+   "level": "lane",
+   "owner": "editor",
+   "why": "live run 4: the Benchmark 2 fixes, live",
+   "what": "three rounds and the assembled pack",
+   "success": [
+    {
+     "metric": "rounds shipped",
+     "target": 3,
+     "source": "shipped:ROUND"
+    },
+    {
+     "metric": "pack shipped",
+     "target": 1,
+     "source": "shipped:PACK"
+    }
+   ],
+   "due": "2026-10-31"
+  }
+ },
+ {
+  "cmd": "meeting",
+  "sub": "open",
+  "args": {
+   "by": "editor",
+   "title": "Kickoff: Ocean Animals Quiz",
+   "room": "story-room",
+   "minutes": 30,
+   "invitees": "writer-1,writer-2",
+   "channel": "lane:e",
+   "agenda": [
+    {
+     "title": "Rounds: three topics with no overlap, and which animals and facts each round owns"
+    },
+    {
+     "title": "Format and limits for ages 8-10: question, answer and why-line lengths, difficulty, words to avoid"
+    }
+   ]
+  }
+ },
+ {
+  "cmd": "order",
+  "sub": "new",
+  "args": {
+   "by": "cos",
+   "to": "editor",
+   "title": "Round 1",
+   "task": "ROUND1",
+   "accept": "live/live4/work/ROUND1/page.md: round 1 of the quiz, on the round 1 topic the kickoff decided (MTG-1). First line '# Round 1: <topic>'; exactly 4 questions, each '**Qn.** \u2026' then '**Answer:** \u2026' then a one-sentence '**Why:** \u2026'; 100-300 words; reading ease at least 60; every fact true; only facts this round owns, so no answer repeats or is given away by another round; the kickoff's limits; no words like stupid, dumb, kill, dead, blood, hate.",
+   "goal": "${2.id}",
+   "checks": {
+    "titleLine": true,
+    "minWords": 100,
+    "maxWords": 300,
+    "mustInclude": [
+     "**Q1.**",
+     "**Q4.**",
+     "**Answer:**",
+     "**Why:**"
+    ],
+    "banned": [
+     "stupid",
+     "dumb",
+     "kill",
+     "dead",
+     "blood",
+     "hate"
+    ],
+    "minReadingEase": 60,
+    "distinctAnswers": {
+     "prefix": "**Answer:**",
+     "across": "ROUND"
+    }
+   }
+  }
+ },
+ {
+  "cmd": "order",
+  "sub": "new",
+  "args": {
+   "by": "cos",
+   "to": "editor",
+   "title": "Round 2",
+   "task": "ROUND2",
+   "accept": "live/live4/work/ROUND2/page.md: round 2 of the quiz, on the round 2 topic the kickoff decided (MTG-1). First line '# Round 2: <topic>'; exactly 4 questions, each '**Qn.** \u2026' then '**Answer:** \u2026' then a one-sentence '**Why:** \u2026'; 100-300 words; reading ease at least 60; every fact true; only facts this round owns, so no answer repeats or is given away by another round; the kickoff's limits; no words like stupid, dumb, kill, dead, blood, hate.",
+   "goal": "${2.id}",
+   "checks": {
+    "titleLine": true,
+    "minWords": 100,
+    "maxWords": 300,
+    "mustInclude": [
+     "**Q1.**",
+     "**Q4.**",
+     "**Answer:**",
+     "**Why:**"
+    ],
+    "banned": [
+     "stupid",
+     "dumb",
+     "kill",
+     "dead",
+     "blood",
+     "hate"
+    ],
+    "minReadingEase": 60,
+    "distinctAnswers": {
+     "prefix": "**Answer:**",
+     "across": "ROUND"
+    }
+   }
+  }
+ },
+ {
+  "cmd": "order",
+  "sub": "new",
+  "args": {
+   "by": "cos",
+   "to": "editor",
+   "title": "Round 3",
+   "task": "ROUND3",
+   "accept": "live/live4/work/ROUND3/page.md: round 3 of the quiz, on the round 3 topic the kickoff decided (MTG-1). First line '# Round 3: <topic>'; exactly 4 questions, each '**Qn.** \u2026' then '**Answer:** \u2026' then a one-sentence '**Why:** \u2026'; 100-300 words; reading ease at least 60; every fact true; only facts this round owns, so no answer repeats or is given away by another round; the kickoff's limits; no words like stupid, dumb, kill, dead, blood, hate.",
+   "goal": "${2.id}",
+   "checks": {
+    "titleLine": true,
+    "minWords": 100,
+    "maxWords": 300,
+    "mustInclude": [
+     "**Q1.**",
+     "**Q4.**",
+     "**Answer:**",
+     "**Why:**"
+    ],
+    "banned": [
+     "stupid",
+     "dumb",
+     "kill",
+     "dead",
+     "blood",
+     "hate"
+    ],
+    "minReadingEase": 60,
+    "distinctAnswers": {
+     "prefix": "**Answer:**",
+     "across": "ROUND"
+    }
+   }
+  }
+ },
+ {
+  "cmd": "order",
+  "sub": "new",
+  "args": {
+   "by": "cos",
+   "to": "editor",
+   "title": "Assembled quiz",
+   "task": "PACK",
+   "accept": "live/live4/work/PACK/page.md: the assembled quiz. First line '# Ocean Animals Quiz'; then the three shipped rounds (live/live4/shipped/ROUND1..ROUND3/page.md) in order, each starting '# Round n: <topic>', 12 questions in all. Fix anything that clashes across rounds; keep each round's 4 questions. End with '## Changes' listing each change and why (or 'none'). No words like stupid, dumb, kill, dead, blood, hate.",
+   "after": "${4.order},${5.order},${6.order}",
+   "goal": "${2.id}",
+   "checks": {
+    "titleLine": true,
+    "minWords": 300,
+    "mustInclude": [
+     "# Round 1:",
+     "# Round 3:",
+     "## Changes"
+    ],
+    "banned": [
+     "stupid",
+     "dumb",
+     "kill",
+     "dead",
+     "blood",
+     "hate"
+    ],
+    "distinctAnswers": {
+     "prefix": "**Answer:**",
+     "split": "^# Round \\d+:"
+    }
+   }
+  }
+ }
+]
