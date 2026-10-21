@@ -57,3 +57,13 @@ test("distinctAnswers: a repeat or a giveaway across rounds fails, an ordinary m
   write(dir, "ROUND1", "# Round 1: Sun\n**Q1.** Which dwarf world is far?\n**Answer:** Pluto\n**Why:** It is cold.\n");
   assert.match(cli(dir, "check", "--order=O-1").out.output, /answer "pluto" is in both ROUND1 and ROUND5/);
 });
+
+test("closing a meeting writes its minutes to live/<dir>/minutes/<MTG>.md", () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "meta-minutes-"));
+  cli(dir, "init", "--spec=storybook");
+  cli(dir, "meeting", "open", "--by=editor", "--title=K", "--invitees=writer-1", `--agenda=[{"title":"a"}]`);
+  cli(dir, "meeting", "reveal", "--id=MTG-1", "--by=editor", "--item=1", "--force");
+  cli(dir, "meeting", "decide", "--id=MTG-1", "--by=editor", "--item=1", "--decision=Round topics: mammals, fish, shells");
+  assert.equal(cli(dir, "meeting", "close", "--id=MTG-1", "--by=editor").code, 0);
+  assert.match(fs.readFileSync(path.join(dir, "minutes", "MTG-1.md"), "utf8"), /Round topics: mammals, fish, shells/);
+});

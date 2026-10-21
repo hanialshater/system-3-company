@@ -157,6 +157,8 @@ export function briefFor(co, item, { context = null } = {}) {
   const o = first ? co.engine.orders.get(first.ref) : null;
   const L = [`You are \`${item.role}\` (${r.level}) in a company run by a CLI.`, "", `Run every command from: ${HERE}`, pre ? `Prefix every command with: ${pre}` : "", ""];
   if (context) L.push(context.trim(), "");
+  const closed = [...(co.data?.meetings?.meetings?.values() ?? [])].filter((m) => m.state === "closed").map((m) => m.id);
+  if (closed.length) L.push(`Minutes of closed meetings (decisions you follow): ${closed.map((id) => path.join(LIVE, "minutes", `${id}.md`)).join(", ")}. Never read state files.`, "");
   // open tracker actions assigned to this role travel with the brief (benchmark 2: the kickoff gave writer-1 actions
   // its STYLE brief did not mention)
   const acts = [...(co.data?.tracker?.items?.values() ?? [])].filter((i) => i.kind === "action" && i.assignee === item.role && !["done", "cancelled"].includes(i.state));

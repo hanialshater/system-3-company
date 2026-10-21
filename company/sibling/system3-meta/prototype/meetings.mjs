@@ -176,6 +176,8 @@ export function closeMeeting(co, { id, by }) {
   m.minutes = minutes(co, m, absent);
   co.log.add({ type: "meeting-close", meeting: id, by, decided: m.agenda.filter((a) => a.decision).length, deferred: m.agenda.filter((a) => a.deferred).length, absent });
   if (m.channel) post(co, { by, channel: m.channel, title: `Minutes: ${m.title}`, body: m.minutes, key: `${id}:minutes`, ref: id });
+  // minutes as a file agents can read (live run 4: agents could not find them and one read the state file)
+  if (co.writeFile) co.writeFile(`minutes/${id}.md`, m.minutes);
   return m;
 }
 

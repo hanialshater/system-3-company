@@ -208,7 +208,7 @@
        "kind": "order",
        "title": "Round 3",
        "body": "",
-       "state": "in-review",
+       "state": "done",
        "assignee": "writer-2",
        "project": null,
        "labels": [
@@ -223,7 +223,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876684.26728333,
-       "updated": 29876692.14705,
+       "updated": 29876693.183116667,
        "history": [
         {
          "t": 29876684.26728333,
@@ -249,6 +249,11 @@
          "t": 29876692.14705,
          "by": "engine",
          "state": "in-review"
+        },
+        {
+         "t": 29876693.183116667,
+         "by": "engine",
+         "state": "done"
         }
        ]
       }
@@ -260,7 +265,7 @@
        "kind": "order",
        "title": "Assembled quiz",
        "body": "",
-       "state": "backlog",
+       "state": "in-review",
        "assignee": "writer-2",
        "project": null,
        "labels": [],
@@ -273,7 +278,7 @@
        "comments": [],
        "by": "engine",
        "created": 29876684.26728333,
-       "updated": 29876689.443466667,
+       "updated": 29876694.22435,
        "history": [
         {
          "t": 29876684.26728333,
@@ -284,6 +289,16 @@
          "t": 29876684.26728333,
          "by": "engine",
          "state": "backlog"
+        },
+        {
+         "t": 29876693.183116667,
+         "by": "engine",
+         "state": "in-progress"
+        },
+        {
+         "t": 29876694.22435,
+         "by": "engine",
+         "state": "in-review"
         }
        ]
       }
@@ -346,7 +361,7 @@
         {
          "metric": "rounds shipped",
          "target": 3,
-         "current": 2,
+         "current": 3,
          "unit": null,
          "source": "shipped:ROUND"
         },
@@ -2585,6 +2600,356 @@
     "mode": "work",
     "session": "S-8",
     "item": 1
+   },
+   {
+    "seq": 168,
+    "t": 29876693.1754,
+    "type": "advance",
+    "order": "O-3",
+    "stage": "check",
+    "by": "reader",
+    "verdict": "pass"
+   },
+   {
+    "seq": 169,
+    "t": 29876693.1754,
+    "type": "send",
+    "msg": "M-24",
+    "from": "editor",
+    "to": "editor",
+    "kind": "work",
+    "key": "O-3:uat:1",
+    "ref": "O-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 170,
+    "t": 29876693.1754,
+    "type": "done",
+    "msg": "M-23",
+    "run": "R-10"
+   },
+   {
+    "seq": 171,
+    "t": 29876693.1754,
+    "type": "send",
+    "msg": "M-25",
+    "from": "pool:checker",
+    "to": "editor",
+    "kind": "report",
+    "key": null,
+    "ref": "O-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 172,
+    "t": 29876693.1754,
+    "type": "leave",
+    "run": "R-10",
+    "role": "reader",
+    "order": "O-3",
+    "stage": "check",
+    "verdict": "pass",
+    "minutes": 0.6287833340466022
+   },
+   {
+    "seq": 173,
+    "t": 29876693.1831,
+    "type": "advance",
+    "order": "O-3",
+    "stage": "uat",
+    "by": "editor",
+    "verdict": "pass"
+   },
+   {
+    "seq": 174,
+    "t": 29876693.1831,
+    "type": "send",
+    "msg": "M-26",
+    "from": "editor",
+    "to": "pool:release",
+    "kind": "work",
+    "key": "O-3:ship:1",
+    "ref": "O-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 175,
+    "t": 29876693.1831,
+    "type": "session-open",
+    "session": "S-9",
+    "role": "release"
+   },
+   {
+    "seq": 176,
+    "t": 29876693.1831,
+    "type": "claim",
+    "msg": "M-26",
+    "run": "R-11"
+   },
+   {
+    "seq": 177,
+    "t": 29876693.1831,
+    "type": "enter",
+    "run": "R-11",
+    "msg": "M-26",
+    "role": "release",
+    "by": "release",
+    "room": "launch",
+    "order": "O-3",
+    "stage": "ship",
+    "mode": "work",
+    "session": "S-9",
+    "item": 1
+   },
+   {
+    "seq": 178,
+    "t": 29876693.1831,
+    "type": "advance",
+    "order": "O-3",
+    "stage": "ship",
+    "by": "release",
+    "verdict": "pass"
+   },
+   {
+    "seq": 179,
+    "t": 29876693.1831,
+    "type": "shipped",
+    "order": "O-3",
+    "lead": 9.029366668313742,
+    "loops": 1,
+    "priority": "next"
+   },
+   {
+    "seq": 180,
+    "t": 29876693.1831,
+    "type": "unblocked",
+    "order": "O-4",
+    "by": "O-3"
+   },
+   {
+    "seq": 181,
+    "t": 29876693.1831,
+    "type": "send",
+    "msg": "M-27",
+    "from": "editor",
+    "to": "writer-2",
+    "kind": "work",
+    "key": "O-4:build:0",
+    "ref": "O-4",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 182,
+    "t": 29876693.183116667,
+    "type": "done",
+    "msg": "M-26",
+    "run": "R-11"
+   },
+   {
+    "seq": 183,
+    "t": 29876693.183116667,
+    "type": "send",
+    "msg": "M-28",
+    "from": "pool:release",
+    "to": "editor",
+    "kind": "report",
+    "key": null,
+    "ref": "O-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 184,
+    "t": 29876693.183116667,
+    "type": "leave",
+    "run": "R-11",
+    "role": "release",
+    "order": "O-3",
+    "stage": "ship",
+    "verdict": "pass",
+    "minutes": 0.000016666948795318604
+   },
+   {
+    "seq": 185,
+    "t": 29876693.183116667,
+    "type": "session-close",
+    "session": "S-9",
+    "role": "release",
+    "items": 1,
+    "reason": "ship done",
+    "minutes": 0.000016666948795318604
+   },
+   {
+    "seq": 186,
+    "t": 29876693.183116667,
+    "type": "item-update",
+    "item": "ISS-3",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 187,
+    "t": 29876693.183116667,
+    "type": "item-update",
+    "item": "ISS-4",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 188,
+    "t": 29876693.183116667,
+    "type": "supervisor-tick",
+    "steps": [
+     "uat:O-3",
+     "ship:O-3"
+    ]
+   },
+   {
+    "seq": 189,
+    "t": 29876693.183116667,
+    "type": "launch",
+    "role": "writer-2",
+    "msgs": [
+     "M-27"
+    ],
+    "tasks": [],
+    "why": "plan: next: 1 waiting, no session running"
+   },
+   {
+    "seq": 190,
+    "t": 29876693.531116668,
+    "type": "session-open",
+    "session": "S-10",
+    "role": "writer-2"
+   },
+   {
+    "seq": 191,
+    "t": 29876693.531116668,
+    "type": "claim",
+    "msg": "M-27",
+    "run": "R-12"
+   },
+   {
+    "seq": 192,
+    "t": 29876693.531116668,
+    "type": "enter",
+    "run": "R-12",
+    "msg": "M-27",
+    "role": "writer-2",
+    "by": "writer-2",
+    "room": "editorial",
+    "order": "O-4",
+    "stage": "build",
+    "mode": "work",
+    "session": "S-10",
+    "item": 1
+   },
+   {
+    "seq": 193,
+    "t": 29876694.22075,
+    "type": "advance",
+    "order": "O-4",
+    "stage": "build",
+    "by": "writer-2",
+    "verdict": "pass"
+   },
+   {
+    "seq": 194,
+    "t": 29876694.22075,
+    "type": "code-stage",
+    "order": "O-4",
+    "stage": "test1"
+   },
+   {
+    "seq": 195,
+    "t": 29876694.22075,
+    "type": "done",
+    "msg": "M-27",
+    "run": "R-12"
+   },
+   {
+    "seq": 196,
+    "t": 29876694.2208,
+    "type": "send",
+    "msg": "M-29",
+    "from": "writer-2",
+    "to": "editor",
+    "kind": "report",
+    "key": null,
+    "ref": "O-4",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 197,
+    "t": 29876694.2208,
+    "type": "leave",
+    "run": "R-12",
+    "role": "writer-2",
+    "order": "O-4",
+    "stage": "build",
+    "verdict": "pass",
+    "minutes": 0.6896833330392838
+   },
+   {
+    "seq": 198,
+    "t": 29876694.224333335,
+    "type": "advance",
+    "order": "O-4",
+    "stage": "test1",
+    "by": "code",
+    "verdict": "pass"
+   },
+   {
+    "seq": 199,
+    "t": 29876694.22435,
+    "type": "send",
+    "msg": "M-30",
+    "from": "editor",
+    "to": "pool:checker",
+    "kind": "work",
+    "key": "O-4:check:0",
+    "ref": "O-4",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 200,
+    "t": 29876694.22435,
+    "type": "item-update",
+    "item": "ISS-4",
+    "by": "engine",
+    "changes": [
+     "state"
+    ]
+   },
+   {
+    "seq": 201,
+    "t": 29876694.22435,
+    "type": "supervisor-tick",
+    "steps": [
+     "test1:O-4"
+    ]
+   },
+   {
+    "seq": 202,
+    "t": 29876694.22435,
+    "type": "launch",
+    "role": "reader",
+    "msgs": [
+     "M-30"
+    ],
+    "tasks": [],
+    "why": "plan: next: 1 waiting, no session running"
    }
   ]
  },
@@ -3098,11 +3463,164 @@
       },
       "priority": "next",
       "ts": 29876692.14705,
-      "state": "open",
+      "state": "done",
       "lease": {
        "run": "R-10",
        "until": 29876722.546616666
       },
+      "acked": false
+     }
+    ],
+    [
+     "M-24",
+     {
+      "id": "M-24",
+      "from": "editor",
+      "to": "editor",
+      "kind": "work",
+      "key": "O-3:uat:1",
+      "due": null,
+      "ref": "O-3",
+      "body": {
+       "stage": "uat",
+       "loops": 1
+      },
+      "priority": "next",
+      "ts": 29876693.1754,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-25",
+     {
+      "id": "M-25",
+      "from": "pool:checker",
+      "to": "editor",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-3",
+      "body": {
+       "stage": "check",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876693.1754,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-26",
+     {
+      "id": "M-26",
+      "from": "editor",
+      "to": "pool:release",
+      "kind": "work",
+      "key": "O-3:ship:1",
+      "due": null,
+      "ref": "O-3",
+      "body": {
+       "stage": "ship",
+       "loops": 1
+      },
+      "priority": "next",
+      "ts": 29876693.1831,
+      "state": "done",
+      "lease": {
+       "run": "R-11",
+       "until": 29876723.1831
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-27",
+     {
+      "id": "M-27",
+      "from": "editor",
+      "to": "writer-2",
+      "kind": "work",
+      "key": "O-4:build:0",
+      "due": null,
+      "ref": "O-4",
+      "body": {
+       "stage": "build",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876693.1831,
+      "state": "done",
+      "lease": {
+       "run": "R-12",
+       "until": 29876723.531116668
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-28",
+     {
+      "id": "M-28",
+      "from": "pool:release",
+      "to": "editor",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-3",
+      "body": {
+       "stage": "ship",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876693.183116667,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-29",
+     {
+      "id": "M-29",
+      "from": "writer-2",
+      "to": "editor",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-4",
+      "body": {
+       "stage": "build",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876694.2208,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-30",
+     {
+      "id": "M-30",
+      "from": "editor",
+      "to": "pool:checker",
+      "kind": "work",
+      "key": "O-4:check:0",
+      "due": null,
+      "ref": "O-4",
+      "body": {
+       "stage": "check",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876694.22435,
+      "state": "open",
+      "lease": null,
       "acked": false
      }
     ]
@@ -3165,10 +3683,26 @@
     [
      "O-3:check:1",
      "M-23"
+    ],
+    [
+     "O-3:uat:1",
+     "M-24"
+    ],
+    [
+     "O-3:ship:1",
+     "M-26"
+    ],
+    [
+     "O-4:build:0",
+     "M-27"
+    ],
+    [
+     "O-4:check:0",
+     "M-30"
     ]
    ]
   },
-  "n": 23
+  "n": 30
  },
  "org": {
   "roles": {
@@ -3697,7 +4231,7 @@
       "spent": 0,
       "accept": "live/live4/work/ROUND3/page.md: round 3 of the quiz, on the round 3 topic the kickoff decided (MTG-1). First line '# Round 3: <topic>'; exactly 4 questions, each '**Qn.** …' then '**Answer:** …' then a one-sentence '**Why:** …'; 100-300 words; reading ease at least 60; every fact true; only facts this round owns, so no answer repeats or is given away by another round; the kickoff's limits; no words like stupid, dumb, kill, dead, blood, hate.",
       "words": null,
-      "stage": "check",
+      "stage": "done",
       "loops": 1,
       "created": 29876684.15373333,
       "history": [
@@ -3730,6 +4264,24 @@
         "by": "code",
         "verdict": "pass",
         "t": 29876692.14705
+       },
+       {
+        "stage": "check",
+        "by": "reader",
+        "verdict": "pass",
+        "t": 29876693.1754
+       },
+       {
+        "stage": "uat",
+        "by": "editor",
+        "verdict": "pass",
+        "t": 29876693.1831
+       },
+       {
+        "stage": "ship",
+        "by": "release",
+        "verdict": "pass",
+        "t": 29876693.1831
        }
       ],
       "priority": "next",
@@ -3834,10 +4386,23 @@
       "spent": 0,
       "accept": "live/live4/work/PACK/page.md: the assembled quiz. First line '# Ocean Animals Quiz'; then the three shipped rounds (live/live4/shipped/ROUND1..ROUND3/page.md) in order, each starting '# Round n: <topic>', 12 questions in all. Fix anything that clashes across rounds; keep each round's 4 questions. End with '## Changes' listing each change and why (or 'none'). No words like stupid, dumb, kill, dead, blood, hate.",
       "words": null,
-      "stage": "build",
+      "stage": "check",
       "loops": 0,
       "created": 29876684.15373333,
-      "history": [],
+      "history": [
+       {
+        "stage": "build",
+        "by": "writer-2",
+        "verdict": "pass",
+        "t": 29876694.22075
+       },
+       {
+        "stage": "test1",
+        "by": "code",
+        "verdict": "pass",
+        "t": 29876694.224333335
+       }
+      ],
       "priority": "next",
       "due": null,
       "after": [
@@ -3845,7 +4410,7 @@
        "O-2",
        "O-3"
       ],
-      "blocked": true,
+      "blocked": false,
       "policyVersion": null,
       "fromContract": null,
       "task": "PACK",
@@ -4088,13 +4653,45 @@
       "stage": "check",
       "loops": 1,
       "entered": 29876692.546616666,
-      "state": "running",
+      "state": "left",
       "session": "S-8"
+     }
+    ],
+    [
+     "R-11",
+     {
+      "run": "R-11",
+      "msg": "M-26",
+      "role": "release",
+      "by": "release",
+      "consult": false,
+      "order": "O-3",
+      "stage": "ship",
+      "loops": 1,
+      "entered": 29876693.1831,
+      "state": "left",
+      "session": "S-9"
+     }
+    ],
+    [
+     "R-12",
+     {
+      "run": "R-12",
+      "msg": "M-27",
+      "role": "writer-2",
+      "by": "writer-2",
+      "consult": false,
+      "order": "O-4",
+      "stage": "build",
+      "loops": 0,
+      "entered": 29876693.531116668,
+      "state": "left",
+      "session": "S-10"
      }
     ]
    ]
   },
-  "n": 10,
+  "n": 12,
   "memory": {
    "__map": [
     [
@@ -4128,6 +4725,12 @@
        "did": "build on O-3: pass (loop 1)",
        "learned": "Kickoff format means title plus only Qn/Answer/Why lines (no intro line), and numbers must be written as digits, including in Why lines.",
        "mistake": null
+      },
+      {
+       "t": 29876694.2208,
+       "did": "build on O-4: pass (loop 0)",
+       "learned": "PACK: assemble shipped rounds verbatim, then audit each Why line for small truth slips (sea stars have skin gills; only a hermit crab belly is soft) and log each fix under ## Changes.",
+       "mistake": null
       }
      ]
     ],
@@ -4151,6 +4754,12 @@
        "did": "check on O-2: pass (loop 0)",
        "learned": "Read the kickoff minutes once, then check each round against the same decision list.",
        "mistake": null
+      },
+      {
+       "t": 29876693.1754,
+       "did": "check on O-3: pass (loop 1)",
+       "learned": "On a re-check, tick off each prior finding instance by instance before re-reading the whole page against the decisions.",
+       "mistake": null
       }
      ]
     ],
@@ -4166,6 +4775,12 @@
       {
        "t": 29876691.7264,
        "did": "ship on O-2: pass (loop 0)",
+       "learned": null,
+       "mistake": null
+      },
+      {
+       "t": 29876693.183116667,
+       "did": "ship on O-3: pass (loop 1)",
        "learned": null,
        "mistake": null
       }
@@ -4254,9 +4869,29 @@
       "open": true,
       "started": 29876692.546616666
      }
+    ],
+    [
+     "S-9",
+     {
+      "id": "S-9",
+      "role": "release",
+      "items": 1,
+      "open": false,
+      "started": 29876693.1831
+     }
+    ],
+    [
+     "S-10",
+     {
+      "id": "S-10",
+      "role": "writer-2",
+      "items": 1,
+      "open": true,
+      "started": 29876693.531116668
+     }
     ]
    ]
   },
-  "nS": 8
+  "nS": 10
  }
 }

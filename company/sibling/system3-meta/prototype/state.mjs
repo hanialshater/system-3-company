@@ -58,11 +58,15 @@ export function save(co) {
   fs.writeFileSync(tmp, JSON.stringify(data, rep, 1));
   fs.renameSync(tmp, STATE); // atomic replace: a crash mid-write leaves the old state
 }
+/** Files code publishes for agents to read (minutes), under the live directory. */
+const writeFile = (rel, text) => { const f = path.join(LIVE, rel); fs.mkdirSync(path.dirname(f), { recursive: true }); fs.writeFileSync(f, text); };
+
 export function load() {
   const data = JSON.parse(fs.readFileSync(STATE, "utf8"), rev);
   const co = make(data.data?.spec ?? "toy");
   for (const [o, fs_] of Object.entries(FIELDS)) for (const f of fs_) if (data[o]?.[f] !== undefined) co[o][f] = data[o][f];
   co.mailbox.promote(); // due `later` items become `next` on every command: time is checked when anything happens
+  co.writeFile = writeFile;
   return co;
 }
 
