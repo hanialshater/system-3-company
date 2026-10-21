@@ -2,6 +2,12 @@
 // Counts are ASCII decimal without leading zeros. Any Unicode decimal digit (\p{Nd})
 // in encode input throws TypeError, so decode can be the exact inverse.
 const ND = /\p{Nd}/u;
+import { constants } from 'node:buffer';
+// Longest string the engine can build (UTF-16 code units). Counts that would exceed it are
+// malformed input (encode can never produce them), so they throw SyntaxError, not RangeError.
+export const MAX_LENGTH = constants.MAX_STRING_LENGTH;
+const isHigh = (c) => c.length === 1 && c >= '\ud800' && c <= '\udbff';
+const isLow = (c) => c.length === 1 && c >= '\udc00' && c <= '\udfff';
 
 export function encode(s) {
   if (typeof s !== 'string') throw new TypeError('encode expects a string');
@@ -20,6 +26,7 @@ export function encode(s) {
 export function decode(s) {
   if (typeof s !== 'string') throw new TypeError('decode expects a string');
   let out = '';
+  let prevCh = null;
   const cps = Array.from(s);
   let i = 0;
   while (i < cps.length) {
@@ -30,9 +37,16 @@ export function decode(s) {
     if (i >= cps.length) throw new SyntaxError('count without a character at end of input');
     const ch = cps[i++];
     if (ND.test(ch)) throw new SyntaxError(`decimal digit used as run character at code point ${i - 1}`);
+    // Canonical form: encode never writes two adjacent runs of the same code point, and never
+    // a lone high-surrogate run followed by a lone low-surrogate run (they would join into one
+    // code point in the output, which encode writes as a single run).
+    if (prevCh !== null && ch === prevCh) throw new SyntaxError(`adjacent runs of the same character at code point ${i - 1}`);
+    if (prevCh !== null && isHigh(prevCh) && isLow(ch)) throw new SyntaxError(`low surrogate run after high surrogate run at code point ${i - 1}`);
     const n = Number(digits);
-    if (!Number.isSafeInteger(n)) throw new SyntaxError(`count too large: ${digits}`);
+    if (!Number.isSafeInteger(n) || n > (MAX_LENGTH - out.length) / ch.length)
+      throw new SyntaxError(`count too large: ${digits}`);
     out += ch.repeat(n);
+    prevCh = ch;
   }
   return out;
 }

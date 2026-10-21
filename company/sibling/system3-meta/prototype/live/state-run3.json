@@ -907,6 +907,495 @@
     "mode": "work",
     "session": "S-2",
     "item": 3
+   },
+   {
+    "seq": 90,
+    "t": 29876391.539516665,
+    "type": "usage",
+    "session": "S-1",
+    "role": "toy-builder-1",
+    "tokens": 71679,
+    "items": 4,
+    "source": "harness"
+   },
+   {
+    "seq": 91,
+    "t": 29876391.751516666,
+    "type": "launch",
+    "role": "toy-builder-1",
+    "msgs": [
+     "M-17"
+    ],
+    "why": "plan: revision"
+   },
+   {
+    "seq": 92,
+    "t": 29876391.8245,
+    "type": "advance",
+    "order": "O-3",
+    "stage": "check",
+    "by": "toy-checker",
+    "verdict": "pass"
+   },
+   {
+    "seq": 93,
+    "t": 29876391.8245,
+    "type": "send",
+    "msg": "M-19",
+    "from": "mgr-live",
+    "to": "mgr-live",
+    "kind": "work",
+    "key": "O-3:uat:0",
+    "ref": "O-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 94,
+    "t": 29876391.8245,
+    "type": "done",
+    "msg": "M-10",
+    "run": "R-8"
+   },
+   {
+    "seq": 95,
+    "t": 29876391.8245,
+    "type": "send",
+    "msg": "M-20",
+    "from": "pool:checker",
+    "to": "mgr-live",
+    "kind": "report",
+    "key": null,
+    "ref": "O-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 96,
+    "t": 29876391.8245,
+    "type": "leave",
+    "run": "R-8",
+    "role": "toy-checker",
+    "order": "O-3",
+    "stage": "check",
+    "verdict": "pass",
+    "minutes": 0.5472666658461094
+   },
+   {
+    "seq": 97,
+    "t": 29876391.8245,
+    "type": "claim",
+    "msg": "M-16",
+    "run": "R-9"
+   },
+   {
+    "seq": 98,
+    "t": 29876391.8245,
+    "type": "enter",
+    "run": "R-9",
+    "msg": "M-16",
+    "role": "toy-checker",
+    "by": "toy-checker",
+    "room": "quality",
+    "order": "O-4",
+    "stage": "check",
+    "mode": "work",
+    "session": "S-2",
+    "item": 4
+   },
+   {
+    "seq": 99,
+    "t": 29876391.83175,
+    "type": "advance",
+    "order": "O-3",
+    "stage": "uat",
+    "by": "mgr-live",
+    "verdict": "pass"
+   },
+   {
+    "seq": 100,
+    "t": 29876391.83175,
+    "type": "send",
+    "msg": "M-21",
+    "from": "mgr-live",
+    "to": "pool:release",
+    "kind": "work",
+    "key": "O-3:ship:0",
+    "ref": "O-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 101,
+    "t": 29876391.831766665,
+    "type": "session-open",
+    "session": "S-4",
+    "role": "toy-release"
+   },
+   {
+    "seq": 102,
+    "t": 29876391.831766665,
+    "type": "claim",
+    "msg": "M-21",
+    "run": "R-10"
+   },
+   {
+    "seq": 103,
+    "t": 29876391.831766665,
+    "type": "enter",
+    "run": "R-10",
+    "msg": "M-21",
+    "role": "toy-release",
+    "by": "toy-release",
+    "room": "launch",
+    "order": "O-3",
+    "stage": "ship",
+    "mode": "work",
+    "session": "S-4",
+    "item": 1
+   },
+   {
+    "seq": 104,
+    "t": 29876391.831783332,
+    "type": "advance",
+    "order": "O-3",
+    "stage": "ship",
+    "by": "toy-release",
+    "verdict": "pass"
+   },
+   {
+    "seq": 105,
+    "t": 29876391.831783332,
+    "type": "shipped",
+    "order": "O-3",
+    "lead": 3.5187833309173584,
+    "loops": 0,
+    "priority": "next"
+   },
+   {
+    "seq": 106,
+    "t": 29876391.831783332,
+    "type": "done",
+    "msg": "M-21",
+    "run": "R-10"
+   },
+   {
+    "seq": 107,
+    "t": 29876391.8318,
+    "type": "send",
+    "msg": "M-22",
+    "from": "pool:release",
+    "to": "mgr-live",
+    "kind": "report",
+    "key": null,
+    "ref": "O-3",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 108,
+    "t": 29876391.8318,
+    "type": "leave",
+    "run": "R-10",
+    "role": "toy-release",
+    "order": "O-3",
+    "stage": "ship",
+    "verdict": "pass",
+    "minutes": 0.00003333389759063721
+   },
+   {
+    "seq": 109,
+    "t": 29876391.8318,
+    "type": "session-close",
+    "session": "S-4",
+    "role": "toy-release",
+    "items": 1,
+    "reason": "ship done",
+    "minutes": 0.00003333389759063721
+   },
+   {
+    "seq": 110,
+    "t": 29876391.8318,
+    "type": "supervisor-tick",
+    "steps": [
+     "uat:O-3",
+     "ship:O-3"
+    ]
+   },
+   {
+    "seq": 111,
+    "t": 29876391.832683332,
+    "type": "session-open",
+    "session": "S-5",
+    "role": "toy-builder-1"
+   },
+   {
+    "seq": 112,
+    "t": 29876391.832683332,
+    "type": "claim",
+    "msg": "M-17",
+    "run": "R-11"
+   },
+   {
+    "seq": 113,
+    "t": 29876391.832683332,
+    "type": "enter",
+    "run": "R-11",
+    "msg": "M-17",
+    "role": "toy-builder-1",
+    "by": "toy-builder-1",
+    "room": "sandbox",
+    "order": "O-2",
+    "stage": "build",
+    "mode": "work",
+    "session": "S-5",
+    "item": 1
+   },
+   {
+    "seq": 114,
+    "t": 29876392.57125,
+    "type": "advance",
+    "order": "O-4",
+    "stage": "check",
+    "by": "toy-checker",
+    "verdict": "revise"
+   },
+   {
+    "seq": 115,
+    "t": 29876392.57125,
+    "type": "reopen",
+    "order": "O-4",
+    "from": "check",
+    "loops": 1
+   },
+   {
+    "seq": 116,
+    "t": 29876392.571266666,
+    "type": "send",
+    "msg": "M-23",
+    "from": "mgr-live",
+    "to": "toy-builder-1",
+    "kind": "work",
+    "key": "O-4:build:1",
+    "ref": "O-4",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 117,
+    "t": 29876392.571266666,
+    "type": "done",
+    "msg": "M-16",
+    "run": "R-9"
+   },
+   {
+    "seq": 118,
+    "t": 29876392.571266666,
+    "type": "send",
+    "msg": "M-24",
+    "from": "pool:checker",
+    "to": "mgr-live",
+    "kind": "report",
+    "key": null,
+    "ref": "O-4",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 119,
+    "t": 29876392.571266666,
+    "type": "leave",
+    "run": "R-9",
+    "role": "toy-checker",
+    "order": "O-4",
+    "stage": "check",
+    "verdict": "revise",
+    "minutes": 0.7467666678130627
+   },
+   {
+    "seq": 120,
+    "t": 29876392.571266666,
+    "type": "session-close",
+    "session": "S-2",
+    "role": "toy-checker",
+    "items": 4,
+    "reason": "cap",
+    "minutes": 2.575100000947714
+   },
+   {
+    "seq": 121,
+    "t": 29876392.6594,
+    "type": "advance",
+    "order": "O-2",
+    "stage": "build",
+    "by": "toy-builder-1",
+    "verdict": "pass"
+   },
+   {
+    "seq": 122,
+    "t": 29876392.6594,
+    "type": "code-stage",
+    "order": "O-2",
+    "stage": "test1"
+   },
+   {
+    "seq": 123,
+    "t": 29876392.6594,
+    "type": "done",
+    "msg": "M-17",
+    "run": "R-11"
+   },
+   {
+    "seq": 124,
+    "t": 29876392.6594,
+    "type": "send",
+    "msg": "M-25",
+    "from": "toy-builder-1",
+    "to": "mgr-live",
+    "kind": "report",
+    "key": null,
+    "ref": "O-2",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 125,
+    "t": 29876392.6594,
+    "type": "leave",
+    "run": "R-11",
+    "role": "toy-builder-1",
+    "order": "O-2",
+    "stage": "build",
+    "verdict": "pass",
+    "minutes": 0.8267166689038277
+   },
+   {
+    "seq": 126,
+    "t": 29876392.6725,
+    "type": "advance",
+    "order": "O-2",
+    "stage": "test1",
+    "by": "code",
+    "verdict": "pass"
+   },
+   {
+    "seq": 127,
+    "t": 29876392.6725,
+    "type": "send",
+    "msg": "M-26",
+    "from": "mgr-live",
+    "to": "pool:checker",
+    "kind": "work",
+    "key": "O-2:check:1",
+    "ref": "O-2",
+    "priority": "next",
+    "due": null
+   },
+   {
+    "seq": 128,
+    "t": 29876392.6725,
+    "type": "supervisor-tick",
+    "steps": [
+     "test1:O-2"
+    ]
+   },
+   {
+    "seq": 129,
+    "t": 29876393.1076,
+    "type": "launch",
+    "role": "toy-builder-1",
+    "msgs": [
+     "M-23"
+    ],
+    "why": "plan: T14 revision"
+   },
+   {
+    "seq": 130,
+    "t": 29876393.10928333,
+    "type": "launch",
+    "role": "toy-checker",
+    "msgs": [
+     "M-26"
+    ],
+    "why": "plan: T12 re-check"
+   },
+   {
+    "seq": 131,
+    "t": 29876393.1818,
+    "type": "session-open",
+    "session": "S-6",
+    "role": "toy-checker"
+   },
+   {
+    "seq": 132,
+    "t": 29876393.1818,
+    "type": "claim",
+    "msg": "M-26",
+    "run": "R-12"
+   },
+   {
+    "seq": 133,
+    "t": 29876393.1818,
+    "type": "enter",
+    "run": "R-12",
+    "msg": "M-26",
+    "role": "toy-checker",
+    "by": "toy-checker",
+    "room": "quality",
+    "order": "O-2",
+    "stage": "check",
+    "mode": "work",
+    "session": "S-6",
+    "item": 1
+   },
+   {
+    "seq": 134,
+    "t": 29876393.21295,
+    "type": "session-open",
+    "session": "S-7",
+    "role": "toy-builder-1"
+   },
+   {
+    "seq": 135,
+    "t": 29876393.21295,
+    "type": "claim",
+    "msg": "M-23",
+    "run": "R-13"
+   },
+   {
+    "seq": 136,
+    "t": 29876393.21295,
+    "type": "enter",
+    "run": "R-13",
+    "msg": "M-23",
+    "role": "toy-builder-1",
+    "by": "toy-builder-1",
+    "room": "sandbox",
+    "order": "O-4",
+    "stage": "build",
+    "mode": "work",
+    "session": "S-7",
+    "item": 1
+   },
+   {
+    "seq": 137,
+    "t": 29876393.246916667,
+    "type": "usage",
+    "session": "S-2",
+    "role": "toy-checker",
+    "tokens": 80670,
+    "items": 4,
+    "source": "harness"
+   },
+   {
+    "seq": 138,
+    "t": 29876393.331783332,
+    "type": "usage",
+    "session": "S-5",
+    "role": "toy-builder-1",
+    "tokens": 62960,
+    "items": 1,
+    "source": "harness"
    }
   ]
  },
@@ -1136,7 +1625,7 @@
       },
       "priority": "next",
       "ts": 29876390.210766666,
-      "state": "open",
+      "state": "done",
       "lease": {
        "run": "R-8",
        "until": 29876421.277233332
@@ -1268,8 +1757,11 @@
       },
       "priority": "next",
       "ts": 29876391.03395,
-      "state": "open",
-      "lease": null,
+      "state": "done",
+      "lease": {
+       "run": "R-9",
+       "until": 29876421.8245
+      },
       "acked": false
      }
     ],
@@ -1289,8 +1781,11 @@
       },
       "priority": "next",
       "ts": 29876391.277233332,
-      "state": "open",
-      "lease": null,
+      "state": "done",
+      "lease": {
+       "run": "R-11",
+       "until": 29876421.832683332
+      },
       "acked": false
      }
     ],
@@ -1312,6 +1807,183 @@
       "ts": 29876391.277233332,
       "state": "open",
       "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-19",
+     {
+      "id": "M-19",
+      "from": "mgr-live",
+      "to": "mgr-live",
+      "kind": "work",
+      "key": "O-3:uat:0",
+      "due": null,
+      "ref": "O-3",
+      "body": {
+       "stage": "uat",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876391.8245,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-20",
+     {
+      "id": "M-20",
+      "from": "pool:checker",
+      "to": "mgr-live",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-3",
+      "body": {
+       "stage": "check",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876391.8245,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-21",
+     {
+      "id": "M-21",
+      "from": "mgr-live",
+      "to": "pool:release",
+      "kind": "work",
+      "key": "O-3:ship:0",
+      "due": null,
+      "ref": "O-3",
+      "body": {
+       "stage": "ship",
+       "loops": 0
+      },
+      "priority": "next",
+      "ts": 29876391.83175,
+      "state": "done",
+      "lease": {
+       "run": "R-10",
+       "until": 29876421.831766665
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-22",
+     {
+      "id": "M-22",
+      "from": "pool:release",
+      "to": "mgr-live",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-3",
+      "body": {
+       "stage": "ship",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876391.8318,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-23",
+     {
+      "id": "M-23",
+      "from": "mgr-live",
+      "to": "toy-builder-1",
+      "kind": "work",
+      "key": "O-4:build:1",
+      "due": null,
+      "ref": "O-4",
+      "body": {
+       "stage": "build",
+       "loops": 1
+      },
+      "priority": "next",
+      "ts": 29876392.571266666,
+      "state": "open",
+      "lease": {
+       "run": "R-13",
+       "until": 29876423.21295
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-24",
+     {
+      "id": "M-24",
+      "from": "pool:checker",
+      "to": "mgr-live",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-4",
+      "body": {
+       "stage": "check",
+       "verdict": "revise"
+      },
+      "priority": "next",
+      "ts": 29876392.571266666,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-25",
+     {
+      "id": "M-25",
+      "from": "toy-builder-1",
+      "to": "mgr-live",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-2",
+      "body": {
+       "stage": "build",
+       "verdict": "pass"
+      },
+      "priority": "next",
+      "ts": 29876392.6594,
+      "state": "open",
+      "lease": null,
+      "acked": false
+     }
+    ],
+    [
+     "M-26",
+     {
+      "id": "M-26",
+      "from": "mgr-live",
+      "to": "pool:checker",
+      "kind": "work",
+      "key": "O-2:check:1",
+      "due": null,
+      "ref": "O-2",
+      "body": {
+       "stage": "check",
+       "loops": 1
+      },
+      "priority": "next",
+      "ts": 29876392.6725,
+      "state": "open",
+      "lease": {
+       "run": "R-12",
+       "until": 29876423.1818
+      },
       "acked": false
      }
     ]
@@ -1362,10 +2034,26 @@
     [
      "O-2:build:1",
      "M-17"
+    ],
+    [
+     "O-3:uat:0",
+     "M-19"
+    ],
+    [
+     "O-3:ship:0",
+     "M-21"
+    ],
+    [
+     "O-4:build:1",
+     "M-23"
+    ],
+    [
+     "O-2:check:1",
+     "M-26"
     ]
    ]
   },
-  "n": 18
+  "n": 26
  },
  "org": {
   "roles": {
@@ -1622,7 +2310,7 @@
       "spent": 0,
       "accept": "live/work/T12/rle.mjs exports encode(s) and decode(s). encode writes each run of the same character as its decimal count followed by the character (aaabbc gives 3a2b1c; the empty string gives the empty string); characters are whole Unicode code points (an emoji is one character), and input containing a decimal digit throws TypeError. decode is the exact inverse; malformed input (a character without a count, a count without a character, a count of 0) throws SyntaxError. node:test tests in live/work/T12/*.test.mjs",
       "words": null,
-      "stage": "build",
+      "stage": "check",
       "loops": 1,
       "created": 29876388.3118,
       "history": [
@@ -1643,6 +2331,18 @@
         "by": "toy-checker",
         "verdict": "revise",
         "t": 29876391.277233332
+       },
+       {
+        "stage": "build",
+        "by": "toy-builder-1",
+        "verdict": "pass",
+        "t": 29876392.6594
+       },
+       {
+        "stage": "test1",
+        "by": "code",
+        "verdict": "pass",
+        "t": 29876392.6725
        }
       ],
       "priority": "next",
@@ -1667,12 +2367,12 @@
       "orderer": "cos",
       "manager": "mgr-live",
       "builder": "toy-builder-1",
-      "checker": null,
+      "checker": "toy-checker",
       "budget": 200000,
       "spent": 0,
       "accept": "live/work/T13/bytes.mjs exports formatBytes(n) for integer n >= 0. Below 1024 it gives n followed by a space and B (1023 B). Otherwise it uses the largest binary unit (KiB, MiB, GiB, TiB) where the value is at least 1, rounded half up to one decimal, with a trailing .0 dropped (1536 gives 1.5 KiB, 1024 gives 1 KiB); a value that rounds to 1024 moves to the next unit (1048575 gives 1 MiB); above TiB it stays in TiB. Any other input throws RangeError. node:test tests in live/work/T13/*.test.mjs",
       "words": null,
-      "stage": "check",
+      "stage": "done",
       "loops": 0,
       "created": 29876388.313,
       "history": [
@@ -1687,6 +2387,24 @@
         "by": "code",
         "verdict": "pass",
         "t": 29876390.210766666
+       },
+       {
+        "stage": "check",
+        "by": "toy-checker",
+        "verdict": "pass",
+        "t": 29876391.8245
+       },
+       {
+        "stage": "uat",
+        "by": "mgr-live",
+        "verdict": "pass",
+        "t": 29876391.83175
+       },
+       {
+        "stage": "ship",
+        "by": "toy-release",
+        "verdict": "pass",
+        "t": 29876391.831783332
        }
       ],
       "priority": "next",
@@ -1710,13 +2428,13 @@
       "orderer": "cos",
       "manager": "mgr-live",
       "builder": "toy-builder-1",
-      "checker": null,
+      "checker": "toy-checker",
       "budget": 200000,
       "spent": 0,
       "accept": "live/work/T14/isoweek.mjs exports isoWeek(year, month, day) returning [isoYear, week] per ISO 8601 (weeks start on Monday; week 1 is the week with the year's first Thursday; dates near the year boundary can belong to the previous or next ISO year). month is 1-12. Any invalid date (non-integer parts, month or day out of range, 30 February) throws RangeError. node:test tests in live/work/T14/*.test.mjs",
       "words": null,
-      "stage": "check",
-      "loops": 0,
+      "stage": "build",
+      "loops": 1,
       "created": 29876388.314283334,
       "history": [
        {
@@ -1730,13 +2448,20 @@
         "by": "code",
         "verdict": "pass",
         "t": 29876391.03395
+       },
+       {
+        "stage": "check",
+        "by": "toy-checker",
+        "verdict": "revise",
+        "t": 29876392.57125
        }
       ],
       "priority": "next",
       "due": null,
       "after": [],
       "blocked": false,
-      "task": "T14"
+      "task": "T14",
+      "findings": "Large years that are accepted give wrong answers with no error. The code accepts any safe-integer year (its header says so), but weekday() computes days since 1970 as era*146097+..., which goes past 2^53 once |year| is above about 2.466e13, so the weekday is wrong. Wrong results seen: isoWeek(24663691497547,1,1) gives [24663691497546,52], should be [24663691497547,1]; isoWeek(140737488355327,1,1) gives [..326,52], should be [..327,1]; isoWeek(562949953421311,6,15) gives week 24, should be 25 (wrong mid-year too, not only at the year boundary); the same for negative years (-35184372088831-12-31 gives [-35184372088831,53], should be [-35184372088830,1]). A related problem at the edge of the range: isoWeek(MAX_SAFE_INTEGER,12,31) returns year 2^53 and isoWeek(-MAX_SAFE_INTEGER,1,1) returns -2^53; both are unsafe integers, and the -2^53 case relies on the same imprecise arithmetic. Fix for the whole class: compute the weekday from the year reduced mod 400 (the Gregorian cycle is 146097 days, an exact multiple of 7), or use BigInt. Then decide whether years whose ISO year would be outside the safe range are rejected with RangeError. Add tests at |year| around 2.5e13 and at +-MAX_SAFE_INTEGER. Everything else checked correct: invalid dates, non-number and boxed parts, 1970-2100 and year-boundary days for -500..500."
      }
     ]
    ]
@@ -1880,13 +2605,93 @@
       "stage": "check",
       "loops": 0,
       "entered": 29876391.277233332,
-      "state": "running",
+      "state": "left",
       "session": "S-2"
+     }
+    ],
+    [
+     "R-9",
+     {
+      "run": "R-9",
+      "msg": "M-16",
+      "role": "toy-checker",
+      "by": "toy-checker",
+      "consult": false,
+      "order": "O-4",
+      "stage": "check",
+      "loops": 0,
+      "entered": 29876391.8245,
+      "state": "left",
+      "session": "S-2"
+     }
+    ],
+    [
+     "R-10",
+     {
+      "run": "R-10",
+      "msg": "M-21",
+      "role": "toy-release",
+      "by": "toy-release",
+      "consult": false,
+      "order": "O-3",
+      "stage": "ship",
+      "loops": 0,
+      "entered": 29876391.831766665,
+      "state": "left",
+      "session": "S-4"
+     }
+    ],
+    [
+     "R-11",
+     {
+      "run": "R-11",
+      "msg": "M-17",
+      "role": "toy-builder-1",
+      "by": "toy-builder-1",
+      "consult": false,
+      "order": "O-2",
+      "stage": "build",
+      "loops": 1,
+      "entered": 29876391.832683332,
+      "state": "left",
+      "session": "S-5"
+     }
+    ],
+    [
+     "R-12",
+     {
+      "run": "R-12",
+      "msg": "M-26",
+      "role": "toy-checker",
+      "by": "toy-checker",
+      "consult": false,
+      "order": "O-2",
+      "stage": "check",
+      "loops": 1,
+      "entered": 29876393.1818,
+      "state": "running",
+      "session": "S-6"
+     }
+    ],
+    [
+     "R-13",
+     {
+      "run": "R-13",
+      "msg": "M-23",
+      "role": "toy-builder-1",
+      "by": "toy-builder-1",
+      "consult": false,
+      "order": "O-4",
+      "stage": "build",
+      "loops": 1,
+      "entered": 29876393.21295,
+      "state": "running",
+      "session": "S-7"
      }
     ]
    ]
   },
-  "n": 8,
+  "n": 13,
   "memory": {
    "__map": [
     [
@@ -1915,6 +2720,12 @@
        "did": "build on O-4: pass (loop 0)",
        "learned": "Use pure integer calendar math (Date.UTC maps years 0-99 to the 1900s) and check boundary days against an independent reference.",
        "mistake": null
+      },
+      {
+       "t": 29876392.6594,
+       "did": "build on O-2: pass (loop 1)",
+       "learned": "An exact inverse must reject every non-canonical input (same-char adjacent runs, surrogate halves joining across runs) and bound counts by the engine max string length so oversize counts are SyntaxError, not RangeError; an exhaustive small-alphabet round-trip test catches the class.",
+       "mistake": null
       }
      ]
     ],
@@ -1932,6 +2743,18 @@
        "did": "check on O-2: revise (loop 0)",
        "learned": "For \"exact inverse\" codecs, test encode(decode(x))===x as well as decode(encode(s))===s. Round-trip fuzzing in one direction only misses non-canonical inputs that decode accepts, and surrogate halves can merge across run boundaries.",
        "mistake": null
+      },
+      {
+       "t": 29876391.8245,
+       "did": "check on O-3: pass (loop 0)",
+       "learned": "For rounding-plus-unit-promotion specs, sweep a window around each unit boundary rather than sampling randomly; exact BigInt arithmetic in the implementation removed the usual float half-up errors.",
+       "mistake": null
+      },
+      {
+       "t": 29876392.571266666,
+       "did": "check on O-4: revise (loop 0)",
+       "learned": "For calendar code that claims \"any safe integer year\", check that the intermediate day counts stay below 2^53 (about 2.47e13 years). Reduce the year mod 400 for the weekday instead of trusting the claim.",
+       "mistake": null
       }
      ]
     ],
@@ -1941,6 +2764,12 @@
       {
        "t": 29876390.34225,
        "did": "ship on O-1: pass (loop 0)",
+       "learned": null,
+       "mistake": null
+      },
+      {
+       "t": 29876391.8318,
+       "did": "ship on O-3: pass (loop 0)",
        "learned": null,
        "mistake": null
       }
@@ -1965,8 +2794,8 @@
      {
       "id": "S-2",
       "role": "toy-checker",
-      "items": 3,
-      "open": true,
+      "items": 4,
+      "open": false,
       "started": 29876389.996166665
      }
     ],
@@ -1979,9 +2808,49 @@
       "open": false,
       "started": 29876390.342183333
      }
+    ],
+    [
+     "S-4",
+     {
+      "id": "S-4",
+      "role": "toy-release",
+      "items": 1,
+      "open": false,
+      "started": 29876391.831766665
+     }
+    ],
+    [
+     "S-5",
+     {
+      "id": "S-5",
+      "role": "toy-builder-1",
+      "items": 1,
+      "open": true,
+      "started": 29876391.832683332
+     }
+    ],
+    [
+     "S-6",
+     {
+      "id": "S-6",
+      "role": "toy-checker",
+      "items": 1,
+      "open": true,
+      "started": 29876393.1818
+     }
+    ],
+    [
+     "S-7",
+     {
+      "id": "S-7",
+      "role": "toy-builder-1",
+      "items": 1,
+      "open": true,
+      "started": 29876393.21295
+     }
     ]
    ]
   },
-  "nS": 3
+  "nS": 7
  }
 }
