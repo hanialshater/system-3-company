@@ -15,6 +15,7 @@ import { Refused } from "./lib.mjs";
 import { book, releaseBooking } from "./building.mjs";
 import { create as createItem } from "./tracker.mjs";
 import { post, mayPost } from "./channels.mjs";
+import { validateChecks, mergeChecks } from "./state.mjs";
 
 const refuse = (m) => { throw new Refused(`HARD: ${m}`); };
 const store = (co) => (co.data.meetings ??= { meetings: new Map(), n: 0 });
@@ -114,19 +115,41 @@ export function object(co, { id, by, n, text }) {
 }
 
 /** The chair decides an item. Each objection must be answered or carried, with text. Actions become tracker items. */
-export function decide(co, { id, by, n, decision, answers = {}, actions = [] }) {
+/** A decision's checkable rules become checks (benchmark 2: the kickoff decided "why lines ≤ 20 words", no check
+ *  carried it, and 3 of 5 rounds went back at the reader). Each rule {tasks: <task prefix>, checks} tightens every
+ *  open order whose task starts with the prefix, and stands for orders placed later (applyStandingRules). */
+export function applyRules(co, rules, source) {
+  const out = [];
+  for (const r of rules) {
+    for (const o of co.engine.orders.values()) {
+      if (o.stage === "done" || !String(o.task ?? "").startsWith(r.tasks)) continue;
+      o.checks = mergeChecks(o.checks ?? {}, r.checks);
+      out.push(o.id);
+      co.log.add({ type: "rule-applied", order: o.id, task: o.task, source, keys: Object.keys(r.checks) });
+    }
+    (co.data.rules ??= []).push({ ...r, source });
+  }
+  return out;
+}
+export function applyStandingRules(co, o) {
+  for (const r of co.data.rules ?? []) if (String(o.task ?? "").startsWith(r.tasks)) { o.checks = mergeChecks(o.checks ?? {}, r.checks); co.log.add({ type: "rule-applied", order: o.id, task: o.task, source: r.source, keys: Object.keys(r.checks) }); }
+}
+
+export function decide(co, { id, by, n, decision, answers = {}, actions = [], rules = [] }) {
   const m = get(co, id);
   if (by !== m.chair) refuse("only the chair records decisions");
   const a = item(m, n);
   if (!a.rounds.some((r) => r.revealed)) refuse(`item ${n} has no revealed round: positions come before decisions`);
   if (!decision) refuse("a decision has text");
+  for (const r of rules) { if (!r.tasks || !r.checks) refuse("a rule is {tasks: <task prefix>, checks: {…}}"); const e = validateChecks(r.checks); if (e) refuse(`rule for ${r.tasks}: ${e}`); }
   for (const o of a.objections) {
     const ans = answers[o.k];
     if (!ans || !["answered", "carried"].includes(ans.how) || !ans.text) refuse(`objection ${o.k} by ${o.by} needs an answer: {how: answered|carried, text}`);
     o.answer = ans;
   }
   const made = actions.map((x) => createItem(co, { by, kind: "action", title: x.title, assignee: x.owner, due: x.due, goal: x.goal ?? a.goal ?? null, body: `From ${m.id} item ${n}: ${a.title}` }));
-  a.decision = { text: decision, t: now(co), actions: made.map((x) => x.id) };
+  const tightened = rules.length ? applyRules(co, rules, `${m.id} item ${n}`) : [];
+  a.decision = { text: decision, t: now(co), actions: made.map((x) => x.id), rules, tightened };
   co.log.add({ type: "meeting-decide", meeting: id, item: n, by, objections: a.objections.length, actions: made.length });
   return a;
 }
@@ -163,7 +186,7 @@ function minutes(co, m, absent) {
       for (const [who, p] of Object.entries(r.positions)) L.push(`- ${who}: ${p.text}`);
     }
     for (const o of a.objections) L.push(`- objection ${o.k} (${o.by}): ${o.text} → ${o.answer?.how}: ${o.answer?.text}`);
-    if (a.decision) L.push(`**Decision:** ${a.decision.text}${a.decision.actions.length ? ` · actions: ${a.decision.actions.join(", ")}` : ""}`);
+    if (a.decision) L.push(`**Decision:** ${a.decision.text}${a.decision.actions.length ? ` · actions: ${a.decision.actions.join(", ")}` : ""}`, ...(a.decision.rules ?? []).map((r) => `- rule for ${r.tasks}*: ${JSON.stringify(r.checks)} (checked by code; tightened ${a.decision.tightened.join(", ") || "no open order yet"})`));
     if (a.deferred) L.push(`**Deferred:** ${a.deferred.reason}`);
     L.push("");
   }

@@ -48,7 +48,7 @@ import path from "node:path";
 import { Refused, flowMetrics } from "./lib.mjs";
 import { proposePolicy, activatePolicy, managerReport, recordCycle, KNOBS } from "./policy.mjs";
 import { engage, engageTemplate, briefFor, deliver, decideContract, TEMPLATES } from "./contractor.mjs";
-import { LIVE, STATE, LIVE_ROLES, TASK_FLOW, clock, make, rep, save, load, withLock, runTests, runTest1 } from "./state.mjs";
+import { LIVE, STATE, LIVE_ROLES, TASK_FLOW, clock, make, rep, save, load, withLock, runTests, runTest1, validateChecks } from "./state.mjs";
 import * as B from "./building.mjs";
 import * as CH from "./channels.mjs";
 import * as T from "./tracker.mjs";
@@ -144,7 +144,8 @@ function dispatch(co, cmd, sub, arg) {
     o.task = opt.task;
     if (opt.project) o.project = opt.project; // mirrored onto its tracker item, so the roadmap counts it
     if (opt.goal) o.goal = opt.goal;
-    if (opt.checks) o.checks = JSON.parse(opt.checks); // test1 by declared checks (non-code work), not the builder's tests
+    if (opt.checks) { o.checks = JSON.parse(opt.checks); const e = validateChecks(o.checks); if (e) throw new Refused(`HARD: ${e}`); } // test1 by declared checks (non-code work)
+    M.applyStandingRules(co, o); // decisions made before this order was placed
     return { order: o.id, stage: o.stage, priority: o.priority, after: o.after, blocked: o.blocked };
   }
   if (cmd === "order" && sub === "delegate") {
@@ -287,7 +288,7 @@ function dispatch(co, cmd, sub, arg) {
   if (cmd === "meeting" && sub === "round") { need("id", "by", "item"); return M.nextRound(co, { id: opt.id, by: opt.by, n: N("item") }); }
   if (cmd === "meeting" && sub === "board") { need("id", "by", "section", "text"); return M.whiteboard(co, { id: opt.id, by: opt.by, section: opt.section, text: opt.text }); }
   if (cmd === "meeting" && sub === "object") { need("id", "by", "item", "text"); return M.object(co, { id: opt.id, by: opt.by, n: N("item"), text: opt.text }); }
-  if (cmd === "meeting" && sub === "decide") { need("id", "by", "item", "decision"); return M.decide(co, { id: opt.id, by: opt.by, n: N("item"), decision: opt.decision, answers: J("answers") ?? {}, actions: J("actions") ?? [] }); }
+  if (cmd === "meeting" && sub === "decide") { need("id", "by", "item", "decision"); return M.decide(co, { id: opt.id, by: opt.by, n: N("item"), decision: opt.decision, answers: J("answers") ?? {}, actions: J("actions") ?? [], rules: J("rules") ?? [] }); }
   if (cmd === "meeting" && sub === "defer") { need("id", "by", "item", "reason"); return M.defer(co, { id: opt.id, by: opt.by, n: N("item"), reason: opt.reason }); }
   if (cmd === "meeting" && sub === "close") { need("id", "by"); return { minutes: M.closeMeeting(co, { id: opt.id, by: opt.by }).minutes }; }
   if (cmd === "meeting" && sub === "show") { need("id"); const m = M.getMeeting(co, opt.id); return { id: m.id, title: m.title, kind: m.kind, chair: m.chair, state: m.state, invitees: m.invitees, agenda: m.agenda.map((a) => ({ n: a.n, title: a.title, rounds: a.rounds.length, revealed: a.rounds.at(-1).revealed, written: Object.keys(a.rounds.at(-1).positions), objections: a.objections.length, decided: !!a.decision })), whiteboard: m.board, pack: m.pack ?? null, minutes: m.minutes ?? null }; }

@@ -50,7 +50,7 @@ export function make(specName = "toy") {
 
 export const rep = (k, v) => (v instanceof Map ? { __map: [...v] } : v instanceof Set ? { __set: [...v] } : v);
 export const rev = (k, v) => (v && v.__map ? new Map(v.__map) : v && v.__set ? new Set(v.__set) : v);
-export const FIELDS = { data: ["spec", "building", "channels", "tracker", "goals", "meetings", "rituals"], log: ["events"], mailbox: ["msgs", "keys", "n"], org: ["roles", "changes", "n", "rooms"], engine: ["flows", "active", "orders", "approvals", "n", "limits", "policies", "contracts"], rooms: ["runs", "n", "memory", "sessions", "nS"] };
+export const FIELDS = { data: ["spec", "building", "channels", "tracker", "goals", "meetings", "rituals", "rules"], log: ["events"], mailbox: ["msgs", "keys", "n"], org: ["roles", "changes", "n", "rooms"], engine: ["flows", "active", "orders", "approvals", "n", "limits", "policies", "contracts"], rooms: ["runs", "n", "memory", "sessions", "nS"] };
 
 export function save(co) {
   const data = Object.fromEntries(Object.entries(FIELDS).map(([o, fs_]) => [o, Object.fromEntries(fs_.map((f) => [f, co[o][f]]))]));
@@ -127,8 +127,77 @@ export function runTextChecks(task, checks) {
     const n = l.trimStart().slice(r.prefix.length).split(/\s+/).filter((w) => /[\p{L}\p{N}]/u.test(w)).length;
     if (n > r.maxWords) fails.push(`line ${i + 1} (${r.prefix}) has ${n} words > ${r.maxWords}`);
   }
+  if (checks.distinctAnswers) fails.push(...answerClashes(task, text, checks.distinctAnswers));
   if (checks.minReadingEase && ease < checks.minReadingEase) fails.push(`reading ease ${ease.toFixed(0)} < ${checks.minReadingEase}`);
   return { pass: !fails.length, output: fails.length ? fails.join("; ") : `ok: ${words.length} words, reading ease ${ease.toFixed(0)}` };
+}
+
+// ---- checks as data: validated, merged (a decision tightens them), and the cross-section answer check ----------------
+export const CHECK_KEYS = ["file", "minWords", "maxWords", "mustInclude", "banned", "minReadingEase", "titleLine", "lineMaxWords", "distinctAnswers"];
+export function validateChecks(c) {
+  if (!c || typeof c !== "object" || Array.isArray(c)) return "checks are an object";
+  const bad = Object.keys(c).filter((k) => !CHECK_KEYS.includes(k));
+  if (bad.length) return `unknown check ${bad.join(", ")} (known: ${CHECK_KEYS.join(", ")})`;
+  for (const k of ["mustInclude", "banned"]) if (c[k] != null && !Array.isArray(c[k])) return `${k} is a list`;
+  if (c.lineMaxWords != null && (!Array.isArray(c.lineMaxWords) || c.lineMaxWords.some((r) => !r.prefix || !(r.maxWords > 0)))) return "lineMaxWords is a list of {prefix, maxWords}";
+  if (c.distinctAnswers != null && !c.distinctAnswers.prefix) return "distinctAnswers needs a prefix";
+  return null;
+}
+/** Merge b into a: lists join, limits take the stricter value. A decision can only tighten an order's checks. */
+export function mergeChecks(a = {}, b = {}) {
+  const out = { ...a };
+  for (const [k, v] of Object.entries(b)) {
+    if (k === "mustInclude" || k === "banned") out[k] = [...new Set([...(a[k] ?? []), ...v])];
+    else if (k === "lineMaxWords") { const m = new Map((a[k] ?? []).map((r) => [r.prefix, r])); for (const r of v) m.set(r.prefix, { prefix: r.prefix, maxWords: Math.min(r.maxWords, m.get(r.prefix)?.maxWords ?? Infinity) }); out[k] = [...m.values()]; }
+    else if (k === "minWords" || k === "minReadingEase") out[k] = Math.max(v, a[k] ?? -Infinity);
+    else if (k === "maxWords") out[k] = Math.min(v, a[k] ?? Infinity);
+    else if (k === "titleLine") out[k] = !!(v || a[k]);
+    else out[k] = v;
+  }
+  return out;
+}
+
+const STOP = new Set("about after again also because been before being below between both could does doing down during each from further have having here into itself just more most much near only other over same should some such than that their them then there these they this those through under until very what when where which while whom will with would your yours planet planets space round".split(" "));
+const normAnswer = (s) => s.toLowerCase().replace(/\*\*/g, "").split(/[.;,:(—–]| - /)[0].replace(/\b(a|an|the|about)\b/g, " ").replace(/[^\p{L}\p{N} ]/gu, " ").replace(/\s+/g, " ").trim();
+const words = (s) => s.toLowerCase().replace(/[^\p{L}\p{N} ]/gu, " ").split(/\s+/).filter(Boolean);
+/** Answers across sections (rounds): none repeats, and none is given away by another section, meaning a line there
+ *  holds the answer together with a distinctive word of the answer's own question (benchmark 2: Round 1's why line
+ *  said "Pluto … dwarf planet", the answer to Round 5's "biggest dwarf planet" question). Sections are the parts of
+ *  this file split at `split` (a regex source), plus, with `across`, the other tasks in live/work whose name starts
+ *  with it; then only clashes involving this file are reported. */
+export function answerClashes(task, text, { prefix, split = null, across = null, question = "**Q" }) {
+  const secs = [];
+  const own = split ? text.split(new RegExp(`(?=${split})`, "m")).filter((p) => new RegExp(split, "m").test(p)) : [text];
+  own.forEach((t, i) => secs.push({ name: split ? t.match(new RegExp(split, "m"))[0].replace(/^#+\s*|:\s*$/g, "").trim() : task, text: t, mine: true }));
+  if (across) for (const d of fs.existsSync(path.join(LIVE, "work")) ? fs.readdirSync(path.join(LIVE, "work")) : []) {
+    if (d === task || !d.startsWith(across)) continue;
+    const f = path.join(LIVE, "work", d, "page.md");
+    if (fs.existsSync(f)) secs.push({ name: d, text: fs.readFileSync(f, "utf8"), mine: false });
+  }
+  for (const s of secs) {
+    const lines = s.text.split("\n");
+    s.qa = [];
+    let q = "";
+    for (const l of lines) { const t = l.trim(); if (t.startsWith(question)) q = t; if (t.startsWith(prefix)) s.qa.push({ a: normAnswer(t.slice(prefix.length)), q }); }
+    s.other = lines.filter((l) => !l.trim().startsWith(prefix));
+  }
+  const df = new Map();
+  for (const s of secs) for (const w of new Set(words(s.text))) df.set(w, (df.get(w) ?? 0) + 1);
+  const keyOf = (q) => words(q).filter((w) => w.length >= 4 && !STOP.has(w) && (df.get(w) ?? 0) <= 2);
+  const out = [];
+  for (const [i, x] of secs.entries()) for (const { a, q } of x.qa) {
+    if (!a) continue;
+    for (const [j, y] of secs.entries()) {
+      if (i === j || !(x.mine || y.mine)) continue;
+      if (j > i && y.qa.some((z) => z.a === a)) out.push(`answer "${a}" is in both ${x.name} and ${y.name}`);
+      if (!/\p{L}/u.test(a) || a.length < 3) continue;
+      const re = new RegExp(`\\b${a.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "i");
+      const keys = keyOf(q);
+      const hit = y.other.find((l) => re.test(l) && keys.some((k) => words(l).includes(k)));
+      if (hit) out.push(`${y.name} gives away ${x.name}'s answer "${a}": "${hit.trim().slice(0, 80)}"`);
+    }
+  }
+  return [...new Set(out)];
 }
 
 /** test1 for an order: its declared text checks if it has them, otherwise the builder's tests. */

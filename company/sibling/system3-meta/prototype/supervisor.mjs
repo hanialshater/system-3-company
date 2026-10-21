@@ -11,6 +11,11 @@
 //           role has none running; `later` items wait for a batch (--batch-later=N) or their due time
 //
 //   node supervisor.mjs launched --role=<role> [--msgs=…]   the orchestrator started a session: plan it as starting
+//   node supervisor.mjs serve [--acceptance=<dir>] [--idle-min=2] [--max-min=120]   the supervisor as a service
+//        (benchmark 2: one typed `cycle` per wake made 142% of the current method's actions): runs until the work is
+//        done; at every state change it ticks, reserves each planned launch, writes its brief to live/<dir>/outbox/
+//        and prints one JSON line per launch: a stream for the orchestrator's monitor, so a wake needs no command
+//   node supervisor.mjs usage --finished=<role>:<tokens>,…   record harness usage of finished sessions (batch is fine)
 //   node supervisor.mjs cycle [--finished=<role>:<tokens>,…] [watch flags]   the orchestrator's one command per wake
 //        (benchmark 1: 20 of 45 orchestrator actions were bookkeeping by hand): records the harness usage of the
 //        sessions that finished, watches until a session is needed, reserves every planned launch, and prints a brief
@@ -23,7 +28,7 @@
 // Same state as meta.mjs (META_LIVE_DIR, META_STATE). Exit 0 always unless the state cannot be read.
 import fs from "node:fs";
 import path from "node:path";
-import { HERE, LIVE, STATE, load, save, withLock, runTests, runTest1, rep } from "./state.mjs";
+import { HERE, LIVE, STATE, load, save, withLock, runTests, runTest1, rep, CHECK_KEYS } from "./state.mjs";
 import { syncOrders } from "./tracker.mjs";
 import { sweepGoals } from "./goals.mjs";
 import { expireContracts } from "./contractor.mjs";
@@ -158,7 +163,7 @@ export function briefFor(co, item, { context = null } = {}) {
   if (acts.length) L.push(`Your open actions (do them in this session when they touch this work; mark each done with \`node meta.mjs item update --id=<ISS> --by=${item.role} --state=done\`):`, ...acts.map((i) => `- ${i.id}: ${i.title}${i.due ? ` (due ${i.due})` : ""}${i.body ? ` · ${i.body}` : ""}`), "");
   for (const t of item.tasks ?? []) {
     if (t.kind === "positions") L.push(`Meeting ${t.ref}: read it with \`node meta.mjs meeting show --id=${t.ref}\` (agenda, and the pack if any). For each item ${t.items.join(", ")}, write your own position: \`node meta.mjs meeting position --id=${t.ref} --by=${item.role} --item=<n> --text='…'\`. Positions stay private until the chair reveals them; argue from the order, the goals and what you know, and be specific.`);
-    if (t.kind === "chair") L.push(`You chair meeting ${t.ref}: \`node meta.mjs meeting show --id=${t.ref}\`. For each item ${t.items.join(", ")}: write your own position (\`meeting position\`), then \`meeting reveal --id=${t.ref} --by=${item.role} --item=<n>\` (add \`--force\` if someone is missing; they are named in the minutes), read them (\`meeting read\`), and \`meeting decide --id=${t.ref} --by=${item.role} --item=<n> --decision='…'\` (answer every objection with \`--answers\`; follow-ups as \`--actions='[{"title":"…","owner":"<role>","due":"YYYY-MM-DD"}]'\`). ${co.data?.meetings?.meetings?.get(t.ref)?.kind === "wbr" ? `This is a WBR: the pack (\`meeting show\`) holds page 0, hits and misses, roadmap and goals, and leadership asks, all computed by code; cite its numbers, never your own. Close it with \`node meta.mjs wbr close --by=${item.role} --meeting=${t.ref} --summary='3-5 sentences'\` (not \`meeting close\`: that would skip the WBR record), then run \`node meta.mjs goal-review --by=${item.role}\`.` : `Then \`meeting close --id=${t.ref} --by=${item.role}\`.`} The decision text is what builders will follow: make it concrete.`);
+    if (t.kind === "chair") L.push(`You chair meeting ${t.ref}: \`node meta.mjs meeting show --id=${t.ref}\`. For each item ${t.items.join(", ")}: write your own position (\`meeting position\`), then \`meeting reveal --id=${t.ref} --by=${item.role} --item=<n>\` (add \`--force\` if someone is missing; they are named in the minutes), read them (\`meeting read\`), and \`meeting decide --id=${t.ref} --by=${item.role} --item=<n> --decision='…'\` (answer every objection with \`--answers\`; follow-ups as \`--actions='[{"title":"…","owner":"<role>","due":"YYYY-MM-DD"}]'\`). Any decision code can check (word limits per line, required text, banned words, answers unique across items) also goes in \`--rules='[{"tasks":"<task prefix>","checks":{…}}]'\`: code then checks it on every matching order, open or later (checks: ${CHECK_KEYS.join(", ")}; e.g. \`{"lineMaxWords":[{"prefix":"**Why:**","maxWords":20}],"distinctAnswers":{"prefix":"**Answer:**","across":"ROUND"}}\`). ${co.data?.meetings?.meetings?.get(t.ref)?.kind === "wbr" ? `This is a WBR: the pack (\`meeting show\`) holds page 0, hits and misses, roadmap and goals, and leadership asks, all computed by code; cite its numbers, never your own. Close it with \`node meta.mjs wbr close --by=${item.role} --meeting=${t.ref} --summary='3-5 sentences'\` (not \`meeting close\`: that would skip the WBR record), then run \`node meta.mjs goal-review --by=${item.role}\`.` : `Then \`meeting close --id=${t.ref} --by=${item.role}\`.`} The decision text is what builders will follow: make it concrete.`);
   }
   const dlg = (item.tasks ?? []).filter((t) => t.kind === "delegate").map((t) => t.ref);
   if (dlg.length) {
@@ -241,6 +246,55 @@ async function watch(opts, maxMin) {
   }
 }
 
+/** Reserve each planned launch and write its brief; returns the launches. Shared by `cycle` and `serve`. */
+export function reserve(co, planned, { context = null, outbox = null } = {}) {
+  return planned.map((p) => {
+    const e = co.log.add({ type: "launch", role: p.role, msgs: p.msgs, tasks: p.tasks ?? [], why: `plan: ${p.why}` });
+    const brief = briefFor(co, p, { context });
+    let file = null;
+    if (outbox) { fs.mkdirSync(outbox, { recursive: true }); file = path.join(outbox, `${String(e.seq).padStart(4, "0")}-${p.role}.md`); fs.writeFileSync(file, brief); }
+    return { ...p, launch: e.seq, file, brief };
+  });
+}
+
+/** Is anything left to do? Open orders, or open meetings. */
+export function settled(co) {
+  return [...co.engine.orders.values()].every((o) => o.stage === "done") && ![...(co.data?.meetings?.meetings?.values() ?? [])].some((m) => m.state === "open");
+}
+
+async function serve(opts, { idleMin = 2, maxMin = 120 } = {}) {
+  const end = Date.now() + maxMin * 60000;
+  const ctxFile = path.join(LIVE, "CONTEXT.md");
+  const outbox = path.join(LIVE, "outbox");
+  const say = (x) => console.log(JSON.stringify(x));
+  let quietSince = Date.now();
+  say({ event: "serving", live: LIVE, outbox });
+  for (;;) {
+    const r = withLock(() => {
+      const co = load();
+      const steps = tick(co, opts);
+      const context = fs.existsSync(ctxFile) ? fs.readFileSync(ctxFile, "utf8") : null;
+      const launches = reserve(co, plan(co, opts), { context, outbox });
+      if (steps.length || launches.length) save(co); // saving wakes the watcher: only when something changed
+      return { steps, launches, settled: settled(co), wakeInMs: nextTimer(co) };
+    });
+    if (r.steps.length) say({ event: "steps", steps: r.steps.map((x) => `${x.step}:${x.order ?? x.msg ?? x.run ?? x.contract ?? x.goal}${x.result ? ":" + x.result : ""}`) });
+    for (const l of r.launches) say({ event: "launch", role: l.role, why: l.why, cap: l.cap, msgs: l.msgs, brief: l.file });
+    if (r.steps.length || r.launches.length) quietSince = Date.now();
+    if (r.settled && Date.now() - quietSince >= idleMin * 60000) { say({ event: "done", why: "every order is done and no meeting is open" }); return; }
+    if (Date.now() >= end) { say({ event: "stopped", why: `--max-min=${maxMin}` }); return; }
+    // wake on a state change, the next lease or due time, or a minute (launch reservations expire by time)
+    const wait = Math.min(r.wakeInMs ?? Infinity, 60000, end - Date.now(), r.settled ? idleMin * 60000 : Infinity);
+    await new Promise((resolve) => {
+      const name = path.basename(STATE);
+      const w = fs.watch(path.dirname(STATE), (ev, f) => { if (f === name) done(); });
+      const t = setTimeout(done, Math.max(50, wait));
+      let fired = false;
+      function done() { if (fired) return; fired = true; w.close(); clearTimeout(t); setTimeout(resolve, 200); }
+    });
+  }
+}
+
 if (import.meta.url === `file://${process.argv[1]}`) {
   const argv = process.argv.slice(2);
   const opt = {};
@@ -252,6 +306,11 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     // The orchestrator records each session it starts, so the next plan does not ask for it again.
     if (!opt.role) { console.error("usage: node supervisor.mjs launched --role=<role> [--msgs=M-1,M-2] [--why=…]"); process.exit(2); }
     print(withLock(() => { const co = load(); const e = co.log.add({ type: "launch", role: opt.role, msgs: opt.msgs ? String(opt.msgs).split(",") : [], why: opt.why ?? null }); save(co); return e; }));
+  } else if (cmd === "serve") {
+    serve(opts, { idleMin: Number(opt["idle-min"] ?? 2), maxMin: Number(opt["max-min"] ?? 120) });
+  } else if (cmd === "usage") {
+    const finished = String(opt.finished ?? "").split(",").filter(Boolean).map((x) => { const [r, t] = x.split(":"); return [r, Number(t)]; });
+    print(withLock(() => { const co = load(); const u = recordFinished(co, finished); save(co); return u; }));
   } else if (cmd === "cycle") {
     const finished = opt.finished ? String(opt.finished).split(",").map((x) => { const [r, t] = x.split(":"); return [r, Number(t)]; }) : [];
     const usage = finished.length ? withLock(() => { const co = load(); const u = recordFinished(co, finished); save(co); return u; }) : [];
