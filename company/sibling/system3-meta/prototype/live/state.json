@@ -552,6 +552,92 @@
     "order": "O-2",
     "stage": "check",
     "mode": "work"
+   },
+   {
+    "seq": 59,
+    "t": 29876078,
+    "type": "advance",
+    "order": "O-2",
+    "stage": "check",
+    "by": "toy-checker",
+    "verdict": "revise"
+   },
+   {
+    "seq": 60,
+    "t": 29876078,
+    "type": "reopen",
+    "order": "O-2",
+    "from": "check",
+    "loops": 1
+   },
+   {
+    "seq": 61,
+    "t": 29876078,
+    "type": "send",
+    "msg": "M-11",
+    "from": "mgr-live",
+    "to": "toy-builder-2",
+    "kind": "work",
+    "key": "O-2:build:1",
+    "ref": "O-2"
+   },
+   {
+    "seq": 62,
+    "t": 29876078,
+    "type": "done",
+    "msg": "M-10",
+    "run": "R-7"
+   },
+   {
+    "seq": 63,
+    "t": 29876078,
+    "type": "send",
+    "msg": "M-12",
+    "from": "pool:checker",
+    "to": "mgr-live",
+    "kind": "report",
+    "key": null,
+    "ref": "O-2"
+   },
+   {
+    "seq": 64,
+    "t": 29876078,
+    "type": "leave",
+    "run": "R-7",
+    "role": "toy-checker",
+    "order": "O-2",
+    "stage": "check",
+    "verdict": "revise",
+    "minutes": 1
+   },
+   {
+    "seq": 65,
+    "t": 29876078,
+    "type": "usage",
+    "run": "R-7",
+    "role": "toy-checker",
+    "tokens": 60361,
+    "source": "harness"
+   },
+   {
+    "seq": 66,
+    "t": 29876078,
+    "type": "claim",
+    "msg": "M-11",
+    "run": "R-8"
+   },
+   {
+    "seq": 67,
+    "t": 29876078,
+    "type": "enter",
+    "run": "R-8",
+    "msg": "M-11",
+    "role": "toy-builder-2",
+    "by": "toy-builder-2",
+    "room": "sandbox",
+    "order": "O-2",
+    "stage": "build",
+    "mode": "work"
    }
   ]
  },
@@ -765,11 +851,54 @@
        "loops": 0
       },
       "ts": 29876077,
-      "state": "open",
+      "state": "done",
       "lease": {
        "run": "R-7",
        "until": 29876107
       },
+      "acked": false
+     }
+    ],
+    [
+     "M-11",
+     {
+      "id": "M-11",
+      "from": "mgr-live",
+      "to": "toy-builder-2",
+      "kind": "work",
+      "key": "O-2:build:1",
+      "due": null,
+      "ref": "O-2",
+      "body": {
+       "stage": "build",
+       "loops": 1
+      },
+      "ts": 29876078,
+      "state": "open",
+      "lease": {
+       "run": "R-8",
+       "until": 29876108
+      },
+      "acked": false
+     }
+    ],
+    [
+     "M-12",
+     {
+      "id": "M-12",
+      "from": "pool:checker",
+      "to": "mgr-live",
+      "kind": "report",
+      "key": null,
+      "due": null,
+      "ref": "O-2",
+      "body": {
+       "stage": "check",
+       "verdict": "revise"
+      },
+      "ts": 29876078,
+      "state": "open",
+      "lease": null,
       "acked": false
      }
     ]
@@ -800,10 +929,14 @@
     [
      "O-2:check:0",
      "M-10"
+    ],
+    [
+     "O-2:build:1",
+     "M-11"
     ]
    ]
   },
-  "n": 10
+  "n": 12
  },
  "org": {
   "roles": {
@@ -1051,13 +1184,13 @@
       "orderer": "cos",
       "manager": "mgr-live",
       "builder": "toy-builder-2",
-      "checker": null,
+      "checker": "toy-checker",
       "budget": 200000,
       "spent": 0,
       "accept": "live/work/T2/wrap.mjs exports wrap(text, width): lines at most width chars, broken at spaces; a word longer than width is split hard into width-sized chunks; runs of whitespace inside a paragraph (including single newlines) collapse to one space; leading/trailing whitespace trimmed; paragraphs separated by a blank line stay separated by one blank line; no trailing spaces; empty text gives empty string; width must be an integer >= 1 else RangeError; with node:test tests in live/work/T2/*.test.mjs",
       "words": null,
-      "stage": "check",
-      "loops": 0,
+      "stage": "build",
+      "loops": 1,
       "created": 29876073,
       "history": [
        {
@@ -1071,9 +1204,16 @@
         "by": "code",
         "verdict": "pass",
         "t": 29876077
+       },
+       {
+        "stage": "check",
+        "by": "toy-checker",
+        "verdict": "revise",
+        "t": 29876078
        }
       ],
-      "task": "T2"
+      "task": "T2",
+      "findings": "1) Hard split cuts astral characters in half: wrap(\"😀😀😀\",1) gives lone surrogates \"\\ud83d\\n\\ude00\\n...\" and wrap(\"😀😀😀\",3) gives \"😀\\ud83d\\n\\ude00😀\" (malformed strings). Accept says a long word is split into width-sized chunks of chars; a chunk must never split a character, so split by code points (and count width by code points, consistently). 2) Blank-line detection is inconsistent with whitespace handling: wrap(\"a\\n \\nb\",5) gives \"a b\" (one paragraph) although trim and the collapse regex treat U+00A0/U+3000 as whitespace; a line holding only whitespace is a blank line, so accept requires \"a\\n\\nb\". 3) Tests miss both cases (no non-ASCII input at all)."
      }
     ]
    ]
@@ -1195,12 +1335,27 @@
       "stage": "check",
       "loops": 0,
       "entered": 29876077,
+      "state": "left"
+     }
+    ],
+    [
+     "R-8",
+     {
+      "run": "R-8",
+      "msg": "M-11",
+      "role": "toy-builder-2",
+      "by": "toy-builder-2",
+      "consult": false,
+      "order": "O-2",
+      "stage": "build",
+      "loops": 1,
+      "entered": 29876078,
       "state": "running"
      }
     ]
    ]
   },
-  "n": 7,
+  "n": 8,
   "memory": {
    "__map": [
     [
@@ -1221,6 +1376,12 @@
        "t": 29876075,
        "did": "check on O-1: pass (loop 0)",
        "learned": "Exhaustive enumeration of short strings against the toRoman image is a cheap complete check of a canonical-form regex; node 22 --test needs a file path, not a bare directory.",
+       "mistake": null
+      },
+      {
+       "t": 29876078,
+       "did": "check on O-2: revise (loop 0)",
+       "learned": "Random property checks over a small ASCII alphabet pass cleanly yet miss Unicode: always add astral characters and non-ASCII whitespace to a text module edge-case list.",
        "mistake": null
       }
      ]
