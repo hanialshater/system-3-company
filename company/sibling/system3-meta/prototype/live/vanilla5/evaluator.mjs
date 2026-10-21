@@ -54,14 +54,35 @@ export function evaluate(node, ctx) {
       const b = toNumber(r); if (isError(b)) return b;
       return finite(arith(node.op, a, b));
     }
-    case 'ref': return ctx.getCell ? ctx.getCell(node.cell) : err(ERR.REF);
+    case 'ref':
+      if (!node.valid || !ctx.getCell) return err(ERR.REF);
+      return ctx.getCell(node.cell);
     case 'call': {
       const fn = ctx.functions && ctx.functions.get(node.name);
       if (!fn) return err(ERR.NAME);
-      return fn(node.args, ctx);
+      return finite(fn(node.args, makeApi(ctx)));
     }
     case 'range': return err(ERR.VALUE);
     case 'name': return err(ERR.NAME);
   }
   return err(ERR.VALUE);
+}
+
+// Helpers handed to function implementations.
+function makeApi(ctx) {
+  return {
+    eval: (node) => evaluate(node, ctx),
+    isRange: (node) => node.kind === 'range',
+    // Values of a range node, column by column; or a SheetError (#REF!) for a bad corner.
+    rangeValues(node) {
+      if (!node.valid) return err(ERR.REF);
+      const c1 = node.from.charCodeAt(0), c2 = node.to.charCodeAt(0);
+      const r1 = Number(node.from.slice(1)), r2 = Number(node.to.slice(1));
+      const out = [];
+      for (let c = Math.min(c1, c2); c <= Math.max(c1, c2); c++)
+        for (let r = Math.min(r1, r2); r <= Math.max(r1, r2); r++)
+          out.push(ctx.getCell(String.fromCharCode(c) + r));
+      return out;
+    },
+  };
 }

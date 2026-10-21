@@ -6,6 +6,9 @@ import { isCellName } from './cellname.mjs';
 
 export { ParseError };
 
+// Anything shaped like letters+digits is a cell reference (possibly invalid → #REF!).
+const REF_LIKE = /^[A-Za-z]+[0-9]+$/;
+
 const LEVELS = [
   ['=', '<>', '<', '>', '<=', '>='],
   ['&'],
@@ -69,15 +72,16 @@ export function parseFormula(src) {
         return { kind: 'call', name: up, args };
       }
       if (up === 'TRUE' || up === 'FALSE') return { kind: 'bool', value: up === 'TRUE' };
-      if (isCellName(t.value)) {
+      if (REF_LIKE.test(t.value)) {
         if (isOp(':')) {
           p++;
           const n = toks[p];
-          if (n.type !== 'ident' || !isCellName(n.value)) throw new ParseError('bad range');
+          if (n.type !== 'ident' || !REF_LIKE.test(n.value)) throw new ParseError('bad range');
           p++;
-          return { kind: 'range', from: up, to: n.value.toUpperCase() };
+          const to = n.value.toUpperCase();
+          return { kind: 'range', from: up, to, valid: isCellName(up) && isCellName(to) };
         }
-        return { kind: 'ref', cell: up };
+        return { kind: 'ref', cell: up, valid: isCellName(up) };
       }
       return { kind: 'name', name: up };
     }

@@ -50,7 +50,8 @@ test('syntax', () => {
   assert.equal(ev('=1+'), '#VALUE!');
   assert.equal(ev('="abc'), '#VALUE!');
   assert.equal(ev('=1 2'), '#VALUE!');
-  assert.equal(ev('=sum()'), '#NAME?');
+  assert.equal(ev('=sum()'), 0);
+  assert.equal(ev('=NOPE()'), '#NAME?');
 });
 
 test('operators and precedence', () => {
