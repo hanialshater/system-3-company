@@ -259,3 +259,73 @@ test("K7 review: a commit refused after the last stage (the order done) is held,
   assert.equal(await_settled(co), true);
   assert.equal(tick(co).filter((x) => x.order === o.id).length, 0, "done, nothing left");
 });
+
+test("K7 review 2: the commit as the repo's hooks made it is checked again: a hook's protected path or [deploy] is undone and held", () => {
+  const co = fresh();
+  const o = order(co, "CH"); tick(co);
+  const dir = o.workdir, HK = path.join(LIVE, "hk");
+  fs.mkdirSync(HK, { recursive: true });
+  // the reviewer's probe: core.hooksPath set from Bash (the K10 guard does not cover it), a pre-commit hook that stages
+  // a protected file the checks never saw, then a prepare-commit-msg hook that appends [deploy]
+  fs.writeFileSync(path.join(HK, "pre-commit"), "#!/bin/sh\necho weakened >> tests/qa/contract.md && git add tests/qa/contract.md\n", { mode: 0o755 });
+  sh(dir, "config", "core.hooksPath", HK);
+  try {
+    fs.writeFileSync(path.join(dir, "lesson.md"), "x\n");
+    build(co, o);
+    assert.match(o.stageError.why, /^workspace: commit after build: the kernel's commit as the repo's hooks made it .*protected paths tests\/qa\/contract.md.*the commit was undone/);
+    assert.deepEqual(log(dir), [], "the kernel's commit undone");
+    assert.equal(sh(dir, "diff", "--cached", "--name-only"), "", "the index put back");
+    assert.equal(co.log.events.filter((e) => e.type === "commit" && e.order === o.id).length, 0, "no clean commit event");
+    fs.rmSync(path.join(HK, "pre-commit"));
+    sh(dir, "checkout", "--", "tests/qa/contract.md");
+    fs.writeFileSync(path.join(HK, "prepare-commit-msg"), "#!/bin/sh\necho '[deploy]' >> \"$1\"\n", { mode: 0o755 });
+    delete o.stageError; // supervisor.mjs retry
+    tick(co);
+    assert.match(o.stageError.why, /the kernel's commit as the repo's hooks made it .*names \[deploy\]/);
+    assert.deepEqual(log(dir), []);
+  } finally { sh(dir, "config", "--unset", "core.hooksPath"); }
+  delete o.stageError;
+  tick(co);
+  assert.equal(o.workspace.pendingCommit, undefined);
+  assert.equal(log(dir)[0], `meta: ${o.id} build lesson-ch`);
+  assert.equal(remoteRefs(), REMOTE_BEFORE);
+});
+
+test("K7 review 2: main's [deploy] commits merged in (--no-ff) do not hold the order; the merge's own message is checked", () => {
+  const co = fresh();
+  const o = order(co, "CM"); tick(co);
+  const dir = o.workdir;
+  sh(REPO, "checkout", "-q", "-b", "rel", BASE);
+  fs.writeFileSync(path.join(REPO, "RELEASE.md"), "r\n"); sh(REPO, "add", "-A"); sh(REPO, "commit", "-qm", "release wave [deploy]");
+  sh(REPO, "checkout", "-q", "main");
+  fs.writeFileSync(path.join(dir, "a.md"), "a\n"); sh(dir, "add", "-A"); sh(dir, "commit", "-qm", "mine");
+  sh(dir, "merge", "-q", "--no-ff", "-m", "merge rel", "rel");
+  fs.writeFileSync(path.join(dir, "lesson.md"), "x\n");
+  build(co, o);
+  assert.equal(o.stageError, undefined, o.stageError?.why);
+  assert.equal(log(dir)[0], `meta: ${o.id} build lesson-cm`);
+  sh(REPO, "branch", "-q", "-D", "rel");
+});
+
+test("K7 review 2: a refusal puts back what the agent had staged itself, not an empty index", () => {
+  const co = fresh();
+  const o = order(co, "CS"); tick(co);
+  const dir = o.workdir;
+  fs.writeFileSync(path.join(dir, "mine.md"), "staged by the agent\n"); sh(dir, "add", "mine.md");
+  fs.writeFileSync(path.join(dir, "other.md"), "not staged\n");
+  fs.appendFileSync(path.join(dir, "tests", "qa", "contract.md"), "weakened\n");
+  build(co, o);
+  assert.match(o.stageError.why, /protected paths tests\/qa\/contract.md/);
+  assert.equal(sh(dir, "diff", "--cached", "--name-only"), "mine.md");
+  assert.match(sh(dir, "status", "--porcelain"), /\?\? other.md/);
+});
+
+test("K7 review 2: a pending commit left from a spec that no longer commits is not work left (serve exits on idle)", () => {
+  const co = fresh();
+  const o = order(co, "CO"); tick(co);
+  o.stage = "done"; o.workspace.pendingCommit = { stage: "ship" };
+  assert.equal(await_settled(co), false);
+  co.spec.workspace = { ...WORKSPACE, commit: false };
+  assert.equal(await_settled(co), true);
+  assert.equal(tick(co).filter((x) => x.order === o.id).length, 0, "and the tick does not try it");
+});

@@ -115,7 +115,7 @@ export function tick(co, { acceptance = null, faults = null } = {}) {
     changed = false;
     for (const o of engine.orders.values()) {
       // K7 review: a done order's last commit (after ship) refused or failed was skipped here, so a retry never committed it
-      if (o.blocked || (o.stage === "done" && !o.workspace?.pendingCommit)) continue;
+      if (o.blocked || (o.stage === "done" && !WS.commitDue(co, o))) continue;
       if (o.stageError?.kind === "workspace") continue; // K5: held until a retry, whatever its stage (K5 review)
       if (o.stageError?.stage === o.stage && o.stageError?.loops === o.loops) continue; // K2: held until a retry
       // K5: the order's worktree, made once when it has a builder (before its first brief names it); a git failure
@@ -133,7 +133,7 @@ export function tick(co, { acceptance = null, faults = null } = {}) {
         if (w) steps.push({ step: "workspace", order: o.id, result: w.created ? "created" : "reused", output: `${w.workdir} (${w.branch} at ${w.sha.slice(0, 7)})` });
       }
       // K7: a commit refused or failed after a stage left; `retry` lifted the hold, so it is tried again here
-      if (o.workspace?.pendingCommit && WS.specOf(co)) {
+      if (WS.commitDue(co, o)) {
         const c = WS.afterStage(co, o, o.workspace.pendingCommit.stage);
         if (o.stageError?.kind === "workspace") { steps.push({ step: o.stage, kind: "workspace", order: o.id, result: "stage-error", output: o.stageError.why }); continue; }
         if (c) steps.push({ step: "commit", order: o.id, result: c.sha ? "committed" : "nothing to commit", output: c.sha ?? "" });
@@ -438,8 +438,9 @@ export function reserve(co, planned, { context = null, outbox = null } = {}) {
 
 /** Is anything left to do? Open orders, or open meetings. */
 export function settled(co) {
-  // K7 review: a done order whose last commit is pending (held, or due on the next tick) is work left
-  return [...co.engine.orders.values()].every((o) => o.stage === "done" && !o.workspace?.pendingCommit) && ![...(co.data?.meetings?.meetings?.values() ?? [])].some((m) => m.state === "open");
+  // K7 review: a done order whose last commit is pending (held, or due on the next tick) is work left; only while the
+  // spec still commits (K7 review 2)
+  return [...co.engine.orders.values()].every((o) => o.stage === "done" && !WS.commitDue(co, o)) && ![...(co.data?.meetings?.meetings?.values() ?? [])].some((m) => m.state === "open");
 }
 
 async function serve(opts, { idleMin = 2, maxMin = 120 } = {}) {

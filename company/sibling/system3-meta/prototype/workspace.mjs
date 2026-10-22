@@ -17,9 +17,10 @@
 // `git commit -m "meta: <O> <stage> <slug>"`. Refused (and the order held, as a workspace stage-error, until the change
 // is undone and `supervisor.mjs retry`; the next tick commits again): a message matching /\[deploy\]/i (vercel.json
 // builds only [deploy] commits; the slug is an agent's text) or naming any commit on the branch since the order's base
-// (an agent's own `git commit` too, K7 review), and any path the branch changes since that base (commits plus index)
+// on the branch's first-parent line (an agent's own `git commit` too, K7 review), and any path the branch changes since that base (commits plus index)
 // matching a glob of the repo's protected-paths.txt as of the base commit (the worktree's own copy is the agent's to
-// edit). It never pushes.
+// edit). The commit runs the repo's hooks, so the same checks run again on the commit as made, which is undone on a hit
+// (K7 review 2). A refusal puts the index back as the agent left it. It never pushes.
 import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
@@ -223,30 +224,42 @@ export function commit(co, o, stage) {
   const h = git(dir, "rev-parse", "--abbrev-ref", "HEAD");
   if (!ok(h)) return { error: why(h, `git rev-parse in ${dir}`) };
   if (out(h)[0] !== o.workspace.branch) return { error: `${dir} is on ${out(h)[0] === "HEAD" ? "a detached HEAD" : `branch ${out(h)[0]}`}, not ${o.workspace.branch}: switch it back and retry` };
+  const pre = git(dir, "rev-parse", "HEAD"), staged = git(dir, "write-tree"); // the agent's own index, to put back
+  if (!ok(pre)) return { error: why(pre, `git rev-parse HEAD in ${dir}`) };
   const add = git(dir, "add", "-A");
   if (!ok(add)) return { error: why(add, `git add -A in ${dir}`) };
-  const unstage = () => git(dir, "reset", "-q");
-  // K7 review: only the kernel's message and the staged diff were checked, so a builder's own `git commit -qam
-  // "[deploy] mine"` (a protected file edited with sed: the K10 guard denies only Write/Edit) sat under the kernel's
-  // clean commit on the branch that is merged later. Now every commit on the branch since the order's base, and the
-  // whole change from that base (commits plus index), are checked, whether or not this stage staged anything
+  // K7 review: `git reset -q` also unstaged what the agent had staged itself (`git add -p`); now the index goes back
+  // to exactly what it was before the kernel's add (reset only when write-tree failed: an unmerged index)
+  const unstage = () => (ok(staged) ? git(dir, "read-tree", out(staged)[0]) : git(dir, "reset", "-q"));
   const base = o.workspace.baseSha ?? o.workspace.sha; // states from before the K7 review: the sha ensure saw
-  const lg = git(dir, "log", "-z", "--format=%h %B", `${base}..HEAD`);
-  if (!ok(lg)) { unstage(); return { error: why(lg, `git log ${base.slice(0, 7)}..HEAD in ${dir}`) }; }
-  const bad = lg.stdout.split("\0").filter((m) => DEPLOY.test(m)).map((m) => m.split(" ")[0]);
-  if (bad.length) { unstage(); return { refused: true, error: `commit ${bad.join(", ")} on ${o.workspace.branch} names [deploy] in its message (a deploy needs the founder's approval): rewrite or drop it in ${dir} (the kernel never rewrites an agent's commits)` }; }
-  const all = git(dir, "diff", "--cached", "--name-only", "--no-renames", "-z", base); // a rename lists both paths: moving a protected file away is caught
-  if (!ok(all)) { unstage(); return { error: why(all, `git diff --cached ${base.slice(0, 7)} in ${dir}`) }; }
-  const has = git(dir, "ls-tree", "--name-only", base, "--", c.protectedPaths);
-  if (!ok(has)) { unstage(); return { error: why(has, `git ls-tree ${base.slice(0, 7)}`) }; }
+  const ls = git(dir, "ls-tree", "--name-only", base, "--", c.protectedPaths);
+  if (!ok(ls)) { unstage(); return { error: why(ls, `git ls-tree ${base.slice(0, 7)}`) }; }
   let globs = [];
-  if (has.stdout.trim()) {
+  if (ls.stdout.trim()) {
     const t = git(dir, "show", `${base}:${c.protectedPaths}`);
     if (!ok(t)) { unstage(); return { error: why(t, `git show ${c.protectedPaths}`) }; }
     globs = globsOf(t.stdout).map(globRe);
   }
-  const hit = all.stdout.split("\0").filter(Boolean).filter((f) => globs.some((g) => g.test(f)));
-  if (hit.length) { unstage(); return { refused: true, error: `the order's branch would change protected paths ${hit.join(", ")} since its base ${base.slice(0, 7)} (${c.protectedPaths}: only a ratified amendment changes them): undo the change in ${dir}, in the work tree or in the commit that made it` }; }
+  // K7 review: only the kernel's message and the staged diff were checked, so a builder's own `git commit -qam
+  // "[deploy] mine"` (a protected file edited with sed: the K10 guard denies only Write/Edit) sat under the kernel's
+  // clean commit on the branch that is merged later. Now every commit on the branch since the order's base, and the
+  // whole change from that base (commits plus index), are checked, whether or not this stage staged anything.
+  // K7 review 2: --first-parent: commits that came in through an agent's `git merge main` (main's own [deploy] release
+  // commits) held the order for good, and main's history cannot be rewritten; vercel.json builds on the tip's message
+  // only, and a merge commit's own message is still checked
+  const scan = () => {
+    const lg = git(dir, "log", "-z", "--first-parent", "--format=%h %B", `${base}..HEAD`);
+    if (!ok(lg)) return { error: why(lg, `git log ${base.slice(0, 7)}..HEAD in ${dir}`) };
+    const bad = lg.stdout.split("\0").filter((m) => DEPLOY.test(m)).map((m) => m.split(" ")[0]);
+    if (bad.length) return { refused: true, error: `commit ${bad.join(", ")} on ${o.workspace.branch} names [deploy] in its message (a deploy needs the founder's approval): rewrite or drop it in ${dir} (the kernel never rewrites an agent's commits; a fast-forward merge puts the other branch's commits on the branch: merge with --no-ff)` };
+    const all = git(dir, "diff", "--cached", "--name-only", "--no-renames", "-z", base); // a rename lists both paths: moving a protected file away is caught
+    if (!ok(all)) return { error: why(all, `git diff --cached ${base.slice(0, 7)} in ${dir}`) };
+    const hit = all.stdout.split("\0").filter(Boolean).filter((f) => globs.some((g) => g.test(f)));
+    if (hit.length) return { refused: true, error: `the order's branch would change protected paths ${hit.join(", ")} since its base ${base.slice(0, 7)} (${c.protectedPaths}: only a ratified amendment changes them): undo the change in ${dir}, in the work tree or in the commit that made it` };
+    return null;
+  };
+  const before = scan();
+  if (before) { unstage(); return before; }
   const st = git(dir, "diff", "--cached", "--name-only", "--no-renames", "-z"); // this stage's own change
   if (!ok(st)) { unstage(); return { error: why(st, `git diff --cached in ${dir}`) }; }
   const files = st.stdout.split("\0").filter(Boolean);
@@ -255,12 +268,27 @@ export function commit(co, o, stage) {
   const id = git(dir, "config", "user.email").stdout?.trim() ? [] : ["-c", "user.name=System 3 Meta", "-c", "user.email=meta@localhost"];
   const r = git(dir, ...id, "commit", "-q", "-m", msg);
   if (!ok(r)) { unstage(); return { error: why(r, `git commit in ${dir}`) }; }
+  // K7 review 2: the checks ran on the index before `git commit`, and the commit runs the repo's hooks: a hooksPath set
+  // from Bash (the K10 guard does not cover it) let a pre-commit hook `git add` tests/qa/contract.md and a
+  // prepare-commit-msg hook append [deploy], and the commit after ship (the one merged) was never checked again. So the
+  // commit the kernel made is checked as made; on a hit it is undone (reset --soft to the head before it: only the
+  // kernel's commit, and any its hooks made) and the index put back
+  const after = scan();
+  if (after) {
+    const back = git(dir, "reset", "-q", "--soft", out(pre)[0]);
+    if (ok(back)) unstage();
+    return { ...after, error: `the kernel's commit as the repo's hooks made it (check core.hooksPath and .git/hooks): ${after.error}${ok(back) ? "; the commit was undone" : `; ${why(back, `git reset --soft ${out(pre)[0].slice(0, 7)}`)}: undo it by hand`}` };
+  }
   const sha = git(dir, "rev-parse", "HEAD");
   if (!ok(sha)) return { error: why(sha, `git rev-parse HEAD in ${dir}`) };
   o.workspace.head = out(sha)[0];
   co.log.add({ type: "commit", order: o.id, stage, branch: o.workspace.branch, sha: o.workspace.head, files: files.length, message: msg });
   return { sha: o.workspace.head, files };
 }
+
+/** Is order `o`'s commit still to be made? Only while the spec commits (K7 review 2: a pendingCommit left from a spec
+ *  whose workspace.commit was later turned off kept settled() false, and `serve` ran to --max-min). */
+export const commitDue = (co, o) => !!(o.workspace?.pendingCommit && o.workspace.dir && commitOf(specOf(co)));
 
 /** engine.advance's hook (state.mjs make): commit after `stage`; a failure or refusal holds the order (hold) and
  *  keeps the stage in o.workspace.pendingCommit, which the tick commits again after a retry. Never throws: the stage
