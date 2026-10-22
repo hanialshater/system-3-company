@@ -27,28 +27,40 @@
       "text": "In a ring of 1,000 where each person knows the 5 nearest on each side (10 friends), 10 people are exactly 1, 2 and 3 steps away, 31 are within 3 steps counting you, and the farthest person is 100 steps away. The stage table and the reveal quote 10 at step 2, 10 at step 3 and 31 within 3.",
       "support": "derivation",
       "source": "Node breadth-first search from person 0 on the 1,000-ring (RING_DIST in Demo.tsx, same rule as check N10 in company/domains/briefs/checks/math-ncm-wave-j-check.mjs). Builder ran N10 2026-10-22: ring {d1:10,d2:10,d3:10,within3:31,maxDist:100}. By hand: people at distance k are ±(5k−4)…±5k, 10 per step.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "Fact-check 2026-10-22: independent BFS in node gives 10/10/10 at steps 1-3, 31 within 3, max distance 100; stage table, ring colouring (RING_DIST) and reveal match.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     },
     {
       "id": "math.friends-of-friends-overlap.c2",
       "text": "With no shared friends (each of your 10 friends brings 9 new people, its 10 friends minus you, and nobody is reached twice: a tree out to 3 steps), 90 people are 2 steps away and 810 are 3 steps away (911 within 3 steps, counting you).",
       "support": "derivation",
       "source": "Arithmetic on a tree of degree 10 to depth 3: 10, 10 × 9 = 90, 90 × 9 = 810; 1 + 10 + 90 + 810 = 911. Check N10 tree {d1:10,d2:90,d3:810,within3:911}; treeAt() in Demo.tsx. Condition is 'no shared friends' (no person reached by two paths within 3 steps), not merely 'no two friends know each other' (K10,10 is triangle-free yet has 9 at step 2).",
-      "status": "unverified"
+      "status": "verified",
+      "note": "Fact-check 2026-10-22: 10, 10x9=90, 90x9=810, 1+10+90+810=911; Tree draws 10/90/810 nodes; table and reveal match.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     },
     {
       "id": "math.friends-of-friends-overlap.c3",
       "text": "In the village, the ringed friend (3 places to your right) knows 10 people: you, 6 of your own friends and only 3 new people.",
       "support": "derivation",
       "source": "Friend +3 knows −2…+8 except itself: you (0); your friends −2, −1, +1, +2, +4, +5 (6); new +6, +7, +8 (3). Demo.tsx ringedLinks.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "Fact-check 2026-10-22: friend +3 knows -2..+8 minus itself: you, 6 of your friends (-2,-1,+1,+2,+4,+5), 3 new (+6,+7,+8); ringedLinks draws exactly these 10 arcs.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     },
     {
       "id": "math.friends-of-friends-overlap.c4",
       "text": "Multiplying friends by friends (10 × 9) assumes no shared friends; when your friends know each other, some friends of friends are already your friends, so the count two steps out is smaller.",
       "support": "source",
       "source": "Easley and Kleinberg, Networks, Crowds, and Markets (2010), ch. 20, The Small-World Phenomenon (Fig. 20.1: triadic closure slows the growth of friends-of-friends counts; section unconfirmed). Needs a human source check with the book (PDFs blocked by the proxy). Holds in this stage by c1 and c2.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "Fact-check 2026-10-22: E&K ch. 20 (The Small-World Phenomenon), Fig. 20.1(b) triadic closure reduces the growth rate; text says the 10,000-in-two-steps figure assumes each friend links to 100 new people and that many of your friends know each other, limiting reach. Confirmed via search extracts of the Cornell ch. 20 PDF (direct fetch blocked by proxy). Section number still unconfirmed. Quantifier holds: with exactly 10 friends each, any friend-friend link cuts the step-2 count below 90.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     }
   ],
   "confidence": "",
