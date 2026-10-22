@@ -13,30 +13,53 @@
 //   lane                      the lane's manager
 //   decision                  the asker's manager (reportsTo)
 //   info                      not an ask: post it to a channel or the digest
-import { Refused } from "./lib.mjs";
+// M6 prep review: a builder of several lanes asks in the lane of the order it works on (workLane): its budget and lane
+// asks go to that lane's manager, and so does a decision ask from outside its home lane (a cs lesson's escalation went
+// to the math manager it reports to).
+import { Refused, lanesOf } from "./lib.mjs";
 import { create, update, comment, get } from "./tracker.mjs";
 
 const refuse = (m) => { throw new Refused(`HARD: ${m}`); };
 export const ASK_KINDS = ["deploy", "org-change", "budget", "cross-lane", "priority", "lane", "decision"];
 const RANK = { founder: 0, "chief-of-staff": 1, manager: 2, builder: 3, checker: 3, release: 3, contractor: 4 };
 
-export function route(co, { by, kind, amount = 0, lane = null }) {
+/** M6 prep review: the lane `asker` asks in: its own lane, or for a role of several lanes the lane of the order the ask
+ *  is about (`order`, which must be its own), else of the orders its running runs work on (those of its session, with
+ *  the session's launch id `launch`); two lanes at once need --order; none at all, its home lane. */
+export function workLane(co, asker, { order = null, launch = null } = {}) {
+  const ls = lanesOf(asker);
+  if (ls.length <= 1) return asker.lane ?? null;
+  const laneOf = (o) => { const l = co.org.role(o?.manager)?.lane; return ls.includes(l) ? l : null; };
+  if (order != null) {
+    const o = co.engine.orders.get(String(order));
+    if (!o) refuse(`no order ${order}`);
+    if (o.builder !== asker.id) refuse(`${o.id} is not ${asker.id}'s order (its builder is ${o.builder ?? "none yet"}): name your own order`);
+    return laneOf(o) ?? asker.lane ?? null;
+  }
+  const mine = new Set([...co.rooms.sessions.values()].filter((s) => s.role === asker.id && s.open && (!launch || s.launch === launch)).map((s) => s.id));
+  const lanes = new Set([...co.rooms.runs.values()].filter((x) => x.state === "running" && x.role === asker.id && mine.has(x.session)).map((x) => laneOf(co.engine.orders.get(x.order))).filter((l) => l != null));
+  if (lanes.size > 1) refuse(`${asker.id} works orders in lanes ${[...lanes].join(" and ")} at once: name the order the ask is about (--order=<O>)`);
+  return lanes.size ? [...lanes][0] : asker.lane ?? null;
+}
+
+export function route(co, { by, kind, amount = 0, lane = null, order = null, launch = null }) {
   const asker = co.org.role(by);
   if (!asker?.active) refuse(`no active role ${by}`);
   const role = (lvl) => co.org.active().find((r) => r.level === lvl)?.id;
   const laneMgr = (l) => co.org.lanePOC(l)?.id;
   if (kind === "info") refuse("info is not an ask: post it to a channel or put it in the digest");
   if (!ASK_KINDS.includes(kind)) refuse(`ask kind is ${ASK_KINDS.join(", ")} (or info, which is not an ask)`);
+  const wl = ["budget", "lane", "decision"].includes(kind) ? workLane(co, asker, { order, launch }) : asker.lane;
   let to;
   if (kind === "deploy" || kind === "org-change") to = role("founder");
   else if (kind === "budget") {
     if (amount > co.engine.limits["chief-of-staff"]) to = role("founder");
     else if (amount > co.engine.limits.manager) to = role("chief-of-staff");
-    else to = asker.level === "manager" ? null : laneMgr(asker.lane) ?? role("chief-of-staff");
+    else to = asker.level === "manager" ? null : laneMgr(wl) ?? role("chief-of-staff");
     if (!to) refuse(`${amount} is within your own limit (${co.engine.limits.manager}): decide it yourself`);
   } else if (kind === "cross-lane" || kind === "priority") to = role("chief-of-staff");
-  else if (kind === "lane") to = laneMgr(lane ?? asker.lane);
-  else if (kind === "decision") to = asker.reportsTo;
+  else if (kind === "lane") to = laneMgr(lane ?? wl);
+  else if (kind === "decision") to = wl !== asker.lane ? laneMgr(wl) ?? asker.reportsTo : asker.reportsTo;
   if (!to) refuse(`no one to decide a ${kind} ask`);
   if (to === by) refuse(`a ${kind} ask from ${by} is ${by}'s own to decide`);
   return to;
@@ -66,7 +89,7 @@ export function recommends(options, rec) {
   });
 }
 
-export function raise(co, { by, kind, title, why, due, to = null, amount = 0, lane = null, escalate = null, goal = null, options = null, recommend = null, decider: forced = null }) {
+export function raise(co, { by, kind, title, why, due, to = null, amount = 0, lane = null, escalate = null, goal = null, options = null, recommend = null, decider: forced = null, order = null, launch = null }) {
   if (!title || !why || !due) refuse("an ask states what, why and by when");
   // K14 (plan 2026-10-21 §M5): the founder inbox gives every item its options and a recommendation
   const opts = parseOptions(options);
@@ -74,7 +97,7 @@ export function raise(co, { by, kind, title, why, due, to = null, amount = 0, la
   if (recommend != null && opts && !recommends(opts, recommend)) refuse(`--recommend "${recommend.trim().slice(0, 80)}" is not one of the options (${opts.join(" | ")}): recommend one of them, by its label or in full`);
   // `decider` is code's own routing (budgetDecider: a budget ask on an order), never a CLI flag
   if (forced && !co.org.role(by)?.active) refuse(`no active role ${by}`);
-  const decider = forced ?? route(co, { by, kind, amount, lane });
+  const decider = forced ?? route(co, { by, kind, amount, lane, order, launch });
   let assignee = decider, rerouted = false, escalated = false;
   if (to && to !== decider) {
     const higher = (RANK[co.org.role(to)?.level] ?? 9) < (RANK[co.org.role(decider).level] ?? 9);
@@ -198,7 +221,7 @@ export function raiseParkAsk(co, o, { reason, findings = [], budget = null }) {
   if (budget) return raiseBudgetParkAsk(co, o, { reason, findings, budget });
   const lines = findings.map((f, i) => `${i + 1}. ${f.stage} (${f.verdict} by ${f.by}): ${f.findings}`);
   const why = [`${o.id}${o.title ? ` (${o.title})` : ""} is parked at ${o.parked.stage}: ${reason}.`, `Findings so far (${findings.length}):`, ...(lines.length ? lines : ["(none recorded)"]),
-    `Decide: \`node meta.mjs order resume ${o.id} --by=<you> --reason='…' [--extra-loops=<n>]\` (back to ${o.parked.stage}${o.parked.loopCap ? ", one more loop by default" : ""}) or \`node meta.mjs order cancel ${o.id} --by=<you> --reason='…'\`. Either answers this ask.`].join("\n");
+    `Decide: \`node meta.mjs order resume ${o.id} --by=<you> --reason='…' [--extra-loops=<n>]\` (back to ${o.parked.stage}${o.parked.loopCap ? ", one more loop by default" : ""}; \`--to=<an earlier stage>\` sends it back further, a loop: a merge conflict is rebuilt at build) or \`node meta.mjs order cancel ${o.id} --by=<you> --reason='…'\`. Either answers this ask.`].join("\n");
   const base = { by: o.manager, kind: "decision", title: `Parked ${o.id}: resume or cancel?`, why, due: co.engine.clock.now() + 24 * 60 };
   let it = null;
   for (const extra of [o.orderer && o.orderer !== o.manager ? { to: o.orderer, escalate: `${o.parked.loopCap ? "loop cap" : "parked"}: the orderer decides whether its order goes on` } : null, {}].filter(Boolean)) {

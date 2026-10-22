@@ -49,7 +49,7 @@
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { absCmds, HERE, LIVE, STATE, load, save, withLock, runTests, runTest1, runCmdCheck, rep, CHECK_KEYS, interpolate, sessionRole, briefVars } from "./state.mjs";
+import { absCmds, HERE, LIVE, STATE, load, save, withLock, runTests, runTest1, runCmdCheck, rep, CHECK_KEYS, interpolate, sessionRole, detachedProcess, briefVars } from "./state.mjs";
 import { syncOrders } from "./tracker.mjs";
 import { sweepGoals } from "./goals.mjs";
 import { expireContracts } from "./contractor.mjs";
@@ -376,11 +376,21 @@ export function plan(co, { batchLater: batchDefault = 3, cap: capDefault = 4 } =
     // the lane's policy, when it sets them, overrides the role's own (spec drainCap: the reviewers' batches) and the
     // command-line defaults
     const r = org.role(role);
-    const k = co.engine.policies.get(r?.lane)?.active ? co.engine.policies.get(r.lane).versions[co.engine.policies.get(r.lane).active - 1].knobs : {};
+    // M6 prep review: a role of several lanes reads the knobs of the lane its first item's order is in (laneOf), not
+    // only its home lane's
+    const kl = laneOf(role, msgs[0]), pl = co.engine.policies.get(kl);
+    const k = pl?.active ? pl.versions[pl.active - 1].knobs : {};
     const batchLater = k.batchLater ?? batchDefault, cap = k.drainCap ?? r?.drainCap ?? capDefault;
     const now = msgs.filter((m) => m.priority === "now");
     // M5: a lane at its policy's session cap (maxSessions) gets no new session, `now` items included; K17: nor a level at its cap
-    for (const m of now) { if (laneFull(role, m) || levelFull(role)) return; out.push({ role, why: "now: a fresh session at once", msgs: [m.id], cap: 1 }); bump(role, m); }
+    // M6 prep review: a role of several sessions spends one of them per `now` item (the next/later loop below counted
+    // its free sessions without these, so sessions:3 was planned 6 at once)
+    for (const m of now) {
+      if (laneFull(role, m) || levelFull(role)) return;
+      if (many(role) && (liveOf.get(role) ?? 0) >= r.sessions) break;
+      out.push({ role, why: many(role) ? `now: a fresh session at once (session ${(liveOf.get(role) ?? 0) + 1} of ${r.sessions})` : "now: a fresh session at once", msgs: [m.id], cap: 1 });
+      bump(role, m); if (many(role)) liveOf.set(role, (liveOf.get(role) ?? 0) + 1);
+    }
     if (!many(role) && running.has(role)) return; // its running session drains next and later items itself
     const next = msgs.filter((m) => m.priority === "next");
     const later = msgs.filter((m) => m.priority === "later");
@@ -657,8 +667,11 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   // M6 prep (the hole the M5 review left open): `launched` writes launch events (a reservation the planner honours, and
   // the launch K13 charges by) and `usage` writes harness usage: both are the orchestrator's reports, as meta.mjs
   // `launch finished` is the launcher's. In an agent session (state.mjs sessionRole: the launcher's META_ROLE on the
-  // process's ancestry) they are refused, exit 1, with a refuse event; the launcher's guard denies the spelling too
-  const me = ["launched", "usage"].includes(cmd) ? sessionRole() : null;
+  // process's ancestry) they are refused, exit 1, with a refuse event; the launcher's guard denies the spelling too.
+  // M6 prep review: a process re-parented to init (setsid -f, a double fork) has no ancestry to read, and one that also
+  // dropped META_ROLE read as the orchestrator: such a detached process is refused as of unknown session (the
+  // orchestrator runs these from its own shell; a subreaper other than init is not detected)
+  const me = ["launched", "usage"].includes(cmd) ? sessionRole() ?? (detachedProcess() ? "detached: a process re-parented to init, its session unknown" : null) : null;
   if (me != null) {
     const msg = `supervisor.mjs ${cmd} is the orchestrator's report: refused in an agent session (${me})`;
     try { withLock(() => { const co = load(); co.log.add({ type: "refuse", rule: "hard", msg, by: me, argv: argv.join(" ") }); save(co); }); } catch {} // no state: nothing to record it in

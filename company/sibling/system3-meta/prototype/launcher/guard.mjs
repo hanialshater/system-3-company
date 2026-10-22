@@ -56,7 +56,10 @@ export const DENY_BASH = /\bgit\s+(push|send-pack)(?![\w-])|\bnpm\s+run\s+deploy
 const READERS = ["grep", "egrep", "fgrep", "rg"]; // commands whose arguments are patterns and files, never run
 const PKG_VALUE_OPTS = { npm: ["--prefix", "-w", "--workspace", "--userconfig", "--cache"], pnpm: ["-C", "--dir", "--filter", "-F", "--workspace-dir"], yarn: ["--cwd"], bun: ["--cwd", "--filter", "-F"] };
 const NODE_VALUE_OPTS = ["-r", "--require", "--import", "--loader", "--experimental-loader", "-e", "--eval", "-p", "--print", "--input-type", "--env-file", "--conditions", "-C", "--title", "--disable-warning", "--watch-path", "--run", "--inspect-port", "--test-name-pattern", "--test-reporter", "--test-reporter-destination", "--redirect-warnings", "--icu-data-dir", "--openssl-config", "--localstorage-file", "--experimental-config-file", "--env-file-if-exists", "--stack-size", "--max-old-space-size"];
-const NODE_SCRIPT_DENY = (p) => base(p) === "claim.mjs" ? "claim.mjs" : base(p) === "deploy.mjs" ? "deploy.mjs" : /(^|\/)vercel(\/|(\.js)?$)/.test(p) ? "vercel" : null;
+// M6 prep review: integrate.mjs (the merge into the run's integration branch) and inbox-export.mjs (the chief of
+// staff's code step, --commit) are code's stages, run by the supervisor: never an agent's
+const CODE_ONLY = ["integrate.mjs", "inbox-export.mjs"];
+const NODE_SCRIPT_DENY = (p) => base(p) === "claim.mjs" ? "claim.mjs" : base(p) === "deploy.mjs" ? "deploy.mjs" : CODE_ONLY.includes(base(p)) ? `${base(p)} (a code stage)` : /(^|\/)vercel(\/|(\.js)?$)/.test(p) ? "vercel" : null;
 const GIT_VALUE_OPTS = ["-C", "-c", "--git-dir", "--work-tree", "--namespace", "--super-prefix", "--config-env", "--exec-path", "--list-cmds", "--attr-source"];
 // git config keys that run a command or alias one (workspace.mjs TRAP_KEY's list), as `-c k=v`, `--config-env k=E`,
 // GIT_CONFIG_KEY_n=k / GIT_CONFIG_PARAMETERS, or `git config k v`
@@ -66,7 +69,8 @@ const opaque = (x) => x != null && (x.includes(SUBST) || x.includes("$"));
 const PKG_RUN = ["run", "run-script", "rum", "urn"], PKG_EXEC = ["exec", "dlx", "x"];
 const PKG_INSTALL = ["add", "install", "i", "ci", "remove", "rm", "uninstall", "un", "update", "up", "upgrade", "info", "view", "why", "outdated", "list", "ls", "link", "unlink", "pack", "publish", "init", "create", "config", "set", "get", "audit", "help"];
 const GIT_COMMITS = ["commit", "commit-tree", "merge", "tag", "notes", "revert", "cherry-pick", "am", "rebase"];
-const WRAPPERS = ["sudo", "env", "command", "exec", "builtin", "time", "nice", "nohup", "xargs", "timeout", "stdbuf", "ionice", "corepack"];
+// M6 prep review: setsid and unshare too (`setsid -f node …/supervisor.mjs launched` was judged as the command setsid)
+const WRAPPERS = ["sudo", "env", "command", "exec", "builtin", "time", "nice", "nohup", "xargs", "timeout", "stdbuf", "ionice", "corepack", "setsid", "unshare"];
 const KEYWORDS = ["{", "}", "!", "if", "then", "else", "elif", "do", "while", "until"]; // `{ git push; }`, `if …; then git push`
 const SHELLS = ["bash", "sh", "zsh", "dash", "ksh"];
 const PKG = ["npm", "pnpm", "yarn", "bun"], RUNNERS = ["npx", "pnpx", "bunx"];
@@ -103,14 +107,20 @@ function pipedOn(t) {
  *  A non-data heredoc (fed to a shell, an interpreter, a pipe) is in docs too, its body left in `s` as it was. */
 export function heredocs(s) {
   s = String(s ?? "");
-  let out = "", q = null, seg = 0;
+  let out = "", q = null, seg = 0, start = true; // start: the next character begins a word (a `#` there is a comment)
   const pending = [], docs = [];
   for (let i = 0; i < s.length; i++) {
-    const c = s[i];
+    const c = s[i], atStart = start;
+    start = false;
     if (q === "'") { out += c; if (c === "'") q = null; continue; }
     if (q === '"') { out += c; if (c === "\\" && i + 1 < s.length) out += s[++i]; else if (c === '"') q = null; continue; }
     if (c === "\\" && i + 1 < s.length) { out += c + s[++i]; continue; }
     if (c === "'" || c === '"') { q = c; out += c; continue; }
+    // M6 prep review: an unquoted `#` that begins a word comments out the rest of its line, as the shell reads it (a
+    // `<<EOF` there opens no heredoc: `cat > a # <<EOF` then `git push` ran as a command while the guard dropped it
+    // as the heredoc's body). The comment is kept as text, for shellCommands, which drops it the same way
+    if (c === "#" && atStart) { const nl = s.indexOf("\n", i), e = nl < 0 ? s.length : nl; out += s.slice(i, e); i = e - 1; continue; }
+    if (/\s/.test(c) || ";&|()<>".includes(c)) start = true;
     if (c === "<" && s[i + 1] === "<" && s[i + 2] === "<") { out += "<<<"; i += 2; continue; } // a here-string: a word, not a body
     if (c === "<" && s[i + 1] === "<") {
       let j = i + 2; const strip = s[j] === "-"; if (strip) j++;
@@ -174,6 +184,9 @@ export function shellCommands(s) {
     const c = s[i];
     if (q === "'") { if (c === "'") q = null; else w += c; continue; }
     if (q === '"') { if (c === '"') q = null; else if (c === "\\" && i + 1 < s.length) w += s[++i]; else w += c; continue; }
+    // M6 prep review: a comment (an unquoted `#` beginning a word) to the end of its line, quotes in it included (a `'`
+    // there opened a quote that swallowed the commands on the next lines)
+    if (c === "#" && w == null) { const nl = s.indexOf("\n", i); i = (nl < 0 ? s.length : nl) - 1; continue; }
     if (c === "$" && s[i + 1] === "'") continue; // $'push' (ANSI-C quoting) is the word push: escapes are not decoded
     if (c === "'" || c === '"') { q = c; w ??= ""; continue; }
     if (c === "\\" && i + 1 < s.length) { if (s[i + 1] !== "\n") w = (w ?? "") + s[i + 1]; i++; continue; }
@@ -232,8 +245,12 @@ function commandDenial(words, line, depth, ctx = {}) {
   const w = words.slice(headOf(words)), cmd = bare(w[0]);
   // the environment cleared for what follows (`env -i`, `env -`, --ignore-environment): META_ROLE with it
   for (let k = 0; k < words.length - w.length; k++) if (base(words[k]) === "env") for (let q = k + 1; q < words.length - w.length && (words[q].startsWith("-") || /^[A-Za-z_]\w*=/.test(words[q])); q++) if (/^(-|-[a-zA-Z]*i[a-zA-Z]*|--ignore-environment)$/.test(words[q])) return "env -i";
+  // M6 prep review: `exec -c` runs its command with an empty environment, as env -i
+  for (let k = 0; k < words.length - w.length; k++) if (base(words[k]) === "exec") for (let q = k + 1; q < words.length - w.length && words[q].startsWith("-"); q++) if (/^-[a-z]*c/.test(words[q])) return "exec -c";
   if (!cmd) return null;
   if (opaque(w[0])) return "<a command the guard cannot read>";
+  // M6 prep review: unsetting the session's variables (`unset ${!META_R*}`, a loop over compgen) is as env -i
+  if ((cmd === "unset" || (cmd === "export" && w.includes("-n"))) && w.slice(1).some((x) => opaque(x) || /^META_/.test(x))) return `${cmd} <the session's variables>`;
   const sub = (from = 1, valueOpts = []) => { let j = from; while (j < w.length && w[j].startsWith("-")) j += valueOpts.includes(w[j]) ? 2 : 1; return j; };
   if (SHELLS.includes(cmd)) { const j = w.findIndex((x, k) => k > 0 && /^-[a-z]*c[a-z]*$/.test(x)); return j > 0 && w[j + 1] != null ? bashDenial(w[j + 1], depth + 1, ctx) : null; }
   if (cmd === "eval") return bashDenial(w.slice(1).join(" "), depth + 1, ctx);
@@ -282,6 +299,8 @@ function commandDenial(words, line, depth, ctx = {}) {
       if (["-r", "--require", "--import", "--loader", "--experimental-loader"].includes(o)) { const d = NODE_SCRIPT_DENY(v); if (d) return d; }
       if (["-e", "--eval", "-p", "--print"].includes(o)) { const m = /claim\.mjs|deploy\.mjs|(^|[^\w.-])vercel\//.exec(v); if (m) return m[0].replace(/^[^\w]/, ""); }
     }
+    // M6 prep review: a script named through a variable (`x=supervisor; node /k/$x.mjs launched`) cannot be read
+    if (cmd === "node" && opaque(script) && !w.slice(1, at).some((x) => /^(-e|--eval|-p|--print)(=|$)/.test(x))) return "node <a script the guard cannot read>";
     const d = NODE_SCRIPT_DENY(script);
     if (d) return d;
     if (base(script) === "company.mjs" && rest.includes("publish")) return "company.mjs … publish";
@@ -324,6 +343,8 @@ function commandDenial(words, line, depth, ctx = {}) {
 export function bashDenial(c, depth = 0, ctx = {}) {
   c = String(c ?? "");
   if (/META_ROLE/.test(c)) return "META_ROLE"; // the session's identity (state.mjs sessionRole) is the launcher's to set
+  // M6 prep review: an indirect expansion names variables by prefix (`unset ${!META_R*}` named META_ROLE unspelled)
+  if (/\$\{!/.test(c)) return "<an indirect expansion the guard cannot read>";
   const { cmds, subs, docs } = shellCommands(c);
   // the raw backstop over the line's words, less a search command's (substitutions are judged on their own below)
   const m = DENY_BASH.exec(cmds.filter((x) => !isReader(x)).map((x) => x.join(" ")).join("\n"));

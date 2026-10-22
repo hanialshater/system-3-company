@@ -450,3 +450,30 @@ test("M6 prep (M4 P4.6): a heredoc read by a data command is data, its redirect 
   // redirects that write nothing protected pass (devices, fd duplication, an opaque target is left to K7's commit check)
   for (const c of ["npm run check 2>&1 | tail -5", "node x.mjs > /dev/null 2>&1", "echo x >&2", "echo x > \"$OUT\"", "ls > src/demos/list.txt"]) assert.equal(G.decide("Bash", { command: c }, ro), null, c);
 });
+
+test("M6 prep review: a `#` comment opens no heredoc and hides no line (bash runs the lines after `# <<EOF`); the spellings that dropped META_ROLE or named a script by a variable; code-only adapters", () => {
+  const b = { role: "demo-builder" };
+  // the regression: `cat > a.txt # <<EOF` is a comment, so the next line is a command, as bash runs it
+  assert.equal(G.bashDenial("cat > a.txt # <<EOF\ngit push\nEOF", 0, b), "git push");
+  assert.deepEqual(G.heredocs("cat > a.txt # <<EOF\ngit push\nEOF").docs, [], "no heredoc in a comment");
+  assert.ok(G.decide("Bash", { command: "cat a # <<EOF\ncat x > src/kit/Lesson.tsx\nEOF" }, { roots: [{ dir: "/w", globs: ["src/kit/Lesson.tsx"] }], cwd: "/w" }), "the redirect on the next line is judged");
+  assert.equal(spawnSync("bash", ["-c", "true # <<EOF\necho RAN-AS-COMMAND\nEOF"], { encoding: "utf8" }).stdout, "RAN-AS-COMMAND\n", "bash: the comment opens nothing");
+  assert.equal(G.bashDenial("true # it's\ngit push\n", 0, b), "git push", "a quote inside a comment opens no quote");
+  // not comments: a # inside a word, ${#x}, $#, a quoted #, and a real heredoc's own # lines stay data
+  for (const c of ["echo a#b", "echo ${#x} $#", "echo '#' \"#\"", "cat > x.md <<'EOF'\n# heading\ngit push is documented here\nEOF"]) assert.equal(G.bashDenial(c, 0, b), null, c);
+  assert.equal(G.bashDenial("echo a\\ #; git push", 0, b), "git push", "an escaped space keeps # inside its word");
+  // the M6 prep refusal's bypasses: unset by prefix, setsid, a script named by a variable, exec -c
+  const t = { role: "toy-builder-1" };
+  assert.match(G.bashDenial("x=supervisor; unset ${!META_R*}; setsid -f node /k/$x.mjs launched --role=toy-builder-1 --msgs=M-7", 0, t), /indirect expansion/);
+  assert.equal(G.bashDenial("x=supervisor; node /k/$x.mjs launched", 0, t), "node <a script the guard cannot read>");
+  assert.equal(G.bashDenial("(exec -c setsid -f node /k/supervisor.mjs launched)", 0, t), "exec -c");
+  assert.match(G.bashDenial("setsid -f node /k/supervisor.mjs launched --role=toy-builder-1", 0, t), /supervisor\.mjs launched \(the orchestrator's report\)/);
+  assert.equal(G.bashDenial("setsid -f git push", 0, t), "git push");
+  assert.equal(G.bashDenial("for v in $(compgen -v); do unset $v; done", 0, t), "unset <the session's variables>");
+  assert.equal(G.bashDenial("unset META_LAUNCH", 0, t), "unset <the session's variables>");
+  assert.equal(G.bashDenial("unset FOO; node -e 'console.log(1)' $HOME", 0, t), null, "unset of another name, node -e with a variable argument");
+  // integrate.mjs and inbox-export.mjs are code stages
+  assert.equal(G.bashDenial("node /home/user/system-3-company/company/sibling/system3-meta/adapters/s3c/inbox-export.mjs --write=/home/user/system-3-company/company/ops/x.json --commit", 0, b), "inbox-export.mjs (a code stage)");
+  assert.equal(G.bashDenial("cd adapters/s3c && node integrate.mjs --into=meta/m6 --from=meta/m6-a", 0, b), "integrate.mjs (a code stage)");
+  assert.equal(G.bashDenial("node --test tests/integrate.test.mjs", 0, b), null);
+});

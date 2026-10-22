@@ -32,7 +32,8 @@ export const WS_KINDS = ["git-worktree"];
 // coexist with meta/m4/<task> ("cannot lock ref"), so every order of run m4 was a workspace stage-error
 export const DEFAULT_BRANCH = "meta/${run}-${task}";
 const BRANCH_VARS = ["run", "task", "slug", "n", "port"], ENV_VARS = [...BRANCH_VARS, "workdir"];
-// git runs under the state lock (withLock breaks a lock older than 30 s, state.mjs). K5 review: a 25 s timeout per call
+// git runs under the state lock (withLock breaks a dead holder's lock older than 30 s, state.mjs; a live holder's makes other
+// writers fail after 10 s, M6 prep review). K5 review: a 25 s timeout per call
 // let ensure's ~8 calls pass 30 s, so the budget is for the whole ensure, plus a fixed one for undoing a failed add
 const ENSURE_BUDGET_MS = 20_000, CLEANUP_MS = 5_000;
 const VAR = /\$\{(run|task|slug|n|port|workdir|brief_file)\}/g; // M6 prep: brief_file (state.mjs briefVars) for packs
@@ -313,7 +314,8 @@ export function commit(co, o, stage) {
   const st = git(dir, "diff", "--no-ext-diff", "--no-textconv", "--cached", "--name-only", "--no-renames", "-z"); // this stage's own change
   if (!ok(st)) { unstage(); return { error: why(st, `git diff --cached in ${dir}`) }; }
   const files = st.stdout.split("\0").filter(Boolean);
-  if (!files.length) return { skipped: true };
+  // M6 prep review: nothing to commit, so the head the stage left is the branch's tip as it was signed (${head_sha})
+  if (!files.length) { o.workspace.head = out(pre)[0]; return { skipped: true }; }
   // the repo's own identity when it has one. M4 integrate: no hooks run (GIT_PINS core.hooksPath=/dev/null): a hook is
   // whatever the agent put there; the kernel's checks before and after are the rules
   const id = git(dir, "config", "user.email").stdout?.trim() ? [] : ["-c", "user.name=System 3 Meta", "-c", "user.email=meta@localhost"];

@@ -33,6 +33,9 @@ export function sessionRole({ env = process.env, proc = "/proc", pid = process.p
   }
   return role;
 }
+/** M6 prep review: whether this process was re-parented to init (its parent died or detached it: `setsid -f`, a double
+ *  fork), so sessionRole has no ancestry to read. */
+export const detachedProcess = ({ ppid = process.ppid } = {}) => ppid <= 1;
 export const STATE = path.join(LIVE, process.env.META_STATE || "state.json");
 // K10: with META_KERNEL_ABS set (launcher --workdir-from=order: the agent's cwd is the order's worktree, not the kernel),
 // briefs, packs and every meta.mjs/supervisor.mjs output name kernel commands by absolute path (K10 review: the held-order
@@ -110,6 +113,13 @@ export function load() {
   return co;
 }
 
+/** M6 prep review: whether the process that wrote a lock (its pid, the lock's content) is still running. */
+export function lockHolderAlive(text) {
+  const pid = Number(String(text ?? "").trim());
+  if (!Number.isInteger(pid) || pid <= 0) return false;
+  try { process.kill(pid, 0); return true; } catch (e) { return e.code === "EPERM"; }
+}
+export const LOCK_STALE_MS = 30_000, LOCK_HUNG_MS = 15 * 60_000;
 export function withLock(fn) {
   fs.mkdirSync(LIVE, { recursive: true });
   const until = Date.now() + 10_000;
@@ -117,8 +127,13 @@ export function withLock(fn) {
     try { fs.writeFileSync(LOCK, String(process.pid), { flag: "wx" }); break; }
     catch (e) {
       if (e.code !== "EEXIST") throw e;
-      const age = Date.now() - fs.statSync(LOCK).mtimeMs;
-      if (age > 30_000) { fs.rmSync(LOCK, { force: true }); continue; } // a writer died holding it
+      let age = 0, text = "";
+      try { age = Date.now() - fs.statSync(LOCK).mtimeMs; text = fs.readFileSync(LOCK, "utf8"); } catch { continue; } // released meanwhile
+      // a writer died holding it. M6 prep review: only a dead one (the lock names its pid). A live holder's lock was broken
+      // at 30 s too, and a tick holds it longer (ship, the merge after it and the exports run under one hold): the
+      // writer that broke it saved (exit 0), then the tick's save overwrote that write, a silent lost update. Now
+      // that writer waits its 10 s and fails loudly; only a holder hung past LOCK_HUNG_MS loses its lock
+      if (age > LOCK_STALE_MS && (!lockHolderAlive(text) || age > LOCK_HUNG_MS)) { fs.rmSync(LOCK, { force: true }); continue; }
       if (Date.now() > until) throw new Error("state is locked by another process (10 s)");
       Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 50);
     }
@@ -335,14 +350,14 @@ export function validateCmd(c, { stages = null } = {}) {
 }
 /** ${slug}, ${task}, ${workdir}, ${live}, ${base_sha} (K12 post-checks: ${evidence}, ${verdict}, ${stage}) in a cmd string; slug is the order's slug if set (lessons), else its task. With a K5
  *  workspace also ${run}, ${n} and ${port} (o.workspace.vars: one vocabulary for workspace env, cmds and briefs, K5
- *  review); M5 review: ${order}, ${budget}, ${remaining}, ${ledger_project} (prepareCmd); M6 prep: ${branch}; a variable the order does not
+ *  review); M5 review: ${order}, ${budget}, ${remaining}, ${ledger_project} (prepareCmd); M6 prep: ${branch}; M6 prep review: ${head_sha}; a variable the order does not
  *  have stays as written. */
 /** M6 prep (M4: reviewers were 46% of spend; the fact-checker's pack listed all 51 brief files): the order's own brief
  *  file, read from its accept text (adapters/s3c/brief.mjs writes `brief company/domains/briefs/<f>.md:<a>-<b>` in the
  *  header line), as ${brief_file} for packs, briefs and cmds; an order with no such line has none (the template stays
  *  as written, and a glob of it matches nothing). */
 export const briefVars = (o) => { const m = /(?:^|[\s·])brief (company\/domains\/briefs\/[A-Za-z0-9._-]+\.md):\d+-\d+/m.exec(String(o?.accept ?? "")); return m ? { brief_file: m[1] } : {}; };
-export const interpolate = (s, vars) => s.replace(/\$\{(slug|task|workdir|run|n|port|evidence|verdict|stage|live|base_sha|order|budget|remaining|ledger_project|branch|brief_file)\}/g, (m, k) => (k in vars ? vars[k] ?? "" : m));
+export const interpolate = (s, vars) => s.replace(/\$\{(slug|task|workdir|run|n|port|evidence|verdict|stage|live|base_sha|order|budget|remaining|ledger_project|branch|head_sha|brief_file)\}/g, (m, k) => (k in vars ? vars[k] ?? "" : m));
 const dig = (x, p) => p.split(".").filter(Boolean).reduce((v, k) => (v == null ? undefined : k === "length" && (Array.isArray(v) || typeof v === "string") ? v.length : v[k]), x);
 // K1 audit: the last line that parses, not the last that looks like JSON ("[advisory] x" after the JSON was "not JSON")
 const parseJson = (t) => { try { return JSON.parse(t); } catch {} for (const l of t.trim().split("\n").reverse()) { if (!/^[[{]/.test(l.trim())) continue; try { return JSON.parse(l); } catch {} } return undefined; };
@@ -357,8 +372,10 @@ export function prepareCmd(o, s, extra = {}) {
   // new --ledger-project`: the company projects.json line it is charged to; unset, it stays as written), so a pre-check
   // such as ledger-gate.mjs gates each order's own project and tokens
   const own = { order: o.id ?? "", ...(Number.isFinite(o.budget) ? { budget: String(o.budget), remaining: String(Math.max(0, o.budget - (o.spent ?? 0))) } : {}), ...(o.ledgerProject ? { ledger_project: o.ledgerProject } : {}) };
-  // M6 prep: ${branch}, the order's worktree branch (the integration merge's --from); with no worktree it stays as written
-  const vars = { ...(o.workspace?.vars ?? {}), ...briefVars(o), ...extra, ...own, ...(o.workspace?.branch ? { branch: o.workspace.branch } : {}), slug: o.slug ?? o.task ?? "", task: o.task ?? "", workdir: o.workdir ?? path.join(LIVE, "work", o.task ?? ""), live: LIVE, base_sha: o.workspace?.baseSha ?? o.workspace?.sha ?? "" };
+  // M6 prep: ${branch}, the order's worktree branch (the integration merge's --from); with no worktree it stays as written.
+  // M6 prep review: ${head_sha}, the order's last K7 commit (workspace.commit: after ship, the commit ship signed: the
+  // merge's --from-sha, so a commit added to the branch after ship is never merged unreviewed); none yet: as written
+  const vars = { ...(o.workspace?.vars ?? {}), ...briefVars(o), ...extra, ...own, ...(o.workspace?.branch ? { branch: o.workspace.branch } : {}), ...(o.workspace?.head ? { head_sha: o.workspace.head } : {}), slug: o.slug ?? o.task ?? "", task: o.task ?? "", workdir: o.workdir ?? path.join(LIVE, "work", o.task ?? ""), live: LIVE, base_sha: o.workspace?.baseSha ?? o.workspace?.sha ?? "" };
   const argv = c.argv.map((a) => interpolate(a, vars));
   const cwd = c.cwd ? path.resolve(vars.workdir, interpolate(c.cwd, vars)) : vars.workdir;
   // a child of a node --test process would report to it and exit 0 whatever its tests do (see runTests)

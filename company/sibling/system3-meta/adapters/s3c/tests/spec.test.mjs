@@ -104,8 +104,9 @@ test("M6 spec wiring: holds.mjs as build's pre; test1's baseline from the integr
   // no stage is ledger-gated: no projects.json line exists for the M6 lessons (plans/m6-orders.json says why)
   assert.ok(!JSON.stringify(M6.flow).includes("ledger-gate"));
   const { prepareCmd, briefVars } = await import(path.join(PROTO, "state.mjs"));
-  const o = { id: "O-4", task: "LESSON-a-b", slug: "a-b", workdir: "/home/user/s3c-wt/base/.claude/worktrees/LESSON-a-b", workspace: { branch: "meta/m6-LESSON-a-b" }, accept: "LESSON a-b · domain math (strand geometry) · brief company/domains/briefs/math-geometry.md:30-60 (#2)" };
-  assert.deepEqual(prepareCmd(o, st("merge").run).argv.slice(1), [st("merge").run.argv[1], "--into=meta/m6", "--from=meta/m6-LESSON-a-b", `--repo=${INT}`]);
+  const o = { id: "O-4", task: "LESSON-a-b", slug: "a-b", workdir: "/home/user/s3c-wt/base/.claude/worktrees/LESSON-a-b", workspace: { branch: "meta/m6-LESSON-a-b", head: "0123456789abcdef0123456789abcdef01234567" }, accept: "LESSON a-b · domain math (strand geometry) · brief company/domains/briefs/math-geometry.md:30-60 (#2)" };
+  // M6 prep review: the merge takes the commit ship signed (the order's last K7 commit) and the lesson's slug
+  assert.deepEqual(prepareCmd(o, st("merge").run).argv.slice(1), [st("merge").run.argv[1], "--into=meta/m6", "--from=meta/m6-LESSON-a-b", "--from-sha=0123456789abcdef0123456789abcdef01234567", "--slug=a-b", `--repo=${INT}`]);
   assert.equal(briefVars(o).brief_file, "company/domains/briefs/math-geometry.md");
   const [ex] = M6.exports;
   assert.deepEqual([ex.id, ex.role, ex.every], ["founder-inbox", "chief-of-staff", "change"]);

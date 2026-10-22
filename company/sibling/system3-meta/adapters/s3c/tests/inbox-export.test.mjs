@@ -270,3 +270,22 @@ test("M6 prep: --commit commits the written inbox alone in its linked worktree (
   const loose = path.join(tmp("inbox-loose-"), "founder-inbox.json");
   assert.equal(run([`--live=${live}`, `--write=${loose}`, "--commit", "--base=none"]).exit, 3);
 });
+
+test("M6 prep review: any path inside the main checkout or a primary checkout is refused, not only its inbox file; --commit commits only in a linked worktree on a meta/* branch", async () => {
+  const { mainCheckoutOf } = await import(path.join(HERE, "..", "inbox-export.mjs"));
+  for (const p of ["/home/user/system-3-company/company/ops/x.json", "/home/user/system-3-company/company/ops/founder-inbox.json.x", "/home/user/system-3-company/notes.json"]) assert.equal(mainCheckoutOf(p), "/home/user/system-3-company", p);
+  const live = company();
+  const g = (cwd, ...a) => { const r = spawnSync("git", ["-C", cwd, ...a], { encoding: "utf8", env: clean({ GIT_AUTHOR_NAME: "t", GIT_AUTHOR_EMAIL: "t@t", GIT_COMMITTER_NAME: "t", GIT_COMMITTER_EMAIL: "t@t" }) }); assert.equal(r.status, 0, r.stderr); return r.stdout.trim(); };
+  const primary = tmp("inbox-primary-");
+  g(primary, "init", "-q", "-b", "main"); fs.writeFileSync(path.join(primary, "a.txt"), "a\n"); g(primary, "add", "-A"); g(primary, "commit", "-qm", "base");
+  const notes = path.join(primary, "notes.json");
+  const r = run([`--live=${live}`, "--base=none", `--write=${notes}`, "--commit"]);
+  assert.equal(r.exit, 2, r.stdout); assert.match(r.json.findings[0].message, /is in a primary checkout/);
+  assert.equal(fs.existsSync(notes), false); assert.equal(g(primary, "log", "--format=%s"), "base", "nothing committed on main");
+  // a linked worktree that is not on a meta/* branch: written, never committed
+  const wt = path.join(tmp("inbox-wt2-"), "side");
+  g(primary, "worktree", "add", "-q", "-b", "feature", wt);
+  const c = run([`--live=${live}`, "--base=none", `--write=${path.join(wt, "inbox.json")}`, "--commit"]);
+  assert.equal(c.exit, 3, c.stdout); assert.match(c.json.findings.at(-1).message, /not a meta\/\* sandbox branch/);
+  assert.equal(g(wt, "log", "--format=%s"), "base");
+});

@@ -645,20 +645,27 @@ export class Engine {
     return this.park(o.id, { by, reason: `${stage}: ${String(why).split("\n")[0].slice(0, 200)}`, ask: { kind: "decision", findings, routed: true, ...budget } });
   }
 
-  resume(id, { by, reason, extraLoops = null }) {
+  resume(id, { by, reason, extraLoops = null, to = null }) {
     const o = this.orders.get(id);
     hard(o, `no order ${id}`);
     hard(o.stage === "parked" && o.parked, `${id} is ${o.stage}, not parked`);
     hard(!!reason, "a resume says why (--reason)");
     hard(extraLoops == null || (Number.isInteger(extraLoops) && extraLoops >= 0 && extraLoops <= 10), "extra loops is a whole number 0-10");
+    // M6 prep review: `to`, an earlier stage of the flow than the one it parked at (a merge conflict parks at merge, the
+    // stage after ship: resumed there, the same merge conflicted again, so the order could only be cancelled). Back to an
+    // earlier stage is a decided revise: a loop (its stage is sent afresh, never deduped to the old message) with one
+    // more loop granted, so it never parks at once on the cap (as a founder's reopen), and the park's reason as findings
+    const st = this.flows.get(o.flow)?.stages.map((x) => x.stage) ?? [];
+    if (to != null) hard(st.includes(o.parked.stage) && st.includes(to) && st.indexOf(to) <= st.indexOf(o.parked.stage), `${id} parked at ${o.parked.stage}: --to is that stage or an earlier one (${st.slice(0, Math.max(0, st.indexOf(o.parked.stage) + 1)).join(", ") || "none"})`);
     // K9: a loop-cap park resumes with one more loop unless the decider grants more (or 0: the very next revise parks)
     const grant = extraLoops ?? (o.parked.loopCap ? 1 : 0);
     if (grant) o.extraLoops = (o.extraLoops ?? 0) + grant;
-    const p = o.parked;
-    o.stage = p.stage; delete o.parked;
+    const p = o.parked, back = to != null && to !== p.stage;
+    o.stage = back ? to : p.stage; delete o.parked;
+    if (back) { o.loops++; o.extraLoops = (o.extraLoops ?? 0) + 1; o.findings = `parked at ${p.stage}: ${p.reason}. Resumed to ${to} by ${by}: ${reason}`; }
     if (o.budgetHold?.no) delete o.budgetHold; // M5 review: the owner put it back to work: a budget no is asked again (asks.raiseBudgetAsk)
     (o.history ??= []).push({ stage: "parked", by, verdict: "resume", t: this.clock.now(), reason });
-    this.log.add({ type: "resumed", order: id, to: o.stage, by, reason, extraLoops: grant, parkedMin: this.clock.now() - p.t });
+    this.log.add({ type: "resumed", order: id, to: o.stage, by, reason, extraLoops: grant, parkedMin: this.clock.now() - p.t, ...(back ? { from: p.stage, loops: o.loops } : {}) });
     if (o.stage === "budget") this.request({ order: o.id, stage: "budget", approver: "founder", kind: "budget", dueMin: 24 * 60, key: `${o.id}:budget:r${o.parks}` });
     else if (o.blocked) this.log.add({ type: "blocked", order: id, after: o.after.filter((d) => this.orders.get(d).stage !== "done") });
     else if (o.builder) this.notifyStage(o); // no builder yet: its manager delegates, which notifies

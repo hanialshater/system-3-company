@@ -40,7 +40,9 @@ git(MAIN, "add", "-A"); git(MAIN, "commit", "-qm", "base");
 git(MAIN, "branch", "meta/m6");
 git(MAIN, "worktree", "add", "-q", INT, "meta/m6");
 // an order branch from the base: add a lesson (and regenerate the registry, as new-demo does, unless told not to)
+const SLUG = {};
 function order(name, slug, { registry = true, extra = null, deployMsg = false } = {}) {
+  SLUG[`meta/m6-${name}`] = slug;
   const wt = path.join(TMP, `wt-${name}`);
   git(MAIN, "worktree", "add", "-q", "-b", `meta/m6-${name}`, wt, "main");
   w(wt, `src/demos/math/${slug}/meta.json`, `{"slug":"${slug}"}\n`);
@@ -50,14 +52,17 @@ function order(name, slug, { registry = true, extra = null, deployMsg = false } 
   return `meta/m6-${name}`;
 }
 const A = order("A", "a-one"), B = order("B", "b-two"), C = order("C", "c-three", { registry: false });
+// M6 prep review: an order changes only its own lesson's paths; D's change to a shared file is refused (parks), and the
+// conflict case is F's own review file, also changed on meta/m6 since (by hand: nothing else may change it)
 const D = order("D", "d-four", { extra: (wt) => w(wt, "src/shared.ts", "export const x = 4;\n") });
 const E = order("E", "e-five", { deployMsg: true });
-const F2 = order("F", "f-six", { extra: (wt) => w(wt, "src/shared.ts", "export const x = 6;\n") });
+const F2 = order("F", "f-six", { extra: (wt) => w(wt, "company/reviews/f-six/notes.md", "from the order\n") });
 const integrate = (args, extraEnv = {}) => {
   const r = spawnSync(process.execPath, [ADAPTER, ...args], { encoding: "utf8", env: { ...env0(), ...extraEnv } });
   return { code: r.status, json: JSON.parse(r.stdout.trim().split("\n").at(-1)), stdout: r.stdout, stderr: r.stderr };
 };
-const merge = (from, extraEnv) => integrate([`--into=meta/m6`, `--from=${from}`, `--repo=${INT}`], extraEnv);
+const sha = (ref) => git(MAIN, "rev-parse", ref);
+const merge = (from, extraEnv, { fromSha = null, slug = SLUG[from] ?? "x" } = {}) => integrate([`--into=meta/m6`, `--from=${from}`, `--from-sha=${fromSha ?? (spawnSync("git", ["-C", MAIN, "rev-parse", "-q", "--verify", from], { encoding: "utf8" }).stdout.trim() || "0000000")}`, `--slug=${slug}`, `--repo=${INT}`], extraEnv);
 const registryFile = () => fs.readFileSync(path.join(INT, "src/demos/index.generated.ts"), "utf8");
 const head = () => git(INT, "rev-parse", "HEAD");
 
@@ -94,14 +99,19 @@ test("a clean textual merge that leaves the registry stale (M4): the registry is
 });
 
 test("a conflict outside the registry aborts the merge and parks (an ask, no agent hand-merges); a [deploy] commit is never merged", () => {
-  assert.equal(merge(D).code, 0, "D changes the shared file first: clean");
+  const d = merge(D);
+  assert.equal(d.code, 1, "M6 prep review: D changes a shared file, outside its lesson: parked, not merged");
+  assert.equal(d.json.route, "park"); assert.deepEqual(d.json.foreign, ["src/shared.ts"]);
+  assert.match(d.stdout, /^block foreign-path: meta\/m6-D changes src\/shared\.ts: outside its lesson d-four/m);
+  w(INT, "company/reviews/f-six/notes.md", "by hand on meta/m6\n"); git(INT, "add", "-A"); git(INT, "commit", "-qm", "by hand");
   const before = head();
   const f = merge(F2);
   assert.equal(f.code, 1, f.stdout);
   assert.equal(f.json.route, "park"); assert.equal(f.json.park, true);
-  assert.deepEqual(f.json.conflicts.sort(), ["src/demos/index.generated.ts", "src/shared.ts"].sort());
-  assert.match(f.stdout, /^block conflict: merging meta\/m6-F into meta\/m6 conflicts in src\/shared\.ts \(and the generated registry\)/m);
+  assert.deepEqual(f.json.conflicts.sort(), ["src/demos/index.generated.ts", "company/reviews/f-six/notes.md"].sort());
+  assert.match(f.stdout, /^block conflict: merging meta\/m6-F into meta\/m6 conflicts in company\/reviews\/f-six\/notes\.md \(and the generated registry\)/m);
   assert.equal(f.json.ask.kind, "decision");
+  assert.match(f.json.ask.text, /order resume <O> --to=build/, "M6 prep review: the ask names what works");
   assert.equal(head(), before, "nothing merged");
   assert.equal(git(INT, "status", "--porcelain"), "", "the merge was aborted");
   const e = merge(E);
@@ -111,12 +121,16 @@ test("a conflict outside the registry aborts the merge and parks (an ask, no age
 });
 
 test("refusals: not a meta/* branch, the main checkout or a primary one, another branch checked out, tracked changes, a merge of something else half done", () => {
-  assert.equal(integrate(["--into=main", `--from=${A}`, `--repo=${INT}`]).code, 2);
-  assert.match(integrate(["--into=meta/m6", `--from=${A}`, `--repo=${MAIN}`]).json.findings[0].message, /primary checkout/);
-  assert.match(integrate(["--into=meta/m6", `--from=${A}`, "--repo=/home/user/system-3-company"]).json.findings[0].message, /main checkout|primary checkout/);
-  assert.equal(integrate([`--from=${A}`, `--repo=${INT}`]).code, 2);
-  assert.equal(integrate(["--into=meta/m6", "--from=--x", `--repo=${INT}`]).code, 2);
-  const other = integrate(["--into=meta/m6-x", `--from=${A}`, `--repo=${INT}`]);
+  const sl = [`--from-sha=${sha(A)}`, "--slug=a-one"];
+  assert.equal(integrate(["--into=main", `--from=${A}`, ...sl, `--repo=${INT}`]).code, 2);
+  assert.match(integrate(["--into=meta/m6", `--from=${A}`, ...sl, `--repo=${MAIN}`]).json.findings[0].message, /primary checkout/);
+  assert.match(integrate(["--into=meta/m6", `--from=${A}`, ...sl, "--repo=/home/user/system-3-company"]).json.findings[0].message, /main checkout|primary checkout/);
+  assert.equal(integrate([`--from=${A}`, ...sl, `--repo=${INT}`]).code, 2);
+  assert.equal(integrate(["--into=meta/m6", "--from=--x", ...sl, `--repo=${INT}`]).code, 2);
+  assert.match(integrate(["--into=meta/m6", `--from=${A}`, "--slug=a-one", `--repo=${INT}`]).json.findings[0].message, /--from-sha is required/);
+  assert.match(integrate(["--into=meta/m6", `--from=${A}`, "--from-sha=${head_sha}", "--slug=a-one", `--repo=${INT}`]).json.findings[0].message, /not a commit sha/);
+  assert.match(integrate(["--into=meta/m6", `--from=${A}`, `--from-sha=${sha(A)}`, `--repo=${INT}`]).json.findings[0].message, /--slug is required/);
+  const other = integrate(["--into=meta/m6-x", `--from=${A}`, ...sl, `--repo=${INT}`]);
   assert.equal(other.code, 3); assert.match(other.json.findings[0].message, /is on meta\/m6, not meta\/m6-x/);
   assert.equal(merge("meta/no-such").code, 3);
   w(INT, "src/shared.ts", "dirty\n");
@@ -134,4 +148,53 @@ test("refusals: not a meta/* branch, the main checkout or a primary one, another
   assert.match(h.stdout, /^advisory retry: an earlier merge of meta\/m6-H was left half done/m);
   assert.deepEqual(h.json.resolved, ["src/demos/index.generated.ts"]);
   assert.match(registryFile(), /h_eight/);
+});
+
+test("M6 prep review: only the commit ship signed is merged; another order's lesson, tools/** and the repo's setup are refused before any code of the branch runs; code's own uncommitted registry is redone; a resolved merge's message is the documented one", () => {
+  // a commit added to the branch after ship signed it (another session, by hand): parked, nothing merged
+  const J = order("J", "j-ten"), signed = sha(J);
+  const wtJ = path.join(TMP, "wt-J");
+  w(wtJ, "src/demos/math/j-ten/Demo.tsx", "// unreviewed change after ship\n"); git(wtJ, "add", "-A"); git(wtJ, "commit", "-qm", "unreviewed change after ship");
+  const before = head();
+  const moved = merge(J, {}, { fromSha: signed });
+  assert.equal(moved.code, 1, moved.stdout); assert.equal(moved.json.route, "park");
+  assert.match(moved.stdout, /^block moved: meta\/m6-J is at [0-9a-f]{9}, not [0-9a-f]{9} \(the commit ship signed, --from-sha\)/m);
+  assert.equal(head(), before, "nothing merged");
+  assert.equal(merge(J, {}, { fromSha: sha(J) }).code, 0, "signed at its tip: merged");
+  // the branch's own tools/registry.mjs (imported by the protected company.mjs) never runs: the merge is refused first
+  const MARK = path.join(TMP, "MARKER-ran-branch-code");
+  const K = order("K", "k-eleven", { extra: (wt) => w(wt, "tools/registry.mjs", `require("fs").writeFileSync(${JSON.stringify(MARK)}, "x");\n`) });
+  const k = merge(K);
+  assert.equal(k.code, 1); assert.deepEqual(k.json.foreign, ["tools/registry.mjs"]);
+  assert.equal(fs.existsSync(MARK), false, "no code from the order's branch ran");
+  for (const [n, rel] of [["L", "package.json"], ["M", ".husky/pre-commit"]]) {
+    const b = order(n, `${n.toLowerCase()}-x`, { extra: (wt) => w(wt, rel, "{}\n") });
+    assert.deepEqual(merge(b).json.foreign, [rel], rel);
+  }
+  // criterion 5: an order that edits another order's published lesson (j-ten, merged above)
+  const N = order("N", "n-twelve", { extra: (wt) => w(wt, "src/demos/math/j-ten/Demo.tsx", "// edited by another order\n") });
+  const n = merge(N);
+  assert.equal(n.code, 1); assert.deepEqual(n.json.foreign, ["src/demos/math/j-ten/Demo.tsx"]);
+  assert.match(n.json.ask.text, /outside its own lesson n-twelve/);
+  // a run that died after step 5's registry and before its commit: the retry undoes code's own output, regenerates it
+  fs.appendFileSync(path.join(INT, "src/demos/index.generated.ts"), "// stale\n");
+  const again = merge(J);
+  assert.equal(again.code, 0, again.stdout);
+  assert.match(again.stdout, /^advisory retry: the generated registry had uncommitted changes/m);
+  assert.doesNotMatch(registryFile(), /stale/);
+  assert.equal(git(INT, "status", "--porcelain"), "");
+  // and the inbox export's uncommitted file is left for its next --commit
+  w(INT, "company/ops/founder-inbox.json", '{"items":[]}\n'); git(INT, "add", "-A"); git(INT, "commit", "-qm", "inbox");
+  w(INT, "company/ops/founder-inbox.json", '{"items":[1]}\n');
+  const O = order("O", "o-thirteen");
+  const withInbox = merge(O);
+  assert.equal(withInbox.code, 0, withInbox.stdout);
+  assert.match(withInbox.stdout, /^advisory inbox: company\/ops\/founder-inbox\.json has uncommitted changes/m);
+  assert.equal(git(INT, "status", "--porcelain"), "M company/ops/founder-inbox.json");
+  git(INT, "checkout", "--", "company/ops/founder-inbox.json");
+  // a registry-only conflict concluded by code: the message is "meta: merge <from> into <into>", no "# Conflicts:"
+  const P = order("P", "p-fourteen");
+  const p = merge(P);
+  assert.deepEqual(p.json.resolved, ["src/demos/index.generated.ts"]);
+  assert.equal(git(INT, "log", "-1", "--format=%B", "HEAD^{/^meta: merge meta.m6-P}"), "meta: merge meta/m6-P into meta/m6");
 });

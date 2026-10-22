@@ -357,3 +357,19 @@ test("K7 review 2: a pending commit left from a spec that no longer commits is n
   assert.equal(await_settled(co), true);
   assert.equal(tick(co).filter((x) => x.order === o.id).length, 0, "and the tick does not try it");
 });
+
+test("M6 prep review: o.workspace.head (the merge's ${head_sha}) is the branch tip the stage left, a skipped commit too: an agent's own commit since is in it", () => {
+  const co = fresh();
+  const o = order(co, "CH");
+  tick(co);
+  const dir = o.workdir;
+  fs.writeFileSync(path.join(dir, "lesson.md"), "v1\n");
+  build(co, o);
+  const first = o.workspace.head;
+  assert.equal(first, sh(dir, "rev-parse", "HEAD"));
+  // an agent commits itself, then a stage leaves with nothing more to commit: head follows the tip as signed
+  fs.writeFileSync(path.join(dir, "lesson.md"), "v2\n"); sh(dir, "add", "-A"); sh(dir, "commit", "-qm", "the builder's own commit");
+  assert.equal(WS.commit(co, o, "check").skipped, true);
+  assert.equal(o.workspace.head, sh(dir, "rev-parse", "HEAD"));
+  assert.notEqual(o.workspace.head, first);
+});

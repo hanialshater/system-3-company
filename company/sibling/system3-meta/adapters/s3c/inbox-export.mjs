@@ -12,11 +12,13 @@
 //                 printed in the last line's `inbox`. It refuses the main checkout's company/ops/founder-inbox.json
 //                 (the chief of staff's single-writer file) unless --allow-main: /home/user/system-3-company's, and
 //                 any primary checkout's (a .git directory; the sandbox branch is a linked worktree, whose .git is a
-//                 file). M5 review: no environment override (S3C_MAIN_REPO let any caller lift the refusal).
+//                 file). M5 review: no environment override (S3C_MAIN_REPO let any caller lift the refusal). M6 prep
+//                 review: any path inside those checkouts, not only that file.
 //        --commit: M6 prep (M5 exit criterion 2: "written on the sandbox branch only, by the chief-of-staff role's code
 //                 step"): commit the written file in its worktree when it differs from HEAD's (`meta: founder inbox
 //                 export (chief-of-staff code step)`, only that path, the repo's normal hooks, the kernel's git pins
-//                 not inherited), so the integration worktree stays clean for integrate.mjs. Never pushes; refused
+//                 not inherited), so the integration worktree stays clean for integrate.mjs. M6 prep review: only in
+//                 a linked worktree on a meta/* branch (a stage-error otherwise). Never pushes; refused
 //                 with --allow-main (the chief of staff commits the main checkout's inbox, not code). The spec's
 //                 `exports` runs it (specs/s3c-lessons-m6.json: into the integration worktree, after each tick).
 //
@@ -66,6 +68,11 @@ export function commitInbox(file) {
   const top = git(dir, "rev-parse", "--show-toplevel");
   if (top.status !== 0) return { error: `${file} is not in a git worktree: ${String(top.stderr).trim()}` };
   const root = top.stdout.trim(), rel = path.relative(root, file).split(path.sep).join("/");
+  // M6 prep review: code commits on the sandbox branch only: a linked worktree (.git a file) on a meta/* branch
+  let dotgit = null; try { dotgit = fs.statSync(path.join(root, ".git")); } catch {}
+  if (!dotgit?.isFile()) return { error: `${root} is not a linked worktree (its .git is ${dotgit ? "a directory: a primary checkout" : "missing"}): --commit commits on the sandbox branch only` };
+  const br = git(root, "rev-parse", "--abbrev-ref", "HEAD");
+  if (br.status !== 0 || !/^meta\/[A-Za-z0-9._/-]+$/.test(br.stdout.trim())) return { error: `${root} is on ${br.stdout.trim() || "no branch"}, not a meta/* sandbox branch: --commit commits there only` };
   const head = git(root, "show", `HEAD:${rel}`);
   if (head.status === 0 && head.stdout === fs.readFileSync(file, "utf8")) return { unchanged: true };
   const id = git(root, "config", "user.email").stdout?.trim() ? [] : ["-c", "user.name=System 3 Meta", "-c", "user.email=meta@localhost"];
@@ -81,14 +88,23 @@ const day = (min) => (Number.isFinite(min) ? new Date(min * 60000).toISOString()
 const env = (kind, message) => ({ severity: "environment", kind, message });
 /** A path with its existing parent directories resolved (the file itself may not exist yet). */
 const real = (p) => { const abs = path.resolve(p); try { return fs.realpathSync(abs); } catch { try { return path.join(fs.realpathSync(path.dirname(abs)), path.basename(abs)); } catch { return abs; } } };
-/** The checkout whose single-writer inbox `write` is (MAIN_REPO's, or a primary checkout's), or null. */
+/** The nearest checkout holding path `p` (the first ancestor with a .git): { root, primary } (primary: its .git is a
+ *  directory; a linked worktree's is a file), or null. */
+export function checkoutOf(p) {
+  for (let d = path.dirname(real(p)); ; d = path.dirname(d)) {
+    try { return { root: d, primary: fs.statSync(path.join(d, ".git")).isDirectory() }; } catch {}
+    if (path.dirname(d) === d) return null;
+  }
+}
+/** The checkout `write` is inside when Meta may not write there: MAIN_REPO (anywhere in it), or any primary checkout;
+ *  null for a linked worktree (the sandbox branch) or a path in no checkout. M6 prep review: before, only the exact
+ *  company/ops/founder-inbox.json path was refused, so any other file of the main checkout was written (and, with
+ *  --commit, committed on its branch, main). */
 export function mainCheckoutOf(write) {
-  const w = real(write);
-  if (w === real(path.join(MAIN_REPO, INBOX))) return MAIN_REPO;
-  const tail = path.sep + INBOX.split("/").join(path.sep);
-  if (!w.endsWith(tail)) return null;
-  const root = w.slice(0, -tail.length);
-  try { return fs.statSync(path.join(root, ".git")).isDirectory() ? root : null; } catch { return null; }
+  const w = real(write), m = real(MAIN_REPO);
+  if (w === m || w.startsWith(m + path.sep)) return MAIN_REPO;
+  const c = checkoutOf(w);
+  return c?.primary ? c.root : null;
 }
 const withdrawn = (why) => `withdrawn: ${why}`;
 
@@ -196,7 +212,7 @@ export function main(argv) {
   const write = o.write ? path.resolve(String(o.write)) : null;
   const main = write && mainCheckoutOf(write);
   if (main && !o["allow-main"])
-    return usage(`--write=${write} is the main checkout's ${INBOX} (${main}): the chief of staff is its single writer and Meta writes it on the sandbox branch only, a linked worktree (pass --allow-main to override)`);
+    return usage(`--write=${write} is in ${main === MAIN_REPO ? "the main checkout" : "a primary checkout"} (${main}): the chief of staff is the single writer of its ${INBOX}, and Meta writes on the sandbox branch only, a linked worktree (pass --allow-main to override)`);
   let st;
   try { st = JSON.parse(fs.readFileSync(statePath, "utf8"), rev); }
   catch (e) { return { exit: 3, out: { ok: false, stage: "inbox-export", findings: [env("state", `cannot read the Meta state ${statePath}: ${e.message}`)] } }; }

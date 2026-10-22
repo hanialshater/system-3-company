@@ -157,7 +157,7 @@ export function validateSpec(s) {
         need(!e, `export ${id}: run: ${e}`);
         if (!e) {
           need(!x.run.route, `export ${id}: run has no route (an export signs and parks nothing)`);
-          need(!/\$\{(evidence|verdict|slug|task|workdir|branch|base_sha|order|budget|remaining|ledger_project|brief_file)\}/.test(JSON.stringify(x.run)), `export ${id}: run reads only \${live} and \${stage} (it belongs to no order)`);
+          need(!/\$\{(evidence|verdict|slug|task|workdir|branch|base_sha|head_sha|order|budget|remaining|ledger_project|brief_file)\}/.test(JSON.stringify(x.run)), `export ${id}: run reads only \${live} and \${stage} (it belongs to no order)`);
           need(!x.run.argv.some((a) => /^--allow-main\b/.test(a)), `export ${id}: run never writes the main checkout (--allow-main)`);
         }
       }

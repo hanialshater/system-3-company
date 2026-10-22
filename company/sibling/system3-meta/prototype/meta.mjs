@@ -9,7 +9,7 @@
 //   node meta.mjs order delegate <O> --by=<manager> --to=<builder> [--budget=150000]
 //   node meta.mjs order reopen <O> --by=<manager|founder> --findings=… [--reason=…]   a shipped order back to build
 //   node meta.mjs order park <O> --by=<orderer|manager|founder> --reason=…   K8: stop it where it is (stage parked, messages
-//        withdrawn, runs on it abandoned); order resume <O> --by --reason [--extra-loops=<n>] puts it back at that stage
+//        withdrawn, runs on it abandoned); order resume <O> --by --reason [--extra-loops=<n>] [--to=<stage>] puts it back at that stage (or an earlier one: M6 prep review)
 //   node meta.mjs order cancel <O> --by=<orderer|manager|founder> --reason=…   K8: final; orders --after it stay blocked
 //        K9: with a loop cap (spec maxLoops, lane policy maxLoops) the revise past it parks the order and asks the orderer
 //   node meta.mjs queue <role|pool:level|role:id>             open work messages (K3: role:<id> holds a role signer's items)
@@ -282,7 +282,7 @@ function dispatch(co, cmd, sub, arg) {
     if (sub === "park") engine.park(arg, { by: opt.by, reason: opt.reason });
     if (sub === "cancel") engine.cancel(arg, { by: opt.by, reason: opt.reason });
     if (sub !== "resume") JOBS.staleFor(co, o, `order ${o.stage}`); // K8+K9 review: its K2 job is killed now, not at the next collect
-    if (sub === "resume") engine.resume(arg, { by: opt.by, reason: opt.reason, extraLoops: opt["extra-loops"] != null ? Number(opt["extra-loops"]) : null });
+    if (sub === "resume") engine.resume(arg, { by: opt.by, reason: opt.reason, extraLoops: opt["extra-loops"] != null ? Number(opt["extra-loops"]) : null, to: opt.to != null ? String(opt.to) : null });
     const closed = sub !== "park" ? A.closeParkAsk(co, ask, { by: opt.by, decision: sub === "resume" ? "yes" : "no", text: `${sub === "resume" ? `resumed at ${o.stage}` : "cancelled"}: ${opt.reason}` }) : null;
     if (sub === "cancel") A.closeBudgetAsk(co, o, { by: opt.by, text: `${o.id} cancelled: ${opt.reason}` }); // M5 review: no top-up of a cancelled order
     T.syncOrders(co);
@@ -457,8 +457,8 @@ function dispatch(co, cmd, sub, arg) {
   if (cmd === "meeting" && sub === "close") { need("id", "by"); return { minutes: M.closeMeeting(co, { id: opt.id, by: opt.by }).minutes }; }
   if (cmd === "meeting" && sub === "show") { need("id"); const m = M.getMeeting(co, opt.id); return { id: m.id, title: m.title, kind: m.kind, chair: m.chair, state: m.state, invitees: m.invitees, agenda: m.agenda.map((a) => ({ n: a.n, title: a.title, rounds: a.rounds.length, revealed: a.rounds.at(-1).revealed, written: Object.keys(a.rounds.at(-1).positions), objections: a.objections.length, decided: !!a.decision })), whiteboard: m.board, pack: m.pack ?? null, minutes: m.minutes ?? null }; }
   // ---- asks and rituals
-  if (cmd === "ask" && sub === "raise") { need("by", "kind", "title", "why", "due"); return A.raise(co, { by: opt.by, kind: opt.kind, title: opt.title, why: opt.why, due: opt.due, to: opt.to ?? null, amount: N("amount") ?? 0, lane: opt.lane ?? null, escalate: opt.escalate ?? null, goal: opt.goal ?? null, options: opt.options ?? null, recommend: opt.recommend === true ? "" : opt.recommend ?? null }); }
-  if (cmd === "ask" && sub === "route") { need("by", "kind"); return { decider: A.route(co, { by: opt.by, kind: opt.kind, amount: N("amount") ?? 0, lane: opt.lane ?? null }) }; }
+  if (cmd === "ask" && sub === "raise") { need("by", "kind", "title", "why", "due"); return A.raise(co, { by: opt.by, kind: opt.kind, title: opt.title, why: opt.why, due: opt.due, to: opt.to ?? null, amount: N("amount") ?? 0, lane: opt.lane ?? null, escalate: opt.escalate ?? null, goal: opt.goal ?? null, options: opt.options ?? null, recommend: opt.recommend === true ? "" : opt.recommend ?? null, order: opt.order ?? null, launch: process.env.META_LAUNCH || null }); }
+  if (cmd === "ask" && sub === "route") { need("by", "kind"); return { decider: A.route(co, { by: opt.by, kind: opt.kind, amount: N("amount") ?? 0, lane: opt.lane ?? null, order: opt.order ?? null, launch: process.env.META_LAUNCH || null }) }; }
   if (cmd === "ask" && sub === "answer") { need("by", "id", "decision", "text"); return A.answer(co, { by: opt.by, id: opt.id, decision: opt.decision, text: opt.text }); }
   if (cmd === "ask" && sub === "summary") return A.askSummary(co);
   if (cmd === "wbr" && sub === "open") { need("by"); T.syncOrders(co); return RIT.wbrOpen(co, { by: opt.by, room: opt.room ?? null, start: opt.start ? Date.parse(opt.start) / 60000 : null, invitees: L("invitees") ?? null, channel: opt.channel ?? null }); }

@@ -44,11 +44,14 @@ test("the real tool's scope on the adapter contract: nothing changed is exit 0; 
   assert.match(r.stdout, /^block regression-scope: uses-kit: shared file src\/kit\/geo\.ts changed since .*: its QA runs again on the integration build$/m);
   const ex = run([`--since=${BASE}`, `--repo=${FX}`, "--exclude=new-one"]);
   assert.deepEqual([ex.json.lessons, ex.json.excluded], [["uses-kit"], ["new-one"]]);
-  // --live: every order's slug in a Meta state (o.slug, else its task)
+  // --live: every order's slug in a Meta state (o.slug, else its task); M6 prep review: a lesson is left out when every
+  // change to its folder since the base is on its own order's branch (new-one's commit is on meta/m6-new-one)
+  git(FX, "branch", "meta/m6-new-one");
   const live = path.join(TMP, "live"); fs.mkdirSync(live);
-  fs.writeFileSync(path.join(live, "state.json"), JSON.stringify({ engine: { orders: { __map: [["O-1", { id: "O-1", task: "LESSON-new-one", slug: "new-one" }], ["O-2", { id: "O-2", task: "uses-kit" }]] } } }));
+  fs.writeFileSync(path.join(live, "state.json"), JSON.stringify({ engine: { orders: { __map: [["O-1", { id: "O-1", task: "LESSON-new-one", slug: "new-one", workspace: { branch: "meta/m6-new-one" } }], ["O-2", { id: "O-2", task: "uses-kit" }]] } } }));
   const lv = run([`--since=${BASE}`, `--repo=${FX}`, `--live=${live}`]);
-  assert.equal(lv.code, 0); assert.deepEqual(lv.json.excluded.sort(), ["new-one", "uses-kit"]);
+  assert.equal(lv.code, 0, lv.stdout); assert.deepEqual(lv.json.excluded.sort(), ["new-one", "uses-kit"]);
+  assert.equal(lv.json.sinceSha, BASE);
   // uncommitted changes are out of scope unless --worktree
   w(FX, "src/demos/math/plain-one/Demo.tsx", "export default function Demo() { return 1; }\n");
   assert.deepEqual(run([`--since=${BASE}`, `--repo=${FX}`, "--exclude=new-one,uses-kit"]).json.lessons, []);
@@ -66,4 +69,29 @@ test("usage and stage-errors: no --since, a bad slug, an unknown ref, a repo wit
   // --feed reports the feed spec (the tool's feed block passes through)
   const f = run([`--since=${BASE}`, `--repo=${FX}`, "--feed"]);
   assert.equal(typeof f.json.feed?.run, "boolean");
+});
+
+test("M6 prep review: --live lists a run lesson another order changed (criterion 5); --feed reports the feed must run when lessons were added; --since that is the repo's moving HEAD is refused", () => {
+  const live = path.join(TMP, "live2"); fs.mkdirSync(live);
+  const before = git(FX, "rev-parse", "HEAD");
+  lesson("run-a"); git(FX, "add", "-A"); git(FX, "commit", "-qm", "meta: O-1 build run-a"); git(FX, "branch", "meta/m6-run-a");
+  lesson("run-b"); git(FX, "add", "-A"); git(FX, "commit", "-qm", "meta: O-2 build run-b"); git(FX, "branch", "meta/m6-run-b");
+  fs.writeFileSync(path.join(live, "state.json"), JSON.stringify({ engine: { orders: { __map: [["O-1", { id: "O-1", slug: "run-a", workspace: { branch: "meta/m6-run-a" } }], ["O-2", { id: "O-2", slug: "run-b", workspace: { branch: "meta/m6-run-b" } }]] } } }));
+  const clean = run([`--since=${before}`, `--repo=${FX}`, `--live=${live}`, "--feed"]);
+  assert.equal(clean.code, 0, clean.stdout); assert.deepEqual(clean.json.excluded.sort(), ["run-a", "run-b"]);
+  // the real tool leaves the registry out of the import graph: a wave of added lessons alone read feed.run false
+  assert.equal(clean.json.feed.run, true, JSON.stringify(clean.json.feed));
+  assert.match(clean.json.feed.why, /2 lessons added since .* \(run-a, run-b\)/);
+  assert.match(clean.stdout, /^advisory feed: the feed spec must run \(without QA_ONLY\)/m);
+  // a later commit on O-2's line edits O-1's accepted lesson: listed, with that commit, not hidden by --live
+  w(FX, "src/demos/math/run-a/Demo.tsx", "// edited by another order\nexport default function Demo() { return null; }\n");
+  git(FX, "add", "-A"); git(FX, "commit", "-qm", "meta: O-2 build run-b (again)");
+  const bad = run([`--since=${before}`, `--repo=${FX}`, `--live=${live}`]);
+  assert.equal(bad.code, 1, bad.stdout); assert.deepEqual(bad.json.lessons, ["run-a"]); assert.deepEqual(bad.json.excluded, ["run-b"]);
+  assert.match(bad.json.why["run-a"], /changed since .* by [0-9a-f]{9}, not on its own order's branch meta\/m6-run-a/);
+  // the moving integration branch as --since: refused (exit 2), with the sha it resolved to; a sha equal to HEAD is fine
+  const head = run(["--since=main", `--repo=${FX}`]);
+  assert.equal(head.code, 2, head.stdout); assert.match(head.json.findings[0].message, /--since=main is .*'s HEAD/);
+  assert.equal(head.json.sinceSha, git(FX, "rev-parse", "HEAD"));
+  assert.equal(run([`--since=${git(FX, "rev-parse", "HEAD")}`, `--repo=${FX}`]).code, 0);
 });
