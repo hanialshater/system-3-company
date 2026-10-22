@@ -26,28 +26,37 @@
       "text": "A frame with sides 4 and 3 leaning at angle θ has height 3 sin θ and area 4 × 3 sin θ = 12 sin θ: upright (90°) height 3.00 and area 12.0, at 60° height 2.60 and area 10.4, at 30° height 1.50 and area 6.0. Its area is base times height, not base times slanted side, and pushed flat (θ towards 0) the area goes to nothing while the sides stay the same.",
       "support": "derivation",
       "source": "Height of the top edge above the base is 3 sin θ; area = base × height (claim c3). 12 sin 90° = 12.00, 12 sin 60° = 10.392, 12 sin 30° = 6.00; 3 sin 60° = 2.598. company/domains/briefs/checks/math-wave-j-check.mjs label G2; Demo.tsx frame(). Stage rounding: height to 0.01, area to 0.1.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     },
     {
       "id": "math.push-the-frame-over.c2",
       "text": "Leaning keeps every side and the perimeter at 14 at every angle.",
       "support": "derivation",
       "source": "The sides are rigid and only the hinges turn: perimeter = 2 × (4 + 3) = 14 for every θ. G2 prints perimeter 14 at 90°, 60° and 30°.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     },
     {
       "id": "math.push-the-frame-over.c3",
       "text": "Cutting the right triangle off the slanted end of a parallelogram and sliding it across to the other end makes a rectangle with the same base (4) and the same height, so the same area.",
       "support": "derivation",
       "source": "The triangle under the left slanted side, (0,0), (c,0), (c,h) with c = 3 cos θ, h = 3 sin θ, slid 4 to the right is (4,0), (4+c,0), (4+c,h), which exactly fills the gap under the right slanted side; the pieces form the rectangle from x = c to 4 + c, 4 wide and h tall (congruent triangles; Euclid, Elements I.35). Demo.tsx triFrom / triTo / rect.",
-      "status": "unverified"
+      "status": "disputed",
+      "note": "Text true, but the stage cut-and-slide picture fills only x=c..4 (1.40 wide at 30°), not a 4-wide rectangle; see company/reviews/push-the-frame-over/2026-10-22-fact-check.md",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     },
     {
       "id": "math.push-the-frame-over.c4",
       "text": "Recall: a hinged 5 by 2 frame leaning until its height is 1 has area 5 × 1 = 5.",
       "support": "derivation",
       "source": "Base 5, height 1 (the 2-long sides at 30°: 2 sin 30° = 1); area = base × height = 5 (claim c3). Base × slanted side would wrongly give 10.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     }
   ],
   "confidence": "",
