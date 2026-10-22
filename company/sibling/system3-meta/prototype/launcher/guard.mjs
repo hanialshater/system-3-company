@@ -493,9 +493,10 @@ export function sessionPlan(cfg, cli = {}, defaults = {}) {
  *  permissionPrompts "none" never called it; the PreToolUse hook sees every call. A role that names its tools gets
  *  them as the SDK `tools` (K10 review: denying alone left TodoWrite, Task, WebFetch visible, a turn and a guard event
  *  per try); a role that does not keeps the SDK's base set, as before K10. */
-export function queryOptions(p, guard, { model, env, abortController } = {}) {
+export function queryOptions(p, guard, { model, env, abortController, resume = null } = {}) {
   return {
     cwd: p.cwd, model, abortController, env,
+    ...(resume ? { resume } : {}), // K26: a warm role's next item continues its own Agent SDK session
     settingSources: p.settingSources,
     ...(p.strictTools ? { tools: p.tools } : {}),
     allowedTools: p.tools.filter((t) => !GUARDED.includes(t)),
@@ -504,4 +505,11 @@ export function queryOptions(p, guard, { model, env, abortController } = {}) {
     hooks: { PreToolUse: [{ hooks: [guard.preToolUse] }] },
     maxTurns: p.maxTurns,
   };
+}
+
+/** K26: after a resumed query, start cold instead? Only when the resume itself failed: an error or an error result
+ *  before the session produced anything (no assistant turn). A resumed session that worked and then failed is a failed
+ *  launch like any other (its work goes back to the queue), never run twice. */
+export function warmFallback({ resumed, error = null, result = null, sawAssistant = false }) {
+  return !!resumed && !sawAssistant && (!!error || !result || !!result.is_error);
 }

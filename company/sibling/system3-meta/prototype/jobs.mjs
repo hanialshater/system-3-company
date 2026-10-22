@@ -11,7 +11,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { spawn } from "node:child_process";
 import { fileURLToPath } from "node:url";
-import { LIVE, STATE, prepareCmd, judgeCmd, noCwd } from "./state.mjs";
+import { LIVE, STATE, prepareCmd, judgeCmd, noCwd, noArgv } from "./state.mjs";
 
 const SELF = fileURLToPath(import.meta.url);
 export const JOB_TIMEOUT_MS = 20 * 60_000; // plan K2: QA is minutes, not seconds
@@ -54,6 +54,7 @@ export function staleFor(co, o, why) {
  *  work's fault, a revise as in K1), { result } to sign at once. Never waits. */
 export function start(co, o, s) {
   const p = prepareCmd(o, s);
+  if (p.missing) return { result: noArgv(p) }; // K26/B7: no acceptance cmd on the order: a stage-error
   if (!fs.existsSync(p.cwd)) return { result: noCwd(p) };
   const jobs = jobsOf(co);
   const id = `J-${Object.keys(jobs).length + 1}`;

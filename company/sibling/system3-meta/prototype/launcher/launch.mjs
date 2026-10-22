@@ -30,6 +30,9 @@
 // failed config lookup refuses the launch; a role that names its tools gets them as the SDK `tools`; an explicit
 // --session-min wins over the role's; the options are built by guard.mjs sessionPlan/queryOptions, which the tests check.
 // M4 integrate: META_ROLE=<role> names the session to meta.mjs (state.mjs sessionRole), which then refuses any other --by.
+// K26: every finish reports the Agent SDK session id (--sdk-session); a launch serve plans with `resume` (a warm role's
+// next item for an order it worked) continues that session with the short brief, and falls back to the cold brief once,
+// recorded (warm-fallback, `meta.mjs launch resume-failed`), when the resume itself fails.
 import { query } from "@anthropic-ai/claude-agent-sdk";
 import { spawn, spawnSync } from "node:child_process";
 import fs from "node:fs";
@@ -37,7 +40,7 @@ import path from "node:path";
 import readline from "node:readline";
 
 import crypto from "node:crypto";
-import { makeGuard, sessionPlan, queryOptions, deniedArgs } from "./guard.mjs";
+import { makeGuard, sessionPlan, queryOptions, deniedArgs, warmFallback } from "./guard.mjs";
 const HERE = path.dirname(new URL(import.meta.url).pathname);
 const SRC = path.join(HERE, "..");
 const opt = Object.fromEntries(process.argv.slice(2).filter((a) => a.startsWith("--")).map((a) => { const [k, ...v] = a.slice(2).split("="); return [k, v.join("=") || true]; }));
@@ -102,27 +105,40 @@ async function run(ev) {
   const ac = new AbortController();
   const limit = setTimeout(() => ac.abort(new Error(`session over ${sessionMin} min`)), sessionMin * 60_000);
   const kill = kills.has(k) ? setTimeout(() => ac.abort(new Error("injected crash (--kill)")), kills.get(k) * 1000) : null;
-  note({ event: "start", launch: id, n: k, role: ev.role, msgs: ev.msgs ?? [], tasks: (ev.tasks ?? []).map((t) => `${t.kind}:${t.ref}`), cwd, workdirs: cfg.workdirs ?? [], tools, sessionMin, maxTurns, settingSources: sources, ...(ev.gate ? { gate: ev.gate } : {}) }); // K20: the launch gate's result (serve's launch line)
-  let last = null, result = null, error = null;
+  note({ event: "start", launch: id, n: k, role: ev.role, ...(ev.resume ? { resume: ev.resume } : {}), msgs: ev.msgs ?? [], tasks: (ev.tasks ?? []).map((t) => `${t.kind}:${t.ref}`), cwd, workdirs: cfg.workdirs ?? [], tools, sessionMin, maxTurns, settingSources: sources, ...(ev.gate ? { gate: ev.gate } : {}) }); // K20: the launch gate's result (serve's launch line)
+  let last = null, result = null, error = null, sdk = null, cumulative = 0, cost = 0;
   const t0 = Date.now();
-  try {
-    // the brief is the whole job: no project settings or CLAUDE.md (they belong to System 3 Company, not this run),
-    // unless the role, --setting-sources or --workdir-from=order (K10: the company's hooks and rules) loads them;
-    // permissions, tools and the guard as guard.mjs queryOptions says (tests/guard.test.mjs checks that shape)
-    for await (const m of query({ prompt, options: queryOptions(plan, guard, { model: MODEL, abortController: ac, env: { ...env, META_LAUNCH: id, META_ROLE: ev.role } }) })) {
-      if (m.type === "assistant" && m.parent_tool_use_id == null && m.message?.usage) last = m.message.usage;
-      if (m.type === "result") result = m;
-    }
-  } catch (e) { error = e?.message ?? String(e); }
+  // K26: a warm role's launch may resume its own Agent SDK session (ev.resume, with the short brief); when the resume
+  // itself fails (guard.mjs warmFallback) it is recorded and the cold brief runs as a fresh session, once
+  let resume = ev.resume ?? null, text = prompt;
+  for (;;) {
+    let saw = false; last = null; result = null; error = null;
+    try {
+      // the brief is the whole job: no project settings or CLAUDE.md (they belong to System 3 Company, not this run),
+      // unless the role, --setting-sources or --workdir-from=order (K10: the company's hooks and rules) loads them;
+      // permissions, tools and the guard as guard.mjs queryOptions says (tests/guard.test.mjs checks that shape)
+      for await (const m of query({ prompt: text, options: queryOptions(plan, guard, { model: MODEL, abortController: ac, env: { ...env, META_LAUNCH: id, META_ROLE: ev.role }, resume }) })) {
+        if (typeof m.session_id === "string" && m.session_id) sdk = m.session_id;
+        if (m.type === "assistant") saw = true;
+        if (m.type === "assistant" && m.parent_tool_use_id == null && m.message?.usage) last = m.message.usage;
+        if (m.type === "result") result = m;
+      }
+    } catch (e) { error = e?.message ?? String(e); }
+    const mu = Object.values(result?.modelUsage ?? {});
+    cumulative += mu.reduce((a, u) => a + u.inputTokens + u.outputTokens + u.cacheReadInputTokens + u.cacheCreationInputTokens, 0);
+    cost += mu.reduce((a, u) => a + (u.costUSD ?? 0), 0);
+    if (!warmFallback({ resumed: !!resume, error, result, sawAssistant: saw }) || !ev.coldBrief) break;
+    const why = String(error ?? result?.subtype ?? "no result").slice(0, 300);
+    note({ event: "warm-fallback", launch: id, n: k, role: ev.role, sdk: resume, why });
+    meta("launch", "resume-failed", `--launch=${id}`, `--role=${ev.role}`, `--sdk-session=${resume}`, `--why=${why}`);
+    resume = null; sdk = null; text = fs.readFileSync(ev.coldBrief, "utf8");
+  }
   clearTimeout(limit); if (kill) clearTimeout(kill);
   const ok = !error && result && !result.is_error;
   const tokens = last ? (last.input_tokens ?? 0) + (last.cache_read_input_tokens ?? 0) + (last.cache_creation_input_tokens ?? 0) + (last.output_tokens ?? 0) : 0;
-  const mu = Object.values(result?.modelUsage ?? {});
-  const cumulative = mu.reduce((a, u) => a + u.inputTokens + u.outputTokens + u.cacheReadInputTokens + u.cacheCreationInputTokens, 0);
-  const cost = mu.reduce((a, u) => a + (u.costUSD ?? 0), 0);
   const reason = ok ? null : (error ?? result?.subtype ?? "no result");
-  const rec = meta("launch", "finished", `--launch=${id}`, `--role=${ev.role}`, `--tokens=${tokens}`, `--cumulative=${cumulative}`, `--cost=${cost.toFixed(4)}`, `--ok=${ok}`, ...(reason ? [`--reason=${reason}`] : []));
-  note({ event: "finish", launch: id, n: k, role: ev.role, ok, reason, tokens, cumulative, cost: Number(cost.toFixed(4)), turns: result?.num_turns ?? null, minutes: Math.round((Date.now() - t0) / 600) / 100, sessions: rec?.sessions ?? [], abandoned: rec?.abandoned ?? [], denials: guard.denials.length, said: String(result?.result ?? "").slice(0, 4000) });
+  const rec = meta("launch", "finished", `--launch=${id}`, `--role=${ev.role}`, `--tokens=${tokens}`, `--cumulative=${cumulative}`, `--cost=${cost.toFixed(4)}`, `--ok=${ok}`, ...(reason ? [`--reason=${reason}`] : []), ...(sdk ? [`--sdk-session=${sdk}`] : []));
+  note({ event: "finish", launch: id, n: k, role: ev.role, ok, reason, tokens, cumulative, cost: Number(cost.toFixed(4)), turns: result?.num_turns ?? null, minutes: Math.round((Date.now() - t0) / 600) / 100, sessions: rec?.sessions ?? [], abandoned: rec?.abandoned ?? [], denials: guard.denials.length, said: String(result?.result ?? "").slice(0, 4000), ...(sdk ? { sdk } : {}), ...(ev.resume ? { resumed: ev.resume, warm: rec?.warm ?? [] } : {}) });
 }
 
 function pump() {

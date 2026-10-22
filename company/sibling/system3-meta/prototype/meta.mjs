@@ -5,6 +5,7 @@
 //   node meta.mjs init [--spec=<built-in> | --spec-file=<json>]   a fresh live org and its flow (refuses if state exists);
 //        --spec-file generates a company from a spec file, validated against the invariants (generator.mjs, M2)
 //   node meta.mjs order new --to=<manager> --title=… --task=<T> --accept=… [--flow=<name>] [--slug=<kebab>] [--budget=200000] [--priority=now|next|later --due=<min>] [--after=O-1,O-2] [--ledger-project=<projects.json id>]
+//        --accept-cmd='["node","<runner>","${workdir}"]': K26/B7, the argv of a stage `run: {argvFrom: "order"}` (refused in an agent session)
 //        --slug: the order's ${slug} in packs, briefs and stage cmds (unset: its task; M4 run: LESSON-<slug> reached gates.mjs)
 //        K19 --flow: one of the spec's flows (default the first); a chair flow (the ritual flow) takes --chair=<role>
 //        --attendee=<role> instead of --to: the chair works its first stage, the attendee its check
@@ -47,7 +48,8 @@
 //        K14: ask raise [--options='["A: …","B: …"]' | --options='A: …|B: …'] [--recommend=<one of them>]: what the founder inbox shows
 //   node meta.mjs wbr open|close|page0 …  ·  goal-review --by  ·  digest --audience=founder|lane:<l>|company [--channel]
 //   node meta.mjs help [<command>]                            these lines
-//   node meta.mjs check --order=<O>                          run the order's test1 (tests or text checks) without signing: builders self-check
+//   node meta.mjs check --order=<O> [--test1]               run the order's test1 (tests or text checks) without signing: builders self-check
+//        K26: at a stage with a `selftest` cmd it runs that (the worker's own check, as often as it likes); --test1 runs test1's
 //   node meta.mjs usage add --role=<role> --tokens=<n> --label=…   harness usage of a session outside any room (the supervisor)
 //   node meta.mjs usage correct --from-session=<S> --to-session=<S> --tokens=<n> --reason=…   append a correction (never edit)
 //   node meta.mjs policy knobs | policy show --lane=<l>       the knobs a lane policy may set; the lane's versions
@@ -63,6 +65,8 @@
 //        the launcher's report; K13: the cumulative tokens are charged to the orders the launch touched (even split), and
 //        an order at or over its budget gets no new session (room enter refuses; the supervisor asks kind:budget).
 //        M5 review: the launcher's report only: refused in an agent session (as `guard denied`), and a launch id names its role
+//        K26: --sdk-session=<id> records a warm role's Agent SDK session per order it worked; its next item resumes it
+//   node meta.mjs launch resume-failed --launch=<L> --role=<r> --sdk-session=<id> --why=…   K26: the launcher fell back to a cold start
 //   node meta.mjs guard denied --role=<r> --tool=<t> --rule=<rule> --why=… [--launch=<L>] [--detail=…]   K10: a guard denial (the launcher)
 //   node meta.mjs events [--type=<t>]   ·   node meta.mjs memory <role>   ·   node meta.mjs org activity <role>
 // Exit: 0 ok, 1 refused, 2 usage or state error.
@@ -73,7 +77,7 @@ import * as GEN from "./generator.mjs";
 import * as WS from "./workspace.mjs";
 import { proposePolicy, activatePolicy, managerReport, recordCycle, KNOBS } from "./policy.mjs";
 import { engage, engageTemplate, briefFor, deliver, decideContract, TEMPLATES } from "./contractor.mjs";
-import { absCmds, HERE, LIVE, STATE, LIVE_ROLES, TASK_FLOW, clock, make, rep, interpolate, save, load, withLock, runTests, runTest1, runCmdCheck, prepareCmd, validateChecks, describeChecks, mergeChecks, ESCAPES, readEscapes, sessionRole, briefVars, storeVars } from "./state.mjs";
+import { absCmds, HERE, LIVE, STATE, LIVE_ROLES, TASK_FLOW, clock, make, rep, interpolate, save, load, withLock, runTests, runTest1, runCmdCheck, prepareCmd, validateChecks, describeChecks, mergeChecks, ESCAPES, readEscapes, sessionRole, briefVars, storeVars, orderArgvProblem } from "./state.mjs";
 import * as B from "./building.mjs";
 import * as CH from "./channels.mjs";
 import * as T from "./tracker.mjs";
@@ -114,6 +118,10 @@ function postOutsideLock() {
 function checkOutsideLock() {
   if (!fs.existsSync(STATE) || typeof opt.order !== "string") return null;
   const co = load(); const o = co.engine.orders.get(opt.order);
+  // K26: the stage the order is at names its worker's own self-check (`selftest`): that runs, as often as the worker
+  // likes; it signs nothing (only hand-in triggers the stage). --test1 runs test1's cmd instead, as before K26
+  const cur = o && co.engine.stageDef(o);
+  if (cur?.selftest && !opt.test1) { const p = prepareCmd(o, cur.selftest); return { order: o.id, t: runCmdCheck(o, cur.selftest), argv: p.argv, cwd: p.cwd, kind: "selftest", stage: o.stage }; }
   const sd = o && co.engine.flows.get(o.flow)?.stages.find((s) => s.stage === "test1");
   if (!sd?.run) return null;
   const p = prepareCmd(o, sd);
@@ -144,6 +152,7 @@ function pack(co, run, ctx, session, item) {
     // K24: the stages' kept copies in the run's artifact store (each stage's newest, by name; ${artifacts} in the pack rules)
     ...(Object.keys(o.artifacts ?? {}).length ? { artifacts: { latest: vars.artifacts, stages: Object.fromEntries(Object.entries(o.artifacts).map(([k, v]) => [k, v.dir])) } } : {}),
     ...(sd?.post ? { post_check: `your leave first runs: ${sd.post.argv.join(" ")} (code's check of this stage; a failure refuses the leave, prints its findings and keeps this run open to fix)` } : {}), // K12
+    ...(sd?.selftest ? { self_check: absCmds(`${pre}node meta.mjs check --order=${o.id}   runs ${sd.selftest.argv.join(" ")} in the workdir; as often as you like, it signs nothing`) } : {}), // K26
     cap_means: "--cap counts every item in this session, including the first one you entered",
     ...((co.org.role(co.rooms.runs.get(run)?.role)?.waitSec ?? 90) > 90 ? { wait_means: `room next blocks up to ${co.org.role(co.rooms.runs.get(run)?.role).waitSec} s for your next item: run it with a Bash timeout of at least ${(co.org.role(co.rooms.runs.get(run)?.role).waitSec + 60) * 1000} ms, or the call is cut off before the item arrives` } : {}),
     // K4 audit: every independent (reviewing) stage hands in a verdict, not only check (stage 6/7: next_with had no revise)
@@ -285,6 +294,14 @@ function dispatch(co, cmd, sub, arg) {
     // gates it), and the founder inbox's `budget` on its budget asks (adapters/s3c/inbox-export.mjs)
     if (opt["ledger-project"] != null) { if (typeof opt["ledger-project"] !== "string" || !/^[a-z0-9]+(-[a-z0-9]+)*$/.test(opt["ledger-project"])) throw new Refused("--ledger-project is a projects.json id (kebab-case)"); o.ledgerProject = opt["ledger-project"]; }
     if (opt.goal) o.goal = opt.goal;
+    // K26/B7: the acceptance cmd a stage `run: {argvFrom: "order"}` runs (the hidden-test runner): the orderer's, never
+    // an agent's (a cmd code runs is never agent text, K1), so it is refused in an agent session
+    if (opt["accept-cmd"] != null) {
+      if (me != null) throw new Refused(`--accept-cmd is the orderer's (a program code runs): refused in an agent session (${me})`);
+      let a; try { a = JSON.parse(String(opt["accept-cmd"])); } catch { a = null; }
+      const e = orderArgvProblem(a); if (e) throw new Refused(e);
+      o.acceptCmd = a;
+    }
     if (opt.checks) { o.checks = JSON.parse(opt.checks); const e = validateChecks(o.checks); if (e) throw new Refused(`HARD: ${e}`); } // test1 by declared checks (non-code work)
     M.applyStandingRules(co, o); // decisions made before this order was placed
     // the company's known false claims travel to every text order (benchmark 3: room memory is per run, so an escape
@@ -358,7 +375,8 @@ function dispatch(co, cmd, sub, arg) {
     const pc = preCheck?.order === o.id ? preCheck : null, t = pc ? pc.t : runTest1(o); // M6 smoke: the flow's test1 cmd first
     // every self-check is a record (org evaluation, ISS-2): a failed one is a defect code caught before hand-in
     const by = [...rooms.runs.values()].find((r) => r.state === "running" && r.order === o.id)?.role ?? opt.by ?? null;
-    log.add({ type: "self-check", order: o.id, task: o.task, by, stage: o.stage, pass: t.pass, output: String(t.output).slice(0, 400) });
+    log.add({ type: "self-check", order: o.id, task: o.task, by, stage: o.stage, pass: t.pass, output: String(t.output).slice(0, 400), ...(pc?.kind ? { kind: pc.kind } : {}) });
+    if (pc?.kind === "selftest") return { order: o.id, task: o.task, pass: !!t.pass, stageError: !!t.stageError, output: t.output, findings: t.findings ?? null, rules: [`the ${pc.stage} stage's selftest (spec)`], cmd: pc.argv, cwd: pc.cwd, note: "your own check: run it as often as you like; nothing is signed, only your hand-in starts the next stage (--test1 runs test1's check)" };
     if (pc) return { order: o.id, task: o.task, slug: o.slug ?? o.task, pass: !!t.pass, stageError: !!t.stageError, output: t.output, findings: t.findings ?? null, route: t.route ?? null, rules: ["the flow's test1 cmd (spec run)"], cmd: pc.argv, cwd: pc.cwd, note: "the same cmd test1 will run, in the same worktree; nothing is signed" };
     return { order: o.id, task: o.task, pass: t.pass, output: t.output, rules: o.checks ? describeChecks(o.checks) : ["the builder's own tests (node --test)"], note: "the same check test1 will run; nothing is signed" }; }
   if (cmd === "flow" && sub === "metrics") { const m = flowMetrics(log, engine.orders); const r1 = (x) => Math.round(x * 100) / 100; return { ...m, orders: m.orders.map((o) => ({ ...o, lead_min: r1(o.lead), work_min: r1(o.work), critical_min: r1(o.critical), flowEfficiency: r1(o.flowEfficiency) })) }; }
@@ -531,8 +549,28 @@ function dispatch(co, cmd, sub, arg) {
     for (const id of [...(ss.length ? [] : le?.msgs ?? []), ...(L("msgs") ?? [])]) { const ref = mailbox.msgs.get(id)?.ref; if (engine.orders.has(ref)) touched.add(ref); }
     for (const t of [...(le?.tasks ?? []).map((x) => x.ref), ...(L("tasks") ?? []).map((x) => x.split(":").pop())]) if (engine.orders.has(t)) touched.add(t);
     const charged = log.events.some((e) => e.type === "charge" && e.launch === opt.launch) ? [] : engine.charge([...touched], N("cumulative") ?? tokens, { launch: opt.launch });
-    log.add({ type: "launch-finished", launch: opt.launch, role: opt.role, ok, tokens, cumulative: N("cumulative") ?? null, cost: N("cost") ?? null, sessions: ss.map((s) => s.id), abandoned, reason: opt.reason ?? null });
-    return { sessions: ss.map((s) => s.id), abandoned, charged };
+    // K26: a warm role's Agent SDK session id, per order it worked at a work stage in this launch: the planner resumes
+    // it for that order's next item (supervisor.mjs plan, warmFor). A failed process is recorded as not ok (cold next)
+    const sdk = typeof opt["sdk-session"] === "string" && /^[\w-]{8,100}$/.test(opt["sdk-session"]) ? opt["sdk-session"] : null;
+    const warmed = [];
+    if (sdk && org.role(opt.role)?.warm) {
+      for (const x of rooms.runs.values()) {
+        const wo = engine.orders.get(x.order);
+        if (!ss.some((s) => s.id === x.session) || !wo || !engine.isWorkStage(wo, x.stage) || warmed.includes(x.order)) continue;
+        (co.data.warm ??= {})[`${x.order}|${opt.role}`] = { sdk, launch: opt.launch, ok, stage: x.stage, t: clock.now() };
+        warmed.push(x.order);
+      }
+      if (warmed.length) log.add({ type: "warm-record", launch: opt.launch, role: opt.role, sdk, ok, orders: warmed });
+    }
+    log.add({ type: "launch-finished", launch: opt.launch, role: opt.role, ok, tokens, cumulative: N("cumulative") ?? null, cost: N("cost") ?? null, sessions: ss.map((s) => s.id), abandoned, reason: opt.reason ?? null, ...(sdk ? { sdk } : {}) });
+    return { sessions: ss.map((s) => s.id), abandoned, charged, ...(warmed.length ? { warm: warmed } : {}) };
+  }
+  // K26: the launcher could not resume a warm session (gone, expired) and started cold instead: never resumed again
+  if (cmd === "launch" && sub === "resume-failed") {
+    need("launch", "role", "sdk-session", "why");
+    if (me != null) throw new Refused(`launch resume-failed is the launcher's report: refused in an agent session (${me})`);
+    const marked = Object.entries(co.data.warm ?? {}).filter(([, w]) => w.sdk === opt["sdk-session"]).map(([k, w]) => { w.failed = String(opt.why).slice(0, 300); return k.split("|")[0]; });
+    return log.add({ type: "warm-fallback", launch: opt.launch, role: opt.role, sdk: opt["sdk-session"], why: String(opt.why).slice(0, 300), orders: marked });
   }
   // K10: what the launcher needs for one session (the role's tools/sessionMin/maxTurns/settingSources, the orders'
   // workdirs and protected globs), and the record of every call its guard denied (launcher/guard.mjs)

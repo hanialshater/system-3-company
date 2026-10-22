@@ -354,6 +354,48 @@ export function packProblem(p) {
   return null;
 }
 
+// K27 (founder 2026-10-22: "a FAST and MORE ACCURATE harness": one external evaluation at the end, cheap): a review
+// stage may take its waiting orders in one session, `batch: {max, waitMin}` (one cold start for up to max orders; the
+// planner holds the first until max wait or the oldest has waited waitMin minutes), and may run for a sampled share of
+// orders, `sample: {rate, min, max, always}`: deterministic by the order's id (unitHash), always run when a condition
+// of SAMPLE_ALWAYS holds, and otherwise signed by code as sampled-out (an event, Engine.notifyStage). The rate is a
+// policy knob the self-improvement step (K28, learn.mjs) may move, never outside the founder's [min, max] of the spec.
+export const SAMPLE_ALWAYS = ["looped", "self-check-failed", "now"];
+/** K27: a stable draw in [0, 1) from a string (FNV-1a, 32 bits; lib.mjs imports nothing, so no crypto). */
+export function unitHash(str) {
+  let h = 0x811c9dc5;
+  for (const ch of String(str)) { h ^= ch.codePointAt(0); h = Math.imul(h, 0x01000193) >>> 0; }
+  return h / 2 ** 32;
+}
+const reviewStage = (s) => isIndependent(s) && s.run == null && !["code", "founder", "builder", "orderer", "chair"].includes(s.signer);
+/** K27: why a stage's `batch` is invalid ([] when it is fine or absent). */
+export function batchProblems(s) {
+  const b = s?.batch;
+  if (b == null) return [];
+  if (typeof b !== "object" || Array.isArray(b) || Object.keys(b).some((k) => !["max", "waitMin"].includes(k))) return ["batch is {max, waitMin}"];
+  const p = [];
+  if (!(Number.isInteger(b.max) && b.max >= 1 && b.max <= 10)) p.push("batch.max is a whole number 1-10 (orders one session takes)");
+  if (b.waitMin != null && !(typeof b.waitMin === "number" && b.waitMin >= 0 && b.waitMin <= 240)) p.push("batch.waitMin is 0-240 minutes (how long the first order waits for others)");
+  if (!reviewStage(s)) p.push("batch is for an independent stage an agent reviews (a builder's work stage drains by drainCap)");
+  return p;
+}
+/** K27: why a stage's `sample` is invalid. */
+export function sampleProblems(s) {
+  const x = s?.sample;
+  if (x == null) return [];
+  if (typeof x !== "object" || Array.isArray(x) || Object.keys(x).some((k) => !["rate", "min", "max", "always"].includes(k))) return ["sample is {rate, min, max, always}"];
+  const p = [], unit = (v) => typeof v === "number" && v >= 0 && v <= 1;
+  for (const k of ["rate", "min", "max"]) if (x[k] != null && !unit(x[k])) p.push(`sample.${k} is a number 0-1`);
+  if (x.rate == null) p.push("sample.rate is the share of orders the stage runs for (0-1)");
+  const lo = x.min ?? x.rate, hi = x.max ?? x.rate;
+  if (unit(x.rate) && unit(lo) && unit(hi) && !(lo <= x.rate && x.rate <= hi)) p.push("sample: min ≤ rate ≤ max (the founder's bounds for the knob)");
+  if (x.always != null && !(Array.isArray(x.always) && x.always.every((c) => SAMPLE_ALWAYS.includes(c)))) p.push(`sample.always is a list of ${SAMPLE_ALWAYS.join(", ")}`);
+  if (!reviewStage(s)) p.push("sample is for an independent stage an agent reviews (code stages and the worker's own always run)");
+  return p;
+}
+/** K27: the founder's bounds for a sampled stage's rate. */
+export const sampleBounds = (s) => ({ min: s.sample.min ?? s.sample.rate, max: s.sample.max ?? s.sample.rate });
+
 /** Invariants every flow definition must meet, whoever writes it. */
 export function flowProblems(def) {
   const p = [];
@@ -377,9 +419,14 @@ export function flowProblems(def) {
   }
   const t1 = def.stages.find((s) => s.stage === "test1");
   if (t1 && t1.signer !== "code") p.push("test1 must be signed by code");
-  const check = def.stages.find((s) => s.stage === "check");
+  // K27 (B7 hybrid: build → test1 → eval → accept → ship): the independent review need not be called check. A stage
+  // named check is still the one judged (and must be independent of build); without one, some independent stage
+  // signed by an agent role other than the worker's (eval by {role:"evaluator"}) is the flow's review
+  const check = def.stages.find((s) => s.stage === "check") ?? def.stages.find((s) => s.independent === true && isIndependent(s) && !["builder", "orderer", "chair", "code", "founder"].includes(s.signer));
   if (!check) p.push("no independent check stage");
   else if (["builder", "orderer", "chair"].includes(check.signer)) p.push("check must be signed independently of build");
+  // K27: a review stage's batch and sample knobs (supervisor.mjs plan holds a batch; Engine.notifyStage samples)
+  for (const s of def.stages) { for (const e of batchProblems(s)) p.push(`${s.stage}: ${e}`); for (const e of sampleProblems(s)) p.push(`${s.stage}: ${e}`); }
   const rel = def.stages.find((s) => s.stage === "release");
   if (rel && rel.signer !== "founder") p.push("release is founder-reserved");
   // M6 prep (plan §M6 criterion 5): after ship only code stages with a run may follow (the integration merge,
@@ -449,6 +496,7 @@ export class Engine {
     this.onParked = []; // [fn(o, park)]: K9's loop-cap ask to the orderer (state.mjs: asks need the tracker; not persisted)
     this.defaultMaxLoops = null; // K9: the spec's `maxLoops` (state.mjs make); null: no cap unless the lane policy sets one
     this.standing = []; // K15: the spec's approvals.standing (state.mjs make; not persisted: the spec is in the state)
+    this.sampleRates = {}; // K27: "<flow name>:<stage>" → the rate now (K28 may move it within the stage's bounds; persisted)
   }
 
   /** M5: the knobs of a lane's active policy (the lane as it runs now; an order's own pinned version is policyOf). */
@@ -483,6 +531,31 @@ export class Engine {
     return null;
   }
   familyOf(o, stage) { return loopFamilyOf(this.flows.get(o.flow), stage); }
+
+  // ---- K27: sampled review stages
+  sampleKey(o, stage) { return `${this.flows.get(o.flow)?.name ?? String(o.flow).split("@")[0]}:${stage}`; }
+  /** K27: the rate a sampled stage runs at now (K28's change, else the spec's). */
+  sampleRate(o, s) { const r = this.sampleRates[this.sampleKey(o, s.stage)]; return typeof r === "number" ? r : s.sample.rate; }
+  /** K27: does stage `s` run for order `o` at this loop? Pure but for the one `sample` event per stage and loop (log). */
+  sampleDecision(o, s, { log = false } = {}) {
+    const rate = this.sampleRate(o, s), draw = unitHash(`${o.id}:${s.stage}`);
+    const held = (s.sample.always ?? []).filter((c) => (c === "looped" ? o.loops > 0 : c === "now" ? o.priority === "now" : this.log.events.some((e) => e.type === "self-check" && e.order === o.id && e.pass === false)));
+    const d = { run: held.length > 0 || draw < rate, rate, draw: Math.round(draw * 1e4) / 1e4, always: held };
+    const at = `${s.stage}:${o.loops}`;
+    if (log && (o.sampled ??= {})[at] == null) { o.sampled[at] = d.run ? "run" : "out"; this.log.add({ type: d.run ? "sample-run" : "sample-skip", order: o.id, stage: s.stage, loops: o.loops, ...d }); }
+    return d;
+  }
+  /** K27/K28: move a sampled stage's rate, inside the founder's bounds (the spec's sample min/max). */
+  setSampleRate(flowName, stage, rate, { by, why = null }) {
+    const key = this.active.get(flowName), s = key && this.flows.get(key)?.stages.find((x) => x.stage === stage);
+    hard(s?.sample, `${flowName}:${stage} is not a sampled stage`);
+    const { min, max } = sampleBounds(s);
+    hard(typeof rate === "number" && rate >= min && rate <= max, `${flowName}:${stage} rate ${rate} is outside the founder's bounds [${min}, ${max}]`);
+    const was = this.sampleRates[`${flowName}:${stage}`] ?? s.sample.rate;
+    this.sampleRates[`${flowName}:${stage}`] = rate;
+    this.log.add({ type: "sample-rate", flow: flowName, stage, from: was, to: rate, by, why });
+    return { flow: flowName, stage, from: was, to: rate };
+  }
 
   // ---- K13 (plan 2026-10-21 §M5): charged spend. o.spent was set to 0 at orderNew and never moved, so a budget was
   // a number nobody checked. `launch finished` charges a launch's cumulative tokens to the orders it touched, split
@@ -621,6 +694,8 @@ export class Engine {
     const s = this.stageDef(o);
     if (!s) return;
     const key = `${o.id}:${o.stage}:${o.loops}`;
+    // K27: a sampled review stage decides once per stage and loop whether it runs; a sampled-out one is signed by code
+    if (s.sample && !duplicate) { const d = this.sampleDecision(o, s, { log: true }); if (!d.run) return this.advance(o.id, { stage: o.stage, by: "code", sampled: true }); }
     if (s.signer === "code") return this.log.add({ type: "code-stage", order: o.id, stage: o.stage });
     if (s.signer === "founder") return this.request({ order: o.id, stage: o.stage, approver: "founder", kind: "release", dueMin: 24 * 60, key });
     const to = signerRole(s) ? `role:${signerRole(s)}` : s.signer === "chair" ? `role:${o.chair}` : s.signer === "attendee" ? `role:${o.attendee}` : s.signer === "builder" ? o.builder : s.signer === "orderer" ? o.manager : `pool:${s.signer}`; // K3: role:<id>; K19: the order's chair or attendee
@@ -651,10 +726,11 @@ export class Engine {
   independentOf(o, stage, roleId) { return !(isIndependent(this.flows.get(o.flow)?.stages.find((x) => x.stage === stage)) && roleId === o.builder); }
 
   // ---- stages, up the chain
-  advance(id, { stage, by, verdict = "pass", evidence = null, findings = null, consult = false, postChecked = false, to = null }) {
+  advance(id, { stage, by, verdict = "pass", evidence = null, findings = null, consult = false, postChecked = false, to = null, sampled = false }) {
     const o = this.orders.get(id);
     hard(o, `no order ${id}`);
     hard(o.stage === stage, `${id} is at ${o.stage}, not ${stage}`);
+    if (sampled) return this.sampledOut(o);
     this.guard(!consult, "consult", `a consult run cannot sign ${stage}`, { order: id, by });
     const s = this.stageDef(o);
     this.guard(this.mayAssign(o, stage, by), "signer", `${by} may not sign ${stage} on ${id}`, { order: id, by });
@@ -685,18 +761,36 @@ export class Engine {
       this.log.add({ type: "reopen", order: id, from: stage, loops: o.loops, priority: o.priority, ...(back !== dflt ? { to: back } : {}), ...(this.workStages(o).length > 1 ? { family: fam, familyLoops: o.loopsBy[fam] } : {}) });
       this.loopCap(o, { by, from: stage, fam });
     }
+    this.afterPass(o);
+    for (const fn of this.onAdvanced) fn(o, { stage, by, verdict });
+    return o;
+  }
+
+  /** K27: code signs a sampled-out review stage (Engine.notifyStage decided it; recomputed here, so no caller can skip a
+   *  stage the sample says runs). Nothing was sent for it; the order moves to its next stage as a pass would. */
+  sampledOut(o) {
+    const s = this.stageDef(o);
+    hard(s?.sample && !this.sampleDecision(o, s).run, `${o.id} at ${o.stage}: only a sampled stage the sample skips is signed sampled-out`);
+    const d = this.sampleDecision(o, s), stage = o.stage;
+    o.history.push({ stage, by: "code", verdict: "sampled-out", t: this.clock.now(), evidence: `sampled out: draw ${d.draw.toFixed(4)} ≥ rate ${d.rate}` });
+    this.log.add({ type: "advance", order: o.id, stage, by: "code", verdict: "sampled-out" });
+    o.stage = this.nextStage(o);
+    this.afterPass(o);
+    for (const fn of this.onAdvanced) fn(o, { stage, by: "code", verdict: "pass" });
+    return o;
+  }
+  /** After a stage passed: done (shipped, and what waited for it unblocks), or the next stage notified. */
+  afterPass(o) {
     if (o.stage === "done") {
-      this.log.add({ type: "shipped", order: id, lead: this.clock.now() - o.created, loops: o.loops, priority: o.priority ?? "next" });
+      this.log.add({ type: "shipped", order: o.id, lead: this.clock.now() - o.created, loops: o.loops, priority: o.priority ?? "next" });
       for (const d of this.orders.values()) {
-        if (d.blocked && d.after.includes(id) && d.after.every((x) => this.orders.get(x).stage === "done")) {
+        if (d.blocked && d.after.includes(o.id) && d.after.every((x) => this.orders.get(x).stage === "done")) {
           d.blocked = false;
-          this.log.add({ type: "unblocked", order: d.id, by: id });
+          this.log.add({ type: "unblocked", order: d.id, by: o.id });
           if (d.builder) this.notifyStage(d);
         }
       }
     } else if (o.stage !== "parked") this.notifyStage(o);
-    for (const fn of this.onAdvanced) fn(o, { stage, by, verdict });
-    return o;
   }
 
   /** A shipped order goes back to build: a regression found by code, or a changed requirement (benchmark 4). */

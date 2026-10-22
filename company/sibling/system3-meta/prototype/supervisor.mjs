@@ -628,7 +628,11 @@ export function plan(co, { batchLater: batchDefault = 3, cap: capDefault = 4, sk
     // only its home lane's
     const kl = laneOf(role, msgs[0]), pl = co.engine.policies.get(kl);
     const k = pl?.active ? pl.versions[pl.active - 1].knobs : {};
-    const batchLater = k.batchLater ?? batchDefault, cap = k.drainCap ?? r?.drainCap ?? capDefault;
+    // K27: a review stage's `batch` {max, waitMin}: its first waiting order is held until max wait or the oldest has
+    // waited waitMin minutes, then one session takes up to max (one cold start for the batch; nextTimer wakes for it)
+    const bt = batchOf(co, msgs);
+    if (bt && msgs.length < bt.max && co.engine.clock.now() - Math.min(...msgs.map((m) => m.ts)) < bt.waitMin && !msgs.some((m) => m.priority === "now")) return;
+    const batchLater = k.batchLater ?? batchDefault, cap = bt?.max ?? k.drainCap ?? r?.drainCap ?? capDefault;
     const now = msgs.filter((m) => m.priority === "now");
     // M5: a lane at its policy's session cap (maxSessions) gets no new session, `now` items included; K17: nor a level at its cap
     // M6 prep review: a role of several sessions spends one of them per `now` item (the next/later loop below counted
@@ -646,7 +650,7 @@ export function plan(co, { batchLater: batchDefault = 3, cap: capDefault = 4, sk
     if (!(next.length || later.length >= batchLater || dueLater.length)) return;
     // benchmark 1: a cap of 4 left 1 of 5 pages to a whole new reader session (63k for one page). When the remainder
     // is small, the session takes it all: half a cap more costs less than a fresh session's start-up.
-    const chunk = (all) => (all.length - cap <= Math.ceil(cap / 2) ? all : all.slice(0, cap));
+    const chunk = (all) => (bt ? all.slice(0, cap) : all.length - cap <= Math.ceil(cap / 2) ? all : all.slice(0, cap));
     const why = next.length ? `next: ${next.length} waiting, no session running` : `later: a batch of ${later.length}`;
     if (!many(role)) {
       const take = chunk([...next, ...later]);
@@ -694,7 +698,51 @@ export function plan(co, { batchLater: batchDefault = 3, cap: capDefault = 4, sk
     const same = out.find((p) => p.role === j.role);
     if (same) same.tasks = [...(same.tasks ?? []), ...j.tasks]; else if (!levelFull(j.role)) { out.push(j); bump(j.role); } // K17
   }
+  // K26: a warm role's next item for an order it already worked (a revise, or its next work stage) resumes that order's
+  // Agent SDK session (recorded at `launch finished --sdk-session`) instead of a cold start; never one another launch in
+  // flight is resuming, nor one whose resume failed (the launcher fell back to cold), nor for a stage it does not work
+  const resuming = new Set(log.events.filter((e) => e.type === "launch" && e.resume && !ended(e)).map((e) => e.resume));
+  for (const p of out) {
+    if (p.tasks?.length || !p.msgs?.length || !org.role(p.role)?.warm) continue;
+    const w = warmFor(co, p.role, p.msgs);
+    if (w && !resuming.has(w.sdk)) { p.resume = w.sdk; p.why = `${p.why} (warm: resumes ${w.order}'s session from launch ${w.launch})`; resuming.add(w.sdk); }
+  }
   return out;
+}
+
+/** K26: the recorded warm session a launch of `role` for these items resumes: the first item's order's (it must be at
+ *  a stage the order's worker works), else any later item's; null for a cold start. */
+export function warmFor(co, role, msgs) {
+  for (const id of msgs) {
+    const m = co.mailbox.msgs.get(id), o = m && co.engine.orders.get(m.ref);
+    if (!o || !co.engine.isWorkStage(o, m.body?.stage)) continue;
+    const w = co.data?.warm?.[`${o.id}|${role}`];
+    if (w?.sdk && w.ok && !w.failed) return { ...w, order: o.id };
+  }
+  return null;
+}
+
+/** K26: the brief for a resumed warm session: short (it has this company's context and its own earlier work); the
+ *  pack carries the stage, the findings and the commands, as for any session. */
+export function warmBriefFor(co, item) {
+  const r = co.org.role(item.role);
+  const pre = [process.env.META_LIVE_DIR && `META_LIVE_DIR=${process.env.META_LIVE_DIR}`, process.env.META_STATE && `META_STATE=${process.env.META_STATE}`].filter(Boolean).join(" ");
+  const items = item.msgs.map((id) => { const m = co.mailbox.msgs.get(id), o = m && co.engine.orders.get(m.ref); return o ? `${o.id} (${o.task}) at ${m.body?.stage}${m.body?.loops ? `, loop ${m.body.loops}` : ""}` : id; });
+  const first = co.mailbox.msgs.get(item.msgs[0]), o = first && co.engine.orders.get(first.ref);
+  const sd = o && co.engine.flows.get(o.flow)?.stages.find((x) => x.stage === first.body?.stage);
+  const L = [`You are \`${item.role}\` (${r.level}) again: this is your own session, resumed. The company, the CLI and your earlier work are as you left them; only what is new is below.`, "",
+    `New work: ${items.join("; ")}. Session cap ${item.cap}.`,
+    `1. Enter: \`${pre ? `${pre} ` : ""}node meta.mjs room enter --msg=${item.msgs[0]} --role=${item.role}\` (run it from ${HERE}). Read the pack's \`findings\`: they say what to change.${sd?.selftest ? ` Self-check as often as you like with \`node meta.mjs check --order=<O>\` (runs ${sd.selftest.argv.join(" ")}; it signs nothing).` : " Self-check with `node meta.mjs check --order=<O>` before you hand in (it signs nothing)."}`,
+    `2. Hand in with the pack's \`next_with\` (\`--cap=${item.cap} --evidence=<path> --learned='one line'\`) and stop only when it says your session is over.`];
+  return absCmds(L.join("\n"));
+}
+
+/** K27: the batch rule for these work items, when every one is at a stage with `batch` (the smallest max and waitMin
+ *  of their stages), else null. */
+export function batchOf(co, msgs) {
+  const bs = msgs.map((m) => { const o = co.engine.orders.get(m.ref); return o ? co.engine.flows.get(o.flow)?.stages.find((x) => x.stage === m.body?.stage)?.batch : null; });
+  if (!bs.length || bs.some((b) => !b)) return null;
+  return { max: Math.min(...bs.map((b) => b.max)), waitMin: Math.min(...bs.map((b) => b.waitMin ?? 0)) };
 }
 
 /** Harness usage for sessions that finished, as role:tokens. The role's latest session without usage gets it; a
@@ -769,7 +817,7 @@ export function briefFor(co, item, { context = null } = {}) {
     if (item.msgs.length > 1 && sd?.pack) L.push("Each item's pack states its own stage's rules.");
     // K4: an independent stage's role reviews, whatever its level (a role signer such as learner-evaluator)
     if (r.level === "checker" || (o && isIndependent(co.engine.flows.get(o.flow)?.stages.find((x) => x.stage === first.body?.stage)))) L.push("2. Check the work against its accept criteria and the shipped work it must agree with. Never fix it. Report defects by class: list every instance of a class, each as what is wrong → what is required.", `3. Hand in with \`next_with\` (\`--cap=${item.cap} --verdict=pass\` or \`--verdict=revise --findings='…'\`, \`--evidence=<path>\`, \`--learned='one line'\`) to take the next item in this session: it waits up to ${r.waitSec ?? 90} s for one${(r.waitSec ?? 90) > 90 ? ` (give that Bash call a timeout of at least ${(r.waitSec + 60) * 1000} ms)` : ""}, so always hand in with it, and stop only when it says your session is over.`);
-    else L.push("2. Do the work the accept criteria ask, in the workdir only. If the work needs a change in another order's module, do not edit it: raise it with your manager (`node meta.mjs ask raise --by=" + item.role + " --kind=decision --title='…' --why='what is wrong, where, what is required' --due=YYYY-MM-DD`) and say so when you hand in. If the order has `checks`, run `node meta.mjs check --order=<O>` before you hand in: it runs the same test1 code will run.", `3. Hand in with \`next_with\` (\`--cap=${item.cap} --evidence=<path> --learned='one line'\`) to take the next item in this session: it waits up to ${r.waitSec ?? 90} s for one${(r.waitSec ?? 90) > 90 ? ` (give that Bash call a timeout of at least ${(r.waitSec + 60) * 1000} ms)` : ""} (a revise of your work often arrives then), so always hand in with it, and stop only when it says your session is over.`);
+    else L.push("2. Do the work the accept criteria ask, in the workdir only. If the work needs a change in another order's module, do not edit it: raise it with your manager (`node meta.mjs ask raise --by=" + item.role + " --kind=decision --title='…' --why='what is wrong, where, what is required' --due=YYYY-MM-DD`) and say so when you hand in. " + (sd?.selftest ? `Check your own work as often as you like with \`node meta.mjs check --order=<O>\` (it runs ${sd.selftest.argv.join(" ")} in the workdir and signs nothing; only your hand-in starts the next stage).` : "If the order has `checks`, run `node meta.mjs check --order=<O>` before you hand in: it runs the same test1 code will run."), `3. Hand in with \`next_with\` (\`--cap=${item.cap} --evidence=<path> --learned='one line'\`) to take the next item in this session: it waits up to ${r.waitSec ?? 90} s for one${(r.waitSec ?? 90) > 90 ? ` (give that Bash call a timeout of at least ${(r.waitSec + 60) * 1000} ms)` : ""} (a revise of your work often arrives then), so always hand in with it, and stop only when it says your session is over.`);
     L.push("If a command refuses, read the message and fix what it names. If \`room enter\` says the item is held by another run or already done, stop at once and report it: another session has it, so never wait for a lease (benchmark 5: a session waited 30 minutes for one).");
   }
   L.push("", "Report back briefly: each item, its outcome, and anything that confused you.");
@@ -814,7 +862,9 @@ export function nextTimer(co) {
     // the watchdog's resend is due WATCHDOG_MIN after an order was first seen orphaned
     ...[...co.engine.orders.values()].filter((o) => o.orphanSince != null).map((o) => o.orphanSince + WATCHDOG_MIN),
     // K2: a running job's backstop (its wrapper died or hangs past its timeout); a job that ends wakes waitForChange
-    ...JOBS.deadlines(co)].filter((t) => t != null);
+    ...JOBS.deadlines(co),
+    // K27: a held review batch is released when its oldest item has waited its stage's batch.waitMin
+    ...[...co.mailbox.msgs.values()].filter((m) => m.kind === "work" && m.state === "open").map((m) => { const o = co.engine.orders.get(m.ref), b = o && co.engine.flows.get(o.flow)?.stages.find((x) => x.stage === m.body?.stage)?.batch; return b ? m.ts + (b.waitMin ?? 0) : null; }).filter((t) => t != null && t > now)].filter((t) => t != null);
   if (!ts.length) return null;
   return Math.max(0, (Math.min(...ts) - now) * 60000) + 50;
 }
@@ -858,11 +908,17 @@ function waitForChange(ms) {
 /** Reserve each planned launch and write its brief; returns the launches. Shared by `cycle` and `serve`. */
 export function reserve(co, planned, { context = null, outbox = null } = {}) {
   return planned.map((p) => {
-    const e = co.log.add({ type: "launch", role: p.role, msgs: p.msgs, tasks: p.tasks ?? [], why: `plan: ${p.why}`, ...(p.gate ? { gate: p.gate } : {}) }); // K20: the gate's result
-    const brief = briefFor(co, p, { context });
-    let file = null;
-    if (outbox) { fs.mkdirSync(outbox, { recursive: true }); file = path.join(outbox, `${String(e.seq).padStart(4, "0")}-${p.role}.md`); fs.writeFileSync(file, brief); }
-    return { ...p, launch: e.seq, file, brief };
+    const e = co.log.add({ type: "launch", role: p.role, msgs: p.msgs, tasks: p.tasks ?? [], why: `plan: ${p.why}`, ...(p.gate ? { gate: p.gate } : {}), ...(p.resume ? { resume: p.resume } : {}) }); // K20: the gate's result; K26: the warm session it resumes
+    // K26: a resumed session gets the short brief; the full one is kept beside it for the launcher's cold fallback
+    const cold = briefFor(co, p, { context }), brief = p.resume ? warmBriefFor(co, p) : cold;
+    let file = null, coldFile = null;
+    if (outbox) {
+      fs.mkdirSync(outbox, { recursive: true });
+      const base = path.join(outbox, `${String(e.seq).padStart(4, "0")}-${p.role}`);
+      file = `${base}.md`; fs.writeFileSync(file, brief);
+      if (p.resume) { coldFile = `${base}.cold.md`; fs.writeFileSync(coldFile, cold); }
+    }
+    return { ...p, launch: e.seq, file, brief, ...(p.resume ? { coldFile, coldBrief: cold } : {}) };
   });
 }
 
@@ -950,7 +1006,7 @@ async function serve(opts, { idleMin = 2, maxMin = 120 } = {}) {
       return { steps, launches, settled: settled(co) && schedulersEnded(co), wakeInMs: nextTimer(co) };
     });
     if (r.steps.length) say({ event: "steps", steps: r.steps.map((x) => stepLabel(x)) });
-    for (const l of r.launches) say({ event: "launch", role: l.role, why: l.why, cap: l.cap, msgs: l.msgs, brief: l.file, ...(l.gate ? { gate: l.gate.map((x) => ({ id: x.id, pass: x.pass, output: x.output })) } : {}) });
+    for (const l of r.launches) say({ event: "launch", role: l.role, why: l.why, cap: l.cap, msgs: l.msgs, brief: l.file, ...(l.resume ? { resume: l.resume, coldBrief: l.coldFile } : {}), ...(l.gate ? { gate: l.gate.map((x) => ({ id: x.id, pass: x.pass, output: x.output })) } : {}) });
     if (r.steps.length || r.launches.length) quietSince = Date.now();
     if (r.settled && Date.now() - quietSince >= idleMin * 60000) { stop("done"); say({ event: "done", why: "every order is done and no meeting is open" }); return; }
     // K22: --max-min is a pause, not an end: the state is saved with a serve-stop, exit 0, and the next serve resumes
@@ -1011,7 +1067,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
       const launches = w.plan.length ? withLock(() => {
         const co = load();
         const g = planGated(co, opts); // K20: as serve (the plan made again under this lock, without what the gate refuses)
-        const out = g.pass.map((p) => { co.log.add({ type: "launch", role: p.role, msgs: p.msgs, tasks: p.tasks ?? [], why: `cycle: ${p.why}`, ...(p.gate ? { gate: p.gate } : {}) }); return { ...p, brief: briefFor(co, p, { context }) }; });
+        const out = g.pass.map((p) => { co.log.add({ type: "launch", role: p.role, msgs: p.msgs, tasks: p.tasks ?? [], why: `cycle: ${p.why}`, ...(p.gate ? { gate: p.gate } : {}), ...(p.resume ? { resume: p.resume } : {}) }); const cold = briefFor(co, p, { context }); return { ...p, brief: p.resume ? warmBriefFor(co, p) : cold, ...(p.resume ? { coldBrief: cold } : {}) }; });
         w.steps.push(...g.steps);
         save(co);
         return out;

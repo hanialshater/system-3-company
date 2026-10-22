@@ -96,7 +96,7 @@ export function make(specName = "toy", specDef = null) {
 
 export const rep = (k, v) => (v instanceof Map ? { __map: [...v] } : v instanceof Set ? { __set: [...v] } : v);
 export const rev = (k, v) => (v && v.__map ? new Map(v.__map) : v && v.__set ? new Set(v.__set) : v);
-export const FIELDS = { data: ["spec", "specDef", "building", "channels", "tracker", "goals", "meetings", "rituals", "rules", "jobs", "host", "exports", "schedulers", "gates", "serve"], log: ["events"], mailbox: ["msgs", "keys", "n"], org: ["roles", "changes", "n", "rooms"], engine: ["flows", "active", "orders", "approvals", "n", "limits", "policies", "contracts"], rooms: ["runs", "n", "memory", "sessions", "nS"] };
+export const FIELDS = { data: ["spec", "specDef", "building", "channels", "tracker", "goals", "meetings", "rituals", "rules", "jobs", "host", "exports", "schedulers", "gates", "serve", "warm", "learn", "vars"], log: ["events"], mailbox: ["msgs", "keys", "n"], org: ["roles", "changes", "n", "rooms"], engine: ["flows", "active", "orders", "approvals", "n", "limits", "policies", "contracts", "sampleRates"], rooms: ["runs", "n", "memory", "sessions", "nS"] };
 
 export function save(co) {
   const data = Object.fromEntries(Object.entries(FIELDS).map(([o, fs_]) => [o, Object.fromEntries(fs_.map((f) => [f, co[o][f]]))]));
@@ -325,16 +325,25 @@ export function runTest1(o) {
 // checks and meeting rules are agent-written (a chair's --rules would otherwise make code run any argv).
 // M4 audit: `errorExit` lists exit codes that are a stage-error, not a revise (adapters/s3c: exit 2 usage, 3 environment;
 // plan §2 stage 3 "exit 3 = no evidence, stage errors, not revise": without it a broken host burned the builder's loops)
-export const CMD_KEYS = ["argv", "cwd", "env", "timeoutMs", "pass", "findings", "route", "errorExit"];
+export const CMD_KEYS = ["argv", "cwd", "env", "timeoutMs", "pass", "findings", "route", "errorExit", "argvFrom"];
+/** K26/B7: a stage `run` may take its argv from the order (`argvFrom: "order"`): the acceptance cmd the orderer gave
+ *  with `order new --accept-cmd` (refused in an agent session, so no agent picks a program code runs), e.g. a hidden
+ *  test runner whose category-only output is the finding. Only on a stage run (validateCmd's `orderArgv`). */
+export const ORDER_ARGV = "order";
+/** Why an order's acceptance argv is invalid, or null. */
+export const orderArgvProblem = (a) => (Array.isArray(a) && a.length > 0 && a.length <= 64 && a.every((x) => typeof x === "string" && x && x.length <= 2000) ? null : "--accept-cmd is a JSON list of 1-64 non-empty strings (the argv)");
 /** M4 audit: a route may also say `park` (plan §2: a learner's fatal, an active publish hold: park + ask, K8). */
 export const PARK_ROUTE = "park";
 const badRe = (x) => { try { new RegExp(x, "m"); return false; } catch { return true; } };
 /** Why a cmd is invalid, or null. `stages`: the flow's stage names before this one (a route only goes back). */
-export function validateCmd(c, { stages = null } = {}) {
+export function validateCmd(c, { stages = null, orderArgv = false } = {}) {
   if (!c || typeof c !== "object" || Array.isArray(c)) return "a cmd is an object";
   const bad = Object.keys(c).filter((k) => !CMD_KEYS.includes(k));
   if (bad.length) return `unknown cmd field ${bad.join(", ")} (known: ${CMD_KEYS.join(", ")})`;
-  if (!Array.isArray(c.argv) || !c.argv.length || c.argv.some((a) => typeof a !== "string" || !a)) return "argv is a non-empty list of strings";
+  if (c.argvFrom != null) {
+    if (!orderArgv) return "argvFrom is for a stage run only (the order's acceptance cmd)";
+    if (c.argvFrom !== ORDER_ARGV || c.argv != null) return `argvFrom is "${ORDER_ARGV}", in place of argv`;
+  } else if (!Array.isArray(c.argv) || !c.argv.length || c.argv.some((a) => typeof a !== "string" || !a)) return "argv is a non-empty list of strings";
   if (c.cwd != null && typeof c.cwd !== "string") return "cwd is a string";
   if (c.env != null && (typeof c.env !== "object" || Array.isArray(c.env) || Object.values(c.env).some((v) => typeof v !== "string"))) return "env is an object of strings";
   if (c.timeoutMs != null && !(Number.isFinite(c.timeoutMs) && c.timeoutMs > 0)) return "timeoutMs is a positive number";
@@ -407,7 +416,10 @@ export function prepareCmd(o, s, extra = {}) {
   // the tree as code last left it (the first draft's too), never HEAD, which an agent's own `git commit` moves
   const head = o.workspace?.head ?? (o.workspace?.dir ? o.workspace.sha : null);
   const vars = { ...(o.workspace?.vars ?? {}), ...briefVars(o), ...storeVars(o), ...extra, ...own, ...(o.workspace?.branch ? { branch: o.workspace.branch } : {}), ...(head ? { head_sha: head } : {}), slug: o.slug ?? o.task ?? "", task: o.task ?? "", workdir: o.workdir ?? path.join(LIVE, "work", o.task ?? ""), live: LIVE, base_sha: o.workspace?.baseSha ?? o.workspace?.sha ?? "" };
-  const argv = c.argv.map((a) => interpolate(a, vars));
+  // K26/B7: argvFrom "order": the orderer's acceptance cmd (o.acceptCmd); an order without one cannot run the stage
+  const raw = c.argvFrom === ORDER_ARGV ? (orderArgvProblem(o.acceptCmd) ? null : o.acceptCmd) : c.argv;
+  const missing = raw ? null : `order ${o.id ?? ""} names no acceptance cmd (order new --accept-cmd)`;
+  const argv = (raw ?? ["(no acceptance cmd)"]).map((a) => interpolate(a, vars));
   const cwd = c.cwd ? path.resolve(vars.workdir, interpolate(c.cwd, vars)) : vars.workdir;
   // a child of a node --test process would report to it and exit 0 whatever its tests do (see runTests)
   const { NODE_TEST_CONTEXT, ...base } = process.env;
@@ -417,8 +429,10 @@ export function prepareCmd(o, s, extra = {}) {
   // gets the kernel's pins too: no agent-set hooks, fsmonitor or filter drivers run in code's process
   const env = o.workspace?.dir && fs.existsSync(o.workspace.dir) ? { ...env0, ...gitPins(o.workspace.dir, env0) } : env0;
   // "node" is this node (a launcher PATH may lack it, or hold another version)
-  return { c, argv, bin: argv[0] === "node" ? process.execPath : argv[0], cwd, env, label: argv.join(" ").slice(0, 160) };
+  return { c, argv, bin: argv[0] === "node" ? process.execPath : argv[0], cwd, env, label: argv.join(" ").slice(0, 160), missing };
 }
+/** K26/B7: a stage whose cmd cannot be made (no acceptance cmd on the order): a stage-error, not the work's fault. */
+export const noArgv = (p) => ({ pass: false, output: `${p.label}: ${p.missing}`, findings: null, route: null, code: null, timedOut: false, stageError: true });
 /** A missing cwd is the work's fault (no workdir built yet): a revise, as K1 had it. */
 export const noCwd = (p) => ({ pass: false, output: `${p.label}: no directory ${p.cwd}`, findings: null, route: null, code: null, timedOut: false, stageError: false });
 /** Judge a finished cmd {stdout, stderr, status, error: "<why it never ran or died>"|null, timedOut} by its pass rule.
@@ -455,6 +469,7 @@ export function runCmdCheck(o, s, extra = {}) {
 }
 function execCmd(o, s, extra) {
   const p = prepareCmd(o, s, extra);
+  if (p.missing) return { t: noArgv(p), stdout: "" };
   if (!fs.existsSync(p.cwd)) return { t: noCwd(p), stdout: "" };
   const timeoutMs = p.c.timeoutMs ?? 60_000;
   const r = spawnSync(p.bin, p.argv.slice(1), { cwd: p.cwd, env: p.env, encoding: "utf8", timeout: timeoutMs, maxBuffer: 64 * 1024 * 1024 });

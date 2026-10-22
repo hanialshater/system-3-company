@@ -10,7 +10,7 @@ import { validateCmd } from "./state.mjs";
 import { validateWorkspace, validateRoleLaunch, flowWsProblem, commitOf } from "./workspace.mjs";
 import { actsProblem } from "./acts.mjs";
 import { artifactsProblem, STAGE_REF, RESERVED_STAGES } from "./artifacts.mjs";
-import { signerRole, signerName, isIndependent, packProblem, packHistory, postProblems, standingProblems, isChairFlow, flowProblems, workProblems, CHAIR_SIGNERS, CHAIR_ORDER_BY } from "./lib.mjs";
+import { signerRole, signerName, isIndependent, packProblem, packHistory, postProblems, standingProblems, isChairFlow, flowProblems, workProblems, workStagesOf, batchProblems, sampleProblems, CHAIR_SIGNERS, CHAIR_ORDER_BY } from "./lib.mjs";
 import { policyProblems } from "./policy.mjs";
 
 const SIGNERS = ["builder", "code", "checker", "orderer", "release", "founder", "evaluator", "chair", "attendee"]; // K4: evaluator signs as a level, independent by default; K19: a chair flow's chair and attendee
@@ -68,6 +68,9 @@ export function validateSpec(s) {
     if (r.waitSec != null) need(Number.isInteger(r.waitSec) && r.waitSec >= 0 && r.waitSec <= 540, `role ${r.id}: waitSec is a whole number of seconds 0-540 (room next --wait in its pack; a Bash call lasts at most 10 minutes)`);
     if (r.drainCap != null) need(Number.isInteger(r.drainCap) && r.drainCap >= 1 && r.drainCap <= 10, `role ${r.id}: drainCap is a whole number 1-10 (policy.mjs KNOBS.drainCap)`);
     if (r.level === "builder") { const m = roles.get(r.reportsTo); need(m?.level === "manager", `builder ${r.id} reports to a manager (who delegates its work)`); }
+    // K26: `warm: true`, the order's builder keeps one Agent SDK session across its work stages and revises (the
+    // launcher resumes it); a reviewer is never warm (each review starts cold: independence, fresh eyes)
+    if (r.warm != null) { need(typeof r.warm === "boolean", `role ${r.id}: warm is true or false`); need(!r.warm || r.level === "builder", `role ${r.id}: only a builder is warm (a reviewer starts cold, for independence)`); }
     // K10: per-role launch settings (launcher/launch.mjs): tools, sessionMin, maxTurns, settingSources
     { const e = validateRoleLaunch(r); need(!e, `role ${r.id}: ${e}`); }
   }
@@ -104,6 +107,8 @@ export function validateSpec(s) {
         if (r && isIndependent(x)) need(r.level !== "builder", `stage ${x.stage}: signer role ${rid} is a builder and cannot sign an independent stage`);
       } else need(SIGNERS.includes(x.signer), `stage ${x.stage}: signer is one of ${SIGNERS.join(", ")}, or {role:"<id>"}`);
       if (x.independent != null) need(typeof x.independent === "boolean", `stage ${x.stage}: independent is true or false`);
+      // K27: a review stage's batch {max, waitMin} and sample {rate, min, max, always} (lib.mjs)
+      for (const e of [...batchProblems(x), ...sampleProblems(x)]) need(false, `stage ${x.stage}: ${e}`);
       if (x.signer === "builder") need(x.independent !== true, `stage ${x.stage}: an independent stage cannot be signed by the builder`);
       // K6: context-pack rules (a code stage has no pack: no agent reads it)
       { const e = packProblem(x.pack); need(!e, `stage ${x.stage}: ${e}`); }
@@ -126,6 +131,14 @@ export function validateSpec(s) {
         need(!e, `stage ${x.stage}: post: ${e}`);
         // K12 review: where it may go (never a stage the supervisor or a person signs) and no agent text in a shell or cwd
         if (!e) for (const q of postProblems(x)) need(false, `stage ${x.stage}: ${q}`);
+      }
+      // K26: `selftest`, a cmd the worker may run on its own work as often as it likes (`meta.mjs check --order`): no
+      // route and no agent text; it signs nothing, only hand-in triggers the stage. On a work stage only
+      if (x.selftest != null) {
+        const e = validateCmd(x.selftest, { stages: [] });
+        need(!e, `stage ${x.stage}: selftest: ${e}`);
+        need(workStagesOf({ stages: st }).includes(x.stage), `stage ${x.stage}: selftest is for a stage the order's worker works (its own check, before hand-in)`);
+        if (!e) need(!x.selftest.route && !/\$\{(evidence|verdict)\}/.test(JSON.stringify(x.selftest)), `stage ${x.stage}: selftest has no route and reads no agent text`);
       }
       // M5: a pre-check is a cmd code runs before an agent's stage is planned (holds.mjs, ledger-gate.mjs); it reads no
       // agent text, and routes only to park (a pass plans the stage, anything else holds it as a stage-error)
@@ -175,7 +188,7 @@ export function validateSpec(s) {
       if (x.acts != null) { const e = actsProblem(x, roles); need(!e, `stage ${x.stage}: ${e}`); if (!e && x.acts.by === "chair") need(isChairFlow(f), `stage ${x.stage}: acts.by "chair" is for a chair flow (its orders name a chair)`); }
       if (x.run == null) continue;
       need(["code", "orderer", "release"].includes(x.signer), `stage ${x.stage}: a run is for a stage signed by code, orderer or release, not ${x.signer}`);
-      const e = validateCmd(x.run, { stages: st.slice(0, i).map((y) => y.stage) });
+      const e = validateCmd(x.run, { stages: st.slice(0, i).map((y) => y.stage), orderArgv: true });
       need(!e, `stage ${x.stage}: run: ${e}`);
     }
     const has = (lvl) => s.roles.some((r) => r.level === lvl);

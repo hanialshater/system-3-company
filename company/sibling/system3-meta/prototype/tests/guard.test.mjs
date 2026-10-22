@@ -290,7 +290,7 @@ test("K10 review: sessionPlan fails closed, picks cwd, settingSources and sessio
   assert.deepEqual(q0.allowedTools, ["Read", "Glob", "Grep"]);
   // launch.mjs builds its query from these (and refuses on a failed lookup)
   const src = fs.readFileSync(path.join(LAUNCHER, "launch.mjs"), "utf8");
-  assert.match(src, /query\(\{ prompt, options: queryOptions\(plan, guard, /);
+  assert.match(src, /query\(\{ prompt: text, options: queryOptions\(plan, guard, /); // K26: the brief, or the cold one after a failed resume
   assert.match(src, /const plan = sessionPlan\(cfg, /);
   assert.match(src, /if \(plan\.refused\) \{[\s\S]*?return;\s*\}/);
   assert.ok(!/permissionMode: "dontAsk"|permissionPrompts: "none"/.test(src));
