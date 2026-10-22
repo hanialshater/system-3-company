@@ -26,28 +26,40 @@
       "text": "The rope's length round a circle is 2π times the radius (circumference = 2πr).",
       "support": "convention",
       "source": "Definition of π as circumference ÷ diameter, with diameter = 2r; derivation.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "Definition: π = C ÷ d and d = 2r, so C = 2πr.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     },
     {
       "id": "math.one-metre-more-rope.c2",
       "text": "Adding length L to the rope raises the radius by L ÷ 2π, whatever the radius: for L = 1 m that is 1 ÷ 2π ≈ 0.159 m (15.9 cm), the same for a ball (r = 11 cm), a wheel (r = 35 cm) and the Earth (r = 6,378 km). For L = 2 m (the recall) it is about 0.318 m (about 32 cm).",
       "support": "derivation",
       "source": "(2πr + L) ÷ 2π = r + L ÷ 2π. company/domains/briefs/checks/math-wave-j-check.mjs label G1 (0.1592 m for r = 0.11, 0.35 and 6,378,137 m; 1/2π = 0.159155). Stage: gapOf(r) = (2πr + 1) ÷ 2π − r in Demo.tsx, shown to 0.1 cm.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "Re-derived (2πr+L)/2π = r + L/2π; recomputed 0.159155 m for r = 0.11, 0.35, 6,378,137 m (15.9 cm shown to 0.1 cm); L = 2 m gives 0.3183 m ≈ 32 cm. Zoom drawn to one 5 px/cm scale; Earth curve sag across the window ≈ 9e-9 m, so drawing it flat is honest.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     },
     {
       "id": "math.one-metre-more-rope.c3",
       "text": "The Earth's (equatorial) radius is about 6,378 km.",
       "support": "source",
       "source": "WGS 84 semi-major axis a = 6,378,137 m (NGA TR8350.2). The gap does not depend on it.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "WGS 84 semi-major axis a = 6,378,137 m (EPSG registry ellipsoid 7030, citing NIMA TR8350.2 3rd ed. amd. 1, 2000); rounds to 6,378 km. NGA primary PDF not reached through the proxy.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     },
     {
       "id": "math.one-metre-more-rope.c4",
       "text": "A 15.9 cm gap is enough for a cat to crawl under.",
       "support": "convention",
       "source": "Illustrative comparison, not measured (brief planned claim 4: keep only if the fact-checker accepts it as illustrative; otherwise cut the clause, the reveal stands without it).",
-      "status": "unverified"
+      "status": "disputed",
+      "note": "Not a convention: it is an empirical claim about cats, with no source. Pongrácz 2024 (iScience, 30 cats) reports mean height 19.61 cm in sphinx (lying) posture and 27.97 cm at the withers, and cats hesitate at openings below withers height, so an average cat lying down is taller than the 15.9 cm gap. Cut the clause or re-support with a source.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     }
   ],
   "confidence": "",
