@@ -4,7 +4,8 @@
 //
 //   node meta.mjs init [--spec=<built-in> | --spec-file=<json>]   a fresh live org and its flow (refuses if state exists);
 //        --spec-file generates a company from a spec file, validated against the invariants (generator.mjs, M2)
-//   node meta.mjs order new --to=<manager> --title=… --task=<T> --accept=… [--budget=200000] [--priority=now|next|later --due=<min>] [--after=O-1,O-2] [--ledger-project=<projects.json id>]
+//   node meta.mjs order new --to=<manager> --title=… --task=<T> --accept=… [--slug=<kebab>] [--budget=200000] [--priority=now|next|later --due=<min>] [--after=O-1,O-2] [--ledger-project=<projects.json id>]
+//        --slug: the order's ${slug} in packs, briefs and stage cmds (unset: its task; M4 run: LESSON-<slug> reached gates.mjs)
 //   node meta.mjs order delegate <O> --by=<manager> --to=<builder> [--budget=150000]
 //   node meta.mjs order reopen <O> --by=<manager|founder> --findings=… [--reason=…]   a shipped order back to build
 //   node meta.mjs order park <O> --by=<orderer|manager|founder> --reason=…   K8: stop it where it is (stage parked, messages
@@ -233,6 +234,9 @@ function dispatch(co, cmd, sub, arg) {
     need("to", "title", "task", "accept");
     const o = engine.orderNew({ flow: co.spec.flow?.name ?? "task", by: opt.by ?? "cos", to: opt.to, budget: Number(opt.budget ?? 200_000), accept: opt.accept, title: opt.title, priority: opt.priority ?? "next", dueMin: opt.due ? Number(opt.due) : null, after: opt.after ? String(opt.after).split(",") : [], fromContract: opt["from-contract"] ?? null });
     o.task = opt.task;
+    // M4 run (M4-RUN.md, the one operator fix): with no --slug, ${slug} fell back to the task (LESSON-<slug>), and every
+    // test1 stage-errored on gates.mjs's usage check. The slug is a company lesson slug: kebab-case, as brief.mjs reads it
+    if (opt.slug != null) { if (typeof opt.slug !== "string" || !/^[a-z0-9]+(-[a-z0-9]+)*$/.test(opt.slug)) throw new Refused("--slug is a lesson slug (kebab-case: a-z, 0-9 and single hyphens)"); o.slug = opt.slug; }
     if (opt.project) o.project = opt.project; // mirrored onto its tracker item, so the roadmap counts it
     // M5 review: the company projects.json line the order is charged to: ${ledger_project} in a stage cmd (ledger-gate.mjs
     // gates it), and the founder inbox's `budget` on its budget asks (adapters/s3c/inbox-export.mjs)
@@ -244,7 +248,7 @@ function dispatch(co, cmd, sub, arg) {
     // found by one run's fact-check reached the next run unchanged)
     const kf = readEscapes();
     if (o.checks && kf.length) { o.checks = mergeChecks(o.checks, { knownFalse: kf.map(({ pattern, why }) => ({ pattern, why })) }); log.add({ type: "rule-applied", order: o.id, task: o.task, source: "escapes", keys: ["knownFalse"] }); }
-    return { order: o.id, stage: o.stage, priority: o.priority, after: o.after, blocked: o.blocked };
+    return { order: o.id, stage: o.stage, priority: o.priority, after: o.after, blocked: o.blocked, ...(o.slug ? { slug: o.slug } : {}) };
   }
   if (cmd === "order" && sub === "reopen") {
     need("by", "findings");

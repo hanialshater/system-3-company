@@ -533,8 +533,10 @@ export function readBrief(root, fileArg, slug, { now = Date.now(), anyFormat = f
   }
   const who = managers(root, domain, b.strand);
   const accept = acceptText(b, who);
-  // Plan §M4 "Live run": placed by chief-of-staff to cm-<domain>, --budget=3000000 --priority=next.
-  const orderArgv = ["order", "new", `--by=cos`, `--to=${who.manager ?? `cm-${domain}`}`, `--task=LESSON-${slug}`, `--title=${slug}`, `--budget=3000000`, `--priority=next`, `--accept=${accept}`];
+  // Plan §M4 "Live run": placed by chief-of-staff to cm-<domain>, --budget=3000000 --priority=next. M4 run (M4-RUN.md):
+  // `--by=cos` named no role of specs/s3c-lessons.json, and with no --slug the order's ${slug} was its task
+  // (LESSON-<slug>), so every test1 stage-errored; the kernel's `order new --slug` takes the lesson slug itself
+  const orderArgv = ["order", "new", `--by=chief-of-staff`, `--to=${who.manager ?? `cm-${domain}`}`, `--task=LESSON-${slug}`, `--slug=${slug}`, `--title=${slug}`, `--budget=3000000`, `--priority=next`, `--accept=${accept}`];
   return { findings, brief: b, eligibility, managers: who, accept, orderArgv };
 }
 

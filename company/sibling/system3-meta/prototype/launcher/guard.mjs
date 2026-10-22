@@ -14,8 +14,9 @@
 // given (the order's worktree, the repo it came from); (2) Bash that bashDenial refuses (deploy, push, publish, claims:
 // publish is code-only, a builder never verifies a claim); (3) a tool not in the role's list (what dontAsk did for
 // tools outside allowedTools). Every denial goes to `record` once per tool call (the launcher logs a `guard` event).
-// Bash that writes a protected file (sed -i, >) is not parsed here: the company's own hook (loaded with the project
-// settings) is best effort for it, and K7's commit check refuses the change whatever made it.
+// Bash that writes a protected file: a redirect (`>`, `>>`, `>|`, `&>`, `>&<file>`) or a `tee` argument is judged as a
+// write tool's path is (M6 prep); other writers (sed -i, cp, mv, a script) are not parsed here: the company's own hook
+// (loaded with the project settings) is best effort for them, and K7's commit check refuses the change whatever made it.
 import fs from "node:fs";
 import path from "node:path";
 
@@ -72,14 +73,103 @@ const PKG = ["npm", "pnpm", "yarn", "bun"], RUNNERS = ["npx", "pnpx", "bunx"];
 const base = (w) => String(w ?? "").split("/").pop();
 const bare = (w) => base(w).replace(/@[^/]*$/, ""); // corepack's pnpm@8.15.0, npx's vercel@latest
 
-/** The simple commands of shell line `s`, each as its words (quotes removed), plus the bodies of $(…) and `…`. */
+// M6 prep (M4 run, P4.6: the guard's one refusal was a false positive): `mkdir -p a b && cat > a/x.tsx <<'EOF' … EOF`
+// was split on its newlines, so the TSX body was judged as commands (a `${…}` line is a command the guard cannot read).
+// A heredoc's body is now data when the command that reads it only copies or prints it (DATA_SINKS, not piped on, no
+// process substitution): it is taken out of the line before anything is judged, and its command's redirect target is
+// judged as a write (decide). With an unquoted delimiter the shell still runs the body's $(…) and `…`, so those are
+// judged; a heredoc fed to anything else (bash, node, python, a pipe) keeps its body in the line, judged as before.
+const DATA_SINKS = ["cat", "tee", "head", "tail", "wc", "sort", "uniq", "tr", "cut", "nl", "fold", "base64", "md5sum", "sha1sum", "sha256sum", ...READERS];
+const RUNS_FILE = ["source", ".", ...SHELLS, "node", "python", "python3", "perl", "ruby", "chmod", "exec"]; // a later command that runs a written file
+
+/** The command head (bare name) of the last simple command in `text`, a line cut just before a `<<`. */
+function headWord(text) { const { cmds } = shellCommands(text.replace(/<</g, " ")); const w = cmds.at(-1) ?? []; return bare(w[headOf(w)]); }
+/** Whether command text `t` (from the command's start to the end of its line) is piped on or names a process
+ *  substitution before its command ends: its heredoc's body then reaches another program, which may run it. */
+function pipedOn(t) {
+  let q = null;
+  for (let i = 0; i < t.length; i++) {
+    const c = t[i];
+    if (q) { if (c === q) q = null; else if (c === "\\" && q === '"') i++; continue; }
+    if (c === "'" || c === '"') { q = c; continue; }
+    if (c === "\\") { i++; continue; }
+    if ((c === ">" || c === "<") && t[i + 1] === "(") return true;
+    if (c === "|") return t[i + 1] !== "|";
+    if (c === "|" || c === ";" || c === "&" || c === "\n") return false;
+  }
+  return false;
+}
+/** Shell line `s` with each data heredoc's body taken out: { s, docs: [{delim, quoted, head, data, body, closed, targets}] }.
+ *  A non-data heredoc (fed to a shell, an interpreter, a pipe) is in docs too, its body left in `s` as it was. */
+export function heredocs(s) {
+  s = String(s ?? "");
+  let out = "", q = null, seg = 0;
+  const pending = [], docs = [];
+  for (let i = 0; i < s.length; i++) {
+    const c = s[i];
+    if (q === "'") { out += c; if (c === "'") q = null; continue; }
+    if (q === '"') { out += c; if (c === "\\" && i + 1 < s.length) out += s[++i]; else if (c === '"') q = null; continue; }
+    if (c === "\\" && i + 1 < s.length) { out += c + s[++i]; continue; }
+    if (c === "'" || c === '"') { q = c; out += c; continue; }
+    if (c === "<" && s[i + 1] === "<" && s[i + 2] === "<") { out += "<<<"; i += 2; continue; } // a here-string: a word, not a body
+    if (c === "<" && s[i + 1] === "<") {
+      let j = i + 2; const strip = s[j] === "-"; if (strip) j++;
+      while (s[j] === " " || s[j] === "\t") j++;
+      let d = "", quoted = false; // the delimiter word, quotes removed; any quoting makes the body literal
+      while (j < s.length && !/[\s;&|<>()]/.test(s[j])) {
+        if (s[j] === "'" || s[j] === '"') { const qq = s[j++]; quoted = true; while (j < s.length && s[j] !== qq) d += s[j++]; j++; continue; }
+        if (s[j] === "\\") { quoted = true; d += s[j + 1] ?? ""; j += 2; continue; }
+        d += s[j++];
+      }
+      if (!d) { out += "<<"; i++; continue; } // no word: the shell refuses the line; judged as it stands
+      pending.push({ delim: d, quoted, strip, head: headWord(out.slice(seg)), at: seg, op: s.slice(i, j) });
+      out += "\u0002"; i = j - 1; // a placeholder until the line ends (the operator is put back for a non-data heredoc)
+      continue;
+    }
+    if (c !== "\n" || !pending.length) { if (";&|(\n".includes(c)) seg = out.length + 1; out += c; continue; }
+    // the line with the operators ends: decide each heredoc, then its body follows, in operator order
+    for (const h of pending) { h.text = out.slice(h.at).replace(/\u0002/g, " "); h.data = DATA_SINKS.includes(h.head) && !pipedOn(h.text); }
+    for (const h of pending) out = out.replace("\u0002", h.data ? " " : h.op);
+    out += c; seg = out.length;
+    let k = i + 1;
+    for (const h of pending) {
+      const lines = []; let closed = false, raw = "";
+      while (k < s.length) {
+        const nl = s.indexOf("\n", k), e = nl < 0 ? s.length : nl, line = s.slice(k, e);
+        raw += s.slice(k, nl < 0 ? e : e + 1); k = nl < 0 ? s.length : e + 1;
+        if ((h.strip ? line.replace(/^\t+/, "") : line) === h.delim) { closed = true; break; }
+        lines.push(h.strip ? line.replace(/^\t+/, "") : line);
+      }
+      // the reading command (its line with every operator taken out): its redirect targets, tee's files
+      const { cmds, writes } = h.data ? shellCommands(h.text) : { cmds: [], writes: [] };
+      const targets = cmds.length ? [...new Set(writes)] : [];
+      docs.push({ delim: h.delim, quoted: h.quoted, head: h.head, data: h.data, body: lines.join("\n"), closed, targets });
+      if (!h.data) out += raw; // judged as before: its lines are commands
+    }
+    pending.length = 0;
+    i = k - 1;
+  }
+  for (const h of pending) { // the line never ended: no body
+    h.data = DATA_SINKS.includes(h.head) && !pipedOn(out.slice(h.at).replace(/\u0002/g, " "));
+    out = out.replace("\u0002", h.data ? " " : h.op);
+    docs.push({ delim: h.delim, quoted: h.quoted, head: h.head, data: h.data, body: "", closed: false, targets: [] });
+  }
+  return { s: out, docs };
+}
+
+/** The simple commands of shell line `s`, each as its words (quotes removed), plus the bodies of $(…) and `…`, the
+ *  line's write targets (redirects and tee's files, as written: a target with a $ or substitution is opaque), and its
+ *  heredocs (heredocs(): a data heredoc's body is not in `cmds`; an unquoted one's substitutions are in `subs`). */
 export function shellCommands(s) {
-  const cmds = [], subs = [];
+  const cmds = [], subs = [], writes = [];
+  const h = /<</.test(String(s ?? "")) ? heredocs(s) : { s: String(s ?? ""), docs: [] };
+  s = h.s;
+  for (const d of h.docs) if (d.data && !d.quoted) { let b = d.body; for (let prev = null; prev !== b;) { prev = b; b = b.replace(/\$\(([^()]*)\)|`([^`]*)`/g, (m, x, y) => { subs.push(x ?? y); return SUBST; }); } }
   // each substitution is judged on its own and stands as one word in its command (`git -C $(pwd) push` is still git push)
   for (let prev = null; prev !== s;) { prev = s; s = String(s).replace(/\$\(([^()]*)\)|`([^`]*)`/g, (m, a, b) => { subs.push(a ?? b); return SUBST; }); }
-  let words = [], w = null, q = null;
-  const endWord = () => { if (w != null) words.push(w); w = null; };
-  const endCmd = () => { endWord(); if (words.length) cmds.push(words); words = []; };
+  let words = [], w = null, q = null, redir = null; // redir: the next word is a write target ("file"), or after >& ("dup")
+  const endWord = () => { if (w != null) { words.push(w); if (redir && !(redir === "dup" && /^(\d+|-)$/.test(w))) writes.push(w); redir = null; } w = null; };
+  const endCmd = () => { endWord(); redir = null; if (words.length) cmds.push(words); words = []; };
   for (let i = 0; i < s.length; i++) {
     const c = s[i];
     if (q === "'") { if (c === "'") q = null; else w += c; continue; }
@@ -89,11 +179,27 @@ export function shellCommands(s) {
     if (c === "\\" && i + 1 < s.length) { if (s[i + 1] !== "\n") w = (w ?? "") + s[i + 1]; i++; continue; }
     if (/\s/.test(c) && c !== "\n") { endWord(); continue; }
     if (";&|\n()".includes(c)) { endCmd(); continue; }
-    if (c === "<" || c === ">") { endWord(); continue; }
+    if (c === ">") { endWord(); if (s[i + 1] === ">" || s[i + 1] === "|") i++; if (s[i + 1] === "&") { i++; redir = "dup"; } else if (s[i + 1] !== "(") redir = "file"; continue; }
+    if (c === "<") { endWord(); continue; }
     w = (w ?? "") + c;
   }
   endCmd();
-  return { cmds, subs };
+  for (const c of cmds) { const x = c.slice(headOf(c)); if (bare(x[0]) === "tee") writes.push(...x.slice(1).filter((y) => !y.startsWith("-"))); }
+  return { cmds, subs, writes, docs: h.docs };
+}
+
+/** Every write target of Bash line `c` (its own, its substitutions', a `bash -c`/`eval` string's), as written. */
+export function bashWrites(c, depth = 0) {
+  const { cmds, subs, writes } = shellCommands(c);
+  if (depth > 4) return writes;
+  const out = [...writes];
+  for (const x of subs) out.push(...bashWrites(x, depth + 1));
+  for (const words of cmds) {
+    const w = words.slice(headOf(words)), cmd = bare(w[0]);
+    if (SHELLS.includes(cmd)) { const j = w.findIndex((x, k) => k > 0 && /^-[a-z]*c[a-z]*$/.test(x)); if (j > 0 && w[j + 1] != null) out.push(...bashWrites(w[j + 1], depth + 1)); }
+    if (cmd === "eval") out.push(...bashWrites(w.slice(1).join(" "), depth + 1));
+  }
+  return out;
 }
 
 /** Where the command itself starts in `words`: after assignments, keywords and wrappers. */
@@ -196,6 +302,10 @@ function commandDenial(words, line, depth, ctx = {}) {
     // M5 review: `launch finished` and `guard denied` are the launcher's reports, never an agent's (a first report of
     // --cumulative=1 left its order's spend at 1; --tasks=x:<order> charged a rival's order); meta.mjs refuses them too
     if (ctx.role && mi >= 0) { const ps = w.slice(mi + 1).filter((x) => !x.startsWith("-")); if ((ps[0] === "launch" && ps[1] === "finished") || (ps[0] === "guard" && ps[1] === "denied")) return `meta.mjs ${ps[0]} ${ps[1]} (the launcher's report)`; }
+    // M6 prep: so are supervisor.mjs `launched` (launch events: reservations, and the launches K13 charges by) and
+    // `usage`; supervisor.mjs refuses them in an agent session too
+    const si = cmd === "node" ? w.findIndex((x, k) => k > 0 && base(x) === "supervisor.mjs") : base(w[0]) === "supervisor.mjs" ? 0 : -1;
+    if (ctx.role && si >= 0) { const p0 = w.slice(si + 1).find((x) => !x.startsWith("-")); if (p0 === "launched" || p0 === "usage" || opaque(p0)) return `supervisor.mjs ${opaque(p0) ? "<a command the guard cannot read>" : p0} (the orchestrator's report)`; }
     return null;
   }
   if (/^vercel(@|$)/.test(base(w[0]))) return "vercel";
@@ -214,13 +324,19 @@ function commandDenial(words, line, depth, ctx = {}) {
 export function bashDenial(c, depth = 0, ctx = {}) {
   c = String(c ?? "");
   if (/META_ROLE/.test(c)) return "META_ROLE"; // the session's identity (state.mjs sessionRole) is the launcher's to set
-  const { cmds, subs } = shellCommands(c);
+  const { cmds, subs, docs } = shellCommands(c);
   // the raw backstop over the line's words, less a search command's (substitutions are judged on their own below)
   const m = DENY_BASH.exec(cmds.filter((x) => !isReader(x)).map((x) => x.join(" ")).join("\n"));
   if (m) return m[0];
   if (depth > 4) return null;
   for (const words of cmds) { const d = commandDenial(words, c, depth, ctx); if (d) return d; }
   for (const x of subs) { const d = bashDenial(x, depth + 1, ctx); if (d) return d; }
+  // M6 prep: a data heredoc written to a file that the same line then runs (`cat > x.sh <<EOF … EOF; bash x.sh`, `./x.sh`,
+  // `chmod +x x.sh`) is code: its body is judged as commands, as every heredoc's body was before
+  for (const doc of docs.filter((x) => x.data && x.targets.length)) {
+    const runs = cmds.some((words) => { const w = words.slice(headOf(words)), at = (x) => doc.targets.some((t) => x === t || base(x) === base(t)); return at(w[0] ?? "") || (RUNS_FILE.includes(bare(w[0])) && w.slice(1).some(at)); });
+    if (runs) { const d = bashDenial(doc.body, depth + 1, ctx); if (d) return d; }
+  }
   return null;
 }
 export const WRITE_TOOLS = ["Write", "Edit", "MultiEdit", "NotebookEdit"];
@@ -246,24 +362,44 @@ export function decide(tool, input = {}, { tools = null, roots = [], cwd = proce
   if (WRITE_TOOLS.includes(tool)) {
     const p = input?.file_path ?? input?.notebook_path;
     if (typeof p !== "string" || !p) return null;
-    const abs = realish(path.resolve(cwd, p));
-    // M4 integrate (K7/K10 re-review): a repo's .git (its config, hooks, info/attributes; a worktree's is shared with
-    // the main checkout) is git's machinery: a line there makes git run a command, the kernel's and the founder's
-    if (abs.split(path.sep).includes(".git")) return { rule: "git-dir", why: `${abs} is inside a .git folder (git config and hooks run commands, in this worktree and in the founder's checkout): no agent writes there`, detail: abs };
-    for (const r of roots) {
-      let rel = path.relative(realish(r.dir), abs).split(path.sep).join("/");
-      if (!rel || rel.startsWith("..") || path.isAbsolute(rel)) continue;
-      if (r.nested) rel = rel.split("/").slice(r.nested).join("/"); // a root of checkouts (workspace.root): <worktree>/<path>
-      if (!rel) continue;
-      const g = (r.globs ?? []).find((x) => globRe(x).test(rel));
-      if (g) return { rule: "protected-path", why: `${rel} is a protected path (${g} in ${r.file ?? "protected-paths.txt"}): only a ratified amendment changes it`, detail: abs };
-    }
-    return null;
+    return pathDenial(realish(path.resolve(cwd, p)), roots);
   }
   if (tool === "Bash") {
     const c = String(input?.command ?? "");
     const m = bashDenial(c, 0, { role });
+    // M6 prep: a line the guard cannot read says what to do instead (M4: the builder found the Write tool by itself)
+    if (m && /cannot read/.test(m)) return { rule: "bash", why: `\`${m}\`: the guard cannot read this line, so it refuses it. To write a file, use the Write tool (not a shell heredoc or redirect); otherwise spell the command out in plain words (no $(…), \`…\` or variable as a command, git subcommand or script name)`, detail: c.slice(0, 300) };
     if (m) return { rule: "bash", why: `\`${m}\` is not allowed in an agent session (deploys need the founder's approval; pushing, publishing and verifying claims are code's or a person's)`, detail: c.slice(0, 300) };
+    // M6 prep: a redirect or tee target is a write, judged as the write tools' paths are: against cwd, against each
+    // literal `cd` directory on the line, and as written (a relative path that names a protected glob from a checkout's
+    // root is refused wherever the line runs). A target with a $ or substitution is not judged (K7's commit check is the
+    // backstop), nor a device
+    const ws = bashWrites(c).filter((t) => t && !opaque(t) && !/^\/dev\//.test(t));
+    if (ws.length) {
+      const cds = shellCommands(c).cmds.map((w) => w.slice(headOf(w))).filter((w) => w[0] === "cd" && w[1] && !opaque(w[1])).map((w) => path.resolve(cwd, w[1]));
+      for (const t of ws) {
+        const asIs = !path.isAbsolute(t) && !path.normalize(t).startsWith("..") ? path.normalize(t).split(path.sep).join("/") : null;
+        for (const dir of [cwd, ...cds]) { const d = pathDenial(realish(path.resolve(dir, t)), roots); if (d) return { ...d, why: `${d.why} (a shell write: ${t}); write files with the Write tool, never into a protected path`, detail: c.slice(0, 300) }; }
+        const r = asIs && roots.find((x) => (x.globs ?? []).some((g) => globRe(g).test(asIs)));
+        if (r) return { rule: "protected-path", why: `${asIs} is a protected path (${r.globs.find((g) => globRe(g).test(asIs))} in ${r.file ?? "protected-paths.txt"}): only a ratified amendment changes it (a shell write); write files with the Write tool, never into a protected path`, detail: c.slice(0, 300) };
+      }
+    }
+  }
+  return null;
+}
+
+/** Why a write to absolute path `abs` is denied ({rule, why, detail}), or null: a .git folder, or a protected glob of a root. */
+function pathDenial(abs, roots) {
+  // M4 integrate (K7/K10 re-review): a repo's .git (its config, hooks, info/attributes; a worktree's is shared with
+  // the main checkout) is git's machinery: a line there makes git run a command, the kernel's and the founder's
+  if (abs.split(path.sep).includes(".git")) return { rule: "git-dir", why: `${abs} is inside a .git folder (git config and hooks run commands, in this worktree and in the founder's checkout): no agent writes there`, detail: abs };
+  for (const r of roots) {
+    let rel = path.relative(realish(r.dir), abs).split(path.sep).join("/");
+    if (!rel || rel.startsWith("..") || path.isAbsolute(rel)) continue;
+    if (r.nested) rel = rel.split("/").slice(r.nested).join("/"); // a root of checkouts (workspace.root): <worktree>/<path>
+    if (!rel) continue;
+    const g = (r.globs ?? []).find((x) => globRe(x).test(rel));
+    if (g) return { rule: "protected-path", why: `${rel} is a protected path (${g} in ${r.file ?? "protected-paths.txt"}): only a ratified amendment changes it`, detail: abs };
   }
   return null;
 }

@@ -414,3 +414,39 @@ test("M4 integrate (K8+K9 re-review): meta.mjs refuses a --by or --role that is 
   assert.match(fs.readFileSync(path.join(LAUNCHER, "launch.mjs"), "utf8"), /META_LAUNCH: id, META_ROLE: ev\.role/);
   assert.match(fs.readFileSync(path.join(LAUNCHER, "launch.mjs"), "utf8"), /makeGuard\(\{[^}]*role: ev\.role/);
 });
+
+test("M6 prep (M4 P4.6): a heredoc read by a data command is data, its redirect target is judged as a write; heredocs fed to a program, and unreadable lines, are still refused", () => {
+  const TSX = "export default function Demo() {\n  const w = `${n}px`;\n  return <div className={`a ${b}`}>{$(x)}</div>;\n}\n${foo}\ngit push origin main\nnpm run deploy";
+  const ro = { ...opts, role: "demo-builder" };
+  // the M4 false positive and its kin: allowed (the body names a push and a deploy: it is text, never run)
+  for (const c of [`mkdir -p src/demos/math/x company/reviews/x && cat > src/demos/math/x/Demo.tsx <<'EOF'\n${TSX}\nEOF`,
+    `cat <<'EOF' > company/reviews/x/build.md\n## Pre-flight v1\n$(git push)\nEOF\necho written`, `cat > a.md <<"EOF"\n\`git push\`\nEOF`, `cat > a.md <<\\EOF\n$(git push)\nEOF`,
+    `tee src/x.ts <<'EOF' >/dev/null\n${TSX}\nEOF`, `cat <<-'EOF' > notes.md\n\tgit push\n\tEOF`, `cat > a.tsx <<EOF\nconst x = \${y};\nEOF`, `cat > a.md <<'A' && cat > b.md <<'B'\ngit push\nA\nnpm run deploy\nB\ngit status`]) {
+    assert.equal(G.decide("Bash", { command: c }, ro), null, c);
+  }
+  const H = G.shellCommands(`mkdir -p a b && cat > a/x.tsx <<'EOF'\n${TSX}\nEOF`);
+  assert.deepEqual([H.cmds, H.writes, H.docs.map((d) => [d.head, d.data, d.quoted, d.closed, d.targets])], [[["mkdir", "-p", "a", "b"], ["cat", "a/x.tsx"]], ["a/x.tsx"], [["cat", true, true, true, ["a/x.tsx"]]]]);
+  // a heredoc (or a plain redirect, or tee) into a protected path: still denied, now as the write it is
+  for (const c of [`cat > tools/company.mjs <<'EOF'\nx\nEOF`, `mkdir -p tests/qa && cat > tests/qa/new.spec.ts <<'EOF'\n${TSX}\nEOF`, `cat <<'EOF' > ${path.join(WT, "src/kit/Lesson.tsx")}\nx\nEOF`,
+    `cd src/kit && cat > Lesson.tsx <<'EOF'\nx\nEOF`, `tee -a company/constitution/protected-paths.txt <<'EOF'\nx\nEOF`, `echo x > tests/qa/a.ts`, `echo x >> ${WT}/tools/company.mjs`, `printf x >| src/kit/Lesson.tsx`,
+    `cd /tmp && cat > ${WT}/tests/qa/z.md <<'EOF'\nz\nEOF`, `bash -c 'cat > tools/company.mjs <<EOF\nx\nEOF'`, `echo x &> tests/qa/log.txt`]) {
+    assert.equal(G.decide("Bash", { command: c }, ro)?.rule, "protected-path", c);
+  }
+  assert.match(G.decide("Bash", { command: `cat > tools/company.mjs <<'EOF'\nx\nEOF` }, ro).why, /protected path \(tools\/company\.mjs.*a shell write.*Write tool/);
+  assert.equal(G.decide("Bash", { command: `cat > .git/hooks/post-commit <<'EOF'\ngit push\nEOF` }, ro)?.rule, "git-dir");
+  // a heredoc fed to a shell, an interpreter or a pipe keeps its body as commands; an unquoted body's $(…) and `…` run;
+  // a file the line writes and then runs is code
+  for (const c of ["bash <<'EOF'\ngit push\nEOF", "cat <<'EOF' | sh\ngit push\nEOF", "sh -s <<EOF\nnpm run deploy\nEOF", "cat > a.md <<EOF\n$(git push)\nEOF", "cat > a.md <<EOF\n`npm run deploy`\nEOF",
+    "cat > x.sh <<'EOF'\ngit push\nEOF\nbash x.sh", "cat > x.sh <<'EOF' && chmod +x x.sh && ./x.sh\ngit push\nEOF", "cat > s.sh <<'EOF'; . ./s.sh\ngit push\nEOF", "git commit -F - <<'EOF'\n[deploy] x\nEOF",
+    "cat <<'EOF' > >(sh)\ngit push\nEOF", "node <<'EOF'\nrequire('child_process').execSync('git push')\nEOF"]) {
+    assert.equal(G.decide("Bash", { command: c }, ro)?.rule, "bash", c);
+  }
+  // what the guard truly cannot read is still refused, and the denial says what to do instead
+  for (const c of ["$(echo git) push", "cat > a.tsx <<EOF\n`${x}px`\nEOF", "G=git; $G push"]) {
+    const d = G.decide("Bash", { command: c }, ro);
+    assert.equal(d?.rule, "bash", c); assert.match(d.why, /cannot read this line.*use the Write tool/, c);
+  }
+  assert.doesNotMatch(G.decide("Bash", { command: "git push" }, ro).why, /Write tool/, "a plain denial keeps its own reason");
+  // redirects that write nothing protected pass (devices, fd duplication, an opaque target is left to K7's commit check)
+  for (const c of ["npm run check 2>&1 | tail -5", "node x.mjs > /dev/null 2>&1", "echo x >&2", "echo x > \"$OUT\"", "ls > src/demos/list.txt"]) assert.equal(G.decide("Bash", { command: c }, ro), null, c);
+});

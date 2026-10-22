@@ -43,7 +43,7 @@
 // Same state as meta.mjs (META_LIVE_DIR, META_STATE). Exit 0 always unless the state cannot be read.
 import fs from "node:fs";
 import path from "node:path";
-import { absCmds, HERE, LIVE, STATE, load, save, withLock, runTests, runTest1, runCmdCheck, rep, CHECK_KEYS, interpolate } from "./state.mjs";
+import { absCmds, HERE, LIVE, STATE, load, save, withLock, runTests, runTest1, runCmdCheck, rep, CHECK_KEYS, interpolate, sessionRole } from "./state.mjs";
 import { syncOrders } from "./tracker.mjs";
 import { sweepGoals } from "./goals.mjs";
 import { expireContracts } from "./contractor.mjs";
@@ -556,6 +556,17 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const opts = { acceptance: opt.acceptance ?? null, batchLater: Number(opt["batch-later"] ?? 3), cap: Number(opt.cap ?? 4), faults: opt.faults ? JSON.parse(fs.readFileSync(opt.faults, "utf8")) : null };
   const cmd = argv.find((a) => !a.startsWith("--"));
   const print = (x) => console.log(absCmds(JSON.stringify(x, rep, 2))); // K10: as meta.mjs out
+  // M6 prep (the hole the M5 review left open): `launched` writes launch events (a reservation the planner honours, and
+  // the launch K13 charges by) and `usage` writes harness usage: both are the orchestrator's reports, as meta.mjs
+  // `launch finished` is the launcher's. In an agent session (state.mjs sessionRole: the launcher's META_ROLE on the
+  // process's ancestry) they are refused, exit 1, with a refuse event; the launcher's guard denies the spelling too
+  const me = ["launched", "usage"].includes(cmd) ? sessionRole() : null;
+  if (me != null) {
+    const msg = `supervisor.mjs ${cmd} is the orchestrator's report: refused in an agent session (${me})`;
+    try { withLock(() => { const co = load(); co.log.add({ type: "refuse", rule: "hard", msg, by: me, argv: argv.join(" ") }); save(co); }); } catch {} // no state: nothing to record it in
+    console.error(JSON.stringify({ refused: true, error: msg }));
+    process.exit(1);
+  }
   if (cmd === "launched") {
     // The orchestrator records each session it starts, so the next plan does not ask for it again.
     if (!opt.role) { console.error("usage: node supervisor.mjs launched --role=<role> [--msgs=M-1,M-2] [--why=…]"); process.exit(2); }

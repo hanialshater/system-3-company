@@ -130,6 +130,28 @@ test("parses a fixture section: heading, prediction, planned claims, needs-spec,
   assert.deepEqual(r.findings, []);
   assert.match(r.accept, /\nPlanned claims: 2 \(\+1 not claimed\) \(1: derivation, 2: source\)/, "a Not-claimed item is not counted");
   assert.equal(r.orderArgv.find((a) => a.startsWith("--to=")), "--to=cm-math");
+  // M4 run (M4-RUN.md, open defect 1): the chief of staff by its role id, and the lesson slug as the order's ${slug}
+  assert.deepEqual(r.orderArgv.filter((a) => /^--(by|task|slug)=/.test(a)), ["--by=chief-of-staff", "--task=LESSON-alpha-one", "--slug=alpha-one"]);
+});
+
+test("M4 run regression: orderArgv placed through the kernel (the lesson spec's roles) makes an order whose ${slug} is the slug, not LESSON-<slug>", async () => {
+  const root = fixture({ briefs: { "math.md": MATH } });
+  const r = readBrief(root, "math.md", "alpha-one", { lockRoots: [root] });
+  const PROTO = path.join(HERE, "..", "..", "..", "prototype");
+  const live = fs.mkdtempSync(path.join(os.tmpdir(), "brief-order-")); TMP.push(live);
+  const { workspace, ...spec } = JSON.parse(fs.readFileSync(path.join(PROTO, "specs", "s3c-lessons.json"), "utf8")); // no worktree: order new makes none anyway
+  fs.writeFileSync(path.join(live, "spec.json"), JSON.stringify(spec));
+  const env = { ...process.env, META_LIVE_DIR: live }; delete env.META_ROLE; delete env.NODE_TEST_CONTEXT;
+  const meta = (...a) => spawnSync(process.execPath, [path.join(PROTO, "meta.mjs"), ...a], { env, encoding: "utf8" });
+  assert.equal(meta("init", `--spec-file=${path.join(live, "spec.json")}`).status, 0);
+  const placed = meta(...r.orderArgv);
+  assert.equal(placed.status, 0, placed.stderr);
+  assert.equal(JSON.parse(placed.stdout).slug, "alpha-one");
+  const st = JSON.parse(fs.readFileSync(path.join(live, "state.json"), "utf8"));
+  const o = st.engine.orders.__map[0][1];
+  assert.deepEqual([o.task, o.slug, o.orderer, o.manager], ["LESSON-alpha-one", "alpha-one", "chief-of-staff", "cm-math"]);
+  const { prepareCmd } = await import(path.join(PROTO, "state.mjs"));
+  assert.deepEqual(prepareCmd(o, { argv: ["node", "gates.mjs", "${slug}", "--stage=build", "--task=${task}"] }).argv.slice(2), ["alpha-one", "--stage=build", "--task=LESSON-alpha-one"]);
 });
 
 test("findings: no format blocks (exit 1); needs spec marker, unknown concept and unitemised claims warn", () => {
