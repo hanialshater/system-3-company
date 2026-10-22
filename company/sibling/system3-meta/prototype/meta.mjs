@@ -20,6 +20,9 @@
 //   node meta.mjs room enter --msg=<M> --role=<role> [--lease=30] [--as=<role> --mode=consult]
 //   node meta.mjs room next --run=<R> --cap=<n> [--wait=<s>] --evidence=… [leave flags]   leave, then take the next item in the
 //        same session; --wait keeps the session up to <s> seconds for the role's next item (benchmark 3: ~60k per new session)
+//   node meta.mjs learn show [--last=50]   ·   learn propose --by=<retro role> [--retro=RETRO-n] --proposal='{"add":[…],"retire":[…],"sample":[…]}'
+//        K28: the playbook's evidence and rules; a retro's proposal, validated change by change by code (learn.mjs)
+//   node meta.mjs init --spec-file=<json> --vars='{"playbook_store":"/abs/dir"}'   K28: the spec's vars (learn.store)
 //   node meta.mjs escape add --by=<role> --pattern=<regex> --why=… [--runs=a,b] | escape list   the company's known false
 //        claims (escapes.json, kept across runs); every text order is checked against them
 //   node meta.mjs room session-usage --session=<S> --tokens=<n>   the harness count for a whole agent process (supervisor)
@@ -86,6 +89,7 @@ import * as M from "./meetings.mjs";
 import * as A from "./asks.mjs";
 import * as JOBS from "./jobs.mjs";
 import * as RIT from "./rituals.mjs";
+import * as LEARN from "./learn.mjs";
 export { LIVE_ROOMS, LIVE_ROLES, TASK_FLOW } from "./state.mjs";
 
 const argv = process.argv.slice(2);
@@ -152,6 +156,8 @@ function pack(co, run, ctx, session, item) {
     // K24: the stages' kept copies in the run's artifact store (each stage's newest, by name; ${artifacts} in the pack rules)
     ...(Object.keys(o.artifacts ?? {}).length ? { artifacts: { latest: vars.artifacts, stages: Object.fromEntries(Object.entries(o.artifacts).map(([k, v]) => [k, v.dir])) } } : {}),
     ...(sd?.post ? { post_check: `your leave first runs: ${sd.post.argv.join(" ")} (code's check of this stage; a failure refuses the leave, prints its findings and keeps this run open to fix)` } : {}), // K12
+    // K28: the rules the company learned from earlier orders' outcomes (validated and scored by code), for the learn roles
+    ...((() => { const rules = LEARN.activeRules(co, co.rooms.runs.get(run)?.role); return rules.length ? { playbook: rules, playbook_means: "rules learned from earlier orders' outcomes (code validated and scores them): follow them where they apply; the accept criteria and the stage's own rules come first" } : {}; })()),
     ...(sd?.selftest ? { self_check: absCmds(`${pre}node meta.mjs check --order=${o.id}   runs ${sd.selftest.argv.join(" ")} in the workdir; as often as you like, it signs nothing`) } : {}), // K26
     cap_means: "--cap counts every item in this session, including the first one you entered",
     ...((co.org.role(co.rooms.runs.get(run)?.role)?.waitSec ?? 90) > 90 ? { wait_means: `room next blocks up to ${co.org.role(co.rooms.runs.get(run)?.role).waitSec} s for your next item: run it with a Bash timeout of at least ${(co.org.role(co.rooms.runs.get(run)?.role).waitSec + 60) * 1000} ms, or the call is cut off before the item arrives` } : {}),
@@ -184,6 +190,10 @@ function main() {
     }
     const co = make(name, def);
     co.org.genesis(co.spec.roles.map((r) => ({ ...r })));
+    // K28: the spec's vars (init --vars='{"name":"value"}' overrides them), e.g. learn.store's ${playbook_store}
+    let vars = { ...(co.spec.vars ?? {}) };
+    if (opt.vars != null) { let o2; try { o2 = JSON.parse(String(opt.vars)); } catch { o2 = null; } const e = o2 && LEARN.varsProblems(o2); if (!o2 || e.length) throw new Refused(`--vars is a JSON object of lower_snake names to strings${e?.length ? `: ${e.join("; ")}` : ""}`); vars = { ...vars, ...o2 }; }
+    if (Object.keys(vars).length) co.data.vars = vars;
     // K19: every flow of the spec (the legacy `flow`, then `flows`), each defined and approved as the one flow was
     const keys = GEN.specFlows(co.spec).map((f) => {
       const k = co.engine.define(f.name, { stages: f.stages }, { by: "cos" });
@@ -191,6 +201,8 @@ function main() {
       return k;
     });
     const key = keys[0];
+    // K28: the playbook store (outside the live dir), this run's id, the sample knobs earlier runs set (inside bounds)
+    const learned = co.spec.learn ? LEARN.initLearn(co, { vars, live: LIVE }) : null;
     // M6 prep: the spec's lane policies (policy.lanes: the M6 lanes' maxSessions) as each lane's first version, proposed
     // and activated by its manager, so the lane runs under them from the first order (policy.mjs pins it per order)
     for (const [lane, v] of Object.entries(co.spec.policy?.lanes ?? {})) {
@@ -206,7 +218,7 @@ function main() {
       if (def.context) co.writeFile("CONTEXT.md", def.context + "\n");
     }
     save(co);
-    return { ok: true, spec: co.data.spec, generated: !!def, flow: key, ...(keys.length > 1 ? { flows: keys } : {}), roles: co.spec.roles.map((r) => r.id), files: def ? ["ORG.md", ...(def.context ? ["CONTEXT.md"] : [])] : [] };
+    return { ok: true, spec: co.data.spec, generated: !!def, flow: key, ...(learned ? { learn: { store: learned.store, run: learned.run } } : {}), ...(keys.length > 1 ? { flows: keys } : {}), roles: co.spec.roles.map((r) => r.id), files: def ? ["ORG.md", ...(def.context ? ["CONTEXT.md"] : [])] : [] };
   });
   if (cmd === "batch") return withLock(() => {
     // Benchmark 1: set-up took 15 separate commands. A batch runs a list of commands on one state, all or nothing:
@@ -227,7 +239,7 @@ function main() {
     save(co);
     return { ok: true, ops: ops.length, results };
   });
-  const readOnly = ["queue", "events", "memory"].includes(cmd) || (cmd === "launch" && sub === "config") || (cmd === "flow" && ["show", "status"].includes(sub)) || (cmd === "org" && sub !== "propose") || (cmd === "building" && sub === "plan") || (cmd === "item" && ["show", "search"].includes(sub)) || (cmd === "goal" && ["show", "board"].includes(sub)) || (cmd === "ask" && ["route", "summary"].includes(sub)) || (cmd === "channel" && ["status", "inbox"].includes(sub)) || (cmd === "meeting" && sub === "show") || (cmd === "wbr" && sub === "page0");
+  const readOnly = ["queue", "events", "memory"].includes(cmd) || (cmd === "launch" && sub === "config") || (cmd === "learn" && sub === "show") || (cmd === "flow" && ["show", "status"].includes(sub)) || (cmd === "org" && sub !== "propose") || (cmd === "building" && sub === "plan") || (cmd === "item" && ["show", "search"].includes(sub)) || (cmd === "goal" && ["show", "board"].includes(sub)) || (cmd === "ask" && ["route", "summary"].includes(sub)) || (cmd === "channel" && ["status", "inbox"].includes(sub)) || (cmd === "meeting" && sub === "show") || (cmd === "wbr" && sub === "page0");
   const act = () => {
     const co = load();
     const before = co.log.events.length;
@@ -579,6 +591,22 @@ function dispatch(co, cmd, sub, arg) {
     need("role", "tool", "rule", "why");
     if (me != null) throw new Refused(`guard denied is the launcher's record: refused in an agent session (${me})`); // M5 review
     return log.add({ type: "guard", launch: opt.launch ?? null, role: opt.role, tool: opt.tool, rule: opt.rule, why: opt.why, detail: opt.detail ?? null, via: opt.via ?? null });
+  }
+  // K28: the playbook's evidence and rules (read-only), and a retro's proposal (validated change by change by code)
+  if (cmd === "learn" && sub === "show") {
+    const L = LEARN.learnOf(co); if (!L) throw new Refused("this company has no learn spec");
+    const pb = LEARN.readPlaybook(L.store), ev = LEARN.readEvidence(L.store);
+    return { store: L.store, run: L.run, retros: L.retros, rules: pb.rules, knobs: pb.knobs, evidence: ev.slice(-Number(opt.last ?? 50)).map((e) => ({ ...e, revises: e.revises.map((r) => ({ ...r, findings: r.findings.slice(0, 200) })) })), evidence_total: ev.length, limits: { maxRules: co.spec.learn.maxRules ?? LEARN.DEFAULT_MAX_RULES, ruleMaxChars: LEARN.RULE_MAX_CHARS, roles: co.spec.learn.roles } };
+  }
+  if (cmd === "learn" && sub === "propose") {
+    need("by");
+    const L = LEARN.learnOf(co); if (!L) throw new Refused("this company has no learn spec");
+    const retro = opt.retro != null ? L.retros.find((r) => r.id === opt.retro) : null;
+    if (opt.retro != null && retro?.state !== "open") throw new Refused(`no open retro ${opt.retro}`);
+    const may = [co.spec.learn.retro.role, "founder"].filter(Boolean);
+    if (!may.includes(opt.by)) throw new Refused(`${opt.by} may not change the playbook: its retro role (${co.spec.learn.retro.role ?? "code"}) or the founder may`);
+    let proposal; try { proposal = JSON.parse(opt.file ? fs.readFileSync(String(opt.file), "utf8") : String(opt.proposal ?? "")); } catch { throw new Refused("--proposal (or --file) is JSON: {add: [{text, why: [evidence ids], targets: [classes]}], retire: [{id, why}], sample: [{stage, rate, why}]}"); }
+    return LEARN.applyProposal(co, proposal, { by: opt.by, retro: retro?.id ?? null });
   }
   if (cmd === "escape" && sub === "list") return readEscapes();
   if (cmd === "escape" && sub === "add") {

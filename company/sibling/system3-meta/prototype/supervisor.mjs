@@ -70,6 +70,7 @@ import { isIndependent, packHistory, preKey, lanesOf, Refused } from "./lib.mjs"
 import { raiseBudgetAsk } from "./asks.mjs";
 import { applyActs } from "./acts.mjs";
 import { storeArtifacts, snapshotArtifacts } from "./artifacts.mjs";
+import { learnTick, learnPending, RULE_MAX_CHARS as LEARN_RULE_MAX } from "./learn.mjs";
 
 /** K1: a stage signed by code, or any stage with a `run` cmd (plan 2026-10-21 §3: the lesson flow's stages 2, 3, 4, 8 and 9
  *  are scripts; the old table only knew test1/uat/ship by name). No `run`: test1 as before (the order's text checks or
@@ -557,6 +558,7 @@ export function tick(co, { acceptance = null, faults = null, probe = hostProbe }
     }
   }
   for (const id of expireContracts(co)) steps.push({ step: "contract-expired", contract: id });
+  steps.push(...learnTick(co)); // K28: each ended order's evidence, the rules' scores, a retro when due
   if (co.data) { syncOrders(co); for (const g of sweepGoals(co)) steps.push({ step: "goal-auto-red", goal: g }); }
   if (steps.length) log.add({ type: "supervisor-tick", steps: steps.map((s) => stepLabel(s, { result: false })) });
   return steps;
@@ -800,6 +802,11 @@ export function briefFor(co, item, { context = null } = {}) {
     const lane = r.lane, builders = co.org.active().filter((x) => x.level === "builder" && lanesOf(x).includes(lane)).map((x) => x.id); // M6 prep: a builder of several lanes
     L.push(`Orders waiting for a builder: ${dlg.map((id) => `${id} (${co.engine.orders.get(id).task})`).join(", ")}. Split them across your builders (${builders.join(", ")}) and delegate each: \`node meta.mjs order delegate <O> --by=${item.role} --to=<builder> --budget=150000\`. Dependent orders (\`--after\`) wait by themselves; give one builder a run of related items so its session can drain them.`);
   }
+  const retros = (item.tasks ?? []).filter((t) => t.kind === "retro").map((t) => t.ref);
+  if (retros.length) {
+    const lim = co.spec?.learn ?? {};
+    L.push(`Retro ${retros.join(", ")} (K28, the company's playbook): read the outcome evidence and the playbook with \`node meta.mjs learn show\` (each order's stage verdicts, defect classes, revise findings, loops, self-checks and cost; the active rules with their helped/hurt scores). Propose what would have prevented the defect classes that recur, as one JSON proposal: \`node meta.mjs learn propose --by=${item.role} --retro=${retros[0]} --proposal='{"add":[{"text":"…","why":["E-…"],"targets":["<class>"],"roles":["<role>"]}],"retire":[{"id":"P-1","why":"…"}],"sample":[{"stage":"<sampled stage>","rate":0.75,"why":["E-…"]}]}'\`. Code checks each change: a rule cites evidence ids that exist and targets a defect class that evidence shows, is one line of at most ${LEARN_RULE_MAX} characters, is for ${(lim.roles ?? []).join(" or ")}, never tells anyone to skip or weaken a check or to read what a review must not see; at most ${lim.maxRules ?? 12} rules are active; a sample rate stays inside the spec's bounds. A refused change is reported; the rest apply. Retire a rule its scores say hurts. If nothing recurs, propose \`{}\`: that closes the retro too.`);
+  }
   if ((item.tasks ?? []).length) {
     // judgment outside rooms ends here
   } else if (item.contract) {
@@ -849,8 +856,10 @@ export function judgment(co) {
   // an open ask to an agent decider is its work (benchmark 5: an integrator that finds a defect in another slot's
   // module asks the lead, who reopens that module)
   for (const it of co.data?.tracker?.items?.values() ?? []) if (it.kind === "ask" && !["done", "cancelled"].includes(it.state) && it.assignee) add(it.assignee, { kind: "ask", ref: it.id });
+  // K28: an open retro of a role (learn.retro.role) is that role's work: one session reads the evidence and proposes
+  for (const r of co.data?.learn?.retros ?? []) if (r.state === "open" && r.kind === "role") add(r.role, { kind: "retro", ref: r.id });
   return [...by].map(([role, tasks]) => {
-    tasks.sort((a, b) => ["chair", "positions", "ask", "delegate"].indexOf(a.kind) - ["chair", "positions", "ask", "delegate"].indexOf(b.kind));
+    tasks.sort((a, b) => ["chair", "positions", "ask", "delegate", "retro"].indexOf(a.kind) - ["chair", "positions", "ask", "delegate", "retro"].indexOf(b.kind));
     return { role, why: [...new Set(tasks.map((t) => t.kind))].map((k) => `${k}: ${tasks.filter((t) => t.kind === k).map((t) => t.ref).join(", ")}`).join("; "), msgs: [], cap: 1, tasks };
   });
 }
@@ -949,7 +958,7 @@ export function settled(co) {
   // K7 review: a done order whose last commit is pending (held, or due on the next tick) is work left; only while the
   // spec still commits (K7 review 2)
   // K8: a cancelled order is settled; a parked one is not (its ask waits for a decision)
-  return [...co.engine.orders.values()].every((o) => o.stage === "cancelled" || (o.stage === "done" && !WS.commitDue(co, o))) && ![...(co.data?.meetings?.meetings?.values() ?? [])].some((m) => m.state === "open");
+  return [...co.engine.orders.values()].every((o) => o.stage === "cancelled" || (o.stage === "done" && !WS.commitDue(co, o))) && ![...(co.data?.meetings?.meetings?.values() ?? [])].some((m) => m.state === "open") && !learnPending(co); // K28: the run's evidence and its last retro
 }
 
 /** M7: has every spec scheduler ended (a `scheduler-end`)? True with no schedulers. */
