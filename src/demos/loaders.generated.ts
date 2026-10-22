@@ -1428,6 +1428,7 @@ export const loaders: Record<string, () => Promise<{ default: ComponentType<{ sl
   "no-fraction-fits": () => import("./math/no-fraction-fits/Demo"),
   "odd-numbers-make-squares": () => import("./math/odd-numbers-make-squares/Demo"),
   "one-boss-moves-the-mean": () => import("./math/one-boss-moves-the-mean/Demo"),
+  "one-metre-more-rope": () => import("./math/one-metre-more-rope/Demo"),
   "one-odd-loop-blocks-two-camps": () => import("./math/one-odd-loop-blocks-two-camps/Demo"),
   "one-recipe-for-sixty": () => import("./math/one-recipe-for-sixty/Demo"),
   "one-shy-rioter-stops-the-riot": () => import("./math/one-shy-rioter-stops-the-riot/Demo"),
