@@ -201,7 +201,7 @@ test("the plan's §2 lesson flow validates as one spec, every kernel feature on"
 });
 
 test("an order moves through build → test1 → qa → walk → check → learner → launch → gates → ship, CLI only", async () => {
-  const f = path.join(LIVE, "s3c-lessons.json");
+  const f = path.join(LIVE, "lessons.json");
   fs.writeFileSync(f, JSON.stringify(SPEC(), null, 1));
   ok(meta("init", `--spec-file=${f}`));
   const id = ok(meta("order", "new", "--to=lead", "--title=Orbit speed", `--task=${SLUG}`, "--accept=a lesson in ${workdir}/src/demos/physics/${slug}/")).order;

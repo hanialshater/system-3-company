@@ -238,15 +238,15 @@ test("M7 review 10: a gate notice closes when its item is gone some other way (a
 
 test("M7 review 11: the guard denies the M7 writers to an agent session; rituals.mjs record (code's post-check) stays allowed", async () => {
   const { decide } = await import("../launcher/guard.mjs");
-  const A = "/home/user/system-3-company/company/sibling/system3-meta/adapters/s3c";
+  const A = "/srv/company/adapters"; // any folder: the guard judges the script by its name
   const ctx = { role: "demo-builder", tools: ["Bash"] };
   const d = (command) => decide("Bash", { command }, ctx)?.why ?? null;
-  assert.match(d(`node ${A}/board-mirror.mjs --live=/tmp/x --repo=/home/user/s3c-wt/m7-int --run=m7 --commit`), /board-mirror\.mjs \(a code stage\)/);
-  assert.match(d(`node ${A}/events-export.mjs --live=/tmp/x --repo=/home/user/s3c-wt/m7-int --commit`), /events-export\.mjs \(a code stage\)/);
-  assert.match(d(`node ${A}/rituals.mjs ship wbr --repo=. --base=abc --from-sha=HEAD --into=/home/user/s3c-wt/m7-int`), /rituals\.mjs ship \(a code stage\)/);
+  assert.match(d(`node ${A}/board-mirror.mjs --live=/tmp/x --repo=/srv/wt/m7-int --run=m7 --commit`), /board-mirror\.mjs \(a code stage\)/);
+  assert.match(d(`node ${A}/events-export.mjs --live=/tmp/x --repo=/srv/wt/m7-int --commit`), /events-export\.mjs \(a code stage\)/);
+  assert.match(d(`node ${A}/rituals.mjs ship wbr --repo=. --base=abc --from-sha=HEAD --into=/srv/wt/m7-int`), /rituals\.mjs ship \(a code stage\)/);
   assert.match(d(`cd ${A} && node rituals.mjs --x ship wbr`), /rituals\.mjs ship/);
   assert.match(d(`node ${A}/m7-scope.mjs rituals.mjs record wbr --repo=.`), /m7-scope\.mjs \(a code stage\)/);
   assert.match(d(`node -e "import('${A}/lib/commit-file.mjs').then((m) => m.commitPaths('/x', ['a'], 'm'))"`), /commit-file\.mjs \(a code stage\)/);
   assert.equal(d(`node ${A}/rituals.mjs record wbr --repo=. --base=abc`), null);
-  assert.equal(d(`node ${A}/rituals.mjs due --repo=/home/user/s3c-wt/m7-int --roles=a,b`), null);
+  assert.equal(d(`node ${A}/rituals.mjs due --repo=/srv/wt/m7-int --roles=a,b`), null);
 });

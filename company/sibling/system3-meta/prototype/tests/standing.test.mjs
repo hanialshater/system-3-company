@@ -62,9 +62,8 @@ test("K15: validateSpec checks the shape: the one pre-approved action, an active
   const s = spec(); s.approvals = { standing: [AMD015], other: [] };
   assert.match(validateSpec(s).join("\n"), /approvals has unknown key other/);
   assert.deepEqual(standingProblems(null), []);
-  // the lesson spec, with AMD-015 added, still validates (its release-manager is the role the amendment names)
-  const real = JSON.parse(fs.readFileSync(path.join(HERE, "..", "specs", "s3c-lessons.json"), "utf8"));
-  assert.deepEqual(validateSpec({ ...real, approvals: { standing: [AMD015] } }), []);
+  // (that the company's lesson spec, with AMD-015 added, still validates is adapters/s3c/tests/spec.test.mjs's: the
+  // company's specs stay in the company tree, out of the exported kernel)
 });
 
 test("M5 review: a standing entry wider than AMD-015 fails validation and is never honored (another role, trigger or record)", () => {

@@ -287,7 +287,7 @@ test("M6 prep 9: spec exports run by code after each tick, as their role's step:
   const bad = (x) => validateSpec({ ...s, exports: [x] }).join("; ");
   assert.match(bad({ id: "x", role: "founder", every: "change", run: { argv: ["node"] } }), /role founder is an agent role/);
   assert.match(bad({ id: "x", role: "cos", every: "hourly", run: { argv: ["node"] } }), /every is "change" or "tick"/);
-  assert.match(bad({ id: "x", role: "cos", every: "tick", run: { argv: ["node", "inbox-export.mjs", "--write=/home/user/system-3-company/company/ops/founder-inbox.json", "--allow-main"] } }), /never writes the main checkout/);
+  assert.match(bad({ id: "x", role: "cos", every: "tick", run: { argv: ["node", "inbox-export.mjs", "--write=/srv/company/ops/founder-inbox.json", "--allow-main"] } }), /never writes the main checkout/);
   assert.match(bad({ id: "x", role: "cos", every: "tick", run: { argv: ["node", "x", "${slug}"] } }), /reads only \$\{live\} and \$\{stage\}/);
   assert.match(bad({ id: "x", role: "cos", every: "tick", run: { argv: ["node"], route: { a: "build" } } }), /no route|goes to build/);
   const dir = init(s);

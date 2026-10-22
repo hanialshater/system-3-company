@@ -22,6 +22,13 @@ const REAL = fs.existsSync(path.join(REPO, "tools/company.mjs"));
 const LIVE = fs.mkdtempSync(path.join(os.tmpdir(), "s3c-spec-"));
 process.env.META_LIVE_DIR = LIVE;
 
+test("the spec, with AMD-015's standing approval added, still validates (its release-manager is the role the amendment names)", async () => {
+  // moved from prototype/tests/standing.test.mjs (2026-10-22): the company's specs stay out of the exported kernel
+  const { validateSpec } = await import(path.join(PROTO, "generator.mjs"));
+  const AMD015 = { action: "flag-off-withdrawal", role: "release-manager", trigger: "privacy|child-safety", record: "AMD-015" };
+  assert.deepEqual(validateSpec({ ...SPEC, approvals: { standing: [AMD015] } }), []);
+});
+
 test("the spec validates, and its worktrees are where qa.mjs can build with the shared node_modules", async () => {
   const { validateSpec } = await import(path.join(PROTO, "generator.mjs"));
   assert.deepEqual(validateSpec(SPEC), []);

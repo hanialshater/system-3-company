@@ -473,7 +473,7 @@ test("M6 prep review: a `#` comment opens no heredoc and hides no line (bash run
   assert.equal(G.bashDenial("unset META_LAUNCH", 0, t), "unset <the session's variables>");
   assert.equal(G.bashDenial("unset FOO; node -e 'console.log(1)' $HOME", 0, t), null, "unset of another name, node -e with a variable argument");
   // integrate.mjs and inbox-export.mjs are code stages
-  assert.equal(G.bashDenial("node /home/user/system-3-company/company/sibling/system3-meta/adapters/s3c/inbox-export.mjs --write=/home/user/system-3-company/company/ops/x.json --commit", 0, b), "inbox-export.mjs (a code stage)");
-  assert.equal(G.bashDenial("cd adapters/s3c && node integrate.mjs --into=meta/m6 --from=meta/m6-a", 0, b), "integrate.mjs (a code stage)");
+  assert.equal(G.bashDenial("node /srv/company/adapters/inbox-export.mjs --write=/srv/company/ops/x.json --commit", 0, b), "inbox-export.mjs (a code stage)");
+  assert.equal(G.bashDenial("cd adapters && node integrate.mjs --into=meta/m6 --from=meta/m6-a", 0, b), "integrate.mjs (a code stage)");
   assert.equal(G.bashDenial("node --test tests/integrate.test.mjs", 0, b), null);
 });
