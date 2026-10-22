@@ -79,3 +79,11 @@ All 3 orders `done` in **45 min** of wall clock for **$9.75** ($3.25 a lesson), 
   4. a merge of lesson branches needs `company registry` (M6's integration step must run it);
   5. `o.spent` (K13, M5).
 - **Not done:** the control arm (vanilla builder on `cs.security` #5) is optional in the plan and was not run.
+
+## Open defects: status after the M6 prep (2026-10-22, branch ccr-eab7206b-3uqp4w)
+
+1. `order new --slug`: **fixed** (meta.mjs; brief.mjs's orderArgv passes `--slug` and `--by=chief-of-staff`).
+2. The guard and heredocs: **fixed** (launcher/guard.mjs: a heredoc read by a data command is data, and its redirect target is judged as a write; a line the guard cannot read is still refused, and the denial names the Write tool).
+3. Walkthrough sheets read "in review": **not fixed** (cosmetic). A walk after ship needs a fresh build, because publish changes meta.json, which is about 2 min an order for a label.
+4. Merging lesson branches needs `company registry`: **fixed for M6** (adapters/s3c/integrate.mjs, the spec's `merge` stage after ship: registry-only conflicts are resolved by code, and the registry is regenerated after every merge).
+5. `o.spent`: **fixed in M5** (K13, charged spend).

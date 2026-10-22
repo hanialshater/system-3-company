@@ -10,6 +10,13 @@ import { spawnSync } from "node:child_process";
 // state, or the real guard:
 //   1 order new --slug          M4's one operator fix: ${slug} fell back to the task (LESSON-<slug>)
 //   2 supervisor launched/usage the orchestrator's reports, refused in an agent session (as launch finished, M5 review)
+//   4 lanes                     a builder in lanes math and cs: delegate from either manager, lane load by order
+//   4+5 sessions, levelCaps     one role, 3 sessions at once (one item each), K17's per-level cap, launch reservations
+//   5 host guard                K17: no session while load or disk is past the spec's policy.host; host-hold events
+//   6 merge after ship          a code stage may follow ship (integrate.mjs), ${branch}; the order is done after it
+//   8 review cost               ${brief_file} (one brief in the pack, not 51), the role's drainCap and waitSec
+//   9 exports                   the founder-inbox export as the chief of staff's code step, on change or every tick
+// (3, the guard's heredocs, is in guard.test.mjs; 7, the regression scope, and the adapters are in adapters/s3c/tests.)
 const LIVE = fs.mkdtempSync(path.join(os.tmpdir(), "meta-m6-"));
 process.env.META_LIVE_DIR = LIVE;
 const HERE = path.dirname(new URL(import.meta.url).pathname);
