@@ -1446,6 +1446,7 @@ export const loaders: Record<string, () => Promise<{ default: ComponentType<{ sl
   "product-plus-one": () => import("./math/product-plus-one/Demo"),
   "quarters-add-to-a-third": () => import("./math/quarters-add-to-a-third/Demo"),
   "rabbit-ratio": () => import("./math/rabbit-ratio/Demo"),
+  "regions-from-circle-points": () => import("./math/regions-from-circle-points/Demo"),
   "scoops-in-three-cups": () => import("./math/scoops-in-three-cups/Demo"),
   "scramble-the-digits": () => import("./math/scramble-the-digits/Demo"),
   "seesaw-mean": () => import("./math/seesaw-mean/Demo"),

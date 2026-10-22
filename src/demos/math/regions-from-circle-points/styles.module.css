@@ -1,0 +1,15 @@
+.wrap { display: flex; flex-direction: column; gap: 8px; flex: 1 1 auto; min-height: 0; }
+.pic { width: 100%; max-width: 300px; height: auto; margin: 0 auto; display: block; }
+.disc { fill: var(--domain); fill-opacity: 0.1; }
+.shade { fill: var(--domain); fill-opacity: 0.32; }
+.line { stroke: var(--fg); stroke-width: 1.6; stroke-linecap: round; }
+.rim { fill: none; stroke: var(--fg); stroke-width: 2; }
+.cross { fill: var(--bad); }
+.point { fill: var(--fg); stroke: var(--bg); stroke-width: 2; }
+.table { border-collapse: collapse; margin: 0 auto; font-size: 0.85rem; font-variant-numeric: tabular-nums; }
+.table th { text-align: left; font-weight: 700; color: var(--muted); padding: 1px 8px 1px 0; }
+.table td { text-align: center; min-width: 30px; padding: 1px 4px; color: var(--fg); font-weight: 600; }
+.piecesRow th, .piecesRow td { font-weight: 800; color: var(--fg); border-top: 1px solid var(--line); }
+.now { background: var(--bg-3); border-radius: 4px; }
+.wrap :global(.row) { justify-content: center; flex-wrap: wrap; gap: 6px; }
+.chip { min-height: 44px; min-width: 44px; padding: 0 10px; }

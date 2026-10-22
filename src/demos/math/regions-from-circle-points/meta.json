@@ -1,0 +1,114 @@
+{
+  "slug": "regions-from-circle-points",
+  "title": "How many pieces with six points?",
+  "hook": "Points on a circle, every pair joined: 1, 2, 4, 8, 16 pieces. What comes next?",
+  "domain": "math",
+  "concept": "pattern-is-not-proof",
+  "status": "published",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "joining points with straight lines",
+      "counting pieces"
+    ],
+    "doesNotKnow": [
+      "that a pattern holding for five cases can still break, and why this one does (pieces = 1 + lines + crossings)"
+    ]
+  },
+  "misconception": "2, 4, 8, 16 must continue as 32: a pattern that held five times is proved.",
+  "objective": "The learner can say that 6 points on a circle give 31 pieces, not 32, because pieces = 1 + lines + crossings (1 + 15 + 15), and that five matching cases are evidence, not a proof.",
+  "claims": [
+    {
+      "id": "math.regions-from-circle-points.c1",
+      "text": "With the stage's points (at 0°, 64°, 113°, 179°, 230°, 308°, the first n for n points), every pair joined, the circle is cut into 1, 2, 4, 8, 16, 31 pieces for 1 to 6 points, with 0, 1, 3, 6, 10, 15 lines and 0, 0, 0, 1, 5, 15 crossings: doubling held up to 5 points and broke at 6, so five matching cases are evidence, not a proof. Recall: a rule that holds in the first five cases you try can still fail in a later one.",
+      "support": "derivation",
+      "source": "company/domains/briefs/checks/math-wave-j-check.mjs label D3 (crossings 0, 0, 0, 1, 5, 15; regions 1, 2, 4, 8, 16, 31 by Euler's formula on the drawing; formula 1 + C(n,2) + C(n,4) agrees). Stage: drawingOf() in Demo.tsx counts crossings by segment intersection and pieces by Euler's formula (E − V + 1), not by the formula.",
+      "status": "verified",
+      "note": "v2 recheck: ANGLES unchanged; recomputed lines 0,1,3,6,10,15, crossings 0,0,0,1,5,15 (all distinct, min separation 0.209 R), pieces 1,2,4,8,16,31. Agrees with D3.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
+    },
+    {
+      "id": "math.regions-from-circle-points.c2",
+      "text": "When no three lines meet at one point, pieces = 1 + lines + crossings = 1 + C(n,2) + C(n,4): every piece is made by a line or a crossing (each line, drawn in turn, adds 1 piece plus 1 for each crossing it makes), so with 6 points it is 1 + 15 + 15 = 31 and the rule was never doubling: it only matched doubling up to 5 points.",
+      "support": "derivation",
+      "source": "Adding a chord that crosses k earlier chords at distinct points splits k + 1 pieces, so pieces = 1 + chords + crossings; chords = C(n,2) (claim c3), crossings = C(n,4) (claim c3). Agrees with D3 for n = 1 to 6.",
+      "status": "verified",
+      "note": "v2 recheck: the formula 1 + C(n,2) + C(n,4) under no-three-concurrent is right, and so is 1 + 15 + 15 = 31. The reworded clause \"the rule was never doubling: it only matched doubling up to 5 points\" is true (1 + C(n,2) + C(n,4) = 1,2,4,8,16 then 31,57).",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
+    },
+    {
+      "id": "math.regions-from-circle-points.c3",
+      "text": "Lines come from pairs of points, C(n,2) of them, and crossings from groups of four: each set of four points on the circle gives exactly one crossing (its two diagonals), so there are C(n,4) crossings when no three lines meet at one point.",
+      "support": "derivation",
+      "source": "Four points on a circle form a convex quadrilateral whose two diagonals cross once inside and whose sides do not cross; two chords cross inside the circle only if their four end points alternate around it, i.e. they are the diagonals of that quadrilateral. D3: crossings 1, 5, 15 = C(4,4), C(5,4), C(6,4).",
+      "status": "verified",
+      "note": "v2 recheck: two chords cross inside exactly when their end points alternate, so each 4-set gives one crossing; C(n,4) = 1, 5, 15 recomputed.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
+    },
+    {
+      "id": "math.regions-from-circle-points.c4",
+      "text": "With 6 evenly spaced points there are 30 pieces, because three diagonals meet at the centre; this is why the predict question states that the points are uneven so no three lines meet at one spot (meta evidence; the learner sees only the condition).",
+      "support": "derivation",
+      "source": "company/domains/briefs/checks/math-wave-j-check.mjs label D3, regular hexagon: 15 crossings, 13 distinct points, max 3 lines through one point, 30 regions.",
+      "status": "verified",
+      "note": "v2 recheck: regular hexagon has 15 crossing pairs on 13 distinct points (3 long diagonals at the centre), so 30 pieces. Agrees with D3.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "You test a rule on the first five cases you try and it works every time. What have you shown?",
+    "options": [
+      "It works in every case",
+      "It is evidence, but a later case could still break it",
+      "The sixth case must break it",
+      "Nothing useful at all"
+    ],
+    "answer": 1,
+    "why": "The circle pieces doubled five times and then gave 31, not 32: matching cases are evidence, and only a reason why the rule holds proves it."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/regions-from-circle-points/2026-10-22-qa.md"
+    ],
+    "simulatedLearner": [
+      "company/reviews/regions-from-circle-points/2026-10-22-learner-pattern-trusting-counter.md"
+    ],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "math:pattern-is-not-proof",
+    "also": [
+      "math:handshake-counting",
+      "math:pascals-triangle"
+    ],
+    "prerequisites": [
+      "math:handshake-counting"
+    ],
+    "level": "core",
+    "strand": "discrete",
+    "references": [],
+    "tags": [
+      "patterns",
+      "proof",
+      "counting"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}
