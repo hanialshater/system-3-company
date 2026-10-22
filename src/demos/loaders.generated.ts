@@ -1436,6 +1436,7 @@ export const loaders: Record<string, () => Promise<{ default: ComponentType<{ sl
   "paths-by-adding": () => import("./math/paths-by-adding/Demo"),
   "pentagon-gap": () => import("./math/pentagon-gap/Demo"),
   "pi-is-three-and-a-bit": () => import("./math/pi-is-three-and-a-bit/Demo"),
+  "pick-two-or-pick-four": () => import("./math/pick-two-or-pick-four/Demo"),
   "plus-and-minus-chips": () => import("./math/plus-and-minus-chips/Demo"),
   "powers-of-two-plus-one": () => import("./math/powers-of-two-plus-one/Demo"),
   "product-plus-one": () => import("./math/product-plus-one/Demo"),

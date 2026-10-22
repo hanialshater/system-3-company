@@ -1,0 +1,82 @@
+{
+  "slug": "pick-two-or-pick-four",
+  "title": "Pick two or pick four",
+  "hook": "Six friends, one trip. Is there more choice in taking 2 or in taking 4?",
+  "domain": "math",
+  "concept": "complement-counting",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "counting pairs (math/handshakes-halve)"
+    ],
+    "doesNotKnow": [
+      "that choosing k of n has exactly as many ways as choosing the n − k left behind, because each choice of who goes is a choice of who stays"
+    ]
+  },
+  "misconception": "Choosing 4 of 6 gives more possible groups than choosing 2 of 6, because the groups are bigger.",
+  "objective": "The learner can say that taking 2 of 6 friends and taking 4 of 6 give the same number of groups, 15, because each pair that goes leaves exactly one group of four that stays, and the other way round.",
+  "claims": [
+    {
+      "id": "math.pick-two-or-pick-four.c1",
+      "text": "From 6 friends there are 15 ways to choose 2 and 15 ways to choose 4; there are 20 ways to choose 3, the most of any group size. Recall: from 10 players there are 45 ways to pick 2 and 45 ways to pick 8.",
+      "support": "derivation",
+      "source": "company/domains/briefs/checks/math-wave-j-check.mjs label D5: C(6,0..6) = 1, 6, 15, 20, 15, 6, 1; C(10,2) = C(10,8) = 45. Stage: subsets(6, k) in Demo.tsx enumerates every group, and the counters and 'groups of 3: 20' are its lengths.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.pick-two-or-pick-four.c2",
+      "text": "Matching each chosen group with the group left out is one to one: every pair of the 6 leaves exactly one four behind, and every four is left behind by exactly one pair, so choosing k of n has as many ways as choosing n − k. Each chip on the stage shows a pair (filled dots) and the four it leaves (hollow dots).",
+      "support": "derivation",
+      "source": "Bijection: the map 'group → its complement' is its own inverse, so it is one to one and onto between k-subsets and (n − k)-subsets; C(n, k) = C(n, n − k). Stage: Demo.tsx checks at load that the 15 complements of the pairs are 15 different fours covering every four.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A coach has 10 players. She can pick 2 to rest, or pick 8 to play. Which choice has more possible picks?",
+    "options": [
+      "Picking 2",
+      "Picking 8",
+      "The same"
+    ],
+    "answer": 2,
+    "why": "Each 2 who rest leaves exactly one 8 who play, and the other way round, so both have the same number of picks: 45."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "math:complement-counting",
+    "also": [
+      "math:pascals-triangle",
+      "math:handshake-counting"
+    ],
+    "prerequisites": [
+      "math:handshake-counting"
+    ],
+    "level": "core",
+    "strand": "discrete",
+    "references": [],
+    "tags": [
+      "counting",
+      "combinations",
+      "bijection"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "preset-buttons",
+    "milestone-gate"
+  ]
+}
