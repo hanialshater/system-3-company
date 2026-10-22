@@ -4,8 +4,11 @@
 //
 //   node meta.mjs init [--spec=<built-in> | --spec-file=<json>]   a fresh live org and its flow (refuses if state exists);
 //        --spec-file generates a company from a spec file, validated against the invariants (generator.mjs, M2)
-//   node meta.mjs order new --to=<manager> --title=… --task=<T> --accept=… [--slug=<kebab>] [--budget=200000] [--priority=now|next|later --due=<min>] [--after=O-1,O-2] [--ledger-project=<projects.json id>]
+//   node meta.mjs order new --to=<manager> --title=… --task=<T> --accept=… [--flow=<name>] [--slug=<kebab>] [--budget=200000] [--priority=now|next|later --due=<min>] [--after=O-1,O-2] [--ledger-project=<projects.json id>]
 //        --slug: the order's ${slug} in packs, briefs and stage cmds (unset: its task; M4 run: LESSON-<slug> reached gates.mjs)
+//        K19 --flow: one of the spec's flows (default the first); a chair flow (the ritual flow) takes --chair=<role>
+//        --attendee=<role> instead of --to: the chair works its first stage, the attendee its check
+//   node meta.mjs order new --flow=ritual --chair=<role> --attendee=<role> --title=… --task=<T> --accept=… [--slug=<kebab>]
 //   node meta.mjs order delegate <O> --by=<manager> --to=<builder> [--budget=150000]
 //   node meta.mjs order reopen <O> --by=<manager|founder> --findings=… [--reason=…]   a shipped order back to build
 //   node meta.mjs order park <O> --by=<orderer|manager|founder> --reason=…   K8: stop it where it is (stage parked, messages
@@ -65,7 +68,7 @@
 // Exit: 0 ok, 1 refused, 2 usage or state error.
 import fs from "node:fs";
 import path from "node:path";
-import { Refused, flowMetrics, packHistory, isIndependent } from "./lib.mjs";
+import { Refused, flowMetrics, packHistory, isIndependent, isChairFlow } from "./lib.mjs";
 import * as GEN from "./generator.mjs";
 import * as WS from "./workspace.mjs";
 import { proposePolicy, activatePolicy, managerReport, recordCycle, KNOBS } from "./policy.mjs";
@@ -170,8 +173,13 @@ function main() {
     }
     const co = make(name, def);
     co.org.genesis(co.spec.roles.map((r) => ({ ...r })));
-    const key = co.engine.define(co.spec.flow.name, { stages: co.spec.flow.stages }, { by: "cos" });
-    co.engine.approveDef(key, { by: "founder", words: "Approve the task flow for the Meta sandbox (founder: Decide for me, 2026-10-21)" });
+    // K19: every flow of the spec (the legacy `flow`, then `flows`), each defined and approved as the one flow was
+    const keys = GEN.specFlows(co.spec).map((f) => {
+      const k = co.engine.define(f.name, { stages: f.stages }, { by: "cos" });
+      co.engine.approveDef(k, { by: "founder", words: "Approve the task flow for the Meta sandbox (founder: Decide for me, 2026-10-21)" });
+      return k;
+    });
+    const key = keys[0];
     // M6 prep: the spec's lane policies (policy.lanes: the M6 lanes' maxSessions) as each lane's first version, proposed
     // and activated by its manager, so the lane runs under them from the first order (policy.mjs pins it per order)
     for (const [lane, v] of Object.entries(co.spec.policy?.lanes ?? {})) {
@@ -187,7 +195,7 @@ function main() {
       if (def.context) co.writeFile("CONTEXT.md", def.context + "\n");
     }
     save(co);
-    return { ok: true, spec: co.data.spec, generated: !!def, flow: key, roles: co.spec.roles.map((r) => r.id), files: def ? ["ORG.md", ...(def.context ? ["CONTEXT.md"] : [])] : [] };
+    return { ok: true, spec: co.data.spec, generated: !!def, flow: key, ...(keys.length > 1 ? { flows: keys } : {}), roles: co.spec.roles.map((r) => r.id), files: def ? ["ORG.md", ...(def.context ? ["CONTEXT.md"] : [])] : [] };
   });
   if (cmd === "batch") return withLock(() => {
     // Benchmark 1: set-up took 15 separate commands. A batch runs a list of commands on one state, all or nothing:
@@ -255,8 +263,14 @@ function main() {
 function dispatch(co, cmd, sub, arg) {
   const { engine, rooms, mailbox, org, log } = co;
   if (cmd === "order" && sub === "new") {
-    need("to", "title", "task", "accept");
-    const o = engine.orderNew({ flow: co.spec.flow?.name ?? "task", by: opt.by ?? "cos", to: opt.to, budget: Number(opt.budget ?? 200_000), accept: opt.accept, title: opt.title, priority: opt.priority ?? "next", dueMin: opt.due ? Number(opt.due) : null, after: opt.after ? String(opt.after).split(",") : [], fromContract: opt["from-contract"] ?? null });
+    // K19: --flow names one of the spec's flows (default: the first); a chair flow's order (the ritual flow) names its
+    // --chair and --attendee instead of a manager (--to)
+    const flow = opt.flow != null ? String(opt.flow) : GEN.defaultFlow(co.spec)?.name ?? "task";
+    if (!engine.active.get(flow)) throw new Refused(`no active flow ${flow} (this company's: ${[...engine.active.keys()].join(", ")})`);
+    const chairFlow = isChairFlow(engine.flows.get(engine.active.get(flow)));
+    need(...(chairFlow ? ["chair", "attendee"] : ["to"]), "title", "task", "accept");
+    if (chairFlow && opt.to != null) throw new Refused(`flow ${flow} orders name a chair and an attendee, not a manager (--to)`);
+    const o = engine.orderNew({ flow, by: opt.by ?? "cos", to: chairFlow ? null : opt.to, chair: opt.chair ?? null, attendee: opt.attendee ?? null, budget: Number(opt.budget ?? 200_000), accept: opt.accept, title: opt.title, priority: opt.priority ?? "next", dueMin: opt.due ? Number(opt.due) : null, after: opt.after ? String(opt.after).split(",") : [], fromContract: opt["from-contract"] ?? null });
     o.task = opt.task;
     // M4 run (M4-RUN.md, the one operator fix): with no --slug, ${slug} fell back to the task (LESSON-<slug>), and every
     // test1 stage-errored on gates.mjs's usage check. The slug is a company lesson slug: kebab-case, as brief.mjs reads it

@@ -93,7 +93,7 @@ export function make(specName = "toy", specDef = null) {
 
 export const rep = (k, v) => (v instanceof Map ? { __map: [...v] } : v instanceof Set ? { __set: [...v] } : v);
 export const rev = (k, v) => (v && v.__map ? new Map(v.__map) : v && v.__set ? new Set(v.__set) : v);
-export const FIELDS = { data: ["spec", "specDef", "building", "channels", "tracker", "goals", "meetings", "rituals", "rules", "jobs", "host", "exports"], log: ["events"], mailbox: ["msgs", "keys", "n"], org: ["roles", "changes", "n", "rooms"], engine: ["flows", "active", "orders", "approvals", "n", "limits", "policies", "contracts"], rooms: ["runs", "n", "memory", "sessions", "nS"] };
+export const FIELDS = { data: ["spec", "specDef", "building", "channels", "tracker", "goals", "meetings", "rituals", "rules", "jobs", "host", "exports", "schedulers", "gates", "serve"], log: ["events"], mailbox: ["msgs", "keys", "n"], org: ["roles", "changes", "n", "rooms"], engine: ["flows", "active", "orders", "approvals", "n", "limits", "policies", "contracts"], rooms: ["runs", "n", "memory", "sessions", "nS"] };
 
 export function save(co) {
   const data = Object.fromEntries(Object.entries(FIELDS).map(([o, fs_]) => [o, Object.fromEntries(fs_.map((f) => [f, co[o][f]]))]));
@@ -357,7 +357,9 @@ export function validateCmd(c, { stages = null } = {}) {
  *  header line), as ${brief_file} for packs, briefs and cmds; an order with no such line has none (the template stays
  *  as written, and a glob of it matches nothing). */
 export const briefVars = (o) => { const m = /(?:^|[\s·])brief (company\/domains\/briefs\/[A-Za-z0-9._-]+\.md):\d+-\d+/m.exec(String(o?.accept ?? "")); return m ? { brief_file: m[1] } : {}; };
-export const interpolate = (s, vars) => s.replace(/\$\{(slug|task|workdir|run|n|port|evidence|verdict|stage|live|base_sha|order|budget|remaining|ledger_project|branch|head_sha|brief_file)\}/g, (m, k) => (k in vars ? vars[k] ?? "" : m));
+// K20: a launch gate also reads ${role} (the session's), ${running} and ${builders} (agent and builder sessions in flight,
+// this one not counted) and ${launch} (a label naming the planned launch), so dispatch-check gets Meta's own count
+export const interpolate = (s, vars) => s.replace(/\$\{(slug|task|workdir|run|n|port|evidence|verdict|stage|live|base_sha|order|budget|remaining|ledger_project|branch|head_sha|brief_file|role|running|builders|launch)\}/g, (m, k) => (k in vars ? vars[k] ?? "" : m));
 const dig = (x, p) => p.split(".").filter(Boolean).reduce((v, k) => (v == null ? undefined : k === "length" && (Array.isArray(v) || typeof v === "string") ? v.length : v[k]), x);
 // K1 audit: the last line that parses, not the last that looks like JSON ("[advisory] x" after the JSON was "not JSON")
 const parseJson = (t) => { try { return JSON.parse(t); } catch {} for (const l of t.trim().split("\n").reverse()) { if (!/^[[{]/.test(l.trim())) continue; try { return JSON.parse(l); } catch {} } return undefined; };
@@ -419,10 +421,20 @@ export function judgeCmd(c, label, r, timeoutMs = c.timeoutMs ?? 60_000) {
  *  findings are advisory on a pass (copy-tells, a11y) and the reason on a fail; route is the earlier stage the first
  *  matching route regex names. */
 export function runCmdCheck(o, s, extra = {}) {
+  const { t } = execCmd(o, s, extra);
+  return t;
+}
+function execCmd(o, s, extra) {
   const p = prepareCmd(o, s, extra);
-  if (!fs.existsSync(p.cwd)) return noCwd(p);
+  if (!fs.existsSync(p.cwd)) return { t: noCwd(p), stdout: "" };
   const timeoutMs = p.c.timeoutMs ?? 60_000;
   const r = spawnSync(p.bin, p.argv.slice(1), { cwd: p.cwd, env: p.env, encoding: "utf8", timeout: timeoutMs, maxBuffer: 64 * 1024 * 1024 });
   const timedOut = r.error?.code === "ETIMEDOUT";
-  return judgeCmd(p.c, p.label, { stdout: r.stdout, stderr: r.stderr, status: r.status, error: r.error && !timedOut ? `could not start: ${r.error.message}` : null, timedOut }, timeoutMs);
+  return { t: judgeCmd(p.c, p.label, { stdout: r.stdout, stderr: r.stderr, status: r.status, error: r.error && !timedOut ? `could not start: ${r.error.message}` : null, timedOut }, timeoutMs), stdout: String(r.stdout ?? "") };
+}
+/** K18/K21: as runCmdCheck, plus `json`: the last stdout line that parses as JSON (the adapter contract, plan §4), or
+ *  undefined. Schedulers read the orders it names; exports read the labels it hands back. */
+export function runCmdJson(o, s, extra = {}) {
+  const { t, stdout } = execCmd(o, s, extra);
+  return { ...t, json: parseJson(stdout) };
 }

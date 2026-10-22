@@ -102,7 +102,7 @@ async function run(ev) {
   const ac = new AbortController();
   const limit = setTimeout(() => ac.abort(new Error(`session over ${sessionMin} min`)), sessionMin * 60_000);
   const kill = kills.has(k) ? setTimeout(() => ac.abort(new Error("injected crash (--kill)")), kills.get(k) * 1000) : null;
-  note({ event: "start", launch: id, n: k, role: ev.role, msgs: ev.msgs ?? [], tasks: (ev.tasks ?? []).map((t) => `${t.kind}:${t.ref}`), cwd, workdirs: cfg.workdirs ?? [], tools, sessionMin, maxTurns, settingSources: sources });
+  note({ event: "start", launch: id, n: k, role: ev.role, msgs: ev.msgs ?? [], tasks: (ev.tasks ?? []).map((t) => `${t.kind}:${t.ref}`), cwd, workdirs: cfg.workdirs ?? [], tools, sessionMin, maxTurns, settingSources: sources, ...(ev.gate ? { gate: ev.gate } : {}) }); // K20: the launch gate's result (serve's launch line)
   let last = null, result = null, error = null;
   const t0 = Date.now();
   try {

@@ -268,7 +268,15 @@ export const signerRole = (s) => (s?.signer && typeof s.signer === "object" ? s.
 export const signerName = (s) => (signerRole(s) ? `role ${signerRole(s)}` : String(s?.signer));
 // K4: a reviewing stage is independent (the builder may never enter or sign it): `independent`, by default true for
 // checker, evaluator and role signers; `check` always is (S8). Before K4 only the stage named check was guarded (stage 6)
-export const isIndependent = (s) => !!s && (s.stage === "check" || (s.independent ?? (["checker", "evaluator"].includes(s.signer) || !!signerRole(s))));
+export const isIndependent = (s) => !!s && (s.stage === "check" || (s.independent ?? (["checker", "evaluator", "attendee"].includes(s.signer) || !!signerRole(s))));
+// K19 (plan 2026-10-21 §M7): a second kind of flow, whose orders name a chair and an attendee instead of a manager and
+// a builder (the ritual flow: run by the chair → check by a second attendee → ship by code). Its first stage is signed
+// by "chair" (the order's o.chair), its check by "attendee" (o.attendee, independent by default: the chair is the
+// order's worker, o.builder, so K4's guard keeps the chair off it). Which roles they are is the order's, not the flow's:
+// a WBR is chaired by the chief of staff, a Demo Crit by the head of product (adapters/s3c/rituals.mjs)
+export const CHAIR_SIGNERS = ["chair", "attendee"];
+/** K19: a flow whose orders name a chair (its first stage is signed by "chair"). */
+export const isChairFlow = (def) => def?.stages?.[0]?.signer === "chair";
 // K6 (plan 2026-10-21 §3): a stage's context-pack rules, `pack:{include:[globs], exclude:[globs], history:false}`. With
 // history:false the brief and the room pack leave out prior findings and build history (stage 6, artifact before account:
 // the learner judged the lesson through the builder's notes); exclude keeps a file out of the pack (stage 5 and build.md)
@@ -318,11 +326,17 @@ export function flowProblems(def) {
     // K12: a post-check runs at an agent's leave (generator.mjs validates the cmd itself against state.mjs validateCmd)
     for (const e of postProblems(s)) p.push(`${s.stage}: ${e}`);
   }
+  // K19: chair and attendee signers belong to a chair flow (orders that name them); a chair flow has no builder stage
+  const chairFlow = isChairFlow(def);
+  for (const s of def.stages) {
+    if (CHAIR_SIGNERS.includes(s.signer) && !chairFlow) p.push(`${s.stage}: a ${s.signer} signs only in a flow whose first stage the chair signs`);
+    if (chairFlow && ["builder", "orderer"].includes(s.signer)) p.push(`${s.stage}: a chair flow's orders have no builder or manager to sign ${s.stage} (chair, attendee, code, a role or release)`);
+  }
   const t1 = def.stages.find((s) => s.stage === "test1");
   if (t1 && t1.signer !== "code") p.push("test1 must be signed by code");
   const check = def.stages.find((s) => s.stage === "check");
   if (!check) p.push("no independent check stage");
-  else if (["builder", "orderer"].includes(check.signer)) p.push("check must be signed independently of build");
+  else if (["builder", "orderer", "chair"].includes(check.signer)) p.push("check must be signed independently of build");
   const rel = def.stages.find((s) => s.stage === "release");
   if (rel && rel.signer !== "founder") p.push("release is founder-reserved");
   // M6 prep (plan §M6 criterion 5): after ship only code stages with a run may follow (the integration merge,
@@ -467,15 +481,26 @@ export class Engine {
     this.log.add({ type: "flow-active", flow: key, by, words });
   }
   stageDef(o) { return this.flows.get(o.flow).stages.find((s) => s.stage === o.stage); }
+  /** K19: where an order starts and where a plain revise goes back to: build in a lesson flow, run in a ritual flow. */
+  firstStage(o) { return this.flows.get(o.flow)?.stages[0]?.stage ?? "build"; }
   nextStage(o) { const st = this.flows.get(o.flow).stages; return st[st.findIndex((s) => s.stage === o.stage) + 1]?.stage ?? "done"; }
 
   // ---- orders, down the chain
-  orderNew({ flow, by, to, budget, accept, words = null, title = "", priority = "next", dueMin = null, after = [], fromContract = null }) {
+  orderNew({ flow, by, to = null, budget, accept, words = null, title = "", priority = "next", dueMin = null, after = [], fromContract = null, chair = null, attendee = null }) {
     const key = this.active.get(flow);
     hard(key, `no active flow ${flow}`);
+    // K19: a chair flow's order names its chair and a second attendee (both active agent roles, never the same one), and
+    // no manager: the orderer keeps the manager's part (it may park, resume or cancel it), the chair works it
+    const chairFlow = isChairFlow(this.flows.get(key));
+    if (chairFlow) {
+      hard(to == null, `flow ${flow} orders name a chair and an attendee, not a manager (--to)`);
+      for (const [k, v] of [["chair", chair], ["attendee", attendee]]) { const r = this.org.role(v); hard(r?.active && !r.human, `flow ${flow}: --${k}=${v ?? ""} is not an active agent role`); }
+      hard(chair !== attendee, `flow ${flow}: the attendee confirms the chair's record, so it is another role than the chair (${chair})`);
+      to = by;
+    } else hard(chair == null && attendee == null, `flow ${flow} orders go to a manager; only a chair flow names a chair and an attendee`);
     const byRole = this.org.role(by), toRole = this.org.role(to);
     hard(byRole && toRole, "unknown role");
-    this.guard(toRole.level === "manager", "chain", `${by} orders a manager, not ${to}`);
+    if (!chairFlow) this.guard(toRole.level === "manager", "chain", `${by} orders a manager, not ${to}`);
     hard(priority in PRIORITY, `unknown priority ${priority}`);
     const nowBy = this.flows.get(key).nowBy ?? ["founder", "chief-of-staff"];
     this.guard(priority !== "now" || nowBy.includes(byRole.level), "priority", `${by} may not order with priority now (flow allows: ${nowBy.join(", ")})`, { by });
@@ -483,12 +508,14 @@ export class Engine {
     // A contractor's result enters the product only as a normal order that cites an accepted engagement.
     if (fromContract) hard(this.contracts?.get(fromContract)?.state === "accepted", `--from-contract ${fromContract} is not an accepted engagement`);
     const overLimit = budget > (this.limits[byRole.level] ?? Infinity);
-    const o = { id: `O-${++this.n.O}`, flow: key, title, chain: [by, to], orderer: by, manager: to, builder: null, checker: null, budget, spent: 0, accept, words, stage: overLimit ? "budget" : "build", loops: 0, created: this.clock.now(), history: [], priority, due: dueMin != null ? this.clock.now() + dueMin : null, after, blocked: after.some((d) => this.orders.get(d).stage !== "done") };
+    const o = { id: `O-${++this.n.O}`, flow: key, title, chain: [by, to], orderer: by, manager: to, builder: null, checker: null, budget, spent: 0, accept, words, stage: overLimit ? "budget" : this.flows.get(key).stages[0].stage, loops: 0, created: this.clock.now(), history: [], priority, due: dueMin != null ? this.clock.now() + dueMin : null, after, blocked: after.some((d) => this.orders.get(d).stage !== "done") };
     o.policyVersion = this.policies.get(toRole.lane)?.active ?? null;
     o.fromContract = fromContract;
+    if (chairFlow) { o.chair = chair; o.attendee = attendee; o.builder = chair; o.chain = [by, chair]; } // K19: no delegate step
     this.orders.set(o.id, o);
-    this.log.add({ type: "order", order: o.id, by, to, budget, flow: key, priority, after, policy: o.policyVersion });
+    this.log.add({ type: "order", order: o.id, by, to, budget, flow: key, priority, after, policy: o.policyVersion, ...(chairFlow ? { chair, attendee } : {}) });
     if (overLimit) this.request({ order: o.id, stage: "budget", approver: "founder", kind: "budget", dueMin: 24 * 60, key: `${o.id}:budget` });
+    else if (chairFlow && !o.blocked) this.notifyStage(o); // its chair has it at once (a lesson order waits for its delegate)
     return o;
   }
 
@@ -497,6 +524,7 @@ export class Engine {
     hard(o, `no order ${id}`);
     const toRole = this.org.role(to);
     if (!toRole?.active) { this.log.add({ type: "refuse", rule: "no-role", msg: `${to} does not exist`, order: id }); throw new Refused(`no-role: ${to}`); }
+    hard(!o.chair, `${id} is a ${o.flow.split("@")[0]} order chaired by ${o.chair}: nobody delegates it`); // K19
     this.guard(by === o.manager, "chain", `${by} is not the manager of ${id}`, { order: id });
     // M6 prep: a builder of several lanes (spec `lanes`) takes work from the manager of any of them
     this.guard(lanesOf(toRole).includes(this.org.role(o.manager).lane), "lane", `${to} is not in lane ${this.org.role(o.manager).lane}`, { order: id, by });
@@ -516,7 +544,7 @@ export class Engine {
     const key = `${o.id}:${o.stage}:${o.loops}`;
     if (s.signer === "code") return this.log.add({ type: "code-stage", order: o.id, stage: o.stage });
     if (s.signer === "founder") return this.request({ order: o.id, stage: o.stage, approver: "founder", kind: "release", dueMin: 24 * 60, key });
-    const to = signerRole(s) ? `role:${signerRole(s)}` : s.signer === "builder" ? o.builder : s.signer === "orderer" ? o.manager : `pool:${s.signer}`; // K3: role:<id>
+    const to = signerRole(s) ? `role:${signerRole(s)}` : s.signer === "chair" ? `role:${o.chair}` : s.signer === "attendee" ? `role:${o.attendee}` : s.signer === "builder" ? o.builder : s.signer === "orderer" ? o.manager : `pool:${s.signer}`; // K3: role:<id>; K19: the order's chair or attendee
     return this.mailbox.send({ from: o.manager, to, kind: "work", key: duplicate ? (this.config.dedupe ? key : `${key}:dup${this.mailbox.n}`) : key, ref: o.id, body: { stage: o.stage, loops: o.loops }, priority: o.priority ?? "next", due: o.due ?? null });
   }
 
@@ -529,6 +557,8 @@ export class Engine {
     if (s.signer === "builder") return roleId === o.builder;
     if (s.signer === "orderer") return roleId === o.manager;
     if (s.signer === "founder") return roleId === "founder";
+    if (s.signer === "chair") return roleId === o.chair; // K19
+    if (s.signer === "attendee") return roleId === o.attendee;
     if (signerRole(s)) return roleId === signerRole(s); // K3: exactly that role, never its level's pool
     return r.level === s.signer;
   }
@@ -561,8 +591,10 @@ export class Engine {
     // K12 review: the check lives with the signature: a stage with a post-check is signed only by a room leave, which ran
     // it (`flow advance --stage=build --evidence=x` signed toy build.post=exit 1 without running it)
     if (s.post) this.guard(postChecked, "post-check", `${stage} on ${id} has a post-check: sign it with room leave (it runs the check), not flow advance`, { order: id, by });
-    const back = verdict === "revise" ? (earlier ? to : "build") : null; // with enforce off a bad route is recorded and goes to build
-    o.history.push({ stage, by, verdict, t: this.clock.now(), ...(verdict === "revise" && findings ? { findings: String(findings).slice(0, 2000) } : {}), ...(back && back !== "build" ? { to: back } : {}) }); // every revise keeps its findings (org evaluation reads them)
+    const first = this.firstStage(o); // K19: build, or a ritual's run
+    const back = verdict === "revise" ? (earlier ? to : first) : null; // with enforce off a bad route is recorded and goes to the first stage
+    // M7 (K21): the evidence a stage was signed with travels in its history (events-export.mjs names a ritual's record)
+    o.history.push({ stage, by, verdict, t: this.clock.now(), ...(evidence && s.signer !== "code" ? { evidence: String(evidence).slice(0, 300) } : {}), ...(verdict === "revise" && findings ? { findings: String(findings).slice(0, 2000) } : {}), ...(back && back !== first ? { to: back } : {}) }); // every revise keeps its findings (org evaluation reads them)
     this.log.add({ type: "advance", order: id, stage, by, verdict });
     if (verdict === "pass") o.stage = this.nextStage(o);
     else {
@@ -570,7 +602,7 @@ export class Engine {
       // The lane's policy decides how a revision is queued; an urgent (`now`) order stays urgent.
       const pol = this.policyOf(o);
       if (pol.revisionPriority && o.priority !== "now") { o.priority = pol.revisionPriority; o.due = pol.revisionPriority === "later" ? this.clock.now() + pol.revisionDueMin : null; }
-      this.log.add({ type: "reopen", order: id, from: stage, loops: o.loops, priority: o.priority, ...(back !== "build" ? { to: back } : {}) });
+      this.log.add({ type: "reopen", order: id, from: stage, loops: o.loops, priority: o.priority, ...(back !== first ? { to: back } : {}) });
       this.loopCap(o, { by, from: stage });
     }
     if (o.stage === "done") {
@@ -593,7 +625,7 @@ export class Engine {
     hard(o, `no order ${id}`);
     hard(o.stage === "done", `${id} is at ${o.stage}: only a shipped order is reopened (a open one is revised)`);
     hard(!!findings, "a reopen says what is wrong (findings)");
-    o.stage = "build"; o.loops++; o.findings = findings;
+    o.stage = this.firstStage(o); o.loops++; o.findings = findings;
     if (o.budgetHold?.no) delete o.budgetHold; // M5 review: as resume
     o.history.push({ stage: "done", by, verdict: "reopen", t: this.clock.now(), findings: String(findings).slice(0, 2000) });
     this.log.add({ type: "reopen", order: id, from: "done", by, reason: reason ?? null, loops: o.loops, priority: o.priority });
@@ -741,7 +773,7 @@ export class Engine {
       return;
     }
     const o = this.orders.get(a.order);
-    if (a.kind === "budget") { if (a.state === "approved") { o.stage = "build"; this.log.add({ type: "budget-approved", order: o.id }); } return; }
+    if (a.kind === "budget") { if (a.state === "approved") { o.stage = this.firstStage(o); this.log.add({ type: "budget-approved", order: o.id }); } return; }
     if (a.state === "approved") this.advance(o.id, { stage: a.stage, by, evidence: `decision ${a.id}: "${words}"` });
     else { o.stage = "uat"; o.loops++; this.log.add({ type: "reopen", order: o.id, from: a.stage, loops: o.loops }); this.notifyStage(o); }
   }

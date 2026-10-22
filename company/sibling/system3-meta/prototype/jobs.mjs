@@ -20,6 +20,15 @@ export const JOB_GRACE_MIN = 0.1; // the wrapper times its own job out; past thi
 export const JOBS = path.join(LIVE, "jobs", path.basename(STATE).replace(/\.json$/, ""));
 const file = (id, ext) => path.join(JOBS, `${id}.${ext}`);
 const alive = (pid) => { try { process.kill(pid, 0); return true; } catch (e) { return e.code === "EPERM"; } };
+/** K22: is job `j`'s wrapper still the process at its pid? After a restart (of serve, or of the machine) a pid can
+ *  belong to another process; /proc/<pid>/cmdline then does not name the job's file, and the job is dead. Where /proc
+ *  cannot be read, a live pid is taken as the wrapper (as before K22). */
+export function wrapperAlive(j, { proc = "/proc" } = {}) {
+  if (!alive(j.pid)) return false;
+  let cmd;
+  try { cmd = fs.readFileSync(`${proc}/${j.pid}/cmdline`, "utf8"); } catch { return true; }
+  return cmd.split("\0").some((a) => a === file(j.id, "json"));
+}
 const killGroup = (pid) => { for (const p of [-pid, pid]) try { process.kill(p, "SIGKILL"); } catch {} }; // the wrapper leads its group
 const readText = (f) => { try { return fs.readFileSync(f, "utf8"); } catch { return ""; } };
 const readExit = (j) => { try { return JSON.parse(fs.readFileSync(file(j.id, "exit.json"), "utf8")); } catch { return null; } };
@@ -76,7 +85,7 @@ export function collect(co, { apply }) {
     let ex = j.exit ?? readExit(j);
     if (!ex) {
       if (co.engine.clock.now() - j.startedAt > j.timeoutMs / 60000 + JOB_GRACE_MIN) { killGroup(j.pid); ex = { status: null, timedOut: true }; }
-      else if (!alive(j.pid)) ex = readExit(j) ?? { status: null, error: "the job died without an exit record (killed, or the machine restarted)" }; // re-read: it may have exited since
+      else if (!wrapperAlive(j)) ex = readExit(j) ?? { status: null, error: "the job died without an exit record (killed, or the machine restarted)" }; // re-read: it may have exited since
       else continue; // still running: tick never waits
     }
     j.exit = ex; // kept, so a stage that cannot be signed yet (no release message) is signed on a later tick
@@ -89,6 +98,22 @@ export function collect(co, { apply }) {
     steps.push({ ...st, kind: "job", job: j.id });
   }
   return steps;
+}
+
+/** K22: a serve that starts on a state another serve worked takes over its running jobs: each is `readopted` (its
+ *  wrapper still runs: collect judges it when it ends), `ended` (it wrote its exit record while no serve ran: the next
+ *  collect signs it) or `lost` (no wrapper and no record: the next collect holds its order as a stage-error, and
+ *  `supervisor.mjs retry` runs it again). Nothing is started twice: a job of the current stage and loop stays the
+ *  order's job (jobFor), so runCodeStage starts none. Returns {readopted, ended, lost} as job ids. */
+export function adopt(co) {
+  const out = { readopted: [], ended: [], lost: [] };
+  for (const j of Object.values(jobsOf(co))) {
+    if (j.state !== "running") continue;
+    if (j.exit ?? readExit(j)) out.ended.push(j.id);
+    else if (wrapperAlive(j)) out.readopted.push(j.id);
+    else out.lost.push(j.id);
+  }
+  return out;
 }
 
 /** When a running job next needs a look without an exit file (its backstop deadline), in clock minutes. */

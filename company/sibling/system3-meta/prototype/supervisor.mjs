@@ -29,6 +29,16 @@
 //   host    K17: with spec policy.host, no session is planned while the 1-minute load passes maxLoadPerCpu × cpus or the
 //           workspace's free disk falls under minFreeGB (a `host-hold` event per change; META_HOST_PROBE fakes the probe)
 //
+//   schedule K18 (M7): spec `schedulers` (the ritual scheduler, adapters/s3c/rituals.mjs due) run at most once per
+//           minIntervalMin inside the tick; each order its JSON names is placed in the scheduler's flow, as its role's,
+//           unless an order of the same key is still open (one open order per ritual); a company with a scheduler is
+//           never "done" for serve (it serves until --max-min)
+//   gate    K20 (M7): spec `launchGate` (dispatch-check.mjs for a demo-builder's build) runs before a planned session is
+//           reserved (serve, cycle); a refusal reserves nothing, logs `launch-gate`, sends one notice to the chief of
+//           staff's mailbox (in its next brief) and holds the item for retryMin; a pass goes on the launch event
+//   resume  K22 (M7): serve records serve-start/serve-stop; --max-min reached saves a serve-stop and exits 0; a serve
+//           started on a worked state logs serve-resume: leases and runs stand, its K2 jobs are re-adopted (or found
+//           lost: a stage-error at the next collect), launches reserved and not entered stay reserved for their grace
 //   node supervisor.mjs launched --role=<role> [--msgs=…]   the orchestrator started a session: plan it as starting
 //   node supervisor.mjs serve [--acceptance=<dir>] [--idle-min=2] [--max-min=120] [--faults=<json>]   the supervisor as a service
 //        (--faults: benchmark fault injection inside the tick, e.g. [{"id":"F3","kind":"drop","task":"P1","stage":"check"}])
@@ -49,14 +59,14 @@
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { absCmds, HERE, LIVE, STATE, load, save, withLock, runTests, runTest1, runCmdCheck, rep, CHECK_KEYS, interpolate, sessionRole, detachedProcess, briefVars } from "./state.mjs";
-import { syncOrders } from "./tracker.mjs";
+import { absCmds, HERE, LIVE, STATE, load, save, withLock, runTests, runTest1, runCmdCheck, runCmdJson, rep, CHECK_KEYS, interpolate, sessionRole, detachedProcess, briefVars } from "./state.mjs";
+import { syncOrders, update as updateItem } from "./tracker.mjs";
 import { sweepGoals } from "./goals.mjs";
 import { expireContracts } from "./contractor.mjs";
 import * as CH from "./channels.mjs";
 import * as JOBS from "./jobs.mjs";
 import * as WS from "./workspace.mjs";
-import { isIndependent, packHistory, preKey, lanesOf } from "./lib.mjs";
+import { isIndependent, packHistory, preKey, lanesOf, Refused } from "./lib.mjs";
 import { raiseBudgetAsk } from "./asks.mjs";
 
 /** K1: a stage signed by code, or any stage with a `run` cmd (plan 2026-10-21 §3: the lesson flow's stages 2, 3, 4, 8 and 9
@@ -172,7 +182,7 @@ export function hostCheck(co, probe = hostProbe) {
  *  "change": only when an event other than the supervisor's own tick and export records was logged since its last run;
  *  "tick": every tick. Each run is an `export` event (by its role) and co.data.exports[id]; a failure is recorded and
  *  retried on the next due tick, and never holds an order. Returns the exports that ran. */
-export const EXPORT_QUIET = ["supervisor-tick", "export"];
+export const EXPORT_QUIET = ["supervisor-tick", "export", "serve-stop", "serve-resume", "serve-start", "scheduler-run"];
 export function runExports(co) {
   const ex = co.spec?.exports ?? [];
   if (!ex.length) return [];
@@ -183,12 +193,145 @@ export function runExports(co) {
     const rec = co.data.exports[x.id];
     if (x.every !== "tick" && rec && rec.seq >= last) continue;
     // a cmd of no order: ${live} and ${stage} (the export's id) are its variables; it runs in the live dir
-    const t = runCmdCheck({ id: "", task: "", workdir: LIVE }, x.run, { stage: x.id });
+    const t = runCmdJson({ id: "", task: "", workdir: LIVE }, x.run, { stage: x.id });
+    // M7 (board-mirror.mjs): an export may hand back the outside ids it gave Meta's orders, {labels: {<O>: ["ext:W-12"]}}:
+    // code puts each on the order's tracker item (only `ext:<SYS>-<id>` labels, one per system: a new W id replaces the old)
+    const labelled = t.pass ? applyExportLabels(co, t.json?.labels) : [];
     co.data.exports[x.id] = { seq: last, t: co.engine.clock.now(), pass: !!t.pass, stageError: !!t.stageError, output: String(t.output ?? "").slice(0, 400) };
-    co.log.add({ type: "export", id: x.id, by: x.role, pass: !!t.pass, stageError: !!t.stageError, output: String(t.output ?? "").slice(0, 400), findings: t.findings ? String(t.findings).slice(0, 600) : null });
+    co.log.add({ type: "export", id: x.id, by: x.role, pass: !!t.pass, stageError: !!t.stageError, output: String(t.output ?? "").slice(0, 400), findings: t.findings ? String(t.findings).slice(0, 600) : null, ...(labelled.length ? { labelled } : {}) });
     ran.push({ step: "export", id: x.id, result: t.pass ? "pass" : t.stageError ? "stage-error" : "findings", output: t.output });
   }
   return ran;
+}
+
+/** M7: put an export's outside ids on the orders' tracker items. `labels` is {<order id>: [<label>, …]}; a label is
+ *  `ext:<SYS>-<id>` (ext:W-12, a company board id), and an order keeps one per system (a new one replaces the old).
+ *  Anything else is ignored. Returns ["O-1 ext:W-12", …] for the labels it changed. */
+export const EXT_LABEL = /^ext:([A-Za-z]+)-[A-Za-z0-9._-]{1,40}$/;
+export function applyExportLabels(co, labels) {
+  if (!labels || typeof labels !== "object" || Array.isArray(labels)) return [];
+  const items = [...(co.data?.tracker?.items?.values() ?? [])].filter((i) => i.kind === "order");
+  const out = [];
+  for (const [oid, ls] of Object.entries(labels)) {
+    const it = items.find((i) => i.order === oid);
+    if (!it || !co.engine.orders.has(oid)) continue;
+    for (const l of [].concat(ls ?? [])) {
+      const m = typeof l === "string" ? EXT_LABEL.exec(l) : null;
+      if (!m || it.labels.includes(l)) continue;
+      const old = it.labels.filter((x) => x.startsWith(`ext:${m[1]}-`));
+      updateItem(co, { by: "engine", id: it.id, addLabels: [l], ...(old.length ? { removeLabels: old } : {}) });
+      out.push(`${oid} ${l}`);
+    }
+  }
+  return out;
+}
+
+/** K18 (plan §M7, the ritual scheduler): spec `schedulers: [{id, role, flow, every: "tick", minIntervalMin, run}]`.
+ *  On each tick (at most once per minIntervalMin, kept in co.data.schedulers) code runs the cmd as the role's (the
+ *  chief of staff's: adapters/s3c/rituals.mjs due), reads its last JSON line {orders: [{key, title, task, accept,
+ *  slug, chair, attendee, to, budget, priority}]} and places each as an order of `flow`, by `role`, unless an order
+ *  of the same key is still open (one open order per ritual: not done and not cancelled). A failed run is recorded
+ *  (a `scheduler-run` event) and tried again at the next interval; it never holds anything. Returns the steps. */
+export function runSchedulers(co) {
+  const list = co.spec?.schedulers ?? [];
+  if (!list.length) return [];
+  co.data.schedulers ??= {};
+  const now = co.engine.clock.now(), steps = [];
+  for (const x of list) {
+    const rec = co.data.schedulers[x.id];
+    if (rec && now - rec.t < (x.minIntervalMin ?? 1)) continue;
+    const t = runCmdJson({ id: "", task: "", workdir: LIVE }, x.run, { stage: x.id });
+    const placed = [], skipped = [], refused = [];
+    const want = t.pass && Array.isArray(t.json?.orders) ? t.json.orders : [];
+    for (const w of want) {
+      const key = typeof w?.key === "string" && /^[\w:.-]{1,80}$/.test(w.key) ? w.key : null;
+      if (!key) { refused.push({ key: String(w?.key ?? "?").slice(0, 80), why: "a scheduled order has a key ([A-Za-z0-9_:.-], at most 80)" }); continue; }
+      const open = [...co.engine.orders.values()].find((o) => o.schedKey === key && !["done", "cancelled"].includes(o.stage));
+      if (open) { skipped.push({ key, order: open.id, stage: open.stage }); continue; }
+      try {
+        for (const k of ["title", "task", "accept"]) if (typeof w[k] !== "string" || !w[k].trim()) throw new Refused(`${key}: ${k} is a non-empty string`);
+        if (!/^[A-Za-z0-9][\w.-]{0,80}$/.test(w.task)) throw new Refused(`${key}: task is a name ([A-Za-z0-9_.-])`);
+        if (w.slug != null && !/^[a-z0-9]+(-[a-z0-9]+)*$/.test(w.slug)) throw new Refused(`${key}: slug is kebab-case`);
+        if ([...co.engine.orders.values()].some((o) => o.task === w.task)) throw new Refused(`${key}: task ${w.task} is another order's`);
+        const o = co.engine.orderNew({ flow: x.flow, by: x.role, to: w.to ?? null, chair: w.chair ?? null, attendee: w.attendee ?? null, budget: Number(w.budget ?? x.budget ?? 200_000), accept: w.accept, title: w.title, priority: ["now", "next", "later"].includes(w.priority) ? w.priority : "next" });
+        o.task = w.task; if (w.slug) o.slug = w.slug; o.schedKey = key; o.scheduledBy = x.id;
+        co.log.add({ type: "scheduled", scheduler: x.id, key, order: o.id, by: x.role, flow: o.flow, task: o.task });
+        placed.push({ key, order: o.id });
+        steps.push({ step: "scheduled", order: o.id, result: key, output: `${x.id}: ${o.title}` });
+      } catch (e) { if (!e.refused && !(e instanceof Refused)) throw e; refused.push({ key, why: String(e.message).slice(0, 300) }); }
+    }
+    co.data.schedulers[x.id] = { t: now, pass: !!t.pass, stageError: !!t.stageError, output: String(t.output ?? "").slice(0, 400), placed: placed.length, skipped: skipped.length, refused: refused.length };
+    co.log.add({ type: "scheduler-run", id: x.id, by: x.role, pass: !!t.pass, stageError: !!t.stageError, output: String(t.output ?? "").slice(0, 400), placed, skipped, refused, ...(t.pass ? {} : { findings: t.findings ? String(t.findings).slice(0, 600) : null }) });
+    // a step of its own, so serve saves the run's time (the interval holds across serve's loads; minIntervalMin > 0)
+    steps.push({ step: "scheduler", order: x.id, result: t.pass ? `${placed.length} placed, ${skipped.length} open` : t.stageError ? "stage-error" : "findings", output: t.output });
+  }
+  return steps;
+}
+
+/** K20 (plan §M7, the pre-launch gate): spec `launchGate` ({id, roles, stages, run, notify, retryMin}, or a list).
+ *  Before a planned session is reserved, code runs the gate cmd of every gate that matches it (its role is in
+ *  `roles`, and the stage of one of its items, or one of its judgment tasks' kinds, is in `stages`; an unset list
+ *  matches all), in the worktree of the order of its first item, with ${role}, ${running} and ${builders} (sessions
+ *  in flight before this one: dispatch-check's --running and --builders). Exit 0: the launch is reserved and the gate's
+ *  result goes on its launch event. Anything else: no reservation, a `launch-gate` event, and one notice per
+ *  refusal (deduped by gate, role and item) in the `notify` role's mailbox (the chief of staff's); the same plan item
+ *  is not gated again for retryMin minutes (default 5), so a refusal holds the launch without a hot loop.
+ *  Returns { pass: [planned items, each with .gate], steps }. */
+export const gatesOf = (co) => [].concat(co.spec?.launchGate ?? []).filter(Boolean);
+export function inFlight(co) {
+  const now = co.engine.clock.now(), { rooms, org, log } = co;
+  const busy = new Set([...rooms.runs.values()].filter((x) => x.state === "running").map((x) => x.session));
+  const live = [...rooms.sessions.values()].filter((s) => s.open && (busy.has(s.id) || (s.waitUntil != null && s.waitUntil > now - 0.5)));
+  const lid = (l) => `${String(l.seq).padStart(4, "0")}-${l.role}`;
+  const ended = (l) => log.events.some((e) => e.type === "launch-finished" && (e.launch ? e.launch === lid(l) : e.role === l.role && e.t >= l.t));
+  const entered = (l) => [...rooms.sessions.values()].some((s) => s.launch === lid(l)) || log.events.some((e) => e.type === "enter" && e.role === l.role && e.t >= l.t);
+  const pending = log.events.filter((e) => e.type === "launch" && now - e.t < LAUNCH_GRACE_MIN && !entered(e) && !ended(e));
+  const roles = [...live.map((s) => s.role), ...pending.map((l) => l.role)].filter((r) => !org.role(r)?.human);
+  return { agents: roles.length, builders: roles.filter((r) => org.role(r)?.level === "builder").length };
+}
+export function gateLaunches(co, planned) {
+  const gates = gatesOf(co);
+  if (!gates.length || !planned.length) return { pass: planned, steps: [] };
+  co.data.gates ??= {};
+  const now = co.engine.clock.now(), steps = [], pass = [];
+  const flight = inFlight(co);
+  for (const p of planned) {
+    const msgs = (p.msgs ?? []).map((id) => co.mailbox.msgs.get(id)).filter(Boolean);
+    const kinds = [...msgs.map((m) => m.body?.stage), ...(p.tasks ?? []).map((t) => t.kind)].filter(Boolean);
+    const o = msgs[0] ? co.engine.orders.get(msgs[0].ref) : null;
+    const builder = co.org.role(p.role)?.level === "builder";
+    let ok = true;
+    const results = [];
+    for (const g of gates) {
+      if (g.roles && !g.roles.includes(p.role)) continue;
+      if (g.stages && !kinds.some((k) => g.stages.includes(k))) continue;
+      const key = `${g.id}:${p.role}:${(p.msgs ?? []).join(",") || (p.tasks ?? []).map((t) => `${t.kind}:${t.ref}`).join(",")}`;
+      const last = co.data.gates[key];
+      if (last && !last.pass && now - last.t < (g.retryMin ?? 5)) { ok = false; results.push({ id: g.id, pass: false, held: true, output: last.output }); break; }
+      const at = o ?? { id: "", task: "", workdir: LIVE };
+      const t = runCmdCheck(at, g.run, { stage: kinds[0] ?? "", role: p.role, running: String(flight.agents), builders: String(flight.builders), launch: `system3-meta ${p.role} ${o ? `${o.id} ${o.task ?? ""}` : (p.tasks ?? []).map((x) => x.ref).join(" ")}`.trim() });
+      const r = { id: g.id, pass: !!t.pass, stageError: !!t.stageError, output: String(t.output ?? "").slice(0, 400), ...(t.pass ? {} : { findings: t.findings ? String(t.findings).slice(0, 1200) : null }), running: flight.agents, builders: flight.builders };
+      co.data.gates[key] = { t: now, pass: r.pass, output: r.output };
+      results.push(r);
+      if (!t.pass) {
+        ok = false;
+        co.log.add({ type: "launch-gate", gate: g.id, role: p.role, msgs: p.msgs ?? [], order: o?.id ?? null, stage: kinds[0] ?? null, pass: false, stageError: r.stageError, output: r.output, findings: r.findings });
+        const to = g.notify ?? "chief-of-staff";
+        if (co.org.role(to)?.active) co.mailbox.send({ from: "code", to, kind: "notice", key: `launch-gate:${key}`, ref: o?.id ?? null, body: { gate: g.id, role: p.role, msgs: p.msgs ?? [], stage: kinds[0] ?? null, why: r.output, findings: r.findings } });
+        steps.push({ step: "launch-gate", order: o?.id ?? p.role, result: "refused", output: `${g.id}: ${p.role}: ${r.findings ?? r.output}` });
+        break;
+      }
+    }
+    if (!ok) continue;
+    if (results.length) {
+      p.gate = results;
+      // a refusal that has cleared: its notice is done (the chief of staff's mailbox holds only what still blocks)
+      for (const m of co.mailbox.msgs.values()) if (m.kind === "notice" && m.state === "open" && results.some((r) => m.key === `launch-gate:${r.id}:${p.role}:${(p.msgs ?? []).join(",") || (p.tasks ?? []).map((t) => `${t.kind}:${t.ref}`).join(",")}`)) co.mailbox.done(m.id, { run: null });
+    }
+    pass.push(p);
+    flight.agents++; if (builder) flight.builders++; // the next planned launch counts this one
+  }
+  return { pass, steps };
 }
 
 /** One pass over every order; repeated until nothing changes (an accepted UAT makes a ship step possible). */
@@ -199,6 +342,7 @@ export function tick(co, { acceptance = null, faults = null, probe = hostProbe }
   for (const m of mailbox.promote()) steps.push({ step: "promote", msg: m.id, order: m.ref });
   for (const x of rooms.recover()) steps.push({ step: "recover", run: x.run, role: x.role, order: x.order });
   steps.push(...JOBS.collect(co, { apply: applyCmdResult })); // K2: only what has ended; a running job is left alone
+  steps.push(...runSchedulers(co)); // K18: orders a scheduler places are worked in this same tick
   // K13: an order at or over its charged budget gets one budget ask (the planner below starts no session on it)
   for (const o of engine.orders.values()) { const it = raiseBudgetAsk(co, o); if (it) steps.push({ step: "budget", order: o.id, result: "stopped", output: `${o.spent} of ${o.budget}: ${it.id} to ${it.assignee}` }); }
   let madeOne = false;
@@ -482,6 +626,9 @@ export function briefFor(co, item, { context = null } = {}) {
   // its STYLE brief did not mention)
   const acts = [...(co.data?.tracker?.items?.values() ?? [])].filter((i) => i.kind === "action" && i.assignee === item.role && !["done", "cancelled"].includes(i.state));
   if (acts.length) L.push(`Your open actions (do them in this session when they touch this work; mark each done with \`node meta.mjs item update --id=<ISS> --by=${item.role} --state=done\`):`, ...acts.map((i) => `- ${i.id}: ${i.title}${i.due ? ` (due ${i.due})` : ""}${i.body ? ` · ${i.body}` : ""}`), "");
+  // K20: code's notices for this role (a launch gate that refused a session) travel with its brief, until they clear
+  const notes = [...co.mailbox.msgs.values()].filter((m) => m.kind === "notice" && m.state === "open" && m.to === item.role);
+  if (notes.length) L.push("Notices from code (a launch gate refused a session; it is tried again by itself, and the notice closes when it passes):", ...notes.map((m) => `- ${m.id}: ${m.body?.gate} refused ${m.body?.role}${m.ref ? ` for ${m.ref}` : ""}${m.body?.stage ? ` at ${m.body.stage}` : ""}: ${String(m.body?.findings ?? m.body?.why ?? "").split("\n").slice(0, 3).join("; ").slice(0, 300)}`), "");
   // unread announcements travel with the brief (benchmark 4: a changed requirement posted on a channel must reach a
   // session that starts after the post)
   if (co.data?.channels) {
@@ -603,12 +750,34 @@ function waitForChange(ms) {
 /** Reserve each planned launch and write its brief; returns the launches. Shared by `cycle` and `serve`. */
 export function reserve(co, planned, { context = null, outbox = null } = {}) {
   return planned.map((p) => {
-    const e = co.log.add({ type: "launch", role: p.role, msgs: p.msgs, tasks: p.tasks ?? [], why: `plan: ${p.why}` });
+    const e = co.log.add({ type: "launch", role: p.role, msgs: p.msgs, tasks: p.tasks ?? [], why: `plan: ${p.why}`, ...(p.gate ? { gate: p.gate } : {}) }); // K20: the gate's result
     const brief = briefFor(co, p, { context });
     let file = null;
     if (outbox) { fs.mkdirSync(outbox, { recursive: true }); file = path.join(outbox, `${String(e.seq).padStart(4, "0")}-${p.role}.md`); fs.writeFileSync(file, brief); }
     return { ...p, launch: e.seq, file, brief };
   });
+}
+
+/** K22: record a serve's start in the state (co.data.serve); when an earlier serve worked this state, a serve-resume
+ *  event says how it ended (a recorded stop, or none: it was killed) and what this serve takes over. Returns that
+ *  summary, or null on a first start. */
+export function serveStart(co, { pid = process.pid } = {}) {
+  const prev = co.data.serve ?? null, now = co.engine.clock.now();
+  co.data.serve = { pid, started: now, stopped: null, starts: (prev?.starts ?? 0) + 1 };
+  if (!prev) { co.log.add({ type: "serve-start", pid }); return null; }
+  const jobs = JOBS.adopt(co);
+  const { rooms, log } = co;
+  const lid = (l) => `${String(l.seq).padStart(4, "0")}-${l.role}`;
+  const held = log.events.filter((e) => e.type === "launch" && now - e.t < LAUNCH_GRACE_MIN && !log.events.some((f) => f.type === "launch-finished" && (f.launch ? f.launch === lid(e) : f.role === e.role && f.t >= e.t)) && ![...rooms.sessions.values()].some((s) => s.launch === lid(e)) && !log.events.some((f) => f.type === "enter" && f.role === e.role && f.t >= e.t)).map((e) => ({ launch: lid(e), role: e.role, msgs: e.msgs ?? [], ageMin: Math.round((now - e.t) * 10) / 10 }));
+  const leases = [...co.mailbox.msgs.values()].filter((m) => m.state === "open" && m.lease && m.lease.until > now).length;
+  const running = [...rooms.runs.values()].filter((x) => x.state === "running").length;
+  const r = { previous: prev.pid, stopped: prev.stopped?.why ?? "no stop recorded (killed or crashed)", downMin: prev.stopped ? Math.round((now - prev.stopped.t) * 10) / 10 : null, jobs, held, leases, runs: running };
+  log.add({ type: "serve-resume", pid, ...r });
+  return r;
+}
+export function serveStop(co, why) {
+  co.data.serve = { ...(co.data.serve ?? { pid: process.pid, started: co.engine.clock.now() }), stopped: { why, t: co.engine.clock.now() } };
+  co.log.add({ type: "serve-stop", pid: process.pid, why, resumable: why !== "done" });
 }
 
 /** Is anything left to do? Open orders, or open meetings. */
@@ -633,25 +802,36 @@ async function serve(opts, { idleMin = 2, maxMin = 120 } = {}) {
   }
   fs.writeFileSync(pidFile, String(process.pid));
   const release = () => { try { if (Number(fs.readFileSync(pidFile, "utf8")) === process.pid) fs.unlinkSync(pidFile); } catch {} };
-  process.on("exit", release); for (const sig of ["SIGINT", "SIGTERM"]) process.on(sig, () => { release(); process.exit(0); });
+  // K22: a stop is recorded in the state (serve-stop), so the next serve knows it resumes a clean stop, not a crash
+  const stop = (why) => { try { withLock(() => { const co = load(); serveStop(co, why); save(co); }); } catch {} };
+  process.on("exit", release); for (const sig of ["SIGINT", "SIGTERM"]) process.on(sig, () => { stop(`signal ${sig}`); release(); process.exit(0); });
   let quietSince = Date.now();
-  say({ event: "serving", live: LIVE, outbox });
+  // K22 (plan §M7, the long-lived service): a serve started on a state another serve worked resumes it. Leases, runs
+  // and reservations are in the state and stand as they are; the K2 jobs the last serve started are re-adopted (their
+  // wrappers run detached, and collect reads their exit records), or found dead and held as stage-errors by collect;
+  // launches it reserved but nobody entered stay reserved for their grace period (plan never plans them twice)
+  const resumed = withLock(() => { const co = load(); const r = serveStart(co); save(co); return r; });
+  say({ event: "serving", live: LIVE, outbox, ...(resumed ? { resumed } : {}) });
   for (;;) {
     const r = withLock(() => {
       const co = load();
       const steps = tick(co, opts);
       const context = fs.existsSync(ctxFile) ? fs.readFileSync(ctxFile, "utf8") : null;
-      const launches = reserve(co, plan(co, opts), { context, outbox });
+      const g = gateLaunches(co, plan(co, opts)); // K20: a refused launch is not reserved
+      steps.push(...g.steps);
+      const launches = reserve(co, g.pass, { context, outbox });
       if (steps.length || launches.length) save(co); // saving wakes the watcher: only when something changed
       const ex = runExports(co); // M6 prep: after the save (an exporter reads the state file); its record is saved too
       if (ex.length) { save(co); steps.push(...ex); }
-      return { steps, launches, settled: settled(co), wakeInMs: nextTimer(co) };
+      // K18: a company with a scheduler is never done (its next ritual falls due later): it serves until --max-min
+      return { steps, launches, settled: settled(co) && !(co.spec?.schedulers ?? []).length, wakeInMs: nextTimer(co) };
     });
     if (r.steps.length) say({ event: "steps", steps: r.steps.map((x) => `${x.step}:${x.order ?? x.msg ?? x.run ?? x.contract ?? x.goal}${x.result ? ":" + x.result : ""}`) });
-    for (const l of r.launches) say({ event: "launch", role: l.role, why: l.why, cap: l.cap, msgs: l.msgs, brief: l.file });
+    for (const l of r.launches) say({ event: "launch", role: l.role, why: l.why, cap: l.cap, msgs: l.msgs, brief: l.file, ...(l.gate ? { gate: l.gate.map((x) => ({ id: x.id, pass: x.pass, output: x.output })) } : {}) });
     if (r.steps.length || r.launches.length) quietSince = Date.now();
-    if (r.settled && Date.now() - quietSince >= idleMin * 60000) { say({ event: "done", why: "every order is done and no meeting is open" }); return; }
-    if (Date.now() >= end) { say({ event: "stopped", why: `--max-min=${maxMin}` }); return; }
+    if (r.settled && Date.now() - quietSince >= idleMin * 60000) { stop("done"); say({ event: "done", why: "every order is done and no meeting is open" }); return; }
+    // K22: --max-min is a pause, not an end: the state is saved with a serve-stop, exit 0, and the next serve resumes
+    if (Date.now() >= end) { stop(`--max-min=${maxMin}`); say({ event: "stopped", why: `--max-min=${maxMin}`, resumable: true }); return; }
     // wake on a state change, the next lease or due time, or a minute (launch reservations expire by time)
     await waitForChange(Math.min(r.wakeInMs ?? Infinity, 60000, end - Date.now(), r.settled ? idleMin * 60000 : Infinity));
   }
@@ -707,7 +887,9 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     watch(opts, Number(opt["max-min"] ?? 30)).then((w) => {
       const launches = w.plan.length ? withLock(() => {
         const co = load();
-        const out = w.plan.map((p) => { co.log.add({ type: "launch", role: p.role, msgs: p.msgs, tasks: p.tasks ?? [], why: `cycle: ${p.why}` }); return { ...p, brief: briefFor(co, p, { context }) }; });
+        const g = gateLaunches(co, w.plan); // K20: as serve
+        const out = g.pass.map((p) => { co.log.add({ type: "launch", role: p.role, msgs: p.msgs, tasks: p.tasks ?? [], why: `cycle: ${p.why}`, ...(p.gate ? { gate: p.gate } : {}) }); return { ...p, brief: briefFor(co, p, { context }) }; });
+        w.steps.push(...g.steps);
         save(co);
         return out;
       }) : [];
