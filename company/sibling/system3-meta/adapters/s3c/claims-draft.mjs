@@ -32,6 +32,12 @@
 //      the manager, do not drop it here.
 //   5. Nothing is built yet: no file of the lesson folder other than meta.json differs from --base (Demo.tsx is the
 //      build stage's, after the plan check). A loop back to draft keeps the built Demo.tsx as it was, untouched.
+//   6. The draft passes the company's own check for its lesson (B6 dry run: a draft without `evidence` and `confidence`
+//      passed rules 1 to 5, and its K7 commit put a lesson on the branch that `company check` fails, "meta.evidence
+//      should be object", found only at test1 after a whole build; a 102-character hook the same). `node
+//      tools/company.mjs check` runs (runCompanyCheck, as gates.mjs test1), and every error filed under this lesson's
+//      address blocks, except the rules about Demo.tsx (DRAFT_EXEMPT: the build's, after the plan check). The other
+//      lessons' errors are not the draft's (the company check exits 1 company-wide).
 // Advisory only: the recall's `why` is a learner-visible sentence and no claim's address names the recall; claims
 // whose support is "source" with a source that names no reference (a bare word).
 //
@@ -43,7 +49,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
-import { DEFAULT_REPO, findLesson, parseArgs } from "./gates.mjs";
+import { DEFAULT_REPO, findLesson, parseArgs, runCompanyCheck } from "./gates.mjs";
 import { SUPPORTS, STATUSES, same } from "./claims-guard.mjs";
 import { locate, parseSection } from "./brief.mjs";
 
@@ -53,6 +59,13 @@ const F = (severity, kind, message) => ({ severity, kind, message });
 const gitOut = (repo, args) => execFileSync("git", args, { cwd: repo, encoding: "utf8", maxBuffer: 64 << 20, stdio: ["ignore", "pipe", "pipe"] });
 /** A claim's keys but `note`, for "exactly as at base" (gates.mjs claimChanges' rule). */
 const core = (c) => { const { note, ...rest } = c ?? {}; return rest; };
+// Rule 6: company check's lesson errors that are the build's (company.mjs cmdCheck "Demos": missing Demo.tsx, <Lesson>,
+// stage controls, storage), not a draft's: a draft has no Demo.tsx, and a loop back to draft keeps the built one as it is
+export const DRAFT_EXEMPT = /^missing Demo\.tsx$|Demo\.tsx|no stage controls|must not touch storage/;
+/** Pure: rule 6's findings from a parsed company check (gates.mjs parseCheck) for the lesson at `where`. */
+export function draftCheckFindings(chk, where) {
+  return chk.errors.filter((e) => e.where === where && !DRAFT_EXEMPT.test(e.msg)).map((e) => F("block", "check", `company check: ${e.msg} (the draft's meta.json must pass the company's check; only its Demo.tsx rules wait for the build)`));
+}
 const nums = (b) => (Array.isArray(b) ? b : b == null ? [] : [b]);
 
 /** Pure: the findings for draft `meta` of lesson `slug` in domain folder `domain`, against `baseMeta` (null: none at
@@ -133,6 +146,10 @@ export function main(argv) {
       touched = [...gitOut(repo, ["diff", "--name-only", "--no-renames", base, "--", L.where]).split("\n"), ...gitOut(repo, ["ls-files", "--others", "--exclude-per-directory=.gitignore", "--", L.where]).split("\n")].filter(Boolean);
     } catch (e) { return env(`git diff against ${base.slice(0, 7)} failed: ${String(e.message).split("\n")[0]}`); }
     for (const p of [...new Set(touched)].filter((p) => p !== `${L.where}/meta.json`)) findings.push(F("block", "built", `${p} changed since the draft started: the lesson is built after the plan check (build stage), not in the draft`));
+    // 6. the company's own check, for this lesson's address (Demo.tsx rules excepted)
+    const chk = runCompanyCheck(repo);
+    if (chk.problem) return env(chk.problem);
+    findings.push(...draftCheckFindings(chk, L.where));
   }
   const ok = !findings.some((f) => f.severity !== "advisory");
   return { exit: ok ? 0 : 1, out: { ok, slug, base, where: L?.where ?? null, version: L?.meta?.version ?? null, claims: Array.isArray(L?.meta?.claims) ? L.meta.claims.length : 0, planned: planned ? planned.filter((p) => !p.notClaimed).map((p) => p.n) : null, findings } };

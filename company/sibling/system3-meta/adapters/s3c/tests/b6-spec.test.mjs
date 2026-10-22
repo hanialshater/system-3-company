@@ -46,6 +46,9 @@ test("B6 wiring: claims-draft judges the draft, claims-guard the plan check, tes
   const all = JSON.stringify(B6);
   assert.ok(!/m6-int|meta\/m6/.test(all), "no M6 branch or checkout");
   assert.deepEqual([B6.workspace.base, B6.workspace.run], ["meta/b6", "b6"]);
+  // B6 dry run: the M7 run's worktrees (<root>/<task>, on meta/m7-<task>) are still under the same root
+  assert.deepEqual([B6.workspace.root, B6.workspace.dir], ["/home/user/s3c-wt/base/.claude/worktrees", "${run}-${task}"], "each run's checkouts apart under the Turbopack root");
+  assert.ok(B6.context.includes("/home/user/s3c-wt/base/.claude/worktrees/b6-<task>"), "the context names the folder agents will find");
   assert.ok(st(B6, "merge").run.argv.includes("--into=meta/b6") && st(B6, "merge").run.argv.includes("--repo=/home/user/s3c-wt/b6-int"));
   assert.ok(B6.exports[0].run.argv.includes("--write=/home/user/s3c-wt/b6-int/company/ops/founder-inbox.json"));
   assert.ok(t1.run.argv.includes("--baseline-repo=/home/user/s3c-wt/b6-int"));

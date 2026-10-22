@@ -11,7 +11,8 @@ import os from "node:os";
 import path from "node:path";
 import { spawnSync, execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
-import { judgeDraft } from "../claims-draft.mjs";
+import { judgeDraft, draftCheckFindings } from "../claims-draft.mjs";
+import { parseCheck } from "../gates.mjs";
 import { claimFindings } from "../gates.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
@@ -26,7 +27,9 @@ const BRIEF_TEXT = `# Fractions briefs\n\n## Wave A\n\nShared rules.\n\n### 1. $
 function fixture(meta = null) {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "claims-draft-"));
   const w = (rel, text) => { fs.mkdirSync(path.dirname(path.join(dir, rel)), { recursive: true }); fs.writeFileSync(path.join(dir, rel), text); };
-  w("tools/company.mjs", '// fake\nif (!["derivation", "simulation", "source", "convention"].includes(c.support)) err();\nif (!["unverified", "verified", "disputed", "withdrawn"].includes(c.status)) err();\n');
+  // a fake company CLI: claims-guard greps its claim enums; `check` (claims-draft rule 6) prints the lines a test put in
+  // fake-check.txt, then the summary line gates.mjs parseCheck needs
+  w("tools/company.mjs", 'import fs from "node:fs";\nconst rules = (c, err) => {\nif (!["derivation", "simulation", "source", "convention"].includes(c.support)) err();\nif (!["unverified", "verified", "disputed", "withdrawn"].includes(c.status)) err();\n};\nconst lines = fs.existsSync("fake-check.txt") ? fs.readFileSync("fake-check.txt", "utf8") : "";\nprocess.stdout.write(lines + `check ${lines ? "failed" : "passed"}: 0 error(s), 0 warning(s)\\n`);\n');
   w("tools/lib/readiness.mjs", fs.readFileSync(READINESS, "utf8"));
   w("company/constitution/protected-paths.txt", "tools/company.mjs\n");
   w(BRIEF, BRIEF_TEXT);
@@ -139,4 +142,36 @@ test("the plan check: claims-guard on the draft verifies before build; gates' bu
   r = run(GUARD, g.dir, `--base=${d2}`, "--verdict=revise", `--today=${TODAY}`);
   assert.equal(r.exit, 0, r.stdout);
   assert.equal(r.json.route, "build", "claims-guard's own route word; the plan-check post has no route map, so the kernel sends it to draft");
+});
+
+test("B6 dry run: rule 6, the draft passes the company's own check for its lesson (Demo.tsx rules wait for the build)", () => {
+  const where = `src/demos/math/${SLUG}`;
+  const chk = parseCheck([
+    `error ${where}: meta.evidence should be object`,
+    `error ${where}: hook is 102 chars; the hook budget is 90`,
+    `error ${where}: missing Demo.tsx`,
+    `error ${where}: Demo.tsx must render <Lesson> (the predict → explore → reveal contract)`,
+    `error ${where}: no stage controls found (Control, Slider or data-qa="control")`,
+    `error ${where}-two: meta.evidence should be object`,
+    `error src/demos/history/x: x.c1 bad support y`,
+    `warn  ${where}: durationSec 130 > 120: is this still one idea?`,
+    "check failed: 7 error(s), 1 warning(s)",
+  ].join("\n"));
+  assert.deepEqual(draftCheckFindings(chk, where).map((f) => f.message.split(" (the draft")[0]), ["company check: meta.evidence should be object", "company check: hook is 102 chars; the hook budget is 90"], "this lesson's errors only, Demo.tsx rules excepted, warnings not blocking");
+  // the CLI: a draft the company check fails is refused at the leave, and passes once fixed
+  const f = fixture();
+  f.w(META, JSON.stringify(draft(), null, 2) + "\n");
+  f.w("fake-check.txt", `error ${where}: meta.confidence should be string\nerror ${where}: missing Demo.tsx\nerror src/demos/math/other: missing Demo.tsx\n`);
+  let r = run(DRAFT, f.dir, `--brief=${BRIEF}`, `--base=${f.head}`);
+  assert.equal(r.exit, 1, r.stdout);
+  assert.match(r.stdout, /^block check: company check: meta\.confidence should be string/m);
+  assert.doesNotMatch(r.stdout, /missing Demo\.tsx/);
+  f.w("fake-check.txt", `error ${where}: missing Demo.tsx\n`);
+  r = run(DRAFT, f.dir, `--brief=${BRIEF}`, `--base=${f.head}`);
+  assert.equal(r.exit, 0, r.stdout);
+  // a check that prints no summary line is the environment's (exit 3), not the draft's
+  f.w("tools/company.mjs", "process.exit(1);\n");
+  r = run(DRAFT, f.dir, `--brief=${BRIEF}`, `--base=${f.head}`);
+  assert.equal(r.exit, 3, r.stdout);
+  assert.match(r.json.findings[0].message, /company check printed no summary line/);
 });
