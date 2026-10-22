@@ -1392,6 +1392,7 @@ export const loaders: Record<string, () => Promise<{ default: ComponentType<{ sl
   "add-the-slices": () => import("./math/add-the-slices/Demo"),
   "adding-squashes-the-photo": () => import("./math/adding-squashes-the-photo/Demo"),
   "agenda-picks-the-winner": () => import("./math/agenda-picks-the-winner/Demo"),
+  "ant-on-a-cube": () => import("./math/ant-on-a-cube/Demo"),
   "binary-fingers": () => import("./math/binary-fingers/Demo"),
   "bridge-carries-news-not-habits": () => import("./math/bridge-carries-news-not-habits/Demo"),
   "bridge-parity": () => import("./math/bridge-parity/Demo"),

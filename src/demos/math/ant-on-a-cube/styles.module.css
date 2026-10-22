@@ -1,0 +1,21 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 150px; max-height: 212px; }
+.front { fill: color-mix(in srgb, var(--domain) 14%, var(--bg-2)); stroke: var(--fg); stroke-width: 2; stroke-linejoin: round; }
+.top { fill: color-mix(in srgb, var(--domain) 6%, var(--bg-2)); stroke: var(--fg); stroke-width: 2; stroke-linejoin: round; }
+.right { fill: color-mix(in srgb, var(--domain) 24%, var(--bg-2)); stroke: var(--fg); stroke-width: 2; stroke-linejoin: round; }
+.legs { stroke: var(--fg); stroke-width: 1; fill: none; }
+.shared { stroke: var(--muted); stroke-width: 3; stroke-dasharray: 6 4; }
+.route { fill: none; stroke: var(--bad); stroke-width: 5; stroke-linejoin: round; stroke-linecap: round; }
+.best { fill: none; stroke: var(--good); stroke-width: 5; stroke-linejoin: round; stroke-linecap: round; }
+.midDot { fill: var(--bg); stroke: var(--good); stroke-width: 3; }
+.startDot { fill: var(--bg); stroke: var(--fg); stroke-width: 2; }
+.ant { fill: var(--fg); }
+.endRing { fill: var(--bg); stroke: var(--domain); stroke-width: 3; }
+.endDot { fill: var(--domain); }
+.label { fill: var(--fg); font-size: 13px; font-weight: 700; }
+.halo { paint-order: stroke; stroke: var(--bg); stroke-width: 4px; stroke-linejoin: round; }
+.readout { fill: var(--fg); font-size: 15px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.wrap :global(.row) { justify-content: center; gap: 6px; flex-wrap: wrap; }
+.tap { min-height: 44px; min-width: 44px; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.15; }
+.trace { font-size: 0.75rem; font-weight: 700; opacity: 0.85; }
+.ghost { fill: none; stroke: var(--good); stroke-width: 3; stroke-dasharray: 5 4; stroke-linejoin: round; opacity: 0.8; }
