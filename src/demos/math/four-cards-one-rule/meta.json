@@ -1,0 +1,78 @@
+{
+  "slug": "four-cards-one-rule",
+  "title": "Which cards test the rule?",
+  "hook": "E, K, 4, 7, and the rule \"a vowel has an even number on its back\". Which do you turn?",
+  "domain": "math",
+  "concept": "conditional-falsification",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "what \"if … then …\" means in everyday speech",
+      "vowels and even numbers"
+    ],
+    "doesNotKnow": [
+      "that a rule \"if P then Q\" can only be broken by a case with P true and Q false, so you test it by hunting for that case, not by finding cases that agree"
+    ]
+  },
+  "misconception": "To test \"if vowel, then even\" you turn the vowel and the even number (looking for confirmation).",
+  "objective": "The learner can say that only E and 7 can break \"if a card shows a vowel, its back is even\", because a rule \"if P then Q\" fails only when P is true and Q is false, and that turning the 4 can only agree with it.",
+  "claims": [
+    {
+      "id": "math.four-cards-one-rule.c1",
+      "text": "A rule \"if P then Q\" fails only when P is true and Q is false (it says nothing when P is false).",
+      "support": "convention",
+      "source": "Truth table of the material conditional: P → Q is false exactly in the row P true, Q false (derivation).",
+      "status": "unverified"
+    },
+    {
+      "id": "math.four-cards-one-rule.c2",
+      "text": "With a letter on one side and a number on the other, and possible backs 4 or 7 (letter cards) and A or K (number cards), only E (with 7 behind it) and 7 (with a vowel, A, behind it) could break \"if a card shows a vowel, its back is even\"; K and 4 cannot whatever their backs, and the stage tags each back \"breaks\" or \"fine\" accordingly. Recall: for \"if fragile, then a red sticker\", only the fragile parcel and the green-sticker parcel can break it.",
+      "support": "derivation",
+      "source": "company/domains/briefs/checks/math-wave-j-check.mjs label D1 (backs that break: E: [7]; K: []; 4: []; 7: [A]). Stage: breaks(front, back) = vowel on the letter side and odd number on the number side, in Demo.tsx. Recall is the same enumeration with P = fragile, Q = red sticker.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Rule: if a parcel is marked fragile, it has a red sticker. Four parcels show: fragile, not fragile, red sticker, green sticker. Which must you check?",
+    "options": [
+      "Fragile and red sticker",
+      "Fragile and green sticker",
+      "Fragile only",
+      "All four"
+    ],
+    "answer": 1,
+    "why": "The rule fails only for a fragile parcel without a red sticker, so check the fragile one and the green-sticker one; the red-sticker parcel can only agree."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "math:conditional-falsification",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "strand": "discrete",
+    "references": [],
+    "tags": [
+      "logic",
+      "conditionals",
+      "proof"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate"
+  ]
+}
