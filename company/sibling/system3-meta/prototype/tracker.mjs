@@ -43,6 +43,10 @@ export function get(co, id) { const it = store(co).items.get(id); if (!it) refus
 export function update(co, { by, id, ...ch }) {
   const it = get(co, id);
   if (it.kind === "order" && ch.state && by !== "engine") refuse(`${id} mirrors order ${it.order}: its state moves with the flow`);
+  // K8+K9 review: a loop-cap ask closes only with its order (resume or cancel) and keeps its decider; `item update
+  // --state=done` closed it and left the order parked for good, and `--assignee=` let a builder lift its own cap
+  const po = it.kind === "ask" && by !== "engine" && (ch.state !== undefined || ch.assignee !== undefined) && it.ask?.order && co.engine.orders.get(it.ask.order);
+  if (po?.stage === "parked" && po.parked?.ask === id) refuse(`${id} asks whether parked ${po.id} goes on: its state and decider move only with \`order resume|cancel ${po.id}\``);
   if (ch.assignee && !co.org.role(ch.assignee)?.active) refuse(`no active role ${ch.assignee}`);
   if (ch.state && !STATES.includes(ch.state)) refuse(`state is ${STATES.join(", ")}`);
   if (ch.project && !store(co).projects.has(ch.project)) refuse(`no project ${ch.project}`);

@@ -503,9 +503,10 @@ export class Engine {
     o.stage = "build"; o.loops++; o.findings = findings;
     o.history.push({ stage: "done", by, verdict: "reopen", t: this.clock.now(), findings: String(findings).slice(0, 2000) });
     this.log.add({ type: "reopen", order: id, from: "done", by, reason: reason ?? null, loops: o.loops, priority: o.priority });
-    // K9: benchmark 4's regression gate reopens by code, and that loop counts. K8+K9 review: a person's reopen is a changed
-    // requirement, not a revise that cannot converge; it gets its own loop (under a cap), so it never parks at once
-    if (by !== "code" && this.maxLoopsOf(o) != null) { o.extraLoops = (o.extraLoops ?? 0) + 1; this.notifyStage(o); }
+    // K9: benchmark 4's regression gate reopens by code, and that loop counts; so does the manager's (plan §5 step 6: a
+    // Demo Crit revise is an `order reopen`, and an agent that keeps reopening must park). K8+K9 review: only the
+    // founder's reopen is a changed requirement that gets its own loop, so it never parks at once
+    if (by === "founder" && this.maxLoopsOf(o) != null) { o.extraLoops = (o.extraLoops ?? 0) + 1; this.notifyStage(o); }
     else if (!this.loopCap(o, { by, from: "done" })) this.notifyStage(o);
     return o;
   }

@@ -198,3 +198,35 @@ test("K8+K9 review: a job started before a park and resume (same stage and loops
   assert.equal(k.state, "stale");
   await until(() => !alive(k.pid));
 });
+
+test("K8+K9 review 2: `order park` and `order cancel` kill the order's running K2 job at once (CLI, no tick between)", async () => {
+  const d = fs.mkdtempSync(path.join(os.tmpdir(), "meta-k2-park-"));
+  const env = { ...process.env, META_LIVE_DIR: d }; delete env.NODE_TEST_CONTEXT;
+  const run = (file, ...args) => { const r = spawnSync("node", [path.join(HERE, "..", file), ...args], { env, encoding: "utf8" }); return { code: r.status, out: r.stdout ? JSON.parse(r.stdout) : null, err: r.stderr }; };
+  const spec = builtinSpec("toy"); spec.name = "k2p"; spec.flow.stages = JSON.parse(JSON.stringify(FLOW(QA()).stages));
+  const f = path.join(d, "k2p.json"); fs.writeFileSync(f, JSON.stringify(spec));
+  assert.equal(run("meta.mjs", "init", `--spec-file=${f}`).code, 0);
+  const toQa = (task) => {
+    const o = run("meta.mjs", "order", "new", "--by=cos", "--to=mgr-live", "--title=x", `--task=${task}`, "--accept=a lesson").out.order;
+    run("meta.mjs", "order", "delegate", o, "--by=mgr-live", "--to=toy-builder-1", "--budget=100");
+    const msg = run("meta.mjs", "queue", "toy-builder-1").out.find((m) => m.order === o).msg;
+    const e = run("meta.mjs", "room", "enter", `--msg=${msg}`, "--role=toy-builder-1");
+    fs.mkdirSync(path.join(d, "work", task), { recursive: true });
+    assert.equal(run("meta.mjs", "room", "leave", `--run=${e.out.run}`, "--evidence=w").code, 0);
+    return o;
+  };
+  const p = toQa("KP"), c = toQa("KC");
+  run("supervisor.mjs", "tick");
+  const job = (o) => run("supervisor.mjs", "jobs").out.find((j) => j.order === o);
+  const jp = job(p), jc = job(c);
+  assert.ok(jp && jc && alive(jp.pid) && alive(jc.pid), "both jobs running");
+  assert.equal(run("meta.mjs", "order", "park", p, "--by=mgr-live", "--reason=publish hold").code, 0);
+  assert.equal(job(p).state, "stale", "killed by the park, not at the next collect");
+  assert.equal(job(c).state, "running", "another order's job is untouched");
+  const k = run("meta.mjs", "order", "cancel", c, "--by=cos", "--reason=kill");
+  assert.equal(k.code, 0, k.err);
+  assert.equal(job(c).state, "stale", "killed by the cancel");
+  await until(() => !alive(jp.pid) && !alive(jc.pid));
+  const ev = JSON.parse(fs.readFileSync(path.join(d, "state.json"), "utf8"));
+  assert.ok(JSON.stringify(ev).includes("jobs-stopped"));
+});

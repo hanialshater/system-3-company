@@ -53,7 +53,9 @@ export function raise(co, { by, kind, title, why, due, to = null, amount = 0, la
     else refuse(`${to} cannot decide a ${kind} ask: it goes to ${decider}`);
   }
   const it = create(co, { by, kind: "ask", title, body: why, assignee, due, goal, labels: [`ask:${kind}`, ...(rerouted ? ["rerouted"] : []), ...(escalated ? ["escalated"] : [])], state: "todo", priority: 2 });
-  it.ask = { kind, amount, from: by, addressedTo: to, decider, escalate, answer: null };
+  // routedTo is the router's choice, frozen: the assignee is a tracker field anyone may edit (K8+K9 review: a builder
+  // reassigned its own park ask to itself and then resumed past its own loop cap)
+  it.ask = { kind, amount, from: by, addressedTo: to, decider, escalate, routedTo: assignee, answer: null };
   if (rerouted) co.log.add({ type: "ask-reroute", item: it.id, from: by, addressedTo: to, to: decider, kind });
   if (escalated) co.log.add({ type: "ask-escalate", item: it.id, from: by, to, over: decider, reason: escalate });
   co.log.add({ type: "ask", item: it.id, from: by, to: assignee, kind });
@@ -66,8 +68,8 @@ export function answer(co, { by, id, decision, text, viaOrder = false }) {
   if (by !== it.assignee) refuse(`${id} is ${it.assignee}'s to answer`);
   // K8+K9 review: a plain answer closed the loop-cap ask and left its order parked for good (settled() false, serve ran
   // to maxMin); a park ask is answered only by deciding its order
-  const po = it.ask?.order && co.engine.orders.get(it.ask.order);
-  if (!viaOrder && po?.stage === "parked" && po.parked?.ask === id) refuse(`${id} asks whether parked ${po.id} goes on: answer it with \`order resume ${po.id} --by=${by} --reason='…'\` or \`order cancel ${po.id} --by=${by} --reason='…'\``);
+  const po = parkedOn(co, it);
+  if (!viaOrder && po) refuse(`${id} asks whether parked ${po.id} goes on: answer it with \`order resume ${po.id} --by=${by} --reason='…'\` or \`order cancel ${po.id} --by=${by} --reason='…'\``);
   if (!["yes", "no", "redirect"].includes(decision) || !text) refuse("an answer is yes, no or redirect, with text");
   it.ask.answer = { decision, text, t: co.engine.clock.now() };
   comment(co, { by, id, text: `${decision}: ${text}` });
@@ -108,6 +110,19 @@ export function raiseParkAsk(co, o, { reason, findings = [] }) {
   o.parked.ask = it.id;
   co.log.add({ type: "park-ask", order: o.id, item: it.id, to: it.assignee, findings: findings.length });
   return it;
+}
+
+/** K8+K9 review: the order parked on ask `it` (the loop-cap ask), while it is parked on it; else null. */
+export function parkedOn(co, it) {
+  const po = it?.kind === "ask" && it.ask?.order && co.engine.orders.get(it.ask.order);
+  return po?.stage === "parked" && po.parked?.ask === it.id ? po : null;
+}
+
+/** K8+K9 review: who may decide a park ask: the router's choice when it was raised (or the escalated `to`), never its
+ *  current assignee. */
+export function parkDecider(co, id) {
+  const it = id && co.data.tracker?.items?.get(id);
+  return it?.kind === "ask" ? it.ask?.routedTo ?? (it.labels.includes("escalated") ? it.ask?.addressedTo : it.ask?.decider) ?? null : null;
 }
 
 /** K8: `order resume` or `order cancel` answers the park's open ask (the decider's own act), or notes it when someone

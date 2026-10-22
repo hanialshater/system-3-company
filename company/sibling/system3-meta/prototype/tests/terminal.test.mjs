@@ -285,7 +285,7 @@ test("K8+K9 review: `ask answer` on a park ask is refused (decide the order inst
   assert.equal(cli(dir, "ask", "summary").out.open.length, 0);
 });
 
-test("K8+K9 review: a person's reopen of a shipped order gets its own loop under a cap (no instant park); cancelled is not open work and takes no rules", async () => {
+test("K8+K9 review: the founder's reopen of a shipped order gets its own loop (no instant park); cancelled is not open work and takes no rules", async () => {
   const co = fresh({ maxLoops: 1 });
   const o = order(co);
   loop(co, o, 1);
@@ -311,4 +311,67 @@ test("K8+K9 review: a person's reopen of a shipped order gets its own loop under
   const tpl = Object.values(TEMPLATES).find((t) => typeof t.data === "function" && /openOrders/.test(String(t.data)));
   const open = tpl.data(co, "s").openOrders.map((x) => x.order);
   assert.ok(open.includes(p.id) && !open.includes(o.id));
+});
+
+test("K8+K9 review 2: the builder whose revises hit the cap cannot reassign or close its park ask, nor so resume past its own cap", () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "meta-k8-rev2-"));
+  const spec = { ...builtinSpec("toy"), maxLoops: 1, flow: { name: "task", stages: FLOW.stages } };
+  const f = path.join(dir, "spec.json"); fs.writeFileSync(f, JSON.stringify(spec));
+  assert.equal(cli(dir, "init", `--spec-file=${f}`).code, 0);
+  assert.equal(cli(dir, "order", "new", "--by=toy-builder-2", "--to=mgr-live", "--title=lesson", "--task=L1", "--accept=x").code, 0);
+  assert.equal(cli(dir, "order", "delegate", "O-1", "--by=mgr-live", "--to=toy-builder-1").code, 0);
+  const work = (role, pool, extra = []) => {
+    const q = cli(dir, "queue", pool).out;
+    const e = cli(dir, "room", "enter", `--msg=${q[0].msg}`, `--role=${role}`);
+    assert.equal(cli(dir, "room", "leave", `--run=${e.out.run}`, "--evidence=e", ...extra).code, 0);
+  };
+  for (let i = 1; i <= 2; i++) { work("toy-builder-1", "toy-builder-1"); work("toy-checker", "pool:checker", ["--verdict=revise", `--findings=F${i}`]); }
+  const [a] = cli(dir, "ask", "summary").out.open;
+  assert.equal(a.to, "cos");
+  const re = cli(dir, "item", "update", "--by=toy-builder-1", `--id=${a.id}`, "--assignee=toy-builder-1");
+  assert.equal(re.code, 1, "the reassignment the review reproduced"); assert.match(re.err, /order resume\|cancel O-1/);
+  const done = cli(dir, "item", "update", "--by=cos", `--id=${a.id}`, "--state=done");
+  assert.equal(done.code, 1, "even its decider closes it only with the order");
+  assert.equal(cli(dir, "ask", "summary").out.open.length, 1);
+  assert.equal(cli(dir, "item", "update", "--by=cos", `--id=${a.id}`, "--body=more context").code, 0, "other fields stay editable");
+  const r = cli(dir, "order", "resume", "O-1", "--by=toy-builder-1", "--reason=me", "--extra-loops=10");
+  assert.equal(r.code, 1, "the builder is not the decider"); assert.match(r.err, /park ask's decider \(cos\)/);
+  assert.equal(cli(dir, "flow", "show", "O-1").out.stage, "parked");
+  const c = cli(dir, "order", "cancel", "O-1", "--by=cos", "--reason=HELD for good");
+  assert.equal(c.code, 0, c.err); assert.equal(c.out.ask_closed, a.id);
+  assert.equal(cli(dir, "item", "update", "--by=cos", `--id=${a.id}`, "--state=todo").code, 0, "after the decision the ask is an ordinary item again");
+});
+
+test("K8+K9 review 2: a manager's reopen counts toward the cap (a Demo Crit revise loop parks), a code reopen past it parks, each founder reopen gets a loop", () => {
+  const ship = (co, o) => {
+    sign(co, o, "toy-builder-1", "toy-builder-1"); sign(co, o, "pool:checker", "toy-checker");
+    co.engine.advance(o.id, { stage: "uat", by: "mgr-live", evidence: "ok" });
+    co.engine.decide(co.engine.queue("founder").find((r) => r.order === o.id).id, { by: "founder", decision: "approve", words: "approve deploy", channel: "chat" });
+    sign(co, o, "pool:release", "toy-release");
+    assert.equal(o.stage, "done");
+  };
+  const co = fresh({ maxLoops: 1 });
+  const m = order(co);
+  ship(co, m);
+  co.engine.reopen(m.id, { by: "mgr-live", findings: "Demo Crit: revise card 2" });
+  assert.equal(m.stage, "build", "loop 1 of 1");
+  ship(co, m);
+  co.engine.reopen(m.id, { by: "mgr-live", findings: "Demo Crit: revise card 2 again" });
+  assert.equal(m.stage, "parked", "the manager's second reopen is past the cap");
+  assert.equal(co.engine.maxLoopsOf(m), 1, "no free loop");
+  assert.equal(co.log.of("loop-cap").filter((e) => e.order === m.id && e.from === "done").length, 1);
+  const c = order(co);
+  loop(co, c, 1); ship(co, c);
+  co.engine.reopen(c.id, { by: "code", findings: "regression gate: QA failed" });
+  assert.equal(c.stage, "parked", "a code reopen past the cap parks");
+  const p = order(co);
+  loop(co, p, 1); ship(co, p);
+  for (let i = 1; i <= 3; i++) {
+    co.engine.reopen(p.id, { by: "founder", findings: `changed requirement ${i}` });
+    assert.equal(p.stage, "build", `founder reopen ${i} does not park`);
+    assert.equal(co.engine.maxLoopsOf(p), 1 + i);
+    if (i < 3) ship(co, p);
+  }
+  sign(co, p, "toy-builder-1", "toy-builder-1"); sign(co, p, "pool:checker", "toy-checker", { verdict: "revise", findings: "F" });
+  assert.equal(p.stage, "parked", "a revise after the founder's loops still counts");
 });

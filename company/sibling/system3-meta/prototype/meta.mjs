@@ -245,8 +245,8 @@ function dispatch(co, cmd, sub, arg) {
     if (!o) throw new Refused(`no order ${arg}`);
     const ask = o.parked?.ask ?? null;
     // K8+K9 review: an orderer the decision route cannot reach (a peer manager, a builder) has its park ask routed to the
-    // manager's report (cos), who must then be able to decide it
-    const askee = ask && sub !== "park" ? co.data.tracker?.items?.get(ask)?.assignee : null;
+    // manager's report (cos), who must then be able to decide it; the router's choice, not the (editable) assignee
+    const askee = ask && sub !== "park" ? A.parkDecider(co, ask) : null;
     if (![o.orderer, o.manager, "founder", askee].filter(Boolean).includes(opt.by)) throw new Refused(`${opt.by} may not ${sub} ${arg}: its orderer (${o.orderer}), its manager (${o.manager})${askee ? `, its park ask's decider (${askee})` : ""} or the founder may`);
     if (sub !== "resume") for (const x of rooms.runs.values()) if (x.state === "running" && x.order === o.id) rooms.abandon(x.run, { by: opt.by, reason: `order ${sub === "park" ? "parked" : "cancelled"}: ${opt.reason}` });
     if (sub === "park") engine.park(arg, { by: opt.by, reason: opt.reason });
