@@ -268,7 +268,8 @@
       "run": {
         "argv": [
           "node",
-          "/home/user/system-3-company/company/sibling/system3-meta/adapters/s3c/rituals.mjs",
+          "/home/user/system-3-company/company/sibling/system3-meta/adapters/s3c/m7-scope.mjs",
+          "rituals.mjs",
           "due",
           "--repo=/home/user/s3c-wt/m7-int",
           "--roles=chief-of-staff,head-of-product,cm-math,cm-cs,demo-builder,fact-checker,learner-evaluator,analytics-steward,release-manager",
@@ -323,7 +324,7 @@
         2
       ],
       "findings": {
-        "fromStdout": "^\\s*\"((?:C[1-4]|R[12]|S[1-4]|I1|B1|M1)\\b[^\"]*)\""
+        "fromStdout": "(?<=\"fails\":\\s*\\[(?:\\s*\"(?:[^\"\\\\]|\\\\.)*\",)*)\\s*\"((?:C[1-4]|R[12]|S[1-4]|I1|B1|M1)\\b(?:[^\"\\\\]|\\\\.)*)\""
       },
       "timeoutMs": 60000
     }
@@ -358,7 +359,8 @@
       "run": {
         "argv": [
           "node",
-          "/home/user/system-3-company/company/sibling/system3-meta/adapters/s3c/events-export.mjs",
+          "/home/user/system-3-company/company/sibling/system3-meta/adapters/s3c/m7-scope.mjs",
+          "events-export.mjs",
           "--live=${live}",
           "--repo=/home/user/s3c-wt/m7-int",
           "--commit"
@@ -380,7 +382,8 @@
       "run": {
         "argv": [
           "node",
-          "/home/user/system-3-company/company/sibling/system3-meta/adapters/s3c/board-mirror.mjs",
+          "/home/user/system-3-company/company/sibling/system3-meta/adapters/s3c/m7-scope.mjs",
+          "board-mirror.mjs",
           "--live=${live}",
           "--repo=/home/user/s3c-wt/m7-int",
           "--run=m7",
@@ -728,7 +731,8 @@
           "pre": {
             "argv": [
               "node",
-              "/home/user/system-3-company/company/sibling/system3-meta/adapters/s3c/rituals.mjs",
+              "/home/user/system-3-company/company/sibling/system3-meta/adapters/s3c/m7-scope.mjs",
+              "rituals.mjs",
               "scaffold",
               "${slug}",
               "--repo=${workdir}",
@@ -747,7 +751,8 @@
           "post": {
             "argv": [
               "node",
-              "/home/user/system-3-company/company/sibling/system3-meta/adapters/s3c/rituals.mjs",
+              "/home/user/system-3-company/company/sibling/system3-meta/adapters/s3c/m7-scope.mjs",
+              "rituals.mjs",
               "record",
               "${slug}",
               "--repo=${workdir}",
@@ -781,7 +786,8 @@
           "post": {
             "argv": [
               "node",
-              "/home/user/system-3-company/company/sibling/system3-meta/adapters/s3c/rituals.mjs",
+              "/home/user/system-3-company/company/sibling/system3-meta/adapters/s3c/m7-scope.mjs",
+              "rituals.mjs",
               "record",
               "${slug}",
               "--repo=${workdir}",
@@ -805,7 +811,8 @@
           "run": {
             "argv": [
               "node",
-              "/home/user/system-3-company/company/sibling/system3-meta/adapters/s3c/rituals.mjs",
+              "/home/user/system-3-company/company/sibling/system3-meta/adapters/s3c/m7-scope.mjs",
+              "rituals.mjs",
               "ship",
               "${slug}",
               "--repo=${workdir}",

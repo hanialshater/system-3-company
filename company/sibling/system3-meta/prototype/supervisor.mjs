@@ -246,14 +246,21 @@ export function runSchedulers(co) {
     for (const w of want) {
       const key = typeof w?.key === "string" && /^[\w:.-]{1,80}$/.test(w.key) ? w.key : null;
       if (!key) { refused.push({ key: String(w?.key ?? "?").slice(0, 80), why: "a scheduled order has a key ([A-Za-z0-9_:.-], at most 80)" }); continue; }
-      const open = [...co.engine.orders.values()].find((o) => o.schedKey === key && !["done", "cancelled"].includes(o.stage));
+      // M7 review: an open order of the same ritual placed by hand (`order new --flow=ritual --slug=wbr`, no schedKey)
+      // counts too, or the scheduler placed a second order for the record that one already holds
+      const sameRitual = (o) => o.schedKey === key || (w?.slug != null && o.slug === w.slug && String(o.flow).split("@")[0] === x.flow);
+      const open = [...co.engine.orders.values()].find((o) => sameRitual(o) && !["done", "cancelled"].includes(o.stage));
       if (open) { skipped.push({ key, order: open.id, stage: open.stage }); continue; }
       try {
         for (const k of ["title", "task", "accept"]) if (typeof w[k] !== "string" || !w[k].trim()) throw new Refused(`${key}: ${k} is a non-empty string`);
         if (!/^[A-Za-z0-9][\w.-]{0,80}$/.test(w.task)) throw new Refused(`${key}: task is a name ([A-Za-z0-9_.-])`);
         if (w.slug != null && !/^[a-z0-9]+(-[a-z0-9]+)*$/.test(w.slug)) throw new Refused(`${key}: slug is kebab-case`);
         if ([...co.engine.orders.values()].some((o) => o.task === w.task)) throw new Refused(`${key}: task ${w.task} is another order's`);
-        const o = co.engine.orderNew({ flow: x.flow, by: x.role, to: w.to ?? null, chair: w.chair ?? null, attendee: w.attendee ?? null, budget: Number(w.budget ?? x.budget ?? 200_000), accept: w.accept, title: w.title, priority: ["now", "next", "later"].includes(w.priority) ? w.priority : "next" });
+        // M7 review: the cmd's budget is adapter output: a word became NaN (saved as null) and a negative one was taken,
+        // and Engine.overBudget is false for both, so the order had no K13 stop at all
+        const budget = w.budget ?? x.budget ?? 200_000;
+        if (!Number.isInteger(budget) || budget <= 0) throw new Refused(`${key}: budget is a whole number of tokens above 0, not ${JSON.stringify(budget)}`);
+        const o = co.engine.orderNew({ flow: x.flow, by: x.role, to: w.to ?? null, chair: w.chair ?? null, attendee: w.attendee ?? null, budget, accept: w.accept, title: w.title, priority: ["now", "next", "later"].includes(w.priority) ? w.priority : "next" });
         o.task = w.task; if (w.slug) o.slug = w.slug; o.schedKey = key; o.scheduledBy = x.id;
         co.log.add({ type: "scheduled", scheduler: x.id, key, order: o.id, by: x.role, flow: o.flow, task: o.task });
         placed.push({ key, order: o.id });
@@ -269,14 +276,17 @@ export function runSchedulers(co) {
 }
 
 /** K20 (plan §M7, the pre-launch gate): spec `launchGate` ({id, roles, stages, run, notify, retryMin}, or a list).
- *  Before a planned session is reserved, code runs the gate cmd of every gate that matches it (its role is in
- *  `roles`, and the stage of one of its items, or one of its judgment tasks' kinds, is in `stages`; an unset list
- *  matches all), in the worktree of the order of its first item, with ${role}, ${running} and ${builders} (sessions
- *  in flight before this one: dispatch-check's --running and --builders). Exit 0: the launch is reserved and the gate's
- *  result goes on its launch event. Anything else: no reservation, a `launch-gate` event, and one notice per
- *  refusal (deduped by gate, role and item) in the `notify` role's mailbox (the chief of staff's); the same plan item
- *  is not gated again for retryMin minutes (default 5), so a refusal holds the launch without a hot loop.
- *  Returns { pass: [planned items, each with .gate], steps }. */
+ *  Before a planned session is reserved, code runs the gate cmd of every gate that matches it, once for each of its
+ *  items (M7 review: a batch was gated only for its first item's order and worktree): an item is a work message (its
+ *  stage), a judgment task (its kind) or a contract, and a gate matches it when its role is in `roles` and its stage or
+ *  kind is in `stages` (an unset list matches all). Each run is in the worktree of the item's order, with ${role},
+ *  ${launch} (that item's order and task), ${running} and ${builders} (sessions in flight before this one:
+ *  dispatch-check's --running and --builders). Every item passes: the launch is reserved and the gates' results go on
+ *  its launch event. Any item refused: no reservation, a `launch-gate` event, and one notice for that item (keyed by
+ *  gate, role and item, so a regrouped batch is the same work: M7 review) in the `notify` role's mailbox (the chief of
+ *  staff's); the item is not gated again for retryMin minutes (default 5), so a refusal holds it without a hot loop.
+ *  `memo` keeps this pass's results across planGated's rounds. Returns { pass: [planned items, each with .gate],
+ *  steps, refused: [item ids] }. */
 export const gatesOf = (co) => [].concat(co.spec?.launchGate ?? []).filter(Boolean);
 export function inFlight(co) {
   const now = co.engine.clock.now(), { rooms, org, log } = co;
@@ -289,49 +299,102 @@ export function inFlight(co) {
   const roles = [...live.map((s) => s.role), ...pending.map((l) => l.role)].filter((r) => !org.role(r)?.human);
   return { agents: roles.length, builders: roles.filter((r) => org.role(r)?.level === "builder").length };
 }
-export function gateLaunches(co, planned) {
+/** The items a planned launch is gated by: { unit, kind, order, msg }. A unit id is what plan's `skip` takes. */
+export function gateUnits(co, p) {
+  return [
+    ...(p.msgs ?? []).map((id) => co.mailbox.msgs.get(id)).filter(Boolean).map((m) => ({ unit: m.id, kind: m.body?.stage ?? null, order: co.engine.orders.get(m.ref) ?? null, msg: m.id })),
+    ...(p.tasks ?? []).map((t) => ({ unit: `${t.kind}:${t.ref}`, kind: t.kind, order: co.engine.orders.get(t.ref) ?? null, ref: t.ref, msg: null })),
+    ...(p.contract ? [{ unit: `contract:${p.contract}`, kind: null, order: null, ref: p.contract, msg: null }] : []),
+  ];
+}
+const noticeKey = (key) => `launch-gate:${key}`;
+export function gateLaunches(co, planned, memo = new Map()) {
   const gates = gatesOf(co);
-  if (!gates.length || !planned.length) return { pass: planned, steps: [] };
+  if (!gates.length || !planned.length) return { pass: planned, steps: [], refused: [] };
   co.data.gates ??= {};
-  const now = co.engine.clock.now(), steps = [], pass = [];
+  const now = co.engine.clock.now(), steps = [], pass = [], refused = [];
   const flight = inFlight(co);
   for (const p of planned) {
-    const msgs = (p.msgs ?? []).map((id) => co.mailbox.msgs.get(id)).filter(Boolean);
-    const kinds = [...msgs.map((m) => m.body?.stage), ...(p.tasks ?? []).map((t) => t.kind)].filter(Boolean);
-    const o = msgs[0] ? co.engine.orders.get(msgs[0].ref) : null;
     const builder = co.org.role(p.role)?.level === "builder";
-    let ok = true;
-    const results = [];
-    for (const g of gates) {
-      if (g.roles && !g.roles.includes(p.role)) continue;
-      if (g.stages && !kinds.some((k) => g.stages.includes(k))) continue;
-      const key = `${g.id}:${p.role}:${(p.msgs ?? []).join(",") || (p.tasks ?? []).map((t) => `${t.kind}:${t.ref}`).join(",")}`;
-      const last = co.data.gates[key];
-      if (last && !last.pass && now - last.t < (g.retryMin ?? 5)) { ok = false; results.push({ id: g.id, pass: false, held: true, output: last.output }); break; }
-      const at = o ?? { id: "", task: "", workdir: LIVE };
-      const t = runCmdCheck(at, g.run, { stage: kinds[0] ?? "", role: p.role, running: String(flight.agents), builders: String(flight.builders), launch: `system3-meta ${p.role} ${o ? `${o.id} ${o.task ?? ""}` : (p.tasks ?? []).map((x) => x.ref).join(" ")}`.trim() });
-      const r = { id: g.id, pass: !!t.pass, stageError: !!t.stageError, output: String(t.output ?? "").slice(0, 400), ...(t.pass ? {} : { findings: t.findings ? String(t.findings).slice(0, 1200) : null }), running: flight.agents, builders: flight.builders };
-      co.data.gates[key] = { t: now, pass: r.pass, output: r.output };
-      results.push(r);
-      if (!t.pass) {
-        ok = false;
-        co.log.add({ type: "launch-gate", gate: g.id, role: p.role, msgs: p.msgs ?? [], order: o?.id ?? null, stage: kinds[0] ?? null, pass: false, stageError: r.stageError, output: r.output, findings: r.findings });
-        const to = g.notify ?? "chief-of-staff";
-        if (co.org.role(to)?.active) co.mailbox.send({ from: "code", to, kind: "notice", key: `launch-gate:${key}`, ref: o?.id ?? null, body: { gate: g.id, role: p.role, msgs: p.msgs ?? [], stage: kinds[0] ?? null, why: r.output, findings: r.findings } });
-        steps.push({ step: "launch-gate", order: o?.id ?? p.role, result: "refused", output: `${g.id}: ${p.role}: ${r.findings ?? r.output}` });
-        break;
+    const results = [], passed = [], held = [];
+    for (const u of gateUnits(co, p)) {
+      const o = u.order;
+      for (const g of gates) {
+        if (g.roles && !g.roles.includes(p.role)) continue;
+        if (g.stages && !g.stages.includes(u.kind)) continue;
+        const key = `${g.id}:${p.role}:${u.unit}`;
+        // a pass is reused only for the same count in flight (C1/C2 read it); a refusal for this whole pass
+        const mk = `${key}|${flight.agents}|${flight.builders}`;
+        let r = memo.get(mk) ?? memo.get(key);
+        if (!r) {
+          const last = co.data.gates[key];
+          if (last && !last.pass && now - last.t < (g.retryMin ?? 5)) r = { id: g.id, unit: u.unit, pass: false, held: true, output: last.output };
+          else {
+            const at = o ?? { id: "", task: "", workdir: LIVE };
+            const t = runCmdCheck(at, g.run, { stage: u.kind ?? "", role: p.role, running: String(flight.agents), builders: String(flight.builders), launch: `system3-meta ${p.role} ${o ? `${o.id} ${o.task ?? ""}` : u.ref ?? u.unit}`.trim() });
+            r = { id: g.id, unit: u.unit, pass: !!t.pass, stageError: !!t.stageError, output: String(t.output ?? "").slice(0, 400), ...(t.pass ? {} : { findings: t.findings ? String(t.findings).slice(0, 1200) : null }), running: flight.agents, builders: flight.builders };
+            co.data.gates[key] = { t: now, pass: r.pass, output: r.output };
+            if (!r.pass) {
+              co.log.add({ type: "launch-gate", gate: g.id, role: p.role, msgs: p.msgs ?? [], unit: u.unit, order: o?.id ?? null, stage: u.kind ?? null, pass: false, stageError: r.stageError, output: r.output, findings: r.findings });
+              const to = g.notify ?? "chief-of-staff";
+              // M7 review: Mailbox.send dedupes on a key even when its message is done, so a refusal after a pass (the
+              // launch died before it entered, and the same item was planned again) got no open notice
+              const nk = noticeKey(key), prev = co.mailbox.keys.get(nk);
+              if (prev && co.mailbox.msgs.get(prev)?.state !== "open") co.mailbox.keys.delete(nk);
+              if (co.org.role(to)?.active) co.mailbox.send({ from: "code", to, kind: "notice", key: nk, ref: o?.id ?? null, body: { gate: g.id, role: p.role, unit: u.unit, msg: u.msg, msgs: p.msgs ?? [], stage: u.kind ?? null, why: r.output, findings: r.findings } });
+              steps.push({ step: "launch-gate", order: o?.id ?? p.role, result: "refused", output: `${g.id}: ${p.role}: ${r.findings ?? r.output}` });
+            }
+          }
+          memo.set(r.pass ? mk : key, r);
+        }
+        results.push(r);
+        if (!r.pass) { held.push(u.unit); break; }
+        passed.push(key);
       }
     }
-    if (!ok) continue;
+    if (held.length) { refused.push(...held); continue; }
     if (results.length) {
       p.gate = results;
       // a refusal that has cleared: its notice is done (the chief of staff's mailbox holds only what still blocks)
-      for (const m of co.mailbox.msgs.values()) if (m.kind === "notice" && m.state === "open" && results.some((r) => m.key === `launch-gate:${r.id}:${p.role}:${(p.msgs ?? []).join(",") || (p.tasks ?? []).map((t) => `${t.kind}:${t.ref}`).join(",")}`)) co.mailbox.done(m.id, { run: null });
+      for (const key of passed) { const id = co.mailbox.keys.get(noticeKey(key)), m = id && co.mailbox.msgs.get(id); if (m?.kind === "notice" && m.state === "open") co.mailbox.done(m.id, { run: null }); }
     }
     pass.push(p);
     flight.agents++; if (builder) flight.builders++; // the next planned launch counts this one
   }
-  return { pass, steps };
+  return { pass, steps, refused };
+}
+
+/** K20 with the planner (M7 review): plan() counts each item it plans against policy.levelCaps and the lanes'
+ *  maxSessions, so a launch the gate refuses forever took the slot on every tick and roles whose launches would pass
+ *  were never planned. Here the items the gate refuses (or holds for retryMin) are left out and the plan is made again,
+ *  until every planned launch passes. Returns { pass, steps }. */
+export function planGated(co, opts = {}) {
+  if (!gatesOf(co).length) return { pass: plan(co, opts), steps: [] };
+  const skip = new Set(), memo = new Map(), steps = [];
+  for (;;) {
+    const g = gateLaunches(co, plan(co, { ...opts, skip }), memo);
+    steps.push(...g.steps);
+    const fresh = g.refused.filter((u) => !skip.has(u));
+    if (!fresh.length) return { pass: g.pass, steps }; // plan never plans a skipped item, so this ends
+    for (const u of fresh) skip.add(u);
+  }
+}
+
+/** K20 (M7 review): a gate's open notice whose item is gone (its message done or withdrawn, its order done, parked or
+ *  cancelled) is closed: it no longer blocks anything, and the chief of staff's brief says a notice closes by itself. */
+export function sweepGateNotices(co) {
+  const steps = [];
+  for (const m of co.mailbox.msgs.values()) {
+    if (m.kind !== "notice" || m.state !== "open" || !String(m.key ?? "").startsWith("launch-gate:")) continue;
+    const o = m.ref ? co.engine.orders.get(m.ref) : null;
+    const ms = (m.body?.msg ? [m.body.msg] : m.body?.unit ? [] : m.body?.msgs ?? []).map((id) => co.mailbox.msgs.get(id));
+    const gone = (o && ["done", "parked", "cancelled"].includes(o.stage)) || (ms.length && ms.every((x) => !x || x.state !== "open"));
+    if (!gone) continue;
+    co.mailbox.done(m.id, { run: null });
+    co.log.add({ type: "notice-closed", msg: m.id, key: m.key, why: o && ["done", "parked", "cancelled"].includes(o.stage) ? `${o.id} is ${o.stage}` : "its item is no longer queued" });
+    steps.push({ step: "gate-notice", msg: m.id, order: m.ref ?? undefined, result: "closed" });
+  }
+  return steps;
 }
 
 /** One pass over every order; repeated until nothing changes (an accepted UAT makes a ship step possible). */
@@ -343,6 +406,7 @@ export function tick(co, { acceptance = null, faults = null, probe = hostProbe }
   for (const x of rooms.recover()) steps.push({ step: "recover", run: x.run, role: x.role, order: x.order });
   steps.push(...JOBS.collect(co, { apply: applyCmdResult })); // K2: only what has ended; a running job is left alone
   steps.push(...runSchedulers(co)); // K18: orders a scheduler places are worked in this same tick
+  steps.push(...sweepGateNotices(co)); // K20: a notice whose item is gone blocks nothing
   // K13: an order at or over its charged budget gets one budget ask (the planner below starts no session on it)
   for (const o of engine.orders.values()) { const it = raiseBudgetAsk(co, o); if (it) steps.push({ step: "budget", order: o.id, result: "stopped", output: `${o.spent} of ${o.budget}: ${it.id} to ${it.assignee}` }); }
   let madeOne = false;
@@ -463,7 +527,7 @@ export function tick(co, { acceptance = null, faults = null, probe = hostProbe }
 /** Which agent sessions to start now. Pure: reads the state, changes nothing. */
 export const LAUNCH_GRACE_MIN = 5;
 export const WATCHDOG_MIN = Number(process.env.META_WATCHDOG_MIN ?? 2);
-export function plan(co, { batchLater: batchDefault = 3, cap: capDefault = 4 } = {}) {
+export function plan(co, { batchLater: batchDefault = 3, cap: capDefault = 4, skip = null } = {}) {
   const { org, rooms, mailbox, log } = co;
   // K17 (plan §M6): the host guard (tick decides it, hostCheck, and records each change): no new agent session at all
   // while the host is held (load or disk), as dispatch-check C4 refuses rather than queues
@@ -515,7 +579,8 @@ export function plan(co, { batchLater: batchDefault = 3, cap: capDefault = 4 } =
     // K5: an order held on its workspace launches no one: `room enter` would refuse its item (K5 review)
     // K13: nor does an order at or over its charged budget (its budget ask waits for a decider)
     // M5: nor one whose stage's pre-check has not run (the next tick runs it first)
-    const msgs = queued.filter((m) => co.engine.orders.get(m.ref)?.stageError?.kind !== "workspace" && !co.engine.overBudget(co.engine.orders.get(m.ref)) && !co.engine.preDue(co.engine.orders.get(m.ref)));
+    // K20 (planGated): nor an item the launch gate refused or holds
+    const msgs = queued.filter((m) => !skip?.has(m.id) && co.engine.orders.get(m.ref)?.stageError?.kind !== "workspace" && !co.engine.overBudget(co.engine.orders.get(m.ref)) && !co.engine.preDue(co.engine.orders.get(m.ref)));
     if (!msgs.length) return;
     // the lane's policy, when it sets them, overrides the role's own (spec drainCap: the reviewers' batches) and the
     // command-line defaults
@@ -577,12 +642,14 @@ export function plan(co, { batchLater: batchDefault = 3, cap: capDefault = 4 } =
   }
   // An open engagement needs its contractor started once; a launch (any time) counts while the engagement is open.
   for (const c of co.engine.contracts?.values() ?? []) {
-    if (c.state !== "open") continue;
+    if (c.state !== "open" || skip?.has(`contract:${c.id}`)) continue;
     if (log.events.some((e) => e.type === "launch" && e.role === c.contractor)) continue;
     out.push({ role: c.contractor, why: `contract ${c.id} (${c.kind}) open, not started`, msgs: [], contract: c.id, cap: 1 });
   }
   if (checker) consider(checker.id, [...mailbox.queue(`role:${checker.id}`, "work"), ...mailbox.queue("pool:checker", "work")].filter(fit(checker.id)));
-  for (const j of judgment(co)) {
+  for (const j0 of judgment(co)) {
+    const j = skip ? { ...j0, tasks: j0.tasks.filter((t) => !skip.has(`${t.kind}:${t.ref}`)) } : j0;
+    if (!j.tasks.length) continue;
     // a launch reserves non-room work until the work is done or NON_ROOM_GRACE_MIN passes (no room enter to watch for)
     if (log.events.some((e) => e.type === "launch" && e.role === j.role && now - e.t < NON_ROOM_GRACE_MIN && !ended(e) && (e.tasks ?? []).some((t) => j.tasks.some((u) => u.kind === t.kind && u.ref === t.ref)))) continue;
     const same = out.find((p) => p.role === j.role);
@@ -628,7 +695,7 @@ export function briefFor(co, item, { context = null } = {}) {
   if (acts.length) L.push(`Your open actions (do them in this session when they touch this work; mark each done with \`node meta.mjs item update --id=<ISS> --by=${item.role} --state=done\`):`, ...acts.map((i) => `- ${i.id}: ${i.title}${i.due ? ` (due ${i.due})` : ""}${i.body ? ` · ${i.body}` : ""}`), "");
   // K20: code's notices for this role (a launch gate that refused a session) travel with its brief, until they clear
   const notes = [...co.mailbox.msgs.values()].filter((m) => m.kind === "notice" && m.state === "open" && m.to === item.role);
-  if (notes.length) L.push("Notices from code (a launch gate refused a session; it is tried again by itself, and the notice closes when it passes):", ...notes.map((m) => `- ${m.id}: ${m.body?.gate} refused ${m.body?.role}${m.ref ? ` for ${m.ref}` : ""}${m.body?.stage ? ` at ${m.body.stage}` : ""}: ${String(m.body?.findings ?? m.body?.why ?? "").split("\n").slice(0, 3).join("; ").slice(0, 300)}`), "");
+  if (notes.length) L.push("Notices from code (a launch gate refused a session; it is tried again by itself, and the notice closes when it passes or its item is gone):", ...notes.map((m) => `- ${m.id}: ${m.body?.gate} refused ${m.body?.role}${m.ref ? ` for ${m.ref}` : ""}${m.body?.stage ? ` at ${m.body.stage}` : ""}: ${String(m.body?.findings ?? m.body?.why ?? "").split("\n").slice(0, 3).join("; ").slice(0, 300)}`), "");
   // unread announcements travel with the brief (benchmark 4: a changed requirement posted on a channel must reach a
   // session that starts after the post)
   if (co.data?.channels) {
@@ -788,6 +855,18 @@ export function settled(co) {
   return [...co.engine.orders.values()].every((o) => o.stage === "cancelled" || (o.stage === "done" && !WS.commitDue(co, o))) && ![...(co.data?.meetings?.meetings?.values() ?? [])].some((m) => m.state === "open");
 }
 
+/** K22 (M7 review): is `pid` a live serve? After a crash or a reboot the dead serve's pid may belong to another process
+ *  now, and every new serve refused to start ("another serve runs on this state") until serve.pid was removed by hand.
+ *  As jobs.mjs wrapperAlive does for the K2 wrappers, the process's /proc cmdline must name supervisor.mjs and serve;
+ *  with no /proc to read, a live pid counts (as before). This process is never "another" serve. */
+export function serveAlive(pid, { proc = "/proc" } = {}) {
+  if (!Number.isInteger(pid) || pid <= 0 || pid === process.pid) return false;
+  try { process.kill(pid, 0); } catch (e) { if (e.code !== "EPERM") return false; }
+  let argv;
+  try { argv = fs.readFileSync(`${proc}/${pid}/cmdline`, "utf8").split("\0"); } catch { return !fs.existsSync(proc); }
+  return argv.some((a) => path.basename(a) === "supervisor.mjs") && argv.includes("serve");
+}
+
 async function serve(opts, { idleMin = 2, maxMin = 120 } = {}) {
   const end = Date.now() + maxMin * 60000;
   const ctxFile = path.join(LIVE, "CONTEXT.md");
@@ -797,8 +876,7 @@ async function serve(opts, { idleMin = 2, maxMin = 120 } = {}) {
   const pidFile = path.join(LIVE, "serve.pid");
   if (fs.existsSync(pidFile)) {
     const other = Number(fs.readFileSync(pidFile, "utf8"));
-    let alive = false; try { process.kill(other, 0); alive = other !== process.pid; } catch { alive = false; }
-    if (alive) { say({ event: "refused", why: `another serve (pid ${other}) runs on this state` }); process.exitCode = 1; return; }
+    if (serveAlive(other)) { say({ event: "refused", why: `another serve (pid ${other}) runs on this state` }); process.exitCode = 1; return; }
   }
   fs.writeFileSync(pidFile, String(process.pid));
   const release = () => { try { if (Number(fs.readFileSync(pidFile, "utf8")) === process.pid) fs.unlinkSync(pidFile); } catch {} };
@@ -817,7 +895,7 @@ async function serve(opts, { idleMin = 2, maxMin = 120 } = {}) {
       const co = load();
       const steps = tick(co, opts);
       const context = fs.existsSync(ctxFile) ? fs.readFileSync(ctxFile, "utf8") : null;
-      const g = gateLaunches(co, plan(co, opts)); // K20: a refused launch is not reserved
+      const g = planGated(co, opts); // K20: a refused launch is not reserved, and the plan is made without it
       steps.push(...g.steps);
       const launches = reserve(co, g.pass, { context, outbox });
       if (steps.length || launches.length) save(co); // saving wakes the watcher: only when something changed
@@ -887,7 +965,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     watch(opts, Number(opt["max-min"] ?? 30)).then((w) => {
       const launches = w.plan.length ? withLock(() => {
         const co = load();
-        const g = gateLaunches(co, w.plan); // K20: as serve
+        const g = planGated(co, opts); // K20: as serve (the plan made again under this lock, without what the gate refuses)
         const out = g.pass.map((p) => { co.log.add({ type: "launch", role: p.role, msgs: p.msgs, tasks: p.tasks ?? [], why: `cycle: ${p.why}`, ...(p.gate ? { gate: p.gate } : {}) }); return { ...p, brief: briefFor(co, p, { context }) }; });
         w.steps.push(...g.steps);
         save(co);

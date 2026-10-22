@@ -8,7 +8,7 @@ import fs from "node:fs";
 import { SPECS } from "./specs.mjs";
 import { validateCmd } from "./state.mjs";
 import { validateWorkspace, validateRoleLaunch } from "./workspace.mjs";
-import { signerRole, signerName, isIndependent, packProblem, packHistory, postProblems, standingProblems, isChairFlow, flowProblems, CHAIR_SIGNERS } from "./lib.mjs";
+import { signerRole, signerName, isIndependent, packProblem, packHistory, postProblems, standingProblems, isChairFlow, flowProblems, CHAIR_SIGNERS, CHAIR_ORDER_BY } from "./lib.mjs";
 import { policyProblems } from "./policy.mjs";
 
 const SIGNERS = ["builder", "code", "checker", "orderer", "release", "founder", "evaluator", "chair", "attendee"]; // K4: evaluator signs as a level, independent by default; K19: a chair flow's chair and attendee
@@ -204,6 +204,9 @@ export function validateSpec(s) {
         need(typeof x?.id === "string" && /^[a-z0-9]+(-[a-z0-9]+)*$/.test(x.id), `scheduler ${id}: id is kebab-case`);
         need(roles.has(x?.role) && !roles.get(x?.role)?.human && ["chief-of-staff", "vp", "manager"].includes(roles.get(x?.role)?.level), `scheduler ${id}: role ${x?.role} is an agent role that orders work (chief-of-staff, vp or manager)`);
         need(names.includes(x?.flow), `scheduler ${id}: flow ${x?.flow} is one of the spec's flows (${names.join(", ")})`);
+        // M7 review: a chair flow is ordered from the top only (lib.mjs CHAIR_ORDER_BY), so its scheduler's role is too
+        const fl = specFlows(s).find((f) => f.name === x?.flow);
+        if (fl && isChairFlow(fl) && roles.has(x?.role)) need(CHAIR_ORDER_BY.includes(roles.get(x.role).level), `scheduler ${id}: flow ${x.flow} is a chair flow, ordered by ${CHAIR_ORDER_BY.join(" or ")}: role ${x.role} is a ${roles.get(x.role).level}`);
         need(x?.every === "tick", `scheduler ${id}: every is "tick" (at most once per minIntervalMin)`);
         // serve saves each run (its time), and a save wakes serve: at least half a minute between runs, or it would spin
         need(x?.minIntervalMin == null || (typeof x.minIntervalMin === "number" && x.minIntervalMin >= 0.5 && x.minIntervalMin <= 1440), `scheduler ${id}: minIntervalMin is 0.5-1440 minutes (default 1)`);

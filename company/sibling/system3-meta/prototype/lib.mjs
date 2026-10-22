@@ -275,6 +275,9 @@ export const isIndependent = (s) => !!s && (s.stage === "check" || (s.independen
 // order's worker, o.builder, so K4's guard keeps the chair off it). Which roles they are is the order's, not the flow's:
 // a WBR is chaired by the chief of staff, a Demo Crit by the head of product (adapters/s3c/rituals.mjs)
 export const CHAIR_SIGNERS = ["chair", "attendee"];
+/** M7 review: who may order a chair flow's order (by level), and who may chair one. */
+export const CHAIR_ORDER_BY = ["founder", "chief-of-staff"];
+export const CHAIR_LEVELS = ["chief-of-staff", "vp", "manager"];
 /** K19: a flow whose orders name a chair (its first stage is signed by "chair"). */
 export const isChairFlow = (def) => def?.stages?.[0]?.signer === "chair";
 // K6 (plan 2026-10-21 §3): a stage's context-pack rules, `pack:{include:[globs], exclude:[globs], history:false}`. With
@@ -496,6 +499,12 @@ export class Engine {
       hard(to == null, `flow ${flow} orders name a chair and an attendee, not a manager (--to)`);
       for (const [k, v] of [["chair", chair], ["attendee", attendee]]) { const r = this.org.role(v); hard(r?.active && !r.human, `flow ${flow}: --${k}=${v ?? ""} is not an active agent role`); }
       hard(chair !== attendee, `flow ${flow}: the attendee confirms the chair's record, so it is another role than the chair (${chair})`);
+      // M7 review: the chain guard a lesson order has ("orders a manager") had no counterpart here, so any role (a
+      // builder under its own META_ROLE) could place a ritual order, chair it and be its orderer; and a builder or a
+      // checker could be named chair. A chair flow is ordered from the top (CHAIR_ORDER_BY: the founder or the chief of
+      // staff, whose role the ritual scheduler is), and chaired by a role that chairs meetings (CHAIR_LEVELS)
+      this.guard(CHAIR_ORDER_BY.includes(this.org.role(by)?.level), "chain", `${by} may not order a ${flow} order (a chair flow is ordered by: ${CHAIR_ORDER_BY.join(", ")})`, { by });
+      this.guard(CHAIR_LEVELS.includes(this.org.role(chair).level), "chain", `flow ${flow}: --chair=${chair} is a ${this.org.role(chair).level}; a chair is one of: ${CHAIR_LEVELS.join(", ")}`, { by });
       to = by;
     } else hard(chair == null && attendee == null, `flow ${flow} orders go to a manager; only a chair flow names a chair and an attendee`);
     const byRole = this.org.role(by), toRole = this.org.role(to);
@@ -773,7 +782,9 @@ export class Engine {
       return;
     }
     const o = this.orders.get(a.order);
-    if (a.kind === "budget") { if (a.state === "approved") { o.stage = this.firstStage(o); this.log.add({ type: "budget-approved", order: o.id }); } return; }
+    // M7 review: a chair flow's order has no delegate step to send its first item, so an approved budget sends it here
+    // (a lesson order's delegate does); before, the chair got it only from the watchdog's resend
+    if (a.kind === "budget") { if (a.state === "approved") { o.stage = this.firstStage(o); this.log.add({ type: "budget-approved", order: o.id }); if (o.chair && !o.blocked) this.notifyStage(o); } return; }
     if (a.state === "approved") this.advance(o.id, { stage: a.stage, by, evidence: `decision ${a.id}: "${words}"` });
     else { o.stage = "uat"; o.loops++; this.log.add({ type: "reopen", order: o.id, from: a.stage, loops: o.loops }); this.notifyStage(o); }
   }

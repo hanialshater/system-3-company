@@ -58,7 +58,14 @@ const PKG_VALUE_OPTS = { npm: ["--prefix", "-w", "--workspace", "--userconfig", 
 const NODE_VALUE_OPTS = ["-r", "--require", "--import", "--loader", "--experimental-loader", "-e", "--eval", "-p", "--print", "--input-type", "--env-file", "--conditions", "-C", "--title", "--disable-warning", "--watch-path", "--run", "--inspect-port", "--test-name-pattern", "--test-reporter", "--test-reporter-destination", "--redirect-warnings", "--icu-data-dir", "--openssl-config", "--localstorage-file", "--experimental-config-file", "--env-file-if-exists", "--stack-size", "--max-old-space-size"];
 // M6 prep review: integrate.mjs (the merge into the run's integration branch) and inbox-export.mjs (the chief of
 // staff's code step, --commit) are code's stages, run by the supervisor: never an agent's
-const CODE_ONLY = ["integrate.mjs", "inbox-export.mjs"];
+// M7 review: so are the M7 writers, run by code as the chief of staff's steps against the integration worktree:
+// board-mirror.mjs and events-export.mjs (exports, --commit), lib/commit-file.mjs (their commit), and rituals.mjs ship
+// (the ritual flow's ship stage; its other subcommands are code's pre and post checks, harmless in an agent's own
+// worktree). An agent that ran them committed forged board items, company events or a ritual record on meta/m7 under
+// the chief of staff's message; and m7-scope.mjs, the scope check code runs them through (adapters/s3c)
+const CODE_ONLY = ["integrate.mjs", "inbox-export.mjs", "board-mirror.mjs", "events-export.mjs", "commit-file.mjs", "m7-scope.mjs"];
+const CODE_ONLY_SUB = { "rituals.mjs": ["ship"] };
+const CODE_ONLY_EVAL = new RegExp(`(^|[^\\w.-])(${CODE_ONLY.map((x) => x.replace(".", "\\.")).join("|")})`);
 const NODE_SCRIPT_DENY = (p) => base(p) === "claim.mjs" ? "claim.mjs" : base(p) === "deploy.mjs" ? "deploy.mjs" : CODE_ONLY.includes(base(p)) ? `${base(p)} (a code stage)` : /(^|\/)vercel(\/|(\.js)?$)/.test(p) ? "vercel" : null;
 const GIT_VALUE_OPTS = ["-C", "-c", "--git-dir", "--work-tree", "--namespace", "--super-prefix", "--config-env", "--exec-path", "--list-cmds", "--attr-source"];
 // git config keys that run a command or alias one (workspace.mjs TRAP_KEY's list), as `-c k=v`, `--config-env k=E`,
@@ -298,11 +305,13 @@ function commandDenial(words, line, depth, ctx = {}) {
       const [o, v] = w[k].includes("=") ? [w[k].slice(0, w[k].indexOf("=")), w[k].slice(w[k].indexOf("=") + 1)] : [w[k], w[k + 1] ?? ""];
       if (["-r", "--require", "--import", "--loader", "--experimental-loader"].includes(o)) { const d = NODE_SCRIPT_DENY(v); if (d) return d; }
       if (["-e", "--eval", "-p", "--print"].includes(o)) { const m = /claim\.mjs|deploy\.mjs|(^|[^\w.-])vercel\//.exec(v); if (m) return m[0].replace(/^[^\w]/, ""); }
+      if (["-e", "--eval", "-p", "--print"].includes(o)) { const m = CODE_ONLY_EVAL.exec(v); if (m) return `${m[2]} (a code stage)`; }
     }
     // M6 prep review: a script named through a variable (`x=supervisor; node /k/$x.mjs launched`) cannot be read
     if (cmd === "node" && opaque(script) && !w.slice(1, at).some((x) => /^(-e|--eval|-p|--print)(=|$)/.test(x))) return "node <a script the guard cannot read>";
     const d = NODE_SCRIPT_DENY(script);
     if (d) return d;
+    if (CODE_ONLY_SUB[base(script)]) { const p0 = rest.find((x) => !x.startsWith("-")); if (opaque(p0) || CODE_ONLY_SUB[base(script)].includes(p0)) return `${base(script)} ${opaque(p0) ? "<a command the guard cannot read>" : p0} (a code stage)`; }
     if (base(script) === "company.mjs" && rest.includes("publish")) return "company.mjs … publish";
     if (cmd === "node") {
       // M4 integrate: any word of the line, not only the one after the options this list knows (`node --title x
