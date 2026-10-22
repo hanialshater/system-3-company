@@ -1427,6 +1427,7 @@ export const loaders: Record<string, () => Promise<{ default: ComponentType<{ sl
   "news-comes-from-acquaintances": () => import("./math/news-comes-from-acquaintances/Demo"),
   "nines-without-end": () => import("./math/nines-without-end/Demo"),
   "no-fraction-fits": () => import("./math/no-fraction-fits/Demo"),
+  "not-every-circle-is-red": () => import("./math/not-every-circle-is-red/Demo"),
   "odd-numbers-make-squares": () => import("./math/odd-numbers-make-squares/Demo"),
   "one-boss-moves-the-mean": () => import("./math/one-boss-moves-the-mean/Demo"),
   "one-metre-more-rope": () => import("./math/one-metre-more-rope/Demo"),
