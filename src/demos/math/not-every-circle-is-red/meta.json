@@ -26,21 +26,27 @@
       "text": "\"Not every x is red\" is equivalent to \"some x is not red\" (at least one is not red): one exception is enough to deny \"every\", so \"Some circle is not red\" has the same truth as \"Not every circle is red\" in every colouring of the four circles, and the stage marks both rows alike. Recall: \"Not every train today was on time\" means at least one train was not on time.",
       "support": "convention",
       "source": "Negation of a universal statement: not (for all x, P(x)) is equivalent to (there exists x with not P(x)) (logic, derivation). Stage: holds() for each row in Demo.tsx; brief check company/domains/briefs/checks/math-wave-j-check.mjs D2.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     },
     {
       "id": "math.not-every-circle-is-red.c2",
       "text": "With one of four circles blue, \"not every circle is red\" is true and \"no circle is red\" is false; with all four red, both are false and \"some circle is red\" is true; with all four blue, \"not every\", \"no circle is red\" and \"some circle is not red\" are true and \"some circle is red\" is false. The stage's ✓/✗ marks follow these values.",
       "support": "derivation",
       "source": "company/domains/briefs/checks/math-wave-j-check.mjs label D2 (allRed: notAll false, none false, someNot false, someRed true; oneBlue: true, false, true, true; noneRed: true, true, true, false). Stage: SENTENCES[].holds in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     },
     {
       "id": "math.not-every-circle-is-red.c3",
       "text": "\"Not (no x is red)\" is equivalent to \"some x is red\": the opposite of \"none are\" is \"at least one is\".",
       "support": "convention",
       "source": "Negation of a universal negative: not (for all x, not P(x)) is equivalent to (there exists x with P(x)) (logic, definition).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     }
   ],
   "confidence": "",
