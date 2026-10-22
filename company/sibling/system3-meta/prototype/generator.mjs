@@ -69,14 +69,15 @@ export function validateSpec(s) {
   for (const [i, x] of st.entries()) {
     // K2: `async: true` runs the stage's cmd as a job outside the lock (jobs.mjs); it needs a cmd to run
     if (x.async != null) need(typeof x.async === "boolean" && (!x.async || x.run != null), `stage ${x.stage}: async is true or false, and async needs a run`);
-    // K12: a post-check is a cmd with no route (a failure refuses the leave; it sends the order nowhere), on a stage an
-    // agent leaves; it comes from the spec, never from an agent (as K1's run)
+    // K12: a post-check is a cmd on a stage an agent leaves; it comes from the spec, never from an agent (as K1's run).
+    // A failure refuses the leave, unless its output matches a `route` (M4 audit: learner-verdict's revise → build and
+    // fatal → park; with no route a revise review refused every leave and the evaluator could never hand in): an
+    // earlier stage or park, never this one
     if (x.post != null) {
-      const e = validateCmd(x.post);
+      const e = validateCmd(x.post, { stages: st.slice(0, i).map((y) => y.stage) });
       need(!e, `stage ${x.stage}: post: ${e}`);
       // K12 review: where it may go (never a stage the supervisor or a person signs) and no agent text in a shell or cwd
       if (!e) for (const q of postProblems(x)) need(false, `stage ${x.stage}: ${q}`);
-      need(x.post?.route == null, `stage ${x.stage}: post: a post-check has no route (a failure refuses the leave)`);
     }
     if (x.run == null) continue;
     need(["code", "orderer", "release"].includes(x.signer), `stage ${x.stage}: a run is for a stage signed by code, orderer or release, not ${x.signer}`);

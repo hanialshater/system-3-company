@@ -78,7 +78,7 @@ test("K12: a post-check validates in the spec (a cmd with no route, on a stage a
   assert.deepEqual(flowProblems(SPEC().flow), []);
   const bad = (f) => { const s = SPEC(); f(s.flow.stages); return validateSpec(s).join("\n"); };
   assert.match(bad((st) => { st[0].post = { argv: [] }; }), /stage build: post: argv is a non-empty list/);
-  assert.match(bad((st) => { st[0].post = { ...STAMP, route: { x: "build" } }; }), /stage build: post: a post-check has no route/);
+  assert.match(bad((st) => { st[0].post = { ...STAMP, route: { x: "build" } }; }), /stage build: post: route "x" goes to build, not an earlier stage \(none\) or park/); // M4 audit: a route, but never to its own stage
   assert.match(bad((st) => { st[0].post = { ...STAMP, retries: 2 }; }), /stage build: post: unknown cmd field retries/);
   assert.match(bad((st) => { st.splice(1, 0, { stage: "gates", signer: "code", evidence: [], post: STAMP }); }), /stage gates: a post-check is for a stage an agent leaves/);
   assert.match(bad((st) => { st[2].run = { argv: ["node", "x"] }; st[2].post = STAMP; }), /stage ship: a post-check is for a stage an agent leaves/);

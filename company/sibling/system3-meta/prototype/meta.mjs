@@ -23,7 +23,8 @@
 //   node meta.mjs room heartbeat --run=<R>
 //   node meta.mjs room leave --run=<R> [--verdict=pass|revise [--to=<earlier stage>]] --evidence=<path> [--findings=…] [--learned=…] [--mistake=…]
 //        K11: --to sends a revise back to that earlier stage instead of build (refused for the stage itself or a later one)
-//        K12: a stage with a `post` cmd runs it first; a failure refuses the leave (exit 1, findings) and the run stays open
+//        K12: a stage with a `post` cmd runs it first; a failure refuses the leave (exit 1, findings) and the run stays open,
+//        unless it matches the post's `route`: then code's reading signs it (revise to that stage, or park with an ask)
 //   node meta.mjs room abandon --run=<R> --by=<role> --reason=…   supervisor: end a bad run, sign nothing
 //   node meta.mjs room recover                                expired leases → left-without-leave, order back in the queue
 //   node meta.mjs room usage --run=<R> --tokens=<n>           the harness's token count for a run (supervisor only)
@@ -58,7 +59,7 @@
 // Exit: 0 ok, 1 refused, 2 usage or state error.
 import fs from "node:fs";
 import path from "node:path";
-import { Refused, flowMetrics, packHistory } from "./lib.mjs";
+import { Refused, flowMetrics, packHistory, isIndependent } from "./lib.mjs";
 import * as GEN from "./generator.mjs";
 import * as WS from "./workspace.mjs";
 import { proposePolicy, activatePolicy, managerReport, recordCycle, KNOBS } from "./policy.mjs";
@@ -107,21 +108,22 @@ function pack(co, run, ctx, session, item) {
   const ws = WS.ensure(co, o);
   const dir = ws ? ws.workdir ?? path.join(WS.specOf(co).root, o.task) : path.join(LIVE, "work", o.task);
   if (ctx.stage === "build" && !ws) fs.mkdirSync(dir, { recursive: true });
-  const vars = { workdir: dir, task: o.task ?? "", slug: o.slug ?? o.task ?? "" };
+  const vars = { ...(o.workspace?.vars ?? {}), workdir: dir, task: o.task ?? "", slug: o.slug ?? o.task ?? "" }; // K5 audit: ${run} ${n} ${port} too, as briefs and cmds
   // Benchmark 1 finding (writer-1): the prefix dropped META_LIVE_DIR, so a copied command wrote to the wrong state
   const pre = [process.env.META_LIVE_DIR && `META_LIVE_DIR=${process.env.META_LIVE_DIR}`, process.env.META_STATE && `META_STATE=${process.env.META_STATE}`].filter(Boolean).map((x) => x + " ").join("");
   const iso = (m) => new Date(m * 60000).toISOString();
   // K6: the stage's pack rules. history:false leaves out the order's findings, its history and this role's memory of
   // the order (stage 6: the learner reads the artifact before the account); include/exclude name the files it reads
   const sd = co.engine.flows.get(o.flow)?.stages.find((x) => x.stage === ctx.stage);
-  const hist = packHistory(sd), pf = WS.packFiles(dir, sd?.pack);
+  const hist = packHistory(sd), pf = WS.packFiles(dir, sd?.pack, vars);
   const mem = hist ? ctx.memory : ctx.memory.filter((e) => !String(e.did ?? "").includes(` on ${o.id}:`));
   const k6 = { ...(hist ? {} : { history_withheld: "this stage judges the artifact before the account: no prior findings, build history or notes on this order; do not look them up (flow show, item show, events, build notes)" }), ...(pf ? { files: pf.files, files_truncated: pf.truncated, read_only: pf.include.length ? pf.include : null, never_read: pf.exclude } : {}) };
   return { run, session, item, lease_min: Number(opt.lease ?? 30), order: o.id, task: o.task, title: o.title, priority: o.priority, stage: ctx.stage, accept: ws ? interpolate(o.accept ?? "", vars) : o.accept, workdir: dir + "/", workdir_exists: fs.existsSync(dir), ...(ws ? (ws.error ? { workspace_error: ws.error } : { branch: o.workspace.branch, base_sha: o.workspace.sha, env: o.workspace.env, run_meta_from: HERE }) : {}), findings: hist ? o.findings ?? null : null, memory: mem.map((e) => ({ ...e, t: iso(e.t) })), history: hist ? o.history.map((h) => ({ ...h, t: iso(h.t) })) : [], ...k6,
     ...(sd?.post ? { post_check: `your leave first runs: ${sd.post.argv.join(" ")} (code's check of this stage; a failure refuses the leave, prints its findings and keeps this run open to fix)` } : {}), // K12
     cap_means: "--cap counts every item in this session, including the first one you entered",
-    leave_with: absCmds(`${pre}node meta.mjs room leave --run=${run} --evidence=<path>${ctx.stage === "check" ? " --verdict=pass|revise --findings='…'" : ""} --learned='…'`),
-    next_with: absCmds(`${pre}node meta.mjs room next --run=${run} --cap=<cap from your brief> --wait=90 --evidence=<path>${ctx.stage === "check" ? " --verdict=pass|revise --findings='…'" : ""} --learned='…'`) };
+    // K4 audit: every independent (reviewing) stage hands in a verdict, not only check (stage 6/7: next_with had no revise)
+    leave_with: absCmds(`${pre}node meta.mjs room leave --run=${run} --evidence=<path>${isIndependent(sd) ? " --verdict=pass|revise --findings='…'" : ""} --learned='…'`),
+    next_with: absCmds(`${pre}node meta.mjs room next --run=${run} --cap=<cap from your brief> --wait=90 --evidence=<path>${isIndependent(sd) ? " --verdict=pass|revise --findings='…'" : ""} --learned='…'`) };
 }
 
 function main() {

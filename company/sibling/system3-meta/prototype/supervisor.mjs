@@ -4,7 +4,8 @@
 //   test1   runs the builder's tests and signs as `code`
 //   run     K1: any stage signed by code, or with a `run` cmd in the spec, runs by code (runCodeStage; the cmd check is
 //           state.mjs runCmdCheck: {argv, cwd, env, timeoutMs, pass, findings, route}, with ${slug}/${task}/${workdir});
-//           K11: a failure whose output matches a `route` regex is revised back to that earlier stage, not to build
+//           K11: a failure whose output matches a `route` regex is revised back to that earlier stage, not to build;
+//           a route to `park` parks the order with an ask (M4 audit: an active publish hold); `errorExit` codes are a stage-error
 //   workspace  K5: with a spec `workspace`, each order with a builder gets its git worktree once (workspace.mjs ensure);
 //           its cmd stages run there with its env, and its brief names it; a git failure holds the order whatever its
 //           stage (no launch, `room enter`/`next` refuse its items) until `retry`
@@ -75,7 +76,9 @@ export function runCodeStage(co, o, s) {
 export function applyCmdResult(co, o, s, t) {
   const { engine, rooms, mailbox } = co;
   const stage = o.stage;
-  const say = (t) => ({ step: stage, kind: "cmd", order: o.id, result: t.stageError ? "stage-error" : t.pass ? "pass" : "revise", output: t.output, findings: t.findings, route: t.route });
+  const say = (t) => ({ step: stage, kind: "cmd", order: o.id, result: t.stageError ? "stage-error" : t.pass ? "pass" : t.route === "park" ? "park" : "revise", output: t.output, findings: t.findings, route: t.route });
+  // M4 audit (plan §2 ship table): "active publish hold → park + ask"; a route to park signs nothing and spends no loop
+  const park = (t) => { engine.parkRouted(o, { by: s.signer === "orderer" ? o.manager : "code", stage, why: t.findings ?? t.output }); return say(t); };
   // K11: a routed failure goes back to the earlier stage its route names (ship's "claims not verified" → check, not a
   // rebuild); the route stays in the findings so the stage it lands on reads why. No route: build, as before
   const to = (t) => (t.pass ? null : t.route ?? null);
@@ -84,12 +87,14 @@ export function applyCmdResult(co, o, s, t) {
   if (s.signer === "code") {
     t ??= runCmdCheck(o, s);
     if (t.stageError) return err(t);
+    if (t.route === "park") return park(t);
     engine.advance(o.id, { stage, by: "code", verdict: t.pass ? "pass" : "revise", findings: why(t), to: to(t) });
     return say(t);
   }
   if (s.signer === "orderer") {
     t ??= runCmdCheck(o, s);
     if (t.stageError) return err(t);
+    if (t.route === "park") return park(t);
     engine.advance(o.id, { stage, by: o.manager, verdict: t.pass ? "pass" : "revise", evidence: `${t.output} (supervisor.mjs)`, findings: why(t), to: to(t) });
     return say(t);
   }
@@ -99,6 +104,7 @@ export function applyCmdResult(co, o, s, t) {
     if (!m || !rel) return null;
     t ??= runCmdCheck(o, s);
     if (t.stageError) return err(t); // the release role enters only to sign
+    if (t.route === "park") return park(t); // its pool:release message is withdrawn by the park
     const { run } = rooms.enter({ msg: m.id, role: rel.id });
     rooms.leave(run, { verdict: t.pass ? "pass" : "revise", evidence: `${t.output} (supervisor.mjs)`, findings: why(t), learned: null, to: to(t) });
     rooms.closeSession(rooms.runs.get(run).session, `${stage} done`);
@@ -362,8 +368,10 @@ export function briefFor(co, item, { context = null } = {}) {
     const sd = o ? co.engine.flows.get(o.flow)?.stages.find((x) => x.stage === first.body?.stage) : null, hist = packHistory(sd);
     L.push(`1. Enter: \`node meta.mjs room enter --msg=${item.msgs[0]} --role=${item.role}\`. The JSON pack gives the order, stage, workdir, accept criteria, ${hist ? "findings, history, memory" : "memory"}${sd?.pack?.include?.length || sd?.pack?.exclude?.length ? ", the files you read" : ""} and the exact \`next_with\` and \`leave_with\` commands. Your session cap is ${item.cap} (${item.msgs.length} item${item.msgs.length > 1 ? "s" : ""} queued${o ? `, starting with ${o.task}` : ""}).`);
     if (!hist) L.push(`This stage (${sd.stage}) judges the artifact before the account: its pack leaves out prior findings and build history. Judge the work itself; do not read the builder's notes, earlier reviews, \`flow show\`, \`item show\` or \`events\` for this order before your own findings are written.`);
-    if (sd?.pack?.include?.length) L.push(`Read only these in the workdir: ${sd.pack.include.join(", ")}.`);
-    if (sd?.pack?.exclude?.length) L.push(`Never open: ${sd.pack.exclude.join(", ")}.`);
+    // K6 audit: the globs as the pack applies them (the order's ${slug}, ${task}, … filled in)
+    const gv = o ? { ...(o.workspace?.vars ?? {}), workdir: o.workdir ?? path.join(LIVE, "work", o.task ?? ""), task: o.task ?? "", slug: o.slug ?? o.task ?? "" } : {};
+    if (sd?.pack?.include?.length) L.push(`Read only these in the workdir: ${sd.pack.include.map((g) => interpolate(g, gv)).join(", ")}.`);
+    if (sd?.pack?.exclude?.length) L.push(`Never open: ${sd.pack.exclude.map((g) => interpolate(g, gv)).join(", ")}.`);
     if (item.msgs.length > 1 && sd?.pack) L.push("Each item's pack states its own stage's rules.");
     // K4: an independent stage's role reviews, whatever its level (a role signer such as learner-evaluator)
     if (r.level === "checker" || (o && isIndependent(co.engine.flows.get(o.flow)?.stages.find((x) => x.stage === first.body?.stage)))) L.push("2. Check the work against its accept criteria and the shipped work it must agree with. Never fix it. Report defects by class: list every instance of a class, each as what is wrong → what is required.", `3. Hand in with \`next_with\` (\`--cap=${item.cap} --verdict=pass\` or \`--verdict=revise --findings='…'\`, \`--evidence=<path>\`, \`--learned='one line'\`) to take the next item in this session: it waits up to 90 s for one, so always hand in with it, and stop only when it says your session is over.`);

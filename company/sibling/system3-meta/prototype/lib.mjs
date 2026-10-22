@@ -532,12 +532,21 @@ export class Engine {
     hard(o, `no order ${id}`);
     hard(!["done", "cancelled", "parked"].includes(o.stage), `${id} is ${o.stage}: only an open order is parked`);
     hard(!!reason, "a park says why (--reason)");
-    o.parked = { stage: o.stage, loops: o.loops, by, reason, t: this.clock.now(), ...(ask ? { loopCap: true } : {}) };
+    o.parked = { stage: o.stage, loops: o.loops, by, reason, t: this.clock.now(), ...(ask && !ask.routed ? { loopCap: true } : {}) };
     o.stage = "parked"; o.parks = (o.parks ?? 0) + 1; // a run entered before the park is stale after a resume (Rooms.leave)
     if (withdraw) this.withdraw(o, { by, reason: `parked: ${reason}` });
     this.log.add({ type: "parked", order: id, from: o.parked.stage, loops: o.loops, by, reason });
     for (const fn of this.onParked) fn(o, { by, reason, ask });
     return o;
+  }
+
+  /** M4 audit (plan 2026-10-21 §2): a cmd or post-check whose route says `park` (a learner's Verdict: fatal, an active
+   *  publish hold: adapters/s3c emit route "park") parks the order with K9's ask to its orderer, every finding so far
+   *  plus this one; no revise loop is spent (before, a fatal could only revise: a fresh build that cannot fix it). */
+  parkRouted(o, { by, stage, why }) {
+    const findings = [...o.history.filter((h) => h.findings).map((h) => ({ stage: h.stage, by: h.by, verdict: h.verdict, findings: h.findings })), { stage, by, verdict: "park", findings: String(why).slice(0, 2000) }];
+    this.log.add({ type: "park-route", order: o.id, stage, by, why: String(why).slice(0, 400) });
+    return this.park(o.id, { by, reason: `${stage}: ${String(why).split("\n")[0].slice(0, 200)}`, ask: { kind: "decision", findings, routed: true } });
   }
 
   resume(id, { by, reason, extraLoops = null }) {
@@ -766,7 +775,12 @@ export class Rooms {
     }
     // K12 review: a leave advance refuses anyway (no evidence, wrong signer) runs no post-check; with enforce off it runs
     // (advance only records those violations and signs, so the post-check's own violation must be recorded too)
-    if (!(this.config.enforce && this.engine.refusesSign(o, x.stage, x.role, { evidence, consult: x.consult }))) this.checkPost(x, o, { verdict, evidence, post });
+    const pr = !(this.config.enforce && this.engine.refusesSign(o, x.stage, x.role, { evidence, consult: x.consult })) ? this.checkPost(x, o, { verdict, evidence, post }) : null;
+    // M4 audit: a routed post-check failure is code's reading of the record (learner-verdict: revise → build, fatal →
+    // park), whatever verdict the agent typed; it signs instead of refusing (the evaluator's revise review was refused
+    // on every leave, so stage 6 could never revise)
+    if (pr?.route === "park") return this.leaveParked(x, o, pr, { learned, mistake, tokens });
+    if (pr?.route) { verdict = "revise"; to = pr.route === "build" ? null : pr.route; findings = [findings, pr.findings ?? pr.output].filter(Boolean).join("\n"); }
     this.engine.advance(o.id, { stage: x.stage, by: x.role, verdict, evidence, findings, consult: x.consult, postChecked: true, to }); // K11
     x.state = "left";
     const m = this.mailbox.msgs.get(x.msg);
@@ -776,6 +790,22 @@ export class Rooms {
       (this.memory.get(x.role) ?? this.memory.set(x.role, []).get(x.role)).push({ t: this.clock.now(), did, learned, mistake });
       if (tokens != null) this.log.add({ type: "usage", run, role: x.role, tokens, auto: true });
       this.log.add({ type: "leave", run, role: x.role, order: o.id, stage: x.stage, verdict, minutes: this.clock.now() - x.entered });
+    }
+    return o;
+  }
+
+  /** M4 audit: the leave of a run whose post-check routed to park: nothing is signed, the order parks with an ask, and
+   *  the stage's files are committed (K7) as for any stage that leaves. */
+  leaveParked(x, o, pr, { learned, mistake, tokens }) {
+    this.engine.parkRouted(o, { by: x.role, stage: x.stage, why: pr.findings ?? pr.output });
+    x.state = "left";
+    const m = this.mailbox.msgs.get(x.msg);
+    if (!["done", "withdrawn"].includes(m.state)) this.mailbox.done(x.msg, { run: x.run, report: { stage: x.stage, verdict: "park" } });
+    for (const fn of this.engine.onAdvanced) fn(o, { stage: x.stage, by: x.role, verdict: "park" });
+    if (this.config.autoBookkeeping) {
+      (this.memory.get(x.role) ?? this.memory.set(x.role, []).get(x.role)).push({ t: this.clock.now(), did: `${x.stage} on ${o.id}: park (loop ${x.loops})`, learned, mistake });
+      if (tokens != null) this.log.add({ type: "usage", run: x.run, role: x.role, tokens, auto: true });
+      this.log.add({ type: "leave", run: x.run, role: x.role, order: o.id, stage: x.stage, verdict: "park", minutes: this.clock.now() - x.entered });
     }
     return o;
   }
@@ -791,9 +821,12 @@ export class Rooms {
     hard(mine || this.postCheck, `stage ${x.stage} has a post-check and nothing here runs it`);
     const t = mine ? post : this.postCheck(o, sd.post, { evidence: evidence ?? "", verdict, stage: x.stage });
     const rec = { order: o.id, run: x.run, role: x.role, stage: x.stage, verdict, output: String(t.output ?? "").slice(0, 400), outsideLock: !!t.outsideLock }; // K12 review: which run was used
-    if (t.pass) { this.log.add({ type: "post-check", pass: true, ...rec, ...(t.findings ? { findings: t.findings } : {}) }); return; }
+    if (t.pass) { this.log.add({ type: "post-check", pass: true, ...rec, ...(t.findings ? { findings: t.findings } : {}) }); return null; }
+    // M4 audit: a failure whose output matches the post's route is a verdict, not a defect of the leave (validateSpec:
+    // an earlier stage or park); the caller signs it. A stage-error never routes (judgeCmd)
+    if (t.route) { this.log.add({ type: "post-check", pass: false, route: t.route, ...rec, findings: t.findings ?? null }); return { route: t.route, output: t.output, findings: t.findings ?? null }; }
     const why = t.stageError ? "the post-check itself failed (fix it or ask the supervisor to abandon the run)" : "fix the work and leave again: this run is still open";
-    if (!this.config.enforce) { this.log.add({ type: "violation", rule: "post-check", msg: t.output, ...rec, findings: t.findings ?? null }); return; }
+    if (!this.config.enforce) { this.log.add({ type: "violation", rule: "post-check", msg: t.output, ...rec, findings: t.findings ?? null }); return null; }
     this.log.add({ type: "refuse", rule: "post-check", msg: `${t.output}; ${why}`, ...rec, findings: t.findings ?? null });
     const e = new Refused(`post-check: ${x.stage} on ${o.id} refused the leave: ${t.output}; ${why}`);
     e.findings = t.findings ?? null;

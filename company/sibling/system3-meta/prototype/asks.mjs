@@ -99,10 +99,10 @@ export function askSummary(co) {
 export function raiseParkAsk(co, o, { reason, findings = [] }) {
   const lines = findings.map((f, i) => `${i + 1}. ${f.stage} (${f.verdict} by ${f.by}): ${f.findings}`);
   const why = [`${o.id}${o.title ? ` (${o.title})` : ""} is parked at ${o.parked.stage}: ${reason}.`, `Findings so far (${findings.length}):`, ...(lines.length ? lines : ["(none recorded)"]),
-    `Decide: \`node meta.mjs order resume ${o.id} --by=<you> --reason='…' [--extra-loops=<n>]\` (back to ${o.parked.stage}, one more loop by default) or \`node meta.mjs order cancel ${o.id} --by=<you> --reason='…'\`. Either answers this ask.`].join("\n");
+    `Decide: \`node meta.mjs order resume ${o.id} --by=<you> --reason='…' [--extra-loops=<n>]\` (back to ${o.parked.stage}${o.parked.loopCap ? ", one more loop by default" : ""}) or \`node meta.mjs order cancel ${o.id} --by=<you> --reason='…'\`. Either answers this ask.`].join("\n");
   const base = { by: o.manager, kind: "decision", title: `Parked ${o.id}: resume or cancel?`, why, due: co.engine.clock.now() + 24 * 60 };
   let it = null;
-  for (const extra of [o.orderer && o.orderer !== o.manager ? { to: o.orderer, escalate: "loop cap: the orderer decides whether its order goes on" } : null, {}].filter(Boolean)) {
+  for (const extra of [o.orderer && o.orderer !== o.manager ? { to: o.orderer, escalate: `${o.parked.loopCap ? "loop cap" : "parked"}: the orderer decides whether its order goes on` } : null, {}].filter(Boolean)) {
     try { it = raise(co, { ...base, ...extra }); break; } catch (e) { if (!e.refused) throw e; base.failed = e.message; }
   }
   if (!it) { co.log.add({ type: "park-ask-failed", order: o.id, why: base.failed }); return null; }

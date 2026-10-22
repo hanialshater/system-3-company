@@ -385,9 +385,11 @@ const PACK_SKIP = (n) => n === ".git" || n === "node_modules" || n.startsWith(".
 export const PACK_MAX = 400;
 /** The files of `dir` a stage's pack rules let in: { files, truncated, include, exclude }, or null with no include or
  *  exclude rules (the pack then names no files: every run before K6). A missing dir is no files. */
-export function packFiles(dir, p) {
+export function packFiles(dir, p, vars = {}) {
   if (!p?.include?.length && !p?.exclude?.length) return null;
-  const inc = (p.include ?? []).map(packGlobRe), exc = (p.exclude ?? []).map(packGlobRe);
+  // K6 audit: globs take the order's vars (stage 6's pack is artifacts/walkthroughs/${slug}/: as written it matched nothing)
+  const include = (p.include ?? []).map((g) => fill(g, vars)), exclude = (p.exclude ?? []).map((g) => fill(g, vars));
+  const inc = include.map(packGlobRe), exc = exclude.map(packGlobRe);
   const files = []; let truncated = false;
   const walk = (rel) => {
     let ents; try { ents = fs.readdirSync(path.join(dir, rel), { withFileTypes: true }); } catch { return; }
@@ -401,5 +403,5 @@ export function packFiles(dir, p) {
     }
   };
   walk("");
-  return { files, truncated, include: p.include ?? [], exclude: p.exclude ?? [] };
+  return { files, truncated, include, exclude };
 }

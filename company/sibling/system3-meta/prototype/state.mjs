@@ -282,7 +282,11 @@ export function runTest1(o) {
 // ---- K1: a stage `run` as a command (plan 2026-10-21 §3: lesson stages 2, 3, 4, 8 and 9 are scripts, and test1 only
 // knew `node --test` or page.md). A cmd comes from the spec, never from an agent: it is not a CHECK_KEY, because order
 // checks and meeting rules are agent-written (a chair's --rules would otherwise make code run any argv).
-export const CMD_KEYS = ["argv", "cwd", "env", "timeoutMs", "pass", "findings", "route"];
+// M4 audit: `errorExit` lists exit codes that are a stage-error, not a revise (adapters/s3c: exit 2 usage, 3 environment;
+// plan §2 stage 3 "exit 3 = no evidence, stage errors, not revise": without it a broken host burned the builder's loops)
+export const CMD_KEYS = ["argv", "cwd", "env", "timeoutMs", "pass", "findings", "route", "errorExit"];
+/** M4 audit: a route may also say `park` (plan §2: a learner's fatal, an active publish hold: park + ask, K8). */
+export const PARK_ROUTE = "park";
 const badRe = (x) => { try { new RegExp(x, "m"); return false; } catch { return true; } };
 /** Why a cmd is invalid, or null. `stages`: the flow's stage names before this one (a route only goes back). */
 export function validateCmd(c, { stages = null } = {}) {
@@ -296,11 +300,12 @@ export function validateCmd(c, { stages = null } = {}) {
   const p = c.pass ?? "exit0";
   if (!(p === "exit0" || (p && typeof p === "object" && ((p.tap === true && Object.keys(p).length === 1) || (typeof p.json === "string" && "equals" in p && Object.keys(p).length === 2))))) return `pass is "exit0", {tap: true} or {json: "<dotted path into stdout JSON>", equals: <value>}`;
   if (c.findings != null && (typeof c.findings !== "object" || typeof c.findings.fromStdout !== "string" || badRe(c.findings.fromStdout))) return "findings is {fromStdout: <regular expression>}";
+  if (c.errorExit != null && !(Array.isArray(c.errorExit) && c.errorExit.every((x) => Number.isInteger(x) && x > 0 && x < 256))) return "errorExit is a list of non-zero exit codes (1-255) that are a stage-error";
   if (c.route != null) {
     if (typeof c.route !== "object" || Array.isArray(c.route)) return "route is {<regular expression>: <stage>}";
     for (const [re, to] of Object.entries(c.route)) {
       if (badRe(re)) return `route ${JSON.stringify(re)} is not a regular expression`;
-      if (stages && !stages.includes(to)) return `route ${JSON.stringify(re)} goes to ${to}, not an earlier stage (${stages.join(", ") || "none"})`;
+      if (stages && !stages.includes(to) && to !== PARK_ROUTE) return `route ${JSON.stringify(re)} goes to ${to}, not an earlier stage (${stages.join(", ") || "none"}) or ${PARK_ROUTE}`;
     }
   }
   return null;
@@ -310,7 +315,8 @@ export function validateCmd(c, { stages = null } = {}) {
  *  review); a variable the order does not have stays as written. */
 export const interpolate = (s, vars) => s.replace(/\$\{(slug|task|workdir|run|n|port|evidence|verdict|stage)\}/g, (m, k) => (k in vars ? vars[k] ?? "" : m));
 const dig = (x, p) => p.split(".").filter(Boolean).reduce((v, k) => (v == null ? undefined : k === "length" && (Array.isArray(v) || typeof v === "string") ? v.length : v[k]), x);
-const parseJson = (t) => { try { return JSON.parse(t); } catch {} const l = t.trim().split("\n").reverse().find((x) => /^[[{]/.test(x.trim())); try { return l ? JSON.parse(l) : undefined; } catch { return undefined; } };
+// K1 audit: the last line that parses, not the last that looks like JSON ("[advisory] x" after the JSON was "not JSON")
+const parseJson = (t) => { try { return JSON.parse(t); } catch {} for (const l of t.trim().split("\n").reverse()) { if (!/^[[{]/.test(l.trim())) continue; try { return JSON.parse(l); } catch {} } return undefined; };
 /** A cmd ready to run for order `o`: argv/cwd/env interpolated, `node` as this node. Shared by runCmdCheck (sync) and
  *  jobs.mjs (K2: the same cmd started detached, judged on a later tick by judgeCmd). */
 export function prepareCmd(o, s, extra = {}) {
@@ -335,16 +341,18 @@ export function judgeCmd(c, label, r, timeoutMs = c.timeoutMs ?? 60_000) {
   const out = String(r.stdout ?? ""), err = String(r.stderr ?? ""), both = `${out}\n${err}`;
   const p = c.pass ?? "exit0";
   let pass, why;
+  const errExit = !r.error && !r.timedOut && (c.errorExit ?? []).includes(r.status);
   if (r.error) { pass = false; why = r.error; }
   else if (r.timedOut) { pass = false; why = `timed out after ${timeoutMs} ms`; }
+  else if (errExit) { pass = false; why = `exit ${r.status} (errorExit: the stage failed, not the work)`; }
   else if (p === "exit0") { pass = r.status === 0; why = `exit ${r.status}`; }
   else if (p.tap) { const n = (k) => Number((out.match(new RegExp(`^# ${k} (\\d+)`, "m")) || [])[1] ?? NaN); pass = r.status === 0 && n("fail") === 0 && n("pass") > 0; why = `exit ${r.status}, ${out.split("\n").filter((l) => /^# (tests|pass|fail)/.test(l)).join(" ") || "no TAP counts"}`; }
-  else { const j = parseJson(out); const v = j === undefined ? undefined : dig(j, p.json); pass = j !== undefined && JSON.stringify(v) === JSON.stringify(p.equals); why = j === undefined ? "stdout is not JSON" : `${p.json} = ${JSON.stringify(v)?.slice(0, 200)}${pass ? "" : `, wanted ${JSON.stringify(p.equals)}`}`; }
+  else { const j = parseJson(out); const v = j === undefined ? undefined : dig(j, p.json); pass = j !== undefined && JSON.stringify(v) === JSON.stringify(p.equals) && r.status === 0; why = j === undefined ? `exit ${r.status}, stdout is not JSON` : `${p.json} = ${JSON.stringify(v)?.slice(0, 200)}${JSON.stringify(v) === JSON.stringify(p.equals) ? "" : `, wanted ${JSON.stringify(p.equals)}`}${r.status === 0 ? "" : `, exit ${r.status}`}`; } // K1 audit: {"errors":[]} then a crash (exit 2) passed
   let findings = null;
   if (c.findings?.fromStdout) { const m = [...out.matchAll(new RegExp(c.findings.fromStdout, "gm"))].map((x) => (x[1] ?? x[0]).trim()).filter(Boolean); findings = m.length ? m.join("\n").slice(0, 2000) : null; }
   if (!pass && !findings) findings = both.trim().split("\n").filter(Boolean).slice(-20).join("\n").slice(0, 2000) || null;
   const route = pass ? null : Object.entries(c.route ?? {}).find(([re]) => new RegExp(re, "m").test(both))?.[1] ?? null;
-  return { pass, output: `${label}: ${why}`, findings, route, code: r.status ?? null, timedOut: !!r.timedOut, stageError: !!(r.error || r.timedOut) };
+  return { pass, output: `${label}: ${why}`, findings, route: errExit ? null : route, code: r.status ?? null, timedOut: !!r.timedOut, stageError: !!(r.error || r.timedOut || errExit) };
 }
 /** Run stage `s`'s `run` cmd for order `o` and wait: { pass, output, findings, route, code, timedOut, stageError }.
  *  findings are advisory on a pass (copy-tells, a11y) and the reason on a fail; route is the earlier stage the first
