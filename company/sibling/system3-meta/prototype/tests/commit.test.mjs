@@ -11,7 +11,7 @@ import { spawnSync } from "node:child_process";
 const LIVE = fs.mkdtempSync(path.join(os.tmpdir(), "meta-k7-"));
 process.env.META_LIVE_DIR = LIVE;
 const { make } = await import("../state.mjs");
-const { tick } = await import("../supervisor.mjs");
+const { tick, settled: await_settled } = await import("../supervisor.mjs");
 const WS = await import("../workspace.mjs");
 const { validateSpec, builtinSpec } = await import("../generator.mjs");
 const HERE = path.dirname(new URL(import.meta.url).pathname);
@@ -112,7 +112,7 @@ test("refused: a staged protected path (as of the base commit) holds the order, 
   assert.equal(o.stage, "test1", "the stage was signed");
   assert.equal(log(dir).length, 0, "nothing committed");
   assert.equal(o.stageError.kind, "workspace");
-  assert.match(o.stageError.why, /^workspace: commit after build: the commit would change protected paths company\/constitution\/protected-paths.txt, tests\/qa\/contract.md/);
+  assert.match(o.stageError.why, /^workspace: commit after build: the order's branch would change protected paths company\/constitution\/protected-paths.txt, tests\/qa\/contract.md since its base/);
   assert.equal(sh(dir, "diff", "--cached", "--name-only"), "", "what was staged is unstaged");
   assert.ok(fs.readFileSync(path.join(dir, "lesson.md"), "utf8"), "the work tree is left as it was");
   assert.equal(co.log.events.filter((e) => e.type === "commit-refused").length, 1);
@@ -184,5 +184,78 @@ test("the CLI: `room leave` reports the stage's commit, or the hold", () => {
   assert.equal(l.out.commit, sh(dir, "rev-parse", "HEAD"));
   assert.equal(sh(dir, "log", "-1", "--format=%s"), `meta: ${o} build CC`);
   assert.equal(run("meta.mjs", "events", "--type=commit").out.length, 1, "the commit event was saved");
+  // K7 review: a later stage that changed nothing reports no commit (null), not the earlier stage's sha as its own
+  assert.equal(run("supervisor.mjs", "tick").code, 0); // test1 finds no `ok`: back to build
+  const q2 = run("meta.mjs", "queue", "toy-builder-1").out;
+  const p2 = run("meta.mjs", "room", "enter", `--msg=${q2[0].msg}`, "--role=toy-builder-1").out;
+  const l2 = run("meta.mjs", "room", "leave", `--run=${p2.run}`, "--evidence=nothing");
+  assert.equal(l2.code, 0, l2.err);
+  assert.equal(l2.out.commit, null);
+  assert.equal(sh(dir, "rev-parse", "HEAD"), l.out.commit);
   assert.equal(remoteRefs(), REMOTE_BEFORE);
+});
+
+test("K7 review: an agent's own commits on the branch are checked too: a [deploy] message, a protected path, since the base", () => {
+  const co = fresh();
+  const o = order(co, "CG"); tick(co);
+  const dir = o.workdir;
+  // the reviewer's probe: a protected file edited with sed (the K10 guard denies only Write/Edit), then committed by hand
+  fs.appendFileSync(path.join(dir, "tests", "qa", "contract.md"), "weakened\n");
+  sh(dir, "commit", "-qam", "[deploy] mine");
+  fs.writeFileSync(path.join(dir, "lesson.md"), "x\n");
+  build(co, o);
+  assert.match(o.stageError.why, /^workspace: commit after build: commit [0-9a-f]+ on meta\/m4-CG names \[deploy\]/);
+  assert.deepEqual(log(dir), ["[deploy] mine"], "the kernel committed nothing on top");
+  assert.equal(sh(dir, "diff", "--cached", "--name-only"), "", "unstaged");
+  // the message rewritten, the protected change kept: still refused, on the path, though nothing staged touches it
+  sh(dir, "commit", "-q", "--amend", "-m", "mine");
+  delete o.stageError;
+  tick(co);
+  assert.match(o.stageError.why, /the order's branch would change protected paths tests\/qa\/contract.md since its base/);
+  assert.deepEqual(log(dir), ["mine"]);
+  // and with nothing left to stage (the agent committed everything itself), the checks still run
+  sh(dir, "add", "-A"); sh(dir, "commit", "-qm", "rest");
+  delete o.stageError;
+  tick(co);
+  assert.match(o.stageError?.why ?? "", /protected paths tests\/qa\/contract.md/, "a skipped commit is no way around the check");
+  // the protected change undone in a later commit: the branch no longer changes it, so the build is accepted
+  sh(dir, "checkout", BASE, "--", "tests/qa/contract.md"); sh(dir, "commit", "-qm", "undo");
+  delete o.stageError;
+  fs.writeFileSync(path.join(dir, "ok"), "");
+  const steps = tick(co);
+  assert.equal(o.workspace.pendingCommit, undefined);
+  assert.equal(steps.find((s) => s.step === "commit").result, "committed");
+  assert.equal(log(dir)[0], `meta: ${o.id} build lesson-cg`);
+  assert.equal(remoteRefs(), REMOTE_BEFORE);
+});
+
+test("K7 review: a commit refused after the last stage (the order done) is held, and committed on the tick after a retry", () => {
+  const s = spec();
+  // the last stage (ship) is a release cmd that writes a protected file next to its report
+  const st = s.flow.stages;
+  s.flow.stages = [st[0], { ...st[1], run: { argv: ["node", "-e", "0"] } }, st[2], { stage: "ship", signer: "release", evidence: ["report.md"], run: { argv: ["node", "-e", "const f=require('fs');f.writeFileSync('report.md','r\\n');f.appendFileSync('tests/qa/contract.md','x\\n')"] } }];
+  const co = fresh(s);
+  const o = order(co, "CF"); tick(co);
+  const dir = o.workdir;
+  fs.writeFileSync(path.join(dir, "lesson.md"), "x\n");
+  build(co, o);
+  tick(co);
+  assert.equal(o.stage, "check");
+  const m = co.mailbox.queue("pool:checker", "work").find((x) => x.ref === o.id);
+  co.rooms.leave(co.rooms.enter({ msg: m.id, role: co.org.byLevel("checker")[0].id }).run, { evidence: "e" });
+  tick(co);
+  assert.equal(o.stage, "done");
+  assert.deepEqual(o.workspace.pendingCommit, { stage: "ship" });
+  assert.match(o.stageError.why, /commit after ship: the order's branch would change protected paths tests\/qa\/contract.md/);
+  assert.equal(await_settled(co), false, "a held last commit is work left");
+  assert.equal(tick(co).filter((x) => x.order === o.id).length, 0, "held");
+  sh(dir, "checkout", "--", "tests/qa/contract.md");
+  delete o.stageError; // supervisor.mjs retry
+  const steps = tick(co);
+  assert.equal(steps.find((x) => x.step === "commit" && x.order === o.id).result, "committed");
+  assert.equal(o.workspace.pendingCommit, undefined);
+  assert.equal(log(dir)[0], `meta: ${o.id} ship lesson-cf`);
+  assert.equal(sh(dir, "status", "--porcelain"), "");
+  assert.equal(await_settled(co), true);
+  assert.equal(tick(co).filter((x) => x.order === o.id).length, 0, "done, nothing left");
 });

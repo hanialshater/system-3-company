@@ -16,8 +16,10 @@
 // stage that leaves (engine.advance, pass or revise) is committed in the order's worktree by code: `git add -A` and
 // `git commit -m "meta: <O> <stage> <slug>"`. Refused (and the order held, as a workspace stage-error, until the change
 // is undone and `supervisor.mjs retry`; the next tick commits again): a message matching /\[deploy\]/i (vercel.json
-// builds only [deploy] commits; the slug is an agent's text), and any staged path matching a glob of the repo's
-// protected-paths.txt as of the order's base commit (the worktree's own copy is the agent's to edit). It never pushes.
+// builds only [deploy] commits; the slug is an agent's text) or naming any commit on the branch since the order's base
+// (an agent's own `git commit` too, K7 review), and any path the branch changes since that base (commits plus index)
+// matching a glob of the repo's protected-paths.txt as of the base commit (the worktree's own copy is the agent's to
+// edit). It never pushes.
 import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
@@ -187,10 +189,14 @@ export function ensure(co, o, { create = true } = {}) {
       if (ok(st) && st.stdout.trim()) { fs.mkdirSync(path.dirname(ex), { recursive: true }); fs.appendFileSync(ex, `${text && !text.endsWith("\n") ? "\n" : ""}/node_modules\n`); }
     }
   }
+  // K7 review: the base as a commit, for K7's checks of everything the branch did since (a reused branch's sha is its
+  // head, past the base: commits there were never checked)
+  const b = created && !has ? { status: 0, stdout: at.sha } : git(w.repo, "rev-parse", "--verify", "-q", `${base}^{commit}`);
+  if (!ok(b)) return { error: why(b, `git rev-parse ${base}`) };
   const all = { ...vars, workdir: dir };
   const env = Object.fromEntries(Object.entries(w.env ?? {}).map(([k, v]) => [k, fill(v, all)]));
   o.workdir = dir;
-  o.workspace = { kind: w.kind, repo: w.repo, dir, branch, base, sha: at.sha, env, vars: all };
+  o.workspace = { kind: w.kind, repo: w.repo, dir, branch, base, sha: at.sha, baseSha: out(b)[0], env, vars: all };
   co.log.add({ type: "workspace", order: o.id, task: o.task, dir, branch, base, sha: at.sha, created });
   return done(created);
 }
@@ -219,21 +225,32 @@ export function commit(co, o, stage) {
   if (out(h)[0] !== o.workspace.branch) return { error: `${dir} is on ${out(h)[0] === "HEAD" ? "a detached HEAD" : `branch ${out(h)[0]}`}, not ${o.workspace.branch}: switch it back and retry` };
   const add = git(dir, "add", "-A");
   if (!ok(add)) return { error: why(add, `git add -A in ${dir}`) };
-  const st = git(dir, "diff", "--cached", "--name-only", "--no-renames", "-z"); // a rename lists both paths: moving a protected file away is caught
-  if (!ok(st)) return { error: why(st, `git diff --cached in ${dir}`) };
-  const files = st.stdout.split("\0").filter(Boolean);
-  if (!files.length) return { skipped: true };
   const unstage = () => git(dir, "reset", "-q");
-  const has = git(dir, "ls-tree", "--name-only", o.workspace.sha, "--", c.protectedPaths);
-  if (!ok(has)) { unstage(); return { error: why(has, `git ls-tree ${o.workspace.sha.slice(0, 7)}`) }; }
+  // K7 review: only the kernel's message and the staged diff were checked, so a builder's own `git commit -qam
+  // "[deploy] mine"` (a protected file edited with sed: the K10 guard denies only Write/Edit) sat under the kernel's
+  // clean commit on the branch that is merged later. Now every commit on the branch since the order's base, and the
+  // whole change from that base (commits plus index), are checked, whether or not this stage staged anything
+  const base = o.workspace.baseSha ?? o.workspace.sha; // states from before the K7 review: the sha ensure saw
+  const lg = git(dir, "log", "-z", "--format=%h %B", `${base}..HEAD`);
+  if (!ok(lg)) { unstage(); return { error: why(lg, `git log ${base.slice(0, 7)}..HEAD in ${dir}`) }; }
+  const bad = lg.stdout.split("\0").filter((m) => DEPLOY.test(m)).map((m) => m.split(" ")[0]);
+  if (bad.length) { unstage(); return { refused: true, error: `commit ${bad.join(", ")} on ${o.workspace.branch} names [deploy] in its message (a deploy needs the founder's approval): rewrite or drop it in ${dir} (the kernel never rewrites an agent's commits)` }; }
+  const all = git(dir, "diff", "--cached", "--name-only", "--no-renames", "-z", base); // a rename lists both paths: moving a protected file away is caught
+  if (!ok(all)) { unstage(); return { error: why(all, `git diff --cached ${base.slice(0, 7)} in ${dir}`) }; }
+  const has = git(dir, "ls-tree", "--name-only", base, "--", c.protectedPaths);
+  if (!ok(has)) { unstage(); return { error: why(has, `git ls-tree ${base.slice(0, 7)}`) }; }
   let globs = [];
   if (has.stdout.trim()) {
-    const t = git(dir, "show", `${o.workspace.sha}:${c.protectedPaths}`);
+    const t = git(dir, "show", `${base}:${c.protectedPaths}`);
     if (!ok(t)) { unstage(); return { error: why(t, `git show ${c.protectedPaths}`) }; }
     globs = globsOf(t.stdout).map(globRe);
   }
-  const hit = files.filter((f) => globs.some((g) => g.test(f)));
-  if (hit.length) { unstage(); return { refused: true, error: `the commit would change protected paths ${hit.join(", ")} (${c.protectedPaths}: only a ratified amendment changes them): undo the change in ${dir}` }; }
+  const hit = all.stdout.split("\0").filter(Boolean).filter((f) => globs.some((g) => g.test(f)));
+  if (hit.length) { unstage(); return { refused: true, error: `the order's branch would change protected paths ${hit.join(", ")} since its base ${base.slice(0, 7)} (${c.protectedPaths}: only a ratified amendment changes them): undo the change in ${dir}, in the work tree or in the commit that made it` }; }
+  const st = git(dir, "diff", "--cached", "--name-only", "--no-renames", "-z"); // this stage's own change
+  if (!ok(st)) { unstage(); return { error: why(st, `git diff --cached in ${dir}`) }; }
+  const files = st.stdout.split("\0").filter(Boolean);
+  if (!files.length) return { skipped: true };
   // the repo's own identity when it has one; never --no-verify (the repo's hooks are its rules)
   const id = git(dir, "config", "user.email").stdout?.trim() ? [] : ["-c", "user.name=System 3 Meta", "-c", "user.email=meta@localhost"];
   const r = git(dir, ...id, "commit", "-q", "-m", msg);

@@ -114,7 +114,8 @@ export function tick(co, { acceptance = null, faults = null } = {}) {
   for (let changed = true; changed;) {
     changed = false;
     for (const o of engine.orders.values()) {
-      if (o.blocked || o.stage === "done") continue;
+      // K7 review: a done order's last commit (after ship) refused or failed was skipped here, so a retry never committed it
+      if (o.blocked || (o.stage === "done" && !o.workspace?.pendingCommit)) continue;
       if (o.stageError?.kind === "workspace") continue; // K5: held until a retry, whatever its stage (K5 review)
       if (o.stageError?.stage === o.stage && o.stageError?.loops === o.loops) continue; // K2: held until a retry
       // K5: the order's worktree, made once when it has a builder (before its first brief names it); a git failure
@@ -137,6 +138,7 @@ export function tick(co, { acceptance = null, faults = null } = {}) {
         if (o.stageError?.kind === "workspace") { steps.push({ step: o.stage, kind: "workspace", order: o.id, result: "stage-error", output: o.stageError.why }); continue; }
         if (c) steps.push({ step: "commit", order: o.id, result: c.sha ? "committed" : "nothing to commit", output: c.sha ?? "" });
       }
+      if (o.stage === "done") continue; // only its pending commit was left to do
       const sd = engine.stageDef(o);
       if (sd?.run || sd?.signer === "code" || o.stage === "test1") {
         const st = runCodeStage(co, o, sd);
@@ -436,7 +438,8 @@ export function reserve(co, planned, { context = null, outbox = null } = {}) {
 
 /** Is anything left to do? Open orders, or open meetings. */
 export function settled(co) {
-  return [...co.engine.orders.values()].every((o) => o.stage === "done") && ![...(co.data?.meetings?.meetings?.values() ?? [])].some((m) => m.state === "open");
+  // K7 review: a done order whose last commit is pending (held, or due on the next tick) is work left
+  return [...co.engine.orders.values()].every((o) => o.stage === "done" && !o.workspace?.pendingCommit) && ![...(co.data?.meetings?.meetings?.values() ?? [])].some((m) => m.state === "open");
 }
 
 async function serve(opts, { idleMin = 2, maxMin = 120 } = {}) {
