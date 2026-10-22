@@ -29,6 +29,7 @@ export class Log {
 }
 
 export const DEFAULT_MAX_LOOPS = 3; // K9: a spec's `maxLoops: true` (plan 2026-10-21 §3)
+export const BUDGET_WARN_AT = 0.8; // K13: the company's projects.json thresholds.warnAt (tools/lib/ledger.mjs gate)
 export const DEFAULT_CONFIG = { enforce: true, autoBookkeeping: true, supervisor: true, asyncApprovals: true, leases: true, dedupe: true };
 
 function makeGuard(log, config) {
@@ -354,6 +355,37 @@ export class Engine {
   maxLoopsOf(o) {
     const cap = this.policyOf(o).maxLoops ?? this.defaultMaxLoops;
     return cap == null ? null : cap + (o.extraLoops ?? 0);
+  }
+
+  // ---- K13 (plan 2026-10-21 §M5): charged spend. o.spent was set to 0 at orderNew and never moved, so a budget was
+  // a number nobody checked. `launch finished` charges a launch's cumulative tokens to the orders it touched, split
+  // evenly (a head-of-product session signing 3 orders: an approximation, stated as such). The planner then refuses
+  // new sessions for an order at or over its budget and asks for a top-up (supervisor tick, asks.raiseBudgetAsk).
+  overBudget(o) { return !!o && Number.isFinite(o.budget) && o.budget > 0 && (o.spent ?? 0) >= o.budget; }
+  charge(ids, tokens, { launch = null } = {}) {
+    const os = [...new Set(ids)].map((id) => this.orders.get(id)).filter(Boolean);
+    const n = Math.round(Number(tokens));
+    if (!os.length || !(n > 0)) return [];
+    const each = Math.floor(n / os.length);
+    const out = os.map((o, i) => {
+      const t = each + (i < n - each * os.length ? 1 : 0); // the remainder, a token each, to the first orders: the sum is exact
+      o.spent = (o.spent ?? 0) + t;
+      // warn once per budget at BUDGET_WARN_AT (a top-up is a new budget, so it can warn again)
+      if (o.budget > 0 && o.spent / o.budget >= BUDGET_WARN_AT && o.budgetWarned !== o.budget) { o.budgetWarned = o.budget; this.log.add({ type: "budget-warn", order: o.id, spent: o.spent, budget: o.budget, pct: Math.round((o.spent / o.budget) * 100), launch }); }
+      return { order: o.id, tokens: t, spent: o.spent, budget: o.budget };
+    });
+    this.log.add({ type: "charge", launch, tokens: n, split: os.length, orders: out });
+    return out;
+  }
+  /** K13: an approved budget ask raises the order's budget by its amount; the planner takes it up again. */
+  topUp(id, { amount, by, ask = null }) {
+    const o = this.orders.get(id);
+    hard(o, `no order ${id}`);
+    hard(Number.isFinite(amount) && amount > 0, "a top-up is a positive number of tokens");
+    const was = o.budget;
+    o.budget = was + amount;
+    this.log.add({ type: "budget-topup", order: id, by, ask, amount, from: was, to: o.budget, spent: o.spent ?? 0 });
+    return o;
   }
 
   // ---- definitions
@@ -701,6 +733,7 @@ export class Rooms {
     const r = this.org.role(role);
     return [...this.mailbox.queue(role, "work"), ...this.mailbox.queue(`role:${role}`, "work"), ...this.mailbox.queue(`pool:${r.level}`, "work")]
       .filter((m) => this.engine.independentOf(this.engine.orders.get(m.ref), m.body.stage, role))
+      .filter((m) => !this.engine.overBudget(this.engine.orders.get(m.ref))) // K13: a session spends nothing more on it
       .sort((a, b) => (PRIORITY[a.priority] - PRIORITY[b.priority]) || a.ts - b.ts);
   }
 

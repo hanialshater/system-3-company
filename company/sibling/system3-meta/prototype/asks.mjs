@@ -71,10 +71,42 @@ export function answer(co, { by, id, decision, text, viaOrder = false }) {
   const po = parkedOn(co, it);
   if (!viaOrder && po) refuse(`${id} asks whether parked ${po.id} goes on: answer it with \`order resume ${po.id} --by=${by} --reason='…'\` or \`order cancel ${po.id} --by=${by} --reason='…'\``);
   if (!["yes", "no", "redirect"].includes(decision) || !text) refuse("an answer is yes, no or redirect, with text");
+  // K13: a budget ask on an order is decided by the router's frozen choice, never by whoever the (editable) assignee
+  // now is (the builder whose order is stopped could reassign it to itself and approve its own top-up)
+  const bo = budgetOrder(co, it);
+  if (bo && by !== it.ask.routedTo) refuse(`${id} is a budget ask on ${bo.id}: ${it.ask.routedTo} decides it`);
   it.ask.answer = { decision, text, t: co.engine.clock.now() };
   comment(co, { by, id, text: `${decision}: ${text}` });
   update(co, { by, id, state: "done" });
   co.log.add({ type: "ask-answer", item: id, by, decision });
+  if (bo && decision === "yes") co.engine.topUp(bo.id, { amount: it.ask.amount, by, ask: id }); // the planner takes it up again
+  return it;
+}
+
+const budgetOrder = (co, it) => (it?.ask?.kind === "budget" && it.ask.order ? co.engine.orders.get(it.ask.order) ?? null : null);
+
+/** K13 (plan 2026-10-21 §M5): the top-up a stopped order asks for: what it has overspent plus half its budget again. */
+export const topUpFor = (o) => Math.max(0, Math.ceil((o.spent ?? 0) - o.budget)) + Math.ceil(o.budget / 2);
+
+/** K13: an order at or over its budget gets one `kind:budget` ask for a top-up, routed as any budget ask (asks.route:
+ *  over the chief of staff's limit to the founder, over the manager's to the chief of staff, else the lane manager).
+ *  It is raised by the order's builder (whose work stops), or its manager when there is none; one ask per budget
+ *  (o.budgetHold): no repeat while it is open, and none after a no, until the budget changes. Never throws. */
+export function raiseBudgetAsk(co, o) {
+  if (!co.engine.overBudget(o) || ["done", "cancelled"].includes(o.stage) || o.budgetHold?.budget === o.budget) return null;
+  const amount = topUpFor(o);
+  const why = [`${o.id}${o.title ? ` (${o.title})` : ""} has spent ${o.spent} of its ${o.budget}-token budget (charged from its launches' cumulative tokens). The planner starts no session on it until the budget is raised.`,
+    `Asked: a top-up of ${amount} tokens (what it overspent plus half its budget again).`,
+    `Decide: \`node meta.mjs ask answer --by=<you> --id=<this ask> --decision=yes --text='…'\` raises the budget by ${amount}; \`--decision=no\` keeps it stopped (then park or cancel it: \`node meta.mjs order park|cancel ${o.id} --by=<you> --reason='…'\`).`].join("\n");
+  const base = { kind: "budget", title: `Budget: ${o.id} at ${o.spent} of ${o.budget} tokens, top up ${amount}?`, why, due: co.engine.clock.now() + 24 * 60, amount };
+  let it = null, failed = null;
+  for (const by of [...new Set([o.builder, o.manager].filter(Boolean))]) {
+    try { it = raise(co, { ...base, by }); break; } catch (e) { if (!e.refused) throw e; failed = e.message; }
+  }
+  o.budgetHold = { budget: o.budget, spent: o.spent, amount, ask: it?.id ?? null, t: co.engine.clock.now() };
+  if (!it) { co.log.add({ type: "budget-ask-failed", order: o.id, why: failed }); return null; }
+  it.ask.order = o.id; it.labels.push("budget");
+  co.log.add({ type: "budget-stop", order: o.id, spent: o.spent, budget: o.budget, amount, item: it.id, to: it.assignee });
   return it;
 }
 

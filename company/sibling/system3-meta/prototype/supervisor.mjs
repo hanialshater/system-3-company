@@ -47,6 +47,7 @@ import * as CH from "./channels.mjs";
 import * as JOBS from "./jobs.mjs";
 import * as WS from "./workspace.mjs";
 import { isIndependent, packHistory } from "./lib.mjs";
+import { raiseBudgetAsk } from "./asks.mjs";
 
 /** K1: a stage signed by code, or any stage with a `run` cmd (plan 2026-10-21 §3: the lesson flow's stages 2, 3, 4, 8 and 9
  *  are scripts; the old table only knew test1/uat/ship by name). No `run`: test1 as before (the order's text checks or
@@ -120,6 +121,8 @@ export function tick(co, { acceptance = null, faults = null } = {}) {
   for (const m of mailbox.promote()) steps.push({ step: "promote", msg: m.id, order: m.ref });
   for (const x of rooms.recover()) steps.push({ step: "recover", run: x.run, role: x.role, order: x.order });
   steps.push(...JOBS.collect(co, { apply: applyCmdResult })); // K2: only what has ended; a running job is left alone
+  // K13: an order at or over its charged budget gets one budget ask (the planner below starts no session on it)
+  for (const o of engine.orders.values()) { const it = raiseBudgetAsk(co, o); if (it) steps.push({ step: "budget", order: o.id, result: "stopped", output: `${o.spent} of ${o.budget}: ${it.id} to ${it.assignee}` }); }
   let madeOne = false;
   for (let changed = true; changed;) {
     changed = false;
@@ -260,7 +263,8 @@ export function plan(co, { batchLater: batchDefault = 3, cap: capDefault = 4 } =
   const out = [];
   const consider = (role, queued) => {
     // K5: an order held on its workspace launches no one: `room enter` would refuse its item (K5 review)
-    const msgs = queued.filter((m) => co.engine.orders.get(m.ref)?.stageError?.kind !== "workspace");
+    // K13: nor does an order at or over its charged budget (its budget ask waits for a decider)
+    const msgs = queued.filter((m) => co.engine.orders.get(m.ref)?.stageError?.kind !== "workspace" && !co.engine.overBudget(co.engine.orders.get(m.ref)));
     if (!msgs.length) return;
     // the lane's policy, when it sets them, overrides the command-line defaults
     const k = co.engine.policies.get(org.role(role)?.lane)?.active ? co.engine.policies.get(org.role(role).lane).versions[co.engine.policies.get(org.role(role).lane).active - 1].knobs : {};
@@ -353,7 +357,7 @@ export function briefFor(co, item, { context = null } = {}) {
     if (t.kind === "chair") L.push(`You chair meeting ${t.ref}: \`node meta.mjs meeting show --id=${t.ref}\`. For each item ${t.items.join(", ")}: write your own position (\`meeting position\`), then \`meeting reveal --id=${t.ref} --by=${item.role} --item=<n>\` (add \`--force\` if someone is missing; they are named in the minutes), read them (\`meeting read\`), and \`meeting decide --id=${t.ref} --by=${item.role} --item=<n> --decision='…'\` (answer every objection with \`--answers\`; follow-ups as \`--actions='[{"title":"…","owner":"<role>","due":"YYYY-MM-DD"}]'\`). Every decision code can check (word limits per line, required text, banned words, which kinds of line are allowed, answers unique across items; e.g. "numbers as digits" is a ban on the number words) also goes in \`--rules='[{"tasks":"<task prefix>","checks":{…}}]'\`: code then checks it on every matching order, open or later (checks: ${CHECK_KEYS.join(", ")}; e.g. \`{"lineMaxWords":[{"prefix":"**Why:**","maxWords":20}],"allowedLines":["# ","**Q","**Answer:**","**Why:**"],"distinctAnswers":{"prefix":"**Answer:**","across":"ROUND"}}\`). ${co.data?.meetings?.meetings?.get(t.ref)?.kind === "wbr" ? `This is a WBR: the pack (\`meeting show\`) holds page 0, hits and misses, roadmap and goals, and leadership asks, all computed by code; cite its numbers, never your own. Close it with \`node meta.mjs wbr close --by=${item.role} --meeting=${t.ref} --summary='3-5 sentences'\` (not \`meeting close\`: that would skip the WBR record), then run \`node meta.mjs goal-review --by=${item.role}\`.` : `Then \`meeting close --id=${t.ref} --by=${item.role}\`.`} The decision text is what builders will follow: make it concrete.`);
   }
   const asks = (item.tasks ?? []).filter((t) => t.kind === "ask").map((t) => t.ref);
-  if (asks.length) L.push(`Asks waiting for your decision: ${asks.join(", ")}. Read each (\`node meta.mjs item show --id=<ISS>\`), check the claim against the work (live/<dir>/work/), and decide. If a shipped order must change, reopen it with what is wrong and what is required: \`node meta.mjs order reopen <O> --by=${item.role} --findings='…'\`. An ask about a parked order (K9: it hit its loop cap) is answered by deciding it: \`node meta.mjs order resume <O> --by=${item.role} --reason='…'\` (with what must change) or \`node meta.mjs order cancel <O> --by=${item.role} --reason='…'\`. Otherwise answer: \`node meta.mjs ask answer --by=${item.role} --id=<ISS> --decision=yes|no|redirect --text='…'\`.`);
+  if (asks.length) L.push(`Asks waiting for your decision: ${asks.join(", ")}. Read each (\`node meta.mjs item show --id=<ISS>\`), check the claim against the work (live/<dir>/work/), and decide. If a shipped order must change, reopen it with what is wrong and what is required: \`node meta.mjs order reopen <O> --by=${item.role} --findings='…'\`. An ask about a parked order (K9: it hit its loop cap) is answered by deciding it: \`node meta.mjs order resume <O> --by=${item.role} --reason='…'\` (with what must change) or \`node meta.mjs order cancel <O> --by=${item.role} --reason='…'\`. A budget ask (K13: an order spent its budget) is answered yes to raise the budget by its amount, or no to keep it stopped. Otherwise answer: \`node meta.mjs ask answer --by=${item.role} --id=<ISS> --decision=yes|no|redirect --text='…'\`.`);
   const dlg = (item.tasks ?? []).filter((t) => t.kind === "delegate").map((t) => t.ref);
   if (dlg.length) {
     const lane = r.lane, builders = co.org.active().filter((x) => x.level === "builder" && x.lane === lane).map((x) => x.id);

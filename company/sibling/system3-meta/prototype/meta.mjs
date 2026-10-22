@@ -54,6 +54,9 @@
 //   node meta.mjs contract brief --id=<C>   ·   contract deliver --id=<C> --by=<ctr> --summary=… --path=live/contracts/<C>/… [--findings='[{claim,source,confidence}]']
 //   node meta.mjs contract decide --id=<C> --by=<manager> --decision=accept|reject --reason=…   ·   contract show --id=<C>
 //   node meta.mjs launch config --role=<r> [--msgs=M-1,…]   K10: the role's launch settings, its orders' workdirs and protected globs
+//   node meta.mjs launch finished --launch=<L> --role=<r> --tokens=<n> [--cumulative=<n>] [--ok=false --reason=…] [--msgs=… --tasks=…]
+//        the launcher's report; K13: the cumulative tokens are charged to the orders the launch touched (even split), and
+//        an order at or over its budget gets no new session (room enter refuses; the supervisor asks kind:budget)
 //   node meta.mjs guard denied --role=<r> --tool=<t> --rule=<rule> --why=… [--launch=<L>] [--detail=…]   K10: a guard denial (the launcher)
 //   node meta.mjs events [--type=<t>]   ·   node meta.mjs memory <role>   ·   node meta.mjs org activity <role>
 // Exit: 0 ok, 1 refused, 2 usage or state error.
@@ -275,6 +278,8 @@ function dispatch(co, cmd, sub, arg) {
     // refusal would drop the hold (a refused command saves only its refusal), so this saves it and exits 1
     const held = wsBlocker(co, mailbox.msgs.get(opt.msg));
     if (held) { process.exitCode = 1; return { refused: `order ${mailbox.msgs.get(opt.msg).ref} is held: ${held}`, note: "do not start this item: the supervisor retries it (node supervisor.mjs retry --order=<O>)" }; }
+    // K13: no new session on an order at or over its charged budget (the planner plans none; this is the backstop)
+    { const bo = engine.orders.get(mailbox.msgs.get(opt.msg)?.ref); if (bo && engine.overBudget(bo)) engine.guard(false, "budget", `${bo.id} has spent ${bo.spent} of its ${bo.budget}-token budget: no session until its budget ask${bo.budgetHold?.ask ? ` (${bo.budgetHold.ask})` : ""} is approved`, { order: bo.id, by: opt.role }); }
     const { run, ctx, session, item } = rooms.enter({ msg: opt.msg, role: opt.role, as: opt.as ?? null, mode: opt.mode ?? "work", leaseMin: Number(opt.lease ?? 30) });
     // the launcher (M3) names each agent process; its usage and its crash are then this session's, exactly
     const s = rooms.sessions.get(session);
@@ -449,8 +454,16 @@ function dispatch(co, cmd, sub, arg) {
     }
     if (ss.length) rooms.recordSessionUsage(ss[0].id, tokens, "launcher");
     else log.add({ type: "usage", role: opt.role, tokens, label: "outside a room", source: "launcher", launch: opt.launch });
+    // K13: the launch's cumulative tokens (every call; --tokens, the final context, when the launcher sends none) are
+    // charged to the orders it touched, split evenly: its sessions' runs, and its launch event's msgs and tasks (the
+    // launch id is the brief's name, <seq>-<role>: supervisor.mjs reserve), plus any --msgs/--tasks given. Once per launch
+    const le = log.events.find((e) => e.type === "launch" && `${String(e.seq).padStart(4, "0")}-${e.role}` === opt.launch);
+    const touched = new Set([...rooms.runs.values()].filter((x) => ss.some((s) => s.id === x.session)).map((x) => x.order));
+    for (const id of [...(le?.msgs ?? []), ...(L("msgs") ?? [])]) { const ref = mailbox.msgs.get(id)?.ref; if (engine.orders.has(ref)) touched.add(ref); }
+    for (const t of [...(le?.tasks ?? []).map((x) => x.ref), ...(L("tasks") ?? []).map((x) => x.split(":").pop())]) { if (engine.orders.has(t)) touched.add(t); else { const o = co.data.tracker?.items?.get(t)?.ask?.order; if (o && engine.orders.has(o)) touched.add(o); } }
+    const charged = log.events.some((e) => e.type === "charge" && e.launch === opt.launch) ? [] : engine.charge([...touched], N("cumulative") ?? tokens, { launch: opt.launch });
     log.add({ type: "launch-finished", launch: opt.launch, role: opt.role, ok, tokens, cumulative: N("cumulative") ?? null, cost: N("cost") ?? null, sessions: ss.map((s) => s.id), abandoned, reason: opt.reason ?? null });
-    return { sessions: ss.map((s) => s.id), abandoned };
+    return { sessions: ss.map((s) => s.id), abandoned, charged };
   }
   // K10: what the launcher needs for one session (the role's tools/sessionMin/maxTurns/settingSources, the orders'
   // workdirs and protected globs), and the record of every call its guard denied (launcher/guard.mjs)
