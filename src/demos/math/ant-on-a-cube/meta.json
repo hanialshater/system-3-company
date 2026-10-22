@@ -1,0 +1,102 @@
+{
+  "slug": "ant-on-a-cube",
+  "title": "How short is the ant's walk over a cube?",
+  "hook": "An ant walks on the outside of a 1 m cube to the far corner. How short can its walk be?",
+  "domain": "math",
+  "concept": "surface-shortest-path",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Pythagoras: the long side of a right triangle is √(a² + b²) (math/two-squares-become-one)"
+    ],
+    "doesNotKnow": [
+      "that the shortest walk over a surface is found by unfolding it flat and drawing a straight line"
+    ]
+  },
+  "misconception": "The shortest walk across a box goes along its edges or along a face diagonal, because those are the straight lines you can see.",
+  "objective": "The learner can say that the ant's shortest walk between opposite corners of a 1 m cube is about 2.24 m, found by unfolding two faces into a 1 by 2 rectangle and drawing the straight line √(1² + 2²), which crosses the shared edge at its midpoint, and that this beats the edges (3 m) and a face diagonal plus an edge (2.41 m).",
+  "claims": [
+    {
+      "id": "math.ant-on-a-cube.c1",
+      "text": "On a 1 m cube, the route from a corner to the opposite corner along three edges is 3 m; a face diagonal then an edge is 1 + √2 ≈ 2.41 m.",
+      "support": "derivation",
+      "source": "G4 in company/domains/briefs/checks/math-wave-j-check.mjs (edges 3, diag+edge 2.4142). Face diagonal of a unit square √(1² + 1²) = √2 by Pythagoras. Demo.tsx lengthOf(ROUTES.edges), lengthOf(ROUTES.diag), shown to 0.01 m.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.ant-on-a-cube.c2",
+      "text": "Unfolding two faces that share an edge lays them flat as a 1 by 2 rectangle with the ant's corners at opposite ends; the straight line between them is √(1² + 2²) = √5 ≈ 2.24 m, and folded back up it is the shortest route over those two faces, crossing the shared edge at its midpoint.",
+      "support": "derivation",
+      "source": "G4 minimisation: a route over two faces crossing the shared edge at t along it has length √(1 + t²) + √(1 + (1 − t)²), least √5 = 2.2361 at t = 0.5. Unfolding preserves lengths within each face, so the folded route equals the straight line in the net; the line from (0,0) to (2,1) crosses x = 1 at y = 0.5. Demo.tsx LEN_FLAT = hypot(2, 1), LEN.bent = |A−M| + |M−G| with M the edge midpoint.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.ant-on-a-cube.c3",
+      "text": "No route over the cube's surface between opposite corners is shorter than √5 ≈ 2.24 m, whichever faces it crosses.",
+      "support": "derivation",
+      "source": "G4 surface-grid Dijkstra (60 grid points per edge, straight segments inside faces) finds 2.2361 = √5 (an upper bound that matches). Unfolding argument: each corner touches three faces; any surface route leaves a face at the start and enters a face at the end; every unfolding of the faces it crosses puts the two corners at least √5 apart (the nearest layouts are the 1 by 2 rectangles, by symmetry the same for all six pairs of adjacent faces).",
+      "status": "unverified"
+    },
+    {
+      "id": "math.ant-on-a-cube.c4",
+      "text": "On a flat sheet a straight line is the shortest path between two points, so the shortest walk over a surface made of flat faces is a straight line on some unfolding of the faces it crosses.",
+      "support": "derivation",
+      "source": "Triangle inequality in the plane (Euclid, Elements I.20): any broken path between two points is at least the straight segment. Unfolding a polyhedron's faces along their shared edges is an isometry on each face, so a surface path and its unfolded image have the same length.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.ant-on-a-cube.c5",
+      "text": "Recall: on a cube with 2 m edges the shortest outside walk between opposite corners is √(2² + 4²) = √20 ≈ 4.47 m, about 4.5 m; a face diagonal then an edge is 2 + 2√2 ≈ 4.83 m and three edges 6 m.",
+      "support": "derivation",
+      "source": "Scaling G4 by 2: unfolded net 2 by 4, √20 = 4.4721; 2√2 + 2 = 4.8284; 3 × 2 = 6.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "An ant walks on the outside of a cube with 2 m edges, from one corner to the corner farthest from it. Its shortest walk is about…",
+    "options": [
+      "4.5 m",
+      "4.8 m",
+      "6.0 m"
+    ],
+    "answer": 0,
+    "why": "Unfold two faces into a 2 by 4 rectangle and draw the straight line: √(2² + 4²) ≈ 4.47 m. A face diagonal then an edge is 4.83 m, and the edges 6 m."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "math:surface-shortest-path",
+    "also": [
+      "math:pythagoras-by-rearrangement"
+    ],
+    "prerequisites": [
+      "math:pythagoras-by-rearrangement"
+    ],
+    "level": "core",
+    "strand": "geometry",
+    "references": [],
+    "tags": [
+      "geometry",
+      "nets",
+      "shortest-path",
+      "pythagoras"
+    ]
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate"
+  ]
+}
