@@ -141,6 +141,14 @@ export function tick(co, { acceptance = null, faults = null } = {}) {
       }
       if (o.stage === "done") continue; // only its pending commit was left to do
       const sd = engine.stageDef(o);
+      // K12 review: a post on a stage the supervisor signs (a flow defined before validation refused it) holds the order
+      // with nothing done: toy ship.post=exit 1 entered, copied to live/shipped, then threw out of tick on every tick
+      if (sd?.post && (sd.run || sd.signer === "code" || ["test1", "uat", "ship"].includes(o.stage))) {
+        const why = `stage ${o.stage} has a post-check, but the supervisor signs it and runs none: redefine the flow without it, then retry`;
+        o.stageError = { stage: o.stage, loops: o.loops, why, t: engine.clock.now() }; log.add({ type: "stage-error", order: o.id, stage: o.stage, loops: o.loops, why });
+        steps.push({ step: o.stage, kind: "post", order: o.id, result: "stage-error", output: why });
+        continue;
+      }
       if (sd?.run || sd?.signer === "code" || o.stage === "test1") {
         const st = runCodeStage(co, o, sd);
         if (st) { steps.push(st); changed = true; }

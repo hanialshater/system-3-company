@@ -79,14 +79,16 @@ const need = (...ks) => { const miss = ks.filter((k) => opt[k] == null || opt[k]
  *  a QA stamp or diff guard can take longer); Rooms.leave uses the result only for this run, stage and loop, and runs
  *  the check itself under the lock when there is none (a batch, a state that changed in between). */
 let prePost = null;
+// K12 review: no catch-all (a bug here fell back to the slow under-lock run in silence); a state that cannot load fails
+// the same way under the lock; a leave advance refuses anyway runs nothing (Rooms.leave skips it the same way)
 function postOutsideLock() {
-  try {
-    const co = load(); const x = co.rooms.runs.get(opt.run); const o = x && co.engine.orders.get(x.order);
-    if (!o || x.state !== "running" || o.stage !== x.stage || o.loops !== x.loops) return null;
-    const sd = co.engine.flows.get(o.flow)?.stages.find((s) => s.stage === x.stage);
-    if (!sd?.post || typeof opt.evidence !== "string") return null;
-    return { ...runCmdCheck(o, sd.post, { evidence: opt.evidence, verdict: opt.verdict ?? "pass", stage: x.stage }), run: x.run, stage: x.stage, loops: x.loops };
-  } catch { return null; }
+  if (!fs.existsSync(STATE)) return null;
+  const co = load(); const x = co.rooms.runs.get(opt.run); const o = x && co.engine.orders.get(x.order);
+  if (!o || x.state !== "running" || o.stage !== x.stage || o.loops !== x.loops) return null;
+  const sd = co.engine.flows.get(o.flow)?.stages.find((s) => s.stage === x.stage);
+  if (!sd?.post || typeof opt.evidence !== "string") return null;
+  if (co.engine.config.enforce && co.engine.refusesSign(o, x.stage, x.role, { evidence: opt.evidence, consult: x.consult })) return null;
+  return { ...runCmdCheck(o, sd.post, { evidence: opt.evidence, verdict: opt.verdict ?? "pass", stage: x.stage }), run: x.run, stage: x.stage, loops: x.loops, outsideLock: true };
 }
 
 /** K5: why message `m`'s order may not be worked yet (its workspace is held or cannot be made), or null. */

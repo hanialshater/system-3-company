@@ -46,7 +46,7 @@ export function make(specName = "toy", specDef = null) {
   // a generated company (M2) keeps its spec in the state; a built-in one is looked up by name
   const spec = specDef ?? SPECS[specName];
   if (!spec) throw new Error(`no company spec ${specName} (have: ${Object.keys(SPECS).join(", ")})`);
-  const config = DEFAULT_CONFIG;
+  const config = { ...DEFAULT_CONFIG }; // K12 review: one copy per company (a test that set enforce off turned it off for every later make() in the process)
   const log = new Log(clock);
   const mailbox = new Mailbox({ log, clock, config });
   const org = new Org({ log, rooms: spec.rooms, skills: spec.skills, rituals: [] });

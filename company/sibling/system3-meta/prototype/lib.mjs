@@ -252,6 +252,27 @@ export const isIndependent = (s) => !!s && (s.stage === "check" || (s.independen
 // history:false the brief and the room pack leave out prior findings and build history (stage 6, artifact before account:
 // the learner judged the lesson through the builder's notes); exclude keeps a file out of the pack (stage 5 and build.md)
 export const packHistory = (s) => s?.pack?.history !== false;
+// K12 review: a post-check runs only at an agent's room leave. The supervisor signs code, orderer and release stages and
+// test1/uat/ship by name, and a person signs founder stages through an approval, all with engine.advance: a post there
+// either never ran (uat: a person's flow advance skipped it) or threw out of tick (toy ship.post exit 1: the files were
+// already copied, nothing saved, every later tick the same, the company stopped). ${evidence} and ${verdict} are the
+// agent's own text: never a shell or -e script, the program, or the cwd (path.resolve with no containment)
+const POST_SIGNED_BY_SUPERVISOR = ["code", "orderer", "release", "founder"];
+const AGENT_VAR = /\$\{(evidence|verdict)\}/;
+const SHELLS = /^(sh|bash|zsh|dash|ksh|fish|csh|tcsh|cmd|cmd\.exe|pwsh|powershell)$/i;
+const EVAL_FLAGS = ["-c", "-e", "--eval", "-p", "--print", "-Command", "-command"];
+export function postProblems(s) {
+  const c = s?.post;
+  if (c == null) return [];
+  if (!(c && typeof c === "object" && Array.isArray(c.argv) && c.argv.length && c.argv.every((a) => typeof a === "string"))) return ["post is a cmd {argv, …}"];
+  const p = [];
+  if (s.run != null || POST_SIGNED_BY_SUPERVISOR.includes(s.signer) || ["test1", "uat", "ship"].includes(s.stage)) p.push(`a post-check is for a stage an agent leaves, not one code runs or the supervisor or a person signs (${s.run != null ? "it has a run" : POST_SIGNED_BY_SUPERVISOR.includes(s.signer) ? `signer ${s.signer}` : `the supervisor signs ${s.stage}`}): they sign with engine.advance, which runs no post-check`);
+  const shell = SHELLS.test(c.argv[0].split(/[\\/]/).pop()); // lib.mjs imports nothing: no path.basename
+  if (AGENT_VAR.test(c.argv[0])) p.push("post: ${evidence} and ${verdict} are the agent's text and cannot name the program");
+  else if (c.argv.some((a, i) => AGENT_VAR.test(a) && (shell || EVAL_FLAGS.includes(c.argv[i - 1])))) p.push("post: ${evidence} and ${verdict} are the agent's text and cannot go into a shell or an -e/-c script (pass them as a plain argument)");
+  if (typeof c.cwd === "string" && AGENT_VAR.test(c.cwd)) p.push("post: ${evidence} and ${verdict} are the agent's text and cannot pick the cwd");
+  return p;
+}
 export function packProblem(p) {
   if (p == null) return null;
   if (typeof p !== "object" || Array.isArray(p)) return "pack is {include, exclude, history}";
@@ -274,8 +295,7 @@ export function flowProblems(def) {
     if (s.signer === "builder" && s.independent === true) p.push(`${s.stage}: an independent stage cannot be signed by the builder`);
     { const e = packProblem(s.pack); if (e) p.push(`${s.stage}: ${e}`); } // K6
     // K12: a post-check runs at an agent's leave (generator.mjs validates the cmd itself against state.mjs validateCmd)
-    if (s.post != null && !(s.post && typeof s.post === "object" && Array.isArray(s.post.argv) && s.post.argv.length)) p.push(`${s.stage}: post is a cmd {argv, …}`);
-    if (s.post != null && (s.signer === "code" || s.run != null)) p.push(`${s.stage}: a post-check is for a stage an agent leaves, not one code runs`);
+    for (const e of postProblems(s)) p.push(`${s.stage}: ${e}`);
   }
   const t1 = def.stages.find((s) => s.stage === "test1");
   if (t1 && t1.signer !== "code") p.push("test1 must be signed by code");
@@ -395,11 +415,17 @@ export class Engine {
     if (signerRole(s)) return roleId === signerRole(s); // K3: exactly that role, never its level's pool
     return r.level === s.signer;
   }
+  /** K12 review: would advance refuse this signature before its post-check guard (consult, signer, independence,
+   *  evidence)? Pure; a leave that is refused anyway runs no post-check (a QA stamp or diff guard can be slow). */
+  refusesSign(o, stage, by, { evidence = null, consult = false } = {}) {
+    const s = this.flows.get(o.flow)?.stages.find((x) => x.stage === stage);
+    return !s || consult || !this.mayAssign(o, stage, by) || (isIndependent(s) && by === o.builder) || (s.signer !== "code" && !evidence);
+  }
   /** K4: may this role work on (enter or sign) this stage of this order? Only the builder is kept off independent stages. */
   independentOf(o, stage, roleId) { return !(isIndependent(this.flows.get(o.flow)?.stages.find((x) => x.stage === stage)) && roleId === o.builder); }
 
   // ---- stages, up the chain
-  advance(id, { stage, by, verdict = "pass", evidence = null, findings = null, consult = false }) {
+  advance(id, { stage, by, verdict = "pass", evidence = null, findings = null, consult = false, postChecked = false }) {
     const o = this.orders.get(id);
     hard(o, `no order ${id}`);
     hard(o.stage === stage, `${id} is at ${o.stage}, not ${stage}`);
@@ -410,6 +436,9 @@ export class Engine {
     if (isIndependent(s)) { this.guard(by !== o.builder, "independence", `${by} built ${id} and cannot ${stage === "check" ? "check it" : `sign ${stage}`}`, { order: id, by }); (o.signers ??= {})[stage] = by; }
     if (stage === "check") o.checker = by;
     if (s.signer !== "code") this.guard(!!evidence, "evidence", `${stage} needs evidence`, { order: id, by });
+    // K12 review: the check lives with the signature: a stage with a post-check is signed only by a room leave, which ran
+    // it (`flow advance --stage=build --evidence=x` signed toy build.post=exit 1 without running it)
+    if (s.post) this.guard(postChecked, "post-check", `${stage} on ${id} has a post-check: sign it with room leave (it runs the check), not flow advance`, { order: id, by });
     o.history.push({ stage, by, verdict, t: this.clock.now(), ...(verdict === "revise" && findings ? { findings: String(findings).slice(0, 2000) } : {}) }); // every revise keeps its findings (org evaluation reads them)
     this.log.add({ type: "advance", order: id, stage, by, verdict });
     if (verdict === "pass") o.stage = this.nextStage(o);
@@ -630,8 +659,10 @@ export class Rooms {
       if (this.config.autoBookkeeping && tokens != null) this.log.add({ type: "usage", run, role: x.role, tokens, auto: true });
       return null;
     }
-    this.checkPost(x, o, { verdict, evidence, post });
-    this.engine.advance(o.id, { stage: x.stage, by: x.role, verdict, evidence, findings, consult: x.consult });
+    // K12 review: a leave advance refuses anyway (no evidence, wrong signer) runs no post-check; with enforce off it runs
+    // (advance only records those violations and signs, so the post-check's own violation must be recorded too)
+    if (!(this.config.enforce && this.engine.refusesSign(o, x.stage, x.role, { evidence, consult: x.consult }))) this.checkPost(x, o, { verdict, evidence, post });
+    this.engine.advance(o.id, { stage: x.stage, by: x.role, verdict, evidence, findings, consult: x.consult, postChecked: true });
     x.state = "left";
     const m = this.mailbox.msgs.get(x.msg);
     if (m.state === "open") this.mailbox.done(x.msg, { run, report: { stage: x.stage, verdict } });
@@ -654,7 +685,7 @@ export class Rooms {
     const mine = post && post.run === x.run && post.stage === x.stage && post.loops === x.loops;
     hard(mine || this.postCheck, `stage ${x.stage} has a post-check and nothing here runs it`);
     const t = mine ? post : this.postCheck(o, sd.post, { evidence: evidence ?? "", verdict, stage: x.stage });
-    const rec = { order: o.id, run: x.run, role: x.role, stage: x.stage, verdict, output: String(t.output ?? "").slice(0, 400) };
+    const rec = { order: o.id, run: x.run, role: x.role, stage: x.stage, verdict, output: String(t.output ?? "").slice(0, 400), outsideLock: !!t.outsideLock }; // K12 review: which run was used
     if (t.pass) { this.log.add({ type: "post-check", pass: true, ...rec, ...(t.findings ? { findings: t.findings } : {}) }); return; }
     const why = t.stageError ? "the post-check itself failed (fix it or ask the supervisor to abandon the run)" : "fix the work and leave again: this run is still open";
     if (!this.config.enforce) { this.log.add({ type: "violation", rule: "post-check", msg: t.output, ...rec, findings: t.findings ?? null }); return; }

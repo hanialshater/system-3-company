@@ -13,6 +13,7 @@ process.env.META_LIVE_DIR = LIVE;
 const { make } = await import("../state.mjs");
 const { flowProblems } = await import("../lib.mjs");
 const { validateSpec, builtinSpec } = await import("../generator.mjs");
+const { tick } = await import("../supervisor.mjs");
 const HERE = path.dirname(new URL(import.meta.url).pathname);
 const BIN = path.join(LIVE, "bin");
 fs.mkdirSync(BIN, { recursive: true });
@@ -27,6 +28,12 @@ let j; try { j = JSON.parse(fs.readFileSync(process.argv[2], "utf8")); } catch {
 console.log(JSON.stringify({ ok: j.verdict === process.argv[3], stage: process.argv[4] }));
 `);
 fs.writeFileSync(path.join(BIN, "slow.mjs"), "setTimeout(() => {}, 5000);\n");
+// lock: fails when the state lock is held (it ran inside withLock); marks every run so a test can count them
+fs.writeFileSync(path.join(BIN, "lock.mjs"), `import fs from "node:fs";
+fs.appendFileSync(process.argv[3], "ran\\n");
+if (fs.existsSync(process.argv[2])) { console.log("FINDING: ran under the lock"); process.exit(1); }
+console.log("outside the lock");
+`);
 
 const STAMP = { argv: ["node", path.join(BIN, "stamp.mjs"), "${slug}"], findings: { fromStdout: "^FINDING: (.*)$" } };
 const VERDICT = { argv: ["node", path.join(BIN, "verdict.mjs"), "${evidence}", "${verdict}", "${stage}"], pass: { json: "ok", equals: true }, findings: { fromStdout: "^FINDING: (.*)$" } };
@@ -184,4 +191,88 @@ test("K12 CLI: room leave and room next exit 1 with findings, save the refusal, 
   assert.equal(cli("batch", `--file=${ops}`).code, 0);
   assert.equal(cli("flow", "show", o2).out.stage, "check");
   assert.equal(cli("events", "--type=post-check").out.length, 2);
+});
+
+test("K12 review: a post-check is refused on every stage the supervisor or a person signs, and agent text never reaches a shell, a script or the cwd", () => {
+  const toy = builtinSpec("toy"); toy.flow.stages.find((x) => x.stage === "ship").post = { argv: ["node", "-e", "process.exit(1)"] };
+  assert.match(validateSpec(toy).join("\n"), /stage ship: a post-check is for a stage an agent leaves.*signer release/);
+  const bad = (f) => { const s = SPEC(); f(s.flow.stages); return validateSpec(s).join("\n"); };
+  assert.match(bad((st) => { st.splice(2, 0, { stage: "uat", signer: "orderer", evidence: ["acceptance"], post: STAMP }); }), /stage uat: a post-check is for a stage an agent leaves.*signer orderer/);
+  assert.match(bad((st) => { st.splice(2, 0, { stage: "go", signer: "release", evidence: ["publish"], post: STAMP }); }), /stage go: .*signer release/);
+  assert.match(bad((st) => { st.splice(2, 0, { stage: "approve", signer: "founder", evidence: ["words"], post: STAMP }); }), /stage approve: .*signer founder/);
+  const f = SPEC().flow; f.stages[2].post = STAMP;
+  assert.match(flowProblems(f).join("\n"), /ship: a post-check is for a stage an agent leaves/);
+  const inj = (post) => bad((st) => { st[1].post = post; });
+  assert.match(inj({ argv: ["sh", "-c", "grep -q ok ${evidence}"] }), /stage check: post: .*cannot go into a shell/);
+  assert.match(inj({ argv: ["/bin/bash", "x.sh", "${verdict}"] }), /cannot go into a shell/);
+  assert.match(inj({ argv: ["node", "-e", "require('${evidence}')"] }), /an -e\/-c script/);
+  assert.match(inj({ argv: ["${evidence}"] }), /cannot name the program/);
+  assert.match(inj({ argv: ["node", "x.mjs"], cwd: "${evidence}/.." }), /cannot pick the cwd/);
+  assert.deepEqual(inj(VERDICT), "", "a plain argument is fine");
+  assert.deepEqual(inj({ argv: ["sh", "-c", "test -f ${slug}"] }), "", "spec-owned variables may go into a shell");
+});
+
+test("K12 review: a supervisor-signed stage with a post (a flow from before the fix) holds the order; tick neither throws nor ships", () => {
+  const co = company(); const o = order(co);
+  fs.writeFileSync(wd(o, "STAMP"), "qa"); fs.writeFileSync(wd(o, "x.mjs"), "export {}\n");
+  co.rooms.leave(enter(co, o, "demo-builder", "demo-builder"), { evidence: "e" });
+  co.rooms.leave(enter(co, o, "role:fact-checker", "fact-checker"), { evidence: (fs.writeFileSync(wd(o, "c.json"), '{"verdict":"pass"}'), wd(o, "c.json")) });
+  co.engine.flows.get(o.flow).stages.find((x) => x.stage === "ship").post = { argv: ["node", "-e", "process.exit(1)"] };
+  const steps = tick(co); tick(co);
+  const x = co.engine.orders.get(o.id);
+  assert.equal(x.stage, "ship"); assert.match(x.stageError.why, /stage ship has a post-check, but the supervisor signs it/);
+  assert.deepEqual(steps.filter((s) => s.kind === "post").map((s) => s.result), ["stage-error"]);
+  assert.equal(fs.existsSync(path.join(LIVE, "shipped", o.task)), false, "nothing copied");
+  assert.equal(co.log.of("enter").filter((e) => e.order === o.id && e.role === "release").length, 0);
+  assert.equal(co.log.of("stage-error").filter((e) => e.order === o.id).length, 1, "held once, not every tick");
+});
+
+test("K12 review: engine.advance refuses a stage with a post-check unless a room leave ran it (flow advance, uat-style signing); a leave refused anyway runs no check", () => {
+  const co = company(); const o = order(co);
+  assert.throws(() => co.engine.advance(o.id, { stage: "build", by: "demo-builder", evidence: "x" }), (e) => e.refused && /build on O-\d+ has a post-check: sign it with room leave/.test(e.message));
+  assert.equal(co.engine.orders.get(o.id).stage, "build");
+  assert.equal(co.log.of("refuse").at(-1).rule, "post-check");
+  // enforce off: recorded as a violation, signed
+  const c2 = company(SPEC(), { enforce: false }); const o2 = order(c2);
+  c2.engine.advance(o2.id, { stage: "build", by: "demo-builder", evidence: "x" });
+  assert.equal(c2.engine.orders.get(o2.id).stage, "check"); assert.equal(c2.log.of("violation").at(-1).rule, "post-check");
+  // a leave with no evidence is refused by advance before any post-check runs
+  const marks = path.join(LIVE, "marks-doomed");
+  const s = SPEC(); s.flow.stages[0].post = { argv: ["node", path.join(BIN, "lock.mjs"), path.join(LIVE, "no-lock"), marks] };
+  const c3 = company(s); const o3 = order(c3); const run = enter(c3, o3, "demo-builder", "demo-builder");
+  assert.throws(() => c3.rooms.leave(run, { evidence: "" }), /build needs evidence/);
+  assert.equal(fs.existsSync(marks), false, "the post-check did not run");
+  c3.rooms.leave(run, { evidence: "e" });
+  assert.equal(fs.readFileSync(marks, "utf8"), "ran\n");
+  assert.equal(c3.engine.orders.get(o3.id).stage, "check");
+});
+
+test("K12 review CLI: flow advance cannot sign a post-checked stage; room leave uses the run made outside the lock (the check fails under it)", () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "meta-k12-lock-"));
+  const cli = (...args) => { const env = { ...process.env, META_LIVE_DIR: dir }; delete env.NODE_TEST_CONTEXT; const r = spawnSync("node", [path.join(HERE, "..", "meta.mjs"), ...args], { env, encoding: "utf8" }); let out = null, err = null; try { out = JSON.parse(r.stdout); } catch {} try { err = JSON.parse(r.stderr); } catch {} return { code: r.status, out, err, raw: r.stderr + r.stdout }; };
+  const marks = path.join(dir, "marks");
+  const s = SPEC(); s.flow.stages[0].post = { argv: ["node", path.join(BIN, "lock.mjs"), path.join(dir, "state.lock"), marks], findings: { fromStdout: "^FINDING: (.*)$" } };
+  const f = path.join(dir, "spec.json"); fs.writeFileSync(f, JSON.stringify(s));
+  assert.equal(cli("init", `--spec-file=${f}`).code, 0);
+  const mk = (task) => { const o = cli("order", "new", "--by=cos", "--to=lead", `--title=${task}`, `--task=${task}`, "--accept=a lesson").out.order; assert.equal(cli("order", "delegate", o, "--by=lead", "--to=demo-builder").code, 0); fs.mkdirSync(path.join(dir, "work", task), { recursive: true }); return o; };
+  const o1 = mk("B1"), o2 = mk("B2");
+  const a = cli("flow", "advance", o1, "--stage=build", "--by=demo-builder", "--evidence=x");
+  assert.equal(a.code, 1, a.raw); assert.match(a.err.error, /has a post-check: sign it with room leave/);
+  assert.equal(cli("flow", "show", o1).out.stage, "build");
+  const msg = (o) => cli("queue", "demo-builder").out.find((m) => m.order === o).msg;
+  const p = cli("room", "enter", `--msg=${msg(o1)}`, "--role=demo-builder");
+  const l = cli("room", "leave", `--run=${p.out.run}`, "--evidence=built");
+  assert.equal(l.code, 0, l.raw); assert.equal(l.out.next_stage, "check");
+  const ev = cli("events", "--type=post-check").out.at(-1);
+  assert.equal(ev.outsideLock, true); assert.match(ev.output, /exit 0/);
+  assert.equal(fs.readFileSync(marks, "utf8"), "ran\n", "run once, outside the lock, and that result used");
+  // batch: no run from outside, so the check runs under the lock (and this check fails there)
+  const q = cli("room", "enter", `--msg=${msg(o2)}`, "--role=demo-builder");
+  const ops = path.join(dir, "ops.json"); fs.writeFileSync(ops, JSON.stringify([{ cmd: "room", sub: "leave", args: { run: q.out.run, evidence: "built" } }]));
+  const b = cli("batch", `--file=${ops}`);
+  assert.equal(b.code, 1, b.raw); assert.equal(b.err.findings, "ran under the lock");
+  // a leave with no evidence runs no check at all
+  const n = cli("room", "leave", `--run=${q.out.run}`, "--evidence=");
+  assert.notEqual(n.code, 0);
+  assert.equal(fs.readFileSync(marks, "utf8"), "ran\nran\n");
 });

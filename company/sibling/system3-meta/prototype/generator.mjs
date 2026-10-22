@@ -8,7 +8,7 @@ import fs from "node:fs";
 import { SPECS } from "./specs.mjs";
 import { validateCmd } from "./state.mjs";
 import { validateWorkspace, validateRoleLaunch } from "./workspace.mjs";
-import { signerRole, signerName, isIndependent, packProblem, packHistory } from "./lib.mjs";
+import { signerRole, signerName, isIndependent, packProblem, packHistory, postProblems } from "./lib.mjs";
 
 const SIGNERS = ["builder", "code", "checker", "orderer", "release", "founder", "evaluator"]; // K4: evaluator signs as a level, independent by default
 const LEVELS = ["founder", "chief-of-staff", "vp", "manager", "builder", "checker", "release", "evaluator", "contractor"];
@@ -72,9 +72,10 @@ export function validateSpec(s) {
     // K12: a post-check is a cmd with no route (a failure refuses the leave; it sends the order nowhere), on a stage an
     // agent leaves; it comes from the spec, never from an agent (as K1's run)
     if (x.post != null) {
-      need(x.signer !== "code" && x.run == null, `stage ${x.stage}: a post-check is for a stage an agent leaves, not one code runs`);
       const e = validateCmd(x.post);
       need(!e, `stage ${x.stage}: post: ${e}`);
+      // K12 review: where it may go (never a stage the supervisor or a person signs) and no agent text in a shell or cwd
+      if (!e) for (const q of postProblems(x)) need(false, `stage ${x.stage}: ${q}`);
       need(x.post?.route == null, `stage ${x.stage}: post: a post-check has no route (a failure refuses the leave)`);
     }
     if (x.run == null) continue;
