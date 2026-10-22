@@ -15,6 +15,9 @@ export const KNOBS = {
   // K9 (plan 2026-10-21 §3): a HELD claim or a publish hold revised forever; past this many loops a revise parks the
   // order with a decision ask to the orderer. Unset: the spec's maxLoops (true: DEFAULT_MAX_LOOPS), else no cap
   maxLoops: { int: [1, 10], why: "revise loops an order may take; the next revise parks it and asks its orderer to decide" },
+  // M5 (plan 2026-10-21 §M5 exit 1, "a session over the per-lane cap"): drainCap caps items per session, nothing capped
+  // sessions per lane. Unset: no cap (the launcher's --max-parallel is the only limit)
+  maxSessions: { int: [1, 10], why: "agent sessions at work in this lane at once: the planner starts no more, and room enter refuses a new one" },
   nowBy: { subsetOf: "flow", why: "levels that may order `now` in this lane: the flow's list or fewer, never more" },
 };
 

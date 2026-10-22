@@ -17,8 +17,12 @@
 //   ship    claims the release message, copies the module (not the builder's tests) to live/shipped/<task>/, leaves
 //   recover expired leases (left without leave: the work goes back to its queue)
 //   promote `later` items past their due time
+//   pre     M5: a stage's `pre` cmd (adapters/s3c holds.mjs, ledger-gate.mjs) runs once per stage, loop and park before
+//           its work is planned; a route to park parks the order with an ask before any session is spent
+//   budget  K13: an order at or over its charged budget gets one kind:budget ask, and no session until it is approved
 //   plan    which agent sessions to start: `now` items get a fresh session at once; `next` items get a session if the
-//           role has none running; `later` items wait for a batch (--batch-later=N) or their due time
+//           role has none running; `later` items wait for a batch (--batch-later=N) or their due time; a lane whose policy sets
+//           maxSessions gets no session past it (M5)
 //
 //   node supervisor.mjs launched --role=<role> [--msgs=…]   the orchestrator started a session: plan it as starting
 //   node supervisor.mjs serve [--acceptance=<dir>] [--idle-min=2] [--max-min=120] [--faults=<json>]   the supervisor as a service
@@ -46,7 +50,7 @@ import { expireContracts } from "./contractor.mjs";
 import * as CH from "./channels.mjs";
 import * as JOBS from "./jobs.mjs";
 import * as WS from "./workspace.mjs";
-import { isIndependent, packHistory } from "./lib.mjs";
+import { isIndependent, packHistory, preKey } from "./lib.mjs";
 import { raiseBudgetAsk } from "./asks.mjs";
 
 /** K1: a stage signed by code, or any stage with a `run` cmd (plan 2026-10-21 §3: the lesson flow's stages 2, 3, 4, 8 and 9
@@ -114,6 +118,20 @@ export function applyCmdResult(co, o, s, t) {
   return null; // validateSpec allows `run` only on code, orderer and release stages
 }
 
+/** M5: run stage `sd`'s `pre` cmd for order `o` (sync, under the lock: the pre-checks are quick reads). */
+export function runPreCheck(co, o, sd) {
+  const { engine, log } = co;
+  const stage = o.stage, t = runCmdCheck(o, sd.pre);
+  log.add({ type: "pre-check", order: o.id, stage, loops: o.loops, pass: !!t.pass, route: t.route ?? null, stageError: !!t.stageError, output: String(t.output ?? "").slice(0, 400) });
+  const say = (result) => ({ step: stage, kind: "pre", order: o.id, result, output: t.output, findings: t.findings });
+  if (t.pass) { o.prechecked = preKey(o); return say("pass"); }
+  if (t.route === "park" && !t.stageError) { engine.parkRouted(o, { by: "code", stage, why: t.findings ?? t.output }); return say("park"); }
+  const why = `pre-check: ${t.output}${t.route && !t.stageError ? ` (a pre-check routes only to park, not ${t.route})` : ""}`;
+  o.stageError = { stage, loops: o.loops, why, t: engine.clock.now() };
+  log.add({ type: "stage-error", order: o.id, stage, loops: o.loops, why });
+  return say("stage-error");
+}
+
 /** One pass over every order; repeated until nothing changes (an accepted UAT makes a ship step possible). */
 export function tick(co, { acceptance = null, faults = null } = {}) {
   const { engine, rooms, mailbox, log } = co;
@@ -162,6 +180,9 @@ export function tick(co, { acceptance = null, faults = null } = {}) {
         steps.push({ step: o.stage, kind: "post", order: o.id, result: "stage-error", output: why });
         continue;
       }
+      // M5: a stage's pre-check (holds.mjs, ledger-gate.mjs) runs before its work is planned: a pass lets the planner
+      // start it, a route to park parks it with an ask (no session spent), any other failure holds it as a stage-error
+      if (engine.preDue(o) && o.builder) { steps.push(runPreCheck(co, o, sd)); changed = true; continue; }
       if (sd?.run || sd?.signer === "code" || o.stage === "test1") {
         const st = runCodeStage(co, o, sd);
         if (st) { steps.push(st); changed = true; }
@@ -253,9 +274,15 @@ export function plan(co, { batchLater: batchDefault = 3, cap: capDefault = 4 } =
   // newer one's reservation and the same ask was planned twice. A finish without that id falls back to role and time.
   const lid = (l) => `${String(l.seq).padStart(4, "0")}-${l.role}`;
   const ended = (l) => log.events.some((e) => e.type === "launch-finished" && (e.launch ? e.launch === lid(l) : e.role === l.role && e.t >= l.t));
+  // M5: sessions at work per lane (open with a run or waiting, plus launches not yet entered), for maxSessions
+  const load = new Map();
+  const laneOf = (role) => org.role(role)?.lane ?? null;
+  const bump = (role) => { const l = laneOf(role); if (l != null) load.set(l, (load.get(l) ?? 0) + 1); };
+  for (const l of new Set(org.active().map((r) => r.lane).filter((x) => x != null))) load.set(l, rooms.laneLoad(l));
   for (const l of log.events.filter((e) => e.type === "launch" && now - e.t < LAUNCH_GRACE_MIN && !(e.tasks?.length && !e.msgs?.length))) {
-    if (!log.events.some((e) => e.type === "enter" && e.role === l.role && e.t >= l.t) && !ended(l)) running.add(l.role);
+    if (!log.events.some((e) => e.type === "enter" && e.role === l.role && e.t >= l.t) && !ended(l)) { running.add(l.role); bump(l.role); }
   }
+  const laneFull = (role) => { const l = laneOf(role), cap = co.engine.laneKnobs(l).maxSessions; return cap != null && (load.get(l) ?? 0) >= cap; };
   // a session waiting for its role's next item will take it (room next --wait)
   // until it closes, and for 30 s past its deadline: its last poll can still take an item (benchmark 5: an item that
   // arrived 1 s after a wait ended was taken by the waiting session and by a fresh launch)
@@ -264,13 +291,15 @@ export function plan(co, { batchLater: batchDefault = 3, cap: capDefault = 4 } =
   const consider = (role, queued) => {
     // K5: an order held on its workspace launches no one: `room enter` would refuse its item (K5 review)
     // K13: nor does an order at or over its charged budget (its budget ask waits for a decider)
-    const msgs = queued.filter((m) => co.engine.orders.get(m.ref)?.stageError?.kind !== "workspace" && !co.engine.overBudget(co.engine.orders.get(m.ref)));
+    // M5: nor one whose stage's pre-check has not run (the next tick runs it first)
+    const msgs = queued.filter((m) => co.engine.orders.get(m.ref)?.stageError?.kind !== "workspace" && !co.engine.overBudget(co.engine.orders.get(m.ref)) && !co.engine.preDue(co.engine.orders.get(m.ref)));
     if (!msgs.length) return;
     // the lane's policy, when it sets them, overrides the command-line defaults
     const k = co.engine.policies.get(org.role(role)?.lane)?.active ? co.engine.policies.get(org.role(role).lane).versions[co.engine.policies.get(org.role(role).lane).active - 1].knobs : {};
     const batchLater = k.batchLater ?? batchDefault, cap = k.drainCap ?? capDefault;
     const now = msgs.filter((m) => m.priority === "now");
-    for (const m of now) out.push({ role, why: "now: a fresh session at once", msgs: [m.id], cap: 1 });
+    // M5: a lane at its policy's session cap (maxSessions) gets no new session, `now` items included
+    for (const m of now) { if (laneFull(role)) return; out.push({ role, why: "now: a fresh session at once", msgs: [m.id], cap: 1 }); bump(role); }
     if (running.has(role)) return; // its running session drains next and later items itself
     const next = msgs.filter((m) => m.priority === "next");
     const later = msgs.filter((m) => m.priority === "later");
@@ -281,7 +310,9 @@ export function plan(co, { batchLater: batchDefault = 3, cap: capDefault = 4 } =
       const all = [...next, ...later];
       const take = all.length - cap <= Math.ceil(cap / 2) ? all : all.slice(0, cap);
       // the cap leaves room for items that arrive while the session waits (room next --wait)
+      if (laneFull(role)) return;
       out.push({ role, why: next.length ? `next: ${next.length} waiting, no session running` : `later: a batch of ${later.length}`, msgs: take.map((m) => m.id), cap: Math.max(take.length, cap) });
+      bump(role);
     }
   };
   // K3/K4: a role signer's items go to role:<id>, and are planned for that role whatever its level (stage 7's

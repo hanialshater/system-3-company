@@ -356,6 +356,8 @@ export function standingCovers(list, { action, role, trigger }) {
 
 const COVERS = { release: /\b(approve|go)\b.*\b(deploy|release|ship)\b|\b(deploy|release|ship)\b.*\b(approve|ok|go)\b/i, "org-change": /\b(approve|add|retire|ok|yes)\b/i, budget: /\b(approve|ok|yes)\b/i };
 
+export const preKey = (o) => `${o.stage}:${o.loops}:${o.parks ?? 0}`;
+
 export class Engine {
   constructor({ log, clock, config, mailbox, org }) {
     Object.assign(this, { log, clock, config, mailbox, org });
@@ -374,6 +376,13 @@ export class Engine {
     this.defaultMaxLoops = null; // K9: the spec's `maxLoops` (state.mjs make); null: no cap unless the lane policy sets one
     this.standing = []; // K15: the spec's approvals.standing (state.mjs make; not persisted: the spec is in the state)
   }
+
+  /** M5: the knobs of a lane's active policy (the lane as it runs now; an order's own pinned version is policyOf). */
+  laneKnobs(lane) { const b = lane != null ? this.policies.get(lane) : null; return b?.active ? b.versions[b.active - 1]?.knobs ?? {} : {}; }
+  /** M5 (plan §4 holds.mjs, ledger-gate.mjs: "parked with an ask before any session is spent"): a stage's `pre` cmd,
+   *  which the supervisor runs once per stage, loop and park before the stage's work is planned or entered. True while
+   *  it has not run (passed) for where the order is now. */
+  preDue(o) { const sd = o && this.stageDef(o); return !!sd?.pre && o.prechecked !== preKey(o); }
 
   /** K15: the standing approval (AMD-015) that pre-approves this act, or null. Pure; nothing calls it in a run. */
   standingFor({ action, role, trigger }) { return standingCovers(this.standing, { action, role, trigger }); }
@@ -767,8 +776,24 @@ export class Rooms {
     const r = this.org.role(role);
     return [...this.mailbox.queue(role, "work"), ...this.mailbox.queue(`role:${role}`, "work"), ...this.mailbox.queue(`pool:${r.level}`, "work")]
       .filter((m) => this.engine.independentOf(this.engine.orders.get(m.ref), m.body.stage, role))
-      .filter((m) => !this.engine.overBudget(this.engine.orders.get(m.ref))) // K13: a session spends nothing more on it
+      .filter((m) => !this.engine.overBudget(this.engine.orders.get(m.ref)) && !this.engine.preDue(this.engine.orders.get(m.ref))) // K13: a session spends nothing more on it; M5: nor before its pre-check
       .sort((a, b) => (PRIORITY[a.priority] - PRIORITY[b.priority]) || a.ts - b.ts);
+  }
+
+  /** M5 (plan §M5 exit 1, "a session over the per-lane cap"): sessions at work in `lane` now, open with a running run
+   *  or waiting for their role's next item (an open session whose agent stopped without `room next` holds nothing). */
+  laneLoad(lane) {
+    const now = this.clock.now();
+    const busy = new Set([...this.runs.values()].filter((x) => x.state === "running").map((x) => x.session));
+    return [...this.sessions.values()].filter((s) => s.open && this.org.role(s.role)?.lane === lane && (busy.has(s.id) || (s.waitUntil != null && s.waitUntil > now - 0.5))).length;
+  }
+  /** M5: a new agent session for `role` is refused when its lane's policy caps sessions at once (knob maxSessions) and
+   *  the lane is full; the planner plans none (supervisor plan), this is the backstop at `room enter`. */
+  checkLaneCap(role) {
+    const lane = this.org.role(role)?.lane, cap = this.engine.laneKnobs(lane).maxSessions;
+    if (cap == null) return;
+    const n = this.laneLoad(lane);
+    this.guard(n < cap, "lane-cap", `lane ${lane} has ${n} session${n === 1 ? "" : "s"} at work, its policy's cap (maxSessions ${cap}): ${role} starts none until one ends`, { by: role, lane, cap, load: n });
   }
 
   /** room next: leave this run as usual, then take the next eligible item in the same session, up to `cap` items. */

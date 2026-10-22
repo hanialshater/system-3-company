@@ -279,6 +279,9 @@ function dispatch(co, cmd, sub, arg) {
     // refusal would drop the hold (a refused command saves only its refusal), so this saves it and exits 1
     const held = wsBlocker(co, mailbox.msgs.get(opt.msg));
     if (held) { process.exitCode = 1; return { refused: `order ${mailbox.msgs.get(opt.msg).ref} is held: ${held}`, note: "do not start this item: the supervisor retries it (node supervisor.mjs retry --order=<O>)" }; }
+    // M5: a stage's pre-check runs before anyone enters it; a lane at its policy's session cap starts no new session
+    { const po = engine.orders.get(mailbox.msgs.get(opt.msg)?.ref); if (po && engine.preDue(po)) engine.guard(false, "pre-check", `${po.id} at ${po.stage}: its pre-check has not run yet (the supervisor runs it before any session; a park asks its orderer)`, { order: po.id, by: opt.role }); }
+    rooms.checkLaneCap(opt.as ?? opt.role);
     // K13: no new session on an order at or over its charged budget (the planner plans none; this is the backstop)
     { const bo = engine.orders.get(mailbox.msgs.get(opt.msg)?.ref); if (bo && engine.overBudget(bo)) engine.guard(false, "budget", `${bo.id} has spent ${bo.spent} of its ${bo.budget}-token budget: no session until its budget ask${bo.budgetHold?.ask ? ` (${bo.budgetHold.ask})` : ""} is approved`, { order: bo.id, by: opt.role }); }
     const { run, ctx, session, item } = rooms.enter({ msg: opt.msg, role: opt.role, as: opt.as ?? null, mode: opt.mode ?? "work", leaseMin: Number(opt.lease ?? 30) });

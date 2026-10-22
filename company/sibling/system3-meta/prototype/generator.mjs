@@ -79,6 +79,14 @@ export function validateSpec(s) {
       // K12 review: where it may go (never a stage the supervisor or a person signs) and no agent text in a shell or cwd
       if (!e) for (const q of postProblems(x)) need(false, `stage ${x.stage}: ${q}`);
     }
+    // M5: a pre-check is a cmd code runs before an agent's stage is planned (holds.mjs, ledger-gate.mjs); it reads no
+    // agent text, and routes only to park (a pass plans the stage, anything else holds it as a stage-error)
+    if (x.pre != null) {
+      const e = validateCmd(x.pre, { stages: [] });
+      need(!e, `stage ${x.stage}: pre: ${e}`);
+      need(x.run == null && !["code", "founder"].includes(x.signer), `stage ${x.stage}: a pre-check is for a stage an agent works (code runs a code stage itself; the founder decides an approval)`);
+      need(!/\$\{(evidence|verdict)\}/.test(JSON.stringify(x.pre)), `stage ${x.stage}: pre: \${evidence} and \${verdict} are a leave's; a pre-check runs before anyone works the stage`);
+    }
     if (x.run == null) continue;
     need(["code", "orderer", "release"].includes(x.signer), `stage ${x.stage}: a run is for a stage signed by code, orderer or release, not ${x.signer}`);
     const e = validateCmd(x.run, { stages: st.slice(0, i).map((y) => y.stage) });
