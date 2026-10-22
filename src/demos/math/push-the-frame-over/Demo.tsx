@@ -111,7 +111,9 @@ function Stage({
   const para: [number, number][] = [[0, 0], [BASE, 0], [BASE + g.c, g.h], [g.c, g.h]];
   const triFrom: [number, number][] = [[0, 0], [g.c, 0], [g.c, g.h]];
   const triTo: [number, number][] = [[BASE, 0], [BASE + g.c, 0], [BASE + g.c, g.h]];
-  const rect: [number, number][] = [[g.c, 0], [BASE, 0], [BASE, g.h], [g.c, g.h]];
+  // After the cut and slide: the whole rectangle from x = c to x = 4 + c, 4 wide and h tall (the frame's inside
+  // without the cut triangle, plus the triangle in its new place at the right end).
+  const rect: [number, number][] = [[g.c, 0], [BASE + g.c, 0], [BASE + g.c, g.h], [g.c, g.h]];
 
   const line1 = `sides 4 and 3 · perimeter ${g.perimeter}`;
   const line2 = `height ${f2(g.h)} · area ${f1(g.area)}`;

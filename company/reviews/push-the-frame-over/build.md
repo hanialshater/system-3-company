@@ -29,3 +29,21 @@ builder: demo-builder (Meta M6, order O-1) · 2026-10-22 · v1 · brief: company
 - Picture scale at 390×844: 1.07 (reveal-fit picScale), so the 12 px side labels render ≈ 12.8 px and the 13 px readout ≈ 13.9 px (≥ 10 px floor). Targets min-height 44 px.
 - `npm run check`: nothing for this slug. `tsc --noEmit`: clean. `next build`: exit 0 (tsconfig.json and src/data/editorial-profiles.account.json build rewrites reverted). `npm run registry` regenerated the two index files.
 - Official QA is code's qa stage; not run by me.
+
+## Revise v2 (demo-builder, 2026-10-22)
+
+Finding (fact-check 2026-10-22, c3 disputed): after "Cut and slide" the fill was the rectangle x = c to 4, only 4 − c wide (1.40 at 30°, 2.50 at 60°), so the stage showed a narrow rectangle and a separate triangle, not the 4 by h rectangle that c3, the trace and the reveal describe.
+
+- Fix: in Demo.tsx `rect` is now [[c,0],[4+c,0],[4+c,h],[c,h]]: the full rectangle from x = c to x = 4 + c, 4 wide and h tall. The slid triangle (4,0),(4+c,0),(4+c,h) is drawn over its right end in the darker "moved" fill; the cut-off triangle at the left stays as a dashed ghost outline. Checked in a 390×844 browser: at 60° and at 30° one rectangle runs from the dashed h line to the right edge with no gap.
+- No text changed (title, hook, question, options, readouts, chips, reveal, recall, claim texts all as v1). Version bumped to 2 because the stage picture changed.
+- Claims: c1, c2, c4 (verified in this order) and c3 (disputed) all set back to `unverified`; checkedBy/checkedOn and the fact-checker's c3 note removed. Claim texts unchanged.
+
+## Pre-flight v2
+
+1. Title and hook: unchanged from v1: "Does a leaning frame hold as much?" / "A hinged frame leans over. Every side keeps its length. Does the space inside change?" Neither names an option.
+2. Options: unchanged: "It stays the same" / "It shrinks" / "It grows".
+3. Locked stage: unchanged: upright 4 by 3 frame, dashed "h", readout "sides 4 and 3 · perimeter 14" / "height 3.00 · area 12.0". The fix only touches the cut state, which cannot show while locked or upright.
+4. Reveal values: as v1: "perimeter at 14" = constant readout; {h}, {A} and "only {h} tall" recorded when `cutWhileLeaning` fires (trace "✓ 4 × h = A"); "4 wide" is now also what the cut picture draws (rectangle from c to 4 + c).
+5. QA path: Lean to 60° (`leaned`), Lean to 30°, Cut and slide (`cutWhileLeaning` at 30°), Upright, Reset (disabled after Upright): both milestones by press 3; the trace stays on the Cut chip.
+6. Reset: reveal text unchanged from v1 (no text edit): "Leaning kept every side and the perimeter at 14, but the height fell to 1.50 and the area to 6.0. Cutting off the slanted end and sliding it across made a rectangle 4 wide and only 1.50 tall. | A parallelogram's area is base times height, not base times slanted side. Push the frame flat and its area goes to nothing while its sides stay the same." (values from the QA path's cut at 30°).
+7. Phone fit: `node tools/reveal-fit.mjs --url http://localhost:3101 push-the-frame-over --shots` on a production build of this worktree at v2: verdict fit, stage-top crop 0 px, hiddenBelow 0, namedHidden 0, thumb false, phoneFit true; reveal 72 words; picture 169 px, controls 97 px. The rectangle's right edge is at 4 + 3 cos 30° ≈ 6.6 units = 322 of 340 viewBox px, inside the picture.
