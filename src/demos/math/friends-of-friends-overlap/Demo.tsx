@@ -187,7 +187,7 @@ export default function FriendsOfFriendsOverlap({ slug }: { slug: string }) {
         options: ["90", "45", "10"],
         answer: 2,
       }}
-      exploreHint="Step out to 2 and 3 steps, then try a world where no two friends know each other."
+      exploreHint="Step out to 2 and 3 steps, then try a world with no shared friends."
       minInteractions={MILESTONES.length}
       reveal={() => {
         const sn = seen.current;
@@ -201,7 +201,7 @@ export default function FriendsOfFriendsOverlap({ slug }: { slug: string }) {
             </p>
             <p>
               With no shared friends every link is new: {at("tree", 2)} at step 2, {at("tree", 3)} at step 3. Multiplying 10 × 9
-              assumes none of your friends know each other. In the village they do, so the count stays small.
+              assumes no shared friends. In the village your friends know each other, so the count stays small.
             </p>
           </>
         );

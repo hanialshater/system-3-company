@@ -47,3 +47,23 @@ Finding: c4 cited E&K ch. 2 for the friends-of-friends overcount caution; second
 5. QA path: unchanged (2 steps, 3 steps, No shared friends, Village); both milestones by press 3.
 6. Reset: Village is the return; reveal text identical to v1.
 7. Phone fit: no stage or reveal text change, so v1's reveal-fit (fit, crop 0, 80 words) still holds; code's qa stage re-runs it.
+
+## Revise v3 (fact-check v2, 2026-10-22)
+
+Findings: (1) c2's condition "no two of anyone's friends know each other" (triangle-free) is too weak for 90/810 (K10,10 counterexample); (2) c4's ch. 20 citation needs a human source check; (3) curriculum.references (ch. 2 §2.3) disagreed with c4 (ch. 20).
+- c2 restated on the stage condition: no shared friends (each friend brings 9 new people, nobody reached twice, a tree out to 3 steps); source notes why triangle-free is not enough.
+- c4 text: "assumes none of your friends know each other" → "assumes no shared friends; when your friends know each other, some friends of friends are already your friends, so the count two steps out is smaller" (the second half is the true direction: friends knowing each other implies overlap).
+- Learner-visible text changed to match: explore hint "a world where no two friends know each other" → "a world with no shared friends"; reveal "Multiplying 10 × 9 assumes none of your friends know each other. In the village they do, …" → "Multiplying 10 × 9 assumes no shared friends. In the village your friends know each other, …".
+- curriculum.references → [{easley-kleinberg-2010, chapter 20}] so it agrees with c4 (the brief's ch. 2 §2.3 was itself unconfirmed). cm-math may want to update the brief's Sections line.
+- c4 still needs a human source check with the book; I cannot supply it.
+- All claims reset to unverified, checker notes removed; version 2 → 3.
+
+## Pre-flight v3
+
+1. Title and hook: unchanged; neither names 10, 45 or 90 nor hints at overlap.
+2. Options: "90", "45", "10": unchanged.
+3. Locked stage: unchanged (village at step 1, other cells "?").
+4. Reveal values: unchanged numbers (village 10 / 10 / 31, ringed friend 7 + 3, tree 90 / 810); every quoted number is in the table or on the pinned picture.
+5. QA path: unchanged (2 steps, 3 steps, No shared friends, Village); both milestones by press 3.
+6. Reset: Village is the return. Reveal after the full run: "In the village, step 2 added only 10 new people and step 3 another 10: 31 within 3 steps, counting you. The ringed friend's 10 links: 7 land on you or your own friends, only 3 are new. | With no shared friends every link is new: 90 at step 2, 810 at step 3. Multiplying 10 × 9 assumes no shared friends. In the village your friends know each other, so the count stays small."
+7. Phone fit: reveal word count unchanged (the replaced sentence pair is 17 words before and after), so v1's fit (crop 0, 80 words) should hold; not re-run by me, code's qa stage re-runs reveal-fit.
