@@ -1,3 +1,34 @@
+## 2026-10-22 · chief-of-staff (for System 3 Meta, as vp-meta) · M4-M7 integration: M4 and M6 reached, M5 reached in code, M7 built (full cycle deferred)
+
+Founder: "Ultracode I want you to work until M7 is done", then "Keep going until M7 is done", then "we are still developing, if you are done we can move to other tasks before big run". Budget approvals and top-ups went through the queue (M4 A-1..3, M6 A-1..10, ISS-11/12, M7 A-1..5). M4 and M6 acceptance was delegated ("Decide for me").
+
+**Done** (company/sibling/system3-meta; prototype 262 tests, adapters 197 passing, all green):
+- **M4** (prototype/M4-RUN.md): 3 real lessons through Meta's 9-stage lesson flow on the company's own tools. Published in the sandbox in 45 min for $9.75. One real fact-check revise. One operator fix for the slug bug, now fixed. Branch `meta/m4-merged`.
+- **M5** (K13-K15, inbox-export, ledger-gate): charged spend, budget stops and asks, the founder-inbox export, and the AMD-015 standing approval as data. All 8 refusal classes are tested.
+- **M6** (prototype/M6-RUN.md): 10 lessons in two lanes with 3 builders. All published on `meta/m6` for $36.90 ($3.69 a lesson), with 7 real fact-check revises. Budget stops and the founder's top-ups worked live, and charged spend equals the ledger. Missed: lead time, median 51 min against 41.
+- **M7** (prototype/M7-STATUS.md): K18-K23 built and reviewed. They cover:
+  - the ritual scheduler on rituals-due;
+  - several flows per spec;
+  - dispatch-check as a launch gate;
+  - the event export, board mirror and resumable serve;
+  - Demo Crit decisions mapped to orders;
+  - the progress handoff.
+
+  A 17-min live slice held and committed 4 overdue rituals on `meta/m7` (digest, WBR, design review, Demo Crit). The founder stopped the 24 h cycle.
+- **Sandbox only:** `meta/m4-merged`, `meta/m6` and `meta/m7` are pushed. Nothing is merged to main and nothing is deployed.
+
+**Believe:** Meta can run the company's lesson work end to end on its real gates, at about $3-4 a lesson, with the fact-checker catching real errors (8 of 8 revises were real). Builders in parallel did not raise throughput: check loops are the tail. Confidence: medium. n = 13 lessons, one model, and acceptance was delegated, not the founder's own.
+
+**Next:**
+1. The big run: one full 24 h M7 cycle (resume /home/user/meta-runs/m7, or start fresh from `meta/m7`).
+2. Before it:
+   - keep walkthrough artifacts durable;
+   - decide the event units;
+   - ratify the plan's restatements.
+3. The founder reviews or merges the sandbox branches.
+
+**Blocked:** on the founder: merging `meta/*`, the restatements in plan §M4-§M7, and the 24 h run window.
+
 ## 2026-10-21 · chief-of-staff (for System 3 Meta, as vp-meta) · M2 reached, M1 export ready, Benchmarks 4b and 5
 
 Founder: "Go go", then "Yes system 3 meta co".

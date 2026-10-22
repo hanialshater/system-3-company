@@ -70,6 +70,19 @@ Each milestone gets a committed prediction before it starts, and is judged on it
   - a harder, ambiguous task.
 - **Next milestone:** M1 (the kernel in its own repo) and M2 (spec → generator). Both are mechanical now that the kernel runs unattended.
 
+## Status after M4-M7 of the integration plan (2026-10-22)
+
+[plans/2026-10-21-m4-m7-plan.md](plans/2026-10-21-m4-m7-plan.md) redefined M4 to M7 as running System 3 Company's own lesson work through Meta.
+
+| Plan milestone | State | Evidence |
+|---|---|---|
+| M4: one builder, 3 real lessons | **reached, with 2 caveats** | [prototype/M4-RUN.md](prototype/M4-RUN.md). 3/3 published in 45 min for $9.75. Caveat 1: one operator fix for the slug bug, now fixed in the kernel. Caveat 2: acceptance was by the founder's delegation |
+| M5: governance in code | **reached in code; the live week is pending** | K13-K15, inbox-export and ledger-gate. All 8 refusal classes are tested (`tests/m5-refusals.test.mjs`). In the M6 run, budget stops and founder top-ups worked live, and charged spend matched the ledger exactly |
+| M6: 10 lessons, up to 3 builders | **reached, with 1 criterion missed** | [prototype/M6-RUN.md](prototype/M6-RUN.md). 10/10 published on `meta/m6` for $36.90 ($3.69 a lesson). Lead time missed: median 51 min against M4's 41. Acceptance by delegation |
+| M7: one operating-loop cycle | **built; the full cycle is deferred to the big run** | [prototype/M7-STATUS.md](prototype/M7-STATUS.md). K18-K23 built and tested. In a 17-min live slice, Meta held and committed 4 overdue rituals; the 24 h cycle was stopped on the founder's call |
+
+Nothing is merged to `main` and nothing is deployed. The sandbox branches `meta/m4-merged`, `meta/m6` and `meta/m7` are pushed for the founder to review or merge.
+
 ## Founder decisions needed
 
 1. Approve, change or decline the Meta VP design (2026-10-17-vp-design.md), so Meta has an owner.
