@@ -1,0 +1,18 @@
+.wrap { display: flex; flex-direction: column; align-items: center; gap: 6px; flex: 1 1 auto; min-height: 0; }
+.friends { width: 100%; max-width: 340px; height: auto; }
+.band { font-size: 13px; font-weight: 700; fill: var(--muted); }
+.letter { font-size: 15px; font-weight: 800; fill: var(--fg); }
+.goLetter { font-size: 15px; font-weight: 800; fill: var(--bg); }
+.goDot { fill: var(--domain); stroke: var(--domain); stroke-width: 2; }
+.stayDot { fill: var(--bg-2); stroke: var(--fg); stroke-width: 1.5; }
+.stayBox { fill: none; stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 6 4; }
+.counters { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; max-width: 340px; }
+.readout { margin: 0; text-align: center; white-space: nowrap; font-weight: 800; font-size: 0.82rem; color: var(--fg); font-variant-numeric: tabular-nums; }
+.grid { display: grid; grid-template-columns: repeat(5, 52px); grid-auto-rows: 18px; gap: 4px 6px; justify-content: center; }
+.cell { display: flex; align-items: center; justify-content: center; }
+.chip { display: block; border-radius: 4px; background: var(--bg-2); }
+.chipGo { fill: var(--domain); }
+.chipStay { fill: none; stroke: var(--fg); stroke-width: 1; }
+.three { margin: 0; min-height: 1.2em; text-align: center; font-weight: 800; font-size: 0.9rem; color: var(--fg); }
+.wrap :global(.row) { justify-content: center; }
+.tap { min-height: 44px; min-width: 44px; }
