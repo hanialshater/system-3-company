@@ -27,8 +27,9 @@ Brief's kit text, given a second-person scene per `company/product/copy-style.md
 - Milestones: `small` (ball or wheel lifted; which one first is recorded and named in the reveal), `earth`. minInteractions 2. QA path: chip 1 (small), chip 2, chip 3 (earth), Reset.
 
 ## Reveal (brief draft, 69 words; {small} = ball or wheel, the first small circle the learner lifted)
-"For your {small} and for the Earth, the extra metre lifted the rope by the same 15.9 cm, enough for a cat to crawl under. The rope's length is 2π times the radius, so each extra metre adds 1 ÷ 2π, about 0.159 m, to the radius, whatever the size. The Earth's huge radius never enters the sum: the metre is shared out the same way round any circle."
-- The cat clause is claim c4, kept pending the fact-checker (brief: cut it if not accepted; the reveal stands without it).
+"For your {small} and for the Earth, the extra metre lifted the rope by the same 15.9 cm. The rope's length is 2π times the radius, so each extra metre adds 1 ÷ 2π, about 0.159 m, to the radius, whatever the size. The Earth's huge radius never enters the sum: the metre is shared out the same way round any circle."
+- v2: the cat clause (old claim c4) is cut: the fact-checker found cats are taller than 15.9 cm even lying down (Pongrácz 2024). The reveal stands without it, as the brief allows.
+- v2: the recall's object is a round water tank (a circle), not a running track, so claim c2 (circles) covers it.
 
 ## Told vs shown
 The cause in doesNotKnow (the extra radius is 1 ÷ 2π whatever r) is shown by the same ruler and the same gap on three circles of wildly different size; the formula 2πr is the learner's prerequisite (π × diameter) restated, one claimed sentence (c1).

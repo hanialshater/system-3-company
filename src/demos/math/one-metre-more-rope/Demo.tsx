@@ -61,8 +61,7 @@ export default function OneMetreMoreRope({ slug }: { slug: string }) {
         return (
           <>
             <p>
-              For your {small} and for the Earth, the extra metre lifted the rope by the same {g} cm, enough for a cat
-              to crawl under.
+              For your {small} and for the Earth, the extra metre lifted the rope by the same {g} cm.
             </p>
             <p>
               The rope&rsquo;s length is 2π times the radius, so each extra metre adds 1 ÷ 2π, about 0.159 m, to the

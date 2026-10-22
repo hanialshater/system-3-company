@@ -29,3 +29,21 @@ builder: demo-builder (Meta M4, order O-1) · 2026-10-22 · v1 · brief: company
 - Label sizes measured in the browser at 390×844 (getScreenCTM scale 0.847): "20 cm", "zoomed in", "r = 11 cm" 10.2 px; "gap … cm" 11.9 px. Targets: every control min-height 44 px.
 - `npm run check`: no error or warning for this slug (the repo's existing errors are other lessons' version gates). `tsc --noEmit`: clean. `next build`: exit 0 (it rewrites tsconfig.json's include for the dist dir; reverted).
 - Official QA (tests/qa/contract.spec.ts) not run by me: it is code's qa stage in this flow.
+
+## Revise v2 (demo-builder, 2026-10-22): fact-check findings
+
+- A1: cut "enough for a cat to crawl under" from the reveal (Demo.tsx) and removed claim c4 from meta.json (brief planned claim 4 allows the cut; the fact-checker cited Pongrácz 2024: mean cat height 19.61 cm lying, taller than the gap).
+- B2: recall object changed from a running track to "a giant round water tank" (a circle), and its why now says "however big the tank", so c2 (circles, L = 2 m → about 32 cm) covers it unchanged.
+- c1, c2, c3: text unchanged, set back to `unverified` (verified during this order), checkedBy/checkedOn/note removed.
+- meta.version 1 → 2.
+
+## Pre-flight v2
+
+1. Title and hook unchanged: "How high does one more metre lift?" / "Add 1 m to a rope round a ball, and 1 m to one round the Earth. Which lifts higher?"; neither gives the answer.
+2. Options unchanged: "Far smaller" / "The same" / "Far bigger".
+3. Locked stage unchanged: rope tight on the ball, "gap 0.0 cm"; nothing matches "The same" before a press.
+4. Reveal values: "your {ball|wheel}" = milestone `small`; "15.9 cm" = gapOf(r) for it (milestone `small`), equal to the Earth's (milestone `earth`), both on the chip traces; "2π", "1 ÷ 2π, about 0.159 m" = claims c1, c2.
+5. QA path unchanged: Ball, Wheel, Earth, Reset; both milestones by press 3; traces survive Reset.
+6. Reveal after Ball, Wheel, Earth, Reset now reads: "For your ball and for the Earth, the extra metre lifted the rope by the same 15.9 cm. | The rope's length is 2π times the radius, so each extra metre adds 1 ÷ 2π, about 0.159 m, to the radius, whatever the size. The Earth's huge radius never enters the sum: the metre is shared out the same way round any circle." Every sentence is c1/c2 or a trace; no unclaimed sentence.
+7. Phone fit: the reveal got 7 words shorter (62 by the brief's count) and the stage is unchanged, so v1's fit verdict (stage-top crop 0, hiddenBelow 0) can only improve; code's qa stage re-runs reveal-fit.
+8. Recall: "A rope hugs a giant round water tank all the way round. You add 2 m to it and lift it evenly. About how high is the gap?" → "About 32 cm" (2 ÷ 2π = 0.318 m, claim c2).
