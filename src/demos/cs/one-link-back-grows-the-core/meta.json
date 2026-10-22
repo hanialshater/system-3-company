@@ -1,0 +1,102 @@
+{
+  "slug": "one-link-back-grows-the-core",
+  "title": "Add one link back. How big is the core?",
+  "hook": "One new link runs from OUT back to IN. How many pages join the core?",
+  "domain": "cs",
+  "concept": "core-grows-by-one-link",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "links between web pages are one-way",
+      "the IN / core / OUT picture of the web (web-bow-tie-reach)"
+    ],
+    "doesNotKnow": [
+      "that one new link from OUT back to IN joins exactly the pages on the loop it closes, not the whole of IN and OUT"
+    ]
+  },
+  "misconception": "One link from OUT back to IN pulls all of IN and OUT into the core.",
+  "objective": "The learner can say that a new link from an OUT page back to an IN page adds to the core only the pages on the loop it closes (here E, F, H and I, making 8), because a page joins the core only when it can both reach the core and be reached from it.",
+  "claims": [
+    {
+      "id": "cs.one-link-back-grows-the-core.c1",
+      "text": "In the stage graph (links A→B, B→C, C→D, D→A, E→A, F→E, G→B, C→H, H→I, D→J) the core, the pages that each reach every other, is A to D (4 pages). Adding I → F closes the loop F → E → A → B → C → H → I → F and makes the core A to F, H and I (8 pages); G still cannot be reached from the core and J cannot reach it, so both stay out. Adding J → G instead closes J → G → B → C → D → J and gives A to D, G and J (6 pages); adding both links gives all 10.",
+      "support": "derivation",
+      "source": "Node reachability both ways over the exact edge list in Demo.tsx (coreOf(): pages A reaches that also reach A). Builder ran it 2026-10-22: {\"before\":[A,B,C,D],\"addIF\":[A,B,C,D,E,F,H,I],\"addJG\":[A,B,C,D,G,J],\"both\":[all 10]}; every other page is its own group in each case. Before: pages reaching A = A–G, pages A reaches = A–D, H, I, J. Matches the brief's check J5.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.one-link-back-grows-the-core.c2",
+      "text": "A page belongs to the core (the same strongly connected group) exactly when it can reach the core and the core can reach it, following links the way they point.",
+      "support": "source",
+      "source": "Definition of a strongly connected component; Easley and Kleinberg, Networks, Crowds, and Markets (2010), ch. 13 (section unconfirmed, brief says 13.3–13.4).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.one-link-back-grows-the-core.c3",
+      "text": "A new link from an OUT page u back to an IN page v adds to the core exactly the pages on a loop through the new link (the pages v reaches that also reach u), not every IN and OUT page. On the stage each added link closes one such loop.",
+      "support": "derivation",
+      "source": "From c2: the core reaches u and v reaches the core, so with u → v a page w joins exactly when it lies on core ⇝ u → v ⇝ core, i.e. v ⇝ w ⇝ u. Node check 2026-10-22 on the stage graph: rule(I→F) = A–F, H, I; rule(J→G) = A–D, G, J, equal to c1.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.one-link-back-grows-the-core.c4",
+      "text": "The 10-page web on the stage is a toy, not to scale (reveal: \"A toy web, not to scale.\").",
+      "support": "convention",
+      "source": "Disclosure that the stage is a teaching model, not crawl data.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A web has a core, IN pages that link into it and OUT pages it links to. You add one link from an OUT page back to an IN page. Which pages join the core?",
+    "options": [
+      "Only the two pages the link joins",
+      "The pages on the loop the new link closes",
+      "Every IN and OUT page"
+    ],
+    "answer": 1,
+    "why": "A page joins the core only if it can reach the core and the core can reach it. The new link gives that only to the pages on a loop through it."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "cs:core-grows-by-one-link",
+    "also": [
+      "cs:strongly-connected-components"
+    ],
+    "prerequisites": [
+      "cs:web-bow-tie",
+      "cs:strongly-connected-components"
+    ],
+    "level": "core",
+    "strand": "systems",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 13,
+        "section_unconfirmed": "13.3–13.4"
+      }
+    ],
+    "tags": [
+      "web",
+      "directed graphs",
+      "strongly connected"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate"
+  ]
+}
