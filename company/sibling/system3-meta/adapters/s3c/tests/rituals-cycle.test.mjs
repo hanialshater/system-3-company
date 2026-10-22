@@ -124,9 +124,13 @@ test("the handoff: placed once two WBR records are committed since the cycle's b
   const PROG = "## 2026-10-21 · chief-of-staff (for System 3 Meta) · M2 reached\n\n**Done:** things.\n";
   const c = companyRepo({ files: { "company/ops/progress.md": PROG } });
   const base = c.sha("meta/t7");
-  const due = (...x) => run(FRONT, ["rituals.mjs", "due", `--repo=${c.int}`, R, "--skip=launch-review", `--cycle-base=${base}`, ...x]);
+  // auto: the integration worktree's HEAD when the scheduler first runs, kept in a file under the live dir
+  const cb = path.join(c.dir, "live", "exports", "cycle-base");
+  const due = (...x) => run(FRONT, ["rituals.mjs", "due", `--repo=${c.int}`, R, "--skip=launch-review", `--cycle-base=auto:${cb}`, ...x]);
   let r = due();
   assert.equal(r.exit, 0, r.stdout + r.stderr);
+  assert.equal(fs.readFileSync(cb, "utf8").trim(), base);
+  assert.equal(r.json.cycle.base, base);
   assert.ok(r.json.orders.length > 1 && !r.json.orders.some((o) => o.slug === "handoff"), "no WBR yet: the due rituals");
   // two WBR records land on the integration branch (ship commits them there)
   for (const [f, n] of [[`${today}-wbr.md`, 1], [`${today}-wbr-2.md`, 2]]) { w(c.int, `company/rituals/records/${f}`, `# WBR ${n}\n`); git(c.int, "add", "-A"); git(c.int, "commit", "-qm", `meta: wbr record (O-${n})`); }

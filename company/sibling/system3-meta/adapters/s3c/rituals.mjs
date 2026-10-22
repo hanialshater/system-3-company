@@ -6,7 +6,7 @@
 // where rituals-due must then read the ritual as held. Nothing here re-implements the cadence.
 //
 //   node rituals.mjs due --repo=<integration worktree> --roles=<a,b,…> [--skip=<r,…>] [--budget=<tokens>]
-//        [--cycle-base=<commit>] [--handoff-after=2]
+//        [--cycle-base=<commit>|auto:<file>] [--handoff-after=2]
 //        the spec's scheduler cmd (prototype supervisor.mjs runSchedulers): runs `node <repo>/tools/rituals-due.mjs
 //        --json` (the text form's DUE rows are parsed if the JSON cannot be read: parseDueText) and prints
 //        {ok, due:[{ritual, reasons, chair, attendee, owner, proxyFor}], orders:[{key, title, task, slug, chair,
@@ -14,7 +14,8 @@
 //        WBR, launch review, design review, demo crit, vertical review, ops review, R&D review, then the rest).
 //        --roles: the run's agent roles; --skip: rituals another flow holds (launch-review: the lesson flow's launch
 //        stage writes a launch-review record per lesson, and integrate.mjs merges it).
-//        --cycle-base (M7 exit criterion 5, the cycle's end): the commit the run's integration branch started from.
+//        --cycle-base (M7 exit criterion 5, the cycle's end): the commit the run's integration branch started from
+//        (auto:<file>: the integration worktree's HEAD when the scheduler first ran, kept in <file>: cycleBase).
 //        Once --handoff-after WBR records (default 2: "the cycle ends when the second WBR is held and committed") were
 //        added on the branch since it, only the handoff order is placed (chaired by the chief of staff: a dated entry
 //        at the top of company/ops/progress.md); once the handoff is committed there, no order, and `end` (the kernel
@@ -598,6 +599,18 @@ function handoffShip(repo, { base, fromSha, into, order }) {
   return { exit: 0, out: { ok: true, stage: "rituals-ship", ritual: HANDOFF, record: PROGRESS, into: sb.branch, committed: c.sha ?? null, unchanged: !!c.unchanged, findings: [] } };
 }
 
+/** --cycle-base: a ref, or `auto:<file>`: the sha in <file>, written there (the integration worktree's HEAD) the first
+ *  time the scheduler runs, so the cycle starts where the run did (the spec's ${live}/exports/cycle-base). */
+export function cycleBase(repo, arg) {
+  const m = /^auto:(.+)$/.exec(String(arg));
+  if (!m) { const r = gitRaw(repo, "rev-parse", "--verify", "-q", `${arg}^{commit}`); return r.status === 0 ? { sha: r.stdout.trim() } : { error: `--cycle-base ${arg} is no commit in ${repo}` }; }
+  const file = path.resolve(m[1]);
+  try { const sha = fs.readFileSync(file, "utf8").trim(); if (/^[0-9a-f]{40}$/.test(sha)) return { sha, file }; } catch {}
+  const h = gitRaw(repo, "rev-parse", "HEAD");
+  if (h.status !== 0) return { error: `git rev-parse HEAD in ${repo}: ${String(h.stderr).trim()}` };
+  try { fs.mkdirSync(path.dirname(file), { recursive: true }); fs.writeFileSync(file, h.stdout.trim() + "\n"); } catch (e) { return { error: `cannot write ${file}: ${e.message}` }; }
+  return { sha: h.stdout.trim(), file, created: true };
+}
 /** The cycle as the integration branch shows it since `base` (M7: the run's start): the WBR records added there, and
  *  the handoff commit, if any. { wbrs: [path], handoff: sha|null, base } or { error }. */
 export async function cycleOf(repo, base, after = 2) {
@@ -631,7 +644,9 @@ export async function main(argv) {
     if (!Number.isInteger(after) || after < 1) return usage("--handoff-after is a whole number of WBR records from 1");
     let cycle = null;
     if (typeof o["cycle-base"] === "string") {
-      cycle = await cycleOf(repo, o["cycle-base"], after);
+      const b = cycleBase(repo, o["cycle-base"]);
+      if (b.error) return { exit: 3, out: { ok: false, stage: "rituals-due", findings: [F.env("cycle", b.error)] } };
+      cycle = await cycleOf(repo, b.sha, after);
       if (cycle.error) return { exit: 3, out: { ok: false, stage: "rituals-due", findings: [F.env("cycle", cycle.error)] } };
     }
     const due = readDue(repo);

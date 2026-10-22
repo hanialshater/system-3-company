@@ -45,6 +45,18 @@ test("specs/s3c-m7.json validates: the M6 roles plus analytics-steward, flows le
   assert.deepEqual(s.exports.map((x) => [x.id, x.role, x.every]), [["founder-inbox", "chief-of-staff", "change"], ["events-export", "chief-of-staff", "change"], ["board-mirror", "chief-of-staff", "change"]]);
   for (const x of s.exports) assert.ok(x.run.argv.includes("--commit"), `${x.id} commits its file, so integrate.mjs finds the integration worktree clean`);
   for (const f of ["rituals.mjs", "events-export.mjs", "board-mirror.mjs"]) assert.ok(fs.existsSync(path.join(A, f)));
+  // the M7 cycle pieces: the run's roles reach the record checks (a stood-in chair), the Demo Crit's acts (K23), the
+  // cycle's end and handoff, the housekeeping
+  const roles = sc.run.argv.find((a) => a.startsWith("--roles="));
+  for (const c of [s.flows.ritual.stages[0].pre, s.flows.ritual.stages[0].post, s.flows.ritual.stages[1].post]) assert.ok(c.argv.includes(roles), c.argv.join(" "));
+  assert.deepEqual(s.flows.ritual.stages[2].acts, { by: "chair", allow: ["reopen", "cancel", "notice"], notify: "chief-of-staff" });
+  assert.deepEqual(s.flows.ritual.stages[2].run.pass, { json: "ok", equals: true }, "acts are read from a passing ship's last JSON line");
+  assert.ok(sc.run.argv.includes("--cycle-base=auto:${live}/exports/cycle-base") && sc.run.argv.includes("--handoff-after=2"));
+  assert.ok(s.flows.ritual.stages[1].pack.include.includes("company/ops/progress.md"), "the handoff's attendee reads progress.md");
+  assert.deepEqual(s.flows.ritual.workspace, { maxOpen: 2, cleanup: { worktree: true } });
+  assert.deepEqual(s.workspace.cleanup, { env: ["NEXT_DIST_DIR"] });
+  assert.equal(s.workspace.env.NEXT_DIST_DIR, ".next-${task}");
+  assert.ok(!s.exports.find((x) => x.id === "events-export").run.argv.includes("--spool"), "the hook spool is the main checkout's: off until the founder says so");
 });
 
 test("the gate's findings regex reads dispatch-check's --json refusals (its real output shape)", () => {
@@ -130,3 +142,39 @@ test("ritual-flow dry run: the scheduler orders the DUE rituals, code scaffolds,
 function spawnLeave(live, runId, evidence) {
   return spawnSync(process.execPath, [path.join(PROTO, "meta.mjs"), "room", "leave", `--run=${runId}`, `--evidence=${evidence}`], { env: env0({ META_LIVE_DIR: live }), encoding: "utf8" });
 }
+
+test("Demo Crit dry run on the spec: the chair's table, committed by ship, reopens the revised lesson's order and cancels the killed one, as the head of product (K23)", () => {
+  const meta = (slug) => JSON.stringify({ slug, status: "published", claims: [] });
+  const c = companyRepo({ files: { "src/demos/math/rope-a/meta.json": meta("rope-a"), "src/demos/math/rope-b/meta.json": meta("rope-b"), "company/constitution/protected-paths.txt": fs.readFileSync(path.join(MAIN, "company/constitution/protected-paths.txt"), "utf8") } });
+  const wts = tmp("s3c-m7-wts-"), live = tmp("s3c-m7-live-");
+  const s = fixtureSpec(c, wts);
+  s.schedulers = []; // the crit is placed by hand here
+  const f = path.join(live, "spec.json"); fs.writeFileSync(f, JSON.stringify(s));
+  metaCli(live, "init", `--spec-file=${f}`);
+  // two lesson orders of this run: rope-a shipped (done), rope-b still open
+  for (const [n, slug] of [[1, "rope-a"], [2, "rope-b"]]) metaCli(live, "order", "new", "--by=chief-of-staff", "--to=cm-math", `--title=${slug}`, `--task=L-${slug}`, `--slug=${slug}`, "--accept=brief company/domains/briefs/math.geometry.md:1-2 · a lesson");
+  const sf = path.join(live, "state.json"), st = JSON.parse(fs.readFileSync(sf, "utf8"));
+  st.engine.orders.__map.find(([k]) => k === "O-1")[1].stage = "done";
+  fs.writeFileSync(sf, JSON.stringify(st));
+  metaCli(live, "order", "new", "--flow=ritual", "--by=chief-of-staff", "--chair=head-of-product", "--attendee=chief-of-staff", "--title=Demo Crit", "--task=RITUAL-demo-crit-1", "--slug=demo-crit", "--accept=hold the crit");
+  supCli(live, "tick"); supCli(live, "tick");
+  const o3 = orders(live).find((o) => o.id === "O-3");
+  assert.ok(o3.workdir && o3.prechecked);
+  const recs = fs.readdirSync(path.join(o3.workdir, "company/rituals/records")).filter((x) => x.endsWith("-demo-crit.md"));
+  const rec = `company/rituals/records/${recs[0]}`, abs = path.join(o3.workdir, rec);
+  fs.writeFileSync(abs, fs.readFileSync(abs, "utf8")
+    .replace("| slug | decision | reason |\n|---|---|---|\n", "| slug | decision | reason |\n|---|---|---|\n| rope-a | revise | the reveal tells, not shows |\n| rope-b | kill | duplicates rope-a |\n")
+    .replace(/## Objections\n\n<!--[^\n]*-->/, "## Objections\n\n- chief-of-staff: rope-b may be the better one. Answer: the learner reviews prefer rope-a's frame."));
+  const e1 = metaCli(live, "room", "enter", `--msg=${workMsg(live, "O-3", "run").id}`, "--role=head-of-product");
+  metaCli(live, "room", "leave", `--run=${e1.run}`, `--evidence=${rec}`);
+  const e2 = metaCli(live, "room", "enter", `--msg=${workMsg(live, "O-3", "check").id}`, "--role=chief-of-staff");
+  metaCli(live, "room", "leave", `--run=${e2.run}`, `--evidence=${rec}`, "--verdict=pass");
+  const t = supCli(live, "tick");
+  const [a, b, crit] = orders(live);
+  assert.equal(crit.stage, "done", JSON.stringify(t.steps));
+  assert.deepEqual([a.stage, a.loops, a.history.at(-1).by], ["build", 1, "head-of-product"], "revise → reopen");
+  assert.match(a.findings, /Demo Crit: revise\. the reveal tells, not shows/);
+  assert.deepEqual([b.stage, b.cancelled.by], ["cancelled", "head-of-product"], "kill → cancel");
+  assert.ok(git(c.int, "log", "--format=%s").split("\n").includes("meta: demo-crit record (O-3), the ritual flow's ship (chief-of-staff code step)"));
+  assert.ok(!fs.existsSync(o3.workdir), "the ritual's worktree is removed once it is done (its branch kept)");
+});
