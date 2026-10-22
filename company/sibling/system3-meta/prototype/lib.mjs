@@ -358,7 +358,7 @@ export function packProblem(p) {
 // stage may take its waiting orders in one session, `batch: {max, waitMin}` (one cold start for up to max orders; the
 // planner holds the first until max wait or the oldest has waited waitMin minutes), and may run for a sampled share of
 // orders, `sample: {rate, min, max, always}`: deterministic by the order's id (unitHash), always run when a condition
-// of SAMPLE_ALWAYS holds, and otherwise signed by code as sampled-out (an event, Engine.notifyStage). The rate is a
+// of SAMPLE_ALWAYS holds (looped: a revise came back; self-check-failed: the worker's last self-check failed; now), and otherwise signed by code as sampled-out (an event, Engine.notifyStage). The rate is a
 // policy knob the self-improvement step (K28, learn.mjs) may move, never outside the founder's [min, max] of the spec.
 export const SAMPLE_ALWAYS = ["looped", "self-check-failed", "now"];
 /** K27: a stable draw in [0, 1) from a string (FNV-1a, 32 bits; lib.mjs imports nothing, so no crypto). */
@@ -539,7 +539,9 @@ export class Engine {
   /** K27: does stage `s` run for order `o` at this loop? Pure but for the one `sample` event per stage and loop (log). */
   sampleDecision(o, s, { log = false } = {}) {
     const rate = this.sampleRate(o, s), draw = unitHash(`${o.id}:${s.stage}`);
-    const held = (s.sample.always ?? []).filter((c) => (c === "looped" ? o.loops > 0 : c === "now" ? o.priority === "now" : this.log.events.some((e) => e.type === "self-check" && e.order === o.id && e.pass === false)));
+    // self-check-failed: the worker's last self-check before hand-in failed (failing ones while it works are normal)
+    const lastCheck = this.log.events.findLast((e) => e.type === "self-check" && e.order === o.id);
+    const held = (s.sample.always ?? []).filter((c) => (c === "looped" ? o.loops > 0 : c === "now" ? o.priority === "now" : lastCheck?.pass === false));
     const d = { run: held.length > 0 || draw < rate, rate, draw: Math.round(draw * 1e4) / 1e4, always: held };
     const at = `${s.stage}:${o.loops}`;
     if (log && (o.sampled ??= {})[at] == null) { o.sampled[at] = d.run ? "run" : "out"; this.log.add({ type: d.run ? "sample-run" : "sample-skip", order: o.id, stage: s.stage, loops: o.loops, ...d }); }

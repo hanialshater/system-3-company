@@ -101,12 +101,22 @@ test("sample: always runs when a condition holds (looped, a failed self-check, n
   const c2 = fresh(flow({ sample: S }));
   const o2 = c2.engine.orderNew({ flow: "task", by: "cos", to: "mgr-live", budget: 100, accept: "x" });
   o2.task = "SC"; c2.engine.delegate(o2.id, { by: "mgr-live", to: "toy-builder-1", budget: 100 });
-  c2.log.add({ type: "self-check", order: o2.id, pass: false, output: "1 failing" });
+  c2.log.add({ type: "self-check", order: o2.id, pass: true, output: "ok" });
+  c2.log.add({ type: "self-check", order: o2.id, pass: false, output: "1 failing" }); // the last one before hand-in failed
   const m2 = c2.mailbox.queue("toy-builder-1", "work")[0];
   c2.rooms.leave(c2.rooms.enter({ msg: m2.id, role: "toy-builder-1" }).run, { evidence: "e" });
   c2.engine.advance(o2.id, { stage: "test1", by: "code" });
   assert.equal(o2.stage, "check");
   assert.deepEqual(types(c2, "sample-run").at(-1).always, ["self-check-failed"]);
+  // a failing self-check the worker then fixed does not force the review
+  const c3 = fresh(flow({ sample: S }));
+  const o3 = c3.engine.orderNew({ flow: "task", by: "cos", to: "mgr-live", budget: 100, accept: "x" });
+  o3.task = "SF"; c3.engine.delegate(o3.id, { by: "mgr-live", to: "toy-builder-1", budget: 100 });
+  c3.log.add({ type: "self-check", order: o3.id, pass: false, output: "red" });
+  c3.log.add({ type: "self-check", order: o3.id, pass: true, output: "green" });
+  c3.rooms.leave(c3.rooms.enter({ msg: c3.mailbox.queue("toy-builder-1", "work")[0].id, role: "toy-builder-1" }).run, { evidence: "e" });
+  c3.engine.advance(o3.id, { stage: "test1", by: "code" });
+  assert.equal(o3.stage, "uat", "red then green: sampled out as any order");
 });
 
 test("the rate is a knob inside the founder's bounds, and it persists in the state", () => {
