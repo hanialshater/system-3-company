@@ -26,21 +26,30 @@
       "text": "Three lengths a ≤ b ≤ c form a triangle exactly when a + b > c: a straight line is the shortest way between two points, so the two-stick detour must be longer than the base.",
       "support": "derivation",
       "source": "Triangle inequality (Euclid, Elements I.20); the converse by construction (law of cosines gives a real apex when a + b > c). company/domains/briefs/checks/math-wave-j-check.mjs label G3.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "Triangle inequality (Euclid I.20: any two sides together exceed the third); the converse is Euclid I.22 / law of cosines: for a+b>c, x=(c²+a²−b²)/2c gives |x|<a, so a real apex exists. Equality gives height 0 (degenerate).",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     },
     {
       "id": "math.three-sticks-one-triangle.c2",
       "text": "For sticks 2, 3 and 6 cm the free ends get no closer than 1 cm, lying flat (2 + 3 = 5 < 6), and raising them only widens the gap; 3, 4, 6 meet above the base (3 + 4 = 7 > 6); 2, 4, 6 meet only lying flat (2 + 4 = 6, height 0). Recall: of 1, 2, 4 / 2, 3, 4 / 2, 2, 4 cm, only 2, 3, 4 makes a triangle.",
       "support": "derivation",
       "source": "G3 (2,3,6 gap 1; 3,4,6 closes; 2,4,6 flat). Gap with both sticks at angle θ: ends (2cosθ, 2sinθ) and (6 − 3cosθ, 3sinθ); dx = 6 − 5cosθ and dy = sinθ both grow on 0° to 90°, so the gap is least (1 cm) at 0°. 3, 4, 6 apex at x = 29/12 ≈ 2.42 cm, height ≈ 1.78 cm (sticks at 36.3° and 26.4°). Demo.tsx geometry().",
-      "status": "unverified"
+      "status": "verified",
+      "note": "Re-derived: the free ends lie on circles of radius 2 about (0,0) and 3 about (6,0); the centres are 6 > 5 apart, so the ends are never closer than 1 cm, at any angles (brute-force grid over both angles: min 1.000 at 0°,0°). Equal-angle gap rises monotonically 0°→90° (1.000, 1.743, 2.564, 3.606, 6.083). 3,4,6 apex x=29/12, h=1.778, angles 36.3° and 26.4°; 2,4,6 h=0. Recall: 1+2=3<4, 2+3=5>4, 2+2=4 degenerate; only 2,3,4.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     },
     {
       "id": "math.three-sticks-one-triangle.c3",
       "text": "For 2, 3 and 6 cm with both short sticks at 45° the gap is 2.6 cm; at 60° it is 3.6 cm.",
       "support": "derivation",
       "source": "Same gap formula: at 45° √((6 − 5·0.7071)² + 0.7071²) = 2.564; at 60° √(3.5² + 0.866²) = 3.606 (Demo.tsx geometry(), shown to 0.1 cm).",
-      "status": "unverified"
+      "status": "verified",
+      "note": "Recomputed: 45° → 2.5639 (2.6 cm), 60° → 3.6056 (3.6 cm). Matches the stage readouts in the walkthrough.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     }
   ],
   "confidence": "",
