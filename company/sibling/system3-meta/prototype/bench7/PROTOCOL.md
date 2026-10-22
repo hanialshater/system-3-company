@@ -192,3 +192,60 @@ The first dry run's output (`b7dry/`) was deleted after the review: its fake gam
 - the hook: allowed reads and writes; denied hidden, runner, other-arm, operator, scratchpad-search and repo write-up paths;
 - the tally: first 78/80 → final 80/80 on G1, rounds 1, dedup cost 4.5 vs naive 6.5, one eval false pass;
 - the audit: a planted canary leak found, a same-name test the session wrote itself not flagged, one session without hook lines flagged.
+
+## Dry run 2 (2026-10-22; no Agent SDK session)
+
+`b7dry2/drive.mjs` (scratchpad) played arm HSI on G1 and then G2, every role by CLI, in a temp runs dir that it deleted afterwards. The games were the real hidden references, copied into the workdir; the accept was the real hidden runner (`setup.mjs accept`); the observer ran `watch --once` after each tick. The launcher was replaced by `supervisor.mjs cycle` (the launch it reserves, with the brief it writes) and by `guard.mjs queryOptions` (the SDK options), with fake SDK session ids. Results:
+- **G1, first build:** the reference with one message in the padlock puzzle changed, plus a trivial test by the builder. The self-check passed, test1 passed, and the eval passed with one advisory finding. That was a false pass: the observer scored the snapshot 79/80 with padlock failing.
+- **G1, accept:** 79/80. Only `padlock: 1 of 2 tests fail` came back, and the revise went to build (loop 1).
+- **K26:** the revise was planned as `resume: <the builder's fake SDK id>`, and the SDK options carried that `resume`. The warm brief was 703 characters, against 4301 for the cold brief kept as the fallback. The evaluator is not warm: its second eval was a fresh session.
+- **G1, fix:** the builder fixed the message. Its self-check passed, the eval ran again (the `looped` condition), then accept 80/80, ship, and the evidence (classes `[padlock]`, 2 self-checks).
+- **K28 retro:** the lead read `learn show` (the store's path is withheld from agents) and made one proposal:
+  - a rule citing the evidence id, targeting padlock: added as P-1, for the builder only;
+  - "Skip the evaluator when your own tests pass; hand in right away.": **refused** ("it tells someone to skip or weaken a check");
+  - eval sample rate 0.5: applied, inside the bounds [0.5, 1].
+
+  A second proposal after the retro closed was refused ("no open retro"), and so was the lead acting `--by=founder`.
+- **G2:** `place` waited until G1's run had closed. G2 started with P-1, and its builder's pack carried P-1 (the brief does not; the pack does). The builder was a cold start, a fresh live dir per game. With `--sample-salt=b7dry-1`, the draw for O-1 at eval was predicted at 0.9415 before the tick. The logged `sample-skip` had the same draw, and code signed eval `sampled-out`. Then accept 59/59, ship.
+- **Tally:** G1 first 79/80 → final 80/80, 1 round, eval runs 2, 1 false pass (missed: padlock), self-checks 2 (0 failed). G2: eval sampled out 1.
+- **Timings (ms):**
+
+  | Step | ms |
+  |---|---|
+  | place | 223 |
+  | lead delegates | 201 |
+  | builder cold launch plan | 165 |
+  | builder enters | 95 |
+  | self-check | 255 |
+  | hand-in | 85 |
+  | tick: test1 → eval | 567 |
+  | evaluator launch plan | 183 |
+  | evaluator enters | 105 |
+  | eval hand-in | 85 |
+  | tick: accept (hidden runner; the run itself 271-298 ms) | 529 |
+  | revise plan, resumed | 169 |
+  | re-enter | 86 |
+  | fix + self-check + hand-in | 313 |
+  | tick: test1 → eval | 587 |
+  | eval pass | 83 |
+  | tick: accept, ship, evidence | 514 |
+  | retro plan | 161 |
+  | learn show | 80 |
+  | propose | 93 |
+  | refused re-propose | 86 |
+  | G2 place | 219 |
+  | G2 enter (playbook) | 90 |
+  | G2 build + self-check + hand-in | 316 |
+  | G2 tick: test1, sampled-out eval, accept, ship, evidence | 960 |
+
+  In all, about 6.4 s of harness time for two games.
+
+**Defects found, fixed with regression tests (tests/textgame-hybrid.test.mjs):**
+1. **K28 scored a game-specific rule "helped" on a game that cannot show its class.** P-1 targets padlock, which only G1's suite has. On G2 it scored helped: accept had caught padlock once, and accept judged G2. Such a rule would never retire. The fix: a stage run may name the classes it checked (`findings.checked`, a regex whose group 1 lists them). The B7 accept prints `checked: <categories>`, and both specs read it. The kernel keeps the list as 8-hex hashes, in the history entry and the evidence's `checked`. A rule is scored only where a stage that catches its class judged the order *and* checked that class; otherwise it is unobserved. After the fix, P-1 is unobserved on G2, and helped on a later game whose suite has padlock and passes it. The checked line never reaches the findings, the fallback findings included.
+   - Fairness note: the hashes hide the category list from a worker reading its own history. A guessed name can still be confirmed. The names in the findings are unchanged: the failing categories only.
+2. **`setup.mjs place --sample-salt=<s>`:** a fixed K27 salt, so a dry run's sample decision is known in advance. It is recorded in the manifest. A real run leaves it unset (a random salt per company).
+3. **The tally's eval runs** are now counted from the order's history. Before, they came from the observer's rows only, so a run without the observer showed 0 evals. `observed` is reported beside them.
+
+**Still open (not fixed here):**
+- An evaluator's pass with `--findings` keeps no findings: `advance` stores findings only on a revise. So an advisory finding on a pass is in EVAL.md only, and the observer's `classes` for that pass are empty.
+- The accept label (the first findings line) names `setup.mjs`'s path and is cut at 160 characters (`--b7=/tmp/…`). This is known: see "Known asymmetries".

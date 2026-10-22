@@ -349,7 +349,7 @@ export function validateCmd(c, { stages = null, orderArgv = false } = {}) {
   if (c.timeoutMs != null && !(Number.isFinite(c.timeoutMs) && c.timeoutMs > 0)) return "timeoutMs is a positive number";
   const p = c.pass ?? "exit0";
   if (!(p === "exit0" || (p && typeof p === "object" && ((p.tap === true && Object.keys(p).length === 1) || (typeof p.json === "string" && "equals" in p && Object.keys(p).length === 2))))) return `pass is "exit0", {tap: true} or {json: "<dotted path into stdout JSON>", equals: <value>}`;
-  if (c.findings != null && (typeof c.findings !== "object" || typeof c.findings.fromStdout !== "string" || badRe(c.findings.fromStdout))) return "findings is {fromStdout: <regular expression>}";
+  if (c.findings != null && (typeof c.findings !== "object" || Array.isArray(c.findings) || Object.keys(c.findings).some((k) => !["fromStdout", "checked"].includes(k)) || typeof c.findings.fromStdout !== "string" || badRe(c.findings.fromStdout) || (c.findings.checked != null && (typeof c.findings.checked !== "string" || badRe(c.findings.checked) || !/\((?!\?)/.test(c.findings.checked))))) return "findings is {fromStdout: <regular expression>, checked: <regular expression whose group 1 lists the defect classes the cmd checked>}";
   if (c.errorExit != null && !(Array.isArray(c.errorExit) && c.errorExit.every((x) => Number.isInteger(x) && x > 0 && x < 256))) return "errorExit is a list of non-zero exit codes (1-255) that are a stage-error";
   if (c.route != null) {
     if (typeof c.route !== "object" || Array.isArray(c.route)) return "route is {<regular expression>: <stage>}";
@@ -451,14 +451,18 @@ export function judgeCmd(c, label, r, timeoutMs = c.timeoutMs ?? 60_000) {
   else { const j = parseJson(out); const v = j === undefined ? undefined : dig(j, p.json); pass = j !== undefined && JSON.stringify(v) === JSON.stringify(p.equals) && r.status === 0; why = j === undefined ? `exit ${r.status}, stdout is not JSON` : `${p.json} = ${JSON.stringify(v)?.slice(0, 200)}${JSON.stringify(v) === JSON.stringify(p.equals) ? "" : `, wanted ${JSON.stringify(p.equals)}`}${r.status === 0 ? "" : `, exit ${r.status}`}`; } // K1 audit: {"errors":[]} then a crash (exit 2) passed
   let findings = null;
   if (c.findings?.fromStdout) { const m = [...out.matchAll(new RegExp(c.findings.fromStdout, "gm"))].map((x) => (x[1] ?? x[0]).trim()).filter(Boolean); findings = m.length ? m.join("\n").slice(0, 2000) : null; }
-  if (!pass && !findings) findings = both.trim().split("\n").filter(Boolean).slice(-20).join("\n").slice(0, 2000) || null;
+  // B7 dry run 2: `checked` names the defect classes this run could see (K28 scores a rule only where its class was
+  // checked); those lines never reach the findings
+  const ckRe = c.findings?.checked ? new RegExp(c.findings.checked, "m") : null;
+  const checked = ckRe ? [...new Set(out.split("\n").map((l) => ckRe.exec(l)?.[1]).filter(Boolean).flatMap((x) => x.split(/[,\s]+/)).filter(Boolean))] : null;
+  if (!pass && !findings) findings = both.trim().split("\n").filter((l) => l && !(ckRe && ckRe.test(l))).slice(-20).join("\n").slice(0, 2000) || null;
   const route = pass ? null : Object.entries(c.route ?? {}).find(([re]) => new RegExp(re, "m").test(both))?.[1] ?? null;
   // M4 integrate: a stage-error never routes, whatever made it (errorExit, a timeout, a failed spawn): a timed-out or
   // crashed post-check's partial output ("Verdict: revise", "fatal: …") was routed as a verdict by Rooms.checkPost
   const stageError = !!(r.error || r.timedOut || errExit);
   // M5 review: an adapter's failing answer may name the ask it wants (ledger-gate.mjs: {ask:{kind:"budget", text}})
   const j = pass || stageError ? undefined : parseJson(out), ask = j?.ask && typeof j.ask === "object" && !Array.isArray(j.ask) && typeof j.ask.kind === "string" ? j.ask : null;
-  return { pass, output: `${label}: ${why}`, findings, route: stageError ? null : route, code: r.status ?? null, timedOut: !!r.timedOut, stageError, ...(ask ? { ask } : {}) };
+  return { pass, output: `${label}: ${why}`, findings, route: stageError ? null : route, code: r.status ?? null, timedOut: !!r.timedOut, stageError, ...(ask ? { ask } : {}), ...(checked && !stageError ? { checked } : {}) };
 }
 /** Run stage `s`'s `run` cmd for order `o` and wait: { pass, output, findings, route, code, timedOut, stageError }.
  *  findings are advisory on a pass (copy-tells, a11y) and the reason on a fail; route is the earlier stage the first

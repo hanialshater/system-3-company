@@ -371,6 +371,11 @@ export function unitHash(str) {
   for (const ch of String(str)) { h ^= ch.codePointAt(0); h = Math.imul(h, 0x01000193) >>> 0; }
   return h / 2 ** 32;
 }
+/** B7 dry run 2: a defect class as a stage run's `checked` list keeps it (K28 scores a rule only where its class was
+ *  checked): a short hash of the class name, so the order's history does not list the classes a hidden suite checks
+ *  (a worker can read its history; a guessed name can still be confirmed). */
+export const classNorm = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 40);
+export const classTag = (c) => Math.floor(unitHash(`class:${classNorm(c)}`) * 2 ** 32).toString(16).padStart(8, "0");
 const reviewStage = (s) => isIndependent(s) && s.run == null && !["code", "founder", "builder", "orderer", "chair"].includes(s.signer);
 /** K27: why a stage's `batch` is invalid ([] when it is fine or absent). */
 export function batchProblems(s) {
@@ -747,7 +752,7 @@ export class Engine {
   independentOf(o, stage, roleId) { return !(isIndependent(this.flows.get(o.flow)?.stages.find((x) => x.stage === stage)) && roleId === o.builder); }
 
   // ---- stages, up the chain
-  advance(id, { stage, by, verdict = "pass", evidence = null, findings = null, consult = false, postChecked = false, to = null, sampled = false }) {
+  advance(id, { stage, by, verdict = "pass", evidence = null, findings = null, consult = false, postChecked = false, to = null, sampled = false, checked = null }) {
     const o = this.orders.get(id);
     hard(o, `no order ${id}`);
     hard(o.stage === stage, `${id} is at ${o.stage}, not ${stage}`);
@@ -770,7 +775,7 @@ export class Engine {
     const dflt = this.reviseStage(o, stage); // K19: build, or a ritual's run; K25: the last work stage before this one
     const back = verdict === "revise" ? (earlier ? to : dflt) : null; // with enforce off a bad route is recorded and goes to the default
     // M7 (K21): the evidence a stage was signed with travels in its history (events-export.mjs names a ritual's record)
-    o.history.push({ stage, by, verdict, t: this.clock.now(), ...(evidence && s.signer !== "code" ? { evidence: String(evidence).slice(0, 300) } : {}), ...(verdict === "revise" && findings ? { findings: String(findings).slice(0, 2000) } : {}), ...(back && back !== dflt ? { to: back } : {}) }); // every revise keeps its findings (org evaluation reads them)
+    o.history.push({ stage, by, verdict, t: this.clock.now(), ...(evidence && s.signer !== "code" ? { evidence: String(evidence).slice(0, 300) } : {}), ...(verdict === "revise" && findings ? { findings: String(findings).slice(0, 2000) } : {}), ...(back && back !== dflt ? { to: back } : {}), ...(Array.isArray(checked) ? { checked: [...new Set(checked.map(classTag))].slice(0, 200) } : {}) }); // every revise keeps its findings (org evaluation reads them)
     this.log.add({ type: "advance", order: id, stage, by, verdict });
     if (verdict === "pass") o.stage = this.nextStage(o);
     else {

@@ -23,7 +23,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { validateCmd, lockHolderAlive } from "./state.mjs";
-import { sampleBounds, isIndependent, signerRole } from "./lib.mjs";
+import { sampleBounds, isIndependent, signerRole, classTag } from "./lib.mjs";
 
 export const RULE_MAX_CHARS = 300;
 export const DEFAULT_MAX_RULES = 12;
@@ -235,6 +235,8 @@ export function evidenceFor(co, o) {
   for (const h of o.history) if (sdOf(h.stage)) (stages[h.stage] ??= []).push(h.verdict);
   const reviews = Object.fromEntries(def.stages.filter((x) => x.sample).map((x) => [x.stage, { ran: (stages[x.stage] ?? []).filter((v) => v !== "sampled-out").length, revised: (stages[x.stage] ?? []).filter((v) => v === "revise").length, sampledOut: (stages[x.stage] ?? []).filter((v) => v === "sampled-out").length, rate: engine.sampleRate(o, x) }]));
   const checks = log.events.filter((e) => e.type === "self-check" && e.order === o.id);
+  // B7 dry run 2: the classes each stage run said it checked (a run's findings.checked), as tags
+  const checked = {}; for (const h of o.history) if (Array.isArray(h.checked)) checked[h.stage] = [...new Set([...(checked[h.stage] ?? []), ...h.checked])];
   // cost: the order's charged tokens, and its share of each charged launch's estimate
   let cost = 0;
   for (const c of log.events.filter((e) => e.type === "charge" && e.orders?.some((x) => x.order === o.id))) {
@@ -244,7 +246,7 @@ export function evidenceFor(co, o) {
   const lastWork = Math.max(o.created, ...log.events.filter((e) => e.type === "enter" && e.order === o.id && engine.isWorkStage(o, e.stage)).map((e) => e.t));
   return {
     id: `E-${L.run}-${o.id}`, run: L.run, order: o.id, task: o.task ?? null, flow: def.name, outcome: o.stage, t: new Date().toISOString(),
-    loops: o.loops, loopsBy: o.loopsBy ?? null, stages, reviews, revises, classes: [...new Set(revises.flatMap((r) => r.classes))],
+    loops: o.loops, loopsBy: o.loopsBy ?? null, stages, reviews, revises, ...(Object.keys(checked).length ? { checked } : {}), classes: [...new Set(revises.flatMap((r) => r.classes))],
     selfChecks: { n: checks.length, failed: checks.filter((e) => !e.pass).length }, tokens: o.spent ?? 0, costUSD: Math.round(cost * 1e4) / 1e4,
     leadMin: Math.round(((log.events.find((e) => e.type === "shipped" && e.order === o.id)?.t ?? engine.clock.now()) - o.created) * 10) / 10,
     lastWorkMs: Math.round(lastWork * 60000),
@@ -264,10 +266,13 @@ function score(co, pb, rec, evidence) {
   for (const r of pb.rules) {
     if (r.status !== "active" || !(r.addedMs <= rec.lastWorkMs)) continue;
     const hit = r.targets.filter((c) => rec.classes.includes(c));
-    const seen = r.targets.filter((c) => [...detectors(evidence, c)].some((st) => ran.has(st)));
+    // B7 dry run 2: a stage that lists the classes it checked (findings.checked) observes only those: G1's "padlock"
+    // rule scored helped on G2, whose hidden suite has no padlock category, so a game-specific rule never retired
+    const sees = (st, c) => ran.has(st) && (rec.checked?.[st] == null || rec.checked[st].includes(classTag(c)));
+    const seen = r.targets.filter((c) => [...detectors(evidence, c)].some((st) => sees(st, c)));
     const k = hit.length ? "hurt" : seen.length ? "helped" : "unobserved";
     if (k !== "unobserved") { r[`${k}Count`]++; const t = ((r.runs ??= {})[rec.run] ??= { helped: 0, hurt: 0 }); t[k]++; }
-    co.log.add({ type: "learn-score", rule: r.id, order: rec.order, evidence: rec.id, outcome: k, recurred: hit, ...(k === "unobserved" ? { why: `no stage that catches ${r.targets.join(", ")} judged ${rec.order} (${[...ran].join(", ") || "none ran"})` } : {}) });
+    co.log.add({ type: "learn-score", rule: r.id, order: rec.order, evidence: rec.id, outcome: k, recurred: hit, ...(k === "unobserved" ? { why: `no stage that catches ${r.targets.join(", ")} judged ${rec.order} and checked it (${[...ran].join(", ") || "none ran"})` } : {}) });
     out.push({ rule: r.id, outcome: k });
   }
   return out;

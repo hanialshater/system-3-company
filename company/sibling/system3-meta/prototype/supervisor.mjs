@@ -120,7 +120,7 @@ export function applyCmdResult(co, o, s, t) {
     if (t.stageError) return err(t);
     if (t.route === "park") return park(t);
     { const held = kept(t); if (held) return held; }
-    engine.advance(o.id, { stage, by: "code", verdict: t.pass ? "pass" : "revise", findings: why(t), to: to(t) });
+    engine.advance(o.id, { stage, by: "code", verdict: t.pass ? "pass" : "revise", findings: why(t), to: to(t), ...(t.checked ? { checked: t.checked } : {}) });
     // K23: what the passed stage decided for other orders (a Demo Crit's revise → reopen, kill → cancel), applied as
     // its chair's under this lock; the steps go out with the stage's own
     const acted = t.pass && s.acts ? applyActs(co, o, s, t.json?.acts, { stage }) : [];
@@ -131,7 +131,7 @@ export function applyCmdResult(co, o, s, t) {
     if (t.stageError) return err(t);
     if (t.route === "park") return park(t);
     { const held = kept(t); if (held) return held; }
-    engine.advance(o.id, { stage, by: o.manager, verdict: t.pass ? "pass" : "revise", evidence: `${t.output} (supervisor.mjs)`, findings: why(t), to: to(t) });
+    engine.advance(o.id, { stage, by: o.manager, verdict: t.pass ? "pass" : "revise", evidence: `${t.output} (supervisor.mjs)`, findings: why(t), to: to(t), ...(t.checked ? { checked: t.checked } : {}) });
     return say(t);
   }
   if (s.signer === "release") {

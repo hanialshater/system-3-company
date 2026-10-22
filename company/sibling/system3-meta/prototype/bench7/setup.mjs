@@ -5,8 +5,9 @@
 // games; only HSI's playbook store does. The vanilla arm (V) is vanilla-game.mjs, which uses this file's accept, hook and
 // tally helpers, so all three arms get the same feedback text, the same file-access rule and the same measures.
 //
-//   node setup.mjs place --arm=H|HSI --game=G1|G2|G3 [--budget=60000000] [--runs=<dir>] [--b7=<dir>] [--out-of-order]
+//   node setup.mjs place --arm=H|HSI --game=G1|G2|G3 [--budget=60000000] [--runs=<dir>] [--b7=<dir>] [--out-of-order] [--sample-salt=<s>]
 //        the live dir, the spec, SPEC.md, one order (founder -> lead), the access hook; prints the run command
+//        (--sample-salt: a fixed K27 salt, for a dry run whose sample decision must be known; recorded in the manifest)
 //   node setup.mjs run   --arm=H|HSI --game=Gn [--max-parallel=2] [--max-min=480] [--poll=3] [--model=<id>] [--dry-run]
 //        the launcher (Agent SDK) with the observer beside it, then the tally; --dry-run prints the launcher command,
 //        runs one observer pass and starts no session
@@ -255,7 +256,8 @@ function placeArm(P, opt) {
   const env = { ...process.env, META_LIVE_DIR: live };
   for (const x of ["META_ROLE", "META_LAUNCH", "NODE_TEST_CONTEXT", "META_STATE"]) delete env[x];
   const cli = (...a) => { const r = spawnSync(process.execPath, [path.join(P.proto, "meta.mjs"), ...a], { env, encoding: "utf8" }); if (r.status !== 0) throw new Error(`meta.mjs ${a[0]} ${a[1] ?? ""}: ${r.stderr || r.stdout}`); return JSON.parse(r.stdout); };
-  cli("init", `--spec-file=${specFile}`, ...(vars ? [`--vars=${JSON.stringify(vars)}`] : []));
+  const salt = typeof opt["sample-salt"] === "string" && opt["sample-salt"] ? opt["sample-salt"] : null;
+  cli("init", `--spec-file=${specFile}`, ...(vars ? [`--vars=${JSON.stringify(vars)}`] : []), ...(salt ? [`--sample-salt=${salt}`] : []));
   const acceptText = `${specText.trimEnd()}\n\n---\nacceptance: after the external evaluation, code runs the orderer's hidden acceptance suite on game.mjs in your workdir (the orderer's runner; no agent runs it or reads its tests). A failure comes back as a revise naming only the failing categories, one line each: \`<category>: <f> of <t> tests fail\`.`;
   const acceptCmd = ["node", SELF, "accept", `--game=${game}`, "--dir=${workdir}", `--b7=${P.b7}`, `--log=${path.join(od, "accept.jsonl")}`];
   const budget = Number(opt.budget ?? DEFAULT_BUDGET);
@@ -269,7 +271,7 @@ function placeArm(P, opt) {
   fs.mkdirSync(path.join(live, "kernel", ".claude"), { recursive: true });
   fs.writeFileSync(path.join(live, "kernel", ".claude", "settings.json"), JSON.stringify({ hooks: { PreToolUse: [{ matcher: "*", hooks: [{ type: "command", command: hookCmd, timeout: 15 }] }] } }, null, 1) + "\n");
   const git = spawnSync("git", ["-C", P.proto, "rev-parse", "HEAD"], { encoding: "utf8" }).stdout.trim() || null;
-  const manifest = { arm, game, spec: SPEC_OF[arm], specSha: sha(specText), order: o.order, budget, b7: P.b7, runs: P.runs, store: vars?.playbook_store ?? null, storeRulesAtStart: arm === "HSI" ? activeRuleIds(P.store) : null, kernelHead: git, placedAt: new Date().toISOString(), outOfOrder: !!opt["out-of-order"] };
+  const manifest = { arm, game, spec: SPEC_OF[arm], specSha: sha(specText), order: o.order, budget, b7: P.b7, runs: P.runs, store: vars?.playbook_store ?? null, storeRulesAtStart: arm === "HSI" ? activeRuleIds(P.store) : null, kernelHead: git, placedAt: new Date().toISOString(), outOfOrder: !!opt["out-of-order"], sampleSalt: salt };
   fs.writeFileSync(path.join(od, "manifest.json"), JSON.stringify(manifest, null, 1) + "\n");
   return { ...manifest, live, run: `node ${SELF} run --arm=${arm} --game=${game}`, launcher: launcherArgv(P, arm, game, {}).join(" ") };
 }
@@ -372,7 +374,7 @@ function tallyMeta(P, arm, game) {
     minutes: minutesBetween(up, end), leadMin: o && hist.length ? Math.round((hist.at(-1).t - o.created) * 100) / 100 : null,
     sessions: c.sdkSessions + fins.filter((f) => !f.sdk).length, launches: fins.length, cold: fins.filter((f) => !f.resumed).length + fallbacks, resumes: fins.filter((f) => f.resumed).length - fallbacks, warmFallbacks: fallbacks, byRole,
     selfChecks: { n: sc.length, failed: sc.filter((e) => !e.pass).length },
-    eval: { runs: evals.length, sampledOut: hist.filter((h) => h.verdict === "sampled-out").length, rows: evalRows, falsePasses: evalRows.filter((r) => r.verdict === "pass" && r.hiddenFailing.length).length },
+    eval: { runs: hist.filter((h) => h.stage === "eval" && h.by !== "code").length, observed: evals.length, sampledOut: hist.filter((h) => h.verdict === "sampled-out").length, rows: evalRows, falsePasses: evalRows.filter((r) => r.verdict === "pass" && r.hiddenFailing.length).length },
     playbook: arm === "HSI" ? { rulesAtStart: learnEv.find((e) => e.type === "learn-init")?.rules ?? null, added: learnEv.filter((e) => e.type === "learn-rule-add").map((e) => ({ rule: e.rule, targets: e.targets, text: e.text })), retired: learnEv.filter((e) => e.type === "learn-rule-retire").map((e) => ({ rule: e.rule, by: e.by, why: e.why })), refused: learnEv.filter((e) => e.type === "learn-refuse").length, scores: learnEv.filter((e) => e.type === "learn-score").map((e) => ({ rule: e.rule, outcome: e.outcome, recurred: e.recurred })) } : null,
     guardDenials: L.filter((x) => x.event === "guard").length,
   };
@@ -516,6 +518,9 @@ async function main() {
     try { fs.cpSync(dir, snap, { recursive: true, filter: (s) => !/node_modules|\/\.claude(\/|$)/.test(s) }); } catch {}
     append(opt.log, { game: opt.game, dir, hash, snap, pass: r.pass, fail: r.fail, total: r.total, rate: r.rate, failing: r.failing, categories: r.categories, ms: Date.now() - t0 });
     for (const l of r.lines) console.log(l);
+    // the categories this run checked: the specs' findings.checked reads it, so K28 scores a rule only on a game whose
+    // suite has its class (B7 dry run 2: G1's padlock rule scored helped on G2); the kernel keeps them as hashes only
+    console.log(`checked: ${Object.keys(r.categories).join(", ")}`);
     console.log(r.fail ? `# hidden acceptance: ${r.failing.length} categories fail` : "# hidden acceptance: every category passes");
     process.exit(r.code);
   }

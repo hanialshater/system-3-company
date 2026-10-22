@@ -123,3 +123,68 @@ test("no-learn twin: the same order ships with no store, no evidence and no retr
   assert.match(C.cli("meta.mjs", ["learn", "show"]).err, /no learn spec/);
   assert.deepEqual(C.tick().plan, [], "settled: nothing to plan");
 });
+
+// B7 dry run 2 (2026-10-22, the real G1/G2 references and hidden runner, every role by CLI): G1's retro added a rule
+// targeting "padlock", a G1-only category; on G2, whose hidden suite has no padlock category, code scored it "helped"
+// (the accept stage had caught padlock once, and it judged G2), so a game-specific rule would never retire. A stage run
+// may now say which classes it checked (findings.checked); K28 scores a rule only where its class was checked. The
+// names are kept as hashes (a worker can read its order's history) and never reach the findings.
+test("findings.checked: validated, read from stdout, kept as hashes, never in the findings", async () => {
+  const { validateCmd, judgeCmd } = await import("../state.mjs");
+  const { classTag } = await import("../lib.mjs");
+  assert.equal(validateCmd({ argv: ["x"], findings: { fromStdout: "^failed: (.+)$", checked: "^checked: (.+)$" } }), null);
+  assert.match(validateCmd({ argv: ["x"], findings: { fromStdout: "^f", checked: "^checked: .+$" } }), /group 1 lists the defect classes/);
+  assert.match(validateCmd({ argv: ["x"], findings: { fromStdout: "^f", extra: 1 } }), /findings is \{fromStdout/);
+  const c = { argv: ["x"], findings: { fromStdout: "^failed: (.+)$", checked: "^checked: (.+)$" } };
+  const bad = judgeCmd(c, "acc", { status: 1, stdout: "failed: padlock: 1 of 2 tests fail\nchecked: api, padlock, beacon\n", stderr: "" });
+  assert.deepEqual([bad.pass, bad.findings, bad.checked], [false, "padlock: 1 of 2 tests fail", ["api", "padlock", "beacon"]]);
+  const none = judgeCmd(c, "acc", { status: 1, stdout: "boom\nchecked: api\n", stderr: "" });
+  assert.equal(none.findings, "boom", "the fallback findings leave the checked line out");
+  assert.equal(judgeCmd(c, "acc", { status: null, timedOut: true, stdout: "checked: api\n", stderr: "" }).checked, undefined, "a stage-error checked nothing");
+  assert.equal(judgeCmd({ argv: ["x"] }, "acc", { status: 0, stdout: "checked: api\n", stderr: "" }).checked, undefined, "no checked regex: no list");
+  assert.match(classTag("Padlock"), /^[0-9a-f]{8}$/); assert.equal(classTag("Padlock"), classTag("padlock"));
+});
+
+test("K28 scores a rule only on an order whose checking stage checked its class (B7 dry run 2)", () => {
+  const store = path.join(TMP, "store-checked");
+  // the runner fails `padlock` unless the game says "fixed"; it prints the categories its suite has (argv[3])
+  const R = path.join(TMP, "hidden-checked.mjs");
+  fs.writeFileSync(R, 'import fs from "node:fs"; const g = fs.readFileSync(process.argv[2] + "/game.mjs", "utf8"); const cats = process.argv[3].split(","); if (cats.includes("padlock") && !g.includes("fixed")) console.log("failed: padlock: 1 of 2 tests fail"); console.log("checked: " + cats.join(", ")); process.exit(cats.includes("padlock") && !g.includes("fixed") ? 1 : 0);\n');
+  const game = (live, task, cats, versions) => {
+    const C = company(live, "textgame-hybrid.json", { playbook_store: store });
+    const id = C.meta("order", "new", "--by=founder", "--to=lead", `--title=${task}`, `--task=${task}`, "--accept=x", `--accept-cmd=${JSON.stringify(["node", R, "${workdir}", cats])}`).order;
+    C.W(task, "SPEC.md", SPEC_MD); C.W(task, "game.test.mjs", TESTS);
+    C.as("lead", null, "order", "delegate", id, "--by=lead", "--to=builder");
+    for (const v of versions) {
+      const pk = C.as("builder", null, "room", "enter", `--msg=${C.meta("queue", "builder")[0].msg}`, "--role=builder");
+      C.W(task, "game.mjs", GAME("v1").replace("// v1", `// ${v}`));
+      assert.equal(C.as("builder", null, "check", `--order=${id}`).pass, true);
+      C.as("builder", null, "room", "leave", `--run=${pk.run}`, "--evidence=game.mjs");
+      C.tick();
+      const ev = C.as("evaluator", null, "room", "enter", `--msg=${C.meta("queue", "role:evaluator")[0].msg}`, "--role=evaluator");
+      C.as("evaluator", null, "room", "leave", `--run=${ev.run}`, "--evidence=EVAL.md", "--verdict=pass");
+      C.tick();
+    }
+    assert.equal(C.meta("flow", "show", id).stage, "done");
+    return { C, id };
+  };
+  // G1: accept catches padlock once; the lead's retro adds a rule for it, citing the evidence
+  const g1 = game(path.join(TMP, "chk-g1"), "G1", "api,padlock", ["broken", "fixed"]);
+  const h = g1.C.meta("flow", "show", g1.id).history.filter((x) => x.stage === "accept");
+  assert.deepEqual(h.map((x) => x.checked?.length), [2, 2], "each accept keeps what it checked");
+  assert.ok(!JSON.stringify(h).includes("padlock, ") && !h[0].checked.includes("padlock"), "as hashes, not names");
+  assert.doesNotMatch(h[0].findings, /checked:/);
+  const shown = g1.C.as("lead", null, "learn", "show"), e1 = shown.evidence.at(-1);
+  assert.deepEqual([e1.classes, Object.keys(e1.checked)], [["padlock"], ["accept"]]);
+  const retro = shown.retros.find((r) => r.state === "open").id;
+  const p = g1.C.as("lead", null, "learn", "propose", "--by=lead", `--retro=${retro}`, `--proposal=${JSON.stringify({ add: [{ text: "Exercise each puzzle object's repeated and already-solved messages before hand-in.", why: [e1.id], targets: ["padlock"] }] })}`);
+  assert.deepEqual(p.added, ["P-1"]);
+  g1.C.tick();
+  const score = (g) => g.C.meta("events").filter((e) => e.type === "learn-score").map((e) => e.outcome);
+  // G2: a suite with no padlock category: the rule is unobserved there (before: helped)
+  const g2 = game(path.join(TMP, "chk-g2"), "G2", "api,movement", ["fixed"]);
+  assert.deepEqual(score(g2), ["unobserved"]);
+  // G3: a suite that has padlock, and the game passes it: helped
+  const g3 = game(path.join(TMP, "chk-g3"), "G3", "api,padlock", ["fixed"]);
+  assert.deepEqual(score(g3), ["helped"]);
+});
