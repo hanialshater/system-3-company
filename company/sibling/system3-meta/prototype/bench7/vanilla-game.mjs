@@ -4,10 +4,15 @@
 //   - G1, G2, G3 in order, each in a fresh dir (<runs>/arm-V/<game>/, nothing carried over) and a FRESH Agent SDK
 //     session (no memory across games: a vanilla user starts a new chat per project). Within a game the session is
 //     resumed for each feedback round, as a person's chat would be.
-//   - turn 1: the spec text (also written to SPEC.md in the dir) + "build game.mjs to this spec, write your own tests,
-//     say when done". When the turn ends (its hand-in), the hidden suite runs (setup.mjs hidden(): the same runner and
-//     the same `<category>: <f> of <t> tests fail` lines the Meta arms' accept stage returns as findings); only those go
-//     back, up to MAX_ROUNDS=3 feedback rounds; a full pass ends the game.
+//   - turn 1: the spec text (also written to SPEC.md in the dir, with the visible tests in visible-tests/, setup.mjs
+//     placeVisible: the same files the Meta arms' workdir gets) + "build game.mjs to this spec, write your own tests,
+//     say when done". When the turn ends (its hand-in), the PRE-notice hidden suite scores it (the first hand-in) and
+//     nothing of that score goes back: v2's Change Notice does. The notice is appended to SPEC.md and its visible tests
+//     added (setup.mjs deliverNoticeFiles, as the Meta arms get them), and turn 2 is NOTICE_POINTER (the same text the
+//     Meta builder gets as the founder's resume reason). From then on the POST-notice suite scores every hand-in (the
+//     same runner and the same `<category>: <f> of <t> tests fail` lines the Meta arms' accept stage returns as
+//     findings); only those go back, up to MAX_ROUNDS=3 feedback rounds after the notice turn (the notice costs none, as
+//     the founder's resume costs the Meta arms no loop); a full post-notice pass ends the game.
 //   - same model as the Meta arms (the launcher's --model default, read from launch.mjs: no model id lives here), same
 //     tools (Bash/Read/Write/Edit/Glob/Grep, no Agent tool), settingSources [] (the launcher's default), maxTurns 200
 //     and 60 min a turn (the builder role's maxTurns and sessionMin), one resume on a crash or timeout.
@@ -26,7 +31,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { paths, hidden, accessDecision, accessNote, accessRules, denyRoots, DENY_TEXT, GAMES, GAME_MIN } from "./setup.mjs";
+import { paths, hidden, accessDecision, accessNote, accessRules, denyRoots, DENY_TEXT, GAMES, GAME_MIN, NOTICE_POINTER, placeVisible, deliverNoticeFiles } from "./setup.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const opt = Object.fromEntries(process.argv.slice(2).filter((a) => a.startsWith("--")).map((a) => { const [k, ...v] = a.slice(2).split("="); return [k, v.join("=") || true]; }));
@@ -48,11 +53,12 @@ const promptFor = (game, dir, spec) => `${spec.trimEnd()}
 Build game.mjs to this spec, in ${dir} (SPEC.md there is the same text). Plain JavaScript ES modules, Node 22, no dependencies. Write your own tests (node --test, *.test.mjs in ${dir}). When you are done, say so briefly.
 After you finish, a hidden acceptance suite runs on game.mjs and reports only the failing categories, one line each: \`<category>: <f> of <t> tests fail\`.`;
 const feedback = (lines) => `The hidden acceptance tests on game.mjs failed:\n${lines.join("\n")}\nFix it, and say when you are done.`;
+const noticeTurn = (game) => `${NOTICE_POINTER(game)} Say when you are done.`;
 
 if (DRY) {
   for (const g of RUN_GAMES) {
     const dir = P.live("V", g), spec = fs.readFileSync(P.spec(g), "utf8");
-    console.log(`===== ${g}: ${dir}\n${promptFor(g, dir, spec)}\n`);
+    console.log(`===== ${g}: ${dir}\n${promptFor(g, dir, spec)}\n\n===== ${g}, turn 2 (after the first hand-in; SPEC.md gains ${P.notice(g)}):\n${noticeTurn(g)}\n`);
   }
   console.log(JSON.stringify({ dry: true, games: RUN_GAMES, model: MODEL, tools: TOOLS, settingSources: [], maxTurns: MAX_TURNS, turnMin: TURN_MIN, maxRounds: MAX_ROUNDS, gameMin: GAME_MIN, ledger: P.vledger, access: P.access, denyRoots: denyRoots(P, "V", RUN_GAMES[0]) }, null, 1));
   process.exit(0);
@@ -69,6 +75,7 @@ async function playGame(game) {
   const dir = P.live("V", game), spec = fs.readFileSync(P.spec(game), "utf8");
   fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, "SPEC.md"), spec);
+  const visibleSha = placeVisible(P, game, dir);
   let session = null, turns = 0;
   const ROOTS = accessRules(P, "V", game), T0 = Date.now(), left = () => GAME_MIN * 60_000 - (Date.now() - T0);
   const hook = async (input) => {
@@ -101,22 +108,38 @@ async function playGame(game) {
     for (let r = 0; !ok && r < RESUMES && left() > 0; r++) ok = await turn(session ? "You were interrupted. Continue the task where you left off, and say when you are done." : prompt, `${label} resume`);
     return ok;
   }
-  note({ event: "start", game, dir, model: MODEL, tools: TOOLS, settingSources: [], maxTurns: MAX_TURNS, turnMin: TURN_MIN, maxRounds: MAX_ROUNDS, gameMin: GAME_MIN });
-  let prompt = promptFor(game, dir, spec), h = null, first = null;
-  for (let round = 0; round <= MAX_ROUNDS; round++) {
-    if (left() <= 0) { note({ event: "stop", game, round, why: `wall clock: ${GAME_MIN} min` }); break; }
-    const ok = await turnWithResume(prompt, round ? `feedback ${round}` : "build");
-    h = hidden(P, game, dir);
-    for (let k = 0; h.error && k < 2; k++) { note({ event: "hidden-error", game, round, try: k + 1, error: h.error }); h = hidden(P, game, dir); }
-    note({ event: "hidden", game, round, ok, ...(h.error ? { error: h.error } : { pass: h.pass, total: h.total, rate: h.rate, failing: h.failing }) });
-    if (h.error) { note({ event: "stop", game, round, why: "the hidden runner failed three times: an operator error, no round spent" }); break; }
-    first ??= h;
-    if (!h.fail) break;
-    if (!ok && !session) break; // never started: nothing to resume
-    if (left() <= 0) { note({ event: "stop", game, round, why: `wall clock: ${GAME_MIN} min` }); break; }
-    prompt = feedback(h.failing);
-  }
-  const s = { event: "game-summary", game, session, turns, minutes: Math.round((Date.now() - T0) / 600) / 100, first: first?.error ? null : { pass: first?.pass, total: first?.total, rate: first?.rate }, final: h?.error ? null : { pass: h?.pass, total: h?.total, rate: h?.rate, failing: h?.failing } };
+  note({ event: "start", game, dir, model: MODEL, tools: TOOLS, settingSources: [], maxTurns: MAX_TURNS, turnMin: TURN_MIN, maxRounds: MAX_ROUNDS, gameMin: GAME_MIN, visibleSha });
+  const score = (phase, round, ok) => {
+    let h = hidden(P, game, dir, phase);
+    for (let k = 0; h.error && k < 2; k++) { note({ event: "hidden-error", game, round, phase, try: k + 1, error: h.error }); h = hidden(P, game, dir, phase); }
+    note({ event: "hidden", game, round, phase, ok, ...(h.error ? { error: h.error } : { pass: h.pass, total: h.total, rate: h.rate, failing: h.failing }) });
+    if (h.error) note({ event: "stop", game, round, why: "the hidden runner failed three times: an operator error, no round spent" });
+    return h;
+  };
+  let h = null, first = null, afterNotice = null;
+  // the first hand-in, scored with the pre-notice suite; nothing of it goes back
+  const ok0 = await turnWithResume(promptFor(game, dir, spec), "build");
+  first = score("pre", 0, ok0);
+  const started = ok0 || !!session;
+  if (!first.error && started && left() > 0) {
+    // the Change Notice: SPEC.md and visible-tests/ change exactly as the Meta arms' do, and it is the next turn
+    const files = deliverNoticeFiles(P, game, dir);
+    note({ event: "notice", game, ...files });
+    let prompt = noticeTurn(game);
+    for (let round = 0; round <= MAX_ROUNDS; round++) {
+      if (left() <= 0) { note({ event: "stop", game, round, why: `wall clock: ${GAME_MIN} min` }); break; }
+      const ok = await turnWithResume(prompt, round ? `feedback ${round}` : "notice");
+      h = score("post", round, ok);
+      if (h.error) break;
+      afterNotice ??= h;
+      if (!h.fail) break;
+      if (!ok && !session) break; // never started: nothing to resume
+      if (left() <= 0) { note({ event: "stop", game, round, why: `wall clock: ${GAME_MIN} min` }); break; }
+      prompt = feedback(h.failing);
+    }
+  } else if (!first.error) note({ event: "stop", game, round: 0, why: left() > 0 ? "the first turn never started a session" : `wall clock: ${GAME_MIN} min` });
+  const sum = (x) => (!x || x.error ? null : { pass: x.pass, total: x.total, rate: x.rate, failing: x.failing });
+  const s = { event: "game-summary", game, session, turns, minutes: Math.round((Date.now() - T0) / 600) / 100, first: sum(first), afterNotice: sum(afterNotice), final: sum(h) };
   note(s);
 }
 

@@ -12,7 +12,10 @@
 //        the launcher (Agent SDK) with the observer beside it, then the tally; --dry-run prints the launcher command,
 //        runs one observer pass and starts no session
 //   node setup.mjs watch --arm=H|HSI --game=Gn [--once]   the observer alone (snapshots + hidden score per signed stage) and the protocol's stops
-//   node setup.mjs accept --game=Gn --dir=<workdir> --log=<jsonl> [--b7=<dir>]   the order's accept cmd (code runs it)
+//   node setup.mjs accept --game=Gn --dir=<workdir> --log=<jsonl> [--b7=<dir>]   the order's accept cmd (code runs it):
+//        v2: its first run scores the pre-notice suite, records it and exits 3 (a stage error: the order is held at
+//        accept); the observer then delivers the Change Notice as the founder (deliverNoticeMeta); later runs score the
+//        post-notice suite
 //   node setup.mjs hook --arm=<A> --game=Gn --log=<jsonl> [--runs] [--b7]   PreToolUse command hook (stdin JSON)
 //   node setup.mjs tally [--arm=V|H|HSI] [--md]   per (arm, game): first and final hidden pass rate, rounds, cost, ...
 //   node setup.mjs audit [--md]                   fairness: hook coverage, denials, hidden-test canaries in transcripts
@@ -38,7 +41,7 @@ const REPO_PROTO = "/home/user/system-3-company/company/sibling/system3-meta/pro
 export const GAMES = ["G1", "G2", "G3"];
 export const ARMS = ["V", "H", "HSI"];
 const SPEC_OF = { H: "textgame-hybrid-nolearn.json", HSI: "textgame-hybrid.json" };
-export const GAME_MIN = 480; // PROTOCOL.md "Stops": every arm's wall clock per game (V's own most: 4 hand-ins x (60 min + one 60-min resume))
+export const GAME_MIN = 600; // PROTOCOL.md "Stops": every arm's wall clock per game (V's own most, v2: 5 hand-ins, the notice's included, x (60 min + one 60-min resume))
 const DEFAULT_BUDGET = 60_000_000; // cumulative tokens per order: a runaway cap, see PROTOCOL.md "Budgets"
 const FAILED_RE = /^failed: (.+)$/; // the specs' accept findings regex (flow.stages.accept.run.findings.fromStdout)
 
@@ -56,6 +59,9 @@ export function paths(opt = {}) {
     access: path.join(op, "access.jsonl"),
     vledger: path.join(op, "V", "vanilla.jsonl"),
     spec: (g) => path.join(b7, "specs", `${g}.md`),
+    notice: (g) => path.join(b7, "notices", `${g}.md`),
+    visible: (g) => path.join(b7, "visible", g),
+    visibleNotice: (g) => path.join(b7, "visible", `${g}-notice`),
     runner: path.join(b7, "run-hidden.mjs"),
     hidden: path.join(b7, "hidden"),
   };
@@ -67,23 +73,48 @@ const real = (p) => { try { return fs.realpathSync(p); } catch { return p; } };
 export const gameTitle = (spec) => (spec.split("\n")[0].match(/G\d: (.+)$/) ?? [])[1] ?? "";
 
 // ---------------------------------------------------------------- the hidden acceptance, as every arm receives it
-/** Run the hidden suite on <dir>: { pass, fail, total, categories, failing: ["<cat> (f of t fail)"], lines, code }. */
-export function hidden(P, game, dir) {
-  const { NODE_TEST_CONTEXT, B7_DEBUG, B7_MUTANT, ...env } = process.env; // never the operator's --debug or a mutation check
-  const r = spawnSync(process.execPath, [P.runner, `--game=${game}`, `--dir=${dir}`], { encoding: "utf8", env, timeout: 240_000, maxBuffer: 16 << 20 });
+/** Run the hidden suite on <dir>: { pass, fail, total, categories, failing: ["<cat> (f of t fail)"], lines, code }.
+ *  phase (v2): "pre" = the suite of the spec as first handed out (it scores only the first hand-in), "post" = the suite
+ *  with the game's Change Notice in force (every later hand-in). */
+export function hidden(P, game, dir, phase = "post") {
+  const { NODE_TEST_CONTEXT, B7_DEBUG, B7_MUTANT, B7_VARIANT, ...env } = process.env; // never the operator's --debug, a mutation or a variant check
+  const r = spawnSync(process.execPath, [P.runner, `--game=${game}`, `--dir=${dir}`, `--phase=${phase}`], { encoding: "utf8", env, timeout: 240_000, maxBuffer: 16 << 20 });
   const last = String(r.stdout ?? "").trim().split("\n").pop();
   let j = null; try { j = JSON.parse(last); } catch {}
   if (!j || typeof j.total !== "number") return { error: `runner: exit ${r.status} ${String(r.stderr ?? r.error ?? "").slice(0, 300)}`, code: 3 };
   // "<category>: <f> of <t> tests fail": the defect-class form K28's classifier reads (learn.mjs DEFAULT_CLASSIFY), so
   // HSI's evidence carries the hidden categories as classes; `failed: ` is the specs' accept findings prefix
   const failing = Object.entries(j.categories).filter(([, c]) => c.fail).map(([k, c]) => `${k}: ${c.fail} of ${c.total} tests fail`);
-  return { pass: j.pass, fail: j.fail, total: j.total, rate: j.total ? j.pass / j.total : 0, categories: j.categories, failing, lines: failing.map((f) => `failed: ${f}`), code: j.fail ? 1 : 0 };
+  return { phase, pass: j.pass, fail: j.fail, total: j.total, rate: j.total ? j.pass / j.total : 0, categories: j.categories, failing, lines: failing.map((f) => `failed: ${f}`), code: j.fail ? 1 : 0 };
 }
-/** A hash of the files the hidden suite can load (everything in the dir but notes, evaluations and the spec). */
+
+// ---------------------------------------------------------------- v2: the visible tests and the Change Notice (same for every arm)
+/** The one pointer every arm gets when the Change Notice is delivered: V as its next turn, H and HSI as the founder's
+ *  resume reason (the revise findings the builder reads). The notice itself is appended to SPEC.md, byte for byte the
+ *  same for every arm. */
+export const NOTICE_POINTER = (game) => `Change Notice ${game}-N1 from the orderer, after your first hand-in: the requirements have changed. SPEC.md in your work directory now ends with Part D, the Change Notice; it takes precedence over Parts A, B and C for the rules it names, and the hidden acceptance suite now tests the game with it in force. visible-tests/ has a few tests of the notice's rules (notice.test.mjs). Update game.mjs to the changed spec.`;
+const copyDir = (from, to) => { fs.mkdirSync(to, { recursive: true }); for (const f of fs.readdirSync(from)) fs.copyFileSync(path.join(from, f), path.join(to, f)); };
+/** The visible sample of the hidden suite, into <workdir>/visible-tests/ (every arm, at placement). */
+export function placeVisible(P, game, workdir) {
+  copyDir(P.visible(game), path.join(workdir, "visible-tests"));
+  return sha(fs.readdirSync(P.visible(game)).sort().map((f) => f + fs.readFileSync(path.join(P.visible(game), f), "utf8")).join("\0"));
+}
+/** Append the Change Notice to <workdir>/SPEC.md and add its visible tests (idempotent: a second call changes nothing). */
+export function deliverNoticeFiles(P, game, workdir) {
+  const notice = fs.readFileSync(P.notice(game), "utf8"), spec = path.join(workdir, "SPEC.md");
+  const cur = fs.readFileSync(spec, "utf8");
+  if (!cur.includes(notice.trim().split("\n")[0])) fs.writeFileSync(spec, cur.trimEnd() + "\n\n" + notice);
+  copyDir(P.visibleNotice(game), path.join(workdir, "visible-tests"));
+  return { noticeSha: sha(notice), specSha: sha(fs.readFileSync(spec, "utf8")) };
+}
+const noticeFile = (od) => path.join(od, "notice.json");
+export const noticeState = (od) => { try { return JSON.parse(fs.readFileSync(noticeFile(od), "utf8")); } catch { return {}; } };
+const setNotice = (od, x) => { fs.mkdirSync(od, { recursive: true }); fs.writeFileSync(noticeFile(od), JSON.stringify({ ...noticeState(od), ...x }, null, 1) + "\n"); };
+/** A hash of the files the hidden suite can load (everything in the dir but notes, evaluations, the spec and the visible tests). */
 export function gameHash(dir) {
   const h = crypto.createHash("sha256");
   const walk = (d, rel = "") => { for (const f of fs.readdirSync(d, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name))) {
-    if (f.name === "node_modules" || f.name === ".claude" || /^(EVAL|NOTES).*\.md$|^SPEC\.md$/.test(f.name)) continue;
+    if (f.name === "node_modules" || f.name === ".claude" || f.name === "visible-tests" || /^(EVAL|NOTES).*\.md$|^SPEC\.md$/.test(f.name)) continue;
     const p = path.join(d, f.name), r = path.join(rel, f.name);
     if (f.isDirectory()) walk(p, r); else if (f.isFile()) { h.update(r + "\0"); h.update(fs.readFileSync(p)); h.update("\0"); }
   } };
@@ -116,7 +147,7 @@ export function accessRules(P, arm, game) {
 }
 /** The folders arm `arm` may never touch in game `game` (the dry run prints them). */
 export const denyRoots = (P, arm, game = "G1") => accessRules(P, arm, game).deny;
-const DENY_WORDS = /run-hidden|acc\.test\.mjs|hidden\/common|specsrc|mutants\.mjs|bench7-research/;
+const DENY_WORDS = /run-hidden|acc\.test\.mjs|hidden\/common|specsrc|mutants\.mjs|bench7-research|golden\.(pre|post)\.json|casegen\.mjs|build-golden/;
 const RECURSIVE = /(^|[\s;&|(])(find|grep|egrep|fgrep|rg|ag|fd|locate|tree|du|rsync|tar|zip|scp)(\s|$)|\bls\s+-[a-zA-Z]*R|\bcp\s+-[a-zA-Z]*[rRa]|\bgrep\s+-[a-zA-Z]*[rR]/;
 const inside = (p, r) => p === r || p.startsWith(r.endsWith("/") ? r : r + "/");
 const realish = (p) => { let head = path.resolve(p), tail = []; while (!fs.existsSync(head) && path.dirname(head) !== head) { tail.unshift(path.basename(head)); head = path.dirname(head); } return path.join(real(head), ...tail); };
@@ -205,22 +236,25 @@ export function observe(P, arm, game) {
   const live = P.live(arm, game), od = P.opdir(arm, game), log = path.join(od, "observe.jsonl");
   const st = readState(live), o = orderOf(st, game);
   if (!o) return { order: null, new: 0 };
-  const seen = readJsonl(log), have = new Set(seen.filter((x) => x.i != null).map((x) => x.i)), byHash = new Map(seen.filter((x) => x.hash && x.hidden).map((x) => [x.hash, x.hidden]));
+  const seen = readJsonl(log), have = new Set(seen.filter((x) => x.i != null).map((x) => x.i)), byHash = new Map(seen.filter((x) => x.hash && x.hidden).map((x) => [`${x.hash}:${x.phase ?? "post"}`, x.hidden]));
   const work = o.workdir ?? path.join(live, "work", game);
+  // v2: a version is scored with the suite the arm was working to when that stage signed: pre until the Change Notice
+  // was delivered, post after (the same rule as V's: the pre-notice suite scores only what came before the notice)
+  const phase = noticeState(od).delivered ? "post" : "pre";
   let n = 0;
   for (let i = 0; i < o.history.length; i++) {
     if (have.has(i)) continue;
     const h = o.history[i], hash = gameHash(work);
-    let snap = null, score = hash ? byHash.get(hash) : null;
+    let snap = null, score = hash ? byHash.get(`${hash}:${phase}`) : null;
     if (hash && !score) {
       snap = path.join(od, "snaps", `${String(i).padStart(2, "0")}-${h.stage}-${h.verdict ?? "x"}`);
       fs.cpSync(work, snap, { recursive: true, filter: (s) => !/node_modules|\/\.claude(\/|$)/.test(s) });
-      const r = hidden(P, game, snap);
+      const r = hidden(P, game, snap, phase);
       score = r.error ? { error: r.error } : { pass: r.pass, total: r.total, rate: r.rate, failing: r.failing };
-      byHash.set(hash, score);
+      byHash.set(`${hash}:${phase}`, score);
     }
     const findings = h.findings ? String(h.findings).split("\n").filter(Boolean) : [];
-    append(log, { i, stage: h.stage, by: h.by, verdict: h.verdict ?? null, at: h.t, hash, snap, hidden: score, classes: [...new Set(findings.map(classOf).filter(Boolean))], findings: findings.slice(0, 40) });
+    append(log, { i, stage: h.stage, by: h.by, verdict: h.verdict ?? null, at: h.t, hash, phase, snap, hidden: score, classes: [...new Set(findings.map(classOf).filter(Boolean))], findings: findings.slice(0, 40) });
     n++;
   }
   return { order: o.id, stage: o.stage, new: n, terminal: TERMINAL.includes(o.stage) };
@@ -233,7 +267,7 @@ function placeArm(P, opt) {
   const live = P.live(arm, game), od = P.opdir(arm, game);
   if (fs.existsSync(live)) throw new Error(`${live} exists: one live dir per (arm, game); move it aside to place again`);
   if (fs.existsSync(od) && fs.readdirSync(od).length) throw new Error(`${od} exists: the operator's records of an earlier placement`);
-  for (const f of [P.runner, P.spec(game), path.join(P.hidden, game, "acc.test.mjs"), path.join(P.proto, "meta.mjs"), path.join(P.proto, "launcher", "launch.mjs")]) if (!fs.existsSync(f)) throw new Error(`missing ${f}`);
+  for (const f of [P.runner, P.spec(game), P.notice(game), P.visible(game), P.visibleNotice(game), path.join(P.hidden, game, "acc.test.mjs"), path.join(P.hidden, game, "golden.pre.json"), path.join(P.hidden, game, "golden.post.json"), path.join(P.proto, "meta.mjs"), path.join(P.proto, "launcher", "launch.mjs")]) if (!fs.existsSync(f)) throw new Error(`missing ${f}`);
   // the protocol's order: Gn after the same arm's G(n-1) has ended (and, for HSI, its retro ran: the playbook is in the store)
   const k = GAMES.indexOf(game);
   if (k > 0 && !opt["out-of-order"]) {
@@ -266,12 +300,13 @@ function placeArm(P, opt) {
   const work = path.join(live, "work", game);
   fs.mkdirSync(work, { recursive: true });
   fs.writeFileSync(path.join(work, "SPEC.md"), specText);
+  const visibleSha = placeVisible(P, game, work); // v2: the visible sample of the hidden suite, as every arm gets it
   // the access hook, as the sessions' project settings (the launcher runs them in <live>/kernel with --setting-sources=project)
   const hookCmd = [process.execPath, SELF, "hook", `--arm=${arm}`, `--game=${game}`, `--b7=${P.b7}`, `--runs=${P.runs}`, `--proto=${P.proto}`].map((x) => `'${x.replace(/'/g, "'\\''")}'`).join(" ");
   fs.mkdirSync(path.join(live, "kernel", ".claude"), { recursive: true });
   fs.writeFileSync(path.join(live, "kernel", ".claude", "settings.json"), JSON.stringify({ hooks: { PreToolUse: [{ matcher: "*", hooks: [{ type: "command", command: hookCmd, timeout: 15 }] }] } }, null, 1) + "\n");
   const git = spawnSync("git", ["-C", P.proto, "rev-parse", "HEAD"], { encoding: "utf8" }).stdout.trim() || null;
-  const manifest = { arm, game, spec: SPEC_OF[arm], specSha: sha(specText), order: o.order, budget, b7: P.b7, runs: P.runs, store: vars?.playbook_store ?? null, storeRulesAtStart: arm === "HSI" ? activeRuleIds(P.store) : null, kernelHead: git, placedAt: new Date().toISOString(), outOfOrder: !!opt["out-of-order"], sampleSalt: salt };
+  const manifest = { arm, game, spec: SPEC_OF[arm], specSha: sha(specText), order: o.order, budget, b7: P.b7, runs: P.runs, store: vars?.playbook_store ?? null, storeRulesAtStart: arm === "HSI" ? activeRuleIds(P.store) : null, kernelHead: git, placedAt: new Date().toISOString(), outOfOrder: !!opt["out-of-order"], sampleSalt: salt, visibleSha, noticeSha: sha(fs.readFileSync(P.notice(game), "utf8")) };
   fs.writeFileSync(path.join(od, "manifest.json"), JSON.stringify(manifest, null, 1) + "\n");
   return { ...manifest, live, run: `node ${SELF} run --arm=${arm} --game=${game}`, launcher: launcherArgv(P, arm, game, {}).join(" ") };
 }
@@ -279,6 +314,35 @@ function activeRuleIds(store) { try { return JSON.parse(fs.readFileSync(path.joi
 
 function launcherArgv(P, arm, game, opt) {
   return [process.execPath, path.join(P.proto, "launcher", "launch.mjs"), `--live=${P.live(arm, game)}`, "--setting-sources=project", `--max-parallel=${opt["max-parallel"] ?? 2}`, `--max-min=${opt["max-min"] ?? GAME_MIN}`, ...(opt.model ? [`--model=${opt.model}`] : [])];
+}
+
+/** v2, PROTOCOL.md "The Change Notice": once the first accept run has scored the pre-notice suite (accept exits 3, so
+ *  the order is held at accept as a stage error and nothing is signed), the harness, acting as the founder, appends the
+ *  notice to SPEC.md, adds its visible tests, parks the order and resumes it to build with NOTICE_POINTER as the reason
+ *  (the builder's revise findings). Parking and resuming to an earlier stage costs no loop (lib.mjs resume: the loop the
+ *  return to build counts is granted back), as V's notice turn costs none of its 3 feedback rounds. Idempotent, and
+ *  safe to call on every observer pass. */
+export function deliverNoticeMeta(P, arm, game) {
+  const live = P.live(arm, game), od = P.opdir(arm, game), ns = noticeState(od);
+  if (!ns.due || ns.delivered) return null;
+  const o = orderOf(readState(live), game);
+  if (!o) return null;
+  const env = { ...process.env, META_LIVE_DIR: live }; for (const x of ["META_ROLE", "META_LAUNCH", "NODE_TEST_CONTEXT"]) delete env[x];
+  const cli = (...a) => spawnSync(process.execPath, [path.join(P.proto, "meta.mjs"), ...a], { env, encoding: "utf8" });
+  const work = o.workdir ?? path.join(live, "work", game);
+  if (!ns.parked) {
+    if (o.stage !== "accept" || o.stageError?.stage !== "accept") return null; // the accept's stage error is not in yet
+    const files = deliverNoticeFiles(P, game, work);
+    const r = cli("order", "park", o.id, "--by=founder", `--reason=Change Notice ${game}-N1: the orderer changes the requirements after the first hand-in`);
+    append(path.join(od, "operator.jsonl"), { act: "notice-park", order: o.id, ok: r.status === 0, ...files, out: String(r.stdout || r.stderr).slice(0, 400) });
+    if (r.status !== 0) return { error: "park refused" };
+    setNotice(od, { parked: new Date().toISOString(), ...files });
+  }
+  const r2 = cli("order", "resume", o.id, "--by=founder", "--to=build", `--reason=${NOTICE_POINTER(game)}`);
+  append(path.join(od, "operator.jsonl"), { act: "notice-resume", order: o.id, ok: r2.status === 0, out: String(r2.stdout || r2.stderr).slice(0, 400) });
+  if (r2.status !== 0) return { error: "resume refused" };
+  setNotice(od, { delivered: new Date().toISOString() });
+  return { delivered: o.id };
 }
 
 /** PROTOCOL.md "Stops": an order parked at the loop cap, stopped at its budget, or still open when the launcher stopped
@@ -289,6 +353,7 @@ function launcherArgv(P, arm, game, opt) {
 export function endIfStopped(P, arm, game, { launcherStopped = null } = {}) {
   const live = P.live(arm, game), o = orderOf(readState(live), game);
   if (!o || TERMINAL.slice(0, 2).includes(o.stage)) return null;
+  const ns = noticeState(P.opdir(arm, game)); if (ns.parked && !ns.delivered) return null; // the notice's own park, resumed on the next pass
   const why = o.stage === "parked" ? `parked: ${String(o.parked?.reason ?? "").slice(0, 200)}` : o.budgetHold?.ask ? `budget: ${o.spent} of ${o.budget} tokens` : launcherStopped ? `wall clock: ${launcherStopped}` : null;
   if (!why) return null;
   const env = { ...process.env, META_LIVE_DIR: live }; for (const x of ["META_ROLE", "META_LAUNCH", "NODE_TEST_CONTEXT"]) delete env[x];
@@ -309,7 +374,7 @@ async function runArm(P, opt) {
     const out = fs.openSync(path.join(od, "launcher.out"), "a");
     const child = spawn(a[0], a.slice(1), { env, stdio: ["ignore", out, out] });
     let exited = false; child.on("exit", () => { exited = true; });
-    while (!exited) { observe(P, arm, game); endIfStopped(P, arm, game); await new Promise((r) => setTimeout(r, poll)); }
+    while (!exited) { observe(P, arm, game); deliverNoticeMeta(P, arm, game); endIfStopped(P, arm, game); await new Promise((r) => setTimeout(r, poll)); }
     observe(P, arm, game);
   };
   await launch(argv);
@@ -352,7 +417,11 @@ function tallyMeta(P, arm, game) {
   const c = dedupCost(fins);
   const byRole = {}; for (const f of fins) { const r = (byRole[f.role] ??= { launches: 0, cold: 0, resumed: 0 }); r.launches++; f.resumed ? r.resumed++ : r.cold++; }
   const fallbacks = L.filter((x) => x.event === "warm-fallback").length;
-  const firstAcc = acc[0] ?? null, lastAcc = acc.at(-1) ?? null, lastObs = [...obs].reverse().find((x) => x.hidden?.total != null) ?? null;
+  // v2: the first accept run is scored with the pre-notice suite (the first hand-in); every later one with the post-notice
+  // suite. rounds counts the post-notice runs after the first (the feedback rounds, as V's)
+  const accRuns = acc.filter((x) => x.total != null), preAcc = accRuns.filter((x) => x.phase === "pre"), postAcc = accRuns.filter((x) => x.phase !== "pre");
+  const firstAcc = preAcc[0] ?? accRuns[0] ?? null, lastAcc = postAcc.at(-1) ?? null, lastObs = [...obs].reverse().find((x) => x.hidden?.total != null && x.phase !== "pre") ?? null;
+  const ns = noticeState(od);
   const builds = obs.filter((x) => x.stage === "build" && x.by !== "code" && x.hidden?.total != null);
   const evals = obs.filter((x) => x.stage === "eval" && x.by !== "code");
   const evalRows = evals.map((e) => {
@@ -369,7 +438,9 @@ function tallyMeta(P, arm, game) {
     firstHandin: firstAcc ? { pass: firstAcc.pass, total: firstAcc.total, pct: pct(firstAcc.rate), failing: firstAcc.failing } : lastObs ? { pass: lastObs.hidden.pass, total: lastObs.hidden.total, pct: pct(lastObs.hidden.rate), failing: lastObs.hidden.failing, note: "no accept run: the last observed version" } : null,
     final: lastAcc && (!lastObs || lastObs.hash === lastAcc.hash) ? { pass: lastAcc.pass, total: lastAcc.total, pct: pct(lastAcc.rate), failing: lastAcc.failing } : lastObs ? { pass: lastObs.hidden.pass, total: lastObs.hidden.total, pct: pct(lastObs.hidden.rate), failing: lastObs.hidden.failing } : null,
     firstBuild: builds[0] ? { pass: builds[0].hidden.pass, total: builds[0].hidden.total, pct: pct(builds[0].hidden.rate) } : null,
-    rounds: Math.max(0, acc.length - 1), acceptRuns: acc.length, revises,
+    afterNotice: postAcc[0] ? { pass: postAcc[0].pass, total: postAcc[0].total, pct: pct(postAcc[0].rate), failing: postAcc[0].failing } : null,
+    notice: { due: ns.due ?? null, delivered: ns.delivered ?? null },
+    rounds: Math.max(0, postAcc.length - 1), acceptRuns: accRuns.length, revises,
     cost: c.cost, costNaive: c.naive, cumulative: c.cumulative,
     minutes: minutesBetween(up, end), leadMin: o && hist.length ? Math.round((hist.at(-1).t - o.created) * 100) / 100 : null,
     sessions: c.sdkSessions + fins.filter((f) => !f.sdk).length, launches: fins.length, cold: fins.filter((f) => !f.resumed).length + fallbacks, resumes: fins.filter((f) => f.resumed).length - fallbacks, warmFallbacks: fallbacks, byRole,
@@ -387,8 +458,9 @@ function tallyV(P) {
     const turns = r.filter((x) => x.event === "turn");
     const bySid = new Map(); for (const t of turns) bySid.set(t.session, { cost: Math.max(bySid.get(t.session)?.cost ?? 0, t.cost ?? 0), cumulative: Math.max(bySid.get(t.session)?.cumulative ?? 0, t.cumulative ?? 0) });
     const cost = [...bySid.values()].reduce((a, x) => a + x.cost, 0), cumulative = [...bySid.values()].reduce((a, x) => a + x.cumulative, 0);
-    const f = hs[0], l = hs.at(-1);
-    return { arm: "V", game, firstHandin: f ? { pass: f.pass, total: f.total, pct: pct(f.rate), failing: f.failing } : null, final: l ? { pass: l.pass, total: l.total, pct: pct(l.rate), failing: l.failing } : null, rounds: Math.max(0, hs.length - 1), acceptRuns: hs.length, cost: Number(cost.toFixed(4)), cumulative, minutes: s?.minutes ?? minutesBetween(r[0].t, r.at(-1).t), sessions: bySid.size, launches: turns.length, cold: bySid.size, resumes: turns.length - bySid.size, done: !!s };
+    const ok = hs.filter((x) => x.total != null), pre = ok.filter((x) => x.phase === "pre"), postH = ok.filter((x) => x.phase !== "pre");
+    const f = pre[0] ?? ok[0], l = postH.at(-1), a = postH[0], nv = r.find((x) => x.event === "notice");
+    return { arm: "V", game, firstHandin: f ? { pass: f.pass, total: f.total, pct: pct(f.rate), failing: f.failing } : null, afterNotice: a ? { pass: a.pass, total: a.total, pct: pct(a.rate), failing: a.failing } : null, notice: { delivered: nv?.t ?? null }, final: l ? { pass: l.pass, total: l.total, pct: pct(l.rate), failing: l.failing } : null, rounds: Math.max(0, postH.length - 1), acceptRuns: ok.length, cost: Number(cost.toFixed(4)), cumulative, minutes: s?.minutes ?? minutesBetween(r[0].t, r.at(-1).t), sessions: bySid.size, launches: turns.length, cold: bySid.size, resumes: turns.length - bySid.size, done: !!s };
   }).filter(Boolean);
 }
 /** HSI: did a rule added after game k target a category that failed in a later game's first hand-in? */
@@ -408,9 +480,9 @@ export function tally(P, opt = {}) {
   });
 }
 function tallyMd(T) {
-  const L = ["| arm | game | first hand-in | final | rounds | loops | cost $ (naive) | min | sessions | cold / resumed | self-checks (failed) | eval runs / false passes |", "|---|---|---|---|---|---|---|---|---|---|---|---|"];
+  const L = ["| arm | game | first hand-in (pre-notice) | after the notice | final | rounds | loops | cost $ (naive) | min | sessions | cold / resumed | self-checks (failed) | eval runs / false passes |", "|---|---|---|---|---|---|---|---|---|---|---|---|---|"];
   const f = (x) => (x ? `${x.pass}/${x.total} (${x.pct}%)` : "-");
-  for (const a of T) for (const g of a.games) L.push(`| ${a.arm} | ${g.game} | ${f(g.firstHandin)} | ${f(g.final)} | ${g.rounds} | ${g.loops ?? "-"} | ${g.cost}${g.costNaive != null && g.costNaive !== g.cost ? ` (${g.costNaive})` : ""} | ${g.minutes ?? "-"} | ${g.sessions} | ${g.cold} / ${g.resumes} | ${g.selfChecks ? `${g.selfChecks.n} (${g.selfChecks.failed})` : "-"} | ${g.eval ? `${g.eval.runs} / ${g.eval.falsePasses}` : "-"} |`);
+  for (const a of T) for (const g of a.games) L.push(`| ${a.arm} | ${g.game} | ${f(g.firstHandin)} | ${f(g.afterNotice)} | ${f(g.final)} | ${g.rounds} | ${g.loops ?? "-"} | ${g.cost}${g.costNaive != null && g.costNaive !== g.cost ? ` (${g.costNaive})` : ""} | ${g.minutes ?? "-"} | ${g.sessions} | ${g.cold} / ${g.resumes} | ${g.selfChecks ? `${g.selfChecks.n} (${g.selfChecks.failed})` : "-"} | ${g.eval ? `${g.eval.runs} / ${g.eval.falsePasses}` : "-"} |`);
   return L.join("\n");
 }
 
@@ -421,18 +493,22 @@ function tallyMd(T) {
  *  a Meta arm can see without reading anything hidden (its own state.json holds the accept command, and the accept
  *  label names setup.mjs): reported as seen, never a leak (B7 review: they made a false NOT clean). */
 export function canaries(P) {
-  const specs = GAMES.map((g) => { try { return fs.readFileSync(P.spec(g), "utf8"); } catch { return ""; } }).join("\n") + (() => { try { return fs.readFileSync(path.join(P.b7, "specs", "API.md"), "utf8"); } catch { return ""; } })();
-  const content = new Set(), paths = new Set([P.b7, real(P.b7), P.op, "run-hidden", "acc.test.mjs"]);
+  // v2: the hidden suite is golden data (case names, inputs, masked outputs) replayed by suite.mjs; the reference is the
+  // shared engine and each game's world. What every arm is given (the specs, the notices, the visible tests) is never a
+  // canary, so a string an arm could have read in its own directory never flags a leak.
   const read = (f) => { try { return fs.readFileSync(f, "utf8"); } catch { return ""; } };
-  for (const f of [...GAMES.map((g) => path.join(P.hidden, g, "acc.test.mjs")), path.join(P.hidden, "common", "kit.mjs")]) {
-    const t = read(f);
-    for (const m of t.matchAll(/\btest\(\s*(["'`])((?:(?!\1).){24,})\1/g)) if (!specs.includes(m[2])) content.add(m[2]);
-    for (const m of t.matchAll(/\b(?:const|function|let)\s+([A-Za-z_][\w]{7,})/g)) if (!specs.includes(m[1]) && /[A-Z_]/.test(m[1])) content.add(m[1]);
+  const ls = (d) => { try { return fs.readdirSync(d).map((f) => path.join(d, f)); } catch { return []; } };
+  const given = [...GAMES.flatMap((g) => [P.spec(g), P.notice(g), ...ls(P.visible(g)), ...ls(P.visibleNotice(g))]), path.join(P.b7, "specs", "API.md")].map(read).join("\n");
+  const content = new Set(), paths = new Set([P.b7, real(P.b7), P.op, "run-hidden", "acc.test.mjs"]);
+  for (const g of GAMES) for (const ph of ["pre", "post"]) {
+    let j = null; try { j = JSON.parse(read(path.join(P.hidden, g, `golden.${ph}.json`))); } catch {}
+    for (const c of j?.cases ?? []) if (c.name.length >= 24 && !given.includes(c.name)) content.add(c.name);
   }
-  for (const f of [...GAMES.map((g) => path.join(P.hidden, g, "ref", "game.mjs")), path.join(P.hidden, "common", "engine.mjs")]) {
+  const code = [...GAMES.flatMap((g) => [path.join(P.hidden, g, "cases.mjs"), path.join(P.hidden, g, "world.mjs")]), ...["engine.mjs", "casegen.mjs", "suite.mjs"].map((f) => path.join(P.hidden, "common", f)), path.join(P.hidden, "build-golden.mjs")];
+  for (const f of code) {
     const t = read(f);
-    for (const m of t.matchAll(/\b(?:const|function|let|class)\s+([A-Za-z_][\w]{7,})/g)) if (!specs.includes(m[1]) && /[A-Z_]/.test(m[1])) content.add(m[1]);
-    for (const m of t.matchAll(/"([A-Z][A-Za-z ,.'!?;-]{39,})"/g)) if (!specs.includes(m[1]) && m[1].split(" ").length >= 7) content.add(m[1]); // prose the reference prints
+    for (const m of t.matchAll(/\b(?:const|function|let|class)\s+([A-Za-z_][\w]{7,})/g)) if (!given.includes(m[1]) && /[A-Z_]/.test(m[1])) content.add(m[1]);
+    for (const m of t.matchAll(/"([A-Z][A-Za-z ,.'!?;-]{39,})"/g)) if (!given.includes(m[1]) && m[1].split(" ").length >= 7) content.add(m[1]); // prose the reference prints (free wording)
   }
   return { content: [...content], paths: [...paths] };
 }
@@ -446,6 +522,22 @@ function sharedLines(P) {
     for (const a of ["H", "HSI"]) if (!fs.existsSync(files[a])) files[a] = path.join(P.live(a, g), "work", g, "game.mjs");
     const lines = Object.fromEntries(Object.entries(files).map(([a, f]) => { try { return [a, new Set(fs.readFileSync(f, "utf8").split("\n").map((l) => l.trim()).filter((l) => l.length >= 50 && !spec.includes(l)))]; } catch { return [a, new Set()]; } }));
     for (const [a, b] of [["V", "H"], ["V", "HSI"], ["H", "HSI"]]) { const n = [...lines[a]].filter((l) => lines[b].has(l)).length; if (n) out.push({ game: g, arms: `${a}+${b}`, sharedLines: n }); }
+  }
+  return out;
+}
+/** v2: the game may not read files or its environment (A1.1). The hidden runner lets the test process read the suite's
+ *  own copy (its golden file included), so a game that reads files could look its answers up: the audit lists every
+ *  arm's final .mjs files that touch the file system, the environment or load code at run time, for the operator. */
+function gameFileAccess(P) {
+  const out = [];
+  const RE = /\bnode:fs\b|from\s+["']fs(\/promises)?["']|require\(\s*["']fs|\breadFileSync\b|\bopenSync\b|process\.env|process\.argv|\bimport\s*\(|\bcreateRequire\b|node:child_process|node:worker_threads|node:module\b/;
+  for (const g of GAMES) for (const a of ARMS) {
+    const dirs = a === "V" ? [P.live("V", g)] : [path.join(P.live(a, g), "shipped", g), path.join(P.live(a, g), "work", g)];
+    const dir = dirs.find((d) => fs.existsSync(path.join(d, "game.mjs"))); if (!dir) continue;
+    const hits = [];
+    const walk = (d) => { for (const f of fs.readdirSync(d, { withFileTypes: true })) { const p = path.join(d, f.name); if (f.isDirectory()) { if (!["node_modules", "visible-tests", ".claude"].includes(f.name)) walk(p); } else if (/\.m?js$/.test(f.name) && !/\.test\.m?js$/.test(f.name)) { const t = fs.readFileSync(p, "utf8"); const m = RE.exec(t); if (m) hits.push(`${path.relative(dir, p)}: ${m[0]}`); } } };
+    try { walk(dir); } catch {}
+    if (hits.length) out.push({ arm: a, game: g, hits });
   }
   return out;
 }
@@ -490,6 +582,7 @@ export function audit(P) {
     attempts: rows.filter((r) => r.triedCanaries.length).map((r) => ({ arm: r.arm, game: r.game, role: r.role, sid: r.sid, tried: r.triedCanaries })),
     pathsSeen: rows.filter((r) => r.pathsSeen.length).map((r) => ({ arm: r.arm, game: r.game, role: r.role, sid: r.sid, paths: r.pathsSeen })),
     sharedLines: sharedLines(P),
+    gameFileAccess: gameFileAccess(P),
     verdict: rows.length && rows.every((r) => r.hookCalls && r.transcript && !r.seenCanaries.length) ? "clean: every session ran under the hook, and no hidden-test or reference text reached any session (harness paths seen are listed apart)" : "NOT clean: see hookMissing, transcriptMissing and leaks",
   };
 }
@@ -510,13 +603,18 @@ async function main() {
   }
   if (cmd === "accept") {
     if (!GAMES.includes(opt.game) || !opt.dir || !opt.log) { console.error("usage: setup.mjs accept --game=Gn --dir=<workdir> --log=<jsonl>"); process.exit(2); }
-    const dir = path.resolve(opt.dir), hash = gameHash(dir), t0 = Date.now();
-    const r = hidden(P, opt.game, dir);
-    if (r.error) { append(opt.log, { game: opt.game, dir, hash, error: r.error }); console.log(r.error); process.exit(3); }
+    const dir = path.resolve(opt.dir), hash = gameHash(dir), t0 = Date.now(), od = path.dirname(opt.log), ns = noticeState(od);
+    // v2: the first hand-in is scored with the pre-notice suite and nothing goes back but the notice (delivered by the
+    // observer as the founder: deliverNoticeMeta); exit 3 holds the order at accept as a stage error, signing nothing
+    if (ns.due && !ns.delivered) { console.log("# the Change Notice is being delivered: accept waits for it"); process.exit(3); }
+    const phase = ns.delivered ? "post" : "pre";
+    const r = hidden(P, opt.game, dir, phase);
+    if (r.error) { append(opt.log, { game: opt.game, dir, hash, phase, error: r.error }); console.log(r.error); process.exit(3); }
     // the operator's copy of exactly the version this accept judged
     const n = readJsonl(opt.log).length, snap = path.join(path.dirname(opt.log), "snaps", `accept-${n + 1}`);
     try { fs.cpSync(dir, snap, { recursive: true, filter: (s) => !/node_modules|\/\.claude(\/|$)/.test(s) }); } catch {}
-    append(opt.log, { game: opt.game, dir, hash, snap, pass: r.pass, fail: r.fail, total: r.total, rate: r.rate, failing: r.failing, categories: r.categories, ms: Date.now() - t0 });
+    append(opt.log, { game: opt.game, dir, hash, phase, snap, pass: r.pass, fail: r.fail, total: r.total, rate: r.rate, failing: r.failing, categories: r.categories, ms: Date.now() - t0 });
+    if (phase === "pre") { setNotice(od, { due: new Date().toISOString(), firstHandin: { pass: r.pass, total: r.total } }); console.log("# the first hand-in is recorded; the orderer issues a Change Notice"); process.exit(3); }
     for (const l of r.lines) console.log(l);
     // the categories this run checked: the specs' findings.checked reads it, so K28 scores a rule only on a game whose
     // suite has its class (B7 dry run 2: G1's padlock rule scored helped on G2); the kernel keeps them as hashes only
@@ -528,8 +626,8 @@ async function main() {
   if (cmd === "place") out = placeArm(P, opt);
   else if (cmd === "run") out = await runArm(P, opt);
   else if (cmd === "watch") {
-    if (opt.once) out = observe(P, opt.arm, opt.game);
-    else { for (;;) { const r = observe(P, opt.arm, opt.game); endIfStopped(P, opt.arm, opt.game); if (r.terminal && !readState(P.live(opt.arm, opt.game))?.data?.learn?.retros?.some((x) => x.state === "open")) { out = r; break; } await new Promise((res) => setTimeout(res, Number(opt.poll ?? 3) * 1000)); } }
+    if (opt.once) { out = observe(P, opt.arm, opt.game); const d = deliverNoticeMeta(P, opt.arm, opt.game); if (d) out = { ...out, notice: d }; }
+    else { for (;;) { const r = observe(P, opt.arm, opt.game); deliverNoticeMeta(P, opt.arm, opt.game); endIfStopped(P, opt.arm, opt.game); if (r.terminal && !readState(P.live(opt.arm, opt.game))?.data?.learn?.retros?.some((x) => x.state === "open")) { out = r; break; } await new Promise((res) => setTimeout(res, Number(opt.poll ?? 3) * 1000)); } }
   }
   else if (cmd === "tally") { const T = tally(P, opt); if (opt.md) { console.log(tallyMd(T)); return; } out = T; }
   else if (cmd === "audit") out = audit(P);
