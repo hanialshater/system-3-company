@@ -1415,6 +1415,7 @@ export const loaders: Record<string, () => Promise<{ default: ComponentType<{ sl
   "fence-for-biggest-pen": () => import("./math/fence-for-biggest-pen/Demo"),
   "fifty-one-times-forty-nine": () => import("./math/fifty-one-times-forty-nine/Demo"),
   "fifty-up-fifty-down": () => import("./math/fifty-up-fifty-down/Demo"),
+  "four-cards-one-rule": () => import("./math/four-cards-one-rule/Demo"),
   "gauss-staircase": () => import("./math/gauss-staircase/Demo"),
   "halving-powers": () => import("./math/halving-powers/Demo"),
   "handshakes-halve": () => import("./math/handshakes-halve/Demo"),

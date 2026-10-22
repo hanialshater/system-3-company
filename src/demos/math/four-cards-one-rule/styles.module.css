@@ -1,0 +1,15 @@
+.wrap { display: flex; flex-direction: column; gap: 8px; flex: 1 1 auto; min-height: 0; }
+.readout { margin: 0; text-align: center; font-weight: 800; font-size: 0.95rem; color: var(--fg); font-variant-numeric: tabular-nums; }
+.grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; max-width: 320px; width: 100%; margin: 0 auto; }
+.col { display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 0; }
+.card { width: 100%; max-width: 72px; min-height: 72px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0; border-radius: 10px; }
+.face { font-size: 1.8rem; font-weight: 800; line-height: 1; }
+.tick { font-size: 0.75rem; font-weight: 800; color: var(--muted); line-height: 1.2; }
+.backs { display: flex; flex-direction: column; align-items: center; gap: 4px; min-height: 92px; }
+.back { width: 44px; display: flex; flex-direction: column; align-items: center; border: 1.5px solid var(--line); border-radius: 6px; padding: 2px 0 1px; background: var(--bg-2); }
+.backFace { font-size: 1rem; font-weight: 800; color: var(--fg); line-height: 1.2; }
+.tag { font-size: 0.7rem; font-weight: 700; color: var(--muted); line-height: 1.2; }
+.bad { border-color: var(--bad); box-shadow: 0 0 0 1px var(--bad); }
+.bad .tag { color: var(--bad); font-weight: 800; }
+.wrap :global(.row) { justify-content: center; }
+.tap { min-height: 44px; min-width: 44px; }
