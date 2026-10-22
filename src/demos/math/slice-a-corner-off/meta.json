@@ -26,28 +26,36 @@
       "text": "A cube has 8 corners, 12 edges and 6 faces (8 − 12 + 6 = 2). With one corner sliced off it has 10, 15 and 7; with two, 12, 18 and 8. A square pyramid has 5, 8 and 5; with its tip sliced off, 8, 12 and 6. Each gives 2.",
       "support": "derivation",
       "source": "company/domains/briefs/checks/math-wave-j-check.mjs label G5 (cube 8, 12, 6; one corner 10, 15, 7; two 12, 18, 8; pyramid 5, 8, 5; apex sliced 8, 12, 6). The stage recounts them from the drawn solids: Demo.tsx counts() takes vertices, edges (distinct face sides) and faces of slice()d CUBE and PYR.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     },
     {
       "id": "math.slice-a-corner-off.c2",
       "text": "A small slice that cuts only the k edges at a corner removes that corner and makes k new ones (k − 1 more corners), adds k edges round the cut and 1 new face, so corners − edges + faces changes by (k − 1) − k + 1 = 0: a cube corner (3 edges) gives +2 corners, +3 edges, +1 face; the pyramid's tip (4 edges) gives +3, +4, +1.",
       "support": "derivation",
       "source": "The cut meets each of the k edges once: the corner goes, k points appear (net k − 1), the k old edges are shortened (not lost), the k new edges bound the cut face, and every old face keeps its count. G5: 'Slicing a corner where k edges meet adds k − 1 corners, k edges and 1 face'.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     },
     {
       "id": "math.slice-a-corner-off.c3",
       "text": "For every convex solid (convex polyhedron), corners − edges + faces = 2; this is Euler's formula.",
       "support": "source",
       "source": "Euler's polyhedron formula V − E + F = 2 for convex polyhedra (L. Euler, 'Elementa doctrinae solidorum', Novi Commentarii Academiae Scientiarum Petropolitanae 4, 1758; e.g. Richeson, 'Euler's Gem', Princeton UP 2008). No date in learner text.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     },
     {
       "id": "math.slice-a-corner-off.c4",
       "text": "Recall: a convex solid with 12 corners and 30 edges has 20 faces (12 − 30 + 20 = 2), like the icosahedron.",
       "support": "derivation",
       "source": "From c3: F = 2 − V + E = 2 − 12 + 30 = 20. The regular icosahedron has 12 vertices, 30 edges and 20 faces.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     }
   ],
   "confidence": "",
