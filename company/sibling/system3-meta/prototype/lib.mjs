@@ -331,11 +331,14 @@ export function flowProblems(def) {
 // trigger, a plain deploy). Matched beside COVERS, the founder's words for an approval kind; never used by decide, and
 // not exercised in any run: a test only, so Meta does not contradict the constitution.
 export const STANDING_ACTIONS = ["flag-off-withdrawal"];
+/** M5 review: the one grant the constitution makes (CLAUDE.md, AMD-015), and the bound every standing entry is held to.
+ *  The shape check alone let a spec pre-approve a builder's flag-off withdrawal on "outage" under a made-up AMD-999. */
+export const STANDING_GRANT = Object.freeze({ action: "flag-off-withdrawal", role: "release-manager", triggers: Object.freeze(["privacy", "child-safety"]), record: "AMD-015" });
 const STANDING_KEYS = ["action", "role", "trigger", "record"];
 export function standingProblems(list, { roles = null } = {}) {
   if (list == null) return [];
   if (!Array.isArray(list)) return ["approvals.standing is a list of {action, role, trigger, record}"];
-  const p = [];
+  const p = [], G = STANDING_GRANT;
   for (const [i, s] of list.entries()) {
     const at = `approvals.standing[${i}]`;
     if (!s || typeof s !== "object" || Array.isArray(s)) { p.push(`${at} is {action, role, trigger, record}`); continue; }
@@ -344,14 +347,18 @@ export function standingProblems(list, { roles = null } = {}) {
     if (miss.length) p.push(`${at} needs ${miss.join(", ")} (strings)`);
     if (typeof s.action === "string" && !STANDING_ACTIONS.includes(s.action)) p.push(`${at}: action ${s.action} is not one the constitution pre-approves (${STANDING_ACTIONS.join(", ")})`);
     if (typeof s.trigger === "string" && !/^[a-z][a-z0-9-]*(\|[a-z][a-z0-9-]*)*$/.test(s.trigger)) p.push(`${at}: trigger is kebab-case words separated by | (privacy|child-safety)`);
+    else if (typeof s.trigger === "string") { const off = s.trigger.split("|").filter((t) => !G.triggers.includes(t)); if (off.length) p.push(`${at}: trigger ${off.join(", ")} is not one ${G.record} names (${G.triggers.join(", ")})`); }
     if (typeof s.record === "string" && !/^AMD-\d{3}$/.test(s.record)) p.push(`${at}: record is the ratified amendment that grants it (AMD-nnn)`);
-    if (roles && typeof s.role === "string") { const r = roles.get(s.role); if (!r || r.active === false || r.human) p.push(`${at}: role ${s.role} is an active agent role`); }
+    else if (typeof s.record === "string" && s.record !== G.record) p.push(`${at}: record ${s.record} grants no standing approval (the constitution's one is ${G.record})`);
+    if (typeof s.role === "string" && s.role !== G.role) p.push(`${at}: role ${s.role}: ${G.record} pre-approves the flag-off withdrawal for ${G.role} only`);
+    if (roles && typeof s.role === "string") { const r = roles.get(s.role); if (!r || r.active === false || r.human) p.push(`${at}: role ${s.role} is not an active agent role`); }
   }
   return p;
 }
-/** The standing approval that covers `action` by `role` on `trigger`, or null. Exact on all three. */
+/** The standing approval that covers `action` by `role` on `trigger`, or null. Exact on all three, and only an entry
+ *  inside the constitution's grant (STANDING_GRANT) is honored, whatever a spec holds (M5 review). */
 export function standingCovers(list, { action, role, trigger }) {
-  return (list ?? []).find((s) => s?.action === action && s.role === role && typeof trigger === "string" && String(s.trigger).split("|").includes(trigger)) ?? null;
+  return (list ?? []).find((s) => s?.action === action && s.role === role && typeof trigger === "string" && String(s.trigger).split("|").includes(trigger) && !standingProblems([s]).length) ?? null;
 }
 
 const COVERS = { release: /\b(approve|go)\b.*\b(deploy|release|ship)\b|\b(deploy|release|ship)\b.*\b(approve|ok|go)\b/i, "org-change": /\b(approve|add|retire|ok|yes)\b/i, budget: /\b(approve|ok|yes)\b/i };
@@ -576,6 +583,7 @@ export class Engine {
     hard(o.stage === "done", `${id} is at ${o.stage}: only a shipped order is reopened (a open one is revised)`);
     hard(!!findings, "a reopen says what is wrong (findings)");
     o.stage = "build"; o.loops++; o.findings = findings;
+    if (o.budgetHold?.no) delete o.budgetHold; // M5 review: as resume
     o.history.push({ stage: "done", by, verdict: "reopen", t: this.clock.now(), findings: String(findings).slice(0, 2000) });
     this.log.add({ type: "reopen", order: id, from: "done", by, reason: reason ?? null, loops: o.loops, priority: o.priority });
     // K9: benchmark 4's regression gate reopens by code, and that loop counts; so does the manager's (plan §5 step 6: a
@@ -618,10 +626,13 @@ export class Engine {
   /** M4 audit (plan 2026-10-21 §2): a cmd or post-check whose route says `park` (a learner's Verdict: fatal, an active
    *  publish hold: adapters/s3c emit route "park") parks the order with K9's ask to its orderer, every finding so far
    *  plus this one; no revise loop is spent (before, a fatal could only revise: a fresh build that cannot fix it). */
-  parkRouted(o, { by, stage, why }) {
+  parkRouted(o, { by, stage, why, ask = null }) {
     const findings = [...o.history.filter((h) => h.findings).map((h) => ({ stage: h.stage, by: h.by, verdict: h.verdict, findings: h.findings })), { stage, by, verdict: "park", findings: String(why).slice(0, 2000) }];
     this.log.add({ type: "park-route", order: o.id, stage, by, why: String(why).slice(0, 400) });
-    return this.park(o.id, { by, reason: `${stage}: ${String(why).split("\n")[0].slice(0, 200)}`, ask: { kind: "decision", findings, routed: true } });
+    // M5 review: a check that names a budget ask (ledger-gate.mjs: the company's project gate fails) parks with a
+    // kind:budget ask routed by amount (asks.raiseParkAsk), not a decision to the orderer
+    const budget = ask?.kind === "budget" ? { budget: { text: typeof ask.text === "string" ? ask.text.slice(0, 1000) : null, amount: Number.isFinite(Number(ask.amount)) && Number(ask.amount) > 0 ? Math.round(Number(ask.amount)) : null } } : {};
+    return this.park(o.id, { by, reason: `${stage}: ${String(why).split("\n")[0].slice(0, 200)}`, ask: { kind: "decision", findings, routed: true, ...budget } });
   }
 
   resume(id, { by, reason, extraLoops = null }) {
@@ -635,6 +646,7 @@ export class Engine {
     if (grant) o.extraLoops = (o.extraLoops ?? 0) + grant;
     const p = o.parked;
     o.stage = p.stage; delete o.parked;
+    if (o.budgetHold?.no) delete o.budgetHold; // M5 review: the owner put it back to work: a budget no is asked again (asks.raiseBudgetAsk)
     (o.history ??= []).push({ stage: "parked", by, verdict: "resume", t: this.clock.now(), reason });
     this.log.add({ type: "resumed", order: id, to: o.stage, by, reason, extraLoops: grant, parkedMin: this.clock.now() - p.t });
     if (o.stage === "budget") this.request({ order: o.id, stage: "budget", approver: "founder", kind: "budget", dueMin: 24 * 60, key: `${o.id}:budget:r${o.parks}` });
@@ -889,7 +901,7 @@ export class Rooms {
   /** M4 audit: the leave of a run whose post-check routed to park: nothing is signed, the order parks with an ask, and
    *  the stage's files are committed (K7) as for any stage that leaves. */
   leaveParked(x, o, pr, { learned, mistake, tokens }) {
-    this.engine.parkRouted(o, { by: x.role, stage: x.stage, why: pr.findings ?? pr.output });
+    this.engine.parkRouted(o, { by: x.role, stage: x.stage, why: pr.findings ?? pr.output, ask: pr.ask ?? null });
     x.state = "left";
     const m = this.mailbox.msgs.get(x.msg);
     if (!["done", "withdrawn"].includes(m.state)) this.mailbox.done(x.msg, { run: x.run, report: { stage: x.stage, verdict: "park" } });

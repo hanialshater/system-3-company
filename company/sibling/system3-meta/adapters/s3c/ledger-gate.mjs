@@ -22,7 +22,11 @@
 //   - an uncaught error in the tool also exits 1, so exit 1 counts as the gate's "fail" only when its first line says
 //     `fail:`; anything else is a stage-error, not a park.
 // A fail is a budget question, not a defect the builder can fix: the order parks with an ask (kind budget) before any
-// session is spent. The supervisor decides how to raise it; this adapter only names it.
+// session is spent. The supervisor decides how to raise it; this adapter only names it (M5 review: the kernel reads
+// `ask` from this line and raises it kind budget, routed by amount: `ask.amount` is --tokens when given, else the
+// order's budget). An unknown project or line is the spec's error (or the order's --ledger-project), not a budget
+// question: exit 3. Wire it per order as `node ledger-gate.mjs ${ledger_project} --tokens=${remaining}` (the order's
+// `order new --ledger-project` and what is left of its Meta budget: prototype/state.mjs prepareCmd).
 
 import fs from "node:fs";
 import path from "node:path";
@@ -53,13 +57,15 @@ export function check(repo, project, { tokens = null } = {}) {
   if (r.error || !g || g.project !== project || ![0, 1].includes(r.status) || (r.status === 0) !== (g.level !== "fail"))
     return { exit: 3, out: { ok: false, stage: "ledger-gate", project, findings: [env("ledger", `tools/ledger.mjs gate --project=${project} did not answer as a gate (exit ${r.status ?? r.signal ?? r.error?.code}): ${said || "no output"}`)] } };
   const base = { stage: "ledger-gate", project, level: g.level, spent: g.spent, budget: g.budget, reasons: g.reasons, planned: tokens };
+  if (g.level === "fail" && g.reasons.some((m) => /^unknown project or line /.test(m)))
+    return { exit: 3, out: { ok: false, ...base, park: false, findings: [env("spec", `${project} is no projects.json id or budget line: fix the stage's pre-check (or the order's --ledger-project), it is not a budget question: ${g.reasons[0]}`)] } };
   if (g.level !== "fail") return { exit: 0, out: { ok: true, ...base, park: false, findings: g.reasons.map((m) => ({ severity: "advisory", kind: "budget", message: m })) } };
   const why = g.reasons.join("; ") || `${project} fails the company's budget gate`;
   return {
     exit: 1,
     out: {
       ok: false, ...base, park: true,
-      ask: { kind: "budget", text: `The company's budget gate refuses new work on ${project}${g.budget ? ` (${g.spent} of ${g.budget})` : ""}: ${why}. Top it up through the project review (company/ops/token-budget.md), or keep the order parked.` },
+      ask: { kind: "budget", ...(tokens != null ? { amount: tokens } : {}), text: `The company's budget gate refuses new work on ${project}${g.budget ? ` (${g.spent} of ${g.budget})` : ""}: ${why}. Top it up through the project review (company/ops/token-budget.md), or keep the order parked.` },
       findings: [{ severity: "block", kind: "budget", route: "park", message: `ledger gate ${project}: ${why}` }],
     },
   };

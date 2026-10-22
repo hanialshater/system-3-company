@@ -37,7 +37,7 @@ import path from "node:path";
 import readline from "node:readline";
 
 import crypto from "node:crypto";
-import { makeGuard, sessionPlan, queryOptions } from "./guard.mjs";
+import { makeGuard, sessionPlan, queryOptions, deniedArgs } from "./guard.mjs";
 const HERE = path.dirname(new URL(import.meta.url).pathname);
 const SRC = path.join(HERE, "..");
 const opt = Object.fromEntries(process.argv.slice(2).filter((a) => a.startsWith("--")).map((a) => { const [k, ...v] = a.slice(2).split("="); return [k, v.join("=") || true]; }));
@@ -97,7 +97,7 @@ async function run(ev) {
   const { cwd, tools, sessionMin, maxTurns, settingSources: sources } = plan;
   const guard = makeGuard({ tools, strictTools: plan.strictTools, roots: plan.roots, cwd, role: ev.role, record: (d) => {
     note({ event: "guard", launch: id, n: k, role: ev.role, via: d.via, tool: d.tool, rule: d.rule, why: d.why, detail: d.detail });
-    meta("guard", "denied", `--launch=${id}`, `--role=${ev.role}`, `--tool=${d.tool}`, `--rule=${d.rule}`, `--why=${d.why}`, `--via=${d.via}`, ...(d.detail ? [`--detail=${d.detail}`] : []));
+    meta(...deniedArgs(id, ev.role, d));
   } });
   const ac = new AbortController();
   const limit = setTimeout(() => ac.abort(new Error(`session over ${sessionMin} min`)), sessionMin * 60_000);

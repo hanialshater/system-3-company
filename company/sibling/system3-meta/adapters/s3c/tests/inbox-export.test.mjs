@@ -58,13 +58,14 @@ test("asks to the founder and founder approvals map to the inbox format; ids con
   assert.deepEqual(mine.map((x) => x.id), ["F-08", "F-09", "F-10"]);
   assert.deepEqual(mine.map((x) => [x.category, x.status, x.meta.kind]), [["deploy", "open", "ask:deploy"], ["approval", "open", "approval:org-change"], ["approval", "open", "approval:budget"]]);
   const [ask, org, bud] = mine;
-  assert.deepEqual(ask.options, ["A: deploy now", "B: after M6"]);
+  assert.equal(ask.options, "A: deploy now | B: after M6", "one string, as hq.ts FounderItem types it");
+  assert.deepEqual(ask.meta.options, ["A: deploy now", "B: after M6"]);
   assert.equal(ask.recommendation, "B: after M6");
   assert.match(ask.meta.answer_with, /ask answer --by=founder --id=ISS-1/);
   assert.match(org.title, /Org change ORG-1: add toy-builder-3 \(a third builder\): approve\?/);
   assert.match(bud.title, /O-1 \(Big lesson\) asks 600000 tokens/);
   assert.equal(bud.blocks, "O-1 (Big lesson) [BIG], at budget");
-  assert.deepEqual(bud.options, ["approve", "deny"]);
+  assert.equal(bud.options, "approve | deny");
   for (const x of mine) {
     for (const k of ["id", "title", "category", "priority", "status", "links"]) assert.ok(k in x, `${x.id} has ${k}`);
     assert.ok(Number.isInteger(x.priority) && x.priority >= 1 && x.priority <= 5);
@@ -108,13 +109,17 @@ test("the main checkout's founder-inbox.json is refused without --allow-main (ex
   assert.equal(r.exit, 2);
   assert.match(r.json.findings[0].message, /single writer/);
   assert.equal(fs.readFileSync(MAIN_INBOX, "utf8"), before);
-  // --allow-main, shown on a stand-in main checkout (S3C_MAIN_REPO), never the real one
+  // --allow-main, shown on a stand-in primary checkout (a .git directory), never the real one
   const fake = tmp("inbox-main-");
   fs.mkdirSync(path.join(fake, "company/ops"), { recursive: true });
+  fs.mkdirSync(path.join(fake, ".git"));
   const fi = path.join(fake, "company/ops/founder-inbox.json");
   fs.writeFileSync(fi, JSON.stringify(BASE));
-  assert.equal(run([`--live=${live}`, `--write=${fi}`], { S3C_MAIN_REPO: fake }).exit, 2);
-  assert.equal(run([`--live=${live}`, `--write=${fi}`, "--allow-main"], { S3C_MAIN_REPO: fake }).exit, 0);
+  assert.equal(run([`--live=${live}`, `--write=${fi}`]).exit, 2);
+  // M5 review: no environment override lifts the refusal (S3C_MAIN_REPO pointed elsewhere wrote it)
+  assert.equal(run([`--live=${live}`, `--write=${fi}`], { S3C_MAIN_REPO: "/nonexistent" }).exit, 2);
+  assert.equal(JSON.parse(fs.readFileSync(fi, "utf8")).items.length, 2, "nothing written");
+  assert.equal(run([`--live=${live}`, `--write=${fi}`, "--allow-main"]).exit, 0);
   assert.equal(JSON.parse(fs.readFileSync(fi, "utf8")).items.length, 5);
   // the default base is the repo's inbox, read only: ids continue after its highest F number
   const d = run([`--live=${live}`, `--repo=${fake}`]);
@@ -140,11 +145,97 @@ test("a park ask to the founder gets resume/cancel options; a superseded item ne
   const r = run([`--live=${live}`, "--base=none"]);
   assert.equal(r.exit, 0, r.stdout);
   const [x] = r.json.inbox.items;
-  assert.deepEqual(x.options, ["resume: back to build", "cancel: stop it for good"]);
+  assert.equal(x.options, "resume: back to build | cancel: stop it for good");
   assert.match(x.meta.answer_with, new RegExp(`order resume ${o} --by=founder`));
   assert.equal(x.blocks, `${o} (P) [P], parked at build`);
   // a withdrawn approval (its order cancelled) that was never exported is not exported now
   const c = company();
   meta(c, "order", "cancel", "O-1", "--by=cos", "--reason=too big");
   assert.deepEqual(run([`--live=${c}`, "--base=none"]).json.inbox.items.map((y) => y.meta.kind), ["ask:deploy", "approval:org-change"]);
+});
+
+test("M5 review: a linked worktree's inbox (the sandbox branch: .git is a file) is written; a primary checkout's is refused", () => {
+  const live = company();
+  const wt = tmp("inbox-wt-");
+  fs.mkdirSync(path.join(wt, "company/ops"), { recursive: true });
+  fs.writeFileSync(path.join(wt, ".git"), "gitdir: /somewhere/.git/worktrees/x\n");
+  const fi = path.join(wt, "company/ops/founder-inbox.json");
+  fs.writeFileSync(fi, JSON.stringify(BASE));
+  assert.equal(run([`--live=${live}`, `--write=${fi}`]).exit, 0);
+  assert.equal(JSON.parse(fs.readFileSync(fi, "utf8")).items.length, 5);
+});
+
+test("M5 review: a re-export keeps the chief of staff's recorded decision, links and own fields", () => {
+  const live = company();
+  const out = path.join(tmp("inbox-cos-"), "founder-inbox.json");
+  fs.writeFileSync(out, JSON.stringify({ note: "n", items: [] }));
+  assert.equal(run([`--live=${live}`, `--write=${out}`]).exit, 0);
+  const doc = JSON.parse(fs.readFileSync(out, "utf8"));
+  const f = doc.items.find((x) => x.meta.ref === "ISS-1");
+  Object.assign(f, { status: "decided", decision: "no: founder said no in chat", decided: "2026-10-22", links: ["company/decisions/x.md"], board: "W-12" });
+  fs.writeFileSync(out, JSON.stringify(doc));
+  const r = run([`--live=${live}`, `--write=${out}`]);
+  assert.equal(r.exit, 0, r.stdout);
+  const g = JSON.parse(fs.readFileSync(out, "utf8")).items.find((x) => x.meta.ref === "ISS-1");
+  assert.deepEqual([g.id, g.status, g.decision, g.decided, g.links, g.board], [f.id, "decided", "no: founder said no in chat", "2026-10-22", ["company/decisions/x.md"], "W-12"], "before: status open, decision and links dropped");
+  assert.equal(r.json.exported.find((x) => x.ref === "ISS-1").kept, "decision");
+  // an item still open in the file is updated by Meta as before (the founder answered in Meta)
+  meta(live, "approval", "decide", "--ids=A-1", "--by=founder", "--decision=approve", "--words=yes, add the builder", "--channel=chat");
+  run([`--live=${live}`, `--write=${out}`]);
+  assert.equal(JSON.parse(fs.readFileSync(out, "utf8")).items.find((x) => x.meta.ref === "A-1").status, "decided");
+});
+
+const LEDGER_LIB = "/home/user/system-3-company/tools/lib/ledger.mjs";
+/** A founder budget ask: an order over the chief of staff's limit after a builder launch charged it (asks.raiseBudgetAsk). */
+function budgetAskCompany(extra = []) {
+  const live = tmp("inbox-budget-");
+  meta(live, "init", "--spec=toy");
+  meta(live, "project", "create", "--by=cos", "--name=Knots", "--lead=mgr-live");
+  const o = meta(live, "order", "new", "--by=cos", "--to=mgr-live", "--title=K", "--task=K", "--accept=x", "--budget=100000", "--project=PRJ-1", ...extra).order;
+  meta(live, "order", "delegate", o, "--by=mgr-live", "--to=toy-builder-1");
+  const msg = meta(live, "queue", "toy-builder-1")[0].msg;
+  const e = clean({ META_LIVE_DIR: live, META_LAUNCH: "0001-toy-builder-1" });
+  const p = JSON.parse(spawnSync(process.execPath, [META, "room", "enter", `--msg=${msg}`, "--role=toy-builder-1"], { env: e, encoding: "utf8" }).stdout);
+  meta(live, "room", "leave", `--run=${p.run}`, "--evidence=e");
+  meta(live, "launch", "finished", "--launch=0001-toy-builder-1", "--role=toy-builder-1", "--tokens=10", "--cumulative=5000000");
+  const r = spawnSync(process.execPath, [path.join(path.dirname(META), "supervisor.mjs"), "tick"], { env: clean({ META_LIVE_DIR: live }), encoding: "utf8" });
+  assert.equal(r.status, 0, r.stderr);
+  return { live, o };
+}
+
+test("M5 review: an exported budget ask meets the company's inbox contract (budget a projects.json id, or not an initiative)", async () => {
+  const { inboxBudgetWarnings } = await import(LEDGER_LIB);
+  const reg = { projects: [{ id: "meta-m5" }] };
+  const plain = budgetAskCompany();
+  const [x] = run([`--live=${plain.live}`, "--base=none"]).json.inbox.items;
+  assert.equal(x.meta.kind, "ask:budget");
+  assert.match(x.budget, /^not an initiative: /, "before: the Meta tracker project PRJ-1");
+  assert.deepEqual(inboxBudgetWarnings(reg, [x]), []);
+  const tagged = budgetAskCompany(["--ledger-project=meta-m5"]);
+  const [y] = run([`--live=${tagged.live}`, "--base=none"]).json.inbox.items;
+  assert.equal(y.budget, "meta-m5");
+  assert.deepEqual(inboxBudgetWarnings(reg, [y]), []);
+  assert.equal(inboxBudgetWarnings({ projects: [] }, [y]).length, 1, "a line the register lacks is still flagged");
+});
+
+test("M5 review: a cancelled order's budget ask, and a withdrawn approval, leave HQ's queue (status decided, withdrawn)", () => {
+  const { live, o } = budgetAskCompany();
+  const out = path.join(tmp("inbox-cancel-"), "fi.json");
+  fs.writeFileSync(out, JSON.stringify({ note: "n", items: [] }));
+  run([`--live=${live}`, `--write=${out}`]);
+  meta(live, "order", "cancel", o, "--by=cos", "--reason=stop");
+  run([`--live=${live}`, `--write=${out}`]);
+  const [x] = JSON.parse(fs.readFileSync(out, "utf8")).items;
+  assert.deepEqual([x.status, /^withdrawn: /.test(x.decision)], ["decided", true], "before: open, and a later yes topped up the cancelled order");
+  // an exported founder approval whose order is then cancelled (hq.ts founderQueue hides only status decided)
+  const c = company();
+  const out2 = path.join(tmp("inbox-wd-"), "fi.json");
+  fs.writeFileSync(out2, JSON.stringify({ note: "n", items: [] }));
+  run([`--live=${c}`, `--write=${out2}`]);
+  meta(c, "order", "cancel", "O-1", "--by=cos", "--reason=no");
+  run([`--live=${c}`, `--write=${out2}`]);
+  const items = JSON.parse(fs.readFileSync(out2, "utf8")).items;
+  const bud = items.find((i) => i.meta.kind === "approval:budget");
+  assert.deepEqual([bud.status, bud.decision], ["decided", "withdrawn: cancelled: no"]);
+  assert.equal(items.filter((i) => i.status !== "decided").some((i) => i.meta.kind === "approval:budget"), false, "not waiting on the founder");
 });

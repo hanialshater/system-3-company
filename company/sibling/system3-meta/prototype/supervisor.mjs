@@ -83,7 +83,7 @@ export function applyCmdResult(co, o, s, t) {
   const stage = o.stage;
   const say = (t) => ({ step: stage, kind: "cmd", order: o.id, result: t.stageError ? "stage-error" : t.pass ? "pass" : t.route === "park" ? "park" : "revise", output: t.output, findings: t.findings, route: t.route });
   // M4 audit (plan §2 ship table): "active publish hold → park + ask"; a route to park signs nothing and spends no loop
-  const park = (t) => { engine.parkRouted(o, { by: s.signer === "orderer" ? o.manager : "code", stage, why: t.findings ?? t.output }); return say(t); };
+  const park = (t) => { engine.parkRouted(o, { by: s.signer === "orderer" ? o.manager : "code", stage, why: t.findings ?? t.output, ask: t.ask ?? null }); return say(t); };
   // K11: a routed failure goes back to the earlier stage its route names (ship's "claims not verified" → check, not a
   // rebuild); the route stays in the findings so the stage it lands on reads why. No route: build, as before
   const to = (t) => (t.pass ? null : t.route ?? null);
@@ -125,7 +125,8 @@ export function runPreCheck(co, o, sd) {
   log.add({ type: "pre-check", order: o.id, stage, loops: o.loops, pass: !!t.pass, route: t.route ?? null, stageError: !!t.stageError, output: String(t.output ?? "").slice(0, 400) });
   const say = (result) => ({ step: stage, kind: "pre", order: o.id, result, output: t.output, findings: t.findings });
   if (t.pass) { o.prechecked = preKey(o); return say("pass"); }
-  if (t.route === "park" && !t.stageError) { engine.parkRouted(o, { by: "code", stage, why: t.findings ?? t.output }); return say("park"); }
+  // M5 review: the check's own ask goes with the park (ledger-gate.mjs's kind:budget, routed by amount)
+  if (t.route === "park" && !t.stageError) { engine.parkRouted(o, { by: "code", stage, why: t.findings ?? t.output, ask: t.ask ?? null }); return say("park"); }
   const why = `pre-check: ${t.output}${t.route && !t.stageError ? ` (a pre-check routes only to park, not ${t.route})` : ""}`;
   o.stageError = { stage, loops: o.loops, why, t: engine.clock.now() };
   log.add({ type: "stage-error", order: o.id, stage, loops: o.loops, why });

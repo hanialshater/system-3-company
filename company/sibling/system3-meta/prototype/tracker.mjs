@@ -47,6 +47,9 @@ export function update(co, { by, id, ...ch }) {
   // --state=done` closed it and left the order parked for good, and `--assignee=` let a builder lift its own cap
   const po = it.kind === "ask" && by !== "engine" && (ch.state !== undefined || ch.assignee !== undefined) && it.ask?.order && co.engine.orders.get(it.ask.order);
   if (po?.stage === "parked" && po.parked?.ask === id) refuse(`${id} asks whether parked ${po.id} goes on: its state and decider move only with \`order resume|cancel ${po.id}\``);
+  // M5 review: a top-up ask (K13) closes only by its answer (or with its cancelled order, by code): the builder whose
+  // order was stopped cancelled it, and the decision dropped out of its decider's queue with no new ask raised
+  if (po && ch.state !== undefined && it.ask.kind === "budget" && !it.labels.includes("parked") && !it.ask.answer) refuse(`${id} asks for a top-up of ${po.id}: it closes only by its answer (\`node meta.mjs ask answer --by=${it.ask.routedTo} --id=${id} --decision=yes|no --text='…'\`)`);
   if (ch.assignee && !co.org.role(ch.assignee)?.active) refuse(`no active role ${ch.assignee}`);
   if (ch.state && !STATES.includes(ch.state)) refuse(`state is ${STATES.join(", ")}`);
   if (ch.project && !store(co).projects.has(ch.project)) refuse(`no project ${ch.project}`);

@@ -84,7 +84,7 @@ export function make(specName = "toy", specDef = null) {
   // (specs/s3c-lessons.json, not yet written) must set `maxLoops: true`, or a HELD claim loops forever as before
   engine.defaultMaxLoops = spec.maxLoops === true ? DEFAULT_MAX_LOOPS : spec.maxLoops ?? null;
   engine.standing = spec.approvals?.standing ?? []; // K15: AMD-015's scoped pre-approval as data (a test only)
-  engine.onParked.push((o, p) => { if (p.ask) raiseParkAsk(co, o, { reason: p.reason, findings: p.ask.findings }); });
+  engine.onParked.push((o, p) => { if (p.ask) raiseParkAsk(co, o, { reason: p.reason, findings: p.ask.findings, budget: p.ask.budget ?? null }); });
   return co;
 }
 
@@ -335,8 +335,9 @@ export function validateCmd(c, { stages = null } = {}) {
 }
 /** ${slug}, ${task}, ${workdir}, ${live}, ${base_sha} (K12 post-checks: ${evidence}, ${verdict}, ${stage}) in a cmd string; slug is the order's slug if set (lessons), else its task. With a K5
  *  workspace also ${run}, ${n} and ${port} (o.workspace.vars: one vocabulary for workspace env, cmds and briefs, K5
- *  review); a variable the order does not have stays as written. */
-export const interpolate = (s, vars) => s.replace(/\$\{(slug|task|workdir|run|n|port|evidence|verdict|stage|live|base_sha)\}/g, (m, k) => (k in vars ? vars[k] ?? "" : m));
+ *  review); M5 review: ${order}, ${budget}, ${remaining}, ${ledger_project} (prepareCmd); a variable the order does not
+ *  have stays as written. */
+export const interpolate = (s, vars) => s.replace(/\$\{(slug|task|workdir|run|n|port|evidence|verdict|stage|live|base_sha|order|budget|remaining|ledger_project)\}/g, (m, k) => (k in vars ? vars[k] ?? "" : m));
 const dig = (x, p) => p.split(".").filter(Boolean).reduce((v, k) => (v == null ? undefined : k === "length" && (Array.isArray(v) || typeof v === "string") ? v.length : v[k]), x);
 // K1 audit: the last line that parses, not the last that looks like JSON ("[advisory] x" after the JSON was "not JSON")
 const parseJson = (t) => { try { return JSON.parse(t); } catch {} for (const l of t.trim().split("\n").reverse()) { if (!/^[[{]/.test(l.trim())) continue; try { return JSON.parse(l); } catch {} } return undefined; };
@@ -347,7 +348,11 @@ export function prepareCmd(o, s, extra = {}) {
   // K12: a post-check also reads ${evidence}, ${verdict} and ${stage} (the leave it judges: stage 7's record file)
   // M4 integrate: ${live} (the run's live dir: a file every order of the run shares, e.g. test1's baseline) and
   // ${base_sha} (the commit the order's worktree started from, K7's base: test1's --base for inherited claims)
-  const vars = { ...(o.workspace?.vars ?? {}), ...extra, slug: o.slug ?? o.task ?? "", task: o.task ?? "", workdir: o.workdir ?? path.join(LIVE, "work", o.task ?? ""), live: LIVE, base_sha: o.workspace?.baseSha ?? o.workspace?.sha ?? "" };
+  // M5 review: ${order}, ${budget} and ${remaining} (its budget less its charged spend), and ${ledger_project} (`order
+  // new --ledger-project`: the company projects.json line it is charged to; unset, it stays as written), so a pre-check
+  // such as ledger-gate.mjs gates each order's own project and tokens
+  const own = { order: o.id ?? "", ...(Number.isFinite(o.budget) ? { budget: String(o.budget), remaining: String(Math.max(0, o.budget - (o.spent ?? 0))) } : {}), ...(o.ledgerProject ? { ledger_project: o.ledgerProject } : {}) };
+  const vars = { ...(o.workspace?.vars ?? {}), ...extra, ...own, slug: o.slug ?? o.task ?? "", task: o.task ?? "", workdir: o.workdir ?? path.join(LIVE, "work", o.task ?? ""), live: LIVE, base_sha: o.workspace?.baseSha ?? o.workspace?.sha ?? "" };
   const argv = c.argv.map((a) => interpolate(a, vars));
   const cwd = c.cwd ? path.resolve(vars.workdir, interpolate(c.cwd, vars)) : vars.workdir;
   // a child of a node --test process would report to it and exit 0 whatever its tests do (see runTests)
@@ -383,7 +388,9 @@ export function judgeCmd(c, label, r, timeoutMs = c.timeoutMs ?? 60_000) {
   // M4 integrate: a stage-error never routes, whatever made it (errorExit, a timeout, a failed spawn): a timed-out or
   // crashed post-check's partial output ("Verdict: revise", "fatal: …") was routed as a verdict by Rooms.checkPost
   const stageError = !!(r.error || r.timedOut || errExit);
-  return { pass, output: `${label}: ${why}`, findings, route: stageError ? null : route, code: r.status ?? null, timedOut: !!r.timedOut, stageError };
+  // M5 review: an adapter's failing answer may name the ask it wants (ledger-gate.mjs: {ask:{kind:"budget", text}})
+  const j = pass || stageError ? undefined : parseJson(out), ask = j?.ask && typeof j.ask === "object" && !Array.isArray(j.ask) && typeof j.ask.kind === "string" ? j.ask : null;
+  return { pass, output: `${label}: ${why}`, findings, route: stageError ? null : route, code: r.status ?? null, timedOut: !!r.timedOut, stageError, ...(ask ? { ask } : {}) };
 }
 /** Run stage `s`'s `run` cmd for order `o` and wait: { pass, output, findings, route, code, timedOut, stageError }.
  *  findings are advisory on a pass (copy-tells, a11y) and the reason on a fail; route is the earlier stage the first

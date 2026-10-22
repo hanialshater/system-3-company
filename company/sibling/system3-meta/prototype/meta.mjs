@@ -4,7 +4,7 @@
 //
 //   node meta.mjs init [--spec=<built-in> | --spec-file=<json>]   a fresh live org and its flow (refuses if state exists);
 //        --spec-file generates a company from a spec file, validated against the invariants (generator.mjs, M2)
-//   node meta.mjs order new --to=<manager> --title=… --task=<T> --accept=… [--budget=200000] [--priority=now|next|later --due=<min>] [--after=O-1,O-2]
+//   node meta.mjs order new --to=<manager> --title=… --task=<T> --accept=… [--budget=200000] [--priority=now|next|later --due=<min>] [--after=O-1,O-2] [--ledger-project=<projects.json id>]
 //   node meta.mjs order delegate <O> --by=<manager> --to=<builder> [--budget=150000]
 //   node meta.mjs order reopen <O> --by=<manager|founder> --findings=… [--reason=…]   a shipped order back to build
 //   node meta.mjs order park <O> --by=<orderer|manager|founder> --reason=…   K8: stop it where it is (stage parked, messages
@@ -40,7 +40,7 @@
 //   node meta.mjs goal create|update|show|board|review …      goals: levels, contributes-to, RAG, code-measured criteria
 //   node meta.mjs meeting open|position|read|reveal|round|board|object|decide|defer|close|show --id=<MTG> …
 //   node meta.mjs ask raise|route|answer|summary …            leadership asks, routed to the lowest decider
-//        K14: ask raise [--options='["A: …","B: …"]' | --options=a,b] [--recommend=…]: what the founder inbox shows
+//        K14: ask raise [--options='["A: …","B: …"]' | --options='A: …|B: …'] [--recommend=<one of them>]: what the founder inbox shows
 //   node meta.mjs wbr open|close|page0 …  ·  goal-review --by  ·  digest --audience=founder|lane:<l>|company [--channel]
 //   node meta.mjs help [<command>]                            these lines
 //   node meta.mjs check --order=<O>                          run the order's test1 (tests or text checks) without signing: builders self-check
@@ -57,7 +57,8 @@
 //   node meta.mjs launch config --role=<r> [--msgs=M-1,…]   K10: the role's launch settings, its orders' workdirs and protected globs
 //   node meta.mjs launch finished --launch=<L> --role=<r> --tokens=<n> [--cumulative=<n>] [--ok=false --reason=…] [--msgs=… --tasks=…]
 //        the launcher's report; K13: the cumulative tokens are charged to the orders the launch touched (even split), and
-//        an order at or over its budget gets no new session (room enter refuses; the supervisor asks kind:budget)
+//        an order at or over its budget gets no new session (room enter refuses; the supervisor asks kind:budget).
+//        M5 review: the launcher's report only: refused in an agent session (as `guard denied`), and a launch id names its role
 //   node meta.mjs guard denied --role=<r> --tool=<t> --rule=<rule> --why=… [--launch=<L>] [--detail=…]   K10: a guard denial (the launcher)
 //   node meta.mjs events [--type=<t>]   ·   node meta.mjs memory <role>   ·   node meta.mjs org activity <role>
 // Exit: 0 ok, 1 refused, 2 usage or state error.
@@ -130,11 +131,13 @@ function pack(co, run, ctx, session, item) {
     next_with: absCmds(`${pre}node meta.mjs room next --run=${run} --cap=<cap from your brief> --wait=90 --evidence=<path>${isIndependent(sd) ? " --verdict=pass|revise --findings='…'" : ""} --learned='…'`) };
 }
 
+let me = null; // the agent session's role (main), or null: a person or code at a terminal
+
 function main() {
   const [cmd, sub, arg] = pos;
   // M4 integrate (K8+K9 review): in an agent session (the launcher's META_ROLE, state.mjs sessionRole) every --by and
   // --role is that session's role: a builder could otherwise resume its own capped order --by=founder, or as its manager
-  const me = sessionRole();
+  me = sessionRole();
   if (me != null) for (const k of ["by", "role"]) if (opt[k] != null && opt[k] !== me) throw new Refused(`--${k}=${opt[k] === true ? "" : opt[k]} is not this agent session's role (${me}): an agent acts only as itself (a person decides as the founder outside any agent session)`);
   // benchmark 2 (writer-1): with no command or `help` the CLI printed only an error; the usage is this file's header
   if (!cmd || cmd === "help") return fs.readFileSync(new URL(import.meta.url), "utf8").split("\n").filter((l) => l.startsWith("//   node ")).map((l) => l.slice(5)).filter((l) => !sub || l.includes(` ${sub}`));
@@ -231,6 +234,9 @@ function dispatch(co, cmd, sub, arg) {
     const o = engine.orderNew({ flow: co.spec.flow?.name ?? "task", by: opt.by ?? "cos", to: opt.to, budget: Number(opt.budget ?? 200_000), accept: opt.accept, title: opt.title, priority: opt.priority ?? "next", dueMin: opt.due ? Number(opt.due) : null, after: opt.after ? String(opt.after).split(",") : [], fromContract: opt["from-contract"] ?? null });
     o.task = opt.task;
     if (opt.project) o.project = opt.project; // mirrored onto its tracker item, so the roadmap counts it
+    // M5 review: the company projects.json line the order is charged to: ${ledger_project} in a stage cmd (ledger-gate.mjs
+    // gates it), and the founder inbox's `budget` on its budget asks (adapters/s3c/inbox-export.mjs)
+    if (opt["ledger-project"] != null) { if (typeof opt["ledger-project"] !== "string" || !/^[a-z0-9]+(-[a-z0-9]+)*$/.test(opt["ledger-project"])) throw new Refused("--ledger-project is a projects.json id (kebab-case)"); o.ledgerProject = opt["ledger-project"]; }
     if (opt.goal) o.goal = opt.goal;
     if (opt.checks) { o.checks = JSON.parse(opt.checks); const e = validateChecks(o.checks); if (e) throw new Refused(`HARD: ${e}`); } // test1 by declared checks (non-code work)
     M.applyStandingRules(co, o); // decisions made before this order was placed
@@ -264,6 +270,7 @@ function dispatch(co, cmd, sub, arg) {
     if (sub !== "resume") JOBS.staleFor(co, o, `order ${o.stage}`); // K8+K9 review: its K2 job is killed now, not at the next collect
     if (sub === "resume") engine.resume(arg, { by: opt.by, reason: opt.reason, extraLoops: opt["extra-loops"] != null ? Number(opt["extra-loops"]) : null });
     const closed = sub !== "park" ? A.closeParkAsk(co, ask, { by: opt.by, decision: sub === "resume" ? "yes" : "no", text: `${sub === "resume" ? `resumed at ${o.stage}` : "cancelled"}: ${opt.reason}` }) : null;
+    if (sub === "cancel") A.closeBudgetAsk(co, o, { by: opt.by, text: `${o.id} cancelled: ${opt.reason}` }); // M5 review: no top-up of a cancelled order
     T.syncOrders(co);
     return { order: o.id, stage: o.stage, loops: o.loops, maxLoops: engine.maxLoopsOf(o), ...(o.parked ? { parked_from: o.parked.stage } : {}), ...(closed ? { ask_closed: closed.id } : {}) };
   }
@@ -449,6 +456,10 @@ function dispatch(co, cmd, sub, arg) {
   // closes its session, so the work goes back to the queue and the supervisor plans it again
   if (cmd === "launch" && sub === "finished") {
     need("launch", "role", "tokens");
+    // M5 review: an agent reported first (--cumulative=1) and its order's real spend was then never charged, or charged
+    // any order it liked (--tasks=x:O-2): the report is the launcher's, which runs outside every agent session
+    if (me != null) throw new Refused(`launch finished is the launcher's report: refused in an agent session (${me})`);
+    { const m = /^\d{4}-(.+)$/.exec(String(opt.launch)); if (m && m[1] !== opt.role) throw new Refused(`launch ${opt.launch} is ${m[1]}'s, not ${opt.role}'s`); }
     const ok = opt.ok !== "false", tokens = Number(opt.tokens);
     const ss = [...rooms.sessions.values()].filter((s) => s.launch === opt.launch);
     const abandoned = [];
@@ -459,12 +470,17 @@ function dispatch(co, cmd, sub, arg) {
     if (ss.length) rooms.recordSessionUsage(ss[0].id, tokens, "launcher");
     else log.add({ type: "usage", role: opt.role, tokens, label: "outside a room", source: "launcher", launch: opt.launch });
     // K13: the launch's cumulative tokens (every call; --tokens, the final context, when the launcher sends none) are
-    // charged to the orders it touched, split evenly: its sessions' runs, and its launch event's msgs and tasks (the
-    // launch id is the brief's name, <seq>-<role>: supervisor.mjs reserve), plus any --msgs/--tasks given. Once per launch
+    // charged to the orders it touched, split evenly: its sessions' runs, and its launch event's order tasks (the launch
+    // id is the brief's name, <seq>-<role>: supervisor.mjs reserve), plus any --msgs/--tasks given. Once per launch.
+    // M5 review: the msgs it was planned with count only when it entered no room at all (it crashed first: those are
+    // what it spent on); otherwise a msg another launch took was charged twice. An ask task is not its order's work: the
+    // tokens a decider spends on a budget or park ask are not charged to the order it decides (deciding a top-up used
+    // the top-up up, and the next tick asked again)
     const le = log.events.find((e) => e.type === "launch" && `${String(e.seq).padStart(4, "0")}-${e.role}` === opt.launch);
+    if (le && le.role !== opt.role) throw new Refused(`launch ${opt.launch} is ${le.role}'s, not ${opt.role}'s`);
     const touched = new Set([...rooms.runs.values()].filter((x) => ss.some((s) => s.id === x.session)).map((x) => x.order));
-    for (const id of [...(le?.msgs ?? []), ...(L("msgs") ?? [])]) { const ref = mailbox.msgs.get(id)?.ref; if (engine.orders.has(ref)) touched.add(ref); }
-    for (const t of [...(le?.tasks ?? []).map((x) => x.ref), ...(L("tasks") ?? []).map((x) => x.split(":").pop())]) { if (engine.orders.has(t)) touched.add(t); else { const o = co.data.tracker?.items?.get(t)?.ask?.order; if (o && engine.orders.has(o)) touched.add(o); } }
+    for (const id of [...(ss.length ? [] : le?.msgs ?? []), ...(L("msgs") ?? [])]) { const ref = mailbox.msgs.get(id)?.ref; if (engine.orders.has(ref)) touched.add(ref); }
+    for (const t of [...(le?.tasks ?? []).map((x) => x.ref), ...(L("tasks") ?? []).map((x) => x.split(":").pop())]) if (engine.orders.has(t)) touched.add(t);
     const charged = log.events.some((e) => e.type === "charge" && e.launch === opt.launch) ? [] : engine.charge([...touched], N("cumulative") ?? tokens, { launch: opt.launch });
     log.add({ type: "launch-finished", launch: opt.launch, role: opt.role, ok, tokens, cumulative: N("cumulative") ?? null, cost: N("cost") ?? null, sessions: ss.map((s) => s.id), abandoned, reason: opt.reason ?? null });
     return { sessions: ss.map((s) => s.id), abandoned, charged };
@@ -474,6 +490,7 @@ function dispatch(co, cmd, sub, arg) {
   if (cmd === "launch" && sub === "config") { need("role"); return WS.launchConfig(co, { role: opt.role, msgs: L("msgs") ?? [] }); }
   if (cmd === "guard" && sub === "denied") {
     need("role", "tool", "rule", "why");
+    if (me != null) throw new Refused(`guard denied is the launcher's record: refused in an agent session (${me})`); // M5 review
     return log.add({ type: "guard", launch: opt.launch ?? null, role: opt.role, tool: opt.tool, rule: opt.rule, why: opt.why, detail: opt.detail ?? null, via: opt.via ?? null });
   }
   if (cmd === "escape" && sub === "list") return readEscapes();

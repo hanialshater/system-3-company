@@ -13,8 +13,11 @@ import { spawnSync, execFileSync } from "node:child_process";
 //   2 a session over the per-lane cap    lane policy maxSessions: the planner plans nothing, room enter exit 1
 //   3 a deploy, push or [deploy]         launcher guard: denied, the session goes on (no interrupt), a guard event
 //   4 a protected-path write             launcher guard: denied, a guard event
+//        (3 and 4: the denial is a tool-level deny, not a process exit; the guard event is the one the denial itself
+//        records, through the launcher's own wiring, guard.mjs deniedArgs; an agent cannot write one: exit 1)
 //   5 a builder signing an independent stage   flow advance exit 1, refuse independence
-//   6 a fact-checker changing claim text      adapters/s3c/claims-guard.mjs exit 1, nothing written
+//   6 a fact-checker changing claim text      adapters/s3c/claims-guard.mjs exit 1, nothing written; as the check
+//        stage's post-check the fact-checker's leave exits 1 with a refuse event
 //   7 a revise loop over maxLoops        park + a decision ask to the orderer; the next advance exit 1
 //   8 a publish hold                     adapters/s3c/holds.mjs exit 1; as a stage pre-check: park + ask, no session
 const LIVE = fs.mkdtempSync(path.join(os.tmpdir(), "meta-m5-"));
@@ -26,7 +29,7 @@ const ADAPTERS = path.join(HERE, "..", "..", "adapters", "s3c");
 const MAIN = "/home/user/system-3-company"; // read only: the company's readiness lib for the claims-guard fixture
 
 const exec = (dir, file, args, env = {}) => {
-  const e = { ...process.env, META_LIVE_DIR: dir, ...env }; delete e.NODE_TEST_CONTEXT; delete e.META_ROLE;
+  const e = { ...process.env, META_LIVE_DIR: dir, ...env }; delete e.NODE_TEST_CONTEXT; if (!env.META_ROLE) delete e.META_ROLE;
   const r = spawnSync("node", [file, ...args], { env: e, encoding: "utf8", timeout: 60_000 });
   let out = null; try { out = JSON.parse(r.stdout); } catch {}
   return { code: r.status, out, err: r.stderr, stdout: r.stdout };
@@ -92,9 +95,11 @@ test("M5 refusal 2: a session over the per-lane cap (lane policy maxSessions): t
 // the launcher guard in isolation, as tests/guard.test.mjs (deeper: every spelling there)
 const WT = fresh("wt");
 const GUARD = { tools: G.DEFAULT_TOOLS, cwd: WT, roots: [{ dir: WT, globs: ["company/constitution/protected-paths.txt", "tests/qa/**", "src/kit/Lesson.tsx", "tools/company.mjs"], file: "company/constitution/protected-paths.txt" }] };
-async function denied(tool, input) {
+/** One guarded call; with `dir`, each denial is recorded in that Meta state exactly as the launcher records it
+ *  (launch.mjs: `meta(...deniedArgs(id, role, d))`), so the event is the denial's own, not one the test writes. */
+async function denied(tool, input, dir = null) {
   const seen = [];
-  const g = G.makeGuard({ ...GUARD, record: (d) => seen.push(d) });
+  const g = G.makeGuard({ ...GUARD, role: "toy-builder-1", record: (d) => { seen.push(d); if (dir) ok(meta(dir, ...G.deniedArgs("0001-toy-builder-1", "toy-builder-1", d))); } });
   const r = await g.canUseTool(tool, input, { signal: new AbortController().signal, toolUseID: "t", requestId: "r" });
   return { r, seen };
 }
@@ -108,8 +113,15 @@ test("M5 refusal 3: a deploy, push or [deploy] attempt: denied with no interrupt
   }
   assert.equal((await denied("Bash", { command: "git status" })).r.behavior, "allow");
   const dir = init("toy");
-  ok(meta(dir, "guard", "denied", "--launch=0001-toy-builder-1", "--role=toy-builder-1", "--tool=Bash", "--rule=bash", "--why=git push is denied"));
-  assert.deepEqual(events(dir, "guard").map((e) => [e.role, e.rule]), [["toy-builder-1", "bash"]]);
+  const { r, seen } = await denied("Bash", { command: "git push origin meta/m5" }, dir);
+  assert.equal(r.behavior, "deny");
+  assert.equal((await denied("Bash", { command: "git status" }, dir)).seen.length, 0, "an allowed call records nothing");
+  const ev = events(dir, "guard");
+  assert.deepEqual(ev.map((e) => [e.launch, e.role, e.tool, e.rule, e.why, e.via]), [["0001-toy-builder-1", "toy-builder-1", "Bash", "bash", seen[0].why, seen[0].via]], "the denial's own record");
+  // the record is the launcher's: an agent session (META_ROLE) cannot write one
+  const forged = exec(dir, path.join(HERE, "..", "meta.mjs"), ["guard", "denied", "--role=toy-builder-1", "--tool=Bash", "--rule=bash", "--why=anything"], { META_ROLE: "toy-builder-1" });
+  assert.equal(forged.code, 1, forged.err);
+  assert.equal(events(dir, "guard").length, 1);
 });
 
 test("M5 refusal 4: a protected-path write: denied, recorded as a guard event", async () => {
@@ -121,8 +133,9 @@ test("M5 refusal 4: a protected-path write: denied, recorded as a guard event", 
   }
   assert.equal((await denied("Write", { file_path: "src/demos/math/x/Demo.tsx", content: "x" })).r.behavior, "allow");
   const dir = init("toy");
-  ok(meta(dir, "guard", "denied", "--role=toy-builder-1", "--tool=Write", "--rule=protected-path", "--why=tools/company.mjs is a protected path"));
-  assert.equal(events(dir, "guard")[0].rule, "protected-path");
+  const { r, seen } = await denied("Write", { file_path: path.join(WT, "tools/company.mjs"), content: "x" }, dir);
+  assert.equal(r.behavior, "deny");
+  assert.deepEqual(events(dir, "guard").map((e) => [e.tool, e.rule, e.why]), [["Write", "protected-path", seen[0].why]], "the denial's own record");
 });
 
 /** A small lesson company: lead (manager, lane s), its builders, a fact-checker, release; uat signed by the orderer
@@ -194,6 +207,22 @@ test("M5 refusal 6: a fact-checker changing claim text: claims-guard.mjs exits 1
   assert.deepEqual([j.ok, j.refused, j.route], [false, true, "check"]);
   assert.match(j.findings.map((f) => f.message).join("\n"), /c1 "text" changed/);
   assert.equal(fs.readFileSync(path.join(dir, rel), "utf8"), before, "nothing stamped or written");
+  // M5 review: in the kernel, as the check stage's post-check (the s3c spec's wiring): the fact-checker's leave exits 1
+  // with a refuse event, its run stays open and nothing is signed
+  const spec = SPEC();
+  spec.flow.stages[1].post = { argv: ["node", path.join(ADAPTERS, "claims-guard.mjs"), "${slug}", `--base=${base}`, "--verdict=${verdict}", "--today=2026-10-22", `--repo=${dir}`], cwd: dir, errorExit: [2, 3], findings: { fromStdout: "^(?:block|environment) [\\w-]+: (.*)$" } };
+  assert.deepEqual(validateSpec(spec), []);
+  const live = init(spec);
+  const o = order(live, slug, { to: "lead", builder: "demo-builder" });
+  ok(meta(live, "flow", "advance", o, "--stage=build", "--by=demo-builder", "--evidence=src/demos/math/fake-lesson/"));
+  const p = ok(meta(live, "room", "enter", `--msg=${msgFor(live, "pool:checker", o)}`, "--role=fact-checker"));
+  const leave = refused(meta(live, "room", "leave", `--run=${p.run}`, "--evidence=company/reviews/fake-lesson/2026-10-22-fact-check.md", "--verdict=pass", "--findings=all verified"));
+  assert.match(leave.err, /post-check: check on O-1 refused the leave/);
+  const ref = events(live, "refuse").find((e) => e.rule === "post-check");
+  assert.deepEqual([ref?.order, ref?.role, ref?.stage], [o, "fact-checker", "check"]);
+  assert.match(ref.findings ?? "", /c1 "text" changed/);
+  assert.equal(orderOf(live, o).stage, "check", "nothing signed");
+  assert.equal(fs.readFileSync(path.join(dir, rel), "utf8"), before, "still nothing written");
 });
 
 test("M5 refusal 7: a revise loop over maxLoops: the order parks with a decision ask to its orderer; the next advance exits 1 (deeper: terminal.test.mjs K9)", () => {

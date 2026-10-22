@@ -15,6 +15,7 @@ import { parseGate } from "../ledger-gate.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ADAPTER = path.join(HERE, "..", "ledger-gate.mjs");
+const META = path.join(HERE, "..", "..", "..", "prototype"); // the kernel, for the pre-check case
 const MAIN = process.env.S3C_MAIN_REPO ?? "/home/user/system-3-company";
 
 function run(args, extra = {}) {
@@ -65,11 +66,14 @@ test("the company's gate through the adapter: ok and warn pass (exit 0), a fail 
   assert.equal(r.exit, 1);
   assert.deepEqual([r.json.ok, r.json.level, r.json.park, r.json.findings[0].route, r.json.ask.kind], [false, "fail", true, "park", "budget"]);
   assert.match(r.json.findings[0].message, /gamma has spent 1k of 1k \(100%\): new dispatches stop/);
-  for (const [id, re] of [["delta", /in status "proposed"/], ["nope", /unknown project or line "nope"/]]) {
-    const x = run([id, `--repo=${root}`]);
-    assert.equal(x.exit, 1, id);
-    assert.match(x.json.findings[0].message, re);
-  }
+  const x = run(["delta", `--repo=${root}`]);
+  assert.equal(x.exit, 1);
+  assert.match(x.json.findings[0].message, /in status "proposed"/);
+  // M5 review: an unknown project is the spec's error, not a budget question: a stage-error, no park, no ask
+  const u = run(["nope", `--repo=${root}`]);
+  assert.deepEqual([u.exit, u.json.park, "ask" in u.json, u.json.findings[0].kind], [3, false, false, "spec"]);
+  assert.match(u.json.findings[0].message, /unknown project or line "nope"/);
+  assert.equal(run(["gamma", "--tokens=300", `--repo=${root}`]).json.ask.amount, 300, "the planned tokens are the ask's amount");
   assert.equal(run(["rituals", `--repo=${root}`]).exit, 0, "a budget line over budget flags, never blocks (not major)");
   // S3_PROJECTS / S3_LEDGER cannot point the gate at another register: the checkout's own is read
   const other = path.join(root, "other.json"); fs.writeFileSync(other, JSON.stringify({ projects: [] }));
@@ -93,4 +97,49 @@ test("the main checkout's register, read only: a real project gets a gate answer
   assert.ok([0, 1].includes(r.exit), r.stdout);
   assert.equal(r.json.project, id);
   assert.ok(["ok", "warn", "fail"].includes(r.json.level));
+});
+
+test("M5 review: as a stage pre-check on each order's own project and tokens, a fail parks with a kind:budget ask routed by amount", () => {
+  const root = repo();
+  const live = fs.mkdtempSync(path.join(os.tmpdir(), "ledger-gate-live-"));
+  const meta = (...args) => {
+    const env = { ...process.env, META_LIVE_DIR: live }; delete env.NODE_TEST_CONTEXT; delete env.META_ROLE;
+    const r = spawnSync(process.execPath, [path.join(META, args[0] === "tick" ? "supervisor.mjs" : "meta.mjs"), ...args], { env, encoding: "utf8", timeout: 60_000 });
+    assert.equal(r.status, 0, `${args.join(" ")}: ${r.stderr}`);
+    return JSON.parse(r.stdout);
+  };
+  const spec = {
+    name: "m5-ledger", title: "M5 ledger",
+    rooms: [{ id: "lobby", floor: 1, kind: "lobby" }, { id: "ceo-office", floor: 1, kind: "office" }, { id: "studio", floor: 2, kind: "lane", lane: "s" }, { id: "review", floor: 3, kind: "quality" }, { id: "launch", floor: 3, kind: "launch" }],
+    skills: ["manage", "build", "verify", "release"],
+    roles: [
+      { id: "founder", level: "founder", human: true, room: "lobby", floor: 1 },
+      { id: "cos", level: "chief-of-staff", reportsTo: "founder", room: "ceo-office", floor: 1 },
+      { id: "lead", level: "manager", reportsTo: "cos", lane: "s", room: "studio", floor: 2, skills: ["manage"] },
+      { id: "demo-builder", level: "builder", reportsTo: "lead", lane: "s", room: "studio", floor: 2, skills: ["build"] },
+      { id: "fact-checker", level: "checker", reportsTo: "cos", lane: "q", room: "review", floor: 3, skills: ["verify"] },
+      { id: "release", level: "release", reportsTo: "cos", lane: "r", room: "launch", floor: 3, skills: ["release"] },
+    ],
+    flow: { name: "lesson", stages: [
+      { stage: "build", signer: "builder", evidence: ["src/demos/<d>/<slug>/"], pre: { argv: ["node", ADAPTER, "${ledger_project}", "--tokens=${remaining}", `--repo=${root}`], cwd: root, errorExit: [2, 3], route: { '"route":"park"': "park" } } },
+      { stage: "check", signer: "checker", evidence: ["fact-check record"] },
+      { stage: "uat", signer: "orderer", independent: true, evidence: ["acceptance"] },
+      { stage: "ship", signer: "release", evidence: ["publish"] },
+    ] },
+  };
+  const f = path.join(live, "spec.json"); fs.writeFileSync(f, JSON.stringify(spec));
+  meta("init", `--spec-file=${f}`);
+  const ids = [["gamma", 300_000], ["alpha", 100], ["nope", 100]].map(([p, budget]) => {
+    const id = meta("order", "new", "--to=lead", `--title=${p}`, `--task=${p}`, "--accept=x", `--budget=${budget}`, `--ledger-project=${p}`).order;
+    meta("order", "delegate", id, "--by=lead", "--to=demo-builder");
+    return id;
+  });
+  const t = meta("tick");
+  assert.deepEqual(t.steps.filter((s) => s.kind === "pre").map((s) => [s.order, s.result]), [[ids[0], "park"], [ids[1], "pass"], [ids[2], "stage-error"]]);
+  const st = JSON.parse(fs.readFileSync(path.join(live, "state.json"), "utf8"));
+  const [pa] = st.log.events.filter((e) => e.type === "park-ask");
+  assert.deepEqual([pa.order, pa.kind, pa.to], [ids[0], "budget", "cos"], "before: a decision ask to the orderer, 'Parked O-1: resume or cancel?'");
+  const it = st.data.tracker.items.__map.find(([k]) => k === pa.item)[1];
+  assert.deepEqual([it.ask.kind, it.ask.amount], ["budget", 300_000], "the order's remaining tokens, routed over the manager's limit to the chief of staff");
+  assert.match(it.body, /Top it up through the project review/, "the gate's own text");
 });

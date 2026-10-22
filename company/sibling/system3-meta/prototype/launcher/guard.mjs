@@ -193,6 +193,9 @@ function commandDenial(words, line, depth, ctx = {}) {
     // K8+K9 re-review: with the session's role known, meta.mjs acts only as that role
     const mi = cmd === "node" ? w.findIndex((x, k) => k > 0 && base(x) === "meta.mjs") : base(w[0]) === "meta.mjs" ? 0 : -1;
     if (ctx.role && mi >= 0) for (const x of w.slice(mi + 1)) { const m = /^--(by|role)=(.*)$/.exec(x); if (m && m[2] !== ctx.role) return `meta.mjs --${m[1]}=${m[2]} (this session is ${ctx.role})`; }
+    // M5 review: `launch finished` and `guard denied` are the launcher's reports, never an agent's (a first report of
+    // --cumulative=1 left its order's spend at 1; --tasks=x:<order> charged a rival's order); meta.mjs refuses them too
+    if (ctx.role && mi >= 0) { const ps = w.slice(mi + 1).filter((x) => !x.startsWith("-")); if ((ps[0] === "launch" && ps[1] === "finished") || (ps[0] === "guard" && ps[1] === "denied")) return `meta.mjs ${ps[0]} ${ps[1]} (the launcher's report)`; }
     return null;
   }
   if (/^vercel(@|$)/.test(base(w[0]))) return "vercel";
@@ -264,6 +267,10 @@ export function decide(tool, input = {}, { tools = null, roots = [], cwd = proce
   }
   return null;
 }
+
+/** M5 review: the `meta.mjs guard denied` arguments that record denial `d` of launch `id` (role `role`): one wiring for
+ *  the launcher (launch.mjs) and the tests that show a denial reaching the kernel. */
+export const deniedArgs = (id, role, d) => ["guard", "denied", `--launch=${id}`, `--role=${role}`, `--tool=${d.tool}`, `--rule=${d.rule}`, `--why=${d.why}`, `--via=${d.via}`, ...(d.detail ? [`--detail=${d.detail}`] : [])];
 
 /** The guard for one session: { canUseTool, preToolUse, denials }. `record(denial)` is called once per denied call.
  *  strictTools: the role named its tools (the SDK `tools` option then hides the rest, and the hook backs it up). Unset

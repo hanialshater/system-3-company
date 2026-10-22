@@ -52,8 +52,8 @@ test("K15: validateSpec checks the shape: the one pre-approved action, an active
   assert.deepEqual(STANDING_ACTIONS, ["flag-off-withdrawal"]);
   const bad = (standing, re) => assert.match(validateSpec(spec(standing)).join("\n"), re, JSON.stringify(standing));
   bad([{ ...AMD015, action: "deploy" }], /action deploy is not one the constitution pre-approves/);
-  bad([{ ...AMD015, role: "nobody" }], /role nobody is an active agent role/);
-  bad([{ ...AMD015, role: "founder" }], /role founder is an active agent role/);
+  bad([{ ...AMD015, role: "nobody" }], /role nobody is not an active agent role/);
+  bad([{ ...AMD015, role: "founder" }], /role founder is not an active agent role/);
   bad([{ ...AMD015, trigger: "Privacy, child safety" }], /trigger is kebab-case/);
   bad([{ ...AMD015, record: "the founder said so" }], /record is the ratified amendment/);
   bad([{ ...AMD015, scope: "all" }], /unknown key scope/);
@@ -65,4 +65,30 @@ test("K15: validateSpec checks the shape: the one pre-approved action, an active
   // the lesson spec, with AMD-015 added, still validates (its release-manager is the role the amendment names)
   const real = JSON.parse(fs.readFileSync(path.join(HERE, "..", "specs", "s3c-lessons.json"), "utf8"));
   assert.deepEqual(validateSpec({ ...real, approvals: { standing: [AMD015] } }), []);
+});
+
+test("M5 review: a standing entry wider than AMD-015 fails validation and is never honored (another role, trigger or record)", () => {
+  const wide = [
+    [{ action: "flag-off-withdrawal", role: "toy-builder-1", trigger: "outage|any-reason", record: "AMD-999" }, /trigger outage, any-reason is not one AMD-015 names[\s\S]*record AMD-999 grants no standing approval[\s\S]*pre-approves the flag-off withdrawal for release-manager only/],
+    [{ action: "flag-off-withdrawal", role: "mgr-live", trigger: "anything|budget-overrun|deploy", record: "AMD-999" }, /release-manager only/],
+    [{ ...AMD015, trigger: "privacy|outage" }, /trigger outage is not one AMD-015 names/],
+    [{ ...AMD015, record: "AMD-016" }, /record AMD-016 grants no standing approval/],
+  ];
+  for (const [e, re] of wide) {
+    assert.match(validateSpec(spec([e])).join("\n"), re, JSON.stringify(e));
+    assert.match(standingProblems([e]).join("\n"), re, "without the roles too");
+    const t = e.trigger.split("|")[0];
+    assert.equal(standingCovers([e], { action: "flag-off-withdrawal", role: e.role, trigger: t }), null, `not honored: ${JSON.stringify(e)}`);
+  }
+  // the engine, given a wide list in its spec anyway (validateSpec is not run on make), honors nothing outside the grant
+  const s = builtinSpec("toy"); s.approvals = { standing: [wide[0][0], { ...AMD015, trigger: "privacy|outage" }] };
+  const co = make("k15x", s);
+  co.org.genesis(co.spec.roles.map((r) => ({ ...r })));
+  assert.equal(co.engine.standingFor({ action: "flag-off-withdrawal", role: "toy-builder-1", trigger: "outage" }), null);
+  assert.equal(co.engine.standingFor({ action: "flag-off-withdrawal", role: "release-manager", trigger: "outage" }), null);
+  // the narrower grant (one of its two triggers) still validates and covers that trigger only
+  const one = { ...AMD015, trigger: "privacy" };
+  assert.deepEqual(validateSpec(spec([one])), []);
+  assert.equal(standingCovers([one], { action: "flag-off-withdrawal", role: "release-manager", trigger: "privacy" }), one);
+  assert.equal(standingCovers([one], { action: "flag-off-withdrawal", role: "release-manager", trigger: "child-safety" }), null);
 });
