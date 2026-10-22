@@ -26,35 +26,50 @@
       "text": "On a 1 m cube, the route from a corner to the opposite corner along three edges is 3 m; a face diagonal then an edge is 1 + √2 ≈ 2.41 m.",
       "support": "derivation",
       "source": "G4 in company/domains/briefs/checks/math-wave-j-check.mjs (edges 3, diag+edge 2.4142). Face diagonal of a unit square √(1² + 1²) = √2 by Pythagoras. Demo.tsx lengthOf(ROUTES.edges), lengthOf(ROUTES.diag), shown to 0.01 m.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "Recomputed: 1+1+1 = 3; √2 + 1 = 2.4142. Demo.tsx ROUTES.edges and ROUTES.diag lie on the surface (front face z=0, then edge x=1,y=1); screenshots 02/03 draw these routes.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     },
     {
       "id": "math.ant-on-a-cube.c2",
       "text": "Unfolding two faces that share an edge lays them flat as a 1 by 2 rectangle with the ant's corners at opposite ends; the straight line between them is √(1² + 2²) = √5 ≈ 2.24 m, and folded back up it is the shortest route over those two faces, crossing the shared edge at its midpoint.",
       "support": "derivation",
       "source": "G4 minimisation: a route over two faces crossing the shared edge at t along it has length √(1 + t²) + √(1 + (1 − t)²), least √5 = 2.2361 at t = 0.5. Unfolding preserves lengths within each face, so the folded route equals the straight line in the net; the line from (0,0) to (2,1) crosses x = 1 at y = 0.5. Demo.tsx LEN_FLAT = hypot(2, 1), LEN.bent = |A−M| + |M−G| with M the edge midpoint.",
-      "status": "unverified"
+      "status": "disputed",
+      "note": "The maths is right (independent minimisation of √(1+t²)+√(1+(1−t)²): least 2.23607 at t=0.500; Demo net front [0,1]² + right face [1,2]×[0,1], line (0,0)→(2,1) crosses x=1 at y=0.5; screenshots 04/05 match). But \"Unfolding two faces that share an edge lays them flat … with the ant's corners at opposite ends\" reads as true for any adjacent pair; it holds only for the 6 pairs with one face at the ant's corner and the other at the far corner (e.g. the two faces x=0 and y=0 both hold the start and neither holds the end). Required: name the pair, e.g. \"Unfolding a face at the ant's corner and the adjacent face at the far corner …\".",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     },
     {
       "id": "math.ant-on-a-cube.c3",
       "text": "No route over the cube's surface between opposite corners is shorter than √5 ≈ 2.24 m, whichever faces it crosses.",
       "support": "derivation",
       "source": "G4 surface-grid Dijkstra (60 grid points per edge, straight segments inside faces) finds 2.2361 = √5 (an upper bound that matches). Unfolding argument: each corner touches three faces; any surface route leaves a face at the start and enters a face at the end; every unfolding of the faces it crosses puts the two corners at least √5 apart (the nearest layouts are the 1 by 2 rectangles, by symmetry the same for all six pairs of adjacent faces).",
-      "status": "unverified"
+      "status": "verified",
+      "note": "Independent Dijkstra over the whole cube surface (40 points per edge, straight segments within each face) gives 2.2360680 = √5 for opposite corners; matches the known result for a unit cube. Reveal \"no route over other faces is shorter\" is covered by this claim.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     },
     {
       "id": "math.ant-on-a-cube.c4",
       "text": "On a flat sheet a straight line is the shortest path between two points, so the shortest walk over a surface made of flat faces is a straight line on some unfolding of the faces it crosses.",
       "support": "derivation",
       "source": "Triangle inequality in the plane (Euclid, Elements I.20): any broken path between two points is at least the straight segment. Unfolding a polyhedron's faces along their shared edges is an isometry on each face, so a surface path and its unfolded image have the same length.",
-      "status": "unverified"
+      "status": "disputed",
+      "note": "Overgeneral. \"The shortest walk over a surface made of flat faces is a straight line on some unfolding\" is true for convex polyhedra (a box), false in general: on a non-convex polyhedron a shortest path can bend at a reflex (saddle) vertex and is straight in no unfolding. The learner-visible reveal sentence \"the best walk over a surface is found by unfolding it\" is wider still: curved surfaces such as a sphere cannot be unfolded flat at all. Required: scope claim and reveal to boxes / convex surfaces made of flat faces, e.g. \"…so the best walk over a box is found by unfolding it\".",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     },
     {
       "id": "math.ant-on-a-cube.c5",
       "text": "Recall: on a cube with 2 m edges the shortest outside walk between opposite corners is √(2² + 4²) = √20 ≈ 4.47 m, about 4.5 m; a face diagonal then an edge is 2 + 2√2 ≈ 4.83 m and three edges 6 m.",
       "support": "derivation",
       "source": "Scaling G4 by 2: unfolded net 2 by 4, √20 = 4.4721; 2√2 + 2 = 4.8284; 3 × 2 = 6.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "Recomputed: √(2²+4²) = √20 = 4.4721 (rounds to the 4.5 m option); 2 + 2√2 = 4.8284; 3×2 = 6. Scaling the unit-cube result by 2.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     }
   ],
   "confidence": "",
