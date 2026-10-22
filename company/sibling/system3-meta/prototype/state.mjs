@@ -7,10 +7,32 @@ import { fileURLToPath } from "node:url";
 import { Log, Mailbox, Org, Engine, Rooms, DEFAULT_CONFIG, DEFAULT_MAX_LOOPS } from "./lib.mjs";
 import { SPECS } from "./specs.mjs";
 import { applyFloor } from "./building.mjs";
-import { afterStage } from "./workspace.mjs";
+import { afterStage, gitPins } from "./workspace.mjs";
 import { raiseParkAsk } from "./asks.mjs";
 export const HERE = path.dirname(fileURLToPath(import.meta.url));
 export const LIVE = process.env.META_LIVE_DIR || path.join(HERE, "live");
+
+/** M4 integrate (K8+K9 review): the role of the agent session this process runs in, or null (a person or code at a
+ *  terminal). Every `--by` was self-declared, so a builder at its loop cap ran `order resume --by=founder
+ *  --extra-loops=10` as often as it liked. The launcher sets META_ROLE in each agent process's environment
+ *  (launcher/launch.mjs); everything below that process is the agent's, so the OUTERMOST META_ROLE on the process's
+ *  ancestry (/proc/<pid>/environ is the environment a process started with, which its children cannot change) is the
+ *  session's role: `META_ROLE=founder node meta.mjs …` and `env -u META_ROLE …` from inside the session change only
+ *  the inner ones. Best effort, as the rest of K10: a process the agent detaches from its session's tree (reparented
+ *  to init) and starts with a cleared environment is not seen; the guard denies the plain spellings of that. */
+export function sessionRole({ env = process.env, proc = "/proc", pid = process.ppid } = {}) {
+  let role = env.META_ROLE != null ? env.META_ROLE || "?" : null;
+  for (let p = pid, n = 0; p > 1 && n < 128; n++) {
+    let st;
+    try { st = fs.readFileSync(`${proc}/${p}/status`, "utf8"); } catch { break; }
+    try {
+      const e = fs.readFileSync(`${proc}/${p}/environ`, "utf8").split("\0").find((x) => x.startsWith("META_ROLE="));
+      if (e != null) role = e.slice("META_ROLE=".length) || "?";
+    } catch {}
+    p = Number((/^PPid:\s*(\d+)/m.exec(st) ?? [])[1] ?? 0);
+  }
+  return role;
+}
 export const STATE = path.join(LIVE, process.env.META_STATE || "state.json");
 // K10: with META_KERNEL_ABS set (launcher --workdir-from=order: the agent's cwd is the order's worktree, not the kernel),
 // briefs, packs and every meta.mjs/supervisor.mjs output name kernel commands by absolute path (K10 review: the held-order
@@ -310,10 +332,10 @@ export function validateCmd(c, { stages = null } = {}) {
   }
   return null;
 }
-/** ${slug}, ${task}, ${workdir} (K12 post-checks: ${evidence}, ${verdict}, ${stage}) in a cmd string; slug is the order's slug if set (lessons), else its task. With a K5
+/** ${slug}, ${task}, ${workdir}, ${live}, ${base_sha} (K12 post-checks: ${evidence}, ${verdict}, ${stage}) in a cmd string; slug is the order's slug if set (lessons), else its task. With a K5
  *  workspace also ${run}, ${n} and ${port} (o.workspace.vars: one vocabulary for workspace env, cmds and briefs, K5
  *  review); a variable the order does not have stays as written. */
-export const interpolate = (s, vars) => s.replace(/\$\{(slug|task|workdir|run|n|port|evidence|verdict|stage)\}/g, (m, k) => (k in vars ? vars[k] ?? "" : m));
+export const interpolate = (s, vars) => s.replace(/\$\{(slug|task|workdir|run|n|port|evidence|verdict|stage|live|base_sha)\}/g, (m, k) => (k in vars ? vars[k] ?? "" : m));
 const dig = (x, p) => p.split(".").filter(Boolean).reduce((v, k) => (v == null ? undefined : k === "length" && (Array.isArray(v) || typeof v === "string") ? v.length : v[k]), x);
 // K1 audit: the last line that parses, not the last that looks like JSON ("[advisory] x" after the JSON was "not JSON")
 const parseJson = (t) => { try { return JSON.parse(t); } catch {} for (const l of t.trim().split("\n").reverse()) { if (!/^[[{]/.test(l.trim())) continue; try { return JSON.parse(l); } catch {} } return undefined; };
@@ -322,13 +344,18 @@ const parseJson = (t) => { try { return JSON.parse(t); } catch {} for (const l o
 export function prepareCmd(o, s, extra = {}) {
   const c = s.run ?? s;
   // K12: a post-check also reads ${evidence}, ${verdict} and ${stage} (the leave it judges: stage 7's record file)
-  const vars = { ...(o.workspace?.vars ?? {}), ...extra, slug: o.slug ?? o.task ?? "", task: o.task ?? "", workdir: o.workdir ?? path.join(LIVE, "work", o.task ?? "") };
+  // M4 integrate: ${live} (the run's live dir: a file every order of the run shares, e.g. test1's baseline) and
+  // ${base_sha} (the commit the order's worktree started from, K7's base: test1's --base for inherited claims)
+  const vars = { ...(o.workspace?.vars ?? {}), ...extra, slug: o.slug ?? o.task ?? "", task: o.task ?? "", workdir: o.workdir ?? path.join(LIVE, "work", o.task ?? ""), live: LIVE, base_sha: o.workspace?.baseSha ?? o.workspace?.sha ?? "" };
   const argv = c.argv.map((a) => interpolate(a, vars));
   const cwd = c.cwd ? path.resolve(vars.workdir, interpolate(c.cwd, vars)) : vars.workdir;
   // a child of a node --test process would report to it and exit 0 whatever its tests do (see runTests)
   const { NODE_TEST_CONTEXT, ...base } = process.env;
   // K5: the order workspace's env (NEXT_DIST_DIR, QA_PORT, QA_OUT per order) under the stage's own
-  const env = { ...base, ...(o.workspace?.env ?? {}), ...Object.fromEntries(Object.entries(c.env ?? {}).map(([k, v]) => [k, interpolate(v, vars)])) };
+  const env0 = { ...base, ...(o.workspace?.env ?? {}), ...Object.fromEntries(Object.entries(c.env ?? {}).map(([k, v]) => [k, interpolate(v, vars)])) };
+  // M4 integrate (K7/K10 re-review): in an order's worktree every git the stage runs (qa's stamp, the company's tools)
+  // gets the kernel's pins too: no agent-set hooks, fsmonitor or filter drivers run in code's process
+  const env = o.workspace?.dir && fs.existsSync(o.workspace.dir) ? { ...env0, ...gitPins(o.workspace.dir, env0) } : env0;
   // "node" is this node (a launcher PATH may lack it, or hold another version)
   return { c, argv, bin: argv[0] === "node" ? process.execPath : argv[0], cwd, env, label: argv.join(" ").slice(0, 160) };
 }
@@ -352,7 +379,10 @@ export function judgeCmd(c, label, r, timeoutMs = c.timeoutMs ?? 60_000) {
   if (c.findings?.fromStdout) { const m = [...out.matchAll(new RegExp(c.findings.fromStdout, "gm"))].map((x) => (x[1] ?? x[0]).trim()).filter(Boolean); findings = m.length ? m.join("\n").slice(0, 2000) : null; }
   if (!pass && !findings) findings = both.trim().split("\n").filter(Boolean).slice(-20).join("\n").slice(0, 2000) || null;
   const route = pass ? null : Object.entries(c.route ?? {}).find(([re]) => new RegExp(re, "m").test(both))?.[1] ?? null;
-  return { pass, output: `${label}: ${why}`, findings, route: errExit ? null : route, code: r.status ?? null, timedOut: !!r.timedOut, stageError: !!(r.error || r.timedOut || errExit) };
+  // M4 integrate: a stage-error never routes, whatever made it (errorExit, a timeout, a failed spawn): a timed-out or
+  // crashed post-check's partial output ("Verdict: revise", "fatal: …") was routed as a verdict by Rooms.checkPost
+  const stageError = !!(r.error || r.timedOut || errExit);
+  return { pass, output: `${label}: ${why}`, findings, route: stageError ? null : route, code: r.status ?? null, timedOut: !!r.timedOut, stageError };
 }
 /** Run stage `s`'s `run` cmd for order `o` and wait: { pass, output, findings, route, code, timedOut, stageError }.
  *  findings are advisory on a pass (copy-tells, a11y) and the reason on a fail; route is the earlier stage the first

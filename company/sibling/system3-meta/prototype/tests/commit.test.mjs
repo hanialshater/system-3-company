@@ -260,35 +260,63 @@ test("K7 review: a commit refused after the last stage (the order done) is held,
   assert.equal(tick(co).filter((x) => x.order === o.id).length, 0, "done, nothing left");
 });
 
-test("K7 review 2: the commit as the repo's hooks made it is checked again: a hook's protected path or [deploy] is undone and held", () => {
+test("K7 review 2 + M4 integrate: hooks the agent set never run in the kernel's commit; the config change itself holds the order", () => {
   const co = fresh();
   const o = order(co, "CH"); tick(co);
   const dir = o.workdir, HK = path.join(LIVE, "hk");
   fs.mkdirSync(HK, { recursive: true });
-  // the reviewer's probe: core.hooksPath set from Bash (the K10 guard does not cover it), a pre-commit hook that stages
-  // a protected file the checks never saw, then a prepare-commit-msg hook that appends [deploy]
+  // the K7 review 2 probe (a pre-commit hook staging a protected file, a prepare-commit-msg hook appending [deploy]) and
+  // the re-review's (a post-commit hook that pushes from the kernel's own process), all through core.hooksPath set from Bash
   fs.writeFileSync(path.join(HK, "pre-commit"), "#!/bin/sh\necho weakened >> tests/qa/contract.md && git add tests/qa/contract.md\n", { mode: 0o755 });
+  fs.writeFileSync(path.join(HK, "prepare-commit-msg"), "#!/bin/sh\necho '[deploy]' >> \"$1\"\n", { mode: 0o755 });
+  fs.writeFileSync(path.join(HK, "post-commit"), "#!/bin/sh\ngit push -q origin HEAD:refs/heads/main --force\n", { mode: 0o755 });
   sh(dir, "config", "core.hooksPath", HK);
   try {
     fs.writeFileSync(path.join(dir, "lesson.md"), "x\n");
     build(co, o);
-    assert.match(o.stageError.why, /^workspace: commit after build: the kernel's commit as the repo's hooks made it .*protected paths tests\/qa\/contract.md.*the commit was undone/);
-    assert.deepEqual(log(dir), [], "the kernel's commit undone");
-    assert.equal(sh(dir, "diff", "--cached", "--name-only"), "", "the index put back");
-    assert.equal(co.log.events.filter((e) => e.type === "commit" && e.order === o.id).length, 0, "no clean commit event");
-    fs.rmSync(path.join(HK, "pre-commit"));
-    sh(dir, "checkout", "--", "tests/qa/contract.md");
-    fs.writeFileSync(path.join(HK, "prepare-commit-msg"), "#!/bin/sh\necho '[deploy]' >> \"$1\"\n", { mode: 0o755 });
-    delete o.stageError; // supervisor.mjs retry
+    assert.match(o.stageError.why, /^workspace: commit after build: the repo's git config or hooks gained local core\.hookspath=.*hk since the order's worktree was made/);
+    assert.deepEqual(log(dir), [], "nothing committed");
+    assert.equal(fs.readFileSync(path.join(dir, "tests/qa/contract.md"), "utf8"), "qa\n", "no hook ran");
+    assert.equal(remoteRefs(), REMOTE_BEFORE, "nothing pushed");
+    // the kernel's commit itself runs no hook even when the snapshot already had the hooksPath (a repo set up so before)
+    o.workspace.traps = WS.gitTraps(dir); delete o.stageError;
     tick(co);
-    assert.match(o.stageError.why, /the kernel's commit as the repo's hooks made it .*names \[deploy\]/);
-    assert.deepEqual(log(dir), []);
+    assert.equal(o.stageError, undefined);
+    assert.deepEqual(log(dir), [`meta: ${o.id} build lesson-ch`], "committed, no [deploy] appended");
+    assert.equal(sh(dir, "show", "--name-only", "--format=", "HEAD"), "lesson.md", "the pre-commit hook staged nothing");
+    assert.equal(remoteRefs(), REMOTE_BEFORE, "the post-commit hook pushed nothing");
   } finally { sh(dir, "config", "--unset", "core.hooksPath"); }
-  delete o.stageError;
-  tick(co);
-  assert.equal(o.workspace.pendingCommit, undefined);
-  assert.equal(log(dir)[0], `meta: ${o.id} build lesson-ch`);
-  assert.equal(remoteRefs(), REMOTE_BEFORE);
+});
+
+test("M4 integrate: an fsmonitor or filter command written into the repo's .git/config never runs from the kernel, and holds the order", async () => {
+  const co = fresh();
+  const o = order(co, "CF"); tick(co);
+  const dir = o.workdir, RAN = path.join(LIVE, "fsmon-ran");
+  const cfg = path.join(REPO, ".git", "config"), before = fs.readFileSync(cfg, "utf8");
+  // what a Write/Edit call could do (decide() allowed <repo>/.git/config): the re-review's fsmonitor (here it only
+  // leaves a mark; its push is the post-commit case above), plus a filter driver
+  fs.appendFileSync(cfg, `[core]\n\tfsmonitor = "echo FSMON >> ${RAN}; false"\n[filter "x"]\n\tclean = "echo FILTER >> ${RAN}; cat"\n`);
+  fs.writeFileSync(path.join(dir, ".gitattributes"), "* filter=x\n");
+  try {
+    fs.writeFileSync(path.join(dir, "lesson.md"), "v1\n");
+    build(co, o);
+    assert.match(o.stageError.why, /gained local core\.fsmonitor=.*local filter\.x\.clean=/);
+    assert.equal(fs.existsSync(RAN), false, "neither command ran");
+    assert.equal(remoteRefs(), REMOTE_BEFORE);
+    // a code stage's git gets the same pins (prepareCmd): `git status` there runs no fsmonitor, `git add` no filter
+    const { prepareCmd } = await import("../state.mjs");
+    const pc = prepareCmd(o, { argv: ["git", "status", "--porcelain"] });
+    assert.equal(spawnSync("git", pc.argv.slice(1), { cwd: pc.cwd, env: pc.env, encoding: "utf8" }).status, 0);
+    spawnSync("git", ["add", "-A"], { cwd: pc.cwd, env: pc.env }); spawnSync("git", ["reset", "-q"], { cwd: pc.cwd, env: pc.env });
+    assert.equal(fs.existsSync(RAN), false, "a code stage's git ran neither");
+    assert.equal(spawnSync("git", ["status", "--porcelain"], { cwd: dir }).status === 0 && fs.existsSync(RAN), true, "the probe is live: plain git runs the fsmonitor");
+    fs.rmSync(RAN);
+    o.workspace.traps = WS.gitTraps(dir); delete o.stageError;
+    tick(co);
+    assert.deepEqual(log(dir).slice(0, 1), [`meta: ${o.id} build lesson-cf`]);
+    assert.equal(fs.existsSync(RAN), false, "the commit ran neither command either");
+    assert.equal(remoteRefs(), REMOTE_BEFORE);
+  } finally { fs.writeFileSync(cfg, before); }
 });
 
 test("K7 review 2: main's [deploy] commits merged in (--no-ff) do not hold the order; the merge's own message is checked", () => {

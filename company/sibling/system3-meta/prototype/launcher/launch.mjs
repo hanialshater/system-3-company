@@ -29,6 +29,7 @@
 // order's worktree, the repo and the worktree root whatever the launch's messages (a task-only launch had none); a
 // failed config lookup refuses the launch; a role that names its tools gets them as the SDK `tools`; an explicit
 // --session-min wins over the role's; the options are built by guard.mjs sessionPlan/queryOptions, which the tests check.
+// M4 integrate: META_ROLE=<role> names the session to meta.mjs (state.mjs sessionRole), which then refuses any other --by.
 import { query } from "@anthropic-ai/claude-agent-sdk";
 import { spawn, spawnSync } from "node:child_process";
 import fs from "node:fs";
@@ -94,7 +95,7 @@ async function run(ev) {
     return;
   }
   const { cwd, tools, sessionMin, maxTurns, settingSources: sources } = plan;
-  const guard = makeGuard({ tools, strictTools: plan.strictTools, roots: plan.roots, cwd, record: (d) => {
+  const guard = makeGuard({ tools, strictTools: plan.strictTools, roots: plan.roots, cwd, role: ev.role, record: (d) => {
     note({ event: "guard", launch: id, n: k, role: ev.role, via: d.via, tool: d.tool, rule: d.rule, why: d.why, detail: d.detail });
     meta("guard", "denied", `--launch=${id}`, `--role=${ev.role}`, `--tool=${d.tool}`, `--rule=${d.rule}`, `--why=${d.why}`, `--via=${d.via}`, ...(d.detail ? [`--detail=${d.detail}`] : []));
   } });
@@ -108,7 +109,7 @@ async function run(ev) {
     // the brief is the whole job: no project settings or CLAUDE.md (they belong to System 3 Company, not this run),
     // unless the role, --setting-sources or --workdir-from=order (K10: the company's hooks and rules) loads them;
     // permissions, tools and the guard as guard.mjs queryOptions says (tests/guard.test.mjs checks that shape)
-    for await (const m of query({ prompt, options: queryOptions(plan, guard, { model: MODEL, abortController: ac, env: { ...env, META_LAUNCH: id } }) })) {
+    for await (const m of query({ prompt, options: queryOptions(plan, guard, { model: MODEL, abortController: ac, env: { ...env, META_LAUNCH: id, META_ROLE: ev.role } }) })) {
       if (m.type === "assistant" && m.parent_tool_use_id == null && m.message?.usage) last = m.message.usage;
       if (m.type === "result") result = m;
     }

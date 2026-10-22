@@ -132,14 +132,15 @@ test("real: an active hold parks with an ask", { skip: !REAL }, () => {
 });
 
 test("real: unlinked learner reviews are linked for this slug only (publish-ready --link body)", { skip: !REAL }, () => {
-  // the-equals-sign-balances has company/reviews/.../2026-10-16-learner-adult-beginner-r10-reading.md unlinked.
-  const mp = metaPath(WT, "the-equals-sign-balances");
+  // asthma-looks-safe (draft) has company/reviews/.../2026-10-16-learner-adult-beginner-r2.md unlinked. (This used
+  // the-equals-sign-balances, which is published: M4 integrate refuses a published lesson before linking anything.)
+  const mp = metaPath(WT, "asthma-looks-safe");
   const before = readJSON(mp).evidence.simulatedLearner;
-  const r = run(["the-equals-sign-balances", `--repo=${WT}`]);
-  assert.deepEqual(r.json.linked, ["company/reviews/the-equals-sign-balances/2026-10-16-learner-adult-beginner-r10-reading.md"]);
+  const r = run(["asthma-looks-safe", `--repo=${WT}`]);
+  assert.deepEqual(r.json.linked, ["company/reviews/asthma-looks-safe/2026-10-16-learner-adult-beginner-r2.md"]);
   assert.deepEqual(readJSON(mp).evidence.simulatedLearner, [...before, ...r.json.linked]);
   assert.deepEqual(changed(), [` M ${path.relative(WT, mp)}`]); // only this lesson's meta.json
-  const again = run(["the-equals-sign-balances", `--repo=${WT}`]);
+  const again = run(["asthma-looks-safe", `--repo=${WT}`]);
   assert.deepEqual(again.json.linked, []); // idempotent
   execFileSync("git", ["checkout", "--", "."], { cwd: WT });
 });
@@ -175,6 +176,28 @@ test("real: company qa-record supplies the missing QA → publish exits 0 and st
   assert.equal(r.json.ok, true);
   assert.equal(r.json.status, "published");
   assert.equal(readJSON(metaPath(WT, slug)).status, "published");
+  // M4 integrate: the same ship again is refused (it published nothing the second time), parked, meta untouched
+  const keep = fs.readFileSync(metaPath(WT, slug), "utf8");
+  const again = run([slug, `--repo=${WT}`]);
+  assert.equal(again.exit, 1, again.stdout);
+  assert.deepEqual([again.json.ok, again.json.route, again.json.park, again.json.findings[0].kind], [false, "park", true, "already-published"]);
+  assert.equal(again.json.publishExit, undefined, "company publish did not run");
+  assert.equal(fs.readFileSync(metaPath(WT, slug), "utf8"), keep);
   execFileSync("git", ["checkout", "--", "."], { cwd: WT });
   execFileSync("git", ["clean", "-fdq", "company/reviews", out], { cwd: WT });
+});
+
+test("real: M4 integrate: an already-published lesson is refused (plan §5 stage 9), routed park with an ask, nothing written", { skip: !REAL }, () => {
+  // left-or-right is published and passes launchGates (gates.test.mjs): company publish would exit 0 and re-stamp it
+  const r = run(["left-or-right", `--repo=${WT}`]);
+  assert.equal(r.exit, 1, r.stdout);
+  assert.deepEqual([r.json.ok, r.json.status, r.json.route, r.json.park], [false, "published", "park", true]);
+  assert.match(r.json.findings[0].message, /^already published: src\/demos\/[^/]+\/left-or-right is status "published"/);
+  assert.equal(r.json.ask.to, "head-of-product");
+  // the spec's ship route map sends it to park (no revise loop): its stdout carries "route":"park"
+  const spec = JSON.parse(fs.readFileSync(path.join(HERE, "..", "..", "..", "prototype", "specs", "s3c-lessons.json"), "utf8"));
+  const ship = spec.flow.stages.find((x) => x.stage === "ship").run;
+  const hit = Object.entries(ship.route).filter(([re]) => new RegExp(re, "m").test(r.stdout)).map(([, to]) => to);
+  assert.deepEqual([...new Set(hit)], ["park"], r.stdout);
+  assert.deepEqual(changed(), []);
 });

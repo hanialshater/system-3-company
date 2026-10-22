@@ -824,7 +824,8 @@ export class Rooms {
     if (t.pass) { this.log.add({ type: "post-check", pass: true, ...rec, ...(t.findings ? { findings: t.findings } : {}) }); return null; }
     // M4 audit: a failure whose output matches the post's route is a verdict, not a defect of the leave (validateSpec:
     // an earlier stage or park); the caller signs it. A stage-error never routes (judgeCmd)
-    if (t.route) { this.log.add({ type: "post-check", pass: false, route: t.route, ...rec, findings: t.findings ?? null }); return { route: t.route, output: t.output, findings: t.findings ?? null }; }
+    // (M4 integrate: checked here too, so a post result made elsewhere with stageError and a route still refuses)
+    if (t.route && !t.stageError) { this.log.add({ type: "post-check", pass: false, route: t.route, ...rec, findings: t.findings ?? null }); return { route: t.route, output: t.output, findings: t.findings ?? null }; }
     const why = t.stageError ? "the post-check itself failed (fix it or ask the supervisor to abandon the run)" : "fix the work and leave again: this run is still open";
     if (!this.config.enforce) { this.log.add({ type: "violation", rule: "post-check", msg: t.output, ...rec, findings: t.findings ?? null }); return null; }
     this.log.add({ type: "refuse", rule: "post-check", msg: `${t.output}; ${why}`, ...rec, findings: t.findings ?? null });

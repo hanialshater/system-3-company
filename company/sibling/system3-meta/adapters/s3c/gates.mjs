@@ -3,7 +3,9 @@
 // 2 "test1" and 8 "gates/ship", §4 row `gates.mjs`). It wraps the company's own tools and re-implements nothing
 // except the claim floor, which tools/company.mjs does not export (and which is protected, so it cannot be made to).
 //
-//   node gates.mjs <slug> --stage=build [--base=<sha>] [--baseline-file=<baseline.json>] [--repo=<path>]
+//   node gates.mjs <slug> --stage=build [--base=<sha>] [--baseline-file=<baseline.json> [--baseline-repo=<path>]] [--repo=<path>]
+//        --baseline-repo: when the baseline file does not exist yet, write it first from `company check` in that
+//        checkout (the run's base, e.g. /home/user/s3c-wt/base): the first test1 of a run makes the run's baseline
 //   node gates.mjs <slug> --stage=ship  [--repo=<path>]    the lesson `company publish` picks (meta.slug), judged
 //                                                            with publish.mjs's pending learner link applied
 //   node gates.mjs --baseline [--out=<file>] [--repo=<path>]    company-wide `company check` error count
@@ -529,6 +531,21 @@ export async function shipStage(repo, slug) {
 
 // ------------------------------------------------------------------ --baseline and --parity
 
+/** M4 integrate: the run's baseline file, written once (the first test1 of the run) from `company check` in `from`
+ *  (the run's base checkout), atomically (two writers leave one whole file). Returns null when the file is there, or
+ *  the stage-error result: no baseline is no "no new errors" guard, and test1 must not pass silently without it. */
+export function ensureBaseline(file, from) {
+  if (fs.existsSync(file)) return null;
+  if (!fs.existsSync(path.join(from, "tools/company.mjs"))) return { exit: 3, out: { ok: false, stage: "build", findings: [{ severity: "environment", kind: "baseline", message: `--baseline-repo ${from} is not a System 3 Company checkout (no tools/company.mjs)` }] } };
+  const r = baseline(from);
+  if (r.exit !== 0) return { exit: 3, out: { ...r.out, stage: "build", findings: [...(r.out.findings ?? []), { severity: "environment", kind: "baseline", message: `the run's baseline could not be made in ${from}` }] } };
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  const tmp = `${file}.${process.pid}.tmp`;
+  fs.writeFileSync(tmp, JSON.stringify({ ...r.out, from }, null, 2) + "\n");
+  if (!fs.existsSync(file)) fs.renameSync(tmp, file); else fs.rmSync(tmp, { force: true });
+  return null;
+}
+
 export function baseline(repo) {
   const chk = runCompanyCheck(repo);
   if (chk.problem) return { exit: 3, out: { ok: false, mode: "baseline", findings: [{ severity: "environment", kind: "check", message: chk.problem }] } };
@@ -613,13 +630,13 @@ export function parseArgs(argv) {
   return opts;
 }
 
-const USAGE = "usage: gates.mjs <slug> --stage=build|ship [--base=<sha>] [--baseline-file=<f>] [--repo=<path>] | --baseline [--out=<f>] | --parity";
+const USAGE = "usage: gates.mjs <slug> --stage=build|ship [--base=<sha>] [--baseline-file=<f> [--baseline-repo=<path>]] [--repo=<path>] | --baseline [--out=<f>] | --parity";
 
 export async function main(argv) {
   const o = parseArgs(argv);
   const repo = path.resolve(String(o.repo));
   const usage = (message) => ({ exit: 2, out: { ok: false, findings: [{ severity: "environment", kind: "usage", message }], usage: USAGE } });
-  for (const k of Object.keys(o)) if (!["repo", "positional", "stage", "base", "baseline-file", "baseline", "out", "parity"].includes(k)) return usage(`unknown flag --${k}`);
+  for (const k of Object.keys(o)) if (!["repo", "positional", "stage", "base", "baseline-file", "baseline-repo", "baseline", "out", "parity"].includes(k)) return usage(`unknown flag --${k}`);
   if (!fs.existsSync(path.join(repo, "tools/company.mjs")) || !fs.existsSync(path.join(repo, "tools/lib/readiness.mjs")))
     return { exit: 3, out: { ok: false, findings: [{ severity: "environment", kind: "repo", message: `${repo} is not a System 3 Company checkout (no tools/company.mjs or tools/lib/readiness.mjs)` }] } };
   if (o.baseline === true) {
@@ -643,7 +660,14 @@ export async function main(argv) {
         return usage(`--base=${o.base} is not a commit in ${repo}`);
       }
     }
-    return buildStage(repo, slug, { base: o.base ?? null, baselineFile: typeof o["baseline-file"] === "string" ? o["baseline-file"] : null });
+    const bf = typeof o["baseline-file"] === "string" && o["baseline-file"] ? o["baseline-file"] : null;
+    if (o["baseline-repo"] !== undefined) {
+      if (!bf) return usage("--baseline-repo needs --baseline-file");
+      if (typeof o["baseline-repo"] !== "string" || !o["baseline-repo"]) return usage("--baseline-repo needs a checkout");
+      const made = ensureBaseline(bf, path.resolve(o["baseline-repo"]));
+      if (made) return made;
+    }
+    return buildStage(repo, slug, { base: o.base ?? null, baselineFile: bf });
   }
   if (o.stage === "ship") return shipStage(repo, slug);
   return usage("--stage=build or --stage=ship is required");

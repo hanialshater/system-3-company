@@ -276,3 +276,26 @@ test("K12 review CLI: flow advance cannot sign a post-checked stage; room leave 
   assert.notEqual(n.code, 0);
   assert.equal(fs.readFileSync(marks, "utf8"), "ran\nran\n");
 });
+
+test("M4 integrate: a post-check that times out or cannot start is a stage-error and never routes, whatever its partial output says", async () => {
+  const { judgeCmd } = await import("../state.mjs");
+  const c = { argv: ["x"], route: { "Verdict: revise": "build", fatal: "park" } };
+  const t = judgeCmd(c, "post", { status: null, timedOut: true, stdout: "Verdict: revise\n", stderr: "" });
+  assert.deepEqual([t.stageError, t.route], [true, null]);
+  const e = judgeCmd(c, "post", { status: null, error: "spawn ENOENT", stdout: "", stderr: "fatal: x" });
+  assert.deepEqual([e.stageError, e.route], [true, null]);
+  assert.equal(judgeCmd(c, "post", { status: 1, stdout: "Verdict: revise\n", stderr: "" }).route, "build", "a finished check still routes");
+
+  // end to end: a routed post that times out after printing a verdict refuses the leave (stage-error), signs nothing
+  fs.writeFileSync(path.join(BIN, "slowverdict.mjs"), 'console.log("Verdict: revise"); setTimeout(() => {}, 5000);\n');
+  const s = SPEC(); s.flow.stages[1].post = { argv: ["node", path.join(BIN, "slowverdict.mjs")], timeoutMs: 400, route: { "Verdict: revise": "build", fatal: "park" } };
+  const co = company(s); const o = order(co); fs.writeFileSync(wd(o, "STAMP"), "qa");
+  co.rooms.leave(enter(co, o, "demo-builder", "demo-builder"), { evidence: "e" });
+  const run = enter(co, o, "role:fact-checker", "fact-checker");
+  assert.throws(() => co.rooms.leave(run, { evidence: "e" }), /the post-check itself failed/);
+  const a = co.engine.orders.get(o.id);
+  assert.deepEqual([a.stage, a.loops, a.state === "parked"], ["check", 0, false]);
+  // and a result made outside the lock with stageError and a route set (an older judge) refuses too
+  assert.throws(() => co.rooms.leave(run, { evidence: "e", post: { run, stage: "check", loops: 0, pass: false, stageError: true, route: "park", output: "post: timed out" } }), /the post-check itself failed/);
+  assert.equal(co.engine.orders.get(o.id).stage, "check");
+});

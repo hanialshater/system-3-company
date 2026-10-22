@@ -64,7 +64,7 @@ import * as GEN from "./generator.mjs";
 import * as WS from "./workspace.mjs";
 import { proposePolicy, activatePolicy, managerReport, recordCycle, KNOBS } from "./policy.mjs";
 import { engage, engageTemplate, briefFor, deliver, decideContract, TEMPLATES } from "./contractor.mjs";
-import { absCmds, HERE, LIVE, STATE, LIVE_ROLES, TASK_FLOW, clock, make, rep, interpolate, save, load, withLock, runTests, runTest1, runCmdCheck, validateChecks, describeChecks, mergeChecks, ESCAPES, readEscapes } from "./state.mjs";
+import { absCmds, HERE, LIVE, STATE, LIVE_ROLES, TASK_FLOW, clock, make, rep, interpolate, save, load, withLock, runTests, runTest1, runCmdCheck, validateChecks, describeChecks, mergeChecks, ESCAPES, readEscapes, sessionRole } from "./state.mjs";
 import * as B from "./building.mjs";
 import * as CH from "./channels.mjs";
 import * as T from "./tracker.mjs";
@@ -128,6 +128,10 @@ function pack(co, run, ctx, session, item) {
 
 function main() {
   const [cmd, sub, arg] = pos;
+  // M4 integrate (K8+K9 review): in an agent session (the launcher's META_ROLE, state.mjs sessionRole) every --by and
+  // --role is that session's role: a builder could otherwise resume its own capped order --by=founder, or as its manager
+  const me = sessionRole();
+  if (me != null) for (const k of ["by", "role"]) if (opt[k] != null && opt[k] !== me) throw new Refused(`--${k}=${opt[k] === true ? "" : opt[k]} is not this agent session's role (${me}): an agent acts only as itself (a person decides as the founder outside any agent session)`);
   // benchmark 2 (writer-1): with no command or `help` the CLI printed only an error; the usage is this file's header
   if (!cmd || cmd === "help") return fs.readFileSync(new URL(import.meta.url), "utf8").split("\n").filter((l) => l.startsWith("//   node ")).map((l) => l.slice(5)).filter((l) => !sub || l.includes(` ${sub}`));
   if (cmd === "init") return withLock(() => {

@@ -5,7 +5,8 @@
 //   node publish.mjs <slug> --repo=<order-worktree>
 //
 // Contract (plan §4): the LAST stdout line is one JSON object {ok, findings[], ...}. Exit 0 = published (company
-// publish exit 0 AND meta.status re-read as "published"), 1 = revise (findings with K11 routes; park:true when a
+// publish exit 0 AND meta.status re-read as "published"; a lesson that was already "published" before the run is
+// refused, exit 1, route park, kind already-published: plan §5 M4 gate), 1 = revise (findings with K11 routes; park:true when a
 // hold or a fatal verdict blocks), 2 usage (including "not an order worktree"), 3 stage-error (company publish
 // crashed, its gate machinery is closed for environment reasons, or its output could not be parsed).
 //
@@ -60,7 +61,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { spawnSync, execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
-import { DEFAULT_REPO, findLesson, routeFor, parseArgs, loadReadinessLib } from "./gates.mjs";
+import { DEFAULT_REPO, findLesson, findPublishTarget, routeFor, parseArgs, loadReadinessLib } from "./gates.mjs";
 
 const SLUG = /^[a-z0-9]+(-[a-z0-9]+)*$/; // company.mjs cmdNewDemo slug rule
 const USAGE = "usage: publish.mjs <slug> --repo=<order-worktree>   (a linked git worktree; never the main checkout or the shared base)";
@@ -152,6 +153,14 @@ export async function run(repo, slug) {
   const base = { stage: "ship", slug };
   const L = findLesson(repo, slug);
   if (!L || !L.meta) return { exit: 1, out: { ok: false, ...base, park: false, route: "build", findings: [{ severity: "block", kind: "lesson", route: "build", message: L ? `meta.json unreadable: ${L.parseError}` : `no lesson ${slug} under src/demos/*/` }] } };
+  // M4 integrate (plan §5 M4 gate: stage 9 "must refuse already published"): company.mjs cmdPublish runs only
+  // launchGates and writes status published whatever the status was, so a lesson that is already published passed
+  // here again (ok, exit 0) with nothing shipped by this order. The lesson company publish would act on (meta.slug,
+  // loadDemos order) is checked before anything is linked or run, and the refusal parks the order with an ask: there
+  // is nothing for build, qa, check or learner to redo (a routed revise would loop), and passing would be a false ship.
+  const T = findPublishTarget(repo, slug) ?? L;
+  if (T.meta?.status === "published")
+    return { exit: 1, out: { ok: false, ...base, version: T.meta.version ?? null, status: "published", park: true, route: "park", routes: ["park"], reasons: [], findings: [{ severity: "block", kind: "already-published", route: "park", message: `already published: ${T.where} is status "published" (v${T.meta.version ?? 1}) before this ship ran; company publish would re-stamp it and exit 0, which is no ship (a change to a published lesson goes back to "review" in build, with a version bump)` }], ask: { kind: "decision", to: "head-of-product", text: `${slug} is already published (v${T.meta.version ?? 1}): nothing for this order to ship. Cancel the order, or reopen it to build for a new version.` } } };
   const lk = linkLearner(repo, L, slug);
   if (lk.error) return { exit: 1, out: { ok: false, ...base, park: false, route: "build", findings: [{ severity: "block", kind: "evidence", route: "build", message: lk.error }] } };
 

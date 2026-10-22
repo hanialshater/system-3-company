@@ -65,13 +65,57 @@ export const specOf = (co) => co.spec?.workspace ?? null;
 const ok = (r) => r.status === 0;
 const out = (r) => r.stdout.trim().split("\n");
 const why = (r, what) => `${what}: ${r.error?.code === "ETIMEDOUT" ? `timed out (ensure has ${ENSURE_BUDGET_MS} ms for all its git calls)` : (r.stderr || r.error?.message || `exit ${r.status}`).trim().split("\n").slice(-3).join(" ")}`;
+const w_common = (dir) => { const r = spawnSync("git", ["-C", dir, "rev-parse", "--path-format=absolute", "--git-common-dir"], { encoding: "utf8", timeout: 5_000, env: { ...process.env, ...GIT_PINS_ENV } }); return r.status === 0 ? r.stdout.trim() + "/" : "the repo's .git/"; };
 const real = (p) => { try { return fs.realpathSync(p); } catch { return path.resolve(p); } };
 const isLink = (p) => { try { return fs.lstatSync(p).isSymbolicLink(); } catch { return false; } };
+// M4 integrate (K7/K10 re-review): every git call the kernel made in an order's worktree also ran what the agent had
+// configured there: a core.hooksPath post-commit hook or a core.fsmonitor command pushed to the remote from the kernel's
+// own process (the after-scan only undid the local commit, after the push), and a filter driver runs on add. Worktrees
+// share the main repo's .git/config, and Write/Edit on <repo>/.git/config was allowed. So the kernel's git (and every
+// git a code stage runs: state.mjs prepareCmd) runs with these pinned through GIT_CONFIG_COUNT (command-line scope,
+// above every config file): no hooks at all (the company repo has none; the kernel's own checks are the rules), no
+// fsmonitor, no pager, no signature display, no auto gc, no submodule recursion, every filter driver not set in the
+// system config emptied, and no commit signing when a gpg.* key is set in the repo's own config (an agent's program).
+// And a change the agent made to those keys (or to .git/hooks) is refused at the next commit (gitTraps), so it does
+// not wait in the founder's checkout for the founder's own git.
+export const GIT_PINS = [["core.hooksPath", "/dev/null"], ["core.fsmonitor", "false"], ["core.pager", "cat"], ["log.showSignature", "false"], ["gc.auto", "0"], ["maintenance.auto", "false"], ["submodule.recurse", "false"], ["diff.external", ""]];
+/** Keys in a repo's own config (local or worktree scope) that make git run a command, or send what it pushes elsewhere. */
+export const TRAP_KEY = /^(core\.(hookspath|fsmonitor|pager|editor|sshcommand|askpass|gitproxy|alternaterefscommand|worktree)|sequence\.editor|filter\..+\.(clean|smudge|process)|diff\.external|diff\..+\.(textconv|command)|merge\..+\.driver|gpg\..+|credential\..*helper|uploadpack\.packobjectshook|include\.path|includeif\..+\.path|remote\..+\.(receivepack|uploadpack|vcs)|alias\..+)$/i;
+/** The config git sees in `cwd`: [{scope, key, value}] (no hooks or drivers run to read it). */
+export function gitConfig(cwd, env = process.env) {
+  const r = spawnSync("git", ["-C", cwd, "config", "--list", "--show-scope", "-z"], { encoding: "utf8", timeout: 5_000, env });
+  if (r.status !== 0) return [];
+  const parts = r.stdout.split("\0"), list = [];
+  for (let i = 0; i + 1 < parts.length; i += 2) { const kv = parts[i + 1], nl = kv.indexOf("\n"); list.push({ scope: parts[i], key: (nl < 0 ? kv : kv.slice(0, nl)).toLowerCase(), value: nl < 0 ? null : kv.slice(nl + 1) }); }
+  return list;
+}
+/** The env for a git call in `cwd`: `env` plus the pins above, appended after any GIT_CONFIG_COUNT entries it has. */
+export function gitPins(cwd, env = process.env) {
+  const pins = [...GIT_PINS], cfg = gitConfig(cwd, env);
+  for (const n of new Set(cfg.filter((e) => e.scope !== "system").map((e) => /^filter\.(.+)\.(clean|smudge|process|required)$/.exec(e.key)?.[1]).filter(Boolean)))
+    pins.push([`filter.${n}.clean`, ""], [`filter.${n}.smudge`, ""], [`filter.${n}.process`, ""], [`filter.${n}.required`, "false"]);
+  if (cfg.some((e) => (e.scope === "local" || e.scope === "worktree") && /^gpg\./.test(e.key))) pins.push(["commit.gpgSign", "false"], ["tag.gpgSign", "false"]);
+  const n0 = Number(env.GIT_CONFIG_COUNT) || 0, out = { GIT_CONFIG_COUNT: String(n0 + pins.length) };
+  pins.forEach(([k, v], i) => { out[`GIT_CONFIG_KEY_${n0 + i}`] = k; out[`GIT_CONFIG_VALUE_${n0 + i}`] = v; });
+  return out;
+}
+/** git in `cwd` with the pins: the kernel's only way to run git. */
+export const safeGit = (cwd, args, opts = {}) => { const env = opts.env ?? process.env; return spawnSync("git", ["-C", cwd, ...args], { encoding: "utf8", ...opts, env: { ...env, ...gitPins(cwd, env) } }); };
+/** What in `cwd`'s repo could make git run an agent's command: its own config's trap keys (local, worktree scope) and
+ *  the hook files in its hooks folder, as sorted strings (a snapshot to compare: gitTraps at ensure, again at commit). */
+export function gitTraps(cwd) {
+  const keys = gitConfig(cwd).filter((e) => (e.scope === "local" || e.scope === "worktree") && TRAP_KEY.test(e.key)).map((e) => `${e.scope} ${e.key}=${e.value ?? ""}`);
+  const c = spawnSync("git", ["-C", cwd, "rev-parse", "--git-common-dir"], { encoding: "utf8", timeout: 5_000, env: { ...process.env, ...GIT_PINS_ENV } });
+  let hooks = [];
+  if (c.status === 0) { const d = path.join(path.resolve(cwd, c.stdout.trim()), "hooks"); try { hooks = fs.readdirSync(d).filter((f) => !f.endsWith(".sample")).map((f) => `hook ${path.join(d, f)}`); } catch {} }
+  return [...keys, ...hooks].sort();
+}
+const GIT_PINS_ENV = (() => { const n0 = Number(process.env.GIT_CONFIG_COUNT) || 0, o = { GIT_CONFIG_COUNT: String(n0 + GIT_PINS.length) }; GIT_PINS.forEach(([k, v], i) => { o[`GIT_CONFIG_KEY_${n0 + i}`] = k; o[`GIT_CONFIG_VALUE_${n0 + i}`] = v; }); return o; })();
 /** git with what is left of `by` as its timeout: ensure's calls share one budget (they all run under the state lock). */
 const gitBy = (by) => (cwd, ...args) => {
   const left = by - Date.now();
   if (left < 250) return { status: null, error: { code: "ETIMEDOUT" }, stdout: "", stderr: "" };
-  return spawnSync("git", ["-C", cwd, ...args], { encoding: "utf8", timeout: left });
+  return safeGit(cwd, args, { timeout: left });
 };
 
 /** What is at `dir`: null (not a worktree of the repo whose common dir is `common`, at exactly `dir`), {incomplete}
@@ -163,9 +207,9 @@ export function ensure(co, o, { create = true } = {}) {
     const r = has ? git(w.repo, "worktree", "add", dir, branch) : git(w.repo, "worktree", "add", "-b", branch, dir, base);
     if (!ok(r)) {
       // K5 review: a killed add leaves a registered, half-checked-out worktree; undo it (the folder was ours: absent or empty)
-      spawnSync("git", ["-C", w.repo, "worktree", "remove", "--force", "--force", dir], { timeout: CLEANUP_MS });
+      safeGit(w.repo, ["worktree", "remove", "--force", "--force", dir], { timeout: CLEANUP_MS });
       if (!existed) fs.rmSync(dir, { recursive: true, force: true });
-      spawnSync("git", ["-C", w.repo, "worktree", "prune"], { timeout: CLEANUP_MS });
+      safeGit(w.repo, ["worktree", "prune"], { timeout: CLEANUP_MS });
       return { error: why(r, `git worktree add ${dir} (${has ? branch : `-b ${branch} from ${base}`})`) };
     }
     created = true;
@@ -197,7 +241,7 @@ export function ensure(co, o, { create = true } = {}) {
   const all = { ...vars, workdir: dir };
   const env = Object.fromEntries(Object.entries(w.env ?? {}).map(([k, v]) => [k, fill(v, all)]));
   o.workdir = dir;
-  o.workspace = { kind: w.kind, repo: w.repo, dir, branch, base, sha: at.sha, baseSha: out(b)[0], env, vars: all };
+  o.workspace = { kind: w.kind, repo: w.repo, dir, branch, base, sha: at.sha, baseSha: out(b)[0], env, vars: all, traps: gitTraps(dir) };
   co.log.add({ type: "workspace", order: o.id, task: o.task, dir, branch, base, sha: at.sha, created });
   return done(created);
 }
@@ -224,6 +268,12 @@ export function commit(co, o, stage) {
   const h = git(dir, "rev-parse", "--abbrev-ref", "HEAD");
   if (!ok(h)) return { error: why(h, `git rev-parse in ${dir}`) };
   if (out(h)[0] !== o.workspace.branch) return { error: `${dir} is on ${out(h)[0] === "HEAD" ? "a detached HEAD" : `branch ${out(h)[0]}`}, not ${o.workspace.branch}: switch it back and retry` };
+  // M4 integrate: git config or hooks that run commands, added since the worktree was made (gitTraps above). The kernel's
+  // own git ignores them now, but the founder's git in the main checkout (same .git/config) would not
+  const traps = gitTraps(dir);
+  if (!o.workspace.traps) o.workspace.traps = traps; // a state from before the snapshot: from now on
+  const added = traps.filter((t) => !o.workspace.traps.includes(t));
+  if (added.length) return { refused: true, error: `the repo's git config or hooks gained ${added.join("; ")} since the order's worktree was made: git would run that command in the founder's checkout too (worktrees share ${w_common(dir)}config); remove it (git config --unset <key>, or delete the hook) and retry` };
   const pre = git(dir, "rev-parse", "HEAD"), staged = git(dir, "write-tree"); // the agent's own index, to put back
   if (!ok(pre)) return { error: why(pre, `git rev-parse HEAD in ${dir}`) };
   const add = git(dir, "add", "-A");
@@ -252,7 +302,7 @@ export function commit(co, o, stage) {
     if (!ok(lg)) return { error: why(lg, `git log ${base.slice(0, 7)}..HEAD in ${dir}`) };
     const bad = lg.stdout.split("\0").filter((m) => DEPLOY.test(m)).map((m) => m.split(" ")[0]);
     if (bad.length) return { refused: true, error: `commit ${bad.join(", ")} on ${o.workspace.branch} names [deploy] in its message (a deploy needs the founder's approval): rewrite or drop it in ${dir} (the kernel never rewrites an agent's commits; a fast-forward merge puts the other branch's commits on the branch: merge with --no-ff)` };
-    const all = git(dir, "diff", "--cached", "--name-only", "--no-renames", "-z", base); // a rename lists both paths: moving a protected file away is caught
+    const all = git(dir, "diff", "--no-ext-diff", "--no-textconv", "--cached", "--name-only", "--no-renames", "-z", base); // a rename lists both paths: moving a protected file away is caught
     if (!ok(all)) return { error: why(all, `git diff --cached ${base.slice(0, 7)} in ${dir}`) };
     const hit = all.stdout.split("\0").filter(Boolean).filter((f) => globs.some((g) => g.test(f)));
     if (hit.length) return { refused: true, error: `the order's branch would change protected paths ${hit.join(", ")} since its base ${base.slice(0, 7)} (${c.protectedPaths}: only a ratified amendment changes them): undo the change in ${dir}, in the work tree or in the commit that made it` };
@@ -260,11 +310,12 @@ export function commit(co, o, stage) {
   };
   const before = scan();
   if (before) { unstage(); return before; }
-  const st = git(dir, "diff", "--cached", "--name-only", "--no-renames", "-z"); // this stage's own change
+  const st = git(dir, "diff", "--no-ext-diff", "--no-textconv", "--cached", "--name-only", "--no-renames", "-z"); // this stage's own change
   if (!ok(st)) { unstage(); return { error: why(st, `git diff --cached in ${dir}`) }; }
   const files = st.stdout.split("\0").filter(Boolean);
   if (!files.length) return { skipped: true };
-  // the repo's own identity when it has one; never --no-verify (the repo's hooks are its rules)
+  // the repo's own identity when it has one. M4 integrate: no hooks run (GIT_PINS core.hooksPath=/dev/null): a hook is
+  // whatever the agent put there; the kernel's checks before and after are the rules
   const id = git(dir, "config", "user.email").stdout?.trim() ? [] : ["-c", "user.name=System 3 Meta", "-c", "user.email=meta@localhost"];
   const r = git(dir, ...id, "commit", "-q", "-m", msg);
   if (!ok(r)) { unstage(); return { error: why(r, `git commit in ${dir}`) }; }
@@ -324,10 +375,10 @@ export function validateRoleLaunch(r) {
 function globsAt(w, repo, ref, cache = new Map()) {
   const file = commitOf(w)?.protectedPaths ?? DEFAULT_PROTECTED, key = `${repo}\0${ref}\0${file}`;
   if (!cache.has(key)) {
-    const r = spawnSync("git", ["-C", repo, "show", `${ref}:${file}`], { encoding: "utf8", timeout: 5_000 });
+    const r = safeGit(repo, ["show", `${ref}:${file}`], { timeout: 5_000 });
     // git says "path … not in '<sha>'" for an unknown sha too, so a missing path counts only once the ref is a commit
     const none = !r.error && !r.signal && /fatal: path '.*' (does not exist in|exists on disk, but not in) '/.test(r.stderr ?? "")
-      && ok(spawnSync("git", ["-C", repo, "rev-parse", "--verify", "--quiet", `${ref}^{commit}`], { encoding: "utf8", timeout: 5_000 }));
+      && ok(safeGit(repo, ["rev-parse", "--verify", "--quiet", `${ref}^{commit}`], { timeout: 5_000 }));
     cache.set(key, ok(r) ? { file, globs: globsOf(r.stdout) } : none ? null
       : { file, error: r.error?.code === "ETIMEDOUT" || r.signal ? `git show ${ref}:${file} timed out in ${repo}` : `git show ${ref}:${file} failed in ${repo}: ${String(r.stderr || r.error?.message || r.status).trim().slice(0, 200)}` });
   }

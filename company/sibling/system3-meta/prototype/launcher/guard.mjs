@@ -39,12 +39,31 @@ import path from "node:path";
 // log): `grep -rn 'git push' docs` passes, `echo 'git push' | sh` and `ssh h 'git push'` do not. These rules are still
 // best effort: a git alias set in an earlier call (`git config alias.p push`), a script the agent writes and runs,
 // a .git/hooks file all get through; the real backstops are K7's commit check and the credentials the session lacks.
-export const DENY_BASH = /\bgit\s+(push|send-pack)(?![\w-])|\bnpm\s+run\s+deploy(?![\w-])|\bgh\s+(workflow|api)\b/i;
+// M4 integrate (K10 re-review of 90efcfa71): the value-option lists were hardcoded and incomplete (`npm --loglevel silent
+// run deploy`, `npm -C /repo run deploy`, `pnpm --reporter silent run deploy`, `node --title x tools/deploy.mjs`,
+// `node --disable-warning X tools/claim.mjs`), `--config-env alias.q=P` (space form) passed, a substitution or variable
+// as the command or git subcommand was an opaque word that passed (`git $(echo push)`, `$(echo git) push`, `G=git; $G
+// push`), and `gh pr merge` / `gh release create` were not denied. Now: a package manager's script is any word after
+// its run word (and, for pnpm/yarn/bun, any word not after an install-like subcommand); a node line is denied when
+// ANY of its words is a denied script (not only the one after the options it knows); a command, git subcommand, gh
+// subcommand or package script that is a substitution or a variable cannot be read and is denied; git -c/--config-env
+// and GIT_CONFIG_* assignments that define an alias or a command-running key, and `git config` writing one, are denied;
+// gh pr merge, gh release writes, gh repo sync/delete/rename/archive/edit and gh run rerun are denied. And (K8+K9
+// re-review) a line that names META_ROLE or clears the environment (env -i) is denied, and with the session's role
+// known, a meta.mjs call whose --by or --role is another role.
+export const DENY_BASH = /\bgit\s+(push|send-pack)(?![\w-])|\bnpm\s+run\s+deploy(?![\w-])|\bgh\s+(workflow|api)\b|\bgh\s+pr\s+merge\b/i;
 const READERS = ["grep", "egrep", "fgrep", "rg"]; // commands whose arguments are patterns and files, never run
 const PKG_VALUE_OPTS = { npm: ["--prefix", "-w", "--workspace", "--userconfig", "--cache"], pnpm: ["-C", "--dir", "--filter", "-F", "--workspace-dir"], yarn: ["--cwd"], bun: ["--cwd", "--filter", "-F"] };
-const NODE_VALUE_OPTS = ["-r", "--require", "--import", "--loader", "--experimental-loader", "-e", "--eval", "-p", "--print", "--input-type", "--env-file", "--conditions", "-C"];
+const NODE_VALUE_OPTS = ["-r", "--require", "--import", "--loader", "--experimental-loader", "-e", "--eval", "-p", "--print", "--input-type", "--env-file", "--conditions", "-C", "--title", "--disable-warning", "--watch-path", "--run", "--inspect-port", "--test-name-pattern", "--test-reporter", "--test-reporter-destination", "--redirect-warnings", "--icu-data-dir", "--openssl-config", "--localstorage-file", "--experimental-config-file", "--env-file-if-exists", "--stack-size", "--max-old-space-size"];
 const NODE_SCRIPT_DENY = (p) => base(p) === "claim.mjs" ? "claim.mjs" : base(p) === "deploy.mjs" ? "deploy.mjs" : /(^|\/)vercel(\/|(\.js)?$)/.test(p) ? "vercel" : null;
-const GIT_VALUE_OPTS = ["-C", "-c", "--git-dir", "--work-tree", "--namespace", "--super-prefix", "--config-env"];
+const GIT_VALUE_OPTS = ["-C", "-c", "--git-dir", "--work-tree", "--namespace", "--super-prefix", "--config-env", "--exec-path", "--list-cmds", "--attr-source"];
+// git config keys that run a command or alias one (workspace.mjs TRAP_KEY's list), as `-c k=v`, `--config-env k=E`,
+// GIT_CONFIG_KEY_n=k / GIT_CONFIG_PARAMETERS, or `git config k v`
+const GIT_RUN_KEY = /^(alias\.|core\.(hookspath|fsmonitor|pager|editor|sshcommand|askpass|gitproxy|alternaterefscommand|worktree)$|sequence\.editor$|filter\.|diff\.external$|diff\..+\.(textconv|command)$|merge\..+\.driver$|gpg\.|credential\.|uploadpack\.packobjectshook$|include\.path$|includeif\.|remote\..+\.(receivepack|uploadpack|vcs)$)/i;
+const SUBST = "\u0001"; // a $(…) or `…` substitution, as it stands in its command's words
+const opaque = (x) => x != null && (x.includes(SUBST) || x.includes("$"));
+const PKG_RUN = ["run", "run-script", "rum", "urn"], PKG_EXEC = ["exec", "dlx", "x"];
+const PKG_INSTALL = ["add", "install", "i", "ci", "remove", "rm", "uninstall", "un", "update", "up", "upgrade", "info", "view", "why", "outdated", "list", "ls", "link", "unlink", "pack", "publish", "init", "create", "config", "set", "get", "audit", "help"];
 const GIT_COMMITS = ["commit", "commit-tree", "merge", "tag", "notes", "revert", "cherry-pick", "am", "rebase"];
 const WRAPPERS = ["sudo", "env", "command", "exec", "builtin", "time", "nice", "nohup", "xargs", "timeout", "stdbuf", "ionice", "corepack"];
 const KEYWORDS = ["{", "}", "!", "if", "then", "else", "elif", "do", "while", "until"]; // `{ git push; }`, `if …; then git push`
@@ -57,7 +76,7 @@ const bare = (w) => base(w).replace(/@[^/]*$/, ""); // corepack's pnpm@8.15.0, n
 export function shellCommands(s) {
   const cmds = [], subs = [];
   // each substitution is judged on its own and stands as one word in its command (`git -C $(pwd) push` is still git push)
-  for (let prev = null; prev !== s;) { prev = s; s = String(s).replace(/\$\(([^()]*)\)|`([^`]*)`/g, (m, a, b) => { subs.push(a ?? b); return "SUB"; }); }
+  for (let prev = null; prev !== s;) { prev = s; s = String(s).replace(/\$\(([^()]*)\)|`([^`]*)`/g, (m, a, b) => { subs.push(a ?? b); return SUBST; }); }
   let words = [], w = null, q = null;
   const endWord = () => { if (w != null) words.push(w); w = null; };
   const endCmd = () => { endWord(); if (words.length) cmds.push(words); words = []; };
@@ -103,34 +122,53 @@ function isReader(words) {
 }
 
 /** Why one simple command (`words`) is denied, as the matched spelling, or null. `line` is the whole Bash line. */
-function commandDenial(words, line, depth) {
+function commandDenial(words, line, depth, ctx = {}) {
   const w = words.slice(headOf(words)), cmd = bare(w[0]);
+  // the environment cleared for what follows (`env -i`, `env -`, --ignore-environment): META_ROLE with it
+  for (let k = 0; k < words.length - w.length; k++) if (base(words[k]) === "env") for (let q = k + 1; q < words.length - w.length && (words[q].startsWith("-") || /^[A-Za-z_]\w*=/.test(words[q])); q++) if (/^(-|-[a-zA-Z]*i[a-zA-Z]*|--ignore-environment)$/.test(words[q])) return "env -i";
   if (!cmd) return null;
+  if (opaque(w[0])) return "<a command the guard cannot read>";
   const sub = (from = 1, valueOpts = []) => { let j = from; while (j < w.length && w[j].startsWith("-")) j += valueOpts.includes(w[j]) ? 2 : 1; return j; };
-  if (SHELLS.includes(cmd)) { const j = w.findIndex((x, k) => k > 0 && /^-[a-z]*c[a-z]*$/.test(x)); return j > 0 && w[j + 1] != null ? bashDenial(w[j + 1], depth + 1) : null; }
-  if (cmd === "eval") return bashDenial(w.slice(1).join(" "), depth + 1);
+  if (SHELLS.includes(cmd)) { const j = w.findIndex((x, k) => k > 0 && /^-[a-z]*c[a-z]*$/.test(x)); return j > 0 && w[j + 1] != null ? bashDenial(w[j + 1], depth + 1, ctx) : null; }
+  if (cmd === "eval") return bashDenial(w.slice(1).join(" "), depth + 1, ctx);
   if (cmd === "git") {
     const j = sub(1, GIT_VALUE_OPTS), s = w[j];
+    if (opaque(s)) return "git <a subcommand the guard cannot read>";
     if (s === "push" || s === "send-pack") return `git ${s}`;
     if (s === "subtree" && w[sub(j + 1, ["-C", "--prefix", "-P"])] === "push") return "git subtree push";
-    // an alias defined on the line (`git -c alias.p=push p`, `-c alias.p='!git push'`)
-    for (let k = 1; k < j; k++) if ((w[k] === "-c" && /^alias\.[^=]+=.*\b(push|send-pack)\b/i.test(w[k + 1] ?? "")) || /^--config-env=alias\./.test(w[k])) return "git alias push";
+    // an alias defined on the line (`git -c alias.p=push p`, `-c alias.p='!git push'`, `--config-env alias.q=P q` in
+    // either form, GIT_CONFIG_KEY_0=alias.q before it), or a key that runs a command (-c core.fsmonitor=…)
+    for (let k = 1; k < j; k++) {
+      const kv = w[k] === "-c" || w[k] === "--config-env" ? w[k + 1] ?? "" : /^--config-env=/.test(w[k]) ? w[k].slice("--config-env=".length) : null;
+      if (kv != null && GIT_RUN_KEY.test(kv.split("=")[0])) return /^alias\./i.test(kv) ? "git alias" : `git -c ${kv.split("=")[0]}`;
+    }
+    for (const a of words.slice(0, words.length - w.length)) if (/^GIT_CONFIG_(KEY_\d+=|PARAMETERS=)/.test(a) && (/^GIT_CONFIG_PARAMETERS=/.test(a) ? /alias\.|hookspath|fsmonitor|filter\.|pager|sshcommand|gpg\./i.test(a) : GIT_RUN_KEY.test(a.slice(a.indexOf("=") + 1)))) return `git with ${a.split("=")[0]}`;
+    if (s === "config") { const key = w.slice(j + 1).find((x) => !x.startsWith("-")); if (key && GIT_RUN_KEY.test(key) && w.slice(j + 1).some((x) => !x.startsWith("-") && x !== key) && !w.slice(j + 1).some((x) => /^--(get|get-all|get-regexp|list|unset|unset-all|remove-section)$|^-l$/.test(x))) return `git config ${key}`; }
     if (GIT_COMMITS.includes(s) && /\[deploy\]/i.test(line)) return "[deploy]";
     return null;
   }
   if (PKG.includes(cmd)) {
-    const vo = PKG_VALUE_OPTS[cmd];
-    let j = sub(1, vo);
-    if (cmd === "yarn" && w[j] === "workspace") j = sub(j + 2, vo); // yarn workspace <name> deploy
-    if (["exec", "dlx", "x"].includes(w[j])) return commandDenial(w.slice(sub(j + 1, vo)), line, depth);
-    if (["run", "run-script", "rum", "urn"].includes(w[j])) j = sub(j + 1, vo);
-    else if (cmd === "npm") return null; // `npm deploy` is no npm command; npm scripts need `run`
-    const script = w[j] ?? "";
-    if (/^deploy(\W|$)/i.test(script)) return `${cmd} run ${script}`;
-    if (script === "company" && w.slice(j + 1).includes("publish")) return `${cmd} run company … publish`;
-    return null;
+    // M4 integrate: no list of value options (npm takes `--<any config> <value>`): the words are judged by position
+    // relative to the run/exec word, wherever the options put it
+    const vo = PKG_VALUE_OPTS[cmd], args = w.slice(1), plain = args.filter((x) => !x.startsWith("-"));
+    const ex = args.findIndex((x) => PKG_EXEC.includes(x)), rn = args.findIndex((x) => PKG_RUN.includes(x));
+    if (ex >= 0 && (rn < 0 || ex < rn)) for (let k = ex + 1; k < args.length; k++) if (!args[k].startsWith("-")) { const d = opaque(args[k]) ? `${cmd} ${args[ex]} <a command the guard cannot read>` : commandDenial(args.slice(k), line, depth, ctx); if (d) return d; }
+    const judge = (after) => {
+      const ws = after.filter((x) => !x.startsWith("-"));
+      if (ws.length && opaque(ws[0])) return `${cmd} run <a script the guard cannot read>`;
+      const d = ws.find((x) => /^deploy(\W|$)/i.test(x));
+      if (d) return `${cmd} run ${d}`;
+      const c = ws.indexOf("company");
+      if (c >= 0 && ws.slice(c + 1).includes("publish")) return `${cmd} run company … publish`;
+      return null;
+    };
+    if (rn >= 0) { const d = judge(args.slice(rn + 1)); if (d) return d; }
+    if (cmd === "npm") return null; // `npm deploy` is no npm command; npm scripts need `run`
+    // pnpm/yarn/bun run a script by its bare name: any word, unless an install-like subcommand comes first
+    const inst = plain.findIndex((x) => PKG_INSTALL.includes(x));
+    return judge(inst < 0 ? args : args.slice(0, args.indexOf(plain[inst])));
   }
-  if (RUNNERS.includes(cmd)) return commandDenial(w.slice(sub(1)), line, depth);
+  if (RUNNERS.includes(cmd)) { const j = sub(1); return opaque(w[j]) ? `${cmd} <a command the guard cannot read>` : commandDenial(w.slice(j), line, depth, ctx); }
   if (cmd === "node" || cmd.endsWith(".mjs") || cmd.endsWith(".js")) {
     const at = cmd === "node" ? sub(1, NODE_VALUE_OPTS) : 0, script = w[at] ?? "", rest = w.slice(at + 1);
     if (cmd === "node") for (let k = 1; k < at; k++) {
@@ -141,23 +179,45 @@ function commandDenial(words, line, depth) {
     const d = NODE_SCRIPT_DENY(script);
     if (d) return d;
     if (base(script) === "company.mjs" && rest.includes("publish")) return "company.mjs … publish";
+    if (cmd === "node") {
+      // M4 integrate: any word of the line, not only the one after the options this list knows (`node --title x
+      // tools/deploy.mjs`), and `node --run deploy` (a package.json script)
+      for (let k = 1; k < w.length; k++) {
+        const v = w[k].startsWith("-") ? (w[k].includes("=") ? w[k].slice(w[k].indexOf("=") + 1) : "") : w[k];
+        const dd = v && NODE_SCRIPT_DENY(v);
+        if (dd) return dd;
+        if (base(w[k]) === "company.mjs" && w.slice(k + 1).includes("publish")) return "company.mjs … publish";
+        if ((w[k] === "--run" && /^deploy(\W|$)/i.test(w[k + 1] ?? "")) || /^--run=deploy(\W|$)/i.test(w[k])) return "node --run deploy";
+      }
+    }
+    // K8+K9 re-review: with the session's role known, meta.mjs acts only as that role
+    const mi = cmd === "node" ? w.findIndex((x, k) => k > 0 && base(x) === "meta.mjs") : base(w[0]) === "meta.mjs" ? 0 : -1;
+    if (ctx.role && mi >= 0) for (const x of w.slice(mi + 1)) { const m = /^--(by|role)=(.*)$/.exec(x); if (m && m[2] !== ctx.role) return `meta.mjs --${m[1]}=${m[2]} (this session is ${ctx.role})`; }
     return null;
   }
   if (/^vercel(@|$)/.test(base(w[0]))) return "vercel";
-  if (cmd === "gh") { const s = w[sub(1, ["-R", "--repo", "--hostname"])]; return s === "workflow" || s === "api" ? `gh ${s}` : null; }
+  if (cmd === "gh") {
+    const j = sub(1, ["-R", "--repo", "--hostname"]), s = w[j], t = w[sub(j + 1, ["-R", "--repo"])];
+    if (opaque(s) || (["pr", "release", "repo", "run"].includes(s) && opaque(t))) return "gh <a subcommand the guard cannot read>";
+    if (s === "workflow" || s === "api") return `gh ${s}`;
+    // a merge on the remote is a push to its base branch; a release makes a tag there; sync pushes; rerun runs a workflow
+    if ((s === "pr" && t === "merge") || (s === "release" && ["create", "upload", "edit", "delete", "delete-asset"].includes(t)) || (s === "repo" && ["sync", "delete", "rename", "archive", "edit"].includes(t)) || (s === "run" && t === "rerun")) return `gh ${s} ${t}`;
+    return null;
+  }
   return null;
 }
 
 /** Why Bash line `c` is denied, as the matched spelling, or null. */
-export function bashDenial(c, depth = 0) {
+export function bashDenial(c, depth = 0, ctx = {}) {
   c = String(c ?? "");
+  if (/META_ROLE/.test(c)) return "META_ROLE"; // the session's identity (state.mjs sessionRole) is the launcher's to set
   const { cmds, subs } = shellCommands(c);
   // the raw backstop over the line's words, less a search command's (substitutions are judged on their own below)
   const m = DENY_BASH.exec(cmds.filter((x) => !isReader(x)).map((x) => x.join(" ")).join("\n"));
   if (m) return m[0];
   if (depth > 4) return null;
-  for (const words of cmds) { const d = commandDenial(words, c, depth); if (d) return d; }
-  for (const x of subs) { const d = bashDenial(x, depth + 1); if (d) return d; }
+  for (const words of cmds) { const d = commandDenial(words, c, depth, ctx); if (d) return d; }
+  for (const x of subs) { const d = bashDenial(x, depth + 1, ctx); if (d) return d; }
   return null;
 }
 export const WRITE_TOOLS = ["Write", "Edit", "MultiEdit", "NotebookEdit"];
@@ -178,12 +238,15 @@ export function realish(p) {
 /** Why tool call (`tool`, `input`) is denied, as {rule, why, detail}, or null (allowed).
  *  opts: tools (the role's list; null = any), roots ([{dir, globs:[glob strings], nested?}]: with `nested` n, the first
  *  n path segments under dir name a checkout and the globs apply below them), cwd (relative paths resolve here). */
-export function decide(tool, input = {}, { tools = null, roots = [], cwd = process.cwd() } = {}) {
+export function decide(tool, input = {}, { tools = null, roots = [], cwd = process.cwd(), role = null } = {}) {
   if (tools && !tools.includes(tool)) return { rule: "tool", why: `${tool} is not one of this role's tools (${tools.join(", ")})`, detail: tool };
   if (WRITE_TOOLS.includes(tool)) {
     const p = input?.file_path ?? input?.notebook_path;
     if (typeof p !== "string" || !p) return null;
     const abs = realish(path.resolve(cwd, p));
+    // M4 integrate (K7/K10 re-review): a repo's .git (its config, hooks, info/attributes; a worktree's is shared with
+    // the main checkout) is git's machinery: a line there makes git run a command, the kernel's and the founder's
+    if (abs.split(path.sep).includes(".git")) return { rule: "git-dir", why: `${abs} is inside a .git folder (git config and hooks run commands, in this worktree and in the founder's checkout): no agent writes there`, detail: abs };
     for (const r of roots) {
       let rel = path.relative(realish(r.dir), abs).split(path.sep).join("/");
       if (!rel || rel.startsWith("..") || path.isAbsolute(rel)) continue;
@@ -196,7 +259,7 @@ export function decide(tool, input = {}, { tools = null, roots = [], cwd = proce
   }
   if (tool === "Bash") {
     const c = String(input?.command ?? "");
-    const m = bashDenial(c);
+    const m = bashDenial(c, 0, { role });
     if (m) return { rule: "bash", why: `\`${m}\` is not allowed in an agent session (deploys need the founder's approval; pushing, publishing and verifying claims are code's or a person's)`, detail: c.slice(0, 300) };
   }
   return null;
@@ -206,7 +269,7 @@ export function decide(tool, input = {}, { tools = null, roots = [], cwd = proce
  *  strictTools: the role named its tools (the SDK `tools` option then hides the rest, and the hook backs it up). Unset
  *  (a role with no `tools`: every spec before K10), only canUseTool applies the list, so a call that needs no permission
  *  (TodoWrite) runs as it did under dontAsk and one that would prompt (WebFetch) is refused as dontAsk refused it. */
-export function makeGuard({ tools = null, strictTools = true, roots = [], cwd = process.cwd(), record = () => {} } = {}) {
+export function makeGuard({ tools = null, strictTools = true, roots = [], cwd = process.cwd(), role = null, record = () => {} } = {}) {
   const denials = [], seen = new Set();
   const deny = (via, tool, d, id) => {
     const key = id ?? `${via}:${denials.length}`;
@@ -217,14 +280,14 @@ export function makeGuard({ tools = null, strictTools = true, roots = [], cwd = 
     denials,
     /** SDK CanUseTool. */
     async canUseTool(toolName, input, options = {}) {
-      const d = decide(toolName, input, { tools, roots, cwd });
+      const d = decide(toolName, input, { tools, roots, cwd, role });
       if (!d) return { behavior: "allow", updatedInput: input };
       return { behavior: "deny", message: deny("canUseTool", toolName, d, options.toolUseID) };
     },
     /** SDK HookCallback for PreToolUse. */
     async preToolUse(input, toolUseID) {
       if (input?.hook_event_name && input.hook_event_name !== "PreToolUse") return {};
-      const d = decide(input?.tool_name, input?.tool_input ?? {}, { tools: strictTools ? tools : null, roots, cwd: input?.cwd || cwd });
+      const d = decide(input?.tool_name, input?.tool_input ?? {}, { tools: strictTools ? tools : null, roots, cwd: input?.cwd || cwd, role });
       if (!d) return {};
       return { hookSpecificOutput: { hookEventName: "PreToolUse", permissionDecision: "deny", permissionDecisionReason: deny("hook", input.tool_name, d, toolUseID ?? input?.tool_use_id) } };
     },

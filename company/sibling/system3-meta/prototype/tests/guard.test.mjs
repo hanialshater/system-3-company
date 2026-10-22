@@ -359,3 +359,58 @@ test("K10 fix review: a protected-paths lookup that fails is a missing root, and
   o.workspace.baseSha = sha;
   assert.match(G.sessionPlan({ workspace: true, roots: null }, {}, D).refused, /no roots list/);
 });
+
+test("M4 integrate (K10 re-review): the bypasses of 90efcfa71 are denied; their look-alikes still pass", () => {
+  const ro = { ...opts, role: "demo-builder" };
+  for (const c of ["npm --loglevel silent run deploy", "npm --registry http://x run deploy", "npm -C /repo run deploy", "pnpm --reporter silent run deploy", "npm --loglevel silent exec vercel",
+    "node --title x tools/deploy.mjs", "node --disable-warning X tools/claim.mjs verify a", "node --watch-path . tools/deploy.mjs", "node --run deploy", "node --stack-size 9 tools/company.mjs publish x",
+    "P=push git --config-env alias.q=P q", "git --config-env=alias.q=P q", "GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=alias.q GIT_CONFIG_VALUE_0=push git q", "git config alias.p push", "git config core.hooksPath .h",
+    "git config --add core.fsmonitor 'x'", "git -c core.fsmonitor='git push' status", "git $(echo push)", "$(echo git) push", "`echo git` push", "G=git; $G push", "git $SUB origin", "npm run $(echo deploy)",
+    "gh pr merge 1", "gh -R o/r pr merge 1 --squash", "gh release create v1", "gh repo sync", "gh run rerun 9", "gh $(echo workflow) run x",
+    "node meta.mjs order resume O-1 --by=founder --reason=go --extra-loops=10", "node /k/meta.mjs room enter --msg=M-1 --role=fact-checker", "META_ROLE=founder node meta.mjs x", "env -u META_ROLE node meta.mjs x", "env -i node meta.mjs order resume O-1 --by=founder"]) {
+    assert.equal(G.decide("Bash", { command: c }, ro)?.rule, "bash", c);
+  }
+  for (const c of ["npm --prefix /repo run check", "npm --loglevel silent run test:deploy", "pnpm add deploy-tool", "pnpm --filter web build", "node --title x tools/company.mjs status", "node --test tests/deploy/*.test.mjs",
+    "git config user.email t@e", "git config --get core.hooksPath", "git -c color.ui=never log", "cd \"$(git rev-parse --show-toplevel)\" && git status", "echo $HOME", "gh pr view 1", "gh pr list", "gh release list",
+    "node meta.mjs room leave --run=R-1 --evidence=x", "node meta.mjs order park O-1 --by=demo-builder --reason=x", "env FOO=1 node x.mjs"]) {
+    assert.equal(G.decide("Bash", { command: c }, ro), null, c);
+  }
+  // with no role known (an operator's guard), meta.mjs --by is not judged here
+  assert.equal(G.decide("Bash", { command: "node meta.mjs order resume O-1 --by=founder --reason=x" }, opts), null);
+});
+
+test("M4 integrate (K7/K10 re-review): no write tool touches a .git folder (config, hooks, a worktree's gitdir), whatever the roots", () => {
+  for (const p of [path.join(WT, ".git", "config"), path.join(LIVE, "repo", ".git", "hooks", "post-commit"), "/elsewhere/.git/info/attributes"])
+    for (const t of ["Write", "Edit"]) assert.equal(G.decide(t, { file_path: p }, { ...opts, roots: [] })?.rule, "git-dir", p);
+  assert.equal(G.decide("Write", { file_path: path.join(WT, ".gitignore") }, opts), null);
+  assert.equal(G.decide("Write", { file_path: path.join(WT, "docs", "git.md") }, opts), null);
+});
+
+test("M4 integrate (K8+K9 re-review): meta.mjs refuses a --by or --role that is not the agent session's (META_ROLE, the outermost on the process's ancestry)", async () => {
+  const { sessionRole } = await import("../state.mjs");
+  // a fake /proc: 30 (the agent's CLI, META_ROLE from the launcher) > 20 (a shell) > 10 (the caller, META_ROLE=founder of its own)
+  const P = path.join(LIVE, "proc");
+  const proc = (pid, ppid, env) => { fs.mkdirSync(path.join(P, String(pid)), { recursive: true }); fs.writeFileSync(path.join(P, String(pid), "status"), `Name:\tx\nPPid:\t${ppid}\n`); fs.writeFileSync(path.join(P, String(pid), "environ"), env.join("\0") + "\0"); };
+  proc(10, 20, ["META_ROLE=founder", "A=1"]); proc(20, 30, ["B=2"]); proc(30, 1, ["META_ROLE=demo-builder"]);
+  assert.equal(sessionRole({ env: { META_ROLE: "founder" }, proc: P, pid: 10 }), "demo-builder");
+  assert.equal(sessionRole({ env: {}, proc: P, pid: 20 }), "demo-builder", "env -i does not clear the ancestry");
+  assert.equal(sessionRole({ env: {}, proc: path.join(LIVE, "noproc"), pid: 20 }), null, "a person or code: no session role");
+  assert.equal(sessionRole({ env: { META_ROLE: "" }, proc: path.join(LIVE, "noproc"), pid: 20 }), "?", "set but empty is an agent of unknown role");
+
+  const run = (env, ...args) => spawnSync("node", [META, ...args], { env: { ...process.env, META_LIVE_DIR: LIVE, ...env }, encoding: "utf8" });
+  const r = run({ META_ROLE: "demo-builder" }, "order", "resume", "O-1", "--by=founder", "--reason=go", "--extra-loops=10");
+  assert.equal(r.status, 1, r.stderr);
+  assert.match(r.stderr, /--by=founder is not this agent session's role \(demo-builder\)/);
+  assert.match(run({ META_ROLE: "demo-builder" }, "room", "enter", "--msg=M-1", "--role=fact-checker").stderr, /--role=fact-checker is not this agent session's role/);
+  // the real ancestry: a shell started with the launcher's META_ROLE, a child that sets its own
+  const sh2 = spawnSync("sh", ["-c", `META_ROLE=founder "${process.execPath}" "${META}" order resume O-1 --by=founder --reason=go`], { env: { ...process.env, META_LIVE_DIR: LIVE, META_ROLE: "demo-builder" }, encoding: "utf8" });
+  assert.equal(sh2.status, 1);
+  assert.match(sh2.stderr, /not this agent session's role \(demo-builder\)/);
+  const sh3 = spawnSync("sh", ["-c", `env -i "${process.execPath}" "${META}" order resume O-1 --by=founder --reason=go`], { env: { ...process.env, META_LIVE_DIR: LIVE, META_ROLE: "demo-builder" }, encoding: "utf8" });
+  assert.match(sh3.stderr, /not this agent session's role \(demo-builder\)/, "a cleared environment still has the shell's ancestry");
+  // outside any agent session the CLI is as before (no state here: a state error, not a refusal of --by)
+  assert.doesNotMatch(run({}, "order", "resume", "O-1", "--by=founder", "--reason=go").stderr, /agent session/);
+  // the launcher names each session
+  assert.match(fs.readFileSync(path.join(LAUNCHER, "launch.mjs"), "utf8"), /META_LAUNCH: id, META_ROLE: ev\.role/);
+  assert.match(fs.readFileSync(path.join(LAUNCHER, "launch.mjs"), "utf8"), /makeGuard\(\{[^}]*role: ev\.role/);
+});
