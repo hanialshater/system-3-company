@@ -1,0 +1,96 @@
+{
+  "slug": "not-every-circle-is-red",
+  "title": "What does \"not every\" really say?",
+  "hook": "\"Not every circle is red.\" Which other sentence says exactly the same thing?",
+  "domain": "math",
+  "concept": "negating-all",
+  "status": "published",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "\"all\", \"none\" and \"some\" in everyday speech"
+    ],
+    "doesNotKnow": [
+      "that the opposite of \"every circle is red\" is \"at least one circle is not red\", not \"no circle is red\""
+    ]
+  },
+  "misconception": "\"Not every circle is red\" means \"no circle is red\".",
+  "objective": "The learner can say that \"not every circle is red\" means \"at least one circle is not red\", because one blue circle already makes it true while \"no circle is red\" stays false, and that the opposite of \"none are\" is \"at least one is\".",
+  "claims": [
+    {
+      "id": "math.not-every-circle-is-red.c1",
+      "text": "\"Not every x is red\" is equivalent to \"some x is not red\" (at least one is not red): one exception is enough to deny \"every\", so \"Some circle is not red\" has the same truth as \"Not every circle is red\" in every colouring of the four circles, and the stage marks both rows alike. Recall: \"Not every train today was on time\" means at least one train was not on time.",
+      "support": "convention",
+      "source": "Negation of a universal statement: not (for all x, P(x)) is equivalent to (there exists x with not P(x)) (logic, derivation). Stage: holds() for each row in Demo.tsx; brief check company/domains/briefs/checks/math-wave-j-check.mjs D2.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
+    },
+    {
+      "id": "math.not-every-circle-is-red.c2",
+      "text": "With one of four circles blue, \"not every circle is red\" is true and \"no circle is red\" is false; with all four red, both are false and \"some circle is red\" is true; with all four blue, \"not every\", \"no circle is red\" and \"some circle is not red\" are true and \"some circle is red\" is false. The stage's ✓/✗ marks follow these values.",
+      "support": "derivation",
+      "source": "company/domains/briefs/checks/math-wave-j-check.mjs label D2 (allRed: notAll false, none false, someNot false, someRed true; oneBlue: true, false, true, true; noneRed: true, true, true, false). Stage: SENTENCES[].holds in Demo.tsx.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
+    },
+    {
+      "id": "math.not-every-circle-is-red.c3",
+      "text": "\"Not (no x is red)\" is equivalent to \"some x is red\": the opposite of \"none are\" is \"at least one is\".",
+      "support": "convention",
+      "source": "Negation of a universal negative: not (for all x, not P(x)) is equivalent to (there exists x with P(x)) (logic, definition).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A station board says: \"Not every train today was on time.\" Which must be true?",
+    "options": [
+      "No train was on time",
+      "At least one train was not on time",
+      "Most trains were late",
+      "At least one train was on time"
+    ],
+    "answer": 1,
+    "why": "Denying \"every train was on time\" needs only one exception, so at least one train was not on time; it says nothing about the others."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/not-every-circle-is-red/2026-10-22-qa.md"
+    ],
+    "simulatedLearner": [
+      "company/reviews/not-every-circle-is-red/2026-10-22-learner-everyday-quantifiers.md"
+    ],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "math:negating-all",
+    "also": [
+      "math:conditional-falsification"
+    ],
+    "prerequisites": [],
+    "level": "core",
+    "strand": "discrete",
+    "references": [],
+    "tags": [
+      "logic",
+      "quantifiers",
+      "negation"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "toggle",
+    "milestone-gate"
+  ]
+}
