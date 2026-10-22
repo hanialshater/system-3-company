@@ -26,7 +26,7 @@ import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { LIVE } from "./state.mjs";
 
-export const WS_KEYS = ["kind", "repo", "base", "root", "branch", "env", "nodeModules", "run", "portBase", "commit"];
+export const WS_KEYS = ["kind", "repo", "base", "root", "branch", "env", "nodeModules", "run", "portBase", "commit", "cleanup"];
 export const WS_KINDS = ["git-worktree"];
 // K5 review: not `meta/${run}/${task}` (the plan's): the base checkout is on branch meta/m4, and a ref meta/m4 cannot
 // coexist with meta/m4/<task> ("cannot lock ref"), so every order of run m4 was a workspace stage-error
@@ -59,7 +59,75 @@ export function validateWorkspace(w) {
     const pp = w.commit.protectedPaths;
     if (pp != null && (typeof pp !== "string" || !pp || path.isAbsolute(pp) || pp.split("/").includes(".."))) return "commit.protectedPaths is a path inside the repo";
   }
+  if (w.cleanup != null) { const e = cleanupProblem(w.cleanup, w.env); if (e) return `cleanup: ${e}`; }
   return null;
+}
+
+// ---- M7 housekeeping (the M6 run needed the operator to delete each done order's .next-<task> by hand: ~186 MB each)
+// Spec workspace.cleanup {env: ["NEXT_DIST_DIR"], worktree: false}: when an order is done (its last commit made), the
+// folders its workspace env names (relative paths inside the worktree: the order's own build output) are removed, and
+// with `worktree: true` its worktree too (`git worktree remove`, never --force: a worktree with uncommitted or untracked
+// work is left, and said so; its branch is always kept, so a reopen checks it out again). A cancelled order's env
+// folders are removed too, never its worktree. Nothing outside the worktree is ever deleted: a path that resolves (real
+// path) outside it, onto it, onto .git or node_modules, or through a symlink, is refused.
+// A flow may set its own, `flows.<name>.workspace: {maxOpen, cleanup}` (the ritual flow: maxOpen 2, worktree removed):
+// maxOpen caps how many of the flow's open orders hold a worktree at once (supervisor tick: the others wait).
+export const CLEANUP_KEYS = ["env", "worktree"];
+export function cleanupProblem(c, env = {}) {
+  if (typeof c !== "object" || c == null || Array.isArray(c)) return "cleanup is {env, worktree}";
+  const bad = Object.keys(c).filter((k) => !CLEANUP_KEYS.includes(k));
+  if (bad.length) return `unknown key ${bad.join(", ")} (${CLEANUP_KEYS.join(", ")})`;
+  if (c.env != null && !(Array.isArray(c.env) && c.env.every((k) => typeof k === "string" && /^[A-Z][A-Z0-9_]*$/.test(k)))) return "cleanup.env is a list of workspace env names (NEXT_DIST_DIR)";
+  if (env && c.env) for (const k of c.env) if (env[k] == null) return `cleanup.env names ${k}, which the workspace env does not set`;
+  if (c.worktree != null && typeof c.worktree !== "boolean") return "cleanup.worktree is true or false";
+  return null;
+}
+/** A flow's workspace settings ({maxOpen, cleanup}), or {}. */
+export const flowWs = (co, o) => { const n = String(o.flow ?? "").split("@")[0], S = co.spec ?? {}; return (S.flows?.[n] ?? (S.flow?.name === n ? S.flow : null))?.workspace ?? {}; }; // the spec's (meta.mjs init defines a flow's stages only)
+export function flowWsProblem(f, env = {}) {
+  if (f == null) return null;
+  if (typeof f !== "object" || Array.isArray(f)) return "workspace is {maxOpen, cleanup}";
+  const bad = Object.keys(f).filter((k) => !["maxOpen", "cleanup"].includes(k));
+  if (bad.length) return `workspace has unknown key ${bad.join(", ")} (maxOpen, cleanup)`;
+  if (f.maxOpen != null && !(Number.isInteger(f.maxOpen) && f.maxOpen >= 1 && f.maxOpen <= 20)) return "workspace.maxOpen is a whole number 1-20";
+  if (f.cleanup != null) { const e = cleanupProblem(f.cleanup, env); if (e) return `workspace.cleanup: ${e}`; }
+  return null;
+}
+/** Is order `o`'s flow at its maxOpen (open orders of the flow that hold a worktree)? */
+export function flowFull(co, o) {
+  const max = flowWs(co, o).maxOpen;
+  if (max == null) return false;
+  const name = String(o.flow).split("@")[0];
+  const open = [...co.engine.orders.values()].filter((x) => x.id !== o.id && String(x.flow).split("@")[0] === name && x.workdir && !["done", "cancelled"].includes(x.stage));
+  return open.length >= max;
+}
+/** The cleanup that applies to order `o`: the spec's, with its flow's over it. */
+export const cleanupOf = (co, o) => { const a = specOf(co)?.cleanup ?? null, b = flowWs(co, o).cleanup ?? null; return a || b ? { ...(a ?? {}), ...(b ?? {}) } : null; };
+export const cleanupDue = (co, o) => !!(o.workspace?.dir && !o.workspace.cleaned && cleanupOf(co, o) && (o.stage === "cancelled" || (o.stage === "done" && !commitDue(co, o))));
+/** Remove what cleanup names for order `o` (see above). Returns { removed: [rel], worktree, error? }; records
+ *  o.workspace.cleaned and a `cleanup` event. */
+export function cleanup(co, o) {
+  const c = cleanupOf(co, o), dir = o.workspace.dir, removed = [], skipped = [];
+  const root = real(dir);
+  for (const k of c.env ?? []) {
+    const v = o.workspace.env?.[k];
+    if (!v) continue;
+    if (path.isAbsolute(v) || v.split(/[\\/]/).includes("..")) { skipped.push(`${k}=${v}: not a path inside the worktree`); continue; }
+    const abs = path.resolve(dir, v);
+    if (!fs.existsSync(abs) && !isLink(abs)) continue;
+    const top = v.split(/[\\/]/).filter(Boolean)[0] ?? "";
+    if (isLink(abs) || real(abs) === root || !real(abs).startsWith(root + path.sep) || [".git", "node_modules"].includes(top)) { skipped.push(`${k}=${v}: resolves outside the worktree's own files`); continue; }
+    try { fs.rmSync(abs, { recursive: true, force: true }); removed.push(v); } catch (e) { skipped.push(`${k}=${v}: ${e.message}`); }
+  }
+  let worktree = false, error = skipped.length ? skipped.join("; ") : null;
+  if (c.worktree && o.stage === "done" && fs.existsSync(dir)) {
+    const r = safeGit(o.workspace.repo, ["worktree", "remove", dir], { timeout: ENSURE_BUDGET_MS });
+    if (r.status === 0) { worktree = true; delete o.workdir; } // the branch stays; a reopen makes the worktree again (ensure)
+    else error = [error, `git worktree remove ${dir}: ${(r.stderr || r.error?.message || `exit ${r.status}`).trim().split("\n").slice(-2).join(" ")} (left as it is)`].filter(Boolean).join("; ");
+  }
+  o.workspace.cleaned = { t: co.engine.clock.now(), removed, worktree, ...(error ? { error } : {}) };
+  co.log.add({ type: "cleanup", order: o.id, dir, removed, worktree, branch: o.workspace.branch, ...(error ? { error } : {}) });
+  return { removed, worktree, ...(error ? { error } : {}) };
 }
 
 export const specOf = (co) => co.spec?.workspace ?? null;
@@ -149,6 +217,7 @@ export const fill = (s, vars) => s.replace(VAR, (m, k) => (k in vars ? vars[k] :
 export function blocker(co, o, opts) {
   if (!specOf(co)) return null;
   if (o.stageError?.kind === "workspace") return o.stageError.why;
+  if (!o.workdir && flowFull(co, o)) return `its flow has ${flowWs(co, o).maxOpen} worktree(s) open (workspace.maxOpen): it waits for one to finish`; // M7
   const w = ensure(co, o, opts);
   if (w?.error) return hold(co, o, w.error);
   return w?.pending ? "its worktree is not made yet" : null;

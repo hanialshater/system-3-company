@@ -7,7 +7,8 @@
 import fs from "node:fs";
 import { SPECS } from "./specs.mjs";
 import { validateCmd } from "./state.mjs";
-import { validateWorkspace, validateRoleLaunch } from "./workspace.mjs";
+import { validateWorkspace, validateRoleLaunch, flowWsProblem } from "./workspace.mjs";
+import { actsProblem } from "./acts.mjs";
 import { signerRole, signerName, isIndependent, packProblem, packHistory, postProblems, standingProblems, isChairFlow, flowProblems, CHAIR_SIGNERS, CHAIR_ORDER_BY } from "./lib.mjs";
 import { policyProblems } from "./policy.mjs";
 
@@ -104,6 +105,8 @@ export function validateSpec(s) {
       if (x.pack != null) need(x.signer !== "code", `stage ${x.stage}: a pack is for a stage an agent works, not code`);
     }
     need(new Set(st.map((x) => x.stage)).size === st.length, "stage names are unique");
+    // M7: a flow's own workspace settings {maxOpen, cleanup} (workspace.mjs flowWsProblem), only beside a spec workspace
+    if (f.workspace != null) { const e = flowWsProblem(f.workspace, s.workspace?.env ?? {}); need(!e, e ?? ""); need(s.workspace != null, "workspace settings on a flow need a spec workspace"); }
     // K1: a stage `run` is a valid cmd, on a stage code may execute (code, orderer, release: never an agent's own stage or
     // the founder's), and its routes go back to an earlier stage only (plan 2026-10-21 §3, K1/K11)
     for (const [i, x] of st.entries()) {
@@ -127,6 +130,8 @@ export function validateSpec(s) {
         need(x.run == null && !["code", "founder"].includes(x.signer), `stage ${x.stage}: a pre-check is for a stage an agent works (code runs a code stage itself; the founder decides an approval)`);
         need(!/\$\{(evidence|verdict)\}/.test(JSON.stringify(x.pre)), `stage ${x.stage}: pre: \${evidence} and \${verdict} are a leave's; a pre-check runs before anyone works the stage`);
       }
+      // K23: a code stage's acts on other orders (a Demo Crit's revise → reopen, kill → cancel), acts.mjs
+      if (x.acts != null) { const e = actsProblem(x, roles); need(!e, `stage ${x.stage}: ${e}`); if (!e && x.acts.by === "chair") need(isChairFlow(f), `stage ${x.stage}: acts.by "chair" is for a chair flow (its orders name a chair)`); }
       if (x.run == null) continue;
       need(["code", "orderer", "release"].includes(x.signer), `stage ${x.stage}: a run is for a stage signed by code, orderer or release, not ${x.signer}`);
       const e = validateCmd(x.run, { stages: st.slice(0, i).map((y) => y.stage) });

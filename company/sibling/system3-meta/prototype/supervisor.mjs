@@ -68,6 +68,7 @@ import * as JOBS from "./jobs.mjs";
 import * as WS from "./workspace.mjs";
 import { isIndependent, packHistory, preKey, lanesOf, Refused } from "./lib.mjs";
 import { raiseBudgetAsk } from "./asks.mjs";
+import { applyActs } from "./acts.mjs";
 
 /** K1: a stage signed by code, or any stage with a `run` cmd (plan 2026-10-21 §3: the lesson flow's stages 2, 3, 4, 8 and 9
  *  are scripts; the old table only knew test1/uat/ship by name). No `run`: test1 as before (the order's text checks or
@@ -106,11 +107,14 @@ export function applyCmdResult(co, o, s, t) {
   const why = (t) => (t.pass ? null : `${t.output}${t.route ? ` [route: ${t.route}]` : ""}${t.findings ? `\n${t.findings}` : ""}`);
   const err = (t) => { o.stageError = { stage, loops: o.loops, why: t.output, t: engine.clock.now() }; co.log.add({ type: "stage-error", order: o.id, stage, loops: o.loops, why: t.output }); return say(t); };
   if (s.signer === "code") {
-    t ??= runCmdCheck(o, s);
+    t ??= s.acts ? runCmdJson(o, s) : runCmdCheck(o, s); // K23: a stage with acts reads its cmd's last JSON line
     if (t.stageError) return err(t);
     if (t.route === "park") return park(t);
     engine.advance(o.id, { stage, by: "code", verdict: t.pass ? "pass" : "revise", findings: why(t), to: to(t) });
-    return say(t);
+    // K23: what the passed stage decided for other orders (a Demo Crit's revise → reopen, kill → cancel), applied as
+    // its chair's under this lock; the steps go out with the stage's own
+    const acted = t.pass && s.acts ? applyActs(co, o, s, t.json?.acts, { stage }) : [];
+    return acted.length ? { ...say(t), acts: acted } : say(t);
   }
   if (s.signer === "orderer") {
     t ??= runCmdCheck(o, s);
@@ -239,6 +243,7 @@ export function runSchedulers(co) {
   const now = co.engine.clock.now(), steps = [];
   for (const x of list) {
     const rec = co.data.schedulers[x.id];
+    if (rec?.ended) continue; // M7: a scheduler that said the run is over places nothing more
     if (rec && now - rec.t < (x.minIntervalMin ?? 1)) continue;
     const t = runCmdJson({ id: "", task: "", workdir: LIVE }, x.run, { stage: x.id });
     const placed = [], skipped = [], refused = [];
@@ -268,9 +273,13 @@ export function runSchedulers(co) {
       } catch (e) { if (!e.refused && !(e instanceof Refused)) throw e; refused.push({ key, why: String(e.message).slice(0, 300) }); }
     }
     co.data.schedulers[x.id] = { t: now, pass: !!t.pass, stageError: !!t.stageError, output: String(t.output ?? "").slice(0, 400), placed: placed.length, skipped: skipped.length, refused: refused.length };
+    // M7 (exit criterion 5, the cycle's end): a passing run whose JSON says `end: "<why>"` ends the scheduler: it is not
+    // run again, and serve may settle (every order done and every scheduler ended). The end is an event of its own
+    const end = t.pass && typeof t.json?.end === "string" && t.json.end.trim() ? t.json.end.trim().slice(0, 400) : null;
+    if (end) { co.data.schedulers[x.id].ended = { why: end, t: now }; co.log.add({ type: "scheduler-end", id: x.id, by: x.role, why: end }); }
     co.log.add({ type: "scheduler-run", id: x.id, by: x.role, pass: !!t.pass, stageError: !!t.stageError, output: String(t.output ?? "").slice(0, 400), placed, skipped, refused, ...(t.pass ? {} : { findings: t.findings ? String(t.findings).slice(0, 600) : null }) });
     // a step of its own, so serve saves the run's time (the interval holds across serve's loads; minIntervalMin > 0)
-    steps.push({ step: "scheduler", order: x.id, result: t.pass ? `${placed.length} placed, ${skipped.length} open` : t.stageError ? "stage-error" : "findings", output: t.output });
+    steps.push({ step: "scheduler", order: x.id, result: end ? "ended" : t.pass ? `${placed.length} placed, ${skipped.length} open` : t.stageError ? "stage-error" : "findings", output: end ?? t.output });
   }
   return steps;
 }
@@ -431,6 +440,9 @@ export function tick(co, { acceptance = null, faults = null, probe = hostProbe }
       // One worktree is made per tick (K5 review: each add of the 17k-file repo runs under the state lock)
       const off = o.stage === "parked" || o.stage === "cancelled"; // K8: no worktree and no stage work until a resume
       if (o.builder && WS.specOf(co) && !o.workdir && !off) {
+        // M7: a flow's workspace.maxOpen (the ritual flow's: a full checkout each, removed on done) caps how many of its
+        // orders hold a worktree at once; the others wait here, unplanned (their pre-check has not run), in order
+        if (WS.flowFull(co, o)) continue;
         const w = WS.ensure(co, o, { create: !madeOne });
         if (w?.pending) continue; // the next tick makes it
         if (w?.error) {
@@ -462,7 +474,7 @@ export function tick(co, { acceptance = null, faults = null, probe = hostProbe }
       if (engine.preDue(o) && o.builder) { steps.push(runPreCheck(co, o, sd)); changed = true; continue; }
       if (sd?.run || sd?.signer === "code" || o.stage === "test1") {
         const st = runCodeStage(co, o, sd);
-        if (st) { steps.push(st); changed = true; }
+        if (st) { const { acts, ...one } = st; steps.push(one, ...(acts ?? [])); changed = true; }
       } else if (o.stage === "uat") {
         const file = acceptance && path.join(acceptance, `${o.task}.test.mjs`);
         if (!file || !fs.existsSync(file)) { if (!o.uatWaiting) { o.uatWaiting = true; steps.push({ step: "uat-needs-a-person", order: o.id, task: o.task }); } continue; }
@@ -496,6 +508,12 @@ export function tick(co, { acceptance = null, faults = null, probe = hostProbe }
       const t = runTests(o.task, { dir: path.dirname(file), files: [path.basename(file)], label: file });
       if (!t.pass) { engine.reopen(o.id, { by: "code", reason: "regression", findings: `regression: a shipped module no longer passes its acceptance. ${t.output}` }); steps.push({ step: "regression", order: o.id, output: t.output }); }
     }
+  }
+  // M7 housekeeping: a done order's build output (and, where its flow says so, its worktree; the branch is kept) is
+  // removed once its last commit is made; a cancelled one's build output too. Once per order; never holds anything
+  for (const o of engine.orders.values()) {
+    const c = WS.cleanupDue(co, o) ? WS.cleanup(co, o) : null;
+    if (c && (c.removed.length || c.worktree || c.error)) steps.push({ step: "cleanup", order: o.id, result: c.error ? "error" : c.worktree ? "worktree removed" : "removed", output: c.error ?? c.removed.join(", ") });
   }
   // watchdog (benchmark 4): an open order that no message and no run carries is stuck for good (a lost message);
   // after WATCHDOG_MIN it is sent again
@@ -589,7 +607,8 @@ export function plan(co, { batchLater: batchDefault = 3, cap: capDefault = 4, sk
     // K13: nor does an order at or over its charged budget (its budget ask waits for a decider)
     // M5: nor one whose stage's pre-check has not run (the next tick runs it first)
     // K20 (planGated): nor an item the launch gate refused or holds
-    const msgs = queued.filter((m) => !skip?.has(m.id) && co.engine.orders.get(m.ref)?.stageError?.kind !== "workspace" && !co.engine.overBudget(co.engine.orders.get(m.ref)) && !co.engine.preDue(co.engine.orders.get(m.ref)));
+    // M7: nor one whose flow's worktrees are all taken (workspace.maxOpen: it waits for a worktree, unlaunched)
+    const msgs = queued.filter((m) => { const o = co.engine.orders.get(m.ref); return !skip?.has(m.id) && o?.stageError?.kind !== "workspace" && !co.engine.overBudget(o) && !co.engine.preDue(o) && !(o && WS.specOf(co) && !o.workdir && WS.flowFull(co, o)); });
     if (!msgs.length) return;
     // the lane's policy, when it sets them, overrides the role's own (spec drainCap: the reviewers' batches) and the
     // command-line defaults
@@ -864,6 +883,9 @@ export function settled(co) {
   return [...co.engine.orders.values()].every((o) => o.stage === "cancelled" || (o.stage === "done" && !WS.commitDue(co, o))) && ![...(co.data?.meetings?.meetings?.values() ?? [])].some((m) => m.state === "open");
 }
 
+/** M7: has every spec scheduler ended (a `scheduler-end`)? True with no schedulers. */
+export const schedulersEnded = (co) => (co.spec?.schedulers ?? []).every((x) => !!co.data?.schedulers?.[x.id]?.ended);
+
 /** K22 (M7 review): is `pid` a live serve? After a crash or a reboot the dead serve's pid may belong to another process
  *  now, and every new serve refused to start ("another serve runs on this state") until serve.pid was removed by hand.
  *  As jobs.mjs wrapperAlive does for the K2 wrappers, the process's /proc cmdline must name supervisor.mjs and serve;
@@ -910,8 +932,9 @@ async function serve(opts, { idleMin = 2, maxMin = 120 } = {}) {
       if (steps.length || launches.length) save(co); // saving wakes the watcher: only when something changed
       const ex = runExports(co); // M6 prep: after the save (an exporter reads the state file); its record is saved too
       if (ex.length) { save(co); steps.push(...ex); }
-      // K18: a company with a scheduler is never done (its next ritual falls due later): it serves until --max-min
-      return { steps, launches, settled: settled(co) && !(co.spec?.schedulers ?? []).length, wakeInMs: nextTimer(co) };
+      // K18: a company with a scheduler is never done (its next ritual falls due later): it serves until --max-min, or
+      // (M7) until every scheduler has ended (rituals.mjs due: the cycle's handoff is committed) and the work is done
+      return { steps, launches, settled: settled(co) && schedulersEnded(co), wakeInMs: nextTimer(co) };
     });
     if (r.steps.length) say({ event: "steps", steps: r.steps.map((x) => stepLabel(x)) });
     for (const l of r.launches) say({ event: "launch", role: l.role, why: l.why, cap: l.cap, msgs: l.msgs, brief: l.file, ...(l.gate ? { gate: l.gate.map((x) => ({ id: x.id, pass: x.pass, output: x.output })) } : {}) });
