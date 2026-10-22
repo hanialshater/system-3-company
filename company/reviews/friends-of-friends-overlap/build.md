@@ -28,3 +28,22 @@ Village at step 1 first; chips [2 steps] [3 steps] [No shared friends] [Village]
 
 ## Checks run
 N10 check script; `npx tsc --noEmit` clean; `npm run registry`; `npm run check`; `meta check --order=O-4` (test1). Official QA, walkthrough and build are code's stages; not run by me. Not seen in a screenshot: the tree picture (only the reveal frame was captured).
+
+## Revise v2 (fact-check 2026-10-22)
+
+Finding: c4 cited E&K ch. 2 for the friends-of-friends overcount caution; secondary sources put it in ch. 20 (Fig. 20.1). "Much smaller" overstated the general rule.
+- c4 source re-cited to ch. 20, The Small-World Phenomenon (Fig. 20.1, section unconfirmed), flagged for a human source check (the book PDFs are blocked by the proxy).
+- c4 text: "many friends of friends are already your friends, so the count two steps out is much smaller" → "some friends of friends are already your friends, so the count two steps out is smaller".
+- Learner-visible text unchanged: the reveal already scopes the claim to the village ("In the village they do, so the count stays small"), which c1 carries. Demo.tsx not touched.
+- curriculum.references kept at ch. 2 (§2.3 BFS layers, the brief's own reference for the stepping mechanic); cm-math may add ch. 20 to the brief.
+- All claims (c1–c3 verified in v1, c4 changed) reset to unverified, checker notes removed; version 1 → 2.
+
+## Pre-flight v2
+
+1. Title and hook: unchanged from v1; neither names 10, 45 or 90 nor hints at overlap.
+2. Options: "90", "45", "10": unchanged.
+3. Locked stage: unchanged (village at step 1, other cells "?").
+4. Reveal values: unchanged from v1 item 4; every quoted number is in the table or on the pinned picture.
+5. QA path: unchanged (2 steps, 3 steps, No shared friends, Village); both milestones by press 3.
+6. Reset: Village is the return; reveal text identical to v1.
+7. Phone fit: no stage or reveal text change, so v1's reveal-fit (fit, crop 0, 80 words) still holds; code's qa stage re-runs it.
