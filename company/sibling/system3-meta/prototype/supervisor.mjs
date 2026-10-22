@@ -59,7 +59,7 @@
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { absCmds, HERE, LIVE, STATE, load, save, withLock, runTests, runTest1, runCmdCheck, runCmdJson, rep, CHECK_KEYS, interpolate, sessionRole, detachedProcess, briefVars } from "./state.mjs";
+import { absCmds, HERE, LIVE, STATE, load, save, withLock, runTests, runTest1, runCmdCheck, runCmdJson, rep, CHECK_KEYS, interpolate, sessionRole, detachedProcess, briefVars, storeVars } from "./state.mjs";
 import { syncOrders, update as updateItem } from "./tracker.mjs";
 import { sweepGoals } from "./goals.mjs";
 import { expireContracts } from "./contractor.mjs";
@@ -69,6 +69,7 @@ import * as WS from "./workspace.mjs";
 import { isIndependent, packHistory, preKey, lanesOf, Refused } from "./lib.mjs";
 import { raiseBudgetAsk } from "./asks.mjs";
 import { applyActs } from "./acts.mjs";
+import { storeArtifacts } from "./artifacts.mjs";
 
 /** K1: a stage signed by code, or any stage with a `run` cmd (plan 2026-10-21 §3: the lesson flow's stages 2, 3, 4, 8 and 9
  *  are scripts; the old table only knew test1/uat/ship by name). No `run`: test1 as before (the order's text checks or
@@ -106,10 +107,14 @@ export function applyCmdResult(co, o, s, t) {
   const to = (t) => (t.pass ? null : t.route ?? null);
   const why = (t) => (t.pass ? null : `${t.output}${t.route ? ` [route: ${t.route}]` : ""}${t.findings ? `\n${t.findings}` : ""}`);
   const err = (t) => { o.stageError = { stage, loops: o.loops, why: t.output, t: engine.clock.now() }; co.log.add({ type: "stage-error", order: o.id, stage, loops: o.loops, why: t.output }); return say(t); };
+  // K24: a passing cmd stage stores its artifacts before it is signed; a required one that cannot be stored holds the
+  // order as a stage-error (nothing signed: `supervisor.mjs retry` runs the stage again), not a pass
+  const kept = (t) => { if (!t.pass || !s.artifacts) return null; const a = storeArtifacts(co, o, s, { stage }); return a?.stageError ? err({ ...t, pass: false, stageError: true, output: `${t.output}; ${a.why}` }) : null; };
   if (s.signer === "code") {
     t ??= s.acts ? runCmdJson(o, s) : runCmdCheck(o, s); // K23: a stage with acts reads its cmd's last JSON line
     if (t.stageError) return err(t);
     if (t.route === "park") return park(t);
+    { const held = kept(t); if (held) return held; }
     engine.advance(o.id, { stage, by: "code", verdict: t.pass ? "pass" : "revise", findings: why(t), to: to(t) });
     // K23: what the passed stage decided for other orders (a Demo Crit's revise → reopen, kill → cancel), applied as
     // its chair's under this lock; the steps go out with the stage's own
@@ -120,6 +125,7 @@ export function applyCmdResult(co, o, s, t) {
     t ??= runCmdCheck(o, s);
     if (t.stageError) return err(t);
     if (t.route === "park") return park(t);
+    { const held = kept(t); if (held) return held; }
     engine.advance(o.id, { stage, by: o.manager, verdict: t.pass ? "pass" : "revise", evidence: `${t.output} (supervisor.mjs)`, findings: why(t), to: to(t) });
     return say(t);
   }
@@ -130,8 +136,9 @@ export function applyCmdResult(co, o, s, t) {
     t ??= runCmdCheck(o, s);
     if (t.stageError) return err(t); // the release role enters only to sign
     if (t.route === "park") return park(t); // its pool:release message is withdrawn by the park
+    { const held = kept(t); if (held) return held; }
     const { run } = rooms.enter({ msg: m.id, role: rel.id });
-    rooms.leave(run, { verdict: t.pass ? "pass" : "revise", evidence: `${t.output} (supervisor.mjs)`, findings: why(t), learned: null, to: to(t) });
+    rooms.leave(run, { verdict: t.pass ? "pass" : "revise", evidence: `${t.output} (supervisor.mjs)`, findings: why(t), learned: null, to: to(t), stored: !!s.artifacts });
     rooms.closeSession(rooms.runs.get(run).session, `${stage} done`);
     return say(t);
   }
@@ -714,7 +721,7 @@ export function briefFor(co, item, { context = null } = {}) {
   }
   // briefs name ${workdir}, ${task} and ${slug} (K5): CONTEXT.md is written once per company, the workdir once per order
   // only with a spec workspace (K5 review: an older CONTEXT.md's literal ${…} keeps its meaning)
-  if (context) L.push((o && WS.specOf(co) ? interpolate(context, { ...(o.workspace?.vars ?? {}), ...briefVars(o), workdir: o.workdir ?? path.join(LIVE, "work", o.task ?? ""), task: o.task ?? "", slug: o.slug ?? o.task ?? "" }) : context).trim(), "");
+  if (context) L.push((o && WS.specOf(co) ? interpolate(context, { ...(o.workspace?.vars ?? {}), ...briefVars(o), ...storeVars(o), workdir: o.workdir ?? path.join(LIVE, "work", o.task ?? ""), task: o.task ?? "", slug: o.slug ?? o.task ?? "" }) : context).trim(), "");
   const closed = [...(co.data?.meetings?.meetings?.values() ?? [])].filter((m) => m.state === "closed").map((m) => m.id);
   if (closed.length) L.push(`Minutes of closed meetings (decisions you follow): ${closed.map((id) => path.join(LIVE, "minutes", `${id}.md`)).join(", ")}. Never read state files.`, "");
   // open tracker actions assigned to this role travel with the brief (benchmark 2: the kickoff gave writer-1 actions
@@ -751,8 +758,9 @@ export function briefFor(co, item, { context = null } = {}) {
     L.push(`1. Enter: \`node meta.mjs room enter --msg=${item.msgs[0]} --role=${item.role}\`. The JSON pack gives the order, stage, workdir, accept criteria, ${hist ? "findings, history, memory" : "memory"}${sd?.pack?.include?.length || sd?.pack?.exclude?.length ? ", the files you read" : ""} and the exact \`next_with\` and \`leave_with\` commands. Your session cap is ${item.cap} (${item.msgs.length} item${item.msgs.length > 1 ? "s" : ""} queued${o ? `, starting with ${o.task}` : ""}).`);
     if (!hist) L.push(`This stage (${sd.stage}) judges the artifact before the account: its pack leaves out prior findings and build history. Judge the work itself; do not read the builder's notes, earlier reviews, \`flow show\`, \`item show\` or \`events\` for this order before your own findings are written.`);
     // K6 audit: the globs as the pack applies them (the order's ${slug}, ${task}, … filled in)
-    const gv = o ? { ...(o.workspace?.vars ?? {}), ...briefVars(o), workdir: o.workdir ?? path.join(LIVE, "work", o.task ?? ""), task: o.task ?? "", slug: o.slug ?? o.task ?? "" } : {};
-    if (sd?.pack?.include?.length) L.push(`Read only these in the workdir: ${sd.pack.include.map((g) => interpolate(g, gv)).join(", ")}.`);
+    const gv = o ? { ...(o.workspace?.vars ?? {}), ...briefVars(o), ...storeVars(o), workdir: o.workdir ?? path.join(LIVE, "work", o.task ?? ""), task: o.task ?? "", slug: o.slug ?? o.task ?? "" } : {};
+    // K24: an include of the run's artifact store (${artifacts}…) is an absolute path outside the workdir
+    if (sd?.pack?.include?.length) { const inc = sd.pack.include.map((g) => interpolate(g, gv)); L.push(`Read only these${inc.some((g) => path.isAbsolute(g)) ? " (relative ones in the workdir; absolute ones are the run's artifact store, the stages' kept copies)" : " in the workdir"}: ${inc.join(", ")}.`); }
     if (sd?.pack?.exclude?.length) L.push(`Never open: ${sd.pack.exclude.map((g) => interpolate(g, gv)).join(", ")}.`);
     if (item.msgs.length > 1 && sd?.pack) L.push("Each item's pack states its own stage's rules.");
     // K4: an independent stage's role reviews, whatever its level (a role signer such as learner-evaluator)
@@ -768,7 +776,7 @@ export const NON_ROOM_GRACE_MIN = 30;
 /** Judgment work that happens outside rooms, found from the record (benchmark 1: I planned these by hand):
  *  - an open meeting's invitees with positions still to write (agents only; a missing person is named at reveal)
  *  - an open meeting whose positions are all in: the chair reveals, decides and closes
- *  - orders at build with no builder: their manager delegates
+ *  - orders at their first stage (build, or a draft) with no builder: their manager delegates
  *  One plan item per role, with its tasks in order (chair before delegate: decisions shape delegation). */
 export function judgment(co) {
   const { org, engine } = co;
@@ -784,7 +792,8 @@ export function judgment(co) {
   }
   // a manager chairing an open meeting delegates after it decides (the kickoff's decisions shape who builds what)
   const chairing = new Set([...(co.data?.meetings?.meetings?.values() ?? [])].filter((m) => m.state === "open").map((m) => m.chair));
-  for (const o of engine.orders.values()) if (o.stage === "build" && !o.builder) { if (chairing.has(o.manager) && !by.get(o.manager)?.some((t) => t.kind === "chair")) continue; add(o.manager, { kind: "delegate", ref: o.id }); }
+  // K25: an order waits for its delegate at its first stage, whatever the flow calls it (draft, before a plan check)
+  for (const o of engine.orders.values()) if (o.stage === engine.firstStage(o) && !o.builder) { if (chairing.has(o.manager) && !by.get(o.manager)?.some((t) => t.kind === "chair")) continue; add(o.manager, { kind: "delegate", ref: o.id }); }
   // an open ask to an agent decider is its work (benchmark 5: an integrator that finds a defect in another slot's
   // module asks the lead, who reopens that module)
   for (const it of co.data?.tracker?.items?.values() ?? []) if (it.kind === "ask" && !["done", "cancelled"].includes(it.state) && it.assignee) add(it.assignee, { kind: "ask", ref: it.id });

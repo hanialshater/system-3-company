@@ -73,7 +73,7 @@ import * as GEN from "./generator.mjs";
 import * as WS from "./workspace.mjs";
 import { proposePolicy, activatePolicy, managerReport, recordCycle, KNOBS } from "./policy.mjs";
 import { engage, engageTemplate, briefFor, deliver, decideContract, TEMPLATES } from "./contractor.mjs";
-import { absCmds, HERE, LIVE, STATE, LIVE_ROLES, TASK_FLOW, clock, make, rep, interpolate, save, load, withLock, runTests, runTest1, runCmdCheck, prepareCmd, validateChecks, describeChecks, mergeChecks, ESCAPES, readEscapes, sessionRole, briefVars } from "./state.mjs";
+import { absCmds, HERE, LIVE, STATE, LIVE_ROLES, TASK_FLOW, clock, make, rep, interpolate, save, load, withLock, runTests, runTest1, runCmdCheck, prepareCmd, validateChecks, describeChecks, mergeChecks, ESCAPES, readEscapes, sessionRole, briefVars, storeVars } from "./state.mjs";
 import * as B from "./building.mjs";
 import * as CH from "./channels.mjs";
 import * as T from "./tracker.mjs";
@@ -129,8 +129,8 @@ function pack(co, run, ctx, session, item) {
   // enter/next gate, wsBlocker); a git failure after that gate is reported in the pack: the run is already entered
   const ws = WS.ensure(co, o);
   const dir = ws ? ws.workdir ?? path.join(WS.specOf(co).root, o.task) : path.join(LIVE, "work", o.task);
-  if (ctx.stage === "build" && !ws) fs.mkdirSync(dir, { recursive: true });
-  const vars = { ...(o.workspace?.vars ?? {}), ...briefVars(o), workdir: dir, task: o.task ?? "", slug: o.slug ?? o.task ?? "" }; // K5 audit: ${run} ${n} ${port} too, as briefs and cmds; M6 prep: ${brief_file}
+  if (co.engine.isWorkStage(o, ctx.stage) && !ws) fs.mkdirSync(dir, { recursive: true }); // K25: any stage the builder works (draft too)
+  const vars = { ...(o.workspace?.vars ?? {}), ...briefVars(o), ...storeVars(o), workdir: dir, task: o.task ?? "", slug: o.slug ?? o.task ?? "" }; // K5 audit: ${run} ${n} ${port} too, as briefs and cmds; M6 prep: ${brief_file}
   // Benchmark 1 finding (writer-1): the prefix dropped META_LIVE_DIR, so a copied command wrote to the wrong state
   const pre = [process.env.META_LIVE_DIR && `META_LIVE_DIR=${process.env.META_LIVE_DIR}`, process.env.META_STATE && `META_STATE=${process.env.META_STATE}`].filter(Boolean).map((x) => x + " ").join("");
   const iso = (m) => new Date(m * 60000).toISOString();
@@ -141,6 +141,8 @@ function pack(co, run, ctx, session, item) {
   const mem = hist ? ctx.memory : ctx.memory.filter((e) => !String(e.did ?? "").includes(` on ${o.id}:`));
   const k6 = { ...(hist ? {} : { history_withheld: "this stage judges the artifact before the account: no prior findings, build history or notes on this order; do not look them up (flow show, item show, events, build notes)" }), ...(pf ? { files: pf.files, files_truncated: pf.truncated, read_only: pf.include.length ? pf.include : null, never_read: pf.exclude } : {}) };
   return { run, session, item, lease_min: Number(opt.lease ?? 30), order: o.id, task: o.task, title: o.title, priority: o.priority, stage: ctx.stage, accept: ws ? interpolate(o.accept ?? "", vars) : o.accept, workdir: dir + "/", workdir_exists: fs.existsSync(dir), ...(ws ? (ws.error ? { workspace_error: ws.error } : { branch: o.workspace.branch, base_sha: o.workspace.sha, env: o.workspace.env, run_meta_from: HERE }) : {}), findings: hist ? o.findings ?? null : null, memory: mem.map((e) => ({ ...e, t: iso(e.t) })), history: hist ? o.history.map((h) => ({ ...h, t: iso(h.t) })) : [], ...k6,
+    // K24: the stages' kept copies in the run's artifact store (each stage's newest, by name; ${artifacts} in the pack rules)
+    ...(Object.keys(o.artifacts ?? {}).length ? { artifacts: { latest: vars.artifacts, stages: Object.fromEntries(Object.entries(o.artifacts).map(([k, v]) => [k, v.dir])) } } : {}),
     ...(sd?.post ? { post_check: `your leave first runs: ${sd.post.argv.join(" ")} (code's check of this stage; a failure refuses the leave, prints its findings and keeps this run open to fix)` } : {}), // K12
     cap_means: "--cap counts every item in this session, including the first one you entered",
     ...((co.org.role(co.rooms.runs.get(run)?.role)?.waitSec ?? 90) > 90 ? { wait_means: `room next blocks up to ${co.org.role(co.rooms.runs.get(run)?.role).waitSec} s for your next item: run it with a Bash timeout of at least ${(co.org.role(co.rooms.runs.get(run)?.role).waitSec + 60) * 1000} ms, or the call is cut off before the item arrives` } : {}),

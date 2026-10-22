@@ -9,6 +9,7 @@ import { SPECS } from "./specs.mjs";
 import { applyFloor } from "./building.mjs";
 import { afterStage, gitPins } from "./workspace.mjs";
 import { raiseParkAsk } from "./asks.mjs";
+import { storeArtifacts, artifactVars } from "./artifacts.mjs";
 export const HERE = path.dirname(fileURLToPath(import.meta.url));
 export const LIVE = process.env.META_LIVE_DIR || path.join(HERE, "live");
 
@@ -82,6 +83,7 @@ export function make(specName = "toy", specDef = null) {
   engine.onApproved.push({ prefix: "FLOOR-", fn: (ref) => applyFloor(co, ref) });
   engine.onAdvanced.push((o, { stage }) => afterStage(co, o, stage)); // K7: only with spec workspace.commit
   rooms.postCheck = (o, cmd, vars) => runCmdCheck(o, cmd, vars); // K12: a stage's post cmd, at the agent's leave
+  rooms.storeArtifacts = (o, sd, opts) => storeArtifacts(co, o, sd, opts); // K24: a passing leave's files, into the run's store
   // K9: the spec's loop cap (true: 3, the plan's default; unset: none, as every spec before K9); a loop-cap park asks
   // the orderer through the tracker, which the engine does not hold. Opt-in (K8+K9 review): the M4 lesson spec
   // (specs/s3c-lessons.json, not yet written) must set `maxLoops: true`, or a HELD claim loops forever as before
@@ -356,10 +358,19 @@ export function validateCmd(c, { stages = null } = {}) {
  *  file, read from its accept text (adapters/s3c/brief.mjs writes `brief company/domains/briefs/<f>.md:<a>-<b>` in the
  *  header line), as ${brief_file} for packs, briefs and cmds; an order with no such line has none (the template stays
  *  as written, and a glob of it matches nothing). */
+/** K24/K25: the order's store and commit variables, for cmds, briefs and packs: ${artifacts} (its latest view in the run's
+ *  artifact store), ${artifacts_root}, ${artifacts_of:<stage>} (a stage's newest copy, once stored) and ${head_of:<stage>}
+ *  (the commit K7 made, or found, when that stage last left: test1's --base after a plan check is the plan check's
+ *  commit, the claims as approved). A stage with none yet has no such variable (the text stays as written). */
+export function storeVars(o) {
+  const heads = Object.fromEntries(Object.entries(o?.workspace?.heads ?? {}).map(([st, sha]) => [`head_of:${st}`, sha]));
+  return { ...artifactVars(o), ...heads };
+}
 export const briefVars = (o) => { const m = /(?:^|[\s·])brief (company\/domains\/briefs\/[A-Za-z0-9._-]+\.md):\d+-\d+/m.exec(String(o?.accept ?? "")); return m ? { brief_file: m[1] } : {}; };
 // K20: a launch gate also reads ${role} (the session's), ${running} and ${builders} (agent and builder sessions in flight,
 // this one not counted) and ${launch} (a label naming the planned launch), so dispatch-check gets Meta's own count
-export const interpolate = (s, vars) => s.replace(/\$\{(slug|task|workdir|run|n|port|evidence|verdict|stage|live|base_sha|order|budget|remaining|ledger_project|branch|head_sha|brief_file|role|running|builders|launch)\}/g, (m, k) => (k in vars ? vars[k] ?? "" : m));
+// K24/K25: ${artifacts}, ${artifacts_root}, ${artifacts_of:<stage>} and ${head_of:<stage>} (storeVars)
+export const interpolate = (s, vars) => s.replace(/\$\{(slug|task|workdir|run|n|port|evidence|verdict|stage|live|base_sha|order|budget|remaining|ledger_project|branch|head_sha|brief_file|role|running|builders|launch|artifacts|artifacts_root|(?:artifacts_of|head_of):[a-z0-9][a-z0-9-]*)\}/g, (m, k) => (k in vars ? vars[k] ?? "" : m));
 const dig = (x, p) => p.split(".").filter(Boolean).reduce((v, k) => (v == null ? undefined : k === "length" && (Array.isArray(v) || typeof v === "string") ? v.length : v[k]), x);
 // K1 audit: the last line that parses, not the last that looks like JSON ("[advisory] x" after the JSON was "not JSON")
 const parseJson = (t) => { try { return JSON.parse(t); } catch {} for (const l of t.trim().split("\n").reverse()) { if (!/^[[{]/.test(l.trim())) continue; try { return JSON.parse(l); } catch {} } return undefined; };
@@ -377,7 +388,7 @@ export function prepareCmd(o, s, extra = {}) {
   // M6 prep: ${branch}, the order's worktree branch (the integration merge's --from); with no worktree it stays as written.
   // M6 prep review: ${head_sha}, the order's last K7 commit (workspace.commit: after ship, the commit ship signed: the
   // merge's --from-sha, so a commit added to the branch after ship is never merged unreviewed); none yet: as written
-  const vars = { ...(o.workspace?.vars ?? {}), ...briefVars(o), ...extra, ...own, ...(o.workspace?.branch ? { branch: o.workspace.branch } : {}), ...(o.workspace?.head ? { head_sha: o.workspace.head } : {}), slug: o.slug ?? o.task ?? "", task: o.task ?? "", workdir: o.workdir ?? path.join(LIVE, "work", o.task ?? ""), live: LIVE, base_sha: o.workspace?.baseSha ?? o.workspace?.sha ?? "" };
+  const vars = { ...(o.workspace?.vars ?? {}), ...briefVars(o), ...storeVars(o), ...extra, ...own, ...(o.workspace?.branch ? { branch: o.workspace.branch } : {}), ...(o.workspace?.head ? { head_sha: o.workspace.head } : {}), slug: o.slug ?? o.task ?? "", task: o.task ?? "", workdir: o.workdir ?? path.join(LIVE, "work", o.task ?? ""), live: LIVE, base_sha: o.workspace?.baseSha ?? o.workspace?.sha ?? "" };
   const argv = c.argv.map((a) => interpolate(a, vars));
   const cwd = c.cwd ? path.resolve(vars.workdir, interpolate(c.cwd, vars)) : vars.workdir;
   // a child of a node --test process would report to it and exit 0 whatever its tests do (see runTests)

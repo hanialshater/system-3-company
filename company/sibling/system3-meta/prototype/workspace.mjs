@@ -25,6 +25,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { LIVE } from "./state.mjs";
+import { touchesStore, storeFiles } from "./artifacts.mjs";
 
 export const WS_KEYS = ["kind", "repo", "base", "root", "branch", "env", "nodeModules", "run", "portBase", "commit", "cleanup"];
 export const WS_KINDS = ["git-worktree"];
@@ -36,7 +37,8 @@ const BRANCH_VARS = ["run", "task", "slug", "n", "port"], ENV_VARS = [...BRANCH_
 // writers fail after 10 s, M6 prep review). K5 review: a 25 s timeout per call
 // let ensure's ~8 calls pass 30 s, so the budget is for the whole ensure, plus a fixed one for undoing a failed add
 const ENSURE_BUDGET_MS = 20_000, CLEANUP_MS = 5_000;
-const VAR = /\$\{(run|task|slug|n|port|workdir|brief_file)\}/g; // M6 prep: brief_file (state.mjs briefVars) for packs
+// M6 prep: brief_file (state.mjs briefVars) for packs; K24/K25: the store and commit variables (state.mjs storeVars)
+const VAR = /\$\{(run|task|slug|n|port|workdir|brief_file|artifacts|artifacts_root|(?:artifacts_of|head_of):[a-z0-9][a-z0-9-]*)\}/g;
 const unknownVar = (s, known) => [...s.matchAll(/\$\{([^}]*)\}/g)].map((m) => m[1]).find((k) => !known.includes(k));
 
 /** Why a spec `workspace` is invalid, or null. */
@@ -137,10 +139,12 @@ export function cleanup(co, o) {
     // the first part of the path as resolved, never as written ("./.git", "a/../.git" are .git)
     const top = path.relative(root, real(abs)).split(path.sep)[0] ?? "";
     if (isLink(abs) || real(abs) === root || !real(abs).startsWith(root + path.sep) || [".git", "node_modules"].includes(top)) { skipped.push(`${k}=${v}: resolves outside the worktree's own files`); continue; }
+    if (touchesStore(abs)) { skipped.push(`${k}=${v}: holds the run's artifact store (K24: cleanup never deletes it)`); continue; }
     try { fs.rmSync(abs, { recursive: true, force: true }); removed.push(v); } catch (e) { skipped.push(`${k}=${v}: ${e.message}`); }
   }
   let worktree = false, error = skipped.length ? skipped.join("; ") : null;
-  if (c.worktree && ["done", "cancelled", "parked"].includes(o.stage) && fs.existsSync(dir)) {
+  if (c.worktree && ["done", "cancelled", "parked"].includes(o.stage) && fs.existsSync(dir) && touchesStore(dir)) error = [error, `${dir} holds the run's artifact store (K24: cleanup never deletes it): the worktree is left`].filter(Boolean).join("; ");
+  else if (c.worktree && ["done", "cancelled", "parked"].includes(o.stage) && fs.existsSync(dir)) {
     const r = safeGit(o.workspace.repo, ["worktree", "remove", dir], { timeout: ENSURE_BUDGET_MS });
     if (r.status === 0) { worktree = true; delete o.workdir; } // the branch stays; a reopen makes the worktree again (ensure)
     else error = [error, `git worktree remove ${dir}: ${(r.stderr || r.error?.message || `exit ${r.status}`).trim().split("\n").slice(-2).join(" ")} (left as it is)`].filter(Boolean).join("; ");
@@ -411,7 +415,8 @@ export function commit(co, o, stage) {
   if (!ok(st)) { unstage(); return { error: why(st, `git diff --cached in ${dir}`) }; }
   const files = st.stdout.split("\0").filter(Boolean);
   // M6 prep review: nothing to commit, so the head the stage left is the branch's tip as it was signed (${head_sha})
-  if (!files.length) { o.workspace.head = out(pre)[0]; return { skipped: true }; }
+  // K25: and the head each stage left, ${head_of:<stage>} (test1's --base after a plan check: the claims as approved)
+  if (!files.length) { o.workspace.head = out(pre)[0]; (o.workspace.heads ??= {})[stage] = o.workspace.head; return { skipped: true }; }
   // the repo's own identity when it has one. M4 integrate: no hooks run (GIT_PINS core.hooksPath=/dev/null): a hook is
   // whatever the agent put there; the kernel's checks before and after are the rules
   const id = git(dir, "config", "user.email").stdout?.trim() ? [] : ["-c", "user.name=System 3 Meta", "-c", "user.email=meta@localhost"];
@@ -431,6 +436,7 @@ export function commit(co, o, stage) {
   const sha = git(dir, "rev-parse", "HEAD");
   if (!ok(sha)) return { error: why(sha, `git rev-parse HEAD in ${dir}`) };
   o.workspace.head = out(sha)[0];
+  (o.workspace.heads ??= {})[stage] = o.workspace.head;
   co.log.add({ type: "commit", order: o.id, stage, branch: o.workspace.branch, sha: o.workspace.head, files: files.length, message: msg });
   return { sha: o.workspace.head, files };
 }
@@ -538,7 +544,10 @@ export function packFiles(dir, p, vars = {}) {
   if (!p?.include?.length && !p?.exclude?.length) return null;
   // K6 audit: globs take the order's vars (stage 6's pack is artifacts/walkthroughs/${slug}/: as written it matched nothing)
   const include = (p.include ?? []).map((g) => fill(g, vars)), exclude = (p.exclude ?? []).map((g) => fill(g, vars));
-  const inc = include.map(packGlobRe), exc = exclude.map(packGlobRe);
+  // K24: an include that names the run's artifact store (${artifacts}…, absolute once filled) lists its files there, by
+  // absolute path; the workdir walk takes only the workdir-relative ones
+  const stored = include.filter((g) => path.isAbsolute(g)), inc = include.filter((g) => !path.isAbsolute(g)).map(packGlobRe), exc = exclude.map(packGlobRe);
+  if (stored.length && !inc.length) inc.push(/^$/); // only store includes: nothing of the workdir
   const files = []; let truncated = false;
   const walk = (rel) => {
     let ents; try { ents = fs.readdirSync(path.join(dir, rel), { withFileTypes: true }); } catch { return; }
@@ -552,5 +561,6 @@ export function packFiles(dir, p, vars = {}) {
     }
   };
   walk("");
+  for (const g of stored) for (const f of storeFiles(g, exc, PACK_MAX)) { if (files.length >= PACK_MAX) { truncated = true; break; } if (!files.includes(f)) files.push(f); }
   return { files, truncated, include, exclude };
 }

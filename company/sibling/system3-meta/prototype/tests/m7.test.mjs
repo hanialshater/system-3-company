@@ -79,7 +79,7 @@ test("K19: flows {lesson, ritual} beside the legacy flow: each validated by name
   assert.match(v((s) => { s.flows.ritual.name = "other"; }), /flows is \{<name>/);
   assert.match(v((s) => { s.flow = { name: "ritual", ...s.flows.lesson }; }), /flow names are unique/);
   assert.match(v((s) => { delete s.flows; }), /missing flow/);
-  assert.match(v((s) => { s.flows.lesson.stages[0].signer = "checker"; }), /flow lesson: the first stage is build, signed by the builder/);
+  assert.match(v((s) => { s.flows.lesson.stages[0].signer = "checker"; }), /flow lesson: the first stage is signed by the builder/);
   const dir = init(spec());
   const org = fs.readFileSync(path.join(dir, "ORG.md"), "utf8");
   assert.match(org, /one of 2 flows: `lesson` \(the default\) or `ritual`/);

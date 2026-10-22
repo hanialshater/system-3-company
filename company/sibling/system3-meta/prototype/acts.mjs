@@ -100,9 +100,9 @@ export function applyActs(co, o, s, acts, { stage } = {}) {
         if (t.stage !== "done" && !a.judged) return refuse(i, a, `${t.id} is at ${t.stage}: only a shipped order is reopened (an open one is judged by its own stages)`, t.id);
         if (t.stage === "done") engine.reopen(t.id, { by, findings: why, reason: `${flowName(o.flow)} ${o.slug ?? o.id}` });
         else {
-          const first = engine.firstStage(t);
           if (["cancelled", "parked", "budget"].includes(t.stage) || t.blocked) return refuse(i, a, `${t.id} is ${t.blocked ? "blocked" : t.stage}: only an open order at work is sent back${t.stage === "parked" ? " (decide its park ask first)" : ""}`, t.id);
-          if (t.stage === first) return refuse(i, a, `${t.id} is at ${first}: its work has not been shown, so this judgment is not about it`, t.id);
+          // K25: at any of its work stages (build; or draft, or build after its plan check) its work is not shown yet
+          if (engine.isWorkStage(t, t.stage)) return refuse(i, a, `${t.id} is at ${t.stage}: its work has not been shown, so this judgment is not about it`, t.id);
           // its runs first: an abandon releases the run's message, which sendBack then withdraws with the rest
           for (const x of rooms.runs.values()) if (x.state === "running" && x.order === t.id) rooms.abandon(x.run, { by, reason: `sent back: ${why}` });
           engine.sendBack(t.id, { by, findings: why, reason: `${flowName(o.flow)} ${o.slug ?? o.id}` });
@@ -110,7 +110,7 @@ export function applyActs(co, o, s, acts, { stage } = {}) {
         }
       } else {
         if (["done", "cancelled"].includes(t.stage)) return refuse(i, a, `${t.id} is ${t.stage}: a shipped or cancelled order is not cancelled`, t.id);
-        if (a.judged && (t.stage === "parked" ? t.parked?.stage : t.stage) === engine.firstStage(t)) return refuse(i, a, `${t.id} is at ${engine.firstStage(t)}: its work has not been shown, so this judgment is not about it`, t.id);
+        { const at = t.stage === "parked" ? t.parked?.stage : t.stage; if (a.judged && engine.isWorkStage(t, at)) return refuse(i, a, `${t.id} is at ${at}: its work has not been shown, so this judgment is not about it`, t.id); }
         const ask = t.parked?.ask ?? null;
         for (const x of rooms.runs.values()) if (x.state === "running" && x.order === t.id) rooms.abandon(x.run, { by, reason: `order cancelled: ${why}` });
         engine.cancel(t.id, { by, reason: why });

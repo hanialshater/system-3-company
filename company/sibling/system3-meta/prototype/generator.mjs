@@ -9,6 +9,7 @@ import { SPECS } from "./specs.mjs";
 import { validateCmd } from "./state.mjs";
 import { validateWorkspace, validateRoleLaunch, flowWsProblem } from "./workspace.mjs";
 import { actsProblem } from "./acts.mjs";
+import { artifactsProblem } from "./artifacts.mjs";
 import { signerRole, signerName, isIndependent, packProblem, packHistory, postProblems, standingProblems, isChairFlow, flowProblems, CHAIR_SIGNERS, CHAIR_ORDER_BY } from "./lib.mjs";
 import { policyProblems } from "./policy.mjs";
 
@@ -80,11 +81,13 @@ export function validateSpec(s) {
     const need = (ok, msg) => { if (!ok) v.push(pre + msg); };
     const st = Array.isArray(f?.stages) ? f.stages : [];
     need(!!f?.name && Array.isArray(st) && st.length > 0, "the flow has a name and stages");
-    // K19: a lesson-like flow starts at build, signed by the builder; a chair flow (the ritual flow) at a stage its chair
-    // signs, and its orders name the chair and an attendee (lib.mjs isChairFlow, flowProblems)
+    // K19: a lesson-like flow starts at a stage the builder signs; a chair flow (the ritual flow) at a stage its chair
+    // signs, and its orders name the chair and an attendee (lib.mjs isChairFlow, flowProblems). K25: the first stage
+    // need not be build (draft → plan-check → build: the builder's plan checked before it builds; `build` stays the
+    // usual name); every stage the builder signs is a work stage (lib.mjs workStagesOf), where a plain revise goes back
     if (isChairFlow(f)) for (const e of flowProblems({ stages: st })) need(false, `flow problem: ${e}`);
     else {
-      need(st[0]?.stage === "build" && st[0]?.signer === "builder", "the first stage is build, signed by the builder");
+      need(st[0]?.signer === "builder", "the first stage is signed by the builder");
       for (const x of st) if (CHAIR_SIGNERS.includes(x.signer)) need(false, `stage ${x.stage}: a ${x.signer} signs only in a chair flow (one whose first stage the chair signs)`);
     }
     for (const x of st) {
@@ -129,6 +132,15 @@ export function validateSpec(s) {
         need(!e, `stage ${x.stage}: pre: ${e}`);
         need(x.run == null && !["code", "founder"].includes(x.signer), `stage ${x.stage}: a pre-check is for a stage an agent works (code runs a code stage itself; the founder decides an approval)`);
         need(!/\$\{(evidence|verdict)\}/.test(JSON.stringify(x.pre)), `stage ${x.stage}: pre: \${evidence} and \${verdict} are a leave's; a pre-check runs before anyone works the stage`);
+      }
+      // K24: the files a passing stage keeps in the run's store (artifacts.mjs)
+      if (x.artifacts != null) { const e = artifactsProblem(x.artifacts, x); need(!e, `stage ${x.stage}: ${e}`); }
+      // K24/K25: ${artifacts_of:<s>} and ${head_of:<s>} name an earlier stage of this flow (artifacts_of: one that keeps
+      // artifacts); anything else would stay as written and match nothing
+      for (const [k, sn] of [...JSON.stringify([x.run, x.post, x.pre, x.pack]).matchAll(/\$\{(artifacts_of|head_of):([^}]*)\}/g)].map((m) => [m[1], m[2]])) {
+        const j = st.findIndex((y) => y.stage === sn);
+        need(j >= 0 && j < i, `stage ${x.stage}: \${${k}:${sn}} names ${j < 0 ? "no stage of the flow" : "a stage that is not before it"}`);
+        if (k === "artifacts_of" && j >= 0) need(!!st[j].artifacts, `stage ${x.stage}: \${artifacts_of:${sn}}: stage ${sn} keeps no artifacts`);
       }
       // K23: a code stage's acts on other orders (a Demo Crit's revise → reopen, kill → cancel), acts.mjs
       if (x.acts != null) { const e = actsProblem(x, roles); need(!e, `stage ${x.stage}: ${e}`); if (!e && x.acts.by === "chair") need(isChairFlow(f), `stage ${x.stage}: acts.by "chair" is for a chair flow (its orders name a chair)`); }
@@ -190,7 +202,7 @@ export function validateSpec(s) {
         need(!e, `export ${id}: run: ${e}`);
         if (!e) {
           need(!x.run.route, `export ${id}: run has no route (an export signs and parks nothing)`);
-          need(!/\$\{(evidence|verdict|slug|task|workdir|branch|base_sha|head_sha|order|budget|remaining|ledger_project|brief_file)\}/.test(JSON.stringify(x.run)), `export ${id}: run reads only \${live} and \${stage} (it belongs to no order)`);
+          need(!/\$\{(evidence|verdict|slug|task|workdir|branch|base_sha|head_sha|order|budget|remaining|ledger_project|brief_file|artifacts|artifacts_of:[^}]*|head_of:[^}]*)\}/.test(JSON.stringify(x.run)), `export ${id}: run reads only \${live} and \${stage} (it belongs to no order)`);
           need(!x.run.argv.some((a) => /^--allow-main\b/.test(a)), `export ${id}: run never writes the main checkout (--allow-main)`);
         }
       }
@@ -220,7 +232,7 @@ export function validateSpec(s) {
         need(!e, `scheduler ${id}: run: ${e}`);
         if (!e) {
           need(!x.run.route, `scheduler ${id}: run has no route (a scheduler places orders, it signs nothing)`);
-          need(!/\$\{(evidence|verdict|slug|task|workdir|branch|base_sha|head_sha|order|budget|remaining|ledger_project|brief_file|role|running|builders|launch)\}/.test(JSON.stringify(x.run)), `scheduler ${id}: run reads only \${live} and \${stage} (it belongs to no order)`);
+          need(!/\$\{(evidence|verdict|slug|task|workdir|branch|base_sha|head_sha|order|budget|remaining|ledger_project|brief_file|role|running|builders|launch|artifacts|artifacts_of:[^}]*|head_of:[^}]*)\}/.test(JSON.stringify(x.run)), `scheduler ${id}: run reads only \${live} and \${stage} (it belongs to no order)`);
         }
       }
     }

@@ -18,6 +18,7 @@
 // compare: { "<run name>": { "label": "current method", "items": n, "tokens": n, "revisions": n, "judges": "…" } }
 import fs from "node:fs";
 import path from "node:path";
+import { workStagesOf } from "./lib.mjs";
 
 const rev = (k, v) => (v && v.__map ? new Map(v.__map) : v && v.__set ? new Set(v.__set) : v);
 
@@ -70,8 +71,10 @@ export function evaluateRun({ name, s, dir }, escapes = []) {
     rv.forEach((h, i) => {
       const text = h.findings ?? (rv.length === 1 || i === rv.length - 1 ? o.findings : null);
       const by = h.by === "code" ? "code" : h.stage === "check" ? "checker" : h.stage === "uat" ? "orderer" : h.stage;
-      // when the work this revise judged was built: the last build before it
-      const built = [...o.history].filter((x) => x.stage === "build" && x.t <= h.t).at(-1)?.t ?? null;
+      // when the work this revise judged was built: the last build before it (K25: any stage its builder signs, the
+      // flow's work stages: a draft's revise judged the draft)
+      const work = new Set(workStagesOf(s.engine.flows?.get?.(o.flow)));
+      const built = [...o.history].filter((x) => (work.size ? work.has(x.stage) : x.stage === "build") && x.t <= h.t).at(-1)?.t ?? null;
       revises.push({ order: o.id, task: o.task, stage: h.stage, by, builder: o.builder, t: h.t, built, classes: text ? classify(text) : ["unrecorded"], text: text ? String(text).slice(0, 160) : null });
     });
   }
