@@ -926,6 +926,30 @@
           "no: keep it stopped (then park or cancel it)"
         ]
       }
+    },
+    {
+      "id": "F-61",
+      "title": "Budget: O-1 at 6453293 of 6000000 tokens, top up 3453293?",
+      "category": "decision",
+      "priority": 2,
+      "status": "open",
+      "blocks": "O-1 (push-the-frame-over) [LESSON-push-the-frame-over], at qa",
+      "options": "yes: raise the budget by 3453293 | no: keep it stopped (then park or cancel it)",
+      "links": [],
+      "budget": "not an initiative: a System 3 Meta order budget (O-1), decided through Meta's own budget ask or approval; no projects.json line was named (order new --ledger-project)",
+      "note": "O-1 (push-the-frame-over) has spent 6453293 of its 6000000-token budget (charged from its launches' cumulative tokens). The planner starts no session on it until the budget is raised.\nAsked: a top-up of 3453293 tokens (what it overspent plus half its budget again).\nDecide: `node meta.mjs ask answer --by=<you> --id=<this ask> --decision=yes --text='…'` raises the budget by 3453293; `--decision=no` keeps it stopped (then park or cancel it: `node meta.mjs order park|cancel O-1 --by=<you> --reason='…'`; a resume asks again).",
+      "meta": {
+        "source": "system3-meta",
+        "state": "/home/user/meta-runs/m6/state.json",
+        "ref": "ISS-12",
+        "kind": "ask:budget",
+        "order": "O-1",
+        "answer_with": "node meta.mjs ask answer --by=founder --id=ISS-12 --decision=yes|no|redirect --text='…'",
+        "options": [
+          "yes: raise the budget by 3453293",
+          "no: keep it stopped (then park or cancel it)"
+        ]
+      }
     }
   ]
 }
