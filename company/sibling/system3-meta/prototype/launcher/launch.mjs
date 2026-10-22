@@ -25,7 +25,10 @@
 // and settingSources ["project"] unless the role or --setting-sources says otherwise: the company's CLAUDE.md and its
 // .claude/settings.json hooks then load from the worktree root. Every session runs under the guard (guard.mjs: protected
 // paths, the deploy/push/publish/claim pattern, the role's tools), as canUseTool and as a PreToolUse hook; each denial
-// is recorded as a `guard` event (`meta.mjs guard denied`) and in launches.jsonl.
+// is recorded as a `guard` event (`meta.mjs guard denied`) and in launches.jsonl. K10 review: the roots cover every
+// order's worktree, the repo and the worktree root whatever the launch's messages (a task-only launch had none); a
+// failed config lookup refuses the launch; a role that names its tools gets them as the SDK `tools`; an explicit
+// --session-min wins over the role's; the options are built by guard.mjs sessionPlan/queryOptions, which the tests check.
 import { query } from "@anthropic-ai/claude-agent-sdk";
 import { spawn, spawnSync } from "node:child_process";
 import fs from "node:fs";
@@ -33,7 +36,7 @@ import path from "node:path";
 import readline from "node:readline";
 
 import crypto from "node:crypto";
-import { makeGuard, DEFAULT_TOOLS, GUARDED } from "./guard.mjs";
+import { makeGuard, sessionPlan, queryOptions } from "./guard.mjs";
 const HERE = path.dirname(new URL(import.meta.url).pathname);
 const SRC = path.join(HERE, "..");
 const opt = Object.fromEntries(process.argv.slice(2).filter((a) => a.startsWith("--")).map((a) => { const [k, ...v] = a.slice(2).split("="); return [k, v.join("=") || true]; }));
@@ -53,7 +56,7 @@ if (!fs.existsSync(path.join(PROTO, "live"))) fs.symlinkSync(path.join(SRC, "liv
 const KERNEL_HASH = crypto.createHash("sha256").update(KERNEL_FILES.sort().map((f) => fs.readFileSync(path.join(PROTO, f))).join("\0")).digest("hex").slice(0, 12);
 const MODEL = opt.model ?? "claude-opus-5-5";
 const MAX_PAR = Number(opt["max-parallel"] ?? 4);
-const SESSION_MIN = Number(opt["session-min"] ?? 20);
+const SESSION_MIN = Number(opt["session-min"] ?? 20), CLI_SESSION_MIN = opt["session-min"] != null ? SESSION_MIN : null;
 // --setting-sources=user,project,local loads what an interactive session loads (System 3 Company's CLAUDE.md and
 // settings): the like-for-like arm for cost comparisons with the earlier benchmarks (benchmark 4's caveat)
 const SOURCES = opt["setting-sources"] ? String(opt["setting-sources"]).split(",").filter(Boolean) : [];
@@ -80,12 +83,18 @@ const active = new Set(), waiting = [];
 async function run(ev) {
   const id = path.basename(ev.brief, ".md"), k = ++n;
   const prompt = fs.readFileSync(ev.brief, "utf8");
-  // K10: the role's settings and the orders' workdirs; a failed lookup (meta-error noted) keeps the defaults
-  const cfg = meta("launch", "config", `--role=${ev.role}`, ...(ev.msgs?.length ? [`--msgs=${ev.msgs.join(",")}`] : [])) ?? {};
-  const tools = cfg.tools ?? DEFAULT_TOOLS, sessionMin = cfg.sessionMin ?? SESSION_MIN, maxTurns = cfg.maxTurns ?? MAX_TURNS;
-  const cwd = FROM_ORDER && cfg.workdir ? cfg.workdir : PROTO;
-  const sources = cfg.settingSources ?? (opt["setting-sources"] ? SOURCES : FROM_ORDER && cwd !== PROTO ? ["project"] : SOURCES);
-  const guard = makeGuard({ tools, roots: cfg.roots ?? [], cwd, record: (d) => {
+  // K10: the role's settings, the orders' workdirs and the guard's roots (guard.mjs sessionPlan). A failed lookup
+  // (meta-error noted) refuses the launch (K10 review: it started the session unguarded). The kernel gets no `launch finished`, so its
+  // reservation holds until serve's grace period ends and the work is planned again: a backoff, not a hot loop.
+  const cfg = meta("launch", "config", `--role=${ev.role}`, ...(ev.msgs?.length ? [`--msgs=${ev.msgs.join(",")}`] : []));
+  const plan = sessionPlan(cfg, { fromOrder: FROM_ORDER, settingSources: opt["setting-sources"] ? SOURCES : null, sessionMin: CLI_SESSION_MIN }, { cwd: PROTO, sessionMin: SESSION_MIN, maxTurns: MAX_TURNS, settingSources: SOURCES });
+  if (plan.refused) {
+    note({ event: "finish", launch: id, n: k, role: ev.role, ok: false, reason: `refused: ${plan.refused}`, tokens: 0, cumulative: 0, cost: 0, turns: null, minutes: 0, sessions: [], abandoned: [], denials: 0, said: "" });
+    meta("guard", "denied", `--launch=${id}`, `--role=${ev.role}`, "--tool=launch", "--rule=config", `--why=${plan.refused}`, "--via=launcher");
+    return;
+  }
+  const { cwd, tools, sessionMin, maxTurns, settingSources: sources } = plan;
+  const guard = makeGuard({ tools, strictTools: plan.strictTools, roots: plan.roots, cwd, record: (d) => {
     note({ event: "guard", launch: id, n: k, role: ev.role, via: d.via, tool: d.tool, rule: d.rule, why: d.why, detail: d.detail });
     meta("guard", "denied", `--launch=${id}`, `--role=${ev.role}`, `--tool=${d.tool}`, `--rule=${d.rule}`, `--why=${d.why}`, `--via=${d.via}`, ...(d.detail ? [`--detail=${d.detail}`] : []));
   } });
@@ -96,20 +105,10 @@ async function run(ev) {
   let last = null, result = null, error = null;
   const t0 = Date.now();
   try {
-    for await (const m of query({ prompt, options: {
-      cwd, model: MODEL, abortController: ac,
-      env: { ...env, META_LAUNCH: id },
-      // the brief is the whole job: no project settings or CLAUDE.md (they belong to System 3 Company, not this run),
-      // unless the role, --setting-sources or --workdir-from=order (K10: the company's hooks and rules) loads them
-      settingSources: sources,
-      // K10: Bash and the write tools stay out of allowedTools (an allowed tool never reaches canUseTool); "default"
-      // with prompts answered by this host (canUseTool), where dontAsk + permissionPrompts "none" never called it
-      allowedTools: tools.filter((t) => !GUARDED.includes(t)),
-      permissionMode: "default", permissionPrompts: "host",
-      canUseTool: guard.canUseTool,
-      hooks: { PreToolUse: [{ hooks: [guard.preToolUse] }] },
-      maxTurns,
-    } })) {
+    // the brief is the whole job: no project settings or CLAUDE.md (they belong to System 3 Company, not this run),
+    // unless the role, --setting-sources or --workdir-from=order (K10: the company's hooks and rules) loads them;
+    // permissions, tools and the guard as guard.mjs queryOptions says (tests/guard.test.mjs checks that shape)
+    for await (const m of query({ prompt, options: queryOptions(plan, guard, { model: MODEL, abortController: ac, env: { ...env, META_LAUNCH: id } }) })) {
       if (m.type === "assistant" && m.parent_tool_use_id == null && m.message?.usage) last = m.message.usage;
       if (m.type === "result") result = m;
     }

@@ -150,7 +150,8 @@ test("meta.mjs launch config: the role's fields, the order's worktree, its prote
   assert.deepEqual([c.tools, c.sessionMin, c.maxTurns, c.settingSources], [["Bash", "Read", "Write", "Edit", "Glob", "Grep"], 60, 200, ["project"]]);
   assert.equal(c.workdir, path.join(ROOT, "KA"));
   assert.deepEqual(c.workdirs, [c.workdir]);
-  assert.deepEqual(c.roots.map((x) => x.dir), [c.workdir, REPO]);
+  // the launch's own order first, then the repo and the worktree root (K10 review: every launch gets all three)
+  assert.deepEqual(c.roots.map((x) => [x.dir, x.nested ?? 0]), [[c.workdir, 0], [REPO, 0], [ROOT, 1]]);
   assert.deepEqual(c.roots[0].globs, ["tools/company.mjs", "tests/qa/**"], "the base's globs, not main's tip");
   // the guard built from it denies the worktree's protected file and lets the rest through
   const g = G.makeGuard({ tools: c.tools, roots: c.roots, cwd: c.workdir });
@@ -158,9 +159,11 @@ test("meta.mjs launch config: the role's fields, the order's worktree, its prote
   assert.equal(G.decide("Write", { file_path: path.join(REPO, "tools/company.mjs") }, { tools: c.tools, roots: c.roots, cwd: c.workdir })?.rule, "protected-path", "the main checkout too");
   assert.equal(G.decide("Write", { file_path: "src/lesson.tsx" }, { tools: c.tools, roots: c.roots, cwd: c.workdir }), null);
   assert.ok(g.canUseTool);
-  // a role with no fields, and no messages: nulls (the launcher keeps its defaults) and no workdir (the kernel's cwd)
+  // a role with no fields, and no messages: nulls (the launcher keeps its defaults) and no workdir (the kernel's cwd),
+  // but still the workspace's roots (K10 review: a task-only launch had none)
   const d = JSON.parse(meta("launch", "config", "--role=cos").stdout);
-  assert.deepEqual([d.tools, d.sessionMin, d.maxTurns, d.settingSources, d.workdir, d.roots], [null, null, null, null, null, []]);
+  assert.deepEqual([d.tools, d.sessionMin, d.maxTurns, d.settingSources, d.workdir], [null, null, null, null, null]);
+  assert.deepEqual(d.roots.map((x) => x.dir), [c.workdir, REPO, ROOT]);
   const ch = JSON.parse(meta("launch", "config", "--role=toy-checker").stdout);
   assert.ok(ch.tools.includes("WebFetch") && ch.maxTurns === 120 && ch.sessionMin === 30);
   assert.equal(meta("launch", "config", "--role=nobody").status, 2);
@@ -175,7 +178,7 @@ test("meta.mjs launch config: the role's fields, the order's worktree, its prote
   assert.equal(meta("guard", "denied", "--role=toy-builder-1").status, 2, "tool, rule and why are required");
 });
 
-test("META_KERNEL_ABS: briefs and packs name kernel commands by absolute path; unset, the text is as before", () => {
+test("META_KERNEL_ABS: briefs and packs name kernel commands by absolute path; unset, the text is as before", async () => {
   const co = make("k10b", spec());
   co.org.genesis(co.spec.roles.map((r) => ({ ...r })));
   co.engine.approveDef(co.engine.define("task", { stages: co.spec.flow.stages }, { by: "cos" }), { by: "founder", words: "Approve" });
@@ -201,7 +204,106 @@ test("META_KERNEL_ABS: briefs and packs name kernel commands by absolute path; u
     assert.equal(r.status, 0, r.stderr);
     const p = JSON.parse(r.stdout);
     assert.ok(p.leave_with.includes(`node ${META} room leave`) && p.next_with.includes(`node ${META} room next`), JSON.stringify(p));
+    // K10 review: every kernel output, not only briefs and packs (the held-order note named `node supervisor.mjs retry`)
+    const co2 = (await import("../state.mjs")).load();
+    const o2 = co2.engine.orderNew({ flow: "task", by: "cos", to: "mgr-live", budget: 100, accept: "write it" });
+    o2.task = "KH";
+    co2.engine.delegate(o2.id, { by: "mgr-live", to: "toy-builder-1", budget: 100 });
+    WS.hold(co2, o2, "git said no");
+    const m2 = co2.mailbox.queue("toy-builder-1", "work").find((x) => x.ref === o2.id);
+    save(co2);
+    const h = spawnSync("node", [META, "room", "enter", `--msg=${m2.id}`, "--role=toy-builder-1"], { env: { ...process.env, META_LIVE_DIR: LIVE }, encoding: "utf8" });
+    assert.equal(h.status, 1, h.stderr);
+    assert.ok(h.stdout.includes(`node ${path.join(HERE, "..", "supervisor.mjs")} retry --order=`), h.stdout);
   } finally { delete process.env.META_KERNEL_ABS; }
+});
+
+test("K10 review: the roots cover task-only launches, sibling orders' worktrees and worktrees made later; no workspace, no roots", () => {
+  const co = make("k10c", spec());
+  co.org.genesis(co.spec.roles.map((r) => ({ ...r })));
+  co.engine.approveDef(co.engine.define("task", { stages: co.spec.flow.stages }, { by: "cos" }), { by: "founder", words: "Approve" });
+  const mk = (task) => { const o = co.engine.orderNew({ flow: "task", by: "cos", to: "mgr-live", budget: 100, accept: "write it" }); o.task = task; co.engine.delegate(o.id, { by: "mgr-live", to: "toy-builder-1", budget: 100 }); assert.ok(!WS.ensure(co, o).error); return o; };
+  const a = mk("KC1"), b = mk("KC2");
+  const ma = co.mailbox.queue("toy-builder-1", "work").find((x) => x.ref === a.id);
+  // a manager's delegate launch (msgs []): the supervisor's task-only launches
+  const t = WS.launchConfig(co, { role: "mgr-live", msgs: [] });
+  const dec = (c, p) => G.decide("Write", { file_path: p }, { tools: null, roots: c.roots, cwd: LIVE })?.rule ?? null;
+  for (const p of [path.join(REPO, "tools/company.mjs"), path.join(a.workdir, "tests/qa/x.spec.ts"), path.join(b.workdir, "tools/company.mjs"),
+    path.join(ROOT, "made-by-hand/tests/qa/y.ts"), path.join(ROOT, "base/tools/company.mjs")]) assert.equal(dec(t, p), "protected-path", p);
+  assert.equal(dec(t, path.join(ROOT, "made-by-hand/src/x.tsx")), null);
+  assert.equal(dec(t, path.join(ROOT, "tools/company.mjs")), null, "under the root, the first segment is the checkout");
+  // the builder's launch for order a: order b's worktree is guarded too, and a's own globs come first
+  const c = WS.launchConfig(co, { role: "toy-builder-1", msgs: [ma.id] });
+  assert.equal(c.workdir, a.workdir);
+  assert.equal(c.roots[0].dir, a.workdir);
+  assert.equal(dec(c, path.join(b.workdir, "tests/qa/z.ts")), "protected-path");
+  // a sibling order's globs are its own base's
+  assert.deepEqual(c.roots.find((x) => x.dir === b.workdir).globs, ["tools/company.mjs", "tests/qa/**"]);
+  // no workspace: nothing to protect, as before K10
+  const plain = make("k10d", builtinSpec("toy"));
+  plain.org.genesis(plain.spec.roles.map((r) => ({ ...r })));
+  assert.deepEqual(WS.launchConfig(plain, { role: "cos", msgs: [] }).roots, []);
+});
+
+test("K10 review: Bash is judged per simple command: the review's misses are denied, its false positives pass", () => {
+  for (const c of ["git -C '/a b' push", "git --work-tree /x push", "git --git-dir /x push", "git --git-dir=.git push", "git send-pack origin", "npm run company --silent -- publish x",
+    "node tools/company.mjs --x publish", "yarn deploy", "pnpm run deploy:prod", "npm --silent run deploy", "git -C $(pwd) push", "git -C ${D} push", "FOO=1 sudo -E git push", "timeout 30 git -C /x push",
+    "bash -c 'git -C \"/a b\" push'", "echo $(git -C /x push)", "x=`git -C /y push`", "{ git -C /x push; }", "if true; then git -C /x push; fi", "pnpm dlx vercel deploy", "npm exec -- vercel", "vercel --prod",
+    "git commit -F - <<EOF\n[deploy] x\nEOF", "git commit --amend -m 'ship [DEPLOY]'", "./tools/company.mjs publish x", "gh -R o/r workflow run x", "node /abs/tools/claim.mjs verify C-1"]) {
+    assert.equal(G.decide("Bash", { command: c }, opts)?.rule, "bash", c);
+  }
+  for (const c of ["cat vercel.json", "grep -n vercel company/ops/runbook-deploy.md", "grep -r claim.mjs tools", "git log --grep '[deploy]'", "git push-to-x", "git commit -m 'fix the push docs'",
+    "npm run company -- status --note=publish", "npm run company -- board add \"publish the lesson\" --owner=release-manager", "node tools/company.mjs check", "echo deploy", "npm deploy"]) {
+    assert.equal(G.decide("Bash", { command: c }, opts), null, c);
+  }
+  assert.match(G.decide("Bash", { command: "git -C '/a b' push" }, opts).why, /`git push` is not allowed/);
+});
+
+test("K10 review: sessionPlan fails closed, picks cwd, settingSources and sessionMin by precedence; queryOptions keeps the guard wired", async () => {
+  const D = { cwd: "/kernel", sessionMin: 20, maxTurns: 80, settingSources: [] };
+  assert.match(G.sessionPlan(null, {}, D).refused, /launch config failed/);
+  const cfg = { tools: null, sessionMin: null, maxTurns: null, settingSources: null, workdir: "/wt/KA", roots: [{ dir: "/wt/KA", globs: ["x"] }] };
+  let p = G.sessionPlan(cfg, { fromOrder: false }, D);
+  assert.deepEqual([p.cwd, p.tools, p.strictTools, p.sessionMin, p.maxTurns, p.settingSources], ["/kernel", G.DEFAULT_TOOLS, false, 20, 80, []]);
+  assert.deepEqual(p.roots, cfg.roots, "the roots apply whatever the cwd");
+  p = G.sessionPlan(cfg, { fromOrder: true }, D);
+  assert.deepEqual([p.cwd, p.settingSources], ["/wt/KA", ["project"]], "--workdir-from=order: the worktree, with the project settings");
+  assert.deepEqual(G.sessionPlan({ ...cfg, workdir: null }, { fromOrder: true }, D).cwd, "/kernel", "no order workdir: the kernel");
+  assert.deepEqual(G.sessionPlan(cfg, { fromOrder: true, settingSources: ["user"] }, D).settingSources, ["user"], "--setting-sources over the default");
+  assert.deepEqual(G.sessionPlan({ ...cfg, settingSources: ["local"] }, { fromOrder: true, settingSources: ["user"] }, D).settingSources, ["local"], "the role over both");
+  const role = { ...cfg, tools: ["Read", "Bash", "WebFetch"], sessionMin: 60, maxTurns: 200 };
+  p = G.sessionPlan(role, {}, D);
+  assert.deepEqual([p.tools, p.strictTools, p.sessionMin, p.maxTurns], [role.tools, true, 60, 200]);
+  assert.equal(G.sessionPlan(role, { sessionMin: 5 }, D).sessionMin, 5, "an explicit --session-min wins (a short smoke run)");
+  // the options query() gets
+  const g = G.makeGuard({ tools: p.tools, strictTools: p.strictTools, roots: p.roots, cwd: p.cwd });
+  const ac = new AbortController(), q = G.queryOptions(p, g, { model: "m", env: { A: "1" }, abortController: ac });
+  assert.equal(q.permissionMode, "default", "never dontAsk: canUseTool would not be asked");
+  assert.equal(q.permissionPrompts, "host", "never none: canUseTool would not be asked");
+  assert.equal(q.canUseTool, g.canUseTool);
+  assert.deepEqual(q.hooks.PreToolUse.map((h) => h.hooks), [[g.preToolUse]]);
+  assert.deepEqual(q.allowedTools, ["Read", "WebFetch"], "Bash and the write tools always reach the guard");
+  assert.deepEqual(q.tools, role.tools, "a role that names its tools gets only those");
+  assert.deepEqual([q.cwd, q.model, q.env, q.abortController, q.maxTurns, q.settingSources], [p.cwd, "m", { A: "1" }, ac, 200, p.settingSources]);
+  const q0 = G.queryOptions(G.sessionPlan(cfg, {}, D), g, {});
+  assert.ok(!("tools" in q0), "no role list: the SDK's base set, as before K10");
+  assert.deepEqual(q0.allowedTools, ["Read", "Glob", "Grep"]);
+  // launch.mjs builds its query from these (and refuses on a failed lookup)
+  const src = fs.readFileSync(path.join(LAUNCHER, "launch.mjs"), "utf8");
+  assert.match(src, /query\(\{ prompt, options: queryOptions\(plan, guard, /);
+  assert.match(src, /const plan = sessionPlan\(cfg, /);
+  assert.match(src, /if \(plan\.refused\) \{[\s\S]*?return;\s*\}/);
+  assert.ok(!/permissionMode: "dontAsk"|permissionPrompts: "none"/.test(src));
+});
+
+test("K10 review: with no role list, only canUseTool applies DEFAULT_TOOLS (TodoWrite runs, WebFetch is refused, as under dontAsk)", async () => {
+  const g = G.makeGuard({ tools: G.DEFAULT_TOOLS, strictTools: false, roots: ROOTS, cwd: WT });
+  assert.deepEqual(await g.preToolUse({ hook_event_name: "PreToolUse", tool_name: "TodoWrite", tool_input: {}, cwd: WT }, "t1"), {});
+  assert.equal((await g.canUseTool("WebFetch", { url: "https://x" }, { toolUseID: "t2" })).behavior, "deny");
+  const h = await g.preToolUse({ hook_event_name: "PreToolUse", tool_name: "Write", tool_input: { file_path: "tools/company.mjs" }, cwd: WT }, "t3");
+  assert.equal(h.hookSpecificOutput.permissionDecision, "deny", "the path rule still applies in the hook");
+  const s = G.makeGuard({ tools: ["Read"], strictTools: true, roots: ROOTS, cwd: WT });
+  assert.equal((await s.preToolUse({ hook_event_name: "PreToolUse", tool_name: "TodoWrite", tool_input: {}, cwd: WT }, "t4")).hookSpecificOutput?.permissionDecision, "deny");
 });
 
 test("launch.mjs: --workdir-from takes only `order`", (t) => {

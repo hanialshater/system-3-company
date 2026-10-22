@@ -485,7 +485,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   for (const a of argv) if (a.startsWith("--")) { const [k, ...v] = a.slice(2).split("="); opt[k] = v.length ? v.join("=") : true; }
   const opts = { acceptance: opt.acceptance ?? null, batchLater: Number(opt["batch-later"] ?? 3), cap: Number(opt.cap ?? 4), faults: opt.faults ? JSON.parse(fs.readFileSync(opt.faults, "utf8")) : null };
   const cmd = argv.find((a) => !a.startsWith("--"));
-  const print = (x) => console.log(JSON.stringify(x, rep, 2));
+  const print = (x) => console.log(absCmds(JSON.stringify(x, rep, 2))); // K10: as meta.mjs out
   if (cmd === "launched") {
     // The orchestrator records each session it starts, so the next plan does not ask for it again.
     if (!opt.role) { console.error("usage: node supervisor.mjs launched --role=<role> [--msgs=M-1,M-2] [--why=…]"); process.exit(2); }

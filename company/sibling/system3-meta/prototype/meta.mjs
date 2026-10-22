@@ -70,7 +70,7 @@ export { LIVE_ROOMS, LIVE_ROLES, TASK_FLOW } from "./state.mjs";
 const argv = process.argv.slice(2);
 const opt = {}, pos = [];
 for (const a of argv) { if (a.startsWith("--")) { const [k, ...v] = a.slice(2).split("="); opt[k] = v.length ? v.join("=") : true; } else pos.push(a); }
-const out = (x) => console.log(JSON.stringify(x, rep, 2));
+const out = (x) => console.log(absCmds(JSON.stringify(x, rep, 2))); // K10: kernel commands by absolute path under META_KERNEL_ABS
 const need = (...ks) => { const miss = ks.filter((k) => opt[k] == null || opt[k] === true); if (miss.length) throw new Error(`missing ${miss.map((k) => `--${k}`).join(" ")}`); };
 
 
@@ -420,4 +420,4 @@ function dispatch(co, cmd, sub, arg) {
 }
 
 try { const r = main(); out(r); }
-catch (e) { console.error(JSON.stringify({ error: e.message, refused: !!e.refused })); process.exit(e.refused ? 1 : 2); }
+catch (e) { console.error(absCmds(JSON.stringify({ error: e.message, refused: !!e.refused }))); process.exit(e.refused ? 1 : 2); }

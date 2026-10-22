@@ -316,27 +316,45 @@ export function validateRoleLaunch(r) {
   if (r.settingSources != null && !(Array.isArray(r.settingSources) && r.settingSources.every((s) => SETTING_SOURCES.includes(s)))) return `settingSources is a list of ${SETTING_SOURCES.join(", ")}`;
   return null;
 }
+/** The protected-paths globs of `repo` as of `ref`: { file, globs }, or null (the ref has no such file). `cache` maps
+ *  repo+ref to the answer (one git call per base, whatever the number of orders). */
+function globsAt(w, repo, ref, cache = new Map()) {
+  const file = commitOf(w)?.protectedPaths ?? DEFAULT_PROTECTED, key = `${repo}\0${ref}\0${file}`;
+  if (!cache.has(key)) {
+    const r = spawnSync("git", ["-C", repo, "show", `${ref}:${file}`], { encoding: "utf8", timeout: 5_000 });
+    cache.set(key, ok(r) ? { file, globs: globsOf(r.stdout) } : null);
+  }
+  return cache.get(key);
+}
 /** The protected-paths globs for order `o`: { file, globs } as of the order's base commit (as K7 reads them: the
  *  worktree's own copy is the agent's to edit), or null (no workspace, or the base has no such file). */
-export function protectedGlobs(co, o) {
+export function protectedGlobs(co, o, cache) {
   const w = specOf(co);
   if (!w || !o?.workspace?.repo) return null;
-  const file = commitOf(w)?.protectedPaths ?? DEFAULT_PROTECTED, base = o.workspace.baseSha ?? o.workspace.sha;
-  const r = spawnSync("git", ["-C", o.workspace.repo, "show", `${base}:${file}`], { encoding: "utf8", timeout: 5_000 });
-  return ok(r) ? { file, globs: globsOf(r.stdout) } : null;
+  return globsAt(w, o.workspace.repo, o.workspace.baseSha ?? o.workspace.sha, cache);
 }
-/** One launch's settings: the role's spec fields (null where unset: the launcher keeps its own defaults), and the
- *  workdirs of the orders its messages name with their protected globs (the guard's roots: each worktree and its repo). */
+/** One launch's settings: the role's spec fields (null where unset: the launcher keeps its own defaults), the workdirs
+ *  of the orders its messages name (the first is its cwd under --workdir-from=order), and the guard's roots. K10 review:
+ *  roots came only from the launch's messages, so a task-only launch (a manager's delegate, an ask, a meeting, a
+ *  contract: msgs []) had none and could Write tools/company.mjs anywhere, and a builder could write into a sibling
+ *  order's worktree. With a spec workspace the roots are now always: every order's worktree (globs as of its base), the
+ *  repo (as of the spec base) and the worktree root, `nested` (its first path segment is a worktree: one made after this
+ *  launch, or by hand, is covered too). No workspace: no roots (nothing to protect, as before K10). */
 export function launchConfig(co, { role, msgs = [] }) {
   const r = co.org.role(role);
   if (!r) throw new Error(`no role ${role}`);
-  const workdirs = [], roots = [];
+  const workdirs = [], roots = [], cache = new Map(), w = specOf(co);
+  const add = (dir, p, extra = {}) => { if (p && dir && !roots.some((x) => x.dir === dir && !!x.nested === !!extra.nested)) roots.push({ dir, ...p, ...extra }); };
   for (const id of msgs) {
     const o = co.engine.orders.get(co.mailbox.msgs.get(id)?.ref);
-    if (!o?.workdir || workdirs.includes(o.workdir)) continue;
-    workdirs.push(o.workdir);
-    const p = protectedGlobs(co, o);
-    if (p) for (const dir of [o.workdir, o.workspace.repo]) if (!roots.some((x) => x.dir === dir)) roots.push({ dir, ...p });
+    if (o?.workdir && !workdirs.includes(o.workdir)) workdirs.push(o.workdir);
+  }
+  if (w) {
+    // this launch's own orders first (their denial names their own base's file), then every other order's
+    const mine = new Set(workdirs), orders = [...co.engine.orders.values()].filter((o) => o.workdir && o.workspace?.repo);
+    for (const o of [...orders.filter((o) => mine.has(o.workdir)), ...orders.filter((o) => !mine.has(o.workdir))]) { const p = protectedGlobs(co, o, cache); add(o.workdir, p); add(o.workspace.repo, p); }
+    const p = globsAt(w, w.repo, w.base ?? "HEAD", cache);
+    add(w.repo, p); add(w.root, p, { nested: 1 });
   }
   return { role, ...Object.fromEntries(ROLE_LAUNCH_KEYS.map((k) => [k, r[k] ?? null])), workdir: workdirs[0] ?? null, workdirs, roots };
 }
