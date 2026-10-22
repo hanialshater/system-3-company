@@ -42,8 +42,23 @@ export function route(co, { by, kind, amount = 0, lane = null }) {
   return to;
 }
 
-export function raise(co, { by, kind, title, why, due, to = null, amount = 0, lane = null, escalate = null, goal = null }) {
+/** K14: an ask's options, from `--options` as a JSON list or comma-separated words; null when none were given. */
+export function parseOptions(v) {
+  if (v == null || v === true || v === "") return null;
+  let xs = v;
+  if (typeof v === "string") { if (v.trim().startsWith("[")) { try { xs = JSON.parse(v); } catch { refuse("--options is a JSON list of strings or comma-separated"); } } else xs = v.split(","); }
+  if (!Array.isArray(xs)) refuse("--options is a JSON list of strings or comma-separated");
+  xs = xs.map((x) => (typeof x === "string" ? x.trim() : x));
+  if (!xs.length || xs.length > 8 || !xs.every((x) => typeof x === "string" && x && x.length <= 300)) refuse("--options are 1 to 8 non-empty strings (300 characters at most)");
+  if (new Set(xs).size !== xs.length) refuse("--options are distinct");
+  return xs;
+}
+
+export function raise(co, { by, kind, title, why, due, to = null, amount = 0, lane = null, escalate = null, goal = null, options = null, recommend = null }) {
   if (!title || !why || !due) refuse("an ask states what, why and by when");
+  // K14 (plan 2026-10-21 §M5): the founder inbox gives every item its options and a recommendation
+  const opts = parseOptions(options);
+  if (recommend != null && (typeof recommend !== "string" || !recommend.trim())) refuse("--recommend is the asker's recommendation, in words");
   const decider = route(co, { by, kind, amount, lane });
   let assignee = decider, rerouted = false, escalated = false;
   if (to && to !== decider) {
@@ -55,7 +70,7 @@ export function raise(co, { by, kind, title, why, due, to = null, amount = 0, la
   const it = create(co, { by, kind: "ask", title, body: why, assignee, due, goal, labels: [`ask:${kind}`, ...(rerouted ? ["rerouted"] : []), ...(escalated ? ["escalated"] : [])], state: "todo", priority: 2 });
   // routedTo is the router's choice, frozen: the assignee is a tracker field anyone may edit (K8+K9 review: a builder
   // reassigned its own park ask to itself and then resumed past its own loop cap)
-  it.ask = { kind, amount, from: by, addressedTo: to, decider, escalate, routedTo: assignee, answer: null };
+  it.ask = { kind, amount, from: by, addressedTo: to, decider, escalate, routedTo: assignee, answer: null, ...(opts ? { options: opts } : {}), ...(recommend != null ? { recommend: recommend.trim() } : {}) };
   if (rerouted) co.log.add({ type: "ask-reroute", item: it.id, from: by, addressedTo: to, to: decider, kind });
   if (escalated) co.log.add({ type: "ask-escalate", item: it.id, from: by, to, over: decider, reason: escalate });
   co.log.add({ type: "ask", item: it.id, from: by, to: assignee, kind });
@@ -98,7 +113,7 @@ export function raiseBudgetAsk(co, o) {
   const why = [`${o.id}${o.title ? ` (${o.title})` : ""} has spent ${o.spent} of its ${o.budget}-token budget (charged from its launches' cumulative tokens). The planner starts no session on it until the budget is raised.`,
     `Asked: a top-up of ${amount} tokens (what it overspent plus half its budget again).`,
     `Decide: \`node meta.mjs ask answer --by=<you> --id=<this ask> --decision=yes --text='…'\` raises the budget by ${amount}; \`--decision=no\` keeps it stopped (then park or cancel it: \`node meta.mjs order park|cancel ${o.id} --by=<you> --reason='…'\`).`].join("\n");
-  const base = { kind: "budget", title: `Budget: ${o.id} at ${o.spent} of ${o.budget} tokens, top up ${amount}?`, why, due: co.engine.clock.now() + 24 * 60, amount };
+  const base = { kind: "budget", title: `Budget: ${o.id} at ${o.spent} of ${o.budget} tokens, top up ${amount}?`, why, due: co.engine.clock.now() + 24 * 60, amount, options: [`yes: raise the budget by ${amount}`, "no: keep it stopped (then park or cancel it)"] };
   let it = null, failed = null;
   for (const by of [...new Set([o.builder, o.manager].filter(Boolean))]) {
     try { it = raise(co, { ...base, by }); break; } catch (e) { if (!e.refused) throw e; failed = e.message; }

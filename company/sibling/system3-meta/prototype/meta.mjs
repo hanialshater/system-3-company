@@ -40,6 +40,7 @@
 //   node meta.mjs goal create|update|show|board|review …      goals: levels, contributes-to, RAG, code-measured criteria
 //   node meta.mjs meeting open|position|read|reveal|round|board|object|decide|defer|close|show --id=<MTG> …
 //   node meta.mjs ask raise|route|answer|summary …            leadership asks, routed to the lowest decider
+//        K14: ask raise [--options='["A: …","B: …"]' | --options=a,b] [--recommend=…]: what the founder inbox shows
 //   node meta.mjs wbr open|close|page0 …  ·  goal-review --by  ·  digest --audience=founder|lane:<l>|company [--channel]
 //   node meta.mjs help [<command>]                            these lines
 //   node meta.mjs check --order=<O>                          run the order's test1 (tests or text checks) without signing: builders self-check
@@ -432,7 +433,7 @@ function dispatch(co, cmd, sub, arg) {
   if (cmd === "meeting" && sub === "close") { need("id", "by"); return { minutes: M.closeMeeting(co, { id: opt.id, by: opt.by }).minutes }; }
   if (cmd === "meeting" && sub === "show") { need("id"); const m = M.getMeeting(co, opt.id); return { id: m.id, title: m.title, kind: m.kind, chair: m.chair, state: m.state, invitees: m.invitees, agenda: m.agenda.map((a) => ({ n: a.n, title: a.title, rounds: a.rounds.length, revealed: a.rounds.at(-1).revealed, written: Object.keys(a.rounds.at(-1).positions), objections: a.objections.length, decided: !!a.decision })), whiteboard: m.board, pack: m.pack ?? null, minutes: m.minutes ?? null }; }
   // ---- asks and rituals
-  if (cmd === "ask" && sub === "raise") { need("by", "kind", "title", "why", "due"); return A.raise(co, { by: opt.by, kind: opt.kind, title: opt.title, why: opt.why, due: opt.due, to: opt.to ?? null, amount: N("amount") ?? 0, lane: opt.lane ?? null, escalate: opt.escalate ?? null, goal: opt.goal ?? null }); }
+  if (cmd === "ask" && sub === "raise") { need("by", "kind", "title", "why", "due"); return A.raise(co, { by: opt.by, kind: opt.kind, title: opt.title, why: opt.why, due: opt.due, to: opt.to ?? null, amount: N("amount") ?? 0, lane: opt.lane ?? null, escalate: opt.escalate ?? null, goal: opt.goal ?? null, options: opt.options ?? null, recommend: opt.recommend === true ? "" : opt.recommend ?? null }); }
   if (cmd === "ask" && sub === "route") { need("by", "kind"); return { decider: A.route(co, { by: opt.by, kind: opt.kind, amount: N("amount") ?? 0, lane: opt.lane ?? null }) }; }
   if (cmd === "ask" && sub === "answer") { need("by", "id", "decision", "text"); return A.answer(co, { by: opt.by, id: opt.id, decision: opt.decision, text: opt.text }); }
   if (cmd === "ask" && sub === "summary") return A.askSummary(co);
