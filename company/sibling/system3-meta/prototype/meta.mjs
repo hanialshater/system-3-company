@@ -128,7 +128,7 @@ function pack(co, run, ctx, session, item) {
   // K5: with a spec workspace the workdir is the order's git worktree (made by the supervisor's tick, or by the room
   // enter/next gate, wsBlocker); a git failure after that gate is reported in the pack: the run is already entered
   const ws = WS.ensure(co, o);
-  const dir = ws ? ws.workdir ?? path.join(WS.specOf(co).root, o.task) : path.join(LIVE, "work", o.task);
+  const dir = ws ? ws.workdir ?? WS.dirFor(WS.specOf(co), o) ?? path.join(WS.specOf(co).root, o.task) : path.join(LIVE, "work", o.task);
   if (co.engine.isWorkStage(o, ctx.stage) && !ws) fs.mkdirSync(dir, { recursive: true }); // K25: any stage the builder works (draft too)
   const vars = { ...(o.workspace?.vars ?? {}), ...briefVars(o), ...storeVars(o), workdir: dir, task: o.task ?? "", slug: o.slug ?? o.task ?? "" }; // K5 audit: ${run} ${n} ${port} too, as briefs and cmds; M6 prep: ${brief_file}
   // Benchmark 1 finding (writer-1): the prefix dropped META_LIVE_DIR, so a copied command wrote to the wrong state

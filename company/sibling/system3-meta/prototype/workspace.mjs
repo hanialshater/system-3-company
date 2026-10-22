@@ -27,11 +27,18 @@ import { spawnSync } from "node:child_process";
 import { LIVE, lookupVar } from "./state.mjs";
 import { touchesStore, storeFiles } from "./artifacts.mjs";
 
-export const WS_KEYS = ["kind", "repo", "base", "root", "branch", "env", "nodeModules", "run", "portBase", "commit", "cleanup"];
+export const WS_KEYS = ["kind", "repo", "base", "root", "dir", "branch", "env", "nodeModules", "run", "portBase", "commit", "cleanup"];
 export const WS_KINDS = ["git-worktree"];
 // K5 review: not `meta/${run}/${task}` (the plan's): the base checkout is on branch meta/m4, and a ref meta/m4 cannot
 // coexist with meta/m4/<task> ("cannot lock ref"), so every order of run m4 was a workspace stage-error
 export const DEFAULT_BRANCH = "meta/${run}-${task}";
+// B6 dry run: the worktree was <root>/<task> while its branch named the run, so a later run's order of the same task
+// found the earlier run's worktree there (left on its branch: a stopped run) and held as a workspace stage-error. `dir`
+// is the worktree's folder name under root, a template of the branch variables naming ${task} (default "${task}", as
+// before): "${run}-${task}" keeps each run's checkouts apart under one root (a root inside the node_modules base, for
+// Turbopack). One plain path segment: a worktree is always a direct child of root (the launcher guard reads a root of
+// checkouts one level deep).
+export const DEFAULT_DIR = "${task}";
 const BRANCH_VARS = ["run", "task", "slug", "n", "port"], ENV_VARS = [...BRANCH_VARS, "workdir"];
 // git runs under the state lock (withLock breaks a dead holder's lock older than 30 s, state.mjs; a live holder's makes other
 // writers fail after 10 s, M6 prep review). K5 review: a 25 s timeout per call
@@ -50,6 +57,9 @@ export function validateWorkspace(w) {
   if (!WS_KINDS.includes(w.kind)) return `kind is one of ${WS_KINDS.join(", ")}`;
   for (const k of ["repo", "root"]) if (typeof w[k] !== "string" || !path.isAbsolute(w[k])) return `${k} is an absolute path`;
   if (w.base != null && (typeof w.base !== "string" || !w.base)) return "base is a commit, tag or branch";
+  if (w.dir != null && (typeof w.dir !== "string" || !w.dir.includes("${task}"))) return "dir is a template naming ${task} (one worktree per order)";
+  if (w.dir != null && unknownVar(w.dir, BRANCH_VARS) != null) return `dir: unknown variable \${${unknownVar(w.dir, BRANCH_VARS)}} (known: ${BRANCH_VARS.join(", ")})`;
+  if (w.dir != null && !/^(?:[\w.-]|\$\{[a-z]+\})+$/.test(w.dir)) return "dir is one folder name under root ([A-Za-z0-9_.-] and variables; no /)";
   if (w.branch != null && (typeof w.branch !== "string" || !w.branch.includes("${task}"))) return "branch is a template naming ${task} (one branch per order)";
   if (w.branch != null && unknownVar(w.branch, BRANCH_VARS) != null) return `branch: unknown variable \${${unknownVar(w.branch, BRANCH_VARS)}} (known: ${BRANCH_VARS.join(", ")})`;
   if (w.run != null && (typeof w.run !== "string" || !/^[\w.-]+$/.test(w.run))) return "run is a name ([A-Za-z0-9_.-])";
@@ -235,6 +245,12 @@ export function varsFor(w, o) {
   const n = Number(String(o.id ?? "").replace(/\D/g, "")) || 0;
   return { run: w.run ?? path.basename(LIVE), task: o.task ?? "", slug: o.slug ?? o.task ?? "", n: String(n), port: String((w.portBase ?? 3100) + n) };
 }
+/** The order's worktree folder: <root>/<dir filled> (B6 dry run). null when the name it fills to is not one plain
+ *  folder name (a slug or run with a separator, or "." / ".."). */
+export function dirFor(w, o) {
+  const name = fill(w.dir ?? DEFAULT_DIR, varsFor(w, o));
+  return /^[\w.-]+$/.test(name) && !/^\.\.?$/.test(name) ? path.join(w.root, name) : null;
+}
 export const fill = (s, vars) => s.replace(VAR, (m, k) => { const v = lookupVar(vars, k); return v === undefined ? m : v; });
 
 /** Why the order may not be worked yet (its worktree is missing or wrong), or null; a git failure is recorded as a
@@ -277,7 +293,8 @@ export function ensure(co, o, { create = true } = {}) {
   }
   if (!/^[\w.-]+$/.test(o.task ?? "")) return { error: `task ${JSON.stringify(o.task)} cannot name a worktree ([A-Za-z0-9_.-])` };
   const vars = varsFor(w, o);
-  const dir = path.join(w.root, o.task), branch = fill(w.branch ?? DEFAULT_BRANCH, vars), base = w.base ?? "HEAD";
+  const dir = dirFor(w, o), branch = fill(w.branch ?? DEFAULT_BRANCH, vars), base = w.base ?? "HEAD";
+  if (!dir) return { error: `workspace dir ${JSON.stringify(w.dir ?? DEFAULT_DIR)} does not fill to one folder name for ${o.id}` };
   // never an order's workdir: the repo's own checkout, the root, or the checkout node_modules is shared from (the plan's
   // root holds the shared `base` checkout: a task named `base` got it as its workdir, K5 review)
   const shared = [rtop, w.root, w.nodeModules && path.dirname(w.nodeModules.slice("symlink:".length))].filter(Boolean);
