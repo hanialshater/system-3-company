@@ -111,7 +111,7 @@ export default function RegionsFromCirclePoints({ slug }: { slug: string }) {
               points that is 1 + {six.lines} + {six.crossings} = {1 + six.lines + six.crossings}.
             </p>
             <p>
-              Lines come from pairs of points and crossings from groups of four, so the count was never doubling.
+              Lines come from pairs of points and crossings from groups of four, so the rule was never doubling: it only matched doubling up to 5 points.
               Five matching cases are evidence, not a proof.
             </p>
           </>

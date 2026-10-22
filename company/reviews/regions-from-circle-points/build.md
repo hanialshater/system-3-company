@@ -13,6 +13,16 @@ builder: demo-builder (Meta M6, order O-7) · 2026-10-22 · v1 · brief: company
 - Stage words at the busiest frame: table row heads 4 (points, lines, crossings, pieces) + chips 5 + Reset 1 = 10, as the brief counts. Numerals and "?" 0.
 - Title and hook are mine: "How many pieces with six points?" / "Points on a circle, every pair joined: 1, 2, 4, 8, 16 pieces. What comes next?"
 
+## Pre-flight v2
+
+Revise from fact-check 2026-10-22 (c2 disputed: "the count was never doubling" is false as written, since 1, 2, 4, 8, 16 do double).
+
+1. Title, hook, options, locked stage, QA path, milestones and Reset: unchanged from v1 (no code path changed; only one reveal sentence).
+2. Reveal paragraph 2 now reads: "Lines come from pairs of points and crossings from groups of four, so the rule was never doubling: it only matched doubling up to 5 points. Five matching cases are evidence, not a proof." The statement is about the rule, not the counts, and agrees with paragraph 1 ("Doubling held up to 5 points").
+3. meta.json c2 text carries the same wording ("the rule was never doubling: it only matched doubling up to 5 points"). Values unchanged: 1 + 15 + 15 = 31 from the kept 6-point counts.
+4. Claims: c2 changed; c1, c3, c4 were verified in this order, so all four are back to `unverified` with no checkedBy/checkedOn (fact-checker notes removed with them). meta.version 1 → 2.
+5. Phone fit: reveal grows from 69 to about 75 words (≤ 90). Not re-measured by me with reveal-fit; code's qa stage runs it on v2.
+
 ## Pre-flight v1
 
 1. Title and hook: "How many pieces with six points?" / "Points on a circle, every pair joined: 1, 2, 4, 8, 16 pieces. What comes next?" Neither gives 31; the hook states only the brief's given cases.
