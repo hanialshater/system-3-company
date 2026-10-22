@@ -774,6 +774,7 @@ export const loaders: Record<string, () => Promise<{ default: ComponentType<{ sl
   "one-cell-rule-30": () => import("./cs/one-cell-rule-30/Demo"),
   "one-crowded-bucket": () => import("./cs/one-crowded-bucket/Demo"),
   "one-good-link-beats-many": () => import("./cs/one-good-link-beats-many/Demo"),
+  "one-link-back-grows-the-core": () => import("./cs/one-link-back-grows-the-core/Demo"),
   "one-road-cuts-the-map": () => import("./cs/one-road-cuts-the-map/Demo"),
   "paint-mix-shared-secret": () => import("./cs/paint-mix-shared-secret/Demo"),
   "pairs-cancel-under-xor": () => import("./cs/pairs-cancel-under-xor/Demo"),
