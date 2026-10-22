@@ -22,6 +22,11 @@ export function rng(seed) {
   };
 }
 
+/** M6 prep (plan §M6 "Live run": a demo-builder with lanes math and cs, not a second builder): the lanes a role works
+ *  in. A spec role may give `lanes: [..]` beside (or instead of) `lane`; `lane` stays its home lane (its lane room, the
+ *  lane a manager is POC of). */
+export const lanesOf = (r) => [...new Set([...(r?.lane != null ? [r.lane] : []), ...(Array.isArray(r?.lanes) ? r.lanes : [])])];
+
 export class Log {
   constructor(clock) { this.clock = clock; this.events = []; }
   add(e) { const ev = { seq: this.events.length + 1, t: this.clock.now(), ...e }; this.events.push(ev); return ev; }
@@ -488,7 +493,8 @@ export class Engine {
     const toRole = this.org.role(to);
     if (!toRole?.active) { this.log.add({ type: "refuse", rule: "no-role", msg: `${to} does not exist`, order: id }); throw new Refused(`no-role: ${to}`); }
     this.guard(by === o.manager, "chain", `${by} is not the manager of ${id}`, { order: id });
-    this.guard(toRole.lane === this.org.role(o.manager).lane, "lane", `${to} is not in lane ${this.org.role(o.manager).lane}`, { order: id, by });
+    // M6 prep: a builder of several lanes (spec `lanes`) takes work from the manager of any of them
+    this.guard(lanesOf(toRole).includes(this.org.role(o.manager).lane), "lane", `${to} is not in lane ${this.org.role(o.manager).lane}`, { order: id, by });
     this.guard(budget <= this.limits.manager, "limit", `${budget} over the manager limit ${this.limits.manager}`, { order: id, by });
     o.builder = to;
     o.chain.push(to);
@@ -796,16 +802,39 @@ export class Rooms {
    *  or waiting for their role's next item (an open session whose agent stopped without `room next` holds nothing). */
   laneLoad(lane) {
     const now = this.clock.now();
-    const busy = new Set([...this.runs.values()].filter((x) => x.state === "running").map((x) => x.session));
-    return [...this.sessions.values()].filter((s) => s.open && this.org.role(s.role)?.lane === lane && (busy.has(s.id) || (s.waitUntil != null && s.waitUntil > now - 0.5))).length;
+    // M6 prep: a session of a role in several lanes counts in the lane of the order it works (its manager's), and,
+    // while it waits for its next item, in each of its lanes (it may take either's)
+    const busy = new Map([...this.runs.values()].filter((x) => x.state === "running").map((x) => [x.session, this.org.role(this.engine.orders.get(x.order)?.manager)?.lane]));
+    const counts = (s) => { const ls = lanesOf(this.org.role(s.role)); return ls.length > 1 && busy.has(s.id) && ls.includes(busy.get(s.id)) ? busy.get(s.id) === lane : ls.includes(lane); };
+    return [...this.sessions.values()].filter((s) => s.open && counts(s) && (busy.has(s.id) || (s.waitUntil != null && s.waitUntil > now - 0.5))).length;
   }
   /** M5: a new agent session for `role` is refused when its lane's policy caps sessions at once (knob maxSessions) and
-   *  the lane is full; the planner plans none (supervisor plan), this is the backstop at `room enter`. */
-  checkLaneCap(role) {
-    const lane = this.org.role(role)?.lane, cap = this.engine.laneKnobs(lane).maxSessions;
-    if (cap == null) return;
-    const n = this.laneLoad(lane);
-    this.guard(n < cap, "lane-cap", `lane ${lane} has ${n} session${n === 1 ? "" : "s"} at work, its policy's cap (maxSessions ${cap}): ${role} starts none until one ends`, { by: role, lane, cap, load: n });
+   *  the lane is full; the planner plans none (supervisor plan), this is the backstop at `room enter`. M6 prep: `lane`
+   *  is the lane of the order it enters (a role of several lanes is judged in that one; unset: in each of its lanes). */
+  checkLaneCap(role, lane = null) {
+    const ls = lanesOf(this.org.role(role));
+    for (const l of lane != null && ls.includes(lane) ? [lane] : ls) {
+      const cap = this.engine.laneKnobs(l).maxSessions;
+      if (cap == null) continue;
+      const n = this.laneLoad(l);
+      this.guard(n < cap, "lane-cap", `lane ${l} has ${n} session${n === 1 ? "" : "s"} at work, its policy's cap (maxSessions ${cap}): ${role} starts none until one ends`, { by: role, lane: l, cap, load: n });
+    }
+  }
+  /** M6 prep: whether message `msg` is reserved for another session of its role: named by a launch of a role that
+   *  runs several sessions at once (spec `sessions`), not yet finished, and either entered by a session of that launch
+   *  or made within `graceMin`; never by the asking session's own launch. A session's `room next` then leaves it to the
+   *  session launched for it (two sessions of one role would otherwise both take it, one a wasted start). */
+  reservedElsewhere(msg, session, graceMin = 5) {
+    const s = this.sessions.get(session), own = s?.launch ?? null, now = this.clock.now();
+    if (!((this.org.role(s?.role)?.sessions ?? 1) > 1)) return false;
+    const ev = this.log.events;
+    for (const e of ev) {
+      if (e.type !== "launch" || e.role !== s.role || !e.msgs?.includes(msg)) continue;
+      const id = `${String(e.seq).padStart(4, "0")}-${e.role}`;
+      if (id === own || ev.some((f) => f.type === "launch-finished" && f.launch === id)) continue;
+      if (now - e.t < graceMin || [...this.sessions.values()].some((x) => x.launch === id && x.open)) return true;
+    }
+    return false;
   }
 
   /** room next: leave this run as usual, then take the next eligible item in the same session, up to `cap` items. */

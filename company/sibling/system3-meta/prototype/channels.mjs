@@ -8,7 +8,7 @@
 //   status           who has read and acked a post, and who has not: "everyone was told" becomes checkable.
 // Who may post: company → founder or chief of staff; lane:<l> → that lane's manager or the chief of staff;
 // role:<level> → the chief of staff; topic → its members.
-import { Refused } from "./lib.mjs";
+import { Refused, lanesOf } from "./lib.mjs";
 
 const refuse = (m) => { throw new Refused(`HARD: ${m}`); };
 const store = (co) => (co.data.channels ??= { channels: new Map(), posts: new Map(), n: 0 });
@@ -33,7 +33,7 @@ export function membersOf(co, id) {
   if (!c) refuse(`no channel ${id}`);
   const act = co.org.active().filter((r) => !r.human || r.level === "founder");
   if (c.kind === "company") return act.map((r) => r.id);
-  if (c.kind === "lane") { const lane = id.slice(5); return act.filter((r) => r.lane === lane).map((r) => r.id); }
+  if (c.kind === "lane") { const lane = id.slice(5); return act.filter((r) => lanesOf(r).includes(lane)).map((r) => r.id); } // M6 prep: a builder of several lanes
   if (c.kind === "role") { const lvl = id.slice(5); return act.filter((r) => r.level === lvl).map((r) => r.id); }
   return c.members.filter((m) => co.org.role(m)?.active);
 }

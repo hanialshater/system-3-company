@@ -72,3 +72,125 @@ test("M6 prep 2 (the hole the M5 review left): supervisor.mjs launched and usage
     assert.match(G.bashDenial(c, 0, { role: "toy-builder-1" }) ?? "", /supervisor\.mjs .*\(the orchestrator's report\)/, c);
   for (const c of ["node supervisor.mjs tick", "node supervisor.mjs jobs", "node supervisor.mjs retry --order=O-1"]) assert.equal(G.bashDenial(c, 0, { role: "toy-builder-1" }), null, c);
 });
+
+// a toy company with a second lane: mgr-c manages lane c, and toy-builder-1 works in lanes s and c, three sessions at once
+const { builtinSpec, validateSpec } = await import("../generator.mjs");
+function twoLanes({ policy = null, b1 = {} } = {}) {
+  const s = builtinSpec("toy");
+  s.rooms.push({ id: "cs-studio", floor: 2, kind: "lane", lane: "c" });
+  s.roles.push({ id: "mgr-c", level: "manager", reportsTo: "cos", lane: "c", room: "cs-studio", floor: 2, skills: ["manage"] });
+  Object.assign(s.roles.find((r) => r.id === "toy-builder-1"), { lanes: ["s", "c"], sessions: 3, drainCap: 2, ...b1 });
+  if (policy) s.policy = policy;
+  return s;
+}
+const placed = (dir, task, { to = "mgr-live", builder = "toy-builder-1" } = {}) => {
+  const id = ok(meta(dir, "order", "new", `--to=${to}`, `--title=${task}`, `--task=${task}`, "--accept=x")).order;
+  ok(meta(dir, "order", "delegate", id, `--by=${to}`, `--to=${builder}`));
+  return id;
+};
+const builderPlan = (t, role = "toy-builder-1") => t.plan.filter((x) => x.role === role);
+
+test("M6 prep 4: a role in several lanes (spec `lanes`, keeping `lane`): delegate takes it from either lane's manager; validateSpec checks lanes, sessions, drainCap and policy", () => {
+  assert.deepEqual(validateSpec(twoLanes()), []);
+  const bad = (f) => { const s = twoLanes(); f(s); return validateSpec(s).join("; "); };
+  assert.match(bad((s) => { s.roles.find((r) => r.id === "toy-builder-1").lanes = ["s", "x"]; }), /lane x has a lane room/);
+  assert.match(bad((s) => { s.roles.find((r) => r.id === "mgr-c").lanes = ["c", "s"]; }), /only a builder works in several lanes/);
+  assert.match(bad((s) => { s.roles.find((r) => r.id === "toy-builder-1").lanes = []; }), /lanes is a list of distinct lane names/);
+  assert.match(bad((s) => { s.roles.find((r) => r.id === "toy-builder-1").sessions = 0; }), /sessions is a whole number 1-10/);
+  assert.match(bad((s) => { s.roles.find((r) => r.id === "toy-checker").drainCap = 11; }), /drainCap is a whole number 1-10/);
+  assert.match(bad((s) => { s.policy = { levelCaps: { boss: 1 } }; }), /policy.levelCaps: boss is a level/);
+  assert.match(bad((s) => { s.policy = { lanes: { z: { knobs: {}, reason: "r", prediction: "p" } } }; }), /policy.lanes.z: the lane has a manager/);
+  assert.match(bad((s) => { s.policy = { lanes: { s: { knobs: { maxSessions: 0 }, reason: "r", prediction: "p" } } }; }), /policy.lanes.s: maxSessions must be an integer 1-10/);
+  assert.match(bad((s) => { s.policy = { host: { minFreeGB: -1 } }; }), /minFreeGB is a number from 0/);
+  assert.match(bad((s) => { s.policy = { cap: 1 }; }), /policy has unknown key cap/);
+
+  const dir = init(twoLanes({ policy: { lanes: { s: { knobs: { maxSessions: 3 }, reason: "three builders at once", prediction: "lead time holds" }, c: { knobs: { maxSessions: 2 }, reason: "r", prediction: "p" } } } }));
+  // the spec's lane policies are each lane's first version, active, by its manager
+  const pol = ok(meta(dir, "policy", "show", "--lane=s"));
+  assert.deepEqual([pol.active, pol.versions[0].by, pol.versions[0].knobs], [1, "mgr-live", { maxSessions: 3 }]);
+  assert.equal(ok(meta(dir, "policy", "show", "--lane=c")).versions[0].by, "mgr-c");
+  const c1 = placed(dir, "C1", { to: "mgr-c" });
+  assert.equal(orderOf(dir, c1).builder, "toy-builder-1", "the cs manager delegates to the builder of lanes s and c");
+  placed(dir, "S1");
+  const refused = meta(dir, "order", "delegate", ok(meta(dir, "order", "new", "--to=mgr-c", "--title=C2", "--task=C2", "--accept=x")).order, "--by=mgr-c", "--to=toy-builder-2");
+  assert.equal(refused.code, 1); assert.match(refused.err, /toy-builder-2 is not in lane c/);
+  // the lane channel and the delegate brief know the builder in both lanes
+  const t = ok(sup(dir, "tick"));
+  const d = t.plan.find((x) => x.role === "mgr-c");
+  assert.ok(d?.tasks?.some((x) => x.kind === "delegate"), "C2 waits for mgr-c to delegate");
+});
+
+test("M6 prep 4+5: a role with sessions:3 gets a session per item while it has free sessions, a lane counts a two-lane session in its order's lane, and K17's levelCaps caps the builder level", () => {
+  const dir = init(twoLanes({ policy: { levelCaps: { builder: 2 }, lanes: { c: { knobs: { maxSessions: 1 }, reason: "one cs session", prediction: "p" } } } }));
+  const s1 = placed(dir, "S1"), s2 = placed(dir, "S2"), c1 = placed(dir, "C1", { to: "mgr-c" });
+  placed(dir, "S3", { builder: "toy-builder-2" });
+  let t = ok(sup(dir, "tick"));
+  const b1 = builderPlan(t);
+  assert.equal(b1.length, 2, "levelCaps builder 2: two sessions, not three");
+  assert.ok(b1.every((p) => p.msgs.length === 1 && p.cap === 2), "one item each, drainCap 2 (room for its revise)");
+  assert.equal(builderPlan(t, "toy-builder-2").length, 0, "the level is full: toy-builder-2 waits");
+  // the planner's reservations: a launch holds its items (launched), its sessions count, the next plan adds none
+  for (const p of b1) ok(sup(dir, "launched", "--role=toy-builder-1", `--msgs=${p.msgs.join(",")}`));
+  t = ok(sup(dir, "tick"));
+  assert.equal(t.plan.filter((x) => x.role.startsWith("toy-builder")).length, 0, "two builder launches live: the level is full");
+
+  // without the level cap: three sessions, one item each; the third order is in lane c (cap 1), counted there
+  const dir2 = init(twoLanes({ policy: { lanes: { c: { knobs: { maxSessions: 1 }, reason: "one cs session", prediction: "p" } } } }));
+  const a = placed(dir2, "S1"), b = placed(dir2, "S2"), c = placed(dir2, "C1", { to: "mgr-c" });
+  t = ok(sup(dir2, "tick"));
+  const p2 = builderPlan(t);
+  assert.equal(p2.length, 3);
+  const ordersOf = (p) => p.msgs.map((m) => ok(meta(dir2, "queue", "toy-builder-1")).find((q) => q.msg === m)?.order);
+  assert.deepEqual(p2.map(ordersOf), [[a], [b], [c]], "three lessons, three sessions");
+  // a session entered under its launch id; another launch's items are not taken by its room next
+  const L = (p) => { const e = ok(sup(dir2, "launched", "--role=toy-builder-1", `--msgs=${p.msgs.join(",")}`)); return `${String(e.seq).padStart(4, "0")}-toy-builder-1`; };
+  const [l0, l1, l2] = p2.map(L);
+  assert.equal(builderPlan(ok(sup(dir2, "tick"))).length, 0, "three launches live: the role's sessions are full");
+  const agent = (lid) => ({ META_LAUNCH: lid });
+  const M = path.join(HERE, "..", "meta.mjs");
+  const run0 = ok(exec(dir2, M, ["room", "enter", `--msg=${p2[0].msgs[0]}`, "--role=toy-builder-1"], agent(l0))).run;
+  const nx = ok(exec(dir2, M, ["room", "next", `--run=${run0}`, "--cap=2", "--evidence=e"], agent(l0)));
+  assert.ok(nx.session_closed, `the other launches' items are left to them: ${JSON.stringify(nx)}`);
+  assert.equal(ok(exec(dir2, M, ["room", "enter", `--msg=${p2[1].msgs[0]}`, "--role=toy-builder-1"], agent(l1))).order, b, "its own launch enters it");
+  // the two-lane session at work on C1 is counted in lane c (maxSessions 1), not in lane s
+  assert.equal(ok(exec(dir2, M, ["room", "enter", `--msg=${p2[2].msgs[0]}`, "--role=toy-builder-1"], agent(l2))).order, c);
+  const c2 = placed(dir2, "C2", { to: "mgr-c" });
+  const refusedC = exec(dir2, M, ["room", "enter", `--msg=${ok(meta(dir2, "queue", "toy-builder-1")).find((q) => q.order === c2).msg}`, "--role=toy-builder-1"]);
+  assert.equal(refusedC.code, 1); assert.match(refusedC.err, /lane c has 1 session at work/);
+  // single-session roles plan as before: toy-builder-2's one session takes both its items
+  const dir3 = init("toy");
+  placed(dir3, "T1", { builder: "toy-builder-2" }); placed(dir3, "T2", { builder: "toy-builder-2" });
+  const p3 = builderPlan(ok(sup(dir3, "tick")), "toy-builder-2");
+  assert.deepEqual(p3.map((p) => p.msgs.length), [2]);
+});
+
+test("M6 prep 5 (K17): the host guard: no session while the load passes maxLoadPerCpu x cpus or free disk is under minFreeGB; one host-hold event per change; injectable", async () => {
+  const dir = init(twoLanes({ policy: { host: { maxLoadPerCpu: 2, minFreeGB: 10 } } }));
+  placed(dir, "S1");
+  const tickWith = (probe) => exec(dir, path.join(HERE, "..", "supervisor.mjs"), ["tick"], { META_HOST_PROBE: JSON.stringify(probe) });
+  let t = ok(tickWith({ load: 9, cpus: 4, freeGB: 50 }));
+  assert.deepEqual(t.plan, [], "load 9 > 2 x 4: no session at all");
+  assert.equal(t.steps.find((x) => x.step === "host")?.result, "hold");
+  t = ok(tickWith({ load: 9.5, cpus: 4, freeGB: 50 }));
+  assert.equal(t.steps.some((x) => x.step === "host"), false, "no new event while it stays held");
+  t = ok(tickWith({ load: 1, cpus: 4, freeGB: 5 }));
+  assert.deepEqual(t.plan, [], "5 GB free < 10: still held (a new reason is no new state)");
+  t = ok(tickWith({ load: 1, cpus: 4, freeGB: 50 }));
+  assert.equal(t.steps.find((x) => x.step === "host")?.result, "clear");
+  assert.ok(builderPlan(t).length >= 1, "cleared: the builder is planned");
+  const ev = events(dir, "host-hold");
+  assert.deepEqual(ev.map((e) => e.held), [true, false]);
+  assert.match(ev[0].why, /load 9\.00 > 2 × 4 cpus/);
+  t = ok(tickWith({ load: 0.5, cpus: 4, freeGB: 2 }));
+  assert.match(events(dir, "host-hold").at(-1).why, /2\.0 GB free on .* < 10 GB/);
+  // in-process, with a probe function; a probe that throws holds (fail closed); no policy.host, never held
+  const { make } = await import("../state.mjs");
+  const { hostCheck, hostProbe } = await import("../supervisor.mjs");
+  const co = make("m6", twoLanes({ policy: { host: {} } }));
+  assert.equal(hostCheck(co, () => ({ load: 0, cpus: 1, freeGB: 100 })), null, "starts clear: no change, no event");
+  assert.equal(hostCheck(co, () => { throw new Error("no statfs"); }).result, "hold");
+  assert.match(co.data.host.why, /host probe failed: no statfs/);
+  assert.equal(hostCheck(make("toy"), () => ({ load: 99, cpus: 1, freeGB: 0 })), null);
+  const real = hostProbe(co);
+  assert.ok(Number.isFinite(real.load) && real.cpus >= 1 && real.freeGB > 0, JSON.stringify(real));
+});

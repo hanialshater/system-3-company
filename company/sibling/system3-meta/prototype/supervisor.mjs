@@ -22,7 +22,10 @@
 //   budget  K13: an order at or over its charged budget gets one kind:budget ask, and no session until it is approved
 //   plan    which agent sessions to start: `now` items get a fresh session at once; `next` items get a session if the
 //           role has none running; `later` items wait for a batch (--batch-later=N) or their due time; a lane whose policy sets
-//           maxSessions gets no session past it (M5)
+//           maxSessions gets no session past it (M5). M6 prep: a role with spec `sessions: N` gets up to N at once (one
+//           item each while sessions are free); spec policy.levelCaps {<level>: N} caps the sessions of a level's roles (K17)
+//   host    K17: with spec policy.host, no session is planned while the 1-minute load passes maxLoadPerCpu × cpus or the
+//           workspace's free disk falls under minFreeGB (a `host-hold` event per change; META_HOST_PROBE fakes the probe)
 //
 //   node supervisor.mjs launched --role=<role> [--msgs=…]   the orchestrator started a session: plan it as starting
 //   node supervisor.mjs serve [--acceptance=<dir>] [--idle-min=2] [--max-min=120] [--faults=<json>]   the supervisor as a service
@@ -42,6 +45,7 @@
 //        after --max-min with nothing to do.
 // Same state as meta.mjs (META_LIVE_DIR, META_STATE). Exit 0 always unless the state cannot be read.
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import { absCmds, HERE, LIVE, STATE, load, save, withLock, runTests, runTest1, runCmdCheck, rep, CHECK_KEYS, interpolate, sessionRole } from "./state.mjs";
 import { syncOrders } from "./tracker.mjs";
@@ -50,7 +54,7 @@ import { expireContracts } from "./contractor.mjs";
 import * as CH from "./channels.mjs";
 import * as JOBS from "./jobs.mjs";
 import * as WS from "./workspace.mjs";
-import { isIndependent, packHistory, preKey } from "./lib.mjs";
+import { isIndependent, packHistory, preKey, lanesOf } from "./lib.mjs";
 import { raiseBudgetAsk } from "./asks.mjs";
 
 /** K1: a stage signed by code, or any stage with a `run` cmd (plan 2026-10-21 §3: the lesson flow's stages 2, 3, 4, 8 and 9
@@ -133,10 +137,38 @@ export function runPreCheck(co, o, sd) {
   return say("stage-error");
 }
 
+/** K17 (plan §M6, dispatch-check C4): the host as the planner sees it, { load, cpus, freeGB }. META_HOST_PROBE (a JSON
+ *  object with any of those keys) stands in for it in tests; otherwise os.loadavg()[0], os.cpus().length, and the free
+ *  space (fs.statfsSync: bavail × bsize) of the workspace root (its nearest existing ancestor), else the live dir. */
+export function hostProbe(co) {
+  const fake = process.env.META_HOST_PROBE ? JSON.parse(process.env.META_HOST_PROBE) : {};
+  let dir = co.spec?.workspace?.root ?? LIVE;
+  while (!fs.existsSync(dir) && path.dirname(dir) !== dir) dir = path.dirname(dir);
+  const free = () => { const f = fs.statfsSync(dir); return (f.bavail * f.bsize) / 2 ** 30; };
+  return { load: fake.load ?? os.loadavg()[0], cpus: fake.cpus ?? os.cpus().length, freeGB: fake.freeGB ?? free(), dir };
+}
+/** K17: is the host held? spec policy.host {maxLoadPerCpu (2), minFreeGB (10)}: held when the 1-minute load passes
+ *  maxLoadPerCpu × cpus or the workspace's free space falls under minFreeGB; no policy.host, never held. The state is
+ *  kept in co.data.host, and a `host-hold` event (held true or false) is logged once per change: a step, so it is saved. */
+export function hostCheck(co, probe = hostProbe) {
+  const H = co.spec?.policy?.host;
+  if (!H) return null;
+  const maxLoad = H.maxLoadPerCpu ?? 2, minFree = H.minFreeGB ?? 10;
+  let p;
+  try { p = probe(co); } catch (e) { p = { error: String(e?.message ?? e) }; }
+  const why = p.error ? `host probe failed: ${p.error}` : [p.load > maxLoad * p.cpus && `load ${p.load.toFixed(2)} > ${maxLoad} × ${p.cpus} cpus`, p.freeGB < minFree && `${p.freeGB.toFixed(1)} GB free on ${p.dir ?? "the workspace"} < ${minFree} GB`].filter(Boolean).join("; ");
+  const held = !!why, was = co.data.host?.held ?? false;
+  co.data.host = { held, why: why || null, load: p.load ?? null, cpus: p.cpus ?? null, freeGB: p.freeGB ?? null };
+  if (held === was) return null;
+  co.log.add({ type: "host-hold", held, why: why || "clear", load: p.load ?? null, cpus: p.cpus ?? null, freeGB: p.freeGB ?? null });
+  return { step: "host", result: held ? "hold" : "clear", output: why || `load ${p.load?.toFixed?.(2)} of ${maxLoad} × ${p.cpus} cpus, ${p.freeGB?.toFixed?.(1)} GB free` };
+}
+
 /** One pass over every order; repeated until nothing changes (an accepted UAT makes a ship step possible). */
-export function tick(co, { acceptance = null, faults = null } = {}) {
+export function tick(co, { acceptance = null, faults = null, probe = hostProbe } = {}) {
   const { engine, rooms, mailbox, log } = co;
   const steps = [];
+  { const h = hostCheck(co, probe); if (h) steps.push(h); } // K17: the planner starts no session while the host is held
   for (const m of mailbox.promote()) steps.push({ step: "promote", msg: m.id, order: m.ref });
   for (const x of rooms.recover()) steps.push({ step: "recover", run: x.run, role: x.role, order: x.order });
   steps.push(...JOBS.collect(co, { apply: applyCmdResult })); // K2: only what has ended; a running job is left alone
@@ -262,6 +294,9 @@ export const LAUNCH_GRACE_MIN = 5;
 export const WATCHDOG_MIN = Number(process.env.META_WATCHDOG_MIN ?? 2);
 export function plan(co, { batchLater: batchDefault = 3, cap: capDefault = 4 } = {}) {
   const { org, rooms, mailbox, log } = co;
+  // K17 (plan §M6): the host guard (tick decides it, hostCheck, and records each change): no new agent session at all
+  // while the host is held (load or disk), as dispatch-check C4 refuses rather than queues
+  if (co.data?.host?.held) return [];
   const running = new Set([...rooms.runs.values()].filter((x) => x.state === "running").map((x) => x.role));
   // A session the orchestrator has started but that has not entered a room yet is starting, not missing (live run 3:
   // the first watch fired 3 s after the launch and asked for the same session again). Past the grace period with no
@@ -275,19 +310,35 @@ export function plan(co, { batchLater: batchDefault = 3, cap: capDefault = 4 } =
   // newer one's reservation and the same ask was planned twice. A finish without that id falls back to role and time.
   const lid = (l) => `${String(l.seq).padStart(4, "0")}-${l.role}`;
   const ended = (l) => log.events.some((e) => e.type === "launch-finished" && (e.launch ? e.launch === lid(l) : e.role === l.role && e.t >= l.t));
+  // M6 prep: a role may run several sessions at once (spec `sessions`, the demo-builder's 3); its launches are told
+  // apart by the launch id their sessions carry (meta.mjs room enter: META_LAUNCH), not by "an enter since"
+  const many = (role) => (org.role(role)?.sessions ?? 1) > 1;
+  const entered = (l) => (many(l.role) ? [...rooms.sessions.values()].some((s) => s.launch === lid(l)) : log.events.some((e) => e.type === "enter" && e.role === l.role && e.t >= l.t));
   // M5: sessions at work per lane (open with a run or waiting, plus launches not yet entered), for maxSessions
   const load = new Map();
-  const laneOf = (role) => org.role(role)?.lane ?? null;
-  const bump = (role) => { const l = laneOf(role); if (l != null) load.set(l, (load.get(l) ?? 0) + 1); };
-  for (const l of new Set(org.active().map((r) => r.lane).filter((x) => x != null))) load.set(l, rooms.laneLoad(l));
+  // M6 prep: a role of several lanes is counted in the lane of the order it is planned for (its first item's)
+  const laneOf = (role, m = null) => { const r = org.role(role), ls = lanesOf(r), ol = m ? org.role(co.engine.orders.get(m.ref)?.manager)?.lane : null; return ls.length > 1 && ls.includes(ol) ? ol : r?.lane ?? null; };
+  // K17 (plan §M6): sessions at work per level (spec policy.levelCaps: never more than N sessions of that level's roles)
+  const levelCaps = co.spec?.policy?.levelCaps ?? {}, levels = new Map();
+  const bump = (role, m = null) => { const l = laneOf(role, m); if (l != null) load.set(l, (load.get(l) ?? 0) + 1); const v = org.role(role)?.level; levels.set(v, (levels.get(v) ?? 0) + 1); };
+  for (const l of new Set(org.active().flatMap((r) => lanesOf(r)))) load.set(l, rooms.laneLoad(l));
+  const busy = new Set([...rooms.runs.values()].filter((x) => x.state === "running").map((x) => x.session));
+  const live = (s) => s.open && (busy.has(s.id) || (s.waitUntil != null && s.waitUntil > now - 0.5));
+  const liveOf = new Map(); // role → sessions at work, plus its launches not yet entered
+  for (const s of rooms.sessions.values()) if (live(s)) { liveOf.set(s.role, (liveOf.get(s.role) ?? 0) + 1); const v = org.role(s.role)?.level; levels.set(v, (levels.get(v) ?? 0) + 1); }
+  const pending = []; // launches of room work not yet entered
   for (const l of log.events.filter((e) => e.type === "launch" && now - e.t < LAUNCH_GRACE_MIN && !(e.tasks?.length && !e.msgs?.length))) {
-    if (!log.events.some((e) => e.type === "enter" && e.role === l.role && e.t >= l.t) && !ended(l)) { running.add(l.role); bump(l.role); }
+    if (!entered(l) && !ended(l)) { running.add(l.role); bump(l.role, mailbox.msgs.get(l.msgs?.[0])); liveOf.set(l.role, (liveOf.get(l.role) ?? 0) + 1); pending.push(l); }
   }
-  const laneFull = (role) => { const l = laneOf(role), cap = co.engine.laneKnobs(l).maxSessions; return cap != null && (load.get(l) ?? 0) >= cap; };
+  const laneFull = (role, m = null) => { const l = laneOf(role, m), cap = co.engine.laneKnobs(l).maxSessions; return cap != null && (load.get(l) ?? 0) >= cap; };
+  const levelFull = (role) => { const v = org.role(role)?.level, cap = levelCaps[v]; return cap != null && (levels.get(v) ?? 0) >= cap; };
   // a session waiting for its role's next item will take it (room next --wait)
   // until it closes, and for 30 s past its deadline: its last poll can still take an item (benchmark 5: an item that
   // arrived 1 s after a wait ended was taken by the waiting session and by a fresh launch)
-  for (const s of rooms.sessions.values()) if (s.open && s.waitUntil != null && s.waitUntil > now - 0.5) running.add(s.role);
+  const waiting = new Map();
+  for (const s of rooms.sessions.values()) if (s.open && s.waitUntil != null && s.waitUntil > now - 0.5 && !busy.has(s.id)) { running.add(s.role); waiting.set(s.role, (waiting.get(s.role) ?? 0) + 1); }
+  // M6 prep: items a role's live launch was planned for are that launch's (rooms.reservedElsewhere keeps them for it)
+  const reserved = new Set(log.events.filter((e) => e.type === "launch" && many(e.role) && !ended(e) && (now - e.t < LAUNCH_GRACE_MIN || [...rooms.sessions.values()].some((s) => s.open && s.launch === lid(e)))).flatMap((e) => e.msgs ?? []));
   const out = [];
   const consider = (role, queued) => {
     // K5: an order held on its workspace launches no one: `room enter` would refuse its item (K5 review)
@@ -295,25 +346,41 @@ export function plan(co, { batchLater: batchDefault = 3, cap: capDefault = 4 } =
     // M5: nor one whose stage's pre-check has not run (the next tick runs it first)
     const msgs = queued.filter((m) => co.engine.orders.get(m.ref)?.stageError?.kind !== "workspace" && !co.engine.overBudget(co.engine.orders.get(m.ref)) && !co.engine.preDue(co.engine.orders.get(m.ref)));
     if (!msgs.length) return;
-    // the lane's policy, when it sets them, overrides the command-line defaults
-    const k = co.engine.policies.get(org.role(role)?.lane)?.active ? co.engine.policies.get(org.role(role).lane).versions[co.engine.policies.get(org.role(role).lane).active - 1].knobs : {};
-    const batchLater = k.batchLater ?? batchDefault, cap = k.drainCap ?? capDefault;
+    // the lane's policy, when it sets them, overrides the role's own (spec drainCap: the reviewers' batches) and the
+    // command-line defaults
+    const r = org.role(role);
+    const k = co.engine.policies.get(r?.lane)?.active ? co.engine.policies.get(r.lane).versions[co.engine.policies.get(r.lane).active - 1].knobs : {};
+    const batchLater = k.batchLater ?? batchDefault, cap = k.drainCap ?? r?.drainCap ?? capDefault;
     const now = msgs.filter((m) => m.priority === "now");
-    // M5: a lane at its policy's session cap (maxSessions) gets no new session, `now` items included
-    for (const m of now) { if (laneFull(role)) return; out.push({ role, why: "now: a fresh session at once", msgs: [m.id], cap: 1 }); bump(role); }
-    if (running.has(role)) return; // its running session drains next and later items itself
+    // M5: a lane at its policy's session cap (maxSessions) gets no new session, `now` items included; K17: nor a level at its cap
+    for (const m of now) { if (laneFull(role, m) || levelFull(role)) return; out.push({ role, why: "now: a fresh session at once", msgs: [m.id], cap: 1 }); bump(role, m); }
+    if (!many(role) && running.has(role)) return; // its running session drains next and later items itself
     const next = msgs.filter((m) => m.priority === "next");
     const later = msgs.filter((m) => m.priority === "later");
     const dueLater = later.filter((m) => m.due != null && m.due <= co.engine.clock.now());
-    if (next.length || later.length >= batchLater || dueLater.length) {
-      // benchmark 1: a cap of 4 left 1 of 5 pages to a whole new reader session (63k for one page). When the remainder
-      // is small, the session takes it all: half a cap more costs less than a fresh session's start-up.
-      const all = [...next, ...later];
-      const take = all.length - cap <= Math.ceil(cap / 2) ? all : all.slice(0, cap);
+    if (!(next.length || later.length >= batchLater || dueLater.length)) return;
+    // benchmark 1: a cap of 4 left 1 of 5 pages to a whole new reader session (63k for one page). When the remainder
+    // is small, the session takes it all: half a cap more costs less than a fresh session's start-up.
+    const chunk = (all) => (all.length - cap <= Math.ceil(cap / 2) ? all : all.slice(0, cap));
+    const why = next.length ? `next: ${next.length} waiting, no session running` : `later: a batch of ${later.length}`;
+    if (!many(role)) {
+      const take = chunk([...next, ...later]);
       // the cap leaves room for items that arrive while the session waits (room next --wait)
-      if (laneFull(role)) return;
-      out.push({ role, why: next.length ? `next: ${next.length} waiting, no session running` : `later: a batch of ${later.length}`, msgs: take.map((m) => m.id), cap: Math.max(take.length, cap) });
-      bump(role);
+      if (laneFull(role, msgs[0]) || levelFull(role)) return;
+      out.push({ role, why, msgs: take.map((m) => m.id), cap: Math.max(take.length, cap) });
+      bump(role, msgs[0]);
+      return;
+    }
+    // M6 prep: a role of several sessions (spec `sessions`) gets a session per batch, up to that many at once: the items
+    // its live launches hold are theirs, and each session waiting for its next item will take one
+    let rest = [...next, ...later].filter((m) => !reserved.has(m.id)).slice(waiting.get(role) ?? 0);
+    for (let free = r.sessions - (liveOf.get(role) ?? 0); free > 0 && rest.length; free--) {
+      if (laneFull(role, rest[0]) || levelFull(role)) return;
+      // one item a session while other sessions are free (three lessons, three builders), a batch otherwise
+      const take = rest.length <= free ? [rest[0]] : chunk(rest.slice(0, Math.max(1, Math.ceil(rest.length / free))));
+      out.push({ role, why: `${why} (session ${(liveOf.get(role) ?? 0) + 1} of ${r.sessions})`, msgs: take.map((m) => m.id), cap: Math.max(take.length, cap) });
+      bump(role, rest[0]); liveOf.set(role, (liveOf.get(role) ?? 0) + 1);
+      rest = rest.slice(take.length);
     }
   };
   // K3/K4: a role signer's items go to role:<id>, and are planned for that role whatever its level (stage 7's
@@ -338,7 +405,7 @@ export function plan(co, { batchLater: batchDefault = 3, cap: capDefault = 4 } =
     // a launch reserves non-room work until the work is done or NON_ROOM_GRACE_MIN passes (no room enter to watch for)
     if (log.events.some((e) => e.type === "launch" && e.role === j.role && now - e.t < NON_ROOM_GRACE_MIN && !ended(e) && (e.tasks ?? []).some((t) => j.tasks.some((u) => u.kind === t.kind && u.ref === t.ref)))) continue;
     const same = out.find((p) => p.role === j.role);
-    if (same) same.tasks = [...(same.tasks ?? []), ...j.tasks]; else out.push(j);
+    if (same) same.tasks = [...(same.tasks ?? []), ...j.tasks]; else if (!levelFull(j.role)) { out.push(j); bump(j.role); } // K17
   }
   return out;
 }
@@ -392,7 +459,7 @@ export function briefFor(co, item, { context = null } = {}) {
   if (asks.length) L.push(`Asks waiting for your decision: ${asks.join(", ")}. Read each (\`node meta.mjs item show --id=<ISS>\`), check the claim against the work (live/<dir>/work/), and decide. If a shipped order must change, reopen it with what is wrong and what is required: \`node meta.mjs order reopen <O> --by=${item.role} --findings='…'\`. An ask about a parked order (K9: it hit its loop cap) is answered by deciding it: \`node meta.mjs order resume <O> --by=${item.role} --reason='…'\` (with what must change) or \`node meta.mjs order cancel <O> --by=${item.role} --reason='…'\`. A budget ask (K13: an order spent its budget) is answered yes to raise the budget by its amount, or no to keep it stopped. Otherwise answer: \`node meta.mjs ask answer --by=${item.role} --id=<ISS> --decision=yes|no|redirect --text='…'\`.`);
   const dlg = (item.tasks ?? []).filter((t) => t.kind === "delegate").map((t) => t.ref);
   if (dlg.length) {
-    const lane = r.lane, builders = co.org.active().filter((x) => x.level === "builder" && x.lane === lane).map((x) => x.id);
+    const lane = r.lane, builders = co.org.active().filter((x) => x.level === "builder" && lanesOf(x).includes(lane)).map((x) => x.id); // M6 prep: a builder of several lanes
     L.push(`Orders waiting for a builder: ${dlg.map((id) => `${id} (${co.engine.orders.get(id).task})`).join(", ")}. Split them across your builders (${builders.join(", ")}) and delegate each: \`node meta.mjs order delegate <O> --by=${item.role} --to=<builder> --budget=150000\`. Dependent orders (\`--after\`) wait by themselves; give one builder a run of related items so its session can drain them.`);
   }
   if ((item.tasks ?? []).length) {

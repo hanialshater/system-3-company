@@ -156,6 +156,13 @@ function main() {
     co.org.genesis(co.spec.roles.map((r) => ({ ...r })));
     const key = co.engine.define(co.spec.flow.name, { stages: co.spec.flow.stages }, { by: "cos" });
     co.engine.approveDef(key, { by: "founder", words: "Approve the task flow for the Meta sandbox (founder: Decide for me, 2026-10-21)" });
+    // M6 prep: the spec's lane policies (policy.lanes: the M6 lanes' maxSessions) as each lane's first version, proposed
+    // and activated by its manager, so the lane runs under them from the first order (policy.mjs pins it per order)
+    for (const [lane, v] of Object.entries(co.spec.policy?.lanes ?? {})) {
+      const poc = co.org.lanePOC(lane)?.id;
+      const pv = proposePolicy(co.engine, { lane, by: poc, knobs: v.knobs, reason: `spec ${name}: ${v.reason}`, prediction: v.prediction });
+      activatePolicy(co.engine, { lane, version: pv.version, by: poc });
+    }
     if (def) {
       co.writeFile = (rel, text) => { const f = path.join(LIVE, rel); fs.mkdirSync(path.dirname(f), { recursive: true }); fs.writeFileSync(f, text); };
       for (const c of def.channels ?? []) CH.createChannel(co, { by: "cos", id: c.id, kind: c.kind, members: c.members ?? [], title: c.title ?? "" });
@@ -215,7 +222,7 @@ function main() {
       Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 2000);
       // the pack is made under the lock and saved (K5 review: a worktree made by it, and its event, were lost)
       const w = withLock(() => {
-        const co = load(); const x = co.rooms.resume(r.waiting, { leaseMin: Number(opt.lease ?? 30), filter: (m) => !wsBlocker(co, m) });
+        const co = load(); const x = co.rooms.resume(r.waiting, { leaseMin: Number(opt.lease ?? 30), filter: (m) => !wsBlocker(co, m) && !co.rooms.reservedElsewhere(m.id, r.waiting) });
         if (x.waiting) return { x };
         const p = x.next ? pack(co, x.next.run, x.next.ctx, x.next.session, x.next.item) : null;
         save(co); return { x, p };
@@ -292,7 +299,7 @@ function dispatch(co, cmd, sub, arg) {
     if (held) { process.exitCode = 1; return { refused: `order ${mailbox.msgs.get(opt.msg).ref} is held: ${held}`, note: "do not start this item: the supervisor retries it (node supervisor.mjs retry --order=<O>)" }; }
     // M5: a stage's pre-check runs before anyone enters it; a lane at its policy's session cap starts no new session
     { const po = engine.orders.get(mailbox.msgs.get(opt.msg)?.ref); if (po && engine.preDue(po)) engine.guard(false, "pre-check", `${po.id} at ${po.stage}: its pre-check has not run yet (the supervisor runs it before any session; a park asks its orderer)`, { order: po.id, by: opt.role }); }
-    rooms.checkLaneCap(opt.as ?? opt.role);
+    rooms.checkLaneCap(opt.as ?? opt.role, org.role(engine.orders.get(mailbox.msgs.get(opt.msg)?.ref)?.manager)?.lane ?? null);
     // K13: no new session on an order at or over its charged budget (the planner plans none; this is the backstop)
     { const bo = engine.orders.get(mailbox.msgs.get(opt.msg)?.ref); if (bo && engine.overBudget(bo)) engine.guard(false, "budget", `${bo.id} has spent ${bo.spent} of its ${bo.budget}-token budget: no session until its budget ask${bo.budgetHold?.ask ? ` (${bo.budgetHold.ask})` : ""} is approved`, { order: bo.id, by: opt.role }); }
     const { run, ctx, session, item } = rooms.enter({ msg: opt.msg, role: opt.role, as: opt.as ?? null, mode: opt.mode ?? "work", leaseMin: Number(opt.lease ?? 30) });
@@ -303,7 +310,7 @@ function dispatch(co, cmd, sub, arg) {
   }
   if (cmd === "room" && sub === "next") {
     need("run", "evidence");
-    const r = rooms.next(opt.run, { verdict: opt.verdict ?? "pass", evidence: opt.evidence, findings: opt.findings ?? null, learned: opt.learned ?? null, mistake: opt.mistake ?? null, post: prePost, to: opt.to ?? null }, { cap: Number(opt.cap ?? 3), leaseMin: Number(opt.lease ?? 30), waitMin: Number(opt.wait ?? 0) / 60, filter: (m) => !wsBlocker(co, m) });
+    const r = rooms.next(opt.run, { verdict: opt.verdict ?? "pass", evidence: opt.evidence, findings: opt.findings ?? null, learned: opt.learned ?? null, mistake: opt.mistake ?? null, post: prePost, to: opt.to ?? null }, { cap: Number(opt.cap ?? 3), leaseMin: Number(opt.lease ?? 30), waitMin: Number(opt.wait ?? 0) / 60, filter: (m) => !wsBlocker(co, m) && !rooms.reservedElsewhere(m.id, rooms.runs.get(opt.run)?.session) });
     const left = r.left ? { order: r.left.id, next_stage: r.left.stage, loops: r.left.loops } : { stale: true };
     if (r.waiting) return { left, waiting: r.waiting.id };
     if (!r.next) return { left, session_closed: r.closed?.id ?? true, reason: r.closed ? (r.closed.items >= Number(opt.cap ?? 3) ? "cap reached" : "queue empty") : "closed", note: "your session is over: stop now" };

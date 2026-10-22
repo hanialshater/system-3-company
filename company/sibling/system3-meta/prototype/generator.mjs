@@ -9,6 +9,7 @@ import { SPECS } from "./specs.mjs";
 import { validateCmd } from "./state.mjs";
 import { validateWorkspace, validateRoleLaunch } from "./workspace.mjs";
 import { signerRole, signerName, isIndependent, packProblem, packHistory, postProblems, standingProblems } from "./lib.mjs";
+import { policyProblems } from "./policy.mjs";
 
 const SIGNERS = ["builder", "code", "checker", "orderer", "release", "founder", "evaluator"]; // K4: evaluator signs as a level, independent by default
 const LEVELS = ["founder", "chief-of-staff", "vp", "manager", "builder", "checker", "release", "evaluator", "contractor"];
@@ -39,6 +40,15 @@ export function validateSpec(s) {
     while (x && x.level !== "founder" && !seen.has(x.id)) { seen.add(x.id); x = roles.get(x.reportsTo); }
     need(x?.level === "founder", `role ${r.id}: its reporting chain reaches the founder`);
     if (["builder", "manager"].includes(r.level) && r.lane) need(s.rooms.some((m) => m.kind === "lane" && m.lane === r.lane), `role ${r.id}: lane ${r.lane} has a lane room`);
+    // M6 prep: `lanes` (a builder of several lanes, plan §M6: demo-builder in math and cs; `lane` stays its home lane),
+    // `sessions` (agent sessions of the role at once, the planner's; default 1) and `drainCap` (items a session takes)
+    if (r.lanes != null) {
+      need(Array.isArray(r.lanes) && r.lanes.length > 0 && r.lanes.every((l) => typeof l === "string" && l) && new Set(r.lanes).size === r.lanes.length, `role ${r.id}: lanes is a list of distinct lane names`);
+      need(r.level === "builder", `role ${r.id}: only a builder works in several lanes (a manager is one lane's POC)`);
+      if (Array.isArray(r.lanes)) for (const l of r.lanes) need(s.rooms.some((m) => m.kind === "lane" && m.lane === l), `role ${r.id}: lane ${l} has a lane room`);
+    }
+    if (r.sessions != null) need(Number.isInteger(r.sessions) && r.sessions >= 1 && r.sessions <= 10, `role ${r.id}: sessions is a whole number 1-10`);
+    if (r.drainCap != null) need(Number.isInteger(r.drainCap) && r.drainCap >= 1 && r.drainCap <= 10, `role ${r.id}: drainCap is a whole number 1-10 (policy.mjs KNOBS.drainCap)`);
     if (r.level === "builder") { const m = roles.get(r.reportsTo); need(m?.level === "manager", `builder ${r.id} reports to a manager (who delegates its work)`); }
     // K10: per-role launch settings (launcher/launch.mjs): tools, sessionMin, maxTurns, settingSources
     { const e = validateRoleLaunch(r); need(!e, `role ${r.id}: ${e}`); }
@@ -106,6 +116,27 @@ export function validateSpec(s) {
   // K9: the loop cap (true: lib.mjs DEFAULT_MAX_LOOPS; a lane policy's maxLoops wins), the same range as the knob
   if (s.maxLoops != null) need(s.maxLoops === true || (Number.isInteger(s.maxLoops) && s.maxLoops >= 1 && s.maxLoops <= 10), "maxLoops is true (3) or a whole number 1-10");
   for (const r of s.rules ?? []) need(!!r.tasks && r.checks && typeof r.checks === "object", "a standing rule is {tasks, checks}");
+  // K17 + M6 prep: `policy` {levelCaps: {<level>: N}, host: {maxLoadPerCpu, minFreeGB}, lanes: {<lane>: {knobs, reason,
+  // prediction}}}: the planner's caps per level, its host guard, and each lane's first policy version (meta.mjs init
+  // proposes and activates it as the lane's manager; the manager changes it later as any policy, policy.mjs)
+  if (s.policy != null) {
+    const P = s.policy;
+    if (typeof P !== "object" || Array.isArray(P)) need(false, "policy is {levelCaps, host, lanes}");
+    else {
+      for (const k of Object.keys(P)) need(["levelCaps", "host", "lanes"].includes(k), `policy has unknown key ${k} (levelCaps, host, lanes)`);
+      for (const [lv, n] of Object.entries(P.levelCaps ?? {})) { need(LEVELS.includes(lv), `policy.levelCaps: ${lv} is a level (${LEVELS.join(", ")})`); need(Number.isInteger(n) && n >= 1 && n <= 20, `policy.levelCaps.${lv} is a whole number 1-20`); }
+      if (P.host != null) {
+        need(typeof P.host === "object" && !Array.isArray(P.host) && Object.keys(P.host).every((k) => ["maxLoadPerCpu", "minFreeGB"].includes(k)), "policy.host is {maxLoadPerCpu, minFreeGB}");
+        if (P.host.maxLoadPerCpu != null) need(typeof P.host.maxLoadPerCpu === "number" && P.host.maxLoadPerCpu > 0, "policy.host.maxLoadPerCpu is a number above 0");
+        if (P.host.minFreeGB != null) need(typeof P.host.minFreeGB === "number" && P.host.minFreeGB >= 0, "policy.host.minFreeGB is a number from 0");
+      }
+      for (const [lane, v] of Object.entries(P.lanes ?? {})) {
+        need(s.roles.some((r) => r.level === "manager" && r.lane === lane), `policy.lanes.${lane}: the lane has a manager (its POC proposes the policy)`);
+        need(!!v && typeof v === "object" && v.knobs && typeof v.knobs === "object" && typeof v.reason === "string" && !!v.reason && typeof v.prediction === "string" && !!v.prediction, `policy.lanes.${lane} is {knobs, reason, prediction}`);
+        if (v?.knobs && typeof v.knobs === "object") for (const e of policyProblems(v.knobs, { flowNowBy: s.flow?.nowBy ?? ["founder", "chief-of-staff"] })) need(false, `policy.lanes.${lane}: ${e}`);
+      }
+    }
+  }
   // K15: approvals.standing, AMD-015's scoped pre-approval as data: {action, role, trigger, record}, nothing else
   if (s.approvals != null) {
     if (typeof s.approvals !== "object" || Array.isArray(s.approvals)) need(false, "approvals is {standing:[…]}");
@@ -119,7 +150,7 @@ export function orgDoc(s, name) {
   const L = [`# ${s.title ?? name}: the organisation (generated from the spec \`${name}\`; do not edit)`, ""];
   if (s.product) L.push(s.product, "");
   L.push("## Roles", "", "| Role | Level | Reports to | Room (floor) | Lane | Skills |", "|---|---|---|---|---|---|");
-  for (const r of s.roles) L.push(`| ${r.id} | ${r.level}${r.human ? " (a person)" : ""} | ${r.reportsTo ?? "-"} | ${r.room} (${r.floor}) | ${r.lane ?? "-"} | ${(r.skills ?? []).join(", ") || "-"} |`);
+  for (const r of s.roles) L.push(`| ${r.id} | ${r.level}${r.human ? " (a person)" : ""} | ${r.reportsTo ?? "-"} | ${r.room} (${r.floor}) | ${[...new Set([r.lane, ...(r.lanes ?? [])].filter(Boolean))].join(", ") || "-"} | ${(r.skills ?? []).join(", ") || "-"} |`);
   L.push("", "## How work flows", "", `Every order goes through the \`${s.flow.name}\` flow; each stage is signed by one kind of role, and nobody checks their own work.`, "");
   for (const x of s.flow.stages) L.push(`1. **${x.stage}**, signed by the ${x.signer === "code" ? "supervisor's code" : signerName(x)}${isIndependent(x) && x.stage !== "check" ? " (independent: never the builder)" : ""}${x.evidence?.length ? ` (evidence: ${x.evidence.join(", ")})` : ""}${x.pack ? ` (pack: ${[!packHistory(x) && "no prior findings or history", x.pack.include?.length && `only ${x.pack.include.join(", ")}`, x.pack.exclude?.length && `never ${x.pack.exclude.join(", ")}`].filter(Boolean).join("; ")})` : ""}`);
   if (s.rules?.length) { L.push("", "## Standing rules (checked by code on every matching order)", ""); for (const r of s.rules) L.push(`- orders whose task starts with \`${r.tasks}\`: ${Object.keys(r.checks).join(", ")}`); }
