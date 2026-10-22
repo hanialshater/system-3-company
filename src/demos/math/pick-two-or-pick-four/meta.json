@@ -26,14 +26,20 @@
       "text": "From 6 friends there are 15 ways to choose 2 and 15 ways to choose 4; there are 20 ways to choose 3, the most of any group size. Recall: from 10 players there are 45 ways to pick 2 and 45 ways to pick 8.",
       "support": "derivation",
       "source": "company/domains/briefs/checks/math-wave-j-check.mjs label D5: C(6,0..6) = 1, 6, 15, 20, 15, 6, 1; C(10,2) = C(10,8) = 45. Stage: subsets(6, k) in Demo.tsx enumerates every group, and the counters and 'groups of 3: 20' are its lengths.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "Recomputed C(6,0..6)=1,6,15,20,15,6,1 and C(10,2)=C(10,8)=45 independently and with the D5 check; 20 is the maximum. Stage counters are subset-enumeration lengths in Demo.tsx.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     },
     {
       "id": "math.pick-two-or-pick-four.c2",
       "text": "Matching each chosen group with the group left out is one to one: every pair of the 6 leaves exactly one four behind, and every four is left behind by exactly one pair, so choosing k of n has as many ways as choosing n − k. Each chip on the stage shows a pair (filled dots) and the four it leaves (hollow dots).",
       "support": "derivation",
       "source": "Bijection: the map 'group → its complement' is its own inverse, so it is one to one and onto between k-subsets and (n − k)-subsets; C(n, k) = C(n, n − k). Stage: Demo.tsx checks at load that the 15 complements of the pairs are 15 different fours covering every four.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "Complement map is an involution between k-subsets and (n-k)-subsets, hence a bijection; checked C(n,k)=C(n,n-k) for n<12. Chip rendering in Demo.tsx (filled = pair, hollow = rest) and sheet.png chips match AB..EF order.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     }
   ],
   "confidence": "",
