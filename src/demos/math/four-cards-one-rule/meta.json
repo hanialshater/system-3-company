@@ -27,14 +27,20 @@
       "text": "A rule \"if P then Q\" fails only when P is true and Q is false (it says nothing when P is false).",
       "support": "convention",
       "source": "Truth table of the material conditional: P → Q is false exactly in the row P true, Q false (derivation).",
-      "status": "unverified"
+      "status": "verified",
+      "note": "Truth table of the material conditional recomputed: P→Q is F only in the row P=T, Q=F (TT T, TF F, FT T, FF T). \"Says nothing when P is false\" is the informal reading of the vacuously true rows; not false.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     },
     {
       "id": "math.four-cards-one-rule.c2",
       "text": "With a letter on one side and a number on the other, and possible backs 4 or 7 (letter cards) and A or K (number cards), only E (with 7 behind it) and 7 (with a vowel, A, behind it) could break \"if a card shows a vowel, its back is even\"; K and 4 cannot whatever their backs, and the stage tags each back \"breaks\" or \"fine\" accordingly. Recall: for \"if fragile, then a red sticker\", only the fragile parcel and the green-sticker parcel can break it.",
       "support": "derivation",
       "source": "company/domains/briefs/checks/math-wave-j-check.mjs label D1 (backs that break: E: [7]; K: []; 4: []; 7: [A]). Stage: breaks(front, back) = vowel on the letter side and odd number on the number side, in Demo.tsx. Recall is the same enumeration with P = fragile, Q = red sticker.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "Enumerated over the stage backs (4/7, A/K) and over every digit 0–9 and letter A–Z: E breaks with any odd digit, 7 breaks with any vowel, K and 4 never break. Stage tags in the walkthrough match (E:7 breaks, 7:A breaks, all others fine). Recall: P=fragile, Q=red; only fragile and green-sticker (not red) parcels can break it, assuming one sticker per parcel as the question implies.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     }
   ],
   "confidence": "",
