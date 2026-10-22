@@ -1,0 +1,14 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 150px; max-height: 220px; }
+.key { fill: var(--muted); font-size: 12px; font-weight: 700; }
+.readout { fill: var(--fg); font-size: 18px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.change { fill: var(--domain); font-size: 13px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.newFace { fill: color-mix(in srgb, var(--domain) 55%, transparent); stroke: none; }
+.oldFace { fill: color-mix(in srgb, var(--domain) 25%, transparent); stroke: none; }
+.edge { stroke: var(--fg); stroke-width: 2.2; stroke-linecap: round; }
+.hidden { stroke: var(--muted); stroke-width: 1.3; stroke-dasharray: 4 3; }
+.corner { fill: var(--fg); }
+.cornerHidden { fill: var(--muted); }
+.wrap :global(.row) { justify-content: center; gap: 6px; flex-wrap: wrap; }
+.tap { min-height: 44px; min-width: 44px; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.15; }
+.trace { font-size: 0.75rem; font-weight: 700; opacity: 0.85; font-variant-numeric: tabular-nums; }

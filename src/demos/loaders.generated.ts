@@ -1450,6 +1450,7 @@ export const loaders: Record<string, () => Promise<{ default: ComponentType<{ sl
   "side-of-the-square": () => import("./math/side-of-the-square/Demo"),
   "sieve-crossing-out": () => import("./math/sieve-crossing-out/Demo"),
   "six-students-per-professor": () => import("./math/six-students-per-professor/Demo"),
+  "slice-a-corner-off": () => import("./math/slice-a-corner-off/Demo"),
   "split-the-sum": () => import("./math/split-the-sum/Demo"),
   "square-a-plus-b": () => import("./math/square-a-plus-b/Demo"),
   "stack-of-cubes": () => import("./math/stack-of-cubes/Demo"),
