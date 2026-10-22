@@ -397,6 +397,15 @@ export function sweepGateNotices(co) {
   return steps;
 }
 
+/** A step as one word, for serve's stream and the supervisor-tick event: `<step>:<what it is about>[:<result>]`, where
+ *  what it is about is its order, message, run, contract or goal, else its own id (an export's, a scheduler's). M7 dry
+ *  run: the host and export steps have no order, and serve printed `host:undefined:clear` and `export:undefined:pass`
+ *  (three exports, three identical words). A step about nothing is `<step>[:<result>]`. */
+export function stepLabel(s, { result = true } = {}) {
+  const about = s.order ?? s.msg ?? s.run ?? s.contract ?? s.goal ?? s.id ?? null;
+  return [s.step, about, result ? s.result : null].filter((x) => x != null && x !== "").join(":");
+}
+
 /** One pass over every order; repeated until nothing changes (an accepted UAT makes a ship step possible). */
 export function tick(co, { acceptance = null, faults = null, probe = hostProbe } = {}) {
   const { engine, rooms, mailbox, log } = co;
@@ -520,7 +529,7 @@ export function tick(co, { acceptance = null, faults = null, probe = hostProbe }
   }
   for (const id of expireContracts(co)) steps.push({ step: "contract-expired", contract: id });
   if (co.data) { syncOrders(co); for (const g of sweepGoals(co)) steps.push({ step: "goal-auto-red", goal: g }); }
-  if (steps.length) log.add({ type: "supervisor-tick", steps: steps.map((s) => `${s.step}:${s.order ?? s.msg ?? s.run ?? s.contract ?? s.goal}`) });
+  if (steps.length) log.add({ type: "supervisor-tick", steps: steps.map((s) => stepLabel(s, { result: false })) });
   return steps;
 }
 
@@ -904,7 +913,7 @@ async function serve(opts, { idleMin = 2, maxMin = 120 } = {}) {
       // K18: a company with a scheduler is never done (its next ritual falls due later): it serves until --max-min
       return { steps, launches, settled: settled(co) && !(co.spec?.schedulers ?? []).length, wakeInMs: nextTimer(co) };
     });
-    if (r.steps.length) say({ event: "steps", steps: r.steps.map((x) => `${x.step}:${x.order ?? x.msg ?? x.run ?? x.contract ?? x.goal}${x.result ? ":" + x.result : ""}`) });
+    if (r.steps.length) say({ event: "steps", steps: r.steps.map((x) => stepLabel(x)) });
     for (const l of r.launches) say({ event: "launch", role: l.role, why: l.why, cap: l.cap, msgs: l.msgs, brief: l.file, ...(l.gate ? { gate: l.gate.map((x) => ({ id: x.id, pass: x.pass, output: x.output })) } : {}) });
     if (r.steps.length || r.launches.length) quietSince = Date.now();
     if (r.settled && Date.now() - quietSince >= idleMin * 60000) { stop("done"); say({ event: "done", why: "every order is done and no meeting is open" }); return; }
