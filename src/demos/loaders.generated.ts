@@ -1424,6 +1424,7 @@ export const loaders: Record<string, () => Promise<{ default: ComponentType<{ sl
   "minus-one-flips-the-order": () => import("./math/minus-one-flips-the-order/Demo"),
   "minus-times-minus": () => import("./math/minus-times-minus/Demo"),
   "more-digits-not-bigger": () => import("./math/more-digits-not-bigger/Demo"),
+  "new-friend-loosens-the-circle": () => import("./math/new-friend-loosens-the-circle/Demo"),
   "news-comes-from-acquaintances": () => import("./math/news-comes-from-acquaintances/Demo"),
   "nines-without-end": () => import("./math/nines-without-end/Demo"),
   "no-fraction-fits": () => import("./math/no-fraction-fits/Demo"),

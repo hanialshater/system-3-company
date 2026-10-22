@@ -1,0 +1,94 @@
+{
+  "slug": "new-friend-loosens-the-circle",
+  "title": "Does a new friend tighten Ana's circle?",
+  "hook": "3 of the 6 pairs among Ana's friends are friends. New friend Fay joins. Tighter or looser?",
+  "domain": "math",
+  "concept": "clustering-coefficient",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "friend pairs",
+      "counting pairs (math:handshake-counting)"
+    ],
+    "doesNotKnow": [
+      "that clustering is the share of a person's friend pairs who are friends, and that a new friend adds new pairs to the bottom of that share"
+    ]
+  },
+  "misconception": "A new friend who knows some of your friends makes your circle tighter.",
+  "objective": "The learner can say that when Fay, knowing 1 of Ana's 4 friends, joins, Ana's clustering falls from 0.5 to 0.4, because Fay adds 4 new pairs to the bottom of the share and only 1 linked pair to the top, and that she must know 2 of the 4 just to keep 0.5.",
+  "claims": [
+    {
+      "id": "math.new-friend-loosens-the-circle.c1",
+      "text": "Before Fay, Ana's 4 friends make 6 pairs, of which 3 (B–C, C–D, D–E) are friends with each other: Ana's clustering is 3 of 6 = 0.5.",
+      "support": "derivation",
+      "source": "C(4,2) = 6 pairs; linked B–C, C–D, D–E. Node check J2 in company/courses/ncm/briefs.md (before 0.5). Demo.tsx network(null).",
+      "status": "unverified"
+    },
+    {
+      "id": "math.new-friend-loosens-the-circle.c2",
+      "text": "With Fay as a fifth friend, Ana's friends make 10 pairs, 4 of them new (Fay with each old friend); if Fay knows 1, 2 or 3 of the four, Ana's clustering is 4 of 10 = 0.4, 5 of 10 = 0.5 or 6 of 10 = 0.6, so Fay must know at least 2 of the 4 to keep it at 0.5. Recall: a newcomer who knows none of the 4 leaves 3 linked pairs of 10 = 0.3.",
+      "support": "derivation",
+      "source": "C(5,2) = 10; linked pairs 3 + k for a newcomer knowing k of the 4: (3 + k)/10. Node check J2 in company/courses/ncm/briefs.md (fayKnows 0.3, 0.4, 0.5, 0.6 for k = 0 to 3). Demo.tsx network(1|2|3). No chip shows k = 0; it appears only in the recall.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.new-friend-loosens-the-circle.c3",
+      "text": "A person's clustering (clustering coefficient) is the share of pairs of their friends who are friends with each other: linked pairs over all pairs.",
+      "support": "source",
+      "source": "Easley & Kleinberg (2010), Networks, Crowds, and Markets, ch. 3 (section 3.1 unconfirmed): clustering coefficient of a node. Watts & Strogatz (1998), Nature 393: 440–442 (local clustering coefficient). Attribution: fact-checker confirms.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Raj has 4 friends, and 3 of their 6 pairs know each other. A new friend joins who knows none of the 4. What happens to the share of Raj's friend pairs who are friends?",
+    "options": [
+      "It goes up",
+      "It stays the same",
+      "It goes down"
+    ],
+    "answer": 2,
+    "why": "The newcomer adds 4 new pairs and none of them are friends, so the share falls from 3 of 6 to 3 of 10."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "math:clustering-coefficient",
+    "also": [
+      "math:handshake-counting"
+    ],
+    "prerequisites": [
+      "math:handshake-counting"
+    ],
+    "level": "core",
+    "strand": "discrete",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 3,
+        "section_unconfirmed": "3.1"
+      }
+    ],
+    "tags": [
+      "networks",
+      "clustering",
+      "triadic closure"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate"
+  ]
+}
