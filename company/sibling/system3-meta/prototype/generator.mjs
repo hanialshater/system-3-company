@@ -8,7 +8,7 @@ import fs from "node:fs";
 import { SPECS } from "./specs.mjs";
 import { validateCmd } from "./state.mjs";
 import { validateWorkspace, validateRoleLaunch } from "./workspace.mjs";
-import { signerRole, signerName, isIndependent, packProblem, packHistory, postProblems } from "./lib.mjs";
+import { signerRole, signerName, isIndependent, packProblem, packHistory, postProblems, standingProblems } from "./lib.mjs";
 
 const SIGNERS = ["builder", "code", "checker", "orderer", "release", "founder", "evaluator"]; // K4: evaluator signs as a level, independent by default
 const LEVELS = ["founder", "chief-of-staff", "vp", "manager", "builder", "checker", "release", "evaluator", "contractor"];
@@ -98,6 +98,11 @@ export function validateSpec(s) {
   // K9: the loop cap (true: lib.mjs DEFAULT_MAX_LOOPS; a lane policy's maxLoops wins), the same range as the knob
   if (s.maxLoops != null) need(s.maxLoops === true || (Number.isInteger(s.maxLoops) && s.maxLoops >= 1 && s.maxLoops <= 10), "maxLoops is true (3) or a whole number 1-10");
   for (const r of s.rules ?? []) need(!!r.tasks && r.checks && typeof r.checks === "object", "a standing rule is {tasks, checks}");
+  // K15: approvals.standing, AMD-015's scoped pre-approval as data: {action, role, trigger, record}, nothing else
+  if (s.approvals != null) {
+    if (typeof s.approvals !== "object" || Array.isArray(s.approvals)) need(false, "approvals is {standing:[…]}");
+    else { for (const k of Object.keys(s.approvals)) need(k === "standing", `approvals has unknown key ${k} (standing)`); for (const e of standingProblems(s.approvals.standing, { roles })) need(false, e); }
+  }
   return v;
 }
 

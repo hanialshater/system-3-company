@@ -83,6 +83,7 @@ export function make(specName = "toy", specDef = null) {
   // the orderer through the tracker, which the engine does not hold. Opt-in (K8+K9 review): the M4 lesson spec
   // (specs/s3c-lessons.json, not yet written) must set `maxLoops: true`, or a HELD claim loops forever as before
   engine.defaultMaxLoops = spec.maxLoops === true ? DEFAULT_MAX_LOOPS : spec.maxLoops ?? null;
+  engine.standing = spec.approvals?.standing ?? []; // K15: AMD-015's scoped pre-approval as data (a test only)
   engine.onParked.push((o, p) => { if (p.ask) raiseParkAsk(co, o, { reason: p.reason, findings: p.ask.findings }); });
   return co;
 }

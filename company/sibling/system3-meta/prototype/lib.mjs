@@ -324,6 +324,36 @@ export function flowProblems(def) {
   return p;
 }
 
+// K15 (plan 2026-10-21 §M5): AMD-015's scoped pre-approval as data, `approvals.standing:[{action, role, trigger,
+// record}]`. The constitution has one pre-approved exception (CLAUDE.md: on a privacy or child-safety trigger,
+// release-manager may run the flag-off withdrawal without asking first); a standing approval covers exactly that
+// action, by that role, on one of its `|`-separated triggers, and nothing else (another role, another action, another
+// trigger, a plain deploy). Matched beside COVERS, the founder's words for an approval kind; never used by decide, and
+// not exercised in any run: a test only, so Meta does not contradict the constitution.
+export const STANDING_ACTIONS = ["flag-off-withdrawal"];
+const STANDING_KEYS = ["action", "role", "trigger", "record"];
+export function standingProblems(list, { roles = null } = {}) {
+  if (list == null) return [];
+  if (!Array.isArray(list)) return ["approvals.standing is a list of {action, role, trigger, record}"];
+  const p = [];
+  for (const [i, s] of list.entries()) {
+    const at = `approvals.standing[${i}]`;
+    if (!s || typeof s !== "object" || Array.isArray(s)) { p.push(`${at} is {action, role, trigger, record}`); continue; }
+    const extra = Object.keys(s).filter((k) => !STANDING_KEYS.includes(k)), miss = STANDING_KEYS.filter((k) => typeof s[k] !== "string" || !s[k]);
+    if (extra.length) p.push(`${at} has unknown key${extra.length > 1 ? "s" : ""} ${extra.join(", ")} (${STANDING_KEYS.join(", ")})`);
+    if (miss.length) p.push(`${at} needs ${miss.join(", ")} (strings)`);
+    if (typeof s.action === "string" && !STANDING_ACTIONS.includes(s.action)) p.push(`${at}: action ${s.action} is not one the constitution pre-approves (${STANDING_ACTIONS.join(", ")})`);
+    if (typeof s.trigger === "string" && !/^[a-z][a-z0-9-]*(\|[a-z][a-z0-9-]*)*$/.test(s.trigger)) p.push(`${at}: trigger is kebab-case words separated by | (privacy|child-safety)`);
+    if (typeof s.record === "string" && !/^AMD-\d{3}$/.test(s.record)) p.push(`${at}: record is the ratified amendment that grants it (AMD-nnn)`);
+    if (roles && typeof s.role === "string") { const r = roles.get(s.role); if (!r || r.active === false || r.human) p.push(`${at}: role ${s.role} is an active agent role`); }
+  }
+  return p;
+}
+/** The standing approval that covers `action` by `role` on `trigger`, or null. Exact on all three. */
+export function standingCovers(list, { action, role, trigger }) {
+  return (list ?? []).find((s) => s?.action === action && s.role === role && typeof trigger === "string" && String(s.trigger).split("|").includes(trigger)) ?? null;
+}
+
 const COVERS = { release: /\b(approve|go)\b.*\b(deploy|release|ship)\b|\b(deploy|release|ship)\b.*\b(approve|ok|go)\b/i, "org-change": /\b(approve|add|retire|ok|yes)\b/i, budget: /\b(approve|ok|yes)\b/i };
 
 export class Engine {
@@ -342,7 +372,11 @@ export class Engine {
     this.onAdvanced = []; // [fn(o, {stage, by, verdict})]: after a stage leaves (K7: the per-stage commit; not persisted)
     this.onParked = []; // [fn(o, park)]: K9's loop-cap ask to the orderer (state.mjs: asks need the tracker; not persisted)
     this.defaultMaxLoops = null; // K9: the spec's `maxLoops` (state.mjs make); null: no cap unless the lane policy sets one
+    this.standing = []; // K15: the spec's approvals.standing (state.mjs make; not persisted: the spec is in the state)
   }
+
+  /** K15: the standing approval (AMD-015) that pre-approves this act, or null. Pure; nothing calls it in a run. */
+  standingFor({ action, role, trigger }) { return standingCovers(this.standing, { action, role, trigger }); }
 
   /** The policy an order runs under: the lane's active version when the order was made (pinned; never moves). */
   policyOf(o) {
