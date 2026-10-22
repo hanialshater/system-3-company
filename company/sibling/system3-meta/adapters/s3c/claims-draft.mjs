@@ -7,10 +7,12 @@
 // lesson built. This adapter judges the draft at the builder's `room leave` (K12): a failure refuses the leave, the
 // run stays open, and the builder fixes it in the same session.
 //
-//   node claims-draft.mjs <slug> [--brief=<company/domains/briefs/<f>.md>] [--base=<sha>] [--repo=<path>]
-//        --base: the commit the draft started from (the spec passes HEAD: K7 commits after every stage, so at the
-//        leave HEAD is the previous stage's commit); default HEAD. --brief: the order's brief (${brief_file}); a value
-//        that is still a ${…} template, or a missing file, is advisory (an order with no brief line has none).
+//   node claims-draft.mjs <slug> --base=<sha> [--brief=<company/domains/briefs/<f>.md>] [--repo=<path>]
+//        --base: the commit the draft started from, as the kernel recorded it (the spec passes ${head_sha}: the commit
+//        K7 made when the previous stage left, or the worktree's first commit before any). A full 40-hex sha, never HEAD
+//        or a branch (K24/K25 review: K7 never refuses an agent's own commit, so a builder that ran `git commit` before
+//        its leave made its self-verified draft the base, and rules 3 and 5 read "exactly as at base"). --brief: the
+//        order's brief (${brief_file}); a value that is still a ${…} template, or a missing file, is advisory.
 //
 // What a draft is (CLAUDE.md "Every factual sentence a learner sees is a claim in that lesson's meta.json, with an
 // address, support and source. Builders never mark their own claims verified."; company/roles/demo-builder.md working
@@ -46,7 +48,7 @@ import { SUPPORTS, STATUSES, same } from "./claims-guard.mjs";
 import { locate, parseSection } from "./brief.mjs";
 
 const SLUG = /^[a-z0-9]+(-[a-z0-9]+)*$/;
-const USAGE = "usage: claims-draft.mjs <slug> [--brief=<brief file>] [--base=<sha>] [--repo=<path>]";
+const USAGE = "usage: claims-draft.mjs <slug> --base=<sha> [--brief=<brief file>] [--repo=<path>]";
 const F = (severity, kind, message) => ({ severity, kind, message });
 const gitOut = (repo, args) => execFileSync("git", args, { cwd: repo, encoding: "utf8", maxBuffer: 64 << 20, stdio: ["ignore", "pipe", "pipe"] });
 /** A claim's keys but `note`, for "exactly as at base" (gates.mjs claimChanges' rule). */
@@ -99,8 +101,9 @@ export function main(argv) {
   if (!slug || extra.length || !SLUG.test(slug)) return usage("one kebab-case <slug> is required");
   const env = (message) => ({ exit: 3, out: { ok: false, slug, findings: [F("environment", "repo", message)] } });
   if (!fs.existsSync(path.join(repo, "tools/company.mjs"))) return env(`${repo} is not a System 3 Company checkout (no tools/company.mjs)`);
+  if (typeof o.base !== "string" || !/^[0-9a-f]{40}$/.test(o.base)) return usage(`--base=${o.base ?? ""} is not a commit sha: the base is the commit the kernel recorded (\${head_sha}), never HEAD, which an agent's own commit moves`);
   let base;
-  try { base = gitOut(repo, ["rev-parse", "--verify", `${typeof o.base === "string" && o.base ? o.base : "HEAD"}^{commit}`]).trim(); } catch { return usage(`--base=${o.base ?? "HEAD"} is not a commit in ${repo}`); }
+  try { base = gitOut(repo, ["rev-parse", "--verify", `${o.base}^{commit}`]).trim(); } catch { return usage(`--base=${o.base} is not a commit in ${repo}`); }
   const L = findLesson(repo, slug);
   const findings = [];
   if (!L) findings.push(F("block", "lesson", `no src/demos/<domain>/${slug}/meta.json: the draft is the lesson's meta.json, its claims planned before anything is built`));

@@ -18,7 +18,14 @@ const { validateSpec, builtinSpec } = await import("../generator.mjs");
 const sha = (t) => crypto.createHash("sha256").update(t).digest("hex");
 const W = (task, f, t) => { const p = path.join(LIVE, "work", task, f); fs.mkdirSync(path.dirname(p), { recursive: true }); fs.writeFileSync(p, t); return p; };
 
-const WALK = { argv: ["node", "-e", "1"] };
+// K24 review: only what the stage's own run makes is kept, so the walk here writes its files: what `walks(task, files)`
+// last set ({path: text}, read from the workdir's .walk.json; null removes the path)
+fs.writeFileSync(path.join(LIVE, "walk.mjs"), `import fs from "node:fs"; import path from "node:path";
+let f = {}; try { f = JSON.parse(fs.readFileSync(".walk.json", "utf8")); } catch {}
+for (const [p, t] of Object.entries(f)) { if (t == null) { fs.rmSync(p, { force: true }); continue; } fs.mkdirSync(path.dirname(p), { recursive: true }); fs.writeFileSync(p, t); }
+`);
+const WALK = { argv: ["node", path.join(LIVE, "walk.mjs")] };
+const walks = (task, files) => W(task, ".walk.json", JSON.stringify(files));
 const FLOW = (art) => ({ stages: [
   { stage: "build", signer: "builder", evidence: ["live/work/<task>/"] },
   { stage: "walk", signer: "code", evidence: [], run: WALK, artifacts: art },
@@ -56,7 +63,7 @@ test("validation: paths are workdir-relative globs with known variables; require
   assert.match(A.artifactsProblem({ paths: ["a"] }, { signer: "founder" }), /founder/);
   const s = builtinSpec("toy");
   s.flow.stages[1].artifacts = { paths: ["out/"], required: "yes" };
-  assert.match(validateSpec(s).join("\n"), /stage test1: artifacts.required is true or false/);
+  assert.match(validateSpec(s).join("\n"), /stage test1: artifacts.required is true \(every path\), false, or a list of some of its paths/);
   s.flow.stages[1].artifacts = { paths: ["out/"] };
   s.flow.stages[2].pack = { include: ["${artifacts_of:test1}/"] };
   assert.deepEqual(validateSpec(s), [], "${artifacts_of:<an earlier stage with artifacts>} is valid in a pack");
@@ -69,8 +76,8 @@ test("validation: paths are workdir-relative globs with known variables; require
 test("a passing code stage stores its files: v<loops>, sha256s, latest and by-slug links, an event; symlinks never followed", () => {
   const co = fresh();
   const o = order(co, "S1");
-  W("S1", "out/s1/sheet.png", "png-1"); W("S1", "out/s1/transcript.md", "walked v1\n"); W("S1", "notes/a.md", "note");
-  W("S1", "notes/skip.txt", "not matched");
+  walks("S1", { "out/s1/sheet.png": "png-1", "out/s1/transcript.md": "walked v1\n", "notes/a.md": "note", "notes/skip.txt": "not matched" });
+  for (const d of ["out/s1", "notes"]) fs.mkdirSync(path.join(LIVE, "work", "S1", d), { recursive: true });
   const outside = path.join(LIVE, "secret.txt"); fs.writeFileSync(outside, "outside the workdir");
   fs.symlinkSync(outside, path.join(LIVE, "work", "S1", "out", "s1", "leak.md"));
   fs.symlinkSync(path.dirname(outside), path.join(LIVE, "work", "S1", "notes", "dirlink"));
@@ -104,10 +111,10 @@ test("a passing code stage stores its files: v<loops>, sha256s, latest and by-sl
 test("every loop's copy is kept; the newest is latest", () => {
   const co = fresh();
   const o = order(co, "S2");
-  W("S2", "out/s2/sheet.png", "png-v1"); W("S2", "notes/a.md", "n");
+  walks("S2", { "out/s2/sheet.png": "png-v1", "notes/a.md": "n" });
   build(co, o); tick(co);
   co.engine.advance(o.id, { stage: "check", by: "toy-checker", verdict: "revise", evidence: "r", findings: "redo" });
-  W("S2", "out/s2/sheet.png", "png-v2");
+  walks("S2", { "out/s2/sheet.png": "png-v2", "notes/a.md": "n" });
   build(co, o); tick(co);
   const root = path.join(LIVE, "artifacts", o.id, "walk");
   assert.equal(fs.readFileSync(path.join(root, "v0", "out/s2/sheet.png"), "utf8"), "png-v1", "loop 0's copy is still there");
@@ -124,23 +131,24 @@ test("required with no match, or over maxMB, is a stage-error (nothing signed); 
   let steps = tick(co);
   assert.equal(steps.find((s) => s.order === o.id && s.step === "walk").result, "stage-error");
   assert.deepEqual([o.stage, o.loops], ["walk", 0], "held at walk: not a pass, not a revise");
-  assert.match(o.stageError.why, /required, but no file .* matches out\/s3\/, notes\/\*\.md/);
+  assert.match(o.stageError.why, /required, but no file .* that this run made matches out\/s3\/, notes\/\*\.md/);
   assert.equal(co.log.of("artifacts").at(-1).error.startsWith("required"), true);
-  W("S3", "out/s3/sheet.png", "x".repeat(2 * 2 ** 20));
+  walks("S3", { "out/s3/sheet.png": "x".repeat(2 * 2 ** 20), "notes/n.md": "n" });
   delete o.stageError; // supervisor.mjs retry
   const big = fresh({ paths: ["out/${slug}/"], required: true, maxMB: 1 });
-  const b = order(big, "S3B"); W("S3B", "out/s3b/sheet.png", "x".repeat(2 * 2 ** 20));
+  const b = order(big, "S3B"); walks("S3B", { "out/s3b/sheet.png": "x".repeat(2 * 2 ** 20) });
   build(big, b);
   steps = tick(big);
   assert.match(b.stageError.why, /2\.0 MB in 1 files is over maxMB 1/);
-  assert.ok(!fs.existsSync(path.join(LIVE, "artifacts", b.id, "walk")), "nothing copied");
+  assert.deepEqual(fs.readdirSync(path.join(LIVE, "artifacts", b.id, "walk")), [".before.json"], "nothing copied (only the note of what was there before the run)");
   steps = tick(co);
   assert.equal(o.stage, "check", "after the retry the file is there: stored and signed");
   const opt = fresh({ paths: ["out/${slug}/"] });
   const c = order(opt, "S3C");
   build(opt, c); tick(opt);
   assert.equal(c.stage, "check", "an optional artifact that is missing does not hold the stage");
-  assert.match(opt.log.of("artifacts").at(-1).note, /nothing matches/);
+  assert.match(opt.log.of("artifacts").at(-1).note, /this run made nothing that matches/);
+  assert.deepEqual(fs.readdirSync(c.artifacts.walk.dir), [], "an empty version: the pass kept nothing, and says so");
 });
 
 test("an agent's stage keeps artifacts at a passing leave; a required one missing refuses the leave and keeps the run open", () => {

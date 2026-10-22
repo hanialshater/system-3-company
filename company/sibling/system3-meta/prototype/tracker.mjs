@@ -11,7 +11,7 @@
 //   search     words in title, body and comments
 // Rules: an assignee exists and is active; an action and an ask have an assignee and a due date; a cycle may not
 // overlap another; order items are moved only by the flow (sync), never by hand.
-import { Refused } from "./lib.mjs";
+import { Refused, isIndependent } from "./lib.mjs";
 
 const refuse = (m) => { throw new Refused(`HARD: ${m}`); };
 export const STATES = ["backlog", "todo", "in-progress", "in-review", "done", "cancelled"];
@@ -107,6 +107,13 @@ export function createCycle(co, { by, name, start, end }) {
 
 const STAGE_STATE = { budget: "todo", build: "in-progress", test1: "in-review", check: "in-review", uat: "in-review", release: "in-review", ship: "in-review", done: "done", parked: "backlog", cancelled: "cancelled" }; // K8
 
+/** K24/K25 review: a stage the table does not name is read from the flow: an independent review (a plan-check before
+ *  the build, or a review by any other name) is in-review, the worker's own stages and code's are in-progress (a lesson
+ *  waiting on its fact-checker showed as worked by its builder). */
+function flowState(co, o) {
+  const sd = co.engine.flows?.get?.(o.flow)?.stages?.find((x) => x.stage === o.stage);
+  return sd && isIndependent(sd) && !co.engine.isWorkStage?.(o, o.stage) ? "in-review" : "in-progress";
+}
 /** Mirror every engine order as a tracker item; its state follows the order's stage. Idempotent. */
 export function syncOrders(co) {
   const s = store(co);
@@ -114,7 +121,7 @@ export function syncOrders(co) {
   for (const o of co.engine.orders.values()) {
     let it = byOrder.get(o.id);
     if (!it) it = create(co, { by: "engine", kind: "order", title: o.title || o.id, order: o.id, project: o.project ?? null, goal: o.goal ?? null, assignee: o.builder && co.org.role(o.builder)?.active ? o.builder : null, state: "todo", labels: o.loops ? ["revised"] : [] });
-    const st = o.stage === "cancelled" ? "cancelled" : o.blocked ? "backlog" : STAGE_STATE[o.stage] ?? "in-progress";
+    const st = o.stage === "cancelled" ? "cancelled" : o.blocked ? "backlog" : STAGE_STATE[o.stage] ?? flowState(co, o);
     if (it.state !== st) update(co, { by: "engine", id: it.id, state: st });
     // K8: a parked order sits in backlog with a label (its decision ask says why); a resume takes the label off
     if (o.stage === "parked" && !it.labels.includes("parked")) update(co, { by: "engine", id: it.id, addLabels: ["parked"] });

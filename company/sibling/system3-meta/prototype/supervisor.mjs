@@ -69,7 +69,7 @@ import * as WS from "./workspace.mjs";
 import { isIndependent, packHistory, preKey, lanesOf, Refused } from "./lib.mjs";
 import { raiseBudgetAsk } from "./asks.mjs";
 import { applyActs } from "./acts.mjs";
-import { storeArtifacts } from "./artifacts.mjs";
+import { storeArtifacts, snapshotArtifacts } from "./artifacts.mjs";
 
 /** K1: a stage signed by code, or any stage with a `run` cmd (plan 2026-10-21 §3: the lesson flow's stages 2, 3, 4, 8 and 9
  *  are scripts; the old table only knew test1/uat/ship by name). No `run`: test1 as before (the order's text checks or
@@ -87,6 +87,7 @@ export function runCodeStage(co, o, s) {
     // K2: started detached, collected by a later tick (jobs.collect → applyCmdResult); one job per stage and loop
     if (JOBS.jobFor(co, o)) return null;
     if (s.signer === "release" && (!mailbox.queue("pool:release", "work").some((x) => x.ref === o.id) || !co.org.byLevel("release")[0])) return null;
+    if (s.artifacts) snapshotArtifacts(co, o, s, { stage }); // K24 review: the pass keeps only what this job makes
     const { job, result } = JOBS.start(co, o, s);
     if (result) return applyCmdResult(co, o, s, result);
     return { step: stage, kind: "job", order: o.id, result: "started", job: job.id, output: job.label };
@@ -110,6 +111,9 @@ export function applyCmdResult(co, o, s, t) {
   // K24: a passing cmd stage stores its artifacts before it is signed; a required one that cannot be stored holds the
   // order as a stage-error (nothing signed: `supervisor.mjs retry` runs the stage again), not a pass
   const kept = (t) => { if (!t.pass || !s.artifacts) return null; const a = storeArtifacts(co, o, s, { stage }); return a?.stageError ? err({ ...t, pass: false, stageError: true, output: `${t.output}; ${a.why}` }) : null; };
+  // K24 review: a cmd run here (t null) notes the stage's files first, so only what it makes is kept (a job noted them
+  // when it started, runCodeStage)
+  if (t == null && s.artifacts) snapshotArtifacts(co, o, s, { stage });
   if (s.signer === "code") {
     t ??= s.acts ? runCmdJson(o, s) : runCmdCheck(o, s); // K23: a stage with acts reads its cmd's last JSON line
     if (t.stageError) return err(t);

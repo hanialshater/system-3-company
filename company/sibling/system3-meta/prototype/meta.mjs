@@ -272,6 +272,9 @@ function dispatch(co, cmd, sub, arg) {
     const chairFlow = isChairFlow(engine.flows.get(engine.active.get(flow)));
     need(...(chairFlow ? ["chair", "attendee"] : ["to"]), "title", "task", "accept");
     if (chairFlow && opt.to != null) throw new Refused(`flow ${flow} orders name a chair and an attendee, not a manager (--to)`);
+    // K24 review: the task names the order's workdir (live/work/<task>, or its worktree) and fills ${task} in artifact
+    // paths: '../../x' read and wrote outside both. One plain name, as workspace.mjs ensure already asks of a worktree
+    if (!/^[\w.-]+$/.test(String(opt.task)) || /^\.+$/.test(String(opt.task))) throw new Refused("--task is one plain name (A-Z a-z 0-9 _ . -, not . or ..): it names the order's workdir");
     const o = engine.orderNew({ flow, by: opt.by ?? "cos", to: chairFlow ? null : opt.to, chair: opt.chair ?? null, attendee: opt.attendee ?? null, budget: Number(opt.budget ?? 200_000), accept: opt.accept, title: opt.title, priority: opt.priority ?? "next", dueMin: opt.due ? Number(opt.due) : null, after: opt.after ? String(opt.after).split(",") : [], fromContract: opt["from-contract"] ?? null });
     o.task = opt.task;
     // M4 run (M4-RUN.md, the one operator fix): with no --slug, ${slug} fell back to the task (LESSON-<slug>), and every
@@ -316,7 +319,7 @@ function dispatch(co, cmd, sub, arg) {
     const closed = sub !== "park" ? A.closeParkAsk(co, ask, { by: opt.by, decision: sub === "resume" ? "yes" : "no", text: `${sub === "resume" ? `resumed at ${o.stage}` : "cancelled"}: ${opt.reason}` }) : null;
     if (sub === "cancel") A.closeBudgetAsk(co, o, { by: opt.by, text: `${o.id} cancelled: ${opt.reason}` }); // M5 review: no top-up of a cancelled order
     T.syncOrders(co);
-    return { order: o.id, stage: o.stage, loops: o.loops, maxLoops: engine.maxLoopsOf(o), ...(o.parked ? { parked_from: o.parked.stage } : {}), ...(closed ? { ask_closed: closed.id } : {}) };
+    return { order: o.id, stage: o.stage, loops: o.loops, maxLoops: engine.maxLoopsOf(o, engine.workStages(o).length > 1 ? engine.familyOf(o, o.parked?.stage ?? o.stage) : null), ...(o.parked ? { parked_from: o.parked.stage } : {}), ...(closed ? { ask_closed: closed.id } : {}) };
   }
   if (cmd === "order" && sub === "delegate") {
     need("by", "to");

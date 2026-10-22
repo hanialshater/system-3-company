@@ -281,13 +281,17 @@ export const CHAIR_LEVELS = ["chief-of-staff", "vp", "manager"];
 /** K19: a flow whose orders name a chair (its first stage is signed by "chair"). */
 export const isChairFlow = (def) => def?.stages?.[0]?.signer === "chair";
 // K25 (a pre-build plan check, M6-RUN "What this says" 2: every one of M6's 7 revises was the fact-checker's, after a
-// whole build): a flow's first stage need not be build. Its WORK stages are the stages signed by whoever signs its first
-// stage (the builder in a lesson flow, the chair in a ritual flow): draft → plan-check (independent) → build → … has
-// two, draft and build; every flow before K25 has one, its first. A plain revise goes back to the last work stage
-// before the stage that revised (check's revise to build, not to draft: the approved draft stays approved unless the
-// reviser routes it there, K11 --to=draft); with one work stage that is the first stage, as before.
-/** K25: the stage names a flow's worker signs, in flow order (the first stage's signer's stages). */
-export const workStagesOf = (def) => { const st = def?.stages ?? [], w = st[0]?.signer; return w == null ? [] : st.filter((s) => s.signer === w).map((s) => s.stage); };
+// whole build): a flow's first stage need not be build. Its WORK stages are its first stage and every later stage marked
+// `work: true` (signed by whoever signs the first stage: the builder in a lesson flow, the chair in a ritual flow):
+// draft → plan-check (independent) → build (work: true) → … has two, draft and build; every flow before K25 has one, its
+// first. A plain revise goes back to the last work stage before the stage that revised (check's revise to build, not to
+// draft: the approved draft stays approved unless the reviser routes it there, K11 --to=draft); with one work stage
+// that is the first stage, as before. K24/K25 review: the mark is explicit. Read from the signer alone, a flow where the
+// builder also signs a later stage (build → test1 → check → notes(builder) → uat → ship) silently changed: uat's revise
+// went back to notes (the rebuild skipped), notes' loops got their own cap, and a Demo Crit could not send it back.
+// Unmarked, such a stage is what it was before K25: an ordinary stage after the work, and a revise goes to the first.
+/** K25: the stage names a flow's worker works, in flow order: the first stage, and each later one marked `work: true`. */
+export const workStagesOf = (def) => { const st = def?.stages ?? []; return st.length ? st.filter((s, i) => i === 0 || s.work === true).map((s) => s.stage) : []; };
 /** K25: the work stage a plain revise of `from` goes back to: the last work stage before it, else the first stage. */
 export function reviseStageOf(def, from) {
   const st = (def?.stages ?? []).map((s) => s.stage), work = new Set(workStagesOf(def)), i = st.indexOf(from);
@@ -300,6 +304,20 @@ export function loopFamilyOf(def, stage) {
   const st = (def?.stages ?? []).map((s) => s.stage), work = new Set(workStagesOf(def)), i = st.indexOf(stage);
   for (let j = i; j >= 0; j--) if (work.has(st[j])) return st[j];
   return st[0] ?? stage;
+}
+/** K25 review: why a flow's `work: true` marks are invalid. The mark is for a later stage the order's worker works
+ *  (draft → plan-check → build): signed as its first stage is, never independent. */
+export function workProblems(def) {
+  const st = def?.stages ?? [], w = JSON.stringify(st[0]?.signer ?? null), p = [];
+  for (const [i, s] of st.entries()) {
+    if (s.work == null) continue;
+    if (typeof s.work !== "boolean") { p.push(`${s.stage}: work is true or false`); continue; }
+    if (!s.work) continue;
+    if (i === 0) continue; // the first stage is a work stage anyway
+    if (JSON.stringify(s.signer) !== w) p.push(`${s.stage}: work: true marks a stage the first stage's signer (${w}) works, not ${JSON.stringify(s.signer)}`);
+    if (s.independent === true || s.run != null) p.push(`${s.stage}: a work stage is its worker's own (not independent, no run)`);
+  }
+  return p;
 }
 // K6 (plan 2026-10-21 §3): a stage's context-pack rules, `pack:{include:[globs], exclude:[globs], history:false}`. With
 // history:false the brief and the room pack leave out prior findings and build history (stage 6, artifact before account:
@@ -350,6 +368,7 @@ export function flowProblems(def) {
     // K12: a post-check runs at an agent's leave (generator.mjs validates the cmd itself against state.mjs validateCmd)
     for (const e of postProblems(s)) p.push(`${s.stage}: ${e}`);
   }
+  p.push(...workProblems(def)); // K25 review
   // K19: chair and attendee signers belong to a chair flow (orders that name them); a chair flow has no builder stage
   const chairFlow = isChairFlow(def);
   for (const s of def.stages) {
@@ -450,10 +469,20 @@ export class Engine {
 
   /** K9: revise loops this order may take before the next revise parks it (lane policy maxLoops, else the spec's), plus
    *  what a resume granted; null: uncapped (every spec before K9) */
-  maxLoopsOf(o) {
+  maxLoopsOf(o, fam = null) {
     const cap = this.policyOf(o).maxLoops ?? this.defaultMaxLoops;
-    return cap == null ? null : cap + (o.extraLoops ?? 0);
+    return cap == null ? null : cap + (o.extraLoops ?? 0) + (fam != null ? o.extraLoopsBy?.[fam] ?? 0 : 0);
   }
+  /** K24/K25 review: a grant of `n` more loops, for loop family `fam` (K25: a flow with several work stages counts each
+   *  family against its own cap, so a grant to one, e.g. a resumed plan-check park, must not raise the build's too);
+   *  in a one-family flow it is o.extraLoops, as before. Returns the family granted, or null. */
+  grantLoops(o, fam, n) {
+    if (!n) return null;
+    if (this.workStages(o).length > 1 && fam != null) { (o.extraLoopsBy ??= {})[fam] = (o.extraLoopsBy[fam] ?? 0) + n; return fam; }
+    o.extraLoops = (o.extraLoops ?? 0) + n;
+    return null;
+  }
+  familyOf(o, stage) { return loopFamilyOf(this.flows.get(o.flow), stage); }
 
   // ---- K13 (plan 2026-10-21 §M5): charged spend. o.spent was set to 0 at orderNew and never moved, so a budget was
   // a number nobody checked. `launch finished` charges a launch's cumulative tokens to the orders it touched, split
@@ -686,7 +715,7 @@ export class Engine {
     // K9: benchmark 4's regression gate reopens by code, and that loop counts; so does the manager's (plan §5 step 6: a
     // Demo Crit revise is an `order reopen`, and an agent that keeps reopening must park). K8+K9 review: only the
     // founder's reopen is a changed requirement that gets its own loop, so it never parks at once
-    if (by === "founder" && this.maxLoopsOf(o) != null) { o.extraLoops = (o.extraLoops ?? 0) + 1; this.notifyStage(o); }
+    if (by === "founder" && this.maxLoopsOf(o) != null) { this.grantLoops(o, fam, 1); this.notifyStage(o); }
     else if (!this.loopCap(o, { by, from: "done", fam })) this.notifyStage(o);
     return o;
   }
@@ -721,12 +750,12 @@ export class Engine {
    *  K25: the loops counted are the family's (`fam`, the work stage the revise landed in: Engine.bumpLoops); in a flow
    *  with one work stage that is every loop, as before. */
   loopCap(o, { by, from, fam = null }) {
-    const cap = this.maxLoopsOf(o);
-    const n = fam == null ? o.loops : this.familyLoops(o, fam), many = this.workStages(o).length > 1;
+    const many = this.workStages(o).length > 1, cap = this.maxLoopsOf(o, many ? fam : null); // K24/K25 review: the family's grants
+    const n = fam == null ? o.loops : this.familyLoops(o, fam);
     if (cap == null || n <= cap) return false;
     const findings = o.history.filter((h) => h.findings).map((h) => ({ stage: h.stage, by: h.by, verdict: h.verdict, findings: h.findings }));
     this.log.add({ type: "loop-cap", order: o.id, loops: o.loops, maxLoops: cap, from, by, ...(many ? { family: fam, familyLoops: n } : {}) });
-    this.park(o.id, { by: "engine", reason: `loop cap: ${n} revise loops${many ? ` back to ${fam}` : ""}, over maxLoops ${cap} (last from ${from})`, withdraw: false, ask: { kind: "decision", findings } });
+    this.park(o.id, { by: "engine", reason: `loop cap: ${n} revise loops${many ? ` back to ${fam}` : ""}, over maxLoops ${cap} (last from ${from})`, withdraw: false, ask: { kind: "decision", findings, ...(many && fam != null ? { family: fam } : {}) } });
     return true;
   }
 
@@ -738,7 +767,7 @@ export class Engine {
     hard(o, `no order ${id}`);
     hard(!["done", "cancelled", "parked"].includes(o.stage), `${id} is ${o.stage}: only an open order is parked`);
     hard(!!reason, "a park says why (--reason)");
-    o.parked = { stage: o.stage, loops: o.loops, by, reason, t: this.clock.now(), ...(ask && !ask.routed ? { loopCap: true } : {}) };
+    o.parked = { stage: o.stage, loops: o.loops, by, reason, t: this.clock.now(), ...(ask && !ask.routed ? { loopCap: true, ...(ask.family ? { family: ask.family } : {}) } : {}) };
     o.stage = "parked"; o.parks = (o.parks ?? 0) + 1; // a run entered before the park is stale after a resume (Rooms.leave)
     if (withdraw) this.withdraw(o, { by, reason: `parked: ${reason}` });
     this.log.add({ type: "parked", order: id, from: o.parked.stage, loops: o.loops, by, reason });
@@ -771,14 +800,17 @@ export class Engine {
     const st = this.flows.get(o.flow)?.stages.map((x) => x.stage) ?? [];
     if (to != null) hard(st.includes(o.parked.stage) && st.includes(to) && st.indexOf(to) <= st.indexOf(o.parked.stage), `${id} parked at ${o.parked.stage}: --to is that stage or an earlier one (${st.slice(0, Math.max(0, st.indexOf(o.parked.stage) + 1)).join(", ") || "none"})`);
     // K9: a loop-cap park resumes with one more loop unless the decider grants more (or 0: the very next revise parks)
+    // K24/K25 review: the grant is for the family that hit its cap (o.parked.family), else the parked stage's; a --to
+    // loop's own +1 is for the family it lands in. One o.extraLoops for every family raised the build's cap when a
+    // plan-check park was resumed
     const grant = extraLoops ?? (o.parked.loopCap ? 1 : 0);
-    if (grant) o.extraLoops = (o.extraLoops ?? 0) + grant;
     const p = o.parked, back = to != null && to !== p.stage;
+    const granted = this.grantLoops(o, p.family ?? this.familyOf(o, p.stage), grant);
     o.stage = back ? to : p.stage; delete o.parked;
-    if (back) { this.bumpLoops(o, to); o.extraLoops = (o.extraLoops ?? 0) + 1; o.findings = `parked at ${p.stage}: ${p.reason}. Resumed to ${to} by ${by}: ${reason}`; }
+    if (back) { this.grantLoops(o, this.bumpLoops(o, to), 1); o.findings = `parked at ${p.stage}: ${p.reason}. Resumed to ${to} by ${by}: ${reason}`; }
     if (o.budgetHold?.no) delete o.budgetHold; // M5 review: the owner put it back to work: a budget no is asked again (asks.raiseBudgetAsk)
     (o.history ??= []).push({ stage: "parked", by, verdict: "resume", t: this.clock.now(), reason });
-    this.log.add({ type: "resumed", order: id, to: o.stage, by, reason, extraLoops: grant, parkedMin: this.clock.now() - p.t, ...(back ? { from: p.stage, loops: o.loops } : {}) });
+    this.log.add({ type: "resumed", order: id, to: o.stage, by, reason, extraLoops: grant, ...(granted ? { family: granted } : {}), parkedMin: this.clock.now() - p.t, ...(back ? { from: p.stage, loops: o.loops } : {}) });
     if (o.stage === "budget") this.request({ order: o.id, stage: "budget", approver: "founder", kind: "budget", dueMin: 24 * 60, key: `${o.id}:budget:r${o.parks}` });
     else if (o.blocked) this.log.add({ type: "blocked", order: id, after: o.after.filter((d) => this.orders.get(d).stage !== "done") });
     else if (o.builder) this.notifyStage(o); // no builder yet: its manager delegates, which notifies
@@ -890,6 +922,7 @@ export class Rooms {
     this.nS = 0;
     this.postCheck = null; // K12: fn(o, cmd, vars) → {pass, output, findings, stageError}: state.mjs wires runCmdCheck (not persisted)
     this.storeArtifacts = null; // K24: fn(o, stageDef, {stage}) → artifacts.mjs storeArtifacts's result (not persisted)
+    this.snapshotArtifacts = null; // K24 review: fn(o, stageDef, {stage}): notes the stage's files as a run starts
   }
 
   enter({ msg, role, mode = "work", as = null, leaseMin = 30, session = null }) {
@@ -916,6 +949,9 @@ export class Rooms {
     const ctx = { roleDoc: `company/roles/${actor}.md`, memory: this.memory.get(actor) ?? [], order: o.id, stage, findings: o.findings ?? null };
     this.runs.set(run, { run, msg, role: actor, by: role, consult: mode === "consult", order: o.id, stage, loops, parks: o.parks ?? 0, entered: this.clock.now(), state: "running", session: s.id });
     this.log.add({ type: "enter", run, msg, role: actor, by: role, room: r.room, order: o.id, stage, mode, session: s.id, item: s.items });
+    // K24 review: an agent's stage that keeps artifacts notes its files as the run starts, so its passing leave keeps
+    // only what this run made (a code stage's cmd notes them itself, before it runs)
+    { const sd = this.engine.flows.get(o.flow)?.stages.find((x) => x.stage === stage); if (sd?.artifacts && sd.run == null && mode !== "consult" && stage === o.stage && loops === o.loops) this.snapshotArtifacts?.(o, sd, { stage }); }
     return { run, ctx, session: s.id, item: s.items };
   }
 

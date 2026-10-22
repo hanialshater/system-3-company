@@ -33,7 +33,7 @@ function fixture(meta = null) {
   w(".gitignore", "artifacts/\n");
   if (meta) w(META, JSON.stringify(meta, null, 2) + "\n");
   sh(dir, "init", "-q", "-b", "main"); sh(dir, "add", "-A"); sh(dir, "commit", "-qm", "base");
-  return { dir, w, commit: (m) => { sh(dir, "add", "-A"); sh(dir, "commit", "-qm", m); return sh(dir, "rev-parse", "HEAD"); } };
+  return { dir, w, head: sh(dir, "rev-parse", "HEAD"), commit: (m) => { sh(dir, "add", "-A"); sh(dir, "commit", "-qm", m); return sh(dir, "rev-parse", "HEAD"); } };
 }
 const run = (bin, dir, ...args) => { const r = spawnSync(process.execPath, [bin, SLUG, `--repo=${dir}`, ...args], { encoding: "utf8", timeout: 30_000 }); return { exit: r.status, json: JSON.parse(r.stdout.trim().split("\n").at(-1)), stdout: r.stdout }; };
 const kinds = (j) => j.findings.filter((f) => f.severity !== "advisory").map((f) => f.kind);
@@ -63,34 +63,48 @@ test("judgeDraft: every planned sentence a claim with address, support and sourc
 test("CLI: a meta.json-only draft passes; a Demo.tsx made in the draft refuses; the brief is read from --brief", () => {
   const f = fixture();
   f.w(META, JSON.stringify(draft(), null, 2) + "\n");
-  let r = run(DRAFT, f.dir, `--brief=${BRIEF}`, "--base=HEAD");
+  let r = run(DRAFT, f.dir, `--brief=${BRIEF}`, `--base=${f.head}`);
   assert.equal(r.exit, 0, r.stdout);
   assert.deepEqual([r.json.ok, r.json.claims, r.json.planned], [true, 2, [1, 2]]);
   f.w(`src/demos/math/${SLUG}/Demo.tsx`, "export default () => null;\n");
-  r = run(DRAFT, f.dir, `--brief=${BRIEF}`);
+  r = run(DRAFT, f.dir, `--brief=${BRIEF}`, `--base=${f.head}`);
   assert.equal(r.exit, 1);
   assert.match(r.stdout, /block built: src\/demos\/math\/half-the-pizza\/Demo\.tsx changed since the draft started/);
   fs.rmSync(path.join(f.dir, `src/demos/math/${SLUG}/Demo.tsx`));
   // an unfilled ${brief_file} (an order with no brief line) is advisory, not a refusal
-  r = run(DRAFT, f.dir, "--brief=${brief_file}");
+  r = run(DRAFT, f.dir, "--brief=${brief_file}", `--base=${f.head}`);
   assert.equal(r.exit, 0);
   assert.ok(r.json.findings.some((x) => x.kind === "brief" && x.severity === "advisory"));
   // no lesson at all; usage; not a company checkout
   const g = fixture();
-  assert.deepEqual([run(DRAFT, g.dir).exit, kinds(run(DRAFT, g.dir).json)], [1, ["lesson"]]);
-  assert.equal(run(DRAFT, g.dir, "--nope").exit, 2);
+  assert.deepEqual([run(DRAFT, g.dir, `--base=${g.head}`).exit, kinds(run(DRAFT, g.dir, `--base=${g.head}`).json)], [1, ["lesson"]]);
+  assert.equal(run(DRAFT, g.dir, "--nope", `--base=${g.head}`).exit, 2);
+  // K24/K25 review: the base is a sha the kernel recorded, never HEAD or missing (an agent's own commit moves HEAD)
+  for (const b of [[], ["--base=HEAD"], ["--base=main"], ["--base=${head_sha}"]]) assert.equal(run(DRAFT, g.dir, ...b).exit, 2, b.join(" "));
   const h = fs.mkdtempSync(path.join(os.tmpdir(), "claims-draft-x-"));
-  assert.equal(run(DRAFT, h).exit, 3);
+  assert.equal(run(DRAFT, h, `--base=${"a".repeat(40)}`).exit, 3);
 });
 
 test("a loop back to draft keeps the built Demo.tsx as it was, and the claims the plan check verified", () => {
   const verified = c(1, { status: "verified", checkedBy: "fact-checker", checkedOn: "2026-10-21" });
   const f = fixture(draft([verified, c(2)], { status: "review" }));
   f.w(`src/demos/math/${SLUG}/Demo.tsx`, "built\n");
-  f.commit("built");
+  const built = f.commit("built");
   f.w(META, JSON.stringify(draft([verified, c(2), c(3, { brief: 1, text: "Altitude does not change halves." })]), null, 2) + "\n");
-  const r = run(DRAFT, f.dir, `--brief=${BRIEF}`, "--base=HEAD");
+  const r = run(DRAFT, f.dir, `--brief=${BRIEF}`, `--base=${built}`);
   assert.equal(r.exit, 0, r.stdout);
+});
+
+test("K24/K25 review: a builder that commits its self-verified draft and Demo.tsx itself is still judged against the kernel's base", () => {
+  const f = fixture();
+  const base = f.head; // the commit the draft started from, as K7 recorded it (${head_sha})
+  f.w(META, JSON.stringify(draft([c(1, { status: "verified", checkedBy: "fact-checker", checkedOn: "2026-10-01" }), c(2)]), null, 2) + "\n");
+  f.w(`src/demos/math/${SLUG}/Demo.tsx`, "export default () => null;\n");
+  f.commit("wip"); // the agent's own commit: HEAD is now its draft
+  const r = run(DRAFT, f.dir, `--brief=${BRIEF}`, `--base=${base}`);
+  assert.equal(r.exit, 1, r.stdout);
+  assert.match(r.stdout, /c1 is verified with checkedBy\/checkedOn/);
+  assert.match(r.stdout, /Demo\.tsx changed since the draft started/);
 });
 
 test("the plan check: claims-guard on the draft verifies before build; gates' build rule with --base at that commit inherits them", () => {

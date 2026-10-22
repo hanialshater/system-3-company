@@ -7,10 +7,10 @@
 import fs from "node:fs";
 import { SPECS } from "./specs.mjs";
 import { validateCmd } from "./state.mjs";
-import { validateWorkspace, validateRoleLaunch, flowWsProblem } from "./workspace.mjs";
+import { validateWorkspace, validateRoleLaunch, flowWsProblem, commitOf } from "./workspace.mjs";
 import { actsProblem } from "./acts.mjs";
-import { artifactsProblem } from "./artifacts.mjs";
-import { signerRole, signerName, isIndependent, packProblem, packHistory, postProblems, standingProblems, isChairFlow, flowProblems, CHAIR_SIGNERS, CHAIR_ORDER_BY } from "./lib.mjs";
+import { artifactsProblem, STAGE_REF, RESERVED_STAGES } from "./artifacts.mjs";
+import { signerRole, signerName, isIndependent, packProblem, packHistory, postProblems, standingProblems, isChairFlow, flowProblems, workProblems, CHAIR_SIGNERS, CHAIR_ORDER_BY } from "./lib.mjs";
 import { policyProblems } from "./policy.mjs";
 
 const SIGNERS = ["builder", "code", "checker", "orderer", "release", "founder", "evaluator", "chair", "attendee"]; // K4: evaluator signs as a level, independent by default; K19: a chair flow's chair and attendee
@@ -84,10 +84,12 @@ export function validateSpec(s) {
     // K19: a lesson-like flow starts at a stage the builder signs; a chair flow (the ritual flow) at a stage its chair
     // signs, and its orders name the chair and an attendee (lib.mjs isChairFlow, flowProblems). K25: the first stage
     // need not be build (draft → plan-check → build: the builder's plan checked before it builds; `build` stays the
-    // usual name); every stage the builder signs is a work stage (lib.mjs workStagesOf), where a plain revise goes back
+    // usual name); a later stage the builder works is marked `work: true` (lib.mjs workStagesOf), where a plain revise
+    // goes back (K25 review: never read from the signer alone, so a builder-signed release-notes stays what it was)
     if (isChairFlow(f)) for (const e of flowProblems({ stages: st })) need(false, `flow problem: ${e}`);
     else {
       need(st[0]?.signer === "builder", "the first stage is signed by the builder");
+      for (const e of workProblems({ stages: st })) need(false, `stage ${e}`);
       for (const x of st) if (CHAIR_SIGNERS.includes(x.signer)) need(false, `stage ${x.stage}: a ${x.signer} signs only in a chair flow (one whose first stage the chair signs)`);
     }
     for (const x of st) {
@@ -133,14 +135,41 @@ export function validateSpec(s) {
         need(x.run == null && !["code", "founder"].includes(x.signer), `stage ${x.stage}: a pre-check is for a stage an agent works (code runs a code stage itself; the founder decides an approval)`);
         need(!/\$\{(evidence|verdict)\}/.test(JSON.stringify(x.pre)), `stage ${x.stage}: pre: \${evidence} and \${verdict} are a leave's; a pre-check runs before anyone works the stage`);
       }
-      // K24: the files a passing stage keeps in the run's store (artifacts.mjs)
-      if (x.artifacts != null) { const e = artifactsProblem(x.artifacts, x); need(!e, `stage ${x.stage}: ${e}`); }
+      // K24: the files a passing stage keeps in the run's store (artifacts.mjs). K24/K25 review: ${run} ${n} ${port} come
+      // from the order's workspace (o.workspace.vars): with none they never fill and every copy would match nothing; the
+      // stage's name is a store folder (<order>/<stage>/, <order>/latest/<stage>): a plain name, never `latest`
+      if (x.artifacts != null) {
+        const e = artifactsProblem(x.artifacts, x); need(!e, `stage ${x.stage}: ${e}`);
+        if (!e && !s.workspace) { const v = JSON.stringify(x.artifacts.paths).match(/\$\{(run|n|port)\}/); need(!v, `stage ${x.stage}: artifacts.paths: \${${v?.[1]}} is a workspace variable, and this spec has no workspace (it would never fill)`); }
+        need(STAGE_REF.test(x.stage) && !RESERVED_STAGES.includes(x.stage), `stage ${x.stage}: a stage that keeps artifacts has a plain name (letters, digits, _ . -; not ${RESERVED_STAGES.join(", ")}): it names its folder in the store`);
+      }
       // K24/K25: ${artifacts_of:<s>} and ${head_of:<s>} name an earlier stage of this flow (artifacts_of: one that keeps
-      // artifacts); anything else would stay as written and match nothing
-      for (const [k, sn] of [...JSON.stringify([x.run, x.post, x.pre, x.pack]).matchAll(/\$\{(artifacts_of|head_of):([^}]*)\}/g)].map((m) => [m[1], m[2]])) {
-        const j = st.findIndex((y) => y.stage === sn);
-        need(j >= 0 && j < i, `stage ${x.stage}: \${${k}:${sn}} names ${j < 0 ? "no stage of the flow" : "a stage that is not before it"}`);
-        if (k === "artifacts_of" && j >= 0) need(!!st[j].artifacts, `stage ${x.stage}: \${artifacts_of:${sn}}: stage ${sn} keeps no artifacts`);
+      // artifacts); anything else would stay as written and match nothing. K24/K25 review: the name is one the variable
+      // can carry (state.mjs interpolate fills only STAGE_REF names: plan_check or Review validated and never filled);
+      // ${head_of:a|b} is the newest of those stages' heads (test1 after a plan check and a check: the last fact check's
+      // commit); one of them may be a later stage (its head from an earlier loop) when another is before this one (the
+      // first loop's); a head is K7's commit, so it needs a spec workspace with commit (without one it never fills)
+      const refText = JSON.stringify([x.run, x.post, x.pre, x.pack]);
+      for (const [, k, names] of refText.matchAll(/\$\{(artifacts_of|head_of):([^}]*)\}/g)) {
+        const list = k === "head_of" ? names.split("|") : [names], at = list.map((sn) => st.findIndex((y) => y.stage === sn));
+        for (const [q, sn] of list.entries()) {
+          if (!STAGE_REF.test(sn)) { need(false, `stage ${x.stage}: \${${k}:${names}}: ${JSON.stringify(sn)} is not a name it can carry (letters, digits, _ . -${k === "head_of" ? "; several stages with |" : ""}): it would stay as written`); continue; }
+          const j = at[q];
+          if (j < 0) { need(false, `stage ${x.stage}: \${${k}:${names}} names no stage of the flow (${sn})`); continue; }
+          if (list.length === 1) need(j < i, `stage ${x.stage}: \${${k}:${names}} names a stage that is not before it (${sn})`);
+          if (k === "artifacts_of") need(!!st[j].artifacts, `stage ${x.stage}: \${artifacts_of:${sn}}: stage ${sn} keeps no artifacts`);
+        }
+        if (list.length > 1) need(at.some((j) => j >= 0 && j < i), `stage ${x.stage}: \${${k}:${names}}: none of them is before it (the first loop would have no head to read)`);
+        if (k === "head_of") need(!!commitOf(s.workspace), `stage ${x.stage}: \${head_of:${names}} is the commit K7 made when that stage left: it needs a spec workspace with commit: true (it would never fill)`);
+      }
+      // K24 review: ${artifacts}/<stage>/ in a pack (the latest view) names a stage that keeps artifacts; and an
+      // order's store variables need a stage that keeps some (a typo, ${artifacts}/wallk/, listed nothing and validated;
+      // ${artifacts_root} is the whole run's store, which a ritual reads by slug, so it needs none of its own)
+      const keeps = st.filter((y) => y.artifacts).map((y) => y.stage);
+      if (/\$\{artifacts(_of:[^}]*)?\}/.test(refText)) need(keeps.length > 0, `stage ${x.stage}: it reads the artifact store, and no stage of this flow keeps artifacts`);
+      for (const g of [...(x.pack?.include ?? []), ...(x.pack?.exclude ?? [])]) {
+        const m = typeof g === "string" && /^\$\{artifacts\}\/([^/]+)/.exec(g);
+        if (m && !/[*?[]/.test(m[1])) need(keeps.includes(m[1]), `stage ${x.stage}: pack ${g}: ${m[1]} is not a stage of this flow that keeps artifacts (${keeps.join(", ") || "none does"})`);
       }
       // K23: a code stage's acts on other orders (a Demo Crit's revise → reopen, kill → cancel), acts.mjs
       if (x.acts != null) { const e = actsProblem(x, roles); need(!e, `stage ${x.stage}: ${e}`); if (!e && x.acts.by === "chair") need(isChairFlow(f), `stage ${x.stage}: acts.by "chair" is for a chair flow (its orders name a chair)`); }

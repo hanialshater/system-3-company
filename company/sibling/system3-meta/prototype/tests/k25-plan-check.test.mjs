@@ -20,7 +20,7 @@ const { applyActs } = await import("../acts.mjs");
 const DRAFT = { stages: [
   { stage: "draft", signer: "builder", evidence: ["plan"] },
   { stage: "plan-check", signer: "checker", independent: true, evidence: ["plan review"] },
-  { stage: "build", signer: "builder", evidence: ["live/work/<task>/"] },
+  { stage: "build", signer: "builder", work: true, evidence: ["live/work/<task>/"] },
   { stage: "test1", signer: "code", evidence: [] },
   { stage: "check", signer: "checker", evidence: ["review"] },
   { stage: "uat", signer: "orderer", evidence: ["acceptance"] },
@@ -67,7 +67,13 @@ test("generator: the first stage is signed by the builder, whatever it is called
   assert.deepEqual(validateSpec(s), [], "toy (build first) is unchanged");
   const d = builtinSpec("toy");
   d.flow.stages = [{ stage: "draft", signer: "builder", evidence: ["plan"] }, { stage: "plan-check", signer: "checker", independent: true, evidence: ["review"] }, ...d.flow.stages];
+  d.flow.stages[2].work = true;
   assert.deepEqual(validateSpec(d), [], "draft → plan-check → build validates");
+  d.flow.stages[3].work = true;
+  assert.match(validateSpec(d).join("\n"), /stage test1: work: true marks a stage the first stage's signer \("builder"\) works, not "code"/);
+  d.flow.stages[3].work = "yes";
+  assert.match(validateSpec(d).join("\n"), /stage test1: work is true or false/);
+  delete d.flow.stages[3].work;
   d.flow.stages[0].signer = "checker";
   assert.match(validateSpec(d).join("\n"), /the first stage is signed by the builder/);
 });
@@ -164,4 +170,88 @@ test("a shipped order reopened starts at its first stage again (a changed requir
   o.stage = "done";
   co.engine.reopen(o.id, { by: "mgr-live", findings: "the brief changed" });
   assert.deepEqual([o.stage, o.loopsBy], ["draft", { draft: 1 }]);
+});
+
+// K24/K25 review: work stages are marked, never read from the signer alone
+const NOTES = { stages: [
+  { stage: "build", signer: "builder", evidence: ["live/work/<task>/"] },
+  { stage: "test1", signer: "code", evidence: [] },
+  { stage: "check", signer: "checker", evidence: ["review"] },
+  { stage: "notes", signer: "builder", evidence: ["release notes"] },
+  { stage: "uat", signer: "orderer", evidence: ["acceptance"] },
+  { stage: "ship", signer: "release", evidence: ["copied"] },
+] };
+test("review: a later stage the builder signs is not a work stage unless marked: uat's revise rebuilds, one loop family, a send-back is allowed", () => {
+  assert.deepEqual(workStagesOf(NOTES), ["build"]);
+  assert.deepEqual(["check", "notes", "uat", "ship"].map((s) => reviseStageOf(NOTES, s)), ["build", "build", "build", "build"], "as before K25");
+  assert.deepEqual(loopFamilyOf(NOTES, "notes"), "build");
+  const RIT = { stages: [{ stage: "run", signer: "chair", evidence: ["r"] }, { stage: "check", signer: "attendee", evidence: ["c"] }, { stage: "minutes", signer: "chair", evidence: ["m"] }, { stage: "ack", signer: "attendee", evidence: ["a"] }, { stage: "ship", signer: "code", evidence: [], run: { argv: ["node", "-e", "1"] } }] };
+  assert.deepEqual([workStagesOf(RIT), reviseStageOf(RIT, "ack")], [["run"], "run"], "a chair flow's ack revise goes to run, not minutes");
+  // the run: maxLoops 1, a check revise and a uat revise park the order (one family), as before K25
+  const co = fresh(NOTES, 1);
+  const o = order(co, "N1");
+  who.notes = ["toy-builder-1", "toy-builder-1"];
+  sign(co, o); o.stage = "check"; co.engine.notifyStage(o);
+  sign(co, o, { verdict: "revise", findings: "f1" });
+  assert.deepEqual([o.stage, o.loopsBy], ["build", { build: 1 }]);
+  sign(co, o); o.stage = "check"; co.engine.notifyStage(o);
+  sign(co, o);
+  assert.equal(o.stage, "notes");
+  assert.doesNotThrow(() => co.engine.sendBack(o.id, { by: "cos", findings: "Demo Crit: the reveal" }), "notes is not a work stage: its build was shown");
+  assert.equal(o.stage, "parked", "the send-back is the second build loop: over maxLoops 1");
+  assert.deepEqual(o.loopsBy, { build: 2 });
+});
+
+test("review: a marked work stage is the worker's own (validated), and an unmarked flow behaves as before", () => {
+  assert.deepEqual(flowProblems({ stages: [...NOTES.stages.slice(0, 3), { ...NOTES.stages[3], work: true }, ...NOTES.stages.slice(4)] }), []);
+  assert.match(flowProblems({ stages: [NOTES.stages[0], { ...NOTES.stages[2], work: true }, ...NOTES.stages.slice(3)] }).join("\n"), /check: work: true marks a stage the first stage's signer/);
+  const marked = { stages: [...NOTES.stages.slice(0, 3), { ...NOTES.stages[3], work: true }, ...NOTES.stages.slice(4)] };
+  assert.deepEqual([workStagesOf(marked), reviseStageOf(marked, "uat")], [["build", "notes"], "notes"], "marked: the author asked for it");
+});
+
+test("review: a resume's grant is for the family that hit its cap (the build family's cap does not move)", () => {
+  const co = fresh(DRAFT, 1);
+  const o = order(co, "G1");
+  sign(co, o); sign(co, o, { verdict: "revise", findings: "p1" });
+  sign(co, o); sign(co, o, { verdict: "revise", findings: "p2" });
+  assert.equal(o.stage, "parked");
+  assert.equal(o.parked.family, "draft");
+  co.engine.resume(o.id, { by: "cos", reason: "one more plan loop" });
+  assert.deepEqual([o.extraLoops ?? 0, o.extraLoopsBy], [0, { draft: 1 }]);
+  assert.deepEqual([co.engine.maxLoopsOf(o, "draft"), co.engine.maxLoopsOf(o, "build")], [2, 1]);
+  assert.equal(co.log.of("resumed").at(-1).family, "draft");
+  sign(co, o); sign(co, o); sign(co, o); // draft, plan-check pass, build
+  o.stage = "check"; co.engine.notifyStage(o);
+  sign(co, o, { verdict: "revise", findings: "b1" });
+  assert.equal(o.stage, "build", "one build loop: within its own cap of 1");
+  sign(co, o); o.stage = "check"; co.engine.notifyStage(o);
+  sign(co, o, { verdict: "revise", findings: "b2" });
+  assert.equal(o.stage, "parked", "a second build loop parks: the draft family's grant did not raise the build's cap");
+  assert.match(o.parked.reason, /2 revise loops back to build, over maxLoops 1/);
+  // --to (a decided loop, +1) is for the family it lands in
+  co.engine.resume(o.id, { by: "cos", reason: "re-plan", to: "draft", extraLoops: 0 });
+  assert.deepEqual(o.extraLoopsBy, { draft: 2 });
+  // a one-family flow: o.extraLoops, as before
+  const c1 = fresh(ONE, 1);
+  const a = order(c1, "G2");
+  sign(c1, a); a.stage = "check"; c1.engine.notifyStage(a);
+  sign(c1, a, { verdict: "revise", findings: "x" });
+  sign(c1, a); a.stage = "check"; c1.engine.notifyStage(a);
+  sign(c1, a, { verdict: "revise", findings: "y" });
+  c1.engine.resume(a.id, { by: "cos", reason: "go on" });
+  assert.deepEqual([a.extraLoops, a.extraLoopsBy, a.parked], [1, undefined, undefined]);
+});
+
+test("review: the tracker shows an order at an independent stage of any name as in review", async () => {
+  const { syncOrders } = await import("../tracker.mjs");
+  const co = fresh();
+  co.data.tracker = undefined;
+  const o = order(co, "TR1");
+  sign(co, o);
+  assert.equal(o.stage, "plan-check");
+  syncOrders(co);
+  const it = [...co.data.tracker.items.values()].find((i) => i.order === o.id);
+  assert.equal(it.state, "in-review");
+  sign(co, o); syncOrders(co);
+  assert.equal(it.state, "in-progress", "build: the builder's");
 });

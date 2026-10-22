@@ -24,7 +24,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
-import { LIVE } from "./state.mjs";
+import { LIVE, lookupVar } from "./state.mjs";
 import { touchesStore, storeFiles } from "./artifacts.mjs";
 
 export const WS_KEYS = ["kind", "repo", "base", "root", "branch", "env", "nodeModules", "run", "portBase", "commit", "cleanup"];
@@ -38,7 +38,8 @@ const BRANCH_VARS = ["run", "task", "slug", "n", "port"], ENV_VARS = [...BRANCH_
 // let ensure's ~8 calls pass 30 s, so the budget is for the whole ensure, plus a fixed one for undoing a failed add
 const ENSURE_BUDGET_MS = 20_000, CLEANUP_MS = 5_000;
 // M6 prep: brief_file (state.mjs briefVars) for packs; K24/K25: the store and commit variables (state.mjs storeVars)
-const VAR = /\$\{(run|task|slug|n|port|workdir|brief_file|artifacts|artifacts_root|(?:artifacts_of|head_of):[a-z0-9][a-z0-9-]*)\}/g;
+// (K24/K25 review: any STAGE_REF stage name, and ${head_of:a|b}, as state.mjs interpolate)
+const VAR = /\$\{(run|task|slug|n|port|workdir|brief_file|artifacts|artifacts_root|artifacts_of:[A-Za-z0-9][\w.-]*|head_of:[A-Za-z0-9][\w.-]*(?:\|[A-Za-z0-9][\w.-]*)*)\}/g;
 const unknownVar = (s, known) => [...s.matchAll(/\$\{([^}]*)\}/g)].map((m) => m[1]).find((k) => !known.includes(k));
 
 /** Why a spec `workspace` is invalid, or null. */
@@ -234,7 +235,7 @@ export function varsFor(w, o) {
   const n = Number(String(o.id ?? "").replace(/\D/g, "")) || 0;
   return { run: w.run ?? path.basename(LIVE), task: o.task ?? "", slug: o.slug ?? o.task ?? "", n: String(n), port: String((w.portBase ?? 3100) + n) };
 }
-export const fill = (s, vars) => s.replace(VAR, (m, k) => (k in vars ? vars[k] : m));
+export const fill = (s, vars) => s.replace(VAR, (m, k) => { const v = lookupVar(vars, k); return v === undefined ? m : v; });
 
 /** Why the order may not be worked yet (its worktree is missing or wrong), or null; a git failure is recorded as a
  *  workspace hold (o.stageError kind "workspace"), which only `supervisor.mjs retry` lifts, whatever the order's stage
@@ -341,7 +342,11 @@ export function ensure(co, o, { create = true } = {}) {
   const all = { ...vars, workdir: dir };
   const env = Object.fromEntries(Object.entries(w.env ?? {}).map(([k, v]) => [k, fill(v, all)]));
   o.workdir = dir;
-  const keep = own ? { sha: o.workspace.sha ?? at.sha, ...(o.workspace.head ? { head: o.workspace.head } : {}) } : { sha: at.sha }; // own: where it started, and its last K7 commit (${head_sha})
+  // own: where it started, its last K7 commit (${head_sha}) and each stage's (K24/K25 review: a resumed order whose
+  // worktree cleanup removed lost `heads`, and test1's --base=${head_of:plan-check} stayed as written: a stage-error no
+  // retry lifted)
+  const kept = own ? { head: o.workspace.head, heads: o.workspace.heads, headSeq: o.workspace.headSeq, headN: o.workspace.headN } : {};
+  const keep = { sha: own ? o.workspace.sha ?? at.sha : at.sha, ...Object.fromEntries(Object.entries(kept).filter(([, v]) => v != null)) };
   o.workspace = { kind: w.kind, repo: w.repo, dir, branch, base, ...keep, baseSha: out(b)[0], env, vars: all, traps: gitTraps(dir) };
   co.log.add({ type: "workspace", order: o.id, task: o.task, dir, branch, base, sha: at.sha, created });
   return done(created);
@@ -359,6 +364,13 @@ export const globsOf = (text) => text.split("\n").map((l) => l.trim()).filter((l
 /** Commit order `o`'s worktree after `stage` left: { sha, files }, { skipped } (nothing changed: no empty commits),
  *  { error, refused? } (nothing committed; a refusal unstages what it staged, the work tree is left as it was), or
  *  null (no commit setting, or no worktree yet). Never pushes. */
+/** K25: the head stage `stage` left, ${head_of:<stage>}, numbered in the order the stages left (K24/K25 review:
+ *  ${head_of:a|b} is the newest of several) */
+function headOf(o, stage) {
+  (o.workspace.heads ??= {})[stage] = o.workspace.head;
+  o.workspace.headN = (o.workspace.headN ?? 0) + 1;
+  (o.workspace.headSeq ??= {})[stage] = o.workspace.headN;
+}
 export function commit(co, o, stage) {
   const c = commitOf(specOf(co));
   if (!c || !o.workspace?.dir) return null;
@@ -416,7 +428,7 @@ export function commit(co, o, stage) {
   const files = st.stdout.split("\0").filter(Boolean);
   // M6 prep review: nothing to commit, so the head the stage left is the branch's tip as it was signed (${head_sha})
   // K25: and the head each stage left, ${head_of:<stage>} (test1's --base after a plan check: the claims as approved)
-  if (!files.length) { o.workspace.head = out(pre)[0]; (o.workspace.heads ??= {})[stage] = o.workspace.head; return { skipped: true }; }
+  if (!files.length) { o.workspace.head = out(pre)[0]; headOf(o, stage); return { skipped: true }; }
   // the repo's own identity when it has one. M4 integrate: no hooks run (GIT_PINS core.hooksPath=/dev/null): a hook is
   // whatever the agent put there; the kernel's checks before and after are the rules
   const id = git(dir, "config", "user.email").stdout?.trim() ? [] : ["-c", "user.name=System 3 Meta", "-c", "user.email=meta@localhost"];
@@ -436,7 +448,7 @@ export function commit(co, o, stage) {
   const sha = git(dir, "rev-parse", "HEAD");
   if (!ok(sha)) return { error: why(sha, `git rev-parse HEAD in ${dir}`) };
   o.workspace.head = out(sha)[0];
-  (o.workspace.heads ??= {})[stage] = o.workspace.head;
+  headOf(o, stage);
   co.log.add({ type: "commit", order: o.id, stage, branch: o.workspace.branch, sha: o.workspace.head, files: files.length, message: msg });
   return { sha: o.workspace.head, files };
 }
