@@ -47,3 +47,18 @@ Finding (fact-check 2026-10-22, c3 disputed): after "Cut and slide" the fill was
 5. QA path: Lean to 60° (`leaned`), Lean to 30°, Cut and slide (`cutWhileLeaning` at 30°), Upright, Reset (disabled after Upright): both milestones by press 3; the trace stays on the Cut chip.
 6. Reset: reveal text unchanged from v1 (no text edit): "Leaning kept every side and the perimeter at 14, but the height fell to 1.50 and the area to 6.0. Cutting off the slanted end and sliding it across made a rectangle 4 wide and only 1.50 tall. | A parallelogram's area is base times height, not base times slanted side. Push the frame flat and its area goes to nothing while its sides stay the same." (values from the QA path's cut at 30°).
 7. Phone fit: `node tools/reveal-fit.mjs --url http://localhost:3101 push-the-frame-over --shots` on a production build of this worktree at v2: verdict fit, stage-top crop 0 px, hiddenBelow 0, namedHidden 0, thumb false, phoneFit true; reveal 72 words; picture 169 px, controls 97 px. The rectangle's right edge is at 4 + 3 cos 30° ≈ 6.6 units = 322 of 340 viewBox px, inside the picture.
+
+## Revise v3 (demo-builder, 2026-10-22)
+
+Finding (fact-check 2026-10-22, c3 disputed): c3 said one cut-and-slide turns "a parallelogram" into a rectangle; false when the overhang exceeds the base (base 1, side 3 at 30°: overhang 2.6 > 1).
+
+- Fix: c3 scoped to this frame: "For this frame, whose top overhangs the base by 3 cos θ (at most 3, less than the base 4), cutting the right triangle off the slanted end and sliding it across ... makes a rectangle with the same base (4) and the same height, so the same area." Source unchanged.
+- Learner text unchanged: the reveal already says "Cutting off the slanted end and sliding it across made a rectangle 4 wide" about this frame; "A parallelogram's area is base times height" is the general rule (c1), true for every parallelogram. Demo.tsx untouched.
+- Claims: c3 changed; c1, c2, c4 (verified in this order) back to `unverified`; checkedBy/checkedOn and notes removed. meta.version 2 → 3.
+
+## Pre-flight v3
+
+1. Title, hook, options, locked stage, QA path, milestones, Reset: unchanged from v2 (no Demo.tsx change).
+2. Reveal: unchanged from v2: "Leaning kept every side and the perimeter at 14, but the height fell to 1.50 and the area to 6.0. Cutting off the slanted end and sliding it across made a rectangle 4 wide and only 1.50 tall. | A parallelogram's area is base times height, not base times slanted side. Push the frame flat and its area goes to nothing while its sides stay the same."
+3. Claims: c3 now scoped to this frame (overhang ≤ 3 < 4); the reveal's cut sentence is about this frame, so c3 covers it.
+4. Phone fit: no rendered change since v2 (reveal-fit fit, 72 words); not re-run by me; code's qa stage runs it on v3.
