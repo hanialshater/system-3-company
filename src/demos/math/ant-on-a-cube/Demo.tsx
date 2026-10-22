@@ -98,11 +98,11 @@ export default function AntOnACube({ slug }: { slug: string }) {
           <>
             <p>{first}</p>
             <p>
-              Unfolding two faces into a flat 1 by 2 rectangle turned the walk into one straight line, √(1² + 2²) = √5,
+              Unfolding the front and right faces into a flat 1 by 2 rectangle turned the walk into one straight line, √(1² + 2²) = √5,
               about {flat} m. Folded back up, it bends across the shared edge at its midpoint, and no route over other
               faces is shorter.
             </p>
-            <p>On a flat sheet a straight line is shortest, so the best walk over a surface is found by unfolding it.</p>
+            <p>On a flat sheet a straight line is shortest, so the best walk over a box is found by unfolding it.</p>
           </>
         );
       }}

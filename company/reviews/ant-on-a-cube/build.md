@@ -14,6 +14,17 @@ builder: demo-builder (Meta M6, order O-2) · 2026-10-22 · v1 · brief: company
 - Stage words (demo-standard counting, units after numbers 0): chips 13 ("Along the edges" 3, "Diagonal then edge" 3, "Unfold two faces" 3, "Fold back up" 3, "Reset" 1) + readout "length" 1 = 14 in every frame; the net's "√(1² + 2²) = 2.24 m", "1 m", "2 m" and the traces "✓ 2.24 m" count 0. Brief: 16 spaced / 14 fused. ≤ 25.
 - Title and hook are mine (brief gives none): "How short is the ant's walk over a cube?" (40 chars) / "An ant walks on the outside of a 1 m cube to the far corner. How short can its walk be?" (87 chars).
 
+## Pre-flight v2
+
+Revise from fact-check 2026-10-22 (overgeneral wording, 2 instances). Mechanics, stage, chips, milestones and routes unchanged from v1.
+
+1. Title, hook, prediction and options: unchanged from v1 (item 1 to 3 hold).
+2. Reveal paragraph 2 now reads "Unfolding the front and right faces into a flat 1 by 2 rectangle …": the front face holds the ant's corner, the right face the far corner; these are the two faces the stage swings flat (net front [0,1]² + right [1,2]×[0,1]). Claim c2 names the same pair.
+3. Reveal last sentence now "On a flat sheet a straight line is shortest, so the best walk over a box is found by unfolding it." Claim c4 scoped to a box / convex flat-faced surface.
+4. Reveal values and their milestones: as v1 item 4 (3.00 m, 2.41 m, 2.24 m from the recorded seen values).
+5. Claims: c2 and c4 text changed; c1, c3, c5 were verified during this order; all five set to `unverified`, no checkedBy/checkedOn. meta.version 2. meta.learner.doesNotKnow scoped to a box.
+6. Phone fit: reveal is two words longer than v1 ("two" → "the front and right"; "surface" → "box"), about 84 by the tool count, under 90. `node tools/reveal-fit.mjs --url http://localhost:3102 ant-on-a-cube` on a fresh production build of this worktree: fit 1, cropped 0, namedHidden 0, phoneFit 1, pass 1. tsc clean, next build exit 0 (tsconfig.json rewrite reverted). Official QA is code's qa stage.
+
 ## Pre-flight v1
 
 1. Title and hook: "How short is the ant's walk over a cube?" / "An ant walks on the outside of a 1 m cube to the far corner. How short can its walk be?" Both pose the question; neither names a route, unfolding or a length.

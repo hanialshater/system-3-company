@@ -7,7 +7,7 @@ The routes you can see on a box (edges, a face diagonal) are not the shortest. U
 
 ## Knowledge boundary (meta.json `learner`)
 - knows: Pythagoras, √(a² + b²) for the long side (`math/two-squares-become-one`).
-- doesNotKnow: that the shortest walk over a surface is found by unfolding it flat and drawing a straight line.
+- doesNotKnow: that the shortest walk over a box is found by unfolding its faces flat and drawing a straight line (v2: scoped from "a surface" to a box, fact-check 2026-10-22).
 
 ## Misconception
 The shortest walk across a box goes along its edges or along a face diagonal, because those are the straight lines you can see.
@@ -30,7 +30,7 @@ Brief's kit text as a second-person scene with every condition stated (outside o
 The brief names the top and front faces, but its phone-fit line asks for the net to fit 300 × 150 px, which is a horizontal 2 by 1 net. Top and front unfold into a vertical 1 by 2 net (twice as tall, which would push the reveal off a 390 × 844 screen). Front and right share a vertical edge, so the right face swings out sideways like a door and the net lies flat at 240 × 120 px. The geometry is the same by symmetry (any two faces that share an edge, one at each corner): same √(1² + 2²), same midpoint crossing. Reveal and claims say "two faces", as the brief's reveal does.
 
 ## Reveal (brief draft, quoting what was seen)
-"Along the edges was 3.00 m and the face diagonal plus an edge 2.41 m. | Unfolding two faces into a flat 1 by 2 rectangle turned the walk into one straight line, √(1² + 2²) = √5, about 2.24 m. Folded back up, it bends across the shared edge at its midpoint, and no route over other faces is shorter. | On a flat sheet a straight line is shortest, so the best walk over a surface is found by unfolding it."
+"Along the edges was 3.00 m and the face diagonal plus an edge 2.41 m. | Unfolding the front and right faces into a flat 1 by 2 rectangle turned the walk into one straight line, √(1² + 2²) = √5, about 2.24 m. Folded back up, it bends across the shared edge at its midpoint, and no route over other faces is shorter. | On a flat sheet a straight line is shortest, so the best walk over a box is found by unfolding it."
 The first sentence names only the routes the learner tried (edges, diagonal or both). "Folded back up …" replaces the brief's "crossing the shared edge at its midpoint" so it points at the fold-back state; "no route over other faces is shorter" says claim 3 on the reveal (the answer to "shortest").
 
 ## Told vs shown
@@ -38,3 +38,7 @@ The cause (unfolding makes the surface flat; on a flat sheet the straight line i
 
 ## Recall
 "An ant walks on the outside of a cube with 2 m edges, from one corner to the corner farthest from it. Its shortest walk is about…" 4.5 m / 4.8 m / 6.0 m (answer 4.5 m: √(2² + 4²) ≈ 4.47; claim c5).
+
+## Revision v2 (demo-builder, 2026-10-22)
+
+Fact-check 2026-10-22 found two overgeneral wordings. (1) c2 and the reveal said "two faces"; only a face at the ant's corner plus the adjacent face at the far corner unfold with the corners at opposite ends of a 1 by 2 rectangle. The reveal now names the pair the stage unfolds ("the front and right faces") and c2 names the pair. (2) c4 and the reveal's last sentence covered any surface; both now say a box (c4: a convex surface made of flat faces). The pedagogy is unchanged.
