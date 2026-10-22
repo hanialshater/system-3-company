@@ -1475,6 +1475,7 @@ export const loaders: Record<string, () => Promise<{ default: ComponentType<{ sl
   "triangle-is-half": () => import("./math/triangle-is-half/Demo"),
   "tricolour-check": () => import("./math/tricolour-check/Demo"),
   "two-colours-enough": () => import("./math/two-colours-enough/Demo"),
+  "two-corners-off-the-board": () => import("./math/two-corners-off-the-board/Demo"),
   "two-right-angles-never-meet": () => import("./math/two-right-angles-never-meet/Demo"),
   "two-squares-become-one": () => import("./math/two-squares-become-one/Demo"),
   "unknot-game": () => import("./math/unknot-game/Demo"),

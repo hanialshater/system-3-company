@@ -1,0 +1,14 @@
+.wrap { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1 1 auto; min-height: 0; }
+.big { width: 224px; max-width: 100%; height: auto; }
+.pair { width: 100%; max-width: 360px; height: auto; }
+.pairText { display: grid; grid-template-columns: 1fr 1fr; width: 100%; max-width: 360px; }
+.readout { margin: 0; text-align: center; font-weight: 800; font-size: 0.95rem; color: var(--fg); font-variant-numeric: tabular-nums; }
+/* A chequered board keeps its own colours in both themes, so "dark" and "light" always match the words. */
+.dark { fill: #4b5563; stroke: #6b7280; stroke-width: 1; }
+.light { fill: #e5e7eb; stroke: #9ca3af; stroke-width: 1; }
+.dot { fill: #f9fafb; }
+.gone { fill: none; stroke: var(--line); stroke-width: 1.5; stroke-dasharray: 4 4; }
+.domino { fill: color-mix(in srgb, var(--domain) 30%, transparent); stroke: var(--domain); stroke-width: 3; }
+.left { fill: none; stroke: var(--bad); stroke-width: 4; stroke-dasharray: 8 4; }
+.wrap :global(.row) { justify-content: center; }
+.tap { min-height: 44px; min-width: 44px; }
