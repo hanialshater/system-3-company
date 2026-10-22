@@ -27,28 +27,40 @@
       "text": "With the stage's points (at 0°, 64°, 113°, 179°, 230°, 308°, the first n for n points), every pair joined, the circle is cut into 1, 2, 4, 8, 16, 31 pieces for 1 to 6 points, with 0, 1, 3, 6, 10, 15 lines and 0, 0, 0, 1, 5, 15 crossings: doubling held up to 5 points and broke at 6, so five matching cases are evidence, not a proof. Recall: a rule that holds in the first five cases you try can still fail in a later one.",
       "support": "derivation",
       "source": "company/domains/briefs/checks/math-wave-j-check.mjs label D3 (crossings 0, 0, 0, 1, 5, 15; regions 1, 2, 4, 8, 16, 31 by Euler's formula on the drawing; formula 1 + C(n,2) + C(n,4) agrees). Stage: drawingOf() in Demo.tsx counts crossings by segment intersection and pieces by Euler's formula (E − V + 1), not by the formula.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "Recomputed from ANGLES in a fresh script: lines 0,1,3,6,10,15; crossings 0,0,0,1,5,15, all distinct (min separation 0.209 R; nearest third line to any crossing 0.189 R, about 26 px); pieces 1,2,4,8,16,31. Agrees with D3.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     },
     {
       "id": "math.regions-from-circle-points.c2",
       "text": "When no three lines meet at one point, pieces = 1 + lines + crossings = 1 + C(n,2) + C(n,4): every piece is made by a line or a crossing (each line, drawn in turn, adds 1 piece plus 1 for each crossing it makes), so with 6 points it is 1 + 15 + 15 = 31 and the count was never doubling.",
       "support": "derivation",
       "source": "Adding a chord that crosses k earlier chords at distinct points splits k + 1 pieces, so pieces = 1 + chords + crossings; chords = C(n,2) (claim c3), crossings = C(n,4) (claim c3). Agrees with D3 for n = 1 to 6.",
-      "status": "unverified"
+      "status": "disputed",
+      "note": "The formula 1 + C(n,2) + C(n,4) is right, and so are 1+15+15 = 31 and the inductive argument. But \"the count was never doubling\" is false as written: the counts 1,2,4,8,16 do double, and the reveal and c1 say \"doubling held up to 5 points\". Restate it about the rule, for example \"so the rule was never doubling; it only matched doubling up to 5 points\".",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     },
     {
       "id": "math.regions-from-circle-points.c3",
       "text": "Lines come from pairs of points, C(n,2) of them, and crossings from groups of four: each set of four points on the circle gives exactly one crossing (its two diagonals), so there are C(n,4) crossings when no three lines meet at one point.",
       "support": "derivation",
       "source": "Four points on a circle form a convex quadrilateral whose two diagonals cross once inside and whose sides do not cross; two chords cross inside the circle only if their four end points alternate around it, i.e. they are the diagonals of that quadrilateral. D3: crossings 1, 5, 15 = C(4,4), C(5,4), C(6,4).",
-      "status": "unverified"
+      "status": "verified",
+      "note": "Two chords cross inside the circle exactly when their four end points alternate, so each 4-set gives one crossing (its diagonals) and the sides do not cross. Crossings 1, 5, 15 = C(4,4), C(5,4), C(6,4), recomputed.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     },
     {
       "id": "math.regions-from-circle-points.c4",
       "text": "With 6 evenly spaced points there are 30 pieces, because three diagonals meet at the centre; this is why the predict question states that the points are uneven so no three lines meet at one spot (meta evidence; the learner sees only the condition).",
       "support": "derivation",
       "source": "company/domains/briefs/checks/math-wave-j-check.mjs label D3, regular hexagon: 15 crossings, 13 distinct points, max 3 lines through one point, 30 regions.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "Regular hexagon recomputed: 15 crossing pairs, 13 distinct points, the only concurrency is the 3 long diagonals at the centre, 30 pieces. Agrees with D3.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     }
   ],
   "confidence": "",
