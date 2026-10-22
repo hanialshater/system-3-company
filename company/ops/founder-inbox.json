@@ -1079,6 +1079,30 @@
           "deny"
         ]
       }
+    },
+    {
+      "id": "F-67",
+      "title": "Budget: O-10 at 941956 of 300000 tokens, top up 791956?",
+      "category": "decision",
+      "priority": 2,
+      "status": "open",
+      "blocks": "O-10 (Ritual vertical-review: a new founder) [RITUAL-vertical-review-202610221532], at check",
+      "options": "yes: raise the budget by 791956 | no: keep it stopped (then park or cancel it)",
+      "links": [],
+      "budget": "not an initiative: a System 3 Meta order budget (O-10), decided through Meta's own budget ask or approval; no projects.json line was named (order new --ledger-project)",
+      "note": "O-10 (Ritual vertical-review: a new founder) has spent 941956 of its 300000-token budget (charged from its launches' cumulative tokens). The planner starts no session on it until the budget is raised.\nAsked: a top-up of 791956 tokens (what it overspent plus half its budget again).\nDecide: `node meta.mjs ask answer --by=<you> --id=<this ask> --decision=yes --text='…'` raises the budget by 791956; `--decision=no` keeps it stopped (then park or cancel it: `node meta.mjs order park|cancel O-10 --by=<you> --reason='…'`; a resume asks again).",
+      "meta": {
+        "source": "system3-meta",
+        "state": "/home/user/meta-runs/m7/state.json",
+        "ref": "ISS-14",
+        "kind": "ask:budget",
+        "order": "O-10",
+        "answer_with": "node meta.mjs ask answer --by=founder --id=ISS-14 --decision=yes|no|redirect --text='…'",
+        "options": [
+          "yes: raise the budget by 791956",
+          "no: keep it stopped (then park or cancel it)"
+        ]
+      }
     }
   ]
 }
