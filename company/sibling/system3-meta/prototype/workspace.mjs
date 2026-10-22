@@ -373,3 +373,33 @@ export function launchConfig(co, { role, msgs = [] }) {
   }
   return { role, ...Object.fromEntries(ROLE_LAUNCH_KEYS.map((k) => [k, r[k] ?? null])), workdir: workdirs[0] ?? null, workdirs, roots, workspace: !!w, missing };
 }
+
+// ---- K6: a stage's context-pack rules (lib.mjs packProblem): which workdir files the pack names
+/** A pack glob as a regex on a workdir-relative path: `**\/` is any depth (none too), `*` and `?` stay in one segment, a
+ *  trailing `/` is the whole folder, and a glob with no `/` matches the file's name anywhere (`build.md`, as .gitignore). */
+export const packGlobRe = (g) => {
+  const body = g.replace(/\/$/, "/**").replace(/[.+^${}()|[\]\\]/g, "\\$&").replace(/\*\*\//g, "§").replace(/\*\*/g, "¶").replace(/\*/g, "[^/]*").replace(/\?/g, "[^/]").replace(/§/g, "(?:.*/)?").replace(/¶/g, ".*");
+  return new RegExp((g.replace(/\/$/, "").includes("/") ? "^" : "^(?:.*/)?") + body + "$");
+};
+const PACK_SKIP = (n) => n === ".git" || n === "node_modules" || n.startsWith(".next"); // the checkout's machinery, not the artifact
+export const PACK_MAX = 400;
+/** The files of `dir` a stage's pack rules let in: { files, truncated, include, exclude }, or null with no include or
+ *  exclude rules (the pack then names no files: every run before K6). A missing dir is no files. */
+export function packFiles(dir, p) {
+  if (!p?.include?.length && !p?.exclude?.length) return null;
+  const inc = (p.include ?? []).map(packGlobRe), exc = (p.exclude ?? []).map(packGlobRe);
+  const files = []; let truncated = false;
+  const walk = (rel) => {
+    let ents; try { ents = fs.readdirSync(path.join(dir, rel), { withFileTypes: true }); } catch { return; }
+    for (const e of ents.sort((a, b) => a.name.localeCompare(b.name))) {
+      if (truncated) return;
+      const r = rel ? `${rel}/${e.name}` : e.name;
+      if (e.isDirectory()) { if (!PACK_SKIP(e.name)) walk(r); continue; }
+      if ((inc.length && !inc.some((x) => x.test(r))) || exc.some((x) => x.test(r))) continue;
+      if (files.length >= PACK_MAX) { truncated = true; return; }
+      files.push(r);
+    }
+  };
+  walk("");
+  return { files, truncated, include: p.include ?? [], exclude: p.exclude ?? [] };
+}

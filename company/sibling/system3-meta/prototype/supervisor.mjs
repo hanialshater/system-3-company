@@ -44,7 +44,7 @@ import { expireContracts } from "./contractor.mjs";
 import * as CH from "./channels.mjs";
 import * as JOBS from "./jobs.mjs";
 import * as WS from "./workspace.mjs";
-import { isIndependent } from "./lib.mjs";
+import { isIndependent, packHistory } from "./lib.mjs";
 
 /** K1: a stage signed by code, or any stage with a `run` cmd (plan 2026-10-21 §3: the lesson flow's stages 2, 3, 4, 8 and 9
  *  are scripts; the old table only knew test1/uat/ship by name). No `run`: test1 as before (the order's text checks or
@@ -346,7 +346,13 @@ export function briefFor(co, item, { context = null } = {}) {
   } else if (item.contract) {
     L.push(`Read your brief: \`node meta.mjs contract brief --id=${item.contract}\`. Work only in its folder; deliver with the \`contract deliver\` command it names, before the timebox ends.`);
   } else {
-    L.push(`1. Enter: \`node meta.mjs room enter --msg=${item.msgs[0]} --role=${item.role}\`. The JSON pack gives the order, stage, workdir, accept criteria, findings, history, memory and the exact \`next_with\` and \`leave_with\` commands. Your session cap is ${item.cap} (${item.msgs.length} item${item.msgs.length > 1 ? "s" : ""} queued${o ? `, starting with ${o.task}` : ""}).`);
+    // K6: the first item's stage pack rules; with history:false the brief, like the pack, names no findings or history
+    const sd = o ? co.engine.flows.get(o.flow)?.stages.find((x) => x.stage === first.body?.stage) : null, hist = packHistory(sd);
+    L.push(`1. Enter: \`node meta.mjs room enter --msg=${item.msgs[0]} --role=${item.role}\`. The JSON pack gives the order, stage, workdir, accept criteria, ${hist ? "findings, history, memory" : "memory"}${sd?.pack?.include?.length || sd?.pack?.exclude?.length ? ", the files you read" : ""} and the exact \`next_with\` and \`leave_with\` commands. Your session cap is ${item.cap} (${item.msgs.length} item${item.msgs.length > 1 ? "s" : ""} queued${o ? `, starting with ${o.task}` : ""}).`);
+    if (!hist) L.push(`This stage (${sd.stage}) judges the artifact before the account: its pack leaves out prior findings and build history. Judge the work itself; do not read the builder's notes, earlier reviews, \`flow show\`, \`item show\` or \`events\` for this order before your own findings are written.`);
+    if (sd?.pack?.include?.length) L.push(`Read only these in the workdir: ${sd.pack.include.join(", ")}.`);
+    if (sd?.pack?.exclude?.length) L.push(`Never open: ${sd.pack.exclude.join(", ")}.`);
+    if (item.msgs.length > 1 && sd?.pack) L.push("Each item's pack states its own stage's rules.");
     // K4: an independent stage's role reviews, whatever its level (a role signer such as learner-evaluator)
     if (r.level === "checker" || (o && isIndependent(co.engine.flows.get(o.flow)?.stages.find((x) => x.stage === first.body?.stage)))) L.push("2. Check the work against its accept criteria and the shipped work it must agree with. Never fix it. Report defects by class: list every instance of a class, each as what is wrong → what is required.", `3. Hand in with \`next_with\` (\`--cap=${item.cap} --verdict=pass\` or \`--verdict=revise --findings='…'\`, \`--evidence=<path>\`, \`--learned='one line'\`) to take the next item in this session: it waits up to 90 s for one, so always hand in with it, and stop only when it says your session is over.`);
     else L.push("2. Do the work the accept criteria ask, in the workdir only. If the work needs a change in another order's module, do not edit it: raise it with your manager (`node meta.mjs ask raise --by=" + item.role + " --kind=decision --title='…' --why='what is wrong, where, what is required' --due=YYYY-MM-DD`) and say so when you hand in. If the order has `checks`, run `node meta.mjs check --order=<O>` before you hand in: it runs the same test1 code will run.", `3. Hand in with \`next_with\` (\`--cap=${item.cap} --evidence=<path> --learned='one line'\`) to take the next item in this session: it waits up to 90 s for one (a revise of your work often arrives then), so always hand in with it, and stop only when it says your session is over.`);

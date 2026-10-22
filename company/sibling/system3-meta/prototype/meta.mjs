@@ -52,7 +52,7 @@
 // Exit: 0 ok, 1 refused, 2 usage or state error.
 import fs from "node:fs";
 import path from "node:path";
-import { Refused, flowMetrics } from "./lib.mjs";
+import { Refused, flowMetrics, packHistory } from "./lib.mjs";
 import * as GEN from "./generator.mjs";
 import * as WS from "./workspace.mjs";
 import { proposePolicy, activatePolicy, managerReport, recordCycle, KNOBS } from "./policy.mjs";
@@ -88,7 +88,13 @@ function pack(co, run, ctx, session, item) {
   // Benchmark 1 finding (writer-1): the prefix dropped META_LIVE_DIR, so a copied command wrote to the wrong state
   const pre = [process.env.META_LIVE_DIR && `META_LIVE_DIR=${process.env.META_LIVE_DIR}`, process.env.META_STATE && `META_STATE=${process.env.META_STATE}`].filter(Boolean).map((x) => x + " ").join("");
   const iso = (m) => new Date(m * 60000).toISOString();
-  return { run, session, item, lease_min: Number(opt.lease ?? 30), order: o.id, task: o.task, title: o.title, priority: o.priority, stage: ctx.stage, accept: ws ? interpolate(o.accept ?? "", vars) : o.accept, workdir: dir + "/", workdir_exists: fs.existsSync(dir), ...(ws ? (ws.error ? { workspace_error: ws.error } : { branch: o.workspace.branch, base_sha: o.workspace.sha, env: o.workspace.env, run_meta_from: HERE }) : {}), findings: o.findings ?? null, memory: ctx.memory.map((e) => ({ ...e, t: iso(e.t) })), history: o.history.map((h) => ({ ...h, t: iso(h.t) })),
+  // K6: the stage's pack rules. history:false leaves out the order's findings, its history and this role's memory of
+  // the order (stage 6: the learner reads the artifact before the account); include/exclude name the files it reads
+  const sd = co.engine.flows.get(o.flow)?.stages.find((x) => x.stage === ctx.stage);
+  const hist = packHistory(sd), pf = WS.packFiles(dir, sd?.pack);
+  const mem = hist ? ctx.memory : ctx.memory.filter((e) => !String(e.did ?? "").includes(` on ${o.id}:`));
+  const k6 = { ...(hist ? {} : { history_withheld: "this stage judges the artifact before the account: no prior findings, build history or notes on this order; do not look them up (flow show, item show, events, build notes)" }), ...(pf ? { files: pf.files, files_truncated: pf.truncated, read_only: pf.include.length ? pf.include : null, never_read: pf.exclude } : {}) };
+  return { run, session, item, lease_min: Number(opt.lease ?? 30), order: o.id, task: o.task, title: o.title, priority: o.priority, stage: ctx.stage, accept: ws ? interpolate(o.accept ?? "", vars) : o.accept, workdir: dir + "/", workdir_exists: fs.existsSync(dir), ...(ws ? (ws.error ? { workspace_error: ws.error } : { branch: o.workspace.branch, base_sha: o.workspace.sha, env: o.workspace.env, run_meta_from: HERE }) : {}), findings: hist ? o.findings ?? null : null, memory: mem.map((e) => ({ ...e, t: iso(e.t) })), history: hist ? o.history.map((h) => ({ ...h, t: iso(h.t) })) : [], ...k6,
     cap_means: "--cap counts every item in this session, including the first one you entered",
     leave_with: absCmds(`${pre}node meta.mjs room leave --run=${run} --evidence=<path>${ctx.stage === "check" ? " --verdict=pass|revise --findings='…'" : ""} --learned='…'`),
     next_with: absCmds(`${pre}node meta.mjs room next --run=${run} --cap=<cap from your brief> --wait=90 --evidence=<path>${ctx.stage === "check" ? " --verdict=pass|revise --findings='…'" : ""} --learned='…'`) };

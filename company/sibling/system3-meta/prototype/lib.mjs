@@ -248,6 +248,19 @@ export const signerName = (s) => (signerRole(s) ? `role ${signerRole(s)}` : Stri
 // K4: a reviewing stage is independent (the builder may never enter or sign it): `independent`, by default true for
 // checker, evaluator and role signers; `check` always is (S8). Before K4 only the stage named check was guarded (stage 6)
 export const isIndependent = (s) => !!s && (s.stage === "check" || (s.independent ?? (["checker", "evaluator"].includes(s.signer) || !!signerRole(s))));
+// K6 (plan 2026-10-21 §3): a stage's context-pack rules, `pack:{include:[globs], exclude:[globs], history:false}`. With
+// history:false the brief and the room pack leave out prior findings and build history (stage 6, artifact before account:
+// the learner judged the lesson through the builder's notes); exclude keeps a file out of the pack (stage 5 and build.md)
+export const packHistory = (s) => s?.pack?.history !== false;
+export function packProblem(p) {
+  if (p == null) return null;
+  if (typeof p !== "object" || Array.isArray(p)) return "pack is {include, exclude, history}";
+  const extra = Object.keys(p).filter((k) => !["include", "exclude", "history"].includes(k));
+  if (extra.length) return `pack has unknown key${extra.length > 1 ? "s" : ""} ${extra.join(", ")} (include, exclude, history)`;
+  for (const k of ["include", "exclude"]) if (p[k] != null && !(Array.isArray(p[k]) && p[k].every((g) => typeof g === "string" && g.trim() && !g.startsWith("/") && !g.split("/").includes("..")))) return `pack.${k} is a list of workdir-relative globs`;
+  if (p.history != null && typeof p.history !== "boolean") return "pack.history is true or false";
+  return null;
+}
 
 /** Invariants every flow definition must meet, whoever writes it. */
 export function flowProblems(def) {
@@ -259,6 +272,7 @@ export function flowProblems(def) {
     if (s.signer && typeof s.signer === "object" && (typeof s.signer.role !== "string" || !s.signer.role || Object.keys(s.signer).length !== 1)) p.push(`${s.stage}: a role signer is {role:"<id>"}`);
     if (s.independent != null && typeof s.independent !== "boolean") p.push(`${s.stage}: independent is true or false`);
     if (s.signer === "builder" && s.independent === true) p.push(`${s.stage}: an independent stage cannot be signed by the builder`);
+    { const e = packProblem(s.pack); if (e) p.push(`${s.stage}: ${e}`); } // K6
   }
   const t1 = def.stages.find((s) => s.stage === "test1");
   if (t1 && t1.signer !== "code") p.push("test1 must be signed by code");
