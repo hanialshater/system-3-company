@@ -241,6 +241,14 @@ export class Org {
 
 // ------------------------------------------------------------------ flows and orders
 
+// K3 (plan 2026-10-21 §3): a stage signer may name one role, {role:"<id>"}: stages 5-7 of the lesson flow are signed by
+// fact-checker, learner-evaluator and head-of-product, and pool:checker would let any checker-level role sign fact-check
+export const signerRole = (s) => (s?.signer && typeof s.signer === "object" ? s.signer.role ?? null : null);
+export const signerName = (s) => (signerRole(s) ? `role ${signerRole(s)}` : String(s?.signer));
+// K4: a reviewing stage is independent (the builder may never enter or sign it): `independent`, by default true for
+// checker, evaluator and role signers; `check` always is (S8). Before K4 only the stage named check was guarded (stage 6)
+export const isIndependent = (s) => !!s && (s.stage === "check" || (s.independent ?? (["checker", "evaluator"].includes(s.signer) || !!signerRole(s))));
+
 /** Invariants every flow definition must meet, whoever writes it. */
 export function flowProblems(def) {
   const p = [];
@@ -248,6 +256,9 @@ export function flowProblems(def) {
   for (const s of def.stages) {
     if (!s.signer) p.push(`${s.stage}: no signer`);
     if (s.signer !== "code" && !(s.evidence?.length)) p.push(`${s.stage}: no evidence`);
+    if (s.signer && typeof s.signer === "object" && (typeof s.signer.role !== "string" || !s.signer.role || Object.keys(s.signer).length !== 1)) p.push(`${s.stage}: a role signer is {role:"<id>"}`);
+    if (s.independent != null && typeof s.independent !== "boolean") p.push(`${s.stage}: independent is true or false`);
+    if (s.signer === "builder" && s.independent === true) p.push(`${s.stage}: an independent stage cannot be signed by the builder`);
   }
   const t1 = def.stages.find((s) => s.stage === "test1");
   if (t1 && t1.signer !== "code") p.push("test1 must be signed by code");
@@ -351,7 +362,7 @@ export class Engine {
     const key = `${o.id}:${o.stage}:${o.loops}`;
     if (s.signer === "code") return this.log.add({ type: "code-stage", order: o.id, stage: o.stage });
     if (s.signer === "founder") return this.request({ order: o.id, stage: o.stage, approver: "founder", kind: "release", dueMin: 24 * 60, key });
-    const to = s.signer === "builder" ? o.builder : s.signer === "orderer" ? o.manager : `pool:${s.signer}`;
+    const to = signerRole(s) ? `role:${signerRole(s)}` : s.signer === "builder" ? o.builder : s.signer === "orderer" ? o.manager : `pool:${s.signer}`; // K3: role:<id>
     return this.mailbox.send({ from: o.manager, to, kind: "work", key: duplicate ? (this.config.dedupe ? key : `${key}:dup${this.mailbox.n}`) : key, ref: o.id, body: { stage: o.stage, loops: o.loops }, priority: o.priority ?? "next", due: o.due ?? null });
   }
 
@@ -364,8 +375,11 @@ export class Engine {
     if (s.signer === "builder") return roleId === o.builder;
     if (s.signer === "orderer") return roleId === o.manager;
     if (s.signer === "founder") return roleId === "founder";
+    if (signerRole(s)) return roleId === signerRole(s); // K3: exactly that role, never its level's pool
     return r.level === s.signer;
   }
+  /** K4: may this role work on (enter or sign) this stage of this order? Only the builder is kept off independent stages. */
+  independentOf(o, stage, roleId) { return !(isIndependent(this.flows.get(o.flow)?.stages.find((x) => x.stage === stage)) && roleId === o.builder); }
 
   // ---- stages, up the chain
   advance(id, { stage, by, verdict = "pass", evidence = null, findings = null, consult = false }) {
@@ -375,7 +389,9 @@ export class Engine {
     this.guard(!consult, "consult", `a consult run cannot sign ${stage}`, { order: id, by });
     const s = this.stageDef(o);
     this.guard(this.mayAssign(o, stage, by), "signer", `${by} may not sign ${stage} on ${id}`, { order: id, by });
-    if (stage === "check") { this.guard(by !== o.builder, "independence", `${by} built ${id} and cannot check it`, { order: id, by }); o.checker = by; }
+    // K4: every independent stage, not only check; who signed it is kept per stage (o.checker stays for check)
+    if (isIndependent(s)) { this.guard(by !== o.builder, "independence", `${by} built ${id} and cannot ${stage === "check" ? "check it" : `sign ${stage}`}`, { order: id, by }); (o.signers ??= {})[stage] = by; }
+    if (stage === "check") o.checker = by;
     if (s.signer !== "code") this.guard(!!evidence, "evidence", `${stage} needs evidence`, { order: id, by });
     o.history.push({ stage, by, verdict, t: this.clock.now(), ...(verdict === "revise" && findings ? { findings: String(findings).slice(0, 2000) } : {}) }); // every revise keeps its findings (org evaluation reads them)
     this.log.add({ type: "advance", order: id, stage, by, verdict });
@@ -501,9 +517,9 @@ export class Rooms {
     const actor = as ?? role;
     const r = this.org.role(actor);
     hard(r?.active, `no active role ${actor}`);
-    this.guard(m.to === actor || m.to === `pool:${r.level}`, "lane", `${actor} may not take ${msg} (for ${m.to})`, { order: o.id, by: actor });
+    this.guard(m.to === actor || m.to === `pool:${r.level}` || m.to === `role:${actor}`, "lane", `${actor} may not take ${msg} (for ${m.to})`, { order: o.id, by: actor });
     hard(r.level !== "contractor", `contractor ${actor} works outside the delivery flow: it enters no flow work`);
-    if (m.body.stage === "check") this.guard(actor !== o.builder, "independence", `${actor} built ${o.id}`, { order: o.id, by: actor });
+    if (!this.engine.independentOf(o, m.body.stage, actor)) this.guard(false, "independence", `${actor} built ${o.id}`, { order: o.id, by: actor }); // K4: every independent stage
     let s;
     if (session) { s = this.sessions.get(session); hard(s?.open && s.role === actor, `session ${session} is not open for ${actor}`); }
     else { s = { id: `S-${++this.nS}`, role: actor, items: 0, open: true, started: this.clock.now() }; this.sessions.set(s.id, s); this.log.add({ type: "session-open", session: s.id, role: actor }); }
@@ -519,11 +535,11 @@ export class Rooms {
     return { run, ctx, session: s.id, item: s.items };
   }
 
-  /** Messages this role may take next, best first (priority, then age), skipping checks of its own builds. */
+  /** Messages this role may take next, best first (priority, then age), skipping independent stages of its own builds. */
   eligible(role) {
     const r = this.org.role(role);
-    return [...this.mailbox.queue(role, "work"), ...this.mailbox.queue(`pool:${r.level}`, "work")]
-      .filter((m) => !(m.body.stage === "check" && this.engine.orders.get(m.ref).builder === role))
+    return [...this.mailbox.queue(role, "work"), ...this.mailbox.queue(`role:${role}`, "work"), ...this.mailbox.queue(`pool:${r.level}`, "work")]
+      .filter((m) => this.engine.independentOf(this.engine.orders.get(m.ref), m.body.stage, role))
       .sort((a, b) => (PRIORITY[a.priority] - PRIORITY[b.priority]) || a.ts - b.ts);
   }
 

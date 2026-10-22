@@ -7,7 +7,7 @@
 //   node meta.mjs order new --to=<manager> --title=… --task=<T> --accept=… [--budget=200000] [--priority=now|next|later --due=<min>] [--after=O-1,O-2]
 //   node meta.mjs order delegate <O> --by=<manager> --to=<builder> [--budget=150000]
 //   node meta.mjs order reopen <O> --by=<manager|founder> --findings=… [--reason=…]   a shipped order back to build
-//   node meta.mjs queue <role|pool:level>                     open work messages
+//   node meta.mjs queue <role|pool:level|role:id>             open work messages (K3: role:<id> holds a role signer's items)
 //   node meta.mjs room enter --msg=<M> --role=<role> [--lease=30] [--as=<role> --mode=consult]
 //   node meta.mjs room next --run=<R> --cap=<n> [--wait=<s>] --evidence=… [leave flags]   leave, then take the next item in the
 //        same session; --wait keeps the session up to <s> seconds for the role's next item (benchmark 3: ~60k per new session)

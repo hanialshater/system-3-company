@@ -44,6 +44,7 @@ import { expireContracts } from "./contractor.mjs";
 import * as CH from "./channels.mjs";
 import * as JOBS from "./jobs.mjs";
 import * as WS from "./workspace.mjs";
+import { isIndependent } from "./lib.mjs";
 
 /** K1: a stage signed by code, or any stage with a `run` cmd (plan 2026-10-21 §3: the lesson flow's stages 2, 3, 4, 8 and 9
  *  are scripts; the old table only knew test1/uat/ship by name). No `run`: test1 as before (the order's text checks or
@@ -261,10 +262,16 @@ export function plan(co, { batchLater: batchDefault = 3, cap: capDefault = 4 } =
       out.push({ role, why: next.length ? `next: ${next.length} waiting, no session running` : `later: a batch of ${later.length}`, msgs: take.map((m) => m.id), cap: Math.max(take.length, cap) });
     }
   };
+  // K3/K4: a role signer's items go to role:<id>, and are planned for that role whatever its level (stage 7's
+  // head-of-product); no role is planned for an independent stage of an order it built
+  const fit = (role) => (m) => co.engine.independentOf(co.engine.orders.get(m.ref), m.body?.stage, role);
+  const checker = org.byLevel("checker")[0];
   for (const r of org.active()) {
-    if (r.human || ["founder", "chief-of-staff", "manager", "release"].includes(r.level)) continue;
-    if (r.level === "checker") continue; // the pool is planned once, below
-    consider(r.id, mailbox.queue(r.id, "work"));
+    if (r.human) continue;
+    const named = mailbox.queue(`role:${r.id}`, "work").filter(fit(r.id));
+    if (r.id === checker?.id) continue; // the pool is planned once, below, with its own role:<id> items
+    if (["founder", "chief-of-staff", "manager", "release", "checker"].includes(r.level)) { if (named.length) consider(r.id, named); continue; }
+    consider(r.id, [...mailbox.queue(r.id, "work"), ...named]);
   }
   // An open engagement needs its contractor started once; a launch (any time) counts while the engagement is open.
   for (const c of co.engine.contracts?.values() ?? []) {
@@ -272,8 +279,7 @@ export function plan(co, { batchLater: batchDefault = 3, cap: capDefault = 4 } =
     if (log.events.some((e) => e.type === "launch" && e.role === c.contractor)) continue;
     out.push({ role: c.contractor, why: `contract ${c.id} (${c.kind}) open, not started`, msgs: [], contract: c.id, cap: 1 });
   }
-  const checker = org.byLevel("checker")[0];
-  if (checker) consider(checker.id, mailbox.queue("pool:checker", "work").filter((m) => co.engine.orders.get(m.ref).builder !== checker.id));
+  if (checker) consider(checker.id, [...mailbox.queue(`role:${checker.id}`, "work"), ...mailbox.queue("pool:checker", "work")].filter(fit(checker.id)));
   for (const j of judgment(co)) {
     // a launch reserves non-room work until the work is done or NON_ROOM_GRACE_MIN passes (no room enter to watch for)
     if (log.events.some((e) => e.type === "launch" && e.role === j.role && now - e.t < NON_ROOM_GRACE_MIN && !ended(e) && (e.tasks ?? []).some((t) => j.tasks.some((u) => u.kind === t.kind && u.ref === t.ref)))) continue;
@@ -341,7 +347,8 @@ export function briefFor(co, item, { context = null } = {}) {
     L.push(`Read your brief: \`node meta.mjs contract brief --id=${item.contract}\`. Work only in its folder; deliver with the \`contract deliver\` command it names, before the timebox ends.`);
   } else {
     L.push(`1. Enter: \`node meta.mjs room enter --msg=${item.msgs[0]} --role=${item.role}\`. The JSON pack gives the order, stage, workdir, accept criteria, findings, history, memory and the exact \`next_with\` and \`leave_with\` commands. Your session cap is ${item.cap} (${item.msgs.length} item${item.msgs.length > 1 ? "s" : ""} queued${o ? `, starting with ${o.task}` : ""}).`);
-    if (r.level === "checker") L.push("2. Check the work against its accept criteria and the shipped work it must agree with. Never fix it. Report defects by class: list every instance of a class, each as what is wrong → what is required.", `3. Hand in with \`next_with\` (\`--cap=${item.cap} --verdict=pass\` or \`--verdict=revise --findings='…'\`, \`--evidence=<path>\`, \`--learned='one line'\`) to take the next item in this session: it waits up to 90 s for one, so always hand in with it, and stop only when it says your session is over.`);
+    // K4: an independent stage's role reviews, whatever its level (a role signer such as learner-evaluator)
+    if (r.level === "checker" || (o && isIndependent(co.engine.flows.get(o.flow)?.stages.find((x) => x.stage === first.body?.stage)))) L.push("2. Check the work against its accept criteria and the shipped work it must agree with. Never fix it. Report defects by class: list every instance of a class, each as what is wrong → what is required.", `3. Hand in with \`next_with\` (\`--cap=${item.cap} --verdict=pass\` or \`--verdict=revise --findings='…'\`, \`--evidence=<path>\`, \`--learned='one line'\`) to take the next item in this session: it waits up to 90 s for one, so always hand in with it, and stop only when it says your session is over.`);
     else L.push("2. Do the work the accept criteria ask, in the workdir only. If the work needs a change in another order's module, do not edit it: raise it with your manager (`node meta.mjs ask raise --by=" + item.role + " --kind=decision --title='…' --why='what is wrong, where, what is required' --due=YYYY-MM-DD`) and say so when you hand in. If the order has `checks`, run `node meta.mjs check --order=<O>` before you hand in: it runs the same test1 code will run.", `3. Hand in with \`next_with\` (\`--cap=${item.cap} --evidence=<path> --learned='one line'\`) to take the next item in this session: it waits up to 90 s for one (a revise of your work often arrives then), so always hand in with it, and stop only when it says your session is over.`);
     L.push("If a command refuses, read the message and fix what it names. If \`room enter\` says the item is held by another run or already done, stop at once and report it: another session has it, so never wait for a lease (benchmark 5: a session waited 30 minutes for one).");
   }

@@ -8,8 +8,9 @@ import fs from "node:fs";
 import { SPECS } from "./specs.mjs";
 import { validateCmd } from "./state.mjs";
 import { validateWorkspace, validateRoleLaunch } from "./workspace.mjs";
+import { signerRole, signerName, isIndependent } from "./lib.mjs";
 
-const SIGNERS = ["builder", "code", "checker", "orderer", "release", "founder"];
+const SIGNERS = ["builder", "code", "checker", "orderer", "release", "founder", "evaluator"]; // K4: evaluator signs as a level, independent by default
 const LEVELS = ["founder", "chief-of-staff", "vp", "manager", "builder", "checker", "release", "evaluator", "contractor"];
 const KINDS = ["lobby", "office", "lane", "quality", "launch", "meeting"];
 
@@ -45,7 +46,20 @@ export function validateSpec(s) {
   const st = s.flow?.stages ?? [];
   need(!!s.flow?.name && st.length > 0, "the flow has a name and stages");
   need(st[0]?.stage === "build" && st[0]?.signer === "builder", "the first stage is build, signed by the builder");
-  for (const x of st) need(SIGNERS.includes(x.signer), `stage ${x.stage}: signer is one of ${SIGNERS.join(", ")}`);
+  for (const x of st) {
+    // K3: or {role:"<id>"}, a role that exists and is active; K4: `independent` is a boolean, never on a builder stage, and
+    // an independent stage's role is not a builder (it could be the order's own builder: the guard would refuse every run)
+    const rid = signerRole(x);
+    if (rid) {
+      const r = roles.get(rid);
+      need(Object.keys(x.signer).length === 1, `stage ${x.stage}: a role signer is {role:"<id>"}`);
+      need(!!r && r.active !== false, `stage ${x.stage}: signer role ${rid} exists and is active`);
+      need(!r || !r.human, `stage ${x.stage}: signer role ${rid} is an agent (a person signs as founder, through approval)`);
+      if (r && isIndependent(x)) need(r.level !== "builder", `stage ${x.stage}: signer role ${rid} is a builder and cannot sign an independent stage`);
+    } else need(SIGNERS.includes(x.signer), `stage ${x.stage}: signer is one of ${SIGNERS.join(", ")}, or {role:"<id>"}`);
+    if (x.independent != null) need(typeof x.independent === "boolean", `stage ${x.stage}: independent is true or false`);
+    if (x.signer === "builder") need(x.independent !== true, `stage ${x.stage}: an independent stage cannot be signed by the builder`);
+  }
   need(new Set(st.map((x) => x.stage)).size === st.length, "stage names are unique");
   // K1: a stage `run` is a valid cmd, on a stage code may execute (code, orderer, release: never an agent's own stage or
   // the founder's), and its routes go back to an earlier stage only (plan 2026-10-21 §3, K1/K11)
@@ -60,6 +74,7 @@ export function validateSpec(s) {
   const has = (lvl) => s.roles.some((r) => r.level === lvl);
   if (st.some((x) => x.signer === "builder")) need(has("builder"), "a builder exists to sign build");
   if (st.some((x) => x.signer === "checker")) need(has("checker"), "a checker exists to sign check");
+  if (st.some((x) => x.signer === "evaluator")) need(has("evaluator"), "an evaluator exists to sign its stage");
   if (st.some((x) => x.signer === "release")) need(has("release"), "a release role exists to sign ship");
   if (st.some((x) => x.signer === "orderer")) need(has("manager"), "a manager exists to order work (orderer signs uat)");
   // independence (S8): someone other than every builder can check
@@ -78,7 +93,7 @@ export function orgDoc(s, name) {
   L.push("## Roles", "", "| Role | Level | Reports to | Room (floor) | Lane | Skills |", "|---|---|---|---|---|---|");
   for (const r of s.roles) L.push(`| ${r.id} | ${r.level}${r.human ? " (a person)" : ""} | ${r.reportsTo ?? "-"} | ${r.room} (${r.floor}) | ${r.lane ?? "-"} | ${(r.skills ?? []).join(", ") || "-"} |`);
   L.push("", "## How work flows", "", `Every order goes through the \`${s.flow.name}\` flow; each stage is signed by one kind of role, and nobody checks their own work.`, "");
-  for (const x of s.flow.stages) L.push(`1. **${x.stage}**, signed by the ${x.signer === "code" ? "supervisor's code" : x.signer}${x.evidence?.length ? ` (evidence: ${x.evidence.join(", ")})` : ""}`);
+  for (const x of s.flow.stages) L.push(`1. **${x.stage}**, signed by the ${x.signer === "code" ? "supervisor's code" : signerName(x)}${isIndependent(x) && x.stage !== "check" ? " (independent: never the builder)" : ""}${x.evidence?.length ? ` (evidence: ${x.evidence.join(", ")})` : ""}`);
   if (s.rules?.length) { L.push("", "## Standing rules (checked by code on every matching order)", ""); for (const r of s.rules) L.push(`- orders whose task starts with \`${r.tasks}\`: ${Object.keys(r.checks).join(", ")}`); }
   if (s.channels?.length) { L.push("", "## Channels", ""); for (const c of s.channels) L.push(`- \`${c.id}\` (${c.kind})${c.title ? `: ${c.title}` : ""}`); }
   return L.join("\n") + "\n";
