@@ -316,18 +316,25 @@ export function validateRoleLaunch(r) {
   if (r.settingSources != null && !(Array.isArray(r.settingSources) && r.settingSources.every((s) => SETTING_SOURCES.includes(s)))) return `settingSources is a list of ${SETTING_SOURCES.join(", ")}`;
   return null;
 }
-/** The protected-paths globs of `repo` as of `ref`: { file, globs }, or null (the ref has no such file). `cache` maps
- *  repo+ref to the answer (one git call per base, whatever the number of orders). */
+/** The protected-paths globs of `repo` as of `ref`: { file, globs }, null (the ref is a commit with no such file), or
+ *  { file, error } (the lookup failed: a timeout, a lock, a bad ref, no repo). K10 review: every failure was null, so a
+ *  timed-out `git show` read as "no file here" and the launch started with that root missing (fail open); only git's own
+ *  "path … does not exist in / exists on disk, but not in" now means no file. `cache` maps repo+ref to the answer (one
+ *  git call per base, whatever the number of orders). */
 function globsAt(w, repo, ref, cache = new Map()) {
   const file = commitOf(w)?.protectedPaths ?? DEFAULT_PROTECTED, key = `${repo}\0${ref}\0${file}`;
   if (!cache.has(key)) {
     const r = spawnSync("git", ["-C", repo, "show", `${ref}:${file}`], { encoding: "utf8", timeout: 5_000 });
-    cache.set(key, ok(r) ? { file, globs: globsOf(r.stdout) } : null);
+    // git says "path … not in '<sha>'" for an unknown sha too, so a missing path counts only once the ref is a commit
+    const none = !r.error && !r.signal && /fatal: path '.*' (does not exist in|exists on disk, but not in) '/.test(r.stderr ?? "")
+      && ok(spawnSync("git", ["-C", repo, "rev-parse", "--verify", "--quiet", `${ref}^{commit}`], { encoding: "utf8", timeout: 5_000 }));
+    cache.set(key, ok(r) ? { file, globs: globsOf(r.stdout) } : none ? null
+      : { file, error: r.error?.code === "ETIMEDOUT" || r.signal ? `git show ${ref}:${file} timed out in ${repo}` : `git show ${ref}:${file} failed in ${repo}: ${String(r.stderr || r.error?.message || r.status).trim().slice(0, 200)}` });
   }
   return cache.get(key);
 }
 /** The protected-paths globs for order `o`: { file, globs } as of the order's base commit (as K7 reads them: the
- *  worktree's own copy is the agent's to edit), or null (no workspace, or the base has no such file). */
+ *  worktree's own copy is the agent's to edit), null (no workspace, or the base has no such file), or { file, error }. */
 export function protectedGlobs(co, o, cache) {
   const w = specOf(co);
   if (!w || !o?.workspace?.repo) return null;
@@ -339,12 +346,20 @@ export function protectedGlobs(co, o, cache) {
  *  contract: msgs []) had none and could Write tools/company.mjs anywhere, and a builder could write into a sibling
  *  order's worktree. With a spec workspace the roots are now always: every order's worktree (globs as of its base), the
  *  repo (as of the spec base) and the worktree root, `nested` (its first path segment is a worktree: one made after this
- *  launch, or by hand, is covered too). No workspace: no roots (nothing to protect, as before K10). */
+ *  launch, or by hand, is covered too). No workspace: no roots (nothing to protect, as before K10). K10 fix review:
+ *  `missing` lists [{dir, error}] whose lookup failed (guard.mjs sessionPlan refuses on any), `workspace` says a spec
+ *  workspace applies. */
 export function launchConfig(co, { role, msgs = [] }) {
   const r = co.org.role(role);
   if (!r) throw new Error(`no role ${role}`);
   const workdirs = [], roots = [], cache = new Map(), w = specOf(co);
-  const add = (dir, p, extra = {}) => { if (p && dir && !roots.some((x) => x.dir === dir && !!x.nested === !!extra.nested)) roots.push({ dir, ...p, ...extra }); };
+  // K10 review: a failed lookup (p.error) is a missing root, reported, and sessionPlan refuses the launch on it
+  const missing = [];
+  const add = (dir, p, extra = {}) => {
+    if (!p || !dir) return;
+    if (p.error) { if (!missing.some((x) => x.dir === dir)) missing.push({ dir, error: p.error }); return; }
+    if (!roots.some((x) => x.dir === dir && !!x.nested === !!extra.nested)) roots.push({ dir, ...p, ...extra });
+  };
   for (const id of msgs) {
     const o = co.engine.orders.get(co.mailbox.msgs.get(id)?.ref);
     if (o?.workdir && !workdirs.includes(o.workdir)) workdirs.push(o.workdir);
@@ -356,5 +371,5 @@ export function launchConfig(co, { role, msgs = [] }) {
     const p = globsAt(w, w.repo, w.base ?? "HEAD", cache);
     add(w.repo, p); add(w.root, p, { nested: 1 });
   }
-  return { role, ...Object.fromEntries(ROLE_LAUNCH_KEYS.map((k) => [k, r[k] ?? null])), workdir: workdirs[0] ?? null, workdirs, roots };
+  return { role, ...Object.fromEntries(ROLE_LAUNCH_KEYS.map((k) => [k, r[k] ?? null])), workdir: workdirs[0] ?? null, workdirs, roots, workspace: !!w, missing };
 }

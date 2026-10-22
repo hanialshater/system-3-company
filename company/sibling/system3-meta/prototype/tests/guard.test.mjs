@@ -313,3 +313,49 @@ test("launch.mjs: --workdir-from takes only `order`", (t) => {
   assert.equal(r.status, 2);
   assert.match(r.stderr, /--workdir-from takes: order/);
 });
+
+test("K10 fix review: deploy.mjs and vercel paths, package-manager value options, corepack, node -e/--import, more push spellings", () => {
+  for (const c of ["node tools/deploy.mjs --prod", "./tools/deploy.mjs", "node /abs/tools/deploy.mjs", "node node_modules/vercel/dist/index.js deploy", "node_modules/vercel/dist/index.js deploy",
+    "node_modules/.bin/vercel --prod", "npx vercel@latest deploy", "npm --prefix /repo run deploy", "npm --prefix=/repo run deploy", "npm -w x run deploy", "npm --workspace x run deploy:prod",
+    "pnpm -C /r run deploy", "pnpm --filter web deploy", "yarn --cwd /r deploy", "yarn workspace web deploy", "bun --cwd /r run deploy", "cd /r && corepack pnpm run deploy", "corepack pnpm@8.15.0 deploy",
+    "corepack npm --prefix /r run deploy", "node --input-type=module -e \"import('./tools/claim.mjs')\"", "node -e \"require('./tools/deploy.mjs')\"", "node --import ./tools/claim.mjs x.mjs",
+    "node -r ./tools/deploy.mjs", "git subtree push --prefix dist origin gh-pages", "git -c alias.p=push p origin", "git -c 'alias.p=!git push' p", "git $'push' origin", "echo 'git push' | sh", "ssh h 'git push'"]) {
+    assert.equal(G.decide("Bash", { command: c }, opts)?.rule, "bash", c);
+  }
+  for (const c of ["grep -rn 'git push' docs", "rg 'npm run deploy' company", "git grep 'git push'", "git log --grep='npm run deploy'", "npm run test:deploy", "node --test tests/deploy/*.test.mjs",
+    "npm --prefix /repo run check", "corepack enable", "cat tools/deploy.mjs", "grep -r claim.mjs tools", "node scripts/vercel-check.mjs", "git subtree split --prefix dist", "git -c color.ui=never log"]) {
+    assert.equal(G.decide("Bash", { command: c }, opts), null, c);
+  }
+  assert.equal(G.decide("Bash", { command: "rg --pre 'git push' x" }, opts)?.rule, "bash", "rg --pre runs a command: no reader");
+});
+
+test("K10 fix review: a protected-paths lookup that fails is a missing root, and sessionPlan refuses it; a base with no file is no root", () => {
+  const co = make("k10e", spec());
+  co.org.genesis(co.spec.roles.map((r) => ({ ...r })));
+  co.engine.approveDef(co.engine.define("task", { stages: co.spec.flow.stages }, { by: "cos" }), { by: "founder", words: "Approve" });
+  const o = co.engine.orderNew({ flow: "task", by: "cos", to: "mgr-live", budget: 100, accept: "write it" });
+  o.task = "KE1"; co.engine.delegate(o.id, { by: "mgr-live", to: "toy-builder-1", budget: 100 });
+  assert.ok(!WS.ensure(co, o).error);
+  const D = { cwd: "/kernel", sessionMin: 20, maxTurns: 80, settingSources: [] };
+  const good = WS.launchConfig(co, { role: "mgr-live", msgs: [] });
+  assert.deepEqual([good.workspace, good.missing], [true, []]);
+  assert.ok(!G.sessionPlan(good, {}, D).refused);
+  // a bad base (as a lock, a timeout or a gc'd ref would leave it): that order's roots are missing, not silently gone
+  const sha = o.workspace.baseSha ?? o.workspace.sha;
+  o.workspace.baseSha = "0".repeat(40);
+  const bad = WS.launchConfig(co, { role: "mgr-live", msgs: [] });
+  assert.ok(bad.missing.some((x) => x.dir === o.workdir && /failed in/.test(x.error)), JSON.stringify(bad.missing));
+  assert.ok(!bad.roots.some((x) => x.dir === o.workdir));
+  assert.match(G.sessionPlan(bad, {}, D).refused, /protected paths unknown for .*no session starts/);
+  o.workspace.baseSha = sha;
+  // a base that is a commit without the file: no root, and no refusal (nothing to protect there)
+  const git = (...a) => spawnSync("git", ["-C", o.workspace.repo, ...a], { encoding: "utf8", input: "" }).stdout.trim();
+  const empty = git("commit-tree", git("mktree"), "-m", "empty");
+  assert.match(empty, /^[0-9a-f]{40}$/);
+  o.workspace.baseSha = empty;
+  const none = WS.launchConfig(co, { role: "mgr-live", msgs: [] });
+  assert.ok(!none.missing.some((x) => x.dir === o.workdir), JSON.stringify(none.missing));
+  assert.ok(!none.roots.some((x) => x.dir === o.workdir));
+  o.workspace.baseSha = sha;
+  assert.match(G.sessionPlan({ workspace: true, roots: null }, {}, D).refused, /no roots list/);
+});
