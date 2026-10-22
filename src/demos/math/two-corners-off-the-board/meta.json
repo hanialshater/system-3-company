@@ -27,21 +27,27 @@
       "text": "Every domino on a chequered board covers one dark and one light square, whichever way it lies.",
       "support": "derivation",
       "source": "Neighbouring squares (r, c) and (r, c+1) or (r+1, c) differ by 1 in r + c, so one has r + c even (dark) and the other odd (light). Stage: isDark(r, c) = (r + c) even in Demo.tsx; every drawn domino is checked to be two neighbouring squares at module load.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     },
     {
       "id": "math.two-corners-off-the-board.c2",
       "text": "A 4 by 4 board without two opposite corners ((0,0) and (3,3), both dark) has 6 dark and 8 light squares, so at most 6 dominoes fit and every best try leaves 2 light squares; it has no domino tiling, and counting colours shows this without trying every arrangement. Without two corners of one row ((0,0) and (0,3)) it has 7 dark and 7 light and 12 tilings. The stage draws fixed tries: on the opposite-corner board 6 dominoes leaving (2,3) and (3,2), then (0,3) and (3,0), then (0,1) and (1,0); on the one-row board three of its 12 tilings (every domino horizontal; the bottom two rows as four vertical dominoes; four vertical and three horizontal dominoes).",
       "support": "derivation",
       "source": "company/domains/briefs/checks/math-wave-j-check.mjs label D4 (opposite: dark 6, light 8, tilings 0; sameRow: dark 7, light 7, tilings 12). Maximum matching by brute force over all domino sets: 6 on the opposite-corner board (154 maximum placements). The fixed tries are listed in BOARDS in Demo.tsx; the readout is counted from the drawn board.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     },
     {
       "id": "math.two-corners-off-the-board.c3",
       "text": "An 8 by 8 chessboard without two opposite corners has 30 dark and 32 light squares, so 31 dominoes cannot cover it. Recall: a 6 by 6 board without two squares of the same colour has 16 of one colour and 18 of the other, so 17 dominoes cannot cover it.",
       "support": "derivation",
       "source": "company/domains/briefs/checks/math-wave-j-check.mjs label D4 (8x8 opp: [30, 32]). Opposite corners (0,0) and (7,7) both have r + c even, so both are the same colour; 32 - 2 = 30. Recall: 6 by 6 has 18 of each colour; removing two of one colour leaves 16 and 18; with claim c1, 17 dominoes need 17 of each.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     }
   ],
   "confidence": "",
