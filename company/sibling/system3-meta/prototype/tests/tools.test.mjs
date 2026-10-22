@@ -109,6 +109,9 @@ test("S9: founder words must cover the action; a timeout never approves; decide 
   assert.equal(co.log.of("timeout").length, 1);
   assert.throws(() => co.engine.decide(a.id, { by: "founder", decision: "approve", words: "looks nice", channel: "chat" }), /do not cover/);
   assert.throws(() => co.engine.decide(a.id, { by: "cos", decision: "approve", words: "Approve deploy", channel: "chat" }), /not the approver/);
+  // M6 smoke: "approved" (not a decision word) denied the approval in silence; now refused, the approval still open
+  assert.throws(() => co.engine.decide(a.id, { by: "founder", decision: "approved", words: "Approve deploy", channel: "chat" }), /decision is one of approve, deny/);
+  assert.equal(a.state, "open");
   co.engine.decide(a.id, { by: "founder", decision: "approve", words: "Approve deploy", channel: "chat" });
   co.engine.decide(a.id, { by: "founder", decision: "approve", words: "Approve deploy", channel: "chat" });
   assert.equal(co.log.of("callback").length, 1);

@@ -371,6 +371,7 @@ export function standingCovers(list, { action, role, trigger }) {
 }
 
 const COVERS = { release: /\b(approve|go)\b.*\b(deploy|release|ship)\b|\b(deploy|release|ship)\b.*\b(approve|ok|go)\b/i, "org-change": /\b(approve|add|retire|ok|yes)\b/i, budget: /\b(approve|ok|yes)\b/i };
+const DECISIONS = ["approve", "deny"]; // engine.decide: the only words an approval takes (M6 smoke)
 
 export const preKey = (o) => `${o.stage}:${o.loops}:${o.parks ?? 0}`;
 
@@ -708,6 +709,9 @@ export class Engine {
   queue(approver) { return [...this.approvals.values()].filter((a) => a.approver === approver && a.state === "open"); }
 
   decide(ids, { by, decision, words, channel }) {
+    // M6 smoke: any other word was a denial ("--decision=approved" denied a budget the founder meant to approve, and
+    // the order stayed at budget with no ask left); refused before any approval changes
+    hard(DECISIONS.includes(decision), `decision is one of ${DECISIONS.join(", ")}, not ${JSON.stringify(decision ?? null)}`);
     const out = [];
     for (const id of [].concat(ids)) {
       const a = this.approvals.get(id);

@@ -35,7 +35,7 @@
 //   node meta.mjs mail dup <O> --by=<manager>                 send the current stage's notification again (managers only)
 //   node meta.mjs batch --file=<ops.json>   [{cmd, sub?, arg?, args:{…}}, …] on one state, all or nothing; ${n.field} reads result n
 //   node meta.mjs building plan|floor-propose|room-add|room-rename|room-retire|book|cancel …   floors, rooms, bookings (API.md §11)
-//   node meta.mjs approval queue --approver=<role>  ·  approval decide --ids=… --by --decision --words --channel
+//   node meta.mjs approval queue --approver=<role>  ·  approval decide --ids=… --by --decision=approve|deny --words --channel
 //   node meta.mjs channel create|post|read|status|inbox …     channels, posts fanned out to members, acks
 //   node meta.mjs item create|update|comment|link|show|search …  ·  project create  ·  cycle create  ·  board [filters]
 //   node meta.mjs goal create|update|show|board|review …      goals: levels, contributes-to, RAG, code-measured criteria
@@ -70,7 +70,7 @@ import * as GEN from "./generator.mjs";
 import * as WS from "./workspace.mjs";
 import { proposePolicy, activatePolicy, managerReport, recordCycle, KNOBS } from "./policy.mjs";
 import { engage, engageTemplate, briefFor, deliver, decideContract, TEMPLATES } from "./contractor.mjs";
-import { absCmds, HERE, LIVE, STATE, LIVE_ROLES, TASK_FLOW, clock, make, rep, interpolate, save, load, withLock, runTests, runTest1, runCmdCheck, validateChecks, describeChecks, mergeChecks, ESCAPES, readEscapes, sessionRole, briefVars } from "./state.mjs";
+import { absCmds, HERE, LIVE, STATE, LIVE_ROLES, TASK_FLOW, clock, make, rep, interpolate, save, load, withLock, runTests, runTest1, runCmdCheck, prepareCmd, validateChecks, describeChecks, mergeChecks, ESCAPES, readEscapes, sessionRole, briefVars } from "./state.mjs";
 import * as B from "./building.mjs";
 import * as CH from "./channels.mjs";
 import * as T from "./tracker.mjs";
@@ -91,7 +91,7 @@ const need = (...ks) => { const miss = ks.filter((k) => opt[k] == null || opt[k]
 /** K12: room leave/next run the stage's post-check before taking the lock (withLock breaks a lock older than 30 s, and
  *  a QA stamp or diff guard can take longer); Rooms.leave uses the result only for this run, stage and loop, and runs
  *  the check itself under the lock when there is none (a batch, a state that changed in between). */
-let prePost = null;
+let prePost = null, preCheck = null; // preCheck: checkOutsideLock (M6 smoke)
 // K12 review: no catch-all (a bug here fell back to the slow under-lock run in silence); a state that cannot load fails
 // the same way under the lock; a leave advance refuses anyway runs nothing (Rooms.leave skips it the same way)
 function postOutsideLock() {
@@ -102,6 +102,19 @@ function postOutsideLock() {
   if (!sd?.post || typeof opt.evidence !== "string") return null;
   if (co.engine.config.enforce && co.engine.refusesSign(o, x.stage, x.role, { evidence: opt.evidence, consult: x.consult })) return null;
   return { ...runCmdCheck(o, sd.post, { evidence: opt.evidence, verdict: opt.verdict ?? "pass", stage: x.stage }), run: x.run, stage: x.stage, loops: x.loops, outsideLock: true };
+}
+
+/** M6 smoke: `check --order` ran the builder's own node tests ("no *.test.mjs") while saying "the same check test1 will
+ *  run", but a flow whose test1 has a spec `run` cmd (s3c: gates.mjs --stage=build) signs by that cmd (supervisor.mjs
+ *  runCodeStage). This runs that cmd as runCodeStage would, before the lock (a gates run takes minutes; withLock would
+ *  make every other writer fail meanwhile); the check itself records the self-check under the lock. Null: no such cmd. */
+function checkOutsideLock() {
+  if (!fs.existsSync(STATE) || typeof opt.order !== "string") return null;
+  const co = load(); const o = co.engine.orders.get(opt.order);
+  const sd = o && co.engine.flows.get(o.flow)?.stages.find((s) => s.stage === "test1");
+  if (!sd?.run) return null;
+  const p = prepareCmd(o, sd);
+  return { order: o.id, t: runCmdCheck(o, sd), argv: p.argv, cwd: p.cwd };
 }
 
 /** K5: why message `m`'s order may not be worked yet (its workspace is held or cannot be made), or null. */
@@ -218,6 +231,7 @@ function main() {
     }
   };
   if (cmd === "room" && ["leave", "next"].includes(sub) && typeof opt.run === "string") prePost = postOutsideLock();
+  if (cmd === "check") preCheck = checkOutsideLock();
   const r = readOnly ? act() : withLock(act);
   // room next --wait: the hand-in is saved; poll (outside the lock) until the role's next item or the end of the wait
   if (cmd === "room" && sub === "next" && r?.waiting) {
@@ -321,10 +335,12 @@ function dispatch(co, cmd, sub, arg) {
   }
   if (cmd === "room" && sub === "session-usage") { need("session", "tokens"); rooms.recordSessionUsage(opt.session, Number(opt.tokens)); return { ok: true }; }
   if (cmd === "room" && sub === "wake-plan") { const t = mailbox.nextExpiry(); return { next_expiry_in_s: t == null ? null : Math.max(0, Math.round((t - clock.now()) * 60)) }; }
-  if (cmd === "check") { need("order"); const o = engine.orders.get(opt.order); if (!o) throw new Refused(`no order ${opt.order}`); const t = runTest1(o);
+  if (cmd === "check") { need("order"); const o = engine.orders.get(opt.order); if (!o) throw new Refused(`no order ${opt.order}`);
+    const pc = preCheck?.order === o.id ? preCheck : null, t = pc ? pc.t : runTest1(o); // M6 smoke: the flow's test1 cmd first
     // every self-check is a record (org evaluation, ISS-2): a failed one is a defect code caught before hand-in
     const by = [...rooms.runs.values()].find((r) => r.state === "running" && r.order === o.id)?.role ?? opt.by ?? null;
     log.add({ type: "self-check", order: o.id, task: o.task, by, stage: o.stage, pass: t.pass, output: String(t.output).slice(0, 400) });
+    if (pc) return { order: o.id, task: o.task, slug: o.slug ?? o.task, pass: !!t.pass, stageError: !!t.stageError, output: t.output, findings: t.findings ?? null, route: t.route ?? null, rules: ["the flow's test1 cmd (spec run)"], cmd: pc.argv, cwd: pc.cwd, note: "the same cmd test1 will run, in the same worktree; nothing is signed" };
     return { order: o.id, task: o.task, pass: t.pass, output: t.output, rules: o.checks ? describeChecks(o.checks) : ["the builder's own tests (node --test)"], note: "the same check test1 will run; nothing is signed" }; }
   if (cmd === "flow" && sub === "metrics") { const m = flowMetrics(log, engine.orders); const r1 = (x) => Math.round(x * 100) / 100; return { ...m, orders: m.orders.map((o) => ({ ...o, lead_min: r1(o.lead), work_min: r1(o.work), critical_min: r1(o.critical), flowEfficiency: r1(o.flowEfficiency) })) }; }
   if (cmd === "room" && sub === "heartbeat") { need("run"); rooms.heartbeat(opt.run, { leaseMin: 30 }); return { ok: true }; }
