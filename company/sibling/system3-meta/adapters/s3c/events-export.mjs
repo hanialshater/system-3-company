@@ -83,7 +83,8 @@ export function classify(e, st, ctx = {}) {
   const chair = flows.get(o.flow)?.stages?.[0]?.signer === "chair" || !!o.chair;
   const slug = o.slug ?? o.task ?? o.id;
   if (!chair && e.type === "advance") {
-    const by = { check: ["verify", "fact-check"], learner: ["review", "learner-review"], launch: ["decision", "launch-room"] }[e.stage];
+    // B6 (K25): the plan check is a fact-check too, before the build
+    const by = { check: ["verify", "fact-check"], "plan-check": ["verify", "fact-check"], learner: ["review", "learner-review"], launch: ["decision", "launch-room"] }[e.stage];
     if (by) return { kind: "batch", type: by[0], room: by[1], actor: e.by, stage: e.stage, slug, verdict: e.verdict, order: o.id, close: ctx.sessionOf?.(e) ? `S:${ctx.sessionOf(e)}` : "T" };
     if (e.stage === "ship" && e.verdict === "pass") return { kind: "batch", type: "publish", room: "launch-room", actor: e.by === "code" ? "release-manager" : e.by, stage: e.stage, slug, verdict: "pass", order: o.id, close: "T" };
     if (e.stage === "merge" && e.verdict === "pass") return { kind: "one", event: { type: "merge", room: "chief-of-staff", actor: "chief-of-staff", summary: `System 3 Meta ${o.id}: ${o.workspace?.branch ?? slug} merged into the run's integration branch (integrate.mjs, code)`, subjects: [slug], refs: ctx.mergeRefs?.(o) ?? [] } };

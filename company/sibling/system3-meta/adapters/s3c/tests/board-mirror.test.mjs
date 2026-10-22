@@ -20,6 +20,7 @@ test("boardState: building is doing, judging and shipping is review, done is don
   const s = (stage, extra = {}) => boardState({ stage, ...extra });
   assert.deepEqual(["build", "qa", "run", "check", "launch", "merge", "done", "cancelled", "parked", "budget"].map((x) => s(x)), ["doing", "doing", "doing", "review", "review", "review", "done", "dropped", "backlog", "next"]);
   assert.equal(s("build", { blocked: true }), "next");
+  assert.deepEqual(["draft", "plan-check"].map((x) => s(x)), ["doing", "review"], "B6 (K25): the draft is work, its plan check a review");
 });
 
 test("every Meta order gets one board item through company board add (owner, domain, state), moves with its stage, and its W id comes back as ext:W-n", () => {

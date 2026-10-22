@@ -181,3 +181,12 @@ test("a Meta builder in flight is counted by the company's dispatch-check C1/C2 
   const dj = JSON.parse(dc.stdout);
   assert.ok(dj.info.some((l) => /^in flight: 1 agents, 1 builders \(event log 1\/1/.test(l)), dc.stdout);
 });
+
+test("B6 (K25): a plan check's sign-off is a fact-check of the company's, as the check after build is", async () => {
+  const { classify } = await import("../events-export.mjs");
+  const o = { id: "O-1", slug: "half-the-pizza", flow: "lesson@v1" };
+  const st = { engine: { orders: new Map([["O-1", o]]), flows: new Map([["lesson@v1", { stages: [{ stage: "draft", signer: "builder" }, { stage: "plan-check", signer: { role: "fact-checker" } }] }]]) } };
+  const c = classify({ type: "advance", order: "O-1", stage: "plan-check", by: "fact-checker", verdict: "revise" }, st, {});
+  assert.deepEqual([c.kind, c.type, c.room, c.actor, c.verdict], ["batch", "verify", "fact-check", "fact-checker", "revise"]);
+  assert.equal(classify({ type: "advance", order: "O-1", stage: "draft", by: "demo-builder", verdict: "pass" }, st, {}), null, "the draft itself is the builder's work, as build is");
+});

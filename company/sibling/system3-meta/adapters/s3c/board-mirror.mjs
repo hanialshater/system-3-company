@@ -61,7 +61,8 @@ export const BOARD = "company/ops/board.json";
 export const COMMIT_MSG = "meta: board mirror (chief-of-staff code step)";
 const USAGE = "usage: board-mirror.mjs [--live=<dir>] --repo=<integration worktree> --run=<name> [--commit] | renumber --repo=<worktree> --run=<name> [--onto=<ref>] [--commit]";
 const rev = (k, v) => (v && v.__map ? new Map(v.__map) : v && v.__set ? new Set(v.__set) : v);
-const DOING = ["build", "test1", "qa", "walk", "run"], REVIEW = ["check", "learner", "launch", "gates", "ship", "merge"];
+// B6 (K25): the draft is work in progress, the plan check a review, as build and check are
+const DOING = ["draft", "build", "test1", "qa", "walk", "run"], REVIEW = ["plan-check", "check", "learner", "launch", "gates", "ship", "merge"];
 
 /** The board state of an order. */
 export function boardState(o) {
