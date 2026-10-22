@@ -425,13 +425,18 @@ export class Engine {
   independentOf(o, stage, roleId) { return !(isIndependent(this.flows.get(o.flow)?.stages.find((x) => x.stage === stage)) && roleId === o.builder); }
 
   // ---- stages, up the chain
-  advance(id, { stage, by, verdict = "pass", evidence = null, findings = null, consult = false, postChecked = false }) {
+  advance(id, { stage, by, verdict = "pass", evidence = null, findings = null, consult = false, postChecked = false, to = null }) {
     const o = this.orders.get(id);
     hard(o, `no order ${id}`);
     hard(o.stage === stage, `${id} is at ${o.stage}, not ${stage}`);
     this.guard(!consult, "consult", `a consult run cannot sign ${stage}`, { order: id, by });
     const s = this.stageDef(o);
     this.guard(this.mayAssign(o, stage, by), "signer", `${by} may not sign ${stage} on ${id}`, { order: id, by });
+    // K11 (plan 2026-10-21 §3): a revise may name the earlier stage it belongs to (ship's "claims not verified" goes back
+    // to check, not to a rebuild); never the stage itself or a later one, and only on a revise
+    const st = this.flows.get(o.flow).stages.map((x) => x.stage);
+    const earlier = to != null && st.indexOf(to) >= 0 && st.indexOf(to) < st.indexOf(stage);
+    if (to != null) { hard(verdict === "revise", `${stage} on ${id}: only a revise is routed (to ${to})`); this.guard(earlier, "route", `${stage} on ${id} cannot send work to ${to}: a revise goes back to an earlier stage (${st.slice(0, st.indexOf(stage)).join(", ") || "none"})`, { order: id, by }); }
     // K4: every independent stage, not only check; who signed it is kept per stage (o.checker stays for check)
     if (isIndependent(s)) { this.guard(by !== o.builder, "independence", `${by} built ${id} and cannot ${stage === "check" ? "check it" : `sign ${stage}`}`, { order: id, by }); (o.signers ??= {})[stage] = by; }
     if (stage === "check") o.checker = by;
@@ -439,15 +444,16 @@ export class Engine {
     // K12 review: the check lives with the signature: a stage with a post-check is signed only by a room leave, which ran
     // it (`flow advance --stage=build --evidence=x` signed toy build.post=exit 1 without running it)
     if (s.post) this.guard(postChecked, "post-check", `${stage} on ${id} has a post-check: sign it with room leave (it runs the check), not flow advance`, { order: id, by });
-    o.history.push({ stage, by, verdict, t: this.clock.now(), ...(verdict === "revise" && findings ? { findings: String(findings).slice(0, 2000) } : {}) }); // every revise keeps its findings (org evaluation reads them)
+    const back = verdict === "revise" ? (earlier ? to : "build") : null; // with enforce off a bad route is recorded and goes to build
+    o.history.push({ stage, by, verdict, t: this.clock.now(), ...(verdict === "revise" && findings ? { findings: String(findings).slice(0, 2000) } : {}), ...(back && back !== "build" ? { to: back } : {}) }); // every revise keeps its findings (org evaluation reads them)
     this.log.add({ type: "advance", order: id, stage, by, verdict });
     if (verdict === "pass") o.stage = this.nextStage(o);
     else {
-      o.stage = "build"; o.loops++; o.findings = findings;
+      o.stage = back; o.loops++; o.findings = findings;
       // The lane's policy decides how a revision is queued; an urgent (`now`) order stays urgent.
       const pol = this.policyOf(o);
       if (pol.revisionPriority && o.priority !== "now") { o.priority = pol.revisionPriority; o.due = pol.revisionPriority === "later" ? this.clock.now() + pol.revisionDueMin : null; }
-      this.log.add({ type: "reopen", order: id, from: stage, loops: o.loops, priority: o.priority });
+      this.log.add({ type: "reopen", order: id, from: stage, loops: o.loops, priority: o.priority, ...(back !== "build" ? { to: back } : {}) });
     }
     if (o.stage === "done") {
       this.log.add({ type: "shipped", order: id, lead: this.clock.now() - o.created, loops: o.loops, priority: o.priority ?? "next" });
@@ -649,7 +655,7 @@ export class Rooms {
     this.log.add({ type: "usage", run, role: x.role, tokens, source });
   }
 
-  leave(run, { verdict = "pass", evidence = null, learned = null, mistake = null, tokens = null, findings = null, post = null }) {
+  leave(run, { verdict = "pass", evidence = null, learned = null, mistake = null, tokens = null, findings = null, post = null, to = null }) {
     const x = this.runs.get(run);
     hard(x && x.state === "running", `run ${run} not running`);
     const o = this.engine.orders.get(x.order);
@@ -662,7 +668,7 @@ export class Rooms {
     // K12 review: a leave advance refuses anyway (no evidence, wrong signer) runs no post-check; with enforce off it runs
     // (advance only records those violations and signs, so the post-check's own violation must be recorded too)
     if (!(this.config.enforce && this.engine.refusesSign(o, x.stage, x.role, { evidence, consult: x.consult }))) this.checkPost(x, o, { verdict, evidence, post });
-    this.engine.advance(o.id, { stage: x.stage, by: x.role, verdict, evidence, findings, consult: x.consult, postChecked: true });
+    this.engine.advance(o.id, { stage: x.stage, by: x.role, verdict, evidence, findings, consult: x.consult, postChecked: true, to }); // K11
     x.state = "left";
     const m = this.mailbox.msgs.get(x.msg);
     if (m.state === "open") this.mailbox.done(x.msg, { run, report: { stage: x.stage, verdict } });

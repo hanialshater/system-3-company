@@ -17,13 +17,14 @@
 //   node meta.mjs room wake-plan                              seconds until the next lease expiry: when to run recover
 //   node meta.mjs flow metrics                                lead, work, critical path (--after), flow efficiency, cost
 //   node meta.mjs room heartbeat --run=<R>
-//   node meta.mjs room leave --run=<R> [--verdict=pass|revise] --evidence=<path> [--findings=…] [--learned=…] [--mistake=…]
+//   node meta.mjs room leave --run=<R> [--verdict=pass|revise [--to=<earlier stage>]] --evidence=<path> [--findings=…] [--learned=…] [--mistake=…]
+//        K11: --to sends a revise back to that earlier stage instead of build (refused for the stage itself or a later one)
 //        K12: a stage with a `post` cmd runs it first; a failure refuses the leave (exit 1, findings) and the run stays open
 //   node meta.mjs room abandon --run=<R> --by=<role> --reason=…   supervisor: end a bad run, sign nothing
 //   node meta.mjs room recover                                expired leases → left-without-leave, order back in the queue
 //   node meta.mjs room usage --run=<R> --tokens=<n>           the harness's token count for a run (supervisor only)
 //   node meta.mjs flow advance <O> --stage=test1 --by=code    runs the builder's tests itself; signs pass or revise
-//   node meta.mjs flow advance <O> --stage=<s> --by=<role> --evidence=… [--verdict=…] [--findings=…]
+//   node meta.mjs flow advance <O> --stage=<s> --by=<role> --evidence=… [--verdict=…] [--findings=…] [--to=<earlier stage>]
 //   node meta.mjs flow show <O> | flow status
 //   node meta.mjs mail dup <O> --by=<manager>                 send the current stage's notification again (managers only)
 //   node meta.mjs batch --file=<ops.json>   [{cmd, sub?, arg?, args:{…}}, …] on one state, all or nothing; ${n.field} reads result n
@@ -252,7 +253,7 @@ function dispatch(co, cmd, sub, arg) {
   }
   if (cmd === "room" && sub === "next") {
     need("run", "evidence");
-    const r = rooms.next(opt.run, { verdict: opt.verdict ?? "pass", evidence: opt.evidence, findings: opt.findings ?? null, learned: opt.learned ?? null, mistake: opt.mistake ?? null, post: prePost }, { cap: Number(opt.cap ?? 3), leaseMin: Number(opt.lease ?? 30), waitMin: Number(opt.wait ?? 0) / 60, filter: (m) => !wsBlocker(co, m) });
+    const r = rooms.next(opt.run, { verdict: opt.verdict ?? "pass", evidence: opt.evidence, findings: opt.findings ?? null, learned: opt.learned ?? null, mistake: opt.mistake ?? null, post: prePost, to: opt.to ?? null }, { cap: Number(opt.cap ?? 3), leaseMin: Number(opt.lease ?? 30), waitMin: Number(opt.wait ?? 0) / 60, filter: (m) => !wsBlocker(co, m) });
     const left = r.left ? { order: r.left.id, next_stage: r.left.stage, loops: r.left.loops } : { stale: true };
     if (r.waiting) return { left, waiting: r.waiting.id };
     if (!r.next) return { left, session_closed: r.closed?.id ?? true, reason: r.closed ? (r.closed.items >= Number(opt.cap ?? 3) ? "cap reached" : "queue empty") : "closed", note: "your session is over: stop now" };
@@ -271,7 +272,7 @@ function dispatch(co, cmd, sub, arg) {
     need("run", "evidence");
     // K7 review: `commit` is this leave's own commit; the head before tells it from an earlier stage's (null: nothing changed)
     const was = engine.orders.get(rooms.runs.get(opt.run)?.order)?.workspace?.head ?? null;
-    const o = rooms.leave(opt.run, { verdict: opt.verdict ?? "pass", evidence: opt.evidence, findings: opt.findings ?? null, learned: opt.learned ?? null, mistake: opt.mistake ?? null, post: prePost });
+    const o = rooms.leave(opt.run, { verdict: opt.verdict ?? "pass", evidence: opt.evidence, findings: opt.findings ?? null, learned: opt.learned ?? null, mistake: opt.mistake ?? null, post: prePost, to: opt.to ?? null });
     // K7: the stage's commit (code's, in the order's worktree), or why it was refused and the order held
     return o ? { order: o.id, next_stage: o.stage, loops: o.loops, ...(WS.commitOf(WS.specOf(co)) && o.workspace?.dir ? { commit: o.workspace.head && o.workspace.head !== was ? o.workspace.head : null } : {}), ...(o.stageError?.kind === "workspace" ? { held: o.stageError.why } : {}) } : { stale: true, note: "the stage moved on while you worked; nothing was signed" };
   }
@@ -287,7 +288,7 @@ function dispatch(co, cmd, sub, arg) {
       engine.advance(arg, { stage: "test1", by: "code", verdict: t.pass ? "pass" : "revise", findings: t.pass ? null : t.output });
       return { order: arg, test1: t.pass ? "pass" : "revise", output: t.output, next_stage: o.stage };
     }
-    engine.advance(arg, { stage: opt.stage, by: opt.by, evidence: opt.evidence ?? null, verdict: opt.verdict ?? "pass", findings: opt.findings ?? null });
+    engine.advance(arg, { stage: opt.stage, by: opt.by, evidence: opt.evidence ?? null, verdict: opt.verdict ?? "pass", findings: opt.findings ?? null, to: opt.to ?? null });
     return { order: arg, next_stage: o.stage, loops: o.loops };
   }
   if (cmd === "flow" && sub === "show") { const o = engine.orders.get(arg); return { ...o, messages: mailbox.thread(arg).map((m) => ({ id: m.id, stage: m.body?.stage, state: m.state, lease: m.lease })) }; }

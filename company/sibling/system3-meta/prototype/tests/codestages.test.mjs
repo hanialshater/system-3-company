@@ -116,7 +116,7 @@ test("validateCmd and validateSpec: a stage run is a valid cmd, only on code/ord
   for (const n of ["toy", "storybook", "research", "sheetco"]) assert.deepEqual(validateSpec(JSON.parse(fs.readFileSync(path.join(HERE, "..", "specs", `${n}.json`), "utf8"))), [], n);
 });
 
-test("tick: a code stage with run, a uat by cmd (orderer signs), a ship by cmd (release signs) and its route in the findings", () => {
+test("tick: a code stage with run, a uat by cmd (orderer signs), a ship by cmd (release signs) routed back to check", () => {
   const co = fresh();
   const a = order(co, "KA"); a.slug = "lesson-a";
   sign(co, a, "toy-builder-1", "toy-builder-1");
@@ -138,9 +138,8 @@ test("tick: a code stage with run, a uat by cmd (orderer signs), a ship by cmd (
   assert.equal(a.history.find((h) => h.stage === "ship").by, "toy-release", "the release role signs; code executes");
   assert.equal(steps[1].route, "check");
   assert.match(a.findings, /\[route: check\]/);
-  assert.equal(a.stage, "build", "until K11 a revise goes to build");
+  assert.equal(a.stage, "check", "K11: the routed revise goes back to check, not to build");
   fs.rmSync(path.join(LIVE, "work", "KA", "unverified"));
-  sign(co, a, "toy-builder-1", "toy-builder-1");
   for (let i = 0; i < 3 && a.stage !== "done"; i++) { tick(co); if (a.stage === "check") sign(co, a, "pool:checker", "toy-checker"); }
   assert.equal(a.stage, "done");
   assert.equal(fs.readFileSync(path.join(LIVE, "work", "KA", "published"), "utf8"), "lesson-a", "the cmd ran in the workdir with ${slug}");

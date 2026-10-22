@@ -3,7 +3,8 @@
 // It does every step a rule can decide, and plans the ones only an agent can do:
 //   test1   runs the builder's tests and signs as `code`
 //   run     K1: any stage signed by code, or with a `run` cmd in the spec, runs by code (runCodeStage; the cmd check is
-//           state.mjs runCmdCheck: {argv, cwd, env, timeoutMs, pass, findings, route}, with ${slug}/${task}/${workdir})
+//           state.mjs runCmdCheck: {argv, cwd, env, timeoutMs, pass, findings, route}, with ${slug}/${task}/${workdir});
+//           K11: a failure whose output matches a `route` regex is revised back to that earlier stage, not to build
 //   workspace  K5: with a spec `workspace`, each order with a builder gets its git worktree once (workspace.mjs ensure);
 //           its cmd stages run there with its env, and its brief names it; a git failure holds the order whatever its
 //           stage (no launch, `room enter`/`next` refuse its items) until `retry`
@@ -75,19 +76,21 @@ export function applyCmdResult(co, o, s, t) {
   const { engine, rooms, mailbox } = co;
   const stage = o.stage;
   const say = (t) => ({ step: stage, kind: "cmd", order: o.id, result: t.stageError ? "stage-error" : t.pass ? "pass" : "revise", output: t.output, findings: t.findings, route: t.route });
-  // a routed failure names where it belongs (K11 sends it there; until then it goes to build with the route in findings)
+  // K11: a routed failure goes back to the earlier stage its route names (ship's "claims not verified" → check, not a
+  // rebuild); the route stays in the findings so the stage it lands on reads why. No route: build, as before
+  const to = (t) => (t.pass ? null : t.route ?? null);
   const why = (t) => (t.pass ? null : `${t.output}${t.route ? ` [route: ${t.route}]` : ""}${t.findings ? `\n${t.findings}` : ""}`);
   const err = (t) => { o.stageError = { stage, loops: o.loops, why: t.output, t: engine.clock.now() }; co.log.add({ type: "stage-error", order: o.id, stage, loops: o.loops, why: t.output }); return say(t); };
   if (s.signer === "code") {
     t ??= runCmdCheck(o, s);
     if (t.stageError) return err(t);
-    engine.advance(o.id, { stage, by: "code", verdict: t.pass ? "pass" : "revise", findings: why(t) });
+    engine.advance(o.id, { stage, by: "code", verdict: t.pass ? "pass" : "revise", findings: why(t), to: to(t) });
     return say(t);
   }
   if (s.signer === "orderer") {
     t ??= runCmdCheck(o, s);
     if (t.stageError) return err(t);
-    engine.advance(o.id, { stage, by: o.manager, verdict: t.pass ? "pass" : "revise", evidence: `${t.output} (supervisor.mjs)`, findings: why(t) });
+    engine.advance(o.id, { stage, by: o.manager, verdict: t.pass ? "pass" : "revise", evidence: `${t.output} (supervisor.mjs)`, findings: why(t), to: to(t) });
     return say(t);
   }
   if (s.signer === "release") {
@@ -97,7 +100,7 @@ export function applyCmdResult(co, o, s, t) {
     t ??= runCmdCheck(o, s);
     if (t.stageError) return err(t); // the release role enters only to sign
     const { run } = rooms.enter({ msg: m.id, role: rel.id });
-    rooms.leave(run, { verdict: t.pass ? "pass" : "revise", evidence: `${t.output} (supervisor.mjs)`, findings: why(t), learned: null });
+    rooms.leave(run, { verdict: t.pass ? "pass" : "revise", evidence: `${t.output} (supervisor.mjs)`, findings: why(t), learned: null, to: to(t) });
     rooms.closeSession(rooms.runs.get(run).session, `${stage} done`);
     return say(t);
   }
