@@ -8,7 +8,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { companyRepo, metaCli, metaState, sign, git, run } from "./m7-fixture.mjs";
+import { companyRepo, metaCli, metaState, sign, git, run, MAIN } from "./m7-fixture.mjs";
 import { boardState } from "../board-mirror.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
@@ -65,4 +65,42 @@ test("never the main checkout or a primary checkout; --run is required", () => {
   assert.match(r.json.findings[0].message, /main checkout/);
   assert.equal(run(ADAPTER, [`--live=${live}`, `--repo=${c.int}`]).exit, 2);
   assert.equal(board(c.root).length, 1, "nothing written");
+});
+
+test("boardProblems is company check's board rules (copied from protected tools/company.mjs, kept in step here)", async () => {
+  const { boardProblems, BOARD_STATES } = await import("../board-mirror.mjs");
+  const src = fs.readFileSync(path.join(MAIN, "tools/company.mjs"), "utf8");
+  for (const s of ['err("company/ops/board.json", `duplicate id ${it.id}`)', 'err("company/ops/board.json", `${it.id} bad state ${it.state}`)', 'err("company/ops/board.json", `${it.id} has no owner`)', `[${BOARD_STATES.map((x) => JSON.stringify(x)).join(", ")}].includes(it.state)`]) assert.ok(src.includes(s), `company.mjs still says ${s}`);
+  assert.deepEqual(boardProblems({ items: [{ id: "W-1", state: "doing", owner: "x" }, { id: "W-1", state: "wip", owner: "" }] }), ["duplicate id W-1", "W-1 bad state wip", "W-1 has no owner"]);
+});
+
+test("renumber: the company's branch and the run's both hand out W-002 on: --onto takes the company's board and appends the run's items with the next free ids; in place it renumbers only the run's duplicates", () => {
+  const c = companyRepo();
+  const live = metaState();
+  let r = run(ADAPTER, [`--live=${live}`, `--repo=${c.int}`, "--run=t7", "--commit"]);
+  assert.deepEqual(r.json.added.map((x) => x.id), ["W-002", "W-003"]);
+  // meanwhile the company's main adds its own W-002 and W-003 (the same next ids)
+  const main = JSON.parse(fs.readFileSync(path.join(c.root, "company/ops/board.json"), "utf8"));
+  main.items.push({ id: "W-002", title: "company work", owner: "tools-lead", state: "next", domain: null, created: "2026-10-22", links: [] }, { id: "W-003", title: "more company work", owner: "cm-math", state: "backlog", domain: null, created: "2026-10-22", links: [] });
+  fs.writeFileSync(path.join(c.root, "company/ops/board.json"), JSON.stringify(main, null, 2) + "\n");
+  git(c.root, "commit", "-qam", "company board items");
+  r = run(ADAPTER, ["renumber", `--repo=${c.int}`, "--run=t7", "--onto=main", "--commit"]);
+  assert.equal(r.exit, 0, r.stdout + r.stderr);
+  assert.deepEqual(r.json.renumbered, [{ order: "O-1", from: "W-002", to: "W-004" }, { order: "O-2", from: "W-003", to: "W-005" }]);
+  assert.deepEqual(r.json.labels, { "O-1": ["ext:W-004"], "O-2": ["ext:W-005"] });
+  const b = board(c.int);
+  assert.deepEqual(b.map((i) => i.id), ["W-001", "W-002", "W-003", "W-004", "W-005"]);
+  assert.equal(b.find((i) => i.id === "W-002").title, "company work", "the company's items keep their ids");
+  assert.equal(git(c.int, "log", "-1", "--format=%s"), "meta: board renumber for the t7 merge (chief-of-staff code step)");
+  // the mirror finds its items by their tag afterwards: nothing is added again
+  r = run(ADAPTER, [`--live=${live}`, `--repo=${c.int}`, "--run=t7"]);
+  assert.deepEqual([r.exit, r.json.added, r.json.labels], [0, [], { "O-1": ["ext:W-004"], "O-2": ["ext:W-005"] }]);
+  // in place: a merge that kept both sides' W-006
+  const x = JSON.parse(fs.readFileSync(path.join(c.int, "company/ops/board.json"), "utf8"));
+  x.items.push({ id: "W-006", title: "company again", owner: "cm-cs", state: "next", domain: null, created: "2026-10-22", links: [] });
+  x.items.find((i) => i.id === "W-005").id = "W-006";
+  fs.writeFileSync(path.join(c.int, "company/ops/board.json"), JSON.stringify(x, null, 2) + "\n");
+  r = run(ADAPTER, ["renumber", `--repo=${c.int}`, "--run=t7"]);
+  assert.deepEqual(r.json.renumbered, [{ order: "O-2", from: "W-006", to: "W-007" }]);
+  assert.equal(new Set(board(c.int).map((i) => i.id)).size, board(c.int).length);
 });
