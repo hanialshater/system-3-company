@@ -1445,6 +1445,7 @@ export const loaders: Record<string, () => Promise<{ default: ComponentType<{ sl
   "plus-and-minus-chips": () => import("./math/plus-and-minus-chips/Demo"),
   "powers-of-two-plus-one": () => import("./math/powers-of-two-plus-one/Demo"),
   "product-plus-one": () => import("./math/product-plus-one/Demo"),
+  "push-the-frame-over": () => import("./math/push-the-frame-over/Demo"),
   "quarters-add-to-a-third": () => import("./math/quarters-add-to-a-third/Demo"),
   "rabbit-ratio": () => import("./math/rabbit-ratio/Demo"),
   "regions-from-circle-points": () => import("./math/regions-from-circle-points/Demo"),
