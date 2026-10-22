@@ -72,3 +72,70 @@ test("real: gates --baseline-repo writes the run's baseline once, and test1's gu
   const u = spawnSync(process.execPath, [GATES, "x-y", "--stage=build", `--baseline-repo=${REPO}`, `--repo=${WT}`], { encoding: "utf8" });
   assert.equal(u.status, 2, "--baseline-repo needs --baseline-file");
 });
+
+// M6 prep: specs/s3c-lessons-m6.json, the M4 spec extended for the M6 run (plan §M6; M4-RUN.md open defects)
+const M6 = JSON.parse(fs.readFileSync(path.join(PROTO, "specs", "s3c-lessons-m6.json"), "utf8"));
+const INT = "/home/user/s3c-wt/m6-int";
+test("M6 spec: valid; workspace meta/m6 (run m6) under base/.claude/worktrees; lanes math and cs; the demo-builder in both, 3 sessions; reviewers batch", async () => {
+  const { validateSpec } = await import(path.join(PROTO, "generator.mjs"));
+  assert.deepEqual(validateSpec(M6), []);
+  assert.deepEqual([M6.workspace.base, M6.workspace.run, M6.workspace.root, M6.workspace.nodeModules], ["meta/m6", "m6", SPEC.workspace.root, SPEC.workspace.nodeModules], "the same Turbopack layout as M4");
+  const role = (id) => M6.roles.find((r) => r.id === id);
+  assert.deepEqual([role("cm-cs").level, role("cm-cs").lane, role("cm-cs").reportsTo], ["manager", "cs", role("cm-math").reportsTo]);
+  assert.deepEqual([role("demo-builder").lane, role("demo-builder").lanes, role("demo-builder").sessions], ["math", ["math", "cs"], 3]);
+  for (const r of ["fact-checker", "learner-evaluator", "head-of-product"]) assert.deepEqual([role(r).drainCap, role(r).waitSec], [4, 300], r);
+  assert.deepEqual(M6.policy.levelCaps, { builder: 3 });
+  assert.deepEqual(M6.policy.host, { maxLoadPerCpu: 2, minFreeGB: 10 });
+  assert.deepEqual(Object.fromEntries(Object.entries(M6.policy.lanes).map(([l, v]) => [l, v.knobs])), { math: { maxSessions: 4 }, cs: { maxSessions: 4 } });
+  assert.deepEqual(M6.approvals.standing, [{ action: "flag-off-withdrawal", role: "release-manager", trigger: "privacy|child-safety", record: "AMD-015" }]);
+  // every adapter the spec runs exists at its absolute path
+  const cmds = [...M6.flow.stages.flatMap((s) => [s.run, s.post, s.pre].filter(Boolean)), ...M6.exports.map((x) => x.run)];
+  for (const c of cmds) assert.ok(fs.existsSync(c.argv[1]), c.argv[1]);
+  // the flow: M4's nine stages, then merge (code, last); M4's stages unchanged but for the M6 wiring
+  assert.deepEqual(M6.flow.stages.map((s) => s.stage), [...SPEC.flow.stages.map((s) => s.stage), "merge"]);
+});
+
+test("M6 spec wiring: holds.mjs as build's pre; test1's baseline from the integration worktree; the check pack names the order's own brief; merge runs integrate.mjs with ${branch}; the inbox export writes the integration worktree", async () => {
+  const st = (n) => M6.flow.stages.find((s) => s.stage === n);
+  assert.match(st("build").pre.argv.join(" "), /holds\.mjs \$\{slug\} --repo=\$\{workdir\}$/);
+  assert.deepEqual(st("build").pre.route, { '"route":"park"': "park" });
+  assert.ok(st("test1").run.argv.includes(`--baseline-repo=${INT}`));
+  assert.ok(st("check").pack.include.includes("${brief_file}") && !st("check").pack.include.some((g) => g.includes("briefs/*")), "one brief, not 51");
+  // no stage is ledger-gated: no projects.json line exists for the M6 lessons (plans/m6-orders.json says why)
+  assert.ok(!JSON.stringify(M6.flow).includes("ledger-gate"));
+  const { prepareCmd, briefVars } = await import(path.join(PROTO, "state.mjs"));
+  const o = { id: "O-4", task: "LESSON-a-b", slug: "a-b", workdir: "/home/user/s3c-wt/base/.claude/worktrees/LESSON-a-b", workspace: { branch: "meta/m6-LESSON-a-b" }, accept: "LESSON a-b · domain math (strand geometry) · brief company/domains/briefs/math-geometry.md:30-60 (#2)" };
+  assert.deepEqual(prepareCmd(o, st("merge").run).argv.slice(1), [st("merge").run.argv[1], "--into=meta/m6", "--from=meta/m6-LESSON-a-b", `--repo=${INT}`]);
+  assert.equal(briefVars(o).brief_file, "company/domains/briefs/math-geometry.md");
+  const [ex] = M6.exports;
+  assert.deepEqual([ex.id, ex.role, ex.every], ["founder-inbox", "chief-of-staff", "change"]);
+  assert.ok(ex.run.argv.includes(`--write=${INT}/company/ops/founder-inbox.json`) && ex.run.argv.includes("--commit") && !ex.run.argv.includes("--allow-main"));
+  // init: the spec's lane policies are active, and cm-cs delegates a cs order to the demo-builder
+  const live = fs.mkdtempSync(path.join(os.tmpdir(), "s3c-m6-"));
+  const { workspace, exports, ...noWs } = M6; // no worktree, no export: init and delegate touch neither
+  fs.writeFileSync(path.join(live, "spec.json"), JSON.stringify(noWs));
+  const env = { ...process.env, META_LIVE_DIR: live }; delete env.META_ROLE; delete env.NODE_TEST_CONTEXT;
+  const meta = (...a) => { const r = spawnSync(process.execPath, [path.join(PROTO, "meta.mjs"), ...a], { env, encoding: "utf8" }); assert.equal(r.status, 0, r.stderr); return JSON.parse(r.stdout); };
+  meta("init", `--spec-file=${path.join(live, "spec.json")}`);
+  assert.equal(meta("policy", "show", "--lane=cs").versions[0].by, "cm-cs");
+  const id = meta("order", "new", "--by=chief-of-staff", "--to=cm-cs", "--title=one-share-tells-nothing", "--task=LESSON-one-share-tells-nothing", "--slug=one-share-tells-nothing", "--accept=x", "--budget=3000000").order;
+  assert.equal(meta("order", "delegate", id, "--by=cm-cs", "--to=demo-builder", "--budget=150000").builder, "demo-builder");
+  fs.rmSync(live, { recursive: true, force: true });
+});
+
+const MERGED = process.env.S3C_MERGED ?? "/home/user/s3c-wt/merged";
+test("M6 orders (plans/m6-orders.json): 10, each eligible on meta/m4-merged with 'Needs interaction-designer spec: no', its lane its domain's manager's", { skip: !fs.existsSync(path.join(MERGED, "tools/company.mjs")) }, async () => {
+  const { readBrief } = await import(path.join(HERE, "..", "brief.mjs"));
+  const plan = JSON.parse(fs.readFileSync(path.join(PROTO, "..", "plans", "m6-orders.json"), "utf8"));
+  assert.equal(plan.orders.length, 10);
+  assert.equal(new Set(plan.orders.map((o) => o.slug)).size, 10);
+  const lanes = new Map(M6.roles.filter((r) => r.level === "manager").map((r) => [r.id, r.lane]));
+  for (const o of plan.orders) {
+    const r = readBrief(MERGED, o.file, o.slug, { lockRoots: [MERGED] });
+    assert.deepEqual(r.findings.filter((f) => f.severity === "error"), [], o.slug);
+    assert.equal(r.brief.needsSpec.value, "no", o.slug);
+    assert.equal(lanes.get(r.managers.manager), o.lane, `${o.slug}: ordered to ${r.managers.manager}`);
+    assert.ok(r.orderArgv.includes(`--slug=${o.slug}`) && r.orderArgv.includes("--by=chief-of-staff"));
+  }
+  for (const s of plan.skipped) assert.ok(s.reason && !plan.orders.some((o) => o.slug === s.slug), s.slug);
+});
