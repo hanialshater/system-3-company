@@ -35,7 +35,7 @@ const BRANCH_VARS = ["run", "task", "slug", "n", "port"], ENV_VARS = [...BRANCH_
 // git runs under the state lock (withLock breaks a lock older than 30 s, state.mjs). K5 review: a 25 s timeout per call
 // let ensure's ~8 calls pass 30 s, so the budget is for the whole ensure, plus a fixed one for undoing a failed add
 const ENSURE_BUDGET_MS = 20_000, CLEANUP_MS = 5_000;
-const VAR = /\$\{(run|task|slug|n|port|workdir)\}/g;
+const VAR = /\$\{(run|task|slug|n|port|workdir|brief_file)\}/g; // M6 prep: brief_file (state.mjs briefVars) for packs
 const unknownVar = (s, known) => [...s.matchAll(/\$\{([^}]*)\}/g)].map((m) => m[1]).find((k) => !known.includes(k));
 
 /** Why a spec `workspace` is invalid, or null. */

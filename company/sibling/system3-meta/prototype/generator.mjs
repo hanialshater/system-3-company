@@ -41,13 +41,16 @@ export function validateSpec(s) {
     need(x?.level === "founder", `role ${r.id}: its reporting chain reaches the founder`);
     if (["builder", "manager"].includes(r.level) && r.lane) need(s.rooms.some((m) => m.kind === "lane" && m.lane === r.lane), `role ${r.id}: lane ${r.lane} has a lane room`);
     // M6 prep: `lanes` (a builder of several lanes, plan §M6: demo-builder in math and cs; `lane` stays its home lane),
-    // `sessions` (agent sessions of the role at once, the planner's; default 1) and `drainCap` (items a session takes)
+    // `sessions` (agent sessions of the role at once, the planner's; default 1), `drainCap` (items a session takes) and
+    // `waitSec` (how long its session waits for its next item: the pack's room next --wait; default 90)
     if (r.lanes != null) {
       need(Array.isArray(r.lanes) && r.lanes.length > 0 && r.lanes.every((l) => typeof l === "string" && l) && new Set(r.lanes).size === r.lanes.length, `role ${r.id}: lanes is a list of distinct lane names`);
       need(r.level === "builder", `role ${r.id}: only a builder works in several lanes (a manager is one lane's POC)`);
       if (Array.isArray(r.lanes)) for (const l of r.lanes) need(s.rooms.some((m) => m.kind === "lane" && m.lane === l), `role ${r.id}: lane ${l} has a lane room`);
     }
     if (r.sessions != null) need(Number.isInteger(r.sessions) && r.sessions >= 1 && r.sessions <= 10, `role ${r.id}: sessions is a whole number 1-10`);
+    // at most 540: the agent's Bash call must outlive the wait, and a Bash tool call's timeout is at most 10 minutes
+    if (r.waitSec != null) need(Number.isInteger(r.waitSec) && r.waitSec >= 0 && r.waitSec <= 540, `role ${r.id}: waitSec is a whole number of seconds 0-540 (room next --wait in its pack; a Bash call lasts at most 10 minutes)`);
     if (r.drainCap != null) need(Number.isInteger(r.drainCap) && r.drainCap >= 1 && r.drainCap <= 10, `role ${r.id}: drainCap is a whole number 1-10 (policy.mjs KNOBS.drainCap)`);
     if (r.level === "builder") { const m = roles.get(r.reportsTo); need(m?.level === "manager", `builder ${r.id} reports to a manager (who delegates its work)`); }
     // K10: per-role launch settings (launcher/launch.mjs): tools, sessionMin, maxTurns, settingSources

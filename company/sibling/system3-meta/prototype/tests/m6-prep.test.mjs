@@ -232,3 +232,42 @@ test("M6 prep 6: the supervisor runs a code stage after ship (merge) in the same
   const ev = state(dir).log.events, shippedAt = ev.findIndex((e) => e.type === "shipped" && e.order === o), mergedAt = ev.findIndex((e) => e.type === "advance" && e.order === o && e.stage === "merge");
   assert.ok(mergedAt >= 0 && shippedAt > mergedAt - 1, "shipped is logged when merge signs the last stage");
 });
+
+test("M6 prep 8 (review cost): ${brief_file} is the order's own brief (from its accept text), so a pack lists one brief, not 51; a reviewer's session waits waitSec for its next item", async () => {
+  const { briefVars } = await import("../state.mjs");
+  const accept = "LESSON alpha-one · domain math (strand geometry) · brief company/domains/briefs/math-geometry.md:12-40 (#3)\nConcept: …";
+  assert.deepEqual(briefVars({ accept }), { brief_file: "company/domains/briefs/math-geometry.md" });
+  assert.deepEqual(briefVars({ accept: "no brief line" }), {});
+  const s = builtinSpec("toy");
+  Object.assign(s.flow.stages.find((x) => x.stage === "check"), { pack: { include: ["${brief_file}", "page.mjs"], history: false } });
+  Object.assign(s.roles.find((r) => r.id === "toy-checker"), { waitSec: 300, drainCap: 4 });
+  assert.deepEqual(validateSpec(s), []);
+  assert.match(validateSpec({ ...s, roles: s.roles.map((r) => (r.id === "toy-checker" ? { ...r, waitSec: 900 } : r)) }).join(), /waitSec is a whole number of seconds 0-540/);
+  const dir = init(s);
+  const o = ok(meta(dir, "order", "new", "--to=mgr-live", "--title=T", "--task=T", `--accept=${accept}`)).order;
+  ok(meta(dir, "order", "delegate", o, "--by=mgr-live", "--to=toy-builder-1"));
+  const work = path.join(dir, "work", "T");
+  for (const f of ["math-geometry.md", "math-algebra.md", "cs-security.md"]) { fs.mkdirSync(path.join(work, "company/domains/briefs"), { recursive: true }); fs.writeFileSync(path.join(work, "company/domains/briefs", f), "# briefs\n"); }
+  fs.writeFileSync(path.join(work, "page.mjs"), "export const x = 1;\n");
+  fs.writeFileSync(path.join(work, "page.test.mjs"), "import { test } from 'node:test'; test('ok', () => {});\n");
+  const msg = (to) => ok(meta(dir, "queue", to)).find((m) => m.order === o)?.msg;
+  const b = ok(meta(dir, "room", "enter", `--msg=${msg("toy-builder-1")}`, "--role=toy-builder-1"));
+  assert.match(b.next_with, /--wait=90 /, "a role without waitSec: as before");
+  assert.equal(b.wait_means, undefined);
+  ok(meta(dir, "room", "leave", `--run=${b.run}`, "--evidence=live/work/T/"));
+  const t = ok(sup(dir, "tick"));
+  const p = t.plan.find((x) => x.role === "toy-checker");
+  assert.equal(p.cap, 4, "the role's drainCap");
+  // the brief as serve writes it, from this state (state.mjs load reads the module's own live dir: rebuilt here as it does)
+  const { make, rev, FIELDS } = await import("../state.mjs");
+  const { briefFor } = await import("../supervisor.mjs");
+  const data = JSON.parse(fs.readFileSync(path.join(dir, "state.json"), "utf8"), rev), co = make(data.data.spec, data.data.specDef);
+  for (const [k, fs_] of Object.entries(FIELDS)) for (const f of fs_) if (data[k]?.[f] !== undefined) co[k][f] = data[k][f];
+  const brief = briefFor(co, p);
+  assert.match(brief, /Read only these in the workdir: company\/domains\/briefs\/math-geometry\.md, page\.mjs\./);
+  assert.match(brief, /it waits up to 300 s for one \(give that Bash call a timeout of at least 360000 ms\)/);
+  const c = ok(meta(dir, "room", "enter", `--msg=${msg("pool:checker")}`, "--role=toy-checker"));
+  assert.deepEqual(c.files, ["company/domains/briefs/math-geometry.md", "page.mjs"], "one brief file, the order's own");
+  assert.match(c.next_with, /--wait=300 /);
+  assert.match(c.wait_means, /Bash timeout of at least 360000 ms/);
+});

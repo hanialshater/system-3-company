@@ -70,7 +70,7 @@ import * as GEN from "./generator.mjs";
 import * as WS from "./workspace.mjs";
 import { proposePolicy, activatePolicy, managerReport, recordCycle, KNOBS } from "./policy.mjs";
 import { engage, engageTemplate, briefFor, deliver, decideContract, TEMPLATES } from "./contractor.mjs";
-import { absCmds, HERE, LIVE, STATE, LIVE_ROLES, TASK_FLOW, clock, make, rep, interpolate, save, load, withLock, runTests, runTest1, runCmdCheck, validateChecks, describeChecks, mergeChecks, ESCAPES, readEscapes, sessionRole } from "./state.mjs";
+import { absCmds, HERE, LIVE, STATE, LIVE_ROLES, TASK_FLOW, clock, make, rep, interpolate, save, load, withLock, runTests, runTest1, runCmdCheck, validateChecks, describeChecks, mergeChecks, ESCAPES, readEscapes, sessionRole, briefVars } from "./state.mjs";
 import * as B from "./building.mjs";
 import * as CH from "./channels.mjs";
 import * as T from "./tracker.mjs";
@@ -114,7 +114,7 @@ function pack(co, run, ctx, session, item) {
   const ws = WS.ensure(co, o);
   const dir = ws ? ws.workdir ?? path.join(WS.specOf(co).root, o.task) : path.join(LIVE, "work", o.task);
   if (ctx.stage === "build" && !ws) fs.mkdirSync(dir, { recursive: true });
-  const vars = { ...(o.workspace?.vars ?? {}), workdir: dir, task: o.task ?? "", slug: o.slug ?? o.task ?? "" }; // K5 audit: ${run} ${n} ${port} too, as briefs and cmds
+  const vars = { ...(o.workspace?.vars ?? {}), ...briefVars(o), workdir: dir, task: o.task ?? "", slug: o.slug ?? o.task ?? "" }; // K5 audit: ${run} ${n} ${port} too, as briefs and cmds; M6 prep: ${brief_file}
   // Benchmark 1 finding (writer-1): the prefix dropped META_LIVE_DIR, so a copied command wrote to the wrong state
   const pre = [process.env.META_LIVE_DIR && `META_LIVE_DIR=${process.env.META_LIVE_DIR}`, process.env.META_STATE && `META_STATE=${process.env.META_STATE}`].filter(Boolean).map((x) => x + " ").join("");
   const iso = (m) => new Date(m * 60000).toISOString();
@@ -127,9 +127,12 @@ function pack(co, run, ctx, session, item) {
   return { run, session, item, lease_min: Number(opt.lease ?? 30), order: o.id, task: o.task, title: o.title, priority: o.priority, stage: ctx.stage, accept: ws ? interpolate(o.accept ?? "", vars) : o.accept, workdir: dir + "/", workdir_exists: fs.existsSync(dir), ...(ws ? (ws.error ? { workspace_error: ws.error } : { branch: o.workspace.branch, base_sha: o.workspace.sha, env: o.workspace.env, run_meta_from: HERE }) : {}), findings: hist ? o.findings ?? null : null, memory: mem.map((e) => ({ ...e, t: iso(e.t) })), history: hist ? o.history.map((h) => ({ ...h, t: iso(h.t) })) : [], ...k6,
     ...(sd?.post ? { post_check: `your leave first runs: ${sd.post.argv.join(" ")} (code's check of this stage; a failure refuses the leave, prints its findings and keeps this run open to fix)` } : {}), // K12
     cap_means: "--cap counts every item in this session, including the first one you entered",
+    ...((co.org.role(co.rooms.runs.get(run)?.role)?.waitSec ?? 90) > 90 ? { wait_means: `room next blocks up to ${co.org.role(co.rooms.runs.get(run)?.role).waitSec} s for your next item: run it with a Bash timeout of at least ${(co.org.role(co.rooms.runs.get(run)?.role).waitSec + 60) * 1000} ms, or the call is cut off before the item arrives` } : {}),
     // K4 audit: every independent (reviewing) stage hands in a verdict, not only check (stage 6/7: next_with had no revise)
     leave_with: absCmds(`${pre}node meta.mjs room leave --run=${run} --evidence=<path>${isIndependent(sd) ? " --verdict=pass|revise --findings='…'" : ""} --learned='…'`),
-    next_with: absCmds(`${pre}node meta.mjs room next --run=${run} --cap=<cap from your brief> --wait=90 --evidence=<path>${isIndependent(sd) ? " --verdict=pass|revise --findings='…'" : ""} --learned='…'`) };
+    // M6 prep: a reviewer's session waits longer for its next item (spec role waitSec), so one session drains the
+    // orders three parallel builders finish minutes apart (M4: reviewers were 46% of spend, each a session start-up)
+    next_with: absCmds(`${pre}node meta.mjs room next --run=${run} --cap=<cap from your brief> --wait=${co.org.role(co.rooms.runs.get(run)?.role)?.waitSec ?? 90} --evidence=<path>${isIndependent(sd) ? " --verdict=pass|revise --findings='…'" : ""} --learned='…'`) };
 }
 
 let me = null; // the agent session's role (main), or null: a person or code at a terminal
