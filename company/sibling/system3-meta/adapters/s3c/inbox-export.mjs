@@ -4,7 +4,7 @@
 // queue --approver=founder`) also appears in company/ops/founder-inbox.json format through the exporter. It is
 // written on the sandbox branch only, by the chief-of-staff role's code step (that file has a single writer)").
 //
-//   node inbox-export.mjs [--live=<dir>] [--base=<inbox.json>|none] [--repo=<path>] [--write=<path> [--allow-main]]
+//   node inbox-export.mjs [--live=<dir>] [--base=<inbox.json>|none] [--repo=<path>] [--write=<path> [--allow-main] [--commit]]
 //        --live: the Meta live dir (default META_LIVE_DIR; the state file is META_STATE or state.json in it)
 //        --base: the inbox the Meta items merge into (default: the --write file when it exists, else the --repo
 //                checkout's company/ops/founder-inbox.json, read only; `none`: start empty)
@@ -13,6 +13,12 @@
 //                 (the chief of staff's single-writer file) unless --allow-main: /home/user/system-3-company's, and
 //                 any primary checkout's (a .git directory; the sandbox branch is a linked worktree, whose .git is a
 //                 file). M5 review: no environment override (S3C_MAIN_REPO let any caller lift the refusal).
+//        --commit: M6 prep (M5 exit criterion 2: "written on the sandbox branch only, by the chief-of-staff role's code
+//                 step"): commit the written file in its worktree when it differs from HEAD's (`meta: founder inbox
+//                 export (chief-of-staff code step)`, only that path, the repo's normal hooks, the kernel's git pins
+//                 not inherited), so the integration worktree stays clean for integrate.mjs. Never pushes; refused
+//                 with --allow-main (the chief of staff commits the main checkout's inbox, not code). The spec's
+//                 `exports` runs it (specs/s3c-lessons-m6.json: into the integration worktree, after each tick).
 //
 // Contract (plan §4): the LAST stdout line is one JSON object {ok, findings[], ...}. Exit 0 pass, 1 revise (an open
 // founder item has no options: the founder inbox standard is "the options, a recommendation", so its asker raises it
@@ -45,11 +51,30 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { spawnSync } from "node:child_process";
 import { parseArgs } from "./lib/proc.mjs";
 
 export const MAIN_REPO = "/home/user/system-3-company"; // the chief of staff's checkout
 export const INBOX = "company/ops/founder-inbox.json";
-const USAGE = "usage: inbox-export.mjs [--live=<dir>] [--base=<inbox.json>|none] [--repo=<path>] [--write=<path> [--allow-main]]";
+const USAGE = "usage: inbox-export.mjs [--live=<dir>] [--base=<inbox.json>|none] [--repo=<path>] [--write=<path> [--allow-main] [--commit]]";
+export const COMMIT_MSG = "meta: founder inbox export (chief-of-staff code step)";
+/** git for --commit: no kernel pins (GIT_CONFIG_*) or inherited repo pointers, so the repo's own hooks run. */
+const git = (cwd, ...args) => { const env = { ...process.env }; for (const k of Object.keys(env)) if (/^GIT_(CONFIG_|CONFIG$|DIR$|WORK_TREE$|INDEX_FILE$|COMMON_DIR$)/.test(k)) delete env[k]; return spawnSync("git", ["-C", cwd, ...args], { encoding: "utf8", env, timeout: 30_000 }); };
+/** Commit `file` alone in its worktree if it differs from HEAD's: { sha } | { unchanged: true } | { error }. */
+export function commitInbox(file) {
+  const dir = path.dirname(file);
+  const top = git(dir, "rev-parse", "--show-toplevel");
+  if (top.status !== 0) return { error: `${file} is not in a git worktree: ${String(top.stderr).trim()}` };
+  const root = top.stdout.trim(), rel = path.relative(root, file).split(path.sep).join("/");
+  const head = git(root, "show", `HEAD:${rel}`);
+  if (head.status === 0 && head.stdout === fs.readFileSync(file, "utf8")) return { unchanged: true };
+  const id = git(root, "config", "user.email").stdout?.trim() ? [] : ["-c", "user.name=System 3 Meta", "-c", "user.email=meta@localhost"];
+  const add = git(root, "add", "--", rel);
+  if (add.status !== 0) return { error: `git add ${rel}: ${String(add.stderr).trim()}` };
+  const c = git(root, ...id, "commit", "-q", "-m", COMMIT_MSG, "--", rel);
+  if (c.status !== 0) return { error: `git commit ${rel}: ${String(c.stderr || c.stdout).trim()}` };
+  return { sha: git(root, "rev-parse", "HEAD").stdout.trim() };
+}
 const SOURCE = "system3-meta";
 const rev = (k, v) => (v && v.__map ? new Map(v.__map) : v && v.__set ? new Set(v.__set) : v); // state.mjs rev
 const day = (min) => (Number.isFinite(min) ? new Date(min * 60000).toISOString().slice(0, 10) : null);
@@ -159,7 +184,10 @@ export function merge(base, items) {
 export function main(argv) {
   const o = parseArgs(argv);
   const usage = (message) => ({ exit: 2, out: { ok: false, stage: "inbox-export", findings: [{ severity: "environment", kind: "usage", message }], usage: USAGE } });
-  for (const k of Object.keys(o)) if (!["live", "base", "repo", "write", "allow-main", "positional"].includes(k)) return usage(`unknown flag --${k}`);
+  for (const k of Object.keys(o)) if (!["live", "base", "repo", "write", "allow-main", "commit", "positional"].includes(k)) return usage(`unknown flag --${k}`);
+  if (o.commit != null && o.commit !== true) return usage("--commit takes no value");
+  if (o.commit && !o.write) return usage("--commit needs --write (it commits the written file)");
+  if (o.commit && o["allow-main"]) return usage("--commit is code's commit on the sandbox branch: never with --allow-main (the chief of staff commits the main checkout's inbox)");
   if (o.positional.length) return usage(`unexpected argument ${o.positional[0]}`);
   for (const k of ["live", "base", "repo", "write"]) if (o[k] === true || o[k] === "") return usage(`--${k} needs a value`);
   const live = o.live ?? process.env.META_LIVE_DIR;
@@ -193,6 +221,11 @@ export function main(argv) {
       fs.renameSync(tmp, write);
     } catch (e) { return { exit: 3, out: { ...summary, ok: false, findings: [...findings, env("write", `cannot write ${write}: ${e.message}`)] } }; }
     summary.written = write;
+    if (o.commit) {
+      const c = commitInbox(write);
+      if (c.error) return { exit: 3, out: { ...summary, ok: false, findings: [...findings, env("commit", c.error)] } };
+      summary.committed = c.sha ?? null;
+    }
   } else summary.inbox = doc;
   return { exit: summary.ok ? 0 : 1, out: summary };
 }

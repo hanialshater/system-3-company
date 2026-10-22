@@ -24,6 +24,8 @@
 //           role has none running; `later` items wait for a batch (--batch-later=N) or their due time; a lane whose policy sets
 //           maxSessions gets no session past it (M5). M6 prep: a role with spec `sessions: N` gets up to N at once (one
 //           item each while sessions are free); spec policy.levelCaps {<level>: N} caps the sessions of a level's roles (K17)
+//   exports M6 prep: spec `exports` (the chief of staff's founder-inbox export, adapters/s3c/inbox-export.mjs) run by
+//           code after a tick's changes are saved: on every tick, or only when the state changed since their last run
 //   host    K17: with spec policy.host, no session is planned while the 1-minute load passes maxLoadPerCpu × cpus or the
 //           workspace's free disk falls under minFreeGB (a `host-hold` event per change; META_HOST_PROBE fakes the probe)
 //
@@ -162,6 +164,31 @@ export function hostCheck(co, probe = hostProbe) {
   if (held === was) return null;
   co.log.add({ type: "host-hold", held, why: why || "clear", load: p.load ?? null, cpus: p.cpus ?? null, freeGB: p.freeGB ?? null });
   return { step: "host", result: held ? "hold" : "clear", output: why || `load ${p.load?.toFixed?.(2)} of ${maxLoad} × ${p.cpus} cpus, ${p.freeGB?.toFixed?.(1)} GB free` };
+}
+
+/** M6 prep (plan §M5 exit criterion 2: the founder inbox "is written on the sandbox branch only, by the chief-of-staff
+ *  role's code step"): spec `exports: [{id, role, every: "change"|"tick", run: {cmd}}]`, run by code after each tick
+ *  under the lock, once the tick's changes are saved (an exporter reads the state file: adapters/s3c/inbox-export.mjs).
+ *  "change": only when an event other than the supervisor's own tick and export records was logged since its last run;
+ *  "tick": every tick. Each run is an `export` event (by its role) and co.data.exports[id]; a failure is recorded and
+ *  retried on the next due tick, and never holds an order. Returns the exports that ran. */
+export const EXPORT_QUIET = ["supervisor-tick", "export"];
+export function runExports(co) {
+  const ex = co.spec?.exports ?? [];
+  if (!ex.length) return [];
+  co.data.exports ??= {};
+  const last = co.log.events.findLast((e) => !EXPORT_QUIET.includes(e.type))?.seq ?? 0;
+  const ran = [];
+  for (const x of ex) {
+    const rec = co.data.exports[x.id];
+    if (x.every !== "tick" && rec && rec.seq >= last) continue;
+    // a cmd of no order: ${live} and ${stage} (the export's id) are its variables; it runs in the live dir
+    const t = runCmdCheck({ id: "", task: "", workdir: LIVE }, x.run, { stage: x.id });
+    co.data.exports[x.id] = { seq: last, t: co.engine.clock.now(), pass: !!t.pass, stageError: !!t.stageError, output: String(t.output ?? "").slice(0, 400) };
+    co.log.add({ type: "export", id: x.id, by: x.role, pass: !!t.pass, stageError: !!t.stageError, output: String(t.output ?? "").slice(0, 400), findings: t.findings ? String(t.findings).slice(0, 600) : null });
+    ran.push({ step: "export", id: x.id, result: t.pass ? "pass" : t.stageError ? "stage-error" : "findings", output: t.output });
+  }
+  return ran;
 }
 
 /** One pass over every order; repeated until nothing changes (an accepted UAT makes a ship step possible). */
@@ -532,7 +559,9 @@ function once(opts) {
     const co = load();
     const steps = tick(co, opts);
     save(co);
-    return { steps, plan: plan(co, opts), wakeInMs: nextTimer(co) };
+    const ex = runExports(co); // M6 prep: after the save (an exporter reads the state file)
+    if (ex.length) save(co);
+    return { steps: [...steps, ...ex], plan: plan(co, opts), wakeInMs: nextTimer(co) };
   });
 }
 
@@ -604,6 +633,8 @@ async function serve(opts, { idleMin = 2, maxMin = 120 } = {}) {
       const context = fs.existsSync(ctxFile) ? fs.readFileSync(ctxFile, "utf8") : null;
       const launches = reserve(co, plan(co, opts), { context, outbox });
       if (steps.length || launches.length) save(co); // saving wakes the watcher: only when something changed
+      const ex = runExports(co); // M6 prep: after the save (an exporter reads the state file); its record is saved too
+      if (ex.length) { save(co); steps.push(...ex); }
       return { steps, launches, settled: settled(co), wakeInMs: nextTimer(co) };
     });
     if (r.steps.length) say({ event: "steps", steps: r.steps.map((x) => `${x.step}:${x.order ?? x.msg ?? x.run ?? x.contract ?? x.goal}${x.result ? ":" + x.result : ""}`) });

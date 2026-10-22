@@ -239,3 +239,34 @@ test("M5 review: a cancelled order's budget ask, and a withdrawn approval, leave
   assert.deepEqual([bud.status, bud.decision], ["decided", "withdrawn: cancelled: no"]);
   assert.equal(items.filter((i) => i.status !== "decided").some((i) => i.meta.kind === "approval:budget"), false, "not waiting on the founder");
 });
+test("M6 prep: --commit commits the written inbox alone in its linked worktree (the sandbox branch), once per change, with the repo's own hooks; never with --allow-main", () => {
+  const live = company();
+  const g = (cwd, ...a) => { const r = spawnSync("git", ["-C", cwd, ...a], { encoding: "utf8", env: clean({ GIT_AUTHOR_NAME: "t", GIT_AUTHOR_EMAIL: "t@t", GIT_COMMITTER_NAME: "t", GIT_COMMITTER_EMAIL: "t@t" }) }); assert.equal(r.status, 0, r.stderr); return r.stdout.trim(); };
+  const repo = tmp("inbox-repo-"), wt = path.join(tmp("inbox-int-"), "m6-int");
+  g(repo, "init", "-q", "-b", "main");
+  fs.mkdirSync(path.join(repo, "company/ops"), { recursive: true });
+  fs.writeFileSync(path.join(repo, "company/ops/founder-inbox.json"), JSON.stringify(BASE, null, 2) + "\n");
+  fs.writeFileSync(path.join(repo, "other.txt"), "x\n");
+  g(repo, "add", "-A"); g(repo, "-c", "user.name=t", "-c", "user.email=t@t", "commit", "-qm", "base");
+  g(repo, "worktree", "add", "-q", "-b", "meta/m6", wt);
+  fs.writeFileSync(path.join(repo, ".git", "hooks", "post-commit"), `#!/bin/sh\necho ran >> "${path.join(wt, "..", "hook-ran")}"\n`, { mode: 0o755 });
+  fs.writeFileSync(path.join(wt, "other.txt"), "an unrelated change stays out of the commit\n");
+  const fi = path.join(wt, "company/ops/founder-inbox.json");
+  const pins = { GIT_CONFIG_COUNT: "1", GIT_CONFIG_KEY_0: "core.hooksPath", GIT_CONFIG_VALUE_0: "/dev/null" };
+  const r = run([`--live=${live}`, `--write=${fi}`, "--commit"], pins);
+  assert.equal(r.exit, 0, r.stdout);
+  assert.match(r.json.committed, /^[0-9a-f]{40}$/);
+  assert.equal(g(wt, "log", "-1", "--format=%s"), "meta: founder inbox export (chief-of-staff code step)");
+  assert.deepEqual(g(wt, "show", "--name-only", "--format=", "HEAD").split("\n"), ["company/ops/founder-inbox.json"]);
+  assert.equal(g(wt, "status", "--porcelain"), "M other.txt");
+  assert.ok(fs.existsSync(path.join(wt, "..", "hook-ran")), "the repo's own post-commit hook ran (the kernel's pins are not inherited)");
+  assert.equal(g(wt, "branch", "--show-current"), "meta/m6");
+  // a re-export with nothing new: no commit
+  const again = run([`--live=${live}`, `--write=${fi}`, "--commit"]);
+  assert.equal(again.exit, 0); assert.equal(again.json.committed, null);
+  assert.equal(run([`--live=${live}`, "--commit"]).exit, 2, "--commit needs --write");
+  assert.equal(run([`--live=${live}`, `--write=${fi}`, "--commit", "--allow-main"]).exit, 2);
+  // a write outside any worktree cannot be committed: a stage-error
+  const loose = path.join(tmp("inbox-loose-"), "founder-inbox.json");
+  assert.equal(run([`--live=${live}`, `--write=${loose}`, "--commit", "--base=none"]).exit, 3);
+});

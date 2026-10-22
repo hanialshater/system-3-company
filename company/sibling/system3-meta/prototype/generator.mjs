@@ -140,6 +140,29 @@ export function validateSpec(s) {
       }
     }
   }
+  // M6 prep: exports [{id, role, every, run}]: code steps the supervisor runs after each tick (supervisor.mjs
+  // runExports), each as a role's (the founder inbox: the chief of staff's, its single writer). Never into the main
+  // checkout: no --allow-main (inbox-export.mjs's override of its main-checkout refusal)
+  if (s.exports != null) {
+    if (!Array.isArray(s.exports)) need(false, "exports is a list of {id, role, every, run}");
+    else {
+      need(new Set(s.exports.map((x) => x?.id)).size === s.exports.length, "export ids are unique");
+      for (const x of s.exports) {
+        const id = x?.id ?? "?";
+        need(!!x && typeof x === "object" && Object.keys(x).every((k) => ["id", "role", "every", "run"].includes(k)), `export ${id}: fields are id, role, every, run`);
+        need(typeof x?.id === "string" && /^[a-z0-9]+(-[a-z0-9]+)*$/.test(x.id), `export ${id}: id is kebab-case`);
+        need(roles.has(x?.role) && !roles.get(x?.role)?.human, `export ${id}: role ${x?.role} is an agent role of the spec (whose code step it is)`);
+        need(["change", "tick"].includes(x?.every), `export ${id}: every is "change" or "tick"`);
+        const e = validateCmd(x?.run, { stages: [] });
+        need(!e, `export ${id}: run: ${e}`);
+        if (!e) {
+          need(!x.run.route, `export ${id}: run has no route (an export signs and parks nothing)`);
+          need(!/\$\{(evidence|verdict|slug|task|workdir|branch|base_sha|order|budget|remaining|ledger_project|brief_file)\}/.test(JSON.stringify(x.run)), `export ${id}: run reads only \${live} and \${stage} (it belongs to no order)`);
+          need(!x.run.argv.some((a) => /^--allow-main\b/.test(a)), `export ${id}: run never writes the main checkout (--allow-main)`);
+        }
+      }
+    }
+  }
   // K15: approvals.standing, AMD-015's scoped pre-approval as data: {action, role, trigger, record}, nothing else
   if (s.approvals != null) {
     if (typeof s.approvals !== "object" || Array.isArray(s.approvals)) need(false, "approvals is {standing:[…]}");

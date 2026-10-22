@@ -271,3 +271,29 @@ test("M6 prep 8 (review cost): ${brief_file} is the order's own brief (from its 
   assert.match(c.next_with, /--wait=300 /);
   assert.match(c.wait_means, /Bash timeout of at least 360000 ms/);
 });
+
+test("M6 prep 9: spec exports run by code after each tick, as their role's step: `change` only when the state changed since, `tick` every tick; a failure is recorded, never holds work", () => {
+  const s = builtinSpec("toy");
+  const W = (id) => ["node", "-e", "require('fs').appendFileSync(process.argv[1], process.argv[2] + '\\n')", "${live}/" + id + ".log", "${stage}"];
+  s.exports = [{ id: "on-change", role: "cos", every: "change", run: { argv: W("on-change") } }, { id: "every-tick", role: "cos", every: "tick", run: { argv: W("every-tick") } }, { id: "broken", role: "cos", every: "change", run: { argv: ["node", "-e", "process.exit(1)"] } }];
+  assert.deepEqual(validateSpec(s), []);
+  const bad = (x) => validateSpec({ ...s, exports: [x] }).join("; ");
+  assert.match(bad({ id: "x", role: "founder", every: "change", run: { argv: ["node"] } }), /role founder is an agent role/);
+  assert.match(bad({ id: "x", role: "cos", every: "hourly", run: { argv: ["node"] } }), /every is "change" or "tick"/);
+  assert.match(bad({ id: "x", role: "cos", every: "tick", run: { argv: ["node", "inbox-export.mjs", "--write=/home/user/system-3-company/company/ops/founder-inbox.json", "--allow-main"] } }), /never writes the main checkout/);
+  assert.match(bad({ id: "x", role: "cos", every: "tick", run: { argv: ["node", "x", "${slug}"] } }), /reads only \$\{live\} and \$\{stage\}/);
+  assert.match(bad({ id: "x", role: "cos", every: "tick", run: { argv: ["node"], route: { a: "build" } } }), /no route|goes to build/);
+  const dir = init(s);
+  const lines = (id) => (fs.existsSync(path.join(dir, `${id}.log`)) ? fs.readFileSync(path.join(dir, `${id}.log`), "utf8").trim().split("\n") : []);
+  let t = ok(sup(dir, "tick"));
+  assert.deepEqual(t.steps.filter((x) => x.step === "export").map((x) => [x.id, x.result]), [["on-change", "pass"], ["every-tick", "pass"], ["broken", "findings"]], "first tick: each runs once");
+  ok(sup(dir, "tick"));
+  assert.deepEqual([lines("on-change").length, lines("every-tick").length], [1, 2], "nothing changed: only the every-tick export ran again");
+  ok(meta(dir, "order", "new", "--to=mgr-live", "--title=A", "--task=A", "--accept=x"));
+  ok(sup(dir, "tick"));
+  assert.deepEqual([lines("on-change"), lines("every-tick").length], [["on-change", "on-change"], 3], "an order was placed: the change export ran");
+  const ev = events(dir, "export");
+  assert.deepEqual([...new Set(ev.map((e) => e.by))], ["cos"]);
+  assert.equal(ev.filter((e) => e.id === "broken").length, 2, "a failing export is recorded and tried again on the next change");
+  assert.equal(state(dir).data.exports["broken"].pass, false);
+});
