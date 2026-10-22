@@ -12,12 +12,19 @@ import { spawnSync } from "node:child_process";
 export const MAIN_REPO = "/home/user/system-3-company";
 const DEPLOY = /\[deploy\]/i;
 
+/** The output git may print to one call (M7 finish review: node's default maxBuffer is 1 MiB, and the company's own
+ *  files are past it: company/ops/board.json ~1.06 MB, events.jsonl ~8.3 MB, progress.md ~0.6 MB. `git show
+ *  <ref>:company/ops/board.json` died with ENOBUFS, status null and an empty stderr, so renumber --onto could not read the
+ *  real board, and commitPaths counted board.json and events.jsonl as changed every time). */
+export const GIT_MAX_BUFFER = 256 * 1024 * 1024;
 /** git with no kernel pins (GIT_CONFIG_*) or inherited repo pointers, so the repo's own hooks run. */
 export function git(cwd, ...args) {
   const env = { ...process.env };
   for (const k of Object.keys(env)) if (/^GIT_(CONFIG_|CONFIG$|DIR$|WORK_TREE$|INDEX_FILE$|COMMON_DIR$)/.test(k)) delete env[k];
-  return spawnSync("git", ["-C", cwd, ...args], { encoding: "utf8", env, timeout: 30_000 });
+  return spawnSync("git", ["-C", cwd, ...args], { encoding: "utf8", env, timeout: 30_000, maxBuffer: GIT_MAX_BUFFER });
 }
+/** Why a git call failed, in words (a spawn error such as ENOBUFS or ETIMEDOUT leaves stderr empty). */
+export const gitWhy = (r) => String(r.stderr ?? "").trim() || (r.error ? `${r.error.code ?? r.error.message}` : `exit ${r.status}`);
 const real = (p) => { try { return fs.realpathSync(p); } catch { return path.resolve(p); } };
 
 /** Why `root` may not take code's commits, or null: it must be a linked worktree (not the main checkout, not any primary
@@ -41,12 +48,15 @@ export function commitPaths(root, rels, message) {
   if (DEPLOY.test(message)) return { error: "a commit message never names [deploy]" };
   const sb = sandboxOf(root);
   if (sb.error) return { error: sb.error };
+  let failed = null;
   const changed = rels.filter((rel) => {
     const head = git(sb.root, "show", `HEAD:${rel}`);
+    if (head.error) { failed ??= `git show HEAD:${rel}: ${gitWhy(head)}`; return false; } // not "absent at HEAD"
     const abs = path.join(sb.root, rel);
     if (!fs.existsSync(abs)) return head.status === 0; // deleted
     return head.status !== 0 || head.stdout !== fs.readFileSync(abs, "utf8");
   });
+  if (failed) return { error: failed };
   if (!changed.length) return { unchanged: true };
   const id = git(sb.root, "config", "user.email").stdout?.trim() ? [] : ["-c", "user.name=System 3 Meta", "-c", "user.email=meta@localhost"];
   const add = git(sb.root, "add", "--", ...changed);

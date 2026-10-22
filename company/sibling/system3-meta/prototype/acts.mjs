@@ -9,8 +9,13 @@
 //
 // When the stage PASSES, the last JSON line of its cmd may name `acts: [{act, order | slug (+ flow), findings | reason
 // | text}]`. Each is applied as `by` (the order's chair, or the role named), once (the stage is signed once per loop):
-//   reopen  a done order back to its first stage (Engine.reopen: a loop, K9's cap counts it), with the findings
-//   cancel  an open or parked order (Engine.cancel; its running runs abandoned and its jobs stopped, as `order cancel`)
+//   reopen  a done order back to its first stage (Engine.reopen: a loop, K9's cap counts it), with the findings; with
+//           `judged: true`, an open order past its first stage too (Engine.sendBack: the same loop, its running runs
+//           abandoned): M7 finish review, a Demo Crit's revise is about lessons in review, which are open orders at
+//           check, learner or launch, and a reopen of them was refused, so the lesson went on to publish
+//   cancel  an open or parked order (Engine.cancel; its running runs abandoned and its jobs stopped, as `order cancel`);
+//           with `judged: true`, never one still at its first stage (parked there too): its work was never shown, so
+//           the act that judged it cannot be about it (a Demo Crit kill of a lesson still at build)
 //   notice  a line to `notify`'s mailbox (what code could not map: a lesson with no order in this run)
 // `slug` names the newest order of that slug in `flow` (default: any flow but the acting order's own). The actor must
 // have the order's authority: its orderer, its manager, the founder, or a role its manager reports to (the head of
@@ -92,10 +97,20 @@ export function applyActs(co, o, s, acts, { stage } = {}) {
     const why = `${words.slice(0, 1500)} (${o.slug ?? o.task ?? o.id}, ${o.id} ${stage})`;
     try {
       if (a.act === "reopen") {
-        if (t.stage !== "done") return refuse(i, a, `${t.id} is at ${t.stage}: only a shipped order is reopened (an open one is judged by its own stages)`, t.id);
-        engine.reopen(t.id, { by, findings: why, reason: `${flowName(o.flow)} ${o.slug ?? o.id}` });
+        if (t.stage !== "done" && !a.judged) return refuse(i, a, `${t.id} is at ${t.stage}: only a shipped order is reopened (an open one is judged by its own stages)`, t.id);
+        if (t.stage === "done") engine.reopen(t.id, { by, findings: why, reason: `${flowName(o.flow)} ${o.slug ?? o.id}` });
+        else {
+          const first = engine.firstStage(t);
+          if (["cancelled", "parked", "budget"].includes(t.stage) || t.blocked) return refuse(i, a, `${t.id} is ${t.blocked ? "blocked" : t.stage}: only an open order at work is sent back${t.stage === "parked" ? " (decide its park ask first)" : ""}`, t.id);
+          if (t.stage === first) return refuse(i, a, `${t.id} is at ${first}: its work has not been shown, so this judgment is not about it`, t.id);
+          // its runs first: an abandon releases the run's message, which sendBack then withdraws with the rest
+          for (const x of rooms.runs.values()) if (x.state === "running" && x.order === t.id) rooms.abandon(x.run, { by, reason: `sent back: ${why}` });
+          engine.sendBack(t.id, { by, findings: why, reason: `${flowName(o.flow)} ${o.slug ?? o.id}` });
+          JOBS.staleFor(co, t, "order sent back");
+        }
       } else {
         if (["done", "cancelled"].includes(t.stage)) return refuse(i, a, `${t.id} is ${t.stage}: a shipped or cancelled order is not cancelled`, t.id);
+        if (a.judged && (t.stage === "parked" ? t.parked?.stage : t.stage) === engine.firstStage(t)) return refuse(i, a, `${t.id} is at ${engine.firstStage(t)}: its work has not been shown, so this judgment is not about it`, t.id);
         const ask = t.parked?.ask ?? null;
         for (const x of rooms.runs.values()) if (x.state === "running" && x.order === t.id) rooms.abandon(x.run, { by, reason: `order cancelled: ${why}` });
         engine.cancel(t.id, { by, reason: why });

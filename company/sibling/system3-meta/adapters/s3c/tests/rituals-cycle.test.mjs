@@ -9,8 +9,8 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { shortSnapshot, objectionProblems, critTable, critProblems, critActs, handoffProblems, dueOrders } from "../rituals.mjs";
-import { companyRepo, git, run, w } from "./m7-fixture.mjs";
+import { shortSnapshot, objectionProblems, critTable, critProblems, critActs, critLessonProblems, handoffProblems, dueOrders, PROGRESS_TITLE, statusHandoff } from "../rituals.mjs";
+import { companyRepo, git, run, w, tmp, critLessons, MAIN } from "./m7-fixture.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ADAPTER = path.join(HERE, "..", "rituals.mjs");
@@ -46,8 +46,8 @@ test("the Demo Crit table: rows of keep, revise or kill, a reason for revise and
   assert.deepEqual(rows.map((r) => [r.slug, r.decision, r.reason]), [["rope-more", "keep", ""], ["hailstone-27", "revise", "the reveal tells, not shows"], ["old-dup", "kill", "duplicates triangle-sum"]]);
   assert.deepEqual(critProblems(rows, new Set(["rope-more", "hailstone-27", "old-dup"])), []);
   assert.deepEqual(critActs(rows), [
-    { act: "reopen", slug: "hailstone-27", flow: "lesson", findings: "Demo Crit: revise. the reveal tells, not shows" },
-    { act: "cancel", slug: "old-dup", flow: "lesson", reason: "Demo Crit: kill. duplicates triangle-sum" },
+    { act: "reopen", slug: "hailstone-27", flow: "lesson", judged: true, findings: "Demo Crit: revise. the reveal tells, not shows" },
+    { act: "cancel", slug: "old-dup", flow: "lesson", judged: true, reason: "Demo Crit: kill. duplicates triangle-sum" },
   ]);
   assert.match(critProblems(rows, new Set(["rope-more"]))[0], /no lesson hailstone-27 in src\/demos/);
   assert.match(critProblems(critTable("| slug | decision | reason |\n|---|---|---|\n| a-b | revise | |"))[0], /a revise says why/);
@@ -106,7 +106,16 @@ test("Demo Crit: the scaffold puts the table in; record checks it against the le
   r = run(ADAPTER, ["record", "demo-crit", `--repo=${wt}`, `--base=${base}`, R]);
   assert.equal(r.exit, 1);
   assert.match(r.json.findings[0].message, /no lesson no-such-lesson in src\/demos/);
-  fs.writeFileSync(file, t.replace("| no-such-lesson | keep | |\n", ""));
+  t = t.replace("| no-such-lesson | keep | |\n", "");
+  // M7 finish review: the table alone, with the template's Lessons in review untouched, is refused
+  fs.writeFileSync(file, t);
+  r = run(ADAPTER, ["record", "demo-crit", `--repo=${wt}`, `--base=${base}`, R]);
+  assert.equal(r.exit, 1);
+  const lk = r.json.findings.filter((f) => f.kind === "crit-lessons").map((f) => f.message).join("\n");
+  assert.match(lk, /still has the template's `### <slug>` part/);
+  for (const sl of ["rope-more", "hailstone-27", "old-dup"]) assert.match(lk, new RegExp(`no \`### ${sl}\` part`));
+  t = critLessons(t, [["rope-more", "keep"], ["hailstone-27", "revise: the reveal tells, not shows"], ["old-dup", "kill (duplicates triangle-sum)"]]);
+  fs.writeFileSync(file, t);
   r = run(ADAPTER, ["record", "demo-crit", `--repo=${wt}`, `--base=${base}`, `--evidence=${rec}`, R]);
   assert.equal(r.exit, 0, r.stdout);
   assert.deepEqual(r.json.decisions.map((d) => d.decision), ["keep", "revise", "kill"]);
@@ -114,32 +123,57 @@ test("Demo Crit: the scaffold puts the table in; record checks it against the le
   r = run(FRONT, ["rituals.mjs", "ship", "demo-crit", `--repo=${wt}`, `--base=${base}`, `--from-sha=${c.sha("HEAD", wt)}`, `--into=${c.int}`, "--order=O-4"]);
   assert.equal(r.exit, 0, r.stdout + r.stderr);
   assert.deepEqual(r.json.acts, [
-    { act: "reopen", slug: "hailstone-27", flow: "lesson", findings: "Demo Crit: revise. the reveal tells, not shows" },
-    { act: "cancel", slug: "old-dup", flow: "lesson", reason: "Demo Crit: kill. duplicates triangle-sum" },
+    { act: "reopen", slug: "hailstone-27", flow: "lesson", judged: true, findings: "Demo Crit: revise. the reveal tells, not shows" },
+    { act: "cancel", slug: "old-dup", flow: "lesson", judged: true, reason: "Demo Crit: kill. duplicates triangle-sum" },
   ]);
   assert.equal(git(c.int, "log", "-1", "--format=%s"), "meta: demo-crit record (O-4), the ritual flow's ship (chief-of-staff code step)");
 });
 
-test("the handoff: placed once two WBR records are committed since the cycle's base; written at the top of progress.md, checked, put on top of the integration branch's; then the scheduler ends", () => {
+/** A Meta state file the scheduler reads with --live (the orders the cycle's end waits for). */
+function liveWith(orders) {
+  const live = tmp("s3c-m7-cyc-live-");
+  const flows = { __map: [["lesson@v1", { stages: [{ stage: "build" }, { stage: "check" }] }], ["ritual@v1", { stages: [{ stage: "run" }, { stage: "check" }, { stage: "ship" }] }]] };
+  fs.writeFileSync(path.join(live, "state.json"), JSON.stringify({ engine: { flows, orders: { __map: orders.map((o) => [o.id, o]) } } }));
+  return live;
+}
+
+test("the handoff: placed once two WBR records are committed and nothing is DUE or open; written under the progress log's title, checked, put on top of the integration branch's, shown by company status; then the scheduler ends", () => {
   const PROG = "## 2026-10-21 · chief-of-staff (for System 3 Meta) · M2 reached\n\n**Done:** things.\n";
   const c = companyRepo({ files: { "company/ops/progress.md": PROG } });
   const base = c.sha("meta/t7");
   // auto: the integration worktree's HEAD when the scheduler first runs, kept in a file under the live dir
   const cb = path.join(c.dir, "live", "exports", "cycle-base");
-  const due = (...x) => run(FRONT, ["rituals.mjs", "due", `--repo=${c.int}`, R, "--skip=launch-review", `--cycle-base=auto:${cb}`, ...x]);
-  let r = due();
+  const due0 = (...x) => run(FRONT, ["rituals.mjs", "due", `--repo=${c.int}`, R, `--cycle-base=auto:${cb}`, ...x]);
+  let r = due0("--skip=launch-review");
   assert.equal(r.exit, 0, r.stdout + r.stderr);
   assert.equal(fs.readFileSync(cb, "utf8").trim(), base);
   assert.equal(r.json.cycle.base, base);
   assert.ok(r.json.orders.length > 1 && !r.json.orders.some((o) => o.slug === "handoff"), "no WBR yet: the due rituals");
+  const dueNow = r.json.due.map((x) => x.ritual);
   // two WBR records land on the integration branch (ship commits them there)
   for (const [f, n] of [[`${today}-wbr.md`, 1], [`${today}-wbr-2.md`, 2]]) { w(c.int, `company/rituals/records/${f}`, `# WBR ${n}\n`); git(c.int, "add", "-A"); git(c.int, "commit", "-qm", `meta: wbr record (O-${n})`); }
-  r = due();
+  // M7 finish review: the rituals still DUE are placed, and the handoff waits for them (they were dropped before)
+  r = due0("--skip=launch-review");
+  assert.equal(r.exit, 0, r.stdout);
+  const still = r.json.orders.map((o) => o.slug);
+  assert.ok(still.length && !still.includes("handoff"), JSON.stringify(still));
+  assert.ok(r.json.cycle.waiting.some((x) => /is DUE/.test(x)));
+  assert.match(r.stdout, /the handoff waits for/);
+  // with them held (here: skipped) the handoff still waits for the run's open orders (--live), not for a parked one
+  const skip = `--skip=${["launch-review", ...dueNow].join(",")}`;
+  const busy = liveWith([{ id: "O-1", flow: "lesson@v1", slug: "rope-a", stage: "launch" }, { id: "O-2", flow: "ritual@v1", slug: "demo-crit", stage: "check" }, { id: "O-3", flow: "lesson@v1", slug: "rope-b", stage: "parked", parked: { stage: "ship" } }]);
+  r = due0(skip, `--live=${busy}`);
+  assert.deepEqual([r.exit, r.json.orders.length, r.json.end], [0, 0, undefined], r.stdout);
+  assert.deepEqual(r.json.cycle.waiting, ["O-1 (lesson rope-a) is open at launch", "O-2 (ritual demo-crit) is open at check"]);
+  const idle = liveWith([{ id: "O-1", flow: "lesson@v1", slug: "rope-a", stage: "done" }, { id: "O-3", flow: "lesson@v1", slug: "rope-b", stage: "parked", parked: { stage: "ship" } }]);
+  r = due0(skip, `--live=${idle}`);
   assert.equal(r.exit, 0, r.stdout);
   assert.deepEqual(r.json.orders.map((o) => [o.key, o.slug, o.chair, o.attendee]), [["ritual:handoff", "handoff", "chief-of-staff", "head-of-product"]]);
   assert.match(r.json.orders[0].accept, /at the TOP of company\/ops\/progress\.md/);
+  assert.match(r.json.orders[0].accept, /Parked orders[^\n]*O-3 \(lesson rope-b, parked at ship\)/);
   assert.equal(r.json.cycle.wbrs.length, 2);
   assert.equal(r.json.end, undefined);
+  const due = () => due0(skip, `--live=${idle}`);
   // the order: scaffold, the chair writes, record, check
   const wt = c.order("HANDOFF-1");
   const ob = c.sha("HEAD", wt);
@@ -148,35 +182,81 @@ test("the handoff: placed once two WBR records are committed since the cycle's b
   assert.equal(r.json.record, "company/ops/progress.md");
   const file = path.join(wt, "company/ops/progress.md");
   const sk = fs.readFileSync(file, "utf8");
-  assert.ok(sk.endsWith(PROG) && sk.startsWith(`## ${today} · chief-of-staff (System 3 Meta, order O-9) · <title`));
+  // the file had no title (as company/ops/progress.md since 7753f2712): code puts the progress log's title back above
+  assert.ok(sk.endsWith(PROG) && sk.startsWith(`${PROGRESS_TITLE}## ${today} · chief-of-staff (System 3 Meta, order O-9) · <title`), sk.slice(0, 300));
   r = run(FRONT, ["rituals.mjs", "record", "handoff", `--repo=${wt}`, `--base=${ob}`]);
   assert.equal(r.exit, 1);
   assert.ok(r.json.findings.some((f) => /placeholder/.test(f.message)) && r.json.findings.some((f) => /\*\*Done\*\* part is empty/.test(f.message)));
   const entry = `## ${today} · chief-of-staff (System 3 Meta, order O-9) · M7 cycle: 8 rituals held, 5 lessons merged\n\n**Done:** wbr twice (company/rituals/records/${today}-wbr.md, -wbr-2.md), 5 merges.\n\n**Believe** (and how sure): the loop runs on code; fairly sure (n = 1).\n\n**Next:**\n\n- the founder rules on the M7 restatements.\n\n**Blocked:** nothing.\n\n`;
-  fs.writeFileSync(file, entry + PROG.replace("things", "other things"));
+  fs.writeFileSync(file, PROGRESS_TITLE + entry + PROG.replace("things", "other things"));
   r = run(FRONT, ["rituals.mjs", "record", "handoff", `--repo=${wt}`, `--base=${ob}`]);
   assert.match(r.json.findings[0].message, /changed below its top/);
+  // M7 finish review: an entry at byte 0 (accepted before) is one company status never shows: refused
   fs.writeFileSync(file, entry + PROG);
+  r = run(FRONT, ["rituals.mjs", "record", "handoff", `--repo=${wt}`, `--base=${ob}`]);
+  assert.equal(r.exit, 1);
+  assert.match(r.json.findings[0].message, /title block/);
+  fs.writeFileSync(file, PROGRESS_TITLE + entry + PROG);
   w(wt, "company/rituals/records/x.md", "x");
   r = run(FRONT, ["rituals.mjs", "record", "handoff", `--repo=${wt}`, `--base=${ob}`]);
   assert.equal(r.exit, 1, "m7-scope: a handoff changes only progress.md");
   fs.rmSync(path.join(wt, "company/rituals/records/x.md"));
-  r = run(FRONT, ["rituals.mjs", "record", "handoff", `--repo=${wt}`, `--base=${ob}`, "--evidence=company/ops/progress.md"]);
+  r = run(FRONT, ["rituals.mjs", "record", "handoff", `--repo=${wt}`, `--base=${ob}`, "--evidence=company/ops/progress.md", "--stage=run"]);
   assert.equal(r.exit, 0, r.stdout + r.stderr);
-  git(wt, "add", "-A"); git(wt, "commit", "-qm", "meta: O-9 check handoff");
-  // meanwhile the integration branch's progress.md moved on: the entry still goes on top of it
+  git(wt, "add", "-A"); git(wt, "commit", "-qm", "meta: O-9 run handoff");
+  const runSha = c.sha("HEAD", wt);
+  // M7 finish review: at check the attendee changes nothing in the chief of staff's entry
+  fs.writeFileSync(file, PROGRESS_TITLE + entry.replace("fairly sure", "very sure") + PROG);
+  r = run(FRONT, ["rituals.mjs", "record", "handoff", `--repo=${wt}`, `--base=${ob}`, "--stage=check", `--run-sha=${runSha}`]);
+  assert.equal(r.exit, 1);
+  assert.deepEqual(r.json.findings.map((f) => f.kind), ["check-scope"]);
+  assert.match(r.json.findings[0].message, /single writer/);
+  fs.writeFileSync(file, PROGRESS_TITLE + entry + PROG);
+  r = run(FRONT, ["rituals.mjs", "record", "handoff", `--repo=${wt}`, `--base=${ob}`, "--stage=check", `--run-sha=${runSha}`]);
+  assert.equal(r.exit, 0, r.stdout);
+  assert.equal(run(ADAPTER, ["record", "handoff", `--repo=${wt}`, `--base=${ob}`, "--stage=check"]).exit, 2, "--stage=check needs --run-sha");
+  // meanwhile the integration branch's progress.md moved on: the entry still goes on top of it, under the title
   w(c.int, "company/ops/progress.md", "## 2026-10-22 · chief-of-staff · merged meanwhile\n\n" + PROG); git(c.int, "commit", "-qam", "meanwhile");
   r = run(FRONT, ["rituals.mjs", "ship", "handoff", `--repo=${wt}`, `--base=${ob}`, `--from-sha=${c.sha("HEAD", wt)}`, `--into=${c.int}`, "--order=O-9"]);
   assert.equal(r.exit, 0, r.stdout + r.stderr);
-  assert.equal(fs.readFileSync(path.join(c.int, "company/ops/progress.md"), "utf8"), entry + "## 2026-10-22 · chief-of-staff · merged meanwhile\n\n" + PROG);
+  const shipped = fs.readFileSync(path.join(c.int, "company/ops/progress.md"), "utf8");
+  assert.equal(shipped, PROGRESS_TITLE + entry + "## 2026-10-22 · chief-of-staff · merged meanwhile\n\n" + PROG);
   assert.equal(git(c.int, "show", "--name-only", "--format=%s", "HEAD"), "meta: handoff (O-9), the cycle's entry at the top of company/ops/progress.md (chief-of-staff code step)\n\ncompany/ops/progress.md");
+  // the operating picture: the company's own `company status` shows this entry as the last handoff
+  assert.equal(statusHandoff(shipped).split("\n")[0], entry.slice(3).split("\n")[0]);
+  const status = run(path.join(c.int, "tools/company.mjs"), ["status"], { cwd: c.int });
+  assert.match(status.stdout.replace(/\x1b\[[0-9;]*m/g, ""), new RegExp(`Last handoff\\n  ${today} · chief-of-staff \\(System 3 Meta, order O-9\\) · M7 cycle`), status.stdout.slice(-800));
   // re-run: no change
   r = run(FRONT, ["rituals.mjs", "ship", "handoff", `--repo=${wt}`, `--base=${ob}`, `--from-sha=${c.sha("HEAD", wt)}`, `--into=${c.int}`]);
   assert.deepEqual([r.exit, r.json.unchanged], [0, true]);
-  // the scheduler ends
+  // the scheduler ends: a current handoff, nothing DUE, nothing open
   r = due();
   assert.deepEqual([r.exit, r.json.orders.length], [0, 0]);
   assert.match(r.json.end, /handoff is committed/);
+  // not while an order is open, and not after a record lands after the handoff (stale: a new handoff once it settles)
+  assert.equal(due0(skip, `--live=${busy}`).json.end, undefined);
+  w(c.int, `company/rituals/records/${today}-retro.md`, "# Retro\n"); git(c.int, "add", "-A"); git(c.int, "commit", "-qm", "meta: retro record (O-12)");
+  r = due();
+  assert.deepEqual([r.json.end, r.json.cycle.stale, r.json.orders.map((o) => o.slug)], [undefined, true, ["handoff"]]);
+  assert.match(r.json.orders[0].accept, /is out of date/);
+});
+
+test("dueOrders after the cycle's WBRs (M7 finish review): every DUE ritual is placed, the handoff waits, `end` only with nothing DUE or open", () => {
+  const roles = ["chief-of-staff", "head-of-product", "analytics-steward"];
+  const rows = [{ ritual: "retro", due: true, reasons: ["5 merges"] }, { ritual: "demo-crit", due: true, reasons: ["4 batches"] }];
+  const cyc = { wbrs: ["a-wbr.md", "b-wbr.md"], after: 2, base: "abc", handoff: null, stale: false };
+  let d = dueOrders({ due: rows, roles, cycle: cyc, open: [] });
+  assert.deepEqual([d.orders.map((o) => o.key), d.due.map((x) => x.ritual), d.end], [["ritual:retro", "ritual:demo-crit"], ["retro", "demo-crit"], undefined]);
+  d = dueOrders({ due: rows, roles, cycle: { ...cyc, handoff: "deadbeef" }, open: [] });
+  assert.deepEqual([d.orders.map((o) => o.key), d.end], [["ritual:retro", "ritual:demo-crit"], undefined], "a committed handoff does not end the run while rituals are DUE");
+  d = dueOrders({ due: [], roles, cycle: cyc, open: [{ id: "O-4", flow: "ritual", slug: "demo-crit", stage: "check" }] });
+  assert.deepEqual([d.orders, d.waiting], [[], ["O-4 (ritual demo-crit) is open at check"]]);
+  d = dueOrders({ due: [], roles, cycle: cyc, open: [{ id: "O-9", flow: "ritual", slug: "handoff", stage: "run" }] });
+  assert.deepEqual(d.orders.map((o) => o.key), ["ritual:handoff"], "the handoff's own order does not hold it (the kernel skips it while open)");
+  d = dueOrders({ due: [], roles, cycle: { ...cyc, handoff: "deadbeef" }, open: [] });
+  assert.match(d.end, /handoff is committed/);
+  d = dueOrders({ due: [], roles, cycle: { ...cyc, handoff: "deadbeef", stale: true }, open: [] });
+  assert.deepEqual([d.end, d.orders.map((o) => o.key)], [undefined, ["ritual:handoff"]]);
 });
 
 test("handoffProblems: the progress log's heading, one entry, the four parts", () => {
@@ -189,4 +269,26 @@ test("handoffProblems: the progress log's heading, one entry, the four parts", (
   // the cycle with no handoff and fewer WBRs than --handoff-after: the rituals, as before
   const d = dueOrders({ due: [{ ritual: "wbr", due: true, reasons: ["x"] }], roles: ["chief-of-staff", "head-of-product"], cycle: { wbrs: ["a"], after: 2, handoff: null, base: "b" } });
   assert.deepEqual(d.orders.map((o) => o.slug), ["wbr"]);
+});
+
+test("critLessonProblems (M7 finish review): the template's placeholders refused, each row's lesson reported, its Decision the table's; a company crit's own forms read", () => {
+  const tpl = fs.readFileSync(path.join(MAIN, "company/rituals/templates/demo-crit.md"), "utf8");
+  const rows = critTable("| slug | decision | reason |\n|---|---|---|\n| add-a-zero | keep | fine |\n");
+  const p = critLessonProblems(tpl, rows);
+  assert.ok(p.some((x) => /`### <slug>` part/.test(x)) && p.some((x) => /no `### add-a-zero` part/.test(x)), p.join("\n"));
+  // the template's lines under a real heading: still placeholders
+  const blank = tpl.replace("### <slug>", "### add-a-zero");
+  assert.deepEqual(critLessonProblems(blank, rows).map((x) => x.replace(/ \(.*$/, "")), ["add-a-zero's part has no Evaluator findings", "add-a-zero's part has no Pairwise result", "add-a-zero's part has no Decision", "add-a-zero's part has its QA line still blank or the template's placeholder", "add-a-zero's part has its Claims line still blank or the template's placeholder"]);
+  assert.deepEqual(critLessonProblems(critLessons(tpl, [["add-a-zero", "keep"]]), rows), []);
+  assert.match(critLessonProblems(critLessons(tpl, [["add-a-zero", "kill: a duplicate"]]), rows)[0], /decides "kill: a duplicate", but the table says keep/);
+  // the company's 2026-10-14 crit's forms: a numbered heading naming the pair, bold labels, QA and Claims on one line
+  const company = "# Demo Crit\n\n## Lessons in review\n\n### 2. lh-discount-round-trip (A) vs math/fifty-up-fifty-down (B)\n- Evaluator findings: company/reviews/lh-discount-round-trip/2026-10-14-pairwise.md.\n- **Pairwise result: B.** The lost 25 is a red corner.\n- QA / Claims: not convened / 5 of 5 shown checked on both.\n- **Decision:** revise: A is a duplicate that teaches less.\n\n## Strange branches\n";
+  assert.deepEqual(critLessonProblems(company, critTable("| slug | decision | reason |\n|---|---|---|\n| lh-discount-round-trip | revise | duplicate |\n")), []);
+});
+
+test("critProblems with the run's orders (--live): a lesson in review on its own branch counts; one still at build is not judged", () => {
+  const rows = critTable("| slug | decision | reason |\n|---|---|---|\n| on-branch | revise | x |\n| not-shown | kill | y |\n");
+  const orders = [{ id: "O-1", flow: "lesson", slug: "on-branch", stage: "learner", first: "build" }, { id: "O-2", flow: "lesson", slug: "not-shown", stage: "build", first: "build" }];
+  assert.deepEqual(critProblems(rows, new Set(), { orders }), ["row | not-shown | kill | y |: not-shown's order O-2 is still at build: its lesson has not been shown, so the crit does not judge it yet"]);
+  assert.equal(critProblems(rows, new Set()).length, 2, "without the run's orders, neither is in src/demos");
 });

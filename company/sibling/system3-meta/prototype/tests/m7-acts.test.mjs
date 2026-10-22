@@ -172,3 +172,38 @@ test("end: a scheduler whose run says end is not run again; serve settles once t
   assert.equal(r.code, 0, r.err);
   assert.match(r.stdout, /"event":"done"/);
 });
+
+test("K23, M7 finish review: a `judged` revise sends a lesson still in review back to build (its open check item withdrawn, a loop spent); a judged kill or revise of one still at build is refused", () => {
+  const dir0 = fresh("acts-j");
+  const out = path.join(dir0, "acts.json");
+  const prog = path.join(dir0, "ship.mjs");
+  fs.writeFileSync(prog, `import fs from "node:fs"; console.log(JSON.stringify({ ok: true, acts: JSON.parse(fs.readFileSync(${JSON.stringify(out)}, "utf8")) }));\n`);
+  const dir = init(spec({ argv: ["node", prog], pass: { json: "ok", equals: true }, errorExit: [2, 3], cwd: "${live}" }));
+  const inReview = lesson(dir, "in-review", 1), atBuild = lesson(dir, "at-build", 2), killBuild = lesson(dir, "kill-build", 3), killReview = lesson(dir, "kill-review", 4);
+  leave(dir, inReview, "build", "builder"); leave(dir, killReview, "build", "builder");
+  // the checker is in the middle of checking in-review when the crit's table lands
+  const m = work(dir).find((x) => x.ref === inReview && x.state === "open" && x.body.stage === "check");
+  const running = ok(meta(dir, "room", "enter", `--msg=${m.id}`, "--role=checker"));
+  const cr = crit(dir);
+  fs.writeFileSync(out, JSON.stringify([
+    { act: "reopen", slug: "in-review", flow: "lesson", judged: true, findings: "Demo Crit: revise. the frame is cut" },
+    { act: "reopen", slug: "at-build", flow: "lesson", judged: true, findings: "Demo Crit: revise. x" },
+    { act: "cancel", slug: "kill-build", flow: "lesson", judged: true, reason: "Demo Crit: kill. y" },
+    { act: "cancel", slug: "kill-review", flow: "lesson", judged: true, reason: "Demo Crit: kill. z" },
+  ]));
+  leave(dir, cr, "run", "head-of-product");
+  leave(dir, cr, "check", "chief-of-staff", ["--verdict=pass"]);
+  ok(sup(dir, "tick"));
+  assert.equal(orderOf(dir, cr).stage, "done");
+  const R = orderOf(dir, inReview);
+  assert.deepEqual([R.stage, R.loops, R.history.at(-1).stage, R.history.at(-1).verdict, R.history.at(-1).by], ["build", 1, "check", "revise", "head-of-product"]);
+  assert.match(R.findings, /the frame is cut \(demo-crit, O-5 ship\)/);
+  assert.ok(!work(dir).some((x) => x.ref === inReview && x.state === "open" && x.body.stage === "check"), "its check item left the queue");
+  assert.ok(work(dir).some((x) => x.ref === inReview && x.state === "open" && x.body.stage === "build"), "its builder has it again");
+  assert.equal(state(dir).rooms.runs.__map.find(([k]) => k === running.run)[1].state, "abandoned", "the checker's run on the old version is abandoned");
+  assert.deepEqual([orderOf(dir, atBuild).stage, orderOf(dir, killBuild).stage, orderOf(dir, killReview).stage], ["build", "build", "cancelled"]);
+  const refused = events(dir, "act-refused");
+  assert.deepEqual(refused.map((e) => e.target), [atBuild, killBuild]);
+  for (const e of refused) assert.match(e.why, /is at build: its work has not been shown/);
+  assert.deepEqual(events(dir, "act").map((e) => [e.act, e.target, e.by]), [["reopen", inReview, "head-of-product"], ["cancel", killReview, "head-of-product"]]);
+});

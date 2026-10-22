@@ -132,3 +132,97 @@ test("cleanup refuses a path outside the worktree's own files: a symlinked or es
   assert.equal(fs.readFileSync(path.join(keep, "x"), "utf8"), "mine");
   assert.ok(!WS.cleanupDue(co, o), "once");
 });
+
+test("M7 finish review: a done ritual reopened after cleanup gets its worktree back from its own branch, though the base moved on (it was held as 'an older order's branch')", () => {
+  const { repo, live } = setup();
+  const r1 = ritual(live, 1);
+  ok(sup(live, "tick")); ok(sup(live, "tick"));
+  const first = orderOf(live, r1).workspace;
+  leave(live, r1, "run", "chief-of-staff");
+  leave(live, r1, "check", "head-of-product", ["--verdict=pass"]);
+  const t = ok(sup(live, "tick"));
+  assert.ok(t.steps.some((s) => s.step === "cleanup" && s.order === r1 && s.result === "worktree removed"));
+  // the base moves on (a ritual ship's commit onto the integration branch)
+  fs.writeFileSync(path.join(repo, "shipped.md"), "a record\n"); sh(repo, "add", "-A"); sh(repo, "commit", "-qm", "ship");
+  ok(meta(live, "order", "reopen", r1, "--by=founder", "--findings=redo"));
+  ok(sup(live, "tick")); ok(sup(live, "tick")); ok(sup(live, "tick"));
+  const o = orderOf(live, r1);
+  assert.ok(!o.stageError, JSON.stringify(o.stageError));
+  assert.deepEqual([o.stage, !!o.workdir, fs.existsSync(o.workdir ?? "/nonexistent")], ["run", true, true]);
+  assert.equal(o.workspace.baseSha, first.baseSha, "its base is still the commit it started from");
+  assert.equal(o.workspace.cleaned, undefined, "cleaned again when it is done again");
+  assert.equal(sh(o.workdir, "rev-parse", "--abbrev-ref", "HEAD"), "meta/hk-RITUAL-r1");
+});
+
+test("M7 finish review: a parked or cancelled ritual gives its checkout back (maxOpen counts checkouts, not parked orders); a reopened lesson is cleaned again", () => {
+  const { live } = setup();
+  const r1 = ritual(live, 1), r2 = ritual(live, 2), r3 = ritual(live, 3);
+  ok(sup(live, "tick")); ok(sup(live, "tick"));
+  const wt1 = orderOf(live, r1).workdir;
+  assert.ok(wt1 && !orderOf(live, r2).workdir);
+  ok(meta(live, "order", "park", r1, "--by=chief-of-staff", "--reason=taken"));
+  let t = ok(sup(live, "tick"));
+  assert.ok(t.steps.some((s) => s.step === "cleanup" && s.order === r1 && s.result === "worktree removed"), JSON.stringify(t.steps));
+  assert.ok(!fs.existsSync(wt1));
+  ok(sup(live, "tick"));
+  const wt2 = orderOf(live, r2).workdir;
+  assert.ok(wt2, "the parked ritual no longer holds the flow's one slot");
+  ok(meta(live, "order", "cancel", r2, "--by=chief-of-staff", "--reason=not needed"));
+  t = ok(sup(live, "tick"));
+  assert.ok(t.steps.some((s) => s.step === "cleanup" && s.order === r2 && s.result === "worktree removed"));
+  assert.ok(!fs.existsSync(wt2), "a cancelled ritual's checkout is removed too (its branch kept)");
+  ok(sup(live, "tick"));
+  assert.ok(orderOf(live, r3).workdir, "the next ritual gets the slot");
+  // a lesson done, cleaned, reopened and done again: cleaned again (cleaned is per loop)
+  const l = ok(meta(live, "order", "new", "--by=chief-of-staff", "--to=mgr", "--title=L", "--task=L1", "--slug=a-lesson", "--accept=a")).order;
+  ok(meta(live, "order", "delegate", l, "--by=mgr", "--to=builder"));
+  ok(sup(live, "tick"));
+  const wl = orderOf(live, l).workdir;
+  const pass = () => { leave(live, l, "build", "builder"); leave(live, l, "check", "checker", ["--verdict=pass"]); ok(sup(live, "tick")); };
+  fs.mkdirSync(path.join(wl, ".next-L1")); pass();
+  assert.ok(!fs.existsSync(path.join(wl, ".next-L1")));
+  ok(meta(live, "order", "reopen", l, "--by=founder", "--findings=again"));
+  fs.mkdirSync(path.join(wl, ".next-L1")); fs.writeFileSync(path.join(wl, ".next-L1", "x"), "186 MB"); pass();
+  assert.equal(orderOf(live, l).stage, "done");
+  assert.ok(!fs.existsSync(path.join(wl, ".next-L1")), "the reopened lesson's new build output is removed too");
+});
+
+test("M7 finish review: './.git' and './node_modules' are judged on the resolved path, never removed; a failed worktree removal is retried and counts toward maxOpen", () => {
+  const top = fs.mkdtempSync(path.join(os.tmpdir(), "meta-m7-hk3-"));
+  const repo = path.join(top, "repo"), wt = path.join(top, "wt");
+  fs.mkdirSync(repo);
+  sh(repo, "init", "-q", "-b", "main"); sh(repo, "config", "user.email", "t@t"); sh(repo, "config", "user.name", "t");
+  fs.writeFileSync(path.join(repo, "a"), "a"); sh(repo, "add", "-A"); sh(repo, "commit", "-qm", "a");
+  sh(repo, "worktree", "add", "-q", "-b", "meta/x", wt);
+  fs.mkdirSync(path.join(wt, "node_modules")); fs.writeFileSync(path.join(wt, "node_modules", "dep"), "x");
+  const log = [];
+  let now = 0;
+  const co = { spec: { workspace: { cleanup: { env: ["A", "B", "C"] } } }, engine: { clock: { now: () => now }, orders: new Map() }, log: { add: (e) => log.push(e) } };
+  const o = { id: "O-1", stage: "cancelled", loops: 0, workdir: wt, workspace: { dir: wt, repo, env: { A: "./.git", B: "./node_modules", C: "x/../.git" } } };
+  const r = WS.cleanup(co, o);
+  assert.deepEqual(r.removed, []);
+  assert.match(r.error, /^A=\.\/\.git: resolves outside the worktree's own files; B=\.\/node_modules: resolves outside the worktree's own files; C=x\/\.\.\/\.git: not a path inside the worktree$/);
+  assert.ok(fs.existsSync(path.join(wt, ".git")) && fs.existsSync(path.join(wt, "node_modules", "dep")));
+  assert.equal(spawnSync("git", ["-C", wt, "status", "--porcelain"]).status, 0, "git still reads the worktree");
+  // a ritual flow that removes worktrees: a done order whose removal failed (untracked work) is retried later, and
+  // holds its maxOpen slot until then
+  const co2 = { spec: { workspace: {}, flows: { ritual: { workspace: { maxOpen: 1, cleanup: { worktree: true } } } } }, engine: { clock: { now: () => now }, orders: new Map() }, log: { add: (e) => log.push(e) } };
+  const d = { id: "O-2", flow: "ritual@v1", stage: "done", loops: 0, workdir: wt, workspace: { dir: wt, repo, env: {} } };
+  const next = { id: "O-3", flow: "ritual@v1", stage: "run", loops: 0 };
+  co2.engine.orders.set(d.id, d).set(next.id, next);
+  fs.writeFileSync(path.join(wt, "untracked"), "work");
+  assert.ok(WS.cleanupDue(co2, d));
+  const c1 = WS.cleanup(co2, d);
+  assert.deepEqual([c1.worktree, /git worktree remove/.test(c1.error)], [false, true]);
+  assert.ok(WS.flowFull(co2, next), "the checkout is still there: it counts");
+  assert.ok(!WS.cleanupDue(co2, d), "not every tick");
+  now = WS.CLEANUP_RETRY_MIN;
+  assert.ok(WS.cleanupDue(co2, d), "retried after CLEANUP_RETRY_MIN");
+  fs.rmSync(path.join(wt, "untracked")); fs.rmSync(path.join(wt, "node_modules"), { recursive: true });
+  const c2 = WS.cleanup(co2, d);
+  assert.equal(c2.worktree, true, c2.error);
+  assert.ok(!WS.flowFull(co2, next), "removed: the slot is free");
+  // a reopened order (a new loop) is due again once done again
+  d.loops = 1; d.workspace.dir = wt;
+  assert.ok(WS.cleanupDue(co2, d));
+});

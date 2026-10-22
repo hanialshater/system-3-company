@@ -87,6 +87,9 @@ test("event units: one review and one verify per agent session, one publish per 
   assert.deepEqual(rep.map((e) => [e.agent, e.key === d.find((x) => x.agent === e.agent).key, e.state]), [[`system3-meta fact-checker ${fc}`, true, "done"], [`system3-meta learner-evaluator ${le}`, true, "done"]]);
   assert.equal(of("stopped").length, 1);
   assert.match(of("stopped")[0].summary, /reservation lapsed/);
+  // M7 finish review: a hand-back is in its actor's room (the company's events.mjs report/stopped: roomFor), not the
+  // chief of staff's whatever the actor
+  assert.deepEqual([...rep, ...of("stopped")].map((e) => [e.actor, e.room]), [["fact-checker", "fact-check"], ["learner-evaluator", "learner-review"], ["cm-math", "cm-math"]]);
   // the company's own dispatch-check reads none of them as in flight (every dispatch closed by its key)
   const dc = run(path.join(c.int, "tools/dispatch-check.mjs"), ["--kind=check", "--role=fact-checker", "--source=§4:test", "--running=0", "--builders=0", "--no-claim", "--json"], { cwd: c.int });
   const dj = JSON.parse(dc.stdout);
@@ -124,8 +127,15 @@ test("the plain fixture: merge, publish and ritual at once; the reviews when the
   assert.equal(git(c.int, "log", "-1", "--format=%s"), "meta: events export (chief-of-staff code step)");
   r = run(ADAPTER, [`--live=${LIVE}`, `--repo=${c.int}`, "--flush", "--commit"]);
   assert.deepEqual(lines(c.int).map((e) => e.type), ["merge", "publish", "ritual", "verify", "review", "decision"]);
+  // M7 finish review: a batch is dated by its last signature, not by when its session closed (minutes later), so the
+  // lesson's verify, review and launch decision come before its publish in the company's log, and launch-review, which
+  // the publish held, is not DUE again on work that was already reviewed (it was, with the close time)
+  const ts = Object.fromEntries(lines(c.int).map((e) => [e.type, e.ts]));
+  for (const t of ["verify", "review", "decision"]) assert.ok(ts[t] <= ts.publish, `${t} at ${ts[t]} is not after the publish at ${ts.publish}`);
+  const sigs = (stage) => st(LIVE).log.events.filter((e) => e.type === "advance" && e.stage === stage).map((e) => new Date(Math.round(e.t * 60000)).toISOString());
+  for (const [t, stage] of [["verify", "check"], ["review", "learner"], ["decision", "launch"]]) assert.ok(sigs(stage).includes(ts[t]), `${t} at ${ts[t]}: one of its ${stage} signatures' times (${sigs(stage)})`);
   const lr = JSON.parse(run(path.join(c.int, "tools/rituals-due.mjs"), ["--json"]).stdout).find((x) => x.ritual === "launch-review");
-  assert.equal(lr.due, true, "a review batch reported after the publish makes launch-review due again: the company's rule");
+  assert.equal(lr.due, false, `launch-review: ${lr.reasons}`);
   // idempotent: with the cursor gone, the ids are not written twice
   fs.rmSync(path.join(LIVE, "exports", "events-export.json"));
   const third = run(ADAPTER, [`--live=${LIVE}`, `--repo=${c.int}`, "--flush", "--commit"]);

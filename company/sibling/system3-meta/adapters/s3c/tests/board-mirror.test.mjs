@@ -8,7 +8,8 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { companyRepo, metaCli, metaState, sign, git, run, MAIN } from "./m7-fixture.mjs";
+import { spawnSync } from "node:child_process";
+import { companyRepo, metaCli, metaState, sign, git, run, env0, MAIN } from "./m7-fixture.mjs";
 import { boardState } from "../board-mirror.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
@@ -103,4 +104,52 @@ test("renumber: the company's branch and the run's both hand out W-002 on: --ont
   r = run(ADAPTER, ["renumber", `--repo=${c.int}`, "--run=t7"]);
   assert.deepEqual(r.json.renumbered, [{ order: "O-2", from: "W-006", to: "W-007" }]);
   assert.equal(new Set(board(c.int).map((i) => i.id)).size, board(c.int).length);
+});
+
+test("renumber --onto (M7 finish review): a board past git's 1 MiB default buffer, read while the merge is in conflict, the run's items at the next free ids, its change to a company item kept; the commit check reads such a file", async () => {
+  const { git: gitRaw, commitPaths } = await import("../lib/commit-file.mjs");
+  const big = { items: Array.from({ length: 3600 }, (_, i) => ({ id: `W-${String(i + 1).padStart(3, "0")}`, title: `company item ${i + 1}: ${"a long title so the board is the company's size ".repeat(4)}`, owner: "chief-of-staff", state: "backlog", domain: null, created: "2026-10-01", links: [] })) };
+  const c = companyRepo({ files: { "company/ops/board.json": JSON.stringify(big, null, 2) + "\n" } });
+  assert.ok(fs.statSync(path.join(c.int, "company/ops/board.json")).size > 1024 * 1024, "past node's default maxBuffer");
+  const show = gitRaw(c.int, "show", "HEAD:company/ops/board.json");
+  assert.deepEqual([show.status, show.error ?? null], [0, null], "git() reads a file past 1 MiB (it died with ENOBUFS)");
+  assert.deepEqual(commitPaths(c.int, ["company/ops/board.json"], "meta: nothing"), { unchanged: true }, "an unchanged big file is unchanged");
+  const live = metaState();
+  let r = run(ADAPTER, [`--live=${live}`, `--repo=${c.int}`, "--run=t7", "--commit"]);
+  assert.deepEqual(r.json.added.map((x) => x.id), ["W-3601", "W-3602"]);
+  // the run's side also closes a company item; the company's side adds its own W-3601 and changes another item
+  const edit = (dir, fn, msg) => { const f = path.join(dir, "company/ops/board.json"), b = JSON.parse(fs.readFileSync(f, "utf8")); fn(b); fs.writeFileSync(f, JSON.stringify(b, null, 2) + "\n"); git(dir, "commit", "-qam", msg); };
+  edit(c.int, (b) => { b.items.find((i) => i.id === "W-005").state = "done"; }, "run: close W-005");
+  edit(c.root, (b) => { b.items.find((i) => i.id === "W-010").state = "doing"; b.items.push({ id: "W-3601", title: "company work", owner: "tools-lead", state: "next", domain: null, created: "2026-10-22", links: [] }); }, "company board items");
+  const m = spawnSync("git", ["-C", c.int, "merge", "--no-edit", "main"], { encoding: "utf8", env: env0() });
+  assert.notEqual(m.status, 0, "the textual conflict in board.json");
+  assert.match(fs.readFileSync(path.join(c.int, "company/ops/board.json"), "utf8"), /^<<<<<<< /m);
+  r = run(ADAPTER, ["renumber", `--repo=${c.int}`, "--run=t7", "--onto=main", "--commit"]);
+  assert.equal(r.exit, 0, r.stdout + r.stderr);
+  assert.deepEqual([r.json.from, r.json.merging, r.json.base, r.json.staged], ["HEAD", true, true, true]);
+  assert.deepEqual(r.json.renumbered.filter((x) => x.order), [{ order: "O-1", from: "W-3601", to: "W-3602" }, { order: "O-2", from: "W-3602", to: "W-3603" }]);
+  const b = board(c.int);
+  assert.equal(b.length, 3603);
+  assert.deepEqual(["W-005", "W-010", "W-3601"].map((id) => b.find((i) => i.id === id).state), ["done", "doing", "next"], "the run's close and the company's change both kept");
+  assert.equal(b.find((i) => i.id === "W-3601").title, "company work");
+  assert.equal(new Set(b.map((i) => i.id)).size, b.length);
+  git(c.int, "commit", "-qm", "merge main (board renumbered by code)");
+  assert.equal(git(c.int, "status", "--porcelain"), "");
+  // run before the merge (no conflict): the same result as a plain read of --onto
+  const c2 = companyRepo({ files: { "company/ops/board.json": JSON.stringify(big, null, 2) + "\n" } });
+  run(ADAPTER, [`--live=${live}`, `--repo=${c2.int}`, "--run=t7", "--commit"]);
+  r = run(ADAPTER, ["renumber", `--repo=${c2.int}`, "--run=t7", "--onto=main"]);
+  assert.deepEqual([r.exit, r.json.from, r.json.merging], [0, "worktree", false], r.stdout);
+});
+
+test("renumber --onto keeps the run's newer state for an item onto already has (a second merge of the run); a title that is its slug is not repeated", async () => {
+  const { renumber, titleOf } = await import("../board-mirror.mjs");
+  const tag = /^\[meta:m7\] (O-\d+)(?::|$)/, mine = (i) => tag.exec(i.title)?.[1] ?? null;
+  const it = (id, title, state, owner = "chief-of-staff") => ({ id, title, owner, state });
+  const onto = { items: [it("W-2002", "company item", "doing"), it("W-2003", "[meta:m7] O-1: a", "doing")] };
+  const runB = { items: [it("W-2002", "[meta:m7] O-2: b", "review"), it("W-2003", "[meta:m7] O-1: a", "done")] };
+  const r = renumber(runB, mine, { onto, base: { items: [it("W-2003", "[meta:m7] O-1: a", "doing")] } });
+  assert.deepEqual(r.board.items.map((i) => [i.id, i.title, i.state]), [["W-2002", "company item", "doing"], ["W-2003", "[meta:m7] O-1: a", "done"], ["W-2004", "[meta:m7] O-2: b", "review"]]);
+  assert.equal(titleOf("m7", { id: "O-1", title: "push-the-frame-over", slug: "push-the-frame-over" }), "[meta:m7] O-1: push-the-frame-over");
+  assert.equal(titleOf("m7", { id: "O-3", title: "three sticks", slug: "three-sticks-one-triangle" }), "[meta:m7] O-3: three sticks (three-sticks-one-triangle)");
 });

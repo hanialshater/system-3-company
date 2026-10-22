@@ -33,9 +33,13 @@
 // on), and merging them gives `company check`'s "duplicate id". Nothing reserves a range (board add has no --id, and
 // tools/company.mjs is protected), so the ids are renumbered when the branch is merged:
 //   node board-mirror.mjs renumber --repo=<worktree> --run=<name> [--onto=<ref>] [--commit]
-//        --onto: the board at <ref> (the company's branch being merged into) is taken as it is, and every item of this
-//                run (its title tag) that <ref>'s board lacks is appended with the next free ids after <ref>'s highest:
-//                the board.json to commit with the merge (git's textual conflict in board.json resolved by code)
+//        --onto: the board at <ref> (the company's branch being merged into) is taken as it is, and the run's board
+//                is merged onto it item by item (renumber: this run's items with the run's state, at <ref>'s id where
+//                <ref> has them, else appended with the next free ids after <ref>'s highest; a company item the run
+//                changed since the merge base and <ref> did not, the run's): the board.json to commit with the merge
+//                (git's textual conflict in board.json resolved by code). In a merge in progress whose board.json
+//                holds conflict markers, the run's board is HEAD's; with --commit the result is staged for the merge
+//                commit (git commits no named path during a merge)
 //        no --onto: in place, after a merge that kept both sides' items: every item of this run whose id another item
 //                also holds gets the next free id
 //        prints {ok, renumbered: [{order, from, to}], labels: {<O>: ["ext:W-n"]}} (the new ids for Meta's tracker
@@ -50,7 +54,7 @@ import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { parseArgs, F } from "./lib/proc.mjs";
-import { sandboxOf, commitPaths, git } from "./lib/commit-file.mjs";
+import { sandboxOf, commitPaths, git, gitWhy } from "./lib/commit-file.mjs";
 import { domainOf } from "./events-export.mjs";
 
 export const BOARD = "company/ops/board.json";
@@ -83,18 +87,37 @@ export function boardProblems(board) {
 }
 const idNum = (id) => Number(String(id ?? "").split("-")[1]) || 0; // company.mjs board add's own reading
 const W = (n) => `W-${String(n).padStart(3, "0")}`;
-/** The renumber (see the header): { board, renumbered: [{order, from, to}] }. `mine(item)` → the order id, or null. */
-export function renumber(board, mine, { onto = null } = {}) {
+/** The renumber (see the header): { board, renumbered: [{order, from, to}] }. `mine(item)` → the order id, or null.
+ *  With `onto` (the company's board, taken as it is) and `base` (the board at the merge base, when there is one), the
+ *  result is a three-way merge of the items, never a drop (M7 finish review: an item of this run that onto already had
+ *  kept onto's older state, so a second merge of the run put done items back to doing, and every change the run made to
+ *  a company item was lost):
+ *    - an item of this run (its title tag) takes the run's fields, at onto's id when onto has it, else the next free id;
+ *    - a company item (no tag of this run) the run changed since base, and onto did not, takes the run's version;
+ *      changed on both sides, onto's (the company's branch is the one merged into); one the run added (not in base,
+ *      not in onto) is appended with the next free id. Company items are matched by id and title. */
+export function renumber(board, mine, { onto = null, base = null } = {}) {
   const renumbered = [];
   if (onto) {
-    const have = new Set(onto.items.map((i) => mine(i)).filter(Boolean));
-    let n = onto.items.reduce((m, i) => Math.max(m, idNum(i.id)), 0);
-    const items = [...onto.items];
+    const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+    const key = (i) => `${i.id}\u0000${i.title}`;
+    const runBy = new Map(board.items.filter(mine).map((i) => [mine(i), i]));
+    const baseBy = new Map((base?.items ?? []).filter((i) => !mine(i)).map((i) => [key(i), i]));
+    const runCo = new Map(board.items.filter((i) => !mine(i)).map((i) => [key(i), i]));
+    let n = Math.max(onto.items.reduce((m, i) => Math.max(m, idNum(i.id)), 0), 0);
+    const seen = new Set();
+    const items = onto.items.map((it) => {
+      const o = mine(it);
+      if (o) { seen.add(`O:${o}`); const r = runBy.get(o); return r ? { ...r, id: it.id } : it; }
+      seen.add(key(it));
+      const b = baseBy.get(key(it)), r = runCo.get(key(it));
+      return base && b && r && !same(r, b) && same(it, b) ? r : it; // the run's change to a company item onto left alone
+    });
     for (const it of board.items) {
       const o = mine(it);
-      if (!o || have.has(o)) continue;
+      if (o ? seen.has(`O:${o}`) : seen.has(key(it)) || !base || baseBy.has(key(it))) continue; // a company item onto dropped stays dropped
       const to = W(++n);
-      if (to !== it.id) renumbered.push({ order: o, from: it.id, to });
+      if (to !== it.id) renumbered.push({ order: o ?? null, from: it.id, to, title: o ? undefined : it.title });
       items.push({ ...it, id: to });
     }
     return { board: { ...onto, items }, renumbered };
@@ -113,7 +136,9 @@ export function renumber(board, mine, { onto = null } = {}) {
   return { board: { ...board, items }, renumbered };
 }
 export const tagOf = (run, o) => `[meta:${run}] ${o.id}`;
-export const titleOf = (run, o) => `${tagOf(run, o)}: ${String(o.title || o.task || o.id).replace(/\s+/g, " ").slice(0, 140)}${o.slug ? ` (${o.slug})` : ""}`;
+/** The item's title: its tag, the order's title, and its slug when the title does not already name it (M7 finish
+ *  review: a lesson order's title is often its slug, and "O-1: push-the-frame-over (push-the-frame-over)" repeated it). */
+export const titleOf = (run, o) => { const t = String(o.title || o.task || o.id).replace(/\s+/g, " ").slice(0, 140); return `${tagOf(run, o)}: ${t}${o.slug && !t.includes(o.slug) ? ` (${o.slug})` : ""}`; };
 
 function renumberMain(o, usage) {
   for (const k of Object.keys(o)) if (!["repo", "run", "commit", "onto", "positional"].includes(k)) return usage(`unknown flag --${k}`);
@@ -125,26 +150,48 @@ function renumberMain(o, usage) {
   const sb = sandboxOf(path.resolve(o.repo));
   if (sb.error) return usage(`--repo: ${sb.error}`);
   const fail = (kind, m) => ({ exit: 3, out: { ok: false, stage: "board-mirror", findings: [F.env(kind, m)] } });
-  let board, onto = null;
-  try { board = JSON.parse(fs.readFileSync(path.join(sb.root, BOARD), "utf8")); if (!Array.isArray(board.items)) throw new Error("no items list"); }
-  catch (e) { return fail("board", `cannot read ${BOARD} in ${sb.root} (a merge conflict there is resolved with --onto): ${e.message}`); }
+  const parse = (text, what) => { const b = JSON.parse(text); if (!Array.isArray(b?.items)) throw new Error(`${what}: no items list`); return b; };
+  const show = (ref) => { const r = git(sb.root, "show", `${ref}:${BOARD}`); return r.status === 0 ? { text: r.stdout } : { error: `git show ${ref}:${BOARD}: ${gitWhy(r)}` }; };
+  // a merge in progress (MERGE_HEAD): the worktree's board.json may hold git's conflict markers
+  const merging = git(sb.root, "rev-parse", "-q", "--verify", "MERGE_HEAD").status === 0;
+  let board, onto = null, base = null, from = "worktree";
+  try { board = parse(fs.readFileSync(path.join(sb.root, BOARD), "utf8"), BOARD); }
+  catch (e) {
+    // M7 finish review: the documented path (merge, conflict in board.json, then renumber --onto) failed here on the
+    // conflict markers. With --onto the run's side is HEAD's board (the run's branch is the one checked out)
+    if (!o.onto) return fail("board", `cannot read ${BOARD} in ${sb.root} (a merge conflict there is resolved with --onto): ${e.message}`);
+    const h = show("HEAD");
+    if (h.error) return fail("board", `cannot read ${BOARD} in ${sb.root} (${e.message}), nor at HEAD: ${h.error}`);
+    try { board = parse(h.text, `HEAD:${BOARD}`); from = "HEAD"; } catch (e2) { return fail("board", e2.message); }
+  }
   if (o.onto) {
-    const r = git(sb.root, "show", `${o.onto}:${BOARD}`);
-    if (r.status !== 0) return fail("onto", `git show ${o.onto}:${BOARD}: ${String(r.stderr).trim()}`);
-    try { onto = JSON.parse(r.stdout); if (!Array.isArray(onto.items)) throw new Error("no items list"); } catch (e) { return fail("onto", `${o.onto}:${BOARD}: ${e.message}`); }
+    const r = show(o.onto);
+    if (r.error) return fail("onto", r.error);
+    try { onto = parse(r.text, `${o.onto}:${BOARD}`); } catch (e) { return fail("onto", e.message); }
+    // the merge base's board, for the three-way merge of items (renumber); none (unrelated histories): onto wins
+    const mb = git(sb.root, "merge-base", "HEAD", o.onto);
+    if (mb.status === 0) { const b = show(mb.stdout.trim()); if (!b.error) { try { base = parse(b.text, "merge-base"); } catch {} } }
   }
   const tagRe = new RegExp(`^\\[meta:${o.run.replace(/[.]/g, "\\.")}\\] (O-\\d+)(?::|$)`);
   const mine = (it) => (typeof it.title === "string" ? tagRe.exec(it.title)?.[1] ?? null : null);
-  const r = renumber(board, mine, { onto });
+  const r = renumber(board, mine, { onto, base });
   const problems = boardProblems(r.board);
   if (problems.length) return fail("board-check", `the renumbered board would fail company check: ${problems.slice(0, 5).join("; ")}`);
-  const changed = JSON.stringify(r.board) !== JSON.stringify(board);
-  if (changed) fs.writeFileSync(path.join(sb.root, BOARD), JSON.stringify(r.board, null, 2) + "\n"); // company.mjs writeJSON's form
+  const file = path.join(sb.root, BOARD), text = JSON.stringify(r.board, null, 2) + "\n"; // company.mjs writeJSON's form
+  const changed = from !== "worktree" || JSON.stringify(r.board) !== JSON.stringify(board);
+  if (changed) fs.writeFileSync(file, text);
   const labels = Object.fromEntries(r.board.items.filter(mine).map((it) => [mine(it), [`ext:${it.id}`]]));
-  const out = { ok: true, stage: "board-mirror", mode: "renumber", repo: sb.root, branch: sb.branch, onto: o.onto ?? null, renumbered: r.renumbered, labels, findings: [] };
+  const out = { ok: true, stage: "board-mirror", mode: "renumber", repo: sb.root, branch: sb.branch, onto: o.onto ?? null, from, merging, ...(o.onto ? { base: !!base } : {}), renumbered: r.renumbered, labels, findings: [] };
   if (o.commit && changed) {
-    const c = commitPaths(sb.root, [BOARD], `meta: board renumber for the ${o.run} merge (chief-of-staff code step)`);
-    if (c.error) { out.ok = false; out.findings.push(F.env("commit", c.error)); } else out.committed = c.sha ?? null;
+    if (merging) {
+      // git refuses a commit of named paths during a merge: the resolved board is staged, and the merge commit (the
+      // operator's, with the rest of the merge) carries it
+      const a = git(sb.root, "add", "--", BOARD);
+      if (a.status !== 0) { out.ok = false; out.findings.push(F.env("commit", `git add ${BOARD}: ${gitWhy(a)}`)); } else out.staged = true;
+    } else {
+      const c = commitPaths(sb.root, [BOARD], `meta: board renumber for the ${o.run} merge (chief-of-staff code step)`);
+      if (c.error) { out.ok = false; out.findings.push(F.env("commit", c.error)); } else out.committed = c.sha ?? null;
+    }
   }
   return { exit: out.ok ? 0 : 3, out };
 }

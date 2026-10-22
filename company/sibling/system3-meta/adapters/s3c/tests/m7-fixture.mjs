@@ -117,3 +117,17 @@ export function run(adapter, args, { cwd = undefined, extra = {} } = {}) {
   let json = null; try { json = JSON.parse(r.stdout.trim().split("\n").at(-1)); } catch {}
   return { exit: r.status, json, stdout: r.stdout, stderr: r.stderr };
 }
+
+/** A Demo Crit record's `## Lessons in review` filled for `rows` ([slug, decision]): the template's `### <slug>` part
+ *  replaced by one reported part per lesson (rituals.mjs critLessonProblems, M7 finish review). */
+export const critLessons = (text, rows) => text.replace(/### <slug>\n[\s\S]*?- Objections that travel with the decision:[^\n]*\n/, rows.map(([slug, decision]) => [
+  `### ${slug}`,
+  `- Evaluator findings (in the order received): learner-evaluator, from the walkthrough (artifacts/walkthroughs/${slug}/sheet.png): the frame reads at a glance.`,
+  `- Pairwise result (A vs B, which and why): ${slug} over its earlier version: the reveal points at the drawn frame.`,
+  `- QA: pass (company/reviews/${slug}/qa.md)`,
+  "- Claims: verified",
+  "- Builder answers to questions: none asked",
+  `- **Decision:** ${decision}`,
+  "- Objections that travel with the decision: none",
+  "",
+].join("\n")).join("\n"));

@@ -29,7 +29,10 @@
 //   review, verify, decision  one company event per Meta agent SESSION (one launched evaluator, fact-checker or head
 //            of product working its batch: the company's agent run), written when the session ends (session-close, or
 //            its launch-finished), with every lesson it judged as subjects. A session still open waits (the cursor
-//            keeps it), unless --flush. An advance with no session (signed by hand) joins its tick's batch
+//            keeps it), unless --flush. An advance with no session (signed by hand) joins its tick's batch. Its ts is
+//            its LAST signature's time, not the close's (M7 finish review: a session closes minutes after its last
+//            advance, so a lesson's review and launch decision were dated after its publish, and the company's
+//            counters, which order events by ts, saw a review "since" the last publish: a false launch-review DUE)
 //   publish  one per supervisor tick (Meta's ship stages of one tick are one publish loop: the company's
 //            publish-ready --publish publishes a batch in one run)
 //   merge    one per lesson merged (Meta merges each order's branch on its own: integrate.mjs, one --no-ff merge
@@ -184,7 +187,9 @@ export function main(argv) {
   const exported = [], findings = [];
   let budget = max;
   const add = (id, ts, c, extra = [], { spool = false } = {}) => {
-    const args = [tool, "add", `--id=${id}`, `--ts=${ts}`, `--type=${c.type}`, `--room=${c.room}`, `--actor=${c.actor}`, `--summary=${c.summary}`, ...extra];
+    // a report or stopped event goes through the company's own `events.mjs report|stopped`, which takes its room from
+    // the actor (roomFor: learner-evaluator → learner-review, fact-checker → fact-check), as every company hand-back's
+    const args = c.cmd ? [tool, c.cmd, `--id=${id}`, `--ts=${ts}`, `--actor=${c.actor}`, `--summary=${c.summary}`, ...extra] : [tool, "add", `--id=${id}`, `--ts=${ts}`, `--type=${c.type}`, `--room=${c.room}`, `--actor=${c.actor}`, `--summary=${c.summary}`, ...extra];
     if (c.subjects?.length) args.push(`--subjects=${c.subjects.join(",")}`);
     if (c.refs?.length) args.push(`--refs=${c.refs.join(",")}`);
     const r = spawnSync(process.execPath, args, { cwd: sb.root, env, encoding: "utf8", timeout: 30_000 });
@@ -202,14 +207,15 @@ export function main(argv) {
     const done = pending.filter(pred);
     for (const b of done) {
       if (budget <= 0 || findings.length) return false;
-      if (!add(idOf(`batch:${b.id}`), iso(t), batchEvent(b))) return false;
+      if (!add(idOf(`batch:${b.id}`), iso(b.t ?? t), batchEvent(b))) return false; // dated by its last signature
       pending = pending.filter((x) => x !== b);
     }
     return true;
   };
   const report = (x, t, state, why) => {
     if (budget <= 0 || findings.length) return false;
-    const c = { type: state === "done" ? "report" : "stopped", room: "chief-of-staff", actor: x.role, summary: `${x.label}: ${why}`, subjects: [x.role], refs: [] };
+    const type = state === "done" ? "report" : "stopped";
+    const c = { type, cmd: type, actor: x.role, summary: `${x.label}: ${why}`, subjects: [x.role], refs: [] }; // its room: roomFor(actor), the company's
     if (!add(idOf(`${c.type}:${x.launch}`), iso(t), c, [`--agent=${x.label}`, `--key=${x.key}`, `--state=${state}`], { spool: true })) return false;
     open = open.filter((y) => y !== x);
     return true;
@@ -241,6 +247,7 @@ export function main(argv) {
         if (!b) { b = { key, id: `${key}#${e.seq}`, type: c.type, room: c.room, actor: c.actor, session: c.close.startsWith("S:") ? c.close.slice(2) : null, items: [] }; pending.push(b); }
         const sha = stageSha(e);
         b.items.push({ slug: c.slug, verdict: c.verdict, order: c.order, refs: sha ? [sha] : [] });
+        b.t = Math.max(b.t ?? e.t, e.t);
       }
     }
     if (!ok) break;

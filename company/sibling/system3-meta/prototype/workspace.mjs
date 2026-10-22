@@ -68,10 +68,16 @@ export function validateWorkspace(w) {
 // folders its workspace env names (relative paths inside the worktree: the order's own build output) are removed, and
 // with `worktree: true` its worktree too (`git worktree remove`, never --force: a worktree with uncommitted or untracked
 // work is left, and said so; its branch is always kept, so a reopen checks it out again). A cancelled order's env
-// folders are removed too, never its worktree. Nothing outside the worktree is ever deleted: a path that resolves (real
-// path) outside it, onto it, onto .git or node_modules, or through a symlink, is refused.
+// folders are removed too. Nothing outside the worktree is ever deleted: a path that resolves (real path) outside it,
+// onto it, into .git or node_modules (judged on the resolved path: "./.git" is .git, M7 finish review), or through a
+// symlink, is refused.
 // A flow may set its own, `flows.<name>.workspace: {maxOpen, cleanup}` (the ritual flow: maxOpen 2, worktree removed):
-// maxOpen caps how many of the flow's open orders hold a worktree at once (supervisor tick: the others wait).
+// maxOpen caps how many of the flow's orders hold a worktree at once (supervisor tick: the others wait).
+// M7 finish review, where `worktree: true`: a cancelled order's worktree is removed too, and a parked one's (its
+// branch keeps its commits; a resume or reopen checks it out again, ensure), so parked orders do not hold the flow's
+// maxOpen slots and the cycle's later rituals are not blocked; a removal that failed is tried again after
+// CLEANUP_RETRY_MIN, and until it succeeds the checkout counts toward maxOpen (it is one). A reopened order is cleaned
+// again when it is done again (cleaned is per loop).
 export const CLEANUP_KEYS = ["env", "worktree"];
 export function cleanupProblem(c, env = {}) {
   if (typeof c !== "object" || c == null || Array.isArray(c)) return "cleanup is {env, worktree}";
@@ -93,17 +99,30 @@ export function flowWsProblem(f, env = {}) {
   if (f.cleanup != null) { const e = cleanupProblem(f.cleanup, env); if (e) return `workspace.cleanup: ${e}`; }
   return null;
 }
-/** Is order `o`'s flow at its maxOpen (open orders of the flow that hold a worktree)? */
+/** Is order `o`'s flow at its maxOpen (orders of the flow that hold a worktree: open ones, and, where the flow's
+ *  cleanup removes worktrees, a done or cancelled one whose removal has not happened or failed: still a checkout)? */
 export function flowFull(co, o) {
   const max = flowWs(co, o).maxOpen;
   if (max == null) return false;
-  const name = String(o.flow).split("@")[0];
-  const open = [...co.engine.orders.values()].filter((x) => x.id !== o.id && String(x.flow).split("@")[0] === name && x.workdir && !["done", "cancelled"].includes(x.stage));
+  const name = String(o.flow).split("@")[0], wt = !!cleanupOf(co, o)?.worktree;
+  const open = [...co.engine.orders.values()].filter((x) => x.id !== o.id && String(x.flow).split("@")[0] === name && x.workdir && (wt || !["done", "cancelled"].includes(x.stage)));
   return open.length >= max;
 }
 /** The cleanup that applies to order `o`: the spec's, with its flow's over it. */
 export const cleanupOf = (co, o) => { const a = specOf(co)?.cleanup ?? null, b = flowWs(co, o).cleanup ?? null; return a || b ? { ...(a ?? {}), ...(b ?? {}) } : null; };
-export const cleanupDue = (co, o) => !!(o.workspace?.dir && !o.workspace.cleaned && cleanupOf(co, o) && (o.stage === "cancelled" || (o.stage === "done" && !commitDue(co, o))));
+export const CLEANUP_RETRY_MIN = 30;
+/** Is a cleanup due for order `o` now? Once per loop (a reopen is a loop: cleaned again when done again), again after
+ *  CLEANUP_RETRY_MIN when one failed and its worktree is still there, and for a parked order where the flow removes
+ *  worktrees. */
+export function cleanupDue(co, o) {
+  const c = o.workspace?.dir ? cleanupOf(co, o) : null;
+  if (!c) return false;
+  const when = o.stage === "cancelled" || (o.stage === "done" && !commitDue(co, o)) || (o.stage === "parked" && c.worktree && !!o.workdir);
+  if (!when) return false;
+  const k = o.workspace.cleaned;
+  if (!k || k.loops !== o.loops || k.stage !== o.stage) return true;
+  return !!(k.error && o.workdir && fs.existsSync(o.workdir) && co.engine.clock.now() - k.t >= CLEANUP_RETRY_MIN);
+}
 /** Remove what cleanup names for order `o` (see above). Returns { removed: [rel], worktree, error? }; records
  *  o.workspace.cleaned and a `cleanup` event. */
 export function cleanup(co, o) {
@@ -115,18 +134,20 @@ export function cleanup(co, o) {
     if (path.isAbsolute(v) || v.split(/[\\/]/).includes("..")) { skipped.push(`${k}=${v}: not a path inside the worktree`); continue; }
     const abs = path.resolve(dir, v);
     if (!fs.existsSync(abs) && !isLink(abs)) continue;
-    const top = v.split(/[\\/]/).filter(Boolean)[0] ?? "";
+    // the first part of the path as resolved, never as written ("./.git", "a/../.git" are .git)
+    const top = path.relative(root, real(abs)).split(path.sep)[0] ?? "";
     if (isLink(abs) || real(abs) === root || !real(abs).startsWith(root + path.sep) || [".git", "node_modules"].includes(top)) { skipped.push(`${k}=${v}: resolves outside the worktree's own files`); continue; }
     try { fs.rmSync(abs, { recursive: true, force: true }); removed.push(v); } catch (e) { skipped.push(`${k}=${v}: ${e.message}`); }
   }
   let worktree = false, error = skipped.length ? skipped.join("; ") : null;
-  if (c.worktree && o.stage === "done" && fs.existsSync(dir)) {
+  if (c.worktree && ["done", "cancelled", "parked"].includes(o.stage) && fs.existsSync(dir)) {
     const r = safeGit(o.workspace.repo, ["worktree", "remove", dir], { timeout: ENSURE_BUDGET_MS });
     if (r.status === 0) { worktree = true; delete o.workdir; } // the branch stays; a reopen makes the worktree again (ensure)
     else error = [error, `git worktree remove ${dir}: ${(r.stderr || r.error?.message || `exit ${r.status}`).trim().split("\n").slice(-2).join(" ")} (left as it is)`].filter(Boolean).join("; ");
   }
-  o.workspace.cleaned = { t: co.engine.clock.now(), removed, worktree, ...(error ? { error } : {}) };
-  co.log.add({ type: "cleanup", order: o.id, dir, removed, worktree, branch: o.workspace.branch, ...(error ? { error } : {}) });
+  if (!worktree && !fs.existsSync(dir)) delete o.workdir; // gone already (removed by hand): no checkout to count
+  o.workspace.cleaned = { t: co.engine.clock.now(), loops: o.loops, stage: o.stage, removed, worktree, ...(error ? { error } : {}) };
+  co.log.add({ type: "cleanup", order: o.id, stage: o.stage, dir, removed, worktree, branch: o.workspace.branch, ...(error ? { error } : {}) });
   return { removed, worktree, ...(error ? { error } : {}) };
 }
 
@@ -286,10 +307,15 @@ export function ensure(co, o, { create = true } = {}) {
     at = inspect(git, dir, common);
     if (!at?.sha) return { error: `git worktree add ${dir} left no checkout git can read` };
   }
+  // M7 finish review: this order's own branch, checked out again after cleanup removed its worktree (a reopen or a
+  // resume). It starts from the base COMMIT the order started from, kept in o.workspace.baseSha: the spec's base is a
+  // branch that moves (every ritual ship commits onto meta/m7), so asking that its tip be an ancestor held every
+  // reopened ritual as "an older order's branch", a stage-error a retry could not lift
+  const own = has && o.workspace?.branch === branch && /^[0-9a-f]{40}$/.test(o.workspace?.baseSha ?? "") ? o.workspace.baseSha : null;
   if (has) {
     // a branch kept from before must start from this spec's base (K5 review: the base of a reused branch was never checked)
-    const a = git(w.repo, "merge-base", "--is-ancestor", base, at.sha);
-    if (!ok(a)) return { error: a.status === 1 ? `branch ${branch} (at ${at.sha.slice(0, 7)}) does not start from base ${base}: an older order's branch (remove it, or set workspace.branch)` : why(a, `git merge-base ${base}`) };
+    const a = git(w.repo, "merge-base", "--is-ancestor", own ?? base, at.sha);
+    if (!ok(a)) return { error: a.status === 1 ? `branch ${branch} (at ${at.sha.slice(0, 7)}) does not start from ${own ? `this order's base commit ${own.slice(0, 7)}` : `base ${base}`}: an older order's branch (remove it, or set workspace.branch)` : why(a, `git merge-base ${own ?? base}`) };
   }
   if (w.nodeModules) {
     // one npm ci for every order (plan F-b): the base checkout's node_modules, linked; `node_modules/` in .gitignore does
@@ -306,12 +332,13 @@ export function ensure(co, o, { create = true } = {}) {
   }
   // K7 review: the base as a commit, for K7's checks of everything the branch did since (a reused branch's sha is its
   // head, past the base: commits there were never checked)
-  const b = created && !has ? { status: 0, stdout: at.sha } : git(w.repo, "rev-parse", "--verify", "-q", `${base}^{commit}`);
+  const b = own ? { status: 0, stdout: own } : created && !has ? { status: 0, stdout: at.sha } : git(w.repo, "rev-parse", "--verify", "-q", `${base}^{commit}`);
   if (!ok(b)) return { error: why(b, `git rev-parse ${base}`) };
   const all = { ...vars, workdir: dir };
   const env = Object.fromEntries(Object.entries(w.env ?? {}).map(([k, v]) => [k, fill(v, all)]));
   o.workdir = dir;
-  o.workspace = { kind: w.kind, repo: w.repo, dir, branch, base, sha: at.sha, baseSha: out(b)[0], env, vars: all, traps: gitTraps(dir) };
+  const keep = own ? { sha: o.workspace.sha ?? at.sha, ...(o.workspace.head ? { head: o.workspace.head } : {}) } : { sha: at.sha }; // own: where it started, and its last K7 commit (${head_sha})
+  o.workspace = { kind: w.kind, repo: w.repo, dir, branch, base, ...keep, baseSha: out(b)[0], env, vars: all, traps: gitTraps(dir) };
   co.log.add({ type: "workspace", order: o.id, task: o.task, dir, branch, base, sha: at.sha, created });
   return done(created);
 }

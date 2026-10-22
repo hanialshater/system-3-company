@@ -19,7 +19,10 @@
 //        Once --handoff-after WBR records (default 2: "the cycle ends when the second WBR is held and committed") were
 //        added on the branch since it, only the handoff order is placed (chaired by the chief of staff: a dated entry
 //        at the top of company/ops/progress.md); once the handoff is committed there, no order, and `end` (the kernel
-//        ends the scheduler, and serve settles when the work is done)
+//        ends the scheduler, and serve settles when the work is done). M7 finish review: every ritual still DUE is
+//        placed after the WBRs too; the handoff waits until no ritual is DUE and no other order of the run is open
+//        (--live=<dir>: the Meta live dir, whose state names the open orders; a parked one does not hold it), and
+//        `end` comes only after a current handoff (no record or merge added after it) with nothing DUE or open
 //   node rituals.mjs scaffold <ritual> --repo=<order worktree> --base=<sha> [--order=<O>] [--roles=<a,b,…>]
 //        the run stage's pre-check: starts the record, once per order (a record of this ritual new since --base is
 //        reused): `node tools/company.mjs ritual <ritual>` where the company's RITUALS table has it (read from that
@@ -30,11 +33,15 @@
 //        decision | reason |). With --roles, a stood-in chair (proxyFor) is named under the title and carried as an
 //        objection. `handoff`: the skeleton entry at the top of company/ops/progress.md
 //   node rituals.mjs record <ritual> --repo=<order worktree> --base=<sha> [--evidence=<path>] [--roles=<a,b,…>]
+//        [--live=<dir>] [--stage=run|check --run-sha=<sha>]
 //        the post-check at the chair's and the attendee's leave: exactly one record of this ritual is new since
 //        --base, the order changed nothing else (board.json, progress.md, events.jsonl and founder-inbox.json are
 //        code's), its Decision and Objections sections hold text (not the scaffold's comments), every objection is
 //        answered or carried (never "noted"), a stood-in chair is named and carried (--roles), and a Demo Crit's table
-//        has one valid row per lesson judged (keep, revise or kill; a reason for revise and kill; the lesson exists).
+//        has one valid row per lesson judged (keep, revise or kill; a reason for revise and kill; the lesson exists in
+//        src/demos or, with --live, as a lesson order of the run past build) and its Lessons in review reports each
+//        row's lesson (critLessonProblems). At check (--stage=check, --run-sha: the run stage's commit, ${head_sha}),
+//        nothing outside the Objections section changed since the chair's commit (the handoff: nothing at all).
 //        `handoff`: progress.md is the base file with one entry added at its top (the progress log's heading, and
 //        **Done**, **Believe**, **Next**, **Blocked** filled), and nothing else changed
 //   node rituals.mjs ship <ritual> --repo=<order worktree> --base=<sha> --from-sha=<sha> --into=<integration worktree> [--order=<O>]
@@ -65,10 +72,10 @@ import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { parseArgs, F, verdict, SLUG_RE } from "./lib/proc.mjs";
-import { git as gitRaw, sandboxOf, commitPaths } from "./lib/commit-file.mjs";
+import { git as gitRaw, gitWhy, sandboxOf, commitPaths } from "./lib/commit-file.mjs";
 
 export const RECORDS = "company/rituals/records";
-const USAGE = "usage: rituals.mjs due --repo=<wt> --roles=<a,b> [--skip=<r,…>] [--budget=<n>] | scaffold <ritual> --repo=<wt> --base=<sha> [--order=<O>] | record <ritual> --repo=<wt> --base=<sha> [--evidence=<path>] | ship <ritual> --repo=<wt> --base=<sha> --from-sha=<sha> --into=<wt> [--order=<O>]";
+const USAGE = "usage: rituals.mjs due --repo=<wt> --roles=<a,b> [--skip=<r,…>] [--budget=<n>] [--cycle-base=<c>] [--handoff-after=<n>] [--live=<dir>] | scaffold <ritual> --repo=<wt> --base=<sha> [--order=<O>] | record <ritual> --repo=<wt> --base=<sha> [--evidence=<path>] [--live=<dir>] [--stage=run|check --run-sha=<sha>] | ship <ritual> --repo=<wt> --base=<sha> --from-sha=<sha> --into=<wt> [--order=<O>]";
 /** The operating loop's order, as company/ops/operating-loop.md §B "Daily rhythm" writes it: "open SEV1/SEV2 → COE →
  *  founder digest (12 h) → retro (5 merges or incident) → WBR (24 h or 10 merges) → launch review (after each check
  *  batch) → design review, demo crit → vertical review (before work on a new founder direction) → ops review → R&D
@@ -158,12 +165,14 @@ const stamp = (d = new Date()) => d.toISOString().slice(0, 16).replace(/[-:T]/g,
 
 /** The handoff order (M7 exit criterion 5), placed once the cycle has ended: chaired by the chief of staff (the
  *  progress log's single writer), confirmed by the head of product. */
-export function handoffOrder({ roles, budget = 300_000, now = new Date(), wbrs = [], base = null }) {
+export function handoffOrder({ roles, budget = 300_000, now = new Date(), wbrs = [], base = null, parked = [], stale = null }) {
   if (!roles.includes(COS)) return null;
   const attendee = roles.includes(HOP) ? HOP : roles.find((r) => r !== COS) ?? null;
   if (!attendee) return null;
   const accept = [
-    `The cycle has ended: ${wbrs.length} WBR record(s) were committed on the run's integration branch since ${base ? String(base).slice(0, 12) : "its base"} (${wbrs.join(", ")}). Write the chief of staff's dated handoff at the TOP of ${PROGRESS}, in that file's own format (read its first entries).`,
+    `The cycle has ended: ${wbrs.length} WBR record(s) were committed on the run's integration branch since ${base ? String(base).slice(0, 12) : "its base"} (${wbrs.join(", ")}), no ritual is DUE and no other order of the run is open. Write the chief of staff's dated handoff at the TOP of ${PROGRESS}, in that file's own format (read its first entries).`,
+    ...(stale ? [`The handoff committed at ${String(stale).slice(0, 12)} is out of date: records or merges were added on the branch after it. This entry replaces it as the newest; cover what came after.`] : []),
+    ...(parked.length ? [`Parked orders (they wait for a decision; name each under **Blocked**, with its decider): ${parked.map((x) => `${x.id} (${x.flow} ${x.slug}, parked at ${x.parkedAt ?? "?"})`).join(", ")}.`] : []),
     `chair: ${COS} (the progress log's single writer, company/ops/operating-loop.md C4) · attendee: ${attendee} (confirms the entry at check).`,
     `Code put a skeleton entry at the top of ${PROGRESS} in your worktree before you start: \`## <date> · chief-of-staff (System 3 Meta, …) · <title>\`, then **Done**, **Believe** (what you now believe and how sure), **Next** and **Blocked**. Fill each from what the run committed (git log of the integration branch, company/rituals/records/, node tools/company.mjs status, node tools/rituals-due.mjs), citing paths and numbers, never your own estimates. Change nothing else in that file: every line below your entry stays exactly as it is.`,
     `Change no other file. Code checks the entry at each leave (rituals.mjs record handoff) and, after the check, puts it at the top of ${PROGRESS} on the run's integration branch and commits it alone (rituals.mjs ship handoff). After it is committed the ritual scheduler places nothing more: the run ends. --evidence is ${PROGRESS}.`,
@@ -171,11 +180,30 @@ export function handoffOrder({ roles, budget = 300_000, now = new Date(), wbrs =
   return { key: `ritual:${HANDOFF}`, title: "Handoff: the M7 cycle's dated entry at the top of company/ops/progress.md", task: `HANDOFF-${stamp(now)}`, slug: HANDOFF, chair: COS, attendee, budget, accept };
 }
 
-export function dueOrders({ due, roles, skip = [], budget = 300_000, templates = {}, now = new Date(), cycle = null }) {
-  // M7 exit criterion 5 (plan §M7 "Cycle end: the cycle ends when the second WBR is held and committed"): from then on
-  // the scheduler places only the handoff, and once the handoff is committed, nothing: it says `end`
-  if (cycle?.handoff) return { due: [], orders: [], end: `the cycle's handoff is committed (${cycle.handoff}): the run ends` };
-  if (cycle && cycle.wbrs.length >= cycle.after) { const h = handoffOrder({ roles, budget, now, wbrs: cycle.wbrs, base: cycle.base }); return { due: [], orders: h ? [h] : [], cycleEnd: true }; }
+/** The run's orders the cycle's end waits for, from the Meta state in `live` (META_STATE or state.json there):
+ *  { open: [{id, flow, slug, stage}], parked: [...] } (open: not done, cancelled or parked), or { error }. */
+export function runOrders(live) {
+  const rev = (k, v) => (v && v.__map ? new Map(v.__map) : v && v.__set ? new Set(v.__set) : v); // state.mjs rev
+  const file = path.resolve(live, process.env.META_STATE || "state.json");
+  let st;
+  try { st = JSON.parse(fs.readFileSync(file, "utf8"), rev); } catch (e) { return { error: `cannot read the Meta state ${file}: ${e.message}` }; }
+  const orders = st.engine?.orders instanceof Map ? [...st.engine.orders.values()] : [];
+  const flows = st.engine?.flows instanceof Map ? st.engine.flows : new Map();
+  const row = (o) => ({ id: o.id, flow: String(o.flow ?? "").split("@")[0], slug: o.slug ?? o.task ?? null, stage: o.stage, first: flows.get(o.flow)?.stages?.[0]?.stage ?? null, parkedAt: o.parked?.stage ?? null });
+  return { open: orders.filter((o) => !["done", "cancelled", "parked"].includes(o.stage)).map(row), parked: orders.filter((o) => o.stage === "parked").map(row), all: orders.map(row) };
+}
+
+/** The ritual orders the DUE rows call for, and the cycle's end (M7 exit criteria 2 and 5).
+ *  M7 finish review: once the cycle had its WBRs, this placed only the handoff and dropped every ritual still DUE (a
+ *  retro after 5 merges, a demo-crit after 4 review batches: no order, no advisory), placed the handoff while ritual
+ *  and lesson orders were still open (a Demo Crit could ship after it and reopen lessons, and later merges were missing
+ *  from its Done), and answered `end` with rituals still DUE. Now, once `cycle.after` WBR records are on the branch:
+ *    - every DUE ritual is still placed, as before the end;
+ *    - the handoff is placed only when no ritual is DUE and no other order of the run is open (`open`, from --live; a
+ *      parked order does not hold it, its Blocked part names it);
+ *    - `end` only when the handoff is committed and current (no record or merge was added on the branch after it:
+ *      cycle.stale), no ritual is DUE and no order is open. A stale handoff is written again once the rest settles. */
+export function dueOrders({ due, roles, skip = [], budget = 300_000, templates = {}, now = new Date(), cycle = null, open = null, parked = [] }) {
   const rows = due.filter((r) => r.due && !skip.includes(r.ritual));
   const rank = (r) => { const i = LOOP_ORDER.indexOf(r); return i < 0 ? LOOP_ORDER.length : i; };
   rows.sort((a, b) => rank(a.ritual) - rank(b.ritual) || a.ritual.localeCompare(b.ritual));
@@ -190,12 +218,18 @@ export function dueOrders({ due, roles, skip = [], budget = 300_000, templates =
       `ritual ${r.ritual} (company/rituals/triggers.json${r.why ? `: "${r.why}"` : ""}) is DUE: ${r.reasons.join("; ") || "per tools/rituals-due.mjs"}.`,
       `chair: ${s.chair}${s.proxyFor ? ` (standing in for ${s.proxyFor}, the company's chair of this ritual, who is not an agent of this run: the scaffold names that in the record's first lines and carries it in its Objections; keep both, code checks them)` : ""} · attendee: ${s.attendee} (confirms the record at check).`,
       `Record: code scaffolds ${RECORDS}/<YYYY-MM-DD>-${r.ritual}.md in your worktree before you start (${tpl ? `from ${tpl}` : "a skeleton: the company has no template for it"}); it is the one new file there. Fill every section from what you read in the repo (node tools/company.mjs status, npm run metrics, the records and files the template names), citing paths and numbers, never your own estimates. It ends with a \`## Decision\` section (what this ritual decided, one line each) and an \`## Objections\` section (each objection raised, with its answer ("Answer: …") or "carried", never "noted"; \`none raised\` if so).`,
-      ...(r.ritual === "demo-crit" ? [`Demo Crit: the Decision section holds the table code reads, one row per lesson judged: \`| slug | decision | reason |\` with decision keep, revise or kill (send-to-real-learners and the rest go in prose above it). After the record is committed, code maps each row onto the run's orders (rituals.mjs ship): keep → nothing, revise → the lesson's order reopened by you with the reason as its findings, kill → its order cancelled; a lesson with no order in this run is carried to the chief of staff.`] : []),
+      ...(r.ritual === "demo-crit" ? [`Demo Crit: the Decision section holds the table code reads, one row per lesson judged: \`| slug | decision | reason |\` with decision keep, revise or kill (send-to-real-learners and the rest go in prose above it). After the record is committed, code maps each row onto the run's orders (rituals.mjs ship): keep → nothing, revise → the lesson's order reopened by you with the reason as its findings, kill → its order cancelled; a lesson with no order in this run is carried to the chief of staff. Each row's lesson has its \`### <slug>\` part under \`## Lessons in review\` (the template's), reported from the artifact (npm run walkthrough -- <slug>): Evaluator findings, Pairwise result, QA, Claims and a **Decision:** that names the table's decision; code checks every part (no template placeholder left). Only lessons that have been shown are judged: one whose order is still at build is not.`] : []),
       "Change no other file: company/ops/board.json, progress.md, events.jsonl and founder-inbox.json are code's. Code checks the record at each leave (rituals.mjs record) and, after the check, commits it to the run's integration branch (rituals.mjs ship), where tools/rituals-due.mjs must read the ritual as held. --evidence is the record's path.",
     ].join("\n");
     out.push({ key: `ritual:${r.ritual}`, title: `Ritual ${r.ritual}: ${r.reasons[0] ?? "due"}`.slice(0, 160), task: `RITUAL-${r.ritual}-${stamp(now)}`, slug: r.ritual, chair: s.chair, attendee: s.attendee, budget, accept });
   }
-  return { due: seated, orders: out };
+  if (!cycle || cycle.wbrs.length < cycle.after) return { due: seated, orders: out };
+  // the cycle is ending: what it still waits for
+  const waiting = [...rows.filter((r) => SLUG_RE.test(r.ritual)).map((r) => `ritual ${r.ritual} is DUE (${r.reasons.join("; ") || "rituals-due"})`), ...(open ?? []).filter((x) => x.slug !== HANDOFF).map((x) => `${x.id} (${x.flow} ${x.slug}) is open at ${x.stage}`)];
+  if (waiting.length) return { due: seated, orders: out, cycleEnd: true, waiting };
+  if (cycle.handoff && !cycle.stale) return { due: seated, orders: [], end: `the cycle's handoff is committed (${String(cycle.handoff).slice(0, 12)}), no ritual is DUE and no order is open: the run ends` };
+  const h = handoffOrder({ roles, budget, now, wbrs: cycle.wbrs, base: cycle.base, parked, stale: cycle.stale ? cycle.handoff : null });
+  return { due: seated, orders: h ? [h] : [], cycleEnd: true, waiting: [] };
 }
 
 // ------------------------------------------------------------------ the order's record
@@ -393,8 +427,11 @@ export function critTable(body) {
   return rows;
 }
 export const CRIT_DECISIONS = ["keep", "revise", "kill"];
-/** Why a Demo Crit table cannot be mapped onto orders, or []. `lessons`: the slugs that exist in the repo (src/demos). */
-export function critProblems(rows, lessons = null) {
+/** Why a Demo Crit table cannot be mapped onto orders, or []. `lessons`: the slugs that exist in the repo (src/demos).
+ *  `orders` (the run's, from --live: runOrders().all): a lesson in review on its own order's branch is not in the ritual
+ *  worktree's src/demos yet, so a lesson-flow order of that slug counts as the lesson; and a lesson whose newest order is
+ *  still at its first stage (build) was never shown, so no crit judges it (M7 finish review: a kill cancelled it). */
+export function critProblems(rows, lessons = null, { orders = null } = {}) {
   if (rows == null) return ["the Decision section has no `| slug | decision | reason |` table (code maps it onto the run's orders)"];
   if (!rows.length) return ["the decision table has no rows: one row per lesson judged"];
   const out = [], seen = new Set();
@@ -404,7 +441,9 @@ export function critProblems(rows, lessons = null) {
     seen.add(r.slug);
     if (!CRIT_DECISIONS.includes(r.decision)) out.push(`row ${r.raw}: decision is keep, revise or kill, not ${JSON.stringify(r.decision)}`);
     else if (r.decision !== "keep" && !r.reason.replace(/[-–—\s]/g, "")) out.push(`row ${r.raw}: a ${r.decision} says why (the reason is the order's findings)`);
-    if (lessons && !lessons.has(r.slug)) out.push(`row ${r.raw}: no lesson ${r.slug} in src/demos/`);
+    const mine = (orders ?? []).filter((x) => x.flow === "lesson" && x.slug === r.slug && x.stage !== "cancelled").sort((a, b) => Number(String(b.id).slice(2)) - Number(String(a.id).slice(2)))[0] ?? null;
+    if (lessons && !lessons.has(r.slug) && !mine) out.push(`row ${r.raw}: no lesson ${r.slug} in src/demos/${orders ? " and no lesson order of that slug in this run" : ""}`);
+    if (mine && mine.first && (mine.stage === "parked" ? mine.parkedAt : mine.stage) === mine.first) out.push(`row ${r.raw}: ${r.slug}'s order ${mine.id} is still at ${mine.first}: its lesson has not been shown, so the crit does not judge it yet`);
   }
   return out;
 }
@@ -419,12 +458,79 @@ export function lessonSlugs(repo) {
 /** The orders a Demo Crit decides (M7 exit criterion 6): keep → nothing, revise → reopen, kill → cancel, by slug in the
  *  lesson flow (K23, acts.mjs: the kernel applies them as the crit's chair, and carries what it cannot map, a lesson
  *  with no order in this run, to the chief of staff with why). */
+// `judged`: the act is about work that was shown (acts.mjs, K23): a revise of a lesson still in review (an open order
+// past build) sends it back to build, as a done one is reopened; an order still at its first stage is refused
 export const critActs = (rows) => rows.filter((r) => r.decision !== "keep").map((r) => (r.decision === "revise"
-  ? { act: "reopen", slug: r.slug, flow: "lesson", findings: `Demo Crit: revise. ${r.reason}` }
-  : { act: "cancel", slug: r.slug, flow: "lesson", reason: `Demo Crit: kill. ${r.reason}` }));
+  ? { act: "reopen", slug: r.slug, flow: "lesson", judged: true, findings: `Demo Crit: revise. ${r.reason}` }
+  : { act: "cancel", slug: r.slug, flow: "lesson", judged: true, reason: `Demo Crit: kill. ${r.reason}` }));
 
-async function record(repo, ritual, { base, evidence = null, roles = null }) {
-  if (ritual === HANDOFF) return handoffRecord(repo, { base, evidence });
+/** The Demo Crit's per-lesson report (company/rituals/templates/demo-crit.md "## Lessons in review": a `### <slug>` part
+ *  per lesson, each with its evaluator findings, pairwise result, QA, claims and decision). M7 finish review: a record
+ *  passed with that whole section still the template's placeholders (`### <slug>`, blank findings, "**Decision:** keep /
+ *  revise (problems listed) / kill / send to real learners"), so nobody had reported from the artifact, and its table's
+ *  revise and kill rows still became reopen and cancel acts. Why the section does not report each row's lesson, or []:
+ *  no placeholder heading or value is left; every table row's slug has a `### ` part naming it, whose Evaluator findings,
+ *  Pairwise result and Decision are filled (QA and Claims, where the part has them, too: a real crit may mark a slot "not
+ *  convened"), and whose Decision names the table's decision for it. */
+const LESSONS = /^##\s+(?:\d+[.)]\s*)?Lessons in review\b.*$/im;
+const CRIT_REQUIRED = ["Evaluator findings", "Pairwise result", "Decision"], CRIT_OPTIONAL = ["QA", "Claims"];
+const CRIT_PLACEHOLDER = [/^pass\s*\/\s*fail\b/i, /^open\s*\/\s*verified$/i, /^keep\s*\/\s*revise\b/i];
+/** The bullets of one lesson part: [{label, value}] (bold taken out; a label is the text before the first colon,
+ *  continuation and sub-bullet lines join the value). */
+export function critBullets(lines) {
+  const out = [];
+  for (const l of lines) {
+    const top = /^[-*]\s+(.*)$/.exec(l);
+    if (top) { const c = top[1].replace(/\*\*/g, ""), i = c.indexOf(":"); out.push(i < 0 ? { label: c.trim(), value: "" } : { label: c.slice(0, i).trim(), value: c.slice(i + 1).trim() }); continue; }
+    if (out.length && /^\s+\S/.test(l)) out.at(-1).value = `${out.at(-1).value} ${l.trim().replace(/^[-*]\s+/, "").replace(/\*\*/g, "")}`.trim();
+  }
+  return out;
+}
+export function critLessonProblems(text, rows) {
+  const body = section(text, LESSONS);
+  if (body == null) return ["it has no `## Lessons in review` section (the template's): one `### <slug>` part per lesson judged, reported from the artifact"];
+  const parts = [];
+  for (const l of body.split("\n")) { const h = /^###\s+(.*)$/.exec(l); if (h) parts.push({ head: h[1].trim(), lines: [] }); else if (parts.length) parts.at(-1).lines.push(l); }
+  const out = [];
+  for (const p of parts) if (/<[^>]*>/.test(p.head)) out.push(`its Lessons in review still has the template's \`### ${p.head}\` part: name the lesson and report it, or take the part out`);
+  const esc = (x) => x.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  for (const r of rows ?? []) {
+    if (!SLUG_RE.test(r.slug)) continue; // critProblems says so
+    const p = parts.find((x) => new RegExp(`(^|[^a-z0-9-])${esc(r.slug)}($|[^a-z0-9-])`).test(x.head));
+    if (!p) { out.push(`its Lessons in review has no \`### ${r.slug}\` part: the table decides ${r.slug}, so the record reports it (evaluator findings, pairwise result, QA, claims, decision)`); continue; }
+    const bs = critBullets(p.lines);
+    const val = (name) => bs.filter((b) => new RegExp(`\\b${name}\\b`, "i").test(b.label)).map((b) => b.value);
+    const blank = (v) => !filled(v) || CRIT_PLACEHOLDER.some((re) => re.test(v));
+    for (const name of CRIT_REQUIRED) { const vs = val(name); if (!vs.length || vs.every(blank)) out.push(`${r.slug}'s part has no ${name} (${vs.length ? "still the template's placeholder" : "no such line"})`); }
+    for (const name of CRIT_OPTIONAL) { const vs = val(name); if (vs.length && vs.every(blank)) out.push(`${r.slug}'s part has its ${name} line still blank or the template's placeholder (fill it, or say "not convened")`); }
+    const dec = val("Decision").find((v) => !blank(v));
+    if (dec && CRIT_DECISIONS.includes(r.decision) && !new RegExp(`\\b${r.decision}\\b`, "i").test(dec)) out.push(`${r.slug}'s part decides "${dec.slice(0, 80)}", but the table says ${r.decision}: one decision per lesson`);
+  }
+  return out;
+}
+/** The record with its Objections section's body taken out (the attendee's part at check). */
+const outsideObjections = (text) => {
+  const lines = String(text).split("\n"), i = lines.findIndex((l) => OBJECTIONS.test(l));
+  if (i < 0) return text;
+  const level = /^(#+)/.exec(lines[i])[1].length;
+  let j = i + 1;
+  while (j < lines.length && !(/^(#+)\s/.exec(lines[j]) && /^(#+)\s/.exec(lines[j])[1].length <= level)) j++;
+  return [...lines.slice(0, i + 1), ...lines.slice(j)].join("\n");
+};
+/** M7 finish review: the check stage's post is this same record check, and the attendee edited the record at check
+ *  (to add objections), so a Demo Crit row the attendee added became a reopen or cancel applied as the chair's, and the
+ *  head of product could rewrite the chief of staff's handoff. At check (--stage=check --run-sha=<the run stage's
+ *  commit>), the record outside its Objections section, and the handoff's whole file, must be as the chair committed it. */
+function checkStageProblems(repo, rel, runSha, { whole = false } = {}) {
+  const r = gitRaw(repo, "show", `${runSha}:${rel}`);
+  if (r.status !== 0) return [`${rel} is not in the run stage's commit ${String(runSha).slice(0, 9)} (${gitWhy(r)}): the chair's record is what the attendee confirms`];
+  const now = fs.readFileSync(path.join(repo, rel), "utf8");
+  if (whole) return now === r.stdout ? [] : [`${rel} changed at check: the handoff is the chief of staff's entry (the progress log's single writer, company/ops/operating-loop.md C4); say what is wrong in your findings (--verdict=revise), and the chair fixes it`];
+  return outsideObjections(now) === outsideObjections(r.stdout) ? [] : [`${rel} changed outside its Objections section at check: the decision and the report are the chair's (code applies a Demo Crit's table as the chair's acts); add objections only, and send anything else back with --verdict=revise`];
+}
+
+async function record(repo, ritual, { base, evidence = null, roles = null, live = null, stage = null, runSha = null }) {
+  if (ritual === HANDOFF) return handoffRecord(repo, { base, evidence, stage, runSha });
   const found = await newRecords(repo, base, ritual);
   if (found.error) return { exit: 3, out: { ok: false, stage: "rituals-record", findings: [F.env("git", found.error)] } };
   const f = [];
@@ -450,11 +556,15 @@ async function record(repo, ritual, { base, evidence = null, roles = null }) {
       if (!(head.includes(s.chair) && head.includes(s.proxyFor))) f.push(F.block("proxy", `${rec}: its first lines (before the first section) do not say that ${s.chair} chaired in place of ${s.proxyFor} (the scaffold's "> Chaired by …" line)`));
       if (!objectionItems(obj ?? "").some((it) => it.text.includes(s.proxyFor) && /\bcarried\b/i.test(it.text))) f.push(F.block("proxy", `${rec}: its Objections do not carry the stand-in (an item naming ${s.proxyFor}, marked carried)`));
     }
-    // M7 exit criterion 6: a Demo Crit's decisions are a table code can map onto orders
+    // M7 exit criterion 6: a Demo Crit's decisions are a table code can map onto orders, each row's lesson reported
     if (ritual === "demo-crit" && dec != null) {
       decisions = critTable(dec);
-      for (const p of critProblems(decisions, lessonSlugs(repo))) f.push(F.block("crit-table", `${rec}: ${p}`));
+      const run = live ? runOrders(live) : null;
+      if (run?.error) return { exit: 3, out: { ok: false, stage: "rituals-record", findings: [F.env("state", run.error)] } };
+      for (const p of critProblems(decisions, lessonSlugs(repo), run ? { orders: run.all } : {})) f.push(F.block("crit-table", `${rec}: ${p}`));
+      if (decisions) for (const p of critLessonProblems(text, decisions)) f.push(F.block("crit-lessons", `${rec}: ${p}`));
     }
+    if (stage === "check") for (const p of checkStageProblems(repo, rec, runSha)) f.push(F.block("check-scope", p));
     if (evidence && path.normalize(String(evidence)).replace(/^\.\//, "") !== rec && !path.resolve(repo, String(evidence)).endsWith(path.sep + rec)) f.push(F.block("evidence", `--evidence names ${evidence}, but the record is ${rec}`));
   }
   const v = verdict(f);
@@ -477,6 +587,7 @@ async function ship(repo, ritual, { base, fromSha, into, order = null }) {
   if (ritual === "demo-crit") {
     decisions = critTable(section(show.stdout, DECISION));
     const p = critProblems(decisions);
+    if (decisions) p.push(...critLessonProblems(show.stdout, decisions));
     if (p.length) return { exit: 1, out: { ok: false, stage: "rituals-ship", findings: p.map((x) => F.block("crit-table", `${rec}: ${x}`, "run")) } };
     acts = critActs(decisions);
   }
@@ -520,11 +631,28 @@ const HANDOFF_SKELETON = (d, order) => [
   "",
 ].join("\n");
 const HANDOFF_PARTS = ["Done", "Believe", "Next", "Blocked"];
-/** The entry the order put at the top of progress.md: { entry } when the file is `entry + base`, else { error }. */
+/** The progress log's title block (company/ops/progress.md until it was lost on this branch: 4482407a3 has it, and
+ *  7753f2712's entry went on top of a file that began with an entry). `company status` reads the last handoff as the
+ *  text after the first "\n## <date>" (tools/company.mjs cmdStatus: `t.split(/\n## (?=\d{4}-\d{2}-\d{2})/).slice(1, 2)`),
+ *  so an entry at byte 0 is never shown: the operating picture CLAUDE.md starts every session from showed the entry
+ *  under it (M7 finish review). Code puts this block back above the handoff when the file has no title. */
+export const PROGRESS_TITLE = "# Progress log (session handoffs)\n\nNewest entry at the top. Every session adds one before it ends. This is testimony from a worker\nwho no longer exists: check what you rely on.\n\n";
+/** The file's title block: everything before its first `## ` line when it starts with a `# ` title, else "". */
+export const progressTitle = (t) => { t = String(t ?? ""); if (!/^# /.test(t)) return ""; const i = t.search(/^## /m); return i < 0 ? t : t.slice(0, i); };
+/** What `company status` prints as the last handoff (its own expression, tools/company.mjs cmdStatus), or null. */
+export const statusHandoff = (t) => String(t ?? "").split(/\n## (?=\d{4}-\d{2}-\d{2})/).slice(1, 2)[0] ?? null;
+/** The file with `entry` as its newest entry: under its title block, or under PROGRESS_TITLE when it has none. */
+export const withEntry = (text, entry) => { const h = progressTitle(text); return (h || PROGRESS_TITLE) + entry + String(text).slice(h.length); };
+/** The entry the order put at the top of progress.md: { entry } when the file is `withEntry(base, entry)`, else { error }. */
 function handoffEntry(text, baseText) {
   if (text === baseText) return { error: `${PROGRESS} is unchanged since the order's base: write the handoff at its top` };
-  if (!text.endsWith(baseText)) return { error: `${PROGRESS} changed below its top: a handoff adds one entry at the top and keeps every line under it exactly as it was` };
-  return { entry: text.slice(0, text.length - baseText.length) };
+  const h = progressTitle(baseText), body = baseText.slice(h.length), want = h || PROGRESS_TITLE;
+  if (!text.endsWith(body)) return { error: `${PROGRESS} changed below its top: a handoff adds one entry at the top and keeps every line under it exactly as it was` };
+  const front = text.slice(0, text.length - body.length);
+  if (!front.startsWith(want)) return { error: `${PROGRESS} does not start with the progress log's title block${h ? " as it was" : ` code puts back (${JSON.stringify(PROGRESS_TITLE.split("\n")[0])})`}, then the entry: \`company status\` shows the last handoff only under a title (keep the scaffold's lines above the entry)` };
+  const entry = front.slice(want.length);
+  if (statusHandoff(want + entry + body)?.split("\n")[0] !== entry.replace(/^## /, "").split("\n")[0]) return { error: `\`company status\` would not show this entry as the last handoff (its heading must start the entry, right under the title block)` };
+  return { entry };
 }
 /** Why a handoff entry is not one the company's progress log takes, or []. */
 export function handoffProblems(entry, { today: d = today() } = {}) {
@@ -556,10 +684,10 @@ function handoffScaffold(repo, { base, order }) {
   const file = path.join(repo, PROGRESS);
   const now = fs.existsSync(file) ? fs.readFileSync(file, "utf8") : "";
   if (now !== b.text) return { exit: 0, out: { ok: true, stage: "rituals-scaffold", ritual: HANDOFF, record: PROGRESS, created: false, findings: [] } }; // a revise back to run: the entry is there
-  fs.writeFileSync(file, HANDOFF_SKELETON(today(), order) + b.text);
+  fs.writeFileSync(file, withEntry(b.text, HANDOFF_SKELETON(today(), order)));
   return { exit: 0, out: { ok: true, stage: "rituals-scaffold", ritual: HANDOFF, record: PROGRESS, created: true, via: "skeleton", findings: [] } };
 }
-function handoffRecord(repo, { base, evidence }) {
+function handoffRecord(repo, { base, evidence, stage = null, runSha = null }) {
   const f = [];
   const ch = changedSince(repo, base);
   if (ch.error) return { exit: 3, out: { ok: false, stage: "rituals-record", findings: [F.env("git", ch.error)] } };
@@ -571,6 +699,7 @@ function handoffRecord(repo, { base, evidence }) {
   const e = handoffEntry(fs.existsSync(file) ? fs.readFileSync(file, "utf8") : "", b.text);
   if (e.error) f.push(F.block("handoff", e.error));
   else for (const p of handoffProblems(e.entry)) f.push(F.block("handoff", `the handoff at the top of ${PROGRESS}: ${p}`));
+  if (stage === "check" && fs.existsSync(file)) for (const p of checkStageProblems(repo, PROGRESS, runSha, { whole: true })) f.push(F.block("check-scope", p));
   if (evidence && path.normalize(String(evidence)).replace(/^\.\//, "") !== PROGRESS && !path.resolve(repo, String(evidence)).endsWith(path.sep + PROGRESS)) f.push(F.block("evidence", `--evidence names ${evidence}, but the handoff is ${PROGRESS}`));
   const v = verdict(f);
   return { exit: v.exit, out: { ok: v.ok, stage: "rituals-record", ritual: HANDOFF, record: PROGRESS, findings: f } };
@@ -589,13 +718,18 @@ function handoffShip(repo, { base, fromSha, into, order }) {
   if (p.length) return { exit: 1, out: { ok: false, stage: "rituals-ship", findings: p.map((x) => F.block("handoff", `as committed at ${fromSha.slice(0, 9)}: ${x}`, "run")) } };
   const target = path.join(sb.root, PROGRESS);
   const head = gitRaw(sb.root, "show", `HEAD:${PROGRESS}`);
+  // a failed read is never "no file": the entry alone would have replaced the whole log (M7 finish review: ENOBUFS)
+  if (head.status !== 0 && (head.error || gitRaw(sb.root, "cat-file", "-e", `HEAD:${PROGRESS}`).status === 0)) return { exit: 3, out: { ok: false, stage: "rituals-ship", findings: [F.env("git", `git show HEAD:${PROGRESS}: ${gitWhy(head)}`)] } };
   const cur = head.status === 0 ? head.stdout : "";
   if (fs.existsSync(target) && fs.readFileSync(target, "utf8") !== cur) return { exit: 3, out: { ok: false, stage: "rituals-ship", findings: [F.env("dirty", `${target} has uncommitted changes in the integration worktree: not code's to overwrite`)] } };
-  // the entry goes on top of the integration branch's progress.md as it is now (it may have moved past the order's base)
-  if (!cur.startsWith(e.entry)) fs.writeFileSync(target, e.entry + cur);
+  // the entry goes on top of the integration branch's progress.md as it is now (it may have moved past the order's base),
+  // under its title block (put back when the file has none: company status shows the last handoff only under one)
+  const onTop = (t) => t.slice(progressTitle(t).length).startsWith(e.entry) && !!progressTitle(t);
+  if (!onTop(cur)) fs.writeFileSync(target, withEntry(cur, e.entry));
   const c = commitPaths(sb.root, [PROGRESS], HANDOFF_MSG(order));
   if (c.error) return { exit: 3, out: { ok: false, stage: "rituals-ship", findings: [F.env("commit", c.error)] } };
-  if (!fs.readFileSync(target, "utf8").startsWith(e.entry)) return { exit: 3, out: { ok: false, stage: "rituals-ship", findings: [F.env("not-on-top", `${PROGRESS} on ${sb.branch} does not start with the handoff after the commit`)] } };
+  const after = fs.readFileSync(target, "utf8");
+  if (!onTop(after) || statusHandoff(after)?.split("\n")[0] !== e.entry.replace(/^## /, "").split("\n")[0]) return { exit: 3, out: { ok: false, stage: "rituals-ship", findings: [F.env("not-on-top", `${PROGRESS} on ${sb.branch} does not show the handoff as company status's last handoff after the commit`)] } };
   return { exit: 0, out: { ok: true, stage: "rituals-ship", ritual: HANDOFF, record: PROGRESS, into: sb.branch, committed: c.sha ?? null, unchanged: !!c.unchanged, findings: [] } };
 }
 
@@ -621,14 +755,23 @@ export async function cycleOf(repo, base, after = 2) {
   const lg = gitRaw(repo, "log", "--format=%H %s", `${base}..HEAD`, "--", PROGRESS);
   if (lg.status !== 0) return { error: `git log ${base}..HEAD: ${String(lg.stderr).trim().slice(0, 300)}` };
   const h = lg.stdout.split("\n").find((l) => / meta: handoff\b/.test(l));
-  return { wbrs, handoff: h ? h.split(" ")[0] : null, base, after };
+  const handoff = h ? h.split(" ")[0] : null;
+  // M7 finish review: a handoff with a record or a merge added after it does not cover the cycle (stale)
+  let stale = false;
+  if (handoff) {
+    const r = gitRaw(repo, "diff", "--name-only", "--diff-filter=A", handoff, "HEAD", "--", RECORDS);
+    const m = gitRaw(repo, "rev-list", "--merges", "-n", "1", `${handoff}..HEAD`);
+    if (r.status !== 0 || m.status !== 0) return { error: `git diff/rev-list ${handoff.slice(0, 12)}..HEAD: ${String(r.stderr || m.stderr).trim().slice(0, 300)}` };
+    stale = !!(r.stdout.trim() || m.stdout.trim());
+  }
+  return { wbrs, handoff, stale, base, after };
 }
 
 export async function main(argv) {
   const o = parseArgs(argv);
   const [cmd, ritual] = o.positional;
   const usage = (m) => ({ exit: 2, out: { ok: false, stage: "rituals", findings: [F.env("usage", m)], usage: USAGE } });
-  const known = { due: ["repo", "roles", "skip", "budget", "cycle-base", "handoff-after"], scaffold: ["repo", "base", "order", "roles"], record: ["repo", "base", "evidence", "roles"], ship: ["repo", "base", "from-sha", "into", "order"] }[cmd];
+  const known = { due: ["repo", "roles", "skip", "budget", "cycle-base", "handoff-after", "live"], scaffold: ["repo", "base", "order", "roles"], record: ["repo", "base", "evidence", "roles", "live", "stage", "run-sha"], ship: ["repo", "base", "from-sha", "into", "order"] }[cmd];
   if (!known) return usage(`no command ${cmd ?? ""}`);
   for (const k of Object.keys(o)) if (k !== "positional" && !known.includes(k)) return usage(`unknown flag --${k}`);
   for (const k of known) if (o[k] === true || o[k] === "") return usage(`--${k} needs a value`);
@@ -653,11 +796,15 @@ export async function main(argv) {
     if (due.error) return { exit: 3, out: { ok: false, stage: "rituals-due", findings: [F.env("rituals-due", due.error)] } };
     const templates = {};
     for (const r of due.filter((x) => x.due)) { const f = path.join(repo, "company/rituals/templates", `${r.ritual}.md`); if (fs.existsSync(f)) templates[r.ritual] = fs.readFileSync(f, "utf8"); }
-    const d = dueOrders({ due, roles, skip, budget, templates, cycle });
+    // the run's open orders (the cycle's end waits for them): from the Meta state, --live (the spec's ${live})
+    let runs = null;
+    if (typeof o.live === "string") { runs = runOrders(o.live); if (runs.error) return { exit: 3, out: { ok: false, stage: "rituals-due", findings: [F.env("state", runs.error)] } }; }
+    const d = dueOrders({ due, roles, skip, budget, templates, cycle, open: runs?.open ?? null, parked: runs?.parked ?? [] });
     const findings = d.due.filter((x) => !x.chair || !x.attendee).map((x) => F.advisory("seats", `${x.ritual}: no chair and second attendee among ${roles.join(", ")}`));
     for (const x of d.due) if (x.proxyFor) findings.push(F.advisory("proxy", `${x.ritual}: ${x.chair} stands in for ${x.proxyFor}`));
-    if (d.cycleEnd) findings.push(F.advisory("cycle-end", `${cycle.wbrs.length} WBR record(s) committed since ${String(cycle.base).slice(0, 12)} (${cycle.wbrs.join(", ")}): only the handoff is placed now`));
-    return { exit: 0, out: { ok: true, stage: "rituals-due", repo, due: d.due, orders: d.orders, skipped: due.filter((x) => x.due && skip.includes(x.ritual)).map((x) => x.ritual), ...(cycle ? { cycle: { base: cycle.base, wbrs: cycle.wbrs, after, handoff: cycle.handoff } } : {}), ...(d.end ? { end: d.end } : {}), findings } };
+    if (d.cycleEnd) findings.push(F.advisory("cycle-end", `${cycle.wbrs.length} WBR record(s) committed since ${String(cycle.base).slice(0, 12)} (${cycle.wbrs.join(", ")}): ${d.waiting.length ? `the handoff waits for ${d.waiting.length}: ${d.waiting.slice(0, 6).join("; ")}` : cycle.stale ? `the handoff at ${String(cycle.handoff).slice(0, 12)} is out of date: a new one is placed` : "nothing is DUE or open: the handoff is placed"}`));
+    if (cycle && runs == null && cycle.wbrs.length >= cycle.after) findings.push(F.advisory("cycle-end", "no --live: the run's open orders are not known, so the handoff does not wait for them"));
+    return { exit: 0, out: { ok: true, stage: "rituals-due", repo, due: d.due, orders: d.orders, skipped: due.filter((x) => x.due && skip.includes(x.ritual)).map((x) => x.ritual), ...(cycle ? { cycle: { base: cycle.base, wbrs: cycle.wbrs, after, handoff: cycle.handoff, stale: cycle.stale, ...(d.waiting ? { waiting: d.waiting } : {}) } } : {}), ...(d.end ? { end: d.end } : {}), findings } };
   }
   if (!ritual || !SLUG_RE.test(ritual)) return usage(`${cmd} needs a ritual name (kebab-case)`);
   if (o.positional.length > 2) return usage(`unexpected argument ${o.positional[2]}`);
@@ -665,7 +812,12 @@ export async function main(argv) {
   if (!fs.existsSync(repo)) return { exit: 3, out: { ok: false, stage: `rituals-${cmd}`, findings: [F.env("repo", `no directory ${repo}`)] } };
   const roles = typeof o.roles === "string" ? o.roles.split(",").filter(Boolean) : null;
   if (cmd === "scaffold") return scaffold(repo, ritual, { base: o.base, order: typeof o.order === "string" ? o.order : null, roles });
-  if (cmd === "record") return record(repo, ritual, { base: o.base, evidence: typeof o.evidence === "string" ? o.evidence : null, roles });
+  if (cmd === "record") {
+    const stage = typeof o.stage === "string" ? o.stage : null;
+    if (stage != null && !["run", "check"].includes(stage)) return usage("--stage is run or check (the leave this record check judges)");
+    if (stage === "check" && !(typeof o["run-sha"] === "string" && /^[0-9a-f]{7,40}$/.test(o["run-sha"]))) return usage("--stage=check needs --run-sha=<the run stage's commit> (the spec's ${head_sha} at check)");
+    return record(repo, ritual, { base: o.base, evidence: typeof o.evidence === "string" ? o.evidence : null, roles, live: typeof o.live === "string" ? o.live : null, stage, runSha: o["run-sha"] ?? null });
+  }
   for (const k of ["from-sha", "into"]) if (typeof o[k] !== "string") return usage(`--${k} is required`);
   return ship(repo, ritual, { base: o.base, fromSha: o["from-sha"], into: path.resolve(o.into), order: typeof o.order === "string" ? o.order : null });
 }

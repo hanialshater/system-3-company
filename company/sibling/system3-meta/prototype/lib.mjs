@@ -646,6 +646,26 @@ export class Engine {
     return o;
   }
 
+  /** M7 finish review (K23, a Demo Crit's revise of a lesson still in review): an open order past its first stage is
+   *  sent back to it with the findings, as its own stage's revise would (a loop: K9's cap counts it). Its open messages
+   *  and approvals leave their queues first; the caller abandons its running runs. Refused: parked (its ask is decided
+   *  first), blocked, at budget, or still at its first stage (its work was never shown). */
+  sendBack(id, { by, findings, reason }) {
+    const o = this.orders.get(id);
+    hard(o, `no order ${id}`);
+    hard(!["done", "cancelled", "parked", "budget"].includes(o.stage) && !o.blocked, `${id} is ${o.blocked ? "blocked" : o.stage}: only an open order at work is sent back (a shipped one is reopened)`);
+    const first = this.firstStage(o);
+    hard(o.stage !== first, `${id} is at ${first}: its work has not been shown yet`);
+    hard(!!findings, "a send-back says what is wrong (findings)");
+    const from = o.stage;
+    this.withdraw(o, { by, reason: `sent back to ${first}: ${reason ?? findings}`.slice(0, 300) });
+    o.history.push({ stage: from, by, verdict: "revise", t: this.clock.now(), findings: String(findings).slice(0, 2000) });
+    o.stage = first; o.loops++; o.findings = findings;
+    this.log.add({ type: "reopen", order: id, from, by, reason: reason ?? null, loops: o.loops, priority: o.priority });
+    if (!this.loopCap(o, { by, from })) this.notifyStage(o);
+    return o;
+  }
+
   /** K9 (plan 2026-10-21 §3): past the cap a revise parks the order instead of sending it back, with an ask to the
    *  orderer carrying every finding (a HELD claim on a blocked host, or a publish hold, otherwise loops forever: each
    *  revise is a fresh build session that cannot fix it). The revise itself is kept (history, loops, findings), so a
