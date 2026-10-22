@@ -23,9 +23,12 @@ test("parseDueText reads rituals-due's text rows (the fallback when --json canno
     ["wbr", true, "2026-10-17 21:45", ["108 h (limit 24 h)"], null],
     ["launch-review", true, null, ["1 review event(s) since last (threshold 1)", "a new x"], "event e (publish, secondary)"],
   ]);
+  // an ok row keeps its held part (M7 review: it was read as a reason)
+  const ok = parseDueText("ok   retro           last 2026-10-16 16:42    [held: record company/rituals/records/2026-10-16-retro-books100.md]\nok   founder-digest  last never             \n");
+  assert.deepEqual(ok.map((r) => [r.ritual, r.due, r.reasons, r.heldBy]), [["retro", false, [], "record company/rituals/records/2026-10-16-retro-books100.md"], ["founder-digest", false, [], null]]);
 });
 
-test("chairs: the plan's for wbr, digest, retro, crit and design review; the company templates' chair/owner lines for the rest; a chair not in the run is stood in for by the chief of staff", () => {
+test("chairs: the plan's for wbr, digest, retro and crit; the company templates' chair/owner lines for the rest; a chair not in the run is stood in for by the chief of staff, design-lead's design review by the head of product", () => {
   assert.equal(templateChair(tpl("ops-review")), "principal-engineer-ops");
   assert.equal(templateChair(tpl("project-review")), "founder");
   assert.equal(templateChair(tpl("rnd-review")), "vp-rnd");
@@ -33,7 +36,9 @@ test("chairs: the plan's for wbr, digest, retro, crit and design review; the com
   assert.equal(templateChair(tpl("retro")), "chief-of-staff");
   assert.deepEqual(seats("wbr", { roles: ROLES }), { chair: "chief-of-staff", attendee: "analytics-steward", owner: "chief-of-staff", proxyFor: null });
   assert.deepEqual(seats("demo-crit", { roles: ROLES, template: tpl("demo-crit") }), { chair: "head-of-product", attendee: "chief-of-staff", owner: "head-of-product", proxyFor: null });
-  assert.deepEqual(seats("design-review", { roles: ROLES }), { chair: "head-of-product", attendee: "chief-of-staff", owner: "head-of-product", proxyFor: null });
+  assert.deepEqual(seats("design-review", { roles: ROLES }), { chair: "head-of-product", attendee: "chief-of-staff", owner: "design-lead", proxyFor: "design-lead" }, "a stated proxy for design-lead");
+  assert.equal(seats("design-review", { roles: [...ROLES, "design-lead"] }).chair, "design-lead", "the owner chairs when it is in the run");
+  assert.equal(seats("design-review", { roles: ROLES.filter((r) => r !== "head-of-product") }).chair, "chief-of-staff");
   assert.deepEqual(seats("retro", { roles: ROLES, template: tpl("retro") }), { chair: "chief-of-staff", attendee: "head-of-product", owner: "chief-of-staff", proxyFor: null });
   assert.deepEqual(seats("ops-review", { roles: ROLES, template: tpl("ops-review") }), { chair: "chief-of-staff", attendee: "head-of-product", owner: "principal-engineer-ops", proxyFor: "principal-engineer-ops" });
   assert.deepEqual(seats("project-review", { roles: ROLES, template: tpl("project-review") }).proxyFor, "founder");
@@ -41,11 +46,15 @@ test("chairs: the plan's for wbr, digest, retro, crit and design review; the com
 });
 
 test("dueOrders: one order per DUE ritual, in the operating loop's order, skipping the rituals another flow holds", () => {
-  const due = ["vertical-review", "wbr", "demo-crit", "founder-digest", "launch-review", "retro"].map((r) => ({ ritual: r, due: true, reasons: [`${r} reason`] }));
-  due.push({ ritual: "ops-review", due: false, reasons: [] });
+  const due = ["project-review", "rnd-review", "ops-review", "vertical-review", "wbr", "demo-crit", "design-review", "founder-digest", "launch-review", "retro"].map((r) => ({ ritual: r, due: true, reasons: [`${r} reason`] }));
+  due.push({ ritual: "cycle-planning", due: false, reasons: [] });
   const d = dueOrders({ due, roles: ROLES, skip: ["launch-review"], budget: 250000, templates: { "vertical-review": tpl("vertical-review") }, now: new Date("2026-10-22T10:05:00Z") });
-  assert.deepEqual(d.orders.map((o) => o.slug), ["founder-digest", "retro", "wbr", "demo-crit", "vertical-review"]);
-  assert.deepEqual(LOOP_ORDER.slice(0, 3), ["founder-digest", "retro", "wbr"]);
+  // company/ops/operating-loop.md §B: digest → retro → WBR → launch review → design review, demo crit → vertical review
+  // → ops review → R&D review; a ritual it does not name comes after
+  assert.deepEqual(d.orders.map((o) => o.slug), ["founder-digest", "retro", "wbr", "design-review", "demo-crit", "vertical-review", "ops-review", "rnd-review", "project-review"]);
+  assert.deepEqual(LOOP_ORDER, ["founder-digest", "retro", "wbr", "launch-review", "design-review", "demo-crit", "vertical-review", "ops-review", "rnd-review"]);
+  const loop = fs.readFileSync(path.join(MAIN, "company/ops/operating-loop.md"), "utf8");
+  assert.match(loop, /founder digest \(12 h\) → retro \(5 merges or incident\) → WBR \(24 h or 10 merges\) → launch review \(after each check batch\) → design review, demo crit → vertical review \(before work on a new founder direction\) → ops review → R&D review/, "the order is the operating loop's, as written");
   const wbr = d.orders.find((o) => o.slug === "wbr");
   assert.deepEqual([wbr.key, wbr.task, wbr.chair, wbr.attendee, wbr.budget], ["ritual:wbr", "RITUAL-wbr-202610221005", "chief-of-staff", "analytics-steward", 250000]);
   assert.match(wbr.accept, /ritual wbr .* is DUE: wbr reason/);
@@ -144,7 +153,9 @@ test("scaffold: retro from its template ({{snapshot}} from company status), foun
   assert.equal(r.json.via, "template");
   const t = fs.readFileSync(path.join(wt, r.json.record), "utf8");
   assert.match(t, /^# Retro: \d{4}-\d{2}-\d{2}/);
-  assert.match(t, /Snapshot \(`node tools\/company.mjs status`[\s\S]*System 3 Company/);
+  // the company's short snapshot (what `company ritual` puts in for {{snapshot}}), not the whole status page
+  assert.match(t, /Generated by `company status` on \d{4}-\d{2}-\d{2}[\s\S]*\| Lessons \| draft \| review \| published \| retired \| open claims \|/);
+  assert.ok(!/operating picture/.test(t), "not the whole status page");
   assert.ok(!t.includes("{{"), "no template variable left");
   const wt2 = c.order("RITUAL-founder-digest-1");
   r = run(ADAPTER, ["scaffold", "founder-digest", `--repo=${wt2}`, `--base=${base}`]);

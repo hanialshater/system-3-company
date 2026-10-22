@@ -11,7 +11,8 @@
 //
 //   node m7-scope.mjs rituals.mjs scaffold|record|ship <ritual> --repo=<order worktree> --base=<sha> …
 //        the order worktree changes nothing since --base outside company/rituals/records/ (tracked or untracked);
-//        ship's --into is checked as below
+//        for the cycle's handoff (<ritual> handoff), nothing but company/ops/progress.md; ship's --into is checked as
+//        below (and, for the handoff, has no uncommitted company/ops/progress.md)
 //   node m7-scope.mjs rituals.mjs due --repo=<integration worktree> …
 //   node m7-scope.mjs events-export.mjs|board-mirror.mjs --repo=<integration worktree> …
 //        the integration worktree has no uncommitted change (tracked or untracked) under tools/ or in the file the
@@ -30,6 +31,7 @@ import { parseArgs, F } from "./lib/proc.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 export const RECORDS = "company/rituals/records";
+export const HANDOFF = "handoff", PROGRESS = "company/ops/progress.md"; // rituals.mjs HANDOFF, PROGRESS
 export const FRONTED = { "rituals.mjs": ["scaffold", "record", "ship", "due"], "events-export.mjs": null, "board-mirror.mjs": null };
 export const EXPORT_FILE = { "events-export.mjs": "company/ops/events.jsonl", "board-mirror.mjs": "company/ops/board.json" };
 const USAGE = "usage: m7-scope.mjs rituals.mjs scaffold|record|ship <ritual> --repo=<order wt> --base=<sha> … | rituals.mjs due --repo=<int wt> … | events-export.mjs|board-mirror.mjs --repo=<int wt> …";
@@ -74,9 +76,11 @@ export function check(script, argv) {
   if (typeof o.base !== "string") return null; // the adapter's usage error
   const ch = changedSince(repo, o.base);
   if (ch.error) return refuse(3, F.env("git", ch.error));
-  const other = ch.paths.filter((p) => !p.startsWith(`${RECORDS}/`));
-  if (other.length) return refuse(1, F.block("scope", `the order changes ${list(other)}: a ritual order changes only its record in ${RECORDS}/, and code loads the company's tools from this worktree, so it runs nothing here until they are undone`, "run"));
-  if (sub === "ship" && typeof o.into === "string" && fs.existsSync(o.into)) return clean(path.resolve(o.into), ["tools"]);
+  // M7 exit criterion 5: the cycle's handoff order changes only company/ops/progress.md (its entry at the top)
+  const handoff = o.positional[1] === HANDOFF;
+  const other = ch.paths.filter((p) => (handoff ? p !== PROGRESS : !p.startsWith(`${RECORDS}/`)));
+  if (other.length) return refuse(1, F.block("scope", `the order changes ${list(other)}: ${handoff ? `the handoff changes only ${PROGRESS}` : `a ritual order changes only its record in ${RECORDS}/`}, and code loads the company's tools from this worktree, so it runs nothing here until they are undone`, "run"));
+  if (sub === "ship" && typeof o.into === "string" && fs.existsSync(o.into)) return clean(path.resolve(o.into), ["tools", ...(handoff ? [PROGRESS] : [])]);
   return null;
 }
 

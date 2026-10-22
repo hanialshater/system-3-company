@@ -20,7 +20,7 @@ export const tmp = (p) => fs.mkdtempSync(path.join(os.tmpdir(), p));
 
 /** { root (primary checkout, branch main), int (linked worktree on meta/t7), order(name) → a worktree on
  *  meta/t7-<name> from meta/t7, sha(ref) }. */
-export function companyRepo({ records = {}, events = [] } = {}) {
+export function companyRepo({ records = {}, events = [], files = {} } = {}) {
   const dir = tmp("s3c-m7-");
   const root = path.join(dir, "repo"), int = path.join(dir, "t7-int");
   fs.mkdirSync(root);
@@ -33,6 +33,7 @@ export function companyRepo({ records = {}, events = [] } = {}) {
   w(root, "company/ops/events.jsonl", events.map((e) => JSON.stringify(e)).join("\n") + (events.length ? "\n" : ""));
   w(root, "company/rituals/records/.keep", "");
   for (const [f, s] of Object.entries(records)) w(root, `company/rituals/records/${f}`, s);
+  for (const [f, s] of Object.entries(files)) w(root, f, s);
   git(root, "add", "-A"); git(root, "commit", "-qm", "base");
   git(root, "branch", "meta/t7");
   git(root, "worktree", "add", "-q", int, "meta/t7");
