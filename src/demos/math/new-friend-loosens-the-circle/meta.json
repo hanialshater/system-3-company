@@ -27,21 +27,30 @@
       "text": "Before Fay, Ana's 4 friends make 6 pairs, of which 3 (B–C, C–D, D–E) are friends with each other: Ana's clustering is 3 of 6 = 0.5.",
       "support": "derivation",
       "source": "C(4,2) = 6 pairs; linked B–C, C–D, D–E. Node check J2 in company/courses/ncm/briefs.md (before 0.5). Demo.tsx network(null).",
-      "status": "unverified"
+      "status": "verified",
+      "note": "C(4,2) = 6 pairs; linked B–C, C–D, D–E = 3; 3/6 = 0.5. Screenshot 01 shows 3 solid and 3 dashed pairs and the readout 3 of 6 = 0.5.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     },
     {
       "id": "math.new-friend-loosens-the-circle.c2",
       "text": "With Fay as a fifth friend, Ana's friends make 10 pairs, 4 of them new (Fay with each old friend); if Fay knows 1, 2 or 3 of the four, Ana's clustering is 4 of 10 = 0.4, 5 of 10 = 0.5 or 6 of 10 = 0.6, so Fay must know at least 2 of the 4 to keep it at 0.5. Recall: a newcomer who knows none of the 4 leaves 3 linked pairs of 10 = 0.3.",
       "support": "derivation",
       "source": "C(5,2) = 10; linked pairs 3 + k for a newcomer knowing k of the 4: (3 + k)/10. Node check J2 in company/courses/ncm/briefs.md (fayKnows 0.3, 0.4, 0.5, 0.6 for k = 0 to 3). Demo.tsx network(1|2|3). No chip shows k = 0; it appears only in the recall.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "C(5,2) = 10, of which 4 involve Fay; linked = 3 + k, giving 0.3, 0.4, 0.5, 0.6 for k = 0…3. Screenshots 02–04 draw Fay linked to E; D, E; C, D, E, with readouts 4, 5, 6 of 10. \"At least 2 … to keep it at 0.5\" read as \"to keep it from falling below 0.5\" is correct. Optional wording: \"at least 0.5\".",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     },
     {
       "id": "math.new-friend-loosens-the-circle.c3",
       "text": "A person's clustering (clustering coefficient) is the share of pairs of their friends who are friends with each other: linked pairs over all pairs.",
       "support": "source",
       "source": "Easley & Kleinberg (2010), Networks, Crowds, and Markets, ch. 3 (section 3.1 unconfirmed): clustering coefficient of a node. Watts & Strogatz (1998), Nature 393: 440–442 (local clustering coefficient). Attribution: fact-checker confirms.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "Easley & Kleinberg ch. 3, Strong and Weak Ties (seen via the course mirror https://cs.gmu.edu/~ashehu/sites/default/files/cs695_Spring19/EK_networks-book-ch03.pdf in search results): a node A's clustering coefficient is the probability that two randomly selected friends of A are friends, i.e. the fraction of pairs of A's friends joined by an edge. The local clustering coefficient is standardly credited to Watts & Strogatz (1998), Nature 393: 440–442. I did not confirm the section number (3.1); it stays as the brief marks it. The learner text names no source.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-22"
     }
   ],
   "confidence": "",
