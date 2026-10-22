@@ -25,8 +25,21 @@ const readText = (f) => { try { return fs.readFileSync(f, "utf8"); } catch { ret
 const readExit = (j) => { try { return JSON.parse(fs.readFileSync(file(j.id, "exit.json"), "utf8")); } catch { return null; } };
 
 export const jobsOf = (co) => (co.data.jobs ??= {});
-/** The order's running job for its current stage and loop, if any. */
-export const jobFor = (co, o) => Object.values(jobsOf(co)).find((j) => j.state === "running" && j.order === o.id && j.stage === o.stage && j.loops === o.loops) ?? null;
+// K8+K9 review: a job started before a park is stale after the resume, as a Room run is (same stage and loops, parks moved)
+const current = (j, o) => o && o.stage === j.stage && o.loops === j.loops && (o.parks ?? 0) === (j.parks ?? 0);
+/** The order's running job for its current stage, loop and park count, if any. */
+export const jobFor = (co, o) => Object.values(jobsOf(co)).find((j) => j.state === "running" && j.order === o.id && current(j, o)) ?? null;
+function markStale(co, j) {
+  killGroup(j.pid); j.state = "stale";
+  co.log.add({ type: "job-stale", job: j.id, order: j.order, stage: j.stage });
+}
+/** K8: park and cancel kill the order's running jobs at once (a QA build would otherwise run on until the next collect). */
+export function staleFor(co, o, why) {
+  const out = Object.values(jobsOf(co)).filter((j) => j.state === "running" && j.order === o.id);
+  for (const j of out) markStale(co, j);
+  if (out.length) co.log.add({ type: "jobs-stopped", order: o.id, jobs: out.map((j) => j.id), why });
+  return out.map((j) => j.id);
+}
 
 /** Start stage `s`'s cmd for order `o`, detached. Returns { job } or, when it cannot even be started (no workdir: the
  *  work's fault, a revise as in K1), { result } to sign at once. Never waits. */
@@ -42,7 +55,7 @@ export function start(co, o, s) {
   fs.writeFileSync(file(id, "json"), JSON.stringify({ bin: p.bin, args: p.argv.slice(1), cwd: p.cwd, timeoutMs, out: file(id, "out"), err: file(id, "err"), exit: file(id, "exit.json") }));
   const ch = spawn(process.execPath, [SELF, "exec", file(id, "json")], { cwd: p.cwd, env: p.env, detached: true, stdio: "ignore" });
   ch.unref();
-  const j = jobs[id] = { id, order: o.id, stage: o.stage, loops: o.loops, pid: ch.pid, label: p.label, out: file(id, "out"), startedAt: co.engine.clock.now(), timeoutMs, state: "running" };
+  const j = jobs[id] = { id, order: o.id, stage: o.stage, loops: o.loops, parks: o.parks ?? 0, pid: ch.pid, label: p.label, out: file(id, "out"), startedAt: co.engine.clock.now(), timeoutMs, state: "running" };
   co.log.add({ type: "job-start", job: id, order: o.id, stage: o.stage, loops: o.loops, pid: ch.pid });
   return { job: j };
 }
@@ -55,9 +68,8 @@ export function collect(co, { apply }) {
   for (const j of Object.values(jobsOf(co))) {
     if (j.state !== "running") continue;
     const o = co.engine.orders.get(j.order);
-    if (!o || o.stage !== j.stage || o.loops !== j.loops) {
-      killGroup(j.pid); j.state = "stale";
-      co.log.add({ type: "job-stale", job: j.id, order: j.order, stage: j.stage });
+    if (!current(j, o)) {
+      markStale(co, j);
       steps.push({ step: "job-stale", order: j.order, job: j.id, stage: j.stage });
       continue;
     }

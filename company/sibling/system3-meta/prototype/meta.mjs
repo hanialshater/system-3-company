@@ -70,6 +70,7 @@ import * as T from "./tracker.mjs";
 import * as G from "./goals.mjs";
 import * as M from "./meetings.mjs";
 import * as A from "./asks.mjs";
+import * as JOBS from "./jobs.mjs";
 import * as RIT from "./rituals.mjs";
 export { LIVE_ROOMS, LIVE_ROLES, TASK_FLOW } from "./state.mjs";
 
@@ -242,11 +243,15 @@ function dispatch(co, cmd, sub, arg) {
     need("by", "reason");
     const o = engine.orders.get(arg);
     if (!o) throw new Refused(`no order ${arg}`);
-    if (![o.orderer, o.manager, "founder"].includes(opt.by)) throw new Refused(`${opt.by} may not ${sub} ${arg}: its orderer (${o.orderer}), its manager (${o.manager}) or the founder may`);
     const ask = o.parked?.ask ?? null;
+    // K8+K9 review: an orderer the decision route cannot reach (a peer manager, a builder) has its park ask routed to the
+    // manager's report (cos), who must then be able to decide it
+    const askee = ask && sub !== "park" ? co.data.tracker?.items?.get(ask)?.assignee : null;
+    if (![o.orderer, o.manager, "founder", askee].filter(Boolean).includes(opt.by)) throw new Refused(`${opt.by} may not ${sub} ${arg}: its orderer (${o.orderer}), its manager (${o.manager})${askee ? `, its park ask's decider (${askee})` : ""} or the founder may`);
     if (sub !== "resume") for (const x of rooms.runs.values()) if (x.state === "running" && x.order === o.id) rooms.abandon(x.run, { by: opt.by, reason: `order ${sub === "park" ? "parked" : "cancelled"}: ${opt.reason}` });
     if (sub === "park") engine.park(arg, { by: opt.by, reason: opt.reason });
     if (sub === "cancel") engine.cancel(arg, { by: opt.by, reason: opt.reason });
+    if (sub !== "resume") JOBS.staleFor(co, o, `order ${o.stage}`); // K8+K9 review: its K2 job is killed now, not at the next collect
     if (sub === "resume") engine.resume(arg, { by: opt.by, reason: opt.reason, extraLoops: opt["extra-loops"] != null ? Number(opt["extra-loops"]) : null });
     const closed = sub !== "park" ? A.closeParkAsk(co, ask, { by: opt.by, decision: sub === "resume" ? "yes" : "no", text: `${sub === "resume" ? `resumed at ${o.stage}` : "cancelled"}: ${opt.reason}` }) : null;
     T.syncOrders(co);

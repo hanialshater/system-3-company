@@ -60,10 +60,14 @@ export function raise(co, { by, kind, title, why, due, to = null, amount = 0, la
   return it;
 }
 
-export function answer(co, { by, id, decision, text }) {
+export function answer(co, { by, id, decision, text, viaOrder = false }) {
   const it = get(co, id);
   if (it.kind !== "ask") refuse(`${id} is not an ask`);
   if (by !== it.assignee) refuse(`${id} is ${it.assignee}'s to answer`);
+  // K8+K9 review: a plain answer closed the loop-cap ask and left its order parked for good (settled() false, serve ran
+  // to maxMin); a park ask is answered only by deciding its order
+  const po = it.ask?.order && co.engine.orders.get(it.ask.order);
+  if (!viaOrder && po?.stage === "parked" && po.parked?.ask === id) refuse(`${id} asks whether parked ${po.id} goes on: answer it with \`order resume ${po.id} --by=${by} --reason='…'\` or \`order cancel ${po.id} --by=${by} --reason='…'\``);
   if (!["yes", "no", "redirect"].includes(decision) || !text) refuse("an answer is yes, no or redirect, with text");
   it.ask.answer = { decision, text, t: co.engine.clock.now() };
   comment(co, { by, id, text: `${decision}: ${text}` });
@@ -111,7 +115,7 @@ export function raiseParkAsk(co, o, { reason, findings = [] }) {
 export function closeParkAsk(co, id, { by, decision, text }) {
   const it = id && co.data.tracker?.items?.get(id);
   if (!it || it.kind !== "ask" || ["done", "cancelled"].includes(it.state)) return null;
-  if (by === it.assignee) return answer(co, { by, id, decision, text });
+  if (by === it.assignee) return answer(co, { by, id, decision, text, viaOrder: true });
   comment(co, { by, id, text: `${by} decided: ${text}` });
   return update(co, { by, id, state: "done" });
 }

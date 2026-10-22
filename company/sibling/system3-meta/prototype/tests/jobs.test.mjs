@@ -175,3 +175,26 @@ test("serve wakes when a job ends (not on the 60 s fallback), agents' CLI calls 
   assert.deepEqual(jobs.map((j) => [j.stage, j.state, j.verdict]), [["qa", "done", "pass"]]);
   assert.equal(run("supervisor.mjs", "retry", `--order=${o}`).code, 1, "no stage-error to retry");
 });
+
+test("K8+K9 review: a job started before a park and resume (same stage and loops) is stale; staleFor kills it at once", async () => {
+  const co = fresh(FLOW(QA()));
+  const o = order(co, "JP");
+  const id = tick(co)[0].job;
+  const j = jobsOf(co)[id];
+  assert.equal(j.parks, 0);
+  co.engine.park(o.id, { by: "mgr-live", reason: "publish hold" });
+  co.engine.resume(o.id, { by: "mgr-live", reason: "lifted" }); // two CLI calls, no tick between them
+  assert.equal(o.stage, "qa"); assert.equal(o.loops, 0);
+  const steps = tick(co);
+  assert.equal(j.state, "stale", "the pre-park job signs nothing");
+  assert.ok(steps.some((s) => s.step === "job-stale" && s.job === id));
+  const fresh2 = steps.find((s) => s.result === "started");
+  assert.ok(fresh2 && fresh2.job !== id, "a fresh job starts for the resumed stage");
+  const k = jobsOf(co)[fresh2.job];
+  assert.equal(k.parks, 1);
+  co.engine.park(o.id, { by: "mgr-live", reason: "again" });
+  const { staleFor } = await import("../jobs.mjs");
+  assert.deepEqual(staleFor(co, o, "order parked"), [k.id]);
+  assert.equal(k.state, "stale");
+  await until(() => !alive(k.pid));
+});

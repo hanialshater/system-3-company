@@ -71,7 +71,7 @@ export const TEMPLATES = {
       return {
         report: managerReport(engine, lane),
         policies: (engine.policies.get(lane)?.versions ?? []).map((v) => ({ version: v.version, state: v.state, knobs: v.knobs, reason: v.reason, prediction: v.prediction })),
-        openOrders: inLane.filter((o) => o.stage !== "done").map((o) => ({ order: o.id, title: o.title, stage: o.stage, loops: o.loops, priority: o.priority })),
+        openOrders: inLane.filter((o) => !["done", "cancelled"].includes(o.stage)).map((o) => ({ order: o.id, title: o.title, stage: o.stage, loops: o.loops, priority: o.priority })),
         recentFindings: inLane.filter((o) => o.findings).slice(-10).map((o) => ({ order: o.id, title: o.title, findings: String(o.findings).slice(0, 400) })),
         cycles: engine.log.events.filter((e) => e.type === "manager-cycle" && e.lane === lane).slice(-5).map((e) => ({ belief: e.belief, decision: e.decision, version: e.version })),
       };

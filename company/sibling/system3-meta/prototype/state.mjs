@@ -58,7 +58,8 @@ export function make(specName = "toy", specDef = null) {
   engine.onAdvanced.push((o, { stage }) => afterStage(co, o, stage)); // K7: only with spec workspace.commit
   rooms.postCheck = (o, cmd, vars) => runCmdCheck(o, cmd, vars); // K12: a stage's post cmd, at the agent's leave
   // K9: the spec's loop cap (true: 3, the plan's default; unset: none, as every spec before K9); a loop-cap park asks
-  // the orderer through the tracker, which the engine does not hold
+  // the orderer through the tracker, which the engine does not hold. Opt-in (K8+K9 review): the M4 lesson spec
+  // (specs/s3c-lessons.json, not yet written) must set `maxLoops: true`, or a HELD claim loops forever as before
   engine.defaultMaxLoops = spec.maxLoops === true ? DEFAULT_MAX_LOOPS : spec.maxLoops ?? null;
   engine.onParked.push((o, p) => { if (p.ask) raiseParkAsk(co, o, { reason: p.reason, findings: p.ask.findings }); });
   return co;

@@ -123,7 +123,7 @@ export function applyRules(co, rules, source) {
   for (const r of rules) {
     const hit = [];
     for (const o of co.engine.orders.values()) {
-      if (o.stage === "done" || !String(o.task ?? "").startsWith(r.tasks)) continue;
+      if (o.stage === "done" || o.stage === "cancelled" || !String(o.task ?? "").startsWith(r.tasks)) continue;
       o.checks = mergeChecks(o.checks ?? {}, r.checks);
       hit.push(o.id);
       co.log.add({ type: "rule-applied", order: o.id, task: o.task, source, keys: Object.keys(r.checks) });
