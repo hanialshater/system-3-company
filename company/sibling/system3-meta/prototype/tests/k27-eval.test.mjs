@@ -87,7 +87,7 @@ test("sample: deterministic by order id; a skipped stage is signed sampled-out b
 test("sample: always runs when a condition holds (looped, a failed self-check, now)", () => {
   const S = { rate: 0, min: 0, max: 1, always: ["looped", "self-check-failed", "now"] };
   // looped: the second visit to check, after a uat revise
-  const co = fresh(flow({ sample: S }));
+  const co = fresh(flow({ sample: { ...S, always: ["looped"] } }));
   const o = toCheck(co, "L");
   assert.equal(o.stage, "uat");
   co.engine.advance(o.id, { stage: "uat", by: "mgr-live", verdict: "revise", evidence: "x", findings: "f" });
@@ -117,6 +117,63 @@ test("sample: always runs when a condition holds (looped, a failed self-check, n
   c3.rooms.leave(c3.rooms.enter({ msg: c3.mailbox.queue("toy-builder-1", "work")[0].id, role: "toy-builder-1" }).run, { evidence: "e" });
   c3.engine.advance(o3.id, { stage: "test1", by: "code" });
   assert.equal(o3.stage, "uat", "red then green: sampled out as any order");
+  // B7 review: a hand-in with no self-check at all is reviewed (it escaped the condition), and only the worker's own
+  // check at a work stage, this loop, counts: another role's green check, or one from before a revise, does not
+  const c4 = fresh(flow({ sample: S }));
+  const o4 = toCheck(c4, "NONE");
+  assert.equal(o4.stage, "check", "no self-check: always reviewed");
+  assert.deepEqual(types(c4, "sample-run").at(-1).always, ["self-check-failed"]);
+  const c5 = fresh(flow({ sample: S }));
+  const o5 = c5.engine.orderNew({ flow: "task", by: "cos", to: "mgr-live", budget: 100, accept: "x" });
+  o5.task = "OTHER"; c5.engine.delegate(o5.id, { by: "mgr-live", to: "toy-builder-1", budget: 100 });
+  c5.log.add({ type: "self-check", order: o5.id, by: "toy-builder-1", stage: "build", pass: false, output: "red" });
+  c5.log.add({ type: "self-check", order: o5.id, by: "mgr-live", stage: "build", pass: true, output: "green, not the worker's" });
+  c5.log.add({ type: "self-check", order: o5.id, by: "toy-builder-1", stage: "uat", pass: true, output: "green, not at a work stage" });
+  c5.rooms.leave(c5.rooms.enter({ msg: c5.mailbox.queue("toy-builder-1", "work")[0].id, role: "toy-builder-1" }).run, { evidence: "e" });
+  c5.engine.advance(o5.id, { stage: "test1", by: "code" });
+  assert.equal(o5.stage, "check", "the worker's own last check at build failed");
+  // a green check from before a revise is not this loop's
+  const S2 = { rate: 0, min: 0, max: 1, always: ["self-check-failed"] };
+  const c6 = fresh(flow({ sample: S2 }));
+  const o6 = c6.engine.orderNew({ flow: "task", by: "cos", to: "mgr-live", budget: 100, accept: "x" });
+  o6.task = "LOOP"; c6.engine.delegate(o6.id, { by: "mgr-live", to: "toy-builder-1", budget: 100 });
+  c6.log.add({ type: "self-check", order: o6.id, by: "toy-builder-1", stage: "build", pass: true, output: "green" });
+  c6.rooms.leave(c6.rooms.enter({ msg: c6.mailbox.queue("toy-builder-1", "work")[0].id, role: "toy-builder-1" }).run, { evidence: "e" });
+  c6.engine.advance(o6.id, { stage: "test1", by: "code" });
+  assert.equal(o6.stage, "uat", "green this loop: sampled out");
+  c6.engine.advance(o6.id, { stage: "uat", by: "mgr-live", verdict: "revise", evidence: "x", findings: "f" });
+  c6.rooms.leave(c6.rooms.enter({ msg: c6.mailbox.queue("toy-builder-1", "work").find((x) => x.ref === o6.id).id, role: "toy-builder-1" }).run, { evidence: "e" });
+  c6.engine.advance(o6.id, { stage: "test1", by: "code" });
+  assert.equal(o6.stage, "check", "the revise's hand-in had no check of its own");
+});
+
+test("sample (B7 review): the draw is salted per company, and a stage's decision is kept, never recomputed", () => {
+  // unsalted, every company's O-1 drew the same number at a stage; salted, two companies' O-1 differ
+  const a = fresh(flow({ sample: { rate: 0.5, min: 0, max: 1 } })), b = fresh(flow({ sample: { rate: 0.5, min: 0, max: 1 } }));
+  a.engine.sampleSalt = "salt-a"; b.engine.sampleSalt = "salt-b";
+  const oa = { id: "O-1" };
+  assert.notEqual(a.engine.sampleDraw(oa, "check"), b.engine.sampleDraw(oa, "check"));
+  assert.equal(a.engine.sampleDraw(oa, "check"), unitHash("salt-a:O-1:check"));
+  assert.equal(fresh(flow()).engine.sampleDraw(oa, "check"), unitHash("O-1:check"), "no salt (a bare engine): the old draw");
+  // meta.mjs init sets a salt for every company, and it persists
+  save(a); assert.equal(load().engine.sampleSalt, "salt-a"); fs.rmSync(path.join(LIVE, "state.json"));
+  // the decision made when the stage was reached is the one that holds: a later rate change or self-check does not flip it
+  const c = fresh(flow({ sample: { rate: 1, min: 0, max: 1, always: ["self-check-failed"] } }));
+  c.engine.sampleSalt = "s";
+  const o = c.engine.orderNew({ flow: "task", by: "cos", to: "mgr-live", budget: 100, accept: "x" });
+  o.task = "KEEP"; c.engine.delegate(o.id, { by: "mgr-live", to: "toy-builder-1", budget: 100 });
+  c.rooms.leave(c.rooms.enter({ msg: c.mailbox.queue("toy-builder-1", "work")[0].id, role: "toy-builder-1" }).run, { evidence: "e" });
+  c.engine.advance(o.id, { stage: "test1", by: "code" });
+  assert.equal(o.stage, "check");
+  const before = c.engine.sampleDecision(o, c.engine.stageDef(o));
+  c.engine.setSampleRate("task", "check", 0, { by: "learn" });
+  c.log.add({ type: "self-check", order: o.id, by: "toy-builder-1", stage: "build", pass: true, output: "late green" });
+  const after = c.engine.sampleDecision(o, c.engine.stageDef(o));
+  assert.equal(after.run, true, "kept: the stage still runs");
+  assert.deepEqual([after.rate, after.draw, after.kept], [before.rate, before.draw, true]);
+  c.engine.notifyStage(o);
+  assert.equal(o.stage, "check", "a re-notify (a resume at the stage) does not sample it out");
+  assert.equal(types(c, "sample-run").length + types(c, "sample-skip").length, 1, "one sample event per stage and loop");
 });
 
 test("the rate is a knob inside the founder's bounds, and it persists in the state", () => {

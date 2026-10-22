@@ -7,7 +7,7 @@
 //
 //   node setup.mjs place --arm=H|HSI --game=G1|G2|G3 [--budget=60000000] [--runs=<dir>] [--b7=<dir>] [--out-of-order]
 //        the live dir, the spec, SPEC.md, one order (founder -> lead), the access hook; prints the run command
-//   node setup.mjs run   --arm=H|HSI --game=Gn [--max-parallel=2] [--max-min=150] [--poll=3] [--model=<id>] [--dry-run]
+//   node setup.mjs run   --arm=H|HSI --game=Gn [--max-parallel=2] [--max-min=480] [--poll=3] [--model=<id>] [--dry-run]
 //        the launcher (Agent SDK) with the observer beside it, then the tally; --dry-run prints the launcher command,
 //        runs one observer pass and starts no session
 //   node setup.mjs watch --arm=H|HSI --game=Gn [--once]   the observer alone (snapshots + hidden score per signed stage) and the protocol's stops
@@ -37,6 +37,7 @@ const REPO_PROTO = "/home/user/system-3-company/company/sibling/system3-meta/pro
 export const GAMES = ["G1", "G2", "G3"];
 export const ARMS = ["V", "H", "HSI"];
 const SPEC_OF = { H: "textgame-hybrid-nolearn.json", HSI: "textgame-hybrid.json" };
+export const GAME_MIN = 480; // PROTOCOL.md "Stops": every arm's wall clock per game (V's own most: 4 hand-ins x (60 min + one 60-min resume))
 const DEFAULT_BUDGET = 60_000_000; // cumulative tokens per order: a runaway cap, see PROTOCOL.md "Budgets"
 const FAILED_RE = /^failed: (.+)$/; // the specs' accept findings regex (flow.stages.accept.run.findings.fromStdout)
 
@@ -90,43 +91,94 @@ export function gameHash(dir) {
 }
 
 // ---------------------------------------------------------------- the access rule (same for every arm)
-/** What arm `arm` may never touch: the benchmark's own folder (hidden tests, references, runner), the operator's
- *  logs, the other arms' folders and the benchmark's write-up in the repo. */
-export function denyRoots(P, arm) {
-  const roots = [P.b7, P.op, ...ARMS.filter((a) => a !== arm).map((a) => P.arm(a)), path.join(P.proto, "bench7"), path.join(P.proto, "bench7-research-difficulty.md"), path.join(REPO_PROTO, "bench7")];
-  return [...new Set(roots.flatMap((r) => [r, real(r)]))];
+// B7 review: the first rule denied a list of folders only when a call named them literally or by an absolute path, so
+// `cat ../../../../b7/hidden/G1/ref/game.mjs`, `cd ../.. && cat …`, another arm's work in progress, the same arm's
+// earlier game and _operator's per-snapshot scores were all one relative path away. The rule now resolves every path a
+// call can reach: each Bash word against the directory the line is in at that point (each `cd` and `pushd` followed),
+// symlinks by their real path, Glob/Grep by their search root. An arm's own game directory is open; around it the
+// whole benchmark area is closed (the scratchpad that holds b7/ and the runs, every other arm and game, _operator,
+// the playbook store, the repo and its home folder, other sessions' transcripts); anything else (/usr, /tmp, …) is open.
+// A Bash path built at run time ($VAR/…, $(…), `…`) cannot be resolved and is denied. Code an agent writes and runs
+// (a node script that computes a path) is out of the hook's reach: run-hidden.mjs's permission model, the content
+// canaries and the transcript audit are the backstops.
+const REPO_ROOT = path.resolve(REPO_PROTO, "..", "..", "..", "..");
+const enc = (p) => p.replace(/[^a-zA-Z0-9]/g, "-");
+const cfgDirs = () => [...new Set([process.env.CLAUDE_CONFIG_DIR, path.join(os.homedir(), ".claude")].filter(Boolean).map((d) => path.resolve(d)))];
+/** {own, deny, cfg}: what arm `arm` may touch in game `game` (its own game directory) and what is closed around it. */
+export function accessRules(P, arm, game) {
+  const own = [P.live(arm, game)];
+  const scratch = path.dirname(P.b7);
+  const deny = [P.b7, P.runs, P.op, P.store, path.join(P.proto, "bench7"), path.join(P.proto, "bench7-research-difficulty.md"), path.join(REPO_PROTO, "bench7"), REPO_ROOT, ...cfgDirs()];
+  if (scratch !== "/" && scratch !== os.homedir()) deny.push(scratch);
+  if (path.dirname(REPO_ROOT) !== "/") deny.push(path.dirname(REPO_ROOT));
+  return { arm, game, own: [...new Set(own.flatMap((r) => [r, real(r)]))], deny: [...new Set(deny.flatMap((r) => [r, real(r)]))], cfg: cfgDirs() };
 }
+/** The folders arm `arm` may never touch in game `game` (the dry run prints them). */
+export const denyRoots = (P, arm, game = "G1") => accessRules(P, arm, game).deny;
 const DENY_WORDS = /run-hidden|acc\.test\.mjs|hidden\/common|specsrc|mutants\.mjs|bench7-research/;
-const SEARCH = /(^|[\s;&|(])(find|grep|egrep|fgrep|rg|ag|fd|locate|tree|du)(\s|$)|\bls\s+-[a-zA-Z]*R/;
-const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-/** {deny, why} for one tool call. A path names a denied root (as text, or resolved against cwd), or a search command
- *  or a Glob/Grep runs over a folder that contains one. Best effort for Bash; the transcript audit is the backstop. */
+const RECURSIVE = /(^|[\s;&|(])(find|grep|egrep|fgrep|rg|ag|fd|locate|tree|du|rsync|tar|zip|scp)(\s|$)|\bls\s+-[a-zA-Z]*R|\bcp\s+-[a-zA-Z]*[rRa]|\bgrep\s+-[a-zA-Z]*[rR]/;
+const inside = (p, r) => p === r || p.startsWith(r.endsWith("/") ? r : r + "/");
+const realish = (p) => { let head = path.resolve(p), tail = []; while (!fs.existsSync(head) && path.dirname(head) !== head) { tail.unshift(path.basename(head)); head = path.dirname(head); } return path.join(real(head), ...tail); };
+/** Why absolute path `abs` is closed to the arm (null: open). */
+function closed(abs, R) {
+  const ra = realish(abs);
+  const ownCfg = (p) => R.cfg.some((c) => { const rel = path.relative(path.join(c, "projects"), p); if (!rel || rel.startsWith("..") || path.isAbsolute(rel)) return false; const name = rel.split(path.sep)[0]; return R.own.some((o) => name === enc(o) || name.startsWith(enc(o) + "-")); });
+  const open = (p) => R.own.some((o) => inside(p, o)) || ownCfg(p);
+  if (open(abs) && open(ra)) return null;
+  if (R.deny.some((d) => inside(abs, d) || inside(ra, d))) return "a path outside your own directory, in the benchmark's area";
+  return null;
+}
+/** Is `abs` a folder above a closed one (a recursive command or search over it reaches inside)? */
+const above = (abs, R) => { const ra = realish(abs); return R.deny.some((d) => (inside(d, abs) || inside(d, ra)) && !R.own.some((o) => inside(o, d))); };
+/** The paths one Bash line can reach: each word resolved against the directory the line is in when it runs. */
+export function bashReach(cmd, cwd) {
+  const out = { paths: [], unresolved: [], recursive: RECURSIVE.test(cmd) };
+  const toks = String(cmd).split(/[\s'"=;|&()<>,{}\[\]]+/).filter(Boolean);
+  let cur = cwd;
+  const res = (t) => path.resolve(cur, t.replace(/^~(?=\/|$)/, os.homedir()));
+  for (let i = 0; i < toks.length; i++) {
+    const t = toks[i];
+    if (/[$`]/.test(t)) { if (/[/.~]/.test(t.replace(/^\$\w+$/, "")) || /\$\(|`|\$\{|\$(?:HOME|PWD|OLDPWD|TMPDIR)\b/.test(t)) out.unresolved.push(t); continue; }
+    if (t === "cd" || t === "pushd") {
+      const n = toks[i + 1];
+      if (n == null || n.startsWith("-") || /[$`]/.test(n)) { if (n != null && /[$`]/.test(n)) out.unresolved.push(n); cur = n == null ? os.homedir() : null; if (cur == null) out.unresolved.push(`${t} ${n ?? ""}`.trim()); i++; continue; }
+      if (cur == null) { out.unresolved.push(`${t} ${n}`); i++; continue; }
+      cur = res(n); out.paths.push(cur); i++; continue;
+    }
+    if (t === "popd") { cur = null; out.unresolved.push(t); continue; }
+    if (t.startsWith("-") || /^[a-z][a-z0-9+.-]*:\/\//i.test(t)) continue;
+    if (cur == null) { if (/[/~]|^\.\.?$/.test(t)) out.unresolved.push(t); continue; }
+    const base = t.split(/[*?]/)[0];
+    out.paths.push(res(base === t ? t : (base.endsWith("/") ? base : path.dirname(base)) || "."));
+  }
+  if (out.recursive && cur) out.paths.push(cur);
+  return out;
+}
+/** {deny, why} for one tool call. */
 const WRITERS = ["Write", "Edit", "MultiEdit", "NotebookEdit"];
-export function accessDecision({ tool, input = {}, cwd = process.cwd() }, roots) {
-  // a write is judged by its path only (its text may mention anything); every other tool by all of its input
+export function accessDecision({ tool, input = {}, cwd = process.cwd() }, R) {
   const text = WRITERS.includes(tool) ? "" : JSON.stringify(input ?? {});
-  for (const r of roots) if (new RegExp(esc(r) + "(?![\\w-])").test(text)) return { deny: true, why: "names a benchmark-only path" };
   if (DENY_WORDS.test(text)) return { deny: true, why: "names a hidden-test file" };
-  const inside = (p, r) => p === r || p.startsWith(r + "/");
-  const over = (p) => roots.some((r) => inside(r, p)); // p is an ancestor of (or equal to) a denied root
-  const fileArgs = ["file_path", "path", "notebook_path"].map((k) => input?.[k]).filter((x) => typeof x === "string" && x);
-  for (const f of fileArgs) {
-    const abs = path.resolve(cwd, f.replace(/^~(?=\/|$)/, os.homedir()));
-    const ra = real(abs);
-    if (roots.some((r) => inside(abs, r) || inside(ra, r))) return { deny: true, why: "a path inside a benchmark-only folder" };
-    if ((tool === "Glob" || tool === "Grep") && (over(abs) || over(ra))) return { deny: true, why: "a search over a folder that holds benchmark-only files" };
+  const at = (f) => path.resolve(cwd, String(f).replace(/^~(?=\/|$)/, os.homedir()));
+  for (const k of ["file_path", "path", "notebook_path"]) {
+    const f = input?.[k]; if (typeof f !== "string" || !f) continue;
+    const why = closed(at(f), R); if (why) return { deny: true, why };
   }
-  if ((tool === "Glob" || tool === "Grep") && typeof input?.pattern === "string" && path.isAbsolute(input.pattern)) {
-    const base = input.pattern.split(/[*?[{]/)[0].replace(/\/[^/]*$/, "") || "/";
-    if (over(path.resolve(base))) return { deny: true, why: "a search over a folder that holds benchmark-only files" };
+  if (tool === "Glob" || tool === "Grep") {
+    const root = at(typeof input?.path === "string" && input.path ? input.path : ".");
+    const pat = typeof input?.pattern === "string" ? input.pattern : "";
+    const base = tool === "Glob" && pat ? path.resolve(root, pat.split(/[*?[{]/)[0].replace(/[^/]*$/, "") || ".") : root;
+    for (const b of [root, base]) { const why = closed(b, R); if (why) return { deny: true, why }; if (above(b, R)) return { deny: true, why: "a search over a folder that holds the benchmark's area" }; }
+    if (tool === "Grep" && typeof input?.glob === "string" && /(^|\/)\.\.(\/|$)|^\//.test(input.glob)) return { deny: true, why: "a search glob that leaves your directory" };
   }
-  if (tool === "Bash" && typeof input?.command === "string" && SEARCH.test(input.command)) {
-    const toks = input.command.split(/[\s'"=;|&()<>`]+/).filter((t) => t.startsWith("/") || t.startsWith(".") || t.startsWith("~"));
-    for (const t of toks) { const abs = path.resolve(cwd, t.replace(/^~(?=\/|$)/, os.homedir())); if (over(abs) || over(real(abs))) return { deny: true, why: "a recursive search over a folder that holds benchmark-only files" }; }
+  if (tool === "Bash" && typeof input?.command === "string") {
+    const b = bashReach(input.command, cwd || process.cwd());
+    if (b.unresolved.length) return { deny: true, why: `a path the hook cannot resolve (${b.unresolved[0].slice(0, 60)}): spell paths out, inside your own directory` };
+    for (const p of b.paths) { const why = closed(p, R); if (why) return { deny: true, why }; if (b.recursive && above(p, R)) return { deny: true, why: "a recursive command over a folder that holds the benchmark's area" }; }
   }
   return { deny: false };
 }
-export const DENY_TEXT = "Benchmark harness: this path is outside your work (it holds the orderer's hidden tests, the operator's logs or another team's files). Work in your own directory.";
+export const DENY_TEXT = "Benchmark harness: this path is outside your work (the orderer's hidden tests, the operator's logs, another team's or another game's files). Work in your own directory, with paths spelled out.";
 /** One access-log line: every tool call of every arm, allowed or denied. */
 export function accessNote(P, { arm, game, sid, tool, input, cwd, d }) {
   const what = input?.command ?? input?.file_path ?? input?.path ?? input?.pattern ?? input?.notebook_path ?? "";
@@ -224,16 +276,18 @@ function placeArm(P, opt) {
 function activeRuleIds(store) { try { return JSON.parse(fs.readFileSync(path.join(store, "playbook.json"), "utf8")).rules.filter((r) => r.status === "active").map((r) => r.id); } catch { return []; } }
 
 function launcherArgv(P, arm, game, opt) {
-  return [process.execPath, path.join(P.proto, "launcher", "launch.mjs"), `--live=${P.live(arm, game)}`, "--setting-sources=project", `--max-parallel=${opt["max-parallel"] ?? 2}`, `--max-min=${opt["max-min"] ?? 150}`, ...(opt.model ? [`--model=${opt.model}`] : [])];
+  return [process.execPath, path.join(P.proto, "launcher", "launch.mjs"), `--live=${P.live(arm, game)}`, "--setting-sources=project", `--max-parallel=${opt["max-parallel"] ?? 2}`, `--max-min=${opt["max-min"] ?? GAME_MIN}`, ...(opt.model ? [`--model=${opt.model}`] : [])];
 }
 
-/** PROTOCOL.md "Stops": an order parked at the loop cap, or stopped at its budget, is cancelled by the harness acting
- *  as the founder (a rule fixed before the run, never a judgment): its last version is the arm's final, and a cancelled
- *  order is an ended one, so HSI's evidence and retro still run (a parked order is not ended for learn). */
-export function endIfStopped(P, arm, game) {
+/** PROTOCOL.md "Stops": an order parked at the loop cap, stopped at its budget, or still open when the launcher stopped
+ *  at the game's wall clock (B7 review: that order was neither parked nor at budget, so it stayed open, HSI had no
+ *  evidence or retro, and the next game's place refused), is cancelled by the harness acting as the founder (a rule
+ *  fixed before the run, never a judgment): its last version is the arm's final, and a cancelled order is an ended
+ *  one, so HSI's evidence and retro still run (a parked order is not ended for learn). */
+export function endIfStopped(P, arm, game, { launcherStopped = null } = {}) {
   const live = P.live(arm, game), o = orderOf(readState(live), game);
   if (!o || TERMINAL.slice(0, 2).includes(o.stage)) return null;
-  const why = o.stage === "parked" ? `parked: ${String(o.parked?.reason ?? "").slice(0, 200)}` : o.budgetHold?.ask ? `budget: ${o.spent} of ${o.budget} tokens` : null;
+  const why = o.stage === "parked" ? `parked: ${String(o.parked?.reason ?? "").slice(0, 200)}` : o.budgetHold?.ask ? `budget: ${o.spent} of ${o.budget} tokens` : launcherStopped ? `wall clock: ${launcherStopped}` : null;
   if (!why) return null;
   const env = { ...process.env, META_LIVE_DIR: live }; for (const x of ["META_ROLE", "META_LAUNCH", "NODE_TEST_CONTEXT"]) delete env[x];
   const r = spawnSync(process.execPath, [path.join(P.proto, "meta.mjs"), "order", "cancel", o.id, "--by=founder", `--reason=B7 protocol stop (${why}): the last version is the arm's final`], { env, encoding: "utf8" });
@@ -241,18 +295,29 @@ export function endIfStopped(P, arm, game) {
   return { cancelled: o.id, why, ok: r.status === 0 };
 }
 
+const learnOpen = (st) => !!st?.data?.learn && (!st.data.learn.closed || st.data.learn.retros?.some((x) => x.state === "open"));
 async function runArm(P, opt) {
   const { arm, game } = opt, live = P.live(arm, game), od = P.opdir(arm, game);
   if (!fs.existsSync(path.join(live, "state.json"))) throw new Error(`${live} is not placed: node ${SELF} place --arm=${arm} --game=${game}`);
   const argv = launcherArgv(P, arm, game, opt);
   if (opt["dry-run"]) return { dry: true, launcher: argv, observe: observe(P, arm, game) };
-  const out = fs.openSync(path.join(od, "launcher.out"), "a");
   const env = { ...process.env }; for (const x of ["META_ROLE", "META_LAUNCH", "NODE_TEST_CONTEXT", "CLAUDECODE"]) delete env[x];
-  const child = spawn(argv[0], argv.slice(1), { env, stdio: ["ignore", out, out] });
-  let exited = false; child.on("exit", () => { exited = true; });
-  const poll = Number(opt.poll ?? 3) * 1000;
-  while (!exited) { observe(P, arm, game); endIfStopped(P, arm, game); await new Promise((r) => setTimeout(r, poll)); }
-  observe(P, arm, game);
+  const poll = Number(opt.poll ?? 3) * 1000, t0 = Date.now();
+  const launch = async (a) => {
+    const out = fs.openSync(path.join(od, "launcher.out"), "a");
+    const child = spawn(a[0], a.slice(1), { env, stdio: ["ignore", out, out] });
+    let exited = false; child.on("exit", () => { exited = true; });
+    while (!exited) { observe(P, arm, game); endIfStopped(P, arm, game); await new Promise((r) => setTimeout(r, poll)); }
+    observe(P, arm, game);
+  };
+  await launch(argv);
+  // the launcher stopped (its --max-min, the game's wall clock) with the order still open: the protocol's stop
+  const stop = endIfStopped(P, arm, game, { launcherStopped: `the launcher stopped after ${Math.round((Date.now() - t0) / 60000)} min (--max-min=${opt["max-min"] ?? GAME_MIN})` });
+  // HSI: the cancelled order's evidence and the lead's retro still run, in a short launcher of their own
+  if (arm === "HSI" && learnOpen(readState(live))) {
+    append(path.join(od, "operator.jsonl"), { act: "retro-launch", why: stop ? "after a wall-clock stop" : "the run's learn step is still open" });
+    await launch(launcherArgv(P, arm, game, { ...opt, "max-min": 30 }));
+  }
   return tally(P, { arm })[0]?.games?.find((g) => g.game === game) ?? null;
 }
 
@@ -348,17 +413,39 @@ function tallyMd(T) {
 }
 
 // ---------------------------------------------------------------- audit
-/** Strings only the hidden suite holds: test names and the suite's own identifiers (none of which the specs contain). */
+/** The audit's canaries. `content`: strings only the hidden material holds, none of which the specs contain: the
+ *  suite's test names (24+ characters) and identifiers, and (B7 review: reading the reference was invisible to the
+ *  audit) the references' and engine's own identifiers and long string literals. `paths`: the harness's paths, which
+ *  a Meta arm can see without reading anything hidden (its own state.json holds the accept command, and the accept
+ *  label names setup.mjs): reported as seen, never a leak (B7 review: they made a false NOT clean). */
 export function canaries(P) {
   const specs = GAMES.map((g) => { try { return fs.readFileSync(P.spec(g), "utf8"); } catch { return ""; } }).join("\n") + (() => { try { return fs.readFileSync(path.join(P.b7, "specs", "API.md"), "utf8"); } catch { return ""; } })();
-  const out = new Set([P.b7, real(P.b7), P.op, "run-hidden", "acc.test.mjs"]);
-  const files = [...GAMES.map((g) => path.join(P.hidden, g, "acc.test.mjs")), path.join(P.hidden, "common", "kit.mjs")];
-  for (const f of files) {
-    let t = ""; try { t = fs.readFileSync(f, "utf8"); } catch { continue; }
-    for (const m of t.matchAll(/\btest\(\s*(["'`])((?:(?!\1).){24,})\1/g)) if (!specs.includes(m[2])) out.add(m[2]);
-    for (const m of t.matchAll(/\b(?:const|function|let)\s+([A-Za-z_][\w]{7,})/g)) if (!specs.includes(m[1]) && /[A-Z_]/.test(m[1])) out.add(m[1]);
+  const content = new Set(), paths = new Set([P.b7, real(P.b7), P.op, "run-hidden", "acc.test.mjs"]);
+  const read = (f) => { try { return fs.readFileSync(f, "utf8"); } catch { return ""; } };
+  for (const f of [...GAMES.map((g) => path.join(P.hidden, g, "acc.test.mjs")), path.join(P.hidden, "common", "kit.mjs")]) {
+    const t = read(f);
+    for (const m of t.matchAll(/\btest\(\s*(["'`])((?:(?!\1).){24,})\1/g)) if (!specs.includes(m[2])) content.add(m[2]);
+    for (const m of t.matchAll(/\b(?:const|function|let)\s+([A-Za-z_][\w]{7,})/g)) if (!specs.includes(m[1]) && /[A-Z_]/.test(m[1])) content.add(m[1]);
   }
-  return [...out];
+  for (const f of [...GAMES.map((g) => path.join(P.hidden, g, "ref", "game.mjs")), path.join(P.hidden, "common", "engine.mjs")]) {
+    const t = read(f);
+    for (const m of t.matchAll(/\b(?:const|function|let|class)\s+([A-Za-z_][\w]{7,})/g)) if (!specs.includes(m[1]) && /[A-Z_]/.test(m[1])) content.add(m[1]);
+    for (const m of t.matchAll(/"([A-Z][A-Za-z ,.'!?;-]{39,})"/g)) if (!specs.includes(m[1]) && m[1].split(" ").length >= 7) content.add(m[1]); // prose the reference prints
+  }
+  return { content: [...content], paths: [...paths] };
+}
+/** B7 review (cross-arm reads left no canary): lines of 50+ characters, not in the spec, that two arms' final games
+ *  of the same game share. Reported for the operator to read, never a verdict by itself. */
+function sharedLines(P) {
+  const out = [];
+  for (const g of GAMES) {
+    let spec = ""; try { spec = fs.readFileSync(P.spec(g), "utf8"); } catch {}
+    const files = { V: path.join(P.live("V", g), "game.mjs"), H: path.join(P.live("H", g), "shipped", g, "game.mjs"), HSI: path.join(P.live("HSI", g), "shipped", g, "game.mjs") };
+    for (const a of ["H", "HSI"]) if (!fs.existsSync(files[a])) files[a] = path.join(P.live(a, g), "work", g, "game.mjs");
+    const lines = Object.fromEntries(Object.entries(files).map(([a, f]) => { try { return [a, new Set(fs.readFileSync(f, "utf8").split("\n").map((l) => l.trim()).filter((l) => l.length >= 50 && !spec.includes(l)))]; } catch { return [a, new Set()]; } }));
+    for (const [a, b] of [["V", "H"], ["V", "HSI"], ["H", "HSI"]]) { const n = [...lines[a]].filter((l) => lines[b].has(l)).length; if (n) out.push({ game: g, arms: `${a}+${b}`, sharedLines: n }); }
+  }
+  return out;
 }
 function transcriptOf(sid) {
   const roots = [process.env.CLAUDE_CONFIG_DIR, path.join(os.homedir(), ".claude")].filter(Boolean).map((r) => path.join(r, "projects"));
@@ -366,7 +453,7 @@ function transcriptOf(sid) {
   return null;
 }
 export function audit(P) {
-  const acc = readJsonl(P.access), can = canaries(P);
+  const acc = readJsonl(P.access), C = canaries(P), can = [...C.content, ...C.paths], isPath = new Set(C.paths);
   const sessions = [];
   for (const arm of ["H", "HSI"]) for (const g of GAMES) for (const f of readJsonl(path.join(P.live(arm, g), "launches.jsonl")).filter((x) => x.event === "finish" && x.sdk)) sessions.push({ arm, game: g, sid: f.sdk, role: f.role });
   for (const t of readJsonl(P.vledger).filter((x) => x.event === "turn" && x.session)) sessions.push({ arm: "V", game: t.game, sid: t.session, role: "vanilla" });
@@ -375,7 +462,7 @@ export function audit(P) {
     const logged = acc.filter((a) => a.sid === s.sid), file = transcriptOf(s.sid);
     // in transcript order: a canary the session wrote first (its own test of the same name, printed back by node
     // --test) is its own; one that first reaches it in a tool result is a leak; one only in its calls is an attempt
-    let seen = [], tried = [];
+    let seen = [], tried = [], paths = [];
     const own = new Set();
     if (file) for (const line of fs.readFileSync(file, "utf8").split("\n")) {
       if (!line) continue; let m; try { m = JSON.parse(line); } catch { continue; }
@@ -384,21 +471,24 @@ export function audit(P) {
         const text = c.type === "tool_result" ? JSON.stringify(c.content ?? "") : c.type === "tool_use" ? JSON.stringify(c.input ?? {}) : null;
         if (text == null) continue;
         for (const k of can) if (text.includes(k)) {
-          if (c.type === "tool_use") { const isPath = k.startsWith("/") || k === "run-hidden" || k === "acc.test.mjs"; if (isPath) tried.push(k.slice(0, 80)); else own.add(k); }
+          if (c.type === "tool_use") { if (isPath.has(k)) tried.push(k.slice(0, 80)); else own.add(k); }
+          else if (isPath.has(k)) paths.push(k.slice(0, 80));
           else if (!own.has(k)) seen.push(k.slice(0, 80));
         }
       }
     }
-    return { ...s, hookCalls: logged.length, denials: logged.filter((a) => a.deny).map((a) => `${a.tool}: ${a.what.slice(0, 120)} (${a.why})`), transcript: file, seenCanaries: [...new Set(seen)], triedCanaries: [...new Set(tried)] };
+    return { ...s, hookCalls: logged.length, denials: logged.filter((a) => a.deny).map((a) => `${a.tool}: ${a.what.slice(0, 120)} (${a.why})`), transcript: file, seenCanaries: [...new Set(seen)], triedCanaries: [...new Set(tried)], pathsSeen: [...new Set(paths)] };
   });
   return {
-    canaries: can.length, sessions: rows.length,
+    canaries: C.content.length, pathCanaries: C.paths.length, sessions: rows.length,
     hookMissing: rows.filter((r) => !r.hookCalls).map((r) => `${r.arm} ${r.game} ${r.role} ${r.sid}`),
     transcriptMissing: rows.filter((r) => !r.transcript).map((r) => `${r.arm} ${r.game} ${r.role} ${r.sid}`),
     denials: rows.flatMap((r) => r.denials.map((d) => `${r.arm} ${r.game} ${r.role}: ${d}`)),
     leaks: rows.filter((r) => r.seenCanaries.length).map((r) => ({ arm: r.arm, game: r.game, role: r.role, sid: r.sid, seen: r.seenCanaries })),
     attempts: rows.filter((r) => r.triedCanaries.length).map((r) => ({ arm: r.arm, game: r.game, role: r.role, sid: r.sid, tried: r.triedCanaries })),
-    verdict: rows.length && rows.every((r) => r.hookCalls && r.transcript && !r.seenCanaries.length) ? "clean: every session ran under the hook, and no hidden-test text reached any session" : "NOT clean: see hookMissing, transcriptMissing and leaks",
+    pathsSeen: rows.filter((r) => r.pathsSeen.length).map((r) => ({ arm: r.arm, game: r.game, role: r.role, sid: r.sid, paths: r.pathsSeen })),
+    sharedLines: sharedLines(P),
+    verdict: rows.length && rows.every((r) => r.hookCalls && r.transcript && !r.seenCanaries.length) ? "clean: every session ran under the hook, and no hidden-test or reference text reached any session (harness paths seen are listed apart)" : "NOT clean: see hookMissing, transcriptMissing and leaks",
   };
 }
 
@@ -411,7 +501,7 @@ async function main() {
     // fail closed on a benchmark-only path, open on unreadable input (it is a logger first; the audit is the backstop)
     let input = ""; try { input = fs.readFileSync(0, "utf8"); } catch {}
     let j; try { j = JSON.parse(input); } catch { process.exit(0); }
-    const d = accessDecision({ tool: j.tool_name, input: j.tool_input, cwd: j.cwd }, denyRoots(P, opt.arm));
+    const d = accessDecision({ tool: j.tool_name, input: j.tool_input, cwd: j.cwd }, accessRules(P, opt.arm, opt.game));
     try { accessNote(P, { arm: opt.arm, game: opt.game, sid: j.session_id, tool: j.tool_name, input: j.tool_input, cwd: j.cwd, d }); } catch {}
     if (d.deny) { process.stderr.write(DENY_TEXT + "\n"); process.exit(2); }
     process.exit(0);

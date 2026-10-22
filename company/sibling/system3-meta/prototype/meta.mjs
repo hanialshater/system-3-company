@@ -22,7 +22,7 @@
 //        same session; --wait keeps the session up to <s> seconds for the role's next item (benchmark 3: ~60k per new session)
 //   node meta.mjs learn show [--last=50]   ·   learn propose --by=<retro role> [--retro=RETRO-n] --proposal='{"add":[…],"retire":[…],"sample":[…]}'
 //        K28: the playbook's evidence and rules; a retro's proposal, validated change by change by code (learn.mjs)
-//   node meta.mjs init --spec-file=<json> --vars='{"playbook_store":"/abs/dir"}'   K28: the spec's vars (learn.store)
+//   node meta.mjs init --spec-file=<json> --vars='{"playbook_store":"/abs/dir"}' [--sample-salt=<s>]   K28: the spec's vars (learn.store); K27: a fixed sample salt (tests)
 //   node meta.mjs escape add --by=<role> --pattern=<regex> --why=… [--runs=a,b] | escape list   the company's known false
 //        claims (escapes.json, kept across runs); every text order is checked against them
 //   node meta.mjs room session-usage --session=<S> --tokens=<n>   the harness count for a whole agent process (supervisor)
@@ -75,6 +75,7 @@
 // Exit: 0 ok, 1 refused, 2 usage or state error.
 import fs from "node:fs";
 import path from "node:path";
+import crypto from "node:crypto";
 import { Refused, flowMetrics, packHistory, isIndependent, isChairFlow } from "./lib.mjs";
 import * as GEN from "./generator.mjs";
 import * as WS from "./workspace.mjs";
@@ -201,6 +202,9 @@ function main() {
       return k;
     });
     const key = keys[0];
+    // K27 (B7 review): the company's salt for sample draws, so a run's O-1 does not draw what every run's O-1 draws
+    // (--sample-salt fixes it for a reproducible test)
+    co.engine.sampleSalt = typeof opt["sample-salt"] === "string" && opt["sample-salt"] ? opt["sample-salt"] : crypto.randomBytes(8).toString("hex");
     // K28: the playbook store (outside the live dir), this run's id, the sample knobs earlier runs set (inside bounds)
     const learned = co.spec.learn ? LEARN.initLearn(co, { vars, live: LIVE }) : null;
     // M6 prep: the spec's lane policies (policy.lanes: the M6 lanes' maxSessions) as each lane's first version, proposed
@@ -386,7 +390,7 @@ function dispatch(co, cmd, sub, arg) {
   if (cmd === "check") { need("order"); const o = engine.orders.get(opt.order); if (!o) throw new Refused(`no order ${opt.order}`);
     const pc = preCheck?.order === o.id ? preCheck : null, t = pc ? pc.t : runTest1(o); // M6 smoke: the flow's test1 cmd first
     // every self-check is a record (org evaluation, ISS-2): a failed one is a defect code caught before hand-in
-    const by = [...rooms.runs.values()].find((r) => r.state === "running" && r.order === o.id)?.role ?? opt.by ?? null;
+    const by = [...rooms.runs.values()].find((r) => r.state === "running" && r.order === o.id)?.role ?? opt.by ?? me ?? null;
     log.add({ type: "self-check", order: o.id, task: o.task, by, stage: o.stage, pass: t.pass, output: String(t.output).slice(0, 400), ...(pc?.kind ? { kind: pc.kind } : {}) });
     if (pc?.kind === "selftest") return { order: o.id, task: o.task, pass: !!t.pass, stageError: !!t.stageError, output: t.output, findings: t.findings ?? null, rules: [`the ${pc.stage} stage's selftest (spec)`], cmd: pc.argv, cwd: pc.cwd, note: "your own check: run it as often as you like; nothing is signed, only your hand-in starts the next stage (--test1 runs test1's check)" };
     if (pc) return { order: o.id, task: o.task, slug: o.slug ?? o.task, pass: !!t.pass, stageError: !!t.stageError, output: t.output, findings: t.findings ?? null, route: t.route ?? null, rules: ["the flow's test1 cmd (spec run)"], cmd: pc.argv, cwd: pc.cwd, note: "the same cmd test1 will run, in the same worktree; nothing is signed" };
@@ -595,18 +599,22 @@ function dispatch(co, cmd, sub, arg) {
   // K28: the playbook's evidence and rules (read-only), and a retro's proposal (validated change by change by code)
   if (cmd === "learn" && sub === "show") {
     const L = LEARN.learnOf(co); if (!L) throw new Refused("this company has no learn spec");
-    const pb = LEARN.readPlaybook(L.store), ev = LEARN.readEvidence(L.store);
-    return { store: L.store, run: L.run, retros: L.retros, rules: pb.rules, knobs: pb.knobs, evidence: ev.slice(-Number(opt.last ?? 50)).map((e) => ({ ...e, revises: e.revises.map((r) => ({ ...r, findings: r.findings.slice(0, 200) })) })), evidence_total: ev.length, limits: { maxRules: co.spec.learn.maxRules ?? LEARN.DEFAULT_MAX_RULES, ruleMaxChars: LEARN.RULE_MAX_CHARS, roles: co.spec.learn.roles } };
+    let pb, evf; try { pb = LEARN.readPlaybook(L.store); evf = LEARN.readEvidenceFile(L.store); } catch (e) { if (e.store) throw new Refused(e.message); throw e; }
+    const ev = evf.records;
+    // B7 review: an agent session is not told where the store is (code writes it; the guard protects it)
+    return { store: me == null ? L.store : "(code's; not shown in an agent session)", run: L.run, ...(evf.bad.length ? { evidence_unreadable_lines: evf.bad } : {}), retros: L.retros, rules: pb.rules, knobs: pb.knobs, evidence: ev.slice(-Number(opt.last ?? 50)).map((e) => ({ ...e, revises: e.revises.map((r) => ({ ...r, findings: r.findings.slice(0, 200) })) })), evidence_total: ev.length, limits: { maxRules: co.spec.learn.maxRules ?? LEARN.DEFAULT_MAX_RULES, ruleMaxChars: LEARN.RULE_MAX_CHARS, roles: co.spec.learn.roles } };
   }
   if (cmd === "learn" && sub === "propose") {
     need("by");
     const L = LEARN.learnOf(co); if (!L) throw new Refused("this company has no learn spec");
     const retro = opt.retro != null ? L.retros.find((r) => r.id === opt.retro) : null;
     if (opt.retro != null && retro?.state !== "open") throw new Refused(`no open retro ${opt.retro}`);
+    // B7 review: a retro role changes the playbook only during an open retro; the founder may at any time
+    if (opt.retro == null && opt.by !== "founder") throw new Refused(`${opt.by} proposes only during an open retro (--retro=RETRO-n${L.retros.some((r) => r.state === "open") ? `: ${L.retros.filter((r) => r.state === "open").map((r) => r.id).join(", ")} is open` : ": none is open"})`);
     const may = [co.spec.learn.retro.role, "founder"].filter(Boolean);
     if (!may.includes(opt.by)) throw new Refused(`${opt.by} may not change the playbook: its retro role (${co.spec.learn.retro.role ?? "code"}) or the founder may`);
     let proposal; try { proposal = JSON.parse(opt.file ? fs.readFileSync(String(opt.file), "utf8") : String(opt.proposal ?? "")); } catch { throw new Refused("--proposal (or --file) is JSON: {add: [{text, why: [evidence ids], targets: [classes]}], retire: [{id, why}], sample: [{stage, rate, why}]}"); }
-    return LEARN.applyProposal(co, proposal, { by: opt.by, retro: retro?.id ?? null });
+    try { return LEARN.applyProposal(co, proposal, { by: opt.by, retro: retro?.id ?? null }); } catch (e) { if (e.store) throw new Refused(e.message); throw e; }
   }
   if (cmd === "escape" && sub === "list") return readEscapes();
   if (cmd === "escape" && sub === "add") {

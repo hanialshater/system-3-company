@@ -14,12 +14,16 @@
 // active rules on every later order (helped: the defect class it targets did not recur; hurt: it did), and at the end
 // of each run retires a rule hurt or idle for retireAfter runs in a row. A retro may also move a K27 sample rate, inside
 // the founder's bounds of the spec. Every decision is an event (learn-*, sample-rate).
+// B7 review: only an author independent of the work (code, the founder, a reviewer) writes rules for an independent
+// reviewer, and those may only add a check; a retro role proposes only during an open retro; a rule scores only when
+// a stage that catches its class judged the order (else "unobserved"); the store is locked across companies, survives
+// a torn evidence line, never overwrites a corrupt playbook, and is a guard root (workspace.mjs launchConfig).
 //   node learn.mjs retro --store=<dir> [--min=2]   the built-in code retro: a proposal (JSON) from the store alone
 import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
-import { validateCmd } from "./state.mjs";
-import { sampleBounds } from "./lib.mjs";
+import { validateCmd, lockHolderAlive } from "./state.mjs";
+import { sampleBounds, isIndependent, signerRole } from "./lib.mjs";
 
 export const RULE_MAX_CHARS = 300;
 export const DEFAULT_MAX_RULES = 12;
@@ -45,12 +49,20 @@ export function learnProblems(s, roles = new Map()) {
   if (extra.length) p.push(`learn has unknown key${extra.length > 1 ? "s" : ""} ${extra.join(", ")} (${LEARN_KEYS.join(", ")})`);
   p.push(...varsProblems(s.vars));
   if (typeof L.store !== "string" || !L.store) p.push("learn.store is a directory (a spec variable such as ${playbook_store})");
-  else { const st = fillVars(L.store, s.vars ?? {}); if (/\$\{/.test(st)) p.push(`learn.store: ${st} names a variable the spec's vars do not set`); else if (!path.isAbsolute(st)) p.push("learn.store is an absolute directory outside the live dir (it persists across runs)"); }
+  else {
+    // B7 review: a var the spec declares as "" is set at init (--vars), so a repo spec names no machine's directory;
+    // initLearn refuses an init that leaves it unset
+    const st = fillVars(L.store, s.vars ?? {}), atInit = [...L.store.matchAll(/\$\{([a-z][a-z0-9_]*)\}/g)].some(([, k]) => s.vars?.[k] === "");
+    if (/\$\{/.test(st)) p.push(`learn.store: ${st} names a variable the spec's vars do not set`);
+    else if (!atInit && !path.isAbsolute(st)) p.push("learn.store is an absolute directory outside the live dir (it persists across runs)");
+  }
   if (!(Array.isArray(L.roles) && L.roles.length && L.roles.every((r) => roles.get(r) && !roles.get(r).human))) p.push("learn.roles is a list of the spec's agent roles (whose packs carry the playbook)");
   const R = L.retro;
   if (!R || typeof R !== "object" || Array.isArray(R) || Object.keys(R).some((k) => !["role", "run", "every"].includes(k)) || (R.role == null) === (R.run == null)) p.push("learn.retro is {role: <agent role>} or {run: <cmd>}, with an optional every: <orders>");
   else {
     if (R.role != null && !(roles.get(R.role) && !roles.get(R.role).human)) p.push(`learn.retro.role ${R.role} is an agent role of the spec`);
+    // B7 review: the worker never writes the playbook it is scored by (a builder-level role, or one that signs work)
+    else if (R.role != null && workSide(s).has(R.role) && roles.get(R.role)?.level === "builder") p.push(`learn.retro.role ${R.role} does the work the playbook is scored on: a retro is its manager's, a reviewer's or code's`);
     if (R.run != null) { const e = validateCmd(R.run, { stages: [] }); if (e) p.push(`learn.retro.run: ${e}`); else if (R.run.route) p.push("learn.retro.run has no route (a retro signs nothing)"); }
     if (R.every != null && !(Number.isInteger(R.every) && R.every >= 1 && R.every <= 100)) p.push("learn.retro.every is a whole number of orders 1-100");
   }
@@ -60,13 +72,84 @@ export function learnProblems(s, roles = new Map()) {
   return p;
 }
 
+// ---- who is independent of the work (B7 review: the lead, the builder's manager, wrote free text into the evaluator's
+// pack, even at a stage with pack.history false)
+const specStages = (s) => [...(s?.flow ? [s.flow] : []), ...Object.values(s?.flows && typeof s.flows === "object" && !Array.isArray(s.flows) ? s.flows : {})].flatMap((f) => f?.stages ?? []);
+const NOT_REVIEWERS = ["code", "founder", "builder", "orderer", "chair", "release"];
+/** The spec's independent reviewers: the agent roles that sign an independent stage (a {role} signer, or a level). */
+export function reviewerRoles(s) {
+  const out = new Set();
+  for (const st of specStages(s)) {
+    if (!isIndependent(st) || st.run != null || (typeof st.signer === "string" && NOT_REVIEWERS.includes(st.signer))) continue;
+    if (signerRole(st)) out.add(signerRole(st));
+    else for (const r of s.roles ?? []) if (!r.human && r.level === st.signer) out.add(r.id);
+  }
+  return out;
+}
+/** The roles on the work side: builder- and manager-level roles (the worker and its chain) and any role that signs a
+ *  stage that is not independent. They may write rules for the work side only. */
+export function workSide(s) {
+  const out = new Set((s?.roles ?? []).filter((r) => !r.human && ["builder", "manager", "chief-of-staff"].includes(r.level)).map((r) => r.id));
+  for (const st of specStages(s)) if (!isIndependent(st) && signerRole(st)) out.add(signerRole(st));
+  return out;
+}
+/** May `by` write rules for an independent reviewer? Code, the founder, or a reviewer that is not on the work side. */
+export const independentAuthor = (s, by) => by === "code" || by === "founder" || (reviewerRoles(s).has(by) && !workSide(s).has(by));
+
 // ---- the store
 const file = (store, f) => path.join(store, f);
+export class StoreError extends Error { constructor(m) { super(m); this.store = true; } }
+const EMPTY = () => ({ version: 0, nextId: 1, rules: [], knobs: { sample: {} }, runs: [] });
+/** The playbook. Missing: an empty one. Unreadable (B7 review: it read as empty and the next write destroyed every
+ *  rule and reused their ids): a StoreError, and code writes nothing over it until a person restores it (each write
+ *  keeps the version before it as playbook.json.bak). */
 export function readPlaybook(store) {
-  try { return JSON.parse(fs.readFileSync(file(store, "playbook.json"), "utf8")); } catch { return { version: 0, nextId: 1, rules: [], knobs: { sample: {} }, runs: [] }; }
+  const f = file(store, "playbook.json");
+  let text;
+  try { text = fs.readFileSync(f, "utf8"); } catch (e) { if (e.code === "ENOENT") return EMPTY(); throw new StoreError(`${f} cannot be read (${e.code}): code writes nothing to the store until it can`); }
+  let pb = null; try { pb = JSON.parse(text); } catch {}
+  if (!pb || typeof pb !== "object" || !Array.isArray(pb.rules) || !Number.isInteger(pb.nextId) || !Number.isInteger(pb.version)) throw new StoreError(`${f} is corrupt: code will not overwrite it (restore it from playbook.json.bak, or move it aside to start empty)`);
+  pb.knobs ??= { sample: {} }; pb.knobs.sample ??= {}; pb.runs ??= [];
+  return pb;
 }
-export function readEvidence(store) {
-  try { return fs.readFileSync(file(store, "evidence.jsonl"), "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l)); } catch { return []; }
+/** Evidence records and the lines that could not be read (B7 review: one torn line made the whole store read as
+ *  empty, and every later proposal cited "evidence that does not exist"). A bad line is skipped and reported. */
+export function readEvidenceFile(store) {
+  let text = "";
+  try { text = fs.readFileSync(file(store, "evidence.jsonl"), "utf8"); } catch (e) { if (e.code !== "ENOENT") throw new StoreError(`evidence.jsonl cannot be read (${e.code})`); }
+  const records = [], bad = [];
+  text.split("\n").forEach((l, i) => { if (!l.trim()) return; try { const r = JSON.parse(l); if (r && typeof r.id === "string") records.push(r); else bad.push(i + 1); } catch { bad.push(i + 1); } });
+  return { records, bad };
+}
+export const readEvidence = (store) => readEvidenceFile(store).records;
+/** Append one record on a line of its own (a torn last line is closed first, so it never swallows the next record). */
+export function appendEvidence(store, rec) {
+  const f = file(store, "evidence.jsonl");
+  let lead = "";
+  try { const fd = fs.openSync(f, "r"), st = fs.fstatSync(fd); if (st.size) { const b = Buffer.alloc(1); fs.readSync(fd, b, 0, 1, st.size - 1); if (b[0] !== 10) lead = "\n"; } fs.closeSync(fd); } catch {}
+  fs.appendFileSync(f, lead + JSON.stringify(rec) + "\n");
+}
+/** The store's own lock (B7 review: two companies sharing a store lost updates and handed out one rule id twice; the
+ *  per-company state lock covers one company). Re-entrant within a process; a dead holder's lock is broken. */
+const held = new Map();
+export function withStoreLock(store, fn) {
+  const key = path.resolve(store);
+  if (held.get(key)) { held.set(key, held.get(key) + 1); try { return fn(); } finally { held.set(key, held.get(key) - 1); } }
+  fs.mkdirSync(store, { recursive: true });
+  const lock = file(store, ".lock"), until = Date.now() + 15_000;
+  for (;;) {
+    try { fs.writeFileSync(lock, String(process.pid), { flag: "wx" }); break; }
+    catch (e) {
+      if (e.code !== "EEXIST") throw e;
+      let age = 0, text = "";
+      try { age = Date.now() - fs.statSync(lock).mtimeMs; text = fs.readFileSync(lock, "utf8"); } catch { continue; }
+      if (!lockHolderAlive(text) || age > 10 * 60_000) { fs.rmSync(lock, { force: true }); continue; }
+      if (Date.now() > until) throw new StoreError(`the playbook store ${store} is locked by process ${text.trim()} (15 s)`);
+      Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 25);
+    }
+  }
+  held.set(key, 1);
+  try { return fn(); } finally { held.delete(key); fs.rmSync(lock, { force: true }); }
 }
 const atomic = (f, text) => { const tmp = `${f}.${process.pid}.tmp`; fs.writeFileSync(tmp, text); fs.renameSync(tmp, f); };
 export function playbookMd(pb) {
@@ -80,6 +163,8 @@ export function playbookMd(pb) {
 }
 export function writePlaybook(store, pb) {
   fs.mkdirSync(store, { recursive: true });
+  const f = file(store, "playbook.json");
+  if (fs.existsSync(f)) { readPlaybook(store); fs.copyFileSync(f, `${f}.bak`); } // never over an unreadable one; keep the last good
   pb.version = (pb.version ?? 0) + 1;
   atomic(file(store, "playbook.json"), JSON.stringify(pb, null, 1) + "\n");
   atomic(file(store, "playbook.md"), playbookMd(pb));
@@ -87,24 +172,34 @@ export function writePlaybook(store, pb) {
 }
 
 export const learnOf = (co) => (co.spec?.learn && co.data?.learn?.store ? co.data.learn : null);
-/** The active rules a role's pack carries. */
+/** The active rules a role's pack carries. An independent reviewer's pack carries only rules an author independent of
+ *  the work wrote (code, the founder, a reviewer), whatever the rule's roles say (B7 review). An unreadable store gives
+ *  none (the supervisor's tick records the store error). */
 export function activeRules(co, role) {
   const L = learnOf(co);
   if (!L || !co.spec.learn.roles.includes(role)) return [];
-  return readPlaybook(L.store).rules.filter((r) => r.status === "active" && (r.roles ?? co.spec.learn.roles).includes(role)).map((r) => ({ id: r.id, text: r.text }));
+  let pb; try { pb = readPlaybook(L.store); } catch { return []; }
+  const reviewer = reviewerRoles(co.spec).has(role);
+  return pb.rules.filter((r) => r.status === "active" && (r.roles ?? co.spec.learn.roles).includes(role) && (!reviewer || independentAuthor(co.spec, r.by))).map((r) => ({ id: r.id, text: r.text }));
 }
 
 /** At init: the store (outside the live dir), this run's id, and the knobs carried from earlier runs (inside bounds). */
 export function initLearn(co, { vars = {}, live }) {
   if (!co.spec.learn) return null;
-  const store = path.resolve(fillVars(co.spec.learn.store, vars));
-  const rel = path.relative(path.resolve(live), store);
-  if (!rel || (!rel.startsWith("..") && !path.isAbsolute(rel))) throw new Error(`learn.store ${store} is inside the live dir ${live}: it must persist across runs`);
+  const raw = fillVars(co.spec.learn.store, vars);
+  if (/\$\{/.test(raw) || !path.isAbsolute(raw)) throw new Error(`learn.store ${raw} is not an absolute directory: set it with init --vars (the spec leaves it to init)`);
+  const store = path.resolve(raw);
+  const inside = (p, root) => { const rel = path.relative(root, p); return !rel || (!rel.startsWith("..") && !path.isAbsolute(rel)); };
+  const realish = (p) => { let head = path.resolve(p), tail = []; while (!fs.existsSync(head) && path.dirname(head) !== head) { tail.unshift(path.basename(head)); head = path.dirname(head); } try { head = fs.realpathSync(head); } catch {} return path.join(head, ...tail); };
+  // B7 review: by its real path too (a symlink into the live dir), and never the kernel's own folder
+  const here = path.dirname(new URL(import.meta.url).pathname);
+  for (const [root, what] of [[live, "the live dir"], [here, "the kernel's folder"]]) if (inside(store, path.resolve(root)) || inside(realish(store), realish(root))) throw new Error(`learn.store ${store} is inside ${what} ${root}: it must persist across runs, outside the kernel and the live dir`);
   fs.mkdirSync(store, { recursive: true });
   const run = `r${new Date().toISOString().replace(/\D/g, "").slice(0, 14)}-${Math.random().toString(36).slice(2, 6)}`;
   co.data.learn = { store, run, gathered: [], retros: [], closed: false };
   co.data.vars = vars;
-  const pb = readPlaybook(store), carried = [];
+  let pb, carried = [];
+  try { pb = readPlaybook(store); } catch (e) { co.log.add({ type: "learn-store-error", store, why: e.message }); pb = EMPTY(); }
   for (const [k, rate] of Object.entries(pb.knobs?.sample ?? {})) {
     const [flow, stage] = k.split(":");
     try { co.engine.setSampleRate(flow, stage, rate, { by: "learn", why: `carried from ${store}` }); carried.push(k); }
@@ -156,17 +251,23 @@ export function evidenceFor(co, o) {
   };
 }
 
-/** Score the active rules on one order's evidence: helped when none of its target classes recurred, hurt when one did.
- *  Only rules in force before the order's last work-stage session (that session's pack carried them). */
-function score(co, pb, rec) {
-  const out = [];
+/** The stages that have caught defect class `c` in any evidence record: where the class can be seen at all. */
+const detectors = (evidence, c) => new Set(evidence.flatMap((e) => (e.revises ?? []).filter((r) => (r.classes ?? []).includes(c)).map((r) => r.stage)));
+/** The stages that judged this order: any verdict but a sampled-out one (B7 review). */
+export const judgedBy = (rec) => new Set(Object.entries(rec.stages ?? {}).filter(([, vs]) => vs.some((v) => v !== "sampled-out")).map(([st]) => st));
+/** Score the active rules on one order's evidence: hurt when a target class recurred; helped when none did and a stage
+ *  that catches it (one that caught it in some record) judged this order; otherwise unobserved, which scores nothing
+ *  (B7 review: a cancelled order with no work, or one whose eval was sampled out, counted as helped, so sampling and
+ *  K28 together kept rules that nothing had tested). Only rules in force before the order's last work-stage session. */
+function score(co, pb, rec, evidence) {
+  const out = [], ran = judgedBy(rec);
   for (const r of pb.rules) {
     if (r.status !== "active" || !(r.addedMs <= rec.lastWorkMs)) continue;
     const hit = r.targets.filter((c) => rec.classes.includes(c));
-    const k = hit.length ? "hurt" : "helped";
-    r[`${k}Count`]++;
-    const t = ((r.runs ??= {})[rec.run] ??= { helped: 0, hurt: 0 }); t[k]++;
-    co.log.add({ type: "learn-score", rule: r.id, order: rec.order, evidence: rec.id, outcome: k, recurred: hit });
+    const seen = r.targets.filter((c) => [...detectors(evidence, c)].some((st) => ran.has(st)));
+    const k = hit.length ? "hurt" : seen.length ? "helped" : "unobserved";
+    if (k !== "unobserved") { r[`${k}Count`]++; const t = ((r.runs ??= {})[rec.run] ??= { helped: 0, hurt: 0 }); t[k]++; }
+    co.log.add({ type: "learn-score", rule: r.id, order: rec.order, evidence: rec.id, outcome: k, recurred: hit, ...(k === "unobserved" ? { why: `no stage that catches ${r.targets.join(", ")} judged ${rec.order} (${[...ran].join(", ") || "none ran"})` } : {}) });
     out.push({ rule: r.id, outcome: k });
   }
   return out;
@@ -196,20 +297,32 @@ const terminal = (o) => ["done", "cancelled"].includes(o.stage);
 export function learnTick(co) {
   const L = learnOf(co);
   if (!L) return [];
+  try { return withStoreLock(L.store, () => tickUnlocked(co, L)); }
+  catch (e) {
+    if (!e.store) throw e;
+    // the store cannot be read or locked: nothing is gathered or written (the evidence waits), once per distinct error
+    if (L.storeError !== e.message) { L.storeError = e.message; co.log.add({ type: "learn-store-error", store: L.store, why: e.message }); }
+    return [{ step: "learn-store", result: "error", output: e.message }];
+  }
+}
+function tickUnlocked(co, L) {
   const steps = [], spec = co.spec.learn, os = [...co.engine.orders.values()];
   const fresh = os.filter((o) => terminal(o) && !L.gathered.includes(o.id));
   let pb = null;
   if (fresh.length) {
     pb = readPlaybook(L.store);
+    const { records: evidence, bad } = readEvidenceFile(L.store);
+    if (bad.length && L.badLines !== bad.join(",")) { L.badLines = bad.join(","); co.log.add({ type: "learn-store-error", store: L.store, why: `evidence.jsonl lines ${bad.join(", ")} cannot be read: skipped` }); }
     for (const o of fresh) {
       const rec = evidenceFor(co, o);
-      fs.appendFileSync(file(L.store, "evidence.jsonl"), JSON.stringify(rec) + "\n");
+      appendEvidence(L.store, rec); evidence.push(rec);
       L.gathered.push(o.id);
-      const sc = score(co, pb, rec);
+      const sc = score(co, pb, rec, evidence);
       co.log.add({ type: "learn-evidence", order: o.id, evidence: rec.id, outcome: rec.outcome, loops: rec.loops, classes: rec.classes, scored: sc.length });
       steps.push({ step: "learn-evidence", order: o.id, result: rec.outcome, output: `${rec.id}: ${rec.classes.join(", ") || "no defects"}` });
     }
   }
+  delete L.storeError;
   const last = Math.max(0, ...L.retros.map((r) => r.at)), since = L.gathered.length - last;
   if (os.some((o) => !terminal(o))) L.closed = false; // new work after a close: the run ends again when it is done
   const end = os.length > 0 && os.every(terminal) && !L.closed;
@@ -247,25 +360,45 @@ function runCodeRetro(co, r) {
 
 // ---- proposals: validated change by change
 /** Instructions a playbook rule may never give: skip or weaken a check, read what independence keeps out, or touch
- *  the harness's own machinery (a negation before the verb, "never skip the tests", is a fine rule). */
+ *  the harness's own machinery. B7 review: the list missed plain phrasings ("Tests are optional", "Don't bother with
+ *  the selftest", "a waste of turns") and a negation anywhere before the verb ("It is not a problem to skip …")
+ *  excused the rule; now only a prohibition right before the verb ("never skip", "do not hand in without running") is
+ *  a fine rule, and every match in the text is judged. A deny list stays best effort: rules for an independent
+ *  reviewer are held to more (reviewerNarrows), and only an independent author may write them (ruleProblem). */
+const CHECK = "(?:checks?|checking|tests?|testing|test ?suites?|node --test|self-?tests?|self-?checks?|selftests?|evals?|evaluations?|evaluators?|reviews?|reviewing|reviewers?|guards?|hooks?|acceptance|test1|verif(?:y|ying|ication)|replay(?:s|ing)?|play-?throughs?|edge cases?)";
 const WEAKEN = [
-  { re: /\b(skip|skipping|bypass|disable|ignore|omit|avoid|turn off|leave out|don'?t run|do not run|no need to run|without running|without checking|instead of running)\b[^.;]{0,60}?\b(checks?|tests?|testing|eval|evaluation|evaluator|reviews?|guards?|hooks?|self-?tests?|self-?checks?|acceptance|test1|verification|verify)\b/i, why: "it tells someone to skip or weaken a check", negatable: true },
-  { re: /\b(builder'?s? notes|build notes|NOTES\.md|hidden tests?|acceptance (?:tests?|cmd|runner|suite)|state\.json|evidence\.jsonl|playbook\.(?:json|md)|history_withheld)\b/i, why: "it points at what independence keeps out of a pack (builder notes, hidden tests) or at code's own records" },
-  { re: /\b(sampled?[- ]?out|sample rate|independen\w*|--no-verify|--force|META_ROLE|META_LIVE_DIR|--by=|--verdict=pass)\b/i, why: "it touches the harness's guards (independence, sampling, roles, verdicts)" },
-  { re: /\b(pass|approve|sign|accept)\b[^.;]{0,30}\b(anyway|regardless|without (?:reading|playing|running|checking))\b/i, why: "it tells a reviewer to pass work it did not judge" },
+  { re: new RegExp(`\\b(skip|skipping|skips|bypass|disable|ignore|omit|avoid|drop|turn off|leave out|don'?t run|do not run|no need to run|without running|without checking|without testing|instead of running|stop running)\\b[^.;]{0,60}?\\b${CHECK}\\b`, "gi"), why: "it tells someone to skip or weaken a check", negatable: true },
+  { re: new RegExp(`\\b${CHECK}\\b[^.;]{0,40}?\\b(?:is|are|seem|seems|feel|feels)\\s+(?:\\w+\\s+)?(?:optional|unnecessary|not needed|not necessary|not required|overkill|redundant|pointless|useless|a waste|wasted|enough once|not worth)`, "gi"), why: "it calls a check optional" },
+  { re: new RegExp(`\\b(?:optional|unnecessary|needless|pointless|redundant|overkill|no need for|no point in|not worth|waste of (?:time|turns|tokens)|don'?t bother|do not bother|needn'?t|need not|can be skipped|may be skipped)\\b[^.;]{0,40}?\\b${CHECK}\\b`, "gi"), why: "it calls a check optional" },
+  { re: new RegExp(`\\b${CHECK}\\b[^.;]{0,40}?\\b(?:waste of|wastes?|can be skipped|may be skipped|is optional|are optional)\\b`, "gi"), why: "it calls a check optional" },
+  { re: /\b(?:don'?t|do not) bother\b/gi, why: "it tells someone not to bother with part of the work" },
+  { re: /\b(?:never|do not|don'?t|no need to|needn'?t|stop)\s+(?:\w+\s+){0,2}?(?:run|re-?run|replay|play|test|re-?test|check|re-?check|verify|exercise|try)\b/gi, why: "it tells someone not to run, play or check part of the work" },
+  { re: /\bhand(?:s|ing)?(?: it| your work| the game| the work)? in\b[^.;]{0,15}?\b(?:as soon as|right away|immediately|early|first|before (?:you )?(?:test|check|run|verif|play|replay))/gi, why: "it tells the worker to hand in before checking" },
+  { re: /\b(?:pass|approve|sign|accept)\w*\b[^.;]{0,40}?\bif\b[^.;]{0,40}?\b(?:green|pass(?:es|ing)?|loads?|runs?|compiles?|starts?)\b/gi, why: "it lets a reviewer pass work on a proxy instead of judging it" },
+  { re: /\balready\b[^.;]{0,30}?\b(?:verified|checked|tested|reviewed|covered|validated)\b/gi, why: "it tells someone to trust an earlier check instead of making their own" },
+  { re: /\b(builder'?s? notes|build notes|NOTES\.md|hidden tests?|acceptance (?:tests?|cmd|runner|suite)|state\.json|evidence\.jsonl|playbook\.(?:json|md)|history_withheld)\b/gi, why: "it points at what independence keeps out of a pack (builder notes, hidden tests) or at code's own records" },
+  { re: /\b(sampled?[- ]?out|sample rate|independen\w*|--no-verify|--force|META_ROLE|META_LIVE_DIR|--by=|--verdict=pass)\b/gi, why: "it touches the harness's guards (independence, sampling, roles, verdicts)" },
+  { re: /\b(pass|approve|sign|accept)\b[^.;]{0,30}\b(anyway|regardless|without (?:reading|playing|running|checking))\b/gi, why: "it tells a reviewer to pass work it did not judge" },
 ];
+// a prohibition right before the verb (no clause break): "never skip", "do not hand in without running"
+const PROHIBIT = /\b(?:never|do not|don'?t|must not|mustn'?t|should not|shouldn'?t)\s+(?:ever\s+)?(?:(?:hand|turn)(?: it| your work| the game| the work)? in|ship|submit|finish|stop|move on|sign off)?\s*$/i;
 export function weakens(text) {
+  const t = String(text);
   for (const w of WEAKEN) {
-    const m = w.re.exec(text);
-    if (!m) continue;
-    if (w.negatable && /\b(never|not|no|n't)\b[^.;]{0,25}$/i.test(text.slice(0, m.index))) continue;
-    return w.why;
+    for (const m of t.matchAll(w.re)) {
+      if (w.negatable && PROHIBIT.test(t.slice(0, m.index))) continue;
+      return w.why;
+    }
   }
   return null;
 }
+/** A rule for an independent reviewer may only add a check: no word that narrows, excuses or pre-decides the review. */
+const NARROW = /\b(?:only|just|solely|merely|focus(?:es|ed|ing)?|limit(?:s|ed)?|restrict\w*|skip\w*|ignore\w*|trust\w*|assum\w*|already|approve\w*|sign(?:s|ed)? off|accept\w*|enough|suffic\w*|instead|rather than|don'?t|do not|never|no need|not|unless|except|lenient\w*|benefit of the doubt)\b/i;
+export const reviewerNarrows = (text) => NARROW.test(String(text)) ? "a rule for an independent reviewer may only add a check: it may not narrow, excuse or pre-decide the review" : null;
 const normText = (t) => String(t).toLowerCase().replace(/\s+/g, " ").trim();
-/** Why a proposed rule is refused, or null. */
-export function ruleProblem(r, { evidence, pb, learn, pending = 0 }) {
+/** Why a proposed rule is refused, or null. `reviewers`: the spec's independent reviewers; `independent`: whether the
+ *  author is independent of the work (code, the founder, a reviewer); only such an author writes rules for a reviewer. */
+export function ruleProblem(r, { evidence, pb, learn, pending = 0, reviewers = new Set(), independent = true }) {
   if (!r || typeof r !== "object" || Array.isArray(r) || Object.keys(r).some((k) => !["text", "why", "targets", "roles"].includes(k))) return "a rule is {text, why, targets, roles}";
   if (typeof r.text !== "string" || r.text.trim().length < 10 || r.text.length > RULE_MAX_CHARS || /\n/.test(r.text)) return `text is one line of 10-${RULE_MAX_CHARS} characters`;
   if (!(Array.isArray(r.why) && r.why.length && r.why.every((x) => typeof x === "string"))) return "why lists the evidence ids it rests on";
@@ -279,6 +412,9 @@ export function ruleProblem(r, { evidence, pb, learn, pending = 0 }) {
   if (r.roles != null && !(Array.isArray(r.roles) && r.roles.length && r.roles.every((x) => learn.roles.includes(x)))) return `roles are learning roles (${learn.roles.join(", ")})`;
   const w = weakens(r.text);
   if (w) return `refused: ${w}`;
+  const forReviewer = (r.roles ?? learn.roles).filter((x) => reviewers.has(x));
+  if (forReviewer.length && r.roles != null && !independent) return `refused: ${forReviewer.join(", ")} review${forReviewer.length > 1 ? "" : "s"} independently: only code, the founder or a reviewer writes its rules, never the work side`;
+  if (forReviewer.length && (r.roles != null || independent)) { const n = reviewerNarrows(r.text); if (n) return `refused: ${n}`; }
   if (pb.rules.some((x) => x.status === "active" && normText(x.text) === normText(r.text))) return "an active rule says this already";
   const cap = learn.maxRules ?? DEFAULT_MAX_RULES;
   if (pb.rules.filter((x) => x.status === "active").length + pending >= cap) return `the playbook holds at most ${cap} active rules (retire one first)`;
@@ -296,12 +432,20 @@ export function applyProposal(co, proposal, { by, retro = null }) {
   const keys = P ? Object.keys(P).filter((k) => !["add", "retire", "sample", "note"].includes(k)) : [];
   const lists = P ? ["add", "retire", "sample"].every((k) => P[k] == null || Array.isArray(P[k])) : false;
   if (!P || keys.length || !lists) { refuse("proposal", proposal, "a proposal is {add: [rules], retire: [{id, why}], sample: [{stage, rate, why}], note}"); return close(co, retro, by, res); }
+  return withStoreLock(L.store, () => applyUnlocked(co, P, { by, retro, res, refuse }));
+}
+function applyUnlocked(co, P, { by, retro, res, refuse }) {
+  const L = learnOf(co);
   const pb = readPlaybook(L.store), evidence = readEvidence(L.store), learn = co.spec.learn, now = new Date();
+  const reviewers = reviewerRoles(co.spec), independent = independentAuthor(co.spec, by);
   for (const r of P.add ?? []) {
-    const e = ruleProblem(r, { evidence, pb, learn });
+    const e = ruleProblem(r, { evidence, pb, learn, reviewers, independent });
     if (e) { refuse("add", r, e); continue; }
     const byId = new Map(evidence.map((x) => [x.id, x]));
-    const rule = { id: `P-${pb.nextId++}`, text: r.text.trim(), why: r.why, targets: r.targets ?? [...new Set(r.why.flatMap((x) => byId.get(x).classes))], ...(r.roles ? { roles: r.roles } : {}), status: "active", added: now.toISOString(), addedMs: now.getTime(), run: L.run, by, retro, helpedCount: 0, hurtCount: 0, runs: {}, streak: 0 };
+    // a work-side author's rule with no roles is for the work side's learning roles only (never a reviewer's pack)
+    const roles = r.roles ?? (independent ? null : learn.roles.filter((x) => !reviewers.has(x)));
+    if (roles && !roles.length) { refuse("add", r, "refused: every learning role reviews independently, and this author is on the work side"); continue; }
+    const rule = { id: `P-${pb.nextId++}`, text: r.text.trim(), why: r.why, targets: r.targets ?? [...new Set(r.why.flatMap((x) => byId.get(x).classes))], ...(roles ? { roles } : {}), status: "active", added: now.toISOString(), addedMs: now.getTime(), run: L.run, by, retro, helpedCount: 0, hurtCount: 0, runs: {}, streak: 0 };
     pb.rules.push(rule); res.added.push(rule.id);
     co.log.add({ type: "learn-rule-add", rule: rule.id, by, retro, targets: rule.targets, why: rule.why, text: rule.text });
   }

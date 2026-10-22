@@ -555,6 +555,10 @@ export function launchConfig(co, { role, msgs = [] }) {
     const p = globsAt(w, w.repo, w.base ?? "HEAD", cache);
     add(w.repo, p); add(w.root, p, { nested: 1 });
   }
+  // K28 (B7 review): the playbook store is code's (learn propose changes it, validated): no agent writes there, with
+  // or without a spec workspace
+  const store = co.data?.learn?.store;
+  if (store && !roots.some((x) => x.dir === store)) roots.push({ dir: store, globs: ["**"], file: "the K28 playbook store (code writes it; a retro changes it with learn propose)" });
   return { role, ...Object.fromEntries(ROLE_LAUNCH_KEYS.map((k) => [k, r[k] ?? null])), workdir: workdirs[0] ?? null, workdirs, roots, workspace: !!w, missing };
 }
 

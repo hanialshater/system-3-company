@@ -127,7 +127,7 @@ async function run(ev) {
     const mu = Object.values(result?.modelUsage ?? {});
     cumulative += mu.reduce((a, u) => a + u.inputTokens + u.outputTokens + u.cacheReadInputTokens + u.cacheCreationInputTokens, 0);
     cost += mu.reduce((a, u) => a + (u.costUSD ?? 0), 0);
-    if (!warmFallback({ resumed: !!resume, error, result, sawAssistant: saw }) || !ev.coldBrief) break;
+    if (!warmFallback({ resumed: !!resume, error, result, sawAssistant: saw, aborted: ac.signal.aborted }) || !ev.coldBrief) break;
     const why = String(error ?? result?.subtype ?? "no result").slice(0, 300);
     note({ event: "warm-fallback", launch: id, n: k, role: ev.role, sdk: resume, why });
     meta("launch", "resume-failed", `--launch=${id}`, `--role=${ev.role}`, `--sdk-session=${resume}`, `--why=${why}`);

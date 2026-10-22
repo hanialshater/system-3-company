@@ -87,6 +87,11 @@ test("the launcher's side: queryOptions resumes; a failed resume (and only that)
   assert.equal(G.warmFallback({ resumed: true, error: "aborted", sawAssistant: true }), false, "it worked, then failed: a failed launch, never run twice");
   assert.equal(G.warmFallback({ resumed: false, error: "x" }), false, "a cold launch has nothing to fall back to");
   assert.equal(G.warmFallback({ resumed: true, result: { is_error: false } }), false);
+  // B7 review: the launch's own abort (sessionMin, --kill) before the first turn is not a failed resume: the SDK session
+  // stays healthy, and the launch loop must not rerun the cold brief on the same aborted controller
+  assert.equal(G.warmFallback({ resumed: true, error: "session over 60 min", sawAssistant: false, aborted: true }), false);
+  assert.equal(G.warmFallback({ resumed: true, error: "injected crash (--kill)", sawAssistant: false, aborted: true }), false);
+  assert.match(fs.readFileSync(new URL("../launcher/launch.mjs", import.meta.url), "utf8"), /warmFallback\(\{[^}]*aborted: ac\.signal\.aborted/, "the launcher passes its controller's state");
   const src = fs.readFileSync(path.join(HERE, UP, "launcher", "launch.mjs"), "utf8");
   assert.match(src, /--sdk-session=\$\{sdk\}/, "every finish reports the SDK session id");
   assert.match(src, /meta\("launch", "resume-failed"/, "a fallback is recorded in the state");

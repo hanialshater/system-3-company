@@ -357,8 +357,12 @@ export function packProblem(p) {
 // K27 (founder 2026-10-22: "a FAST and MORE ACCURATE harness": one external evaluation at the end, cheap): a review
 // stage may take its waiting orders in one session, `batch: {max, waitMin}` (one cold start for up to max orders; the
 // planner holds the first until max wait or the oldest has waited waitMin minutes), and may run for a sampled share of
-// orders, `sample: {rate, min, max, always}`: deterministic by the order's id (unitHash), always run when a condition
-// of SAMPLE_ALWAYS holds (looped: a revise came back; self-check-failed: the worker's last self-check failed; now), and otherwise signed by code as sampled-out (an event, Engine.notifyStage). The rate is a
+// orders, `sample: {rate, min, max, always}`: a draw by the order's id salted per company (unitHash of the engine's
+// sampleSalt, set at init: B7 review, unsalted every run's O-1 drew 0.9783 at eval, a switch a builder could compute),
+// decided once per stage and loop when the stage is reached (o.sampled keeps it: a later notify reads it, never
+// recomputes), always run when a condition of SAMPLE_ALWAYS holds (looped: a revise came back; self-check-failed: the
+// worker's own last self-check this loop failed, or it handed in without one; now), and otherwise signed by code as
+// sampled-out (an event, Engine.notifyStage). The rate is a
 // policy knob the self-improvement step (K28, learn.mjs) may move, never outside the founder's [min, max] of the spec.
 export const SAMPLE_ALWAYS = ["looped", "self-check-failed", "now"];
 /** K27: a stable draw in [0, 1) from a string (FNV-1a, 32 bits; lib.mjs imports nothing, so no crypto). */
@@ -497,6 +501,7 @@ export class Engine {
     this.defaultMaxLoops = null; // K9: the spec's `maxLoops` (state.mjs make); null: no cap unless the lane policy sets one
     this.standing = []; // K15: the spec's approvals.standing (state.mjs make; not persisted: the spec is in the state)
     this.sampleRates = {}; // K27: "<flow name>:<stage>" → the rate now (K28 may move it within the stage's bounds; persisted)
+    this.sampleSalt = null; // K27 (B7 review): the company's salt for sample draws (meta.mjs init sets one; persisted)
   }
 
   /** M5: the knobs of a lane's active policy (the lane as it runs now; an order's own pinned version is policyOf). */
@@ -536,15 +541,29 @@ export class Engine {
   sampleKey(o, stage) { return `${this.flows.get(o.flow)?.name ?? String(o.flow).split("@")[0]}:${stage}`; }
   /** K27: the rate a sampled stage runs at now (K28's change, else the spec's). */
   sampleRate(o, s) { const r = this.sampleRates[this.sampleKey(o, s.stage)]; return typeof r === "number" ? r : s.sample.rate; }
-  /** K27: does stage `s` run for order `o` at this loop? Pure but for the one `sample` event per stage and loop (log). */
+  /** K27: the order's draw for stage `stage`, in [0, 1): salted by the company (B7 review), so order ids that restart
+   *  at O-1 in every live dir do not draw the same number in every run. */
+  sampleDraw(o, stage) { return unitHash(`${this.sampleSalt ? `${this.sampleSalt}:` : ""}${o.id}:${stage}`); }
+  /** K27 (B7 review): the worker's own last self-check this loop (since the order was last sent back or resumed): the
+   *  builder's (or an unnamed caller's) at a work stage. A check by another role, at another stage or in an earlier
+   *  loop is not the worker's word on this hand-in. */
+  lastSelfCheck(o) {
+    const ev = this.log.events, start = ev.findLast((e) => e.order === o.id && (e.type === "reopen" || e.type === "resumed"))?.seq ?? 0;
+    return ev.findLast((e) => e.type === "self-check" && e.order === o.id && (e.seq ?? Infinity) > start && (e.by == null || e.by === o.builder) && (e.stage == null || this.isWorkStage(o, e.stage))) ?? null;
+  }
+  /** K27: does stage `s` run for order `o` at this loop? Decided once per stage and loop (log: when the stage is reached,
+   *  with its one sample event); afterwards the decision is read from o.sampled, never recomputed (B7 review: a resume
+   *  at the stage recomputed it, and a rate change or a new self-check in between disagreed with the logged one). */
   sampleDecision(o, s, { log = false } = {}) {
-    const rate = this.sampleRate(o, s), draw = unitHash(`${o.id}:${s.stage}`);
-    // self-check-failed: the worker's last self-check before hand-in failed (failing ones while it works are normal)
-    const lastCheck = this.log.events.findLast((e) => e.type === "self-check" && e.order === o.id);
-    const held = (s.sample.always ?? []).filter((c) => (c === "looped" ? o.loops > 0 : c === "now" ? o.priority === "now" : lastCheck?.pass === false));
+    const at = `${s.stage}:${o.loops}`, kept = o.sampled?.[at];
+    if (kept && typeof kept === "object") return { ...kept, kept: true };
+    const rate = this.sampleRate(o, s), draw = this.sampleDraw(o, s.stage);
+    // self-check-failed: the worker's own last self-check this loop failed, or there was none (B7 review: a builder
+    // that never self-checked escaped the condition, and any role's check at any stage counted)
+    const lastCheck = this.lastSelfCheck(o);
+    const held = (s.sample.always ?? []).filter((c) => (c === "looped" ? o.loops > 0 : c === "now" ? o.priority === "now" : lastCheck?.pass !== true));
     const d = { run: held.length > 0 || draw < rate, rate, draw: Math.round(draw * 1e4) / 1e4, always: held };
-    const at = `${s.stage}:${o.loops}`;
-    if (log && (o.sampled ??= {})[at] == null) { o.sampled[at] = d.run ? "run" : "out"; this.log.add({ type: d.run ? "sample-run" : "sample-skip", order: o.id, stage: s.stage, loops: o.loops, ...d }); }
+    if (log && (o.sampled ??= {})[at] == null) { o.sampled[at] = d; this.log.add({ type: d.run ? "sample-run" : "sample-skip", order: o.id, stage: s.stage, loops: o.loops, ...d }); }
     return d;
   }
   /** K27/K28: move a sampled stage's rate, inside the founder's bounds (the spec's sample min/max). */

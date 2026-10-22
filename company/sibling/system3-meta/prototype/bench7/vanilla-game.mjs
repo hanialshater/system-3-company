@@ -11,8 +11,13 @@
 //   - same model as the Meta arms (the launcher's --model default, read from launch.mjs: no model id lives here), same
 //     tools (Bash/Read/Write/Edit/Glob/Grep, no Agent tool), settingSources [] (the launcher's default), maxTurns 200
 //     and 60 min a turn (the builder role's maxTurns and sessionMin), one resume on a crash or timeout.
-//   - the same access rule as the Meta arms (setup.mjs accessDecision, here as an in-process PreToolUse hook): every
-//     tool call is logged to <runs>/_operator/access.jsonl, a benchmark-only path is denied.
+//   - the same access rule as the Meta arms (setup.mjs accessDecision with accessRules(P, "V", game): the game's own
+//     dir is open, the benchmark's area around it closed, relative paths resolved), here as an in-process PreToolUse
+//     hook: every tool call is logged to <runs>/_operator/access.jsonl, a call that reaches outside is denied.
+//   - the same wall clock per game as the Meta arms (setup.mjs GAME_MIN): no round starts after it, and a turn ends at it.
+//   - a hidden runner that itself errors spends no round and sends nothing (B7 review: V got the runner's stderr as a
+//     round of feedback, where Meta's accept exits 3, a stage error that spends no loop): it is retried twice, then
+//     the game ends with the error recorded for the operator.
 //   - ledger <runs>/_operator/V/vanilla.jsonl: start, each turn (session, cost, cumulative, minutes), each hidden run
 //     (pass, total, failing), and a game-summary per game: first hand-in and final pass rate, rounds, cost, tokens, minutes.
 //
@@ -21,7 +26,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { paths, hidden, accessDecision, accessNote, denyRoots, DENY_TEXT, GAMES } from "./setup.mjs";
+import { paths, hidden, accessDecision, accessNote, accessRules, denyRoots, DENY_TEXT, GAMES, GAME_MIN } from "./setup.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const opt = Object.fromEntries(process.argv.slice(2).filter((a) => a.startsWith("--")).map((a) => { const [k, ...v] = a.slice(2).split("="); return [k, v.join("=") || true]; }));
@@ -49,7 +54,7 @@ if (DRY) {
     const dir = P.live("V", g), spec = fs.readFileSync(P.spec(g), "utf8");
     console.log(`===== ${g}: ${dir}\n${promptFor(g, dir, spec)}\n`);
   }
-  console.log(JSON.stringify({ dry: true, games: RUN_GAMES, model: MODEL, tools: TOOLS, settingSources: [], maxTurns: MAX_TURNS, turnMin: TURN_MIN, maxRounds: MAX_ROUNDS, ledger: P.vledger, access: P.access, denyRoots: denyRoots(P, "V") }, null, 1));
+  console.log(JSON.stringify({ dry: true, games: RUN_GAMES, model: MODEL, tools: TOOLS, settingSources: [], maxTurns: MAX_TURNS, turnMin: TURN_MIN, maxRounds: MAX_ROUNDS, gameMin: GAME_MIN, ledger: P.vledger, access: P.access, denyRoots: denyRoots(P, "V", RUN_GAMES[0]) }, null, 1));
   process.exit(0);
 }
 
@@ -59,13 +64,13 @@ const note = (x) => { fs.mkdirSync(path.dirname(P.vledger), { recursive: true })
 const env = { ...process.env };
 for (const k of ["CLAUDECODE", "CLAUDE_CODE_SESSION_ID", "CLAUDE_AUTO_BACKGROUND_TASKS", "CLAUDE_CODE_BG_TASKS_REPORT_RUNNING", "NODE_TEST_CONTEXT", "B7_DEBUG"]) delete env[k];
 for (const k of Object.keys(env)) if (k.startsWith("META_")) delete env[k];
-const ROOTS = denyRoots(P, "V");
 
 async function playGame(game) {
   const dir = P.live("V", game), spec = fs.readFileSync(P.spec(game), "utf8");
   fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, "SPEC.md"), spec);
   let session = null, turns = 0;
+  const ROOTS = accessRules(P, "V", game), T0 = Date.now(), left = () => GAME_MIN * 60_000 - (Date.now() - T0);
   const hook = async (input) => {
     const d = accessDecision({ tool: input?.tool_name, input: input?.tool_input, cwd: input?.cwd || dir }, ROOTS);
     try { accessNote(P, { arm: "V", game, sid: input?.session_id ?? session, tool: input?.tool_name, input: input?.tool_input, cwd: input?.cwd || dir, d }); } catch {}
@@ -73,7 +78,8 @@ async function playGame(game) {
   };
   async function turn(prompt, label) {
     turns++;
-    const ac = new AbortController(), limit = setTimeout(() => ac.abort(new Error(`turn over ${TURN_MIN} min`)), TURN_MIN * 60_000);
+    const ms = Math.max(1000, Math.min(TURN_MIN * 60_000, left()));
+    const ac = new AbortController(), limit = setTimeout(() => ac.abort(new Error(ms < TURN_MIN * 60_000 ? `game over ${GAME_MIN} min` : `turn over ${TURN_MIN} min`)), ms);
     const t0 = Date.now(); let result = null, error = null;
     try {
       for await (const m of query({ prompt, options: { cwd: dir, model: MODEL, abortController: ac, env, settingSources: [], tools: TOOLS, allowedTools: TOOLS, permissionMode: "dontAsk", permissionPrompts: "none", maxTurns: MAX_TURNS, hooks: { PreToolUse: [{ hooks: [hook] }] }, ...(session ? { resume: session } : {}) } })) {
@@ -92,20 +98,23 @@ async function playGame(game) {
   }
   async function turnWithResume(prompt, label) {
     let ok = await turn(prompt, label);
-    for (let r = 0; !ok && r < RESUMES; r++) ok = await turn(session ? "You were interrupted. Continue the task where you left off, and say when you are done." : prompt, `${label} resume`);
+    for (let r = 0; !ok && r < RESUMES && left() > 0; r++) ok = await turn(session ? "You were interrupted. Continue the task where you left off, and say when you are done." : prompt, `${label} resume`);
     return ok;
   }
-  const T0 = Date.now();
-  note({ event: "start", game, dir, model: MODEL, tools: TOOLS, settingSources: [], maxTurns: MAX_TURNS, turnMin: TURN_MIN, maxRounds: MAX_ROUNDS });
+  note({ event: "start", game, dir, model: MODEL, tools: TOOLS, settingSources: [], maxTurns: MAX_TURNS, turnMin: TURN_MIN, maxRounds: MAX_ROUNDS, gameMin: GAME_MIN });
   let prompt = promptFor(game, dir, spec), h = null, first = null;
   for (let round = 0; round <= MAX_ROUNDS; round++) {
+    if (left() <= 0) { note({ event: "stop", game, round, why: `wall clock: ${GAME_MIN} min` }); break; }
     const ok = await turnWithResume(prompt, round ? `feedback ${round}` : "build");
     h = hidden(P, game, dir);
+    for (let k = 0; h.error && k < 2; k++) { note({ event: "hidden-error", game, round, try: k + 1, error: h.error }); h = hidden(P, game, dir); }
     note({ event: "hidden", game, round, ok, ...(h.error ? { error: h.error } : { pass: h.pass, total: h.total, rate: h.rate, failing: h.failing }) });
+    if (h.error) { note({ event: "stop", game, round, why: "the hidden runner failed three times: an operator error, no round spent" }); break; }
     first ??= h;
-    if (!h.error && !h.fail) break;
+    if (!h.fail) break;
     if (!ok && !session) break; // never started: nothing to resume
-    prompt = h.error ? feedback([`load: the suite could not run (${h.error.slice(0, 200)})`]) : feedback(h.failing);
+    if (left() <= 0) { note({ event: "stop", game, round, why: `wall clock: ${GAME_MIN} min` }); break; }
+    prompt = feedback(h.failing);
   }
   const s = { event: "game-summary", game, session, turns, minutes: Math.round((Date.now() - T0) / 600) / 100, first: first?.error ? null : { pass: first?.pass, total: first?.total, rate: first?.rate }, final: h?.error ? null : { pass: h?.pass, total: h?.total, rate: h?.rate, failing: h?.failing } };
   note(s);

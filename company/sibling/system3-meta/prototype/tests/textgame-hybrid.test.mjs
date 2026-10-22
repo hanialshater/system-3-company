@@ -7,9 +7,10 @@ import { spawnSync } from "node:child_process";
 
 // B7 (founder 2026-10-22: "start with smaller task ... fast and more accurate harness with self improvement, use complex
 // text game as example"): specs/textgame-hybrid.json, a small company that builds a text game from a spec. build (a warm
-// builder that self-checks in its session) → test1 (code: its own tests) → eval (an independent evaluator, batched,
-// sampled by a knob at 1.0, reading only the spec and the game) → accept (code: the orderer's hidden runner, categories
-// only) → ship (code). Learn: a playbook store passed as a spec variable, for builder and evaluator.
+// builder that self-checks in its session) → test1 (code: its own tests) → eval (an independent evaluator, sampled by a
+// knob at 1.0, reading only the spec and the game) → accept (code: the orderer's hidden runner, categories only) → ship
+// (code). Learn: a playbook store set at init (a spec variable left ""), for the builder (B7 review: the lead, on the
+// work side, never writes the evaluator's pack). No eval batch: one order per company would wait out every hold.
 // specs/textgame-hybrid-nolearn.json is the same company without `learn`. A dry run by the CLI (no agent session runs).
 const TMP = fs.mkdtempSync(path.join(os.tmpdir(), "meta-b7-"));
 process.env.META_LIVE_DIR = path.join(TMP, "unit");
@@ -27,17 +28,18 @@ test("the hybrid spec and its no-learn twin validate, and differ only by learn",
   assert.deepEqual(validateSpec(N), []);
   const { learn, vars, name, ...h } = H, { name: n2, ...n } = N;
   assert.deepEqual(n, h, "identical without learn (and the vars only learn reads)");
-  assert.deepEqual([name, n2, learn.roles, learn.retro, learn.store], ["textgame-hybrid", "textgame-hybrid-nolearn", ["builder", "evaluator"], { role: "lead" }, "${playbook_store}"]);
-  assert.ok(path.isAbsolute(vars.playbook_store) && vars.playbook_store.endsWith("/b7/playbook-store"));
+  assert.deepEqual([name, n2, learn.roles, learn.retro, learn.store], ["textgame-hybrid", "textgame-hybrid-nolearn", ["builder"], { role: "lead" }, "${playbook_store}"]);
+  assert.deepEqual(vars, { playbook_store: "" }, "the store is set at init (--vars): no machine's path in a repo spec");
+  for (const r of H.roles.filter((x) => !x.human)) assert.deepEqual(r.tools, ["Bash", "Read", "Write", "Edit", "Glob", "Grep"], `${r.id} names its tools (the SDK then shows only those, as V's six)`);
   const st = Object.fromEntries(H.flow.stages.map((s) => [s.stage, s]));
   assert.deepEqual(H.flow.stages.map((s) => s.stage), ["build", "test1", "eval", "accept", "ship"]);
   assert.deepEqual([H.roles.find((r) => r.id === "builder").warm, st.build.selftest.argv, st.test1.signer, st.test1.run], [true, ["node", "--test"], "code", undefined]);
-  assert.deepEqual([st.eval.signer, st.eval.independent, st.eval.batch, st.eval.sample.rate, st.eval.pack.history], [{ role: "evaluator" }, true, { max: 3, waitMin: 5 }, 1, false]);
+  assert.deepEqual([st.eval.signer, st.eval.independent, st.eval.batch, st.eval.sample.rate, st.eval.pack.history], [{ role: "evaluator" }, true, undefined, 1, false]);
   assert.ok(st.eval.pack.exclude.includes("NOTES*.md") && st.eval.pack.include.includes("SPEC.md"));
   assert.deepEqual([st.accept.signer, st.accept.run.argvFrom, st.ship.signer], ["code", "order", "code"]);
   assert.ok(!H.roles.some((r) => r.level === "release"), "no release role: a code ship");
   const abs = [...JSON.stringify(H).matchAll(/"(\/[^"]+)"/g)].map((m) => m[1]);
-  assert.deepEqual(abs, [vars.playbook_store], "no absolute path but the store's (a spec variable, init --vars overrides it)");
+  assert.deepEqual(abs, [], "no absolute path");
 });
 
 function company(live, spec, vars = null) {
@@ -55,7 +57,7 @@ const SPEC_MD = "# The cave\nRooms: hall, cave. `go <dir>` moves the player; `lo
 const TESTS = 'import { test } from "node:test"; import assert from "node:assert"; import { play } from "./game.mjs"; test("look", () => assert.match(play(["look"]), /hall/));\n';
 const GAME = (v) => `// ${v}\nexport function play(cmds) { return cmds.map((c) => (c === "look" ? "You are in the hall." : ${v === "v2" ? '"go <dir>: you move."' : '"?"'})).join("\\n"); }\n`;
 
-test("hybrid dry run: delegate, a warm build with self-checks, a held eval batch, a revise that resumes the builder, accept, a code ship, the playbook's evidence and retro", () => {
+test("hybrid dry run: delegate, a warm build with self-checks, the eval, a revise that resumes the builder, accept, a code ship, the playbook's evidence and retro", () => {
   const live = path.join(TMP, "hybrid"), store = path.join(TMP, "store");
   const C = company(live, "textgame-hybrid.json", { playbook_store: store });
   const id = C.meta("order", "new", "--by=founder", "--to=lead", "--title=The cave", "--task=CAVE", "--accept=a text game as SPEC.md in your workdir specifies", `--accept-cmd=${JSON.stringify(["node", RUNNER, "${workdir}"])}`).order;
@@ -73,11 +75,10 @@ test("hybrid dry run: delegate, a warm build with self-checks, a held eval batch
   assert.equal(C.as("builder", lid, "check", `--order=${id}`).pass, true);
   C.as("builder", lid, "room", "leave", `--run=${pk.run}`, "--evidence=game.mjs");
   C.meta("launch", "finished", `--launch=${lid}`, "--role=builder", "--tokens=1000", "--sdk-session=22222222-aaaa-4bbb-8ccc-000000000002");
-  // test1 passes; the eval waits for a batch (1 of 3, under 5 minutes)
+  // test1 passes; the eval is planned at once (no batch hold)
   const t = C.tick();
   assert.equal(C.meta("flow", "show", id).stage, "eval");
-  assert.equal(t.plan.find((x) => x.role === "evaluator"), undefined, "held for its batch");
-  assert.ok(t.wakeInMs > 4 * 60000, "the supervisor wakes when the hold ends");
+  assert.ok(t.plan.find((x) => x.role === "evaluator"), "planned at once: no batch to wait for");
   // the evaluator's pack: the spec and the game, never the builder's notes or the history
   const m = C.meta("queue", "role:evaluator")[0];
   assert.match(C.cli("meta.mjs", ["room", "enter", `--msg=${m.msg}`, "--role=builder"], { META_ROLE: "builder" }).err, /builder may not take/, "the builder never enters its own evaluation");

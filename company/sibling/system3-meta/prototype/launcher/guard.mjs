@@ -510,6 +510,9 @@ export function queryOptions(p, guard, { model, env, abortController, resume = n
 /** K26: after a resumed query, start cold instead? Only when the resume itself failed: an error or an error result
  *  before the session produced anything (no assistant turn). A resumed session that worked and then failed is a failed
  *  launch like any other (its work goes back to the queue), never run twice. */
-export function warmFallback({ resumed, error = null, result = null, sawAssistant = false }) {
+export function warmFallback({ resumed, error = null, result = null, sawAssistant = false, aborted = false }) {
+  // B7 review: the launch's own abort (its sessionMin limit, --kill) before the first assistant turn is not a failed
+  // resume: the SDK session is healthy, and a cold retry on the same aborted controller fails at once
+  if (aborted) return false;
   return !!resumed && !sawAssistant && (!!error || !result || !!result.is_error);
 }
