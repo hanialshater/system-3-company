@@ -12,6 +12,9 @@ export const HERE = path.dirname(fileURLToPath(import.meta.url));
 export const LIVE = process.env.META_LIVE_DIR || path.join(HERE, "live");
 export const STATE = path.join(LIVE, process.env.META_STATE || "state.json");
 /** The company's known false claims, kept across runs (benchmark 3): every text order is checked against them. */
+// K10: with META_KERNEL_ABS set (launcher --workdir-from=order: the agent's cwd is the order's worktree, not the kernel),
+// briefs and packs name kernel commands by absolute path; unset, every text is as before
+export const absCmds = (s) => (process.env.META_KERNEL_ABS ? s.replace(/\bnode (meta|supervisor)\.mjs\b/g, (m, f) => `node ${path.join(HERE, `${f}.mjs`)}`) : s);
 export const ESCAPES = process.env.META_ESCAPES || path.join(HERE, "escapes.json");
 export const readEscapes = () => (fs.existsSync(ESCAPES) ? JSON.parse(fs.readFileSync(ESCAPES, "utf8")) : []);
 export const LOCK = path.join(LIVE, "state.lock");

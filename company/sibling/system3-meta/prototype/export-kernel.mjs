@@ -18,7 +18,7 @@ for (const f of fs.readdirSync(HERE)) if (f.endsWith(".mjs") && f !== "export-ke
 copy("escapes.json", "src/escapes.json");
 copy("specs", "src/specs");
 for (const f of fs.readdirSync(path.join(HERE, "tests"))) copy(`tests/${f}`, `tests/${f}`);
-for (const f of ["launch.mjs", "package.json", "package-lock.json"]) if (fs.existsSync(path.join(HERE, "launcher", f))) copy(`launcher/${f}`, `launcher/${f}`);
+for (const f of ["launch.mjs", "guard.mjs", "package.json", "package-lock.json"]) if (fs.existsSync(path.join(HERE, "launcher", f))) copy(`launcher/${f}`, `launcher/${f}`);
 for (const f of fs.readdirSync(HERE)) if (f.endsWith(".md")) copy(f, `docs/runs/${f}`);
 for (const f of ["API.md", "ROLES.md", "TOOLS.md", "MILESTONES.md"]) fs.copyFileSync(path.join(HERE, "..", f), path.join(OUT, "docs", f));
 fs.cpSync(path.join(HERE, "..", "decisions"), path.join(OUT, "docs", "decisions"), { recursive: true });

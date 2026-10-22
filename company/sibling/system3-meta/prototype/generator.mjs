@@ -7,7 +7,7 @@
 import fs from "node:fs";
 import { SPECS } from "./specs.mjs";
 import { validateCmd } from "./state.mjs";
-import { validateWorkspace } from "./workspace.mjs";
+import { validateWorkspace, validateRoleLaunch } from "./workspace.mjs";
 
 const SIGNERS = ["builder", "code", "checker", "orderer", "release", "founder"];
 const LEVELS = ["founder", "chief-of-staff", "vp", "manager", "builder", "checker", "release", "evaluator", "contractor"];
@@ -39,6 +39,8 @@ export function validateSpec(s) {
     need(x?.level === "founder", `role ${r.id}: its reporting chain reaches the founder`);
     if (["builder", "manager"].includes(r.level) && r.lane) need(s.rooms.some((m) => m.kind === "lane" && m.lane === r.lane), `role ${r.id}: lane ${r.lane} has a lane room`);
     if (r.level === "builder") { const m = roles.get(r.reportsTo); need(m?.level === "manager", `builder ${r.id} reports to a manager (who delegates its work)`); }
+    // K10: per-role launch settings (launcher/launch.mjs): tools, sessionMin, maxTurns, settingSources
+    { const e = validateRoleLaunch(r); need(!e, `role ${r.id}: ${e}`); }
   }
   const st = s.flow?.stages ?? [];
   need(!!s.flow?.name && st.length > 0, "the flow has a name and stages");

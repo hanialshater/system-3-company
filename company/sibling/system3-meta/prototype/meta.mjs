@@ -46,6 +46,8 @@
 //   node meta.mjs contract open --by=<manager> --kind=prototype|research|spike --goal=… --deliverable=… --budget=<n> --timebox=<min> [--onboarding='{…}']
 //   node meta.mjs contract brief --id=<C>   ·   contract deliver --id=<C> --by=<ctr> --summary=… --path=live/contracts/<C>/… [--findings='[{claim,source,confidence}]']
 //   node meta.mjs contract decide --id=<C> --by=<manager> --decision=accept|reject --reason=…   ·   contract show --id=<C>
+//   node meta.mjs launch config --role=<r> [--msgs=M-1,…]   K10: the role's launch settings, its orders' workdirs and protected globs
+//   node meta.mjs guard denied --role=<r> --tool=<t> --rule=<rule> --why=… [--launch=<L>] [--detail=…]   K10: a guard denial (the launcher)
 //   node meta.mjs events [--type=<t>]   ·   node meta.mjs memory <role>   ·   node meta.mjs org activity <role>
 // Exit: 0 ok, 1 refused, 2 usage or state error.
 import fs from "node:fs";
@@ -55,7 +57,7 @@ import * as GEN from "./generator.mjs";
 import * as WS from "./workspace.mjs";
 import { proposePolicy, activatePolicy, managerReport, recordCycle, KNOBS } from "./policy.mjs";
 import { engage, engageTemplate, briefFor, deliver, decideContract, TEMPLATES } from "./contractor.mjs";
-import { HERE, LIVE, STATE, LIVE_ROLES, TASK_FLOW, clock, make, rep, interpolate, save, load, withLock, runTests, runTest1, validateChecks, describeChecks, mergeChecks, ESCAPES, readEscapes } from "./state.mjs";
+import { absCmds, HERE, LIVE, STATE, LIVE_ROLES, TASK_FLOW, clock, make, rep, interpolate, save, load, withLock, runTests, runTest1, validateChecks, describeChecks, mergeChecks, ESCAPES, readEscapes } from "./state.mjs";
 import * as B from "./building.mjs";
 import * as CH from "./channels.mjs";
 import * as T from "./tracker.mjs";
@@ -88,8 +90,8 @@ function pack(co, run, ctx, session, item) {
   const iso = (m) => new Date(m * 60000).toISOString();
   return { run, session, item, lease_min: Number(opt.lease ?? 30), order: o.id, task: o.task, title: o.title, priority: o.priority, stage: ctx.stage, accept: ws ? interpolate(o.accept ?? "", vars) : o.accept, workdir: dir + "/", workdir_exists: fs.existsSync(dir), ...(ws ? (ws.error ? { workspace_error: ws.error } : { branch: o.workspace.branch, base_sha: o.workspace.sha, env: o.workspace.env, run_meta_from: HERE }) : {}), findings: o.findings ?? null, memory: ctx.memory.map((e) => ({ ...e, t: iso(e.t) })), history: o.history.map((h) => ({ ...h, t: iso(h.t) })),
     cap_means: "--cap counts every item in this session, including the first one you entered",
-    leave_with: `${pre}node meta.mjs room leave --run=${run} --evidence=<path>${ctx.stage === "check" ? " --verdict=pass|revise --findings='…'" : ""} --learned='…'`,
-    next_with: `${pre}node meta.mjs room next --run=${run} --cap=<cap from your brief> --wait=90 --evidence=<path>${ctx.stage === "check" ? " --verdict=pass|revise --findings='…'" : ""} --learned='…'` };
+    leave_with: absCmds(`${pre}node meta.mjs room leave --run=${run} --evidence=<path>${ctx.stage === "check" ? " --verdict=pass|revise --findings='…'" : ""} --learned='…'`),
+    next_with: absCmds(`${pre}node meta.mjs room next --run=${run} --cap=<cap from your brief> --wait=90 --evidence=<path>${ctx.stage === "check" ? " --verdict=pass|revise --findings='…'" : ""} --learned='…'`) };
 }
 
 function main() {
@@ -139,7 +141,7 @@ function main() {
     save(co);
     return { ok: true, ops: ops.length, results };
   });
-  const readOnly = ["queue", "events", "memory"].includes(cmd) || (cmd === "flow" && ["show", "status"].includes(sub)) || (cmd === "org" && sub !== "propose") || (cmd === "building" && sub === "plan") || (cmd === "item" && ["show", "search"].includes(sub)) || (cmd === "goal" && ["show", "board"].includes(sub)) || (cmd === "ask" && ["route", "summary"].includes(sub)) || (cmd === "channel" && ["status", "inbox"].includes(sub)) || (cmd === "meeting" && sub === "show") || (cmd === "wbr" && sub === "page0");
+  const readOnly = ["queue", "events", "memory"].includes(cmd) || (cmd === "launch" && sub === "config") || (cmd === "flow" && ["show", "status"].includes(sub)) || (cmd === "org" && sub !== "propose") || (cmd === "building" && sub === "plan") || (cmd === "item" && ["show", "search"].includes(sub)) || (cmd === "goal" && ["show", "board"].includes(sub)) || (cmd === "ask" && ["route", "summary"].includes(sub)) || (cmd === "channel" && ["status", "inbox"].includes(sub)) || (cmd === "meeting" && sub === "show") || (cmd === "wbr" && sub === "page0");
   const act = () => {
     const co = load();
     const before = co.log.events.length;
@@ -393,6 +395,13 @@ function dispatch(co, cmd, sub, arg) {
     else log.add({ type: "usage", role: opt.role, tokens, label: "outside a room", source: "launcher", launch: opt.launch });
     log.add({ type: "launch-finished", launch: opt.launch, role: opt.role, ok, tokens, cumulative: N("cumulative") ?? null, cost: N("cost") ?? null, sessions: ss.map((s) => s.id), abandoned, reason: opt.reason ?? null });
     return { sessions: ss.map((s) => s.id), abandoned };
+  }
+  // K10: what the launcher needs for one session (the role's tools/sessionMin/maxTurns/settingSources, the orders'
+  // workdirs and protected globs), and the record of every call its guard denied (launcher/guard.mjs)
+  if (cmd === "launch" && sub === "config") { need("role"); return WS.launchConfig(co, { role: opt.role, msgs: L("msgs") ?? [] }); }
+  if (cmd === "guard" && sub === "denied") {
+    need("role", "tool", "rule", "why");
+    return log.add({ type: "guard", launch: opt.launch ?? null, role: opt.role, tool: opt.tool, rule: opt.rule, why: opt.why, detail: opt.detail ?? null, via: opt.via ?? null });
   }
   if (cmd === "escape" && sub === "list") return readEscapes();
   if (cmd === "escape" && sub === "add") {

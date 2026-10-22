@@ -37,7 +37,7 @@
 // Same state as meta.mjs (META_LIVE_DIR, META_STATE). Exit 0 always unless the state cannot be read.
 import fs from "node:fs";
 import path from "node:path";
-import { HERE, LIVE, STATE, load, save, withLock, runTests, runTest1, runCmdCheck, rep, CHECK_KEYS, interpolate } from "./state.mjs";
+import { absCmds, HERE, LIVE, STATE, load, save, withLock, runTests, runTest1, runCmdCheck, rep, CHECK_KEYS, interpolate } from "./state.mjs";
 import { syncOrders } from "./tracker.mjs";
 import { sweepGoals } from "./goals.mjs";
 import { expireContracts } from "./contractor.mjs";
@@ -346,7 +346,7 @@ export function briefFor(co, item, { context = null } = {}) {
     L.push("If a command refuses, read the message and fix what it names. If \`room enter\` says the item is held by another run or already done, stop at once and report it: another session has it, so never wait for a lease (benchmark 5: a session waited 30 minutes for one).");
   }
   L.push("", "Report back briefly: each item, its outcome, and anything that confused you.");
-  return L.filter((x, i, a) => !(x === "" && a[i - 1] === "")).join("\n");
+  return absCmds(L.filter((x, i, a) => !(x === "" && a[i - 1] === "")).join("\n")); // K10: absolute with META_KERNEL_ABS
 }
 
 export const NON_ROOM_GRACE_MIN = 30;

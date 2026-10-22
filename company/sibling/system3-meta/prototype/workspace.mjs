@@ -304,3 +304,39 @@ export function afterStage(co, o, stage) {
   } else if (r) delete o.workspace.pendingCommit;
   return r;
 }
+
+// ---- K10: what the launcher needs for one session (launcher/launch.mjs --workdir-from=order, launcher/guard.mjs)
+export const SETTING_SOURCES = ["user", "project", "local"];
+export const ROLE_LAUNCH_KEYS = ["tools", "sessionMin", "maxTurns", "settingSources"];
+/** Why role `r`'s launch fields (plan §3 K10: `tools`, `sessionMin`, `maxTurns`, `settingSources`) are invalid, or null. */
+export function validateRoleLaunch(r) {
+  if (r.tools != null && !(Array.isArray(r.tools) && r.tools.length && r.tools.every((t) => typeof t === "string" && /^[\w-]+$/.test(t)))) return "tools is a list of tool names";
+  if (r.sessionMin != null && !(typeof r.sessionMin === "number" && r.sessionMin > 0)) return "sessionMin is a number of minutes above 0";
+  if (r.maxTurns != null && !(Number.isInteger(r.maxTurns) && r.maxTurns > 0)) return "maxTurns is a whole number above 0";
+  if (r.settingSources != null && !(Array.isArray(r.settingSources) && r.settingSources.every((s) => SETTING_SOURCES.includes(s)))) return `settingSources is a list of ${SETTING_SOURCES.join(", ")}`;
+  return null;
+}
+/** The protected-paths globs for order `o`: { file, globs } as of the order's base commit (as K7 reads them: the
+ *  worktree's own copy is the agent's to edit), or null (no workspace, or the base has no such file). */
+export function protectedGlobs(co, o) {
+  const w = specOf(co);
+  if (!w || !o?.workspace?.repo) return null;
+  const file = commitOf(w)?.protectedPaths ?? DEFAULT_PROTECTED, base = o.workspace.baseSha ?? o.workspace.sha;
+  const r = spawnSync("git", ["-C", o.workspace.repo, "show", `${base}:${file}`], { encoding: "utf8", timeout: 5_000 });
+  return ok(r) ? { file, globs: globsOf(r.stdout) } : null;
+}
+/** One launch's settings: the role's spec fields (null where unset: the launcher keeps its own defaults), and the
+ *  workdirs of the orders its messages name with their protected globs (the guard's roots: each worktree and its repo). */
+export function launchConfig(co, { role, msgs = [] }) {
+  const r = co.org.role(role);
+  if (!r) throw new Error(`no role ${role}`);
+  const workdirs = [], roots = [];
+  for (const id of msgs) {
+    const o = co.engine.orders.get(co.mailbox.msgs.get(id)?.ref);
+    if (!o?.workdir || workdirs.includes(o.workdir)) continue;
+    workdirs.push(o.workdir);
+    const p = protectedGlobs(co, o);
+    if (p) for (const dir of [o.workdir, o.workspace.repo]) if (!roots.some((x) => x.dir === dir)) roots.push({ dir, ...p });
+  }
+  return { role, ...Object.fromEntries(ROLE_LAUNCH_KEYS.map((k) => [k, r[k] ?? null])), workdir: workdirs[0] ?? null, workdirs, roots };
+}

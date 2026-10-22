@@ -4,7 +4,7 @@
 //
 //   node launcher/launch.mjs --live=<dir> [--acceptance=<dir>] [--model=claude-opus-5-5] [--max-parallel=4]
 //        [--max-min=90] [--idle-min=1] [--session-min=20] [--kill=<n>:<seconds>,…] [--faults=<json>]
-//        [--setting-sources=user,project,local]
+//        [--setting-sources=user,project,local] [--workdir-from=order]
 //
 // It runs `supervisor.mjs serve` as a child and reads its JSON lines. Each {"event":"launch"} becomes one Agent SDK
 // query() whose prompt is the brief file exactly as code wrote it (benchmark 3: two of my hand launches were retyped
@@ -17,6 +17,15 @@
 // estimate. Both are kept in live/<dir>/launches.jsonl with each launch's outcome.
 //
 // --kill=<n>:<s> aborts the n-th launch (1-based) after s seconds: an injected crash, to prove recovery.
+//
+// K10 (plan 2026-10-21 §3): launcher hardening. Each launch asks `meta.mjs launch config` for its role's spec fields
+// (`tools`, `sessionMin`, `maxTurns`, `settingSources`; unset, the launcher's defaults as before) and its orders'
+// workdirs. --workdir-from=order starts the agent in its order's worktree (the first message's; the kernel when the
+// launch names no order with one), with META_KERNEL_ABS set so briefs and packs name kernel commands by absolute path,
+// and settingSources ["project"] unless the role or --setting-sources says otherwise: the company's CLAUDE.md and its
+// .claude/settings.json hooks then load from the worktree root. Every session runs under the guard (guard.mjs: protected
+// paths, the deploy/push/publish/claim pattern, the role's tools), as canUseTool and as a PreToolUse hook; each denial
+// is recorded as a `guard` event (`meta.mjs guard denied`) and in launches.jsonl.
 import { query } from "@anthropic-ai/claude-agent-sdk";
 import { spawn, spawnSync } from "node:child_process";
 import fs from "node:fs";
@@ -24,10 +33,13 @@ import path from "node:path";
 import readline from "node:readline";
 
 import crypto from "node:crypto";
+import { makeGuard, DEFAULT_TOOLS, GUARDED } from "./guard.mjs";
 const HERE = path.dirname(new URL(import.meta.url).pathname);
 const SRC = path.join(HERE, "..");
 const opt = Object.fromEntries(process.argv.slice(2).filter((a) => a.startsWith("--")).map((a) => { const [k, ...v] = a.slice(2).split("="); return [k, v.join("=") || true]; }));
 if (!opt.live) { console.error("usage: node launcher/launch.mjs --live=<dir> [--acceptance=<dir>] [--model=…] [--max-parallel=4] [--kill=<n>:<s>]"); process.exit(2); }
+const FROM_ORDER = opt["workdir-from"] === "order";
+if (opt["workdir-from"] != null && !FROM_ORDER) { console.error("--workdir-from takes: order"); process.exit(2); }
 const LIVE = path.resolve(opt.live);
 // the run uses a frozen copy of the kernel (benchmark 4b: I edited meta.mjs while a run was live and broke every
 // agent's commands for half an hour). Agents and serve run from live/<dir>/kernel/; its hash goes in the ledger.
@@ -45,8 +57,10 @@ const SESSION_MIN = Number(opt["session-min"] ?? 20);
 // --setting-sources=user,project,local loads what an interactive session loads (System 3 Company's CLAUDE.md and
 // settings): the like-for-like arm for cost comparisons with the earlier benchmarks (benchmark 4's caveat)
 const SOURCES = opt["setting-sources"] ? String(opt["setting-sources"]).split(",").filter(Boolean) : [];
+const MAX_TURNS = 80; // the default before K10; a role's spec `maxTurns` overrides it (plan: demo-builder 200, checkers 120)
 const kills = new Map(String(opt.kill ?? "").split(",").filter(Boolean).map((x) => x.split(":").map(Number)));
 const env = { ...process.env, META_LIVE_DIR: LIVE, BOOK_ROOT: process.env.BOOK_ROOT ?? path.join(LIVE, "work") };
+if (FROM_ORDER) env.META_KERNEL_ABS = "1"; // serve's briefs and the agents' packs: kernel commands by absolute path
 delete env.CLAUDECODE; // the agents are their own Claude Code processes, not children of this session's
 // benchmark 5: inherited, these made every agent write one shared transcript (this session's id), and let a long
 // command move to the background, where an SDK agent waited for a notice that never came (a 30-minute hang)
@@ -66,21 +80,35 @@ const active = new Set(), waiting = [];
 async function run(ev) {
   const id = path.basename(ev.brief, ".md"), k = ++n;
   const prompt = fs.readFileSync(ev.brief, "utf8");
+  // K10: the role's settings and the orders' workdirs; a failed lookup (meta-error noted) keeps the defaults
+  const cfg = meta("launch", "config", `--role=${ev.role}`, ...(ev.msgs?.length ? [`--msgs=${ev.msgs.join(",")}`] : [])) ?? {};
+  const tools = cfg.tools ?? DEFAULT_TOOLS, sessionMin = cfg.sessionMin ?? SESSION_MIN, maxTurns = cfg.maxTurns ?? MAX_TURNS;
+  const cwd = FROM_ORDER && cfg.workdir ? cfg.workdir : PROTO;
+  const sources = cfg.settingSources ?? (opt["setting-sources"] ? SOURCES : FROM_ORDER && cwd !== PROTO ? ["project"] : SOURCES);
+  const guard = makeGuard({ tools, roots: cfg.roots ?? [], cwd, record: (d) => {
+    note({ event: "guard", launch: id, n: k, role: ev.role, via: d.via, tool: d.tool, rule: d.rule, why: d.why, detail: d.detail });
+    meta("guard", "denied", `--launch=${id}`, `--role=${ev.role}`, `--tool=${d.tool}`, `--rule=${d.rule}`, `--why=${d.why}`, `--via=${d.via}`, ...(d.detail ? [`--detail=${d.detail}`] : []));
+  } });
   const ac = new AbortController();
-  const limit = setTimeout(() => ac.abort(new Error(`session over ${SESSION_MIN} min`)), SESSION_MIN * 60_000);
+  const limit = setTimeout(() => ac.abort(new Error(`session over ${sessionMin} min`)), sessionMin * 60_000);
   const kill = kills.has(k) ? setTimeout(() => ac.abort(new Error("injected crash (--kill)")), kills.get(k) * 1000) : null;
-  note({ event: "start", launch: id, n: k, role: ev.role, msgs: ev.msgs ?? [], tasks: (ev.tasks ?? []).map((t) => `${t.kind}:${t.ref}`) });
+  note({ event: "start", launch: id, n: k, role: ev.role, msgs: ev.msgs ?? [], tasks: (ev.tasks ?? []).map((t) => `${t.kind}:${t.ref}`), cwd, workdirs: cfg.workdirs ?? [], tools, sessionMin, maxTurns, settingSources: sources });
   let last = null, result = null, error = null;
   const t0 = Date.now();
   try {
     for await (const m of query({ prompt, options: {
-      cwd: PROTO, model: MODEL, abortController: ac,
+      cwd, model: MODEL, abortController: ac,
       env: { ...env, META_LAUNCH: id },
-      // the brief is the whole job: no project settings or CLAUDE.md (they belong to System 3 Company, not this run)
-      settingSources: SOURCES,
-      allowedTools: ["Bash", "Read", "Write", "Edit", "Glob", "Grep"],
-      permissionMode: "dontAsk", permissionPrompts: "none",
-      maxTurns: 80,
+      // the brief is the whole job: no project settings or CLAUDE.md (they belong to System 3 Company, not this run),
+      // unless the role, --setting-sources or --workdir-from=order (K10: the company's hooks and rules) loads them
+      settingSources: sources,
+      // K10: Bash and the write tools stay out of allowedTools (an allowed tool never reaches canUseTool); "default"
+      // with prompts answered by this host (canUseTool), where dontAsk + permissionPrompts "none" never called it
+      allowedTools: tools.filter((t) => !GUARDED.includes(t)),
+      permissionMode: "default", permissionPrompts: "host",
+      canUseTool: guard.canUseTool,
+      hooks: { PreToolUse: [{ hooks: [guard.preToolUse] }] },
+      maxTurns,
     } })) {
       if (m.type === "assistant" && m.parent_tool_use_id == null && m.message?.usage) last = m.message.usage;
       if (m.type === "result") result = m;
@@ -94,7 +122,7 @@ async function run(ev) {
   const cost = mu.reduce((a, u) => a + (u.costUSD ?? 0), 0);
   const reason = ok ? null : (error ?? result?.subtype ?? "no result");
   const rec = meta("launch", "finished", `--launch=${id}`, `--role=${ev.role}`, `--tokens=${tokens}`, `--cumulative=${cumulative}`, `--cost=${cost.toFixed(4)}`, `--ok=${ok}`, ...(reason ? [`--reason=${reason}`] : []));
-  note({ event: "finish", launch: id, n: k, role: ev.role, ok, reason, tokens, cumulative, cost: Number(cost.toFixed(4)), turns: result?.num_turns ?? null, minutes: Math.round((Date.now() - t0) / 600) / 100, sessions: rec?.sessions ?? [], abandoned: rec?.abandoned ?? [], said: String(result?.result ?? "").slice(0, 4000) });
+  note({ event: "finish", launch: id, n: k, role: ev.role, ok, reason, tokens, cumulative, cost: Number(cost.toFixed(4)), turns: result?.num_turns ?? null, minutes: Math.round((Date.now() - t0) / 600) / 100, sessions: rec?.sessions ?? [], abandoned: rec?.abandoned ?? [], denials: guard.denials.length, said: String(result?.result ?? "").slice(0, 4000) });
 }
 
 function pump() {
@@ -116,7 +144,7 @@ function finish() {
 
 const serveArgs = [path.join(PROTO, "supervisor.mjs"), "serve", `--idle-min=${opt["idle-min"] ?? 1}`, `--max-min=${opt["max-min"] ?? 90}`, ...(opt.acceptance ? [`--acceptance=${path.resolve(opt.acceptance)}`] : []), ...(opt.faults ? [`--faults=${path.resolve(opt.faults)}`] : [])];
 const serve = spawn("node", serveArgs, { env, stdio: ["ignore", "pipe", "inherit"] });
-note({ event: "launcher-up", live: LIVE, kernel: KERNEL_HASH, model: MODEL, maxParallel: MAX_PAR, kills: [...kills.entries()], settingSources: SOURCES });
+note({ event: "launcher-up", live: LIVE, kernel: KERNEL_HASH, model: MODEL, maxParallel: MAX_PAR, kills: [...kills.entries()], settingSources: SOURCES, workdirFrom: FROM_ORDER ? "order" : null });
 readline.createInterface({ input: serve.stdout }).on("line", (line) => {
   let ev; try { ev = JSON.parse(line); } catch { return; }
   fs.appendFileSync(path.join(LIVE, "serve.log"), line + "\n");
