@@ -184,7 +184,7 @@ export default function SliceACornerOff({ slug }: { slug: string }) {
               {t.dE} edges meet, gave +{t.dV} − {t.dE} + {t.dF} = 0 too.
             </p>
             <p>
-              A slice through a corner where k edges meet always adds k − 1 corners, k edges and 1 face. For every convex
+              A small slice that cuts only the k edges at a corner always adds k − 1 corners, k edges and 1 face. For every convex
               solid the total is 2: Euler&apos;s formula.
             </p>
           </>

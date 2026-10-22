@@ -26,40 +26,28 @@
       "text": "A cube has 8 corners, 12 edges and 6 faces (8 − 12 + 6 = 2). With one corner sliced off it has 10, 15 and 7; with two, 12, 18 and 8. A square pyramid has 5, 8 and 5; with its tip sliced off, 8, 12 and 6. Each gives 2.",
       "support": "derivation",
       "source": "company/domains/briefs/checks/math-wave-j-check.mjs label G5 (cube 8, 12, 6; one corner 10, 15, 7; two 12, 18, 8; pyramid 5, 8, 5; apex sliced 8, 12, 6). The stage recounts them from the drawn solids: Demo.tsx counts() takes vertices, edges (distinct face sides) and faces of slice()d CUBE and PYR.",
-      "status": "verified",
-      "note": "Recounted: cube 8,12,6; a corner truncated (3 edges): 8−1+3=10, 12+3=15, 6+1=7; second, non-overlapping corner (cuts at 30% from each end of their shared edge): 12,18,8; square pyramid 5,8,5; apex truncated (4 edges, 35%): 5−1+4=8, 8+4=12, 6. Each gives 2. Screenshots 02–05 draw these solids and readouts.",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-22"
+      "status": "unverified"
     },
     {
       "id": "math.slice-a-corner-off.c2",
-      "text": "Slicing a corner where k edges meet removes that corner and makes k new ones (k − 1 more corners), adds k edges round the cut and 1 new face, so corners − edges + faces changes by (k − 1) − k + 1 = 0: a cube corner (3 edges) gives +2 corners, +3 edges, +1 face; the pyramid's tip (4 edges) gives +3, +4, +1.",
+      "text": "A small slice that cuts only the k edges at a corner removes that corner and makes k new ones (k − 1 more corners), adds k edges round the cut and 1 new face, so corners − edges + faces changes by (k − 1) − k + 1 = 0: a cube corner (3 edges) gives +2 corners, +3 edges, +1 face; the pyramid's tip (4 edges) gives +3, +4, +1.",
       "support": "derivation",
       "source": "The cut meets each of the k edges once: the corner goes, k points appear (net k − 1), the k old edges are shortened (not lost), the k new edges bound the cut face, and every old face keeps its count. G5: 'Slicing a corner where k edges meet adds k − 1 corners, k edges and 1 face'.",
-      "status": "disputed",
-      "note": "True for a slice that cuts only the k edges at that corner, between the corner and the next corners. \"Always\" is false as worded: a slice that passes through other corners or reaches past them does not add k − 1, k and 1. Counterexample: cut a cube corner off through its 3 neighbouring corners. That gives 7 corners, 12 edges and 7 faces (−1, +0, +1). Required: in c2 and the reveal sentence \"A slice through a corner where k edges meet always adds…\", say the slice cuts only the edges at that corner (e.g. \"A small slice off a corner where k edges meet adds…\").",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-22"
+      "status": "unverified"
     },
     {
       "id": "math.slice-a-corner-off.c3",
       "text": "For every convex solid (convex polyhedron), corners − edges + faces = 2; this is Euler's formula.",
       "support": "source",
       "source": "Euler's polyhedron formula V − E + F = 2 for convex polyhedra (L. Euler, 'Elementa doctrinae solidorum', Novi Commentarii Academiae Scientiarum Petropolitanae 4, 1758; e.g. Richeson, 'Euler's Gem', Princeton UP 2008). No date in learner text.",
-      "status": "verified",
-      "note": "Euler polyhedron formula V − E + F = 2 for convex polyhedra: Encyclopedia of Mathematics, \"Euler theorem\" (https://encyclopediaofmath.org/wiki/Euler_theorem); ProofWiki \"Euler Polyhedron Formula\". It is standardly named for Euler (in print 1758; related results known to Descartes), so the name in the learner text is acceptable. I did not confirm the title of the 1758 paper given in the source field, but the learner text has no date or title.",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-22"
+      "status": "unverified"
     },
     {
       "id": "math.slice-a-corner-off.c4",
       "text": "Recall: a convex solid with 12 corners and 30 edges has 20 faces (12 − 30 + 20 = 2), like the icosahedron.",
       "support": "derivation",
       "source": "From c3: F = 2 − V + E = 2 − 12 + 30 = 20. The regular icosahedron has 12 vertices, 30 edges and 20 faces.",
-      "status": "verified",
-      "note": "2 − 12 + 30 = 20; the regular icosahedron has 12 vertices, 30 edges and 20 faces (12 − 30 + 20 = 2).",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-22"
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -81,7 +69,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "math:euler-polyhedron-formula",
     "also": [],

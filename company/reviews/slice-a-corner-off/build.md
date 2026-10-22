@@ -12,6 +12,16 @@ builder: demo-builder (Meta M6, order O-3) · 2026-10-22 · v1 · brief: company
   4. Claim c3 has support `source` (the CLI accepts derivation, simulation, source, convention; the brief says "citation").
 - Title and hook are mine: "Does slicing a corner change the count?" / "A cube: 8 corners − 12 edges + 6 faces = 2. Slice one corner off. Does the 2 survive?"
 
+## Pre-flight v2
+
+Revise from fact-check 2026-10-22 (overgeneral rule wording, 1 instance in claim and reveal). Stage, chips, milestones, counts and traces unchanged from v1.
+
+1. Reveal paragraph 2 now reads "A small slice that cuts only the k edges at a corner always adds k − 1 corners, k edges and 1 face." Every slice the stage draws cuts only the edges at its corner (new corners on those edges, not at neighbouring corners), so the stage and the rule agree.
+2. Claim c2 text scoped the same way; c1, c3, c4 text unchanged.
+3. All four claims set to `unverified`, no checkedBy/checkedOn (c1, c3, c4 were verified during this order). meta.version 2.
+4. Reveal values and milestones: as v1 Pre-flight (recorded seen values, change lines +2/+3/+1 and +3/+4/+1).
+5. Phone fit: reveal two words longer than v1 (77 → about 79 by the tool count), under 90; v1 fit with room to spare. Official QA and reveal-fit are code's qa stage.
+
 ## Pre-flight v1
 
 1. Title and hook: "Does slicing a corner change the count?" / "A cube: 8 corners − 12 edges + 6 faces = 2. Slice one corner off. Does the 2 survive?" Both are questions; neither says it stays 2.
