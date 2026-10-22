@@ -69,6 +69,14 @@ export function validateSpec(s) {
   for (const [i, x] of st.entries()) {
     // K2: `async: true` runs the stage's cmd as a job outside the lock (jobs.mjs); it needs a cmd to run
     if (x.async != null) need(typeof x.async === "boolean" && (!x.async || x.run != null), `stage ${x.stage}: async is true or false, and async needs a run`);
+    // K12: a post-check is a cmd with no route (a failure refuses the leave; it sends the order nowhere), on a stage an
+    // agent leaves; it comes from the spec, never from an agent (as K1's run)
+    if (x.post != null) {
+      need(x.signer !== "code" && x.run == null, `stage ${x.stage}: a post-check is for a stage an agent leaves, not one code runs`);
+      const e = validateCmd(x.post);
+      need(!e, `stage ${x.stage}: post: ${e}`);
+      need(x.post?.route == null, `stage ${x.stage}: post: a post-check has no route (a failure refuses the leave)`);
+    }
     if (x.run == null) continue;
     need(["code", "orderer", "release"].includes(x.signer), `stage ${x.stage}: a run is for a stage signed by code, orderer or release, not ${x.signer}`);
     const e = validateCmd(x.run, { stages: st.slice(0, i).map((y) => y.stage) });

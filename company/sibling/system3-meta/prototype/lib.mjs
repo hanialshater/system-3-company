@@ -273,6 +273,9 @@ export function flowProblems(def) {
     if (s.independent != null && typeof s.independent !== "boolean") p.push(`${s.stage}: independent is true or false`);
     if (s.signer === "builder" && s.independent === true) p.push(`${s.stage}: an independent stage cannot be signed by the builder`);
     { const e = packProblem(s.pack); if (e) p.push(`${s.stage}: ${e}`); } // K6
+    // K12: a post-check runs at an agent's leave (generator.mjs validates the cmd itself against state.mjs validateCmd)
+    if (s.post != null && !(s.post && typeof s.post === "object" && Array.isArray(s.post.argv) && s.post.argv.length)) p.push(`${s.stage}: post is a cmd {argv, …}`);
+    if (s.post != null && (s.signer === "code" || s.run != null)) p.push(`${s.stage}: a post-check is for a stage an agent leaves, not one code runs`);
   }
   const t1 = def.stages.find((s) => s.stage === "test1");
   if (t1 && t1.signer !== "code") p.push("test1 must be signed by code");
@@ -520,6 +523,7 @@ export class Rooms {
     this.memory = new Map(); // role → entries
     this.sessions = new Map(); // a session is one agent process; a run is one item it works on
     this.nS = 0;
+    this.postCheck = null; // K12: fn(o, cmd, vars) → {pass, output, findings, stageError}: state.mjs wires runCmdCheck (not persisted)
   }
 
   enter({ msg, role, mode = "work", as = null, leaseMin = 30, session = null }) {
@@ -616,7 +620,7 @@ export class Rooms {
     this.log.add({ type: "usage", run, role: x.role, tokens, source });
   }
 
-  leave(run, { verdict = "pass", evidence = null, learned = null, mistake = null, tokens = null, findings = null }) {
+  leave(run, { verdict = "pass", evidence = null, learned = null, mistake = null, tokens = null, findings = null, post = null }) {
     const x = this.runs.get(run);
     hard(x && x.state === "running", `run ${run} not running`);
     const o = this.engine.orders.get(x.order);
@@ -626,6 +630,7 @@ export class Rooms {
       if (this.config.autoBookkeeping && tokens != null) this.log.add({ type: "usage", run, role: x.role, tokens, auto: true });
       return null;
     }
+    this.checkPost(x, o, { verdict, evidence, post });
     this.engine.advance(o.id, { stage: x.stage, by: x.role, verdict, evidence, findings, consult: x.consult });
     x.state = "left";
     const m = this.mailbox.msgs.get(x.msg);
@@ -637,6 +642,26 @@ export class Rooms {
       this.log.add({ type: "leave", run, role: x.role, order: o.id, stage: x.stage, verdict, minutes: this.clock.now() - x.entered });
     }
     return o;
+  }
+
+  /** K12 (plan 2026-10-21 §3): a stage's `post` cmd runs before its leave signs anything (stage 5 diff guard and stamp,
+   *  stage 6 verdict parsing, stage 7 record shape: evidence was any non-empty string). A failure refuses the leave and
+   *  the run stays open, so the agent fixes it in the same session and leaves again. `post` is a result meta.mjs ran
+   *  outside the lock for this run, stage and loop (a cmd under the lock past 30 s lets another writer break it). */
+  checkPost(x, o, { verdict, evidence, post }) {
+    const sd = this.engine.flows.get(o.flow)?.stages.find((s) => s.stage === x.stage);
+    if (!sd?.post) return;
+    const mine = post && post.run === x.run && post.stage === x.stage && post.loops === x.loops;
+    hard(mine || this.postCheck, `stage ${x.stage} has a post-check and nothing here runs it`);
+    const t = mine ? post : this.postCheck(o, sd.post, { evidence: evidence ?? "", verdict, stage: x.stage });
+    const rec = { order: o.id, run: x.run, role: x.role, stage: x.stage, verdict, output: String(t.output ?? "").slice(0, 400) };
+    if (t.pass) { this.log.add({ type: "post-check", pass: true, ...rec, ...(t.findings ? { findings: t.findings } : {}) }); return; }
+    const why = t.stageError ? "the post-check itself failed (fix it or ask the supervisor to abandon the run)" : "fix the work and leave again: this run is still open";
+    if (!this.config.enforce) { this.log.add({ type: "violation", rule: "post-check", msg: t.output, ...rec, findings: t.findings ?? null }); return; }
+    this.log.add({ type: "refuse", rule: "post-check", msg: `${t.output}; ${why}`, ...rec, findings: t.findings ?? null });
+    const e = new Refused(`post-check: ${x.stage} on ${o.id} refused the leave: ${t.output}; ${why}`);
+    e.findings = t.findings ?? null;
+    throw e;
   }
 
   /** Supervisor: end a run without signing anything (a bad start). The work goes back to the queue. */

@@ -18,6 +18,7 @@
 //   node meta.mjs flow metrics                                lead, work, critical path (--after), flow efficiency, cost
 //   node meta.mjs room heartbeat --run=<R>
 //   node meta.mjs room leave --run=<R> [--verdict=pass|revise] --evidence=<path> [--findings=…] [--learned=…] [--mistake=…]
+//        K12: a stage with a `post` cmd runs it first; a failure refuses the leave (exit 1, findings) and the run stays open
 //   node meta.mjs room abandon --run=<R> --by=<role> --reason=…   supervisor: end a bad run, sign nothing
 //   node meta.mjs room recover                                expired leases → left-without-leave, order back in the queue
 //   node meta.mjs room usage --run=<R> --tokens=<n>           the harness's token count for a run (supervisor only)
@@ -57,7 +58,7 @@ import * as GEN from "./generator.mjs";
 import * as WS from "./workspace.mjs";
 import { proposePolicy, activatePolicy, managerReport, recordCycle, KNOBS } from "./policy.mjs";
 import { engage, engageTemplate, briefFor, deliver, decideContract, TEMPLATES } from "./contractor.mjs";
-import { absCmds, HERE, LIVE, STATE, LIVE_ROLES, TASK_FLOW, clock, make, rep, interpolate, save, load, withLock, runTests, runTest1, validateChecks, describeChecks, mergeChecks, ESCAPES, readEscapes } from "./state.mjs";
+import { absCmds, HERE, LIVE, STATE, LIVE_ROLES, TASK_FLOW, clock, make, rep, interpolate, save, load, withLock, runTests, runTest1, runCmdCheck, validateChecks, describeChecks, mergeChecks, ESCAPES, readEscapes } from "./state.mjs";
 import * as B from "./building.mjs";
 import * as CH from "./channels.mjs";
 import * as T from "./tracker.mjs";
@@ -73,6 +74,20 @@ for (const a of argv) { if (a.startsWith("--")) { const [k, ...v] = a.slice(2).s
 const out = (x) => console.log(absCmds(JSON.stringify(x, rep, 2))); // K10: kernel commands by absolute path under META_KERNEL_ABS
 const need = (...ks) => { const miss = ks.filter((k) => opt[k] == null || opt[k] === true); if (miss.length) throw new Error(`missing ${miss.map((k) => `--${k}`).join(" ")}`); };
 
+
+/** K12: room leave/next run the stage's post-check before taking the lock (withLock breaks a lock older than 30 s, and
+ *  a QA stamp or diff guard can take longer); Rooms.leave uses the result only for this run, stage and loop, and runs
+ *  the check itself under the lock when there is none (a batch, a state that changed in between). */
+let prePost = null;
+function postOutsideLock() {
+  try {
+    const co = load(); const x = co.rooms.runs.get(opt.run); const o = x && co.engine.orders.get(x.order);
+    if (!o || x.state !== "running" || o.stage !== x.stage || o.loops !== x.loops) return null;
+    const sd = co.engine.flows.get(o.flow)?.stages.find((s) => s.stage === x.stage);
+    if (!sd?.post || typeof opt.evidence !== "string") return null;
+    return { ...runCmdCheck(o, sd.post, { evidence: opt.evidence, verdict: opt.verdict ?? "pass", stage: x.stage }), run: x.run, stage: x.stage, loops: x.loops };
+  } catch { return null; }
+}
 
 /** K5: why message `m`'s order may not be worked yet (its workspace is held or cannot be made), or null. */
 const wsBlocker = (co, m) => (m && WS.specOf(co) ? WS.blocker(co, co.engine.orders.get(m.ref)) : null);
@@ -95,6 +110,7 @@ function pack(co, run, ctx, session, item) {
   const mem = hist ? ctx.memory : ctx.memory.filter((e) => !String(e.did ?? "").includes(` on ${o.id}:`));
   const k6 = { ...(hist ? {} : { history_withheld: "this stage judges the artifact before the account: no prior findings, build history or notes on this order; do not look them up (flow show, item show, events, build notes)" }), ...(pf ? { files: pf.files, files_truncated: pf.truncated, read_only: pf.include.length ? pf.include : null, never_read: pf.exclude } : {}) };
   return { run, session, item, lease_min: Number(opt.lease ?? 30), order: o.id, task: o.task, title: o.title, priority: o.priority, stage: ctx.stage, accept: ws ? interpolate(o.accept ?? "", vars) : o.accept, workdir: dir + "/", workdir_exists: fs.existsSync(dir), ...(ws ? (ws.error ? { workspace_error: ws.error } : { branch: o.workspace.branch, base_sha: o.workspace.sha, env: o.workspace.env, run_meta_from: HERE }) : {}), findings: hist ? o.findings ?? null : null, memory: mem.map((e) => ({ ...e, t: iso(e.t) })), history: hist ? o.history.map((h) => ({ ...h, t: iso(h.t) })) : [], ...k6,
+    ...(sd?.post ? { post_check: `your leave first runs: ${sd.post.argv.join(" ")} (code's check of this stage; a failure refuses the leave, prints its findings and keeps this run open to fix)` } : {}), // K12
     cap_means: "--cap counts every item in this session, including the first one you entered",
     leave_with: absCmds(`${pre}node meta.mjs room leave --run=${run} --evidence=<path>${ctx.stage === "check" ? " --verdict=pass|revise --findings='…'" : ""} --learned='…'`),
     next_with: absCmds(`${pre}node meta.mjs room next --run=${run} --cap=<cap from your brief> --wait=90 --evidence=<path>${ctx.stage === "check" ? " --verdict=pass|revise --findings='…'" : ""} --learned='…'`) };
@@ -169,6 +185,7 @@ function main() {
       throw e;
     }
   };
+  if (cmd === "room" && ["leave", "next"].includes(sub) && typeof opt.run === "string") prePost = postOutsideLock();
   const r = readOnly ? act() : withLock(act);
   // room next --wait: the hand-in is saved; poll (outside the lock) until the role's next item or the end of the wait
   if (cmd === "room" && sub === "next" && r?.waiting) {
@@ -233,7 +250,7 @@ function dispatch(co, cmd, sub, arg) {
   }
   if (cmd === "room" && sub === "next") {
     need("run", "evidence");
-    const r = rooms.next(opt.run, { verdict: opt.verdict ?? "pass", evidence: opt.evidence, findings: opt.findings ?? null, learned: opt.learned ?? null, mistake: opt.mistake ?? null }, { cap: Number(opt.cap ?? 3), leaseMin: Number(opt.lease ?? 30), waitMin: Number(opt.wait ?? 0) / 60, filter: (m) => !wsBlocker(co, m) });
+    const r = rooms.next(opt.run, { verdict: opt.verdict ?? "pass", evidence: opt.evidence, findings: opt.findings ?? null, learned: opt.learned ?? null, mistake: opt.mistake ?? null, post: prePost }, { cap: Number(opt.cap ?? 3), leaseMin: Number(opt.lease ?? 30), waitMin: Number(opt.wait ?? 0) / 60, filter: (m) => !wsBlocker(co, m) });
     const left = r.left ? { order: r.left.id, next_stage: r.left.stage, loops: r.left.loops } : { stale: true };
     if (r.waiting) return { left, waiting: r.waiting.id };
     if (!r.next) return { left, session_closed: r.closed?.id ?? true, reason: r.closed ? (r.closed.items >= Number(opt.cap ?? 3) ? "cap reached" : "queue empty") : "closed", note: "your session is over: stop now" };
@@ -252,7 +269,7 @@ function dispatch(co, cmd, sub, arg) {
     need("run", "evidence");
     // K7 review: `commit` is this leave's own commit; the head before tells it from an earlier stage's (null: nothing changed)
     const was = engine.orders.get(rooms.runs.get(opt.run)?.order)?.workspace?.head ?? null;
-    const o = rooms.leave(opt.run, { verdict: opt.verdict ?? "pass", evidence: opt.evidence, findings: opt.findings ?? null, learned: opt.learned ?? null, mistake: opt.mistake ?? null });
+    const o = rooms.leave(opt.run, { verdict: opt.verdict ?? "pass", evidence: opt.evidence, findings: opt.findings ?? null, learned: opt.learned ?? null, mistake: opt.mistake ?? null, post: prePost });
     // K7: the stage's commit (code's, in the order's worktree), or why it was refused and the order held
     return o ? { order: o.id, next_stage: o.stage, loops: o.loops, ...(WS.commitOf(WS.specOf(co)) && o.workspace?.dir ? { commit: o.workspace.head && o.workspace.head !== was ? o.workspace.head : null } : {}), ...(o.stageError?.kind === "workspace" ? { held: o.stageError.why } : {}) } : { stale: true, note: "the stage moved on while you worked; nothing was signed" };
   }
@@ -426,4 +443,4 @@ function dispatch(co, cmd, sub, arg) {
 }
 
 try { const r = main(); out(r); }
-catch (e) { console.error(absCmds(JSON.stringify({ error: e.message, refused: !!e.refused }))); process.exit(e.refused ? 1 : 2); }
+catch (e) { console.error(absCmds(JSON.stringify({ error: e.message, refused: !!e.refused, ...(e.findings ? { findings: e.findings } : {}) }))); process.exit(e.refused ? 1 : 2); } // K12: a refused leave's findings

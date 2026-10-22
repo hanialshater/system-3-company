@@ -55,6 +55,7 @@ export function make(specName = "toy", specDef = null) {
   const co = { log, mailbox, org, engine, rooms, data: { spec: specName, ...(specDef ? { specDef } : {}) }, spec };
   engine.onApproved.push({ prefix: "FLOOR-", fn: (ref) => applyFloor(co, ref) });
   engine.onAdvanced.push((o, { stage }) => afterStage(co, o, stage)); // K7: only with spec workspace.commit
+  rooms.postCheck = (o, cmd, vars) => runCmdCheck(o, cmd, vars); // K12: a stage's post cmd, at the agent's leave
   return co;
 }
 
@@ -298,17 +299,18 @@ export function validateCmd(c, { stages = null } = {}) {
   }
   return null;
 }
-/** ${slug}, ${task}, ${workdir} in a cmd string; slug is the order's slug if set (lessons), else its task. With a K5
+/** ${slug}, ${task}, ${workdir} (K12 post-checks: ${evidence}, ${verdict}, ${stage}) in a cmd string; slug is the order's slug if set (lessons), else its task. With a K5
  *  workspace also ${run}, ${n} and ${port} (o.workspace.vars: one vocabulary for workspace env, cmds and briefs, K5
  *  review); a variable the order does not have stays as written. */
-export const interpolate = (s, vars) => s.replace(/\$\{(slug|task|workdir|run|n|port)\}/g, (m, k) => (k in vars ? vars[k] ?? "" : m));
+export const interpolate = (s, vars) => s.replace(/\$\{(slug|task|workdir|run|n|port|evidence|verdict|stage)\}/g, (m, k) => (k in vars ? vars[k] ?? "" : m));
 const dig = (x, p) => p.split(".").filter(Boolean).reduce((v, k) => (v == null ? undefined : k === "length" && (Array.isArray(v) || typeof v === "string") ? v.length : v[k]), x);
 const parseJson = (t) => { try { return JSON.parse(t); } catch {} const l = t.trim().split("\n").reverse().find((x) => /^[[{]/.test(x.trim())); try { return l ? JSON.parse(l) : undefined; } catch { return undefined; } };
 /** A cmd ready to run for order `o`: argv/cwd/env interpolated, `node` as this node. Shared by runCmdCheck (sync) and
  *  jobs.mjs (K2: the same cmd started detached, judged on a later tick by judgeCmd). */
-export function prepareCmd(o, s) {
+export function prepareCmd(o, s, extra = {}) {
   const c = s.run ?? s;
-  const vars = { ...(o.workspace?.vars ?? {}), slug: o.slug ?? o.task ?? "", task: o.task ?? "", workdir: o.workdir ?? path.join(LIVE, "work", o.task ?? "") };
+  // K12: a post-check also reads ${evidence}, ${verdict} and ${stage} (the leave it judges: stage 7's record file)
+  const vars = { ...(o.workspace?.vars ?? {}), ...extra, slug: o.slug ?? o.task ?? "", task: o.task ?? "", workdir: o.workdir ?? path.join(LIVE, "work", o.task ?? "") };
   const argv = c.argv.map((a) => interpolate(a, vars));
   const cwd = c.cwd ? path.resolve(vars.workdir, interpolate(c.cwd, vars)) : vars.workdir;
   // a child of a node --test process would report to it and exit 0 whatever its tests do (see runTests)
@@ -341,8 +343,8 @@ export function judgeCmd(c, label, r, timeoutMs = c.timeoutMs ?? 60_000) {
 /** Run stage `s`'s `run` cmd for order `o` and wait: { pass, output, findings, route, code, timedOut, stageError }.
  *  findings are advisory on a pass (copy-tells, a11y) and the reason on a fail; route is the earlier stage the first
  *  matching route regex names. */
-export function runCmdCheck(o, s) {
-  const p = prepareCmd(o, s);
+export function runCmdCheck(o, s, extra = {}) {
+  const p = prepareCmd(o, s, extra);
   if (!fs.existsSync(p.cwd)) return noCwd(p);
   const timeoutMs = p.c.timeoutMs ?? 60_000;
   const r = spawnSync(p.bin, p.argv.slice(1), { cwd: p.cwd, env: p.env, encoding: "utf8", timeout: timeoutMs, maxBuffer: 64 * 1024 * 1024 });
