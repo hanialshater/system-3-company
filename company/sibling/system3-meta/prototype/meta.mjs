@@ -7,6 +7,10 @@
 //   node meta.mjs order new --to=<manager> --title=… --task=<T> --accept=… [--budget=200000] [--priority=now|next|later --due=<min>] [--after=O-1,O-2]
 //   node meta.mjs order delegate <O> --by=<manager> --to=<builder> [--budget=150000]
 //   node meta.mjs order reopen <O> --by=<manager|founder> --findings=… [--reason=…]   a shipped order back to build
+//   node meta.mjs order park <O> --by=<orderer|manager|founder> --reason=…   K8: stop it where it is (stage parked, messages
+//        withdrawn, runs on it abandoned); order resume <O> --by --reason [--extra-loops=<n>] puts it back at that stage
+//   node meta.mjs order cancel <O> --by=<orderer|manager|founder> --reason=…   K8: final; orders --after it stay blocked
+//        K9: with a loop cap (spec maxLoops, lane policy maxLoops) the revise past it parks the order and asks the orderer
 //   node meta.mjs queue <role|pool:level|role:id>             open work messages (K3: role:<id> holds a role signer's items)
 //   node meta.mjs room enter --msg=<M> --role=<role> [--lease=30] [--as=<role> --mode=consult]
 //   node meta.mjs room next --run=<R> --cap=<n> [--wait=<s>] --evidence=… [leave flags]   leave, then take the next item in the
@@ -232,6 +236,21 @@ function dispatch(co, cmd, sub, arg) {
     if (opt.by !== o.manager && opt.by !== "founder") throw new Refused(`${opt.by} may not reopen ${arg}: its manager (${o.manager}) or the founder may`);
     const r = engine.reopen(arg, { by: opt.by, findings: opt.findings, reason: opt.reason ?? "changed requirement" });
     return { order: r.id, stage: r.stage, loops: r.loops };
+  }
+  // K8: park, resume and cancel are the order's owners' acts (its orderer, its manager, or the founder), as reopen
+  if (cmd === "order" && ["park", "resume", "cancel"].includes(sub)) {
+    need("by", "reason");
+    const o = engine.orders.get(arg);
+    if (!o) throw new Refused(`no order ${arg}`);
+    if (![o.orderer, o.manager, "founder"].includes(opt.by)) throw new Refused(`${opt.by} may not ${sub} ${arg}: its orderer (${o.orderer}), its manager (${o.manager}) or the founder may`);
+    const ask = o.parked?.ask ?? null;
+    if (sub !== "resume") for (const x of rooms.runs.values()) if (x.state === "running" && x.order === o.id) rooms.abandon(x.run, { by: opt.by, reason: `order ${sub === "park" ? "parked" : "cancelled"}: ${opt.reason}` });
+    if (sub === "park") engine.park(arg, { by: opt.by, reason: opt.reason });
+    if (sub === "cancel") engine.cancel(arg, { by: opt.by, reason: opt.reason });
+    if (sub === "resume") engine.resume(arg, { by: opt.by, reason: opt.reason, extraLoops: opt["extra-loops"] != null ? Number(opt["extra-loops"]) : null });
+    const closed = sub !== "park" ? A.closeParkAsk(co, ask, { by: opt.by, decision: sub === "resume" ? "yes" : "no", text: `${sub === "resume" ? `resumed at ${o.stage}` : "cancelled"}: ${opt.reason}` }) : null;
+    T.syncOrders(co);
+    return { order: o.id, stage: o.stage, loops: o.loops, maxLoops: engine.maxLoopsOf(o), ...(o.parked ? { parked_from: o.parked.stage } : {}), ...(closed ? { ask_closed: closed.id } : {}) };
   }
   if (cmd === "order" && sub === "delegate") {
     need("by", "to");

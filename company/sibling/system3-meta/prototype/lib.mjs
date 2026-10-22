@@ -28,6 +28,7 @@ export class Log {
   of(type) { return this.events.filter((e) => e.type === type); }
 }
 
+export const DEFAULT_MAX_LOOPS = 3; // K9: a spec's `maxLoops: true` (plan 2026-10-21 §3)
 export const DEFAULT_CONFIG = { enforce: true, autoBookkeeping: true, supervisor: true, asyncApprovals: true, leases: true, dedupe: true };
 
 function makeGuard(log, config) {
@@ -118,6 +119,20 @@ export class Mailbox {
     m.state = "done";
     this.log.add({ type: "done", msg: id, run });
     if (report) this.send({ from: m.to, to: m.from, kind: "report", ref: m.ref, body: report });
+  }
+
+  /** K8: a parked or cancelled order's open messages leave every queue (state "withdrawn"); a lease is kept so recover
+   *  still ends a run that was on it, and the key is freed so a resumed stage is sent afresh, not deduped to this one */
+  withdraw(ref, { by, reason }) {
+    const out = [];
+    for (const m of this.msgs.values()) {
+      if (m.ref !== ref || m.state !== "open") continue;
+      m.state = "withdrawn";
+      if (m.key && this.keys.get(m.key) === m.id) this.keys.delete(m.key);
+      out.push(m.id);
+    }
+    if (out.length) this.log.add({ type: "withdraw", ref, msgs: out, by, reason });
+    return out;
   }
 
   ack(id, by) { const m = this.msgs.get(id); hard(m, `no message ${id}`); m.acked = true; this.log.add({ type: "ack", msg: id, by }); }
@@ -324,12 +339,21 @@ export class Engine {
     this.contracts = new Map(); // contractor engagements (contractor.mjs): outside the delivery flow
     this.onApproved = []; // [{ prefix, fn }]: handlers for approved org changes owned by other tools (not persisted)
     this.onAdvanced = []; // [fn(o, {stage, by, verdict})]: after a stage leaves (K7: the per-stage commit; not persisted)
+    this.onParked = []; // [fn(o, park)]: K9's loop-cap ask to the orderer (state.mjs: asks need the tracker; not persisted)
+    this.defaultMaxLoops = null; // K9: the spec's `maxLoops` (state.mjs make); null: no cap unless the lane policy sets one
   }
 
   /** The policy an order runs under: the lane's active version when the order was made (pinned; never moves). */
   policyOf(o) {
     const b = this.policies.get(this.org.role(o.manager)?.lane);
     return b && o.policyVersion ? b.versions[o.policyVersion - 1]?.knobs ?? {} : {};
+  }
+
+  /** K9: revise loops this order may take before the next revise parks it (lane policy maxLoops, else the spec's), plus
+   *  what a resume granted; null: uncapped (every spec before K9) */
+  maxLoopsOf(o) {
+    const cap = this.policyOf(o).maxLoops ?? this.defaultMaxLoops;
+    return cap == null ? null : cap + (o.extraLoops ?? 0);
   }
 
   // ---- definitions
@@ -454,6 +478,7 @@ export class Engine {
       const pol = this.policyOf(o);
       if (pol.revisionPriority && o.priority !== "now") { o.priority = pol.revisionPriority; o.due = pol.revisionPriority === "later" ? this.clock.now() + pol.revisionDueMin : null; }
       this.log.add({ type: "reopen", order: id, from: stage, loops: o.loops, priority: o.priority, ...(back !== "build" ? { to: back } : {}) });
+      this.loopCap(o, { by, from: stage });
     }
     if (o.stage === "done") {
       this.log.add({ type: "shipped", order: id, lead: this.clock.now() - o.created, loops: o.loops, priority: o.priority ?? "next" });
@@ -464,7 +489,7 @@ export class Engine {
           if (d.builder) this.notifyStage(d);
         }
       }
-    } else this.notifyStage(o);
+    } else if (o.stage !== "parked") this.notifyStage(o);
     for (const fn of this.onAdvanced) fn(o, { stage, by, verdict });
     return o;
   }
@@ -478,8 +503,78 @@ export class Engine {
     o.stage = "build"; o.loops++; o.findings = findings;
     o.history.push({ stage: "done", by, verdict: "reopen", t: this.clock.now(), findings: String(findings).slice(0, 2000) });
     this.log.add({ type: "reopen", order: id, from: "done", by, reason: reason ?? null, loops: o.loops, priority: o.priority });
-    this.notifyStage(o);
+    if (!this.loopCap(o, { by, from: "done" })) this.notifyStage(o); // K9: benchmark 4's regression gate reopens by code
     return o;
+  }
+
+  /** K9 (plan 2026-10-21 §3): past the cap a revise parks the order instead of sending it back, with an ask to the
+   *  orderer carrying every finding (a HELD claim on a blocked host, or a publish hold, otherwise loops forever: each
+   *  revise is a fresh build session that cannot fix it). The revise itself is kept (history, loops, findings), so a
+   *  resume picks up at the stage it was sent to. Nothing was queued for that stage yet, so nothing is withdrawn. */
+  loopCap(o, { by, from }) {
+    const cap = this.maxLoopsOf(o);
+    if (cap == null || o.loops <= cap) return false;
+    const findings = o.history.filter((h) => h.findings).map((h) => ({ stage: h.stage, by: h.by, verdict: h.verdict, findings: h.findings }));
+    this.log.add({ type: "loop-cap", order: o.id, loops: o.loops, maxLoops: cap, from, by });
+    this.park(o.id, { by: "engine", reason: `loop cap: ${o.loops} revise loops, over maxLoops ${cap} (last from ${from})`, withdraw: false, ask: { kind: "decision", findings } });
+    return true;
+  }
+
+  // ---- K8 (plan 2026-10-21 §3): terminal states. A learner's `Verdict: fatal`, a publish hold or a Demo Crit kill had
+  // no state but done: the order was revised forever or left at a stage nobody would sign. `parked` waits for a decision
+  // and resumes where it stopped; `cancelled` is final. Neither is done, so orders after it (--after) stay blocked.
+  park(id, { by, reason, withdraw = true, ask = null }) {
+    const o = this.orders.get(id);
+    hard(o, `no order ${id}`);
+    hard(!["done", "cancelled", "parked"].includes(o.stage), `${id} is ${o.stage}: only an open order is parked`);
+    hard(!!reason, "a park says why (--reason)");
+    o.parked = { stage: o.stage, loops: o.loops, by, reason, t: this.clock.now(), ...(ask ? { loopCap: true } : {}) };
+    o.stage = "parked"; o.parks = (o.parks ?? 0) + 1; // a run entered before the park is stale after a resume (Rooms.leave)
+    if (withdraw) this.withdraw(o, { by, reason: `parked: ${reason}` });
+    this.log.add({ type: "parked", order: id, from: o.parked.stage, loops: o.loops, by, reason });
+    for (const fn of this.onParked) fn(o, { by, reason, ask });
+    return o;
+  }
+
+  resume(id, { by, reason, extraLoops = null }) {
+    const o = this.orders.get(id);
+    hard(o, `no order ${id}`);
+    hard(o.stage === "parked" && o.parked, `${id} is ${o.stage}, not parked`);
+    hard(!!reason, "a resume says why (--reason)");
+    hard(extraLoops == null || (Number.isInteger(extraLoops) && extraLoops >= 0 && extraLoops <= 10), "extra loops is a whole number 0-10");
+    // K9: a loop-cap park resumes with one more loop unless the decider grants more (or 0: the very next revise parks)
+    const grant = extraLoops ?? (o.parked.loopCap ? 1 : 0);
+    if (grant) o.extraLoops = (o.extraLoops ?? 0) + grant;
+    const p = o.parked;
+    o.stage = p.stage; delete o.parked;
+    (o.history ??= []).push({ stage: "parked", by, verdict: "resume", t: this.clock.now(), reason });
+    this.log.add({ type: "resumed", order: id, to: o.stage, by, reason, extraLoops: grant, parkedMin: this.clock.now() - p.t });
+    if (o.stage === "budget") this.request({ order: o.id, stage: "budget", approver: "founder", kind: "budget", dueMin: 24 * 60, key: `${o.id}:budget:r${o.parks}` });
+    else if (o.blocked) this.log.add({ type: "blocked", order: id, after: o.after.filter((d) => this.orders.get(d).stage !== "done") });
+    else if (o.builder) this.notifyStage(o); // no builder yet: its manager delegates, which notifies
+    return o;
+  }
+
+  cancel(id, { by, reason }) {
+    const o = this.orders.get(id);
+    hard(o, `no order ${id}`);
+    hard(!["done", "cancelled"].includes(o.stage), `${id} is ${o.stage}: a shipped or cancelled order is not cancelled`);
+    hard(!!reason, "a cancel says why (--reason)");
+    const from = o.stage === "parked" ? o.parked.stage : o.stage;
+    o.cancelled = { stage: from, loops: o.loops, by, reason, t: this.clock.now() };
+    o.stage = "cancelled"; o.parks = (o.parks ?? 0) + 1; delete o.parked;
+    this.withdraw(o, { by, reason: `cancelled: ${reason}` });
+    this.log.add({ type: "cancelled", order: id, from, loops: o.loops, by, reason });
+    // the chain stays blocked: what was ordered after it waits for a decision (re-order it, or cancel it too)
+    const after = [...this.orders.values()].filter((d) => d.after?.includes(id) && !["done", "cancelled"].includes(d.stage)).map((d) => d.id);
+    if (after.length) this.log.add({ type: "blocked-by-cancelled", order: id, after });
+    return o;
+  }
+
+  /** Every open message and approval of order `o` leaves its queue (a decision on a withdrawn approval is a repeat). */
+  withdraw(o, { by, reason }) {
+    this.mailbox.withdraw(o.id, { by, reason });
+    for (const a of this.approvals.values()) if (a.order === o.id && a.state === "open") { a.state = "withdrawn"; this.log.add({ type: "approval-withdrawn", approval: a.id, order: o.id, by, reason }); }
   }
 
   // ---- approvals: queues and callbacks
@@ -583,7 +678,7 @@ export class Rooms {
     // duplicate of a finished stage is a stale run, and its leave signs nothing.
     const { stage, loops } = m.body;
     const ctx = { roleDoc: `company/roles/${actor}.md`, memory: this.memory.get(actor) ?? [], order: o.id, stage, findings: o.findings ?? null };
-    this.runs.set(run, { run, msg, role: actor, by: role, consult: mode === "consult", order: o.id, stage, loops, entered: this.clock.now(), state: "running", session: s.id });
+    this.runs.set(run, { run, msg, role: actor, by: role, consult: mode === "consult", order: o.id, stage, loops, parks: o.parks ?? 0, entered: this.clock.now(), state: "running", session: s.id });
     this.log.add({ type: "enter", run, msg, role: actor, by: role, room: r.room, order: o.id, stage, mode, session: s.id, item: s.items });
     return { run, ctx, session: s.id, item: s.items };
   }
@@ -659,7 +754,7 @@ export class Rooms {
     const x = this.runs.get(run);
     hard(x && x.state === "running", `run ${run} not running`);
     const o = this.engine.orders.get(x.order);
-    if (o.stage !== x.stage || o.loops !== x.loops) {
+    if (o.stage !== x.stage || o.loops !== x.loops || (o.parks ?? 0) !== (x.parks ?? 0)) { // K8: parked (and resumed) since it entered
       x.state = "stale";
       this.log.add({ type: "stale-leave", run, order: o.id, role: x.role });
       if (this.config.autoBookkeeping && tokens != null) this.log.add({ type: "usage", run, role: x.role, tokens, auto: true });

@@ -4,10 +4,11 @@ import fs from "node:fs";
 import path from "node:path";
 import { execFileSync, spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
-import { Log, Mailbox, Org, Engine, Rooms, DEFAULT_CONFIG } from "./lib.mjs";
+import { Log, Mailbox, Org, Engine, Rooms, DEFAULT_CONFIG, DEFAULT_MAX_LOOPS } from "./lib.mjs";
 import { SPECS } from "./specs.mjs";
 import { applyFloor } from "./building.mjs";
 import { afterStage } from "./workspace.mjs";
+import { raiseParkAsk } from "./asks.mjs";
 export const HERE = path.dirname(fileURLToPath(import.meta.url));
 export const LIVE = process.env.META_LIVE_DIR || path.join(HERE, "live");
 export const STATE = path.join(LIVE, process.env.META_STATE || "state.json");
@@ -56,6 +57,10 @@ export function make(specName = "toy", specDef = null) {
   engine.onApproved.push({ prefix: "FLOOR-", fn: (ref) => applyFloor(co, ref) });
   engine.onAdvanced.push((o, { stage }) => afterStage(co, o, stage)); // K7: only with spec workspace.commit
   rooms.postCheck = (o, cmd, vars) => runCmdCheck(o, cmd, vars); // K12: a stage's post cmd, at the agent's leave
+  // K9: the spec's loop cap (true: 3, the plan's default; unset: none, as every spec before K9); a loop-cap park asks
+  // the orderer through the tracker, which the engine does not hold
+  engine.defaultMaxLoops = spec.maxLoops === true ? DEFAULT_MAX_LOOPS : spec.maxLoops ?? null;
+  engine.onParked.push((o, p) => { if (p.ask) raiseParkAsk(co, o, { reason: p.reason, findings: p.ask.findings }); });
   return co;
 }
 

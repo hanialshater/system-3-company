@@ -94,6 +94,8 @@ export function validateSpec(s) {
   for (const c of s.channels ?? []) { need(["company", "lane", "role", "topic"].includes(c.kind), `channel ${c.id}: kind is company, lane, role or topic`); for (const m of c.members ?? []) need(roles.has(m), `channel ${c.id}: member ${m} exists`); }
   // K5: an order workspace (one git worktree per order, workspace.mjs)
   if (s.workspace != null) { const e = validateWorkspace(s.workspace); need(!e, `workspace: ${e}`); }
+  // K9: the loop cap (true: lib.mjs DEFAULT_MAX_LOOPS; a lane policy's maxLoops wins), the same range as the knob
+  if (s.maxLoops != null) need(s.maxLoops === true || (Number.isInteger(s.maxLoops) && s.maxLoops >= 1 && s.maxLoops <= 10), "maxLoops is true (3) or a whole number 1-10");
   for (const r of s.rules ?? []) need(!!r.tasks && r.checks && typeof r.checks === "object", "a standing rule is {tasks, checks}");
   return v;
 }

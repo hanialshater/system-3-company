@@ -98,7 +98,7 @@ export function createCycle(co, { by, name, start, end }) {
   return s.cycles.get(id);
 }
 
-const STAGE_STATE = { budget: "todo", build: "in-progress", test1: "in-review", check: "in-review", uat: "in-review", release: "in-review", ship: "in-review", done: "done" };
+const STAGE_STATE = { budget: "todo", build: "in-progress", test1: "in-review", check: "in-review", uat: "in-review", release: "in-review", ship: "in-review", done: "done", parked: "backlog", cancelled: "cancelled" }; // K8
 
 /** Mirror every engine order as a tracker item; its state follows the order's stage. Idempotent. */
 export function syncOrders(co) {
@@ -107,8 +107,11 @@ export function syncOrders(co) {
   for (const o of co.engine.orders.values()) {
     let it = byOrder.get(o.id);
     if (!it) it = create(co, { by: "engine", kind: "order", title: o.title || o.id, order: o.id, project: o.project ?? null, goal: o.goal ?? null, assignee: o.builder && co.org.role(o.builder)?.active ? o.builder : null, state: "todo", labels: o.loops ? ["revised"] : [] });
-    const st = o.blocked ? "backlog" : STAGE_STATE[o.stage] ?? "in-progress";
+    const st = o.stage === "cancelled" ? "cancelled" : o.blocked ? "backlog" : STAGE_STATE[o.stage] ?? "in-progress";
     if (it.state !== st) update(co, { by: "engine", id: it.id, state: st });
+    // K8: a parked order sits in backlog with a label (its decision ask says why); a resume takes the label off
+    if (o.stage === "parked" && !it.labels.includes("parked")) update(co, { by: "engine", id: it.id, addLabels: ["parked"] });
+    if (o.stage !== "parked" && it.labels.includes("parked")) update(co, { by: "engine", id: it.id, removeLabels: ["parked"] });
     if (o.builder && it.assignee !== o.builder && co.org.role(o.builder)?.active) update(co, { by: "engine", id: it.id, assignee: o.builder });
     if (o.loops && !it.labels.includes("revised")) update(co, { by: "engine", id: it.id, addLabels: ["revised"] });
   }

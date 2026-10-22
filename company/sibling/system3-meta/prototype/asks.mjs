@@ -85,3 +85,33 @@ export function askSummary(co) {
     escalated: asks.filter((i) => i.labels.includes("escalated")).length,
   };
 }
+
+/** K9 (plan 2026-10-21 §3): a loop-cap park asks the order's orderer (kind decision) to resume or cancel it, with every
+ *  finding so far: the decider judges the whole loop, not the last revise. Routed as any ask from the order's manager;
+ *  addressed to the orderer, escalated past the manager's own report when the orderer is higher (cos → founder), and
+ *  routed normally when the orderer cannot decide it. Never throws: the park has already happened. */
+export function raiseParkAsk(co, o, { reason, findings = [] }) {
+  const lines = findings.map((f, i) => `${i + 1}. ${f.stage} (${f.verdict} by ${f.by}): ${f.findings}`);
+  const why = [`${o.id}${o.title ? ` (${o.title})` : ""} is parked at ${o.parked.stage}: ${reason}.`, `Findings so far (${findings.length}):`, ...(lines.length ? lines : ["(none recorded)"]),
+    `Decide: \`node meta.mjs order resume ${o.id} --by=<you> --reason='…' [--extra-loops=<n>]\` (back to ${o.parked.stage}, one more loop by default) or \`node meta.mjs order cancel ${o.id} --by=<you> --reason='…'\`. Either answers this ask.`].join("\n");
+  const base = { by: o.manager, kind: "decision", title: `Parked ${o.id}: resume or cancel?`, why, due: co.engine.clock.now() + 24 * 60 };
+  let it = null;
+  for (const extra of [o.orderer && o.orderer !== o.manager ? { to: o.orderer, escalate: "loop cap: the orderer decides whether its order goes on" } : null, {}].filter(Boolean)) {
+    try { it = raise(co, { ...base, ...extra }); break; } catch (e) { if (!e.refused) throw e; base.failed = e.message; }
+  }
+  if (!it) { co.log.add({ type: "park-ask-failed", order: o.id, why: base.failed }); return null; }
+  it.ask.order = o.id; it.labels.push("parked");
+  o.parked.ask = it.id;
+  co.log.add({ type: "park-ask", order: o.id, item: it.id, to: it.assignee, findings: findings.length });
+  return it;
+}
+
+/** K8: `order resume` or `order cancel` answers the park's open ask (the decider's own act), or notes it when someone
+ *  else (the manager, the founder) decided. */
+export function closeParkAsk(co, id, { by, decision, text }) {
+  const it = id && co.data.tracker?.items?.get(id);
+  if (!it || it.kind !== "ask" || ["done", "cancelled"].includes(it.state)) return null;
+  if (by === it.assignee) return answer(co, { by, id, decision, text });
+  comment(co, { by, id, text: `${by} decided: ${text}` });
+  return update(co, { by, id, state: "done" });
+}

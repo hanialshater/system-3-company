@@ -12,6 +12,9 @@ export const KNOBS = {
   revisionPriority: { oneOf: ["next", "later"], why: "how a sent-back item is queued (a `now` order stays `now`)" },
   revisionDueMin: { num: [1, 24 * 60], why: "a `later` revision is due this many minutes after it is sent back" },
   staffingWaitMin: { num: [5, 24 * 60], why: "the WBR flags a queue whose median wait passes this" },
+  // K9 (plan 2026-10-21 §3): a HELD claim or a publish hold revised forever; past this many loops a revise parks the
+  // order with a decision ask to the orderer. Unset: the spec's maxLoops (true: DEFAULT_MAX_LOOPS), else no cap
+  maxLoops: { int: [1, 10], why: "revise loops an order may take; the next revise parks it and asks its orderer to decide" },
   nowBy: { subsetOf: "flow", why: "levels that may order `now` in this lane: the flow's list or fewer, never more" },
 };
 

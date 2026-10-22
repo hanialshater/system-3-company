@@ -125,7 +125,8 @@ export function tick(co, { acceptance = null, faults = null } = {}) {
       // K5: the order's worktree, made once when it has a builder (before its first brief names it); a git failure
       // holds the order (WS.hold) until `supervisor.mjs retry`; `room enter` and `room next` refuse its items meanwhile.
       // One worktree is made per tick (K5 review: each add of the 17k-file repo runs under the state lock)
-      if (o.builder && WS.specOf(co) && !o.workdir) {
+      const off = o.stage === "parked" || o.stage === "cancelled"; // K8: no worktree and no stage work until a resume
+      if (o.builder && WS.specOf(co) && !o.workdir && !off) {
         const w = WS.ensure(co, o, { create: !madeOne });
         if (w?.pending) continue; // the next tick makes it
         if (w?.error) {
@@ -142,7 +143,7 @@ export function tick(co, { acceptance = null, faults = null } = {}) {
         if (o.stageError?.kind === "workspace") { steps.push({ step: o.stage, kind: "workspace", order: o.id, result: "stage-error", output: o.stageError.why }); continue; }
         if (c) steps.push({ step: "commit", order: o.id, result: c.sha ? "committed" : "nothing to commit", output: c.sha ?? "" });
       }
-      if (o.stage === "done") continue; // only its pending commit was left to do
+      if (o.stage === "done" || off) continue; // only its pending commit was left to do
       const sd = engine.stageDef(o);
       // K12 review: a post on a stage the supervisor signs (a flow defined before validation refused it) holds the order
       // with nothing done: toy ship.post=exit 1 entered, copied to live/shipped, then threw out of tick on every tick
@@ -346,7 +347,7 @@ export function briefFor(co, item, { context = null } = {}) {
     if (t.kind === "chair") L.push(`You chair meeting ${t.ref}: \`node meta.mjs meeting show --id=${t.ref}\`. For each item ${t.items.join(", ")}: write your own position (\`meeting position\`), then \`meeting reveal --id=${t.ref} --by=${item.role} --item=<n>\` (add \`--force\` if someone is missing; they are named in the minutes), read them (\`meeting read\`), and \`meeting decide --id=${t.ref} --by=${item.role} --item=<n> --decision='…'\` (answer every objection with \`--answers\`; follow-ups as \`--actions='[{"title":"…","owner":"<role>","due":"YYYY-MM-DD"}]'\`). Every decision code can check (word limits per line, required text, banned words, which kinds of line are allowed, answers unique across items; e.g. "numbers as digits" is a ban on the number words) also goes in \`--rules='[{"tasks":"<task prefix>","checks":{…}}]'\`: code then checks it on every matching order, open or later (checks: ${CHECK_KEYS.join(", ")}; e.g. \`{"lineMaxWords":[{"prefix":"**Why:**","maxWords":20}],"allowedLines":["# ","**Q","**Answer:**","**Why:**"],"distinctAnswers":{"prefix":"**Answer:**","across":"ROUND"}}\`). ${co.data?.meetings?.meetings?.get(t.ref)?.kind === "wbr" ? `This is a WBR: the pack (\`meeting show\`) holds page 0, hits and misses, roadmap and goals, and leadership asks, all computed by code; cite its numbers, never your own. Close it with \`node meta.mjs wbr close --by=${item.role} --meeting=${t.ref} --summary='3-5 sentences'\` (not \`meeting close\`: that would skip the WBR record), then run \`node meta.mjs goal-review --by=${item.role}\`.` : `Then \`meeting close --id=${t.ref} --by=${item.role}\`.`} The decision text is what builders will follow: make it concrete.`);
   }
   const asks = (item.tasks ?? []).filter((t) => t.kind === "ask").map((t) => t.ref);
-  if (asks.length) L.push(`Asks waiting for your decision: ${asks.join(", ")}. Read each (\`node meta.mjs item show --id=<ISS>\`), check the claim against the work (live/<dir>/work/), and decide. If a shipped order must change, reopen it with what is wrong and what is required: \`node meta.mjs order reopen <O> --by=${item.role} --findings='…'\`. Then answer: \`node meta.mjs ask answer --by=${item.role} --id=<ISS> --decision=yes|no|redirect --text='…'\`.`);
+  if (asks.length) L.push(`Asks waiting for your decision: ${asks.join(", ")}. Read each (\`node meta.mjs item show --id=<ISS>\`), check the claim against the work (live/<dir>/work/), and decide. If a shipped order must change, reopen it with what is wrong and what is required: \`node meta.mjs order reopen <O> --by=${item.role} --findings='…'\`. An ask about a parked order (K9: it hit its loop cap) is answered by deciding it: \`node meta.mjs order resume <O> --by=${item.role} --reason='…'\` (with what must change) or \`node meta.mjs order cancel <O> --by=${item.role} --reason='…'\`. Otherwise answer: \`node meta.mjs ask answer --by=${item.role} --id=<ISS> --decision=yes|no|redirect --text='…'\`.`);
   const dlg = (item.tasks ?? []).filter((t) => t.kind === "delegate").map((t) => t.ref);
   if (dlg.length) {
     const lane = r.lane, builders = co.org.active().filter((x) => x.level === "builder" && x.lane === lane).map((x) => x.id);
@@ -464,7 +465,8 @@ export function reserve(co, planned, { context = null, outbox = null } = {}) {
 export function settled(co) {
   // K7 review: a done order whose last commit is pending (held, or due on the next tick) is work left; only while the
   // spec still commits (K7 review 2)
-  return [...co.engine.orders.values()].every((o) => o.stage === "done" && !WS.commitDue(co, o)) && ![...(co.data?.meetings?.meetings?.values() ?? [])].some((m) => m.state === "open");
+  // K8: a cancelled order is settled; a parked one is not (its ask waits for a decision)
+  return [...co.engine.orders.values()].every((o) => o.stage === "cancelled" || (o.stage === "done" && !WS.commitDue(co, o))) && ![...(co.data?.meetings?.meetings?.values() ?? [])].some((m) => m.state === "open");
 }
 
 async function serve(opts, { idleMin = 2, maxMin = 120 } = {}) {
