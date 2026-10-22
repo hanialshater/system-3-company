@@ -274,7 +274,7 @@ The first dry run's output (`b7dry/`) was deleted after the review: its fake gam
 | 9 | Distractor rooms and items with a stated generic refusal (A9.18) | boathouse, ruined chapel, lookout: 6 decorative things, an oar and a candle | ballroom, scullery, the portrait: 6 decorative things and a bar of soap | ruins and waterfall: 4 decorative things and a pebble | distractor |
 | 10 | Long spec, load-bearing rules mid-document, rule IDs in a table of contents | about 19,500 tokens; the TOC lists every rule ID; mid-document rules: A6.3 nearness, A6.7 `them`, A7.1 turn accounting, A9.18 decorative refusal, A11.3 examining in the dark, A12.3 draw points | | | all |
 | 11 | Combinatorial interactions with a precedence table | A14.1 (the order of checks) and A14.2 (32 rows), plus B9 rows for each world | | | interactions |
-| 12 | Visible tests: a correct, incomplete, happy-path subset | 89 tests (15% of the post-notice suite), plus 3 notice tests at delivery | 92 (16.4%), plus 3 | 85 (15.6%), plus 2 | (visible) |
+| 12 | Visible tests: a correct, incomplete, happy-path subset | 89 tests (14.9% of the post-notice suite), plus 3 notice tests at delivery | 92 (16.3%), plus 3 | 85 (15.5%), plus 2 | (visible) |
 
 ### The Change Notice: one notice, delivered the same way to every arm
 
@@ -327,27 +327,27 @@ The notice is fixed before the run (`b7/notices/Gn.md`, built from `hidden/specs
   | api | 10 (+3) | 10 (+3) | 10 (+3) |
   | parser | 53 | 53 | 53 |
   | fuzz | 287 | 292 | 291 |
-  | pronoun | 22 | 14 | 14 |
+  | pronoun | 23 | 15 | 15 |
   | ambiguity | 16 | 11 | 13 |
-  | movement / items / containers / light | 8 / 8 / 9 / 8 | 7 / 6 / 6 / 7 | 6 / 4 / 5 / 6 |
+  | movement / items / containers / light | 8 / 8 / 9 / 8 | 7 / 6 / 6 / 8 | 6 / 4 / 5 / 7 |
   | turns | 12 | 12 | 12 |
   | rng | 12 | 11 | 10 |
   | the random element's puzzle category (gull / rat / dig) | 8 | 10 | 7 |
   | other puzzle categories | npc 4, dog 4, tide 6, chest 3, tower 2, padlock 2, beacon 4 | gardener 4, passage 2, safe 4, automaton 4, pendulum 2, clock 4 | hermit 4, monkey 5, vines 3, tiles 4, idol 6 |
   | horizon | 7 | 7 | 7 |
-  | saveload / saveload-deep | 10 / 22 | 10 / 19 | 10 / 20 |
+  | saveload / saveload-deep | 11 / 22 | 11 / 19 | 11 / 20 |
   | scoring / endings / edge | 4 / 5 / 9 | 4 / 5 / 9 | 3 / 3 / 9 |
   | errata | 15 | 13 | 10 |
   | distractor | 11 | 8 | 7 |
-  | interactions | 12 | 11 | 9 |
+  | interactions | 13 | 12 | 10 |
   | notice (post only) | 17 | 13 | 12 |
-  | **total, pre-notice suite / post-notice suite** | **576 / 593** | **548 / 561** | **534 / 546** |
+  | **total, pre-notice suite / post-notice suite** | **579 / 596** | **552 / 565** | **538 / 550** |
 
   The random generator also runs through horizon, saveload-deep, interactions and notice.
 - **Checks made (all pass):**
   - Each reference passes 100% of its own phase's suite. They still pass with every free-wording string rewritten (`B7_VARIANT=1`).
-  - The pre-notice reference fails the post-notice suite on 93/593 (G1), 120/561 (G2) and 124/546 (G3) tests. The notices were balanced to this: at first G3's changed initial fuel failed 263 tests (every final state), so its D2 became a temple-only burn rate, and G1 gained a second renamed message.
-  - Mutation check (`hidden/mutants.mjs`): 21 misreadings × 3 games, and 62 of 63 are killed. The survivor is `itMulti` in G3, where it is not a misreading: erratum C5 makes a list bind `it` to its last thing.
+  - The pre-notice reference fails the post-notice suite on 93/593 (G1), 120/561 (G2) and 124/546 (G3) tests (95/596, 120/565 and 127/550 after the verification below). The notices were balanced to this: at first G3's changed initial fuel failed 263 tests (every final state), so its D2 became a temple-only burn rate, and G1 gained a second renamed message.
+  - Mutation check (`hidden/mutants.mjs`): 21 misreadings × 3 games, and 62 of 63 are killed (49 misreadings after the verification below). The survivor is `itMulti` in G3, where it is not a misreading: erratum C5 makes a list bind `it` to its last thing.
   - The visible tests pass on both references in both phases. The notice's visible tests fail on the pre-notice references.
   - `check-harness.mjs` checks the access rule, the runner's isolation, the accept phases, the notice files and the canaries.
   - Dry run 3 (below).
@@ -378,3 +378,42 @@ node run-hidden.mjs --game=G1 --phase=pre --dir=hidden/G1/ref-pre    # operator:
 4. the observer's pass parked and resumed the order as the founder. The order was back at build, SPEC.md ended with Part D, `visible-tests/` had `notice.test.mjs`, and the revise was planned as a resume of the same builder session (K26), with the pointer in its findings;
 5. the old game failed the builder's own self-check on the new notice tests. The post-notice game passed it, then test1, the eval, accept (post, 593/593) and ship;
 6. the tally: first hand-in 576/576 (pre), after the notice 593/593, final 593/593, rounds 0, `loops` 1 (the notice's loop granted back).
+
+### Verification of the hardened material (2026-10-22; no Agent SDK session)
+
+A mechanical check of the v2 material, operator side (the hidden files stay in the scratchpad and are not committed).
+
+**(a) The references.** Each reference passes 100% of its own phase's suite: G1 579/579 (pre) and 596/596 (post), G2 552/552 and 565/565, G3 538/538 and 550/550. Each post reference also passes 100% when it runs the way an arm's game runs: copied out of `hidden/` into its own directory, then run on an isolated copy under `--permission`.
+
+**(b) Free wording.** With `B7_VARIANT=1` (every free-wording string rewritten), all six suites still pass 100%. The visible tests pass on both references in both phases (G1 89, G2 92, G3 85). The notice's visible tests (3, 3, 2) pass on the post references and fail on the pre references.
+
+**(c) Mutation check.** `hidden/mutants.mjs` now injects 49 misreadings, grouped by mechanism of the research memo's section 4, and runs them in parallel. It reports each mutant against the post suite (the gate), the pre suite on the pre reference (for information), and the visible tests. Of the 49, 21 are the earlier ones and 28 are new:
+
+| Mechanism | New misreadings (each in all three games, in that game's guise) |
+|---|---|
+| 1 errata | `errata1` (G1 C1 limit 6; G2 C1 the hayloft drop does not fall; G3 C1 capacity counts only direct contents), `errata2` (tide period 12; battery 1 a turn in the dark; collapse timer 5), `errata3` (`take all` ignores open fixed containers; `drop all` drops the lit torch; examine takes a turn) |
+| 2 ambiguity, pronoun | `itRevealed` (a thing revealed by opening becomes `it`), `itLastNoun` (`it` binds to the last noun typed, not the direct object) |
+| 4 change notice | `noticeMsg` (the renamed messages not applied), `noticeRule` (G1 storm still at 150/200; G2 the rat still hit only on 3+; G3 gems still only on 0), `noticeScore` (the scoring changes, or G3's visited line, not applied) |
+| 5 rng | `rngInitAdvance` (seeding makes one draw too many), `rngScale` (roll scales instead of taking `x mod n`), `drawSkip` (G1 no D2 for a one-entry flight list; G2 no bite draw in the dark; G3 no chatter draw in the dark), `drawExtra` (G1 D3 drawn with nothing shiny; G2 D1 drawn on a refused attack; G3 D1 drawn on hard ground), `drawOrderSwap` (the later draw made first: G1 D3 before D1; G2 and G3 the daemon's D2 before the action's D1) |
+| 6 parser fuzz | `maxLenOffByOne` (200 characters already too long), `punctDelete` (punctuation deleted, not made a space), `commaSeparator` (a comma separates commands) |
+| 7 timers | `timerBeforeTurn` (daemons see the turn count before it rises), `timerMetaTicks` (daemons also run on commands that take no turn) |
+| 8 save/load | `saveNoNpcs` (characters' positions not saved), `saveNoSession` (the slot and `again` memory not saved), `saveNoAwards` (the set of awards not saved) |
+| 9 distractors | `decorStandard` (no generic refusal: the standard rules apply), `decorPortable` (decorative things can be taken) |
+| 10 mid-document rules | `nearTakeSame` (A6.3: take does not reverse the ranks), `darkExamineCarried` (A11.3: carried things can be examined and read in the dark) |
+| 11 interactions | `precDecorSecond` (a decorative second object is not refused), `limitFromCarried` (row 23: taking out of a carried container ignores the limit), `precTakeLimitFirst` (A9.5: the limit is checked before fixed and character) |
+
+Mechanisms 3 (category-only feedback) and 12 (visible subset) have no engine misreading. `check-harness.mjs` covers 3. For 12, the measure is the kills the visible tests miss.
+
+The first run left 12 escapes that were not expected. In each case I fixed the cases, not the reference:
+- **Two hidden tests were vacuous.** G3 "C1: a full container inside another" never carried the basket into the pool, so every put answered P6. G3 "C4: examine in the dark…" examined the torch, but its route had not taken the torch. Both cases are rewritten so that they reach what they name. Each now also carries a hand expectation that the golden build checks.
+- **Ten new cases** test rules the suite did not yet probe:
+  - load keeps the set of awards (one per game, saveload);
+  - a revealed thing never becomes `it` (one per game, pronoun);
+  - at the carrying limit, take-from out of a carried container and take of a character (one per game, interactions);
+  - examining and reading a carried thing in the dark (G2 and G3, light).
+
+After the fix, **146 of 147** mutant×game pairs are killed. The only survivor is `itMulti` in G3, which is erratum C5 there and not a misreading. Of the 146 kills, **72 pass every visible test**: the hidden suite alone catches them. 24 kills rest on a single test, so they are thin: `saveNoIt`, `saveNoAwards`, `limitFromCarried` and `litInside` in all three games; `loadLenient` and `precTakeLimitFirst` in G2 and G3; `itLastNoun` in G1 and G3; `ambOrder`, `errata1`, `itRevealed`, `drawExtra` and `precDecorSecond` in G3; `darkExamineCarried` in G2. The visible sample is unchanged byte for byte: no new case is marked visible, and no visible case's golden changed.
+
+**(d) Flakiness.** I ran each of the 12 suite runs 3 times: 3 games × pre/post × normal/variant. The last JSON line was identical across the 3 runs every time. The whole mutant check (147 pairs × post, pre and visible) also ran 3 times, with identical results. No test is flaky.
+
+**(e) Time per hidden run.** On this 4-core container, one run of the runner takes 0.53-0.80 s of wall time (the runner's own figure is 0.46-0.67 s). That holds for both phases and for the variant. It is 0.51-0.66 s when the game runs isolated like an arm's. The full mutant check takes about 103 s with 4 in parallel. The kernel suites (`tests/*.test.mjs`, 312 tests) pass.
