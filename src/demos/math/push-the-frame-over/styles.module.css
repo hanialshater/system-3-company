@@ -1,0 +1,14 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 150px; max-height: 210px; }
+.fill { fill: color-mix(in srgb, var(--domain) 35%, transparent); stroke: none; }
+.moved { fill: color-mix(in srgb, var(--domain) 70%, transparent); stroke: var(--fg); stroke-width: 1; stroke-dasharray: 3 2; }
+.ghost { fill: none; stroke: var(--muted); stroke-width: 1.2; stroke-dasharray: 3 3; }
+.frame { fill: none; stroke: var(--fg); stroke-width: 5; stroke-linejoin: round; }
+.hinge { fill: var(--bg-2); stroke: var(--fg); stroke-width: 2; }
+.height { stroke: var(--fg); stroke-width: 1.6; stroke-dasharray: 5 4; }
+.hlabel { fill: var(--fg); font-size: 13px; font-weight: 800; font-style: italic; }
+.label { fill: var(--fg); font-size: 12px; font-weight: 700; }
+.readout { fill: var(--fg); font-size: 13px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.wrap :global(.row) { justify-content: center; gap: 6px; flex-wrap: wrap; }
+.tap { min-height: 44px; min-width: 44px; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.15; }
+.trace { font-size: 0.75rem; font-weight: 700; opacity: 0.85; font-variant-numeric: tabular-nums; }

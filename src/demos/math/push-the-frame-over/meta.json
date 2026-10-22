@@ -1,0 +1,94 @@
+{
+  "slug": "push-the-frame-over",
+  "title": "Does a leaning frame hold as much?",
+  "hook": "A hinged frame leans over. Every side keeps its length. Does the space inside change?",
+  "domain": "math",
+  "concept": "parallelogram-area",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "area of a rectangle = width × height"
+    ],
+    "doesNotKnow": [
+      "that a parallelogram's area is base × height, so pushing a frame over keeps its sides but loses area"
+    ]
+  },
+  "misconception": "A frame that leans keeps its area, because its sides and perimeter have not changed (or: a parallelogram's area is base × slanted side).",
+  "objective": "The learner can say that leaning a 4 by 3 frame keeps its sides and perimeter (14) but lowers its height, and that its area is base × height (at 30°, 4 × 1.50 = 6.0), because cutting off the slanted end and sliding it across makes a rectangle 4 wide and that tall.",
+  "claims": [
+    {
+      "id": "math.push-the-frame-over.c1",
+      "text": "A frame with sides 4 and 3 leaning at angle θ has height 3 sin θ and area 4 × 3 sin θ = 12 sin θ: upright (90°) height 3.00 and area 12.0, at 60° height 2.60 and area 10.4, at 30° height 1.50 and area 6.0. Its area is base times height, not base times slanted side, and pushed flat (θ towards 0) the area goes to nothing while the sides stay the same.",
+      "support": "derivation",
+      "source": "Height of the top edge above the base is 3 sin θ; area = base × height (claim c3). 12 sin 90° = 12.00, 12 sin 60° = 10.392, 12 sin 30° = 6.00; 3 sin 60° = 2.598. company/domains/briefs/checks/math-wave-j-check.mjs label G2; Demo.tsx frame(). Stage rounding: height to 0.01, area to 0.1.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.push-the-frame-over.c2",
+      "text": "Leaning keeps every side and the perimeter at 14 at every angle.",
+      "support": "derivation",
+      "source": "The sides are rigid and only the hinges turn: perimeter = 2 × (4 + 3) = 14 for every θ. G2 prints perimeter 14 at 90°, 60° and 30°.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.push-the-frame-over.c3",
+      "text": "Cutting the right triangle off the slanted end of a parallelogram and sliding it across to the other end makes a rectangle with the same base (4) and the same height, so the same area.",
+      "support": "derivation",
+      "source": "The triangle under the left slanted side, (0,0), (c,0), (c,h) with c = 3 cos θ, h = 3 sin θ, slid 4 to the right is (4,0), (4+c,0), (4+c,h), which exactly fills the gap under the right slanted side; the pieces form the rectangle from x = c to 4 + c, 4 wide and h tall (congruent triangles; Euclid, Elements I.35). Demo.tsx triFrom / triTo / rect.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.push-the-frame-over.c4",
+      "text": "Recall: a hinged 5 by 2 frame leaning until its height is 1 has area 5 × 1 = 5.",
+      "support": "derivation",
+      "source": "Base 5, height 1 (the 2-long sides at 30°: 2 sin 30° = 1); area = base × height = 5 (claim c3). Base × slanted side would wrongly give 10.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A hinged frame with sides 5 and 2 stands on its 5-long side. You push it over until its top is only 1 above the base. What is its area now?",
+    "options": [
+      "10",
+      "7",
+      "5"
+    ],
+    "answer": 2,
+    "why": "Area is base times height: 5 × 1 = 5. The sides are still 5 and 2, but base times slanted side (10) is the upright frame's area, not the leaning one's."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "math:parallelogram-area",
+    "also": [
+      "math:multiplication-as-area"
+    ],
+    "prerequisites": [
+      "math:multiplication-as-area"
+    ],
+    "level": "intro",
+    "strand": "geometry",
+    "references": [],
+    "tags": [
+      "area",
+      "parallelogram",
+      "dissection"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate"
+  ]
+}
