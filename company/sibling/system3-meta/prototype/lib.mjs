@@ -325,7 +325,11 @@ export function flowProblems(def) {
   else if (["builder", "orderer"].includes(check.signer)) p.push("check must be signed independently of build");
   const rel = def.stages.find((s) => s.stage === "release");
   if (rel && rel.signer !== "founder") p.push("release is founder-reserved");
-  if (stages.at(-1) !== "ship") p.push("last stage must be ship");
+  // M6 prep (plan §M6 criterion 5): after ship only code stages with a run may follow (the integration merge,
+  // adapters/s3c/integrate.mjs): no agent and no person signs anything after the release
+  const si = stages.lastIndexOf("ship");
+  if (si < 0) p.push("last stage must be ship");
+  else for (const x of def.stages.slice(si + 1)) if (x.signer !== "code" || x.run == null) p.push(`${x.stage}: only code stages with a run (an integration merge) may follow ship`);
   return p;
 }
 

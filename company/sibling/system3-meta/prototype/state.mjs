@@ -335,9 +335,9 @@ export function validateCmd(c, { stages = null } = {}) {
 }
 /** ${slug}, ${task}, ${workdir}, ${live}, ${base_sha} (K12 post-checks: ${evidence}, ${verdict}, ${stage}) in a cmd string; slug is the order's slug if set (lessons), else its task. With a K5
  *  workspace also ${run}, ${n} and ${port} (o.workspace.vars: one vocabulary for workspace env, cmds and briefs, K5
- *  review); M5 review: ${order}, ${budget}, ${remaining}, ${ledger_project} (prepareCmd); a variable the order does not
+ *  review); M5 review: ${order}, ${budget}, ${remaining}, ${ledger_project} (prepareCmd); M6 prep: ${branch}; a variable the order does not
  *  have stays as written. */
-export const interpolate = (s, vars) => s.replace(/\$\{(slug|task|workdir|run|n|port|evidence|verdict|stage|live|base_sha|order|budget|remaining|ledger_project)\}/g, (m, k) => (k in vars ? vars[k] ?? "" : m));
+export const interpolate = (s, vars) => s.replace(/\$\{(slug|task|workdir|run|n|port|evidence|verdict|stage|live|base_sha|order|budget|remaining|ledger_project|branch)\}/g, (m, k) => (k in vars ? vars[k] ?? "" : m));
 const dig = (x, p) => p.split(".").filter(Boolean).reduce((v, k) => (v == null ? undefined : k === "length" && (Array.isArray(v) || typeof v === "string") ? v.length : v[k]), x);
 // K1 audit: the last line that parses, not the last that looks like JSON ("[advisory] x" after the JSON was "not JSON")
 const parseJson = (t) => { try { return JSON.parse(t); } catch {} for (const l of t.trim().split("\n").reverse()) { if (!/^[[{]/.test(l.trim())) continue; try { return JSON.parse(l); } catch {} } return undefined; };
@@ -352,7 +352,8 @@ export function prepareCmd(o, s, extra = {}) {
   // new --ledger-project`: the company projects.json line it is charged to; unset, it stays as written), so a pre-check
   // such as ledger-gate.mjs gates each order's own project and tokens
   const own = { order: o.id ?? "", ...(Number.isFinite(o.budget) ? { budget: String(o.budget), remaining: String(Math.max(0, o.budget - (o.spent ?? 0))) } : {}), ...(o.ledgerProject ? { ledger_project: o.ledgerProject } : {}) };
-  const vars = { ...(o.workspace?.vars ?? {}), ...extra, ...own, slug: o.slug ?? o.task ?? "", task: o.task ?? "", workdir: o.workdir ?? path.join(LIVE, "work", o.task ?? ""), live: LIVE, base_sha: o.workspace?.baseSha ?? o.workspace?.sha ?? "" };
+  // M6 prep: ${branch}, the order's worktree branch (the integration merge's --from); with no worktree it stays as written
+  const vars = { ...(o.workspace?.vars ?? {}), ...extra, ...own, ...(o.workspace?.branch ? { branch: o.workspace.branch } : {}), slug: o.slug ?? o.task ?? "", task: o.task ?? "", workdir: o.workdir ?? path.join(LIVE, "work", o.task ?? ""), live: LIVE, base_sha: o.workspace?.baseSha ?? o.workspace?.sha ?? "" };
   const argv = c.argv.map((a) => interpolate(a, vars));
   const cwd = c.cwd ? path.resolve(vars.workdir, interpolate(c.cwd, vars)) : vars.workdir;
   // a child of a node --test process would report to it and exit 0 whatever its tests do (see runTests)

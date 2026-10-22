@@ -194,3 +194,41 @@ test("M6 prep 5 (K17): the host guard: no session while the load passes maxLoadP
   const real = hostProbe(co);
   assert.ok(Number.isFinite(real.load) && real.cpus >= 1 && real.freeGB > 0, JSON.stringify(real));
 });
+
+test("M6 prep 6: a code stage with a run may follow ship (the integration merge), nothing else may; ${branch} is the order's worktree branch", async () => {
+  const { flowProblems } = await import("../lib.mjs");
+  const s = builtinSpec("toy"), st = s.flow.stages;
+  const merge = { stage: "merge", signer: "code", evidence: [], run: { argv: ["node", "integrate.mjs", "--from=${branch}"] } };
+  assert.deepEqual(flowProblems({ stages: [...st, merge] }), []);
+  assert.deepEqual(validateSpec({ ...s, flow: { ...s.flow, stages: [...st, merge] } }), []);
+  assert.deepEqual(flowProblems({ stages: [...st, { ...merge, run: undefined }] }), ["merge: only code stages with a run (an integration merge) may follow ship"]);
+  assert.deepEqual(flowProblems({ stages: [...st, { stage: "after", signer: "checker", evidence: ["x"] }] }), ["after: only code stages with a run (an integration merge) may follow ship"]);
+  assert.deepEqual(flowProblems({ stages: st.filter((x) => x.stage !== "ship") }), ["last stage must be ship"]);
+  const o = { id: "O-1", task: "LESSON-x", slug: "x", workdir: "/tmp", workspace: { branch: "meta/m6-LESSON-x" } };
+  assert.deepEqual(prepareCmd(o, merge).argv.slice(2), ["--from=meta/m6-LESSON-x"]);
+  assert.deepEqual(prepareCmd({ id: "O-2", task: "T" }, merge).argv.slice(2), ["--from=${branch}"], "no worktree: as written");
+});
+
+test("M6 prep 6: the supervisor runs a code stage after ship (merge) in the same tick, and the order is done (shipped) only after it", () => {
+  const s = builtinSpec("toy");
+  s.flow.stages.push({ stage: "merge", signer: "code", evidence: [], run: { argv: ["node", "-e", "require('fs').writeFileSync(process.argv[1], 'merged ' + process.argv[2])", "${live}/merged.txt", "${task}"] } });
+  const dir = init(s);
+  const o = placed(dir, "T");
+  const work = path.join(dir, "work", "T"), acc = fresh("acc");
+  fs.mkdirSync(work, { recursive: true });
+  fs.writeFileSync(path.join(work, "page.mjs"), "export const x = 1;\n");
+  fs.writeFileSync(path.join(work, "page.test.mjs"), "import { test } from 'node:test'; test('ok', () => {});\n");
+  fs.writeFileSync(path.join(acc, "T.test.mjs"), "import { test } from 'node:test'; test('accepted', () => {});\n");
+  const msg = (to) => ok(meta(dir, "queue", to)).find((m) => m.order === o)?.msg;
+  const b = ok(meta(dir, "room", "enter", `--msg=${msg("toy-builder-1")}`, "--role=toy-builder-1"));
+  ok(meta(dir, "room", "leave", `--run=${b.run}`, "--evidence=live/work/T/"));
+  ok(sup(dir, "tick", `--acceptance=${acc}`));
+  const c = ok(meta(dir, "room", "enter", `--msg=${msg("pool:checker")}`, "--role=toy-checker"));
+  ok(meta(dir, "room", "leave", `--run=${c.run}`, "--evidence=read it", "--verdict=pass"));
+  const t = ok(sup(dir, "tick", `--acceptance=${acc}`));
+  assert.deepEqual(t.steps.filter((x) => ["uat", "ship", "merge"].includes(x.step)).map((x) => x.step), ["uat", "ship", "merge"]);
+  assert.equal(orderOf(dir, o).stage, "done");
+  assert.equal(fs.readFileSync(path.join(dir, "merged.txt"), "utf8"), "merged T");
+  const ev = state(dir).log.events, shippedAt = ev.findIndex((e) => e.type === "shipped" && e.order === o), mergedAt = ev.findIndex((e) => e.type === "advance" && e.order === o && e.stage === "merge");
+  assert.ok(mergedAt >= 0 && shippedAt > mergedAt - 1, "shipped is logged when merge signs the last stage");
+});
