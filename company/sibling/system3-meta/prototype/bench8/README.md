@@ -1,7 +1,8 @@
 # Benchmark 8: the material (a C-subset compiler in Clojure, 6 waves)
 
-owner: vp-meta · date: 2026-10-23 · status: **the material is built and validated. The arms' harness (place, run,
-access hook, observer, tally for V and S) is not built yet, and no arm has run.**
+owner: vp-meta · date: 2026-10-23 · status: **the material is built and validated, and the arms' harness is built
+and dry-run (PROTOCOL.md: V is `vanilla-compiler.mjs`, S is `setup.mjs run` with specs/ccompiler-specialized.json;
+predictions in PREDICTIONS.md). No arm has run.**
 
 ## What this is
 

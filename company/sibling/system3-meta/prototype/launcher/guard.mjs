@@ -19,6 +19,7 @@
 // (loaded with the project settings) is best effort for them, and K7's commit check refuses the change whatever made it.
 import fs from "node:fs";
 import path from "node:path";
+import { spawn } from "node:child_process";
 
 // K10 review: one regex over the whole line both missed and over-caught. Missed: `git -C '/a b' push`, `git --git-dir /x
 // push`, `git send-pack`, `npm run company --silent -- publish`, `node tools/company.mjs --x publish`, `yarn deploy`.
@@ -502,7 +503,7 @@ export function sessionPlan(cfg, cli = {}, defaults = {}) {
  *  permissionPrompts "none" never called it; the PreToolUse hook sees every call. A role that names its tools gets
  *  them as the SDK `tools` (K10 review: denying alone left TodoWrite, Task, WebFetch visible, a turn and a guard event
  *  per try); a role that does not keeps the SDK's base set, as before K10. */
-export function queryOptions(p, guard, { model, env, abortController, resume = null } = {}) {
+export function queryOptions(p, guard, { model, env, abortController, resume = null, extraHooks = [] } = {}) {
   return {
     cwd: p.cwd, model, abortController, env,
     ...(resume ? { resume } : {}), // K26: a warm role's next item continues its own Agent SDK session
@@ -511,7 +512,8 @@ export function queryOptions(p, guard, { model, env, abortController, resume = n
     allowedTools: p.tools.filter((t) => !GUARDED.includes(t)),
     permissionMode: "default", permissionPrompts: "host",
     canUseTool: guard.canUseTool,
-    hooks: { PreToolUse: [{ hooks: [guard.preToolUse] }] },
+    // B8: an operator's command hook (launch.mjs --pretool-hook) runs after the guard, on every call too
+    hooks: { PreToolUse: [{ hooks: [guard.preToolUse, ...extraHooks] }] },
     maxTurns: p.maxTurns,
   };
 }
@@ -524,4 +526,35 @@ export function warmFallback({ resumed, error = null, result = null, sawAssistan
   // resume: the SDK session is healthy, and a cold retry on the same aborted controller fails at once
   if (aborted) return false;
   return !!resumed && !sawAssistant && (!!error || !result || !!result.is_error);
+}
+
+/** B8: an operator's PreToolUse command hook, in process (the launcher's --pretool-hook=<JSON argv>), so a run can add
+ *  its own access rule with settingSources [] (no project settings file to load it from, none for an agent to edit).
+ *  The command gets the hook input as JSON on stdin, as a settings `command` hook does, with `env` (the launch's
+ *  META_ROLE and META_LAUNCH among it); exit 0 allows (the guard and canUseTool still decide), exit 2 denies with its
+ *  stderr as the reason, and anything else (a crash, a timeout, a missing command) denies too: it fails closed.
+ *  `record(d)` gets each denial {via: "pretool-hook", tool, rule, why}. */
+export function commandHook(argv, { env = process.env, timeoutMs = 20_000, record = () => {} } = {}) {
+  if (!Array.isArray(argv) || !argv.length || !argv.every((a) => typeof a === "string" && a)) throw new Error("a command hook is a JSON argv: a non-empty list of strings");
+  const deny = (tool, rule, why) => { try { record({ via: "pretool-hook", tool, rule, why }); } catch {} return { hookSpecificOutput: { hookEventName: "PreToolUse", permissionDecision: "deny", permissionDecisionReason: why } }; };
+  return async function preToolUseCommand(input) {
+    if (input?.hook_event_name && input.hook_event_name !== "PreToolUse") return {};
+    const tool = input?.tool_name ?? null;
+    const r = await new Promise((resolve) => {
+      let out = "", err = "", done = false;
+      const fin = (x) => { if (!done) { done = true; clearTimeout(t); resolve(x); } };
+      let ch;
+      try { ch = spawn(argv[0], argv.slice(1), { env, stdio: ["pipe", "pipe", "pipe"] }); } catch (e) { return fin({ code: null, err: String(e?.message ?? e) }); }
+      const t = setTimeout(() => { try { ch.kill("SIGKILL"); } catch {} fin({ code: null, err: `timed out after ${timeoutMs} ms` }); }, timeoutMs);
+      ch.stdout.on("data", (d) => { if (out.length < 65536) out += d; });
+      ch.stderr.on("data", (d) => { if (err.length < 4096) err += d; });
+      ch.on("error", (e) => fin({ code: null, err: String(e?.message ?? e) }));
+      ch.on("close", (code) => fin({ code, err }));
+      ch.stdin.on("error", () => {});
+      ch.stdin.end(JSON.stringify(input ?? {}));
+    });
+    if (r.code === 0) return {};
+    if (r.code === 2) return deny(tool, "pretool-hook", String(r.err).trim().slice(0, 1000) || "denied by the operator's hook");
+    return deny(tool, "pretool-hook-failed", `the operator's hook failed (${r.code == null ? r.err : `exit ${r.code}`}): denied, the hook fails closed`);
+  };
 }
