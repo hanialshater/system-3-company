@@ -367,7 +367,7 @@ export function validateCmd(c, { stages = null, orderArgv = false } = {}) {
   if (c.timeoutMs != null && !(Number.isFinite(c.timeoutMs) && c.timeoutMs > 0)) return "timeoutMs is a positive number";
   const p = c.pass ?? "exit0";
   if (!(p === "exit0" || (p && typeof p === "object" && ((p.tap === true && Object.keys(p).length === 1) || (typeof p.json === "string" && "equals" in p && Object.keys(p).length === 2))))) return `pass is "exit0", {tap: true} or {json: "<dotted path into stdout JSON>", equals: <value>}`;
-  if (c.findings != null && (typeof c.findings !== "object" || Array.isArray(c.findings) || Object.keys(c.findings).some((k) => !["fromStdout", "checked"].includes(k)) || typeof c.findings.fromStdout !== "string" || badRe(c.findings.fromStdout) || (c.findings.checked != null && (typeof c.findings.checked !== "string" || badRe(c.findings.checked) || !/\((?!\?)/.test(c.findings.checked))))) return "findings is {fromStdout: <regular expression>, checked: <regular expression whose group 1 lists the defect classes the cmd checked>}";
+  if (c.findings != null && (typeof c.findings !== "object" || Array.isArray(c.findings) || Object.keys(c.findings).some((k) => !["fromStdout", "checked", "metric"].includes(k)) || typeof c.findings.fromStdout !== "string" || badRe(c.findings.fromStdout) || (c.findings.checked != null && (typeof c.findings.checked !== "string" || badRe(c.findings.checked) || !/\((?!\?)/.test(c.findings.checked))) || (c.findings.metric != null && (typeof c.findings.metric !== "string" || badRe(c.findings.metric) || !/\((?!\?)/.test(c.findings.metric))))) return "findings is {fromStdout: <regular expression>, checked: <regular expression whose group 1 lists the defect classes the cmd checked>, metric: <regular expression whose group 1 is name=number pairs>}";
   if (c.errorExit != null && !(Array.isArray(c.errorExit) && c.errorExit.every((x) => Number.isInteger(x) && x > 0 && x < 256))) return "errorExit is a list of non-zero exit codes (1-255) that are a stage-error";
   if (c.route != null) {
     if (typeof c.route !== "object" || Array.isArray(c.route)) return "route is {<regular expression>: <stage>}";
@@ -475,14 +475,18 @@ export function judgeCmd(c, label, r, timeoutMs = c.timeoutMs ?? 60_000) {
   // B8 S2 review: a list with commas is split on the commas only, so a class of several words ("W3 sizeof", as B8's
   // hidden runner names its categories) stays one class; a list with no comma is split on whitespace as before
   const checked = ckRe ? [...new Set(out.split("\n").map((l) => ckRe.exec(l)?.[1]).filter(Boolean).flatMap((x) => x.split(x.includes(",") ? /\s*,\s*/ : /\s+/)).map((x) => x.trim()).filter(Boolean))] : null;
-  if (!pass && !findings) findings = both.trim().split("\n").filter((l) => l && !(ckRe && ckRe.test(l))).slice(-20).join("\n").slice(0, 2000) || null;
+  // K39: `metric` reads the run's measurements (name=number pairs, e.g. `metric: score=0.82 lua=0.85`) for learning from
+  // effects; those lines never reach the findings either
+  const mtRe = c.findings?.metric ? new RegExp(c.findings.metric, "m") : null;
+  const metric = mtRe ? Object.fromEntries(out.split("\n").map((l) => mtRe.exec(l)?.[1]).filter(Boolean).flatMap((x) => [...x.matchAll(/([A-Za-z][\w-]*)=(-?[\d.]+(?:e-?\d+)?)/g)].map((m) => [m[1], Number(m[2])])).filter(([, v]) => Number.isFinite(v))) : null;
+  if (!pass && !findings) findings = both.trim().split("\n").filter((l) => l && !(ckRe && ckRe.test(l)) && !(mtRe && mtRe.test(l))).slice(-20).join("\n").slice(0, 2000) || null;
   const route = pass ? null : Object.entries(c.route ?? {}).find(([re]) => new RegExp(re, "m").test(both))?.[1] ?? null;
   // M4 integrate: a stage-error never routes, whatever made it (errorExit, a timeout, a failed spawn): a timed-out or
   // crashed post-check's partial output ("Verdict: revise", "fatal: …") was routed as a verdict by Rooms.checkPost
   const stageError = !!(r.error || r.timedOut || errExit);
   // M5 review: an adapter's failing answer may name the ask it wants (ledger-gate.mjs: {ask:{kind:"budget", text}})
   const j = pass || stageError ? undefined : parseJson(out), ask = j?.ask && typeof j.ask === "object" && !Array.isArray(j.ask) && typeof j.ask.kind === "string" ? j.ask : null;
-  return { pass, output: `${label}: ${why}`, findings, route: stageError ? null : route, code: r.status ?? null, timedOut: !!r.timedOut, stageError, ...(ask ? { ask } : {}), ...(checked && !stageError ? { checked } : {}) };
+  return { pass, output: `${label}: ${why}`, findings, route: stageError ? null : route, code: r.status ?? null, timedOut: !!r.timedOut, stageError, ...(ask ? { ask } : {}), ...(checked && !stageError ? { checked } : {}), ...(metric && Object.keys(metric).length && !stageError ? { metric } : {}) };
 }
 /** Run stage `s`'s `run` cmd for order `o` and wait: { pass, output, findings, route, code, timedOut, stageError }.
  *  findings are advisory on a pass (copy-tells, a11y) and the reason on a fail; route is the earlier stage the first

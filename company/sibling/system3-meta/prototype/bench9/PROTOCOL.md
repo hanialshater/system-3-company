@@ -88,6 +88,12 @@ check of waves 1-5 and Lua as the integration check, and the full judge as the a
 W9, W10: rounds 1-3), one full-judge round each**, so S gets the same 3 rounds as V and the architect's retro (K28/K33 with K38
 beliefs) runs between them, and its rules are scored on the next order.
 
+**K39 (v2, founder 2026-10-23):** S's learning also learns from effects. Each order's full-judge score is its accept
+stage's metric (`metric: score=…`), the owners' `--learned` notes are its experiment record, and the architect's retro
+proposes effect rules whose beliefs code updates with each later order's measured change (learn.mjs K39). S's orders
+always ship after their one full-judge round (a broken gate scores 1.0), so every round is measured; the evaluator
+(advisory, after accept) now runs every round.
+
 All three arms read the same task text ([B9.md](B9.md): V's and P's prompts quote it, S gets it as spec/B9.md).
 
 ## Fairness

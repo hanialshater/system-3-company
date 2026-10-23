@@ -329,3 +329,39 @@ test("K38: a rule's belief is Bayes against the class's base rate; untested keep
   assert.deepEqual([b.k0, b.n0, b.k, b.n], [1, 2, 0, 1], "E-3 cited, E-4 never judged by a stage that sees movement");
   assert.match(L.beliefText({ ...rule, wrongIf: "it recurs" }), /^belief \d+% that it helps \(prior 50%; with it the class recurred in 0 of 1 orders, before it 1 of 2\); wrong if it recurs$/);
 });
+
+// ---- K39: learning from effects (founder 2026-10-23: optimization is iterative work where learning should help)
+test("K39: a metric line is read like checked; an effect rule's belief follows the measured changes", async () => {
+  const { judgeCmd, validateCmd } = await import("../state.mjs");
+  const c = { argv: ["x"], findings: { fromStdout: "^failed: (.+)$", metric: "^metric: (.+)$" } };
+  assert.equal(validateCmd(c), null);
+  const t = judgeCmd(c, "acc", { status: 0, stdout: "B9 score: 0.8\nmetric: score=0.8 lua=0.75 corpus=0.853 bad=x\n", stderr: "" });
+  assert.deepEqual(t.metric, { score: 0.8, lua: 0.75, corpus: 0.853 });
+  // the spec, a proposal, the prior
+  const spec = JSON.parse(JSON.stringify(SPEC)); spec.learn.metric = { name: "score", noise: 0.15, baseline: 1 };
+  assert.deepEqual(validateSpec(spec), []);
+  const s2 = JSON.parse(JSON.stringify(SPEC)); s2.learn.metric = { name: "score", noise: 5 };
+  assert.match(validateSpec(s2).join("\n"), /learn.metric is/);
+  const ev = [{ id: "E-1", classes: [], revises: [], metric: { score: 0.9 }, lastWorkMs: 1 }], pb = { rules: [] }, learn = spec.learn;
+  const r = { kind: "effect", text: "Type-hint the hot loops so nothing reflects at run time.", why: ["E-1"], expect: -0.05, wrongIf: "the score does not fall" };
+  assert.equal(L.ruleProblem(r, { evidence: ev, pb, learn }), null);
+  assert.match(L.ruleProblem({ ...r, prior: 0.5 }, { evidence: ev, pb, learn }), /states expect/);
+  assert.match(L.ruleProblem(r, { evidence: ev, pb, learn: SPEC.learn }), /learns no metric/);
+  assert.match(L.ruleProblem({ ...r, expect: 2 }, { evidence: ev, pb, learn }), /expect is the expected relative effect/);
+  // scoring: two orders after the rule, each 10% better than the last: the belief rises; then one 10% worse
+  const log = { add() {} }, co = { spec, log };
+  const rule = { id: "P-1", kind: "effect", status: "active", addedMs: 5, prior: 0.69, effect: { m: Math.log(0.95), v: L.EFFECT_SD0 ** 2, n: 0, obs: [] } };
+  const book = { rules: [rule] }, all = [...ev];
+  const step = (id, score, t) => { const rec = { id, order: id, metric: { score }, lastWorkMs: t, classes: [] }; all.push(rec); return L.effectScore(co, book, rec, all); };
+  step("E-2", 0.81, 10); const p1 = rule.belief.p;
+  step("E-3", 0.729, 20); const p2 = rule.belief.p;
+  assert.ok(p1 > 0.69 && p2 > p1, `${p1} ${p2}`);
+  assert.equal(rule.effect.n, 2); assert.ok(Math.abs(rule.effect.obs[0].d - Math.log(0.9)) < 1e-3, "the change is against the previous order's metric");
+  step("E-4", 0.8019, 30); assert.ok(rule.belief.p < p2, "a worse order lowers it");
+  assert.match(L.beliefText(rule), /^belief \d+% that it helps \(expected effect −[\d.]+% ± \d+%; prior 69%; measured on 3 orders: −10%, −10%, \+10%\)$/);
+  // a rule added after an order is not credited with it; a metric-less order credits nothing
+  const late = { id: "P-2", kind: "effect", status: "active", addedMs: 35, prior: 0.5, effect: { m: 0, v: 0.01, n: 0, obs: [] } }; book.rules.push(late);
+  step("E-5", 0.7, 32); assert.equal(late.effect.n, 0);
+  assert.deepEqual(L.effectScore(co, book, { id: "E-6", order: "E-6", lastWorkMs: 40, classes: [] }, all), []);
+  assert.ok(Math.abs(L.normCdf(0) - 0.5) < 1e-7 && Math.abs(L.normCdf(1.96) - 0.975) < 1e-3);
+});

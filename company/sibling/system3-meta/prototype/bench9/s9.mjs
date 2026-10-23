@@ -6,9 +6,10 @@
 //               first hand-in on is caught)
 //   release:    spec/B9.md (the task, the same text V's and P's prompts quote), with W8 only
 //   accept:     the order's accept text, with the previous order's judge lines
-//   hidden:     bench9's full judge on the worktree, in the shape bench8 setup.mjs hidden() returns: pass when the gate
-//               passes (the order ships; the timings are its lines either way), else a fail whose findings are the gate's
-//               lines (with --max-rounds=0 the order ends there, its version is the next order's base, as V's round)
+//   hidden:     bench9's full judge on the worktree, in the shape bench8 setup.mjs hidden() returns. K39: the order
+//               always ships (one round, as V's), and the judge's score is the stage's metric line (`metric: score=…`;
+//               a failing gate scores 1.0, no credit), so the playbook learns from every round's measured effect; the
+//               gate's and the timings' lines go to the next order's accept text
 import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
@@ -41,7 +42,7 @@ export const releaseFiles = (P, w) => (w === "W8" ? [["spec/B9.md", path.join(RE
 /** The order's accept text: the task, the round, and the previous order's judge lines. */
 export function waveAccept(P, w) {
   const k = S9_ROUND[w], prev = readJsonl(P.acceptLog).filter((x) => x.b9 && S9_ROUND[x.wave] === k - 1).at(-1);
-  return `Benchmark 9, round ${k} of 3 (task ${w}): make the compiler compile faster without breaking anything. Read spec/B9.md in the order's worktree (how it is scored, the gate, the rules, the fast judge: \`node ${path.join(P.toolchain, "judge", "judge.mjs")} fast --dir=<workdir>\`) and spec/CONTRACT.md. The worktree is main as the last order left it. After the build, code runs the orderer's full judge once on the worktree: the hidden tests, Lua's hidden test files, the runtime and memory limits, and the two timings against the start. If the gate passes, the order ships with that version; if it fails, the order ends with the gate's lines, and the next order starts from that version.${prev ? `\n\nThe full judge on round ${k - 1}'s version:\n${prev.lines.join("\n")}` : ""}`;
+  return `Benchmark 9, round ${k} of 3 (task ${w}): make the compiler compile faster without breaking anything. Read spec/B9.md in the order's worktree (how it is scored, the gate, the rules, the fast judge: \`node ${path.join(P.toolchain, "judge", "judge.mjs")} fast --dir=<workdir>\`) and spec/CONTRACT.md. The worktree is main as the last order left it. After the build, code runs the orderer's full judge once on the worktree: the hidden tests, Lua's hidden test files, the runtime and memory limits, and the two timings against the start. The order then ships with that version whatever the judge says (one round per order); the next order starts from it, with the judge's lines. A version that breaks the gate scores 1.0 (no credit), so a broken version carried into the next order costs that order its credit too until it is fixed.${prev ? `\n\nThe full judge on round ${k - 1}'s version:\n${prev.lines.join("\n")}` : ""}`;
 }
 
 /** bench9's full judge on `dir` (the caller holds the hidden lock), in bench8 hidden()'s shape. */
@@ -52,7 +53,7 @@ export function hidden(P, dir, { b9 = null } = {}) {
   let j = null; for (const l of [...out].reverse()) { try { j = JSON.parse(l); break; } catch {} }
   if (!j || typeof j.score !== "number") return { error: `bench9 judge: exit ${r.status} ${String(r.stderr ?? "").slice(-400)}`, code: 3 };
   const gateLines = lines.filter((l) => /^B9 gate /.test(l) && !/: ok\b/.test(l));
-  const fail = !j.gateOk;
+  const fail = false; // K39: always ships; the gate's result is in the score (1.0 when it fails) and the lines
   // the accept log's shape (pass/total: the gate's 4 checks), and b9's own fields
   const checks = ["W1-W5", "Lua", "runtime", "RSS"], failed = checks.filter((c) => lines.some((l) => l.startsWith(`B9 gate ${c}:`) && !/: ok\b/.test(l)));
   return {
@@ -60,6 +61,7 @@ export function hidden(P, dir, { b9 = null } = {}) {
     categories: Object.fromEntries(checks.map((c) => [`B9 gate ${c}`, { pass: failed.includes(c) ? 0 : 1, total: 1, fail: failed.includes(c) ? 1 : 0 }])),
     failing: gateLines, gate: null, w6: null, w6Lines: [], failStages: null, cheat: null, seconds: null,
     anyFail: fail, feedback: fail ? lines : [], findings: fail ? gateLines.map((l) => `failed: ${l.replace(/^B9 gate /, "B9 gate ")}`) : [],
-    b9: { score: j.score, raw: j.raw, gateOk: j.gateOk, luaRatio: j.luaRatio, corpusRatio: j.corpusRatio, lines }, lines, code: fail ? 1 : 0,
+    b9: { score: j.score, raw: j.raw, gateOk: j.gateOk, luaRatio: j.luaRatio, corpusRatio: j.corpusRatio, lines }, lines, code: 0,
+    metricLine: `metric: score=${j.score} gate=${j.gateOk ? 1 : 0}${j.luaRatio != null ? ` lua=${j.luaRatio}` : ""}${j.corpusRatio != null ? ` corpus=${j.corpusRatio}` : ""}`,
   };
 }

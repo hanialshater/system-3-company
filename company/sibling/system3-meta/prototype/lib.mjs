@@ -904,7 +904,7 @@ export class Engine {
   independentOf(o, stage, roleId) { return !(isIndependent(this.flows.get(o.flow)?.stages.find((x) => x.stage === stage)) && this.built(o, roleId)); } // K30: every owner of a part built it
 
   // ---- stages, up the chain
-  advance(id, { stage, by, verdict = "pass", evidence = null, findings = null, consult = false, postChecked = false, to = null, sampled = false, checked = null, final = false, timeboxed = false }) {
+  advance(id, { stage, by, verdict = "pass", evidence = null, findings = null, consult = false, postChecked = false, to = null, sampled = false, checked = null, metric = null, final = false, timeboxed = false }) {
     const o = this.orders.get(id);
     hard(o, `no order ${id}`);
     hard(o.stage === stage, `${id} is at ${o.stage}, not ${stage}`);
@@ -944,7 +944,7 @@ export class Engine {
     const dflt = this.reviseStage(o, stage); // K19: build, or a ritual's run; K25: the last work stage before this one
     const back = verdict === "revise" ? (earlier ? to : dflt) : null; // with enforce off a bad route is recorded and goes to the default
     // M7 (K21): the evidence a stage was signed with travels in its history (events-export.mjs names a ritual's record)
-    o.history.push({ stage, by, verdict, t: this.clock.now(), ...(evidence && s.signer !== "code" ? { evidence: String(evidence).slice(0, 300) } : {}), ...(verdict === "revise" && findings ? { findings: String(findings).slice(0, 2000) } : {}), ...(back && back !== dflt ? { to: back } : {}), ...(Array.isArray(checked) ? { checked: [...new Set(checked.map(classTag))].slice(0, 200) } : {}), ...(box ? { timeboxed: true } : {}) }); // every revise keeps its findings (org evaluation reads them)
+    o.history.push({ stage, by, verdict, t: this.clock.now(), ...(evidence && s.signer !== "code" ? { evidence: String(evidence).slice(0, 300) } : {}), ...(verdict === "revise" && findings ? { findings: String(findings).slice(0, 2000) } : {}), ...(back && back !== dflt ? { to: back } : {}), ...(Array.isArray(checked) ? { checked: [...new Set(checked.map(classTag))].slice(0, 200) } : {}), ...(metric && typeof metric === "object" ? { metric } : {}), ...(box ? { timeboxed: true } : {}) }); // every revise keeps its findings (org evaluation reads them)
     this.log.add({ type: "advance", order: id, stage, by, verdict });
     if (verdict === "pass") { o.stage = this.nextStage(o); this.passAdvisory(o); }
     else {
@@ -1476,7 +1476,7 @@ export class Rooms {
       const did = `${x.stage} on ${o.id}: ${verdict} (loop ${x.loops})`;
       (this.memory.get(x.role) ?? this.memory.set(x.role, []).get(x.role)).push({ t: this.clock.now(), did, learned, mistake });
       if (tokens != null) this.log.add({ type: "usage", run, role: x.role, tokens, auto: true });
-      this.log.add({ type: "leave", run, role: x.role, order: o.id, stage: x.stage, verdict, minutes: this.clock.now() - x.entered });
+      this.log.add({ type: "leave", run, role: x.role, order: o.id, stage: x.stage, verdict, minutes: this.clock.now() - x.entered, ...(learned ? { learned: String(learned).slice(0, 600) } : {}) });
     }
     return o;
   }

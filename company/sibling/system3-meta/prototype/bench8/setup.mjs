@@ -726,6 +726,7 @@ function sAccept(P, opt) {
   const exhausted = r.anyFail && prior.length >= maxRounds;
   append(P.acceptLog, { wave: w, dir, head, dirty, k: prior.length + 1, pass: r.pass, total: r.total, rate: r.rate, byWave: r.byWave, categories: r.categories, failing: r.failing, feedback: r.feedback, gate: r.gate, w6: r.w6, ...(r.w7 ? { w7: r.w7 } : {}), failStages: r.failStages, cheat: r.cheat, results, ms: Date.now() - t0, exhausted, ...(r.b9 ? { b9: r.b9, lines: r.lines } : {}) });
   for (const l of r.findings) console.log(l);
+  if (r.metricLine) { for (const l of r.lines ?? []) console.log(`# ${l}`); console.log(r.metricLine); } // S9 (K39): the judge's lines and its metric
   console.log(`checked: ${Object.keys(r.categories).join(", ")}${r.w6 ? `, ${Object.keys(r.w6.programs).map((p) => `W6 ${p}`).join(", ")}` : ""}`);
   if (exhausted) { console.log(`# hidden acceptance: ${r.failing.length} categories fail, and the wave's ${maxRounds} feedback rounds are spent: the orderer ends the wave`); process.exit(3); }
   console.log(r.anyFail ? `# hidden acceptance: ${r.feedback.length} lines` : "# hidden acceptance: every category passes");

@@ -48,3 +48,22 @@ parallel owners and a learning record, but its split is by module, not by idea.
 - **P9-10: 35%.** 240 minutes and 3 rounds give few scored orders per rule.
 - **P9-11: 60%.**
 - **P9-12: 80%.**
+
+## v2 (2026-10-23, before any arm has run): K39 for S
+
+The founder (2026-10-23): "Optimization of compile time could be iterative task where org and learnings help right?
+… Yes go with K39." K39 (learn.mjs) lets the org learn from **effects**, not only defects: each order's measured score is
+the accept stage's metric, the owners' hand-in notes are its experiment record, and the architect's retro proposes
+**effect rules** (a practice with an expected effect) whose beliefs code updates with every later order's measured change.
+S's orders now always ship after their one full-judge round (a broken gate scores 1.0 in the metric), so every round is
+measured. V and P are unchanged. P9-1..P9-9, P9-11 and P9-12 stand as committed; P9-10 is replaced and P9-13 added:
+
+| # | Measure | Prediction | Wrong if |
+|---|---|---|---|
+| P9-10 (v2) | **Effect beliefs move** | at least one K39 effect rule in S's playbook ends with a belief ≥ 0.7 or ≤ 0.3 | every effect rule ends between 0.3 and 0.7, or no effect rule is added |
+| P9-13 | **Learning across rounds** | S's full-judge score improves more from round 1 to round 3 than V's does (ratio round-3 score ÷ round-1 score lower for S) | S's ratio ≥ V's |
+| P9-14 | **Rules get used** | in S's rounds 2 and 3, at least half of the owners' hand-in notes name a playbook rule or a practice one states | fewer than half |
+
+**The operator's prior.** P9-10 (v2): 45% (three rounds give an effect rule at most two measurements; the noise is
+±15%, so only a large effect moves a belief past 0.7). P9-13: 40% (V also improves round on round with its whole
+context). P9-14: 50%.

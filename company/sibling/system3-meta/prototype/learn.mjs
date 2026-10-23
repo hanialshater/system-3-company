@@ -22,6 +22,15 @@
 // because its class just occurred). So a clean order counts for more where the class used to recur, and a class that
 // recurs n times running gives a Bayes factor 1/(n+1). At the end of a run code retires a rule whose belief fell under
 // learn.retireBelow (default 0.3), or that no order tested for retireAfter runs in a row (idle tells nothing either way).
+// K39 (founder 2026-10-23: optimization is iterative work where learning should help): learning from effects, not
+// only from defects. Spec `learn.metric: {name, lower (default true), noise (default 0.15), baseline}` names a number
+// a stage's cmd reports (its findings.metric line, e.g. `metric: score=0.82`). Each order's evidence keeps the last value
+// and the owners' hand-in notes (what they changed and measured). A rule of kind "effect" is a practice with an
+// expected effect (`expect`: -0.05 is 5% better); its belief is a normal posterior on the effect's log size, updated
+// with every later order's change in the metric (log ratio to the previous order's, or to the baseline), with the
+// noise as the measurement's sd; P(it helps) is the posterior mass on the better side. Every effect rule in force is
+// credited with the order's whole change (a confounded but independent measure: code's, not the owners' own claims).
+// Code retires an effect rule under retireBelow as any other.
 // B7 review: only an author independent of the work (code, the founder, a reviewer) writes rules for an independent
 // reviewer, and those may only add a check; a retro role proposes only during an open retro; a rule scores only when
 // a stage that catches its class judged the order (else "unobserved"); the store is locked across companies, survives
@@ -40,7 +49,10 @@ export const DEFAULT_RETIRE_AFTER = 2;
 const VAR = /^[a-z][a-z0-9_]*$/;
 export const DEFAULT_PRIOR = 0.5;
 export const DEFAULT_RETIRE_BELOW = 0.3;
-const LEARN_KEYS = ["store", "roles", "retro", "maxRules", "retireAfter", "retireBelow", "classify"];
+const LEARN_KEYS = ["store", "roles", "retro", "maxRules", "retireAfter", "retireBelow", "classify", "metric"];
+export const EFFECT_SD0 = 0.1; // K39: the prior sd of an effect rule's log effect (about ±10%)
+/** The standard normal CDF (Abramowitz-Stegun 7.1.26, |error| < 1.5e-7). */
+export function normCdf(z) { const t = 1 / (1 + 0.3275911 * Math.abs(z) / Math.SQRT2), y = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-(z * z) / 2); return 0.5 * (1 + (z < 0 ? -y : y)); }
 
 /** A spec's `vars` ({name: string}), overridden by init --vars; ${name} in learn.store. */
 export const fillVars = (s, vars = {}) => String(s).replace(/\$\{([a-z][a-z0-9_]*)\}/g, (m, k) => (Object.hasOwn(vars, k) ? String(vars[k]) : m));
@@ -79,6 +91,7 @@ export function learnProblems(s, roles = new Map()) {
   if (L.maxRules != null && !(Number.isInteger(L.maxRules) && L.maxRules >= 1 && L.maxRules <= 50)) p.push("learn.maxRules is a whole number 1-50");
   if (L.retireAfter != null && !(Number.isInteger(L.retireAfter) && L.retireAfter >= 1 && L.retireAfter <= 10)) p.push("learn.retireAfter is a whole number of runs 1-10");
   if (L.retireBelow != null && !(typeof L.retireBelow === "number" && L.retireBelow >= 0.05 && L.retireBelow <= 0.5)) p.push("learn.retireBelow is a belief 0.05-0.5");
+  if (L.metric != null) { const M = L.metric; if (typeof M !== "object" || Array.isArray(M) || Object.keys(M).some((k) => !["name", "lower", "noise", "baseline"].includes(k)) || typeof M.name !== "string" || !/^[A-Za-z][\w-]*$/.test(M.name) || (M.lower != null && typeof M.lower !== "boolean") || (M.noise != null && !(typeof M.noise === "number" && M.noise >= 0.01 && M.noise <= 1)) || (M.baseline != null && !(typeof M.baseline === "number" && M.baseline > 0))) p.push("learn.metric is {name, lower, noise 0.01-1, baseline > 0}"); }
   if (L.classify != null) { let ok = typeof L.classify === "string"; try { ok = ok && /\((?!\?)/.test(L.classify) && !!new RegExp(L.classify); } catch { ok = false; } if (!ok) p.push("learn.classify is a regular expression with a capture group (the defect class)"); }
   return p;
 }
@@ -175,10 +188,12 @@ export function playbookMd(pb) {
   return L.join("\n") + "\n";
 }
 const pct = (x) => `${Math.round(x * 100)}%`;
+const signed = (x) => `${x > 0 ? "+" : x < 0 ? "−" : "±"}${Math.abs(Math.round(x * 1000) / 10)}%`;
 /** K38: a rule's belief in words (old rules with no belief yet show their counts). */
 export function beliefText(r) {
   const b = r.belief;
   if (!b) return `helped ${r.helpedCount ?? 0}, hurt ${r.hurtCount ?? 0}`;
+  if (b.kind === "effect") return `belief ${pct(b.p)} that it helps (expected effect ${signed(Math.exp(b.m ?? 0) - 1)} ± ${pct(b.sd ?? EFFECT_SD0)}; prior ${pct(b.prior)}; ${b.n ? `measured on ${b.n} order${b.n > 1 ? "s" : ""}: ${(r.effect?.obs ?? []).map((o) => signed(Math.exp(o.d) - 1)).join(", ")}` : "not yet measured"})${r.wrongIf ? `; wrong if ${r.wrongIf}` : ""}`;
   return `belief ${pct(b.p)} that it helps (prior ${pct(b.prior)}; ${b.n ? `with it the class recurred in ${b.k} of ${b.n} orders` : "not yet tested"}, before it ${b.k0} of ${b.n0})${r.wrongIf ? `; wrong if ${r.wrongIf}` : ""}`;
 }
 export function writePlaybook(store, pb) {
@@ -298,6 +313,9 @@ export function evidenceFor(co, o) {
     selfChecks: { n: checks.length, failed: checks.filter((e) => !e.pass).length }, tokens: o.spent ?? 0, costUSD: Math.round(cost * 1e4) / 1e4,
     leadMin: Math.round(((log.events.find((e) => e.type === "shipped" && e.order === o.id)?.t ?? engine.clock.now()) - o.created) * 10) / 10,
     lastWorkMs: Math.round(lastWork * 60000),
+    // K39: the order's last measurement of the spec's metric, and what the owners said they changed and measured
+    ...(() => { const n = co.spec.learn.metric?.name, m = n ? o.history.filter((h) => h.metric && Number.isFinite(h.metric[n])).at(-1)?.metric : null; return m ? { metric: m } : {}; })(),
+    ...(() => { const x = log.events.filter((e) => e.type === "leave" && e.order === o.id && e.learned).map((e) => ({ role: e.role, stage: e.stage, learned: e.learned })); return x.length ? { experiments: x.slice(-20) } : {}; })(),
   };
 }
 
@@ -335,7 +353,7 @@ export const judgedBy = (rec) => new Set(Object.entries(rec.stages ?? {}).filter
 function score(co, pb, rec, evidence) {
   const out = [], ran = judgedBy(rec);
   for (const r of pb.rules) {
-    if (r.status !== "active" || !(r.addedMs <= rec.lastWorkMs)) continue;
+    if (r.status !== "active" || r.kind === "effect" || !(r.addedMs <= rec.lastWorkMs)) continue;
     const hit = r.targets.filter((c) => rec.classes.includes(c));
     // B7 dry run 2: a stage that lists the classes it checked (findings.checked) observes only those: G1's "padlock"
     // rule scored helped on G2, whose hidden suite has no padlock category, so a game-specific rule never retired
@@ -353,6 +371,26 @@ function score(co, pb, rec, evidence) {
   return out;
 }
 
+/** K39: credit every effect rule in force with this order's change in the metric (see the header). */
+export function effectScore(co, pb, rec, evidence) {
+  const M = co.spec.learn.metric, out = [];
+  if (!M || !(rec.metric?.[M.name] > 0)) return out;
+  const prior = evidence.filter((e) => e.id !== rec.id && e.metric?.[M.name] > 0 && (e.lastWorkMs ?? 0) < (rec.lastWorkMs ?? 0)).at(-1);
+  const prev = prior?.metric?.[M.name] ?? M.baseline ?? null;
+  if (!(prev > 0)) return out;
+  const d = (M.lower === false ? -1 : 1) * Math.log(rec.metric[M.name] / prev), s2 = (M.noise ?? 0.15) ** 2;
+  for (const r of pb.rules) {
+    if (r.status !== "active" || r.kind !== "effect" || !(r.addedMs <= rec.lastWorkMs)) continue;
+    const e = (r.effect ??= { m: 0, v: EFFECT_SD0 ** 2, n: 0, obs: [] }), was = r.belief?.p ?? r.prior ?? DEFAULT_PRIOR;
+    const v = 1 / (1 / e.v + 1 / s2), m = v * (e.m / e.v + d / s2);
+    Object.assign(e, { m, v, n: (e.n ?? 0) + 1, obs: [...(e.obs ?? []), { order: rec.order, d: Math.round(d * 1e4) / 1e4, from: prev, to: rec.metric[M.name] }] });
+    r.belief = { kind: "effect", p: Math.round(normCdf(-m / Math.sqrt(v)) * 1000) / 1000, prior: r.prior ?? DEFAULT_PRIOR, m: Math.round(m * 1e4) / 1e4, sd: Math.round(Math.sqrt(v) * 1e4) / 1e4, n: e.n };
+    co.log.add({ type: "learn-effect", rule: r.id, order: rec.order, metric: M.name, from: prev, to: rec.metric[M.name], d: Math.round(d * 1e4) / 1e4, belief: { from: was, to: r.belief.p }, expect: Math.round((Math.exp(m) - 1) * 1e4) / 1e4 });
+    out.push({ rule: r.id, d });
+  }
+  return out;
+}
+
 /** The end of a run (every order ended): each active rule's run is helped, hurt (a target class recurred) or idle (no
  *  order scored it). K38: code retires a rule whose belief fell under retireBelow, or one idle for retireAfter runs in a
  *  row. Idempotent per run: orders placed after a close end the run again, and its outcome is recomputed from all of
@@ -365,7 +403,7 @@ function closeRun(co, pb) {
     r.history = [...(r.history ?? []).filter((h) => h.run !== L.run), { run: L.run, outcome }];
     let n = 0; for (const h of [...r.history].reverse()) { if (h.outcome !== "idle") break; n++; }
     r.streak = n; // idle runs in a row
-    const b = r.belief, why = b && b.n > 0 && b.p < below ? `code: belief ${pct(b.p)} that it helps is under ${pct(below)} (with it the class recurred in ${b.k} of ${b.n} orders; before it ${b.k0} of ${b.n0}; prior ${pct(b.prior)})`
+    const b = r.belief, why = b && b.n > 0 && b.p < below ? (b.kind === "effect" ? `code: belief ${pct(b.p)} that it helps is under ${pct(below)} (measured effect ${signed(Math.exp(b.m) - 1)} ± ${pct(b.sd)} over ${b.n} order${b.n > 1 ? "s" : ""}; prior ${pct(b.prior)})` : `code: belief ${pct(b.p)} that it helps is under ${pct(below)} (with it the class recurred in ${b.k} of ${b.n} orders; before it ${b.k0} of ${b.n0}; prior ${pct(b.prior)})`)
       : r.streak >= k ? `code: no order tested it ${r.streak} runs in a row (retireAfter ${k})` : null;
     if (why) { r.status = "retired"; r.retired = new Date().toISOString(); r.retiredWhy = why; co.log.add({ type: "learn-rule-retire", rule: r.id, by: "code", why, ...(b ? { belief: b.p } : {}) }); out.push(r.id); }
   }
@@ -400,7 +438,7 @@ function tickUnlocked(co, L) {
       const rec = evidenceFor(co, o);
       appendEvidence(L.store, rec); evidence.push(rec);
       L.gathered.push(o.id);
-      const sc = score(co, pb, rec, evidence);
+      const sc = [...score(co, pb, rec, evidence), ...effectScore(co, pb, rec, evidence)];
       co.log.add({ type: "learn-evidence", order: o.id, evidence: rec.id, outcome: rec.outcome, loops: rec.loops, classes: rec.classes, scored: sc.length });
       steps.push({ step: "learn-evidence", order: o.id, result: rec.outcome, output: `${rec.id}: ${rec.classes.join(", ") || "no defects"}` });
     }
@@ -482,7 +520,12 @@ const normText = (t) => String(t).toLowerCase().replace(/\s+/g, " ").trim();
 /** Why a proposed rule is refused, or null. `reviewers`: the spec's independent reviewers; `independent`: whether the
  *  author is independent of the work (code, the founder, a reviewer); only such an author writes rules for a reviewer. */
 export function ruleProblem(r, { evidence, pb, learn, pending = 0, reviewers = new Set(), independent = true, spec = null }) {
-  if (!r || typeof r !== "object" || Array.isArray(r) || Object.keys(r).some((k) => !["text", "why", "targets", "roles", "scope", "prior", "wrongIf"].includes(k))) return "a rule is {text, why, targets, roles, scope, prior, wrongIf}";
+  if (!r || typeof r !== "object" || Array.isArray(r) || Object.keys(r).some((k) => !["text", "why", "targets", "roles", "scope", "prior", "wrongIf", "kind", "expect"].includes(k))) return "a rule is {text, why, targets, roles, scope, prior, wrongIf} (K39: or {kind: \"effect\", text, why, expect, roles, scope, wrongIf})";
+  if (r.kind != null && r.kind !== "effect") return "kind is \"effect\" (a practice with an expected effect on the metric) or absent (a check against defect classes)";
+  if (r.kind === "effect" && !learn.metric) return "this company learns no metric (learn.metric): an effect rule has nothing to be measured on";
+  if (r.kind !== "effect" && r.expect != null) return "expect is for an effect rule (kind \"effect\")";
+  if (r.kind === "effect" && (r.prior != null || r.targets != null)) return "an effect rule states expect (its expected effect, e.g. -0.05 for 5% better), not prior or targets";
+  if (r.expect != null && !(typeof r.expect === "number" && r.expect >= -0.9 && r.expect <= 0.5)) return "expect is the expected relative effect on the metric, -0.9 to 0.5 (negative: better, for a metric where lower is better)";
   if (r.prior != null && !(typeof r.prior === "number" && r.prior >= 0.05 && r.prior <= 0.95)) return "prior is your belief that the rule prevents its classes, 0.05-0.95";
   if (r.wrongIf != null && !(typeof r.wrongIf === "string" && r.wrongIf.trim().length >= 5 && r.wrongIf.length <= 200 && !/\n/.test(r.wrongIf))) return "wrongIf is one line of 5-200 characters: the outcome that would show the rule does not help";
   { const e = scopeProblem(r.scope, { learn, spec }); if (e) return e; }
@@ -491,6 +534,7 @@ export function ruleProblem(r, { evidence, pb, learn, pending = 0, reviewers = n
   const byId = new Map(evidence.map((e) => [e.id, e])), missing = r.why.filter((x) => !byId.has(x));
   if (missing.length) return `why cites evidence that does not exist: ${missing.join(", ")}`;
   const seen = new Set(r.why.flatMap((x) => byId.get(x).classes ?? []));
+  if (r.kind === "effect") { if (r.roles != null && !(Array.isArray(r.roles) && r.roles.length && r.roles.every((x) => learn.roles.includes(x)))) return `roles are learning roles (${learn.roles.join(", ")})`; const w = weakens(r.text); if (w) return `refused: ${w}`; if (pb.rules.some((x) => x.status === "active" && normText(x.text) === normText(r.text))) return "an active rule says this already"; const cap = learn.maxRules ?? DEFAULT_MAX_RULES; if (pb.rules.filter((x) => x.status === "active").length + pending >= cap) return `the playbook holds at most ${cap} active rules (retire one first)`; return null; }
   const targets = r.targets ?? [...seen];
   if (!(Array.isArray(targets) && targets.length && targets.length <= 10 && targets.every((c) => typeof c === "string"))) return "a rule targets 1-10 defect classes (its cited evidence shows none)";
   const off = targets.filter((c) => !seen.has(c));
@@ -531,6 +575,14 @@ function applyUnlocked(co, P, { by, retro, res, refuse }) {
     // a work-side author's rule with no roles is for the work side's learning roles only (never a reviewer's pack)
     const roles = r.roles ?? (independent ? null : learn.roles.filter((x) => !reviewers.has(x)));
     if (roles && !roles.length) { refuse("add", r, "refused: every learning role reviews independently, and this author is on the work side"); continue; }
+    if (r.kind === "effect") {
+      // K39: the prior on the log effect: mean log(1 + expect), sd EFFECT_SD0; P(helps) from it
+      const sign = learn.metric.lower === false ? -1 : 1, m0 = sign * Math.log(1 + (r.expect ?? 0)), p0 = Math.round(normCdf(-m0 / EFFECT_SD0) * 1000) / 1000;
+      const rule = { id: `P-${pb.nextId++}`, kind: "effect", text: r.text.trim(), why: r.why, targets: [learn.metric.name], ...(roles ? { roles } : {}), ...(r.scope ? { scope: r.scope } : {}), status: "active", added: now.toISOString(), addedMs: now.getTime(), run: L.run, by, retro, helpedCount: 0, hurtCount: 0, runs: {}, streak: 0, prior: p0, expect: r.expect ?? 0, ...(r.wrongIf ? { wrongIf: r.wrongIf.trim() } : {}), effect: { m: m0, v: EFFECT_SD0 ** 2, n: 0, obs: [] }, belief: { kind: "effect", p: p0, prior: p0, m: Math.round(m0 * 1e4) / 1e4, sd: EFFECT_SD0, n: 0 } };
+      pb.rules.push(rule); res.added.push(rule.id);
+      co.log.add({ type: "learn-rule-add", rule: rule.id, kind: "effect", by, retro, why: rule.why, text: rule.text, expect: rule.expect, belief: p0, ...(rule.scope ? { scope: rule.scope } : {}), ...(rule.wrongIf ? { wrongIf: rule.wrongIf } : {}) });
+      continue;
+    }
     const rule = { id: `P-${pb.nextId++}`, text: r.text.trim(), why: r.why, targets: r.targets ?? [...new Set(r.why.flatMap((x) => byId.get(x).classes))], ...(roles ? { roles } : {}), ...(r.scope ? { scope: r.scope } : {}), status: "active", added: now.toISOString(), addedMs: now.getTime(), run: L.run, by, retro, helpedCount: 0, hurtCount: 0, runs: {}, streak: 0, prior: r.prior ?? DEFAULT_PRIOR, ...(r.wrongIf ? { wrongIf: r.wrongIf.trim() } : {}) };
     updateBelief(rule, evidence);
     pb.rules.push(rule); res.added.push(rule.id);
