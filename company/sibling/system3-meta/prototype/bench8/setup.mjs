@@ -65,6 +65,14 @@ const SCRATCH = "/tmp/claude-0/-home-user/aa2da695-733d-5610-822b-d0f420a6080f/s
 const REPO_PROTO = "/home/user/system-3-company/company/sibling/system3-meta/prototype";
 export const WAVES = ["W1", "W2", "W3", "W4", "W5", "W6"];
 export const ARMS = ["V", "S"];
+// S2 (PROTOCOL.md "S2"): a fresh second run of the S harness with specs/ccompiler-specialized-v2.json, in its own
+// folders (<runs>/S2, _operator/S2), the same hooks, caps and feedback as S and V. paths({arm: "S2"}) gives its
+// layout; every S code path below takes the S-like arm from P.sarm.
+export const S_ARMS = ["S", "S2"];
+export const SPEC_FILES = { S: "ccompiler-specialized.json", S2: "ccompiler-specialized-v2.json" };
+export const isS = (arm) => S_ARMS.includes(arm);
+export const ALL_ARMS = ["V", ...S_ARMS];
+export const S1_LABEL = "stopped by the founder at W3"; // S1's run (arm S) ended there: the tally compares V, S1 and S2
 export const MAX_ROUNDS = 3; // feedback rounds after the first hidden run of a wave, every arm
 export const RUN_MIN = 300, RUN_COST = 120; // the caps, every arm: wall clock (min) and cost ($), for the whole run
 const DEFAULT_BUDGET = 400_000_000; // cumulative tokens per S order: a runaway cap only (the cost cap is the real one)
@@ -82,9 +90,10 @@ export function paths(opt = {}) {
   const b8 = path.resolve(opt.b8 ?? process.env.B8_HOME ?? path.join(SCRATCH, "b8"));
   const runs = path.resolve(opt.runs ?? process.env.B8_RUNS ?? DEFAULT_RUNS);
   const proto = path.resolve(opt.proto ?? (fs.existsSync(path.join(HERE, "..", "meta.mjs")) ? path.join(HERE, "..") : REPO_PROTO));
-  const op = path.join(runs, "_operator"), S = path.join(runs, "S");
+  const sarm = isS(opt.arm) ? opt.arm : "S"; // V's own calls (and every S1 call) get S's layout, as before
+  const op = path.join(runs, "_operator"), S = path.join(runs, sarm);
   return {
-    b8, runs, proto, op,
+    b8, runs, proto, op, sarm, specFile: SPEC_FILES[sarm],
     toolchain: path.join(runs, "toolchain"), clj: path.join(runs, "toolchain", "clj-run"),
     V: path.join(runs, "V"),
     S, sproto: path.join(S, "proto"), repo: path.join(S, "work"), wt: path.join(S, "wt"), live: path.join(S, "live"), store: path.join(S, "store"), scratch: path.join(S, "scratch"), harness: path.join(S, "harness"),
@@ -92,7 +101,7 @@ export function paths(opt = {}) {
     access: path.join(op, "access.jsonl"), shimLog: path.join(op, "shim.jsonl"),
     vledger: path.join(op, "V", "vanilla.jsonl"),
     results: (arm, wave, k) => path.join(op, arm, "hidden", `${wave}-${k}.json`),
-    acceptLog: path.join(op, "S", "accept.jsonl"), waves: path.join(op, "S", "waves.jsonl"), operator: path.join(op, "S", "operator.jsonl"),
+    acceptLog: path.join(op, sarm, "accept.jsonl"), waves: path.join(op, sarm, "waves.jsonl"), operator: path.join(op, sarm, "operator.jsonl"),
     baseline: path.join(S, "integration", "baseline.json"), // in S's box (the integration check runs there); tools may not write it (ro)
     runner: path.join(b8, "run-hidden.mjs"), hidden: path.join(b8, "hidden"),
     spec: path.join(b8, "spec"), visible: path.join(b8, "visible"),
@@ -489,7 +498,7 @@ export const orderOf = (st, wave) => mapVals(st?.engine?.orders).filter((o) => o
 const TERMINAL = ["done", "cancelled"];
 /** The spec, with the default runs root replaced by this run's (the committed spec names the default layout). */
 export function instantiateSpec(P) {
-  let t = fs.readFileSync(path.join(P.proto, "specs", SPEC_FILE), "utf8");
+  let t = fs.readFileSync(path.join(P.proto, "specs", P.specFile ?? SPEC_FILE), "utf8");
   if (P.runs !== DEFAULT_RUNS) t = t.split(DEFAULT_RUNS).join(P.runs);
   if (P.b8 !== path.join(SCRATCH, "b8")) t = t.split(path.join(SCRATCH, "b8")).join(P.b8);
   return JSON.parse(t);
@@ -500,20 +509,22 @@ function sPlace(P, opt) {
   const w = String(opt.wave ?? "W1").toUpperCase();
   if (!WAVES.includes(w) && w !== "W7") throw new Error("--wave=W1..W7");
   const k = ALL_WAVES.indexOf(w);
-  for (const f of [P.runner, path.join(P.hidden, "manifest.json"), path.join(P.proto, "meta.mjs"), path.join(P.proto, "launcher", "launch.mjs"), path.join(P.proto, "specs", SPEC_FILE)]) if (!fs.existsSync(f)) throw new Error(`missing ${f}`);
+  for (const f of [P.runner, path.join(P.hidden, "manifest.json"), path.join(P.proto, "meta.mjs"), path.join(P.proto, "launcher", "launch.mjs"), path.join(P.proto, "specs", P.specFile ?? SPEC_FILE)]) if (!fs.existsSync(f)) throw new Error(`missing ${f}`);
   const st0 = fs.existsSync(path.join(P.live, "state.json")) ? readState(P.live) : null;
   if (k === 0) {
     // a fresh run: nothing in S's folder but what S's preflight made (the frozen kernel, the harness, empty scratch/live)
     const pre = new Set(["proto", "harness", "scratch", "live"]), extra = fs.existsSync(P.S) ? fs.readdirSync(P.S).filter((f) => !pre.has(f) || (["scratch", "live"].includes(f) && fs.readdirSync(path.join(P.S, f)).length)) : [];
-    if (st0 || extra.length) throw new Error(`${P.S} exists (${extra.slice(0, 3).join(", ")}): S's W1 starts a fresh run (move it aside)`);
-    ensureToolchain(P); installShims(P, "S"); prepareArm(P, "S");
-    for (const d of [P.repo, P.wt, P.live, P.store, P.scratch, P.harness, path.dirname(P.baseline), path.join(P.op, "S")]) fs.mkdirSync(d, { recursive: true });
+    if (st0 || extra.length) throw new Error(`${P.S} exists (${extra.slice(0, 3).join(", ")}): ${P.sarm}'s W1 starts a fresh run (move it aside)`);
+    ensureToolchain(P); installShims(P, P.sarm); prepareArm(P, P.sarm);
+    for (const d of [P.repo, P.wt, P.live, P.store, P.scratch, P.harness, path.dirname(P.baseline), path.join(P.op, P.sarm)]) fs.mkdirSync(d, { recursive: true });
     for (const f of HARNESS_FILES) fs.copyFileSync(path.join(HERE, f), path.join(P.harness, f));
     freezeKernel(P);
     gitOk(P.repo, "init", "-q", "-b", "main"); gitOk(P.repo, "config", "user.email", "orderer@b8.invalid"); gitOk(P.repo, "config", "user.name", "B8 orderer");
     fs.writeFileSync(path.join(P.repo, "README.md"), "# The C-subset compiler (Benchmark 8)\n\nThe orderer's repository. `spec/` and `visible/` are the orderer's files; each wave is released here and worked in its own worktree.\n");
     gitOk(P.repo, "add", "-A"); gitOk(P.repo, "commit", "-q", "-m", "orderer: the repository");
-    const spec = instantiateSpec(P), specFile = path.join(P.op, "S", "spec.json");
+    const spec = instantiateSpec(P), specFile = path.join(P.op, P.sarm, "spec.json");
+    // the fake-SDK dry run only (a scratch --runs): a shorter time box, so a test sees one end in minutes
+    if (opt["timebox-min"] != null) { if (P.runs === DEFAULT_RUNS) throw new Error("--timebox-min is for a scratch --runs only"); for (const x of spec.flow?.stages ?? []) if (x.timebox) x.timebox.min = Number(opt["timebox-min"]); }
     fs.writeFileSync(specFile, JSON.stringify(spec, null, 1) + "\n");
     metaCli(P, "init", `--spec-file=${specFile}`, `--vars=${JSON.stringify({ playbook_store: P.store })}`);
   } else {
@@ -533,10 +544,10 @@ function sPlace(P, opt) {
   gitOk(P.repo, "commit", "-q", "-m", `orderer: release ${w}`, "--allow-empty");
   const head = gitOk(P.repo, "rev-parse", "HEAD");
   // the accept stage runs in S's box: it asks the orderer's broker (root, outside) to run the hidden runner
-  const acceptCmd = ["node", path.join(P.harness, "setup.mjs"), "accept", "--arm=S", `--wave=${w}`, "--dir=${workdir}", `--runs=${P.runs}`, `--b8=${P.b8}`, `--proto=${P.sproto}`, `--max-rounds=${Number(opt["max-rounds"] ?? MAX_ROUNDS)}`, ...(opt["no-broker"] ? [] : [`--broker=${boxPaths(P, "S").broker}`])];
+  const acceptCmd = ["node", path.join(P.harness, "setup.mjs"), "accept", `--arm=${P.sarm}`, `--wave=${w}`, "--dir=${workdir}", `--runs=${P.runs}`, `--b8=${P.b8}`, `--proto=${P.sproto}`, `--max-rounds=${Number(opt["max-rounds"] ?? MAX_ROUNDS)}`, ...(opt["no-broker"] ? [] : [`--broker=${boxPaths(P, P.sarm).broker}`]), ...(opt["fake-accept-pass"] ? fakePass(P) : [])];
   const budget = Number(opt.budget ?? DEFAULT_BUDGET);
   const o = metaCli(P, "order", "new", "--by=founder", "--to=architect", `--title=${w}: the compiler, wave ${waveN(w)}`, `--task=${w}`, `--accept=${waveAccept(w)}`, `--accept-cmd=${JSON.stringify(acceptCmd)}`, `--budget=${budget}`);
-  chownArm("S", P.S);
+  chownArm(P.sarm, P.S);
   const rec = { event: "place", wave: w, order: o.order, stage: o.stage, main: head, release: rel.sha, files: rel.files.length, budget, maxRounds: Number(opt["max-rounds"] ?? MAX_ROUNDS), kernelHead: spawnSync("git", ["-C", P.proto, "rev-parse", "HEAD"], { encoding: "utf8" }).stdout.trim() || null };
   append(P.waves, rec);
   return { ...rec, run: `node ${SELF} run --waves=${w}` };
@@ -548,14 +559,14 @@ export const AUTH_HINT = "The box passes only the auth variables in sandbox.mjs 
 export function launcherModel(P) { const src = fs.readFileSync(path.join(P.proto, "launcher", "launch.mjs"), "utf8"); return (src.match(/const MODEL = opt\.model \?\? "([^"]+)"/) ?? [])[1] ?? null; }
 /** S's PreToolUse command hook argv (the launcher's --pretool-hook): the frozen harness's `setup.mjs hook`, logging
  *  through the broker. */
-export const sHookArgv = (P, { broker = true } = {}) => [path.join(NODE_DIR, "bin", "node"), path.join(P.harness, "setup.mjs"), "hook", "--arm=S", `--isolation=${isolationOf()}`, `--runs=${P.runs}`, `--b8=${P.b8}`, `--proto=${P.sproto}`, ...(broker ? [`--broker=${boxPaths(P, "S").broker}`] : [])];
+export const sHookArgv = (P, { broker = true } = {}) => [path.join(NODE_DIR, "bin", "node"), path.join(P.harness, "setup.mjs"), "hook", `--arm=${P.sarm ?? "S"}`, `--isolation=${isolationOf()}`, `--runs=${P.runs}`, `--b8=${P.b8}`, `--proto=${P.sproto}`, ...(broker ? [`--broker=${boxPaths(P, P.sarm ?? "S").broker}`] : [])];
 /** An S session's query() options outside the launcher (the preflight's and the probe's), built as launch.mjs builds
  *  every S session: the frozen kernel's guard.mjs sessionPlan/makeGuard/queryOptions (canUseTool and PreToolUse: the
  *  kernel guard) plus commandHook(sHookArgv) (the access rule), with the launcher's env. Hooks mode only: in box mode
  *  the preflight goes through spawnFor in S's box. */
 export async function sOptions(P, { cwd, model, effort = EFFORT, abortController, tools = TOOLS_OK, maxTurns, role = "probe" }) {
   const G = await import(path.join(P.sproto, "launcher", "guard.mjs"));
-  const env = { ...armEnvFor(P, "S"), META_LIVE_DIR: P.live, META_KERNEL_ABS: "1" };
+  const env = { ...armEnvFor(P, P.sarm ?? "S"), META_LIVE_DIR: P.live, META_KERNEL_ABS: "1" };
   for (const k of ["CLAUDECODE", "CLAUDE_CODE_SESSION_ID", "CLAUDE_AUTO_BACKGROUND_TASKS", "CLAUDE_CODE_BG_TASKS_REPORT_RUNNING"]) delete env[k];
   const plan = G.sessionPlan({ tools, settingSources: [], maxTurns, workdir: cwd, roots: [] }, { fromOrder: true }, { cwd, sessionMin: 5, maxTurns, settingSources: [] });
   const guard = G.makeGuard({ tools: plan.tools, strictTools: plan.strictTools, roots: plan.roots, cwd: plan.cwd, role });
@@ -603,7 +614,7 @@ export async function probe(P, arm, opt = {}) {
   const B = prepareArm(P, arm), t0 = Date.now(), model = opt.model ?? launcherModel(P), effort = opt.effort ?? EFFORT;
   installShims(P, arm);
   const cwd = arm === "V" ? P.V : P.scratch;
-  if (arm === "S") sReady(P);
+  if (isS(arm)) sReady(P);
   fs.mkdirSync(cwd, { recursive: true });
   fs.writeFileSync(path.join(cwd, "probe.c"), "int main(void) { return 0; }\n");
   const hiddenFile = path.join(P.hidden, "manifest.json");
@@ -633,10 +644,14 @@ export async function probe(P, arm, opt = {}) {
  *  and the categories it checked. The (1 + max-rounds)-th failing run of a wave exits 3 (a stage error: no revise is
  *  sent) and marks the wave's rounds as spent; the observer then ends the order, as V's harness ends a wave after its
  *  third feedback round. A runner error exits 3 too, recorded, and spends nothing. */
+/** The fake-SDK dry run only (a scratch --runs): the stub compiler never passes the hidden runner, so the dry run's
+ *  accept reports the real run's lines as notes and passes (S2's advisory review comes after a passing accept). */
+const fakePass = (P) => { if (P.runs === DEFAULT_RUNS) throw new Error("--fake-accept-pass is for a scratch --runs only"); return ["--fake-pass"]; };
 /** The broker's client (in S's box): send the accept request, print what the orderer's run printed, exit with its code. */
 async function acceptClient(P, opt) {
   const r = await brokerCall(opt.broker, { op: "accept", wave: String(opt.wave).toUpperCase(), dir: path.resolve(opt.dir), maxRounds: Number(opt["max-rounds"] ?? MAX_ROUNDS) }, 4 * 3600_000);
   if (!r || r.error) { console.log(`runner error: the orderer's broker: ${r?.error ?? "no answer"}`); process.exit(3); }
+  if (opt["fake-pass"] && P.runs !== DEFAULT_RUNS) { for (const l of String(r.stdout ?? "").split("\n").filter(Boolean)) console.log(`# (dry run: the orderer passes it) ${l}`); process.exit(0); }
   process.stdout.write(r.stdout ?? ""); process.exit(r.code ?? 3);
 }
 export function brokerCall(sock, req, timeoutMs = 20_000) {
@@ -651,7 +666,7 @@ export function brokerCall(sock, req, timeoutMs = 20_000) {
 }
 /** The orderer's broker for arm S (root, outside the box): the hook's log lines and the accept stage's hidden runs. */
 function broker(P, opt) {
-  const B = isolationOf() === "hooks" ? (prepareArm(P, "S"), boxPaths(P, "S")) : boxPaths(P, "S");
+  const B = isolationOf() === "hooks" ? (prepareArm(P, P.sarm), boxPaths(P, P.sarm)) : boxPaths(P, P.sarm);
   try { fs.rmSync(B.broker, { force: true }); } catch {}
   const wt = real(P.wt);
   const srv = net.createServer((c) => {
@@ -661,11 +676,11 @@ function broker(P, opt) {
       buf += d; const i = buf.indexOf("\n"); if (i < 0) { if (buf.length > 1 << 20) c.destroy(); return; }
       let req; try { req = JSON.parse(buf.slice(0, i)); } catch { c.end(JSON.stringify({ error: "bad request" }) + "\n"); return; }
       buf = "\x00"; // one request per connection
-      if (req.op === "log") { try { const { arm: _a, ...rec } = req.rec ?? {}; append(P.access, { arm: "S", ...rec }); c.end(JSON.stringify({ ok: true }) + "\n"); } catch (e) { c.end(JSON.stringify({ error: String(e) }) + "\n"); } return; }
+      if (req.op === "log") { try { const { arm: _a, ...rec } = req.rec ?? {}; append(P.access, { arm: P.sarm, ...rec }); c.end(JSON.stringify({ ok: true }) + "\n"); } catch (e) { c.end(JSON.stringify({ error: String(e) }) + "\n"); } return; }
       if (req.op === "accept") {
         const dir = realish(String(req.dir ?? ""));
         if (!inside(dir, wt) || !/^W[1-7]$/.test(String(req.wave))) { append(P.operator, { act: "broker-refused", req }); c.end(JSON.stringify({ stdout: "runner error: the accept dir is not one of S's worktrees\n", code: 3 }) + "\n"); return; }
-        const argv = [SELF, "accept", "--arm=S", `--wave=${req.wave}`, `--dir=${dir}`, `--runs=${P.runs}`, `--b8=${P.b8}`, `--proto=${P.proto}`, `--max-rounds=${Number(req.maxRounds ?? MAX_ROUNDS)}`];
+        const argv = [SELF, "accept", `--arm=${P.sarm}`, `--wave=${req.wave}`, `--dir=${dir}`, `--runs=${P.runs}`, `--b8=${P.b8}`, `--proto=${P.proto}`, `--max-rounds=${Number(req.maxRounds ?? MAX_ROUNDS)}`];
         const ch = spawn(process.execPath, argv, { stdio: ["ignore", "pipe", "pipe"] });
         let out = ""; ch.stdout.on("data", (x) => { out += x; }); ch.stderr.on("data", () => {});
         ch.on("close", (code) => { try { c.end(JSON.stringify({ stdout: out, code: code ?? 3 }) + "\n"); } catch {} });
@@ -678,13 +693,13 @@ function broker(P, opt) {
   return srv;
 }
 function startBroker(P) {
-  const B = boxPaths(P, "S");
+  const B = boxPaths(P, P.sarm);
   // a unix socket path over 107 bytes is cut short by the kernel, silently: the broker then listens somewhere else
   if (Buffer.byteLength(B.broker) > 107) throw new Error(`the broker's socket path is ${Buffer.byteLength(B.broker)} bytes (unix sockets take 107): use a shorter --runs (${B.broker})`);
   try { fs.rmSync(B.broker, { force: true }); } catch {}
-  fs.mkdirSync(path.join(P.op, "S"), { recursive: true });
-  const bo = fs.openSync(path.join(P.op, "S", "broker.out"), "a");
-  const ch = spawn(process.execPath, [SELF, "broker", "--arm=S", `--runs=${P.runs}`, `--b8=${P.b8}`, `--proto=${P.proto}`], { stdio: ["ignore", bo, bo] });
+  fs.mkdirSync(path.join(P.op, P.sarm), { recursive: true });
+  const bo = fs.openSync(path.join(P.op, P.sarm, "broker.out"), "a");
+  const ch = spawn(process.execPath, [SELF, "broker", `--arm=${P.sarm}`, `--runs=${P.runs}`, `--b8=${P.b8}`, `--proto=${P.proto}`], { stdio: ["ignore", bo, bo] });
   fs.closeSync(bo);
   process.on("exit", () => { try { ch.kill("SIGKILL"); } catch {} });
   for (let k = 0; k < 600 && !fs.existsSync(B.broker); k++) spawnSync("sleep", ["0.05"]); // 30 s: a loaded host (the restart test) took over 5
@@ -696,7 +711,7 @@ function sAccept(P, opt) {
   const w = String(opt.wave).toUpperCase(), dir = path.resolve(opt.dir), maxRounds = Number(opt["max-rounds"] ?? MAX_ROUNDS);
   const prior = readJsonl(P.acceptLog).filter((x) => x.wave === w && x.total != null);
   if (prior.length && prior.at(-1).exhausted) { console.log("# this wave's feedback rounds are spent: the orderer ends it"); process.exit(3); }
-  const results = nextResults(P, "S", w), gate = waveN(w) === 6 ? lastResults(P, "S", "W5") : null;
+  const results = nextResults(P, P.sarm, w), gate = waveN(w) === 6 ? lastResults(P, P.sarm, "W5") : null;
   const t0 = Date.now(), r = hidden(P, w, dir, { results, gate });
   if (r.error) { append(P.acceptLog, { wave: w, dir, error: r.error }); console.log(r.error); process.exit(3); }
   const head = git(dir, "rev-parse", "HEAD").stdout.trim() || null, dirty = !!git(dir, "status", "--porcelain").stdout.trim();
@@ -773,7 +788,7 @@ export function abandonDead(P, why = "abandoned: the machine restarted (B8 resum
       out.push({ launch: id, role: e.role, reReported: true, ...(error ? { error } : {}) });
       continue;
     }
-    const sdk = L.findLast((x) => x.event === "sdk" && x.launch === id)?.sdk ?? started?.resume ?? acc.findLast((x) => x.arm === "S" && x.launch === id && x.sid)?.sid ?? null;
+    const sdk = L.findLast((x) => x.event === "sdk" && x.launch === id)?.sdk ?? started?.resume ?? acc.findLast((x) => x.arm === P.sarm && x.launch === id && x.sid)?.sid ?? null;
     let rec = null, error = null;
     try { rec = metaCli(P, "launch", "finished", `--launch=${id}`, `--role=${e.role}`, "--tokens=0", "--cumulative=0", "--cost=0", "--ok=false", `--reason=${why}`, ...(sdk ? [`--sdk-session=${sdk}`, "--intact=true"] : [])); } catch (x) { error = String(x.message).slice(0, 300); }
     const r = { event: "finish", launch: id, n: null, role: e.role, ok: false, reason: why, tokens: 0, cumulative: 0, cost: 0, turns: null, minutes: null, sessions: rec?.sessions ?? [], abandoned: rec?.abandoned ?? [], denials: 0, said: "", restart: true, started: !!started, ...(sdk ? { sdkLost: sdk } : {}), ...(started?.resume ? { resumed: started.resume } : {}), warm: rec?.warm ?? [], ...(error ? { error } : {}) };
@@ -815,18 +830,18 @@ async function sRun(P, opt) {
   if (EXT && !st0.started && !sStatus(rows0).finished) throw new Error(`${P.sarm ?? "S"}'s W1-W6 run has not finished (${P.waves}): W7 extends a finished run`);
   let base7 = EXT ? w7().capBase(rows0) : null;
   // the caps are for the whole run: the active clock (restart-safe), or for a run from before it, the waves' minutes
-  const clockFile = path.join(P.op, "S", "clock.json"), legacyMin = !clockOf(clockFile) ? rows0.filter((x) => x.event === "wave-end").reduce((a, x) => a + (x.minutes ?? 0), 0) : 0;
-  if (opt["dry-run"]) { const used = (clockOf(clockFile)?.activeMs ?? 0) / 60000 + legacyMin; return { dry: true, isolation: hooks ? "hooks" : "box", launcher: launcherArgv(P, opt, maxMin - used), ...(hooks ? { cwd: P.S } : { box: boxArgv(P, "S", P.S, ["<launcher>"])[1].slice(0, 8) }), envNames: armEnvNames(P, "S"), caps: { maxMin, maxCost, usedMin: used }, status: st0, observe: fs.existsSync(path.join(P.live, "state.json")) ? summarizeOrder(P, waves[0]) : null }; }
+  const clockFile = path.join(P.op, P.sarm, "clock.json"), legacyMin = !clockOf(clockFile) ? rows0.filter((x) => x.event === "wave-end").reduce((a, x) => a + (x.minutes ?? 0), 0) : 0;
+  if (opt["dry-run"]) { const used = (clockOf(clockFile)?.activeMs ?? 0) / 60000 + legacyMin; return { dry: true, isolation: hooks ? "hooks" : "box", launcher: launcherArgv(P, opt, maxMin - used), ...(hooks ? { cwd: P.S } : { box: boxArgv(P, P.sarm, P.S, ["<launcher>"])[1].slice(0, 8) }), envNames: armEnvNames(P, P.sarm), caps: { maxMin, maxCost, usedMin: used }, status: st0, observe: fs.existsSync(path.join(P.live, "state.json")) ? summarizeOrder(P, waves[0]) : null }; }
   if (RESUME && st0.finished) return { resume: true, finished: true, why: st0.why };
   // one S at a time on these runs (arm.pid, checked against /proc and the boot)
-  const PIDF = path.join(P.op, "S", "arm.pid"), other = readPid(PIDF);
-  if (other && other.pid !== process.pid && procAlive(other.pid, { match: ["setup.mjs", "run"], boot: other.boot })) { console.error(`refused: S is already running on ${P.runs} (pid ${other.pid}); one S at a time`); process.exit(3); }
-  writePid(PIDF, { arm: "S", runs: P.runs }); process.on("exit", () => { try { if (readPid(PIDF)?.pid === process.pid) fs.rmSync(PIDF, { force: true }); } catch {} });
+  const PIDF = path.join(P.op, P.sarm, "arm.pid"), other = readPid(PIDF);
+  if (other && other.pid !== process.pid && procAlive(other.pid, { match: ["setup.mjs", "run"], boot: other.boot })) { console.error(`refused: ${P.sarm} is already running on ${P.runs} (pid ${other.pid}); one ${P.sarm} at a time`); process.exit(3); }
+  writePid(PIDF, { arm: P.sarm, runs: P.runs }); process.on("exit", () => { try { if (readPid(PIDF)?.pid === process.pid) fs.rmSync(PIDF, { force: true }); } catch {} });
   if (FAKE) { process.env.B8_FAKE_STUB = path.join(HERE, "dryrun", "stub"); process.env.B8_FAKE_SEC = String(opt["fake-sec"] ?? 2); if (opt["fake-lose-session"]) process.env.B8_FAKE_LOSE_SESSION = "1"; process.env.B8_NO_CHOWN = "1"; }
   // what the dead run left: the launcher, serve and every agent (cwd in S's folder), the broker and its accept runs,
   // the K2 job wrappers, a hidden runner on S's worktrees
   const leftovers = st0.started ? killLeftovers({ dirs: [P.S], names: [["setup.mjs", "broker", `--runs=${P.runs}`], ["setup.mjs", "accept", `--runs=${P.runs}`], ["run-hidden.mjs", `--dir=${P.wt}`], ["jobs.mjs", "exec", P.live]] }) : [];
-  if (!opt["no-preflight"] && !FAKE && !rows0.some((x) => x.event === "preflight" && x.ok)) { const pf = await preflight(P, "S", opt); append(P.waves, { event: "preflight", ...pf }); if (!pf.ok) throw new Error(`S preflight failed (${pf.why}): no session could start ${hooks ? "with S's env and hooks" : "in S's box"}. ${hooks ? "" : AUTH_HINT}`); }
+  if (!opt["no-preflight"] && !FAKE && !rows0.some((x) => x.event === "preflight" && x.ok)) { const pf = await preflight(P, P.sarm, opt); append(P.waves, { event: "preflight", ...pf }); if (!pf.ok) throw new Error(`S preflight failed (${pf.why}): no session could start ${hooks ? "with S's env and hooks" : "in S's box"}. ${hooks ? "" : AUTH_HINT}`); }
   const clock = armClock(clockFile);
   const activeMin = () => clock.activeMin() + legacyMin - (base7?.activeMin ?? 0);
   // the spend the caps count (W7: since W7's start)
@@ -841,11 +856,24 @@ async function sRun(P, opt) {
     const dead = abandonDead(P);
     append(P.waves, { event: RESUME ? "resume" : "run-start", resumed: true, downMin: Math.round(clock.downMs / 600) / 100, activeMin: Math.round(activeMin() * 100) / 100, lastBeat: clock.prev?.t ?? null, cost: usedCost(), abandoned: dead, leftovers: leftovers.map((x) => x.argv.slice(0, 120)), wave: waves.find((w) => !rows0.some((x) => x.event === "wave-end" && x.wave === w)) ?? null });
   } else append(P.waves, { event: "run-start", waves, fake: FAKE || undefined });
-  append(P.waves, { event: "isolation", isolation: hooks ? "hooks" : "box", envNames: armEnvNames(P, "S") });
-  if (!hooks) startEgress(P, "S");
+  append(P.waves, { event: "isolation", isolation: hooks ? "hooks" : "box", envNames: armEnvNames(P, P.sarm) });
+  if (!hooks) startEgress(P, P.sarm);
   startBroker(P);
   const out = [];
   let runWhy = "every wave ran";
+  // S2 (K35): a spec with an advisory stage runs one launcher across waves, so the next wave starts while the last
+  // wave's advisory review still runs (its findings then go to the next order); the wave ends when its order has
+  // ended and its learn step is closed, not when the launcher exits
+  const continuous = !!readState(P.live)?.data?.specDef?.flow?.stages?.some((x) => x.advisory) || !!instantiateSpec(P).flow?.stages?.some((x) => x.advisory);
+  let L = null;
+  const spawnLauncher = (argv) => {
+    const fd = fs.openSync(path.join(P.op, P.sarm, "launcher.out"), "a");
+    chownArm(P.sarm, P.S);
+    const [bin, args] = hooks ? [argv[0], argv.slice(1)] : boxArgv(P, P.sarm, P.S, argv, { killSignal: "SIGINT" });
+    const child = spawn(bin, args, { env: armEnvFor(P, P.sarm), cwd: P.S, stdio: ["ignore", fd, fd] });
+    const x = { child, exited: false, t: Date.now() }; child.on("exit", () => { x.exited = true; });
+    return x;
+  };
   if (EXT) {
     // W7's integration check and runner pieces in the frozen harness (W1-W6's files there are left as they ran)
     for (const f of ["visible-check.mjs", "w7.mjs"]) fs.copyFileSync(path.join(HERE, f), path.join(P.harness, f));
@@ -875,13 +903,13 @@ async function sRun(P, opt) {
     const a0 = ws?.activeMin ?? (ws ? activeMin() - (Date.parse(clock.prev?.t ?? new Date().toISOString()) - Date.parse(ws.t)) / 60000 : activeMin());
     let stopped = null;
     const launch = async (argv) => {
-      const fd = fs.openSync(path.join(P.op, "S", "launcher.out"), "a");
-      chownArm("S", P.S);
+      const fd = fs.openSync(path.join(P.op, P.sarm, "launcher.out"), "a");
+      chownArm(P.sarm, P.S);
       // box mode: the whole launcher (supervisor, code stages, every session) in S's box, as S's uid (pilot fix);
       // hooks mode: the launcher as Benchmarks 6/7 ran it, with S's env (hooksEnv), every session under the kernel
       // guard and the access hook (--pretool-hook)
-      const [bin, args] = hooks ? [argv[0], argv.slice(1)] : boxArgv(P, "S", P.S, argv, { killSignal: "SIGINT" });
-      const child = spawn(bin, args, { env: armEnvFor(P, "S"), cwd: P.S, stdio: ["ignore", fd, fd] });
+      const [bin, args] = hooks ? [argv[0], argv.slice(1)] : boxArgv(P, P.sarm, P.S, argv, { killSignal: "SIGINT" });
+      const child = spawn(bin, args, { env: armEnvFor(P, P.sarm), cwd: P.S, stdio: ["ignore", fd, fd] });
       let exited = false; child.on("exit", () => { exited = true; });
       // the observer: the protocol's stops, the caps (the active clock: downtime never counts), and a restart's
       // stage-errors retried
@@ -893,16 +921,42 @@ async function sRun(P, opt) {
         await new Promise((r) => setTimeout(r, poll));
       }
     };
-    if (!TERMINAL.includes(orderOf(readState(P.live), w)?.stage)) {
+    if (continuous) {
+      // the observer for this wave, with the one launcher (started again when it exits: for the retro, or after a
+      // stop of the launcher with the order still open, which the protocol ends as S's harness does)
+      for (;;) {
+        const st = readState(P.live), o = orderOf(st, w), ended = TERMINAL.includes(o?.stage);
+        if (ended && !learnOpen(st)) break;
+        if (stopped) { if (!L || L.exited) break; await new Promise((r) => setTimeout(r, poll)); continue; }
+        if (!L || L.exited) {
+          if (L?.exited && !ended) { endIfStopped(P, w, { why: `the launcher stopped after ${Math.round(activeMin() - a0)} min` }); continue; }
+          if (ended) append(P.operator, { act: "retro-launch", wave: w });
+          L = spawnLauncher(launcherArgv(P, opt, ended ? Math.min(30, maxMin - activeMin()) : maxMin - activeMin()));
+          append(P.operator, { act: "launcher", wave: w, pid: L.child.pid, continuous: true });
+        }
+        endIfStopped(P, w);
+        retryLost(P, w);
+        const c = usedCost();
+        if (c >= maxCost || activeMin() >= maxMin) { stopped = c >= maxCost ? `the run's cost cap ($${maxCost}: $${c})` : `the run's wall clock (${maxMin} min)`; append(P.operator, { act: "stop", wave: w, why: stopped }); const ch = L.child; ch.kill("SIGINT"); setTimeout(() => { try { ch.kill("SIGKILL"); } catch {} }, 60_000); endIfStopped(P, w, { why: stopped }); }
+        await new Promise((r) => setTimeout(r, poll));
+      }
+    } else if (!TERMINAL.includes(orderOf(readState(P.live), w)?.stage)) {
       await launch(launcherArgv(P, opt, maxMin - activeMin()));
       endIfStopped(P, w, { why: stopped ?? (TERMINAL.includes(orderOf(readState(P.live), w)?.stage) ? null : `the launcher stopped after ${Math.round(activeMin() - a0)} min`) });
     }
     // the cancelled order's evidence and the architect's retro still run, in a short launcher of their own
-    if (!stopped && learnOpen(readState(P.live))) { append(P.operator, { act: "retro-launch", wave: w }); await launch(launcherArgv(P, opt, 30)); }
+    if (!continuous && !stopped && learnOpen(readState(P.live))) { append(P.operator, { act: "retro-launch", wave: w }); await launch(launcherArgv(P, opt, 30)); }
     const minutes = Math.round((activeMin() - a0) * 100) / 100;
     append(P.waves, { event: "wave-end", wave: w, launchesTo: readJsonl(path.join(P.live, "launches.jsonl")).length, minutes, stage: orderOf(readState(P.live), w)?.stage ?? null, stopped });
     out.push(summarizeOrder(P, w));
     if (stopped) { runWhy = stopped; break; }
+  }
+  // S2: the run is over; the one launcher (an advisory review of the last wave may still run: its findings have no
+  // next order) is stopped, recorded
+  if (L && !L.exited) {
+    const st = readState(P.live), open = mapVals(st?.engine?.orders).flatMap((o) => Object.entries(o.advisory ?? {}).filter(([, a]) => a.state === "open").map(([stage, a]) => `${o.task} ${stage} #${a.n}`));
+    append(P.operator, { act: "launcher-stop", why: "the run ended", advisoryOpen: open });
+    L.child.kill("SIGINT"); for (let i = 0; i < 120 && !L.exited; i++) await new Promise((r) => setTimeout(r, 500)); if (!L.exited) { try { L.child.kill("SIGKILL"); } catch {} }
   }
   clock.stop();
   append(P.waves, { event: "run-end", why: runWhy, activeMin: Math.round(activeMin() * 100) / 100, cost: usedCost() });
@@ -983,7 +1037,7 @@ function tallyS(P, T) {
     const oe = ev.filter((e) => e.order === o.id);
     const rulesBy = (until) => { const out = {}; for (const r of pb?.rules ?? []) { if (until != null && r.addedMs > until) continue; if (r.status !== "active" && !(r.retiredMs && until != null && r.retiredMs > until)) continue; const k = r.scope?.module ?? r.scope?.role ?? "global"; out[k] = (out[k] ?? 0) + 1; } return out; };
     return {
-      arm: "S", wave, order: o.id, stage: o.stage, loops: o.loops,
+      arm: P.sarm, wave, order: o.id, stage: o.stage, loops: o.loops,
       firstHandin: score(a[0], wave), final: score(a.at(-1), wave), rounds: Math.max(0, a.length - 1), hiddenRuns: a.length, exhausted: !!a.at(-1)?.exhausted,
       cost: c.cost, cumulative: c.cumulative, minutes: end?.minutes ?? null, launches: fins.length, sessions: c.sdkSessions, byRole, revises,
       integration: { runs: oe.filter((e) => e.type === "integration").length, failed: oe.filter((e) => e.type === "integration" && e.results?.some((x) => !x.pass)).length },
@@ -1023,21 +1077,26 @@ export function restartsOf(P, arm) {
   return out;
 }
 export function tally(P, opt = {}) {
-  const T = routeTable(P), arms = opt.arm ? [opt.arm] : ARMS;
-  const V = arms.includes("V") ? tallyV(P, T) : [], S = arms.includes("S") ? tallyS(P, T) : [];
+  const T = routeTable(P), arms = opt.arm ? [opt.arm] : ALL_ARMS;
+  const PS = paths({ ...opt, arm: "S" }), PS2 = paths({ ...opt, arm: "S2" });
+  const V = arms.includes("V") ? tallyV(P, T) : [], S = arms.includes("S") ? tallyS(PS, T) : [], S2 = arms.includes("S2") ? tallyS(PS2, T) : [];
   const total = (G) => ({ cost: Number(G.reduce((a, g) => a + (g.cost ?? 0), 0).toFixed(2)), minutes: Math.round(G.reduce((a, g) => a + (g.minutes ?? 0), 0) * 10) / 10, w6: G.find((g) => g.wave === "W6")?.final?.w6 ?? null, w7: G.find((g) => g.wave === "W7")?.final?.w7 ?? null });
-  return { V: { waves: V, total: total(V), restarts: restartsOf(P, "V") }, S: { waves: S, total: total(S), restarts: restartsOf(P, "S") }, knowledge: knowledge(S, V) };
+  // S2: the waves both S runs reached, side by side with V (S1 stopped by the founder at W3)
+  const vs = (A) => A.map((g) => { const v = V.find((x) => x.wave === g.wave); return { wave: g.wave, cost: g.cost, vCost: v?.cost ?? null, costRatio: v?.cost ? Math.round((g.cost / v.cost) * 100) / 100 : null, minutes: g.minutes, vMinutes: v?.minutes ?? null, final: g.final?.pct ?? null, vFinal: v?.final?.pct ?? null }; });
+  return { V: { waves: V, total: total(V), restarts: restartsOf(P, "V") }, S: { label: S1_LABEL, waves: S, total: total(S), restarts: restartsOf(PS, "S") }, S2: { waves: S2, total: total(S2), restarts: restartsOf(PS2, "S2") }, knowledge: knowledge(S, V), knowledgeS2: knowledge(S2, V), againstV: { S: vs(S), S2: vs(S2) } };
 }
 function tallyMd(T) {
   const f = (x) => (x ? `${x.pass}/${x.total} (${x.pct}%)${x.own ? `; own ${x.own.pct}%` : ""}${x.w6 != null ? `; W6 ${x.w6}` : ""}${x.w7 ? `; Lua tests ${x.w7.luaTests ?? "-"}%, runtime ${x.w7.runtime ?? "-"}, compile ${x.w7.compileSec ?? "-"} s, RSS ${x.w7.rssMB ?? "-"} MB` : ""}` : "-");
   const L = ["| arm | wave | first hand-in | final | rounds | cost $ | min | sessions |", "|---|---|---|---|---|---|---|---|"];
-  for (const a of ["V", "S"]) for (const g of T[a].waves) L.push(`| ${a} | ${g.wave} | ${f(g.firstHandin)} | ${f(g.final)} | ${g.rounds} | ${g.cost} | ${g.minutes ?? "-"} | ${g.sessions ?? 1} |`);
+  for (const a of ALL_ARMS) for (const g of T[a]?.waves ?? []) L.push(`| ${a} | ${g.wave} | ${f(g.firstHandin)} | ${f(g.final)} | ${g.rounds} | ${g.cost} | ${g.minutes ?? "-"} | ${g.sessions ?? 1} |`);
   L.push("", `| arm | total cost $ | total min | W6 score |`, "|---|---|---|---|");
-  for (const a of ["V", "S"]) L.push(`| ${a} | ${T[a].total.cost} | ${T[a].total.minutes} | ${T[a].total.w6 ?? "-"} |`);
+  for (const a of ALL_ARMS.filter((x) => T[x])) L.push(`| ${a}${T[a].label ? ` (${T[a].label})` : ""} | ${T[a].total.cost} | ${T[a].total.minutes} | ${T[a].total.w6 ?? "-"} |`);
   L.push("", "| arm | restarts (keepalive) | resumes | downtime min | active min | lost |", "|---|---|---|---|---|---|");
-  for (const a of ["V", "S"]) { const r = T[a].restarts; if (r) L.push(`| ${a} | ${r.operatorRestarts} | ${r.resumes} | ${r.downMin} | ${r.activeMin ?? "-"} | ${a === "V" ? `${r.sessionsLost} session(s) not resumable` : `${r.launchesAbandoned} launch(es) abandoned, ${r.warmResumed} warm, ${r.warmFallbacks} fell back cold, ${r.stageRetries} stage retries`} |`); }
+  for (const a of ALL_ARMS) { const r = T[a]?.restarts; if (r) L.push(`| ${a} | ${r.operatorRestarts} | ${r.resumes} | ${r.downMin} | ${r.activeMin ?? "-"} | ${a === "V" ? `${r.sessionsLost} session(s) not resumable` : `${r.launchesAbandoned} launch(es) abandoned, ${r.warmResumed} warm, ${r.warmFallbacks} fell back cold, ${r.stageRetries} stage retries`} |`); }
   L.push("", "| module | wave | S rules at start | S first hand-in fail % | V first hand-in fail % |", "|---|---|---|---|---|");
   for (const m of T.knowledge) for (const w of m.waves) L.push(`| ${m.module} | ${w.wave} | ${w.sRules ?? "-"} | ${w.sFailPct ?? "-"} | ${w.vFailPct ?? "-"} |`);
+  if (T.knowledgeS2?.length) { L.push("", "| module | wave | S2 rules at start | S2 first hand-in fail % | V first hand-in fail % |", "|---|---|---|---|---|"); for (const m of T.knowledgeS2) for (const w of m.waves) L.push(`| ${m.module} | ${w.wave} | ${w.sRules ?? "-"} | ${w.sFailPct ?? "-"} | ${w.vFailPct ?? "-"} |`); }
+  if (T.againstV) { L.push("", `| arm | wave | cost $ | V cost $ | cost / V | min | V min | final % | V final % |`, "|---|---|---|---|---|---|---|---|---|"); for (const a of ["S", "S2"]) for (const g of T.againstV[a] ?? []) L.push(`| ${a === "S" ? `S1 (${S1_LABEL})` : a} | ${g.wave} | ${g.cost} | ${g.vCost ?? "-"} | ${g.costRatio ?? "-"} | ${g.minutes ?? "-"} | ${g.vMinutes ?? "-"} | ${g.final ?? "-"} | ${g.vFinal ?? "-"} |`); }
   return L.join("\n");
 }
 
@@ -1093,7 +1152,7 @@ export function upstreamMarkers(P) {
 /** Hooks mode's file scan: every text file of the arm's own folders (the released spec/ and visible/ aside) checked for
  *  hidden paths, network words, a C compiler run on C, upstream markers and hidden-test lines (the canaries). */
 export function fileScan(P, arm, { C = canaries(P), M = upstreamMarkers(P) } = {}) {
-  const dirs = arm === "V" ? [P.V, boxPaths(P, "V").tmp] : [...(fs.existsSync(P.wt) ? fs.readdirSync(P.wt).map((d) => path.join(P.wt, d)) : []), P.scratch, boxPaths(P, "S").tmp];
+  const dirs = arm === "V" ? [P.V, boxPaths(P, "V").tmp] : [...(fs.existsSync(P.wt) ? fs.readdirSync(P.wt).map((d) => path.join(P.wt, d)) : []), P.scratch, boxPaths(P, P.sarm).tmp];
   const HID = [P.b8, real(P.b8), P.op, P.hidden, "run-hidden", "hidden/manifest", "hidden/tests", "hidden/upstream", REPO_ROOT, path.join(os.homedir(), ".claude"), arm === "V" ? P.S : P.V];
   const NET = /urlopen|\bfetch\(|java\.net\.|HttpClient|HttpURLConnection|https?:\/\/|api\.anthropic|x-api-key|\/dev\/tcp|\bcurl\b|\bwget\b|git (clone|fetch|pull|ls-remote)|pip install|npm (install|i)\b/;
   const CC = /\b(gcc|cc|clang|tcc|chibicc|cpp|cc1)\b[^\n]{0,80}(\.c\b|-x\s*c\b|--language|\s-E\b)/;
@@ -1153,7 +1212,7 @@ export function audit(P) {
   for (const t of readJsonl(P.vledger).filter((x) => (x.event === "turn" || x.event === "session") && x.session)) sessions.push({ arm: "V", sid: t.session, role: "vanilla" });
   // a session killed with the machine has no finish line with its id: the launcher's `sdk` line (and the restart's
   // finish line, sdkLost) still name it
-  for (const f of readJsonl(path.join(P.live, "launches.jsonl")).filter((x) => (x.event === "finish" || x.event === "sdk") && (x.sdk || x.sdkLost))) sessions.push({ arm: "S", sid: f.sdk ?? f.sdkLost, role: f.role });
+  for (const f of readJsonl(path.join(P.live, "launches.jsonl")).filter((x) => (x.event === "finish" || x.event === "sdk") && (x.sdk || x.sdkLost))) sessions.push({ arm: P.sarm, sid: f.sdk ?? f.sdkLost, role: f.role });
   const uniq = [...new Map(sessions.map((s) => [s.sid, s])).values()];
   const rows = uniq.map((s) => {
     const logged = acc.filter((a) => a.sid === s.sid), file = transcriptOf(s.sid, P);
@@ -1281,7 +1340,7 @@ async function main() {
     // fails closed (pilot fix): unreadable input, an unreachable operator log, any error: exit 2 (deny)
     let input = ""; try { input = fs.readFileSync(0, "utf8"); } catch {}
     let j; try { j = JSON.parse(input); } catch { process.stderr.write(DENY_TEXT("a hook input the harness cannot read") + "\n"); process.exit(2); }
-    const guard = await guardMod(P), arm = opt.arm === "V" ? "V" : "S";
+    const guard = await guardMod(P), arm = opt.arm === "V" ? "V" : P.sarm;
     const d = accessDecision({ tool: j.tool_name, input: j.tool_input, cwd: j.cwd }, accessRules(P, arm), guard);
     const what = j.tool_input?.command ?? j.tool_input?.file_path ?? j.tool_input?.path ?? j.tool_input?.pattern ?? "";
     const rec = { sid: j.session_id ?? null, role: process.env.META_ROLE ?? null, launch: process.env.META_LAUNCH ?? null, tool: j.tool_name, cwd: j.cwd, what: String(what).slice(0, 300), deny: d.deny, ...(d.deny ? { why: d.why } : {}) };
@@ -1292,21 +1351,21 @@ async function main() {
   }
   if (cmd === "accept") { if (!opt.wave || !opt.dir) { console.error("usage: setup.mjs accept --arm=S --wave=Wn --dir=<workdir>"); process.exit(2); } if (opt.broker) { await acceptClient(P, opt); return; } sAccept(P, opt); return; }
   if (cmd === "broker") { broker(P, opt); return; }
-  if (cmd === "egress") { const { egressServer } = await import("./sandbox.mjs"); const arm = opt.arm === "S" ? "S" : "V", B = boxPaths(P, arm); egressServer({ sock: B.egress, log: path.join(P.op, `egress-${arm}.jsonl`), uid: B.uid }); return; }
+  if (cmd === "egress") { const { egressServer } = await import("./sandbox.mjs"); const arm = isS(opt.arm) ? opt.arm : "V", B = boxPaths(P, arm); egressServer({ sock: B.egress, log: path.join(P.op, `egress-${arm}.jsonl`), uid: B.uid }); return; }
   if (cmd === "preflight" || cmd === "probe") {
-    const arm = opt.arm === "S" ? "S" : "V";
+    const arm = isS(opt.arm) ? opt.arm : "V";
     const r = cmd === "preflight" ? await preflight(P, arm, opt) : await probe(P, arm, opt);
     append(path.join(P.op, `${cmd}.jsonl`), { event: cmd, ...r });
     console.log(JSON.stringify(r, null, 1)); process.exit(r.ok ? 0 : 1);
   }
-  if (cmd === "box-check") { const { check } = await import("./sandbox.mjs"); const r = await check(P, opt.arm === "S" ? "S" : "V"); console.log(JSON.stringify(r, null, 1)); process.exit(r.failed.length ? 1 : 0); }
+  if (cmd === "box-check") { const { check } = await import("./sandbox.mjs"); const r = await check(P, isS(opt.arm) ? opt.arm : "V"); console.log(JSON.stringify(r, null, 1)); process.exit(r.failed.length ? 1 : 0); }
   let out;
   if (cmd === "place") out = sPlace(P, opt);
   else if (cmd === "run") out = await sRun(P, opt);
   else if (cmd === "watch") { const w = WAVES.find((x) => { const o = orderOf(readState(P.live), x); return o && !TERMINAL.includes(o.stage); }); out = w ? { ...summarizeOrder(P, w), stop: endIfStopped(P, w) } : { open: null }; }
   else if (cmd === "tally") { const T = tally(P, opt); if (opt.md) { console.log(tallyMd(T)); return; } out = T; }
   else if (cmd === "audit") out = audit(P);
-  else if (cmd === "status") out = Object.fromEntries((opt.arm ? [opt.arm] : ARMS).map((a) => { const pid = readPid(path.join(P.op, a, "arm.pid")); return [a, { ...(a === "V" ? vStatus(readJsonl(P.vledger)) : sStatus(readJsonl(P.waves))), alive: !!pid && procAlive(pid.pid, { match: a === "V" ? ["vanilla-compiler.mjs"] : ["setup.mjs", "run"], boot: pid.boot }), pid: pid?.pid ?? null, clock: clockOf(path.join(P.op, a, "clock.json")), restarts: restartsOf(P, a), w7: w7().extStatus(a === "V" ? readJsonl(P.vledger) : readJsonl(P.waves), a === "V" ? "V" : "S") }]; }));
+  else if (cmd === "status") out = Object.fromEntries((opt.arm ? [opt.arm] : ALL_ARMS).map((a) => { const Pa = isS(a) ? paths({ ...opt, arm: a }) : P, pid = readPid(path.join(P.op, a, "arm.pid")); return [a, { ...(a === "V" ? vStatus(readJsonl(P.vledger)) : sStatus(readJsonl(Pa.waves))), ...(a === "S" ? { label: S1_LABEL } : {}), alive: !!pid && procAlive(pid.pid, { match: a === "V" ? ["vanilla-compiler.mjs"] : a === "S2" ? ["setup.mjs", "run", "--arm=S2"] : ["setup.mjs", "run"], boot: pid.boot }), pid: pid?.pid ?? null, clock: clockOf(path.join(P.op, a, "clock.json")), restarts: restartsOf(Pa, a), w7: w7().extStatus(a === "V" ? readJsonl(P.vledger) : readJsonl(Pa.waves), a === "V" ? "V" : "S") }]; }));
   else if (cmd === "selftest") { out = await selftest(P); if (out.failed.length) { console.log(JSON.stringify(out, null, 1)); process.exit(1); } }
   else { console.error("usage: node setup.mjs place|run|watch|accept|hook|tally|audit|selftest … (see the header)"); process.exit(2); }
   console.log(JSON.stringify(out, null, 1));

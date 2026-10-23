@@ -93,6 +93,8 @@ const bare = (w) => base(w).replace(/@[^/]*$/, ""); // corepack's pnpm@8.15.0, n
 // judged; a heredoc fed to anything else (bash, node, python, a pipe) keeps its body in the line, judged as before.
 const DATA_SINKS = ["cat", "tee", "head", "tail", "wc", "sort", "uniq", "tr", "cut", "nl", "fold", "base64", "md5sum", "sha1sum", "sha256sum", ...READERS];
 const RUNS_FILE = ["source", ".", ...SHELLS, "node", "python", "python3", "perl", "ruby", "chmod", "exec"]; // a later command that runs a written file
+// B8 S1 fix: interpreters whose stdin heredoc is a program (bashDenial reads it as text, not as shell lines)
+const PROGRAMS = ["python", "python3", "node", "perl", "ruby"];
 
 /** The command head (bare name) of the last simple command in `text`, a line cut just before a `<<`. */
 function headWord(text) { const { cmds } = shellCommands(text.replace(/<</g, " ")); const w = cmds.at(-1) ?? []; return bare(w[headOf(w)]); }
@@ -113,8 +115,11 @@ function pipedOn(t) {
 }
 /** Shell line `s` with each data heredoc's body taken out: { s, docs: [{delim, quoted, head, data, body, closed, targets}] }.
  *  A non-data heredoc (fed to a shell, an interpreter, a pipe) is in docs too, its body left in `s` as it was. */
-export function heredocs(s) {
+export function heredocs(s, { programs = false } = {}) {
   s = String(s ?? "");
+  // B8 S1 fix (bashDenial only, `programs`): a heredoc fed to an interpreter's stdin (python3 - <<'EOF', node <<EOF) is
+  // that program's source, not shell: data here, its text judged by bashDenial's raw program check (PROGRAM_DENY)
+  const sink = (h) => DATA_SINKS.includes(h) || (programs && PROGRAMS.includes(h));
   let out = "", q = null, seg = 0, start = true; // start: the next character begins a word (a `#` there is a comment)
   const pending = [], docs = [];
   for (let i = 0; i < s.length; i++) {
@@ -146,7 +151,7 @@ export function heredocs(s) {
     }
     if (c !== "\n" || !pending.length) { if (";&|(\n".includes(c)) seg = out.length + 1; out += c; continue; }
     // the line with the operators ends: decide each heredoc, then its body follows, in operator order
-    for (const h of pending) { h.text = out.slice(h.at).replace(/\u0002/g, " "); h.data = DATA_SINKS.includes(h.head) && !pipedOn(h.text); }
+    for (const h of pending) { h.text = out.slice(h.at).replace(/\u0002/g, " "); h.data = sink(h.head) && !pipedOn(h.text); h.program = programs && !DATA_SINKS.includes(h.head) && h.data; }
     for (const h of pending) out = out.replace("\u0002", h.data ? " " : h.op);
     out += c; seg = out.length;
     let k = i + 1;
@@ -161,14 +166,14 @@ export function heredocs(s) {
       // the reading command (its line with every operator taken out): its redirect targets, tee's files
       const { cmds, writes } = h.data ? shellCommands(h.text) : { cmds: [], writes: [] };
       const targets = cmds.length ? [...new Set(writes)] : [];
-      docs.push({ delim: h.delim, quoted: h.quoted, head: h.head, data: h.data, body: lines.join("\n"), closed, targets });
+      docs.push({ delim: h.delim, quoted: h.quoted, head: h.head, data: h.data, body: lines.join("\n"), closed, targets, ...(h.program ? { program: true } : {}) });
       if (!h.data) out += raw; // judged as before: its lines are commands
     }
     pending.length = 0;
     i = k - 1;
   }
   for (const h of pending) { // the line never ended: no body
-    h.data = DATA_SINKS.includes(h.head) && !pipedOn(out.slice(h.at).replace(/\u0002/g, " "));
+    h.data = sink(h.head) && !pipedOn(out.slice(h.at).replace(/\u0002/g, " "));
     out = out.replace("\u0002", h.data ? " " : h.op);
     docs.push({ delim: h.delim, quoted: h.quoted, head: h.head, data: h.data, body: "", closed: false, targets: [] });
   }
@@ -178,9 +183,9 @@ export function heredocs(s) {
 /** The simple commands of shell line `s`, each as its words (quotes removed), plus the bodies of $(…) and `…`, the
  *  line's write targets (redirects and tee's files, as written: a target with a $ or substitution is opaque), and its
  *  heredocs (heredocs(): a data heredoc's body is not in `cmds`; an unquoted one's substitutions are in `subs`). */
-export function shellCommands(s) {
+export function shellCommands(s, { programs = false } = {}) {
   const cmds = [], subs = [], writes = [];
-  const h = /<</.test(String(s ?? "")) ? heredocs(s) : { s: String(s ?? ""), docs: [] };
+  const h = /<</.test(String(s ?? "")) ? heredocs(s, { programs }) : { s: String(s ?? ""), docs: [] };
   s = h.s;
   for (const d of h.docs) if (d.data && !d.quoted) { let b = d.body; for (let prev = null; prev !== b;) { prev = b; b = b.replace(/\$\(([^()]*)\)|`([^`]*)`/g, (m, x, y) => { subs.push(x ?? y); return SUBST; }); } }
   // each substitution is judged on its own and stands as one word in its command (`git -C $(pwd) push` is still git push)
@@ -355,7 +360,14 @@ export function bashDenial(c, depth = 0, ctx = {}) {
   if (/META_ROLE/.test(c)) return "META_ROLE"; // the session's identity (state.mjs sessionRole) is the launcher's to set
   // M6 prep review: an indirect expansion names variables by prefix (`unset ${!META_R*}` named META_ROLE unspelled)
   if (/\$\{!/.test(c)) return "<an indirect expansion the guard cannot read>";
-  const { cmds, subs, docs } = shellCommands(c);
+  // B8 S1 fix: a backslash-escaped backtick is a literal character, never a substitution (`grep "\`$f\`" x` read as
+  // the command `$f`)
+  c = unescapeTicks(c);
+  // B8 S1 fix: a variable the line itself sets to plain literal values (`T=/x/clj-run; $T -m …`, `for f in a b; do
+  // ./$f; done`) is judged with each value it can have there (each literal, and its value from the environment, or
+  // empty): every variant must pass. Anything else stays a word the guard cannot read
+  if (!ctx.resolved) { const vs = lineVariants(c); if (vs) { for (const v of vs) { const d = bashDenial(v, depth, { ...ctx, resolved: true }); if (d) return d; } return null; } }
+  const { cmds, subs, docs } = shellCommands(c, { programs: true });
   // the raw backstop over the line's words, less a search command's (substitutions are judged on their own below)
   const m = DENY_BASH.exec(cmds.filter((x) => !isReader(x)).map((x) => x.join(" ")).join("\n"));
   if (m) return m[0];
@@ -364,11 +376,58 @@ export function bashDenial(c, depth = 0, ctx = {}) {
   for (const x of subs) { const d = bashDenial(x, depth + 1, ctx); if (d) return d; }
   // M6 prep: a data heredoc written to a file that the same line then runs (`cat > x.sh <<EOF … EOF; bash x.sh`, `./x.sh`,
   // `chmod +x x.sh`) is code: its body is judged as commands, as every heredoc's body was before
+  // B8 S1 fix: an interpreter's heredoc program is judged as text: the denied spellings anywhere in it
+  for (const doc of docs.filter((x) => x.program)) { const m = PROGRAM_DENY.exec(doc.body) ?? CODE_ONLY_EVAL.exec(doc.body); if (m) return `${m[0].trim()} (in a ${doc.head} program)`; }
   for (const doc of docs.filter((x) => x.data && x.targets.length)) {
     const runs = cmds.some((words) => { const w = words.slice(headOf(words)), at = (x) => doc.targets.some((t) => x === t || base(x) === base(t)); return at(w[0] ?? "") || (RUNS_FILE.includes(bare(w[0])) && w.slice(1).some(at)); });
     if (runs) { const d = bashDenial(doc.body, depth + 1, ctx); if (d) return d; }
   }
   return null;
+}
+const PROGRAM_DENY = /\bgit\b[\s'",]+(push|send-pack)\b|\bnpm\b[\s'",]+run[\s'",]+deploy\b|\bgh\b[\s'",]+(workflow|api|pr[\s'",]+merge|release)\b|claim\.mjs|deploy\.mjs|\bvercel\b|META_ROLE|supervisor\.mjs|launch[\s'",]+finished|guard[\s'",]+(denied|borrow)|\[deploy\]/i;
+/** B8 S1 fix: `\`` (an escaped backtick, outside single quotes or in them: literal either way) as a placeholder, so
+ *  no substitution is read from it; an escaped backslash before a backtick leaves the backtick real. */
+function unescapeTicks(c) {
+  if (!c.includes("\\`")) return c;
+  let out = "";
+  for (let i = 0; i < c.length; i++) { if (c[i] === "\\" && i + 1 < c.length) { out += c[i + 1] === "`" ? "\u0003" : c[i] + c[i + 1]; i++; } else out += c[i]; }
+  return out;
+}
+const VAR_VALUE = /^[A-Za-z0-9_./:@%+,=~-]*$/, LOOP_VALUE = /^[A-Za-z0-9_./:@%+,=~*?[\]-]+$/;
+const DECL = ["export", "local", "declare", "readonly", "typeset"], SETTERS = ["read", "mapfile", "readarray", "getopts", "select", "let", "printf", "unset", "eval"];
+/** B8 S1 fix: line `c` with each variable it sets to plain literal values replaced by each value it can have (those
+ *  literals, and the environment's value or nothing): a list of variants, or null (no such variable, or more than 64
+ *  variants). A variable the line sets any other way (read, a substitution, a declare without a value, …) or whose
+ *  environment value is not plain is not resolved. Only `$NAME` and `${NAME}` outside single quotes are replaced. */
+export function lineVariants(c, env = process.env) {
+  let parsed; try { parsed = shellCommands(c, { programs: true }); } catch { return null; }
+  const vals = new Map(), bad = new Set();
+  const add = (k, v) => { if (!VAR_VALUE.test(v) && !LOOP_VALUE.test(v)) { bad.add(k); return; } (vals.get(k) ?? vals.set(k, new Set()).get(k)).add(v); };
+  const all = [...parsed.cmds]; for (const x of parsed.subs) { try { all.push(...shellCommands(x).cmds); } catch {} }
+  for (const w of all) {
+    let i = 0;
+    if (DECL.includes(w[0])) { i = 1; while (i < w.length && w[i].startsWith("-")) i++; for (const x of w.slice(i)) if (!/^[A-Za-z_]\w*=/.test(x) && /^[A-Za-z_]\w*$/.test(x)) bad.add(x); }
+    const rest = w.slice(i);
+    if (rest.length && rest.every((x) => /^[A-Za-z_]\w*=/.test(x))) for (const x of rest) { const k = x.slice(0, x.indexOf("=")), v = x.slice(x.indexOf("=") + 1); if (opaque(v) || !VAR_VALUE.test(v)) bad.add(k); else add(k, v); }
+    if (w[0] === "for" && /^[A-Za-z_]\w*$/.test(w[1] ?? "")) { const items = w.slice(3); if (w[2] === "in" && items.length && items.length <= 16 && items.every((x) => !opaque(x) && LOOP_VALUE.test(x))) for (const x of items) add(w[1], x); else bad.add(w[1]); }
+    if (w[0] === "select" && w[1]) bad.add(w[1]);
+    const h = w.slice(headOf(w));
+    if (SETTERS.includes(bare(h[0]))) for (const x of h.slice(1)) { const n = x.replace(/[=[].*$/, ""); if (/^[A-Za-z_]\w*$/.test(n)) bad.add(n); }
+    for (const x of w) { const m = /^([A-Za-z_]\w*)(\+\+|--|[-+*/%]=)/.exec(x); if (m) bad.add(m[1]); } // arithmetic
+  }
+  // the names used, outside single quotes
+  const used = new Set();
+  for (const seg of c.split(/('[^']*')/)) if (!seg.startsWith("'")) for (const m of seg.matchAll(/\$(?:\{([A-Za-z_]\w*)\}|([A-Za-z_]\w*))/g)) used.add(m[1] ?? m[2]);
+  const names = [...used].filter((k) => vals.has(k) && !bad.has(k) && (env[k] == null || VAR_VALUE.test(env[k])));
+  if (!names.length) return null;
+  const cand = names.map((k) => [...new Set([...vals.get(k), env[k] ?? ""])]);
+  if (cand.reduce((n, x) => n * x.length, 1) > 64) return null;
+  let out = [c];
+  for (const [j, k] of names.entries()) {
+    const re = new RegExp(`\\$(?:\\{${k}\\}|${k}(?![A-Za-z0-9_]))`, "g");
+    out = out.flatMap((t) => cand[j].map((v) => t.split(/('[^']*')/).map((seg) => (seg.startsWith("'") ? seg : seg.replace(re, () => v))).join("")));
+  }
+  return out;
 }
 export const WRITE_TOOLS = ["Write", "Edit", "MultiEdit", "NotebookEdit"];
 export const DEFAULT_TOOLS = ["Bash", "Read", "Write", "Edit", "Glob", "Grep"]; // the launcher's list before K10
@@ -413,12 +472,41 @@ export function decide(tool, input = {}, { tools = null, roots = [], cwd = proce
       for (const t of ws) {
         const asIs = !path.isAbsolute(t) && !path.normalize(t).startsWith("..") ? path.normalize(t).split(path.sep).join("/") : null;
         for (const dir of [cwd, ...cds]) { const d = pathDenial(realish(path.resolve(dir, t)), roots); if (d) return { ...d, why: `${d.why} (a shell write: ${t}); write files with the Write tool, never into a protected path`, detail: c.slice(0, 300) }; }
-        const r = asIs && roots.find((x) => (x.globs ?? []).some((g) => globRe(g).test(asIs)));
+        // B8 S1 fix: only a checkout's protected-paths globs are judged as written (relative to a checkout's root); a
+        // root of another kind (the K28 store, "**" of its own dir) is judged by its absolute path above only
+        const r = asIs && roots.find((x) => !x.kind && (x.globs ?? []).some((g) => globRe(g).test(asIs)));
         if (r) return { rule: "protected-path", why: `${asIs} is a protected path (${r.globs.find((g) => globRe(g).test(asIs))} in ${r.file ?? "protected-paths.txt"}): only a ratified amendment changes it (a shell write); write files with the Write tool, never into a protected path`, detail: c.slice(0, 300) };
       }
     }
   }
   return null;
+}
+
+/** K37: does owned root `r` lend module entry `e` (borrow: true, or a list of module names)? Without `e`: any. */
+const lends = (r, e = null) => !!r.borrow && (e == null || (e.kind === "module" && (r.borrow === true || (Array.isArray(r.borrow) && r.borrow.includes(e.name)))));
+/** K37: the borrow a write to absolute path `abs` makes ({order, file, module, owner}), or null: a path of another
+ *  role's module (never an interface) in an owned root that has borrow on, not granted. decide() lets it through. */
+export function borrowAt(abs, roots) {
+  for (const r of roots) {
+    if (r.kind !== "owned" || !lends(r)) continue;
+    const rel = path.relative(realish(r.dir), abs).split(path.sep).join("/");
+    if (!rel || rel.startsWith("..") || path.isAbsolute(rel)) continue;
+    const e = (r.owned ?? []).find((x) => (x.globs ?? []).some((y) => ownRe(y).test(rel)));
+    if (e && lends(r, e) && e.owner !== r.role && !(r.granted ?? []).some((y) => ownRe(y).test(rel))) return { order: r.order ?? null, file: rel, module: e.name, owner: e.owner };
+  }
+  return null;
+}
+/** K37: the borrows tool call (`tool`, `input`) makes (a write tool's path, a shell write's literal targets): a list. */
+export function borrowsIn(tool, input = {}, { roots = [], cwd = process.cwd() } = {}) {
+  if (!roots.some((r) => r.kind === "owned" && lends(r))) return [];
+  const out = [], add = (abs) => { const b = borrowAt(realish(abs), roots); if (b && !out.some((x) => x.order === b.order && x.file === b.file)) out.push(b); };
+  if (WRITE_TOOLS.includes(tool)) { const p = input?.file_path ?? input?.notebook_path; if (typeof p === "string" && p) add(path.resolve(cwd, p)); }
+  if (tool === "Bash") {
+    const c = String(input?.command ?? "");
+    const cds = shellCommands(c).cmds.map((w) => w.slice(headOf(w))).filter((w) => w[0] === "cd" && w[1] && !opaque(w[1])).map((w) => path.resolve(cwd, w[1]));
+    for (const t of bashWrites(c).filter((t) => t && !opaque(t) && !/^\/dev\//.test(t))) add(path.resolve(cds.at(-1) ?? cwd, t));
+  }
+  return out;
 }
 
 /** Why a write to absolute path `abs` is denied ({rule, why, detail}), or null: a .git folder, or a protected glob of a root. */
@@ -435,7 +523,7 @@ function pathDenial(abs, roots) {
     // is read-only for this role unless a change request granted it (its owner or the architect approved it)
     if (r.kind === "owned") {
       const e = (r.owned ?? []).find((x) => (x.globs ?? []).some((y) => ownRe(y).test(rel)));
-      if (e && e.owner !== r.role && !(r.granted ?? []).some((y) => ownRe(y).test(rel))) return { rule: "module-owner", why: `${rel} is in ${e.kind} ${e.name}, owned by ${e.owner}: every role reads it, only ${e.owner} writes it. Ask for the change: node meta.mjs ask raise --kind=change-request --module=${e.name}${r.order ? ` --order=${r.order}` : ""} --title=… --why=… --due=<min> (its owner or the architect decides)`, detail: abs };
+      if (e && e.owner !== r.role && !(r.granted ?? []).some((y) => ownRe(y).test(rel)) && !lends(r, e)) return { rule: "module-owner", why: `${rel} is in ${e.kind} ${e.name}, owned by ${e.owner}: every role reads it, only ${e.owner} writes it. Ask for the change: node meta.mjs ask raise --kind=change-request --module=${e.name}${r.order ? ` --order=${r.order}` : ""} --title=… --why=… --due=<min> (its owner or the architect decides)`, detail: abs };
       continue;
     }
     const g = (r.globs ?? []).find((x) => globRe(x).test(rel));
@@ -452,7 +540,10 @@ export const deniedArgs = (id, role, d) => ["guard", "denied", `--launch=${id}`,
  *  strictTools: the role named its tools (the SDK `tools` option then hides the rest, and the hook backs it up). Unset
  *  (a role with no `tools`: every spec before K10), only canUseTool applies the list, so a call that needs no permission
  *  (TodoWrite) runs as it did under dontAsk and one that would prompt (WebFetch) is refused as dontAsk refused it. */
-export function makeGuard({ tools = null, strictTools = true, roots = [], cwd = process.cwd(), role = null, record = () => {} } = {}) {
+export function makeGuard({ tools = null, strictTools = true, roots = [], cwd = process.cwd(), role = null, record = () => {}, borrowed = () => {} } = {}) {
+  // K37: an allowed write into another role's module (borrow on) is reported once per tool call and file
+  const lent = new Set();
+  const lend = (tool, input, c, id) => { for (const b of borrowsIn(tool, input, { roots, cwd: c })) { const k = `${id ?? ""}:${b.order}:${b.file}`; if (lent.has(k)) continue; lent.add(k); try { borrowed({ ...b, tool, toolUseID: id ?? null }); } catch {} } };
   const denials = [], seen = new Set();
   const deny = (via, tool, d, id) => {
     const key = id ?? `${via}:${denials.length}`;
@@ -464,14 +555,14 @@ export function makeGuard({ tools = null, strictTools = true, roots = [], cwd = 
     /** SDK CanUseTool. */
     async canUseTool(toolName, input, options = {}) {
       const d = decide(toolName, input, { tools, roots, cwd, role });
-      if (!d) return { behavior: "allow", updatedInput: input };
+      if (!d) { lend(toolName, input, cwd, options.toolUseID); return { behavior: "allow", updatedInput: input }; }
       return { behavior: "deny", message: deny("canUseTool", toolName, d, options.toolUseID) };
     },
     /** SDK HookCallback for PreToolUse. */
     async preToolUse(input, toolUseID) {
       if (input?.hook_event_name && input.hook_event_name !== "PreToolUse") return {};
       const d = decide(input?.tool_name, input?.tool_input ?? {}, { tools: strictTools ? tools : null, roots, cwd: input?.cwd || cwd, role });
-      if (!d) return {};
+      if (!d) { lend(input?.tool_name, input?.tool_input ?? {}, input?.cwd || cwd, toolUseID ?? input?.tool_use_id); return {}; }
       return { hookSpecificOutput: { hookEventName: "PreToolUse", permissionDecision: "deny", permissionDecisionReason: deny("hook", input.tool_name, d, toolUseID ?? input?.tool_use_id) } };
     },
   };
@@ -495,7 +586,9 @@ export function sessionPlan(cfg, cli = {}, defaults = {}) {
   const settingSources = cfg.settingSources ?? cli.settingSources ?? (cli.fromOrder && cwd !== defaults.cwd ? ["project"] : defaults.settingSources ?? []);
   // K10 review: the role's sessionMin overrode --session-min, so an operator could not shorten a smoke run; an explicit
   // flag now wins, the role's value is the default under it
-  const sessionMin = cli.sessionMin ?? cfg.sessionMin ?? defaults.sessionMin, maxTurns = cfg.maxTurns ?? defaults.maxTurns;
+  // K34: a launch for a time-boxed stage ends at the box, whatever the role's or the flag's minutes
+  const sessionMin0 = cli.sessionMin ?? cfg.sessionMin ?? defaults.sessionMin, maxTurns = cfg.maxTurns ?? defaults.maxTurns;
+  const sessionMin = typeof cfg.timeboxMin === "number" && cfg.timeboxMin > 0 ? Math.min(sessionMin0, cfg.timeboxMin) : sessionMin0;
   return { cwd, tools, strictTools, sessionMin, maxTurns, settingSources, roots: cfg.roots ?? [] };
 }
 /** The query() options for plan `p` and its guard (makeGuard's). The write tools and Bash stay out of allowedTools (an

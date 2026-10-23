@@ -30,8 +30,8 @@ import { spawn, spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
 const SELF = fileURLToPath(import.meta.url);
-export const ARM_UID = { V: 64081, S: 64082 };
-export const ARM_USER = { V: "b8v", S: "b8s" };
+export const ARM_UID = { V: 64081, S: 64082, S2: 64083 }; // S2: the second S run (PROTOCOL.md "S2"), a uid of its own
+export const ARM_USER = { V: "b8v", S: "b8s", S2: "b8s2" };
 export const PROXY_PORT = 18080;
 export const ALLOW_HOSTS = ["api.anthropic.com:443"];
 // the auth variables an arm's CLI may get (the same for both arms); B8_AUTH_ENV=NAME,… adds more, B8_AUTH_FILES=
@@ -95,7 +95,7 @@ net.createServer((c) => { const u = net.connect(sock); c.pipe(u); u.pipe(c); u.o
 export function boxBinds(P, arm, extraRo = []) {
   const B = boxPaths(P, arm);
   const rw = arm === "V" ? [P.V, B.home, B.tmp, B.log, B.sock] : [P.S, B.home, B.tmp, B.log, B.sock];
-  const ro = [P.toolchain, P.shim(arm), B.bin, NODE_DIR, ...(arm === "S" ? [path.join(P.S, "proto"), P.harness] : []), ...extraRo];
+  const ro = [P.toolchain, P.shim(arm), B.bin, NODE_DIR, ...(arm !== "V" ? [path.join(P.S, "proto"), P.harness] : []), ...extraRo];
   return { rw, ro, files: [[B.passwd, "/etc/passwd"], [B.group, "/etc/group"]] };
 }
 /** The gcc back ends and clang, hidden in every box: gcc then only assembles and links. */

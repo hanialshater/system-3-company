@@ -12,6 +12,7 @@
 //   node meta.mjs order new --flow=ritual --chair=<role> --attendee=<role> --title=… --task=<T> --accept=… [--slug=<kebab>]
 //   node meta.mjs order delegate <O> --by=<manager> --to=<builder> [--budget=150000] [--owners=<role>,<role>]
 //        K31: with spec modules, --owners has the first stage worked at once by several owners, a part each
+//        K36: --scope=<module>,… staffs those modules' owners (a role with activate "on-demand" only this way)
 //   node meta.mjs order route <O> --by=<triage or owner> --to=<owner> --categories=<a>,<b>   K30: hand routed findings on
 //   node meta.mjs ask raise --kind=change-request --module=<module or interface> --order=<O> [--to=<architect>] …   K29/K32:
 //        a change to a path another role owns; a yes from its owner (or the architect) lets the asker write it on that order
@@ -77,12 +78,14 @@
 //        abandoned and its sessions closed as for any failed process, but the warm record stays resumable
 //   node meta.mjs launch resume-failed --launch=<L> --role=<r> --sdk-session=<id> --why=…   K26: the launcher fell back to a cold start
 //   node meta.mjs guard denied --role=<r> --tool=<t> --rule=<rule> --why=… [--launch=<L>] [--detail=…]   K10: a guard denial (the launcher)
+//   node meta.mjs guard borrow --role=<r> --order=<O> --file=<workdir-relative> [--launch=<L>]   K37: a borrowed write (the launcher)
 //   node meta.mjs events [--type=<t>]   ·   node meta.mjs memory <role>   ·   node meta.mjs org activity <role>
 // Exit: 0 ok, 1 refused, 2 usage or state error.
 import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
 import { Refused, flowMetrics, packHistory, isIndependent, isChairFlow } from "./lib.mjs";
+const TIMEBOX_GRACE_MIN = 2; // K34: a launch that ends this close to a run's box ended it at the box (the launch started before the run entered)
 import * as GEN from "./generator.mjs";
 import * as WS from "./workspace.mjs";
 import { proposePolicy, activatePolicy, managerReport, recordCycle, KNOBS } from "./policy.mjs";
@@ -167,6 +170,9 @@ function pack(co, run, ctx, session, item) {
   return { run, session, item, lease_min: Number(opt.lease ?? 30), order: o.id, task: o.task, title: o.title, priority: o.priority, stage: ctx.stage, accept: ws ? interpolate(o.accept ?? "", vars) : o.accept, workdir: dir + "/", workdir_exists: fs.existsSync(dir), ...(ws ? (ws.error ? { workspace_error: ws.error } : { branch: o.workspace.branch, base_sha: o.workspace.sha, env: o.workspace.env, run_meta_from: HERE }) : {}), findings: hist ? (part ? part.findings ?? null : o.findings ?? null) : null, memory: mem.map((e) => ({ ...e, t: iso(e.t) })), history: hist ? o.history.map((h) => ({ ...h, t: iso(h.t), ...(part && h.routed && h.findings ? { findings: "(split by owner: your part's lines are this pack's findings)" } : {}) })) : [], ...k6, ...k30,
     // K24: the stages' kept copies in the run's artifact store (each stage's newest, by name; ${artifacts} in the pack rules)
     ...(Object.keys(o.artifacts ?? {}).length ? { artifacts: { latest: vars.artifacts, stages: Object.fromEntries(Object.entries(o.artifacts).map(([k, v]) => [k, v.dir])) } } : {}),
+    // K34/K35: a time-boxed stage ends at its box (code signs what the report says then); an advisory one holds nothing
+    ...(sd?.timebox ? { timebox: { minutes: sd.timebox.min, ...(co.rooms.runs.get(run)?.boxUntil != null ? { ends: iso(co.rooms.runs.get(run).boxUntil) } : {}), ...(sd.timebox.findings ? { report: interpolate(sd.timebox.findings, vars) } : {}), means: `your session ends ${sd.timebox.min} min after you entered; then code signs this stage with the defect lines ("<category>: what is wrong -> what is required") ${sd.timebox.findings ? `in ${interpolate(sd.timebox.findings, vars)}` : "you handed in"} so far: write each defect there as soon as you find it, and hand in before the box if you can` } } : {}),
+    ...(co.rooms.runs.get(run)?.advisory ? { advisory: "the order does not wait for this review: it has moved on; your findings, when you hand them in, are routed to the owners as work (on this order, or the next one if this one is done)" } : {}),
     ...(sd?.post ? { post_check: `your leave first runs: ${sd.post.argv.join(" ")} (code's check of this stage; a failure refuses the leave, prints its findings and keeps this run open to fix)` } : {}), // K12
     // K28: the rules the company learned from earlier orders' outcomes (validated and scored by code), for the learn roles
     ...((() => { const rules = LEARN.activeRules(co, co.rooms.runs.get(run)?.role); return rules.length ? { playbook: rules, playbook_means: "rules learned from earlier orders' outcomes (code validated and scores them): follow them where they apply; the accept criteria and the stage's own rules come first" } : {}; })()),
@@ -367,8 +373,9 @@ function dispatch(co, cmd, sub, arg) {
   }
   if (cmd === "order" && sub === "delegate") {
     need("by", "to");
-    const o = engine.delegate(arg, { by: opt.by, to: opt.to, budget: Number(opt.budget ?? 150_000), owners: opt.owners != null ? String(opt.owners).split(",").map((x) => x.trim()).filter(Boolean) : null });
-    return { order: o.id, builder: o.builder, ...(o.initialOwners ? { owners: o.initialOwners } : {}), messages: mailbox.thread(o.id).map((m) => m.id) };
+    const list = (k) => (opt[k] != null && opt[k] !== true ? String(opt[k]).split(",").map((x) => x.trim()).filter(Boolean) : opt[k] === true ? [] : null);
+    const o = engine.delegate(arg, { by: opt.by, to: opt.to, budget: Number(opt.budget ?? 150_000), owners: list("owners"), scope: list("scope") });
+    return { order: o.id, builder: o.builder, ...(o.initialOwners ? { owners: o.initialOwners } : {}), ...(o.scope ? { scope: o.scope } : {}), messages: mailbox.thread(o.id).map((m) => m.id) };
   }
   if (cmd === "order" && sub === "route") {
     need("by", "to", "categories");
@@ -564,8 +571,10 @@ function dispatch(co, cmd, sub, arg) {
     const ok = opt.ok !== "false", tokens = Number(opt.tokens);
     const ss = [...rooms.sessions.values()].filter((s) => s.launch === opt.launch);
     const abandoned = [];
+    const timeboxed = [];
     for (const s of ss) {
-      if (!ok) for (const x of rooms.runs.values()) if (x.session === s.id && x.state === "running") { rooms.abandon(x.run, { by: "launcher", reason: opt.reason ?? "agent process failed" }); abandoned.push(x.run); }
+      // K34: a run at its time box (the launcher ended the session there) hands in what it has, signed by code
+      if (!ok) for (const x of rooms.runs.values()) if (x.session === s.id && x.state === "running") { if (x.boxUntil != null && clock.now() >= x.boxUntil - TIMEBOX_GRACE_MIN) { rooms.timeboxRun(x.run, { why: `the launch ended at the time box (${opt.reason ?? "its session limit"})` }); timeboxed.push(x.run); continue; } rooms.abandon(x.run, { by: "launcher", reason: opt.reason ?? "agent process failed" }); abandoned.push(x.run); }
       if (!ok || s.waitUntil != null) { s.waitUntil = null; rooms.closeSession(s.id, ok ? "process ended" : "process failed"); }
     }
     if (ss.length) rooms.recordSessionUsage(ss[0].id, tokens, "launcher");
@@ -598,8 +607,8 @@ function dispatch(co, cmd, sub, arg) {
       }
       if (warmed.length) log.add({ type: "warm-record", launch: opt.launch, role: opt.role, sdk, ok, ...(intact ? { intact: true } : {}), orders: warmed });
     }
-    log.add({ type: "launch-finished", launch: opt.launch, role: opt.role, ok, tokens, cumulative: N("cumulative") ?? null, cost: N("cost") ?? null, sessions: ss.map((s) => s.id), abandoned, reason: opt.reason ?? null, ...(sdk ? { sdk } : {}), ...(intact ? { intact: true } : {}) });
-    return { sessions: ss.map((s) => s.id), abandoned, charged, ...(warmed.length ? { warm: warmed } : {}) };
+    log.add({ type: "launch-finished", launch: opt.launch, role: opt.role, ok, tokens, cumulative: N("cumulative") ?? null, cost: N("cost") ?? null, sessions: ss.map((s) => s.id), abandoned, reason: opt.reason ?? null, ...(sdk ? { sdk } : {}), ...(intact ? { intact: true } : {}), ...(timeboxed.length ? { timeboxed } : {}) });
+    return { sessions: ss.map((s) => s.id), abandoned, charged, ...(warmed.length ? { warm: warmed } : {}), ...(timeboxed.length ? { timeboxed } : {}) };
   }
   // K26: the launcher could not resume a warm session (gone, expired) and started cold instead: never resumed again
   if (cmd === "launch" && sub === "resume-failed") {
@@ -615,6 +624,12 @@ function dispatch(co, cmd, sub, arg) {
     need("role", "tool", "rule", "why");
     if (me != null) throw new Refused(`guard denied is the launcher's record: refused in an agent session (${me})`); // M5 review
     return log.add({ type: "guard", launch: opt.launch ?? null, role: opt.role, tool: opt.tool, rule: opt.rule, why: opt.why, detail: opt.detail ?? null, via: opt.via ?? null });
+  }
+  // K37: the launcher's record of a borrowed write (its guard let a write into another role's module through)
+  if (cmd === "guard" && sub === "borrow") {
+    need("role", "order", "file");
+    if (me != null) throw new Refused(`guard borrow is the launcher's record: refused in an agent session (${me})`);
+    return OWN.recordBorrow(co, { order: opt.order, role: opt.role, file: opt.file, launch: opt.launch ?? null });
   }
   // K28: the playbook's evidence and rules (read-only), and a retro's proposal (validated change by change by code)
   if (cmd === "learn" && sub === "show") {

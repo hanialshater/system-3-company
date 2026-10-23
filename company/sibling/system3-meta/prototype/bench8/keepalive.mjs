@@ -3,7 +3,9 @@
 // reclaimed twice in an hour without warning; every process died, the files survived).
 //
 //   node bench8/keepalive.mjs --arms=V,S [--runs=<dir>] [--b8=<dir>] [--interval=30] [--v='<V args>'] [--s='<S args>']
-//        [--max-restarts=50] [--once]
+//        [--s2='<S2 args>'] [--max-restarts=50] [--once]
+//   S2 (PROTOCOL.md "S2"): --arms=S2 keeps the second S run alive (node bench8/setup.mjs run --resume --arm=S2 …). A
+//   keepalive for other arms than a running one's may run beside it (V's keepalive.pid stays V,S's; S2's has its own)
 //
 // Every --interval seconds (30) it checks each arm: alive (its arm.pid, written by the arm itself, names a live process
 // of this boot whose cmdline is the arm's script, checked in /proc) or finished (its ledger: vStatus / sStatus). An arm
@@ -29,26 +31,35 @@ const HERE = path.dirname(fileURLToPath(import.meta.url));
 const opt = Object.fromEntries(process.argv.slice(2).filter((a) => a.startsWith("--")).map((a) => { const [k, ...v] = a.slice(2).split("="); return [k, v.join("=") || true]; }));
 const P = paths(opt);
 const ARMS = String(opt.arms ?? "V,S").split(",").map((x) => x.trim().toUpperCase()).filter(Boolean);
-if (!ARMS.length || !ARMS.every((a) => a === "V" || a === "S")) { console.error("--arms=V,S (one or both)"); process.exit(2); }
+if (!ARMS.length || !ARMS.every((a) => ["V", "S", "S2"].includes(a))) { console.error("--arms=V,S,S2 (any of them)"); process.exit(2); }
+const PA = { V: P, S: P, S2: paths({ ...opt, arm: "S2" }) }; // each arm's own layout (S2: <runs>/S2, _operator/S2)
 const INTERVAL = Number(opt.interval ?? 30) * 1000, MAX_RESTARTS = Number(opt["max-restarts"] ?? 50);
 const split = (s) => (typeof s === "string" ? s.split(/\s+/).filter(Boolean) : []);
 const passThrough = ["--b8", "--proto"].filter((k) => opt[k.slice(2)]).map((k) => `${k}=${opt[k.slice(2)]}`);
 const ARGV = {
   V: [path.join(HERE, "vanilla-compiler.mjs"), "--resume", `--runs=${P.runs}`, ...passThrough, ...split(opt.v)],
   S: [path.join(HERE, "setup.mjs"), "run", "--resume", `--runs=${P.runs}`, ...passThrough, ...split(opt.s)],
+  S2: [path.join(HERE, "setup.mjs"), "run", "--resume", "--arm=S2", `--runs=${P.runs}`, ...passThrough, ...split(opt.s2)],
 };
-const MATCH = { V: ["vanilla-compiler.mjs"], S: ["setup.mjs", "run"] };
+const MATCH = { V: ["vanilla-compiler.mjs"], S: ["setup.mjs", "run"], S2: ["setup.mjs", "run", "--arm=S2"] };
 const wavesOf = (arm) => { const w = split(opt[arm.toLowerCase()]).find((a) => a.startsWith("--waves=")); return w ? w.slice(8).split(/[,.]+/).filter(Boolean).map((x) => x.toUpperCase()) : WAVES; };
 // --extend=W7 in an arm's args (PROTOCOL.md "W7"): the arm is finished when its W7 has ended (w7.mjs extStatus)
 const extOf = (arm) => split(opt[arm.toLowerCase()]).some((a) => /^--extend=W7$/i.test(a));
-const statusOf = (arm) => extOf(arm) ? extStatus(readJsonl(arm === "V" ? P.vledger : P.waves), arm === "V" ? "V" : "S") : (arm === "V" ? vStatus(readJsonl(P.vledger), wavesOf("V")) : sStatus(readJsonl(P.waves), wavesOf("S")));
+const statusOf = (arm) => extOf(arm) ? extStatus(readJsonl(arm === "V" ? P.vledger : PA[arm].waves), arm === "V" ? "V" : "S") : (arm === "V" ? vStatus(readJsonl(P.vledger), wavesOf("V")) : sStatus(readJsonl(PA[arm].waves), wavesOf(arm)));
 const log = (arm) => path.join(P.op, arm, "restarts.jsonl");
 const say = (x) => console.log(JSON.stringify({ t: new Date().toISOString(), ...x }));
 
-// one keepalive per runs dir
+// one keepalive per arm and runs dir: V and S share keepalive.pid (as before S2); S2 alone has keepalive-S2.pid, and
+// a keepalive refuses while another one that keeps any of its arms runs
 fs.mkdirSync(P.op, { recursive: true });
-const KPID = path.join(P.op, "keepalive.pid");
-{ const k = readPid(KPID); if (k && k.pid !== process.pid && procAlive(k.pid, { match: ["keepalive.mjs"], boot: k.boot })) { say({ event: "already running", pid: k.pid }); process.exit(0); } }
+const pidFile = (arms) => path.join(P.op, arms.some((a) => a === "V" || a === "S") ? "keepalive.pid" : `keepalive-${arms.join("-")}.pid`);
+const KPID = pidFile(ARMS);
+for (const f of [...new Set([path.join(P.op, "keepalive.pid"), path.join(P.op, "keepalive-S2.pid"), KPID])]) {
+  const k = readPid(f);
+  if (!k || k.pid === process.pid || !procAlive(k.pid, { match: ["keepalive.mjs"], boot: k.boot })) continue;
+  const theirs = Array.isArray(k.arms) ? k.arms : ["V", "S"];
+  if (f === KPID || theirs.some((a) => ARMS.includes(a))) { say({ event: "already running", pid: k.pid, arms: theirs }); process.exit(0); }
+}
 writePid(KPID, { arms: ARMS });
 process.on("exit", () => { try { if (readPid(KPID)?.pid === process.pid) fs.rmSync(KPID, { force: true }); } catch {} });
 for (const sig of ["SIGINT", "SIGTERM"]) process.on(sig, () => process.exit(0)); // the arms run on (their own groups)

@@ -468,6 +468,86 @@ one-after-the-other order.
   resumes its one session. That is how each design keeps its memory, and the tally reports what each lost.
 - keepalive itself must be started again after a machine restart.
 
+## S2 (2026-10-23): a second S run after the fixes from S1
+
+**Why.** The founder stopped S1 (arm S, `specs/ccompiler-specialized.json`) at W3. On W1-W2 it matched V's accuracy at
+about twice V's cost and much more time. Its logs show four causes: (1) the evaluator ran 25-30 min each time, once
+ran past its lease and was relaunched, and held the wave the whole time (about 130 min of evaluator time); (2) the
+work did not spread across owners (each wave landed mostly on one module, W3 on semantics), yet every owner and the
+architect paid a cold start and the coordination; (3) the K10/K28 guard refused the evaluator's own test file
+`g01_empty_braces.c`, a test's `.exit` file and a scratch list as "protected" (the K28 store's root `**` was also
+matched against every relative shell-write target), and refused 13 Bash lines it could not read (`T=…/clj-run; $T -m
+…`, `python3 - <<'EOF'`, an escaped backtick in a `for` loop); (4) cross-module needs waited for change-request
+approval. S1's numbers stay as they are, labelled "stopped by the founder at W3" in the tally.
+
+**What changed (kernel, generic; `tests/k34-k37.test.mjs`, `tests/guard.test.mjs`).**
+- K34, a time box: a stage an agent works may set `timebox: {min, findings}`. The launcher caps the session at the
+  box, and a lease never outlives it. At the box, code signs the stage with the defect lines (`<category>: what is wrong
+  -> what is required`) of the stage's report so far. This happens at the tick's sweep, or when the launch ended at the
+  box. A blocking stage with such lines revises; with none it moves on as `timeboxed`, recorded, never a silent pass.
+- K35, advisory: `advisory: true` on an independent review stage. When the stage before it passes, the order moves on
+  to the next stage and the review is scheduled beside it. Its findings are routed by K30 as work on the same order
+  while that order is open: into its parts, or held until its next revise. A done or cancelled order is never
+  reopened: its findings go to the next order of its flow, at once if that order is at work, or else to the flow's
+  backlog, which that order's delegate takes. K28 counts them where they landed.
+- K36, staffing on demand: `activate: "on-demand"` on an owner role. `order delegate --scope=<modules>` staffs the
+  owners of those modules. Naming an on-demand owner any other way is refused. Routed work (K30, a carried finding)
+  and a borrow review start it anyway.
+- K37, borrow: spec `borrow: true | {modules: […]}`. An owner may write another owner's module (never an interface,
+  so K32 stays an approval). The guard lets the write through and reports it (`guard` line `borrow`, `meta.mjs guard
+  borrow`). The owner's K7 commit includes the borrowed files and records them (`commit.borrowed`). The module's owner
+  gets a non-blocking `review-borrow` ask with the diff; a no comes back to it as work.
+- Guard fixes: the K28 store root is of kind `store`, judged by its absolute path only. A variable the line sets to
+  plain literals is judged with each value it can have there (each literal, plus its environment value or nothing).
+  A `for` list of literal words is read the same way. An escaped backtick is a literal. A heredoc fed to an
+  interpreter's stdin is judged as program text (the denied spellings anywhere in it). A substitution, `read`, an
+  unknown variable as the command, and a denied program body are still refused. `shellCommands`' default parse,
+  which V's access hook uses, is unchanged.
+
+**S2's spec** (`specs/ccompiler-specialized-v2.json`, written by `bench8/make-spec-s2.mjs` from S1's) is S1's with
+these changes: the flow is build -> accept -> eval -> ship, with eval advisory and time-boxed at 10 min after the
+hidden accept (the evaluator writes `tests/eval/<Wn>/EVAL.md` as it goes); the four owners are on demand, and the
+architect scopes each order (`--to=architect --scope=…`); the four code modules may be borrowed (the evaluator's
+`tests/eval/**` and the interfaces may not); and the K28/K33 learning (store, roles, retros, scoped rules) is kept
+unchanged. It validates.
+
+**Harness.** `setup.mjs … --arm=S2` is a fresh second S run in its own folders (`<runs>/S2`, `_operator/S2`, its own
+broker socket and shims). It gets the same access hook, caps (300 min, $120), feedback lines and rounds as S and V.
+The frozen kernel is copied at its start, so S2 runs this kernel. `status`, `tally` (V, S1 labelled, S2, and each
+S run against V per wave), `audit --arm=S2` and `keepalive --arms=S2` (its own `keepalive-S2.pid`, beside V's
+keepalive) know it. A spec with an advisory stage runs one launcher across waves: the next wave starts as soon as the
+last wave's order has ended and its retro is closed, while the advisory review may still run. At the run's end the
+launcher is stopped, and an advisory review still open is recorded (`launcher-stop`). Waves W1-W6 are the default.
+W7 is opt-in with the W7 extension's own flag (PROTOCOL.md "W7"): once S2's W1-W6 run has finished, `setup.mjs run
+--arm=S2 --extend=W7` continues it into W7 (the next wave's order, W7's own caps).
+
+```sh
+node bench8/setup.mjs run --arm=S2                       # fresh S2 (founder's go first)
+node bench8/keepalive.mjs --arms=S2                      # or kept alive (beside V's keepalive)
+node bench8/keepalive.mjs --arms=S2 --s2='--extend=W7'   # then W7, after S2's W1-W6 finished
+node bench8/setup.mjs tally --md                         # V, S1 (stopped at W3), S2
+```
+
+**Dry run (2026-10-23, no SDK session, `node bench8/dryrun-s2.mjs`, 11.4 min).** S2 ran W1 -> W2 on a scratch runs dir
+with `bench8/fake-sdk` and the real launcher, serve, broker, accept and hidden runner. The stub compiler never passes,
+so the dry run's accept passed by flag (`--fake-accept-pass`), and the box was 1 min (`--timebox-min=1`). Every check
+passed:
+- only scoped owners were launched. W1 was scoped to backend, and its parts were architect and backend; frontend and
+  optimizer never started, and semantics started only for its borrow review. W2 was scoped to semantics;
+- the evaluator was advisory and time-boxed. W1's history is `build:part, build:part, build:pass, accept:pass,
+  ship:pass, eval:advisory(timeboxed)`: the order shipped before the review was handed in. The launcher capped the
+  session at 1 min, and code signed it at the box with its report's defect line;
+- the late finding was the next wave's work. `W1 calls: …` was routed by K30 to backend as a new part of W2's order,
+  W2 having been delegated already, so backend worked W2 although W2's scope was semantics. W1 was never reopened. The
+  backlog path (no next order at work yet) is covered by `tests/k34-k37.test.mjs`;
+- a borrow. Backend wrote semantics' `src/ccc/sema/lower.clj` in W1: a guard `borrow` line, a `borrow` event, and
+  the commit's `borrowed: [semantics]`. Semantics' only W1 session was the review-borrow ask, answered yes;
+- the guard no longer refuses S1's false positives. Each fake session asked its own guard about S1's refused lines
+  (`printf … > g01_empty_braces.c`, `echo 37 > test/backend/c/stress1.exit`, `T=…; $T -m ccc.main …`,
+  `CLJ=…; $CLJ …`), and every one was allowed. The dry run had no guard denials.
+
+Kernel suite 327 of 327 and the export check (leaks [], 317 of 317 there) pass. No real arm was started.
+
 
 ## W7 (2026-10-23): compile real software (Lua 5.4.7), released after W6
 

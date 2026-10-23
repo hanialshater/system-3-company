@@ -10,7 +10,7 @@ import { validateCmd } from "./state.mjs";
 import { validateWorkspace, validateRoleLaunch, flowWsProblem, commitOf } from "./workspace.mjs";
 import { actsProblem } from "./acts.mjs";
 import { artifactsProblem, STAGE_REF, RESERVED_STAGES } from "./artifacts.mjs";
-import { signerRole, signerName, isIndependent, packProblem, packHistory, postProblems, standingProblems, isChairFlow, flowProblems, workProblems, workStagesOf, batchProblems, sampleProblems, CHAIR_SIGNERS, CHAIR_ORDER_BY } from "./lib.mjs";
+import { signerRole, signerName, isIndependent, packProblem, packHistory, postProblems, standingProblems, isChairFlow, flowProblems, workProblems, workStagesOf, batchProblems, sampleProblems, advisoryProblems, CHAIR_SIGNERS, CHAIR_ORDER_BY } from "./lib.mjs";
 import { policyProblems } from "./policy.mjs";
 import { learnProblems, varsProblems } from "./learn.mjs";
 import { ownersProblems } from "./owners.mjs";
@@ -73,6 +73,10 @@ export function validateSpec(s) {
     // K26: `warm: true`, the order's builder keeps one Agent SDK session across its work stages and revises (the
     // launcher resumes it); a reviewer is never warm (each review starts cold: independence, fresh eyes)
     if (r.warm != null) { need(typeof r.warm === "boolean", `role ${r.id}: warm is true or false`); need(!r.warm || r.level === "builder", `role ${r.id}: only a builder is warm (a reviewer starts cold, for independence)`); }
+    // K36: `activate: "on-demand"`: an owner that gets a part only when an order's --scope names its module, work is
+    // routed to it, or a borrow review names it (idle, it costs nothing); "always" is the default
+    if (r.activate != null) need(["always", "on-demand"].includes(r.activate) && (r.activate === "always" || r.level === "builder"), `role ${r.id}: activate is "always" or "on-demand" (on-demand: a builder that owns a module)`);
+    if (r.activate === "on-demand") need(Object.values(s.modules ?? {}).some((m) => m?.owner === r.id), `role ${r.id}: an on-demand role owns a module (its scope is how it is staffed)`);
     // K10: per-role launch settings (launcher/launch.mjs): tools, sessionMin, maxTurns, settingSources
     { const e = validateRoleLaunch(r); need(!e, `role ${r.id}: ${e}`); }
   }
@@ -111,6 +115,9 @@ export function validateSpec(s) {
       if (x.independent != null) need(typeof x.independent === "boolean", `stage ${x.stage}: independent is true or false`);
       // K27: a review stage's batch {max, waitMin} and sample {rate, min, max, always} (lib.mjs)
       for (const e of [...batchProblems(x), ...sampleProblems(x)]) need(false, `stage ${x.stage}: ${e}`);
+      // K34/K35: a time box (not on the builder's work: its parts hand in themselves) and an advisory review
+      if (!isChairFlow(f)) for (const e of advisoryProblems(x, st.indexOf(x))) need(false, `stage ${x.stage}: ${e}`);
+      if (x.timebox != null) need(x.signer !== "builder", `stage ${x.stage}: a time box is for a review or a role's stage, not the builder's work`);
       if (x.signer === "builder") need(x.independent !== true, `stage ${x.stage}: an independent stage cannot be signed by the builder`);
       // K6: context-pack rules (a code stage has no pack: no agent reads it)
       { const e = packProblem(x.pack); need(!e, `stage ${x.stage}: ${e}`); }

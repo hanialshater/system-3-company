@@ -28,7 +28,7 @@ import { LIVE, lookupVar } from "./state.mjs";
 import { touchesStore, storeFiles } from "./artifacts.mjs";
 import os from "node:os";
 import crypto from "node:crypto";
-import { ownershipOf, ownerOf, ownedPaths, writeDenial, guardRoot, ownGlobRe } from "./owners.mjs";
+import { ownershipOf, ownerOf, ownedPaths, writeDenial, guardRoot, ownGlobRe, borrowsOf, borrowCommitted } from "./owners.mjs";
 
 export const WS_KEYS = ["kind", "repo", "base", "root", "dir", "branch", "env", "nodeModules", "run", "portBase", "commit", "cleanup"];
 export const WS_KINDS = ["git-worktree"];
@@ -446,8 +446,8 @@ function commitLocked(co, o, stage, c, { by = null, owner = null } = {}) {
   if (owner) {
     const st = git(dir, "status", "--porcelain=v1", "-z", "--untracked-files=all", "--no-renames");
     if (!ok(st)) return { error: why(st, `git status in ${dir}`) };
-    const mine = ownedPaths(co, o, owner).map(ownGlobRe);
-    const changed = st.stdout.split("\0").filter(Boolean).map((l) => l.slice(3)).filter((f) => mine.some((g) => g.test(f)));
+    const mine = ownedPaths(co, o, owner).map(ownGlobRe), lent = new Set(borrowsOf(co, o, owner)); // K37: what it borrowed, by the guard's record
+    const changed = st.stdout.split("\0").filter(Boolean).map((l) => l.slice(3)).filter((f) => mine.some((g) => g.test(f)) || lent.has(f));
     add = changed.length ? git(dir, "add", "-A", "--", ...changed.map((f) => `:(literal)${f}`)) : { status: 0, stdout: "", stderr: "" };
   } else add = git(dir, "add", "-A");
   if (!ok(add)) return { error: why(add, `git add -A in ${dir}`) };
@@ -511,8 +511,12 @@ function commitLocked(co, o, stage, c, { by = null, owner = null } = {}) {
   if (!ok(sha)) return { error: why(sha, `git rev-parse HEAD in ${dir}`) };
   o.workspace.head = out(sha)[0];
   headOf(o, stage);
-  co.log.add({ type: "commit", order: o.id, stage, branch: o.workspace.branch, sha: o.workspace.head, files: files.length, message: msg, ...(owner ? { owner } : {}) });
-  return { sha: o.workspace.head, files };
+  // K37: the borrowed files this commit took: recorded with it, and a review-borrow ask (with the diff) to each owner
+  const lentNow = owner ? files.filter((f) => borrowsOf(co, o, owner).includes(f)) : [];
+  let reviews = [];
+  if (lentNow.length) { const d = git(dir, "show", "--no-ext-diff", "--no-textconv", "--format=", o.workspace.head, "--", ...lentNow); reviews = borrowCommitted(co, o, { role: owner, files: lentNow, sha: o.workspace.head, diff: ok(d) ? d.stdout : "" }); }
+  co.log.add({ type: "commit", order: o.id, stage, branch: o.workspace.branch, sha: o.workspace.head, files: files.length, message: msg, ...(owner ? { owner } : {}), ...(reviews.length ? { borrowed: reviews.map((r) => ({ module: r.module, owner: r.owner, files: r.files, review: r.item })) } : {}) });
+  return { sha: o.workspace.head, files, ...(reviews.length ? { borrowed: reviews } : {}) };
 }
 
 /** Is order `o`'s commit still to be made? Only while the spec commits (K7 review 2: a pendingCommit left from a spec
@@ -639,8 +643,12 @@ export function launchConfig(co, { role, msgs = [] }) {
   // K28 (B7 review): the playbook store is code's (learn propose changes it, validated): no agent writes there, with
   // or without a spec workspace
   const store = co.data?.learn?.store;
-  if (store && !roots.some((x) => x.dir === store)) roots.push({ dir: store, globs: ["**"], file: "the K28 playbook store (code writes it; a retro changes it with learn propose)" });
-  return { role, ...Object.fromEntries(ROLE_LAUNCH_KEYS.map((k) => [k, r[k] ?? null])), workdir: workdirs[0] ?? null, workdirs, roots, workspace: !!w, missing };
+  // B8 S1 fix: kind "store", so the guard judges it by absolute path only: its "**" was also matched against every
+  // relative shell-write target "as written" (g01_empty_braces.c, test/backend/c/x.exit were refused as the store)
+  if (store && !roots.some((x) => x.dir === store)) roots.push({ dir: store, globs: ["**"], kind: "store", file: "the K28 playbook store (code writes it; a retro changes it with learn propose)" });
+  // K34: a launch for a time-boxed stage ends at the box (the shortest box of its items)
+  const boxes = msgs.map((id) => { const m = co.mailbox.msgs.get(id), o = m && co.engine.orders.get(m.ref); return o ? co.engine.flows.get(o.flow)?.stages.find((x) => x.stage === m.body?.stage)?.timebox?.min : null; }).filter((x) => typeof x === "number");
+  return { role, ...Object.fromEntries(ROLE_LAUNCH_KEYS.map((k) => [k, r[k] ?? null])), workdir: workdirs[0] ?? null, workdirs, roots, workspace: !!w, missing, ...(boxes.length ? { timeboxMin: Math.min(...boxes) } : {}) };
 }
 
 // ---- K6: a stage's context-pack rules (lib.mjs packProblem): which workdir files the pack names

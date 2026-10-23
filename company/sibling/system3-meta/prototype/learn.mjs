@@ -254,11 +254,14 @@ export function evidenceFor(co, o) {
   const L = learnOf(co), { engine, log } = co;
   const def = engine.flows.get(o.flow), sdOf = (st) => def?.stages.find((x) => x.stage === st);
   // K33: where K30 routed each category of a revise (its owner and module): the evidence an owner's playbook learns from
-  const revises = o.history.filter((h) => h.verdict === "revise").map((h) => ({ stage: h.stage, by: h.by, classes: classesOf(h, sdOf(h.stage), co.spec.learn.classify), findings: String(h.findings ?? "").slice(0, 400), ...(h.routed ? { routed: h.routed } : {}) }));
+  // K35: an advisory review's findings count where they landed: on this order when it was still open; on the next
+  // order (a `carried` entry) when they came after this one ended (its evidence was then already gathered)
+  const late = (h) => (h.verdict === "advisory" && h.findings && !h.afterEnd) || (h.verdict === "carried" && h.afterEnd && h.findings);
+  const revises = o.history.filter((h) => h.verdict === "revise" || late(h)).map((h) => { const st = h.verdict === "carried" ? h.fromStage ?? h.stage : h.stage; return { stage: st, by: h.by, classes: classesOf({ ...h, stage: st }, sdOf(st), co.spec.learn.classify), findings: String(h.findings ?? "").slice(0, 400), ...(h.routed ? { routed: h.routed } : {}), ...(h.verdict !== "revise" ? { late: h.verdict } : {}) }; });
   const owners = {}, modules = {};
   for (const r of revises) for (const [c, x] of Object.entries(r.routed ?? {})) { if (x.owner) owners[c] = x.owner; if (x.module) modules[c] = x.module; }
   const stages = {};
-  for (const h of o.history) if (sdOf(h.stage)) (stages[h.stage] ??= []).push(h.verdict);
+  for (const h of o.history) if (sdOf(h.stage) && h.verdict !== "carried") (stages[h.stage] ??= []).push(h.verdict === "advisory" ? h.result ?? "advisory" : h.verdict);
   const reviews = Object.fromEntries(def.stages.filter((x) => x.sample).map((x) => [x.stage, { ran: (stages[x.stage] ?? []).filter((v) => v !== "sampled-out").length, revised: (stages[x.stage] ?? []).filter((v) => v === "revise").length, sampledOut: (stages[x.stage] ?? []).filter((v) => v === "sampled-out").length, rate: engine.sampleRate(o, x) }]));
   const checks = log.events.filter((e) => e.type === "self-check" && e.order === o.id);
   // B7 dry run 2: the classes each stage run said it checked (a run's findings.checked), as tags

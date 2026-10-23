@@ -18,7 +18,7 @@
 // to the math manager it reports to).
 import { Refused, lanesOf } from "./lib.mjs";
 import { create, update, comment, get } from "./tracker.mjs";
-import { ownershipOf, approversOf } from "./owners.mjs";
+import { ownershipOf, approversOf, borrowAnswered } from "./owners.mjs";
 
 const refuse = (m) => { throw new Refused(`HARD: ${m}`); };
 export const ASK_KINDS = ["deploy", "org-change", "budget", "cross-lane", "priority", "lane", "decision", "change-request"];
@@ -161,6 +161,7 @@ export function answer(co, { by, id, decision, text, viaOrder = false }) {
   update(co, { by, id, state: "done" });
   co.log.add({ type: "ask-answer", item: id, by, decision });
   if (it.ask.kind === "change-request" && decision === "yes") grant(co, it, by);
+  if (it.ask.kind === "review-borrow") borrowAnswered(co, it, { decision, text }); // K37: a no is work for the module's owner
   if (bo && decision === "yes") co.engine.topUp(bo.id, { amount: it.ask.amount, by, ask: id }); // the planner takes it up again
   // M5 review: a no (or a redirect) is in force on the order itself, until its owner resumes or reopens it (Engine)
   else if (bo && bo.budgetHold?.ask === id) { bo.budgetHold.no = { decision, by, text: String(text).slice(0, 300), t: co.engine.clock.now() }; co.log.add({ type: "budget-no", order: bo.id, item: id, by, decision }); }

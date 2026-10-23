@@ -22,9 +22,17 @@
 // stage advances only when every part is in and the last integration check passed.
 // K33: evidence records which owner and module each defect category was routed to (learn.mjs evidenceFor), rules get a
 // scope {role, module}, and a pack carries the rules in its role's scope plus the global ones.
+// K35: late findings (an advisory review's, after the order moved on) are routed into the order's parts (routeLate).
+// K36: `order delegate --scope=<modules>` staffs the owners of those modules; a role with `activate: "on-demand"` gets
+//   no part otherwise (lib.mjs Engine.delegate), except by routed work or a borrow review.
+// K37: spec `borrow: true`: an owner may write another module's paths (never an interface's: K32 stays an approval)
+//   without waiting. The guard lets the write through and reports it (a `borrow` record); K7's commit of that owner's
+//   part includes the borrowed files it wrote, records them, and the module's owner gets a non-blocking review-borrow
+//   ask with the diff (a no comes back to it as work on that order).
 import { classNorm, DEFAULT_CLASSIFY, Refused } from "./lib.mjs";
+import { create as createItem } from "./tracker.mjs";
 
-export const OWN_KEYS = ["modules", "interfaces", "routes", "triage", "architect", "integration"];
+export const OWN_KEYS = ["modules", "interfaces", "routes", "triage", "architect", "integration", "borrow"];
 const INTEGRATION_KEYS = ["run", "at", "maxTries"];
 export const DEFAULT_MAX_TRIES = 3;
 const NAME = /^[a-z][a-z0-9-]*$/;
@@ -40,7 +48,7 @@ export function ownershipOf(spec) {
   if (!spec || (spec.modules == null && spec.interfaces == null)) return null;
   const modules = Object.entries(spec.modules ?? {}).map(([name, m]) => ({ kind: "module", name, paths: m.paths ?? [], owner: m.owner }));
   const interfaces = (spec.interfaces ?? []).map((i) => ({ kind: "interface", name: i.name, paths: i.paths ?? [], owner: i.owner, contract: i.contract ?? null }));
-  return { modules, interfaces, routes: spec.routes ?? [], triage: spec.triage ?? null, architect: spec.architect ?? interfaces[0]?.owner ?? null, integration: spec.integration ?? null };
+  return { modules, interfaces, routes: spec.routes ?? [], triage: spec.triage ?? null, architect: spec.architect ?? interfaces[0]?.owner ?? null, integration: spec.integration ?? null, borrow: spec.borrow === true ? modules.map((m) => m.name) : Array.isArray(spec.borrow?.modules) ? spec.borrow.modules : null };
 }
 
 /** Why a spec's ownership keys are invalid ([] when fine or absent). `roles`: the spec's roles by id; `validateCmd`
@@ -79,6 +87,11 @@ export function ownersProblems(s, roles = new Map(), validateCmd = () => null) {
       if (!r || typeof r !== "object" || Object.keys(r).some((k) => !["match", "owner"].includes(k)) || typeof r.match !== "string" || !r.match || badRe(r.match)) { p.push("a route is {match: <regular expression>, owner}"); continue; }
       if (!(s.modules?.[r.owner] || agent(r.owner))) p.push(`route ${r.match}: owner ${r.owner} is a module or an agent role`);
     }
+  }
+  if (s.borrow != null) {
+    const ok = typeof s.borrow === "boolean" || (s.borrow && typeof s.borrow === "object" && !Array.isArray(s.borrow) && Object.keys(s.borrow).every((k) => k === "modules") && Array.isArray(s.borrow.modules) && s.borrow.modules.length && s.borrow.modules.every((m) => s.modules?.[m]));
+    if (!ok) p.push("borrow is true (every module) or {modules: [<module>, …]} (those modules may be borrowed; interfaces never)");
+    if (s.modules == null) p.push("borrow needs modules (an owner borrows another module's paths)");
   }
   for (const k of ["triage", "architect"]) if (s[k] != null) { if (!agent(s[k])) p.push(`${k} ${s[k]} is an agent role of the spec`); if (s.modules == null && s.interfaces == null) p.push(`${k} needs modules or interfaces`); }
   if (s.integration != null) {
@@ -120,6 +133,7 @@ export function writeDenial(co, o, role, rel) {
   const own = ownershipOf(co.spec), e = ownerOf(own, rel);
   if (!e || e.owner === role) return null;
   if (grantsFor(co, o, role).some((g) => ownGlobRe(g).test(rel))) return null;
+  if (own.borrow?.includes(e.name) && e.kind === "module" && borrowsOf(co, o, role).includes(rel)) return null; // K37: a recorded borrow
   return { entry: e, why: `${rel} is in ${e.kind} ${e.name}, owned by ${e.owner}: every role reads it, only ${e.owner} writes it. Ask for the change: node meta.mjs ask raise --by=${role} --kind=change-request --module=${e.name} --order=${o?.id ?? "<O>"} --title=… --why=… --due=<min> (decided by ${approversOf(own, e).join(" or ")})` };
 }
 /** The guard root for role `role` on workdir `dir` of order `o` (launcher/guard.mjs pathDenial reads it): the
@@ -128,7 +142,7 @@ export function guardRoot(co, o, role, dir) {
   const own = ownershipOf(co.spec);
   if (!own || !dir) return null;
   const owned = [...own.interfaces, ...own.modules].map((e) => ({ kind: e.kind, name: e.name, owner: e.owner, globs: e.paths }));
-  return { dir, kind: "owned", role, owned, granted: grantsFor(co, o, role), order: o?.id ?? null, file: "the spec's modules and interfaces (K29)" };
+  return { dir, kind: "owned", role, owned, granted: grantsFor(co, o, role), order: o?.id ?? null, file: "the spec's modules and interfaces (K29)", ...(own.borrow?.length ? { borrow: own.borrow } : {}) };
 }
 /** The paths a role owns (its modules', its interfaces'), plus its grants on order `o`: git pathspecs for its commit. */
 export function ownedPaths(co, o, role) {
@@ -190,12 +204,23 @@ export function split(co, o, { findings, from = null, by = null, fallback = null
 }
 
 /** Engine hook (state.mjs make): the parts of a builder-signed work stage when it is sent: the initial owners
- *  (`order delegate --owners`), or the last revise's findings split by owner; else one part, the builder's. */
+ *  (`order delegate --owners`/`--scope`), plus (K35) the late findings a finished order left for this one, split by
+ *  owner; or the last revise's findings split by owner; else one part, the builder's. */
 export function partsFor(co, o) {
   const last = [...(o.history ?? [])].reverse().find((h) => h.verdict === "revise" || h.verdict === "reopen");
   if (o.loops === 0 || !last || !o.findings) {
     const owners = o.loops === 0 && o.initialOwners?.length ? o.initialOwners : [o.builder];
-    return { items: Object.fromEntries(owners.map((r) => [r, { categories: [], findings: o.loops === 0 ? null : o.findings ?? null }])), routed: {} };
+    const items = Object.fromEntries(owners.map((r) => [r, { categories: [], findings: o.loops === 0 ? null : o.findings ?? null }]));
+    let routed = {};
+    if (o.loops === 0 && o.carried?.length) {
+      for (const c of o.carried) {
+        const s = c.owner ? { items: { [c.owner]: { categories: [], findings: c.findings } }, routed: {} } : split(co, o, { findings: c.findings, whole: o.builder });
+        for (const [r, it] of Object.entries(s.items)) { const x = (items[r] ??= { categories: [], findings: null }); x.categories = [...new Set([...x.categories, ...it.categories])]; x.findings = [x.findings, `${c.kind} findings from ${c.stage} on ${c.from} (${c.by}):\n${it.findings}`].filter(Boolean).join("\n").slice(0, 2000); }
+        routed = { ...routed, ...s.routed };
+      }
+      delete o.carried;
+    }
+    return { items, routed };
   }
   const s = split(co, o, { findings: o.findings, from: last.stage, by: last.by });
   last.routed = s.routed; // the record K33's evidence reads (which owner and module each category went to)
@@ -226,4 +251,72 @@ export function reroute(co, o, { by, to, categories }) {
   if (t?.state === "open") { t.findings = findings; t.categories = cats; return t; }
   engine.reopenPart(o, to, { categories: cats, findings, maxTries: Infinity, by });
   return p.items[to];
+}
+
+// ---- K35: late findings into the order's parts
+/** Engine hook (lib.mjs Engine.lateOn): late findings `r` split by owner (K30 routes; unmatched: the triage role;
+ *  r.owner: that role) and sent as reopened or new parts of the order's work stage. */
+export function routeLate(co, o, r) {
+  const s = r.owner ? { items: { [r.owner]: { categories: [], findings: r.findings } }, routed: {} } : split(co, o, { findings: r.findings, whole: o.builder });
+  for (const [role, it] of Object.entries(s.items)) {
+    if (!co.engine.partsNow(o)) break; // parked by a part's tries
+    co.engine.reopenPart(o, role, { categories: it.categories, findings: `${r.kind} findings from ${r.stage}${r.carried ? ` on ${r.from}` : ""} (${r.by}):\n${it.findings ?? r.findings}`.slice(0, 2000), maxTries: Infinity, by: r.by });
+  }
+  const p = co.engine.partsNow(o); if (p) Object.assign(p.routed, s.routed);
+  return s;
+}
+
+// ---- K36: staffing on demand
+/** Engine hook (lib.mjs Engine.delegate --scope): the owners of `mods` (module names), or a refusal. */
+export function scopeOwners(co, o, mods) {
+  const own = ownershipOf(co.spec);
+  if (!own?.modules.length) throw new Refused("HARD: --scope needs a spec with modules");
+  const bad = mods.filter((m) => !own.modules.some((x) => x.name === m));
+  if (bad.length || !mods.length) throw new Refused(`HARD: --scope=${mods.join(",")}: ${bad.length ? `${bad.join(", ")} ${bad.length > 1 ? "are" : "is"} not` : "name at least one of"} this company's modules (${own.modules.map((x) => x.name).join(", ")})`);
+  return [...new Set(mods.map((m) => own.modules.find((x) => x.name === m).owner))];
+}
+
+// ---- K37: borrow
+/** The files role `role` borrowed on order `o` and has not committed yet. */
+export function borrowsOf(co, o, role) {
+  return (co.data?.borrows ?? []).filter((b) => b.order === o?.id && b.role === role && b.state === "open").map((b) => b.file);
+}
+/** The launcher's record of a borrowed write (guard.mjs: an owned root with borrow on let it through): role `role`
+ *  wrote `file` (workdir-relative) of module `module` on order `order`. Refused for an interface or a path the role
+ *  owns, or with borrow off. */
+export function recordBorrow(co, { order, role, file, launch = null }) {
+  const own = ownershipOf(co.spec), o = co.engine.orders.get(String(order ?? ""));
+  const no = (m) => { throw new Refused(`HARD: ${m}`); };
+  if (!own?.borrow?.length) no("this company does not borrow (spec borrow)");
+  if (!o) no(`no order ${order}`);
+  const e = ownerOf(own, String(file ?? ""));
+  if (!e || e.kind !== "module" || e.owner === role || !own.borrow.includes(e.name)) no(`${file} is not a path of another role's module that may be borrowed (an interface needs a change request)`);
+  const bs = (co.data.borrows ??= []);
+  if (!bs.some((b) => b.order === o.id && b.role === role && b.file === file && b.state === "open")) bs.push({ order: o.id, role, file, module: e.name, owner: e.owner, state: "open", t: co.engine.clock.now(), launch });
+  co.log.add({ type: "borrow", order: o.id, role, file, module: e.name, owner: e.owner, launch });
+  return { order: o.id, role, file, module: e.name, owner: e.owner };
+}
+/** K7's commit of `role`'s part took borrowed `files` (sha `sha`, `diff` the commit's diff of them): recorded, and one
+ *  non-blocking review-borrow ask per module owner (an ask: the owner's session starts only for it). */
+export function borrowCommitted(co, o, { role, files, sha, diff = "" }) {
+  const bs = (co.data?.borrows ?? []).filter((b) => b.order === o.id && b.role === role && b.state === "open" && files.includes(b.file));
+  const by = new Map();
+  for (const b of bs) { b.state = "committed"; b.sha = sha; (by.get(b.owner) ?? by.set(b.owner, { module: b.module, files: [] }).get(b.owner)).files.push(b.file); }
+  const out = [];
+  for (const [owner, x] of by) {
+    const due = new Date((co.engine.clock.now() + 60) * 60000).toISOString().slice(0, 10);
+    const it = createItem(co, { by: "engine", kind: "ask", title: `review-borrow: ${role} changed ${x.module} on ${o.id} (${x.files.length} file${x.files.length > 1 ? "s" : ""})`, body: `${role} wrote your module's ${x.files.join(", ")} in ${o.id}'s worktree (commit ${String(sha).slice(0, 7)}), without waiting (K37 borrow). Read the diff and answer: yes if it is right, or no with what must change (it comes back to you as work on ${o.id}).\n\n${String(diff).slice(0, 3000)}`, assignee: owner, due, labels: ["ask:review-borrow"], state: "todo", priority: 2 });
+    it.ask = { kind: "review-borrow", from: role, decider: owner, routedTo: owner, order: o.id, module: x.module, files: x.files, sha, answer: null };
+    co.log.add({ type: "ask", item: it.id, from: role, to: owner, kind: "review-borrow", order: o.id });
+    out.push({ owner, module: x.module, files: x.files, item: it.id });
+  }
+  return out;
+}
+/** asks.mjs answer: a review-borrow answered no comes back to the module's owner as work on its order (K35 late
+ *  findings: its part now, or held, or the next order's when that one is done). */
+export function borrowAnswered(co, it, { decision, text }) {
+  if (decision === "yes") return null;
+  const o = co.engine.orders.get(it.ask.order);
+  if (!o) return null;
+  return co.engine.lateFindings(o, { stage: "review-borrow", by: it.ask.decider, kind: "review-borrow", owner: it.ask.decider, findings: `${it.ask.module}: ${it.ask.from}'s borrowed change to ${it.ask.files.join(", ")} -> ${text}` });
 }

@@ -407,6 +407,46 @@ export function sampleProblems(s) {
 /** K27: the founder's bounds for a sampled stage's rate. */
 export const sampleBounds = (s) => ({ min: s.sample.min ?? s.sample.rate, max: s.sample.max ?? s.sample.rate });
 
+// K34 (B8 S1: the evaluator ran 25-30 min a wave, once past its lease, and held the wave): a stage an agent works may
+// carry `timebox: {min, findings}`. The session ends at the box (the launcher caps its session at it; a lease never
+// outlives it), and code signs the stage `timeboxed` with what the agent wrote so far: the defect lines ("<category>:
+// what is wrong -> what is required") of its `findings` file (a workdir-relative path, ${task} etc. filled). A
+// blocking stage with such lines is a revise; with none it moves on, recorded as timeboxed (never a silent pass).
+// K35: `advisory: true` on an independent review stage: the order does not wait for it. When the stage before it
+// passes, the order moves on to the stage after it, and the advisory stage is scheduled beside it (its own work item);
+// its findings, when they come, are routed (K30) as work on the same order, or on the next order of its flow when that
+// one is done, never reopening a finished order (Engine.lateFindings). A code check may come before it.
+export const TIMEBOX_KEYS = ["min", "findings"];
+/** K34/K35: why a stage's `timebox` or `advisory` is invalid ([] when fine or absent). `i`: its index in the flow. */
+export function advisoryProblems(s, i = 1) {
+  const p = [];
+  if (s?.timebox != null) {
+    const t = s.timebox;
+    if (!t || typeof t !== "object" || Array.isArray(t) || Object.keys(t).some((k) => !TIMEBOX_KEYS.includes(k))) p.push(`timebox is {${TIMEBOX_KEYS.join(", ")}}`);
+    else {
+      if (!(typeof t.min === "number" && t.min >= 1 && t.min <= 600)) p.push("timebox.min is 1-600 minutes (the session ends there and code signs what it has)");
+      if (t.findings != null && !(typeof t.findings === "string" && t.findings.trim() && !t.findings.startsWith("/") && !t.findings.split("/").includes(".."))) p.push("timebox.findings is a workdir-relative file (the stage's report, read at the box)");
+    }
+    if (s.run != null || ["code", "founder"].includes(s.signer)) p.push("timebox is for a stage an agent works (code runs a code stage itself; the founder decides an approval)");
+  }
+  if (s?.advisory != null) {
+    if (typeof s.advisory !== "boolean") p.push("advisory is true or false");
+    else if (s.advisory) {
+      if (!reviewStage(s)) p.push("advisory is for an independent stage an agent reviews (the work and the code checks always hold the order)");
+      if (i === 0 || s.stage === "ship") p.push("advisory is for a review between the first stage and ship");
+      if (s.sample != null || s.batch != null || s.post != null) p.push("an advisory stage has no sample, batch or post (it runs beside the order, once per pass)");
+    }
+  }
+  return p;
+}
+/** K34: the defect lines of a time-boxed stage's report: lines with a category ("<category>: …") that say what is
+ *  wrong and what is required (`->` or `→`), at most 2000 characters; null when there are none. */
+export function timeboxLines(text, classify = null) {
+  const re = new RegExp(classify ?? DEFAULT_CLASSIFY);
+  const out = String(text ?? "").split("\n").map((l) => l.trim().replace(/^[-*•]\s*/, "")).filter((l) => l && re.test(l) && /->|→/.test(l));
+  return out.length ? [...new Set(out)].join("\n").slice(0, 2000) : null;
+}
+
 /** Invariants every flow definition must meet, whoever writes it. */
 export function flowProblems(def) {
   const p = [];
@@ -420,6 +460,7 @@ export function flowProblems(def) {
     { const e = packProblem(s.pack); if (e) p.push(`${s.stage}: ${e}`); } // K6
     // K12: a post-check runs at an agent's leave (generator.mjs validates the cmd itself against state.mjs validateCmd)
     for (const e of postProblems(s)) p.push(`${s.stage}: ${e}`);
+    for (const e of advisoryProblems(s, def.stages.indexOf(s))) p.push(`${s.stage}: ${e}`); // K34/K35
   }
   p.push(...workProblems(def)); // K25 review
   // K19: chair and attendee signers belong to a chair flow (orders that name them); a chair flow has no builder stage
@@ -511,6 +552,9 @@ export class Engine {
     this.sampleSalt = null; // K27 (B7 review): the company's salt for sample draws (meta.mjs init sets one; persisted)
     this.parts = null; // K30/K31: fn(o) → {items: {role: {categories, findings}}, routed} (state.mjs: owners.mjs partsFor); null: one builder (not persisted)
     this.onPartIn = []; // [fn(o, {stage, by})]: K31, after an owner hands in its part (its commit, the integration check); not persisted
+    this.backlog = []; // K35: late findings of a finished order whose flow has no next order at work yet (persisted)
+    this.routeLate = null; // K35: fn(o, rec) routing late findings into an order's parts (state.mjs: owners.mjs routeLate); not persisted
+    this.scopeOwners = null; // K36: fn(o, modules) → the roles that own them (state.mjs: owners.mjs scopeOwners); not persisted
   }
 
   // ---- K30/K31: a work stage worked in parts, one per owner (owners.mjs)
@@ -764,7 +808,7 @@ export class Engine {
     return o;
   }
 
-  delegate(id, { by, to, budget, owners = null }) {
+  delegate(id, { by, to, budget, owners = null, scope = null }) {
     const o = this.orders.get(id);
     hard(o, `no order ${id}`);
     const toRole = this.org.role(to);
@@ -775,15 +819,30 @@ export class Engine {
     this.guard(lanesOf(toRole).includes(this.org.role(o.manager).lane), "lane", `${to} is not in lane ${this.org.role(o.manager).lane}`, { order: id, by });
     this.guard(budget <= this.limits.manager, "limit", `${budget} over the manager limit ${this.limits.manager}`, { order: id, by });
     // K31: several owners work the first stage at once, each its own part (a spec with ownership: owners.mjs)
-    if (owners != null) {
-      hard(this.parts, `${id}: --owners needs a spec with modules or interfaces (each owner works its own part)`);
-      const all = [...new Set([to, ...owners])];
+    // K36: --scope names the modules this order needs; their owners work it. A role with `activate: "on-demand"` gets
+    // no part unless its module is in the scope (or, later, K30 routes work to it, or a borrow review names it)
+    if (owners != null || scope != null) {
+      hard(this.parts, `${id}: --owners and --scope need a spec with modules or interfaces (each owner works its own part)`);
+      const scoped = scope != null ? (hard(this.scopeOwners, `${id}: --scope needs a spec with modules`), this.scopeOwners(o, scope)) : [];
+      const all = [...new Set([to, ...(owners ?? []), ...scoped])];
       for (const r of all) { const x = this.org.role(r); hard(x?.active && !x.human, `--owners: ${r} is not an active agent role`); this.guard(lanesOf(x).includes(this.org.role(o.manager).lane) || r === o.manager, "lane", `${r} is not in lane ${this.org.role(o.manager).lane}`, { order: id, by }); }
+      for (const r of all) if (this.org.role(r)?.activate === "on-demand" && !scoped.includes(r)) this.guard(false, "on-demand", `${r} works on demand: it gets a part only when the order's --scope names its module (or work is routed to it): add its module to --scope, or leave it out`, { order: id, by });
       o.initialOwners = all;
-    }
+      if (scope != null) o.scope = [...new Set(scope)];
+    } else if (this.org.role(to)?.activate === "on-demand" && this.parts) this.guard(false, "on-demand", `${to} works on demand: name its module with --scope`, { order: id, by });
     o.builder = to;
     o.chain.push(to);
-    this.log.add({ type: "delegate", order: id, by, to, budget, ...(o.initialOwners ? { owners: o.initialOwners } : {}) });
+    // K35: a finished order's late findings for this flow (an advisory review that came in after it ended) are this
+    // order's first work: routed with its first parts, or the builder's findings
+    const fl = String(o.flow).split("@")[0], carried = this.backlog.filter((b) => b.flow === fl);
+    if (carried.length) {
+      this.backlog = this.backlog.filter((b) => b.flow !== fl);
+      o.carried = carried;
+      for (const c of carried) o.history.push({ stage: this.firstStage(o), by: c.by, verdict: "carried", from: c.from, fromStage: c.stage, kind: c.kind, t: this.clock.now(), findings: c.findings, ...(c.afterEnd ? { afterEnd: true } : {}) });
+      if (!this.parts) o.findings = [o.findings, ...carried.map((c) => c.findings)].filter(Boolean).join("\n").slice(0, 2000);
+      this.log.add({ type: "late-carried", order: id, from: [...new Set(carried.map((c) => c.from))], n: carried.length });
+    }
+    this.log.add({ type: "delegate", order: id, by, to, budget, ...(o.initialOwners ? { owners: o.initialOwners } : {}), ...(o.scope ? { scope: o.scope } : {}) });
     if (o.blocked) this.log.add({ type: "blocked", order: id, after: o.after.filter((d) => this.orders.get(d).stage !== "done") });
     else this.notifyStage(o);
     return o;
@@ -799,9 +858,12 @@ export class Engine {
     if (s.signer === "code") return this.log.add({ type: "code-stage", order: o.id, stage: o.stage });
     if (s.signer === "founder") return this.request({ order: o.id, stage: o.stage, approver: "founder", kind: "release", dueMin: 24 * 60, key });
     if (s.signer === "builder" && this.parts && o.builder) return this.sendParts(o, { duplicate }); // K30/K31: one item per owner
-    const to = signerRole(s) ? `role:${signerRole(s)}` : s.signer === "chair" ? `role:${o.chair}` : s.signer === "attendee" ? `role:${o.attendee}` : s.signer === "builder" ? o.builder : s.signer === "orderer" ? o.manager : `pool:${s.signer}`; // K3: role:<id>; K19: the order's chair or attendee
+    const to = this.stageTo(o, s); // K3: role:<id>; K19: the order's chair or attendee
     return this.mailbox.send({ from: o.manager, to, kind: "work", key: duplicate ? (this.config.dedupe ? key : `${key}:dup${this.mailbox.n}`) : key, ref: o.id, body: { stage: o.stage, loops: o.loops }, priority: o.priority ?? "next", due: o.due ?? null });
   }
+
+  /** Whose queue stage `s` of order `o` goes to (K3: role:<id>; K19: the order's chair or attendee). */
+  stageTo(o, s) { return signerRole(s) ? `role:${signerRole(s)}` : s.signer === "chair" ? `role:${o.chair}` : s.signer === "attendee" ? `role:${o.attendee}` : s.signer === "builder" ? o.builder : s.signer === "orderer" ? o.manager : `pool:${s.signer}`; }
 
   mayAssign(o, stage, roleId) {
     const s = this.flows.get(o.flow).stages.find((x) => x.stage === stage);
@@ -827,18 +889,25 @@ export class Engine {
   independentOf(o, stage, roleId) { return !(isIndependent(this.flows.get(o.flow)?.stages.find((x) => x.stage === stage)) && this.built(o, roleId)); } // K30: every owner of a part built it
 
   // ---- stages, up the chain
-  advance(id, { stage, by, verdict = "pass", evidence = null, findings = null, consult = false, postChecked = false, to = null, sampled = false, checked = null, final = false }) {
+  advance(id, { stage, by, verdict = "pass", evidence = null, findings = null, consult = false, postChecked = false, to = null, sampled = false, checked = null, final = false, timeboxed = false }) {
     const o = this.orders.get(id);
     hard(o, `no order ${id}`);
     hard(o.stage === stage, `${id} is at ${o.stage}, not ${stage}`);
     if (sampled) return this.sampledOut(o);
-    this.guard(!consult, "consult", `a consult run cannot sign ${stage}`, { order: id, by });
     const s = this.stageDef(o);
-    this.guard(this.mayAssign(o, stage, by), "signer", `${by} may not sign ${stage} on ${id}`, { order: id, by });
+    // K34: code signs a time-boxed stage at its box (Rooms.timeboxRun): a revise with the agent's findings so far, or
+    // `timeboxed` (it moves on, recorded as such) when it wrote none
+    const box = timeboxed && by === "code";
+    hard(!timeboxed || (box && s?.timebox && ["revise", "timeboxed"].includes(verdict)), `${stage} on ${id}: only code signs a time-boxed stage at its box (revise or timeboxed)`);
+    hard(verdict !== "timeboxed" || box, `${stage} on ${id}: verdict timeboxed is code's, at the stage's time box`);
     // K11 (plan 2026-10-21 §3): a revise may name the earlier stage it belongs to (ship's "claims not verified" goes back
-    // to check, not to a rebuild); never the stage itself or a later one, and only on a revise
+    // to check, not to a rebuild); never the stage itself or a later one, and only on a revise. K35: never an advisory
+    // stage (it holds no order)
     const st = this.flows.get(o.flow).stages.map((x) => x.stage);
-    const earlier = to != null && st.indexOf(to) >= 0 && st.indexOf(to) < st.indexOf(stage);
+    const earlier = to != null && st.indexOf(to) >= 0 && st.indexOf(to) < st.indexOf(stage) && !this.flows.get(o.flow).stages[st.indexOf(to)]?.advisory;
+    if (!box) {
+    this.guard(!consult, "consult", `a consult run cannot sign ${stage}`, { order: id, by });
+    this.guard(this.mayAssign(o, stage, by), "signer", `${by} may not sign ${stage} on ${id}`, { order: id, by });
     if (to != null) { hard(verdict === "revise", `${stage} on ${id}: only a revise is routed (to ${to})`); this.guard(earlier, "route", `${stage} on ${id} cannot send work to ${to}: a revise goes back to an earlier stage (${st.slice(0, st.indexOf(stage)).join(", ") || "none"})`, { order: id, by }); }
     // K4: every independent stage, not only check; who signed it is kept per stage (o.checker stays for check)
     if (isIndependent(s)) { this.guard(!this.built(o, by), "independence", `${by} built ${id} and cannot ${stage === "check" ? "check it" : `sign ${stage}`}`, { order: id, by }); (o.signers ??= {})[stage] = by; }
@@ -847,6 +916,7 @@ export class Engine {
     // K12 review: the check lives with the signature: a stage with a post-check is signed only by a room leave, which ran
     // it (`flow advance --stage=build --evidence=x` signed toy build.post=exit 1 without running it)
     if (s.post) this.guard(postChecked, "post-check", `${stage} on ${id} has a post-check: sign it with room leave (it runs the check), not flow advance`, { order: id, by });
+    }
     // K30/K31: a stage worked in parts: each owner hands in its own part; the stage passes when every part is in
     if (!final && s.signer === "builder" && this.partsNow(o, stage)) {
       hard(verdict === "pass", `${stage} on ${id} is worked in parts: an owner hands in its part with a pass (a revise is a reviewer's)`);
@@ -857,10 +927,12 @@ export class Engine {
     const dflt = this.reviseStage(o, stage); // K19: build, or a ritual's run; K25: the last work stage before this one
     const back = verdict === "revise" ? (earlier ? to : dflt) : null; // with enforce off a bad route is recorded and goes to the default
     // M7 (K21): the evidence a stage was signed with travels in its history (events-export.mjs names a ritual's record)
-    o.history.push({ stage, by, verdict, t: this.clock.now(), ...(evidence && s.signer !== "code" ? { evidence: String(evidence).slice(0, 300) } : {}), ...(verdict === "revise" && findings ? { findings: String(findings).slice(0, 2000) } : {}), ...(back && back !== dflt ? { to: back } : {}), ...(Array.isArray(checked) ? { checked: [...new Set(checked.map(classTag))].slice(0, 200) } : {}) }); // every revise keeps its findings (org evaluation reads them)
+    o.history.push({ stage, by, verdict, t: this.clock.now(), ...(evidence && s.signer !== "code" ? { evidence: String(evidence).slice(0, 300) } : {}), ...(verdict === "revise" && findings ? { findings: String(findings).slice(0, 2000) } : {}), ...(back && back !== dflt ? { to: back } : {}), ...(Array.isArray(checked) ? { checked: [...new Set(checked.map(classTag))].slice(0, 200) } : {}), ...(box ? { timeboxed: true } : {}) }); // every revise keeps its findings (org evaluation reads them)
     this.log.add({ type: "advance", order: id, stage, by, verdict });
-    if (verdict === "pass") o.stage = this.nextStage(o);
+    if (verdict === "pass" || verdict === "timeboxed") { o.stage = this.nextStage(o); this.passAdvisory(o); }
     else {
+      // K35: late findings held for this order (an advisory review's, while a code check held it) join this revise's
+      if (o.pendingLate?.length) { findings = [findings, ...o.pendingLate.map((r) => r.findings)].filter(Boolean).join("\n").slice(0, 4000); this.log.add({ type: "late-merged", order: id, n: o.pendingLate.length, stage }); o.pendingLate = []; }
       o.stage = back; o.findings = findings;
       const fam = this.bumpLoops(o, back);
       // The lane's policy decides how a revision is queued; an urgent (`now`) order stays urgent.
@@ -882,15 +954,88 @@ export class Engine {
     const d = this.sampleDecision(o, s), stage = o.stage;
     o.history.push({ stage, by: "code", verdict: "sampled-out", t: this.clock.now(), evidence: `sampled out: draw ${d.draw.toFixed(4)} ≥ rate ${d.rate}` });
     this.log.add({ type: "advance", order: o.id, stage, by: "code", verdict: "sampled-out" });
-    o.stage = this.nextStage(o);
+    o.stage = this.nextStage(o); this.passAdvisory(o);
     this.afterPass(o);
     for (const fn of this.onAdvanced) fn(o, { stage, by: "code", verdict: "pass" });
     return o;
   }
+  // ---- K35: advisory stages and late findings
+  /** The advisory stages the order is at now are passed over: each is scheduled beside the order (its own work item),
+   *  and the order moves on to the stage after it. */
+  passAdvisory(o) {
+    for (let s = this.stageDef(o); s?.advisory; s = this.stageDef(o)) { this.startAdvisory(o, s); o.stage = this.nextStage(o); }
+  }
+  /** Is order `o`'s advisory run `a` still to come (its message open, or a run on it)? */
+  advisoryLive(o, a) { const m = a?.msg && this.mailbox.msgs.get(a.msg); return !!a && a.state === "open" && !!m && m.state === "open"; }
+  /** Schedule advisory stage `s` for order `o`: one at a time per stage (one still open is not sent again). */
+  startAdvisory(o, s) {
+    const prev = o.advisory?.[s.stage];
+    if (this.advisoryLive(o, prev)) { this.log.add({ type: "advisory-busy", order: o.id, stage: s.stage, n: prev.n, loops: o.loops }); return null; }
+    const n = (prev?.n ?? 0) + 1;
+    const m = this.mailbox.send({ from: o.manager, to: this.stageTo(o, s), kind: "work", key: `${o.id}:${s.stage}:advisory:${n}`, ref: o.id, body: { stage: s.stage, loops: o.loops, advisory: n }, priority: o.priority ?? "next", due: null });
+    (o.advisory ??= {})[s.stage] = { n, state: "open", loops: o.loops, msg: m.id, t: this.clock.now() };
+    this.log.add({ type: "advisory-start", order: o.id, stage: s.stage, n, loops: o.loops, msg: m.id });
+    return m;
+  }
+  /** Open advisory runs of any order (serve keeps serving them; supervisor.mjs settled). */
+  advisoryOpen() { return [...this.orders.values()].some((o) => Object.values(o.advisory ?? {}).some((a) => this.advisoryLive(o, a))); }
+  /** An advisory stage's hand-in (Rooms.leave, or code at its time box): recorded in the order's history, and its
+   *  findings routed as late work (lateFindings). The order is wherever it is now; nothing about it is signed. */
+  advisoryIn(o, { stage, n, by, verdict = "pass", evidence = null, findings = null, consult = false, timeboxed = false }) {
+    const s = this.flows.get(o.flow)?.stages.find((x) => x.stage === stage), a = o.advisory?.[stage];
+    hard(s?.advisory, `${stage} is not an advisory stage of ${o.id}`);
+    hard(a && a.n === n && a.state === "open", `${o.id}'s advisory ${stage} #${n} is not open`);
+    const box = timeboxed && by === "code";
+    hard(!timeboxed || box, `${stage} on ${o.id}: only code signs a time box`);
+    if (!box) {
+      this.guard(!consult, "consult", `a consult run cannot sign ${stage}`, { order: o.id, by });
+      this.guard(this.mayAssign(o, stage, by), "signer", `${by} may not sign ${stage} on ${o.id}`, { order: o.id, by });
+      this.guard(!this.built(o, by), "independence", `${by} built ${o.id} and cannot sign ${stage}`, { order: o.id, by });
+      this.guard(!!evidence, "evidence", `${stage} needs evidence`, { order: o.id, by });
+      hard(["pass", "revise"].includes(verdict), `${stage} on ${o.id}: an advisory review hands in pass or revise`);
+      (o.signers ??= {})[stage] = by;
+    }
+    const result = box ? "timeboxed" : verdict, late = result !== "pass" && findings ? String(findings).slice(0, 2000) : null;
+    const afterEnd = ["done", "cancelled"].includes(o.stage);
+    a.state = "in"; a.result = result; a.in = this.clock.now();
+    o.history.push({ stage, by, verdict: "advisory", result, t: this.clock.now(), ...(evidence ? { evidence: String(evidence).slice(0, 300) } : {}), ...(late ? { findings: late } : {}), ...(afterEnd ? { afterEnd: true } : {}), at: o.stage });
+    this.log.add({ type: "advisory-in", order: o.id, stage, n, by, result, at: o.stage, findings: late ? late.split("\n").length : 0 });
+    if (late) this.lateFindings(o, { stage, by, kind: box ? "timeboxed" : "advisory", findings: late, afterEnd });
+    return o;
+  }
+  /** K35: findings that arrive after their stage stopped holding the order: routed as work on the same order while it
+   *  is open (lateOn); a done or cancelled order is never reopened: its findings go to the next order of its flow (at
+   *  once when that one is at work, else the flow's backlog, which its delegate takes). `rec.owner` sends them to that
+   *  role whatever the routes say. */
+  lateFindings(o, rec) {
+    const r = { from: o.id, stage: rec.stage, by: rec.by, kind: rec.kind ?? "late", findings: String(rec.findings ?? "").slice(0, 2000), t: this.clock.now(), ...(rec.owner ? { owner: rec.owner } : {}), ...(rec.afterEnd ? { afterEnd: true } : {}) };
+    if (!r.findings) return null;
+    if (!["done", "cancelled"].includes(o.stage)) return this.lateOn(o, r);
+    const fl = String(o.flow).split("@")[0];
+    const next = [...this.orders.values()].filter((x) => x.id !== o.id && String(x.flow).split("@")[0] === fl && x.created >= o.created && !["done", "cancelled"].includes(x.stage)).sort((a, b) => a.created - b.created)[0];
+    if (next?.builder) return this.lateOn(next, { ...r, carried: true });
+    this.backlog.push({ ...r, flow: fl });
+    this.log.add({ type: "late-backlog", order: o.id, stage: r.stage, kind: r.kind, flow: fl, ...(next ? { next: next.id } : {}) });
+    return { backlog: true };
+  }
+  /** Late findings `r` on open order `o`: at a work stage worked in parts, routed to the owners now (K30: their parts
+   *  reopen or open); at a work stage of one builder, its findings grow; anywhere else (a code check, a park), held
+   *  until its next revise (merged into its findings) or its end (then the next order's). */
+  lateOn(o, r) {
+    if (r.carried) o.history.push({ stage: o.stage, by: r.by, verdict: "carried", from: r.from, fromStage: r.stage, kind: r.kind, t: this.clock.now(), findings: r.findings, ...(r.afterEnd ? { afterEnd: true } : {}) });
+    const work = this.isWorkStage(o, o.stage) && !o.blocked && o.builder;
+    if (work && this.partsNow(o) && this.routeLate) { const s = this.routeLate(o, r); this.log.add({ type: "late-routed", order: o.id, from: r.from, stage: r.stage, kind: r.kind, owners: Object.keys(s?.items ?? {}) }); return { routed: true }; }
+    if (work && !this.parts) { o.findings = [o.findings, r.findings].filter(Boolean).join("\n").slice(0, 4000); this.log.add({ type: "late-routed", order: o.id, from: r.from, stage: r.stage, kind: r.kind, owners: [o.builder] }); return { routed: true }; }
+    (o.pendingLate ??= []).push(r);
+    this.log.add({ type: "late-pending", order: o.id, from: r.from, stage: r.stage, kind: r.kind, at: o.stage });
+    return { pending: true };
+  }
+
   /** After a stage passed: done (shipped, and what waited for it unblocks), or the next stage notified. */
   afterPass(o) {
     if (o.stage === "done") {
       this.log.add({ type: "shipped", order: o.id, lead: this.clock.now() - o.created, loops: o.loops, priority: o.priority ?? "next" });
+      this.flushLate(o); // K35: what was held for its next revise goes to the next order of its flow
       for (const d of this.orders.values()) {
         if (d.blocked && d.after.includes(o.id) && d.after.every((x) => this.orders.get(x).stage === "done")) {
           d.blocked = false;
@@ -900,6 +1045,9 @@ export class Engine {
       }
     } else if (o.stage !== "parked") this.notifyStage(o);
   }
+
+  /** K35: a finished order's held late findings go on (lateFindings: the next order of its flow, or its backlog). */
+  flushLate(o) { const xs = o.pendingLate ?? []; o.pendingLate = []; for (const r of xs) this.lateFindings(o, { ...r }); }
 
   /** A shipped order goes back to build: a regression found by code, or a changed requirement (benchmark 4). */
   reopen(id, { by, findings, reason }) {
@@ -1028,6 +1176,7 @@ export class Engine {
     o.cancelled = { stage: from, loops: o.loops, by, reason, t: this.clock.now() };
     o.stage = "cancelled"; o.parks = (o.parks ?? 0) + 1; delete o.parked;
     this.withdraw(o, { by, reason: `cancelled: ${reason}` });
+    this.flushLate(o); // K35
     this.log.add({ type: "cancelled", order: id, from, loops: o.loops, by, reason });
     // the chain stays blocked: what was ordered after it waits for a decision (re-order it, or cancel it too)
     const after = [...this.orders.values()].filter((d) => d.after?.includes(id) && !["done", "cancelled"].includes(d.stage)).map((d) => d.id);
@@ -1125,6 +1274,7 @@ export class Rooms {
     this.postCheck = null; // K12: fn(o, cmd, vars) → {pass, output, findings, stageError}: state.mjs wires runCmdCheck (not persisted)
     this.storeArtifacts = null; // K24: fn(o, stageDef, {stage}) → artifacts.mjs storeArtifacts's result (not persisted)
     this.snapshotArtifacts = null; // K24 review: fn(o, stageDef, {stage}): notes the stage's files as a run starts
+    this.timeboxFindings = null; // K34: fn(o, stageDef) → the defect lines of the stage's report so far, or null (not persisted)
   }
 
   enter({ msg, role, mode = "work", as = null, leaseMin = 30, session = null }) {
@@ -1143,13 +1293,16 @@ export class Rooms {
     if (session) { s = this.sessions.get(session); hard(s?.open && s.role === actor, `session ${session} is not open for ${actor}`); }
     else { s = { id: `S-${++this.nS}`, role: actor, items: 0, open: true, started: this.clock.now() }; this.sessions.set(s.id, s); this.log.add({ type: "session-open", session: s.id, role: actor }); }
     const run = `R-${++this.n}`;
-    if (this.config.leases) this.mailbox.claim(msg, { run, leaseMin });
+    // K34: a time-boxed stage's run ends at its box (code signs what it has then): its lease never outlives the box
+    const sdef = this.engine.flows.get(o.flow)?.stages.find((x) => x.stage === m.body.stage);
+    const boxUntil = sdef?.timebox && mode !== "consult" ? this.clock.now() + sdef.timebox.min : null;
+    if (this.config.leases) { const c = this.mailbox.claim(msg, { run, leaseMin: boxUntil != null ? Math.min(leaseMin, sdef.timebox.min) : leaseMin }); if (boxUntil != null && c.lease.until > boxUntil) c.lease.until = boxUntil; }
     s.items++;
     // The run works on the stage and loop the message was sent for, not on wherever the order is now: a late
     // duplicate of a finished stage is a stale run, and its leave signs nothing.
     const { stage, loops } = m.body;
     const ctx = { roleDoc: `company/roles/${actor}.md`, memory: this.memory.get(actor) ?? [], order: o.id, stage, findings: o.findings ?? null };
-    this.runs.set(run, { run, msg, role: actor, by: role, consult: mode === "consult", order: o.id, stage, loops, parks: o.parks ?? 0, entered: this.clock.now(), state: "running", session: s.id });
+    this.runs.set(run, { run, msg, role: actor, by: role, consult: mode === "consult", order: o.id, stage, loops, parks: o.parks ?? 0, entered: this.clock.now(), state: "running", session: s.id, ...(boxUntil != null ? { boxUntil } : {}), ...(m.body.advisory ? { advisory: m.body.advisory } : {}) }); // K34 box, K35 advisory run
     this.log.add({ type: "enter", run, msg, role: actor, by: role, room: r.room, order: o.id, stage, mode, session: s.id, item: s.items });
     // K24 review: an agent's stage that keeps artifacts notes its files as the run starts, so its passing leave keeps
     // only what this run made (a code stage's cmd notes them itself, before it runs)
@@ -1253,7 +1406,8 @@ export class Rooms {
 
   heartbeat(run, { leaseMin = 30 } = {}) {
     const x = this.runs.get(run);
-    if (this.config.leases) this.mailbox.heartbeat(x.msg, { run, leaseMin });
+    // K34: never past the run's time box
+    if (this.config.leases) this.mailbox.heartbeat(x.msg, { run, leaseMin: x.boxUntil != null ? Math.max(0, Math.min(leaseMin, x.boxUntil - this.clock.now())) : leaseMin });
   }
 
   /** Usage from the harness (it counts an agent's tokens; the agent cannot). Once per run. */
@@ -1268,6 +1422,7 @@ export class Rooms {
     const x = this.runs.get(run);
     hard(x && x.state === "running", `run ${run} not running`);
     const o = this.engine.orders.get(x.order);
+    if (x.advisory) return this.leaveAdvisory(x, o, { verdict, evidence, learned, mistake, tokens, findings }); // K35
     if (o.stage !== x.stage || o.loops !== x.loops || (o.parks ?? 0) !== (x.parks ?? 0)) { // K8: parked (and resumed) since it entered
       x.state = "stale";
       this.log.add({ type: "stale-leave", run, order: o.id, role: x.role });
@@ -1346,6 +1501,54 @@ export class Rooms {
     throw e;
   }
 
+  /** K35: an advisory run's leave: its review is recorded and its findings routed (Engine.advisoryIn), wherever the
+   *  order is now; a newer advisory of the stage since it entered makes it stale (nothing recorded). */
+  leaveAdvisory(x, o, { verdict, evidence, learned, mistake, tokens, findings }) {
+    const a = o.advisory?.[x.stage];
+    if (!a || a.n !== x.advisory || a.state !== "open") { x.state = "stale"; this.log.add({ type: "stale-leave", run: x.run, order: o.id, role: x.role }); return null; }
+    this.engine.advisoryIn(o, { stage: x.stage, n: x.advisory, by: x.role, verdict, evidence, findings, consult: x.consult });
+    x.state = "left";
+    const m = this.mailbox.msgs.get(x.msg);
+    if (m.state === "open") this.mailbox.done(x.msg, { run: x.run, report: { stage: x.stage, verdict, advisory: true } });
+    if (this.config.autoBookkeeping) {
+      (this.memory.get(x.role) ?? this.memory.set(x.role, []).get(x.role)).push({ t: this.clock.now(), did: `${x.stage} on ${o.id}: ${verdict} (advisory)`, learned, mistake });
+      if (tokens != null) this.log.add({ type: "usage", run: x.run, role: x.role, tokens, auto: true });
+      this.log.add({ type: "leave", run: x.run, role: x.role, order: o.id, stage: x.stage, verdict, advisory: true, minutes: this.clock.now() - x.entered });
+    }
+    return o;
+  }
+
+  /** K34: code signs run `run`'s time-boxed stage: the session's time is up (its box passed, or the launcher ended it at
+   *  the box). The stage hands in what the agent wrote so far (timeboxFindings: the report's defect lines): a blocking
+   *  stage revises with them, or moves on as `timeboxed` with none; an advisory stage's review is recorded the same way.
+   *  A run the order has moved past signs nothing (stale). */
+  timeboxRun(run, { why = "its time box passed" } = {}) {
+    const x = this.runs.get(run);
+    hard(x && x.state === "running", `run ${run} not running`);
+    const o = this.engine.orders.get(x.order), sd = this.engine.flows.get(o.flow)?.stages.find((s) => s.stage === x.stage);
+    let findings = null; try { findings = sd?.timebox ? this.timeboxFindings?.(o, sd) ?? null : null; } catch {}
+    x.state = "timeboxed";
+    const m = this.mailbox.msgs.get(x.msg);
+    if (m?.state === "open") this.mailbox.done(x.msg, { run, report: { stage: x.stage, verdict: "timeboxed" } });
+    const min = Math.round((this.clock.now() - x.entered) * 10) / 10;
+    let signed = "stale";
+    if (x.advisory) {
+      const a = o.advisory?.[x.stage];
+      if (a && a.n === x.advisory && a.state === "open") { this.engine.advisoryIn(o, { stage: x.stage, n: x.advisory, by: "code", findings, timeboxed: true }); signed = findings ? "advisory, with findings" : "advisory, none written"; }
+    } else if (o.stage === x.stage && o.loops === x.loops && (o.parks ?? 0) === (x.parks ?? 0)) {
+      this.engine.advance(o.id, { stage: x.stage, by: "code", verdict: findings ? "revise" : "timeboxed", findings: findings ? `timeboxed after ${min} min: ${x.role}'s findings so far:\n${findings}` : null, timeboxed: true });
+      signed = findings ? "revise" : "timeboxed";
+    }
+    this.log.add({ type: "timeboxed", run, role: x.role, order: o.id, stage: x.stage, minutes: min, why, signed, findings: findings ? findings.split("\n").length : 0, ...(x.advisory ? { advisory: x.advisory } : {}) });
+    return { run, order: o.id, stage: x.stage, signed, findings };
+  }
+  /** K34: every running run whose time box has passed, signed by code (timeboxRun). */
+  sweepTimeboxes() {
+    const out = [];
+    for (const x of [...this.runs.values()]) if (x.state === "running" && x.boxUntil != null && x.boxUntil <= this.clock.now()) out.push(this.timeboxRun(x.run));
+    return out;
+  }
+
   /** Supervisor: end a run without signing anything (a bad start). The work goes back to the queue. */
   abandon(run, { by, reason }) {
     const x = this.runs.get(run);
@@ -1360,6 +1563,7 @@ export class Rooms {
    *  no leave will ever record it. */
   recover({ usage = null } = {}) {
     const lost = [];
+    this.sweepTimeboxes(); // K34: a run at its time box is code's to sign, not a lost lease
     for (const x of this.runs.values()) {
       if (x.state !== "running") continue;
       const m = this.mailbox.msgs.get(x.msg);

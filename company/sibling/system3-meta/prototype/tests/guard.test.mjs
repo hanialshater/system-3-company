@@ -442,11 +442,13 @@ test("M6 prep (M4 P4.6): a heredoc read by a data command is data, its redirect 
     assert.equal(G.decide("Bash", { command: c }, ro)?.rule, "bash", c);
   }
   // what the guard truly cannot read is still refused, and the denial says what to do instead
-  for (const c of ["$(echo git) push", "cat > a.tsx <<EOF\n`${x}px`\nEOF", "G=git; $G push"]) {
+  for (const c of ["$(echo git) push", "cat > a.tsx <<EOF\n`${x}px`\nEOF", "G=$(echo git); $G push"]) {
     const d = G.decide("Bash", { command: c }, ro);
     assert.equal(d?.rule, "bash", c); assert.match(d.why, /cannot read this line.*use the Write tool/, c);
   }
   assert.doesNotMatch(G.decide("Bash", { command: "git push" }, ro).why, /Write tool/, "a plain denial keeps its own reason");
+  // B8 S1 fix: a variable the line sets to a literal is judged with its value (the denial names what it is)
+  assert.equal(G.bashDenial("G=git; $G push"), "git push");
   // redirects that write nothing protected pass (devices, fd duplication, an opaque target is left to K7's commit check)
   for (const c of ["npm run check 2>&1 | tail -5", "node x.mjs > /dev/null 2>&1", "echo x >&2", "echo x > \"$OUT\"", "ls > src/demos/list.txt"]) assert.equal(G.decide("Bash", { command: c }, ro), null, c);
 });
@@ -465,7 +467,8 @@ test("M6 prep review: a `#` comment opens no heredoc and hides no line (bash run
   // the M6 prep refusal's bypasses: unset by prefix, setsid, a script named by a variable, exec -c
   const t = { role: "toy-builder-1" };
   assert.match(G.bashDenial("x=supervisor; unset ${!META_R*}; setsid -f node /k/$x.mjs launched --role=toy-builder-1 --msgs=M-7", 0, t), /indirect expansion/);
-  assert.equal(G.bashDenial("x=supervisor; node /k/$x.mjs launched", 0, t), "node <a script the guard cannot read>");
+  assert.equal(G.bashDenial("x=$(echo supervisor); node /k/$x.mjs launched", 0, t), "node <a script the guard cannot read>");
+  assert.match(G.bashDenial("x=supervisor; node /k/$x.mjs launched", 0, t), /supervisor\.mjs launched \(the orchestrator's report\)/, "B8 S1 fix: a literal variable is read");
   assert.equal(G.bashDenial("(exec -c setsid -f node /k/supervisor.mjs launched)", 0, t), "exec -c");
   assert.match(G.bashDenial("setsid -f node /k/supervisor.mjs launched --role=toy-builder-1", 0, t), /supervisor\.mjs launched \(the orchestrator's report\)/);
   assert.equal(G.bashDenial("setsid -f git push", 0, t), "git push");

@@ -4,11 +4,11 @@ import fs from "node:fs";
 import path from "node:path";
 import { execFileSync, spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
-import { Log, Mailbox, Org, Engine, Rooms, DEFAULT_CONFIG, DEFAULT_MAX_LOOPS } from "./lib.mjs";
+import { Log, Mailbox, Org, Engine, Rooms, DEFAULT_CONFIG, DEFAULT_MAX_LOOPS, timeboxLines } from "./lib.mjs";
 import { SPECS } from "./specs.mjs";
 import { applyFloor } from "./building.mjs";
 import { afterStage, gitPins, partHandIn } from "./workspace.mjs";
-import { ownershipOf, partsFor } from "./owners.mjs";
+import { ownershipOf, partsFor, routeLate, scopeOwners } from "./owners.mjs";
 import { raiseParkAsk } from "./asks.mjs";
 import { storeArtifacts, snapshotArtifacts, artifactVars } from "./artifacts.mjs";
 export const HERE = path.dirname(fileURLToPath(import.meta.url));
@@ -85,7 +85,8 @@ export function make(specName = "toy", specDef = null) {
   engine.onAdvanced.push((o, { stage, by }) => afterStage(co, o, stage, { by })); // K7: only with spec workspace.commit (K29: by's ownership)
   // K30/K31: with modules or interfaces, a builder's work stage is worked in parts (one per owner, routed findings);
   // each hand-in commits that owner's paths and makes the integration check due (owners.mjs, workspace.mjs)
-  if (ownershipOf(spec)) { engine.parts = (o) => partsFor(co, o); engine.onPartIn.push((o, x) => partHandIn(co, o, x)); }
+  if (ownershipOf(spec)) { engine.parts = (o) => partsFor(co, o); engine.onPartIn.push((o, x) => partHandIn(co, o, x)); engine.routeLate = (o, r) => routeLate(co, o, r); engine.scopeOwners = (o, mods) => scopeOwners(co, o, mods); } // K35/K36
+  rooms.timeboxFindings = (o, sd) => timeboxReport(co, o, sd); // K34: the report a time-boxed stage has written so far
   rooms.postCheck = (o, cmd, vars) => runCmdCheck(o, cmd, vars); // K12: a stage's post cmd, at the agent's leave
   rooms.storeArtifacts = (o, sd, opts) => storeArtifacts(co, o, sd, opts); // K24: a passing leave's files, into the run's store
   rooms.snapshotArtifacts = (o, sd, opts) => snapshotArtifacts(co, o, sd, opts); // K24 review: what was there before the run
@@ -98,9 +99,22 @@ export function make(specName = "toy", specDef = null) {
   return co;
 }
 
+/** K34: the defect lines of stage `sd`'s time-box report (timebox.findings, a workdir-relative file; ${task} etc.
+ *  filled as in a pack), or null (no such file, or no defect lines in it). */
+export function timeboxReport(co, o, sd) {
+  const f = sd?.timebox?.findings;
+  if (!f) return null;
+  const dir = o.workdir ?? path.join(LIVE, "work", o.task ?? "");
+  const vars = { ...(o.workspace?.vars ?? {}), ...briefVars(o), ...storeVars(o), workdir: dir, task: o.task ?? "", slug: o.slug ?? o.task ?? "" };
+  const file = path.resolve(dir, interpolate(f, vars));
+  if (path.relative(dir, file).startsWith("..")) return null;
+  let text; try { text = fs.readFileSync(file, "utf8"); } catch { return null; }
+  return timeboxLines(text, co.spec?.learn?.classify ?? null);
+}
+
 export const rep = (k, v) => (v instanceof Map ? { __map: [...v] } : v instanceof Set ? { __set: [...v] } : v);
 export const rev = (k, v) => (v && v.__map ? new Map(v.__map) : v && v.__set ? new Set(v.__set) : v);
-export const FIELDS = { data: ["spec", "specDef", "building", "channels", "tracker", "goals", "meetings", "rituals", "rules", "jobs", "host", "exports", "schedulers", "gates", "serve", "warm", "learn", "vars", "grants"], log: ["events"], mailbox: ["msgs", "keys", "n"], org: ["roles", "changes", "n", "rooms"], engine: ["flows", "active", "orders", "approvals", "n", "limits", "policies", "contracts", "sampleRates", "sampleSalt"], rooms: ["runs", "n", "memory", "sessions", "nS"] };
+export const FIELDS = { data: ["spec", "specDef", "building", "channels", "tracker", "goals", "meetings", "rituals", "rules", "jobs", "host", "exports", "schedulers", "gates", "serve", "warm", "learn", "vars", "grants", "borrows"], log: ["events"], mailbox: ["msgs", "keys", "n"], org: ["roles", "changes", "n", "rooms"], engine: ["flows", "active", "orders", "approvals", "n", "limits", "policies", "contracts", "sampleRates", "sampleSalt", "backlog"], rooms: ["runs", "n", "memory", "sessions", "nS"] };
 
 export function save(co) {
   const data = Object.fromEntries(Object.entries(FIELDS).map(([o, fs_]) => [o, Object.fromEntries(fs_.map((f) => [f, co[o][f]]))]));

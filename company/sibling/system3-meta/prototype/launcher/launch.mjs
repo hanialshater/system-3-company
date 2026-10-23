@@ -114,6 +114,9 @@ async function run(ev) {
   const guard = makeGuard({ tools, strictTools: plan.strictTools, roots: plan.roots, cwd, role: ev.role, record: (d) => {
     note({ event: "guard", launch: id, n: k, role: ev.role, via: d.via, tool: d.tool, rule: d.rule, why: d.why, detail: d.detail });
     meta(...deniedArgs(id, ev.role, d));
+  }, borrowed: (b) => { // K37: a write into another role's module that borrow lets through: recorded for its commit and review
+    note({ event: "guard", launch: id, n: k, role: ev.role, via: "borrow", tool: b.tool, rule: "borrow", why: `${b.file}: module ${b.module} (owner ${b.owner}), borrowed`, detail: b.file });
+    if (b.order) meta("guard", "borrow", `--launch=${id}`, `--role=${ev.role}`, `--order=${b.order}`, `--file=${b.file}`);
   } });
   const extraHooks = HOOK_ARGV ? [commandHook(HOOK_ARGV, { env: { ...env, META_LAUNCH: id, META_ROLE: ev.role }, record: (d) => note({ event: "hook-deny", launch: id, n: k, role: ev.role, tool: d.tool, rule: d.rule, why: String(d.why).slice(0, 300) }) })] : [];
   const ac = new AbortController();
