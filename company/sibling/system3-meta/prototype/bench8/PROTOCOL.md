@@ -1,7 +1,9 @@
 # Benchmark 8: run protocol (a C-subset compiler in Clojure, S vs V)
 
-owner: vp-meta · date: 2026-10-23 · status: **the harness is built and dry-run, and no arm has run.** Running starts
-Agent SDK sessions, so it waits for the founder's go.
+owner: vp-meta · date: 2026-10-23 · status: **v2 (after the pilot): the harness is rebuilt around a box per arm,
+checked from inside, and dry-run; no arm has run.** Running starts Agent SDK sessions, so it waits for the founder's
+go. The v2 changes are marked "(v2)" where they replace v1's text, and summed up in "v2: the pilot's findings and what
+changed" at the end, which takes precedence where the two differ.
 
 ## The question
 
@@ -42,7 +44,11 @@ Neither arm gets System 3 Company's tools, CLAUDE.md, subagents or slash command
 |---|---|
 | Model | the launcher's `--model` default (read by `vanilla-compiler.mjs` from `launch.mjs`, so no model id lives in this folder), or the same `--model` passed to both |
 | Tools | Bash, Read, Write, Edit, Glob, Grep. No Agent tool, no web tools. V: the SDK `tools` list; S: each role's `tools` |
-| Settings | `settingSources: []` for every session (V's query; S's roles say `settingSources: []`, which the launcher's `sessionPlan` keeps). No CLAUDE.md, no project settings, no company subagents or commands |
+| Settings | `settingSources: []` for every session, and the box's HOME is empty at the start (no `~/.claude`, no CLAUDE.md anywhere the CLI looks) (V's query; S's roles say `settingSources: []`, which the launcher's `sessionPlan` keeps). No CLAUDE.md, no project settings, no company subagents or commands |
+| Box (v2) | every agent process runs in the same box (`sandbox.mjs`): its own uid (V 64081, S 64082), no capabilities, its own mount, pid and network namespaces; the root fs read-only; `/tmp /home /root /mnt /opt /usr/local /var/tmp /var/log …` empty tmpfs with only the arm's own and read-only folders bound back; cc1/cc1plus/lto1 are `/dev/null` and `/usr/lib/llvm-*` is empty (so gcc only assembles and links, and clang does not exist); the only egress is a tunnel to the orderer's proxy, which allows `CONNECT api.anthropic.com:443` and nothing else (every request logged). V: the SDK's `spawnClaudeCodeProcess` starts the CLI in V's box. S: the whole launcher (supervisor, code stages, every session) runs in S's box; the hidden runner and the accept stage stay with the orderer behind a broker socket |
+| Env (v2) | built from an allowlist (`boxEnv`): PATH (shims first, node, /usr/bin, /bin), a private HOME and TMPDIR, LANG, the proxy, the system CA bundle, `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC`, and the auth variables (`AUTH_KEYS`, plus any named in `B8_AUTH_ENV`). Nothing of the operator's session: no `CLAUDE_CODE_*` remote, messaging, debug, sync or additional-directory variables, no `JAVA_TOOL_OPTIONS`, no tokens for other services. The names (never the values) go in each arm's ledger |
+| Effort and compaction (v2) | the SDK `effort` option `high` for every session (V's query; S's launcher `--effort=high`); autocompaction at the CLI's default for both (no override). Both recorded in the ledgers |
+| Preflight (v2) | before each arm's W1: one one-turn session started exactly as the arm's sessions are (the box, the env, the proxy). If it fails (auth, the tunnel), the arm does not start |
 | Toolchain | `<runs>/toolchain/clj-run` (Clojure 1.12.6 + spec.alpha + core.specs.alpha, sha256-checked against VERSIONS.md), read-only |
 | Wave docs and files | `setup.mjs release`: the same files, byte for byte, released per wave (W1: CONTRACT.md, the headers, the visible README, W1.md, visible/W1; Wn: Wn.md and visible/Wn; W6: W6.md and spec/bench) |
 | Hidden runner | `<b8>/run-hidden.mjs` through `setup.mjs hidden`: the same lines, the same regression gate at W6 (against the arm's own last W5 results), one hidden run at a time across both arms (a lock, so W6 timings never overlap) |
@@ -50,8 +56,8 @@ Neither arm gets System 3 Company's tools, CLAUDE.md, subagents or slash command
 | Rounds | the first hidden run of a wave plus at most 3 feedback rounds (`MAX_ROUNDS`). V: three feedback turns, then the next wave. S: the accept stage's 4th failing run exits 3, and the harness ends the order as founder |
 | Next wave | starts from whatever the last version is, whatever the wave's end: V's directory as it is; S's main fast-forwarded to the wave's branch (done or cancelled) |
 | Caps | wall clock 300 min and cost $120 for the whole run (`--max-min`, `--max-cost`), checked before each turn or launch and when each ends; a turn or launcher is cut at the wall clock |
-| Access rule | `setup.mjs accessDecision`, the same function: V's in-process hook, S's `setup.mjs hook` as the launcher's `--pretool-hook` (guard.mjs `commandHook`, fails closed). Every call logged to `_operator/access.jsonl` |
-| Backstops | PATH shims for each arm (`_shim/<arm>/bin`: gcc/cc/clang only assemble or link; cpp, tcc, chibicc, cc1, claude, curl, wget always refuse; every call logged); the hidden runner's sandbox (no C compiler, no network); the audit |
+| Access rule | `setup.mjs accessDecision`, the same function: V's in-process hook, S's `setup.mjs hook` as the launcher's `--pretool-hook` (guard.mjs `commandHook`, fails closed, and the hook itself fails closed on unreadable input or an unreachable log). v2: a tool allowlist (the six tools, nothing else), default-deny paths, `gcc @file` and `--language` refused. Every call logged to `_operator/access.jsonl` (S's through the broker, so no S process can write that log) |
+| Backstops | the box (above: the hidden material, the other arm, the operator's logs and every other session's files are not in it; no C compiler; no network); PATH shims for each arm (`_shim/<arm>/bin`: gcc/cc/clang only assemble or link; cpp, tcc, chibicc, cc1, claude, curl, wget always refuse; every call logged to the box's own log); the hidden runner's sandbox (no C compiler, no network); the audit (with the egress log) |
 
 **What S adds is only Meta:** the org, the ownership and its guard, the parallel owners, the integration check, the
 interface contracts, the evaluator, the routing and the playbooks. V's extra is one long session whose context carries
@@ -85,9 +91,30 @@ The hook also reads:
 - `bash -c` strings, `eval`, `$(…)`;
 - a script or Makefile the line runs, when the file is in the arm's own folders.
 
-Code an agent writes and runs is out of the hook's reach. The PATH shims catch a C compile through `gcc` by name. The
-audit's source scan catches `ProcessBuilder`, `clojure.java.shell`, network classes and chibicc's identifiers. The
-hidden runner's compile sandbox has no C compiler at all.
+**v2 (the pilot's findings):**
+- **Default-deny.** Besides the open and read-only areas, only `/usr /bin /sbin /lib* /etc /dev`, node's folder,
+  `/proc/self`, and paths that do not exist yet (new files under `/tmp`, the box's private tmpfs) are open. Anything
+  else that exists is closed: the pilot reached `/tmp/claude-code.log` (the operator's debug log), other sessions'
+  fixtures in `/tmp`, sockets and `/root/.claude.json` under the old rule.
+- **A tool allowlist.** Bash, Read, Write, Edit, Glob, Grep; any other tool (an MCP tool, Skill, Agent, the web tools)
+  is denied.
+- **Compiler words.** `gcc @file` (a response file) and `--language=<anything but assembler or none>` are refused by
+  the hook and by the shims.
+- **The hook fails closed** on input it cannot parse, and S's hook on a log it cannot reach.
+
+Code an agent writes and runs is out of the hook's reach, and v1 relied on that code being harmless. **v2 does not:
+the box makes the hook a second line.** Inside the box there is nothing to leak (the hidden tests, `<b8>`, `_operator`,
+the other arm, the repo and every other session's files are not mounted), no C compiler to call (cc1 and clang are
+gone, whatever path or response file reaches gcc), and no network but the model API. `setup.mjs box-check --arm=V|S`
+probes this from inside each box, with no SDK session (2026-10-23: V 22 of 22, S 30 of 30, below). The audit's source
+scan also looks for `urlopen`, `fetch(`, `java.net`, `HttpClient` and the model API's host and headers, and the audit
+lists every request the egress proxy refused.
+
+**What remains (accepted):** a box can still call the model API itself (the CLI's credentials are in its env), so
+code could in principle ask a model with server-side tools to fetch a suite; the audit's source scan names the API's
+host and headers, and the egress log counts every tunnel. S's kernel files (state.json, the integration baseline) are
+writable by S's uid, as the kernel CLI must write them: the hook keeps tools off them, but code S runs could change
+them; that would only corrupt S's own process, never V's score or the hidden runner (root, outside).
 
 ## Measures (setup.mjs tally)
 
@@ -114,16 +141,50 @@ hidden runner's compile sandbox has no C compiler at all.
 
 ## Running it (after the founder's go)
 
+From `company/sibling/system3-meta/prototype`, as root (the boxes need namespaces and the arms' uids):
+
 ```sh
-node bench8/vanilla-compiler.mjs                          # V: all six waves, one session (caps 300 min, $120)
-node bench8/setup.mjs run                                 # S: places and runs each wave in turn (same caps)
+# 0. checks, no SDK session (each must pass)
+node bench8/setup.mjs selftest                            # the access rule on 37 fixed calls
+node bench8/setup.mjs box-check --arm=V                   # V's box, probed from inside
+node bench8/setup.mjs box-check --arm=S                   # S's box, the hook through the broker
+# 1. the arms, one after the other (each starts with its one-turn preflight session; caps 300 min, $120 each)
+node bench8/vanilla-compiler.mjs                          # V: all six waves, one session
+node bench8/setup.mjs run                                 # S: places and runs each wave in turn
+# 2. the scores and the audit
 node bench8/setup.mjs tally --md; node bench8/setup.mjs audit
 ```
+
+The box passes only the auth variables named in `sandbox.mjs` `AUTH_KEYS` (`ANTHROPIC_API_KEY`,
+`ANTHROPIC_AUTH_TOKEN`, `CLAUDE_CODE_OAUTH_TOKEN`, `ANTHROPIC_BASE_URL`). If the operator's sessions authenticate
+another way, export one of these, or name the variables in `B8_AUTH_ENV`, or copy a credential file into the boxes'
+HOME with `B8_AUTH_FILES=<src>:<dst under HOME>`; the preflight says whether a session starts. The same variables reach
+both arms. Run the box-checks with `--runs=<a scratch dir>` to keep the real runs folder empty until the run.
 
 Run the arms one after the other, never at once: the hidden-run lock keeps W6 timings apart, but two arms' agents
 would still share the 4 CPUs.
 
 ## Dry run (2026-10-23, no SDK session)
+
+**v2 checks (after the pilot; no SDK session):**
+- `setup.mjs selftest`: the access rule on 37 fixed calls, all as expected (v1's 26, plus `gcc --language=c`,
+  `gcc @args.rsp`, `/tmp/claude-code.log`, `/root/.claude.json`, `/tmp/cc-socks`, an MCP tool and Skill refused; an
+  assemble with `--language=assembler`, `/tmp` scratch files and the box's own HOME allowed; S's integration baseline
+  read-only).
+- `setup.mjs box-check --arm=V`: 22 of 22 probes held inside V's box: its uid; its folder writable and the toolchain
+  read-only; the hidden tests, `<b8>`, `_operator` and S's folder absent; nothing of the host's `/tmp`, `/home`,
+  `/root`, `/mnt`; 4 processes visible; gcc on a `.c` file and `gcc --language=c` fail, clang is absent, gcc still
+  assembles and links; Clojure runs; python's urllib and node's fetch cannot reach github, the proxy refuses github
+  (403) and passes the model API (401 without credentials); no session variables in the env; the root fs read-only;
+  `/dev/vda` unreadable. The egress log recorded the three refusals and the one allowed tunnel.
+- `setup.mjs box-check --arm=S`: 30 of 30, the same 22 plus: the frozen kernel and the harness read-only; the SDK's
+  CLI binary runs (`--version`); the hook (through the broker) allows S's own file, denies a hidden file and an MCP
+  tool, and fails closed on unreadable input; git commits as S's uid. The broker wrote the hook's lines to
+  `_operator/access.jsonl`.
+- **S's launcher in S's box** (a scratch run with no order, so no session was planned): it started as S's uid,
+  copied the kernel into the live dir, ran `serve` to its end and wrote state.json, all owned by S's uid, with
+  `effort: "high"` in its `launcher-up` line.
+- `dryrun.mjs` (below) passed again with the accept stage going through the broker.
 
 **`node bench8/dryrun.mjs`** drives S through W1 → W2 by the CLI. Every role is played by the script exactly as an
 agent calls the kernel. It uses:
@@ -189,7 +250,7 @@ turn and the settings:
 - allowed: assemble and link, clj-run, the kernel CLI, git in V's own repo.
 
 **`--dry-run --fake=dryrun/stub --waves=W1,W2 --max-rounds=1`** played the agent itself. It ran the real release,
-hidden-run, feedback and ledger path: 63 and then 138 hidden tests, with one feedback round each.
+hidden-run, feedback and ledger path: 63 and then 138 hidden tests, with one feedback round each (v2, on the rebuilt suite: 60 and then 133, exit 0).
 
 ## Known limits
 
@@ -202,3 +263,35 @@ hidden-run, feedback and ledger path: 63 and then 138 hidden tests, with one fee
    the playbooks.
 4. **Contamination.** The hidden tests are public upstream programs (README.md, open issue 1), so a model may know
    some by heart. The audit reports a hidden line an arm wrote first as `own`, never as a leak.
+
+## Time and cost, estimated before any run (v2)
+
+These are estimates, not measurements: no SDK session of either arm has run, and the pilot was a workflow agent, not
+an SDK session.
+
+| | V | S |
+|---|---|---|
+| Wall clock | 2.5 to 4.5 h. The pilot did W1-W3 in about 55 tool calls; W4 and W5 (1,195 tests, 17 categories) and W6 are several times that work. Hidden runs add about 1 to 4 min each (up to 24 runs) | 4 to 5 h, and likely to reach the 300-min cap: five roles plus an evaluator per wave, one launch at a time per role, integration checks after each hand-in (1 to 3 min each) |
+| Cost | $40 to $100. One long session: each tool call re-reads a large cached context, and compaction resets it | $80 to $120, likely to reach the $120 cap (Benchmark 6 measured Meta at 2.3× one agent; the early waves are cheap for one agent, which raises the ratio there) |
+| Preflight | under $0.05, under 1 min | the same |
+
+Both arms together: about 7 to 10 hours of wall clock run one after the other, and $120 to $220. The caps (300 min,
+$120 per arm) bound the worst case at 10 hours and $240 plus at most one turn's overshoot each (Known limits 1).
+
+## v2: the pilot's findings and what changed (2026-10-23)
+
+A pilot (one workflow agent, no SDK session of either arm) built a W1-W3 compiler in Clojure against this harness and
+reported its findings. Each one, and what v2 did:
+
+| Pilot finding | Severity | v2 |
+|---|---|---|
+| Both arms ran as root and `<b8>/hidden` was world-readable: code an agent wrote (or its compiler, or S's integration check) could read the hidden tests | high | every agent process runs in its arm's box as its own uid; `<b8>`, `_operator`, the other arm, `/home`, `/root` and the host's `/tmp` are not mounted there. S's integration check runs inside S's box; the hidden runner and the accept stage stay with the orderer (root), reached through the broker socket |
+| Direct egress worked, and the env kept `HTTPS_PROXY` and `JAVA_TOOL_OPTIONS`: python, node or Java code could fetch the public suites | high | the box's netns has only `lo`, tunnelled to the orderer's egress proxy, which allows `CONNECT api.anthropic.com:443` only and logs every request; the env is an allowlist (no operator proxy, no Java options); the audit lists refused requests and scans sources and tool calls for network words |
+| `gcc --language=c` and `gcc @args.rsp` compiled C past the hook and the shim; a script could call `/usr/bin/gcc` by absolute path | high | cc1, cc1plus, lto1 (and the other back ends) are `/dev/null` in the box and `/usr/lib/llvm-*` is empty: gcc cannot compile C by any path; the hook and the shims also refuse `@file` and `--language` |
+| The hook allowed `/tmp/claude-code.log` (the operator's debug log), other sessions' fixtures in `/tmp`, sockets, `/root/.claude.json` | high | the box's `/tmp`, `/root`, `/run` are empty tmpfs; the hook is default-deny (only the arm's folders, its read-only ones, the system folders and new `/tmp` files) |
+| The arms inherited the session's env: remote-session and messaging variables (a channel to the parent session), `CLAUDE_ADDITIONAL_DIRECTORIES` (a CLAUDE.md could load), debug logging into shared `/tmp`, effort and autocompaction overrides | medium | the env is built from an allowlist (`boxEnv`); effort is the SDK option `high` for both arms; autocompaction is the CLI default for both; the messaging socket and `/mnt` are not in the box anyway |
+| The hook was a denylist of tools (an MCP tool and Skill passed), and failed open on unreadable input | medium | an allowlist of the six tools; the hook fails closed on unreadable input and on an unreachable log |
+| W1-W3 came out at 95-100% hidden for one careful agent in about 55 tool calls (target: under 80%) | design | W1-W3 are declared the warm-up (PREDICTIONS.md P8-0: both arms ≥ 90%); the difficulty moves to W4-W6: GNU C (`W5 gnu`), VLAs (`W5 vla`), gcc's predefined macros (W4), and W6's continuous score as a headline measure |
+| A change that only moved locals on the stack swung 2 hidden tests: some tests may read uninitialised memory | test quality | every test is now also built with `-ftrivial-auto-var-init=pattern` and `=zero`, run with the stack shifted, in a quarter of the stack, and under valgrind; any disagreement drops it (README.md) |
+| Spec ambiguities: `extern` prototypes and K&R definitions in W1 tests; a VLA parameter in a W2 test; C11 anonymous members in W3; GNU extensions unaddressed; `long double` undefined | spec | W1.md: K&R and `extern` prototypes in scope; W2.md: a non-constant parameter size is W5 `vla`; W3.md: anonymous members (and designators into them) and block-scope typedef shadowing in scope; W5.md: the GNU list, VLAs, and `long double` out with its reason; the tagger now detects each case |
+| The 3 W1 `functions` failures the pilot could not explain | tagger bug | they were `__builtin_types_compatible_p` tests (chibicc's builtin.c) that passed `-pedantic-errors` and were tagged W1; now W5 `gnu` |

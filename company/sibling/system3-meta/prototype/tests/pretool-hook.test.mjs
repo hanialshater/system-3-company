@@ -43,5 +43,15 @@ test("queryOptions runs the command hook after the guard; launch.mjs wires --pre
   const src = fs.readFileSync(path.join(LAUNCHER, "launch.mjs"), "utf8");
   assert.match(src, /opt\["pretool-hook"\]/);
   assert.match(src, /commandHook\(HOOK_ARGV, \{ env: \{ \.\.\.env, META_LAUNCH: id, META_ROLE: ev\.role \}/);
-  assert.match(src, /queryOptions\(plan, guard, \{ model: MODEL, .*, resume, extraHooks \}\)/);
+  assert.match(src, /queryOptions\(plan, guard, \{ model: MODEL, .*, resume, extraHooks, effort: EFFORT \}\)/);
+});
+
+test("B8 pilot fix: --effort sets the SDK effort option on every session; unset, no effort key (the CLI's own)", () => {
+  const p = G.sessionPlan({ tools: ["Bash"], workdir: null, roots: [], settingSources: [] }, {}, { cwd: "/k", sessionMin: 20, maxTurns: 80, settingSources: [] });
+  const g = G.makeGuard({ tools: p.tools, roots: [], cwd: "/k" });
+  assert.equal(G.queryOptions(p, g, { effort: "high" }).effort, "high");
+  assert.ok(!("effort" in G.queryOptions(p, g, {})));
+  const src = fs.readFileSync(path.join(LAUNCHER, "launch.mjs"), "utf8");
+  assert.match(src, /const EFFORT = opt\.effort \? String\(opt\.effort\) : null;/);
+  assert.match(src, /\["low", "medium", "high", "xhigh", "max"\]\.includes\(EFFORT\)/);
 });

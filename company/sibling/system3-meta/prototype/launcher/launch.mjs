@@ -4,7 +4,7 @@
 //
 //   node launcher/launch.mjs --live=<dir> [--acceptance=<dir>] [--model=claude-opus-5-5] [--max-parallel=4]
 //        [--max-min=90] [--idle-min=1] [--session-min=20] [--kill=<n>:<seconds>,…] [--faults=<json>]
-//        [--setting-sources=user,project,local] [--workdir-from=order] [--pretool-hook=<JSON argv>]
+//        [--setting-sources=user,project,local] [--workdir-from=order] [--pretool-hook=<JSON argv>] [--effort=<level>]
 //
 // It runs `supervisor.mjs serve` as a child and reads its JSON lines. Each {"event":"launch"} becomes one Agent SDK
 // query() whose prompt is the brief file exactly as code wrote it (benchmark 3: two of my hand launches were retyped
@@ -69,6 +69,9 @@ const MAX_TURNS = 80; // the default before K10; a role's spec `maxTurns` overri
 // access rule that needs no project settings (settingSources [] stays). Its denials go to launches.jsonl.
 let HOOK_ARGV = null;
 if (opt["pretool-hook"] != null) { try { HOOK_ARGV = JSON.parse(String(opt["pretool-hook"])); } catch {} if (!Array.isArray(HOOK_ARGV) || !HOOK_ARGV.length || !HOOK_ARGV.every((a) => typeof a === "string" && a)) { console.error("--pretool-hook is a JSON argv (a list of strings)"); process.exit(2); } }
+// B8 (pilot fix): --effort=low|medium|high|xhigh|max, the SDK's effort option for every session (unset: the CLI's own)
+const EFFORT = opt.effort ? String(opt.effort) : null;
+if (EFFORT && !["low", "medium", "high", "xhigh", "max"].includes(EFFORT)) { console.error("--effort takes low|medium|high|xhigh|max"); process.exit(2); }
 const kills = new Map(String(opt.kill ?? "").split(",").filter(Boolean).map((x) => x.split(":").map(Number)));
 const env = { ...process.env, META_LIVE_DIR: LIVE, BOOK_ROOT: process.env.BOOK_ROOT ?? path.join(LIVE, "work") };
 if (FROM_ORDER) env.META_KERNEL_ABS = "1"; // serve's briefs and the agents' packs: kernel commands by absolute path
@@ -122,7 +125,7 @@ async function run(ev) {
       // the brief is the whole job: no project settings or CLAUDE.md (they belong to System 3 Company, not this run),
       // unless the role, --setting-sources or --workdir-from=order (K10: the company's hooks and rules) loads them;
       // permissions, tools and the guard as guard.mjs queryOptions says (tests/guard.test.mjs checks that shape)
-      for await (const m of query({ prompt: text, options: queryOptions(plan, guard, { model: MODEL, abortController: ac, env: { ...env, META_LAUNCH: id, META_ROLE: ev.role }, resume, extraHooks }) })) {
+      for await (const m of query({ prompt: text, options: queryOptions(plan, guard, { model: MODEL, abortController: ac, env: { ...env, META_LAUNCH: id, META_ROLE: ev.role }, resume, extraHooks, effort: EFFORT }) })) {
         if (typeof m.session_id === "string" && m.session_id) sdk = m.session_id;
         if (m.type === "assistant") saw = true;
         if (m.type === "assistant" && m.parent_tool_use_id == null && m.message?.usage) last = m.message.usage;
@@ -165,7 +168,7 @@ function finish() {
 
 const serveArgs = [path.join(PROTO, "supervisor.mjs"), "serve", `--idle-min=${opt["idle-min"] ?? 1}`, `--max-min=${opt["max-min"] ?? 90}`, ...(opt.acceptance ? [`--acceptance=${path.resolve(opt.acceptance)}`] : []), ...(opt.faults ? [`--faults=${path.resolve(opt.faults)}`] : [])];
 const serve = spawn("node", serveArgs, { env, stdio: ["ignore", "pipe", "inherit"] });
-note({ event: "launcher-up", live: LIVE, kernel: KERNEL_HASH, model: MODEL, maxParallel: MAX_PAR, kills: [...kills.entries()], settingSources: SOURCES, workdirFrom: FROM_ORDER ? "order" : null, pretoolHook: HOOK_ARGV });
+note({ event: "launcher-up", live: LIVE, kernel: KERNEL_HASH, model: MODEL, maxParallel: MAX_PAR, kills: [...kills.entries()], settingSources: SOURCES, workdirFrom: FROM_ORDER ? "order" : null, pretoolHook: HOOK_ARGV, effort: EFFORT });
 readline.createInterface({ input: serve.stdout }).on("line", (line) => {
   let ev; try { ev = JSON.parse(line); } catch { return; }
   fs.appendFileSync(path.join(LIVE, "serve.log"), line + "\n");

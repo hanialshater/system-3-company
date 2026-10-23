@@ -75,7 +75,32 @@ the same in every wave.
   - `__builtin_va_start(ap, last)`, `__builtin_va_arg(ap, type)`, `__builtin_va_end(ap)` and
     `__builtin_va_copy(dst, src)` are intrinsics.
   - In `stddef.h`, `offsetof` expands to `((size_t)&(((type *)0)->member))`.
-- **Predefined macros.** `__STDC__` (1), `__STDC_VERSION__` (201112L), `__x86_64__` (1), `__LP64__` (1) and `__LINE__`.
+- **Predefined macros.** `__STDC__` (1), `__STDC_VERSION__` (201112L), `__x86_64__` (1), `__LP64__` (1), `__LINE__`,
+  and gcc's type, limit, size and byte-order macros with gcc's values on x86-64 Linux (from W4, the wave that brings
+  the preprocessor; some torture tests use them):
+
+  | Macros | Values |
+  |---|---|
+  | `__SIZE_TYPE__`, `__UINTMAX_TYPE__`, `__UINTPTR_TYPE__`, `__UINT64_TYPE__` | `long unsigned int` |
+  | `__PTRDIFF_TYPE__`, `__INTMAX_TYPE__`, `__INTPTR_TYPE__`, `__INT64_TYPE__` | `long int` |
+  | `__INT8_TYPE__`, `__INT16_TYPE__`, `__INT32_TYPE__` | `signed char`, `short int`, `int` |
+  | `__UINT8_TYPE__`, `__UINT16_TYPE__`, `__UINT32_TYPE__` | `unsigned char`, `short unsigned int`, `unsigned int` |
+  | `__WCHAR_TYPE__`, `__WINT_TYPE__` | `int`, `unsigned int` |
+  | `__CHAR_BIT__` | `8` |
+  | `__SCHAR_MAX__`, `__SHRT_MAX__`, `__INT_MAX__` | `0x7f`, `0x7fff`, `0x7fffffff` |
+  | `__LONG_MAX__`, `__PTRDIFF_MAX__`, `__INTMAX_MAX__`, `__INTPTR_MAX__`, `__INT64_MAX__` | `0x7fffffffffffffffL` |
+  | `__LONG_LONG_MAX__` | `0x7fffffffffffffffLL` |
+  | `__SIZE_MAX__`, `__UINTMAX_MAX__`, `__UINTPTR_MAX__`, `__UINT64_MAX__` | `0xffffffffffffffffUL` |
+  | `__INT8_MAX__`, `__INT16_MAX__`, `__INT32_MAX__` | `0x7f`, `0x7fff`, `0x7fffffff` |
+  | `__UINT8_MAX__`, `__UINT16_MAX__`, `__UINT32_MAX__` | `0xff`, `0xffff`, `0xffffffffU` |
+  | `__WCHAR_MAX__`, `__WCHAR_MIN__` | `0x7fffffff`, `(-__WCHAR_MAX__ - 1)` |
+  | `__SIZEOF_SHORT__`, `__SIZEOF_INT__`, `__SIZEOF_FLOAT__`, `__SIZEOF_WCHAR_T__` | `2`, `4`, `4`, `4` |
+  | `__SIZEOF_LONG__`, `__SIZEOF_LONG_LONG__`, `__SIZEOF_POINTER__`, `__SIZEOF_DOUBLE__`, `__SIZEOF_SIZE_T__`, `__SIZEOF_PTRDIFF_T__` | `8` |
+  | `__ORDER_LITTLE_ENDIAN__`, `__ORDER_BIG_ENDIAN__`, `__ORDER_PDP_ENDIAN__` | `1234`, `4321`, `3412` |
+  | `__BYTE_ORDER__`, `__FLOAT_WORD_ORDER__` | `__ORDER_LITTLE_ENDIAN__` |
+
+  No other `__NAME__` macro is predefined (not `__GNUC__`, `__OPTIMIZE__`, `__FILE__`, `__DATE__`), and no test uses one.
+- **`long double`.** Out of scope in every wave, and no test uses it (W5.md says why).
 - **Parsing headers.** From W4, the wave that brings `#include`, your compiler must parse these headers. That means
   `unsigned long` (as an 8-byte integer), `const`, `void *`, prototypes with `...` and with function-pointer
   parameters (qsort), and typedefs.
@@ -84,6 +109,8 @@ the same in every wave.
 
 1. **Your compiler compiles the C itself.** It must never run gcc, clang, cc1, cpp, tcc, chibicc or any other C
    compiler or preprocessor, or any other program at all.
+   - Your own environment has none either: gcc's C back end (cc1) and clang are not installed there, so `gcc` only
+     assembles and links. The network reaches nothing but the model's own API.
    - The runner compiles inside a sandbox where no C compiler exists. It has no network, and it sees only your
      compiler's copy and the test sources.
    - A `.s` that carries a gcc or clang `.ident`, or that uses `.incbin` or `.include`, fails its test.

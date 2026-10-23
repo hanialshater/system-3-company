@@ -20,9 +20,10 @@
 import fs from "node:fs";
 import path from "node:path";
 import assert from "node:assert/strict";
-import { spawnSync } from "node:child_process";
+import { spawn, spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { paths, readState, orderOf, endIfStopped, tally, audit, readJsonl } from "./setup.mjs";
+import { boxPaths } from "./sandbox.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const opt = Object.fromEntries(process.argv.slice(2).filter((a) => a.startsWith("--")).map((a) => { const [k, ...v] = a.slice(2).split("="); return [k, v.join("=") || true]; }));
@@ -33,6 +34,9 @@ const G = await import(path.join(P.proto, "launcher", "guard.mjs"));
 const log = [];
 const step = (what, x = {}) => { log.push({ step: what, ...x }); process.stderr.write(`- ${what}${Object.keys(x).length ? ` ${JSON.stringify(x).slice(0, 220)}` : ""}\n`); };
 
+// the dry run plays every role as root, outside any box: nothing is handed to S's uid (B8_NO_CHOWN), and the accept
+// stage still goes through the orderer's broker (setup.mjs broker), as in a real run
+process.env.B8_NO_CHOWN = "1";
 const ENV = { ...process.env, META_LIVE_DIR: P.live };
 for (const k of ["NODE_TEST_CONTEXT", "META_ROLE", "META_LAUNCH", "META_STATE"]) delete ENV[k];
 function cli(file, args, env = {}) {
@@ -80,6 +84,11 @@ function evaluate(o, w, wt) {
 try {
   // ---------------------------------------------------------------- W1
   const pl = ok(harness("place", "--wave=W1", "--max-rounds=1"));
+  // the orderer's broker (root): the accept stage's hidden runs go through it
+  const brokerCh = spawn(process.execPath, [path.join(HERE, "setup.mjs"), "broker", "--arm=S", `--runs=${RUNS}`], { stdio: "ignore" });
+  process.on("exit", () => { try { brokerCh.kill("SIGKILL"); } catch {} });
+  for (let k = 0; k < 100 && !fs.existsSync(boxPaths(P, "S").broker); k++) spawnSync("sleep", ["0.05"]);
+  assert.ok(fs.existsSync(boxPaths(P, "S").broker), "the broker is up");
   step("W1 placed", { order: pl.order, main: pl.main.slice(0, 8), files: pl.files });
   const O1 = pl.order;
   // the architect delegates to every active owner at once (the optimizer joins from W5)
@@ -237,6 +246,7 @@ try {
   const out = { ok: true, runs: RUNS, steps: log, tally: T.S.waves.map((g) => ({ wave: g.wave, stage: g.stage, firstHandin: g.firstHandin?.pct, final: g.final?.pct, rounds: g.rounds, integration: g.integration, parts: g.parts, changeRequests: g.changeRequests, firstByModule: g.firstByModule, rulesAtStart: g.rulesAtStart })), knowledge: T.knowledge, audit: { denials: A.denials.length, verdict: A.verdict } };
   console.log(JSON.stringify(out, null, 1));
   if (!opt.keep) fs.rmSync(RUNS, { recursive: true, force: true });
+  process.exit(0); // the broker child would keep the event loop alive
 } catch (e) {
   console.log(JSON.stringify({ ok: false, runs: RUNS, steps: log, error: String(e.stack ?? e).slice(0, 3000) }, null, 1));
   process.exit(1);

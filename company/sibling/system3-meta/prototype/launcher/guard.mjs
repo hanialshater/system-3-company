@@ -503,9 +503,10 @@ export function sessionPlan(cfg, cli = {}, defaults = {}) {
  *  permissionPrompts "none" never called it; the PreToolUse hook sees every call. A role that names its tools gets
  *  them as the SDK `tools` (K10 review: denying alone left TodoWrite, Task, WebFetch visible, a turn and a guard event
  *  per try); a role that does not keeps the SDK's base set, as before K10. */
-export function queryOptions(p, guard, { model, env, abortController, resume = null, extraHooks = [] } = {}) {
+export function queryOptions(p, guard, { model, env, abortController, resume = null, extraHooks = [], effort = null } = {}) {
   return {
     cwd: p.cwd, model, abortController, env,
+    ...(effort ? { effort } : {}), // B8 (pilot fix): the reasoning effort, set explicitly (launch.mjs --effort), never inherited
     ...(resume ? { resume } : {}), // K26: a warm role's next item continues its own Agent SDK session
     settingSources: p.settingSources,
     ...(p.strictTools ? { tools: p.tools } : {}),

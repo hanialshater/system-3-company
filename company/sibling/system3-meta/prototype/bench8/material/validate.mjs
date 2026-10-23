@@ -25,7 +25,7 @@ await pool(tests, Number(opt.jobs ?? 4), async (t) => {
   if (sha(expected) !== t.stdoutSha) problems.push(`${t.id}: expected file does not match its sha`);
   for (const cc of ["gcc", "clang"]) {
     const exe = path.join(tmp, `${t.id}-${cc}`);
-    const b = await run(cc, ["-std=c11", "-w", "-O0", "-nostdinc", "-I", P.inc, src, "-o", exe], { timeout: 60000 });
+    const b = await run(cc, [`-std=${t.std ?? "c11"}`, "-w", "-O0", "-nostdinc", "-I", P.inc, src, "-o", exe], { timeout: 60000 });
     if (b.code !== 0) { problems.push(`${t.id}: ${cc} build failed`); continue; }
     const x = await run(exe, [], { timeout: t.timeoutMs, env: { PATH: "/usr/bin:/bin" } });
     if (x.stdout !== expected || status(x) !== t.exit) problems.push(`${t.id}: ${cc} output or exit differs`);

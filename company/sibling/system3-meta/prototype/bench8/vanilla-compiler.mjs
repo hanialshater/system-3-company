@@ -20,12 +20,17 @@
 //   --dry-run starts no session: it prints the prompts and settings, checks the hook on fixed calls, and with
 //   --fake=<compiler dir> plays the agent itself (turn 1 copies that compiler in, each later turn touches its backend)
 //   so the release, hidden-run, feedback and ledger path runs for real, into --runs (default: a fresh scratch dir).
+// Pilot fixes (2026-10-23): the CLI runs in V's box (sandbox.mjs: its own uid, mount/pid/net namespaces, no C compiler,
+// the model API as the only egress, an allowlisted env), started by the SDK's spawnClaudeCodeProcess; the effort is the
+// SDK option (EFFORT, the same as S's launcher --effort); a preflight session checks the box first (--no-preflight
+// skips it).
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { pathToFileURL } from "node:url";
-import { paths, WAVES, MAX_ROUNDS, RUN_MIN, RUN_COST, release, ensureToolchain, installShims, armEnv, hidden, nextResults, lastResults, makeHook, append, selftest } from "./setup.mjs";
+import { paths, WAVES, MAX_ROUNDS, RUN_MIN, RUN_COST, EFFORT, release, ensureToolchain, installShims, armEnv, hidden, nextResults, lastResults, makeHook, append, selftest, chownArm, preflight, AUTH_HINT } from "./setup.mjs";
+import { prepareBox, startEgress, spawnFor, boxEnvNames, boxArgv } from "./sandbox.mjs";
 
 const opt = Object.fromEntries(process.argv.slice(2).filter((a) => a.startsWith("--")).map((a) => { const [k, ...v] = a.slice(2).split("="); return [k, v.join("=") || true]; }));
 const DRY = !!opt["dry-run"], FAKE = typeof opt.fake === "string" ? path.resolve(opt.fake) : null;
@@ -39,6 +44,7 @@ const TOOLS = ["Bash", "Read", "Write", "Edit", "Glob", "Grep"];
 // the S arm's model: the launcher's own default (or the same --model passed to both); no model id lives here
 const launcherSrc = fs.readFileSync(path.join(P.proto, "launcher", "launch.mjs"), "utf8");
 const MODEL = opt.model ?? (launcherSrc.match(/const MODEL = opt\.model \?\? "([^"]+)"/) ?? [])[1];
+const EFF = opt.effort ?? EFFORT;
 if (!MODEL) { console.error("no --model, and the launcher's default could not be read"); process.exit(2); }
 const n = (w) => Number(w.slice(1));
 
@@ -60,16 +66,23 @@ if (DRY && !FAKE) {
   const st = await selftest(P);
   for (const w of RUN_WAVES) console.log(`===== ${w}, the release's turn:\n${w === RUN_WAVES[0] ? firstPrompt(w) : wavePrompt(w)}\n`);
   console.log(`===== a feedback turn:\n${feedbackPrompt(["W1 functions: 3 of 45 fail", "W1 control: 1 of 12 fail"])}\n`);
-  console.log(JSON.stringify({ dry: true, dir: DIR, waves: RUN_WAVES, model: MODEL, tools: TOOLS, settingSources: [], maxTurns: MAX_TURNS, turnMin: TURN_MIN, maxRounds: ROUNDS, caps: { maxMin: MAX_MIN, maxCost: MAX_COST }, ledger: P.vledger, access: P.access, shims: P.shim("V"), hookSelftest: { cases: st.cases.length, failed: st.failed } }, null, 1));
+  console.log(JSON.stringify({ dry: true, dir: DIR, waves: RUN_WAVES, model: MODEL, effort: EFF, envNames: boxEnvNames(P, "V"), box: boxArgv(P, "V", DIR, ["<claude>"])[1].slice(0, 7), tools: TOOLS, settingSources: [], maxTurns: MAX_TURNS, turnMin: TURN_MIN, maxRounds: ROUNDS, caps: { maxMin: MAX_MIN, maxCost: MAX_COST }, ledger: P.vledger, access: P.access, shims: P.shim("V"), hookSelftest: { cases: st.cases.length, failed: st.failed } }, null, 1));
   process.exit(st.failed.length ? 1 : 0);
 }
 
 if (fs.existsSync(DIR) && fs.readdirSync(DIR).length && RUN_WAVES[0] === "W1") { console.error(`refused: ${DIR} exists (V starts in a fresh directory)`); process.exit(2); }
 const note = (x) => { append(P.vledger, x); console.log(JSON.stringify(x)); };
-ensureToolchain(P); installShims(P, "V");
+ensureToolchain(P); installShims(P, "V"); prepareBox(P, "V");
 const env = armEnv(P, "V");
+if (!DRY && !opt["no-preflight"] && !fs.existsSync(P.vledger)) {
+  const pf = await preflight(P, "V", { model: MODEL, effort: EFF });
+  append(P.vledger, { event: "preflight", ...pf }); console.log(JSON.stringify({ event: "preflight", ...pf }));
+  if (!pf.ok) { console.error(`V preflight failed (${pf.why}): no session could start in V's box. ${AUTH_HINT}`); process.exit(2); }
+}
+const egress = DRY ? null : startEgress(P, "V");
 fs.mkdirSync(DIR, { recursive: true });
-const git = (...a) => spawnSync("git", ["-C", DIR, ...a], { encoding: "utf8" });
+// the orderer's git runs as root in V's folder (V's uid owns it): safe.directory, and the folder goes back to V's uid
+const git = (...a) => { const r = spawnSync("git", ["-c", "safe.directory=*", "-C", DIR, ...a], { encoding: "utf8" }); chownArm("V", DIR); return r; };
 if (!fs.existsSync(path.join(DIR, ".git"))) { git("init", "-q", "-b", "main"); git("config", "user.email", "vanilla@b8.invalid"); git("config", "user.name", "B8 V"); }
 const prev = fs.existsSync(P.vledger) ? fs.readFileSync(P.vledger, "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l)) : [];
 let session = prev.findLast((x) => x.event === "turn" && x.session)?.session ?? null;
@@ -86,7 +99,7 @@ function fakeAgent() {
   fakeTurn++;
   if (fakeTurn === 1) { for (const d of ["src", "docs"]) if (fs.existsSync(path.join(FAKE, d))) fs.cpSync(path.join(FAKE, d), path.join(DIR, d), { recursive: true }); }
   else { const f = path.join(DIR, "src", "ccc", "backend", "x86.clj"); if (fs.existsSync(f)) fs.appendFileSync(f, `\n;; fake turn ${fakeTurn}\n`); }
-  git("add", "-A"); git("commit", "-q", "-m", `fake agent turn ${fakeTurn}`);
+  git("add", "-A"); git("commit", "-q", "-m", `fake agent turn ${fakeTurn}`); chownArm("V", DIR);
   return { session: "fake-session", result: { result: "done (fake agent)", is_error: false, num_turns: 1, modelUsage: {} } };
 }
 let turns = 0;
@@ -98,7 +111,7 @@ async function turn(prompt, label, wave) {
   else {
     const ac = new AbortController(), limit = setTimeout(() => ac.abort(new Error(ms < TURN_MIN * 60_000 ? `run over ${MAX_MIN} min` : `turn over ${TURN_MIN} min`)), ms);
     try {
-      for await (const m of query({ prompt, options: { cwd: DIR, model: MODEL, abortController: ac, env: sdkEnv, settingSources: [], tools: TOOLS, allowedTools: TOOLS, permissionMode: "dontAsk", permissionPrompts: "none", maxTurns: MAX_TURNS, hooks: { PreToolUse: [{ hooks: [hook] }] }, ...(session ? { resume: session } : {}) } })) {
+      for await (const m of query({ prompt, options: { cwd: DIR, model: MODEL, effort: EFF, abortController: ac, env: sdkEnv, settingSources: [], tools: TOOLS, allowedTools: TOOLS, permissionMode: "dontAsk", permissionPrompts: "none", maxTurns: MAX_TURNS, hooks: { PreToolUse: [{ hooks: [hook] }] }, spawnClaudeCodeProcess: spawnFor(P, "V", { stderrLog: path.join(P.op, "V", "cli-stderr.log") }), ...(session ? { resume: session } : {}) } })) {
         if (typeof m.session_id === "string" && m.session_id && !session) session = m.session_id;
         if (m.type === "result") result = m;
       }
@@ -128,10 +141,10 @@ const scoreRun = (wave, round) => {
   return h;
 };
 
-note({ event: "start", dir: DIR, waves: RUN_WAVES, model: MODEL, tools: TOOLS, settingSources: [], maxTurns: MAX_TURNS, turnMin: TURN_MIN, maxRounds: ROUNDS, caps: { maxMin: MAX_MIN, maxCost: MAX_COST }, dry: DRY, resumeOf: session });
+note({ event: "start", dir: DIR, waves: RUN_WAVES, model: MODEL, effort: EFF, autocompact: "the CLI default (no override)", sandbox: "sandbox.mjs box V", envNames: boxEnvNames(P, "V"), tools: TOOLS, settingSources: [], maxTurns: MAX_TURNS, turnMin: TURN_MIN, maxRounds: ROUNDS, caps: { maxMin: MAX_MIN, maxCost: MAX_COST }, dry: DRY, resumeOf: session });
 for (const w of RUN_WAVES) {
   const why0 = capped(); if (why0) { note({ event: "stop", wave: w, why: why0 }); break; }
-  const tw = Date.now(), rel = release(P, w, DIR);
+  const tw = Date.now(), rel = release(P, w, DIR); chownArm("V", DIR);
   git("add", "--", ...new Set(rel.files.map((f) => f.split("/")[0]))); git("commit", "-q", "-m", `orderer: release ${w}`, "--", ...new Set(rel.files.map((f) => f.split("/")[0])));
   note({ event: "release", wave: w, files: rel.files.length, sha: rel.sha });
   let prompt = turns === 0 && w === "W1" ? firstPrompt(w) : wavePrompt(w), h = null, first = null, stop = null;
@@ -151,3 +164,5 @@ for (const w of RUN_WAVES) {
   if (stop && stop !== "the session never started" && capped()) { note({ event: "stop", wave: w, why: stop }); break; }
   if (stop === "the session never started" || (h?.error)) break;
 }
+try { egress?.kill(); } catch {}
+process.exit(0);

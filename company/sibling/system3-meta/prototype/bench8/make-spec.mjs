@@ -64,7 +64,7 @@ const spec = {
   ],
   triage: "architect",
   architect: "architect",
-  integration: { run: { argv: ["node", `${H}/visible-check.mjs`, "--wave=${task}", `--clj=${CLJ}`, `--baseline=${RUNS}/_operator/S/integration-baseline.json`], findings: { fromStdout: "^failed: (.+)$" }, timeoutMs: 1800000 }, at: "head", maxTries: 5 },
+  integration: { run: { argv: ["node", `${H}/visible-check.mjs`, "--wave=${task}", `--clj=${CLJ}`, `--baseline=${RUNS}/S/integration/baseline.json`], findings: { fromStdout: "^failed: (.+)$" }, timeoutMs: 1800000 }, at: "head", maxTries: 5 },
   workspace: { kind: "git-worktree", repo: `${RUNS}/S/work`, base: "main", root: `${RUNS}/S/wt`, branch: "wave-${task}", run: "b8s", commit: true },
   flow: {
     name: "wave",

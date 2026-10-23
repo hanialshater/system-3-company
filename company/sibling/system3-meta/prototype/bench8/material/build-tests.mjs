@@ -54,11 +54,24 @@ const LIMIT = opt.limit ? Number(opt.limit) : Infinity;
 const JOBS = Number(opt.jobs ?? 4);
 const CHUNK = 8, MAX_GCC_MS = 1500;
 const WORK = P.work;
-const STRICT = ["-std=c11", "-pedantic-errors", "-Werror=implicit-function-declaration", "-Werror=implicit-int", "-Werror=int-conversion", "-Werror=incompatible-pointer-types", "-fsyntax-only", "-nostdinc", "-I", P.inc];
+const ERRS = ["-Werror=implicit-function-declaration", "-Werror=implicit-int", "-Werror=int-conversion", "-Werror=incompatible-pointer-types", "-fsyntax-only", "-nostdinc", "-I", P.inc];
+const STRICT = ["-std=c11", "-pedantic-errors", ...ERRS];
+// a test that fails the strict C11 check may still be kept as gnu11 when gcc and clang accept it as GNU C and the
+// tagger finds a GNU extension or a VLA in scope (W5 gnu, W5 vla; tagger.mjs gccExtensions judges every pedantic warning)
+const STRICT_GNU = ["-std=gnu11", ...ERRS];
 const BUILDS = [
   ["gcc", ["-O0"]], ["gcc", ["-O2"]], ["clang", ["-O0"]], ["clang", ["-O2"]],
   ["gcc", ["-O0", "-fsanitize=address,undefined", "-fno-sanitize-recover=all", "-fno-omit-frame-pointer"]],
+  // the pilot's screen (2026-10-23): a change that only moved locals on the stack swung hidden tests, so every kept
+  // test must also give the same output with locals pre-filled two ways, under clang's MemorySanitizer, with the
+  // stack shifted (a large environment), in a quarter of the default stack (STACK_KB) and under valgrind's memcheck
+  // (no uninitialised value may decide a branch or reach a call) (SCREEN below; clang's MemorySanitizer runtime is not
+  // installed here, so valgrind stands in for it)
+  ["gcc", ["-O0", "-ftrivial-auto-var-init=pattern"]], ["gcc", ["-O0", "-ftrivial-auto-var-init=zero"]],
 ];
+const SANITIZERS = new Set([4]);
+const VALGRIND_MAX_GCC_MS = 400; // valgrind runs a program 20-50x slower: slower tests skip it (counted in the report)
+const STACK_KB = 2048, PAD = "x".repeat(6000);
 const RUN_ENV = { PATH: "/usr/bin:/bin", ASAN_OPTIONS: "detect_leaks=0:abort_on_error=0", UBSAN_OPTIONS: "halt_on_error=1" };
 
 // ---- 1. candidates ----
@@ -133,18 +146,25 @@ async function check(c) {
   r.wrapped = wrapped;
   c = { ...c, text };
   fs.writeFileSync(src, c.text);
-  for (const cc of ["gcc", "clang"]) {
-    // clang 18's -pedantic-errors also makes C23's deprecation of `int f()` an error; C11 allows it
-    const s = await run(cc, [...STRICT, ...(cc === "clang" ? ["-Wno-strict-prototypes", "-Wno-deprecated-non-prototype"] : []), src], { cwd: dir, timeout: 30000 });
-    if (s.code !== 0) return { ...r, drop: `strict-${cc}`, detail: s.stderr.split("\n").find((l) => /error/.test(l))?.replace(src, "t.c").slice(0, 200) };
+  let std = "c11", strictFail = null;
+  for (const [mode, flags] of [["c11", STRICT], ["gnu11", STRICT_GNU]]) {
+    strictFail = null;
+    for (const cc of ["gcc", "clang"]) {
+      // clang 18's -pedantic-errors also makes C23's deprecation of `int f()` an error; C11 allows it
+      const s = await run(cc, [...flags, ...(cc === "clang" ? ["-Wno-strict-prototypes", "-Wno-deprecated-non-prototype"] : []), src], { cwd: dir, timeout: 30000 });
+      if (s.code !== 0) { strictFail = { drop: `strict-${cc}`, detail: s.stderr.split("\n").find((l) => /error/.test(l))?.replace(src, "t.c").slice(0, 200) }; break; }
+    }
+    if (!strictFail) { std = mode; break; }
   }
+  if (strictFail) return { ...r, ...strictFail };
   const t = tag(src, c.text, P.inc);
-  Object.assign(r, { wave: t.wave, category: t.category, features: t.features });
+  Object.assign(r, { wave: t.wave, category: t.category, features: t.features, std });
   if (t.reasons.length) return { ...r, drop: "out-of-scope", detail: t.reasons.join("; ") };
+  if (std === "gnu11" && !t.features.includes("gnu") && !t.features.includes("vla")) return { ...r, drop: "strict-c11", detail: "GNU C without an extension in scope" };
   const outs = [];
   for (let i = 0; i < BUILDS.length; i++) {
     const [cc, flags] = BUILDS[i], exe = path.join(dir, `x${i}`);
-    const b = await run(cc, ["-std=c11", "-w", ...flags, "-nostdinc", "-I", P.inc, src, "-o", exe], { cwd: dir, timeout: 60000 });
+    const b = await run(cc, [`-std=${std}`, "-w", ...flags, "-nostdinc", "-I", P.inc, src, "-o", exe], { cwd: dir, timeout: 60000 });
     if (b.code !== 0) return { ...r, drop: `build-${cc}${flags.join("")}`, detail: b.stderr.split("\n").find((l) => /error/.test(l))?.slice(0, 200) };
     const x = await run(exe, [], { cwd: dir, timeout: 10000, env: RUN_ENV, maxOut: 1 << 16 });
     if (x.timedOut) return { ...r, drop: "timeout", detail: `${cc} ${flags.join(" ")}` };
@@ -152,9 +172,20 @@ async function check(c) {
     if (x.signal) return { ...r, drop: "signal", detail: `${cc} ${flags.join(" ")} ${x.signal}` };
     outs.push({ stdout: x.stdout, exit: status(x), ms: x.ms });
   }
+  // SCREEN: the gcc -O0 binary again with the stack shifted by a large environment, and with a quarter of the stack
+  const screens = [["stack-shift", path.join(dir, "x0"), [], { ...RUN_ENV, B8PAD: PAD }], ["small-stack", "/bin/sh", ["-c", `ulimit -s ${STACK_KB} && exec "$0"`, path.join(dir, "x0")], RUN_ENV]];
+  if (outs[0].ms <= VALGRIND_MAX_GCC_MS) screens.push(["valgrind", "valgrind", ["-q", "--error-exitcode=97", "--undef-value-errors=yes", path.join(dir, "x0")], RUN_ENV]);
+  else r.valgrind = "skipped";
+  for (const [label, cmd, args, env] of screens) {
+    const x = await run(cmd, args, { cwd: dir, timeout: label === "valgrind" ? 90000 : 10000, env, maxOut: 1 << 16 });
+    if (label === "valgrind" && x.timedOut) { r.valgrind = "timeout"; continue; }
+    outs.push({ stdout: x.stdout, exit: x.timedOut ? "timeout" : status(x), ms: x.ms, label });
+  }
   if (outs.some((o) => o.stdout !== outs[0].stdout || o.exit !== outs[0].exit)) {
     const who = outs.map((o, i) => (o.stdout !== outs[0].stdout || o.exit !== outs[0].exit ? i : -1)).filter((i) => i >= 0);
-    return { ...r, drop: who.includes(4) && who.length === 1 ? "sanitizer" : "disagree", detail: who.map((i) => BUILDS[i][0] + BUILDS[i][1][0]).join(",") };
+    const name = (i) => outs[i].label ?? BUILDS[i][0] + BUILDS[i][1].join("");
+    const kind = who.every((i) => SANITIZERS.has(i)) ? "sanitizer" : who.every((i) => i >= 5) ? "ub-screen" : "disagree";
+    return { ...r, drop: kind, detail: who.map(name).join(",") };
   }
   // c-testsuite tests that exit non-zero are kept with that status; others must exit 0
   const ms = [outs[0].ms];
@@ -162,7 +193,7 @@ async function check(c) {
   const gccMs = median(ms);
   if (gccMs > MAX_GCC_MS) return { ...r, drop: "slow", detail: `${gccMs.toFixed(0)} ms` };
   fs.rmSync(dir, { recursive: true, force: true });
-  return { ...r, ok: true, text: c.text, stdout: outs[0].stdout, exit: outs[0].exit, gccMs };
+  return { ...r, ok: true, text: c.text, stdout: outs[0].stdout, exit: outs[0].exit, gccMs, std };
 }
 
 // ---- main ----
@@ -218,7 +249,7 @@ for (const [w, rs] of [...byWave].sort((a, b) => a[0] - b[0])) {
     const timeoutMs = Math.min(30000, Math.max(3000, Math.round(30 * r.gccMs)));
     fs.writeFileSync(path.join(P.tests, `${r.tid}.c`), r.text);
     fs.writeFileSync(path.join(P.tests, `${r.tid}.expected`), r.stdout, "latin1");
-    manifest.tests.push({ id: r.tid, wave: w, category: r.category, features: r.features, source: r.source, origin: r.origin, wrapped: r.wrapped, exit: r.exit, stdoutSha: sha(r.stdout), gccMs: Math.round(r.gccMs * 10) / 10, timeoutMs, visible: r.visible });
+    manifest.tests.push({ id: r.tid, wave: w, category: r.category, features: r.features, std: r.std ?? "c11", source: r.source, origin: r.origin, wrapped: r.wrapped, exit: r.exit, stdoutSha: sha(r.stdout), gccMs: Math.round(r.gccMs * 10) / 10, timeoutMs, visible: r.visible });
     if (r.visible) {
       fs.writeFileSync(path.join(vdir, `${r.tid}.c`), r.text);
       fs.writeFileSync(path.join(vdir, `${r.tid}.expected`), r.stdout, "latin1");
@@ -250,6 +281,7 @@ for (const r of finals.filter((x) => x.source === "c-testsuite")) {
   if (e === got) ctsSame++; else ctsDiff.push(r.origin);
 }
 const detail = results.filter((r) => !r.ok).map((r) => ({ id: r.id, drop: r.drop, detail: r.detail, wave: r.wave }));
-writeJson(path.join(P.hidden, "build-report.json"), { seconds: Math.round((Date.now() - t0) / 1000), candidates: cands.length, chibiccGroups: chunkCands.length, chunkFallback, drops, counts, ctsExpectedSame: ctsSame, ctsExpectedDiff: ctsDiff, detail });
+const screen = { valgrindSkipped: finals.filter((r) => r.valgrind === "skipped").length, valgrindTimeout: finals.filter((r) => r.valgrind === "timeout").length, std: { c11: finals.filter((r) => (r.std ?? "c11") === "c11").length, gnu11: finals.filter((r) => r.std === "gnu11").length } };
+writeJson(path.join(P.hidden, "build-report.json"), { screen, seconds: Math.round((Date.now() - t0) / 1000), candidates: cands.length, chibiccGroups: chunkCands.length, chunkFallback, drops, counts, ctsExpectedSame: ctsSame, ctsExpectedDiff: ctsDiff, detail });
 console.log(JSON.stringify({ drops, counts: Object.fromEntries(Object.entries(counts).map(([k, v]) => [k, { visible: v.visible, hidden: v.hidden, bySource: v.bySource }])), ctsSame, ctsDiff: ctsDiff.length, chunkFallback: chunkFallback.length }, null, 1));
 console.log(`done in ${((Date.now() - t0) / 1000).toFixed(0)} s`);
