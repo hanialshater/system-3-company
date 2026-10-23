@@ -148,12 +148,15 @@ async function armV() {
   if (rows.some((x) => x.event === "end")) return { done: true, final: rows.find((x) => x.event === "end") };
   const P = makeRoot("V", startDir, START), clock = clockFor("V");
   let sid = rows.filter((x) => x.event === "turn" && x.sid).at(-1)?.sid ?? null;
+  // a restart during the first turn: the ledger has no session yet, the access log (every tool call) has it
+  const sidFromAccess = !sid ? S8.readJsonl(P.access).filter((x) => x.sid).at(-1)?.sid ?? null : null;
+  if (sidFromAccess) { sid = sidFromAccess; log(led, { event: "resume-session", sid, from: "access log" }); }
   let round = rows.filter((x) => x.event === "full").length, cost = rows.filter((x) => x.event === "turn").reduce((m, x) => { m.s[x.sid] = x.cost; return m; }, { s: {} });
   const spent = () => Object.values(cost.s).reduce((a, b) => a + b, 0);
   if (!rows.length) log(led, { event: "start", arm: "V", start: START, model: MODEL, caps: { cost: CAP_COST, min: CAP_MIN }, fake: FAKE });
   const feedback = (j) => `The orderer's full judge on your commit ${j.head.slice(0, 8)}:\n${j.lines.join("\n")}\n\nYou have ${ROUNDS - round} round(s) left. Improve it (or fix what the gate says), commit, and say when you are done.`;
   const lastEv = rows.filter((x) => ["turn", "full", "turn-cut"].includes(x.event)).at(-1);
-  let prompt = !lastEv ? `${TASK(P)}\n\nWhen you are done, commit and say so briefly: the orderer's full judge then runs on your last commit (the hidden tests, Lua's hidden test files, the runtime and memory checks, and the two timings), and sends you its lines. You have ${ROUNDS} such rounds, ${CAP_MIN} minutes and $${CAP_COST} in all.`
+  let prompt = !lastEv && sidFromAccess ? "You were interrupted (the machine restarted). Continue where you left off, and say when you are done." : !lastEv ? `${TASK(P)}\n\nWhen you are done, commit and say so briefly: the orderer's full judge then runs on your last commit (the hidden tests, Lua's hidden test files, the runtime and memory checks, and the two timings), and sends you its lines. You have ${ROUNDS} such rounds, ${CAP_MIN} minutes and $${CAP_COST} in all.`
     : lastEv.event === "full" ? feedback(lastEv)
     : lastEv.event === "turn" && lastEv.ok ? null
     : "You were interrupted (the machine restarted). Continue where you left off, and say when you are done.";
@@ -161,7 +164,10 @@ async function armV() {
   for (;;) {
     const cap = clock.min() >= CAP_MIN ? `${CAP_MIN} min` : spent() >= CAP_COST ? `$${CAP_COST}` : null;
     if (cap || round >= ROUNDS) { const head = commitLeftover(P, "V"); clock.stop(); const fin = { event: "end", why: cap ? `cap: ${cap}` : `${ROUNDS} rounds`, head, cost: Number(spent().toFixed(4)), min: Math.round(clock.min() * 100) / 100, last: last?.score ?? null }; log(led, fin); return fin; }
-    if (prompt) { const r = await turn(P, prompt, { resume: sid, ms: (CAP_MIN - clock.min()) * 60000, label: `V r${round}`, ledger: led }); sid = r.sid ?? sid; cost.s[sid] = Math.max(cost.s[sid] ?? 0, r.cost); if (!r.ok && clock.min() < CAP_MIN && spent() < CAP_COST) { log(led, { event: "turn-cut", why: r.why }); prompt = "You were interrupted. Continue where you left off, and say when you are done."; continue; } }
+    if (prompt) { const r = await turn(P, prompt, { resume: sid, ms: (CAP_MIN - clock.min()) * 60000, label: `V r${round}`, ledger: led }); sid = r.sid ?? sid; cost.s[sid] = Math.max(cost.s[sid] ?? 0, r.cost); if (!r.ok && clock.min() < CAP_MIN && spent() < CAP_COST) {
+        // a session the CLI cannot resume (gone after a restart): a new one, told its work is in the tree
+        if (/No conversation found|not found/i.test(String(r.why ?? ""))) { log(led, { event: "session-lost", sid }); sid = null; prompt = `The machine restarted and your earlier conversation could not be restored: this is a new session. Your work in ${P.V} is as you left it (read it and its git log first).\n\n${TASK(P)}\n\nWhen you are done, commit and say so briefly: the orderer's full judge then runs on your last commit and sends you its lines. You have ${ROUNDS - round} round(s) left.`; continue; }
+        log(led, { event: "turn-cut", why: r.why }); prompt = "You were interrupted. Continue where you left off, and say when you are done."; continue; } }
     const head = commitLeftover(P, "V");
     const j = await full(P.V, { out: path.join(B9, "_operator", "V", `full-${round + 1}.json`) });
     round++; last = { score: j.score, raw: j.raw, gateOk: j.gateOk, head }; const ev = { event: "full", round, head, ...last, lines: j.lines, error: j.error ?? null }; log(led, ev);
