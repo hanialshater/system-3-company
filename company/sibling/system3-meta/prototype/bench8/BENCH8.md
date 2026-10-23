@@ -1,7 +1,6 @@
 # Benchmark 8 results: a C-subset compiler in Clojure, one vanilla agent (V) against a specialized org (S1, S2)
 
-owner: vp-meta · date: 2026-10-23 · status: **DRAFT: S2's out-of-competition W7 and the code comparisons are still to
-come (marked TODO)** · protocol: [PROTOCOL.md](PROTOCOL.md) · predictions: [PREDICTIONS.md](PREDICTIONS.md), committed
+owner: vp-meta · date: 2026-10-23 · status: **final** (2026-10-23) · protocol: [PROTOCOL.md](PROTOCOL.md) · predictions: [PREDICTIONS.md](PREDICTIONS.md), committed
 before any run · numbers: `setup.mjs tally`, `setup.mjs audit`, the ledgers under `<b8-runs>/_operator/`
 
 ## What ran
@@ -10,7 +9,7 @@ before any run · numbers: `setup.mjs tally`, `setup.mjs audit`, the ledgers und
 |---|---|---|
 | **V** | one Agent SDK session for the whole run, resumed every turn; Bash, Read, Write, Edit, Glob, Grep; `settingSources: []`; no company tools | W1-W6 to its caps, then W7 (founder: "rerun S on W7"; V continued as the baseline) |
 | **S1** | System 3 Meta, `specs/ccompiler-specialized.json`: architect, four module owners in parallel, a blocking independent evaluator, routed failures, per-module playbooks | stopped by the founder during W3 |
-| **S2** | S1 with the fixes the founder asked for (K34-K37): an architect who scopes each wave, owners on demand who may borrow, an advisory time-boxed evaluator after the hidden accept | W1-W5 to its 300-minute cap; then W7 out of competition (TODO) |
+| **S2** | S1 with the fixes the founder asked for (K34-K37): an architect who scopes each wave, owners on demand who may borrow, an advisory time-boxed evaluator after the hidden accept | W1-W5 to its 300-minute cap; then W7 out of competition (its W6 skipped) |
 
 Both arms: the same model, tools, released files, hidden runner, feedback lines (categories only), three feedback
 rounds per wave, caps of 300 active minutes and $120 for W1-W6 (W7: 180 minutes, $80 of its own). Isolation:
@@ -28,7 +27,7 @@ rounds per wave, caps of 300 active minutes and $120 for W1-W6 (W7: 180 minutes,
 | W4 | 99.7 / 99.7 | 99.0 / 99.7 | |
 | W5 | 99.0 / **99.6** | **99.5** / **99.6** | |
 | W6 (runtime score, lower is better) | 0.77 / **0.641** | not reached (cap) | |
-| W7 (Lua 5.4.7, 22 hidden test files) | 100% / **100%**; runtime 0.725; compile 11.3 s, 277 MB | TODO | |
+| W7 (Lua 5.4.7, 22 hidden test files) | 100% / **100%**; runtime **0.725**; compile 11.3 s, 277 MB | 100% / **100%**; runtime 0.937 → 1.010; compile 17.0 → 15.0 s, 289 MB | |
 
 At the end of W5 both arms pass 1,126 of 1,131 hidden tests. They do not fail the same ones: each fails 5, and only 2
 are common (V: w3-0085, w5-0279, w5-0320, w5-0445, w5-0454; S2: w5-0320, w5-0411, w5-0445, w5-0481, w5-0698). At W5's
@@ -45,10 +44,37 @@ first hand-in S2 failed 6 and V 11 (4 in common): **S2's one clear win is W5's f
 | W5 | 25.82 | 38.91 | 1.5 | 75.6 | 206.3 |
 | **W1-W5** | **40.74** | **81.59** | **2.0** | **149** | **300** (cap) |
 | W6 | 31.83 | - | | 153.2 | |
-| W7 | 14.38 | TODO | | 72.5 | |
-| **Run** | **86.94** | TODO | | 374.7 | |
+| W7 | 14.38 | 38.82 | 2.7 | 72.5 | 123.8 |
+| **Run** | **86.94** | **120.41** (W6 not run) | | 374.7 | 424.9 |
 
 S1 spent $32.63 on W1-W3 (1.85×, 23.7× and 4.3× V per wave) before the founder stopped it.
+
+Both arms built Lua on the first hand-in and passed all 22 hidden test files. S2's three W7 rounds went to speed and
+made its Lua slower (runtime 0.937 → 0.961 → 1.010); V's stayed about level (0.726 → 0.725).
+
+### Compile time, measured on a quiet machine
+
+Each final compiler, one batch (one JVM), 5 runs each, interleaved (`bench9/timing.mjs`, B8's compile sandbox, each run
+from a fresh read-only copy):
+
+| | V | S2 | S2 / V | gcc -O0 | chibicc |
+|---|---|---|---|---|---|
+| Lua's 33 sources | **10.8 s** | 14.7 s | 1.37 | 3.1 s | 1.7 s |
+| the hidden W1-W5 corpus (1,126 files) | **14.0 s** | 20.4 s | 1.46 | | |
+| peak RSS | 280 MB | 290 MB | | 46 MB | |
+
+(gcc -O0 and chibicc: the W7 reference timings, one process per file.)
+
+### Two different compilers from one model
+
+| | V | S2 |
+|---|---|---|
+| Source | 6 files, 6,324 lines | 12 files, 8,000 lines |
+| Shape | compact: the parser also types; code generation straight from the AST | layered as the org chart: AST → semantic passes → IR → backend, and an optimizer module |
+| Its own C test programs | 46 | **507** (the owners' and the evaluator's) |
+
+The org's compiler has the org's structure (Conway's law), eleven times the tests, the same hidden score, and is about
+40% slower to compile.
 
 ### How the org worked (S2, W1-W5)
 
@@ -90,12 +116,18 @@ S1 spent $32.63 on W1-W3 (1.85×, 23.7× and 4.3× V per wave) before the founde
 | P8-4 S's final W5 ≥ V's | **held:** tied, 1,126 of 1,131 |
 | P8-5 S's W6 score better | **wrong:** S2 never reached W6 |
 | P8-6 S's total cost ≤ 2× V | **wrong, barely:** 2.00× over W1-W5 (81.59 against 40.74), and S2 did one wave fewer in its minutes |
-| P8-7 routing ≥ 80%, triage handled | TODO (tally) |
+| P8-7 routing ≥ 80%, triage handled | **not measured as a share.** Every revise line went to the architect first (B8's lines name categories; few matched a route), and the architect routed what it did not handle itself (W5: gnu to frontend and backend, vla to semantics). No triaged category was left unhandled |
 | P8-8 ownership holds, ≥ 1 change request | **held**, with the deadlock above: the guard and the commit held; the escalation path was missing |
 | P8-9 per-module knowledge | **held on one module, one data point** (semantics, above); the other modules' rules never met a later wave |
-| P8-10 clean run | TODO: the audit script reports "NOT clean (or unverified)"; every item checked so far is a false positive (common C lines such as a `strcmp` prototype matched as hidden text; V's own debug script `tools/cc.sh`, which runs its own compiler and gcc only to assemble and link) |
+| P8-10 clean run | **held, after review.** The audit script reports "NOT clean (or unverified)". Each item, checked: the 7 "hidden text" lines are common C (a `strcmp` or `memcmp` prototype, a `MAX` macro, a small struct initializer) that also occur in hidden tests; the "compiler" and "holes" items are V's own `tools/cc.sh`, which runs V's compiler and gcc only to assemble and link; the "upstream" item is a commit message ("torture/c-testsuite style"). No hidden path, no network attempt, no refused compile, no shim denial, every session hooked and its transcript found. Isolation was hooks, not the box, for both arms |
 | P8-11 caps bind, S more likely | **held:** S2 ended at its 300-minute cap in W5; V reached the cap at the end of W6 |
-| W7 predictions | TODO after S2's W7. V alone: P8-W7-1 (both < 90%) **wrong** for V (100%); P8-W7-4 **wrong** for V (runtime 0.725, faster than gcc -O0's Lua, so below the 1.0 floor); P8-W7-5 **wrong** for V (11.3 s, 277 MB: faster and smaller than predicted) |
+| P8-W7-1 both < 90% on Lua | **wrong:** both 100% |
+| P8-W7-2 a first build fails or passes < half | **wrong:** both built and passed 22 of 22 at the first hand-in |
+| P8-W7-3 specialization pays more on W7 | **wrong:** S − V is 0 on W7 as on W5 |
+| P8-W7-4 runtime between 1.0 and 6.17 | **wrong:** V's Lua is faster than gcc -O0's (0.725); S2's 1.010 |
+| P8-W7-5 compile ≥ 15 s and ≥ 300 MB | **wrong:** V 11.3 s, 277 MB; S2 15.0 s, 289 MB |
+| P8-W7-6 an arm ends W7 with a Lua failure | **wrong:** neither did |
+| P8-W7-7 S's W7 cost ≤ 2× V's | **wrong:** 2.7× ($38.82 against $14.38) |
 
 ## What this says
 
@@ -105,9 +137,10 @@ S1 spent $32.63 on W1-W3 (1.85×, 23.7× and 4.3× V per wave) before the founde
 2. **The org's structure was not its problem in the way we expected.** Ownership, routing, change requests and the
    playbook all worked as built. What cost it was cold starts, the architect's hop, and work that did not spread:
    most waves were one module's problem.
-3. **Same model, same answers.** V and S2 reached identical scores; their failures overlap partly (2 of 5). The org's
-   roles are different prompts on one model, not different minds, so it had no capability V lacked. Where it could
-   win, on breadth (W5's first hand-in), it did, a little.
+3. **Same model, same scores, different compilers.** V and S2 reached identical hidden scores, but by different routes:
+   their failures overlap only partly (2 of 5 at W5), and the org built a layered compiler shaped like its org chart,
+   with eleven times the tests, that compiles about 40% slower. The roles are different prompts on one model, so the
+   org had no capability V lacked; where it could win, on breadth (W5's first hand-in), it did, a little.
 4. **What B8 does not say.** Nothing about running work over weeks, institutional knowledge on recurring work,
    governance as a product, populations on open optimization, or working with people (RESEARCH-AGENDA.md Q1-Q6).
    Benchmark 9 (open optimization: compile time) and the later E2 (recurring work) test two of those.
@@ -124,10 +157,13 @@ One task, one model family, one run per arm. Hooks isolation instead of the box 
 on the same machine, V in parallel with S1 and S2 for part of the time (4 CPUs). Operator interventions: V 2 restarts
 (keepalive), S2 1 deadlock clearance (above) and 1 restart; all logged.
 
-## TODO before this is final
+## Follow-ups this run produced
 
-- S2's W7 (out of competition): first and final Lua results, cost, minutes.
-- The compile-time comparison: V's and S2's final compilers against gcc -O0 and chibicc on Lua and the hidden corpus,
-  serially, on a quiet machine.
-- The V-S2 code comparison: structure, size, and which hidden cases each fails (above, from W5), extended to W7.
-- The audit, item by item (P8-10), and the routing share (P8-7).
+- **Kernel:** a refused commit should raise its change request (or route an ask) itself (the W5 deadlock).
+- **Kernel, fixed:** a stage's `checked` list split multi-word classes ("W3 sizeof"), so no W3 rule was ever scored on
+  W4 or W5 (commit 036f65aa4). Re-scored by hand: P-2 (initializers) helped twice, P-4 and P-5 (sizeof) once; V, with
+  no playbook, kept one initializer failure to the end.
+- **Kernel, added for B9:** K38 (beliefs) and K39 (learning from measured effects, not only defects).
+- **Tally, fixed:** V's W7 cost (above, Corrections).
+- **Benchmark 9** (open optimization: compile time; V, a population, the org with K39) and **E2** (recurring work, where
+  the playbook should pay) test what B8 could not.

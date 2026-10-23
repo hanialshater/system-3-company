@@ -1,3 +1,16 @@
+## 2026-10-23 · chief-of-staff (for System 3 Meta, as vp-meta) · Benchmark 8 written up; K38 and K39 built; Benchmark 9 ready to run
+
+Founder: "Go with the C compiler in Clojure", "We need S vs vanilla", "do the comparison after W7 then keep going", "No native image, go after B8", "for learnings lets make them baysian", "Yes go with K39".
+
+**Done** (company/sibling/system3-meta/prototype; 335 tests green):
+- **Benchmark 8** (bench8/BENCH8.md, final): one vanilla agent V against the specialized org (S1 stopped at W3; S2 to its cap at W5, then W7 out of competition). Accuracy tied (1,126 of 1,131 hidden at W5; Lua 22 of 22 for both). V cost $86.94 for W1-W7; S2 $81.59 for W1-W5 (2.0× V) and $38.82 for W7 (2.7×). V's compiler compiles about 40% faster (Lua 10.8 s against 14.7 s). S2's one clear win: W5's first hand-in (6 failures against 11). One operator intervention (the W5 change-request deadlock).
+- **Kernel:** K38 (Bayesian beliefs per playbook rule), K39 (learning from measured effects: metric lines, effect rules), and a fix for multi-word classes in a stage's checked list (no W3 rule was ever scored before it).
+- **Benchmark 9** (bench9/): protocol, predictions v1 and v2 (committed before any arm), judge (fast and full, interleaved sandboxed timing), arms V, P (population) and S (Meta as arm S9 on B8's harness, with K39). Not yet run against the SDK.
+
+**Belief (medium confidence):** on exact-referee build tasks, one strong agent beats our org on cost and time at equal accuracy (B5, B6, B8). The org's mechanisms work; its open questions are learning on recurring work (E2) and diversity on open optimization (B9).
+
+**Next:** B9: setup --baseline, the full judge on the start, fake dry runs of V, P and S, then V → P → S → quiet final scoring (about 14 h, at most about $210). **Blocked:** nothing.
+
 ## 2026-10-22 · chief-of-staff (for System 3 Meta, as vp-meta) · M4-M7 integration: M4 and M6 reached, M5 reached in code, M7 built (full cycle deferred)
 
 Founder: "Ultracode I want you to work until M7 is done", then "Keep going until M7 is done", then "we are still developing, if you are done we can move to other tasks before big run". Budget approvals and top-ups went through the queue (M4 A-1..3, M6 A-1..10, ISS-11/12, M7 A-1..5). M4 and M6 acceptance was delegated ("Decide for me").
