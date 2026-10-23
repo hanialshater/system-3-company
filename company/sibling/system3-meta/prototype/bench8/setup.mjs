@@ -1027,6 +1027,9 @@ function tallyV(P, T) {
   let prevSid = null, prevCost = 0, prevCum = 0;
   const turnCost = new Map();
   for (const r of rows.filter((x) => x.event === "turn")) {
+    // a turn with no result reports cost 0: it adds nothing and is no new baseline (it made the next turn count the
+    // session's whole running total: V's W7 showed $86.94, V's whole run, instead of its $14.38)
+    if (!((r.cost ?? 0) > 0)) { turnCost.set(r, { cost: 0, cumulative: 0 }); continue; }
     const same = r.session && r.session === prevSid && (r.cost ?? 0) >= prevCost;
     turnCost.set(r, { cost: same ? (r.cost ?? 0) - prevCost : (r.cost ?? 0), cumulative: same ? (r.cumulative ?? 0) - prevCum : (r.cumulative ?? 0) });
     prevSid = r.session; prevCost = r.cost ?? 0; prevCum = r.cumulative ?? 0;

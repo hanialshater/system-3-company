@@ -45,8 +45,8 @@ first hand-in S2 failed 6 and V 11 (4 in common): **S2's one clear win is W5's f
 | W5 | 25.82 | 38.91 | 1.5 | 75.6 | 206.3 |
 | **W1-W5** | **40.74** | **81.59** | **2.0** | **149** | **300** (cap) |
 | W6 | 31.83 | - | | 153.2 | |
-| W7 | 86.94 | TODO | | 72.5 | |
-| **Run** | **159.51** | TODO | | 374.7 | |
+| W7 | 14.38 | TODO | | 72.5 | |
+| **Run** | **86.94** | TODO | | 374.7 | |
 
 S1 spent $32.63 on W1-W3 (1.85×, 23.7× and 4.3× V per wave) before the founder stopped it.
 
@@ -111,6 +111,12 @@ S1 spent $32.63 on W1-W3 (1.85×, 23.7× and 4.3× V per wave) before the founde
 4. **What B8 does not say.** Nothing about running work over weeks, institutional knowledge on recurring work,
    governance as a product, populations on open optimization, or working with people (RESEARCH-AGENDA.md Q1-Q6).
    Benchmark 9 (open optimization: compile time) and the later E2 (recurring work) test two of those.
+
+## Corrections
+
+- **V's cost** (2026-10-23, 17:15): the tally first showed V's W7 at $86.94 and V's run at $159.51. A V turn with no
+  result (W6 round 2) reports cost 0, and the tally took it as a new baseline, so V's next turn counted the session's
+  whole running total. Fixed in `tallyV`: V's W7 cost $14.38, its whole run $86.94.
 
 ## Caveats
 
