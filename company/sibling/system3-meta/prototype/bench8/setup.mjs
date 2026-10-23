@@ -871,7 +871,7 @@ async function sRun(P, opt) {
     chownArm(P.sarm, P.S);
     const [bin, args] = hooks ? [argv[0], argv.slice(1)] : boxArgv(P, P.sarm, P.S, argv, { killSignal: "SIGINT" });
     const child = spawn(bin, args, { env: armEnvFor(P, P.sarm), cwd: P.S, stdio: ["ignore", fd, fd] });
-    const x = { child, exited: false, t: Date.now() }; child.on("exit", () => { x.exited = true; });
+    const x = { child, exited: false, t: Date.now(), wave: null }; child.on("exit", () => { x.exited = true; });
     return x;
   };
   if (EXT) {
@@ -929,9 +929,14 @@ async function sRun(P, opt) {
         if (ended && !learnOpen(st)) break;
         if (stopped) { if (!L || L.exited) break; await new Promise((r) => setTimeout(r, poll)); continue; }
         if (!L || L.exited) {
-          if (L?.exited && !ended) { endIfStopped(P, w, { why: `the launcher stopped after ${Math.round(activeMin() - a0)} min` }); continue; }
+          // S2 review: a launcher that exited with the order open ends the wave (once a poll: a failed cancel is
+          // retried after a sleep, not in a hot loop), unless it is one from an earlier wave that exited before this
+          // order's work began (serve exits --idle-min after settled, before the observer placed this order): that one
+          // is started again for this wave
+          const idleExit = L?.exited && L.wave !== w && !(st?.log?.events ?? []).some((e) => e.type === "enter" && e.order === o?.id);
+          if (L?.exited && !ended && !idleExit) { endIfStopped(P, w, { why: `the launcher stopped after ${Math.round(activeMin() - a0)} min` }); await new Promise((r) => setTimeout(r, poll)); continue; }
           if (ended) append(P.operator, { act: "retro-launch", wave: w });
-          L = spawnLauncher(launcherArgv(P, opt, ended ? Math.min(30, maxMin - activeMin()) : maxMin - activeMin()));
+          L = spawnLauncher(launcherArgv(P, opt, ended ? Math.min(30, maxMin - activeMin()) : maxMin - activeMin())); L.wave = w;
           append(P.operator, { act: "launcher", wave: w, pid: L.child.pid, continuous: true });
         }
         endIfStopped(P, w);
@@ -955,12 +960,18 @@ async function sRun(P, opt) {
   // next order) is stopped, recorded
   if (L && !L.exited) {
     const st = readState(P.live), open = mapVals(st?.engine?.orders).flatMap((o) => Object.entries(o.advisory ?? {}).filter(([, a]) => a.state === "open").map(([stage, a]) => `${o.task} ${stage} #${a.n}`));
-    append(P.operator, { act: "launcher-stop", why: "the run ended", advisoryOpen: open });
+    append(P.operator, { act: "launcher-stop", why: "the run ended", advisoryOpen: open, backlog: backlogOf(st) });
     L.child.kill("SIGINT"); for (let i = 0; i < 120 && !L.exited; i++) await new Promise((r) => setTimeout(r, 500)); if (!L.exited) { try { L.child.kill("SIGKILL"); } catch {} }
   }
   clock.stop();
-  append(P.waves, { event: "run-end", why: runWhy, activeMin: Math.round(activeMin() * 100) / 100, cost: usedCost() });
+  // S2 review (K35): late findings no order took (the last wave's advisory review, held findings flushed at its end)
+  // are recorded with the run's end, never lost
+  append(P.waves, { event: "run-end", why: runWhy, activeMin: Math.round(activeMin() * 100) / 100, cost: usedCost(), ...(backlogOf(readState(P.live)).length ? { backlog: backlogOf(readState(P.live)) } : {}) });
   return out;
+}
+/** K35: the late findings in an S state's engine backlog (no next order took them): {from, stage, kind, by, findings}. */
+export function backlogOf(st) {
+  return (st?.engine?.backlog ?? []).map((b) => ({ from: b.from, stage: b.stage, kind: b.kind, by: b.by, findings: String(b.findings ?? "").slice(0, 2000) }));
 }
 function summarizeOrder(P, w) {
   const o = orderOf(readState(P.live), w);
@@ -1044,6 +1055,7 @@ function tallyS(P, T) {
       parts: oe.filter((e) => e.type === "parts").map((e) => e.owners), routed: oe.filter((e) => e.type === "part-route").map((e) => ({ by: e.by, to: e.to, categories: e.categories })),
       changeRequests: ev.filter((e) => e.type === "grant" && e.order === o.id).map((e) => ({ role: e.role, module: e.module, by: e.by })),
       guardDenials: fins.reduce((n, f) => n + (f.denials ?? 0), 0), hookDenials: L.slice(start?.launchesFrom ?? 0, end?.launchesTo ?? L.length).filter((x) => x.event === "hook-deny").length,
+      lateBacklog: backlogOf(st).filter((b) => b.from === o.id).map((b) => ({ stage: b.stage, kind: b.kind, lines: b.findings.split("\n").length })), // K35: its late findings no order took
       firstByModule: byModule(T, a[0]?.categories), rulesAtStart: rulesBy(Date.parse((start ?? wv.find((x) => x.event === "place" && x.wave === wave))?.t ?? "") || null), evidence: evidence.filter((e) => e.order === o.id).map((e) => ({ classes: e.classes, modules: e.modules ?? null, owners: e.owners ?? null })),
     };
   }).filter(Boolean);

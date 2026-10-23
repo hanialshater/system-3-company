@@ -85,7 +85,6 @@ import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
 import { Refused, flowMetrics, packHistory, isIndependent, isChairFlow } from "./lib.mjs";
-const TIMEBOX_GRACE_MIN = 2; // K34: a launch that ends this close to a run's box ended it at the box (the launch started before the run entered)
 import * as GEN from "./generator.mjs";
 import * as WS from "./workspace.mjs";
 import { proposePolicy, activatePolicy, managerReport, recordCycle, KNOBS } from "./policy.mjs";
@@ -145,6 +144,9 @@ function checkOutsideLock() {
 
 /** K5: why message `m`'s order may not be worked yet (its workspace is held or cannot be made), or null. */
 const wsBlocker = (co, m) => (m && WS.specOf(co) ? WS.blocker(co, co.engine.orders.get(m.ref)) : null);
+// S2 review (F1): an item of a time-boxed stage is never a session's next item: it is a launch of its own (supervisor.mjs
+// plan), whose session cap is its box
+const boxedMsg = (co, m) => { const o = m && co.engine.orders.get(m.ref); return !!(o && co.engine.flows.get(o.flow)?.stages.find((x) => x.stage === m.body?.stage)?.timebox); };
 function pack(co, run, ctx, session, item) {
   const o = co.engine.orders.get(ctx.order);
   // Live run 2 findings: the workdir did not exist; the commands omitted the state prefix; cap and times were unclear.
@@ -291,7 +293,7 @@ function main() {
       Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 2000);
       // the pack is made under the lock and saved (K5 review: a worktree made by it, and its event, were lost)
       const w = withLock(() => {
-        const co = load(); const x = co.rooms.resume(r.waiting, { leaseMin: Number(opt.lease ?? 30), filter: (m) => !wsBlocker(co, m) && !co.rooms.reservedElsewhere(m.id, r.waiting) });
+        const co = load(); const x = co.rooms.resume(r.waiting, { leaseMin: Number(opt.lease ?? 30), filter: (m) => !wsBlocker(co, m) && !boxedMsg(co, m) && !co.rooms.reservedElsewhere(m.id, r.waiting) });
         if (x.waiting) return { x };
         const p = x.next ? pack(co, x.next.run, x.next.ctx, x.next.session, x.next.item) : null;
         save(co); return { x, p };
@@ -404,7 +406,7 @@ function dispatch(co, cmd, sub, arg) {
   }
   if (cmd === "room" && sub === "next") {
     need("run", "evidence");
-    const r = rooms.next(opt.run, { verdict: opt.verdict ?? "pass", evidence: opt.evidence, findings: opt.findings ?? null, learned: opt.learned ?? null, mistake: opt.mistake ?? null, post: prePost, to: opt.to ?? null }, { cap: Number(opt.cap ?? 3), leaseMin: Number(opt.lease ?? 30), waitMin: Number(opt.wait ?? 0) / 60, filter: (m) => !wsBlocker(co, m) && !rooms.reservedElsewhere(m.id, rooms.runs.get(opt.run)?.session) });
+    const r = rooms.next(opt.run, { verdict: opt.verdict ?? "pass", evidence: opt.evidence, findings: opt.findings ?? null, learned: opt.learned ?? null, mistake: opt.mistake ?? null, post: prePost, to: opt.to ?? null }, { cap: Number(opt.cap ?? 3), leaseMin: Number(opt.lease ?? 30), waitMin: Number(opt.wait ?? 0) / 60, filter: (m) => !wsBlocker(co, m) && !boxedMsg(co, m) && !rooms.reservedElsewhere(m.id, rooms.runs.get(opt.run)?.session) });
     const left = r.left ? { order: r.left.id, next_stage: r.left.stage, loops: r.left.loops } : { stale: true };
     if (r.waiting) return { left, waiting: r.waiting.id };
     if (!r.next) return { left, session_closed: r.closed?.id ?? true, reason: r.closed ? (r.closed.items >= Number(opt.cap ?? 3) ? "cap reached" : "queue empty") : "closed", note: "your session is over: stop now" };
@@ -571,10 +573,12 @@ function dispatch(co, cmd, sub, arg) {
     const ok = opt.ok !== "false", tokens = Number(opt.tokens);
     const ss = [...rooms.sessions.values()].filter((s) => s.launch === opt.launch);
     const abandoned = [];
-    const timeboxed = [];
+    const timeboxed = [], capped = opt.capped === "box" || /^session over [\d.]+ min$/.test(String(opt.reason ?? ""));
     for (const s of ss) {
       // K34: a run at its time box (the launcher ended the session there) hands in what it has, signed by code
-      if (!ok) for (const x of rooms.runs.values()) if (x.session === s.id && x.state === "running") { if (x.boxUntil != null && clock.now() >= x.boxUntil - TIMEBOX_GRACE_MIN) { rooms.timeboxRun(x.run, { why: `the launch ended at the time box (${opt.reason ?? "its session limit"})` }); timeboxed.push(x.run); continue; } rooms.abandon(x.run, { by: "launcher", reason: opt.reason ?? "agent process failed" }); abandoned.push(x.run); }
+      // S2 review (F1): only when the box is really over (now at or past it), or the launcher's own cap ended the session
+      // (its reason "session over <n> min", or --capped=box): a crash before the box is abandoned and re-queued as before
+      if (!ok) for (const x of rooms.runs.values()) if (x.session === s.id && x.state === "running") { if (x.boxUntil != null && (clock.now() >= x.boxUntil || capped)) { rooms.timeboxRun(x.run, { why: `the launch ended at the time box (${opt.reason ?? "its session limit"})` }); timeboxed.push(x.run); continue; } rooms.abandon(x.run, { by: "launcher", reason: opt.reason ?? "agent process failed" }); abandoned.push(x.run); }
       if (!ok || s.waitUntil != null) { s.waitUntil = null; rooms.closeSession(s.id, ok ? "process ended" : "process failed"); }
     }
     if (ss.length) rooms.recordSessionUsage(ss[0].id, tokens, "launcher");

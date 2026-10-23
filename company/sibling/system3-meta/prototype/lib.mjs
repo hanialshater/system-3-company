@@ -411,7 +411,8 @@ export const sampleBounds = (s) => ({ min: s.sample.min ?? s.sample.rate, max: s
 // carry `timebox: {min, findings}`. The session ends at the box (the launcher caps its session at it; a lease never
 // outlives it), and code signs the stage `timeboxed` with what the agent wrote so far: the defect lines ("<category>:
 // what is wrong -> what is required") of its `findings` file (a workdir-relative path, ${task} etc. filled). A
-// blocking stage with such lines is a revise; with none it moves on, recorded as timeboxed (never a silent pass).
+// blocking stage with such lines is a revise; with none it parks (S2 review: a blocking review never passes by time;
+// its ask decides: resume to run it again, or cancel). An advisory stage records what it got either way.
 // K35: `advisory: true` on an independent review stage: the order does not wait for it. When the stage before it
 // passes, the order moves on to the stage after it, and the advisory stage is scheduled beside it (its own work item);
 // its findings, when they come, are routed (K30) as work on the same order, or on the next order of its flow when that
@@ -427,7 +428,7 @@ export function advisoryProblems(s, i = 1) {
       if (!(typeof t.min === "number" && t.min >= 1 && t.min <= 600)) p.push("timebox.min is 1-600 minutes (the session ends there and code signs what it has)");
       if (t.findings != null && !(typeof t.findings === "string" && t.findings.trim() && !t.findings.startsWith("/") && !t.findings.split("/").includes(".."))) p.push("timebox.findings is a workdir-relative file (the stage's report, read at the box)");
     }
-    if (s.run != null || ["code", "founder"].includes(s.signer)) p.push("timebox is for a stage an agent works (code runs a code stage itself; the founder decides an approval)");
+    if (s.run != null || ["code", "founder", "orderer"].includes(s.signer)) p.push("timebox is for a review an agent works (code runs a code stage itself; the founder or the orderer decides an approval)");
   }
   if (s?.advisory != null) {
     if (typeof s.advisory !== "boolean") p.push("advisory is true or false");
@@ -443,8 +444,22 @@ export function advisoryProblems(s, i = 1) {
  *  wrong and what is required (`->` or `→`), at most 2000 characters; null when there are none. */
 export function timeboxLines(text, classify = null) {
   const re = new RegExp(classify ?? DEFAULT_CLASSIFY);
-  const out = String(text ?? "").split("\n").map((l) => l.trim().replace(/^[-*•]\s*/, "")).filter((l) => l && re.test(l) && /->|→/.test(l));
+  // S2 review (F1): a list's numbering and bullets, markdown emphasis and `=>` are read as the plain form; a line with a
+  // category and no arrow counts when it says what is required (must, should, expected, …)
+  const norm = (l) => {
+    let x = l.trim().replace(/^(?:[-*•+]|\d{1,3}[.)])\s+/, "").replace(/\*\*|__/g, "").replace(/\s=>\s/g, " -> ").trim();
+    if (!re.test(x)) { const m = /^([A-Za-z][\w ./-]{0,40}?)\s+-\s+(.+)$/.exec(x); if (m && re.test(`${m[1]}: ${m[2]}`)) x = `${m[1]}: ${m[2]}`; } // "codegen - …"
+    return x;
+  };
+  const out = String(text ?? "").split("\n").map(norm).filter((l) => l && re.test(l) && (/->|→/.test(l) || /\b(must|should|expected|required?|needs? to)\b/i.test(l)));
   return out.length ? [...new Set(out)].join("\n").slice(0, 2000) : null;
+}
+/** S2 review (F1): a time-boxed stage's report as code reads it at the box: its defect lines (timeboxLines), and the
+ *  report itself when it says anything but no line parses (recorded, never dropped). */
+export function timeboxRead(text, classify = null) {
+  const findings = timeboxLines(text, classify);
+  const body = String(text ?? "").split("\n").map((l) => l.trim()).filter((l) => l && !/^#/.test(l)).join("\n");
+  return { findings, report: !findings && body ? body.slice(0, 2000) : null };
 }
 
 /** Invariants every flow definition must meet, whoever writes it. */
@@ -898,7 +913,9 @@ export class Engine {
     // K34: code signs a time-boxed stage at its box (Rooms.timeboxRun): a revise with the agent's findings so far, or
     // `timeboxed` (it moves on, recorded as such) when it wrote none
     const box = timeboxed && by === "code";
-    hard(!timeboxed || (box && s?.timebox && ["revise", "timeboxed"].includes(verdict)), `${stage} on ${id}: only code signs a time-boxed stage at its box (revise or timeboxed)`);
+    // S2 review (F1): a blocking stage never passes by time: at its box code revises with the report's lines (with none,
+    // Rooms.timeboxRun parks the order instead)
+    hard(!timeboxed || (box && s?.timebox && verdict === "revise"), `${stage} on ${id}: only code signs a time-boxed stage at its box, and only with a revise (a blocking review never passes by time)`);
     hard(verdict !== "timeboxed" || box, `${stage} on ${id}: verdict timeboxed is code's, at the stage's time box`);
     // K11 (plan 2026-10-21 §3): a revise may name the earlier stage it belongs to (ship's "claims not verified" goes back
     // to check, not to a rebuild); never the stage itself or a later one, and only on a revise. K35: never an advisory
@@ -929,7 +946,7 @@ export class Engine {
     // M7 (K21): the evidence a stage was signed with travels in its history (events-export.mjs names a ritual's record)
     o.history.push({ stage, by, verdict, t: this.clock.now(), ...(evidence && s.signer !== "code" ? { evidence: String(evidence).slice(0, 300) } : {}), ...(verdict === "revise" && findings ? { findings: String(findings).slice(0, 2000) } : {}), ...(back && back !== dflt ? { to: back } : {}), ...(Array.isArray(checked) ? { checked: [...new Set(checked.map(classTag))].slice(0, 200) } : {}), ...(box ? { timeboxed: true } : {}) }); // every revise keeps its findings (org evaluation reads them)
     this.log.add({ type: "advance", order: id, stage, by, verdict });
-    if (verdict === "pass" || verdict === "timeboxed") { o.stage = this.nextStage(o); this.passAdvisory(o); }
+    if (verdict === "pass") { o.stage = this.nextStage(o); this.passAdvisory(o); }
     else {
       // K35: late findings held for this order (an advisory review's, while a code check held it) join this revise's
       if (o.pendingLate?.length) { findings = [findings, ...o.pendingLate.map((r) => r.findings)].filter(Boolean).join("\n").slice(0, 4000); this.log.add({ type: "late-merged", order: id, n: o.pendingLate.length, stage }); o.pendingLate = []; }
@@ -981,7 +998,7 @@ export class Engine {
   advisoryOpen() { return [...this.orders.values()].some((o) => Object.values(o.advisory ?? {}).some((a) => this.advisoryLive(o, a))); }
   /** An advisory stage's hand-in (Rooms.leave, or code at its time box): recorded in the order's history, and its
    *  findings routed as late work (lateFindings). The order is wherever it is now; nothing about it is signed. */
-  advisoryIn(o, { stage, n, by, verdict = "pass", evidence = null, findings = null, consult = false, timeboxed = false }) {
+  advisoryIn(o, { stage, n, by, verdict = "pass", evidence = null, findings = null, report = null, consult = false, timeboxed = false }) {
     const s = this.flows.get(o.flow)?.stages.find((x) => x.stage === stage), a = o.advisory?.[stage];
     hard(s?.advisory, `${stage} is not an advisory stage of ${o.id}`);
     hard(a && a.n === n && a.state === "open", `${o.id}'s advisory ${stage} #${n} is not open`);
@@ -998,7 +1015,7 @@ export class Engine {
     const result = box ? "timeboxed" : verdict, late = result !== "pass" && findings ? String(findings).slice(0, 2000) : null;
     const afterEnd = ["done", "cancelled"].includes(o.stage);
     a.state = "in"; a.result = result; a.in = this.clock.now();
-    o.history.push({ stage, by, verdict: "advisory", result, t: this.clock.now(), ...(evidence ? { evidence: String(evidence).slice(0, 300) } : {}), ...(late ? { findings: late } : {}), ...(afterEnd ? { afterEnd: true } : {}), at: o.stage });
+    o.history.push({ stage, by, verdict: "advisory", result, t: this.clock.now(), ...(evidence ? { evidence: String(evidence).slice(0, 300) } : {}), ...(late ? { findings: late } : {}), ...(!late && report ? { report: String(report).slice(0, 2000) } : {}), ...(afterEnd ? { afterEnd: true } : {}), at: o.stage });
     this.log.add({ type: "advisory-in", order: o.id, stage, n, by, result, at: o.stage, findings: late ? late.split("\n").length : 0 });
     if (late) this.lateFindings(o, { stage, by, kind: box ? "timeboxed" : "advisory", findings: late, afterEnd });
     return o;
@@ -1008,7 +1025,8 @@ export class Engine {
    *  once when that one is at work, else the flow's backlog, which its delegate takes). `rec.owner` sends them to that
    *  role whatever the routes say. */
   lateFindings(o, rec) {
-    const r = { from: o.id, stage: rec.stage, by: rec.by, kind: rec.kind ?? "late", findings: String(rec.findings ?? "").slice(0, 2000), t: this.clock.now(), ...(rec.owner ? { owner: rec.owner } : {}), ...(rec.afterEnd ? { afterEnd: true } : {}) };
+    // S2 review (F1): findings held on one order and flushed at its end keep where they came from (rec.from)
+    const r = { from: rec.from ?? o.id, stage: rec.stage, by: rec.by, kind: rec.kind ?? "late", findings: String(rec.findings ?? "").slice(0, 2000), t: this.clock.now(), ...(rec.owner ? { owner: rec.owner } : {}), ...(rec.afterEnd ? { afterEnd: true } : {}) };
     if (!r.findings) return null;
     if (!["done", "cancelled"].includes(o.stage)) return this.lateOn(o, r);
     const fl = String(o.flow).split("@")[0];
@@ -1149,6 +1167,8 @@ export class Engine {
     // more loop granted, so it never parks at once on the cap (as a founder's reopen), and the park's reason as findings
     const st = this.flows.get(o.flow)?.stages.map((x) => x.stage) ?? [];
     if (to != null) hard(st.includes(o.parked.stage) && st.includes(to) && st.indexOf(to) <= st.indexOf(o.parked.stage), `${id} parked at ${o.parked.stage}: --to is that stage or an earlier one (${st.slice(0, Math.max(0, st.indexOf(o.parked.stage) + 1)).join(", ") || "none"})`);
+    // S2 review (F1): never an advisory stage (it holds no order: resumed there, it would be worked as a blocking one)
+    if (to != null) hard(!this.flows.get(o.flow).stages.find((x) => x.stage === to)?.advisory, `${id}: --to=${to} is an advisory stage (it holds no order): resume to the stage before it, and the review runs beside the order again`);
     // K9: a loop-cap park resumes with one more loop unless the decider grants more (or 0: the very next revise parks)
     // K24/K25 review: the grant is for the family that hit its cap (o.parked.family), else the parked stage's; a --to
     // loop's own +1 is for the family it lands in. One o.extraLoops for every family raised the build's cap when a
@@ -1520,13 +1540,16 @@ export class Rooms {
 
   /** K34: code signs run `run`'s time-boxed stage: the session's time is up (its box passed, or the launcher ended it at
    *  the box). The stage hands in what the agent wrote so far (timeboxFindings: the report's defect lines): a blocking
-   *  stage revises with them, or moves on as `timeboxed` with none; an advisory stage's review is recorded the same way.
+   *  stage revises with them, or parks with none; an advisory stage's review is recorded with them, or its report.
    *  A run the order has moved past signs nothing (stale). */
   timeboxRun(run, { why = "its time box passed" } = {}) {
     const x = this.runs.get(run);
     hard(x && x.state === "running", `run ${run} not running`);
     const o = this.engine.orders.get(x.order), sd = this.engine.flows.get(o.flow)?.stages.find((s) => s.stage === x.stage);
-    let findings = null; try { findings = sd?.timebox ? this.timeboxFindings?.(o, sd) ?? null : null; } catch {}
+    // the hook gives the report's defect lines (a string), or {findings, report} (S2 review F1: a report with no line
+    // that parses is kept as `report`, never dropped)
+    let got = null; try { got = sd?.timebox ? this.timeboxFindings?.(o, sd) ?? null : null; } catch {}
+    const findings = typeof got === "string" ? got || null : got?.findings ?? null, report = got && typeof got === "object" ? got.report ?? null : null;
     x.state = "timeboxed";
     const m = this.mailbox.msgs.get(x.msg);
     if (m?.state === "open") this.mailbox.done(x.msg, { run, report: { stage: x.stage, verdict: "timeboxed" } });
@@ -1534,13 +1557,19 @@ export class Rooms {
     let signed = "stale";
     if (x.advisory) {
       const a = o.advisory?.[x.stage];
-      if (a && a.n === x.advisory && a.state === "open") { this.engine.advisoryIn(o, { stage: x.stage, n: x.advisory, by: "code", findings, timeboxed: true }); signed = findings ? "advisory, with findings" : "advisory, none written"; }
+      if (a && a.n === x.advisory && a.state === "open") { this.engine.advisoryIn(o, { stage: x.stage, n: x.advisory, by: "code", findings, report, timeboxed: true }); signed = findings ? "advisory, with findings" : report ? "advisory, report kept (no defect line parsed)" : "advisory, none written"; }
     } else if (o.stage === x.stage && o.loops === x.loops && (o.parks ?? 0) === (x.parks ?? 0)) {
-      this.engine.advance(o.id, { stage: x.stage, by: "code", verdict: findings ? "revise" : "timeboxed", findings: findings ? `timeboxed after ${min} min: ${x.role}'s findings so far:\n${findings}` : null, timeboxed: true });
-      signed = findings ? "revise" : "timeboxed";
+      // S2 review (F1): a blocking stage never passes by time: with the report's defect lines a revise; without them the
+      // order parks (its ask: a decider resumes it to run the review again, or cancels it), the report kept with it
+      if (findings) { this.engine.advance(o.id, { stage: x.stage, by: "code", verdict: "revise", findings: `timeboxed after ${min} min: ${x.role}'s findings so far:\n${findings}`, timeboxed: true }); signed = "revise"; }
+      else {
+        o.history.push({ stage: x.stage, by: "code", verdict: "timeboxed", t: this.clock.now(), timeboxed: true, ...(report ? { report } : {}) });
+        this.engine.park(o.id, { by: "code", reason: `${x.stage} reached its ${sd.timebox.min}-min time box with no defect lines in its report${report ? ` (it wrote: ${report.split("\n")[0].slice(0, 200)})` : " (none written)"}: a blocking review does not pass by time. Resume it to run the review again, or cancel` });
+        signed = "parked";
+      }
     }
-    this.log.add({ type: "timeboxed", run, role: x.role, order: o.id, stage: x.stage, minutes: min, why, signed, findings: findings ? findings.split("\n").length : 0, ...(x.advisory ? { advisory: x.advisory } : {}) });
-    return { run, order: o.id, stage: x.stage, signed, findings };
+    this.log.add({ type: "timeboxed", run, role: x.role, order: o.id, stage: x.stage, minutes: min, why, signed, findings: findings ? findings.split("\n").length : 0, ...(report ? { report: true } : {}), ...(x.advisory ? { advisory: x.advisory } : {}) });
+    return { run, order: o.id, stage: x.stage, signed, findings, ...(report ? { report } : {}) };
   }
   /** K34: every running run whose time box has passed, signed by code (timeboxRun). */
   sweepTimeboxes() {

@@ -713,13 +713,19 @@ export function plan(co, { batchLater: batchDefault = 3, cap: capDefault = 4, sk
     if (!(next.length || later.length >= batchLater || dueLater.length)) return;
     // benchmark 1: a cap of 4 left 1 of 5 pages to a whole new reader session (63k for one page). When the remainder
     // is small, the session takes it all: half a cap more costs less than a fresh session's start-up.
-    const chunk = (all) => (bt ? all.slice(0, cap) : all.length - cap <= Math.ceil(cap / 2) ? all : all.slice(0, cap));
+    // S2 review (F1): an item of a time-boxed stage is a launch of its own, capped at one item: its box counts from its
+    // room enter, the session's cap from the launch's start, so a second item in the same launch lost its box (the cap
+    // ended it first, unsigned)
+    const boxed = (m) => { const o = co.engine.orders.get(m.ref); return !!(o && co.engine.flows.get(o.flow)?.stages.find((x) => x.stage === m.body?.stage)?.timebox); };
+    const chunk0 = (all) => (bt ? all.slice(0, cap) : all.length - cap <= Math.ceil(cap / 2) ? all : all.slice(0, cap));
+    const chunk = (all) => (all.length && boxed(all[0]) ? [all[0]] : chunk0(all.filter((m) => !boxed(m))));
+    const capOf = (take) => (take.length && boxed(take[0]) ? 1 : Math.max(take.length, cap));
     const why = next.length ? `next: ${next.length} waiting, no session running` : `later: a batch of ${later.length}`;
     if (!many(role)) {
       const take = chunk([...next, ...later]);
       // the cap leaves room for items that arrive while the session waits (room next --wait)
       if (laneFull(role, msgs[0]) || levelFull(role)) return;
-      out.push({ role, why, msgs: take.map((m) => m.id), cap: Math.max(take.length, cap) });
+      out.push({ role, why, msgs: take.map((m) => m.id), cap: capOf(take) });
       bump(role, msgs[0]);
       return;
     }
@@ -729,8 +735,8 @@ export function plan(co, { batchLater: batchDefault = 3, cap: capDefault = 4, sk
     for (let free = r.sessions - (liveOf.get(role) ?? 0); free > 0 && rest.length; free--) {
       if (laneFull(role, rest[0]) || levelFull(role)) return;
       // one item a session while other sessions are free (three lessons, three builders), a batch otherwise
-      const take = rest.length <= free ? [rest[0]] : chunk(rest.slice(0, Math.max(1, Math.ceil(rest.length / free))));
-      out.push({ role, why: `${why} (session ${(liveOf.get(role) ?? 0) + 1} of ${r.sessions})`, msgs: take.map((m) => m.id), cap: Math.max(take.length, cap) });
+      const take = rest.length <= free || boxed(rest[0]) ? [rest[0]] : chunk(rest.slice(0, Math.max(1, Math.ceil(rest.length / free))));
+      out.push({ role, why: `${why} (session ${(liveOf.get(role) ?? 0) + 1} of ${r.sessions})`, msgs: take.map((m) => m.id), cap: capOf(take) });
       bump(role, rest[0]); liveOf.set(role, (liveOf.get(role) ?? 0) + 1);
       rest = rest.slice(take.length);
     }

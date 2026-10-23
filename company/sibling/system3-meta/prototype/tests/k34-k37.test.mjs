@@ -218,7 +218,7 @@ test("K35 + K34: accept passes and the order ships while the advisory review run
   assert.deepEqual(r.abandoned, [pf.run], "a run with no box is abandoned as before");
 });
 
-test("K34: a blocking time-boxed stage revises with the report's lines, or moves on as timeboxed with none (never a silent pass)", () => {
+test("K34: a blocking time-boxed stage revises with the report's lines, or parks with none (never a pass by time)", () => {
   const co = load(), O2 = [...co.engine.orders.values()].find((o) => o.task === "W2");
   // a fresh judge run on the advisory stage, then a launch finished within the grace of its box
   co.engine.startAdvisory(O2, co.engine.flows.get(O2.flow).stages.find((x) => x.stage === "eval")); save(co);
@@ -231,7 +231,7 @@ test("K34: a blocking time-boxed stage revises with the report's lines, or moves
   // the engine: a blocking stage at its box
   const c2 = load(), e = c2.engine, o = e.orders.get(O2.id);
   assert.throws(() => e.advance(o.id, { stage: o.stage, by: "fe", verdict: "timeboxed" }), /verdict timeboxed is code's/);
-  // a blocking (not advisory) time-boxed review, in process: with the report's lines a revise, without them `timeboxed`
+  // a blocking (not advisory) time-boxed review, in process: with the report's lines a revise, without them parked
   const spec = { ...JSON.parse(JSON.stringify(SPEC)), workspace: undefined, modules: undefined, routes: undefined, triage: undefined, borrow: undefined, learn: undefined, vars: undefined };
   spec.roles = spec.roles.map(({ activate, ...r }) => r);
   spec.flow.stages = spec.flow.stages.map(({ advisory, ...x }) => x);
@@ -251,7 +251,7 @@ test("K34: a blocking time-boxed stage revises with the report's lines, or moves
     assert.equal(k.rooms.recover().length, 0, "a run at its box is code's to sign, not a lost lease");
     const h = ord.history.at(-1);
     if (r) assert.deepEqual([ord.stage, h.verdict, h.timeboxed, /timeboxed after .* judge's findings so far:\ncodegen: lost value/.test(h.findings)], ["build", "revise", true, true]);
-    else assert.deepEqual([ord.stage, h.verdict, h.timeboxed], ["ship", "timeboxed", true]); // ship is code's next
+    else assert.deepEqual([ord.stage, ord.parked.stage, h.verdict, h.timeboxed], ["parked", "eval", "timeboxed", true]); // S2 review (F1): never a pass by time
   }
 });
 

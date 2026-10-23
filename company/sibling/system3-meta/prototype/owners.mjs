@@ -29,7 +29,7 @@
 //   without waiting. The guard lets the write through and reports it (a `borrow` record); K7's commit of that owner's
 //   part includes the borrowed files it wrote, records them, and the module's owner gets a non-blocking review-borrow
 //   ask with the diff (a no comes back to it as work on that order).
-import { classNorm, DEFAULT_CLASSIFY, Refused } from "./lib.mjs";
+import { classNorm, DEFAULT_CLASSIFY, Refused, signerRole, isIndependent } from "./lib.mjs";
 import { create as createItem } from "./tracker.mjs";
 
 export const OWN_KEYS = ["modules", "interfaces", "routes", "triage", "architect", "integration", "borrow"];
@@ -142,7 +142,7 @@ export function guardRoot(co, o, role, dir) {
   const own = ownershipOf(co.spec);
   if (!own || !dir) return null;
   const owned = [...own.interfaces, ...own.modules].map((e) => ({ kind: e.kind, name: e.name, owner: e.owner, globs: e.paths }));
-  return { dir, kind: "owned", role, owned, granted: grantsFor(co, o, role), order: o?.id ?? null, file: "the spec's modules and interfaces (K29)", ...(own.borrow?.length ? { borrow: own.borrow } : {}) };
+  return { dir, kind: "owned", role, owned, granted: grantsFor(co, o, role), order: o?.id ?? null, file: "the spec's modules and interfaces (K29)", ...(own.borrow?.length && mayBorrow(co, role) ? { borrow: own.borrow } : {}) };
 }
 /** The paths a role owns (its modules', its interfaces'), plus its grants on order `o`: git pathspecs for its commit. */
 export function ownedPaths(co, o, role) {
@@ -277,6 +277,19 @@ export function scopeOwners(co, o, mods) {
 }
 
 // ---- K37: borrow
+/** S2 review (F3): may role `role` borrow at all? Only an owner of a module that may be borrowed (a builder borrows for
+ *  its own module's work), and never a role that signs an independent stage or is an evaluator or checker (a review
+ *  never changes what it reviews). A role that owns no lent module (an architect of interfaces only) does not borrow:
+ *  it asks (K32), or scopes the module's owner. */
+export function mayBorrow(co, role) {
+  const own = ownershipOf(co.spec);
+  if (!own?.borrow?.length || !role) return false;
+  if (!own.modules.some((m) => m.owner === role && own.borrow.includes(m.name))) return false;
+  const r = co.org?.role?.(role) ?? (co.spec?.roles ?? []).find((x) => x.id === role);
+  if (["evaluator", "checker"].includes(r?.level)) return false;
+  for (const def of co.engine?.flows?.values?.() ?? []) for (const st of def?.stages ?? []) if (isIndependent(st) && signerRole(st) === role) return false;
+  return true;
+}
 /** The files role `role` borrowed on order `o` and has not committed yet. */
 export function borrowsOf(co, o, role) {
   return (co.data?.borrows ?? []).filter((b) => b.order === o?.id && b.role === role && b.state === "open").map((b) => b.file);
@@ -291,24 +304,32 @@ export function recordBorrow(co, { order, role, file, launch = null }) {
   if (!o) no(`no order ${order}`);
   const e = ownerOf(own, String(file ?? ""));
   if (!e || e.kind !== "module" || e.owner === role || !own.borrow.includes(e.name)) no(`${file} is not a path of another role's module that may be borrowed (an interface needs a change request)`);
+  if (!mayBorrow(co, role)) no(`${role} does not borrow: only an owner of a module that may be borrowed does, never a reviewer (ask for the change, or route it to ${e.owner})`);
   const bs = (co.data.borrows ??= []);
   if (!bs.some((b) => b.order === o.id && b.role === role && b.file === file && b.state === "open")) bs.push({ order: o.id, role, file, module: e.name, owner: e.owner, state: "open", t: co.engine.clock.now(), launch });
   co.log.add({ type: "borrow", order: o.id, role, file, module: e.name, owner: e.owner, launch });
   return { order: o.id, role, file, module: e.name, owner: e.owner };
 }
-/** K7's commit of `role`'s part took borrowed `files` (sha `sha`, `diff` the commit's diff of them): recorded, and one
- *  non-blocking review-borrow ask per module owner (an ask: the owner's session starts only for it). */
-export function borrowCommitted(co, o, { role, files, sha, diff = "" }) {
-  const bs = (co.data?.borrows ?? []).filter((b) => b.order === o.id && b.role === role && b.state === "open" && files.includes(b.file));
+/** The files of order `o` with an open borrow by any role (S2 review F3: whoever's commit takes one records it). */
+export function openBorrowFiles(co, o) {
+  return [...new Set((co.data?.borrows ?? []).filter((b) => b.order === o?.id && b.state === "open").map((b) => b.file))];
+}
+/** K7's commit (by role `role`, or code: null) took borrowed `files` (sha `sha`, `diff` the commit's diff of them):
+ *  recorded, and one non-blocking review-borrow ask per module owner and borrower (an ask: the owner's session starts
+ *  only for it). S2 review (F3): a borrowed file can go in with another commit than the borrower's (its module's owner
+ *  handed in first): the borrow is still the borrower's, recorded as such, and still reviewed. */
+export function borrowCommitted(co, o, { role = null, files, sha, diff = "" }) {
+  const bs = (co.data?.borrows ?? []).filter((b) => b.order === o.id && b.state === "open" && files.includes(b.file));
   const by = new Map();
-  for (const b of bs) { b.state = "committed"; b.sha = sha; (by.get(b.owner) ?? by.set(b.owner, { module: b.module, files: [] }).get(b.owner)).files.push(b.file); }
+  for (const b of bs) { b.state = "committed"; b.sha = sha; if (b.role !== role) b.committedBy = role ?? "code"; const k = `${b.owner}\u0000${b.role}`; (by.get(k) ?? by.set(k, { owner: b.owner, from: b.role, module: b.module, files: [] }).get(k)).files.push(b.file); }
   const out = [];
-  for (const [owner, x] of by) {
+  for (const x of by.values()) {
+    const { owner, from } = x, other = from !== role ? ` (committed with ${role ?? "code"}'s commit)` : "";
     const due = new Date((co.engine.clock.now() + 60) * 60000).toISOString().slice(0, 10);
-    const it = createItem(co, { by: "engine", kind: "ask", title: `review-borrow: ${role} changed ${x.module} on ${o.id} (${x.files.length} file${x.files.length > 1 ? "s" : ""})`, body: `${role} wrote your module's ${x.files.join(", ")} in ${o.id}'s worktree (commit ${String(sha).slice(0, 7)}), without waiting (K37 borrow). Read the diff and answer: yes if it is right, or no with what must change (it comes back to you as work on ${o.id}).\n\n${String(diff).slice(0, 3000)}`, assignee: owner, due, labels: ["ask:review-borrow"], state: "todo", priority: 2 });
-    it.ask = { kind: "review-borrow", from: role, decider: owner, routedTo: owner, order: o.id, module: x.module, files: x.files, sha, answer: null };
-    co.log.add({ type: "ask", item: it.id, from: role, to: owner, kind: "review-borrow", order: o.id });
-    out.push({ owner, module: x.module, files: x.files, item: it.id });
+    const it = createItem(co, { by: "engine", kind: "ask", title: `review-borrow: ${from} changed ${x.module} on ${o.id} (${x.files.length} file${x.files.length > 1 ? "s" : ""})`, body: `${from} wrote your module's ${x.files.join(", ")} in ${o.id}'s worktree (commit ${String(sha).slice(0, 7)}${other}), without waiting (K37 borrow). Read the diff and answer: yes if it is right, or no with what must change (it comes back to you as work on ${o.id}).\n\n${String(diff).slice(0, 3000)}`, assignee: owner, due, labels: ["ask:review-borrow"], state: "todo", priority: 2 });
+    it.ask = { kind: "review-borrow", from, decider: owner, routedTo: owner, order: o.id, module: x.module, files: x.files, sha, answer: null, ...(other ? { committedBy: role ?? "code" } : {}) };
+    co.log.add({ type: "ask", item: it.id, from, to: owner, kind: "review-borrow", order: o.id });
+    out.push({ owner, from, module: x.module, files: x.files, item: it.id, ...(other ? { committedBy: role ?? "code" } : {}) });
   }
   return out;
 }

@@ -4,7 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { execFileSync, spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
-import { Log, Mailbox, Org, Engine, Rooms, DEFAULT_CONFIG, DEFAULT_MAX_LOOPS, timeboxLines } from "./lib.mjs";
+import { Log, Mailbox, Org, Engine, Rooms, DEFAULT_CONFIG, DEFAULT_MAX_LOOPS, timeboxRead } from "./lib.mjs";
 import { SPECS } from "./specs.mjs";
 import { applyFloor } from "./building.mjs";
 import { afterStage, gitPins, partHandIn } from "./workspace.mjs";
@@ -99,8 +99,8 @@ export function make(specName = "toy", specDef = null) {
   return co;
 }
 
-/** K34: the defect lines of stage `sd`'s time-box report (timebox.findings, a workdir-relative file; ${task} etc.
- *  filled as in a pack), or null (no such file, or no defect lines in it). */
+/** K34: stage `sd`'s time-box report (timebox.findings, a workdir-relative file; ${task} etc. filled as in a pack):
+ *  {findings: its defect lines or null, report: its text when no line parses}, or null (no such file). */
 export function timeboxReport(co, o, sd) {
   const f = sd?.timebox?.findings;
   if (!f) return null;
@@ -109,7 +109,7 @@ export function timeboxReport(co, o, sd) {
   const file = path.resolve(dir, interpolate(f, vars));
   if (path.relative(dir, file).startsWith("..")) return null;
   let text; try { text = fs.readFileSync(file, "utf8"); } catch { return null; }
-  return timeboxLines(text, co.spec?.learn?.classify ?? null);
+  return timeboxRead(text, co.spec?.learn?.classify ?? null); // S2 review (F1): {findings, report}: an unparsed report is kept
 }
 
 export const rep = (k, v) => (v instanceof Map ? { __map: [...v] } : v instanceof Set ? { __set: [...v] } : v);

@@ -400,18 +400,25 @@ const DECL = ["export", "local", "declare", "readonly", "typeset"], SETTERS = ["
  *  variants). A variable the line sets any other way (read, a substitution, a declare without a value, …) or whose
  *  environment value is not plain is not resolved. Only `$NAME` and `${NAME}` outside single quotes are replaced. */
 export function lineVariants(c, env = process.env) {
+  // S2 review (F4): a resolved value is one word only under the default IFS: a line that sets or names IFS (`IFS=_;
+  // C=git_push; $C`), or an environment with another IFS, is judged as written (its variables unreadable)
+  if (/IFS/.test(c) || (env.IFS != null && env.IFS !== " \t\n")) return null;
   let parsed; try { parsed = shellCommands(c, { programs: true }); } catch { return null; }
   const vals = new Map(), bad = new Set();
   const add = (k, v) => { if (!VAR_VALUE.test(v) && !LOOP_VALUE.test(v)) { bad.add(k); return; } (vals.get(k) ?? vals.set(k, new Set()).get(k)).add(v); };
   const all = [...parsed.cmds]; for (const x of parsed.subs) { try { all.push(...shellCommands(x).cmds); } catch {} }
   for (const w of all) {
     let i = 0;
+    // S2 review (F4): a nameref (declare/local/typeset -n) makes a name stand for another variable: nothing is resolved
+    if (DECL.includes(w[0]) && w.slice(1).some((x) => /^[-+][A-Za-z]*n/.test(x))) return null;
     if (DECL.includes(w[0])) { i = 1; while (i < w.length && w[i].startsWith("-")) i++; for (const x of w.slice(i)) if (!/^[A-Za-z_]\w*=/.test(x) && /^[A-Za-z_]\w*$/.test(x)) bad.add(x); }
     const rest = w.slice(i);
     if (rest.length && rest.every((x) => /^[A-Za-z_]\w*=/.test(x))) for (const x of rest) { const k = x.slice(0, x.indexOf("=")), v = x.slice(x.indexOf("=") + 1); if (opaque(v) || !VAR_VALUE.test(v)) bad.add(k); else add(k, v); }
-    if (w[0] === "for" && /^[A-Za-z_]\w*$/.test(w[1] ?? "")) { const items = w.slice(3); if (w[2] === "in" && items.length && items.length <= 16 && items.every((x) => !opaque(x) && LOOP_VALUE.test(x))) for (const x of items) add(w[1], x); else bad.add(w[1]); }
+    // S2 review (F4): a for-list item with a glob character expands to the files it matches (`gi[t]` is git): not resolved
+    if (w[0] === "for" && /^[A-Za-z_]\w*$/.test(w[1] ?? "")) { const items = w.slice(3); if (w[2] === "in" && items.length && items.length <= 16 && items.every((x) => !opaque(x) && LOOP_VALUE.test(x) && !/[*?[\]]/.test(x))) for (const x of items) add(w[1], x); else bad.add(w[1]); }
     if (w[0] === "select" && w[1]) bad.add(w[1]);
     const h = w.slice(headOf(w));
+    if ([...DECL, "builtin", "command"].includes(bare(h[0])) && h.some((x) => DECL.includes(x)) && h.slice(1).some((x) => /^[-+][A-Za-z]*n/.test(x))) return null; // (F4) `builtin declare -n`
     if (SETTERS.includes(bare(h[0]))) for (const x of h.slice(1)) { const n = x.replace(/[=[].*$/, ""); if (/^[A-Za-z_]\w*$/.test(n)) bad.add(n); }
     for (const x of w) { const m = /^([A-Za-z_]\w*)(\+\+|--|[-+*/%]=)/.exec(x); if (m) bad.add(m[1]); } // arithmetic
   }
@@ -488,7 +495,9 @@ const lends = (r, e = null) => !!r.borrow && (e == null || (e.kind === "module" 
  *  role's module (never an interface) in an owned root that has borrow on, not granted. decide() lets it through. */
 export function borrowAt(abs, roots) {
   for (const r of roots) {
-    if (r.kind !== "owned" || !lends(r)) continue;
+    // S2 review (F3): only a role that owns a lent module borrows (owners.mjs mayBorrow leaves borrow off the root of
+    // any other role; this holds for a root built without it)
+    if (r.kind !== "owned" || !lends(r) || !(r.owned ?? []).some((x) => x.owner === r.role && lends(r, x))) continue;
     const rel = path.relative(realish(r.dir), abs).split(path.sep).join("/");
     if (!rel || rel.startsWith("..") || path.isAbsolute(rel)) continue;
     const e = (r.owned ?? []).find((x) => (x.globs ?? []).some((y) => ownRe(y).test(rel)));
@@ -523,7 +532,7 @@ function pathDenial(abs, roots) {
     // is read-only for this role unless a change request granted it (its owner or the architect approved it)
     if (r.kind === "owned") {
       const e = (r.owned ?? []).find((x) => (x.globs ?? []).some((y) => ownRe(y).test(rel)));
-      if (e && e.owner !== r.role && !(r.granted ?? []).some((y) => ownRe(y).test(rel)) && !lends(r, e)) return { rule: "module-owner", why: `${rel} is in ${e.kind} ${e.name}, owned by ${e.owner}: every role reads it, only ${e.owner} writes it. Ask for the change: node meta.mjs ask raise --kind=change-request --module=${e.name}${r.order ? ` --order=${r.order}` : ""} --title=… --why=… --due=<min> (its owner or the architect decides)`, detail: abs };
+      if (e && e.owner !== r.role && !(r.granted ?? []).some((y) => ownRe(y).test(rel)) && !(lends(r, e) && (r.owned ?? []).some((x) => x.owner === r.role && lends(r, x)))) return { rule: "module-owner", why: `${rel} is in ${e.kind} ${e.name}, owned by ${e.owner}: every role reads it, only ${e.owner} writes it. Ask for the change: node meta.mjs ask raise --kind=change-request --module=${e.name}${r.order ? ` --order=${r.order}` : ""} --title=… --why=… --due=<min> (its owner or the architect decides)`, detail: abs };
       continue;
     }
     const g = (r.globs ?? []).find((x) => globRe(x).test(rel));

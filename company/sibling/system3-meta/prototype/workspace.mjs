@@ -28,7 +28,7 @@ import { LIVE, lookupVar } from "./state.mjs";
 import { touchesStore, storeFiles } from "./artifacts.mjs";
 import os from "node:os";
 import crypto from "node:crypto";
-import { ownershipOf, ownerOf, ownedPaths, writeDenial, guardRoot, ownGlobRe, borrowsOf, borrowCommitted } from "./owners.mjs";
+import { ownershipOf, ownerOf, ownedPaths, writeDenial, guardRoot, ownGlobRe, borrowsOf, borrowCommitted, openBorrowFiles } from "./owners.mjs";
 
 export const WS_KEYS = ["kind", "repo", "base", "root", "dir", "branch", "env", "nodeModules", "run", "portBase", "commit", "cleanup"];
 export const WS_KINDS = ["git-worktree"];
@@ -512,10 +512,12 @@ function commitLocked(co, o, stage, c, { by = null, owner = null } = {}) {
   o.workspace.head = out(sha)[0];
   headOf(o, stage);
   // K37: the borrowed files this commit took: recorded with it, and a review-borrow ask (with the diff) to each owner
-  const lentNow = owner ? files.filter((f) => borrowsOf(co, o, owner).includes(f)) : [];
+  // S2 review (F3): any open borrow this commit took, whoever's commit it is (the module's owner handing in first, or
+  // code's whole-tree commit): still the borrower's, recorded and reviewed
+  const open = new Set(openBorrowFiles(co, o)), lentNow = files.filter((f) => open.has(f));
   let reviews = [];
   if (lentNow.length) { const d = git(dir, "show", "--no-ext-diff", "--no-textconv", "--format=", o.workspace.head, "--", ...lentNow); reviews = borrowCommitted(co, o, { role: owner, files: lentNow, sha: o.workspace.head, diff: ok(d) ? d.stdout : "" }); }
-  co.log.add({ type: "commit", order: o.id, stage, branch: o.workspace.branch, sha: o.workspace.head, files: files.length, message: msg, ...(owner ? { owner } : {}), ...(reviews.length ? { borrowed: reviews.map((r) => ({ module: r.module, owner: r.owner, files: r.files, review: r.item })) } : {}) });
+  co.log.add({ type: "commit", order: o.id, stage, branch: o.workspace.branch, sha: o.workspace.head, files: files.length, message: msg, ...(owner ? { owner } : {}), ...(reviews.length ? { borrowed: reviews.map((r) => ({ module: r.module, owner: r.owner, from: r.from, files: r.files, review: r.item, ...(r.committedBy ? { committedBy: r.committedBy } : {}) })) } : {}) });
   return { sha: o.workspace.head, files, ...(reviews.length ? { borrowed: reviews } : {}) };
 }
 

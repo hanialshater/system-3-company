@@ -484,7 +484,7 @@ approval. S1's numbers stay as they are, labelled "stopped by the founder at W3"
 - K34, a time box: a stage an agent works may set `timebox: {min, findings}`. The launcher caps the session at the
   box, and a lease never outlives it. At the box, code signs the stage with the defect lines (`<category>: what is wrong
   -> what is required`) of the stage's report so far. This happens at the tick's sweep, or when the launch ended at the
-  box. A blocking stage with such lines revises; with none it moves on as `timeboxed`, recorded, never a silent pass.
+  box. A blocking stage with such lines revises; with none it parks (review fix below: it never passes by time).
 - K35, advisory: `advisory: true` on an independent review stage. When the stage before it passes, the order moves on
   to the next stage and the review is scheduled beside it. Its findings are routed by K30 as work on the same order
   while that order is open: into its parts, or held until its next revise. A done or cancelled order is never
@@ -547,6 +547,37 @@ passed:
   `CLJ=…; $CLJ …`), and every one was allowed. The dry run had no guard denials.
 
 Kernel suite 327 of 327 and the export check (leaks [], 317 of 317 there) pass. No real arm was started.
+
+**Review fixes (2026-10-23, before S2 runs; `tests/s2-review.test.mjs`).** A review of K34-K37 and the S2 harness found
+these, each reproduced first and now covered by a test:
+- Guard (F4, a regression on push and deploy): a variable resolved to a literal was judged as one word, but bash
+  still splits it on IFS, expands a glob in a `for` list and follows namerefs (`IFS=_; C=git_push; $C origin`,
+  `for f in /usr/bin/gi[t]; do $f push; done`, `Y=push; declare -n R=Y; git $R` all ran git push and passed). Now a
+  line that sets or names IFS, or an environment whose IFS is not the default, resolves nothing; a `for` item with a
+  glob character is not resolved; a line with `declare/local/typeset -n` resolves nothing. Each of these is refused as
+  before K34 (`<a command the guard cannot read>`).
+- Borrow (F3): only a role that owns a module that may be borrowed borrows (owners.mjs `mayBorrow`), and never an
+  evaluator, a checker or the signer of an independent stage. In S2 the evaluator (owns `tests/eval/**`, not lent)
+  and the architect (owns only interfaces) do not borrow: the architect asks (K32) or scopes the owner. A borrowed
+  file that another role's commit takes (its module's owner handed in first) is still recorded as the borrower's
+  (`commit.borrowed[].from`, `committedBy`), closes the borrow, and raises the review-borrow ask.
+- Time box (F1): a blocking time-boxed stage never passes by time. With defect lines it revises; with none (no report,
+  a crash, a report in another format) the order parks, the report kept, and its ask decides. A timebox on an
+  orderer's approval is invalid. `launch finished` signs at the box only when the box is over or the launcher's own
+  cap ended the session ("session over N min"); a crash before the box is abandoned and re-queued, as any failed
+  launch. A time-boxed item is a launch of its own, capped at one item (its box counts from `room enter`), and is
+  never a session's next item. Report lines are read through numbering, bullets, bold and `=>`, and a line with a
+  category that says what is required without an arrow counts; a report with no such line is kept (`report` in the
+  history), never dropped. `resume --to` never names an advisory stage. Late findings held on one order and flushed
+  at its end keep their origin (`from`, `stage`).
+- Harness: the S2 run's end records the late findings no order took (`run-end.backlog`, `launcher-stop.backlog`), and
+  the tally lists them per wave (`lateBacklog`). The continuous launcher loop sleeps before it retries a stop, and a
+  launcher left from an earlier wave that exited before this wave's work began (serve's idle exit after settled) is
+  started again for the wave instead of ending it.
+
+Open for the founder: whether the architect should borrow (now it does not, since it owns no lent module), or borrow
+reviews be batched into the owner's next scoped session. Findings held while the next order sits at a code check still
+land on the order after it when that one ships without a revise (recorded, never lost).
 
 
 ## W7 (2026-10-23): compile real software (Lua 5.4.7), released after W6
