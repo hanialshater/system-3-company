@@ -29,6 +29,10 @@ export function seed(P, { b9 = null } = {}) {
   const start = path.join(b9 ?? B9_RUNS, "start");
   const arc = spawnSync("sh", ["-c", `git -c safe.directory='*' -C '${start}' archive HEAD | tar -x -C '${P.repo}'`], { encoding: "utf8" });
   if (arc.status !== 0) throw new Error(`seed: ${arc.stderr}`);
+  // the module map (interface module-map, the architect's): the start's files and their owners, so the first order
+  // does not start with an interface check that fails (it lists every namespace file that exists)
+  fs.mkdirSync(path.join(P.repo, "docs"), { recursive: true });
+  fs.writeFileSync(path.join(P.repo, "docs", "MODULES.md"), MODULES_MD);
   fs.cpSync(judgeDir(b9), path.join(P.toolchain, "judge"), { recursive: true });
   const jf = path.join(P.toolchain, "judge", "judge.json"), cfg = JSON.parse(fs.readFileSync(jf, "utf8"));
   cfg.clj = P.clj; fs.writeFileSync(jf, JSON.stringify(cfg, null, 1));
@@ -37,6 +41,20 @@ export function seed(P, { b9 = null } = {}) {
   fs.mkdirSync(path.dirname(P.baseline), { recursive: true }); fs.copyFileSync(sv, P.baseline);
   return { start, files: fs.readdirSync(P.repo).length };
 }
+export const MODULES_MD = `# Module map (interface module-map, the architect's)
+
+The start's compiler (Benchmark 8 V's, at bench9's START). Every namespace file under src/ is listed here; a new one is
+added by the architect (ask: --kind=interface).
+
+| Namespace | File | Owner | What |
+|---|---|---|---|
+| ccc.main | src/ccc/main.clj | architect | the driver: argv, single-file and --batch modes |
+| ccc.types | src/ccc/types.clj | architect | the shared C types and their layout |
+| ccc.lexer | src/ccc/lexer.clj | frontend | tokens |
+| ccc.preproc | src/ccc/preproc.clj | frontend | the preprocessor |
+| ccc.parser | src/ccc/parser.clj | parser | the parser, declarations, typing, lowering |
+| ccc.codegen | src/ccc/codegen.clj | backend | x86-64 code generation and output |
+`;
 export const releaseFiles = (P, w) => (w === "W8" ? [["spec/B9.md", path.join(REPO_B9, "B9.md")]] : []);
 
 /** The order's accept text: the task, the round, and the previous order's judge lines. */
