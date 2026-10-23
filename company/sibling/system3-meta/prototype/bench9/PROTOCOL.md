@@ -84,8 +84,8 @@ turn; the fast judge as a command; it hands in when it wants the full judge; at 
 arm S9: modules that follow the start's layout (frontend: lexer and preprocessor; parser: parser, types, lowering;
 backend: code generation; the architect owns the driver and the shared types, which is where load time lives), owners
 on demand with K36/K37 (activation, borrow), the advisory evaluator hunting for what the speed work broke, the visible
-check of waves 1-5 and Lua as the integration check, and the full judge as the accept stage. **Three orders (B9a,
-B9b, B9c), one full-judge round each**, so S gets the same 3 rounds as V and the architect's retro (K28/K33 with K38
+check of waves 1-5 and Lua as the integration check, and the full judge as the accept stage. **Three orders (tasks W8,
+W9, W10: rounds 1-3), one full-judge round each**, so S gets the same 3 rounds as V and the architect's retro (K28/K33 with K38
 beliefs) runs between them, and its rules are scored on the next order.
 
 All three arms read the same task text ([B9.md](B9.md): V's and P's prompts quote it, S gets it as spec/B9.md).

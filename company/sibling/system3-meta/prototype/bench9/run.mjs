@@ -8,6 +8,7 @@
 //                                     computes the start's visible pass set (a few CPU minutes)
 //   node run.mjs v [--resume]         arm V: one session, up to 3 full-judge rounds, caps $70 / 240 active min
 //   node run.mjs p [--resume]         arm P: generations of 4 variant sessions, code selection, caps as V
+//   node run.mjs s [--resume]         arm S: Meta on bench8/setup.mjs as arm S9 (bench9/s9.mjs), caps as V
 //   node run.mjs full --dir=<compiler> [--reps=5]   the full judge on one tree (under the judge lock)
 //   node run.mjs final                the quiet final scoring: every arm's final candidate, one after another
 //   node run.mjs status
@@ -231,6 +232,25 @@ async function armP() {
   const end = { event: "end", final: fin, generations: gen, variants: pool.length, cost: Number(spent.toFixed(4)), min: Math.round(clock.min() * 100) / 100 }; log(led, end); return end;
 }
 
+// ---------------------------------------------------------------- arm S (System 3 Meta on B8's harness, as arm S9)
+async function armS() {
+  const led = ledgerOf("S"), rows = S8.readJsonl(led);
+  if (rows.some((x) => x.event === "end")) return { done: true, final: rows.find((x) => x.event === "end") };
+  const runs = path.join(B9, "arms", "S");
+  if (!rows.length) log(led, { event: "start", arm: "S", start: START, model: MODEL, caps: { cost: CAP_COST, min: CAP_MIN }, fake: FAKE });
+  const args = [path.join(HERE, "..", "bench8", "setup.mjs"), "run", "--arm=S9", `--runs=${runs}`, `--b8=${B8}`, `--max-min=${CAP_MIN}`, `--max-cost=${CAP_COST}`, "--max-rounds=0", ...(opt.resume ? ["--resume"] : []), ...(FAKE ? ["--fake", "--no-preflight"] : [])];
+  log(led, { event: "launch", args: args.slice(1) });
+  const r = spawnSync(process.execPath, args, { stdio: ["ignore", "inherit", "inherit"], env: { ...process.env, B8_ISOLATION: "hooks" } });
+  // S's final: the last order's version (its branch), whatever its end
+  const P = S8.paths({ runs, arm: "S9", b8: B8 }), st = S8.readState(P.live);
+  const o = ["W10", "W9", "W8"].map((w) => S8.orderOf(st, w)).find(Boolean), br = o?.workspace?.branch ?? null;
+  const fin = path.join(B9, "arms", "S-final");
+  if (br) { fs.rmSync(fin, { recursive: true, force: true }); gitOk(B9, "clone", "-q", "--no-hardlinks", "-b", br, P.repo, fin); }
+  const end = S8.readJsonl(P.waves).filter((x) => x.event === "run-end").at(-1) ?? null;
+  const x = { event: "end", code: r.status, order: o?.task ?? null, stage: o?.stage ?? null, branch: br, dir: br ? fin : null, cost: end?.cost ?? null, min: end?.activeMin ?? null, why: end?.why ?? null };
+  log(led, x); return x;
+}
+
 // ---------------------------------------------------------------- status and the quiet final scoring
 function status() {
   const out = {};
@@ -247,7 +267,7 @@ async function finalScoring() {
   return out;
 }
 
-const fns = { setup, v: armV, p: armP, status, final: finalScoring, full: () => full(path.resolve(opt.dir), { reps: Number(opt.reps ?? 5) }) };
-if (!fns[cmd]) { console.error("usage: run.mjs setup|v|p|full|final|status"); process.exit(2); }
-if (!MODEL && ["v", "p"].includes(cmd) && !FAKE) { console.error("no --model and the launcher's default could not be read"); process.exit(2); }
+const fns = { setup, v: armV, p: armP, s: armS, status, final: finalScoring, full: () => full(path.resolve(opt.dir), { reps: Number(opt.reps ?? 5) }) };
+if (!fns[cmd]) { console.error("usage: run.mjs setup|v|p|s|full|final|status"); process.exit(2); }
+if (!MODEL && ["v", "p", "s"].includes(cmd) && !FAKE) { console.error("no --model and the launcher's default could not be read"); process.exit(2); }
 console.log(JSON.stringify(await fns[cmd](), null, 1));

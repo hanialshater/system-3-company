@@ -68,8 +68,10 @@ export const ARMS = ["V", "S"];
 // S2 (PROTOCOL.md "S2"): a fresh second run of the S harness with specs/ccompiler-specialized-v2.json, in its own
 // folders (<runs>/S2, _operator/S2), the same hooks, caps and feedback as S and V. paths({arm: "S2"}) gives its
 // layout; every S code path below takes the S-like arm from P.sarm.
-export const S_ARMS = ["S", "S2"];
-export const SPEC_FILES = { S: "ccompiler-specialized.json", S2: "ccompiler-specialized-v2.json" };
+export const S_ARMS = ["S", "S2", "S9"];
+// S9 (bench9/PROTOCOL.md "S"): Benchmark 9's org arm runs on this harness; its pieces are bench9/s9.mjs (loaded only
+// when P.sarm is S9), its orders the tasks W8, W9, W10 (B9's rounds 1-3)
+export const SPEC_FILES = { S: "ccompiler-specialized.json", S2: "ccompiler-specialized-v2.json", S9: "compiler-speed-s9.json" };
 export const isS = (arm) => S_ARMS.includes(arm);
 export const ALL_ARMS = ["V", ...S_ARMS];
 export const S1_LABEL = "stopped by the founder at W3"; // S1's run (arm S) ended there: the tally compares V, S1 and S2
@@ -82,6 +84,8 @@ const HARNESS_FILES = ["setup.mjs", "sandbox.mjs", "visible-check.mjs", "contrac
 // W7 (PROTOCOL.md "W7", spec/W7.md): its pieces live in w7.mjs, loaded only on a W7 path (a synchronous require of the
 // ES module), so W1-W6 run exactly as before
 const w7 = () => createRequire(import.meta.url)("./w7.mjs");
+const s9 = () => createRequire(import.meta.url)(fs.existsSync(path.join(HERE, "s9.mjs")) ? "./s9.mjs" : path.join(REPO_PROTO, "bench9", "s9.mjs"));
+const isS9 = (P) => P?.sarm === "S9";
 export const ALL_WAVES = [...WAVES, "W7"];
 export const EFFORT = "high"; // the SDK effort option, the same for both arms (pilot fix: it was inherited from this session's env)
 export const TOOLS_OK = ["Bash", "Read", "Write", "Edit", "Glob", "Grep"];
@@ -123,6 +127,7 @@ const gitOk = (cwd, ...a) => { const r = git(cwd, ...a); if (r.status !== 0) thr
  *  the provided headers, the visible-tests README, W1.md and visible/W1; Wn its doc and visible/Wn; W6 its doc and the
  *  benchmark programs with their expected outputs. */
 export function releaseFiles(P, w) {
+  if (isS9(P)) return s9().releaseFiles(P, w);
   const n = waveN(w), out = [];
   if (n === 7) return w7().releaseFiles(P);
   const dir = (from, to) => { for (const f of fs.readdirSync(from).sort()) { const s = path.join(from, f); if (fs.statSync(s).isFile()) out.push([path.join(to, f), s]); } };
@@ -176,6 +181,7 @@ function withHiddenLock(P, fn) {
  *  `failed: ` lines; both are empty when nothing fails (no round is spent then). W6: the gate against `gate` (the
  *  arm's last W5 results), and the benchmark and score lines go with the feedback when anything fails. */
 export function hidden(P, wave, dir, { results = null, gate = null, reps = null } = {}) {
+  if (isS9(P)) return withHiddenLock(P, () => s9().hidden(P, dir));
   if (waveN(wave) === 7) return withHiddenLock(P, () => w7().hidden(P, dir, { results, reps }));
   const { NODE_TEST_CONTEXT, B8_HOME, ...env } = process.env;
   const argv = [P.runner, `--wave=${wave}`, `--dir=${dir}`, ...(results ? [`--results=${results}`] : []), ...(gate && fs.existsSync(gate) ? [`--gate=${gate}`] : []), ...(reps ? [`--reps=${reps}`] : [])];
@@ -507,8 +513,8 @@ export const waveAccept = (w) => waveN(w) === 7 ? w7().WAVE_ACCEPT : `Wave ${w} 
 
 function sPlace(P, opt) {
   const w = String(opt.wave ?? "W1").toUpperCase();
-  if (!WAVES.includes(w) && w !== "W7") throw new Error("--wave=W1..W7");
-  const k = ALL_WAVES.indexOf(w);
+  if (isS9(P) ? !s9().S9_WAVES.includes(w) : !WAVES.includes(w) && w !== "W7") throw new Error(isS9(P) ? "--wave=W8..W10 (S9)" : "--wave=W1..W7");
+  const k = isS9(P) ? s9().S9_WAVES.indexOf(w) : ALL_WAVES.indexOf(w);
   for (const f of [P.runner, path.join(P.hidden, "manifest.json"), path.join(P.proto, "meta.mjs"), path.join(P.proto, "launcher", "launch.mjs"), path.join(P.proto, "specs", P.specFile ?? SPEC_FILE)]) if (!fs.existsSync(f)) throw new Error(`missing ${f}`);
   const st0 = fs.existsSync(path.join(P.live, "state.json")) ? readState(P.live) : null;
   if (k === 0) {
@@ -518,10 +524,12 @@ function sPlace(P, opt) {
     ensureToolchain(P); installShims(P, P.sarm); prepareArm(P, P.sarm);
     for (const d of [P.repo, P.wt, P.live, P.store, P.scratch, P.harness, path.dirname(P.baseline), path.join(P.op, P.sarm)]) fs.mkdirSync(d, { recursive: true });
     for (const f of HARNESS_FILES) fs.copyFileSync(path.join(HERE, f), path.join(P.harness, f));
+    if (isS9(P)) fs.copyFileSync(path.join(REPO_PROTO, "bench9", "s9.mjs"), path.join(P.harness, "s9.mjs"));
     freezeKernel(P);
     gitOk(P.repo, "init", "-q", "-b", "main"); gitOk(P.repo, "config", "user.email", "orderer@b8.invalid"); gitOk(P.repo, "config", "user.name", "B8 orderer");
     fs.writeFileSync(path.join(P.repo, "README.md"), "# The C-subset compiler (Benchmark 8)\n\nThe orderer's repository. `spec/` and `visible/` are the orderer's files; each wave is released here and worked in its own worktree.\n");
-    gitOk(P.repo, "add", "-A"); gitOk(P.repo, "commit", "-q", "-m", "orderer: the repository");
+    if (isS9(P)) s9().seed(P);
+    gitOk(P.repo, "add", "-A"); gitOk(P.repo, "commit", "-q", "-m", isS9(P) ? "orderer: the repository (Benchmark 9's start)" : "orderer: the repository");
     const spec = instantiateSpec(P), specFile = path.join(P.op, P.sarm, "spec.json");
     // the fake-SDK dry run only (a scratch --runs): a shorter time box, so a test sees one end in minutes
     if (opt["timebox-min"] != null) { if (P.runs === DEFAULT_RUNS) throw new Error("--timebox-min is for a scratch --runs only"); for (const x of spec.flow?.stages ?? []) if (x.timebox) x.timebox.min = Number(opt["timebox-min"]); }
@@ -530,7 +538,7 @@ function sPlace(P, opt) {
   } else {
     if (!st0) throw new Error(`${P.live} has no run: place W1 first`);
     // W7 follows the last wave the run placed (W6, or an earlier one where the caps stopped it), whatever its end
-    const pw = w === "W7" ? [...WAVES].reverse().find((x) => orderOf(st0, x)) ?? "W6" : WAVES[k - 1];
+    const pw = isS9(P) ? s9().S9_WAVES[k - 1] : w === "W7" ? [...WAVES].reverse().find((x) => orderOf(st0, x)) ?? "W6" : WAVES[k - 1];
     const prev = orderOf(st0, pw);
     if (!prev || !TERMINAL.includes(prev.stage)) throw new Error(`S ${pw} has not ended (${prev?.stage ?? "not placed"}): waves run in order`);
     if (st0.data?.learn && (!st0.data.learn.closed || st0.data.learn.retros?.some((r) => r.state === "open"))) throw new Error(`S ${WAVES[k - 1]}'s learn step is still open (evidence or the architect's retro): the playbook would miss it`);
@@ -546,7 +554,7 @@ function sPlace(P, opt) {
   // the accept stage runs in S's box: it asks the orderer's broker (root, outside) to run the hidden runner
   const acceptCmd = ["node", path.join(P.harness, "setup.mjs"), "accept", `--arm=${P.sarm}`, `--wave=${w}`, "--dir=${workdir}", `--runs=${P.runs}`, `--b8=${P.b8}`, `--proto=${P.sproto}`, `--max-rounds=${Number(opt["max-rounds"] ?? MAX_ROUNDS)}`, ...(opt["no-broker"] ? [] : [`--broker=${boxPaths(P, P.sarm).broker}`]), ...(opt["fake-accept-pass"] ? fakePass(P) : [])];
   const budget = Number(opt.budget ?? DEFAULT_BUDGET);
-  const o = metaCli(P, "order", "new", "--by=founder", "--to=architect", `--title=${w}: the compiler, wave ${waveN(w)}`, `--task=${w}`, `--accept=${waveAccept(w)}`, `--accept-cmd=${JSON.stringify(acceptCmd)}`, `--budget=${budget}`);
+  const o = metaCli(P, "order", "new", "--by=founder", "--to=architect", `--title=${isS9(P) ? `${w}: Benchmark 9, round ${s9().S9_ROUND[w]}` : `${w}: the compiler, wave ${waveN(w)}`}`, `--task=${w}`, `--accept=${isS9(P) ? s9().waveAccept(P, w) : waveAccept(w)}`, `--accept-cmd=${JSON.stringify(acceptCmd)}`, `--budget=${budget}`);
   chownArm(P.sarm, P.S);
   const rec = { event: "place", wave: w, order: o.order, stage: o.stage, main: head, release: rel.sha, files: rel.files.length, budget, maxRounds: Number(opt["max-rounds"] ?? MAX_ROUNDS), kernelHead: spawnSync("git", ["-C", P.proto, "rev-parse", "HEAD"], { encoding: "utf8" }).stdout.trim() || null };
   append(P.waves, rec);
@@ -679,7 +687,7 @@ function broker(P, opt) {
       if (req.op === "log") { try { const { arm: _a, ...rec } = req.rec ?? {}; append(P.access, { arm: P.sarm, ...rec }); c.end(JSON.stringify({ ok: true }) + "\n"); } catch (e) { c.end(JSON.stringify({ error: String(e) }) + "\n"); } return; }
       if (req.op === "accept") {
         const dir = realish(String(req.dir ?? ""));
-        if (!inside(dir, wt) || !/^W[1-7]$/.test(String(req.wave))) { append(P.operator, { act: "broker-refused", req }); c.end(JSON.stringify({ stdout: "runner error: the accept dir is not one of S's worktrees\n", code: 3 }) + "\n"); return; }
+        if (!inside(dir, wt) || !(isS9(P) ? s9().S9_WAVES.includes(String(req.wave)) : /^W[1-7]$/.test(String(req.wave)))) { append(P.operator, { act: "broker-refused", req }); c.end(JSON.stringify({ stdout: "runner error: the accept dir is not one of S's worktrees\n", code: 3 }) + "\n"); return; }
         const argv = [SELF, "accept", `--arm=${P.sarm}`, `--wave=${req.wave}`, `--dir=${dir}`, `--runs=${P.runs}`, `--b8=${P.b8}`, `--proto=${P.proto}`, `--max-rounds=${Number(req.maxRounds ?? MAX_ROUNDS)}`];
         const ch = spawn(process.execPath, argv, { stdio: ["ignore", "pipe", "pipe"] });
         let out = ""; ch.stdout.on("data", (x) => { out += x; }); ch.stderr.on("data", () => {});
@@ -716,7 +724,7 @@ function sAccept(P, opt) {
   if (r.error) { append(P.acceptLog, { wave: w, dir, error: r.error }); console.log(r.error); process.exit(3); }
   const head = git(dir, "rev-parse", "HEAD").stdout.trim() || null, dirty = !!git(dir, "status", "--porcelain").stdout.trim();
   const exhausted = r.anyFail && prior.length >= maxRounds;
-  append(P.acceptLog, { wave: w, dir, head, dirty, k: prior.length + 1, pass: r.pass, total: r.total, rate: r.rate, byWave: r.byWave, categories: r.categories, failing: r.failing, feedback: r.feedback, gate: r.gate, w6: r.w6, ...(r.w7 ? { w7: r.w7 } : {}), failStages: r.failStages, cheat: r.cheat, results, ms: Date.now() - t0, exhausted });
+  append(P.acceptLog, { wave: w, dir, head, dirty, k: prior.length + 1, pass: r.pass, total: r.total, rate: r.rate, byWave: r.byWave, categories: r.categories, failing: r.failing, feedback: r.feedback, gate: r.gate, w6: r.w6, ...(r.w7 ? { w7: r.w7 } : {}), failStages: r.failStages, cheat: r.cheat, results, ms: Date.now() - t0, exhausted, ...(r.b9 ? { b9: r.b9, lines: r.lines } : {}) });
   for (const l of r.findings) console.log(l);
   console.log(`checked: ${Object.keys(r.categories).join(", ")}${r.w6 ? `, ${Object.keys(r.w6.programs).map((p) => `W6 ${p}`).join(", ")}` : ""}`);
   if (exhausted) { console.log(`# hidden acceptance: ${r.failing.length} categories fail, and the wave's ${maxRounds} feedback rounds are spent: the orderer ends the wave`); process.exit(3); }
@@ -823,7 +831,7 @@ async function sRun(P, opt) {
   // W7's own caps (w7.mjs W7_MIN, W7_COST; --w7-min, --w7-cost) counted from W7's start (the `extend` row)
   const EXT = opt.extend ? String(opt.extend).toUpperCase() : null;
   if (EXT && EXT !== "W7") throw new Error("--extend=W7");
-  const waves = EXT ? ["W7"] : String(opt.waves ?? WAVES.join(",")).split(/[,.]+/).filter(Boolean).map((x) => x.toUpperCase());
+  const waves = EXT ? ["W7"] : String(opt.waves ?? (isS9(P) ? s9().S9_WAVES : WAVES).join(",")).split(/[,.]+/).filter(Boolean).map((x) => x.toUpperCase());
   const maxMin = EXT ? Number(opt["w7-min"] ?? w7().W7_MIN) : Number(opt["max-min"] ?? RUN_MIN), maxCost = EXT ? Number(opt["w7-cost"] ?? w7().W7_COST) : Number(opt["max-cost"] ?? RUN_COST), poll = Number(opt.poll ?? 5) * 1000;
   const hooks = hooksMode(), FAKE = !!opt.fake, RESUME = !!opt.resume;
   const rows0 = readJsonl(P.waves), st0 = EXT ? w7().extStatus(rows0, "S") : sStatus(rows0, waves);
