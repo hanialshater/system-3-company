@@ -302,3 +302,19 @@ An ask addressed higher than it needs is rerouted down unless `--escalate` gives
 - **Defect classes:** `classify()` reads a finding's "Class:" heads: length, format, numbers, banned, duplicate or giveaway (all checkable by code); fact, consistency and clarity (not checkable).
 - **Findings history:** the engine now keeps every revise's findings in the order history, so later packs classify every revise, not only the last.
 - **Spec:** `meta` holds the founder, `vp-meta` (level vp) and `org-evaluator` (level evaluator). An evaluator's `decision` ask routes to `vp-meta`.
+
+## 15. Divided ownership (`owners.mjs`, K29-K33, built for Benchmark 8)
+
+A spec may divide one growing codebase between owners. Generic: the spec names the modules; the kernel knows nothing of the work.
+
+- **Spec keys:**
+  - `modules: {<name>: {paths: [globs], owner: <role>, readers: "all"}}`: one owner per path; every role reads every path.
+  - `interfaces: [{name, paths, owner, contract: <cmd>}]`: shared contracts, owned by the architect.
+  - `routes: [{match: <regex on a defect category>, owner: <role or module>}]`; `triage: <role>` (default: the order's manager); `architect: <role>` (default: the first interface's owner).
+  - `integration: {run: <cmd>, at: "head"|"workdir", maxTries: n}`: the shared check after each hand-in.
+- **K29, ownership:** the launcher's guard denies a Write/Edit or shell write to a path another role owns (rule `module-owner`, a `guard` event), and K7's commit refuses it (a `refuse` event with rule `module-owner`; at a part's hand-in the leave is refused and the run stays open). A change request lifts it for one order: `ask raise --kind=change-request --module=<module or interface> --order=<O> [--to=<architect>]`, answered by the owner or the architect; a yes is a `grant` event.
+- **K30, routing:** with ownership in the spec, every builder-signed work stage is worked in parts. A revise's findings are split into categories (the K28 classify regex: `<category>: …` lines) and each owner gets one work item (`role:<owner>`, same order and loop) with only its own lines; unmatched categories go to the triage role, which may pass them on (`order route <O> --by=<triage> --to=<owner> --categories=a,b`). `order delegate --owners=a,b` starts the first stage with several owners at once. The stage advances only when every part is in.
+- **K31, parallel owners:** owners work the order's one worktree at once. Each hand-in commits only that owner's paths (`meta: <O> <stage>:<owner> <slug>`, one commit at a time per worktree), then the integration check runs on the commit as made (a clean export of the head; `at: "workdir"` runs in the worktree). A failure is routed again: each owner's part reopens with its lines (unmatched lines: the owner who handed in); past `maxTries` reopenings the order parks with an ask. Events: `parts`, `part-in`, `integration-due`, `integration`, `part-reopen`, `part-route`.
+- **K32, interfaces:** a change to an interface's paths (by its owner, or under a grant) makes its contract cmd due; it must pass at the next integration check, or the part that changed it reopens (category `interface-<name>`).
+- **K33, scoped playbooks:** evidence records which owner and module each category was routed to (`owners`, `modules`); a rule may carry `scope: {role, module}`; a pack carries the rules in its role's scope plus the global ones; the code retro writes each class's rule in the scope of the module it was routed to, so each owner accumulates its own domain playbook across waves and runs.
+- **K26 with owners:** warm sessions are per (order, role): several warm owners on one order each resume their own SDK session.
