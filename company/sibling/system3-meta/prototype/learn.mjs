@@ -23,14 +23,14 @@ import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { validateCmd, lockHolderAlive } from "./state.mjs";
-import { sampleBounds, isIndependent, signerRole, classTag } from "./lib.mjs";
+import { sampleBounds, isIndependent, signerRole, classTag, DEFAULT_CLASSIFY } from "./lib.mjs";
+import { ownershipOf } from "./owners.mjs";
 
 export const RULE_MAX_CHARS = 300;
 export const DEFAULT_MAX_RULES = 12;
 export const DEFAULT_RETIRE_AFTER = 2;
 const VAR = /^[a-z][a-z0-9_]*$/;
 const LEARN_KEYS = ["store", "roles", "retro", "maxRules", "retireAfter", "classify"];
-const DEFAULT_CLASSIFY = "^(?:[-*•]\\s*)?(?:failed:\\s*)?([A-Za-z][\\w ./-]{0,40}?)\\s*(?::|—|–| - )\\s";
 
 /** A spec's `vars` ({name: string}), overridden by init --vars; ${name} in learn.store. */
 export const fillVars = (s, vars = {}) => String(s).replace(/\$\{([a-z][a-z0-9_]*)\}/g, (m, k) => (Object.hasOwn(vars, k) ? String(vars[k]) : m));
@@ -156,7 +156,9 @@ export function playbookMd(pb) {
   const act = pb.rules.filter((r) => r.status === "active"), old = pb.rules.filter((r) => r.status !== "active");
   const L = [`# Playbook (version ${pb.version}; written by code from validated retro proposals: do not edit)`, "", "## Active rules", ""];
   if (!act.length) L.push("none yet");
-  for (const r of act) L.push(`- **${r.id}** (${(r.roles ?? []).join(", ") || "all learning roles"}; targets ${r.targets.join(", ")}): ${r.text} _helped ${r.helpedCount}, hurt ${r.hurtCount}; evidence ${r.why.join(", ")}_`);
+  // K33: an owner's domain playbook is the rules in its scope (by module or role), under the global ones
+  const scopeOf = (r) => (r.scope?.module ? `module ${r.scope.module}` : r.scope?.role ? `role ${r.scope.role}` : "");
+  for (const r of [...act].sort((a, b) => scopeOf(a).localeCompare(scopeOf(b)))) L.push(`- **${r.id}** (${scopeOf(r) ? `${scopeOf(r)}; ` : ""}${(r.roles ?? []).join(", ") || (scopeOf(r) ? "" : "all learning roles")}${(r.roles ?? []).length || !scopeOf(r) ? "; " : ""}targets ${r.targets.join(", ")}): ${r.text} _helped ${r.helpedCount}, hurt ${r.hurtCount}; evidence ${r.why.join(", ")}_`);
   if (Object.keys(pb.knobs?.sample ?? {}).length) L.push("", "## Knobs", "", ...Object.entries(pb.knobs.sample).map(([k, v]) => `- sample rate ${k}: ${v}`));
   if (old.length) L.push("", "## Retired", "", ...old.map((r) => `- ${r.id}: ${r.text} (${r.retiredWhy ?? r.status})`));
   return L.join("\n") + "\n";
@@ -180,7 +182,28 @@ export function activeRules(co, role) {
   if (!L || !co.spec.learn.roles.includes(role)) return [];
   let pb; try { pb = readPlaybook(L.store); } catch { return []; }
   const reviewer = reviewerRoles(co.spec).has(role);
-  return pb.rules.filter((r) => r.status === "active" && (r.roles ?? co.spec.learn.roles).includes(role) && (!reviewer || independentAuthor(co.spec, r.by))).map((r) => ({ id: r.id, text: r.text }));
+  return pb.rules.filter((r) => r.status === "active" && (r.roles ?? co.spec.learn.roles).includes(role) && inScope(co, r, role) && (!reviewer || independentAuthor(co.spec, r.by))).map((r) => ({ id: r.id, text: r.text, ...(r.scope ? { scope: r.scope } : {}) }));
+}
+/** K33: is rule `r` in role `role`'s scope? A rule with no scope is global; a scope names a role, a module (its owner's
+ *  rule), or both. */
+export function inScope(co, r, role) {
+  if (!r.scope) return true;
+  if (r.scope.role != null && r.scope.role !== role) return false;
+  if (r.scope.module != null && ownershipOf(co.spec)?.modules.find((m) => m.name === r.scope.module)?.owner !== role) return false;
+  return true;
+}
+/** K33: why a rule's scope is invalid ({role, module}: a learning role, a spec module whose owner learns), or null. */
+export function scopeProblem(scope, { learn, spec }) {
+  if (scope == null) return null;
+  if (typeof scope !== "object" || Array.isArray(scope) || !Object.keys(scope).length || Object.keys(scope).some((k) => !["role", "module"].includes(k))) return "scope is {role, module} (either or both)";
+  if (scope.role != null && !learn.roles.includes(scope.role)) return `scope.role ${scope.role} is a learning role (${learn.roles.join(", ")})`;
+  if (scope.module != null) {
+    const m = ownershipOf(spec)?.modules.find((x) => x.name === scope.module);
+    if (!m) return `scope.module ${scope.module} is none of the spec's modules`;
+    if (!learn.roles.includes(m.owner)) return `scope.module ${scope.module}: its owner ${m.owner} is not a learning role (the rule would reach no pack)`;
+    if (scope.role != null && scope.role !== m.owner) return `scope: module ${scope.module} is ${m.owner}'s, not ${scope.role}'s`;
+  }
+  return null;
 }
 
 /** At init: the store (outside the live dir), this run's id, and the knobs carried from earlier runs (inside bounds). */
@@ -230,7 +253,10 @@ export function classesOf(h, sd, classify = null) {
 export function evidenceFor(co, o) {
   const L = learnOf(co), { engine, log } = co;
   const def = engine.flows.get(o.flow), sdOf = (st) => def?.stages.find((x) => x.stage === st);
-  const revises = o.history.filter((h) => h.verdict === "revise").map((h) => ({ stage: h.stage, by: h.by, classes: classesOf(h, sdOf(h.stage), co.spec.learn.classify), findings: String(h.findings ?? "").slice(0, 400) }));
+  // K33: where K30 routed each category of a revise (its owner and module): the evidence an owner's playbook learns from
+  const revises = o.history.filter((h) => h.verdict === "revise").map((h) => ({ stage: h.stage, by: h.by, classes: classesOf(h, sdOf(h.stage), co.spec.learn.classify), findings: String(h.findings ?? "").slice(0, 400), ...(h.routed ? { routed: h.routed } : {}) }));
+  const owners = {}, modules = {};
+  for (const r of revises) for (const [c, x] of Object.entries(r.routed ?? {})) { if (x.owner) owners[c] = x.owner; if (x.module) modules[c] = x.module; }
   const stages = {};
   for (const h of o.history) if (sdOf(h.stage)) (stages[h.stage] ??= []).push(h.verdict);
   const reviews = Object.fromEntries(def.stages.filter((x) => x.sample).map((x) => [x.stage, { ran: (stages[x.stage] ?? []).filter((v) => v !== "sampled-out").length, revised: (stages[x.stage] ?? []).filter((v) => v === "revise").length, sampledOut: (stages[x.stage] ?? []).filter((v) => v === "sampled-out").length, rate: engine.sampleRate(o, x) }]));
@@ -247,6 +273,7 @@ export function evidenceFor(co, o) {
   return {
     id: `E-${L.run}-${o.id}`, run: L.run, order: o.id, task: o.task ?? null, flow: def.name, outcome: o.stage, t: new Date().toISOString(),
     loops: o.loops, loopsBy: o.loopsBy ?? null, stages, reviews, revises, ...(Object.keys(checked).length ? { checked } : {}), classes: [...new Set(revises.flatMap((r) => r.classes))],
+    ...(Object.keys(owners).length ? { owners, modules } : {}),
     selfChecks: { n: checks.length, failed: checks.filter((e) => !e.pass).length }, tokens: o.spent ?? 0, costUSD: Math.round(cost * 1e4) / 1e4,
     leadMin: Math.round(((log.events.find((e) => e.type === "shipped" && e.order === o.id)?.t ?? engine.clock.now()) - o.created) * 10) / 10,
     lastWorkMs: Math.round(lastWork * 60000),
@@ -403,8 +430,9 @@ export const reviewerNarrows = (text) => NARROW.test(String(text)) ? "a rule for
 const normText = (t) => String(t).toLowerCase().replace(/\s+/g, " ").trim();
 /** Why a proposed rule is refused, or null. `reviewers`: the spec's independent reviewers; `independent`: whether the
  *  author is independent of the work (code, the founder, a reviewer); only such an author writes rules for a reviewer. */
-export function ruleProblem(r, { evidence, pb, learn, pending = 0, reviewers = new Set(), independent = true }) {
-  if (!r || typeof r !== "object" || Array.isArray(r) || Object.keys(r).some((k) => !["text", "why", "targets", "roles"].includes(k))) return "a rule is {text, why, targets, roles}";
+export function ruleProblem(r, { evidence, pb, learn, pending = 0, reviewers = new Set(), independent = true, spec = null }) {
+  if (!r || typeof r !== "object" || Array.isArray(r) || Object.keys(r).some((k) => !["text", "why", "targets", "roles", "scope"].includes(k))) return "a rule is {text, why, targets, roles, scope}";
+  { const e = scopeProblem(r.scope, { learn, spec }); if (e) return e; }
   if (typeof r.text !== "string" || r.text.trim().length < 10 || r.text.length > RULE_MAX_CHARS || /\n/.test(r.text)) return `text is one line of 10-${RULE_MAX_CHARS} characters`;
   if (!(Array.isArray(r.why) && r.why.length && r.why.every((x) => typeof x === "string"))) return "why lists the evidence ids it rests on";
   const byId = new Map(evidence.map((e) => [e.id, e])), missing = r.why.filter((x) => !byId.has(x));
@@ -420,7 +448,7 @@ export function ruleProblem(r, { evidence, pb, learn, pending = 0, reviewers = n
   const forReviewer = (r.roles ?? learn.roles).filter((x) => reviewers.has(x));
   if (forReviewer.length && r.roles != null && !independent) return `refused: ${forReviewer.join(", ")} review${forReviewer.length > 1 ? "" : "s"} independently: only code, the founder or a reviewer writes its rules, never the work side`;
   if (forReviewer.length && (r.roles != null || independent)) { const n = reviewerNarrows(r.text); if (n) return `refused: ${n}`; }
-  if (pb.rules.some((x) => x.status === "active" && normText(x.text) === normText(r.text))) return "an active rule says this already";
+  if (pb.rules.some((x) => x.status === "active" && normText(x.text) === normText(r.text) && JSON.stringify(x.scope ?? null) === JSON.stringify(r.scope ?? null))) return "an active rule says this already";
   const cap = learn.maxRules ?? DEFAULT_MAX_RULES;
   if (pb.rules.filter((x) => x.status === "active").length + pending >= cap) return `the playbook holds at most ${cap} active rules (retire one first)`;
   return null;
@@ -444,15 +472,15 @@ function applyUnlocked(co, P, { by, retro, res, refuse }) {
   const pb = readPlaybook(L.store), evidence = readEvidence(L.store), learn = co.spec.learn, now = new Date();
   const reviewers = reviewerRoles(co.spec), independent = independentAuthor(co.spec, by);
   for (const r of P.add ?? []) {
-    const e = ruleProblem(r, { evidence, pb, learn, reviewers, independent });
+    const e = ruleProblem(r, { evidence, pb, learn, reviewers, independent, spec: co.spec });
     if (e) { refuse("add", r, e); continue; }
     const byId = new Map(evidence.map((x) => [x.id, x]));
     // a work-side author's rule with no roles is for the work side's learning roles only (never a reviewer's pack)
     const roles = r.roles ?? (independent ? null : learn.roles.filter((x) => !reviewers.has(x)));
     if (roles && !roles.length) { refuse("add", r, "refused: every learning role reviews independently, and this author is on the work side"); continue; }
-    const rule = { id: `P-${pb.nextId++}`, text: r.text.trim(), why: r.why, targets: r.targets ?? [...new Set(r.why.flatMap((x) => byId.get(x).classes))], ...(roles ? { roles } : {}), status: "active", added: now.toISOString(), addedMs: now.getTime(), run: L.run, by, retro, helpedCount: 0, hurtCount: 0, runs: {}, streak: 0 };
+    const rule = { id: `P-${pb.nextId++}`, text: r.text.trim(), why: r.why, targets: r.targets ?? [...new Set(r.why.flatMap((x) => byId.get(x).classes))], ...(roles ? { roles } : {}), ...(r.scope ? { scope: r.scope } : {}), status: "active", added: now.toISOString(), addedMs: now.getTime(), run: L.run, by, retro, helpedCount: 0, hurtCount: 0, runs: {}, streak: 0 };
     pb.rules.push(rule); res.added.push(rule.id);
-    co.log.add({ type: "learn-rule-add", rule: rule.id, by, retro, targets: rule.targets, why: rule.why, text: rule.text });
+    co.log.add({ type: "learn-rule-add", rule: rule.id, by, retro, targets: rule.targets, why: rule.why, text: rule.text, ...(rule.scope ? { scope: rule.scope } : {}) });
   }
   for (const x of P.retire ?? []) {
     const r = pb.rules.find((y) => y.id === x?.id && y.status === "active");
@@ -484,17 +512,22 @@ function close(co, retro, by, res) {
  *  and no active rule targets; a lower sample rate for a sampled review that ran on 3+ orders and revised none. */
 export function codeRetro(store, { min = 2 } = {}) {
   const ev = readEvidence(store), pb = readPlaybook(store);
-  const targeted = new Set(pb.rules.filter((r) => r.status === "active").flatMap((r) => r.targets));
+  const targeted = new Set(pb.rules.filter((r) => r.status === "active").flatMap((r) => r.targets.map((c) => `${c}|${JSON.stringify(r.scope ?? null)}`)));
   const by = new Map();
   for (const e of ev) for (const c of e.classes ?? []) (by.get(c) ?? by.set(c, []).get(c)).push(e);
+  // K33: a class K30 routed to a module (or an owner) gets a rule in that scope: the owner's own domain playbook
+  const most = (xs) => { const n = new Map(); for (const x of xs.filter(Boolean)) n.set(x, (n.get(x) ?? 0) + 1); return [...n].sort((a, b) => b[1] - a[1])[0]?.[0] ?? null; };
   const add = [];
   for (const [c, es] of [...by].sort((a, b) => b[1].length - a[1].length)) {
-    if (es.length < min || targeted.has(c)) continue;
+    const mod = most(es.map((e) => e.modules?.[c])), owner = mod ? null : most(es.map((e) => e.owners?.[c]));
+    const scope = mod ? { module: mod } : owner ? { role: owner } : null;
+    if (es.length < min || targeted.has(`${c}|${JSON.stringify(scope)}`)) continue;
     const ex = es.flatMap((e) => e.revises).find((r) => r.classes.includes(c));
     const eg = String(ex?.findings ?? "").split("\n").map((l) => l.trim()).find((l) => l && l.length < 120 && !/^node |exit \d/.test(l)) ?? "";
-    let text = `Before you hand in, check your work for "${c}" defects: ${es.length} earlier orders were sent back for it${eg ? ` (e.g. ${eg.replace(/["\n]/g, "'")})` : ""}.`;
-    if (text.length > RULE_MAX_CHARS || weakens(text)) text = `Before you hand in, check your work for "${c}" defects: ${es.length} earlier orders were sent back for it.`;
-    add.push({ text, why: es.slice(-5).map((e) => e.id), targets: [c] });
+    const yours = mod ? `your ${mod} module` : "your work";
+    let text = `Before you hand in, check ${yours} for "${c}" defects: ${es.length} earlier orders were sent back for it${eg ? ` (e.g. ${eg.replace(/["\n]/g, "'")})` : ""}.`;
+    if (text.length > RULE_MAX_CHARS || weakens(text)) text = `Before you hand in, check ${yours} for "${c}" defects: ${es.length} earlier orders were sent back for it.`;
+    add.push({ text, why: es.slice(-5).map((e) => e.id), targets: [c], ...(scope ? { scope } : {}) });
   }
   const sample = [], last = ev.slice(-10);
   for (const st of new Set(last.flatMap((e) => Object.keys(e.reviews ?? {})))) {
