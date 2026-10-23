@@ -138,6 +138,10 @@ test("findings.checked: validated, read from stdout, kept as hashes, never in th
   const c = { argv: ["x"], findings: { fromStdout: "^failed: (.+)$", checked: "^checked: (.+)$" } };
   const bad = judgeCmd(c, "acc", { status: 1, stdout: "failed: padlock: 1 of 2 tests fail\nchecked: api, padlock, beacon\n", stderr: "" });
   assert.deepEqual([bad.pass, bad.findings, bad.checked], [false, "padlock: 1 of 2 tests fail", ["api", "padlock", "beacon"]]);
+  // B8 S2 review: multi-word classes in a comma list stay whole ("W3 sizeof" was split into "W3" and "sizeof", so no
+  // W3 rule was ever scored on W4 or W5); a list with no comma still splits on whitespace
+  assert.deepEqual(judgeCmd(c, "acc", { status: 1, stdout: "failed: W3 sizeof: 1 of 9 fail\nchecked: W1 functions, W3 sizeof,W5 gnu\n", stderr: "" }).checked, ["W1 functions", "W3 sizeof", "W5 gnu"]);
+  assert.deepEqual(judgeCmd(c, "acc", { status: 1, stdout: "failed: x\nchecked: api padlock\n", stderr: "" }).checked, ["api", "padlock"]);
   const none = judgeCmd(c, "acc", { status: 1, stdout: "boom\nchecked: api\n", stderr: "" });
   assert.equal(none.findings, "boom", "the fallback findings leave the checked line out");
   assert.equal(judgeCmd(c, "acc", { status: null, timedOut: true, stdout: "checked: api\n", stderr: "" }).checked, undefined, "a stage-error checked nothing");

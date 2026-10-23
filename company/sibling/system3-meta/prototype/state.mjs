@@ -472,7 +472,9 @@ export function judgeCmd(c, label, r, timeoutMs = c.timeoutMs ?? 60_000) {
   // B7 dry run 2: `checked` names the defect classes this run could see (K28 scores a rule only where its class was
   // checked); those lines never reach the findings
   const ckRe = c.findings?.checked ? new RegExp(c.findings.checked, "m") : null;
-  const checked = ckRe ? [...new Set(out.split("\n").map((l) => ckRe.exec(l)?.[1]).filter(Boolean).flatMap((x) => x.split(/[,\s]+/)).filter(Boolean))] : null;
+  // B8 S2 review: a list with commas is split on the commas only, so a class of several words ("W3 sizeof", as B8's
+  // hidden runner names its categories) stays one class; a list with no comma is split on whitespace as before
+  const checked = ckRe ? [...new Set(out.split("\n").map((l) => ckRe.exec(l)?.[1]).filter(Boolean).flatMap((x) => x.split(x.includes(",") ? /\s*,\s*/ : /\s+/)).map((x) => x.trim()).filter(Boolean))] : null;
   if (!pass && !findings) findings = both.trim().split("\n").filter((l) => l && !(ckRe && ckRe.test(l))).slice(-20).join("\n").slice(0, 2000) || null;
   const route = pass ? null : Object.entries(c.route ?? {}).find(([re]) => new RegExp(re, "m").test(both))?.[1] ?? null;
   // M4 integrate: a stage-error never routes, whatever made it (errorExit, a timeout, a failed spawn): a timed-out or
