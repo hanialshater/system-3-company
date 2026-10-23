@@ -10,7 +10,7 @@ import { spawnSync } from "node:child_process";
 // role, or a code cmd) proposes rule changes; code validates each (evidence that exists, a defect class it shows, one
 // short line, never weakening a check or independence, a size cap), writes playbook.json + .md atomically, puts the
 // active rules in the learning roles' packs, scores them on later orders (helped / hurt: did the class recur) and
-// retires one hurt or idle for retireAfter runs. A retro may move a K27 sample rate inside the founder's bounds.
+// retires one whose belief fell under retireBelow (K38) or idle for retireAfter runs. A retro may move a K27 sample rate inside the founder's bounds.
 // Three runs (three live dirs) share one store; every agent step is the CLI an agent would type.
 const TMP = fs.mkdtempSync(path.join(os.tmpdir(), "meta-k28-"));
 process.env.META_LIVE_DIR = path.join(TMP, "unit");
@@ -191,7 +191,7 @@ test("runs 2 and 3: the store's rules reach the learning roles' packs and knobs 
   assert.deepEqual(sampled.at(-1).always, ["looped"]);
   R.tick();
   let pb = JSON.parse(fs.readFileSync(path.join(STORE, "playbook.json"), "utf8"));
-  assert.deepEqual([pb.rules[0].hurtCount, pb.rules[0].helpedCount, pb.rules[0].streak, pb.rules[0].status], [1, 0, 1, "active"], "hurt by AGAIN (movement again); PK (cancelled with no work) tested nothing: unobserved, not helped (B7 review)");
+  assert.deepEqual([pb.rules[0].hurtCount, pb.rules[0].helpedCount, pb.rules[0].streak, pb.rules[0].belief.p, pb.rules[0].status], [1, 0, 0, 0.333, "active"], "hurt by AGAIN (movement again); PK (cancelled with no work) tested nothing: unobserved, not helped (B7 review)");
   const sc = R.meta("events", "--type=learn-score");
   assert.deepEqual(sc.map((e) => [e.order, e.outcome]).sort(), [[id, "unobserved"], [o.id, "hurt"]].sort());
   assert.match(sc.find((e) => e.order === id).why, /no stage that catches movement judged/);
@@ -204,7 +204,7 @@ test("runs 2 and 3: the store's rules reach the learning roles' packs and knobs 
   assert.deepEqual(R3.meta("events", "--type=learn-rule-retire").map((e) => [e.rule, e.by]), [["P-1", "code"]]);
   pb = JSON.parse(fs.readFileSync(path.join(STORE, "playbook.json"), "utf8"));
   assert.deepEqual([pb.rules[0].status, pb.rules[0].history.map((h) => h.outcome)], ["retired", ["hurt", "hurt"]]);
-  assert.match(pb.rules[0].retiredWhy, /code: hurt 2 runs in a row/);
+  assert.match(pb.rules[0].retiredWhy, /code: belief 25% that it helps is under 30% \(with it the class recurred in 2 of 2 orders/);
   assert.equal(pb.runs.length, 3);
   assert.match(fs.readFileSync(path.join(STORE, "playbook.md"), "utf8"), /## Retired[\s\S]*P-1/);
 });
@@ -300,4 +300,32 @@ test("B7 review: launch config protects the store; learn show hides it from agen
   // a store inside the kernel's folder is refused
   assert.match(runner(path.join(TMP, "run-k")).cli("meta.mjs", ["init", `--spec-file=${SF}`, `--vars=${JSON.stringify({ playbook_store: path.join(HERE, "..", "pb-store-x") })}`]).err, /inside the kernel's folder/);
   assert.equal(fs.existsSync(path.join(HERE, "..", "pb-store-x")), false);
+});
+
+// ---- K38: beliefs (founder 2026-10-23: "make the learnings Bayesian, with beliefs")
+test("K38: a rule's belief is Bayes against the class's base rate; untested keeps the prior; n recurrences give 1/(n+1)", () => {
+  const near = (a, b, m) => assert.ok(Math.abs(a - b) < 0.005, `${m}: ${a} vs ${b}`);
+  assert.equal(L.ruleBelief({ prior: 0.7 }).p, 0.7, "no data: the prior");
+  for (const n of [1, 2, 3]) near(L.ruleBelief({ k: n, n }).bf, 1 / (n + 1), `recurred ${n} of ${n}`);
+  near(L.ruleBelief({ k: 2, n: 2 }).p, 0.25, "two recurrences from 0.5");
+  // a clean order says more where the class used to recur (base 4 of 4) than where it rarely did (0 of 4)
+  const often = L.ruleBelief({ k: 0, n: 1, k0: 4, n0: 4 }).p, rarely = L.ruleBelief({ k: 0, n: 1, k0: 0, n0: 4 }).p;
+  assert.ok(often > 0.75 && rarely < 0.55 && often > rarely, `${often} > ${rarely}`);
+  // proposals: prior and wrongIf are validated
+  const ev = [{ id: "E-1", classes: ["movement"], revises: [] }], pb = { rules: [] }, learn = { roles: ["maker"] };
+  const r = { text: "Walk every exit in the spec before you hand in.", why: ["E-1"], targets: ["movement"] };
+  assert.equal(L.ruleProblem({ ...r, prior: 0.6, wrongIf: "movement recurs in the next two orders" }, { evidence: ev, pb, learn }), null);
+  assert.match(L.ruleProblem({ ...r, prior: 1 }, { evidence: ev, pb, learn }), /prior is your belief/);
+  assert.match(L.ruleProblem({ ...r, wrongIf: "a\nb c d e" }, { evidence: ev, pb, learn }), /wrongIf is one line/);
+  // the base rate leaves out the rule's own evidence and counts only orders before it that could show the class
+  const evid = [
+    { id: "E-1", classes: ["movement"], lastWorkMs: 1, stages: { eval: ["revise"] }, revises: [{ stage: "eval", classes: ["movement"] }] },
+    { id: "E-2", classes: [], lastWorkMs: 2, stages: { eval: ["pass"] }, revises: [] },
+    { id: "E-3", classes: ["movement"], lastWorkMs: 3, stages: { eval: ["revise"] }, revises: [{ stage: "eval", classes: ["movement"] }] },
+    { id: "E-4", classes: [], lastWorkMs: 4, stages: { build: ["pass"] }, revises: [] },
+  ];
+  const rule = { why: ["E-3"], targets: ["movement"], addedMs: 10, hurtCount: 0, helpedCount: 1 };
+  const b = L.updateBelief(rule, evid);
+  assert.deepEqual([b.k0, b.n0, b.k, b.n], [1, 2, 0, 1], "E-3 cited, E-4 never judged by a stage that sees movement");
+  assert.match(L.beliefText({ ...rule, wrongIf: "it recurs" }), /^belief \d+% that it helps \(prior 50%; with it the class recurred in 0 of 1 orders, before it 1 of 2\); wrong if it recurs$/);
 });

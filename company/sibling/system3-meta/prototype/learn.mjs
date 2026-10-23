@@ -14,6 +14,14 @@
 // active rules on every later order (helped: the defect class it targets did not recur; hurt: it did), and at the end
 // of each run retires a rule hurt or idle for retireAfter runs in a row. A retro may also move a K27 sample rate, inside
 // the founder's bounds of the spec. Every decision is an event (learn-*, sample-rate).
+// K38 (founder 2026-10-23: "make the learnings Bayesian, with beliefs"): every rule is a hypothesis with a belief.
+// A proposal may state its prior (how likely the rule prevents its classes, default 0.5) and wrongIf (what would show
+// it does not). Code keeps the belief P(the rule helps) by Bayes: H0, the rule changes nothing (with it a target class
+// recurs at the base rate θ it had before); H1, it lowers that rate to some p uniform on [0, θ). θ ~ Beta from the
+// orders that could show the class before the rule was in force (its own cited evidence left out: a rule is written
+// because its class just occurred). So a clean order counts for more where the class used to recur, and a class that
+// recurs n times running gives a Bayes factor 1/(n+1). At the end of a run code retires a rule whose belief fell under
+// learn.retireBelow (default 0.3), or that no order tested for retireAfter runs in a row (idle tells nothing either way).
 // B7 review: only an author independent of the work (code, the founder, a reviewer) writes rules for an independent
 // reviewer, and those may only add a check; a retro role proposes only during an open retro; a rule scores only when
 // a stage that catches its class judged the order (else "unobserved"); the store is locked across companies, survives
@@ -30,7 +38,9 @@ export const RULE_MAX_CHARS = 300;
 export const DEFAULT_MAX_RULES = 12;
 export const DEFAULT_RETIRE_AFTER = 2;
 const VAR = /^[a-z][a-z0-9_]*$/;
-const LEARN_KEYS = ["store", "roles", "retro", "maxRules", "retireAfter", "classify"];
+export const DEFAULT_PRIOR = 0.5;
+export const DEFAULT_RETIRE_BELOW = 0.3;
+const LEARN_KEYS = ["store", "roles", "retro", "maxRules", "retireAfter", "retireBelow", "classify"];
 
 /** A spec's `vars` ({name: string}), overridden by init --vars; ${name} in learn.store. */
 export const fillVars = (s, vars = {}) => String(s).replace(/\$\{([a-z][a-z0-9_]*)\}/g, (m, k) => (Object.hasOwn(vars, k) ? String(vars[k]) : m));
@@ -68,6 +78,7 @@ export function learnProblems(s, roles = new Map()) {
   }
   if (L.maxRules != null && !(Number.isInteger(L.maxRules) && L.maxRules >= 1 && L.maxRules <= 50)) p.push("learn.maxRules is a whole number 1-50");
   if (L.retireAfter != null && !(Number.isInteger(L.retireAfter) && L.retireAfter >= 1 && L.retireAfter <= 10)) p.push("learn.retireAfter is a whole number of runs 1-10");
+  if (L.retireBelow != null && !(typeof L.retireBelow === "number" && L.retireBelow >= 0.05 && L.retireBelow <= 0.5)) p.push("learn.retireBelow is a belief 0.05-0.5");
   if (L.classify != null) { let ok = typeof L.classify === "string"; try { ok = ok && /\((?!\?)/.test(L.classify) && !!new RegExp(L.classify); } catch { ok = false; } if (!ok) p.push("learn.classify is a regular expression with a capture group (the defect class)"); }
   return p;
 }
@@ -158,10 +169,17 @@ export function playbookMd(pb) {
   if (!act.length) L.push("none yet");
   // K33: an owner's domain playbook is the rules in its scope (by module or role), under the global ones
   const scopeOf = (r) => (r.scope?.module ? `module ${r.scope.module}` : r.scope?.role ? `role ${r.scope.role}` : "");
-  for (const r of [...act].sort((a, b) => scopeOf(a).localeCompare(scopeOf(b)))) L.push(`- **${r.id}** (${scopeOf(r) ? `${scopeOf(r)}; ` : ""}${(r.roles ?? []).join(", ") || (scopeOf(r) ? "" : "all learning roles")}${(r.roles ?? []).length || !scopeOf(r) ? "; " : ""}targets ${r.targets.join(", ")}): ${r.text} _helped ${r.helpedCount}, hurt ${r.hurtCount}; evidence ${r.why.join(", ")}_`);
+  for (const r of [...act].sort((a, b) => scopeOf(a).localeCompare(scopeOf(b)))) L.push(`- **${r.id}** (${scopeOf(r) ? `${scopeOf(r)}; ` : ""}${(r.roles ?? []).join(", ") || (scopeOf(r) ? "" : "all learning roles")}${(r.roles ?? []).length || !scopeOf(r) ? "; " : ""}targets ${r.targets.join(", ")}): ${r.text} _${beliefText(r)}; evidence ${r.why.join(", ")}_`);
   if (Object.keys(pb.knobs?.sample ?? {}).length) L.push("", "## Knobs", "", ...Object.entries(pb.knobs.sample).map(([k, v]) => `- sample rate ${k}: ${v}`));
   if (old.length) L.push("", "## Retired", "", ...old.map((r) => `- ${r.id}: ${r.text} (${r.retiredWhy ?? r.status})`));
   return L.join("\n") + "\n";
+}
+const pct = (x) => `${Math.round(x * 100)}%`;
+/** K38: a rule's belief in words (old rules with no belief yet show their counts). */
+export function beliefText(r) {
+  const b = r.belief;
+  if (!b) return `helped ${r.helpedCount ?? 0}, hurt ${r.hurtCount ?? 0}`;
+  return `belief ${pct(b.p)} that it helps (prior ${pct(b.prior)}; ${b.n ? `with it the class recurred in ${b.k} of ${b.n} orders` : "not yet tested"}, before it ${b.k0} of ${b.n0})${r.wrongIf ? `; wrong if ${r.wrongIf}` : ""}`;
 }
 export function writePlaybook(store, pb) {
   fs.mkdirSync(store, { recursive: true });
@@ -182,7 +200,7 @@ export function activeRules(co, role) {
   if (!L || !co.spec.learn.roles.includes(role)) return [];
   let pb; try { pb = readPlaybook(L.store); } catch { return []; }
   const reviewer = reviewerRoles(co.spec).has(role);
-  return pb.rules.filter((r) => r.status === "active" && (r.roles ?? co.spec.learn.roles).includes(role) && inScope(co, r, role) && (!reviewer || independentAuthor(co.spec, r.by))).map((r) => ({ id: r.id, text: r.text, ...(r.scope ? { scope: r.scope } : {}) }));
+  return pb.rules.filter((r) => r.status === "active" && (r.roles ?? co.spec.learn.roles).includes(role) && inScope(co, r, role) && (!reviewer || independentAuthor(co.spec, r.by))).map((r) => ({ id: r.id, text: r.text, ...(r.scope ? { scope: r.scope } : {}), ...(r.belief ? { belief: Math.round(r.belief.p * 100) / 100 } : {}) }));
 }
 /** K33: is rule `r` in role `role`'s scope? A rule with no scope is global; a scope names a role, a module (its owner's
  *  rule), or both. */
@@ -285,6 +303,29 @@ export function evidenceFor(co, o) {
 
 /** The stages that have caught defect class `c` in any evidence record: where the class can be seen at all. */
 const detectors = (evidence, c) => new Set(evidence.flatMap((e) => (e.revises ?? []).filter((r) => (r.classes ?? []).includes(c)).map((r) => r.stage)));
+/** K38: P(H1 | data) for a rule (see the header): `k` of `n` scored orders had a target class recur with the rule in
+ *  force; `k0` of `n0` orders before it. Midpoint integration on a fixed grid: deterministic, no sampling. */
+export function ruleBelief({ prior = DEFAULT_PRIOR, k = 0, n = 0, k0 = 0, n0 = 0 }) {
+  const G = 1000, h = 1 / G, f = (p) => p ** k * (1 - p) ** (n - k);
+  let m0 = 0, m1 = 0, z = 0, cum = 0;
+  for (let i = 0; i < G; i++) {
+    const t = (i + 0.5) * h, w = t ** k0 * (1 - t) ** (n0 - k0), ft = f(t);
+    m0 += w * ft; m1 += (w * (cum + ft * h / 2)) / t; z += w; cum += ft * h;
+  }
+  m0 /= z; m1 /= z;
+  const bf = m0 > 0 ? m1 / m0 : 1, p = (prior * m1) / (prior * m1 + (1 - prior) * m0);
+  return { p: Math.round(p * 1000) / 1000, prior, bf: Math.round(bf * 1000) / 1000, k, n, k0, n0 };
+}
+/** Could a stage that catches class `c` see it in this record (judged, and checked it if it lists what it checked)? */
+const observable = (rec, c, evidence) => { const ran = judgedBy(rec); return [...detectors(evidence, c)].some((st) => ran.has(st) && (rec.checked?.[st] == null || rec.checked[st].includes(classTag(c)))); };
+/** K38: recompute rule `r`'s belief from the evidence: its base rate from the orders before it was in force (minus its
+ *  own cited evidence), its record from its scores. */
+export function updateBelief(r, evidence) {
+  const why = new Set(r.why ?? []), before = evidence.filter((e) => !why.has(e.id) && e.lastWorkMs != null && e.lastWorkMs < r.addedMs && r.targets.some((c) => observable(e, c, evidence)));
+  const k0 = before.filter((e) => r.targets.some((c) => (e.classes ?? []).includes(c))).length;
+  r.belief = ruleBelief({ prior: r.prior ?? DEFAULT_PRIOR, k: r.hurtCount ?? 0, n: (r.hurtCount ?? 0) + (r.helpedCount ?? 0), k0, n0: before.length });
+  return r.belief;
+}
 /** The stages that judged this order: any verdict but a sampled-out one (B7 review). */
 export const judgedBy = (rec) => new Set(Object.entries(rec.stages ?? {}).filter(([, vs]) => vs.some((v) => v !== "sampled-out")).map(([st]) => st));
 /** Score the active rules on one order's evidence: hurt when a target class recurred; helped when none did and a stage
@@ -301,7 +342,11 @@ function score(co, pb, rec, evidence) {
     const sees = (st, c) => ran.has(st) && (rec.checked?.[st] == null || rec.checked[st].includes(classTag(c)));
     const seen = r.targets.filter((c) => [...detectors(evidence, c)].some((st) => sees(st, c)));
     const k = hit.length ? "hurt" : seen.length ? "helped" : "unobserved";
-    if (k !== "unobserved") { r[`${k}Count`]++; const t = ((r.runs ??= {})[rec.run] ??= { helped: 0, hurt: 0 }); t[k]++; }
+    if (k !== "unobserved") {
+      r[`${k}Count`]++; const t = ((r.runs ??= {})[rec.run] ??= { helped: 0, hurt: 0 }); t[k]++;
+      const was = r.belief?.p ?? r.prior ?? DEFAULT_PRIOR, b = updateBelief(r, evidence);
+      co.log.add({ type: "learn-belief", rule: r.id, order: rec.order, outcome: k, from: was, to: b.p, bf: b.bf, k: b.k, n: b.n, k0: b.k0, n0: b.n0 });
+    }
     co.log.add({ type: "learn-score", rule: r.id, order: rec.order, evidence: rec.id, outcome: k, recurred: hit, ...(k === "unobserved" ? { why: `no stage that catches ${r.targets.join(", ")} judged ${rec.order} and checked it (${[...ran].join(", ") || "none ran"})` } : {}) });
     out.push({ rule: r.id, outcome: k });
   }
@@ -309,17 +354,20 @@ function score(co, pb, rec, evidence) {
 }
 
 /** The end of a run (every order ended): each active rule's run is helped, hurt (a target class recurred) or idle (no
- *  order scored it); a rule hurt or idle for retireAfter runs in a row is retired by code. Idempotent per run: orders
- *  placed after a close end the run again, and its outcome is recomputed from all of its scores (one entry per run). */
+ *  order scored it). K38: code retires a rule whose belief fell under retireBelow, or one idle for retireAfter runs in a
+ *  row. Idempotent per run: orders placed after a close end the run again, and its outcome is recomputed from all of
+ *  its scores (one entry per run). */
 function closeRun(co, pb) {
-  const L = learnOf(co), k = co.spec.learn.retireAfter ?? DEFAULT_RETIRE_AFTER, out = [];
+  const L = learnOf(co), k = co.spec.learn.retireAfter ?? DEFAULT_RETIRE_AFTER, below = co.spec.learn.retireBelow ?? DEFAULT_RETIRE_BELOW, out = [];
   for (const r of pb.rules) {
     if (r.status !== "active") continue;
     const t = r.runs?.[L.run] ?? { helped: 0, hurt: 0 }, outcome = t.hurt ? "hurt" : t.helped ? "helped" : "idle";
     r.history = [...(r.history ?? []).filter((h) => h.run !== L.run), { run: L.run, outcome }];
-    let n = 0; for (const h of [...r.history].reverse()) { if (h.outcome === "helped") break; n++; }
-    r.streak = n;
-    if (r.streak >= k) { r.status = "retired"; r.retired = new Date().toISOString(); r.retiredWhy = `code: ${outcome} ${r.streak} runs in a row (retireAfter ${k})`; co.log.add({ type: "learn-rule-retire", rule: r.id, by: "code", why: r.retiredWhy }); out.push(r.id); }
+    let n = 0; for (const h of [...r.history].reverse()) { if (h.outcome !== "idle") break; n++; }
+    r.streak = n; // idle runs in a row
+    const b = r.belief, why = b && b.n > 0 && b.p < below ? `code: belief ${pct(b.p)} that it helps is under ${pct(below)} (with it the class recurred in ${b.k} of ${b.n} orders; before it ${b.k0} of ${b.n0}; prior ${pct(b.prior)})`
+      : r.streak >= k ? `code: no order tested it ${r.streak} runs in a row (retireAfter ${k})` : null;
+    if (why) { r.status = "retired"; r.retired = new Date().toISOString(); r.retiredWhy = why; co.log.add({ type: "learn-rule-retire", rule: r.id, by: "code", why, ...(b ? { belief: b.p } : {}) }); out.push(r.id); }
   }
   pb.runs = [...(pb.runs ?? []).filter((x) => x.run !== L.run), { run: L.run, orders: L.gathered.length, closed: new Date().toISOString() }];
   co.log.add({ type: "learn-run-closed", run: L.run, orders: L.gathered.length, retired: out });
@@ -434,7 +482,9 @@ const normText = (t) => String(t).toLowerCase().replace(/\s+/g, " ").trim();
 /** Why a proposed rule is refused, or null. `reviewers`: the spec's independent reviewers; `independent`: whether the
  *  author is independent of the work (code, the founder, a reviewer); only such an author writes rules for a reviewer. */
 export function ruleProblem(r, { evidence, pb, learn, pending = 0, reviewers = new Set(), independent = true, spec = null }) {
-  if (!r || typeof r !== "object" || Array.isArray(r) || Object.keys(r).some((k) => !["text", "why", "targets", "roles", "scope"].includes(k))) return "a rule is {text, why, targets, roles, scope}";
+  if (!r || typeof r !== "object" || Array.isArray(r) || Object.keys(r).some((k) => !["text", "why", "targets", "roles", "scope", "prior", "wrongIf"].includes(k))) return "a rule is {text, why, targets, roles, scope, prior, wrongIf}";
+  if (r.prior != null && !(typeof r.prior === "number" && r.prior >= 0.05 && r.prior <= 0.95)) return "prior is your belief that the rule prevents its classes, 0.05-0.95";
+  if (r.wrongIf != null && !(typeof r.wrongIf === "string" && r.wrongIf.trim().length >= 5 && r.wrongIf.length <= 200 && !/\n/.test(r.wrongIf))) return "wrongIf is one line of 5-200 characters: the outcome that would show the rule does not help";
   { const e = scopeProblem(r.scope, { learn, spec }); if (e) return e; }
   if (typeof r.text !== "string" || r.text.trim().length < 10 || r.text.length > RULE_MAX_CHARS || /\n/.test(r.text)) return `text is one line of 10-${RULE_MAX_CHARS} characters`;
   if (!(Array.isArray(r.why) && r.why.length && r.why.every((x) => typeof x === "string"))) return "why lists the evidence ids it rests on";
@@ -481,9 +531,10 @@ function applyUnlocked(co, P, { by, retro, res, refuse }) {
     // a work-side author's rule with no roles is for the work side's learning roles only (never a reviewer's pack)
     const roles = r.roles ?? (independent ? null : learn.roles.filter((x) => !reviewers.has(x)));
     if (roles && !roles.length) { refuse("add", r, "refused: every learning role reviews independently, and this author is on the work side"); continue; }
-    const rule = { id: `P-${pb.nextId++}`, text: r.text.trim(), why: r.why, targets: r.targets ?? [...new Set(r.why.flatMap((x) => byId.get(x).classes))], ...(roles ? { roles } : {}), ...(r.scope ? { scope: r.scope } : {}), status: "active", added: now.toISOString(), addedMs: now.getTime(), run: L.run, by, retro, helpedCount: 0, hurtCount: 0, runs: {}, streak: 0 };
+    const rule = { id: `P-${pb.nextId++}`, text: r.text.trim(), why: r.why, targets: r.targets ?? [...new Set(r.why.flatMap((x) => byId.get(x).classes))], ...(roles ? { roles } : {}), ...(r.scope ? { scope: r.scope } : {}), status: "active", added: now.toISOString(), addedMs: now.getTime(), run: L.run, by, retro, helpedCount: 0, hurtCount: 0, runs: {}, streak: 0, prior: r.prior ?? DEFAULT_PRIOR, ...(r.wrongIf ? { wrongIf: r.wrongIf.trim() } : {}) };
+    updateBelief(rule, evidence);
     pb.rules.push(rule); res.added.push(rule.id);
-    co.log.add({ type: "learn-rule-add", rule: rule.id, by, retro, targets: rule.targets, why: rule.why, text: rule.text, ...(rule.scope ? { scope: rule.scope } : {}) });
+    co.log.add({ type: "learn-rule-add", rule: rule.id, by, retro, targets: rule.targets, why: rule.why, text: rule.text, ...(rule.scope ? { scope: rule.scope } : {}), prior: rule.prior, belief: rule.belief.p, ...(rule.wrongIf ? { wrongIf: rule.wrongIf } : {}) });
   }
   for (const x of P.retire ?? []) {
     const r = pb.rules.find((y) => y.id === x?.id && y.status === "active");
@@ -530,7 +581,7 @@ export function codeRetro(store, { min = 2 } = {}) {
     const yours = mod ? `your ${mod} module` : "your work";
     let text = `Before you hand in, check ${yours} for "${c}" defects: ${es.length} earlier orders were sent back for it${eg ? ` (e.g. ${eg.replace(/["\n]/g, "'")})` : ""}.`;
     if (text.length > RULE_MAX_CHARS || weakens(text)) text = `Before you hand in, check ${yours} for "${c}" defects: ${es.length} earlier orders were sent back for it.`;
-    add.push({ text, why: es.slice(-5).map((e) => e.id), targets: [c], ...(scope ? { scope } : {}) });
+    add.push({ text, why: es.slice(-5).map((e) => e.id), targets: [c], ...(scope ? { scope } : {}), prior: DEFAULT_PRIOR, wrongIf: `"${c}" still recurs in the orders that follow it`.slice(0, 200) });
   }
   const sample = [], last = ev.slice(-10);
   for (const st of new Set(last.flatMap((e) => Object.keys(e.reviews ?? {})))) {
