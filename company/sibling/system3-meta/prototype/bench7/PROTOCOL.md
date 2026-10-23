@@ -1,6 +1,6 @@
 # Benchmark 7: run protocol (text games, V vs H vs HSI)
 
-owner: vp-meta · date: 2026-10-22 · status: harness built and dry-run, **no arm run yet** (running starts Agent SDK sessions: it waits for the founder's go). **v2 (2026-10-22): the three games are rebuilt hard and noisy, with a mid-run Change Notice and visible tests: see "Benchmark 7 v2" at the end, which takes precedence over the earlier sections where they differ.**
+owner: vp-meta · date: 2026-10-22 · status: harness built and dry-run, **no arm run yet** (running starts Agent SDK sessions: it waits for the founder's go). **v2 (2026-10-22): the three games are rebuilt hard and noisy, with a mid-run Change Notice and visible tests: see "Benchmark 7 v2" at the end, which takes precedence over the earlier sections where they differ.** **v3 (2026-10-23): hardened after the verification and a spec-only pilot of G1: see "Benchmark 7 v3", the last section, which takes precedence over everything before it.**
 
 ## The question
 
@@ -143,7 +143,7 @@ node setup.mjs audit > ../b7-runs/_operator/audit.json
 
 - `setup.mjs run` starts `launcher/launch.mjs --live=<runs>/arm-<A>/<G> --setting-sources=project --max-parallel=2 --max-min=600`. It runs the observer beside it every 3 s and applies the stops.
 - `setup.mjs run --dry-run` prints that command and runs one observer pass. Its records go to `<runs>/_operator/` (default `<scratchpad>/b7-runs`; `--runs` overrides).
-- Operator-only diagnostics, after the run: `node run-hidden.mjs --game=Gn --dir=<snapshot> --debug` names failing tests.
+- Operator-only diagnostics, after the run: `node run-hidden.mjs --game=Gn --phase=pre|post --dir=<snapshot> --debug` names failing tests (v3: `--phase` is required).
 
 ## Measures (per arm, per game; `setup.mjs tally`)
 
@@ -319,7 +319,7 @@ The notice is fixed before the run (`b7/notices/Gn.md`, built from `hidden/specs
 - **Data-driven.** `hidden/Gn/cases.mjs` (and the shared generators in `hidden/common/casegen.mjs`) list each case: a seed, the inputs and save/load operations, and the expectations I wrote from my own reading of the spec. `hidden/build-golden.mjs` runs every case on the reference twice, normally and with `B7_VARIANT=1`, which rewrites every free-wording string. It keeps a line exact only where both runs agree, so free wording is never tested. It writes `golden.pre.json` (with the pre-notice reference, `ref-pre/`) and `golden.post.json` (with `ref/`).
   - The build fails if a hand-written expectation disagrees with the reference.
   - The build also fails if a reload case does not replay exactly like its base run.
-- **The runner.** `acc.test.mjs` and `hidden/common/suite.mjs` replay the golden cases. `run-hidden.mjs --phase=pre|post` (post by default) copies the phase's golden file into the isolated suite copy, and takes the category names from it. `kit.mjs` is gone.
+- **The runner.** `acc.test.mjs` and `hidden/common/suite.mjs` replay the golden cases. `run-hidden.mjs --phase=pre|post` (v3: required, no default) judges the run against the phase's golden file, and takes the category names from it (v3: the game runs in a process of its own and never sees the golden file; see v3). `kit.mjs` is gone.
 - **Sizes.** Specs: G1 71.5k characters (13.0k words, about 19.9k tokens, 1,136 lines); G2 70.8k (12.8k words, about 19.7k tokens); G3 69.9k (12.7k words, about 19.4k tokens). The notices run 1.6-2.4k characters (450-670 tokens). Tests (post-notice; the api row counts its 10 golden cases, and the runner adds 3 code tests to it):
 
   | category | G1 | G2 | G3 |
@@ -364,7 +364,7 @@ The notice is fixed before the run (`b7/notices/Gn.md`, built from `hidden/specs
 cd "$B7"
 node hidden/build-specs.mjs                 # specs/, notices/; prints the sizes
 node hidden/build-golden.mjs                # golden files and visible tests; fails on any hand-expectation mismatch
-node hidden/mutants.mjs                     # 21 misreadings x 3 games
+node hidden/mutants.mjs                     # 49 misreadings x 3 games (v3)
 node check-harness.mjs                      # access, isolation, accept phases, notice files, canaries
 node run-hidden.mjs --game=G1 --phase=pre --dir=hidden/G1/ref-pre    # operator: a reference on its own phase
 ```
@@ -417,3 +417,176 @@ After the fix, **146 of 147** mutant×game pairs are killed. The only survivor i
 **(d) Flakiness.** I ran each of the 12 suite runs 3 times: 3 games × pre/post × normal/variant. The last JSON line was identical across the 3 runs every time. The whole mutant check (147 pairs × post, pre and visible) also ran 3 times, with identical results. No test is flaky.
 
 **(e) Time per hidden run.** On this 4-core container, one run of the runner takes 0.53-0.80 s of wall time (the runner's own figure is 0.46-0.67 s). That holds for both phases and for the variant. It is 0.51-0.66 s when the game runs isolated like an arm's. The full mutant check takes about 103 s with 4 in parallel. The kernel suites (`tests/*.test.mjs`, 312 tests) pass.
+
+## Benchmark 7 v3: hardened after the verification and the G1 pilot (2026-10-23, before any arm run)
+
+**This section takes precedence** over every section before it where they differ. Nothing here has run an arm. The founder's go is still needed for the arms, and for the remaining spec-only builds of the fairness rule.
+
+### The G1 pilot: one spec-only build
+
+One fresh session built G1 from `specs/G1.md` and the visible tests alone. It read nothing under `hidden/`, and neither this protocol nor the research memo.
+- **Scores:** the first hand-in 579/579 on the pre-notice suite; after Change Notice G1-N1, 596/596 on the post-notice suite. Both are 100%, from 3 hidden runs and no fix round. The game took one pass of about 900 lines, checked against the visible tests, a full playthrough, the spec's worked random turn, a reload at every step and a 300-seed fuzz run.
+- **On the v3 suite** (below), the same code scores 585/585 (pre) and 602/602 (post). That includes the new G1 probes, so they have had one independent check. The new G2 and G3 probes have had none.
+- **The fairness rule** asks for two spec-only builds per game, each at 95% or more. G1 now has one. The other five builds (G1's second, and two each for G2 and G3) wait for the founder's go, because they are Agent SDK sessions.
+- **What it means for the predictions.** A careful single session can reach 100% on G1 at its first hand-in. If V does that on every game, the accuracy predictions can only end in ties. See PREDICTIONS.md v3.
+
+**The pilot's findings, and what was done with each:**
+
+| Finding | Fix |
+|---|---|
+| `run-hidden.mjs` defaulted to `--phase=post`. Run without the flag, the pilot's pre-notice game was scored against the post-notice suite: 500/593 instead of 579/579 | `--phase` is now required, and the runner refuses a call without it (exit 2). Every caller already passed it (`setup.mjs hidden`, `mutants.mjs`); `check-harness.mjs` now does too |
+| The spec says `visible-tests/` sits next to it, but in `b7/` the tests are in `visible/Gn/` | This is right for every arm: `setup.mjs placeVisible` copies them to `<workdir>/visible-tests/`, next to the arm's `SPEC.md`, and `deliverNoticeFiles` adds the notice's tests there. The pilot read `b7/specs/` directly, which no arm does |
+| A6.8: is the set for `all` empty before or after `but`/`except`? | The spec now says after, with an example (`take all but shell`, when only the shell is here, is `There is nothing here to take.`). This is what the reference does and what the pilot chose |
+| A14.2 row 26 could be read as "the command typed before `restore`" | Rewritten: restoring does not bring back the `again` memory from the time of `save`, and `restore` itself becomes the remembered command (A7.1, A8.3). A8.3 says the same |
+| A7.1 against G1's D1: is a lone `restore` or `undo` after the end recorded for `again`? | A7.1 now says that inputs after the end are never recorded, "not even a lone `restore` that A7.4 lets through, nor an exception a Change Notice adds there". G1's D1 repeats it for `undo`. The reference already did this |
+| A9.6 with A6.8: does an explicit list in `take X and Y from Z` get one line or a line per object? | A6.8 now says the whole-response messages are for `all` only. A list or `them` gets one line per object, with each object's own A9.6 message (`coil of rope: You can't take things from that.`). This is the reference's behaviour and the pilot's choice |
+
+The four spec changes only state what the reference already did. No golden output changed, and the specs grew by about 1% (G1 72.3k characters, G2 71.6k, G3 70.7k).
+
+### The hidden runner, v3: the game never sees its answers
+
+The fairness review found that the game ran inside the test process, and that process had to read the golden file. A game could import its answers, for example with a static JSON import, which the audit's regex missed. The runner's temp copies were also in `/tmp`, open to every arm while a run was going. The fixes:
+
+1. **Two processes.**
+   - **The game process** is `hidden/common/driver.mjs`, copied in beside the game. It runs under `--permission` and may read only the copy of the arm's directory and the driver. It writes nothing, spawns nothing, uses no workers, and its env is only `PATH` and `GAME_DIR`. It reads the cases' steps on stdin: the inputs and the save/load operations, never the expectations. It prints raw results, each line tagged with a random per-run tag.
+   - **The checker process** is `hidden/<G>/acc.test.mjs`, with `common/check.mjs` and `reporter.mjs`. It reads the golden file and those results, never the game, and reports counts per category. Only the suite's own category names pass.
+   - So there is no file a game can read that holds an expected output.
+2. **The temp dir is inside `b7/.tmp/`**, which is closed to every arm. Nothing goes to `/tmp` any more. `check-harness.mjs` checks that no `b7/.tmp/` or `/tmp/b7-*` dir is left after the runs.
+3. **A game that hangs or crashes** loses only the cases it had not finished: those fail, and a `timeout` row is added. Before, a hang lost every category not yet reported.
+4. **The judging is unchanged.** `check.mjs` applies the rules of `suite.mjs`, the visible tests' runtime: the same masks, state keys, save checks and api facts. The three api code tests now run as facts collected in the game process and are judged in the checker. Each reference scores the same as before on every old case.
+
+**What is still possible, and covered elsewhere.** A game can tamper with its own process, the driver included. It cannot see an expected output, so the most it could fake is the api facts (3 tests). The audit's `gameFileAccess` list now also flags a static JSON import, `import.meta`, `createReadStream`, `readdirSync`, `/proc/`, `process.binding` and `process.stdin`, for the operator to read.
+
+### The access rule, v3
+
+These are added to the closed area for every arm:
+- **All of `/tmp/claude-<uid>/`, except the arm's own project folders.** The fairness review found the operator session's task outputs readable, among them the B7 build workflow's summary, which names the hidden files. A folder stays open when its name is the encoded path of the arm's own directory (`ownTmp`, the same rule as for `~/.claude/projects`), so an arm's own background-task outputs stay readable. The scratchpad's parent folder is closed explicitly too.
+- **`/proc`.** `/proc/<pid>/cmdline` showed the runner's paths and flags.
+- **Process listings:** `ps`, `pgrep`, `pstree`, `top`, `htop`, `lsof`, `fuser`.
+- **The words** `/tmp/b7-` (the old temp layout) and `b7/.tmp`. `golden.json` is not a denied word, because each arm's own `visible-tests/golden.json` has that name. The runner no longer writes any file called that.
+
+**The live dir is read-only to H's and HSI's tools, except `work/` and `scratch/`.** The fairness review showed that a Meta session could rewrite its own hook (`<live>/kernel/.claude/settings.json`) or `state.json`. Now:
+- A Write or Edit into `<live>/kernel/` (which holds the hook settings), into `state.json*` or `launches.jsonl`, or into `shipped/` is denied.
+- A Bash line that names one of those paths is denied when it could change it: a redirect whose target is one of them, or a file-changing command (`cp`, `mv`, `rm`, `tee`, `touch`, `ln`, `chmod`, `sed -i`, ...) or inline code (`node -e`, `python -c`, ...) on the same line. Reading stays allowed, for example `cat ../state.json | head > notes.txt`, where the redirect writes into `work/`.
+- The kernel CLI is a node process the hook does not see, and still writes `state.json` as before.
+
+**The backstop.** `place` records the hook settings' hash in the manifest (`hookSha`). On every observer pass, `setup.mjs run` checks that hash. If it changed, the launcher is killed and `hook-changed` and `stop` are written to `operator.jsonl`.
+
+`check-harness.mjs` holds the review's repros (access: 54 cases): the old temp golden path, the runner's temp copy, the operator's `tasks/*.output`, another project's temp folder, `/proc`, `ps`, `pgrep`, a Write to the hook settings, an Edit of `state.json`, `echo {} > …settings.json`, `rm .claude/settings.json`, `node -e` writing `state.json`, `sed -i` on `launches.jsonl`, and a Write in the kernel dir. Each is denied. The allowed cases cover the arm's own temp folder, a Write in `work/`, reading `state.json` with a redirect into `work/`, `node --test 2>&1`, and the kernel commands with `->` in a quoted findings text.
+
+### The Change Notice, v3: the same 3 rounds after it, for every arm
+
+**Delivery is unchanged from v2.**
+- Part D is appended to `SPEC.md`.
+- `notice.test.mjs` and its golden file are added to `visible-tests/`.
+- `NOTICE_POINTER` goes to the arm: V gets it as its next turn; H and HSI get it as the founder's resume reason.
+- The visible tests themselves (G1 89, G2 92, G3 85; plus 3, 3 and 2 notice tests) are byte for byte the same as in v2 (`vis-before.sha`).
+
+**The fix.** The fairness review found that `lib.mjs resume` grants back only the loop of the return to build itself. Any test1 or eval revise made before the first accept stayed spent, so H or HSI could reach the post-notice phase with 2, 1 or 0 loops, while V always had 3 rounds. Now `deliverNoticeMeta` resumes with `--extra-loops=<loops used so far − extra loops already granted>` (the kernel allows 0-10). After the notice, every Meta order has exactly 3 loops left.
+- `notice.json` and the tally record `loopsUsedPreNotice` and `granted`.
+- No kernel code changed.
+
+**Dry run 4** (`b7dry4/drive.mjs` in the scratchpad, no Agent SDK session) checks this. Arm H on G1 is played by CLI:
+1. a broken first hand-in, which test1 sends back (loop 1);
+2. the pre-notice game, which the evaluator sends back (loop 2);
+3. eval passes, and the first accept scores the pre-notice suite (585/585);
+4. the notice is delivered, and the order has `loops` 3, `extraLoops` 3, so **3 remain**. Without the fix, 1 would remain;
+5. the post-notice game passes accept (602/602) and ships.
+
+The same run checks the read-only rules on the real live-dir layout (hook Write, `state.json` Edit and `echo > .claude/settings.json` denied; `cat ../state.json`, a Write in `work/` and `meta.mjs check` allowed). It also checks the hook hash: intact, then changed after tampering, then intact again once restored. Dry run 3 (no revise before accept) still passes, with `granted` 0.
+
+### The hidden suite, v3
+
+**Every mutant kill now rests on at least two tests.** v2 had 24 kills that rested on a single test. Each now has a second probe, written from the spec and checked against the reference by the golden build (each new case carries hand expectations):
+
+| Misreading | Second probe |
+|---|---|
+| `saveNoIt` | a reload keeps `it` for a single object (all three games) |
+| `saveNoAwards` | after a reload, unlocking the door or chest again scores nothing (all three) |
+| `limitFromCarried` | at the limit, `take all from` a carried container (all three) |
+| `litInside` | G1: the lit lantern put into the carried bucket in the dark cellar. G2: the torch shut in the sack and carried up into the hayloft (erratum C4 lets light through an open container). G3: the torch put into the basket inside the temple |
+| `loadLenient` | `load()` refuses JSON that is not a save of this game (shared generator, all three) |
+| `precTakeLimitFirst` | at the limit, a door (G2) or a fixed thing and a character (G3) |
+| `itLastNoun` | `put X in Y` then `take it` takes X (all three) |
+| `ambOrder` | G3: the two floor tiles, asked in the spec's order |
+| `errata1` | G3: a basket with a flask in it does not fit on the altar (C1) |
+| `itRevealed` | G3: opening the urn binds `it` to the urn |
+| `drawExtra` | G3: digging on hard ground draws nothing (seed 2) |
+| `precDecorSecond` | G3: a decorative thing as the second object in the ruins |
+| `darkExamineCarried` | G2: a carried torch examined in the dark |
+
+- **Sizes.** The post-notice suites are G1 602, G2 573 and G3 562 tests (pre-notice: 585, 560 and 550). That is 25 new cases: G1 6, G2 7, G3 12.
+- **The visible share** is 14.8%, 16.1% and 15.1%. No new case is visible.
+
+**Comparability (fairness review).** The totals agree within 7%. But 64-70% of each suite is fuzz and the shared generated categories, and the hand-written game-specific tests (the notice aside) number 198, 168 and 159: G1 has 25% more than G3. So the tally now reports, beside the plain rate:
+- **balanced:** the mean of the per-category pass rates;
+- **sharedBalanced:** the same over the 20 engine categories that all three games have (`SHARED_CATS`).
+
+Comparisons across games (P7-4, the transfer score) use `sharedBalanced`.
+
+**New measures in the tally:**
+- **Transfer score** (the research memo, section 5): for each engine category that failed in game n's first hand-in, its pass-rate change to game n+1's first hand-in. Reported with the number still failing, and the number that passed in game n and fail in game n+1 (a check for drift).
+- **Regressions per Change Notice:** the categories that were clean at the first hand-in and fail at the first post-notice run, the notice's own category aside.
+
+`tally --md` prints both.
+
+### Re-verification (2026-10-23; no Agent SDK session)
+
+- **The references.** Each passes 100% of its own phase's suite: G1 585/585 and 602/602, G2 560/560 and 573/573, G3 550/550 and 562/562 (pre, then post). They also pass 100% with every free-wording string rewritten (`B7_VARIANT=1`), and when copied out of `hidden/` and run the way an arm's game runs.
+- **Mutants.** `hidden/mutants.mjs` (49 misreadings × 3 games): 146 of 147 are killed. The only survivor is `itMulti` in G3, which is erratum C5 there. No kill now rests on a single test. 72 kills pass every visible test, so for those the hidden suite alone catches the misreading (mechanism 12's measure). The run takes 128 s.
+- **Flakiness.** Each of the 12 suite runs (3 games × pre/post × normal/variant) ran 3 times, and the last JSON line was identical every time.
+- **The pilot's spec-only G1** scores 585/585 (pre) and 602/602 (post).
+- **`check-harness.mjs`** (all pass):
+  - access 54/54;
+  - the leaky game cannot copy the suite or import the reference;
+  - a probing game can read none of: the golden files, the checker, the results, `b7/.tmp`, `/proc` and `/tmp`;
+  - a game that hangs after 6,000 inputs keeps its finished cases (527/603) and gets a `timeout` row, in under a minute (`B7_GAME_TIMEOUT_MS`, an operator-only setting);
+  - no temp dirs are left behind;
+  - `--phase` is required;
+  - the balanced rate and the transfer score;
+  - the accept phases, the notice files, and the canaries (none in the given files).
+- **Dry runs 3 and 4** pass. Kernel suites: 312 tests pass, 0 fail.
+- **Time per hidden run:** 0.5-0.75 s, with the two processes.
+
+### Still open
+
+- **Spec-only builds:** 5 of the 6 the fairness rule asks for have not been made: G1's second, and two each for G2 and G3. Each needs an Agent SDK session and the founder's go. Recommended before the arms run: one fresh session per game, scored with `--debug`, and the spec fixed wherever the suite tests something the spec does not settle.
+- **The free-wording variant** is our own rewrite of the reference, not an independent implementation. The G1 pilot is the only independent check so far: it passed every masked line.
+- **Mechanisms 3 and 12 have no engine mutant.** For 3 (category-only feedback), `check-harness.mjs` checks that only suite category names come back. For 12 (a visible subset), the measure is the 72 hidden-only kills.
+- **A game can still tamper with its own process** (above). The hook's view of Bash is word-based, so code an agent writes and runs is outside it; the runner's isolation, the hook hash, the canaries and the audit are the backstops.
+- **The hidden material lives only in the scratchpad**, never committed: `hidden/common/{driver,check}.mjs` (new), `engine.mjs`, `casegen.mjs`, `hidden/G1-3/{acc.test,cases}.mjs`, the rebuilt `golden.{pre,post}.json`, `specsrc/common.md`, `specsrc/G1-notice.md`, `run-hidden.mjs`, and the rebuilt `specs/` and `notices/`. Backups: `b7-hidden-backup/` (before v2's verification) and `b7-hidden-v3-backup/` (this state, with `run-hidden.mjs`). The full mutant report is `mutants-v3.txt`.
+- **The fairness review's list arrived cut short** (it ends at "By category: prono…"). Every item shown has been addressed above. Any item after that point has not been seen and is not addressed.
+
+### Exact run commands (v3)
+
+```sh
+B7=/tmp/claude-0/-home-user/aa2da695-733d-5610-822b-d0f420a6080f/scratchpad/b7
+PROTO=/home/user/system-3-company/company/sibling/system3-meta/prototype
+cd "$B7"
+cp "$PROTO"/bench7/{setup.mjs,vanilla-game.mjs,check-harness.mjs} .   # the committed harness, beside the hidden material
+ln -sfn "$PROTO/launcher/node_modules" node_modules      # the Agent SDK, for vanilla-game.mjs
+node check-harness.mjs                                     # must end with every line true; no session
+node vanilla-game.mjs --dry-run | tail -40                 # prompts, model, tools, deny roots; no session
+ls ../b7-runs 2>/dev/null                                   # must print nothing: no earlier dry-run output (the runs dir is closed to every arm)
+
+# for each game, G1 then G2 then G3, all three arms in parallel; the next game starts after all three have ended
+G=G1
+node setup.mjs place --arm=H   --game=$G
+node setup.mjs place --arm=HSI --game=$G
+node setup.mjs run --arm=H   --game=$G > ../b7-runs/_operator/H-$G/run.json   2>&1 &
+node setup.mjs run --arm=HSI --game=$G > ../b7-runs/_operator/HSI-$G/run.json 2>&1 &
+node vanilla-game.mjs --games=$G         > ../b7-runs/_operator/V-$G.out      2>&1 &
+wait
+
+# after G3
+node setup.mjs tally --md                      # results, balanced rates, regressions, transfer scores
+node setup.mjs tally > ../b7-runs/_operator/tally.json
+node setup.mjs audit > ../b7-runs/_operator/audit.json
+
+# operator only, any time (never from an arm's session): a snapshot's failing tests
+node run-hidden.mjs --game=G1 --phase=post --dir=<snapshot> --debug
+# rebuilding the hidden material, if a case or the spec changes
+node hidden/build-specs.mjs && node hidden/build-golden.mjs && node hidden/mutants.mjs && node check-harness.mjs
+```
+
+The spec-only builds (fairness rule) are not part of these commands. They need the founder's go too. A fresh session per game would get only `SPEC.md` and `visible-tests/` in an empty directory under `../b7-runs/` (the closed area), and would be scored with `node run-hidden.mjs --game=Gn --phase=pre` (after its first hand-in) and `--phase=post` (after the notice).

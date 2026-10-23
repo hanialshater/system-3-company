@@ -77,7 +77,7 @@ export const gameTitle = (spec) => (spec.split("\n")[0].match(/G\d: (.+)$/) ?? [
  *  phase (v2): "pre" = the suite of the spec as first handed out (it scores only the first hand-in), "post" = the suite
  *  with the game's Change Notice in force (every later hand-in). */
 export function hidden(P, game, dir, phase = "post") {
-  const { NODE_TEST_CONTEXT, B7_DEBUG, B7_MUTANT, B7_VARIANT, ...env } = process.env; // never the operator's --debug, a mutation or a variant check
+  const { NODE_TEST_CONTEXT, B7_DEBUG, B7_MUTANT, B7_VARIANT, B7_GAME_TIMEOUT_MS, ...env } = process.env; // never the operator's --debug, a mutation or a variant check
   const r = spawnSync(process.execPath, [P.runner, `--game=${game}`, `--dir=${dir}`, `--phase=${phase}`], { encoding: "utf8", env, timeout: 240_000, maxBuffer: 16 << 20 });
   const last = String(r.stdout ?? "").trim().split("\n").pop();
   let j = null; try { j = JSON.parse(last); } catch {}
@@ -137,17 +137,31 @@ const REPO_ROOT = path.resolve(REPO_PROTO, "..", "..", "..", "..");
 const enc = (p) => p.replace(/[^a-zA-Z0-9]/g, "-");
 const cfgDirs = () => [...new Set([process.env.CLAUDE_CONFIG_DIR, path.join(os.homedir(), ".claude")].filter(Boolean).map((d) => path.resolve(d)))];
 /** {own, deny, cfg}: what arm `arm` may touch in game `game` (its own game directory) and what is closed around it. */
+/** Claude Code's per-project temp folders (/tmp/claude-<uid>/<encoded cwd>/: task outputs, background shells). The
+ *  fairness review found the operator's own (the B7 build workflow's summary, this review's output) open to every arm:
+ *  the whole root is closed except each arm's own project folder (ownTmp). */
+export const claudeTmpRoots = (P) => [...new Set([path.join("/tmp", `claude-${typeof process.getuid === "function" ? process.getuid() : 0}`), ...[P.b7, P.runs].map((p) => (p.match(/^(\/tmp\/claude-[^/]+)\//) ?? [])[1]).filter(Boolean)])];
 export function accessRules(P, arm, game) {
   const own = [P.live(arm, game)];
   const scratch = path.dirname(P.b7);
-  const deny = [P.b7, P.runs, P.op, P.store, path.join(P.proto, "bench7"), path.join(P.proto, "bench7-research-difficulty.md"), path.join(REPO_PROTO, "bench7"), REPO_ROOT, ...cfgDirs()];
-  if (scratch !== "/" && scratch !== os.homedir()) deny.push(scratch);
+  const deny = [P.b7, P.runs, P.op, P.store, path.join(P.proto, "bench7"), path.join(P.proto, "bench7-research-difficulty.md"), path.join(REPO_PROTO, "bench7"), REPO_ROOT, ...cfgDirs(), ...claudeTmpRoots(P), "/proc", "/tmp/b7-"];
+  if (scratch !== "/" && scratch !== os.homedir()) deny.push(scratch, path.dirname(scratch));
   if (path.dirname(REPO_ROOT) !== "/") deny.push(path.dirname(REPO_ROOT));
-  return { arm, game, own: [...new Set(own.flatMap((r) => [r, real(r)]))], deny: [...new Set(deny.flatMap((r) => [r, real(r)]))], cfg: cfgDirs() };
+  // v3 (fairness review: an H or HSI session could rewrite its own access hook): in a Meta live dir only work/ and
+  // scratch/ are the arm's to change; the kernel copy (with .claude/settings.json, the hook), state.json, launches.jsonl
+  // and shipped/ are read-only to its tools (the kernel CLI, a node process, still writes them)
+  const live = P.live(arm, game);
+  const ro = arm === "V" ? [] : [path.join(live, "kernel"), path.join(live, "state.json"), path.join(live, "launches.jsonl"), path.join(live, "shipped")];
+  return { arm, game, own: [...new Set(own.flatMap((r) => [r, real(r)]))], deny: [...new Set(deny.flatMap((r) => [r, real(r)]))], cfg: cfgDirs(), tmp: claudeTmpRoots(P), ro: [...new Set(ro.flatMap((r) => [r, real(r)]))], live: arm === "V" ? null : live };
 }
 /** The folders arm `arm` may never touch in game `game` (the dry run prints them). */
 export const denyRoots = (P, arm, game = "G1") => accessRules(P, arm, game).deny;
-const DENY_WORDS = /run-hidden|acc\.test\.mjs|hidden\/common|specsrc|mutants\.mjs|bench7-research|golden\.(pre|post)\.json|casegen\.mjs|build-golden/;
+const DENY_WORDS = /run-hidden|acc\.test\.mjs|hidden\/common|specsrc|mutants\.mjs|bench7-research|golden\.(pre|post)\.json|casegen\.mjs|build-golden|\/tmp\/b7-|b7\/\.tmp/;
+// v3: no process listings (ps showed the runner's temp paths and permission flags); /proc is closed as a path
+const PROCESS_LIST = /(^|[\s;&|(`])(ps|pgrep|pstree|top|htop|lsof|fuser)(\s|$)/;
+// v3: a Bash line that may write a file it names: a file-changing command, an in-place edit, or inline code (a
+// redirect is judged by its target alone: writeTargets)
+const WRITE_LINE = /(^|[\s;&|(`])(tee|cp|mv|rm|rmdir|truncate|ln|chmod|chown|touch|dd|install|rsync|unlink|shred|patch)(\s|$)|\bsed\b[^|;&]*\s-[a-zA-Z]*i|\bperl\b[^|;&]*\s-[a-zA-Z]*i|(^|[\s;&|(`])(node|python3?|ruby|perl|deno|bun)\s[^|;&]*(-e|-c|--eval|-p)\b/;
 const RECURSIVE = /(^|[\s;&|(])(find|grep|egrep|fgrep|rg|ag|fd|locate|tree|du|rsync|tar|zip|scp)(\s|$)|\bls\s+-[a-zA-Z]*R|\bcp\s+-[a-zA-Z]*[rRa]|\bgrep\s+-[a-zA-Z]*[rR]/;
 const inside = (p, r) => p === r || p.startsWith(r.endsWith("/") ? r : r + "/");
 const realish = (p) => { let head = path.resolve(p), tail = []; while (!fs.existsSync(head) && path.dirname(head) !== head) { tail.unshift(path.basename(head)); head = path.dirname(head); } return path.join(real(head), ...tail); };
@@ -155,11 +169,15 @@ const realish = (p) => { let head = path.resolve(p), tail = []; while (!fs.exist
 function closed(abs, R) {
   const ra = realish(abs);
   const ownCfg = (p) => R.cfg.some((c) => { const rel = path.relative(path.join(c, "projects"), p); if (!rel || rel.startsWith("..") || path.isAbsolute(rel)) return false; const name = rel.split(path.sep)[0]; return R.own.some((o) => name === enc(o) || name.startsWith(enc(o) + "-")); });
-  const open = (p) => R.own.some((o) => inside(p, o)) || ownCfg(p);
+  const ownTmp = (p) => (R.tmp ?? []).some((t) => { const rel = path.relative(t, p); if (!rel || rel.startsWith("..") || path.isAbsolute(rel)) return false; const name = rel.split(path.sep)[0]; return R.own.some((o) => name === enc(o) || name.startsWith(enc(o) + "-")); });
+  const open = (p) => R.own.some((o) => inside(p, o)) || ownCfg(p) || ownTmp(p);
   if (open(abs) && open(ra)) return null;
   if (R.deny.some((d) => inside(abs, d) || inside(ra, d))) return "a path outside your own directory, in the benchmark's area";
   return null;
 }
+/** v3: is `abs` one of the live dir's read-only parts (the kernel copy, its hook settings, state.json, …)? */
+const readOnly = (abs, R) => { const ra = realish(abs); return (R.ro ?? []).some((r) => inside(abs, r) || inside(ra, r) || (path.basename(r) === "state.json" && [abs, ra].some((p) => path.dirname(p) === path.dirname(r) && path.basename(p).startsWith("state.json")))); };
+const RO_TEXT = "a harness file of your live dir (the kernel copy, its settings, state.json, launches.jsonl, shipped/): only work/ and scratch/ are yours to change";
 /** Is `abs` a folder above a closed one (a recursive command or search over it reaches inside)? */
 const above = (abs, R) => { const ra = realish(abs); return R.deny.some((d) => (inside(d, abs) || inside(d, ra)) && !R.own.some((o) => inside(o, d))); };
 /** The paths one Bash line can reach: each word resolved against the directory the line is in when it runs. */
@@ -195,6 +213,7 @@ export function accessDecision({ tool, input = {}, cwd = process.cwd() }, R) {
   for (const k of ["file_path", "path", "notebook_path"]) {
     const f = input?.[k]; if (typeof f !== "string" || !f) continue;
     const why = closed(at(f), R); if (why) return { deny: true, why };
+    if (WRITERS.includes(tool) && readOnly(at(f), R)) return { deny: true, why: RO_TEXT };
   }
   if (tool === "Glob" || tool === "Grep") {
     const root = at(typeof input?.path === "string" && input.path ? input.path : ".");
@@ -204,7 +223,11 @@ export function accessDecision({ tool, input = {}, cwd = process.cwd() }, R) {
     if (tool === "Grep" && typeof input?.glob === "string" && /(^|\/)\.\.(\/|$)|^\//.test(input.glob)) return { deny: true, why: "a search glob that leaves your directory" };
   }
   if (tool === "Bash" && typeof input?.command === "string") {
+    if (PROCESS_LIST.test(input.command)) return { deny: true, why: "a process listing (the harness's processes are not yours to inspect)" };
     const b = bashReach(input.command, cwd || process.cwd());
+    const bare = input.command.replace(/'[^']*'|"(?:[^"\\]|\\.)*"/g, "''");
+    if (WRITE_LINE.test(bare) && b.paths.some((p) => readOnly(p, R))) return { deny: true, why: RO_TEXT };
+    for (const m of bare.matchAll(/(?:^|[^0-9&<>])>{1,2}(?!&)\s*([^\s;&|()<>]+)/g)) { const t = bashReach(`${bare.slice(0, m.index)} ${m[1]}`, cwd || process.cwd()).paths.at(-1); if (t && readOnly(t, R)) return { deny: true, why: RO_TEXT }; }
     if (b.unresolved.length) return { deny: true, why: `a path the hook cannot resolve (${b.unresolved[0].slice(0, 60)}): spell paths out, inside your own directory` };
     for (const p of b.paths) { const why = closed(p, R); if (why) return { deny: true, why }; if (b.recursive && above(p, R)) return { deny: true, why: "a recursive command over a folder that holds the benchmark's area" }; }
   }
@@ -250,7 +273,7 @@ export function observe(P, arm, game) {
       snap = path.join(od, "snaps", `${String(i).padStart(2, "0")}-${h.stage}-${h.verdict ?? "x"}`);
       fs.cpSync(work, snap, { recursive: true, filter: (s) => !/node_modules|\/\.claude(\/|$)/.test(s) });
       const r = hidden(P, game, snap, phase);
-      score = r.error ? { error: r.error } : { pass: r.pass, total: r.total, rate: r.rate, failing: r.failing };
+      score = r.error ? { error: r.error } : { pass: r.pass, total: r.total, rate: r.rate, failing: r.failing, categories: r.categories };
       byHash.set(`${hash}:${phase}`, score);
     }
     const findings = h.findings ? String(h.findings).split("\n").filter(Boolean) : [];
@@ -306,7 +329,7 @@ function placeArm(P, opt) {
   fs.mkdirSync(path.join(live, "kernel", ".claude"), { recursive: true });
   fs.writeFileSync(path.join(live, "kernel", ".claude", "settings.json"), JSON.stringify({ hooks: { PreToolUse: [{ matcher: "*", hooks: [{ type: "command", command: hookCmd, timeout: 15 }] }] } }, null, 1) + "\n");
   const git = spawnSync("git", ["-C", P.proto, "rev-parse", "HEAD"], { encoding: "utf8" }).stdout.trim() || null;
-  const manifest = { arm, game, spec: SPEC_OF[arm], specSha: sha(specText), order: o.order, budget, b7: P.b7, runs: P.runs, store: vars?.playbook_store ?? null, storeRulesAtStart: arm === "HSI" ? activeRuleIds(P.store) : null, kernelHead: git, placedAt: new Date().toISOString(), outOfOrder: !!opt["out-of-order"], sampleSalt: salt, visibleSha, noticeSha: sha(fs.readFileSync(P.notice(game), "utf8")) };
+  const manifest = { arm, game, spec: SPEC_OF[arm], specSha: sha(specText), order: o.order, budget, b7: P.b7, runs: P.runs, store: vars?.playbook_store ?? null, storeRulesAtStart: arm === "HSI" ? activeRuleIds(P.store) : null, kernelHead: git, placedAt: new Date().toISOString(), outOfOrder: !!opt["out-of-order"], sampleSalt: salt, visibleSha, noticeSha: sha(fs.readFileSync(P.notice(game), "utf8")), hookSha: hookHash(live) };
   fs.writeFileSync(path.join(od, "manifest.json"), JSON.stringify(manifest, null, 1) + "\n");
   return { ...manifest, live, run: `node ${SELF} run --arm=${arm} --game=${game}`, launcher: launcherArgv(P, arm, game, {}).join(" ") };
 }
@@ -320,7 +343,8 @@ function launcherArgv(P, arm, game, opt) {
  *  the order is held at accept as a stage error and nothing is signed), the harness, acting as the founder, appends the
  *  notice to SPEC.md, adds its visible tests, parks the order and resumes it to build with NOTICE_POINTER as the reason
  *  (the builder's revise findings). Parking and resuming to an earlier stage costs no loop (lib.mjs resume: the loop the
- *  return to build counts is granted back), as V's notice turn costs none of its 3 feedback rounds. Idempotent, and
+ *  return to build counts is granted back), as V's notice turn costs none of its 3 feedback rounds; v3: every loop spent
+ *  before the notice is granted back too (--extra-loops), so 3 revises remain after it, as V's 3 rounds. Idempotent, and
  *  safe to call on every observer pass. */
 export function deliverNoticeMeta(P, arm, game) {
   const live = P.live(arm, game), od = P.opdir(arm, game), ns = noticeState(od);
@@ -338,10 +362,15 @@ export function deliverNoticeMeta(P, arm, game) {
     if (r.status !== 0) return { error: "park refused" };
     setNotice(od, { parked: new Date().toISOString(), ...files });
   }
-  const r2 = cli("order", "resume", o.id, "--by=founder", "--to=build", `--reason=${NOTICE_POINTER(game)}`);
-  append(path.join(od, "operator.jsonl"), { act: "notice-resume", order: o.id, ok: r2.status === 0, out: String(r2.stdout || r2.stderr).slice(0, 400) });
+  // v3 (fairness review): the post-notice phase starts with the full 3 loops, as V's 3 rounds, whatever H or HSI spent
+  // before its first accept: the resume grants back every loop used so far (lib.mjs resume: --extra-loops, 0-10, for
+  // the build family, plus the +1 of the return to build itself)
+  const cur = orderOf(readState(live), game) ?? o, loopsUsedPreNotice = cur.loops ?? 0;
+  const grant = Math.max(0, Math.min(10, loopsUsedPreNotice - (cur.extraLoops ?? 0)));
+  const r2 = cli("order", "resume", o.id, "--by=founder", "--to=build", `--extra-loops=${grant}`, `--reason=${NOTICE_POINTER(game)}`);
+  append(path.join(od, "operator.jsonl"), { act: "notice-resume", order: o.id, ok: r2.status === 0, loopsUsedPreNotice, grant, out: String(r2.stdout || r2.stderr).slice(0, 400) });
   if (r2.status !== 0) return { error: "resume refused" };
-  setNotice(od, { delivered: new Date().toISOString() });
+  setNotice(od, { delivered: new Date().toISOString(), loopsUsedPreNotice, grant });
   return { delivered: o.id };
 }
 
@@ -362,6 +391,19 @@ export function endIfStopped(P, arm, game, { launcherStopped = null } = {}) {
   return { cancelled: o.id, why, ok: r.status === 0 };
 }
 
+/** v3 (fairness review): the access hook is the live dir's kernel/.claude/settings.json, which the arm's tools may not
+ *  write (accessRules ro); code an agent runs could still. The observer checks its hash on every pass against the one
+ *  place recorded, and a change stops the run (the launcher is killed, the stop recorded for the operator). */
+const hookHash = (live) => { try { return sha(fs.readFileSync(path.join(live, "kernel", ".claude", "settings.json"), "utf8")); } catch { return null; } };
+export function hookIntact(P, arm, game) {
+  const live = P.live(arm, game), od = P.opdir(arm, game);
+  let want = null; try { want = JSON.parse(fs.readFileSync(path.join(od, "manifest.json"), "utf8")).hookSha ?? null; } catch {}
+  if (!want) return true;
+  const now = hookHash(live);
+  if (now === want) return true;
+  append(path.join(od, "operator.jsonl"), { act: "hook-changed", want, now });
+  return false;
+}
 const learnOpen = (st) => !!st?.data?.learn && (!st.data.learn.closed || st.data.learn.retros?.some((x) => x.state === "open"));
 async function runArm(P, opt) {
   const { arm, game } = opt, live = P.live(arm, game), od = P.opdir(arm, game);
@@ -369,15 +411,20 @@ async function runArm(P, opt) {
   const argv = launcherArgv(P, arm, game, opt);
   if (opt["dry-run"]) return { dry: true, launcher: argv, observe: observe(P, arm, game) };
   const env = { ...process.env }; for (const x of ["META_ROLE", "META_LAUNCH", "NODE_TEST_CONTEXT", "CLAUDECODE"]) delete env[x];
-  const poll = Number(opt.poll ?? 3) * 1000, t0 = Date.now();
+  const poll = Number(opt.poll ?? 3) * 1000, t0 = Date.now(); let tampered = false;
   const launch = async (a) => {
     const out = fs.openSync(path.join(od, "launcher.out"), "a");
     const child = spawn(a[0], a.slice(1), { env, stdio: ["ignore", out, out] });
     let exited = false; child.on("exit", () => { exited = true; });
-    while (!exited) { observe(P, arm, game); deliverNoticeMeta(P, arm, game); endIfStopped(P, arm, game); await new Promise((r) => setTimeout(r, poll)); }
+    while (!exited) {
+      if (!hookIntact(P, arm, game)) { tampered = true; append(path.join(od, "operator.jsonl"), { act: "stop", why: "the access hook's settings changed: the run is stopped" }); child.kill("SIGTERM"); break; }
+      observe(P, arm, game); deliverNoticeMeta(P, arm, game); endIfStopped(P, arm, game); await new Promise((r) => setTimeout(r, poll));
+    }
+    while (!exited) await new Promise((r) => setTimeout(r, 500));
     observe(P, arm, game);
   };
   await launch(argv);
+  if (tampered) return { stopped: "the access hook's settings changed", arm, game };
   // the launcher stopped (its --max-min, the game's wall clock) with the order still open: the protocol's stop
   const stop = endIfStopped(P, arm, game, { launcherStopped: `the launcher stopped after ${Math.round((Date.now() - t0) / 60000)} min (--max-min=${opt["max-min"] ?? GAME_MIN})` });
   // HSI: the cancelled order's evidence and the lead's retro still run, in a short launcher of their own
@@ -406,6 +453,37 @@ export function dedupCost(fins) {
   return { cost: Number(cost.toFixed(4)), cumulative, naive: Number(fins.reduce((a, f) => a + (f.cost ?? 0), 0).toFixed(4)), sdkSessions: by.size };
 }
 const pct = (x) => (x == null ? null : Math.round(x * 1000) / 10);
+/** v3 (fairness review: the suites' sizes per category differ, G1's hand-written tests outnumber G3's by 31%, and fuzz
+ *  is about half of every suite): the category-balanced rate, the mean of the per-category pass rates, so a game's
+ *  score does not depend on how many tests each category happens to have. Reported beside the plain rate. */
+export const balanced = (cats) => { const v = Object.values(cats ?? {}).filter((c) => c.total); return v.length ? pct(v.reduce((a, c) => a + c.pass / c.total, 0) / v.length) : null; };
+const pick = (cats, keys) => (cats ? Object.fromEntries(Object.entries(cats).filter(([k]) => keys.includes(k))) : null);
+// sharedBalanced: the balanced rate over the engine's categories only (SHARED_CATS), the ones all three games have, so
+// it compares across games (a puzzle category is one game's alone)
+const score = (x) => (x ? { pass: x.pass, total: x.total, pct: pct(x.rate ?? (x.total ? x.pass / x.total : 0)), balanced: balanced(x.categories), sharedBalanced: balanced(pick(x.categories, SHARED_CATS)), failing: x.failing, categories: x.categories ?? null } : null);
+/** The memo's "regressions per change notice": categories (the notice's own aside) clean in the first hand-in and failing
+ *  in the first post-notice run. */
+export const regressions = (g) => (g.firstHandin?.categories && g.afterNotice?.categories ? Object.keys(g.firstHandin.categories).filter((k) => k !== "notice" && !g.firstHandin.categories[k].fail && g.afterNotice.categories[k]?.fail) : null);
+/** The research memo's transfer score (section 5): for each mechanism category m that failed in game n's first hand-in
+ *  (the pre-notice score) and exists in game n+1's suite, the change in m's pass rate from game n's first hand-in to
+ *  game n+1's. Only the categories every game has count (the engine's: a puzzle category is one game's alone), and the
+ *  notice category never does. A playbook that generalises shows a positive mean for HSI against H's (H has none). */
+export const SHARED_CATS = ["api", "parser", "fuzz", "pronoun", "ambiguity", "movement", "items", "containers", "light", "turns", "rng", "horizon", "saveload", "saveload-deep", "scoring", "endings", "errata", "distractor", "interactions", "edge"];
+export function transferScores(games) {
+  const by = Object.fromEntries(games.map((g) => [g.game, g])), out = [];
+  for (let k = 0; k + 1 < GAMES.length; k++) {
+    const a = by[GAMES[k]]?.firstHandin?.categories, b = by[GAMES[k + 1]]?.firstHandin?.categories;
+    if (!a || !b) continue;
+    const rate = (c) => c.pass / c.total;
+    const failed = SHARED_CATS.filter((m) => a[m]?.fail && b[m]?.total);
+    const rows = failed.map((m) => ({ category: m, from: pct(rate(a[m])), to: pct(rate(b[m])), change: pct(rate(b[m]) - rate(a[m])), recurred: b[m].fail > 0 }));
+    const passed = SHARED_CATS.filter((m) => a[m] && !a[m].fail && b[m]?.total);
+    out.push({ from: GAMES[k], to: GAMES[k + 1], failedThen: failed.length, meanChange: rows.length ? Math.round(rows.reduce((x, r) => x + r.change, 0) / rows.length * 10) / 10 : null, recurred: rows.filter((r) => r.recurred).length, rows,
+      // the drift of the categories that passed in game n: a check that a positive meanChange is not just an easier game
+      passedThenNowFailing: passed.filter((m) => b[m].fail).length, passedThen: passed.length });
+  }
+  return out;
+}
 const minutesBetween = (a, b) => (a && b ? Math.round((Date.parse(b) - Date.parse(a)) / 600) / 100 : null);
 
 function tallyMeta(P, arm, game) {
@@ -435,11 +513,11 @@ function tallyMeta(P, arm, game) {
   const learnEv = ev.filter((e) => e.type?.startsWith("learn-"));
   return {
     arm, game, order: o?.id ?? null, stage: o?.stage ?? null, loops: o?.loops ?? null,
-    firstHandin: firstAcc ? { pass: firstAcc.pass, total: firstAcc.total, pct: pct(firstAcc.rate), failing: firstAcc.failing } : lastObs ? { pass: lastObs.hidden.pass, total: lastObs.hidden.total, pct: pct(lastObs.hidden.rate), failing: lastObs.hidden.failing, note: "no accept run: the last observed version" } : null,
-    final: lastAcc && (!lastObs || lastObs.hash === lastAcc.hash) ? { pass: lastAcc.pass, total: lastAcc.total, pct: pct(lastAcc.rate), failing: lastAcc.failing } : lastObs ? { pass: lastObs.hidden.pass, total: lastObs.hidden.total, pct: pct(lastObs.hidden.rate), failing: lastObs.hidden.failing } : null,
-    firstBuild: builds[0] ? { pass: builds[0].hidden.pass, total: builds[0].hidden.total, pct: pct(builds[0].hidden.rate) } : null,
-    afterNotice: postAcc[0] ? { pass: postAcc[0].pass, total: postAcc[0].total, pct: pct(postAcc[0].rate), failing: postAcc[0].failing } : null,
-    notice: { due: ns.due ?? null, delivered: ns.delivered ?? null },
+    firstHandin: firstAcc ? score(firstAcc) : lastObs ? { ...score(lastObs.hidden), note: "no accept run: the last observed version" } : null,
+    final: lastAcc && (!lastObs || lastObs.hash === lastAcc.hash) ? score(lastAcc) : lastObs ? score(lastObs.hidden) : null,
+    firstBuild: builds[0] ? score(builds[0].hidden) : null,
+    afterNotice: postAcc[0] ? score(postAcc[0]) : null,
+    notice: { due: ns.due ?? null, delivered: ns.delivered ?? null, loopsUsedPreNotice: ns.loopsUsedPreNotice ?? null, granted: ns.grant ?? null },
     rounds: Math.max(0, postAcc.length - 1), acceptRuns: accRuns.length, revises,
     cost: c.cost, costNaive: c.naive, cumulative: c.cumulative,
     minutes: minutesBetween(up, end), leadMin: o && hist.length ? Math.round((hist.at(-1).t - o.created) * 100) / 100 : null,
@@ -460,7 +538,7 @@ function tallyV(P) {
     const cost = [...bySid.values()].reduce((a, x) => a + x.cost, 0), cumulative = [...bySid.values()].reduce((a, x) => a + x.cumulative, 0);
     const ok = hs.filter((x) => x.total != null), pre = ok.filter((x) => x.phase === "pre"), postH = ok.filter((x) => x.phase !== "pre");
     const f = pre[0] ?? ok[0], l = postH.at(-1), a = postH[0], nv = r.find((x) => x.event === "notice");
-    return { arm: "V", game, firstHandin: f ? { pass: f.pass, total: f.total, pct: pct(f.rate), failing: f.failing } : null, afterNotice: a ? { pass: a.pass, total: a.total, pct: pct(a.rate), failing: a.failing } : null, notice: { delivered: nv?.t ?? null }, final: l ? { pass: l.pass, total: l.total, pct: pct(l.rate), failing: l.failing } : null, rounds: Math.max(0, postH.length - 1), acceptRuns: ok.length, cost: Number(cost.toFixed(4)), cumulative, minutes: s?.minutes ?? minutesBetween(r[0].t, r.at(-1).t), sessions: bySid.size, launches: turns.length, cold: bySid.size, resumes: turns.length - bySid.size, done: !!s };
+    return { arm: "V", game, firstHandin: score(f), afterNotice: score(a), notice: { delivered: nv?.t ?? null }, final: score(l), rounds: Math.max(0, postH.length - 1), acceptRuns: ok.length, cost: Number(cost.toFixed(4)), cumulative, minutes: s?.minutes ?? minutesBetween(r[0].t, r.at(-1).t), sessions: bySid.size, launches: turns.length, cold: bySid.size, resumes: turns.length - bySid.size, done: !!s };
   }).filter(Boolean);
 }
 /** HSI: did a rule added after game k target a category that failed in a later game's first hand-in? */
@@ -476,13 +554,19 @@ export function tally(P, opt = {}) {
   const arms = opt.arm ? [opt.arm] : ARMS;
   return arms.map((arm) => {
     const games = arm === "V" ? tallyV(P) : GAMES.map((g) => (fs.existsSync(P.live(arm, g)) ? tallyMeta(P, arm, g) : null)).filter(Boolean);
-    return { arm, games, ...(arm === "HSI" ? { ruleTargeting: ruleTargeting(games) } : {}) };
+    for (const g of games) g.regressions = regressions(g);
+    const transfer = transferScores(games), rowsT = transfer.flatMap((t) => t.rows);
+    // the arm's transfer score (PREDICTIONS.md v3): the mean change over both steps, weighted by the categories in each
+    const transferAll = { failedThen: rowsT.length, meanChange: rowsT.length ? Math.round(rowsT.reduce((x, r) => x + r.change, 0) / rowsT.length * 10) / 10 : null, stillFailing: rowsT.filter((r) => r.recurred).length };
+    return { arm, games, transfer, transferAll, ...(arm === "HSI" ? { ruleTargeting: ruleTargeting(games) } : {}) };
   });
 }
 function tallyMd(T) {
-  const L = ["| arm | game | first hand-in (pre-notice) | after the notice | final | rounds | loops | cost $ (naive) | min | sessions | cold / resumed | self-checks (failed) | eval runs / false passes |", "|---|---|---|---|---|---|---|---|---|---|---|---|---|"];
-  const f = (x) => (x ? `${x.pass}/${x.total} (${x.pct}%)` : "-");
-  for (const a of T) for (const g of a.games) L.push(`| ${a.arm} | ${g.game} | ${f(g.firstHandin)} | ${f(g.afterNotice)} | ${f(g.final)} | ${g.rounds} | ${g.loops ?? "-"} | ${g.cost}${g.costNaive != null && g.costNaive !== g.cost ? ` (${g.costNaive})` : ""} | ${g.minutes ?? "-"} | ${g.sessions} | ${g.cold} / ${g.resumes} | ${g.selfChecks ? `${g.selfChecks.n} (${g.selfChecks.failed})` : "-"} | ${g.eval ? `${g.eval.runs} / ${g.eval.falsePasses}` : "-"} |`);
+  const L = ["| arm | game | first hand-in (pre-notice) | after the notice (regressions) | final | rounds | loops | cost $ (naive) | min | sessions | cold / resumed | self-checks (failed) | eval runs / false passes |", "|---|---|---|---|---|---|---|---|---|---|---|---|---|"];
+  const f = (x) => (x ? `${x.pass}/${x.total} (${x.pct}%; balanced ${x.balanced ?? "-"}%)` : "-");
+  for (const a of T) for (const g of a.games) L.push(`| ${a.arm} | ${g.game} | ${f(g.firstHandin)} | ${f(g.afterNotice)}${g.regressions ? ` (${g.regressions.length})` : ""} | ${f(g.final)} | ${g.rounds} | ${g.loops ?? "-"} | ${g.cost}${g.costNaive != null && g.costNaive !== g.cost ? ` (${g.costNaive})` : ""} | ${g.minutes ?? "-"} | ${g.sessions} | ${g.cold} / ${g.resumes} | ${g.selfChecks ? `${g.selfChecks.n} (${g.selfChecks.failed})` : "-"} | ${g.eval ? `${g.eval.runs} / ${g.eval.falsePasses}` : "-"} |`);
+  L.push("", "| arm | transfer | categories failed in the first | mean change (points) | still failing | passed then, failing now |", "|---|---|---|---|---|---|");
+  for (const a of T) { for (const t of a.transfer ?? []) L.push(`| ${a.arm} | ${t.from} -> ${t.to} | ${t.failedThen} | ${t.meanChange ?? "-"} | ${t.recurred} | ${t.passedThenNowFailing} of ${t.passedThen} |`); if (a.transferAll) L.push(`| ${a.arm} | all steps | ${a.transferAll.failedThen} | ${a.transferAll.meanChange ?? "-"} | ${a.transferAll.stillFailing} | |`); }
   return L.join("\n");
 }
 
@@ -504,7 +588,7 @@ export function canaries(P) {
     let j = null; try { j = JSON.parse(read(path.join(P.hidden, g, `golden.${ph}.json`))); } catch {}
     for (const c of j?.cases ?? []) if (c.name.length >= 24 && !given.includes(c.name)) content.add(c.name);
   }
-  const code = [...GAMES.flatMap((g) => [path.join(P.hidden, g, "cases.mjs"), path.join(P.hidden, g, "world.mjs")]), ...["engine.mjs", "casegen.mjs", "suite.mjs"].map((f) => path.join(P.hidden, "common", f)), path.join(P.hidden, "build-golden.mjs")];
+  const code = [...GAMES.flatMap((g) => [path.join(P.hidden, g, "cases.mjs"), path.join(P.hidden, g, "world.mjs")]), ...["engine.mjs", "casegen.mjs", "suite.mjs", "driver.mjs", "check.mjs"].map((f) => path.join(P.hidden, "common", f)), path.join(P.hidden, "build-golden.mjs")];
   for (const f of code) {
     const t = read(f);
     for (const m of t.matchAll(/\b(?:const|function|let|class)\s+([A-Za-z_][\w]{7,})/g)) if (!given.includes(m[1]) && /[A-Z_]/.test(m[1])) content.add(m[1]);
@@ -530,7 +614,8 @@ function sharedLines(P) {
  *  arm's final .mjs files that touch the file system, the environment or load code at run time, for the operator. */
 function gameFileAccess(P) {
   const out = [];
-  const RE = /\bnode:fs\b|from\s+["']fs(\/promises)?["']|require\(\s*["']fs|\breadFileSync\b|\bopenSync\b|process\.env|process\.argv|\bimport\s*\(|\bcreateRequire\b|node:child_process|node:worker_threads|node:module\b/;
+  // v3: also a static JSON import, import.meta (resolve, dirname, url), stream readers and /proc (fairness review)
+  const RE = /\bnode:fs\b|from\s+["']fs(\/promises)?["']|require\(\s*["']fs|\breadFileSync\b|\bopenSync\b|\bcreateReadStream\b|\breaddirSync\b|process\.env|process\.argv|\bimport\s*\(|\bcreateRequire\b|node:child_process|node:worker_threads|node:module\b|\.json["'`]|with\s*\{\s*type\b|assert\s*\{\s*type\b|\bimport\.meta\b|\/proc\/|process\.binding|\bprocess\.stdin\b/;
   for (const g of GAMES) for (const a of ARMS) {
     const dirs = a === "V" ? [P.live("V", g)] : [path.join(P.live(a, g), "shipped", g), path.join(P.live(a, g), "work", g)];
     const dir = dirs.find((d) => fs.existsSync(path.join(d, "game.mjs"))); if (!dir) continue;

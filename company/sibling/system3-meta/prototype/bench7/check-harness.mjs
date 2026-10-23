@@ -1,6 +1,6 @@
 // Operator self-check of the B7 harness (no agent session): the access rule on the review's repros, and the hidden
 // runner's isolation (a game that tries to copy the suite or import the reference). node check-harness.mjs
-import { paths, accessRules, accessDecision, deliverNoticeFiles, placeVisible, noticeState, canaries, NOTICE_POINTER } from "./setup.mjs";
+import { paths, accessRules, accessDecision, deliverNoticeFiles, placeVisible, noticeState, canaries, NOTICE_POINTER, claudeTmpRoots, balanced, transferScores } from "./setup.mjs";
 import fs from "node:fs"; import path from "node:path"; import { spawnSync } from "node:child_process"; import { fileURLToPath } from "node:url";
 const SELF_DIR = path.dirname(fileURLToPath(import.meta.url));
 const HERE = paths({}).b7; // the benchmark material (b7/), wherever this file runs from (the scratchpad copy or the repo's bench7/)
@@ -10,7 +10,8 @@ for (const d of [P.live("H","G1")+"/kernel", P.live("H","G1")+"/work/G1", P.live
 fs.writeFileSync(P.live("V","G1")+"/game.mjs","x");
 try { fs.symlinkSync(P.b7, P.live("H","G1")+"/kernel/peek"); } catch {}
 const H = accessRules(P,"H","G1"), V = accessRules(P,"V","G1"), V2 = accessRules(P,"V","G2"), S2 = accessRules(P,"HSI","G2");
-const k = P.live("H","G1")+"/kernel", vd = P.live("V","G1");
+const k = P.live("H","G1")+"/kernel", vd = P.live("V","G1"), hw = P.live("H","G1")+"/work/G1";
+const enc = (p) => p.replace(/[^a-zA-Z0-9]/g, "-"), ctmp = claudeTmpRoots(P)[0], opProject = path.dirname(path.dirname(HERE)); // the operator session's /tmp/claude-<uid>/<project>/
 const cases = [
  [H, k, "Bash", { command: "cat ../../../../b7/hidden/G1/ref/game.mjs" }, true],
  [H, k, "Bash", { command: "cd ../../../.. && cat b7/hidden/G1/ref/game.mjs" }, true],
@@ -32,7 +33,33 @@ const cases = [
  [H, k, "Bash", { command: "grep -r createGame /tmp" }, true],
  [H, k, "Bash", { command: "cat ~/.claude/projects/foo/s.jsonl" }, true],
  [H, k, "Bash", { command: "ls /home/user/system-3-company" }, true],
+ // v3, the fairness review's repros: the runner's temp copies, the operator session's task outputs, /proc, ps
+ [V, vd, "Bash", { command: "cat /tmp/b7-abc/suite/G1/golden.json" }, true],
+ [V, vd, "Read", { file_path: "/tmp/b7-abc/suite/G1/golden.json" }, true],
+ [V, vd, "Bash", { command: "cat /tmp/b7-*/suite/*/golden.json" }, true],
+ [V, vd, "Read", { file_path: path.join(HERE, ".tmp", "run-x", "game", "game.mjs") }, true],
+ [V, vd, "Read", { file_path: path.join(opProject, "tasks", "wxfv3ue49.output") }, true],
+ [V, vd, "Bash", { command: `cat ${path.join(opProject, "tasks", "wxfv3ue49.output")}` }, true],
+ [V, vd, "Bash", { command: `ls ${path.join(opProject, "tasks")}` }, true],
+ [V, vd, "Read", { file_path: path.join(ctmp, "-home-user-other", "tasks", "x.output") }, true],
+ [V, vd, "Bash", { command: "cat /proc/1/cmdline" }, true],
+ [V, vd, "Read", { file_path: "/proc/self/environ" }, true],
+ [V, vd, "Bash", { command: "ps aux | grep node" }, true],
+ [H, hw, "Bash", { command: "pgrep -af run-" }, true],
+ // v3: an H/HSI session may not rewrite its own hook, state.json or the kernel copy
+ [H, hw, "Write", { file_path: P.live("H","G1")+"/kernel/.claude/settings.json", content: "{}" }, true],
+ [H, hw, "Edit", { file_path: P.live("H","G1")+"/state.json", old_string: "a", new_string: "b" }, true],
+ [H, hw, "Bash", { command: "echo {} > ../../kernel/.claude/settings.json" }, true],
+ [H, k, "Bash", { command: "rm .claude/settings.json" }, true],
+ [H, hw, "Bash", { command: "node -e \"require('fs').writeFileSync('../../state.json','{}')\"" }, true],
+ [H, k, "Write", { file_path: "notes.txt", content: "x" }, true],
+ [H, hw, "Bash", { command: "sed -i s/a/b/ ../../launches.jsonl" }, true],
  // allowed
+ [V, vd, "Read", { file_path: path.join(ctmp, enc(vd), "tasks", "own.output") }, false],
+ [H, k, "Read", { file_path: path.join(ctmp, enc(k), "tasks", "own.output") }, false],
+ [H, hw, "Write", { file_path: hw + "/game.mjs", content: "x" }, false],
+ [H, hw, "Bash", { command: "cat ../../state.json | head -5 > notes.txt" }, false],
+ [H, hw, "Bash", { command: "node --test 2>&1 | tail -3" }, false],
  [H, k, "Bash", { command: `node meta.mjs check --order=O-1` }, false],
  [H, k, "Bash", { command: "cat ../state.json" }, false],
  [H, k, "Bash", { command: `cd ${P.live("H","G1")}/work/G1 && for f in *.test.mjs; do node --test $f; done 2>&1 | tail -5` }, false],
@@ -57,12 +84,48 @@ let ref = null; try { ref = await import(${JSON.stringify(path.join(HERE, "hidde
 console.log(JSON.stringify({ category: src.slice(0, 40), pass: 1, fail: 0, total: 1 }));
 export const createGame = (o) => ref ? ref.createGame(o) : ({ input: () => "x", state: () => ({}), save: () => "", load: () => {} });
 `);
-const r = spawnSync(process.execPath, [path.join(HERE, "run-hidden.mjs"), "--game=G1", `--dir=${g}`], { encoding: "utf8" });
+const r = spawnSync(process.execPath, [path.join(HERE, "run-hidden.mjs"), "--game=G1", "--phase=post", `--dir=${g}`], { encoding: "utf8" });
 const j = JSON.parse(r.stdout.trim().split("\n").at(-1));
 const leaked = ["leak.txt", "refcopy"].filter((f) => fs.existsSync(path.join(g, f)));
 const known = Object.keys(j.categories).every((c) => /^[a-z]+(-[a-z]+)?$/.test(c));
 console.log(`runner: ${j.pass}/${j.total} (the reference was not importable: ${j.pass < j.total}), files written into the dir: ${leaked.join(", ") || "none"}, only suite categories: ${known}`);
 if (leaked.length || !known || j.pass === j.total) bad++;
+// v3: the game runs in a process apart from the checker, and can read nothing but its own copy: no golden file (by the
+// hidden paths, a static JSON import or the old temp layout), no results file, no other run's copy, no /proc. If any
+// read works the game breaks its own api (input returns ""), so a clean run shows api tests passing.
+const peek = path.join(TMP, "peek"); fs.mkdirSync(peek);
+const tries = [path.join(HERE, "hidden", "G1", "golden.post.json"), path.join(HERE, "hidden", "G1", "golden.pre.json"), path.join(HERE, "hidden", "common", "check.mjs"), path.join(HERE, ".tmp"), "/proc/self/cmdline", "/tmp"];
+fs.writeFileSync(path.join(peek, "game.mjs"), `import fs from "node:fs"; import path from "node:path"; import { fileURLToPath } from "node:url";
+const here = path.dirname(fileURLToPath(import.meta.url)); let got = [];
+for (const p of ${JSON.stringify(tries)}.concat([path.join(here, "..", "results.json"), path.join(here, "..", "suite", "G1", "golden.json"), path.join(here, "..", ".."), path.join(here, "..")])) { try { const st = fs.statSync(p); got.push(st.isDirectory() ? fs.readdirSync(p).length : fs.readFileSync(p, "utf8").length); } catch {} }
+let j = null; try { j = (await import(${JSON.stringify(path.join(HERE, "hidden", "G1", "golden.post.json"))}, { with: { type: "json" } })).default; } catch {}
+const leak = got.length > 0 || !!j;
+export const createGame = () => ({ input: () => (leak ? "" : "x"), state: () => ({}), save: () => "s", load: () => { throw new Error("no"); } });
+`);
+const rp = spawnSync(process.execPath, [path.join(HERE, "run-hidden.mjs"), "--game=G1", "--phase=post", `--dir=${peek}`], { encoding: "utf8" });
+const jp = JSON.parse(rp.stdout.trim().split("\n").at(-1));
+const noPeek = (jp.categories.api?.pass ?? 0) >= 1;
+console.log(`runner v3: the game could read none of the golden files, the checker, the results, the temp root, /proc or /tmp: ${noPeek} (api ${jp.categories.api?.pass}/${jp.categories.api?.total})`);
+if (!noPeek) bad++;
+// a game that hangs part-way: the cases it finished count, the rest fail, a timeout row is added, nothing is left behind
+const hang = path.join(TMP, "hang"); fs.mkdirSync(hang);
+fs.copyFileSync(path.join(HERE, "hidden", "common", "engine.mjs"), path.join(hang, "engine.mjs"));
+fs.writeFileSync(path.join(hang, "world.mjs"), fs.readFileSync(path.join(HERE, "hidden", "G1", "world.mjs"), "utf8").replace("../common/engine.mjs", "./engine.mjs"));
+fs.writeFileSync(path.join(hang, "game.mjs"), `import { makeG1 } from "./world.mjs";\nconst real = makeG1(true); let n = 0;\nexport const createGame = (o) => { const g = real(o); return { ...g, input: (c) => { if (++n > 6000) for (;;) {} return g.input(c); } }; };\n`);
+const t0h = Date.now(), rh = spawnSync(process.execPath, [path.join(HERE, "run-hidden.mjs"), "--game=G1", "--phase=post", `--dir=${hang}`], { encoding: "utf8", env: { ...process.env, B7_GAME_TIMEOUT_MS: "3000" } });
+const jh = JSON.parse(rh.stdout.trim().split("\n").at(-1)), leftovers = (() => { try { return fs.readdirSync(path.join(HERE, ".tmp")).length; } catch { return 0; } })();
+const tmpB7 = fs.readdirSync("/tmp").filter((f) => /^b7-/.test(f)).length;
+const hangOk = !!jh.categories.timeout && jh.total > 500 && jh.pass > 100 && jh.fail > 1 && Date.now() - t0h < 60000 && leftovers === 0;
+console.log(`runner v3: a hang adds a timeout row and fails the unfinished cases (${jh.pass}/${jh.total}): ${hangOk}; temp dirs left in b7/.tmp: ${leftovers}; /tmp/b7-* dirs: ${tmpB7}`);
+if (!hangOk || tmpB7) bad++;
+// --phase is required
+const np = spawnSync(process.execPath, [path.join(HERE, "run-hidden.mjs"), "--game=G1", `--dir=${peek}`], { encoding: "utf8" });
+console.log(`runner v3: no --phase is refused: ${np.status === 2}`); if (np.status !== 2) bad++;
+// v3 measures: the category-balanced rate and the transfer score
+const cA = { parser: { pass: 5, fail: 5, total: 10 }, fuzz: { pass: 100, fail: 0, total: 100 }, gull: { pass: 0, fail: 2, total: 2 } };
+const tr = transferScores([{ game: "G1", firstHandin: { categories: cA } }, { game: "G2", firstHandin: { categories: { parser: { pass: 9, fail: 1, total: 10 }, fuzz: { pass: 99, fail: 1, total: 100 }, rat: { pass: 0, fail: 3, total: 3 } } } }]);
+const measures = balanced(cA) === 50 && tr.length === 1 && tr[0].failedThen === 1 && tr[0].meanChange === 40 && tr[0].recurred === 1 && tr[0].passedThenNowFailing === 1;
+console.log(`measures: balanced rate and transfer score: ${measures}`); if (!measures) bad++;
 // v2: the accept's phases. The first run scores the pre-notice suite, records it and exits 3 (the order is held at
 // accept); while the notice is due and not yet delivered, accept runs nothing and exits 3; after delivery, the post suite
 const work = path.join(TMP, "work"); fs.mkdirSync(work);

@@ -112,7 +112,7 @@ async function playGame(game) {
   const score = (phase, round, ok) => {
     let h = hidden(P, game, dir, phase);
     for (let k = 0; h.error && k < 2; k++) { note({ event: "hidden-error", game, round, phase, try: k + 1, error: h.error }); h = hidden(P, game, dir, phase); }
-    note({ event: "hidden", game, round, phase, ok, ...(h.error ? { error: h.error } : { pass: h.pass, total: h.total, rate: h.rate, failing: h.failing }) });
+    note({ event: "hidden", game, round, phase, ok, ...(h.error ? { error: h.error } : { pass: h.pass, total: h.total, rate: h.rate, failing: h.failing, categories: h.categories }) });
     if (h.error) note({ event: "stop", game, round, why: "the hidden runner failed three times: an operator error, no round spent" });
     return h;
   };
@@ -138,7 +138,7 @@ async function playGame(game) {
       prompt = feedback(h.failing);
     }
   } else if (!first.error) note({ event: "stop", game, round: 0, why: left() > 0 ? "the first turn never started a session" : `wall clock: ${GAME_MIN} min` });
-  const sum = (x) => (!x || x.error ? null : { pass: x.pass, total: x.total, rate: x.rate, failing: x.failing });
+  const sum = (x) => (!x || x.error ? null : { pass: x.pass, total: x.total, rate: x.rate, failing: x.failing, categories: x.categories });
   const s = { event: "game-summary", game, session, turns, minutes: Math.round((Date.now() - T0) / 600) / 100, first: sum(first), afterNotice: sum(afterNotice), final: sum(h) };
   note(s);
 }
