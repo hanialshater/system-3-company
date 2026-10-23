@@ -269,9 +269,17 @@ async function finalScoring() {
   const out = {};
   const cands = { start: startDir };
   const v = S8.readJsonl(ledgerOf("V")).find((x) => x.event === "end"); if (v) cands.V = path.join(B9, "arms", "V", "V");
-  const p = S8.readJsonl(ledgerOf("P")).find((x) => x.event === "end"); if (p?.final) cands.P = path.join(B9, "arms", `P-${p.final.id}`, "V");
+  const pRows = S8.readJsonl(ledgerOf("P")), p = pRows.find((x) => x.event === "end"); if (p?.final) cands.P = path.join(B9, "arms", `P-${p.final.id}`, "V");
+  // B9 deviation (2026-10-23, before the final scoring): P's in-loop full judge ran beside its next generation's four
+  // sessions, so its timings were taken under load (the start's Lua 22.8-37.5 s against about 10.6 s idle) and its
+  // ranking is mostly noise. Every P candidate that passed the in-loop gate is re-judged here on the quiet machine, and
+  // P's result is the best of them; P's own pick (p.final) is reported beside it.
+  const pGated = [...new Set(pRows.filter((x) => x.event === "full" && x.gateOk).map((x) => x.id))];
+  if (pGated.length > 1) for (const id of pGated) if (id !== p?.final?.id) cands[`P:${id}`] = path.join(B9, "arms", `P-${id}`, "V");
   const s = S8.readJsonl(ledgerOf("S")).find((x) => x.event === "end"); if (s?.dir) cands.S = s.dir;
-  for (const [arm, dir] of Object.entries(cands)) { out[arm] = await full(dir, { reps: 5, out: path.join(B9, "_operator", `final-${arm}.json`) }); log(path.join(B9, "_operator", "final.jsonl"), { arm, dir, ...out[arm] }); }
+  for (const [arm, dir] of Object.entries(cands)) { out[arm] = await full(dir, { reps: 5, out: path.join(B9, "_operator", `final-${arm.replace(":", "-")}.json`) }); log(path.join(B9, "_operator", "final.jsonl"), { arm, dir, ...out[arm] }); }
+  const pAll = Object.entries(out).filter(([k, x]) => (k === "P" || k.startsWith("P:")) && x.gateOk).sort((a, b) => a[1].score - b[1].score);
+  if (pAll.length) log(path.join(B9, "_operator", "final.jsonl"), { arm: "P-best", from: pAll[0][0], score: pAll[0][1].score, ownPick: out.P ? { id: p?.final?.id, score: out.P.score } : null, candidates: pAll.map(([k, x]) => [k, x.score]) });
   return out;
 }
 

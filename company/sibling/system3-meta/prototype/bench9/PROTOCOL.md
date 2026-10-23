@@ -133,6 +133,16 @@ quiet final scoring (about 1 h): about 14 h of wall clock, about $210 at most.
   is why the protocol interleaves, uses medians of 3 (fast) or 5 (full), runs the arms one after another, and scores
   on a quiet machine at the end.
 
+## Deviation (2026-10-23, during P's run, before the final scoring)
+
+**P's in-loop full judge ran under load.** `run.mjs` started each generation's full judge beside the next generation's
+four sessions, so its timings were taken on a loaded machine: the start's Lua batch took 22.8-37.5 s against about
+10.6 s idle, and P's in-loop full scores (0.64, 0.845, 0.829 for candidates where each descends from the last) are
+mostly noise. V's full judge ran with nothing else on the machine. To keep the comparison fair, the quiet final scoring
+re-judges **every** P candidate that passed the in-loop gate, and P's result is the best of them (a best-of-k on a judge
+whose idle noise is about 2%); P's own pick under its rule is reported beside it. P's in-loop *selection* (by the fast
+judge, run serially after each generation's sessions) is left as P ran it.
+
 ## Known limits
 
 - One task, one model family. A population of the same model is less diverse than one with several models; the book
