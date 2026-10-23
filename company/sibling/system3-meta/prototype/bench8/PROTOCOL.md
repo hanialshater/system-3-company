@@ -467,3 +467,101 @@ one-after-the-other order.
 - A restart costs S its in-flight sessions' context unless they had a warm record (an owner's revise); V always
   resumes its one session. That is how each design keeps its memory, and the tally reports what each lost.
 - keepalive itself must be started again after a machine restart.
+
+
+## W7 (2026-10-23): compile real software (Lua 5.4.7), released after W6
+
+**What it is.** A seventh wave, opt-in, for an arm that has finished its W1-W6 run: the arm's compiler must build the
+Lua 5.4.7 interpreter (github.com/lua/lua, tag v5.4.7, commit `1ab3208a1fceb12fca8f24ba57d6e13c5bff15e3`; lua.org is
+blocked here) from its 33 unmodified sources, and the wave is scored by what that interpreter does on Lua's own test
+suite (`testes/` at the same tag). `spec/W7.md` is the arm-facing scope. Nothing about W1-W6 changes: the live runs'
+processes run the files they started with, and every W7 path is behind `--extend=W7` (or `--waves=…,W7`).
+
+**Design decisions.**
+- **Headers: a curated set, the same for both arms** (`spec/w7/include/`, 21 headers: the 8 of W1-W6 extended, plus
+  `assert ctype errno float locale math setjmp signal time unistd sys/types sys/wait`), with glibc's x86-64 types and
+  layouts (`jmp_buf` 200 bytes, `struct sigaction` 152, `struct tm` 56, glibc's `struct lconv`, `errno` through
+  `__errno_location`, `stdin`/`stdout`/`stderr` as variables) and no GNU extension. Not the system's glibc headers:
+  those need `sys/cdefs.h`, `__asm__` renames, `__extension__`, `_Float128`, `#include_next` and the compiler's own
+  `stddef.h`/`stdarg.h`/`float.h` (which glibc does not ship), a preprocessor and GNU-C project of its own that says
+  nothing about compiling Lua and ties the score to the host's glibc. gcc -O0 builds Lua with exactly this set
+  (`-nostdinc`) and passes every scored test.
+- **Build:** `-I spec/w7/include -I spec/w7/lua -D LUA_COMPAT_5_3 -D LUA_USE_POSIX` (Lua's `LUA_USE_LINUX` without
+  `dlopen` and readline; `LUA_COMPAT_5_3` as Lua's makefile), one `--batch` of the 33 sources, `gcc *.s -o lua -lm`
+  (`spec/w7/build.json`). The driver gains `-D NAME[=VALUE]` in W7 (W1-W6's tests never pass it).
+- **Correctness:** the files all.lua runs, each as one test, driven by `w7test.lua full <file>` (all.lua's Linux
+  defaults: `_soft` and `_port` false; dump/undump as all.lua's dofile), in a fresh copy of the suite's directory,
+  empty stdin pipe (`files.lua` checks an illegal seek on stdin, which `/dev/null` does not give), limit max(30 s,
+  20 × gcc -O0). `main.lua` is left out (C modules through `dlopen`, `lua` on PATH); `gc.lua` goes through dump/undump
+  like the others (run directly, its weak-table memory check depends on the string table's size at that moment and
+  failed in the driver every time). 28 files; 6 visible (`closure vararg literals nextvar sort bitwise`), 22 hidden;
+  categories `W7 language` (8 hidden), `libraries` (5), `runtime` (7), `io-os` (2). A sanity check first (a fixed line
+  printed, `assert(1 == 2)` must fail) keeps a broken interpreter from passing by accident.
+- **Runtime:** 6 Lua programs (`spec/w7/bench`: fib, nbody, spectral, bintrees, fannkuch, strops), 0.4-1.0 s each on
+  gcc -O0's Lua; the runner times hidden variants (other constants), the arm's Lua and gcc -O0's interleaved, 5 reps,
+  medians, failure = 20; score = geometric mean. gcc -O2's Lua (every rep) and chibicc's Lua (one rep) are timed beside
+  them as references (`hidden/w7/ref/`, built once by `material/build-w7.mjs`).
+- **Compile time:** the batch's wall time and the largest process's peak RSS (python3's `RUSAGE_CHILDREN` inside the
+  compile sandbox), beside gcc -O0's and chibicc's (serial, one process per file; `hidden/w7/ref/compile.json`).
+- **Regressions:** the W7 run first runs `run-hidden.mjs --wave=W5` on the same dir: the hidden W1-W5 tests stay in
+  scope, as in every wave; no W6 re-timing and no W6 gate.
+- **Feedback:** the failing category lines (W1-W5 and W7), then the `W7 build`, `W7 bench`, `W7 runtime score` and
+  `W7 compile` lines, sent only when something fails (as W6). Numbers and categories only; the build line counts
+  sources, never names them (the arm has every source and can find a failing one itself).
+- **Rounds and caps:** 3 feedback rounds, as every wave; **W7's own caps: 180 active minutes and $80**, counted from
+  W7's start (the `extend` line: the arm's active minutes and cost at that moment), whatever W1-W6 used. Both caps
+  scale the run's 300 min / $120 for six waves to a wave about as large as W4-W6 together.
+- **S's routes:** W7's categories name Lua's features, not compiler modules: no K30 route matches `w7-*`, so every W7
+  line goes to the architect's triage (the order's accept text says so). P8-7 (routing) is scored on W1-W6 only.
+- **No GCC oracle tool.** A mixed-build tool (Lua sources split between gcc -O0 and the arm's compiler, for
+  bisecting a miscompiled file) was proposed during the build and set aside by the founder before it was built: W7 has
+  no such tool, and the arms bisect with their own compiler only.
+
+**Harness (all W7-only):**
+
+| | |
+|---|---|
+| `run-hidden-w7.mjs` | the W7 hidden runner (installed as `<b8>/run-hidden-w7.mjs`; the same sandbox as `run-hidden.mjs`); operator-only `--no-w15`, `--cmd`, `--cmd-unboxed`, `--no-refs` |
+| `w7.mjs` | release files, the hidden-run wrapper (feedback lines), `extStatus` (where an arm stands in W7), the caps' base, the accept text, the tally's W7 fields |
+| `setup.mjs` | lazy hooks only (W7 paths `require` w7.mjs): `releaseFiles`, `hidden`, `waveAccept`, `sPlace` (W7 follows the last placed wave), the broker (`W[1-7]`), `sAccept` (logs `w7`), `run --extend=W7` (W7's caps from the `extend` row; visible-check.mjs and w7.mjs copied into the frozen harness; an open W6 learn step's retro runs first, in W7's budget), tally (W7 rows: Lua tests %, runtime score, compile s, RSS), status (`w7`), the audit's canaries (hidden W7 test lines) |
+| `vanilla-compiler.mjs` | `--extend=W7`: refuses unless W1-W6 finished; the same session's next turn; W7's prompt; W7's caps; the `extend` line; `w7` in hidden lines |
+| `visible-check.mjs` | `--wave=W7`: the visible W1-W5 tests, then Lua built with the compiler and the 6 visible W7 files (`W7 <category>`), regressions as before |
+| `keepalive.mjs` | an arm whose args carry `--extend=W7` is finished when its W7 has ended |
+| `material/build-w7.mjs` | clones Lua at the tag, lays out `spec/w7`, `visible/W7`, `hidden/w7` (tests, bench variants, manifest, ref builds, compile.json) and installs the runner |
+
+**Validation (2026-10-23, all with `nice -n 19`, beside the live run).**
+- gcc -O0 with the curated headers: 33 of 33 compile with `-Wall` and no implicit declaration; 28 of 28 test files
+  pass 3 times in a row in `full` mode (`dropped: []`). Slowest: `errors.lua` 10.2 s, `constructs.lua` 4.7 s.
+- **The runner with gcc -O0 as the "arm"** (`--cmd-unboxed`, `--no-w15`): 22 of 22 hidden, build ok, runtime score
+  1.016 (noise of the interleaving under load: per program 0.95-1.17), gcc -O2's Lua 0.490, chibicc's Lua 6.672;
+  compile 3.1 s, 46 MB.
+- **chibicc** (boxed, `validation/chibicc/chibicc-wrap-w7.sh`, which passes `-D` attached): it builds Lua (33 of 33,
+  link ok) and **passes 22 of 22 hidden** (and 28 of 28): W7 is solvable by a small compiler. Its Lua is slow:
+  **runtime score 6.17** (bintrees 4.1, strops 3.6, fannkuch 6.8, fib 7.1, nbody 8.3, spectral 9.4; on W6's C programs
+  it was 2.42: an interpreter's dispatch loop and its `double`/`TValue` traffic are what a stack-machine code
+  generator does worst). Compile 1.7 s, 103 MB.
+- **The pilot compiler** (`b8-pilot`, W1-W3, no preprocessor): 0 of 33 sources compile, every W7 test and benchmark
+  fails (score 20), as expected.
+- `vanilla-compiler.mjs --dry-run --fake=dryrun/stub` on a scratch runs dir: W1, then `--extend=W7 --resume`: the
+  `extend` line (caps 180 min, $80), the same fake session, W7's release (105 files), two W7 hidden runs (1153 tests:
+  1131 W1-W5 + 22 W7; the stub's Lua does not link), the wave summary; `--resume` again exits `W7 ran`; `keepalive
+  --v='--extend=W7' --once` reads V as finished; tally's W7 row. `setup.mjs run --fake` W1, then `--extend=W7 --resume
+  --max-rounds=0`: the `extend` row, W7 placed after the cancelled W1 order, the owners' hand-ins, the W7 integration
+  checks, the W7 accept (the W7 runner through the broker), its `w7` field, the order ended at its rounds; tally's W7
+  row. `setup.mjs selftest` passes; the access rule allows W7's link (`gcc *.s -o lua -lm`), the batch with `-D` and
+  running the interpreter, and refuses `gcc` on Lua's `.c` files; the gcc shim links with `-lm`.
+- One W7 hidden run on a working compiler takes about 6-10 minutes (W1-W5 2-4 min, the build, the tests in parallel,
+  the benchmarks about 2-3 min) and counts in the arm's active time, as every hidden run.
+
+**Commands (after an arm's W1-W6 run has finished; from `company/sibling/system3-meta/prototype`).**
+
+```sh
+node bench8/setup.mjs status                                   # each arm's `w7` and whether W1-W6 finished
+# V: the next turn of its one session
+node bench8/keepalive.mjs --arms=V --v='--extend=W7'           # or by hand: node bench8/vanilla-compiler.mjs --resume --extend=W7
+# S2 (and S, were it finished): the next wave's order
+node bench8/keepalive.mjs --arms=S2 --s2='--extend=W7'         # or by hand: node bench8/setup.mjs run --resume --arm=S2 --extend=W7
+node bench8/setup.mjs tally --md                               # W7 rows: Lua tests %, runtime score, compile s, RSS
+```
+
+After a machine restart, the same keepalive command resumes W7 (the `extend` row is the W7 run's start).

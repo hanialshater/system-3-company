@@ -76,3 +76,28 @@ Guesses with confidences, made before any run. They do not change the prediction
 - **P8-10 (clean): 75%.** The box makes a leak very unlikely; the likeliest failure is an attempt (a `gcc` on a `.c`
   file, or a `curl`) that the box refuses and the audit then counts.
 - **P8-11 (caps bind): 55%.** S runs many sessions; W5 is large.
+
+## W7 predictions (2026-10-23, committed before any arm runs W7)
+
+W7 (PROTOCOL.md "W7", spec/W7.md): the arm's compiler builds Lua 5.4.7 and is scored on 22 hidden files of Lua's own
+test suite, the runtime of 6 Lua programs against gcc -O0's Lua, and the compile time; 3 feedback rounds, its own
+caps (180 active min, $80). References measured before any arm: chibicc passes 22 of 22 with a runtime score of 6.17;
+gcc -O0 compiles the 33 sources in 3.0 s at 46 MB.
+
+| # | Measure | Prediction | Wrong if |
+|---|---|---|---|
+| P8-W7-1 | **Difficulty** | both arms' final W7 pass rate on the 22 hidden Lua test files is below 90% within W7's caps | either arm ≥ 90% (20 or more of 22) |
+| P8-W7-2 | **The first build** | at the first hand-in, at least one arm's Lua fails to build or link, or passes fewer than half of the hidden files | both arms build Lua and pass ≥ 11 of 22 at their first hand-in |
+| P8-W7-3 | **Specialization pays more on W7** | S's (S2's) advantage over V is larger on W7 than on W1-W6: (S − V) on the final W7 Lua-test pass rate exceeds (S − V) on the final W5 hidden pass rate (headline 1) | S − V on W7 ≤ S − V on W5 |
+| P8-W7-4 | **Runtime** | each arm whose Lua builds and passes the sanity check has a W7 runtime score between 1.0 and chibicc's 6.17; the arm with the better final W6 score also has the better W7 runtime score | an arm with a working Lua scores ≥ 6.17 or < 1.0, or the W6 order of the arms flips on W7 |
+| P8-W7-5 | **Compile time** | both arms' batch over the 33 sources takes ≥ 5× gcc -O0's 3.0 s (≥ 15 s) with a peak RSS ≥ 300 MB (one JVM) | either arm is faster than 15 s or under 300 MB |
+| P8-W7-6 | **Caps** | at least one arm ends W7 on its caps (180 min or $80) or its 3 rounds with a Lua-test failure left | both arms pass every hidden Lua test before their caps and rounds |
+| P8-W7-7 | **Cost on W7** | S's W7 cost ≤ 2× V's W7 cost | S > 2× V on W7 |
+
+**The operator's prior.** P8-W7-1: 70% (Lua is ~20k lines of real C; the suite exercises setjmp/longjmp error
+paths, coroutines, the GC under stress, string formatting of floats; 180 minutes is short). P8-W7-2: 80%. P8-W7-3:
+40% (the work is one long debugging loop on one program, which favours V's single context; S's lever is parallel
+owners on independent miscompilations once Lua links, and its evaluator; every W7 line reaches S through the
+architect's triage, an extra hop). P8-W7-4: 55%. P8-W7-5: 75% (the JVM's start and Clojure's load alone are ~2-4 s;
+a tree-walking compiler written for tests of a few dozen lines meets `lvm.c` and `lparser.c`). P8-W7-6: 75%.
+P8-W7-7: 45%.

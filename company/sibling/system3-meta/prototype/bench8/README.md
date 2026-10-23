@@ -239,3 +239,12 @@ A real Clojure compiler adds its own load time once per batch JVM (4 JVMs), plus
    W4 varargs 8.
 6. **W6 measures wall time per process,** including about 70 ms of sandbox setup on both sides. Runs differed by
    0.4% in the score.
+
+
+## W7 (2026-10-23): compile real software
+
+An opt-in seventh wave after W6: the arm's compiler builds Lua 5.4.7 from its unmodified sources with a curated header
+set and is scored on Lua's own test suite, the runtime of 6 Lua programs against gcc -O0's Lua, and the compile time
+(spec/W7.md; PROTOCOL.md "W7"). Its material is built by `node material/build-w7.mjs` (after `install.mjs`):
+`spec/W7.md`, `spec/w7/` (build.json, include/, lua/, bench/), `visible/W7/`, `hidden/w7/` (tests, bench variants,
+manifest, ref builds, validation) and `<b8>/run-hidden-w7.mjs`.

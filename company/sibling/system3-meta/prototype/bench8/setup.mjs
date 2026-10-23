@@ -55,6 +55,7 @@ import crypto from "node:crypto";
 import { spawn, spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import net from "node:net";
+import { createRequire } from "node:module";
 import { boxPaths, boxEnv, boxEnvNames, boxArgv, prepareBox, startEgress, ARM_UID, NODE_DIR, isolationOf, hooksMode, hooksEnv, armEnvFor, armEnvNames, prepareArm } from "./sandbox.mjs";
 import { armClock, clockOf, procAlive, readPid, writePid, killLeftovers, bootId } from "./restart.mjs";
 
@@ -69,7 +70,11 @@ export const RUN_MIN = 300, RUN_COST = 120; // the caps, every arm: wall clock (
 const DEFAULT_BUDGET = 400_000_000; // cumulative tokens per S order: a runaway cap only (the cost cap is the real one)
 const SPEC_FILE = "ccompiler-specialized.json";
 const DEFAULT_RUNS = path.join(SCRATCH, "b8-runs");
-const HARNESS_FILES = ["setup.mjs", "sandbox.mjs", "visible-check.mjs", "contract.mjs", "restart.mjs"];
+const HARNESS_FILES = ["setup.mjs", "sandbox.mjs", "visible-check.mjs", "contract.mjs", "restart.mjs", "w7.mjs"];
+// W7 (PROTOCOL.md "W7", spec/W7.md): its pieces live in w7.mjs, loaded only on a W7 path (a synchronous require of the
+// ES module), so W1-W6 run exactly as before
+const w7 = () => createRequire(import.meta.url)("./w7.mjs");
+export const ALL_WAVES = [...WAVES, "W7"];
 export const EFFORT = "high"; // the SDK effort option, the same for both arms (pilot fix: it was inherited from this session's env)
 export const TOOLS_OK = ["Bash", "Read", "Write", "Edit", "Glob", "Grep"];
 
@@ -110,6 +115,7 @@ const gitOk = (cwd, ...a) => { const r = git(cwd, ...a); if (r.status !== 0) thr
  *  benchmark programs with their expected outputs. */
 export function releaseFiles(P, w) {
   const n = waveN(w), out = [];
+  if (n === 7) return w7().releaseFiles(P);
   const dir = (from, to) => { for (const f of fs.readdirSync(from).sort()) { const s = path.join(from, f); if (fs.statSync(s).isFile()) out.push([path.join(to, f), s]); } };
   if (n === 1) { out.push(["spec/CONTRACT.md", path.join(P.spec, "CONTRACT.md")]); dir(path.join(P.spec, "include"), "spec/include"); out.push(["visible/README.md", path.join(P.visible, "README.md")]); }
   out.push([`spec/${w}.md`, path.join(P.spec, `${w}.md`)]);
@@ -161,6 +167,7 @@ function withHiddenLock(P, fn) {
  *  `failed: ` lines; both are empty when nothing fails (no round is spent then). W6: the gate against `gate` (the
  *  arm's last W5 results), and the benchmark and score lines go with the feedback when anything fails. */
 export function hidden(P, wave, dir, { results = null, gate = null, reps = null } = {}) {
+  if (waveN(wave) === 7) return withHiddenLock(P, () => w7().hidden(P, dir, { results, reps }));
   const { NODE_TEST_CONTEXT, B8_HOME, ...env } = process.env;
   const argv = [P.runner, `--wave=${wave}`, `--dir=${dir}`, ...(results ? [`--results=${results}`] : []), ...(gate && fs.existsSync(gate) ? [`--gate=${gate}`] : []), ...(reps ? [`--reps=${reps}`] : [])];
   const r = withHiddenLock(P, () => spawnSync(process.execPath, argv, { encoding: "utf8", env: { ...env, B8_HOME: P.b8 }, timeout: 3 * 3600_000, maxBuffer: 32 << 20 }));
@@ -487,12 +494,12 @@ export function instantiateSpec(P) {
   if (P.b8 !== path.join(SCRATCH, "b8")) t = t.split(path.join(SCRATCH, "b8")).join(P.b8);
   return JSON.parse(t);
 }
-export const waveAccept = (w) => `Wave ${w} of the C-subset compiler (in Clojure, x86-64 GNU as). Read spec/CONTRACT.md (what never changes) and spec/${w}.md (this wave's exact scope) in the order's worktree; ${waveN(w) <= 5 ? `visible/${w}/ holds about a quarter of this wave's tests with their expected outputs` : "spec/bench/ holds the 8 benchmark programs with their expected outputs"}. The integration check after each hand-in runs the visible tests of waves 1..${Math.min(waveN(w), 5)}${waveN(w) === 6 ? " and the benchmarks" : ""}: a visible test that passed at the last passing check and fails now is a regression, routed back. After the evaluation, code runs the orderer's hidden runner on the worktree: it scores the hidden tests of waves 1..${Math.min(waveN(w), 5)}${waveN(w) === 6 ? ", times the hidden benchmark variants against gcc -O0 and applies the regression gate" : ""}, and a failure comes back as a revise naming only the failing categories, one line each: \`W3 structs: 12 of 40 fail\`. Three such feedback rounds at most; then the wave ends with what is there.`;
+export const waveAccept = (w) => waveN(w) === 7 ? w7().WAVE_ACCEPT : `Wave ${w} of the C-subset compiler (in Clojure, x86-64 GNU as). Read spec/CONTRACT.md (what never changes) and spec/${w}.md (this wave's exact scope) in the order's worktree; ${waveN(w) <= 5 ? `visible/${w}/ holds about a quarter of this wave's tests with their expected outputs` : "spec/bench/ holds the 8 benchmark programs with their expected outputs"}. The integration check after each hand-in runs the visible tests of waves 1..${Math.min(waveN(w), 5)}${waveN(w) === 6 ? " and the benchmarks" : ""}: a visible test that passed at the last passing check and fails now is a regression, routed back. After the evaluation, code runs the orderer's hidden runner on the worktree: it scores the hidden tests of waves 1..${Math.min(waveN(w), 5)}${waveN(w) === 6 ? ", times the hidden benchmark variants against gcc -O0 and applies the regression gate" : ""}, and a failure comes back as a revise naming only the failing categories, one line each: \`W3 structs: 12 of 40 fail\`. Three such feedback rounds at most; then the wave ends with what is there.`;
 
 function sPlace(P, opt) {
   const w = String(opt.wave ?? "W1").toUpperCase();
-  if (!WAVES.includes(w)) throw new Error("--wave=W1..W6");
-  const k = WAVES.indexOf(w);
+  if (!WAVES.includes(w) && w !== "W7") throw new Error("--wave=W1..W7");
+  const k = ALL_WAVES.indexOf(w);
   for (const f of [P.runner, path.join(P.hidden, "manifest.json"), path.join(P.proto, "meta.mjs"), path.join(P.proto, "launcher", "launch.mjs"), path.join(P.proto, "specs", SPEC_FILE)]) if (!fs.existsSync(f)) throw new Error(`missing ${f}`);
   const st0 = fs.existsSync(path.join(P.live, "state.json")) ? readState(P.live) : null;
   if (k === 0) {
@@ -511,8 +518,10 @@ function sPlace(P, opt) {
     metaCli(P, "init", `--spec-file=${specFile}`, `--vars=${JSON.stringify({ playbook_store: P.store })}`);
   } else {
     if (!st0) throw new Error(`${P.live} has no run: place W1 first`);
-    const prev = orderOf(st0, WAVES[k - 1]);
-    if (!prev || !TERMINAL.includes(prev.stage)) throw new Error(`S ${WAVES[k - 1]} has not ended (${prev?.stage ?? "not placed"}): waves run in order`);
+    // W7 follows the last wave the run placed (W6, or an earlier one where the caps stopped it), whatever its end
+    const pw = w === "W7" ? [...WAVES].reverse().find((x) => orderOf(st0, x)) ?? "W6" : WAVES[k - 1];
+    const prev = orderOf(st0, pw);
+    if (!prev || !TERMINAL.includes(prev.stage)) throw new Error(`S ${pw} has not ended (${prev?.stage ?? "not placed"}): waves run in order`);
     if (st0.data?.learn && (!st0.data.learn.closed || st0.data.learn.retros?.some((r) => r.state === "open"))) throw new Error(`S ${WAVES[k - 1]}'s learn step is still open (evidence or the architect's retro): the playbook would miss it`);
     if (orderOf(st0, w)) throw new Error(`${w} is already placed`);
     // the last wave's work, whatever its end (done, or cancelled at its rounds or the clock), is the next wave's base
@@ -655,7 +664,7 @@ function broker(P, opt) {
       if (req.op === "log") { try { const { arm: _a, ...rec } = req.rec ?? {}; append(P.access, { arm: "S", ...rec }); c.end(JSON.stringify({ ok: true }) + "\n"); } catch (e) { c.end(JSON.stringify({ error: String(e) }) + "\n"); } return; }
       if (req.op === "accept") {
         const dir = realish(String(req.dir ?? ""));
-        if (!inside(dir, wt) || !/^W[1-6]$/.test(String(req.wave))) { append(P.operator, { act: "broker-refused", req }); c.end(JSON.stringify({ stdout: "runner error: the accept dir is not one of S's worktrees\n", code: 3 }) + "\n"); return; }
+        if (!inside(dir, wt) || !/^W[1-7]$/.test(String(req.wave))) { append(P.operator, { act: "broker-refused", req }); c.end(JSON.stringify({ stdout: "runner error: the accept dir is not one of S's worktrees\n", code: 3 }) + "\n"); return; }
         const argv = [SELF, "accept", "--arm=S", `--wave=${req.wave}`, `--dir=${dir}`, `--runs=${P.runs}`, `--b8=${P.b8}`, `--proto=${P.proto}`, `--max-rounds=${Number(req.maxRounds ?? MAX_ROUNDS)}`];
         const ch = spawn(process.execPath, argv, { stdio: ["ignore", "pipe", "pipe"] });
         let out = ""; ch.stdout.on("data", (x) => { out += x; }); ch.stderr.on("data", () => {});
@@ -692,7 +701,7 @@ function sAccept(P, opt) {
   if (r.error) { append(P.acceptLog, { wave: w, dir, error: r.error }); console.log(r.error); process.exit(3); }
   const head = git(dir, "rev-parse", "HEAD").stdout.trim() || null, dirty = !!git(dir, "status", "--porcelain").stdout.trim();
   const exhausted = r.anyFail && prior.length >= maxRounds;
-  append(P.acceptLog, { wave: w, dir, head, dirty, k: prior.length + 1, pass: r.pass, total: r.total, rate: r.rate, byWave: r.byWave, categories: r.categories, failing: r.failing, feedback: r.feedback, gate: r.gate, w6: r.w6, failStages: r.failStages, cheat: r.cheat, results, ms: Date.now() - t0, exhausted });
+  append(P.acceptLog, { wave: w, dir, head, dirty, k: prior.length + 1, pass: r.pass, total: r.total, rate: r.rate, byWave: r.byWave, categories: r.categories, failing: r.failing, feedback: r.feedback, gate: r.gate, w6: r.w6, ...(r.w7 ? { w7: r.w7 } : {}), failStages: r.failStages, cheat: r.cheat, results, ms: Date.now() - t0, exhausted });
   for (const l of r.findings) console.log(l);
   console.log(`checked: ${Object.keys(r.categories).join(", ")}${r.w6 ? `, ${Object.keys(r.w6.programs).map((p) => `W6 ${p}`).join(", ")}` : ""}`);
   if (exhausted) { console.log(`# hidden acceptance: ${r.failing.length} categories fail, and the wave's ${maxRounds} feedback rounds are spent: the orderer ends the wave`); process.exit(3); }
@@ -795,10 +804,16 @@ function installFakeSdk(P) {
 }
 
 async function sRun(P, opt) {
-  const waves = String(opt.waves ?? WAVES.join(",")).split(/[,.]+/).filter(Boolean).map((x) => x.toUpperCase());
-  const maxMin = Number(opt["max-min"] ?? RUN_MIN), maxCost = Number(opt["max-cost"] ?? RUN_COST), poll = Number(opt.poll ?? 5) * 1000;
+  // --extend=W7 (PROTOCOL.md "W7"): continue an arm that finished its W1-W6 run into W7, the next wave's order, with
+  // W7's own caps (w7.mjs W7_MIN, W7_COST; --w7-min, --w7-cost) counted from W7's start (the `extend` row)
+  const EXT = opt.extend ? String(opt.extend).toUpperCase() : null;
+  if (EXT && EXT !== "W7") throw new Error("--extend=W7");
+  const waves = EXT ? ["W7"] : String(opt.waves ?? WAVES.join(",")).split(/[,.]+/).filter(Boolean).map((x) => x.toUpperCase());
+  const maxMin = EXT ? Number(opt["w7-min"] ?? w7().W7_MIN) : Number(opt["max-min"] ?? RUN_MIN), maxCost = EXT ? Number(opt["w7-cost"] ?? w7().W7_COST) : Number(opt["max-cost"] ?? RUN_COST), poll = Number(opt.poll ?? 5) * 1000;
   const hooks = hooksMode(), FAKE = !!opt.fake, RESUME = !!opt.resume;
-  const rows0 = readJsonl(P.waves), st0 = sStatus(rows0, waves);
+  const rows0 = readJsonl(P.waves), st0 = EXT ? w7().extStatus(rows0, "S") : sStatus(rows0, waves);
+  if (EXT && !st0.started && !sStatus(rows0).finished) throw new Error(`${P.sarm ?? "S"}'s W1-W6 run has not finished (${P.waves}): W7 extends a finished run`);
+  let base7 = EXT ? w7().capBase(rows0) : null;
   // the caps are for the whole run: the active clock (restart-safe), or for a run from before it, the waves' minutes
   const clockFile = path.join(P.op, "S", "clock.json"), legacyMin = !clockOf(clockFile) ? rows0.filter((x) => x.event === "wave-end").reduce((a, x) => a + (x.minutes ?? 0), 0) : 0;
   if (opt["dry-run"]) { const used = (clockOf(clockFile)?.activeMs ?? 0) / 60000 + legacyMin; return { dry: true, isolation: hooks ? "hooks" : "box", launcher: launcherArgv(P, opt, maxMin - used), ...(hooks ? { cwd: P.S } : { box: boxArgv(P, "S", P.S, ["<launcher>"])[1].slice(0, 8) }), envNames: armEnvNames(P, "S"), caps: { maxMin, maxCost, usedMin: used }, status: st0, observe: fs.existsSync(path.join(P.live, "state.json")) ? summarizeOrder(P, waves[0]) : null }; }
@@ -813,7 +828,10 @@ async function sRun(P, opt) {
   const leftovers = st0.started ? killLeftovers({ dirs: [P.S], names: [["setup.mjs", "broker", `--runs=${P.runs}`], ["setup.mjs", "accept", `--runs=${P.runs}`], ["run-hidden.mjs", `--dir=${P.wt}`], ["jobs.mjs", "exec", P.live]] }) : [];
   if (!opt["no-preflight"] && !FAKE && !rows0.some((x) => x.event === "preflight" && x.ok)) { const pf = await preflight(P, "S", opt); append(P.waves, { event: "preflight", ...pf }); if (!pf.ok) throw new Error(`S preflight failed (${pf.why}): no session could start ${hooks ? "with S's env and hooks" : "in S's box"}. ${hooks ? "" : AUTH_HINT}`); }
   const clock = armClock(clockFile);
-  const activeMin = () => clock.activeMin() + legacyMin;
+  const activeMin = () => clock.activeMin() + legacyMin - (base7?.activeMin ?? 0);
+  // the spend the caps count (W7: since W7's start)
+  const usedCost = () => cost(P).cost - (base7?.cost ?? 0);
+  if (EXT && !base7) { base7 = { activeMin: clock.activeMin() + legacyMin, cost: cost(P).cost }; append(P.waves, { event: "extend", wave: "W7", activeMin: Math.round(base7.activeMin * 100) / 100, cost: base7.cost, caps: { maxMin, maxCost } }); }
   if (st0.started) {
     // the state lock a killed tick held (state.mjs breaks a dead holder's lock only after 30 s, and a serve that waits
     // its 10 s for it dies): its holder is dead (or of this run's leftovers, killed above), so it goes
@@ -821,13 +839,26 @@ async function sRun(P, opt) {
     // a stale git index lock (a git killed mid-command) would stop every hand-in's commit
     for (const d of [P.repo, ...(fs.existsSync(P.wt) ? fs.readdirSync(P.wt).map((x) => path.join(P.wt, x)) : [])]) { const g = git(d, "rev-parse", "--git-dir").stdout.trim(); const f = g && path.resolve(d, g, "index.lock"); if (f && fs.existsSync(f)) fs.rmSync(f, { force: true }); }
     const dead = abandonDead(P);
-    append(P.waves, { event: RESUME ? "resume" : "run-start", resumed: true, downMin: Math.round(clock.downMs / 600) / 100, activeMin: Math.round(activeMin() * 100) / 100, lastBeat: clock.prev?.t ?? null, cost: cost(P).cost, abandoned: dead, leftovers: leftovers.map((x) => x.argv.slice(0, 120)), wave: waves.find((w) => !rows0.some((x) => x.event === "wave-end" && x.wave === w)) ?? null });
+    append(P.waves, { event: RESUME ? "resume" : "run-start", resumed: true, downMin: Math.round(clock.downMs / 600) / 100, activeMin: Math.round(activeMin() * 100) / 100, lastBeat: clock.prev?.t ?? null, cost: usedCost(), abandoned: dead, leftovers: leftovers.map((x) => x.argv.slice(0, 120)), wave: waves.find((w) => !rows0.some((x) => x.event === "wave-end" && x.wave === w)) ?? null });
   } else append(P.waves, { event: "run-start", waves, fake: FAKE || undefined });
   append(P.waves, { event: "isolation", isolation: hooks ? "hooks" : "box", envNames: armEnvNames(P, "S") });
   if (!hooks) startEgress(P, "S");
   startBroker(P);
   const out = [];
   let runWhy = "every wave ran";
+  if (EXT) {
+    // W7's integration check and runner pieces in the frozen harness (W1-W6's files there are left as they ran)
+    for (const f of ["visible-check.mjs", "w7.mjs"]) fs.copyFileSync(path.join(HERE, f), path.join(P.harness, f));
+    // a W6 whose learn step the caps left open: its retro runs first (in W7's budget: S's own process), as after a wave
+    if (!orderOf(readState(P.live), "W7") && learnOpen(readState(P.live))) {
+      append(P.operator, { act: "retro-launch", wave: "before W7" });
+      const argv = launcherArgv(P, opt, 30), fd = fs.openSync(path.join(P.op, P.sarm ?? "S", "launcher.out"), "a");
+      const [bin, args] = hooks ? [argv[0], argv.slice(1)] : boxArgv(P, P.sarm ?? "S", P.S, argv, { killSignal: "SIGINT" });
+      const child = spawn(bin, args, { env: armEnvFor(P, P.sarm ?? "S"), cwd: P.S, stdio: ["ignore", fd, fd] });
+      let exited = false; child.on("exit", () => { exited = true; });
+      while (!exited) await new Promise((r) => setTimeout(r, poll));
+    }
+  }
   for (const w of waves) {
     if (readJsonl(P.waves).some((x) => x.event === "wave-end" && x.wave === w)) continue;
     const st = fs.existsSync(path.join(P.live, "state.json")) ? readState(P.live) : null;
@@ -837,7 +868,7 @@ async function sRun(P, opt) {
     // frozen kernel has no live/): a real folder there keeps the link whole
     fs.mkdirSync(path.join(P.sproto, "live"), { recursive: true });
     const left = maxMin - activeMin();
-    if (left <= 0 || cost(P).cost >= maxCost) { const why = left <= 0 ? `the run's wall clock (${maxMin} min)` : `the run's cost cap ($${maxCost})`; endIfStopped(P, w, { why }); append(P.waves, { event: "stop", wave: w, why: "caps" }); runWhy = why; break; }
+    if (left <= 0 || usedCost() >= maxCost) { const why = left <= 0 ? `the run's wall clock (${maxMin} min)` : `the run's cost cap ($${maxCost})`; endIfStopped(P, w, { why }); append(P.waves, { event: "stop", wave: w, why: "caps" }); runWhy = why; break; }
     const ws = readJsonl(P.waves).findLast((x) => x.event === "wave-start" && x.wave === w);
     if (!ws) append(P.waves, { event: "wave-start", wave: w, launchesFrom: readJsonl(path.join(P.live, "launches.jsonl")).length, leftMin: left, activeMin: Math.round(activeMin() * 100) / 100 });
     else append(P.waves, { event: "wave-resume", wave: w, leftMin: left, activeMin: Math.round(activeMin() * 100) / 100 });
@@ -857,7 +888,7 @@ async function sRun(P, opt) {
       while (!exited) {
         endIfStopped(P, w);
         retryLost(P, w);
-        const c = cost(P).cost;
+        const c = usedCost();
         if (!stopped && (c >= maxCost || activeMin() >= maxMin)) { stopped = c >= maxCost ? `the run's cost cap ($${maxCost}: $${c})` : `the run's wall clock (${maxMin} min)`; append(P.operator, { act: "stop", wave: w, why: stopped }); child.kill("SIGINT"); setTimeout(() => { try { child.kill("SIGKILL"); } catch {} }, 60_000); }
         await new Promise((r) => setTimeout(r, poll));
       }
@@ -874,7 +905,7 @@ async function sRun(P, opt) {
     if (stopped) { runWhy = stopped; break; }
   }
   clock.stop();
-  append(P.waves, { event: "run-end", why: runWhy, activeMin: Math.round(activeMin() * 100) / 100, cost: cost(P).cost });
+  append(P.waves, { event: "run-end", why: runWhy, activeMin: Math.round(activeMin() * 100) / 100, cost: usedCost() });
   return out;
 }
 function summarizeOrder(P, w) {
@@ -900,7 +931,7 @@ export function dedupCost(fins) {
 }
 const pct = (x) => (x == null ? null : Math.round(x * 1000) / 10);
 /** A hidden run's score: overall, the wave's own tests, and per wave. */
-const score = (x, wave) => (x ? { pass: x.pass, total: x.total, pct: pct(x.total ? x.pass / x.total : 0), own: x.byWave?.[wave] ? { ...x.byWave[wave], pct: pct(x.byWave[wave].pass / x.byWave[wave].total) } : null, byWave: x.byWave ?? null, failing: x.failing, w6: x.w6?.score ?? null, gate: x.gate ? { regressions: x.gate.regressions, pass: x.gate.pass } : null } : null);
+const score = (x, wave) => (x ? { ...(x.w7 ? { w7: w7().tallyOf(x) } : {}), pass: x.pass, total: x.total, pct: pct(x.total ? x.pass / x.total : 0), own: x.byWave?.[wave] ? { ...x.byWave[wave], pct: pct(x.byWave[wave].pass / x.byWave[wave].total) } : null, byWave: x.byWave ?? null, failing: x.failing, w6: x.w6?.score ?? null, gate: x.gate ? { regressions: x.gate.regressions, pass: x.gate.pass } : null } : null);
 /** K30's routes, applied to any arm's categories (the per-module metric compares S with V on the same mapping). */
 export function routeTable(P) {
   try { const s = instantiateSpec(P); return { routes: s.routes ?? [], modules: s.modules ?? {}, triage: s.triage ?? null }; } catch { return { routes: [], modules: {}, triage: null }; }
@@ -927,7 +958,7 @@ function tallyV(P, T) {
     turnCost.set(r, { cost: same ? (r.cost ?? 0) - prevCost : (r.cost ?? 0), cumulative: same ? (r.cumulative ?? 0) - prevCum : (r.cumulative ?? 0) });
     prevSid = r.session; prevCost = r.cost ?? 0; prevCum = r.cumulative ?? 0;
   }
-  return WAVES.map((wave) => {
+  return ALL_WAVES.map((wave) => {
     const r = rows.filter((x) => x.wave === wave); if (!r.length) return null;
     const hs = r.filter((x) => x.event === "hidden" && x.total != null), turns = r.filter((x) => x.event === "turn"), s = r.findLast((x) => x.event === "wave-summary");
     const c = turns.reduce((a, t) => ({ cost: a.cost + turnCost.get(t).cost, cumulative: a.cumulative + turnCost.get(t).cumulative }), { cost: 0, cumulative: 0 });
@@ -940,7 +971,7 @@ function tallyS(P, T) {
   const ev = st.log?.events ?? [];
   let pb = null; try { pb = JSON.parse(fs.readFileSync(path.join(P.store, "playbook.json"), "utf8")); } catch {}
   const evidence = readJsonl(path.join(P.store, "evidence.jsonl"));
-  return WAVES.map((wave) => {
+  return ALL_WAVES.map((wave) => {
     const o = orderOf(st, wave); if (!o) return null;
     const start = wv.find((x) => x.event === "wave-start" && x.wave === wave), end = wv.findLast((x) => x.event === "wave-end" && x.wave === wave);
     const fins = L.slice(start?.launchesFrom ?? 0, end?.launchesTo ?? L.length).filter((x) => x.event === "finish");
@@ -994,11 +1025,11 @@ export function restartsOf(P, arm) {
 export function tally(P, opt = {}) {
   const T = routeTable(P), arms = opt.arm ? [opt.arm] : ARMS;
   const V = arms.includes("V") ? tallyV(P, T) : [], S = arms.includes("S") ? tallyS(P, T) : [];
-  const total = (G) => ({ cost: Number(G.reduce((a, g) => a + (g.cost ?? 0), 0).toFixed(2)), minutes: Math.round(G.reduce((a, g) => a + (g.minutes ?? 0), 0) * 10) / 10, w6: G.find((g) => g.wave === "W6")?.final?.w6 ?? null });
+  const total = (G) => ({ cost: Number(G.reduce((a, g) => a + (g.cost ?? 0), 0).toFixed(2)), minutes: Math.round(G.reduce((a, g) => a + (g.minutes ?? 0), 0) * 10) / 10, w6: G.find((g) => g.wave === "W6")?.final?.w6 ?? null, w7: G.find((g) => g.wave === "W7")?.final?.w7 ?? null });
   return { V: { waves: V, total: total(V), restarts: restartsOf(P, "V") }, S: { waves: S, total: total(S), restarts: restartsOf(P, "S") }, knowledge: knowledge(S, V) };
 }
 function tallyMd(T) {
-  const f = (x) => (x ? `${x.pass}/${x.total} (${x.pct}%)${x.own ? `; own ${x.own.pct}%` : ""}${x.w6 != null ? `; W6 ${x.w6}` : ""}` : "-");
+  const f = (x) => (x ? `${x.pass}/${x.total} (${x.pct}%)${x.own ? `; own ${x.own.pct}%` : ""}${x.w6 != null ? `; W6 ${x.w6}` : ""}${x.w7 ? `; Lua tests ${x.w7.luaTests ?? "-"}%, runtime ${x.w7.runtime ?? "-"}, compile ${x.w7.compileSec ?? "-"} s, RSS ${x.w7.rssMB ?? "-"} MB` : ""}` : "-");
   const L = ["| arm | wave | first hand-in | final | rounds | cost $ | min | sessions |", "|---|---|---|---|---|---|---|---|"];
   for (const a of ["V", "S"]) for (const g of T[a].waves) L.push(`| ${a} | ${g.wave} | ${f(g.firstHandin)} | ${f(g.final)} | ${g.rounds} | ${g.cost} | ${g.minutes ?? "-"} | ${g.sessions ?? 1} |`);
   L.push("", `| arm | total cost $ | total min | W6 score |`, "|---|---|---|---|");
@@ -1023,6 +1054,12 @@ export function canaries(P, { max = 4000 } = {}) {
   for (const t of (man?.tests ?? []).filter((x) => !x.visible)) {
     for (const l of read(path.join(P.hidden, "tests", `${t.id}.c`)).split("\n").map((x) => x.trim())) if (l.length >= 40 && !given.includes(l) && !/^(\/\/|\/\*|\*)/.test(l)) out.add(l);
     if (out.size >= max) break;
+  }
+  // W7: lines of the hidden Lua test files that no released W7 file holds
+  let man7 = null; try { man7 = JSON.parse(read(path.join(P.hidden, "w7", "manifest.json"))); } catch {}
+  if (man7) {
+    const given7 = ls(path.join(P.visible, "W7")).map(read).join("\n");
+    for (const t of man7.tests.filter((x) => !x.visible)) { for (const l of read(path.join(P.hidden, "w7", "tests", t.file)).split("\n").map((x) => x.trim())) if (l.length >= 40 && !given7.includes(l) && !l.startsWith("--")) out.add(l); if (out.size >= max + 2000) break; }
   }
   return { content: [...out], paths: [P.b8, real(P.b8), P.op, "run-hidden", "hidden/manifest.json"] };
 }
@@ -1269,7 +1306,7 @@ async function main() {
   else if (cmd === "watch") { const w = WAVES.find((x) => { const o = orderOf(readState(P.live), x); return o && !TERMINAL.includes(o.stage); }); out = w ? { ...summarizeOrder(P, w), stop: endIfStopped(P, w) } : { open: null }; }
   else if (cmd === "tally") { const T = tally(P, opt); if (opt.md) { console.log(tallyMd(T)); return; } out = T; }
   else if (cmd === "audit") out = audit(P);
-  else if (cmd === "status") out = Object.fromEntries((opt.arm ? [opt.arm] : ARMS).map((a) => { const pid = readPid(path.join(P.op, a, "arm.pid")); return [a, { ...(a === "V" ? vStatus(readJsonl(P.vledger)) : sStatus(readJsonl(P.waves))), alive: !!pid && procAlive(pid.pid, { match: a === "V" ? ["vanilla-compiler.mjs"] : ["setup.mjs", "run"], boot: pid.boot }), pid: pid?.pid ?? null, clock: clockOf(path.join(P.op, a, "clock.json")), restarts: restartsOf(P, a) }]; }));
+  else if (cmd === "status") out = Object.fromEntries((opt.arm ? [opt.arm] : ARMS).map((a) => { const pid = readPid(path.join(P.op, a, "arm.pid")); return [a, { ...(a === "V" ? vStatus(readJsonl(P.vledger)) : sStatus(readJsonl(P.waves))), alive: !!pid && procAlive(pid.pid, { match: a === "V" ? ["vanilla-compiler.mjs"] : ["setup.mjs", "run"], boot: pid.boot }), pid: pid?.pid ?? null, clock: clockOf(path.join(P.op, a, "clock.json")), restarts: restartsOf(P, a), w7: w7().extStatus(a === "V" ? readJsonl(P.vledger) : readJsonl(P.waves), a === "V" ? "V" : "S") }]; }));
   else if (cmd === "selftest") { out = await selftest(P); if (out.failed.length) { console.log(JSON.stringify(out, null, 1)); process.exit(1); } }
   else { console.error("usage: node setup.mjs place|run|watch|accept|hook|tally|audit|selftest … (see the header)"); process.exit(2); }
   console.log(JSON.stringify(out, null, 1));

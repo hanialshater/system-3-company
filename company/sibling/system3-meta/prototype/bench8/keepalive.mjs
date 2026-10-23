@@ -23,6 +23,7 @@ import { spawn } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { paths, readJsonl, append, vStatus, sStatus, WAVES } from "./setup.mjs";
 import { procAlive, readPid, writePid, clockOf, bootId } from "./restart.mjs";
+import { extStatus } from "./w7.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const opt = Object.fromEntries(process.argv.slice(2).filter((a) => a.startsWith("--")).map((a) => { const [k, ...v] = a.slice(2).split("="); return [k, v.join("=") || true]; }));
@@ -38,7 +39,9 @@ const ARGV = {
 };
 const MATCH = { V: ["vanilla-compiler.mjs"], S: ["setup.mjs", "run"] };
 const wavesOf = (arm) => { const w = split(opt[arm.toLowerCase()]).find((a) => a.startsWith("--waves=")); return w ? w.slice(8).split(/[,.]+/).filter(Boolean).map((x) => x.toUpperCase()) : WAVES; };
-const statusOf = (arm) => (arm === "V" ? vStatus(readJsonl(P.vledger), wavesOf("V")) : sStatus(readJsonl(P.waves), wavesOf("S")));
+// --extend=W7 in an arm's args (PROTOCOL.md "W7"): the arm is finished when its W7 has ended (w7.mjs extStatus)
+const extOf = (arm) => split(opt[arm.toLowerCase()]).some((a) => /^--extend=W7$/i.test(a));
+const statusOf = (arm) => extOf(arm) ? extStatus(readJsonl(arm === "V" ? P.vledger : P.waves), arm === "V" ? "V" : "S") : (arm === "V" ? vStatus(readJsonl(P.vledger), wavesOf("V")) : sStatus(readJsonl(P.waves), wavesOf("S")));
 const log = (arm) => path.join(P.op, arm, "restarts.jsonl");
 const say = (x) => console.log(JSON.stringify({ t: new Date().toISOString(), ...x }));
 

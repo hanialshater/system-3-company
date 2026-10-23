@@ -37,12 +37,17 @@
 // the box, as Benchmarks 6/7 ran (the SDK starts the CLI as usual, with this process's env minus the launcher's and
 // the context variables, sandbox.mjs hooksEnv); the access rule as the PreToolUse hook and canUseTool, the shims and
 // the audit enforce what the box did. box keeps the CLI in V's box.
+// --extend=W7 (PROTOCOL.md "W7", spec/W7.md): after V's W1-W6 run has finished, continue it into W7 as the next turn
+// of the same session (release, hidden run, up to 3 feedback rounds), with W7's own caps (--w7-min=180 active minutes,
+// --w7-cost=$80) counted from W7's start (the `extend` line); restart-safe the same way (keepalive --v='--extend=W7').
+// Without it nothing changes: W1-W6 run exactly as before.
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { pathToFileURL } from "node:url";
-import { paths, WAVES, MAX_ROUNDS, RUN_MIN, RUN_COST, EFFORT, release, ensureToolchain, installShims, hidden, nextResults, lastResults, append, readJsonl, selftest, chownArm, preflight, vOptions, vStatus, AUTH_HINT } from "./setup.mjs";
+import { W7_MIN, W7_COST, extStatus, capBase } from "./w7.mjs";
+import { paths, WAVES, ALL_WAVES, MAX_ROUNDS, RUN_MIN, RUN_COST, EFFORT, release, ensureToolchain, installShims, hidden, nextResults, lastResults, append, readJsonl, selftest, chownArm, preflight, vOptions, vStatus, AUTH_HINT } from "./setup.mjs";
 import { armClock, procAlive, readPid, writePid, killLeftovers } from "./restart.mjs";
 import { prepareArm, startEgress, armEnvNames, boxArgv, isolationOf } from "./sandbox.mjs";
 
@@ -51,8 +56,11 @@ const ISO = (process.env.B8_ISOLATION = isolationOf(opt)), HOOKS = ISO === "hook
 const DRY = !!opt["dry-run"], FAKE = typeof opt.fake === "string" ? path.resolve(opt.fake) : null;
 if (DRY && FAKE && !opt.runs) opt.runs = fs.mkdtempSync(path.join("/tmp/claude-0/-home-user/aa2da695-733d-5610-822b-d0f420a6080f/scratchpad", "b8-dry-V-"));
 const P = paths(opt);
-const RUN_WAVES = String(opt.waves ?? WAVES.join(",")).split(",").filter(Boolean).map((x) => x.toUpperCase());
-if (!RUN_WAVES.every((w) => WAVES.includes(w))) { console.error("--waves is a list of W1..W6"); process.exit(2); }
+const EXT = opt.extend ? String(opt.extend).toUpperCase() : null;
+if (EXT && EXT !== "W7") { console.error("--extend=W7"); process.exit(2); }
+const RUN_WAVES = EXT ? ["W7"] : String(opt.waves ?? WAVES.join(",")).split(",").filter(Boolean).map((x) => x.toUpperCase());
+if (!RUN_WAVES.every((w) => ALL_WAVES.includes(w))) { console.error("--waves is a list of W1..W7"); process.exit(2); }
+const W7MIN = Number(opt["w7-min"] ?? W7_MIN), W7COST = Number(opt["w7-cost"] ?? W7_COST);
 const ROUNDS = Number(opt["max-rounds"] ?? MAX_ROUNDS), MAX_MIN = Number(opt["max-min"] ?? RUN_MIN), MAX_COST = Number(opt["max-cost"] ?? RUN_COST);
 const TURN_MIN = Number(opt["turn-min"] ?? 120), MAX_TURNS = Number(opt["max-turns"] ?? 500), RESUMES = 1;
 const TOOLS = ["Bash", "Read", "Write", "Edit", "Glob", "Grep"];
@@ -68,18 +76,18 @@ const firstPrompt = (w) => `You are building a compiler for a subset of C, writt
 
 - spec/CONTRACT.md is what stays the same in every wave: where the compiler lives (the namespace ccc.main in src/ccc/main.clj), how it runs (single-file and --batch modes), the output, the provided headers (spec/include/), the rules and the feedback. Read it first.
 - spec/${w}.md is this wave's exact scope.
-- visible/${w}/ holds about a quarter of this wave's tests: <id>.c, <id>.expected (stdout), <id>.exit, manifest.json (visible/README.md shows how to run one).
+${n(w) === 7 ? "- visible/W7/ holds 6 of the 28 scored files of Lua's own test suite with their driver (visible/W7/README.md shows how to build Lua and run one); spec/w7/ holds Lua's sources, the W7 header set, build.json and the runtime programs." : "- visible/${w}/ holds about a quarter of this wave's tests: <id>.c, <id>.expected (stdout), <id>.exit, manifest.json (visible/README.md shows how to run one)."}
 - Clojure runs only through ${P.clj} (Clojure 1.12.6 + spec.alpha; ./src on the classpath; run it from ${DIR}): \`${P.clj} -m ccc.main -I spec/include <in.c> -o <out.s>\`, then \`gcc <out.s> -o <prog>\`.
 - Rules (CONTRACT.md section 4): never compile or preprocess C with gcc, clang, cpp or anything else (gcc only assembles and links your compiler's .s); no downloads and no network; no special cases for test programs.
 
 When this wave's compiler is done, say so briefly. ${hiddenNote(w)}`;
-const hiddenNote = (w) => `After you finish, the orderer's hidden runner scores your compiler on the hidden tests of waves 1..${Math.min(n(w), 5)}${n(w) === 6 ? ", times the hidden variants of the benchmark programs against gcc -O0 and applies the regression gate" : ""}, and reports only the failing categories, one line each (\`W3 structs: 12 of 40 fail\`). You get up to ${ROUNDS} such feedback rounds per wave; then the next wave is released.`;
-const wavePrompt = (w) => `Wave ${n(w)} is released: spec/${w}.md is its exact scope${n(w) <= 5 ? `, and visible/${w}/ holds about a quarter of its tests` : ", and spec/bench/ holds the 8 benchmark programs with their expected outputs"}. Extend the compiler in ${DIR}; the earlier waves' tests still count. When this wave is done, say so briefly. ${hiddenNote(w)}`;
+const hiddenNote = (w) => n(w) === 7 ? `After you finish, the orderer's hidden runner scores your compiler on the hidden tests of waves 1..5, builds Lua with it and runs the 22 hidden files of Lua's test suite, times the hidden variants of the 6 runtime programs against gcc -O0's Lua and measures the compile time, and reports only categories and numbers, one line each (\`W7 runtime: 2 of 7 fail\`, \`W7 build: 1 of 33 sources fail to compile; link not tried\`, \`W7 bench fib: 2.31x gcc -O0\`). You get up to ${ROUNDS} such feedback rounds; W7 has its own caps (${W7MIN} active minutes, $${W7COST}).` : `After you finish, the orderer's hidden runner scores your compiler on the hidden tests of waves 1..${Math.min(n(w), 5)}${n(w) === 6 ? ", times the hidden variants of the benchmark programs against gcc -O0 and applies the regression gate" : ""}, and reports only the failing categories, one line each (\`W3 structs: 12 of 40 fail\`). You get up to ${ROUNDS} such feedback rounds per wave; then the next wave is released.`;
+const wavePrompt = (w) => n(w) === 7 ? `Wave 7 is released: spec/W7.md is its exact scope. Your compiler now builds real software: the Lua 5.4.7 interpreter from spec/w7/lua (its 33 sources, unmodified), with the W7 header set (spec/w7/include) and the flags of spec/w7/build.json (the driver takes -D NAME[=VALUE] from this wave), linked with \`gcc <the .s files> -o lua -lm\`. visible/W7/ holds 6 of the 28 scored files of Lua's own test suite with their driver (visible/W7/README.md shows how to build Lua and run one), and spec/w7/bench/ the 6 runtime programs with their expected outputs. Extend the compiler in ${DIR}; the earlier waves' tests still count. When this wave is done, say so briefly. ${hiddenNote(w)}` : `Wave ${n(w)} is released: spec/${w}.md is its exact scope${n(w) <= 5 ? `, and visible/${w}/ holds about a quarter of its tests` : ", and spec/bench/ holds the 8 benchmark programs with their expected outputs"}. Extend the compiler in ${DIR}; the earlier waves' tests still count. When this wave is done, say so briefly. ${hiddenNote(w)}`;
 const feedbackPrompt = (lines) => `The orderer's hidden runner on your compiler:\n${lines.join("\n")}\nFix it, and say when you are done.`;
 
 if (DRY && !FAKE) {
   const st = await selftest(P);
-  for (const w of RUN_WAVES) console.log(`===== ${w}, the release's turn:\n${w === RUN_WAVES[0] ? firstPrompt(w) : wavePrompt(w)}\n`);
+  for (const w of RUN_WAVES) console.log(`===== ${w}, the release's turn:\n${w === RUN_WAVES[0] && w === "W1" ? firstPrompt(w) : wavePrompt(w)}\n`);
   console.log(`===== a feedback turn:\n${feedbackPrompt(["W1 functions: 3 of 45 fail", "W1 control: 1 of 12 fail"])}\n`);
   console.log(JSON.stringify({ dry: true, isolation: ISO, dir: DIR, waves: RUN_WAVES, model: MODEL, effort: EFF, envNames: armEnvNames(P, "V"), ...(HOOKS ? {} : { box: boxArgv(P, "V", DIR, ["<claude>"])[1].slice(0, 7) }), tools: TOOLS, settingSources: [], maxTurns: MAX_TURNS, turnMin: TURN_MIN, maxRounds: ROUNDS, caps: { maxMin: MAX_MIN, maxCost: MAX_COST }, ledger: P.vledger, access: P.access, shims: P.shim("V"), hookSelftest: { cases: st.cases.length, failed: st.failed } }, null, 1));
   process.exit(st.failed.length ? 1 : 0);
@@ -112,7 +120,8 @@ if (opt["resume-check"]) {
 // counting only the time the arm worked (the gap between the last beat and the resume is recorded as downtime).
 const RESUME = !!opt.resume;
 const prev = readJsonl(P.vledger);
-const status = vStatus(prev, RUN_WAVES);
+const status = EXT ? extStatus(prev, "V") : vStatus(prev, RUN_WAVES);
+if (EXT && !status.started && !vStatus(prev).finished) { console.error(`refused: V's W1-W6 run has not finished (${P.vledger}): --extend=W7 continues a finished run`); process.exit(2); }
 if (RESUME && status.finished) { console.log(JSON.stringify({ event: "resume", finished: true, why: status.why })); process.exit(0); }
 const PIDF = path.join(P.op, "V", "arm.pid");
 { const o = readPid(PIDF); if (o && o.pid !== process.pid && procAlive(o.pid, { match: ["vanilla-compiler.mjs"], boot: o.boot })) { console.error(`refused: V is already running on ${P.runs} (pid ${o.pid}); one V at a time`); process.exit(3); } }
@@ -143,7 +152,10 @@ if (!session && status.started) { const a = readJsonl(P.access).findLast((x) => 
 const clock = armClock(path.join(P.op, "V", "clock.json"));
 const legacyMs = !clock.prev ? prev.filter((x) => x.event === "wave-summary").reduce((a, x) => a + (x.minutes ?? 0), 0) * 60_000 : 0;
 const activeMs = () => clock.activeMs() + legacyMs;
-const left = () => MAX_MIN * 60_000 - activeMs();
+// W7 has its own caps, counted from its start (the `extend` line); every other wave the run's
+let curWave = null, base7 = capBase(prev);
+const inW7 = () => curWave === "W7";
+const left = () => (inW7() ? W7MIN * 60_000 - (activeMs() - (base7?.activeMin ?? 0) * 60_000) : MAX_MIN * 60_000 - activeMs());
 const query = DRY ? null : (await import(pathToFileURL(path.join(P.proto, "launcher", "node_modules", "@anthropic-ai", "claude-agent-sdk", "sdk.mjs")).href)).query;
 const { warmFallback } = await import(pathToFileURL(path.join(P.proto, "launcher", "guard.mjs")).href);
 // cost: the SDK's figure for each session, counted once; a session's later turns report its running total
@@ -215,16 +227,17 @@ const RESTART_NOTE = "You were interrupted (the machine restarted). Continue whe
 const lostPrompt = (w, round, fb) => `The machine restarted, and your earlier conversation could not be restored: this is a new session. Your work in ${DIR} is as you left it (read it, and its git log, before you continue).\n\n${firstPrompt(w)}${round > 0 && fb?.length ? `\n\n${feedbackPrompt(fb)}` : ""}`;
 async function turnWithResume(prompt, label, wave, round, { fresh, failed = 0 } = {}) {
   let ok = await turn(prompt, label, wave, round, { fresh });
-  for (let r = failed; !ok && r < RESUMES && left() > 0 && runCost < MAX_COST; r++) ok = await turn(session ? "You were interrupted. Continue the task where you left off, and say when you are done." : prompt, `${label} resume`, wave, round, { fresh });
+  for (let r = failed; !ok && r < RESUMES && left() > 0 && spent() < capCost(); r++) ok = await turn(session ? "You were interrupted. Continue the task where you left off, and say when you are done." : prompt, `${label} resume`, wave, round, { fresh });
   return ok;
 }
-const capped = () => (left() <= 0 ? `wall clock: ${MAX_MIN} min` : runCost >= MAX_COST ? `cost cap: $${MAX_COST} ($${runCost.toFixed(2)})` : null);
+const spent = () => (inW7() ? runCost - (base7?.cost ?? 0) : runCost), capCost = () => (inW7() ? W7COST : MAX_COST);
+const capped = () => (left() <= 0 ? `wall clock: ${inW7() ? `${W7MIN} min (W7)` : `${MAX_MIN} min`}` : spent() >= capCost() ? `cost cap: $${capCost()}${inW7() ? " (W7)" : ""} ($${spent().toFixed(2)})` : null);
 const scoreRun = (wave, round) => {
   const results = nextResults(P, "V", wave), gate = n(wave) === 6 ? lastResults(P, "V", "W5") : null;
   let h = hidden(P, wave, DIR, { results, gate, ...(DRY ? { reps: 1 } : {}) });
   for (let k = 0; h.error && k < 2; k++) { note({ event: "hidden-error", wave, round, try: k + 1, error: h.error }); h = hidden(P, wave, DIR, { results, gate }); }
   const head = git("rev-parse", "HEAD").stdout.trim() || null;
-  note({ event: "hidden", wave, round, head, ...(h.error ? { error: h.error } : { pass: h.pass, total: h.total, rate: h.rate, byWave: h.byWave, categories: h.categories, failing: h.failing, feedback: h.feedback, anyFail: h.anyFail, gate: h.gate, w6: h.w6, failStages: h.failStages, cheat: h.cheat, results, seconds: h.seconds }) });
+  note({ event: "hidden", wave, round, head, ...(h.error ? { error: h.error } : { pass: h.pass, total: h.total, rate: h.rate, byWave: h.byWave, categories: h.categories, failing: h.failing, feedback: h.feedback, anyFail: h.anyFail, gate: h.gate, w6: h.w6, ...(h.w7 ? { w7: h.w7 } : {}), failStages: h.failStages, cheat: h.cheat, results, seconds: h.seconds }) });
   return h;
 };
 // a hidden run from the ledger, in the shape scoreRun returns (anyFail: older lines lack it, their feedback says it)
@@ -255,6 +268,8 @@ note({ event: status.started && RESUME ? "resume" : "start", dir: DIR, waves: RU
 let endWhy = "every wave ran";
 for (const w of RUN_WAVES) {
   if (doneWaves.has(w)) continue;
+  curWave = w;
+  if (w === "W7" && !base7) { base7 = { activeMin: activeMs() / 60_000, cost: runCost }; note({ event: "extend", wave: "W7", activeMin: Math.round(base7.activeMin * 100) / 100, runCost: Number(runCost.toFixed(4)), caps: { maxMin: W7MIN, maxCost: W7COST }, session }); }
   const why0 = capped(); if (why0) { note({ event: "stop", wave: w, why: why0 }); endWhy = why0; break; }
   const pt = w === current && at ? at : { released: false };
   const tw = Date.now(), aw = activeMs();
@@ -286,7 +301,7 @@ for (const w of RUN_WAVES) {
     if (round === ROUNDS) break;
     hs0[round] = h;
   }
-  const sum = (x) => (!x || x.error ? null : { pass: x.pass, total: x.total, rate: x.rate, byWave: x.byWave, failing: x.failing, w6: x.w6?.score ?? null, gate: x.gate ?? null });
+  const sum = (x) => (!x || x.error ? null : { pass: x.pass, total: x.total, rate: x.rate, byWave: x.byWave, failing: x.failing, w6: x.w6?.score ?? null, gate: x.gate ?? null, ...(x.w7 ? { w7: { tests: x.w7.tests, runtime: x.w7.bench?.score ?? null, compileSec: x.w7.compile?.seconds ?? null, rssMB: x.w7.compile?.rssMB ?? null } } : {}) });
   note({ event: "wave-summary", wave: w, session, minutes: Math.round((activeMs() - waveStartActive) / 600) / 100, wallMinutes: Math.round((Date.now() - tw) / 600) / 100, first: sum(first), final: sum(h), runCost: Number(runCost.toFixed(4)), stop });
   if (stop && stop !== "the session never started" && capped()) { note({ event: "stop", wave: w, why: stop }); endWhy = stop; break; }
   if (stop === "the session never started" || (h?.error)) { endWhy = stop; break; }
