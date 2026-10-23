@@ -18,6 +18,8 @@ import path from "node:path";
 import crypto from "node:crypto";
 import { spawnSync } from "node:child_process";
 
+// B9 S9: the start's layout (V's compiler: lexer, parser, codegen), modules frontend, parser, backend
+const OWNED9 = { architect: ["src/ccc/main.clj", "docs/MODULES.md"], frontend: ["src/ccc/lexer.clj"], parser: ["src/ccc/parser.clj"], backend: ["src/ccc/codegen.clj"] };
 const OWNED = { architect: ["src/ccc/main.clj", "src/ccc/ast.clj", "src/ccc/ir.clj", "docs/ABI.md", "docs/MODULES.md"], frontend: ["src/ccc/frontend/lexer.clj", "src/ccc/frontend/parser.clj"], semantics: ["src/ccc/sema/lower.clj"], backend: ["src/ccc/backend/x86.clj"], optimizer: [] };
 let lostOne = !process.env.B8_FAKE_LOSE_SESSION;
 const sleep = (ms, signal) => new Promise((res, rej) => { const t = setTimeout(res, ms); signal?.addEventListener("abort", () => { clearTimeout(t); rej(signal.reason ?? new Error("aborted")); }, { once: true }); });
@@ -49,7 +51,7 @@ export function query({ prompt, options = {} }) {
     const askGuard = async (tool_name, tool_input, cwd) => { const g = hooks[0]; if (!g) return { allowed: true }; const r = await g({ hook_event_name: "PreToolUse", tool_name, tool_input, cwd }, `fake-${launch}-${++tu}`); const why = r?.hookSpecificOutput?.permissionDecisionReason ?? null; fs.appendFileSync(path.join(live, "fake-guard.jsonl"), JSON.stringify({ t: new Date().toISOString(), role, launch, tool: tool_name, what: tool_input.command ?? tool_input.file_path, allowed: !why, why }) + "\n"); return { allowed: !why, why }; };
     const write = async (wd, f, fn) => { const g = await askGuard("Write", { file_path: path.join(wd, f) }, wd); if (!g.allowed) { did.push(`write ${f}: denied`); return false; } fn(); return true; };
     // the architect: delegate each waiting order to every active owner at once (S2: scoped to the wave's modules)
-    const SCOPE = { W1: "backend", W2: "semantics" };
+    const SCOPE = { W1: "backend", W2: "semantics", W8: "frontend,parser,backend", W9: "parser,backend", W10: "frontend,backend" };
     for (const m of text.matchAll(/Orders waiting for a builder: ([^.]+)\./g)) for (const o of m[1].matchAll(/(O-\d+) \((W\d+)\)/g)) { const r = S2 ? meta("order", "delegate", o[1], "--by=architect", "--to=architect", `--scope=${SCOPE[o[2]] ?? "backend,semantics"}`) : meta("order", "delegate", o[1], "--by=architect", "--to=backend", "--owners=architect,frontend,semantics"); did.push(`delegate ${o[1]}: ${r.code}${r.code ? ` ${String(r.err).slice(0, 160)}` : ""}`); }
     // S2: a borrow review (K37): yes
     for (const m of text.matchAll(/Borrow reviews for you \(K37\): ([^.]+)\./g)) for (const it of m[1].matchAll(/(ISS-\d+)/g)) { const r = meta("ask", "answer", `--by=${role}`, `--id=${it[1]}`, "--decision=yes", "--text=the borrowed change is right (fake agent)"); did.push(`review ${it[1]}: ${r.code}`); }
@@ -76,7 +78,7 @@ export function query({ prompt, options = {} }) {
           const r = meta("room", "leave", `--run=${p.run}`, `--evidence=${ev}`, "--verdict=pass");
           did.push(`eval ${task}: ${r.code}${r.code ? ` ${String(r.err).slice(0, 160)}` : ""}`);
         } else {
-          const files = [...(OWNED[role] ?? []), ...(S2 && role === "backend" && task === "W1" ? ["src/ccc/sema/lower.clj"] : [])]; // S2: backend borrows sema in W1
+          const files = [...((fs.existsSync(path.join(wd, "src/ccc/codegen.clj")) ? OWNED9 : OWNED)[role] ?? []), ...(S2 && role === "backend" && task === "W1" ? ["src/ccc/sema/lower.clj"] : [])]; // S2: backend borrows sema in W1
           for (const f of files) {
             const dst = path.join(wd, f), src = path.join(process.env.B8_FAKE_STUB ?? "", f);
             const doIt = () => { if (!fs.existsSync(dst) && fs.existsSync(src)) { fs.mkdirSync(path.dirname(dst), { recursive: true }); fs.copyFileSync(src, dst); } else if (fs.existsSync(dst)) fs.appendFileSync(dst, f.endsWith(".md") ? `\n${role}: ${task} (fake ${launch})\n` : `\n;; ${role}: ${task} (fake ${launch})\n`); };

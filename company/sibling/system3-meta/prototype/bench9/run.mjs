@@ -26,7 +26,9 @@ process.env.B8_ISOLATION ??= "hooks";
 const S8 = await import(pathToFileURL(path.join(HERE, "..", "bench8", "setup.mjs")).href);
 const B8 = path.resolve(opt.b8 ?? path.join(SCRATCH, "b8")), B8RUNS = path.resolve(opt.b8runs ?? path.join(SCRATCH, "b8-runs"));
 const B9 = path.resolve(opt.runs ?? path.join(SCRATCH, "b9-runs"));
-export const START = "5a10774", CAP_COST = Number(opt["max-cost"] ?? 70), CAP_MIN = Number(opt["max-min"] ?? 240), ROUNDS = 3;
+export const START = "5a10774", CAP_COST = Number(opt["max-cost"] ?? 70), CAP_MIN = Number(opt["max-min"] ?? 240), ROUNDS = Number(opt.rounds ?? 3);
+// dry runs only: fewer timing repetitions in the full judge (B9_JUDGE_REPS reaches S9's accept too)
+const JREPS = Number(opt["judge-reps"] ?? process.env.B9_JUDGE_REPS ?? 5); if (opt["judge-reps"]) process.env.B9_JUDGE_REPS = String(JREPS);
 const FAKE = !!opt.fake;
 const git = (cwd, ...a) => spawnSync("git", ["-c", "safe.directory=*", "-C", cwd, ...a], { encoding: "utf8" });
 const gitOk = (cwd, ...a) => { const r = git(cwd, ...a); if (r.status !== 0) throw new Error(`git ${a.join(" ")}: ${r.stderr || r.stdout}`); return r.stdout.trim(); };
@@ -84,7 +86,7 @@ async function withJudgeLock(fn) {
 const runNode = (args, timeout) => new Promise((resolve) => { const ch = spawn(process.execPath, args, { stdio: ["ignore", "pipe", "pipe"] }); let out = "", err = ""; const t = setTimeout(() => ch.kill("SIGKILL"), timeout); ch.stdout.on("data", (d) => (out += d)); ch.stderr.on("data", (d) => (err += d)); ch.on("close", (code) => { clearTimeout(t); resolve({ code, out, err }); }); });
 const lastJson = (s) => { for (const l of String(s ?? "").trim().split("\n").reverse()) { try { return JSON.parse(l); } catch {} } return null; };
 /** The full judge on a tree (a fresh clone of its HEAD, so only committed work counts). */
-async function full(dir, { reps = 5, out = null } = {}) {
+async function full(dir, { reps = JREPS, out = null } = {}) {
   const snap = fs.mkdtempSync(path.join(B9, "snap-")); fs.rmSync(snap, { recursive: true }); gitOk(B9, "clone", "-q", "--no-hardlinks", dir, snap);
   try { return await withJudgeLock(async () => { const r = await runNode([path.join(judgeDir, "judge.mjs"), "full", `--dir=${snap}`, `--reps=${reps}`, ...(out ? [`--out=${out}`] : [])], 5 * 3600_000); const j = lastJson(r.out); return { ...j, lines: r.out.split("\n").filter((l) => /^B9 /.test(l)), code: r.code, ...(j ? {} : { error: r.err.slice(-600) }) }; }); }
   finally { fs.rmSync(snap, { recursive: true, force: true }); }

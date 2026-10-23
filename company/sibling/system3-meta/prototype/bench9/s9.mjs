@@ -48,7 +48,7 @@ export function waveAccept(P, w) {
 /** bench9's full judge on `dir` (the caller holds the hidden lock), in bench8 hidden()'s shape. */
 export function hidden(P, dir, { b9 = null } = {}) {
   const { NODE_TEST_CONTEXT, ...env } = process.env;
-  const r = spawnSync(process.execPath, [path.join(judgeDir(b9), "judge.mjs"), "full", `--dir=${dir}`, "--reps=5"], { encoding: "utf8", env, timeout: 5 * 3600_000, maxBuffer: 64 << 20 });
+  const r = spawnSync(process.execPath, [path.join(judgeDir(b9), "judge.mjs"), "full", `--dir=${dir}`, `--reps=${Number(process.env.B9_JUDGE_REPS ?? 5)}`], { encoding: "utf8", env, timeout: 5 * 3600_000, maxBuffer: 64 << 20 });
   const out = String(r.stdout ?? "").trim().split("\n"), lines = out.filter((l) => /^B9 /.test(l));
   let j = null; for (const l of [...out].reverse()) { try { j = JSON.parse(l); break; } catch {} }
   if (!j || typeof j.score !== "number") return { error: `bench9 judge: exit ${r.status} ${String(r.stderr ?? "").slice(-400)}`, code: 3 };
