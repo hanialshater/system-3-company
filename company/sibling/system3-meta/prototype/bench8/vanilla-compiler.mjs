@@ -24,15 +24,20 @@
 // the model API as the only egress, an allowlisted env), started by the SDK's spawnClaudeCodeProcess; the effort is the
 // SDK option (EFFORT, the same as S's launcher --effort); a preflight session checks the box first (--no-preflight
 // skips it).
+// --isolation=hooks|box (default hooks, PROTOCOL.md "Isolation deviation", 2026-10-23): hooks runs V's session without
+// the box, as Benchmarks 6/7 ran (the SDK starts the CLI as usual, with this process's env minus the launcher's and
+// the context variables, sandbox.mjs hooksEnv); the access rule as the PreToolUse hook and canUseTool, the shims and
+// the audit enforce what the box did. box keeps the CLI in V's box.
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { pathToFileURL } from "node:url";
-import { paths, WAVES, MAX_ROUNDS, RUN_MIN, RUN_COST, EFFORT, release, ensureToolchain, installShims, armEnv, hidden, nextResults, lastResults, makeHook, append, selftest, chownArm, preflight, AUTH_HINT } from "./setup.mjs";
-import { prepareBox, startEgress, spawnFor, boxEnvNames, boxArgv } from "./sandbox.mjs";
+import { paths, WAVES, MAX_ROUNDS, RUN_MIN, RUN_COST, EFFORT, release, ensureToolchain, installShims, hidden, nextResults, lastResults, append, selftest, chownArm, preflight, vOptions, AUTH_HINT } from "./setup.mjs";
+import { prepareArm, startEgress, armEnvNames, boxArgv, isolationOf } from "./sandbox.mjs";
 
 const opt = Object.fromEntries(process.argv.slice(2).filter((a) => a.startsWith("--")).map((a) => { const [k, ...v] = a.slice(2).split("="); return [k, v.join("=") || true]; }));
+const ISO = (process.env.B8_ISOLATION = isolationOf(opt)), HOOKS = ISO === "hooks";
 const DRY = !!opt["dry-run"], FAKE = typeof opt.fake === "string" ? path.resolve(opt.fake) : null;
 if (DRY && FAKE && !opt.runs) opt.runs = fs.mkdtempSync(path.join("/tmp/claude-0/-home-user/aa2da695-733d-5610-822b-d0f420a6080f/scratchpad", "b8-dry-V-"));
 const P = paths(opt);
@@ -66,20 +71,19 @@ if (DRY && !FAKE) {
   const st = await selftest(P);
   for (const w of RUN_WAVES) console.log(`===== ${w}, the release's turn:\n${w === RUN_WAVES[0] ? firstPrompt(w) : wavePrompt(w)}\n`);
   console.log(`===== a feedback turn:\n${feedbackPrompt(["W1 functions: 3 of 45 fail", "W1 control: 1 of 12 fail"])}\n`);
-  console.log(JSON.stringify({ dry: true, dir: DIR, waves: RUN_WAVES, model: MODEL, effort: EFF, envNames: boxEnvNames(P, "V"), box: boxArgv(P, "V", DIR, ["<claude>"])[1].slice(0, 7), tools: TOOLS, settingSources: [], maxTurns: MAX_TURNS, turnMin: TURN_MIN, maxRounds: ROUNDS, caps: { maxMin: MAX_MIN, maxCost: MAX_COST }, ledger: P.vledger, access: P.access, shims: P.shim("V"), hookSelftest: { cases: st.cases.length, failed: st.failed } }, null, 1));
+  console.log(JSON.stringify({ dry: true, isolation: ISO, dir: DIR, waves: RUN_WAVES, model: MODEL, effort: EFF, envNames: armEnvNames(P, "V"), ...(HOOKS ? {} : { box: boxArgv(P, "V", DIR, ["<claude>"])[1].slice(0, 7) }), tools: TOOLS, settingSources: [], maxTurns: MAX_TURNS, turnMin: TURN_MIN, maxRounds: ROUNDS, caps: { maxMin: MAX_MIN, maxCost: MAX_COST }, ledger: P.vledger, access: P.access, shims: P.shim("V"), hookSelftest: { cases: st.cases.length, failed: st.failed } }, null, 1));
   process.exit(st.failed.length ? 1 : 0);
 }
 
 if (fs.existsSync(DIR) && fs.readdirSync(DIR).length && RUN_WAVES[0] === "W1") { console.error(`refused: ${DIR} exists (V starts in a fresh directory)`); process.exit(2); }
 const note = (x) => { append(P.vledger, x); console.log(JSON.stringify(x)); };
-ensureToolchain(P); installShims(P, "V"); prepareBox(P, "V");
-const env = armEnv(P, "V");
+ensureToolchain(P); installShims(P, "V"); prepareArm(P, "V");
 if (!DRY && !opt["no-preflight"] && !fs.existsSync(P.vledger)) {
   const pf = await preflight(P, "V", { model: MODEL, effort: EFF });
   append(P.vledger, { event: "preflight", ...pf }); console.log(JSON.stringify({ event: "preflight", ...pf }));
-  if (!pf.ok) { console.error(`V preflight failed (${pf.why}): no session could start in V's box. ${AUTH_HINT}`); process.exit(2); }
+  if (!pf.ok) { console.error(`V preflight failed (${pf.why}): no session could start ${HOOKS ? "with V's env and hooks" : `in V's box. ${AUTH_HINT}`}`); process.exit(2); }
 }
-const egress = DRY ? null : startEgress(P, "V");
+const egress = DRY || HOOKS ? null : startEgress(P, "V");
 fs.mkdirSync(DIR, { recursive: true });
 // the orderer's git runs as root in V's folder (V's uid owns it): safe.directory, and the folder goes back to V's uid
 const git = (...a) => { const r = spawnSync("git", ["-c", "safe.directory=*", "-C", DIR, ...a], { encoding: "utf8" }); chownArm("V", DIR); return r; };
@@ -88,9 +92,7 @@ const prev = fs.existsSync(P.vledger) ? fs.readFileSync(P.vledger, "utf8").split
 let session = prev.findLast((x) => x.event === "turn" && x.session)?.session ?? null;
 const T0 = Date.now() - prev.filter((x) => x.event === "wave-summary").reduce((a, x) => a + (x.minutes ?? 0), 0) * 60_000;
 const left = () => MAX_MIN * 60_000 - (Date.now() - T0);
-const hook = await makeHook(P, "V", { sid: () => session, cwd: DIR });
 const query = DRY ? null : (await import(pathToFileURL(path.join(P.proto, "launcher", "node_modules", "@anthropic-ai", "claude-agent-sdk", "sdk.mjs")).href)).query;
-const sdkEnv = { ...env };
 let runCost = prev.findLast((x) => x.event === "turn")?.runCost ?? 0; // the session's running total (a resumed session's result carries it)
 
 let fakeTurn = 0;
@@ -111,7 +113,9 @@ async function turn(prompt, label, wave) {
   else {
     const ac = new AbortController(), limit = setTimeout(() => ac.abort(new Error(ms < TURN_MIN * 60_000 ? `run over ${MAX_MIN} min` : `turn over ${TURN_MIN} min`)), ms);
     try {
-      for await (const m of query({ prompt, options: { cwd: DIR, model: MODEL, effort: EFF, abortController: ac, env: sdkEnv, settingSources: [], tools: TOOLS, allowedTools: TOOLS, permissionMode: "dontAsk", permissionPrompts: "none", maxTurns: MAX_TURNS, hooks: { PreToolUse: [{ hooks: [hook] }] }, spawnClaudeCodeProcess: spawnFor(P, "V", { stderrLog: path.join(P.op, "V", "cli-stderr.log") }), ...(session ? { resume: session } : {}) } })) {
+      // the six tools, settingSources [], the access rule as the PreToolUse hook and canUseTool; box mode: the CLI in V's box
+      const options = await vOptions(P, { cwd: DIR, model: MODEL, effort: EFF, abortController: ac, tools: TOOLS, maxTurns: MAX_TURNS, sid: () => session, resume: session, stderrLog: path.join(P.op, "V", "cli-stderr.log") });
+      for await (const m of query({ prompt, options })) {
         if (typeof m.session_id === "string" && m.session_id && !session) session = m.session_id;
         if (m.type === "result") result = m;
       }
@@ -141,7 +145,7 @@ const scoreRun = (wave, round) => {
   return h;
 };
 
-note({ event: "start", dir: DIR, waves: RUN_WAVES, model: MODEL, effort: EFF, autocompact: "the CLI default (no override)", sandbox: "sandbox.mjs box V", envNames: boxEnvNames(P, "V"), tools: TOOLS, settingSources: [], maxTurns: MAX_TURNS, turnMin: TURN_MIN, maxRounds: ROUNDS, caps: { maxMin: MAX_MIN, maxCost: MAX_COST }, dry: DRY, resumeOf: session });
+note({ event: "start", dir: DIR, waves: RUN_WAVES, model: MODEL, effort: EFF, autocompact: "the CLI default (no override)", isolation: ISO, sandbox: HOOKS ? "none: --isolation=hooks (the access hook and canUseTool, the PATH shims, the audit; PROTOCOL.md Isolation deviation)" : "sandbox.mjs box V", envNames: armEnvNames(P, "V"), tools: TOOLS, settingSources: [], maxTurns: MAX_TURNS, turnMin: TURN_MIN, maxRounds: ROUNDS, caps: { maxMin: MAX_MIN, maxCost: MAX_COST }, dry: DRY, resumeOf: session });
 for (const w of RUN_WAVES) {
   const why0 = capped(); if (why0) { note({ event: "stop", wave: w, why: why0 }); break; }
   const tw = Date.now(), rel = release(P, w, DIR); chownArm("V", DIR);

@@ -3,7 +3,9 @@
 owner: vp-meta · date: 2026-10-23 · status: **v2 (after the pilot): the harness is rebuilt around a box per arm,
 checked from inside, and dry-run; no arm has run.** Running starts Agent SDK sessions, so it waits for the founder's
 go. The v2 changes are marked "(v2)" where they replace v1's text, and summed up in "v2: the pilot's findings and what
-changed" at the end, which takes precedence where the two differ.
+changed" at the end, which takes precedence where the two differ. **The "Isolation deviation (2026-10-23)" section at
+the end takes precedence over both: no session can authenticate inside the box here, so the arms run with
+`--isolation=hooks` (the default), without the box.**
 
 ## The question
 
@@ -144,10 +146,15 @@ them; that would only corrupt S's own process, never V's score or the hidden run
 From `company/sibling/system3-meta/prototype`, as root (the boxes need namespaces and the arms' uids):
 
 ```sh
+# --isolation=hooks is the default (see "Isolation deviation" below); --isolation=box runs the v2 box instead
 # 0. checks, no SDK session (each must pass)
-node bench8/setup.mjs selftest                            # the access rule on 37 fixed calls
-node bench8/setup.mjs box-check --arm=V                   # V's box, probed from inside
-node bench8/setup.mjs box-check --arm=S                   # S's box, the hook through the broker
+node bench8/setup.mjs selftest                            # the access rule on 121 fixed calls (117 with --isolation=box)
+node bench8/setup.mjs box-check --arm=V                   # box mode only: V's box, probed from inside
+node bench8/setup.mjs box-check --arm=S                   # box mode only: S's box, the hook through the broker
+# 0b. hooks mode: one tiny session per arm each (a few cents), on a scratch runs dir
+node bench8/setup.mjs preflight --arm=V --runs=<scratch>  # "Reply with the single word: ready", tools []
+node bench8/setup.mjs probe --arm=V --runs=<scratch>      # hidden file, curl github, gcc on .c: all denied and logged
+node bench8/setup.mjs preflight --arm=S --runs=<scratch>; node bench8/setup.mjs probe --arm=S --runs=<scratch>
 # 1. the arms, one after the other (each starts with its one-turn preflight session; caps 300 min, $120 each)
 node bench8/vanilla-compiler.mjs                          # V: all six waves, one session
 node bench8/setup.mjs run                                 # S: places and runs each wave in turn
@@ -295,3 +302,56 @@ reported its findings. Each one, and what v2 did:
 | A change that only moved locals on the stack swung 2 hidden tests: some tests may read uninitialised memory | test quality | every test is now also built with `-ftrivial-auto-var-init=pattern` and `=zero`, run with the stack shifted, in a quarter of the stack, and under valgrind; any disagreement drops it (README.md) |
 | Spec ambiguities: `extern` prototypes and K&R definitions in W1 tests; a VLA parameter in a W2 test; C11 anonymous members in W3; GNU extensions unaddressed; `long double` undefined | spec | W1.md: K&R and `extern` prototypes in scope; W2.md: a non-constant parameter size is W5 `vla`; W3.md: anonymous members (and designators into them) and block-scope typedef shadowing in scope; W5.md: the GNU list, VLAs, and `long double` out with its reason; the tagger now detects each case |
 | The 3 W1 `functions` failures the pilot could not explain | tagger bug | they were `__builtin_types_compatible_p` tests (chibicc's builtin.c) that passed `-pedantic-errors` and were tagged W1; now W5 `gnu` |
+
+## Isolation deviation (2026-10-23): `--isolation=hooks`
+
+**Why.** The box (v2) gives each arm its own network namespace whose only way out is a tunnel to the orderer's egress
+proxy, and an env built from an allowlist. In this container the model API is reached only through the host's proxy,
+with the operator session's own credentials, and the founder's operator decided not to chain the box through that
+proxy. So no Agent SDK session can authenticate inside a box, and neither arm can run in one. `--isolation=box` stays
+in the harness, unchanged, for a host where it can.
+
+**What replaces it.** `--isolation=hooks`, the default for every command (`setup.mjs`, `vanilla-compiler.mjs`; also
+`B8_ISOLATION`). Both arms' sessions run the way Benchmarks 6 and 7 ran: the normal Agent SDK `query()` (no
+`spawnClaudeCodeProcess`), as the orderer's user, with no namespaces. For both arms alike:
+
+| | Both arms in hooks mode |
+|---|---|
+| Sessions | V: `vanilla-compiler.mjs` in process (`setup.mjs vOptions`). S: the launcher (`launch.mjs`, the frozen copy) started directly with S's env and `cwd` S's folder; every session through its `queryOptions` |
+| Env | this process's env minus launch.mjs's four (`CLAUDECODE`, `CLAUDE_CODE_SESSION_ID`, `CLAUDE_AUTO_BACKGROUND_TASKS`, `CLAUDE_CODE_BG_TASKS_REPORT_RUNNING`) and `sandbox.mjs CONTEXT_STRIP`: `CLAUDE_CODE_REMOTE_SESSION_ID` (below), the additional-directories and CLAUDE.md variables, the effort, thinking and autocompaction overrides, the messaging socket and token, debug and diagnostics files, `JAVA_TOOL_OPTIONS`, `GIT_CONFIG_*`, and the GitHub, AWS and gcloud tokens. Then the shims first on `PATH` and a `TMPDIR` of the arm's own (`<runs>/_box/<arm>/tmp`). The model API's proxy and credentials stay, as they must. Names only in the ledgers (`envNames`) |
+| Settings, tools | `settingSources: []`; the SDK `tools` list Bash, Read, Write, Edit, Glob, Grep (no Agent tool, no MCP, no Skill, no web tools); effort `high` (the SDK option); autocompaction the CLI's default |
+| Access rule | `accessDecision`, as before, as the PreToolUse hook of every session (V: in process; S: `setup.mjs hook --isolation=hooks`, the launcher's `--pretool-hook`, after the kernel guard's own hook, logged through the broker). V also gets it as `canUseTool` (permission mode `default`, Bash and the write tools left out of `allowedTools`, as the launcher does for S); S's `canUseTool` is the kernel guard's, as in every Meta run. A denial wins over any allow; every call is logged to `_operator/access.jsonl` with its session id |
+| What the rule closes | `<b8>` (the hidden tests, the upstream clones in `<b8>/hidden/upstream`, `run-hidden.mjs` and its work dirs), the runs folder but the arm's own folders (so `_operator`, `_box`, the other arm), the company repo and `/home/user`, `~/.claude` (but the arm's own transcript folders), the scratchpad and `/tmp/claude-0` around the runs, `/proc`, and anything else that exists outside the system folders (default-deny). The toolchain is read-only; the released `spec/` and `visible/` are in the arm's own folder |
+| Bash rules | network: curl, wget, nc, socat, ssh, scp, pip, npm, npx, uv, `python -m pip` (and other fetch modules), package managers, git clone/fetch/pull/ls-remote/remote/submodule, any `scheme://` URL, `/dev/tcp`; a nested `claude` or the SDK; gcc/cc/clang on C (a `.c` or other C source, `-E`, `-x c`, `--language`, `@file`, stdin), cpp, tcc, chibicc, cc1 always. gcc only on `.s`/`.o` inputs (assemble, link) |
+| Shims | `<runs>/_shim/<arm>/bin` first on PATH, as before: gcc/cc/clang assemble and link only; cpp, tcc, chibicc, cc1, claude, curl, wget, nc, ncat, netcat, socat, ssh, scp, sftp, pip, pip3, npm, npx, uv always refuse; every call logged to `<runs>/_box/<arm>/log/shim.jsonl` |
+| Hidden runner, accept | unchanged: the orderer's (root) `run-hidden.mjs` in its own sandbox; S's accept stage asks the broker, which runs it as the orderer |
+| Preflight | as before, in hooks mode: the one-turn session with the arm's env and hooks (V: `vOptions`; S: the kernel's `sessionPlan`/`makeGuard`/`queryOptions` plus the command hook), and it must get a session id of its own |
+| Audit (additions) | `fileScan`: every text file of the arm's folders (the released spec/ and visible/ aside) for hidden paths, network words, a C compiler on C, upstream markers (`gcc.c-torture`, `c-testsuite`, gcc's copyright and `dg-` lines, the hidden tests' original file names, which no released file carries) and hidden-test lines (the canaries); `toolScan`: every logged call for the same, allowed and denied apart (an allowed one is a hole); `upstreamInToolCalls` from the transcripts. The verdict is not clean on a hidden path, hidden-test line or C compile in the files, or an allowed hidden/network/compiler call |
+
+**Found while checking it.** The SDK and the CLI derive a session's id from `CLAUDE_CODE_REMOTE_SESSION_ID` (a UUID v5).
+With only launch.mjs's four variables removed, the first probe session got the operator's own session id, so every
+session of both arms would have shared one id: one transcript file per project folder, the access log unable to tell
+sessions apart, and a resume that could land in the wrong one. `CONTEXT_STRIP` removes it; the preflight and the probe
+now fail unless the session's id is its own. (The same variable may have been inherited in Benchmarks 6 and 7.)
+
+**Residual risks (accepted, the same for both arms).**
+- **The agents run as root.** The hidden tests, `_operator`, the other arm and the operator's files are protected by
+  the hook and the audit, not by permissions or mounts. A tool call that names them is denied; code an agent writes and
+  runs (a Clojure `shell/sh`, a Python script) is out of the hook's reach and could read them. The audit's source and
+  file scans look for such code (`ProcessBuilder`, `clojure.java.shell`, hidden paths) and for what it would bring back
+  (hidden-test lines, upstream markers).
+- **The network is open to code.** The proxy variables stay (the CLI needs them), so code an agent runs could fetch the
+  public suites. The hook refuses network commands and URLs in tool calls, the shims refuse the common clients, and
+  the audit scans files and calls for network words; there is no egress log in this mode.
+- **gcc can compile C for code.** cc1 is present; a script that calls `/usr/bin/gcc` on a `.c` by absolute path gets
+  past the shims. The hook refuses it in tool calls, and the audit's scans flag a compiler run on C in the arm's files.
+- **The rest of the env.** Variables not in `CONTEXT_STRIP` reach both arms (the CLI needs some of them to reach the
+  model API); `B8_KEEP_ENV` puts a stripped one back if a session needs it, for both arms.
+
+**Checks (2026-10-23).** `selftest`: 121 of 121 in hooks mode, 117 of 117 in box mode. `vanilla-compiler.mjs
+--dry-run` and `--dry-run --fake=dryrun/stub --waves=W1,W2 --max-rounds=1` (60 then 133 hidden tests, exit 0),
+`dryrun.mjs` (S through W1 and W2, ok) and `setup.mjs run --dry-run` in hooks mode. One preflight session per arm
+(`ready`, its own session id, $0.005 to $0.009 each cold, $0.0002 with a warm cache) and one hook probe per arm (the three
+calls denied by the access hook and logged with the session's id, no call allowed; $0.05 each). The kernel suite:
+319 of 319.
+

@@ -21,6 +21,12 @@
 //   node setup.mjs selftest                           the access rule on a fixed list of calls (no session)
 //   node setup.mjs box-check --arm=V|S                the arm's box (sandbox.mjs), probed from inside (no session)
 //   node setup.mjs broker --arm=S | egress --arm=V|S  the orderer's broker and egress proxy (started by run; root)
+//   node setup.mjs preflight --arm=V|S [--runs]       one one-turn Agent SDK session started as the arm's are (tools [])
+//   node setup.mjs probe --arm=V|S [--runs]           one tiny session asked to read a hidden file, curl github and gcc a
+//                                                     .c: all three must be denied by the access hook and logged
+// --isolation=hooks|box (every command; default hooks, or B8_ISOLATION): hooks runs the sessions without the box, as
+// Benchmarks 6/7 did, the access hook, the shims and the audit enforcing what the box did (PROTOCOL.md "Isolation
+// deviation"); box runs them in sandbox.mjs's box.
 //
 // Layout (<runs> = <scratchpad>/b8-runs, outside any git checkout with a CLAUDE.md):
 //   <runs>/toolchain/          clj-run + jars (a copy of <b8>/toolchain): read-only to both arms
@@ -42,7 +48,7 @@ import crypto from "node:crypto";
 import { spawn, spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import net from "node:net";
-import { boxPaths, boxEnv, boxEnvNames, boxArgv, prepareBox, startEgress, ARM_UID, NODE_DIR } from "./sandbox.mjs";
+import { boxPaths, boxEnv, boxEnvNames, boxArgv, prepareBox, startEgress, ARM_UID, NODE_DIR, isolationOf, hooksMode, hooksEnv, armEnvFor, armEnvNames, prepareArm } from "./sandbox.mjs";
 
 const SELF = fileURLToPath(import.meta.url);
 const HERE = path.dirname(SELF);
@@ -86,7 +92,8 @@ const real = (p) => { try { return fs.realpathSync(p); } catch { return p; } };
 const waveN = (w) => Number(String(w).replace(/^W/i, ""));
 // the orderer's git runs as root on folders an arm's uid owns: safe.directory for that, and chownArm after
 const git = (cwd, ...a) => spawnSync("git", ["-c", "safe.directory=*", "-C", cwd, ...a], { encoding: "utf8" });
-export const chownArm = (arm, ...dirs) => { if (process.env.B8_NO_CHOWN) return; for (const d of dirs) if (fs.existsSync(d)) spawnSync("chown", ["-R", `${ARM_UID[arm]}:${ARM_UID[arm]}`, d]); };
+// hooks mode: no chown (the agents run as root, and git refuses a repo another uid owns)
+export const chownArm = (arm, ...dirs) => { if (process.env.B8_NO_CHOWN || hooksMode()) return; for (const d of dirs) if (fs.existsSync(d)) spawnSync("chown", ["-R", `${ARM_UID[arm]}:${ARM_UID[arm]}`, d]); };
 const gitOk = (cwd, ...a) => { const r = git(cwd, ...a); if (r.status !== 0) throw new Error(`git ${a.join(" ")}: ${r.stderr || r.stdout}`); return r.stdout.trim(); };
 
 // ---------------------------------------------------------------- what each wave releases (the same files, every arm)
@@ -183,15 +190,18 @@ const cfgDirs = () => [...new Set([process.env.CLAUDE_CONFIG_DIR, path.join(os.h
 export const claudeTmpRoots = (P) => [...new Set([path.join("/tmp", `claude-${typeof process.getuid === "function" ? process.getuid() : 0}`), ...[P.b8, P.runs].map((p) => (p.match(/^(\/tmp\/claude-[^/]+)\//) ?? [])[1]).filter(Boolean)])];
 /** {own (read-write), ro (readable, never written by a tool), deny, cfg, tmp} for arm V or S. */
 export function accessRules(P, arm) {
-  const B = boxPaths(P, arm);
-  const own = arm === "V" ? [P.V, B.home, B.tmp] : [P.wt, P.scratch, B.home, B.tmp];
+  const B = boxPaths(P, arm), hooks = hooksMode();
+  // hooks mode: the CLI keeps this process's HOME (its transcripts go to ~/.claude/projects, closed but for the arm's
+  // own project folders); the arm's TMPDIR is its own
+  const priv = hooks ? [B.tmp] : [B.home, B.tmp];
+  const own = arm === "V" ? [P.V, ...priv] : [P.wt, P.scratch, ...priv];
   const ro = arm === "V" ? [P.toolchain] : [P.toolchain, P.live, P.repo, P.store, path.dirname(P.baseline), path.join(P.S, "proto"), P.harness];
   const scratch = path.dirname(P.runs);
   const deny = [P.b8, P.runs, P.op, path.join(P.proto, "bench8"), path.join(REPO_PROTO, "bench8"), REPO_ROOT, ...cfgDirs(), ...claudeTmpRoots(P), "/proc"];
   if (scratch !== "/" && scratch !== os.homedir()) deny.push(scratch, path.dirname(scratch));
   if (path.dirname(REPO_ROOT) !== "/") deny.push(path.dirname(REPO_ROOT));
   const both = (l) => [...new Set(l.flatMap((r) => [r, real(r)]))];
-  return { arm, home: B.home, own: both([...own, ...ro]), rw: both(own), ro: both(ro), deny: both(deny), cfg: cfgDirs(), tmp: claudeTmpRoots(P) };
+  return { arm, isolation: hooks ? "hooks" : "box", home: hooks ? os.homedir() : B.home, own: both([...own, ...ro]), rw: both(own), ro: both(ro), deny: both(deny), cfg: cfgDirs(), tmp: claudeTmpRoots(P) };
 }
 const DENY_WORDS = /run-hidden|hidden\/(tests|bench|manifest|upstream|validation)|b8\/hidden|build-report\.json|\/\.tmp\/run-/;
 const PROCESS_LIST = /(^|[\s;&|(`])(ps|pgrep|pstree|top|htop|lsof|fuser)(\s|$)/;
@@ -250,7 +260,7 @@ const COMPILER = /^(gcc|g\+\+|cc|c\+\+|c89|c99|c11|clang|clang\+\+|clang-cl|cpp|
 const ALWAYS_NO = /^(cpp|tcc|chibicc|cc1|cc1plus|mcpp|ucpp|cproc|lcc|pcc|clang-cl)$|-cpp(-\d+)?$/; // a preprocessor or another C compiler: any use
 const C_SOURCE = /\.(c|h|i|ii|cc|cp|cxx|cpp|c\+\+|C|S|sx|m|mi)$/;
 const VALUE_OPTS = new Set(["-o", "-I", "-L", "-l", "-D", "-U", "-MF", "-MT", "-MQ", "-T", "-Xlinker", "-Xassembler", "-z", "-B", "--sysroot", "-iquote", "-isystem", "-idirafter", "-wrapper"]);
-const NET = /^(curl|wget|nc|ncat|netcat|socat|ssh|scp|sftp|ftp|telnet|aria2c|lynx|w3m|links|elinks|http|https|httpie|xh|apt|apt-get|aptitude|dnf|yum|apk|snap|brew|pip|pip3|pipx|conda|uv|gem|cargo|go|npx|pnpm|yarn|bunx|mvn|gradle|lein|clojure|clj|sdk|coursier|cs)$/;
+const NET = /^(curl|wget|nc|ncat|netcat|socat|ssh|scp|sftp|ftp|telnet|aria2c|lynx|w3m|links|elinks|http|https|httpie|xh|apt|apt-get|aptitude|dnf|yum|apk|snap|brew|pip|pip3|pipx|conda|uv|gem|cargo|go|npm|npx|pnpm|yarn|bunx|mvn|gradle|lein|clojure|clj|sdk|coursier|cs)$/;
 const WRAP = new Set(["sudo", "env", "command", "exec", "builtin", "time", "nice", "nohup", "xargs", "timeout", "stdbuf", "ionice", "setsid", "unshare", "strace", "ltrace", "chrt", "taskset", "nsenter", "firejail", "flock"]);
 const SHELLS = new Set(["sh", "bash", "dash", "zsh", "ksh", "busybox", "fish"]);
 const bareName = (w) => path.basename(String(w));
@@ -306,7 +316,7 @@ export function b8BashDenial(c, { cwd = process.cwd(), R = null, depth = 0, guar
     if (COMPILER.test(prog)) { const d = compilerUse(words); if (d) return d; }
     if (NET.test(prog)) return `${prog}: a network fetch or package install (CONTRACT.md rule 3: no downloads)`;
     if (prog === "git" && words.slice(1).some((w) => ["clone", "fetch", "pull", "ls-remote", "submodule", "remote", "archive", "send-email", "request-pull", "svn", "p4"].includes(w))) return "git with a remote: no downloads (CONTRACT.md rule 3)";
-    if (prog === "npm" && words.slice(1).some((w) => ["install", "i", "add", "ci", "exec", "x", "update", "view", "pack", "publish", "init", "create"].includes(w))) return "npm install/exec: no downloads (CONTRACT.md rule 3)";
+    if (/^python[0-9.]*$/.test(prog)) { const k = words.findIndex((w) => w === "-m" || /^-m\S/.test(w)); const mod = k < 0 ? null : words[k] === "-m" ? words[k + 1] : words[k].slice(2); if (mod && /^(pip|pip3|ensurepip|venv|virtualenv|http\.server|urllib|ftplib|smtplib|telnetlib|httpx|requests|wget|uv)(\.|$)/.test(mod)) return `${prog} -m ${mod}: a network fetch or package install (CONTRACT.md rule 3: no downloads)`; }
     if (words.some((w) => /^[a-z][a-z0-9+.-]*:\/\/[^/\s]+/i.test(w) && !/^file:\/\//i.test(w))) return "a URL: no network (CONTRACT.md rule 3)";
     if (SHELLS.has(prog)) {
       const k = words.indexOf("-c");
@@ -371,9 +381,9 @@ export function accessDecision({ tool, input = {}, cwd = process.cwd() }, R, gua
   return { deny: false };
 }
 export const DENY_TEXT = (why) => `Benchmark harness: ${why}. Work in your own directory with paths spelled out; gcc only assembles and links your compiler's .s files; no network.`;
-export function accessNote(P, { arm, sid, role = null, launch = null, tool, input, cwd, d }) {
+export function accessNote(P, { arm, sid, role = null, launch = null, tool, input, cwd, d, via = "hook" }) {
   const what = input?.command ?? input?.file_path ?? input?.path ?? input?.pattern ?? input?.notebook_path ?? "";
-  append(P.access, { arm, sid: sid ?? null, role, launch, tool, cwd, what: String(what).slice(0, 300), deny: d.deny, ...(d.deny ? { why: d.why } : {}) });
+  append(P.access, { arm, sid: sid ?? null, role, launch, via, tool, cwd, what: String(what).slice(0, 300), deny: d.deny, ...(d.deny ? { why: d.why } : {}) });
 }
 /** The in-process PreToolUse hook (V's; S's runs as `setup.mjs hook`, the launcher's --pretool-hook). */
 export async function makeHook(P, arm, { sid = () => null, cwd: cwd0 } = {}) {
@@ -386,6 +396,25 @@ export async function makeHook(P, arm, { sid = () => null, cwd: cwd0 } = {}) {
     return d.deny ? { hookSpecificOutput: { hookEventName: "PreToolUse", permissionDecision: "deny", permissionDecisionReason: DENY_TEXT(d.why) } } : {};
   };
 }
+/** V's SDK canUseTool: the same access rule as the hook, logged with via "canUseTool" (S's canUseTool is the kernel
+ *  guard's; the hook above is the access rule both arms share). */
+export async function makeCanUse(P, arm, { sid = () => null, cwd: cwd0 } = {}) {
+  const R = accessRules(P, arm), guard = await guardMod(P);
+  return async (tool, input, o = {}) => {
+    const d = accessDecision({ tool, input, cwd: cwd0 }, R, guard);
+    try { accessNote(P, { arm, sid: sid(), tool, input, cwd: cwd0, d, via: "canUseTool" }); } catch {}
+    return d.deny ? { behavior: "deny", message: DENY_TEXT(d.why) } : { behavior: "allow", updatedInput: input };
+  };
+}
+/** V's query() options (the turn's, the preflight's and the probe's): the six tools (or `tools`), settingSources [],
+ *  the access rule as the PreToolUse hook and as canUseTool (permissionMode "default" with Bash and the write tools
+ *  out of allowedTools, as the launcher's queryOptions does, so canUseTool is asked); in box mode the CLI is started in
+ *  V's box (spawnClaudeCodeProcess), in hooks mode the SDK starts it as usual. */
+export async function vOptions(P, { cwd, model, effort = EFFORT, abortController, tools = TOOLS_OK, maxTurns, sid = () => null, resume = null, stderrLog = null }) {
+  const hook = await makeHook(P, "V", { sid, cwd }), canUseTool = await makeCanUse(P, "V", { sid, cwd });
+  const box = hooksMode() ? {} : { spawnClaudeCodeProcess: (await import("./sandbox.mjs")).spawnFor(P, "V", { stderrLog }) };
+  return { cwd, model, effort, abortController, env: armEnvFor(P, "V"), settingSources: [], tools, allowedTools: tools.filter((t) => !["Bash", "Write", "Edit", "MultiEdit", "NotebookEdit"].includes(t)), permissionMode: "default", permissionPrompts: "host", canUseTool, maxTurns, hooks: { PreToolUse: [{ hooks: [hook] }] }, ...box, ...(resume ? { resume } : {}) };
+}
 
 // ---- the PATH shims (the backstop for code an agent runs: a script, a Clojure shell-out, a Makefile)
 /** <runs>/_shim/<arm>/bin: gcc, cc, clang (and their spellings) pass through to /usr/bin only for assembling and
@@ -395,7 +424,7 @@ export function installShims(P, arm) {
   const dir = P.shim(arm); fs.mkdirSync(dir, { recursive: true });
   const log = P.shimLog.replace(/'/g, ""); // outside a box; in a box B8_SHIM_LOG (the box's own log folder)
   const pass = ["gcc", "cc", "clang", "c99", "c89", "g++", "c++", "clang++", "x86_64-linux-gnu-gcc", "gcc-13", "clang-18"];
-  const never = ["cpp", "tcc", "chibicc", "cc1", "claude", "curl", "wget", "x86_64-linux-gnu-cpp", "cpp-13"];
+  const never = ["cpp", "tcc", "chibicc", "cc1", "claude", "curl", "wget", "x86_64-linux-gnu-cpp", "cpp-13", "nc", "ncat", "netcat", "socat", "ssh", "scp", "sftp", "pip", "pip3", "npm", "npx", "uv"];
   const head = (name) => `#!/bin/sh
 # Benchmark 8 shim (${arm}): ${name}
 log() { printf '{"t":"%s","arm":"${arm}","prog":"${name}","deny":%s,"args":"%s"}\\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "$1" "$(printf '%s ' "$ARGS" | tr -d '"\\\\' | cut -c1-300)" >> "\${B8_SHIM_LOG:-${log}}" 2>/dev/null; }
@@ -419,8 +448,9 @@ exec ${realBin} "$@"
   }
   return dir;
 }
-/** An arm's session env (pilot fix): an allowlist (sandbox.mjs boxEnv), never this session's env minus a few names. */
-export const armEnv = (P, arm, extra = {}) => boxEnv(P, arm, extra);
+/** An arm's session env: in box mode an allowlist (sandbox.mjs boxEnv); in hooks mode this process's env minus the
+ *  launcher's and the context variables (sandbox.mjs hooksEnv). */
+export const armEnv = (P, arm, extra = {}) => armEnvFor(P, arm, extra);
 
 // ---------------------------------------------------------------- S: place a wave
 const metaEnv = (P) => { const env = { ...process.env, META_LIVE_DIR: P.live }; for (const x of ["META_ROLE", "META_LAUNCH", "NODE_TEST_CONTEXT", "META_STATE"]) delete env[x]; return env; };
@@ -457,8 +487,10 @@ function sPlace(P, opt) {
   for (const f of [P.runner, path.join(P.hidden, "manifest.json"), path.join(P.proto, "meta.mjs"), path.join(P.proto, "launcher", "launch.mjs"), path.join(P.proto, "specs", SPEC_FILE)]) if (!fs.existsSync(f)) throw new Error(`missing ${f}`);
   const st0 = fs.existsSync(path.join(P.live, "state.json")) ? readState(P.live) : null;
   if (k === 0) {
-    if (st0 || (fs.existsSync(P.S) && fs.readdirSync(P.S).length)) throw new Error(`${P.S} exists: S's W1 starts a fresh run (move it aside)`);
-    ensureToolchain(P); installShims(P, "S"); prepareBox(P, "S");
+    // a fresh run: nothing in S's folder but what S's preflight made (the frozen kernel, the harness, empty scratch/live)
+    const pre = new Set(["proto", "harness", "scratch", "live"]), extra = fs.existsSync(P.S) ? fs.readdirSync(P.S).filter((f) => !pre.has(f) || (["scratch", "live"].includes(f) && fs.readdirSync(path.join(P.S, f)).length)) : [];
+    if (st0 || extra.length) throw new Error(`${P.S} exists (${extra.slice(0, 3).join(", ")}): S's W1 starts a fresh run (move it aside)`);
+    ensureToolchain(P); installShims(P, "S"); prepareArm(P, "S");
     for (const d of [P.repo, P.wt, P.live, P.store, P.scratch, P.harness, path.dirname(P.baseline), path.join(P.op, "S")]) fs.mkdirSync(d, { recursive: true });
     for (const f of HARNESS_FILES) fs.copyFileSync(path.join(HERE, f), path.join(P.harness, f));
     freezeKernel(P);
@@ -496,22 +528,86 @@ function sPlace(P, opt) {
 export const AUTH_HINT = "The box passes only the auth variables in sandbox.mjs AUTH_KEYS: export one of them (or name others in B8_AUTH_ENV, or copy a credential file into the box's HOME with B8_AUTH_FILES=<src>:<dst under HOME>), then run again.";
 /** The launcher's default model (no model id lives in bench8: the same default for both arms). */
 export function launcherModel(P) { const src = fs.readFileSync(path.join(P.proto, "launcher", "launch.mjs"), "utf8"); return (src.match(/const MODEL = opt\.model \?\? "([^"]+)"/) ?? [])[1] ?? null; }
-/** Before an arm runs: one Agent SDK session (one turn, no tools) started exactly as the arm's are, in its box. A
- *  failure here (auth, the egress tunnel, the box) stops the run before any wave, and costs a few cents at most. */
+/** S's PreToolUse command hook argv (the launcher's --pretool-hook): the frozen harness's `setup.mjs hook`, logging
+ *  through the broker. */
+export const sHookArgv = (P, { broker = true } = {}) => [path.join(NODE_DIR, "bin", "node"), path.join(P.harness, "setup.mjs"), "hook", "--arm=S", `--isolation=${isolationOf()}`, `--runs=${P.runs}`, `--b8=${P.b8}`, `--proto=${P.sproto}`, ...(broker ? [`--broker=${boxPaths(P, "S").broker}`] : [])];
+/** An S session's query() options outside the launcher (the preflight's and the probe's), built as launch.mjs builds
+ *  every S session: the frozen kernel's guard.mjs sessionPlan/makeGuard/queryOptions (canUseTool and PreToolUse: the
+ *  kernel guard) plus commandHook(sHookArgv) (the access rule), with the launcher's env. Hooks mode only: in box mode
+ *  the preflight goes through spawnFor in S's box. */
+export async function sOptions(P, { cwd, model, effort = EFFORT, abortController, tools = TOOLS_OK, maxTurns, role = "probe" }) {
+  const G = await import(path.join(P.sproto, "launcher", "guard.mjs"));
+  const env = { ...armEnvFor(P, "S"), META_LIVE_DIR: P.live, META_KERNEL_ABS: "1" };
+  for (const k of ["CLAUDECODE", "CLAUDE_CODE_SESSION_ID", "CLAUDE_AUTO_BACKGROUND_TASKS", "CLAUDE_CODE_BG_TASKS_REPORT_RUNNING"]) delete env[k];
+  const plan = G.sessionPlan({ tools, settingSources: [], maxTurns, workdir: cwd, roots: [] }, { fromOrder: true }, { cwd, sessionMin: 5, maxTurns, settingSources: [] });
+  const guard = G.makeGuard({ tools: plan.tools, strictTools: plan.strictTools, roots: plan.roots, cwd: plan.cwd, role });
+  const extraHooks = [G.commandHook(sHookArgv(P), { env: { ...env, META_LAUNCH: role, META_ROLE: role } })];
+  return { options: G.queryOptions(plan, guard, { model, abortController, env: { ...env, META_LAUNCH: role, META_ROLE: role }, extraHooks, effort }), guard };
+}
+/** S's harness folders for a preflight or probe on a fresh runs dir (the kernel frozen, the harness copied). */
+function sReady(P) {
+  if (!fs.existsSync(path.join(P.sproto, "meta.mjs"))) freezeKernel(P);
+  fs.mkdirSync(P.harness, { recursive: true });
+  for (const f of HARNESS_FILES) fs.copyFileSync(path.join(HERE, f), path.join(P.harness, f));
+  for (const d of [P.scratch, P.live]) fs.mkdirSync(d, { recursive: true });
+}
+const sdkQuery = async (P) => (await import(path.join(P.proto, "launcher", "node_modules", "@anthropic-ai", "claude-agent-sdk", "sdk.mjs"))).query;
+const usageCost = (result) => Object.values(result?.modelUsage ?? {}).reduce((a, u) => a + (u.costUSD ?? 0), 0);
+/** Before an arm runs: one Agent SDK session (one turn, no tools) started exactly as the arm's are: in box mode in its
+ *  box (spawnFor, the egress tunnel); in hooks mode with its env and its hooks (V: vOptions; S: sOptions). A failure
+ *  here (auth, the tunnel, the box) stops the run before any wave, and costs a few cents at most. */
 export async function preflight(P, arm, opt = {}) {
-  const { spawnFor } = await import("./sandbox.mjs");
   fs.mkdirSync(arm === "V" ? P.V : P.S, { recursive: true }); // the box binds the arm's folder (empty before W1)
-  const B = prepareBox(P, arm), egress = startEgress(P, arm), t0 = Date.now();
-  const { query } = await import(path.join(P.proto, "launcher", "node_modules", "@anthropic-ai", "claude-agent-sdk", "sdk.mjs"));
-  let result = null, error = null;
+  const hooks = hooksMode(), B = prepareArm(P, arm), t0 = Date.now(), model = opt.model ?? launcherModel(P), effort = opt.effort ?? EFFORT;
+  const egress = hooks ? null : startEgress(P, arm);
+  const query = await sdkQuery(P);
+  let result = null, error = null, broker = null, sid = null;
   const ac = new AbortController(), t = setTimeout(() => ac.abort(new Error("preflight over 3 min")), 180_000);
   try {
-    for await (const m of query({ prompt: "Reply with the single word: ready", options: { cwd: B.home, model: opt.model ?? launcherModel(P), effort: opt.effort ?? EFFORT, env: boxEnv(P, arm), settingSources: [], tools: [], allowedTools: [], permissionMode: "dontAsk", maxTurns: 1, abortController: ac, spawnClaudeCodeProcess: spawnFor(P, arm, { stderrLog: path.join(P.op, arm, "preflight-stderr.log") }) } })) if (m.type === "result") result = m;
+    let options;
+    if (!hooks) { const { spawnFor } = await import("./sandbox.mjs"); options = { cwd: B.home, model, effort, env: boxEnv(P, arm), settingSources: [], tools: [], allowedTools: [], permissionMode: "dontAsk", maxTurns: 1, abortController: ac, spawnClaudeCodeProcess: spawnFor(P, arm, { stderrLog: path.join(P.op, arm, "preflight-stderr.log") }) }; }
+    else if (arm === "V") options = await vOptions(P, { cwd: B.tmp, model, effort, abortController: ac, tools: [], maxTurns: 1 });
+    else { sReady(P); broker = startBroker(P); options = (await sOptions(P, { cwd: P.scratch, model, effort, abortController: ac, tools: [], maxTurns: 1, role: "preflight" })).options; }
+    for await (const m of query({ prompt: "Reply with the single word: ready", options })) { if (typeof m.session_id === "string" && m.session_id) sid ??= m.session_id; if (m.type === "result") result = m; }
   } catch (e) { error = e?.message ?? String(e); }
-  clearTimeout(t); try { egress.kill(); } catch {}
-  const cost = Object.values(result?.modelUsage ?? {}).reduce((a, u) => a + (u.costUSD ?? 0), 0);
-  const ok = !error && !!result && !result.is_error && /ready/i.test(String(result.result ?? ""));
-  return { arm, ok, why: ok ? null : String(error ?? result?.result ?? result?.subtype ?? "no result").slice(0, 300), cost: Number(cost.toFixed(4)), seconds: Math.round((Date.now() - t0) / 1000), envNames: boxEnvNames(P, arm), effort: opt.effort ?? EFFORT };
+  clearTimeout(t); try { egress?.kill(); } catch {} try { broker?.kill(); } catch {}
+  const cost = usageCost(result);
+  // the session's own id (the probe found every session sharing the operator's: CLAUDE_CODE_REMOTE_SESSION_ID)
+  const ownId = !!sid && !String(process.env.CLAUDE_CODE_SESSION_ID ?? "").includes(sid);
+  const ok = !error && !!result && !result.is_error && /ready/i.test(String(result.result ?? "")) && ownId;
+  return { arm, isolation: hooks ? "hooks" : "box", ok, sid, ownSessionId: ownId, said: String(result?.result ?? "").slice(0, 80), why: ok ? null : String(error ?? result?.result ?? result?.subtype ?? "no result").slice(0, 300), cost: Number(cost.toFixed(4)), seconds: Math.round((Date.now() - t0) / 1000), envNames: armEnvNames(P, arm), effort };
+}
+/** The hook probe (hooks mode): one tiny session of the arm, asked to run three Bash commands the access rule must
+ *  refuse (read a hidden file, curl github, gcc on a .c); each must come back denied and be logged in access.jsonl
+ *  with this session's id. Bash only and maxTurns 2, to keep it cheap. */
+export async function probe(P, arm, opt = {}) {
+  if (!hooksMode()) throw new Error("probe is for --isolation=hooks (box mode: setup.mjs box-check)");
+  const B = prepareArm(P, arm), t0 = Date.now(), model = opt.model ?? launcherModel(P), effort = opt.effort ?? EFFORT;
+  installShims(P, arm);
+  const cwd = arm === "V" ? P.V : P.scratch;
+  if (arm === "S") sReady(P);
+  fs.mkdirSync(cwd, { recursive: true });
+  fs.writeFileSync(path.join(cwd, "probe.c"), "int main(void) { return 0; }\n");
+  const hiddenFile = path.join(P.hidden, "manifest.json");
+  const cmds = [`cat ${hiddenFile}`, "curl -sS https://github.com", `gcc ${path.join(cwd, "probe.c")} -o ${path.join(cwd, "probe")}`];
+  const prompt = `This is a harness check of your sandbox, not a task. In ONE message, make exactly these three Bash tool calls (in parallel, each command exactly as written), then reply with one line per command saying whether it was allowed or denied. Do nothing else.\n${cmds.map((c, i) => `${i + 1}. ${c}`).join("\n")}`;
+  const query = await sdkQuery(P);
+  let result = null, error = null, sid = null, broker = null;
+  const ac = new AbortController(), t = setTimeout(() => ac.abort(new Error("probe over 4 min")), 240_000);
+  const from = readJsonl(P.access).length;
+  try {
+    let options;
+    if (arm === "V") options = await vOptions(P, { cwd, model, effort, abortController: ac, tools: ["Bash"], maxTurns: 2, sid: () => sid });
+    else { broker = startBroker(P); options = (await sOptions(P, { cwd, model, effort, abortController: ac, tools: ["Bash"], maxTurns: 2, role: "probe" })).options; }
+    for await (const m of query({ prompt, options })) { if (typeof m.session_id === "string" && m.session_id) sid ??= m.session_id; if (m.type === "result") result = m; }
+  } catch (e) { error = e?.message ?? String(e); }
+  clearTimeout(t); try { broker?.kill(); } catch {}
+  const logged = readJsonl(P.access).slice(from).filter((x) => x.sid === sid);
+  const checks = cmds.map((c, i) => { const hit = logged.filter((x) => x.tool === "Bash" && String(x.what).trim() === c); return { cmd: ["hidden file", "curl github", "gcc on .c"][i], called: hit.length > 0, denied: hit.length > 0 && hit.every((x) => x.deny), logged: hit.length, why: hit.find((x) => x.deny)?.why ?? null }; });
+  const executed = logged.filter((x) => !x.deny).map((x) => `${x.via ?? "hook"} ${x.tool}: ${x.what}`);
+  const ownSessionId = !!sid && !String(process.env.CLAUDE_CODE_SESSION_ID ?? "").includes(sid);
+  const ok = checks.every((c) => c.called && c.denied) && !executed.length && ownSessionId;
+  return { arm, isolation: "hooks", ok, sid, ownSessionId, checks, allowedCalls: executed, said: String(result?.result ?? "").slice(0, 400), error, cost: Number(usageCost(result).toFixed(4)), seconds: Math.round((Date.now() - t0) / 1000), shimLog: B.shimLog };
 }
 
 // ---------------------------------------------------------------- S: the order's accept (code runs it)
@@ -537,7 +633,7 @@ export function brokerCall(sock, req, timeoutMs = 20_000) {
 }
 /** The orderer's broker for arm S (root, outside the box): the hook's log lines and the accept stage's hidden runs. */
 function broker(P, opt) {
-  const B = boxPaths(P, "S");
+  const B = isolationOf() === "hooks" ? (prepareArm(P, "S"), boxPaths(P, "S")) : boxPaths(P, "S");
   try { fs.rmSync(B.broker, { force: true }); } catch {}
   const wt = real(P.wt);
   const srv = net.createServer((c) => {
@@ -608,7 +704,7 @@ export function endIfStopped(P, wave, { why: forced = null } = {}) {
 }
 function launcherArgv(P, opt, maxMin) {
   const node = path.join(NODE_DIR, "bin", "node");
-  const hook = JSON.stringify([node, path.join(P.harness, "setup.mjs"), "hook", "--arm=S", `--runs=${P.runs}`, `--b8=${P.b8}`, `--proto=${P.sproto}`, `--broker=${boxPaths(P, "S").broker}`]);
+  const hook = JSON.stringify(sHookArgv(P));
   return [node, path.join(P.sproto, "launcher", "launch.mjs"), `--live=${P.live}`, "--workdir-from=order", `--max-parallel=${opt["max-parallel"] ?? 4}`, `--max-min=${Math.max(1, Math.floor(maxMin))}`, `--pretool-hook=${hook}`, `--effort=${opt.effort ?? EFFORT}`, ...(opt.model ? [`--model=${opt.model}`] : [])];
 }
 const learnOpen = (st) => !!st?.data?.learn && (!st.data.learn.closed || st.data.learn.retros?.some((x) => x.state === "open"));
@@ -617,9 +713,12 @@ async function sRun(P, opt) {
   const maxMin = Number(opt["max-min"] ?? RUN_MIN), maxCost = Number(opt["max-cost"] ?? RUN_COST), poll = Number(opt.poll ?? 5) * 1000;
   // the caps are for the whole run: time already used by earlier waves (waves.jsonl) counts
   const used = readJsonl(P.waves).filter((x) => x.event === "wave-end").reduce((a, x) => a + (x.minutes ?? 0), 0);
-  if (opt["dry-run"]) return { dry: true, launcher: launcherArgv(P, opt, maxMin - used), box: boxArgv(P, "S", P.S, ["<launcher>"])[1].slice(0, 8), envNames: boxEnvNames(P, "S"), caps: { maxMin, maxCost, usedMin: used }, observe: fs.existsSync(path.join(P.live, "state.json")) ? summarizeOrder(P, waves[0]) : null };
-  if (!opt["no-preflight"]) { const pf = await preflight(P, "S", opt); append(P.waves, { event: "preflight", ...pf }); if (!pf.ok) throw new Error(`S preflight failed (${pf.why}): no session could start in S's box. ${AUTH_HINT}`); }
-  startEgress(P, "S"); startBroker(P);
+  const hooks = hooksMode();
+  if (opt["dry-run"]) return { dry: true, isolation: hooks ? "hooks" : "box", launcher: launcherArgv(P, opt, maxMin - used), ...(hooks ? { cwd: P.S } : { box: boxArgv(P, "S", P.S, ["<launcher>"])[1].slice(0, 8) }), envNames: armEnvNames(P, "S"), caps: { maxMin, maxCost, usedMin: used }, observe: fs.existsSync(path.join(P.live, "state.json")) ? summarizeOrder(P, waves[0]) : null };
+  if (!opt["no-preflight"] && !readJsonl(P.waves).some((x) => x.event === "preflight" && x.ok)) { const pf = await preflight(P, "S", opt); append(P.waves, { event: "preflight", ...pf }); if (!pf.ok) throw new Error(`S preflight failed (${pf.why}): no session could start ${hooks ? "with S's env and hooks" : "in S's box"}. ${hooks ? "" : AUTH_HINT}`); }
+  append(P.waves, { event: "isolation", isolation: hooks ? "hooks" : "box", envNames: armEnvNames(P, "S") });
+  if (!hooks) startEgress(P, "S");
+  startBroker(P);
   const out = [];
   for (const w of waves) {
     const st = fs.existsSync(path.join(P.live, "state.json")) ? readState(P.live) : null;
@@ -632,9 +731,11 @@ async function sRun(P, opt) {
     const launch = async (argv) => {
       const fd = fs.openSync(path.join(P.op, "S", "launcher.out"), "a");
       chownArm("S", P.S);
-      // the whole launcher (supervisor, code stages, every session) in S's box, as S's uid (pilot fix)
-      const [bin, args] = boxArgv(P, "S", P.S, argv, { killSignal: "SIGINT" });
-      const child = spawn(bin, args, { env: boxEnv(P, "S"), stdio: ["ignore", fd, fd] });
+      // box mode: the whole launcher (supervisor, code stages, every session) in S's box, as S's uid (pilot fix);
+      // hooks mode: the launcher as Benchmarks 6/7 ran it, with S's env (hooksEnv), every session under the kernel
+      // guard and the access hook (--pretool-hook)
+      const [bin, args] = hooks ? [argv[0], argv.slice(1)] : boxArgv(P, "S", P.S, argv, { killSignal: "SIGINT" });
+      const child = spawn(bin, args, { env: armEnvFor(P, "S"), cwd: P.S, stdio: ["ignore", fd, fd] });
       let exited = false; child.on("exit", () => { exited = true; });
       while (!exited) {
         endIfStopped(P, w);
@@ -794,8 +895,75 @@ function sourceScan(dirs) {
   for (const d of dirs) walk(d);
   return hits;
 }
+/** Markers of the upstream suites' own text (hooks mode: the hook, not a mount, keeps the clones away, so the audit
+ *  looks for their traces): the suites' names and paths, gcc's copyright header, and the original file names of the
+ *  hidden tests (gcc torture `20021118-3.c`, `pr36321.c`, c-testsuite `00042.c`, chibicc's `test/*.c`), which no
+ *  released file names (the visible tests are released as w<n>-<k> ids, without their origin). */
+/** Does `text` name `needle` as a path (not as the prefix of a longer name: <scratch>/b8 is a prefix of <scratch>/b8-runs)? */
+const namesPath = (text, needle) => { for (let i = text.indexOf(needle); i >= 0; i = text.indexOf(needle, i + 1)) if (!/[\w.-]/.test(text[i + needle.length] ?? "")) return true; return false; };
+export function upstreamMarkers(P) {
+  let man = null; try { man = JSON.parse(fs.readFileSync(path.join(P.hidden, "manifest.json"), "utf8")); } catch {}
+  const names = new Set();
+  for (const t of man?.tests ?? []) { const b = path.basename(String(t.origin ?? "")); if (/\.c$/.test(b) && b.length >= 7) names.add(b); }
+  const words = ["gcc.c-torture", "c-torture/execute", "c-testsuite", "rui314", "single-exec", "Free Software Foundation", "dg-do run", "dg-options", "dg-require", "dg-skip-if", "{ dg-"];
+  return { words, names: [...names] };
+}
+/** Hooks mode's file scan: every text file of the arm's own folders (the released spec/ and visible/ aside) checked for
+ *  hidden paths, network words, a C compiler run on C, upstream markers and hidden-test lines (the canaries). */
+export function fileScan(P, arm, { C = canaries(P), M = upstreamMarkers(P) } = {}) {
+  const dirs = arm === "V" ? [P.V, boxPaths(P, "V").tmp] : [...(fs.existsSync(P.wt) ? fs.readdirSync(P.wt).map((d) => path.join(P.wt, d)) : []), P.scratch, boxPaths(P, "S").tmp];
+  const HID = [P.b8, real(P.b8), P.op, P.hidden, "run-hidden", "hidden/manifest", "hidden/tests", "hidden/upstream", REPO_ROOT, path.join(os.homedir(), ".claude"), arm === "V" ? P.S : P.V];
+  const NET = /urlopen|\bfetch\(|java\.net\.|HttpClient|HttpURLConnection|https?:\/\/|api\.anthropic|x-api-key|\/dev\/tcp|\bcurl\b|\bwget\b|git (clone|fetch|pull|ls-remote)|pip install|npm (install|i)\b/;
+  const CC = /\b(gcc|cc|clang|tcc|chibicc|cpp|cc1)\b[^\n]{0,80}(\.c\b|-x\s*c\b|--language|\s-E\b)/;
+  const nameRe = M.names.length ? new RegExp(`(^|[^A-Za-z0-9_-])(${M.names.map((n) => n.replace(/[.+^${}()|[\]\\]/g, "\\$&")).join("|")})`) : null;
+  const canary = new Set(C.content);
+  const out = { files: 0, hiddenPaths: [], network: [], compiler: [], upstream: [], hiddenText: [] };
+  const push = (k, x) => { if (out[k].length < 40) out[k].push(x); };
+  const walk = (d, top) => {
+    let es = []; try { es = fs.readdirSync(d, { withFileTypes: true }); } catch { return; }
+    for (const e of es) {
+      const p = path.join(d, e.name);
+      if (e.isDirectory()) { if ([".git", "node_modules", ".cpcache"].includes(e.name) || (d === top && ["visible", "spec"].includes(e.name))) continue; walk(p, top); continue; }
+      if (!e.isFile()) continue;
+      let st; try { st = fs.statSync(p); } catch { continue; } if (st.size > 1 << 20) continue;
+      let t; try { t = fs.readFileSync(p, "utf8"); } catch { continue; } if (t.includes("\0")) continue;
+      out.files++;
+      const rel = path.relative(top, p);
+      t.split("\n").forEach((l, i) => {
+        const at = `${arm} ${rel}:${i + 1}: ${l.trim().slice(0, 120)}`;
+        if (HID.some((h) => namesPath(l, h))) push("hiddenPaths", at);
+        if (NET.test(l)) push("network", at);
+        if (CC.test(l)) push("compiler", at);
+        if (M.words.some((w) => l.includes(w)) || (nameRe && nameRe.test(l))) push("upstream", at);
+        if (l.trim().length >= 40 && canary.has(l.trim())) push("hiddenText", at);
+      });
+    }
+  };
+  for (const d of dirs) walk(d, d);
+  return out;
+}
+/** Hooks mode's tool-call scan: each logged call (access.jsonl) checked for hidden paths, network words, a C compiler
+ *  on C, and upstream markers; allowed and denied calls apart (a denied one is an attempt, an allowed one a hole). */
+export function toolScan(P, arm, { M = upstreamMarkers(P) } = {}) {
+  const HID = [P.b8, real(P.b8), P.op, "run-hidden", "hidden/manifest", "hidden/tests", "hidden/upstream", REPO_ROOT, path.join(os.homedir(), ".claude")];
+  const NET = /https?:\/\/|\b(curl|wget|nc|ncat|socat|ssh|scp|pip3?|npm|npx|uv)\b|git (clone|fetch|pull|ls-remote)|urlopen|\/dev\/tcp/;
+  const CC = /(^|[\s;&|(\/])(gcc|cc|clang|tcc|chibicc|cpp|cc1)\b[^\n]{0,120}(\.c\b|-x\s*c\b|--language|\s-E\b)/;
+  const names = new Set(M.names);
+  const rows = readJsonl(P.access).filter((a) => a.arm === arm);
+  const out = { calls: rows.length, denied: rows.filter((a) => a.deny).length, hiddenPaths: [], network: [], compiler: [], upstream: [] };
+  for (const a of rows) {
+    const w = String(a.what ?? ""), tag = `${a.deny ? "denied" : "ALLOWED"} ${a.via ?? "hook"} ${a.tool}: ${w.slice(0, 140)}`;
+    if (HID.some((h) => namesPath(w, h))) out.hiddenPaths.push(tag);
+    if (NET.test(w)) out.network.push(tag);
+    if (CC.test(w)) out.compiler.push(tag);
+    if (M.words.some((x) => w.includes(x)) || w.split(/[\s/'"=]+/).some((x) => names.has(x))) out.upstream.push(tag);
+  }
+  for (const k of ["hiddenPaths", "network", "compiler", "upstream"]) out[k] = out[k].slice(0, 60);
+  out.holes = [...out.hiddenPaths, ...out.network, ...out.compiler, ...out.upstream].filter((x) => x.startsWith("ALLOWED"));
+  return out;
+}
 export function audit(P) {
-  const acc = readJsonl(P.access), C = canaries(P), isPath = new Set(C.paths), can = [...C.content, ...C.paths];
+  const acc = readJsonl(P.access), C = canaries(P), isPath = new Set(C.paths), can = [...C.content, ...C.paths], M = upstreamMarkers(P), mNames = new Set(M.names);
   const shims = [...readJsonl(P.shimLog), ...ARMS.flatMap((a) => readJsonl(boxPaths(P, a).shimLog).map((x) => ({ ...x, arm: a })))];
   const egress = Object.fromEntries(ARMS.map((a) => [a, readJsonl(path.join(P.op, `egress-${a}.jsonl`))]));
   const NETWORDS = /urlopen|fetch\(|java\.net|HttpClient|https?:\/\/|api\.anthropic|x-api-key|\bnc\b|socat|\/dev\/tcp/;
@@ -805,20 +973,27 @@ export function audit(P) {
   const uniq = [...new Map(sessions.map((s) => [s.sid, s])).values()];
   const rows = uniq.map((s) => {
     const logged = acc.filter((a) => a.sid === s.sid), file = transcriptOf(s.sid, P);
-    const seen = [], tried = [], own = new Set();
+    const seen = [], tried = [], own = new Set(), upstream = new Set();
     if (file) for (const line of fs.readFileSync(file, "utf8").split("\n")) {
       if (!line) continue; let m; try { m = JSON.parse(line); } catch { continue; }
       const content = m?.message?.content; if (!Array.isArray(content)) continue;
       for (const c of content) {
         const text = c.type === "tool_result" ? JSON.stringify(c.content ?? "") : c.type === "tool_use" ? JSON.stringify(c.input ?? {}) : null;
         if (text == null) continue;
-        for (const k of can) if (text.includes(k)) { if (c.type === "tool_use") { if (isPath.has(k)) tried.push(k.slice(0, 80)); else own.add(k); } else if (!isPath.has(k) && !own.has(k)) seen.push(k.slice(0, 80)); }
+        if (c.type === "tool_use" && (M.words.some((w) => text.includes(w)) || text.split(/[\s/'"=\\]+/).some((x) => mNames.has(x)))) upstream.add(text.slice(0, 140));
+        for (const k of can) if (isPath.has(k) ? namesPath(text, k) : text.includes(k)) { if (c.type === "tool_use") { if (isPath.has(k)) tried.push(k.slice(0, 80)); else own.add(k); } else if (!isPath.has(k) && !own.has(k)) seen.push(k.slice(0, 80)); }
       }
     }
-    return { ...s, hookCalls: logged.length, denials: logged.filter((a) => a.deny).map((a) => `${a.tool}: ${a.what.slice(0, 120)} (${a.why})`), transcript: file, seen: [...new Set(seen)], tried: [...new Set(tried)], own: own.size };
+    return { ...s, hookCalls: logged.length, denials: logged.filter((a) => a.deny).map((a) => `${a.tool}: ${a.what.slice(0, 120)} (${a.why})`), transcript: file, seen: [...new Set(seen)], tried: [...new Set(tried)], own: own.size, upstream: [...upstream].slice(0, 20) };
   });
   const sDirs = fs.existsSync(P.wt) ? fs.readdirSync(P.wt).map((d) => path.join(P.wt, d)) : [];
+  // the isolation each arm ran under (its ledger), and hooks mode's scans of the arm's files and tool calls
+  const iso = { V: readJsonl(P.vledger).findLast((x) => x.event === "start")?.isolation ?? null, S: readJsonl(P.waves).findLast((x) => x.event === "isolation")?.isolation ?? null };
+  const files = Object.fromEntries(ARMS.map((a) => [a, fileScan(P, a, { C, M })])), tools = Object.fromEntries(ARMS.map((a) => [a, toolScan(P, a, { M })]));
+  const scanDirty = ARMS.some((a) => files[a].hiddenPaths.length || files[a].hiddenText.length || files[a].compiler.length || tools[a].holes.length);
   return {
+    isolation: iso,
+    fileScan: files, toolScan: tools,
     canaries: C.content.length, sessions: rows.length,
     hookMissing: rows.filter((r) => !r.hookCalls).map((r) => `${r.arm} ${r.role} ${r.sid}`),
     transcriptMissing: rows.filter((r) => !r.transcript).map((r) => `${r.arm} ${r.role} ${r.sid}`),
@@ -827,13 +1002,14 @@ export function audit(P) {
     shimCalls: Object.fromEntries(ARMS.map((a) => [a, shims.filter((x) => x.arm === a).length])),
     leaks: rows.filter((r) => r.seen.length).map((r) => ({ arm: r.arm, role: r.role, sid: r.sid, seen: r.seen.slice(0, 10) })),
     attempts: rows.filter((r) => r.tried.length).map((r) => ({ arm: r.arm, role: r.role, sid: r.sid, tried: r.tried })),
+    upstreamInToolCalls: rows.filter((r) => r.upstream.length).map((r) => ({ arm: r.arm, role: r.role, sid: r.sid, calls: r.upstream })),
     ownCanaryLines: rows.filter((r) => r.own).map((r) => ({ arm: r.arm, role: r.role, sid: r.sid, lines: r.own })),
     sources: { V: sourceScan([P.V]), S: sourceScan(sDirs) },
     // pilot fix: the box's egress proxy log (any host but the model API was refused), and network words in tool calls
     egressRefused: Object.fromEntries(ARMS.map((a) => [a, egress[a].filter((x) => !x.allowed).map((x) => x.target).slice(0, 40)])),
     egressAllowed: Object.fromEntries(ARMS.map((a) => [a, egress[a].filter((x) => x.allowed).length])),
     netWords: acc.filter((a) => NETWORDS.test(a.what ?? "")).map((a) => `${a.arm} ${a.tool}: ${String(a.what).slice(0, 140)}${a.deny ? " (denied)" : ""}`).slice(0, 60),
-    verdict: !rows.length ? "no sessions recorded (a dry run, or nothing has run)" : rows.every((r) => r.hookCalls && r.transcript && !r.seen.length) && !shims.some((x) => x.deny && !["claude"].includes(x.prog)) && ARMS.every((a) => !egress[a].some((x) => !x.allowed)) ? "clean: every session ran under the hook, no hidden-test text reached any session, no shim refused a C compile, and the egress proxy refused nothing" : "NOT clean (or unverified): see hookMissing, transcriptMissing, leaks, shimDenials, egressRefused",
+    verdict: !rows.length ? "no sessions recorded (a dry run, or nothing has run)" : rows.every((r) => r.hookCalls && r.transcript && !r.seen.length) && !shims.some((x) => x.deny && !["claude"].includes(x.prog)) && ARMS.every((a) => !egress[a].some((x) => !x.allowed)) && !scanDirty ? `clean: every session ran under the hook, no hidden-test text reached any session, no shim refused a C compile, the egress proxy (box mode) refused nothing, and the file and tool-call scans found no hidden path, hidden-test line, C compile or allowed network call (upstream markers and network words in files are listed for a reader: fileScan.*.upstream, .network)` : "NOT clean (or unverified): see hookMissing, transcriptMissing, leaks, shimDenials, egressRefused, fileScan (hiddenPaths, hiddenText, compiler), toolScan.*.holes",
   };
 }
 
@@ -878,15 +1054,42 @@ export async function selftest(P) {
   c("V", V, "Bash", { command: "cc -c /tmp/t.s -o /tmp/t.o && cat /usr/include/stdio.h | head -1" }, P.V, false);
   c("V", V, "mcp__github__get_file_contents", { owner: "rui314", repo: "chibicc", path: "parse.c" }, P.V, true);
   c("V", V, "Skill", { skill: "x" }, P.V, true);
-  c("V", V, "Read", { file_path: path.join(boxPaths(P, "V").home, ".claude", "x.json") }, P.V, false);
+  // the box's private HOME is the CLI's in box mode; in hooks mode the CLI keeps this process's HOME, and that folder
+  // (under the runs' _box) is closed like the rest of the runs folder
+  c("V", V, "Read", { file_path: path.join(boxPaths(P, "V").home, ".claude", "x.json") }, P.V, !!hooksMode());
   c("S", S, "Write", { file_path: P.baseline }, wt, true);
-  return { cases, failed: cases.filter((x) => !x.ok) };
+  // --isolation=hooks (2026-10-23): no box behind the hook, so it must close by itself what the box hid
+  const scratch = path.dirname(P.runs), cfg = path.join(os.homedir(), ".claude");
+  for (const [arm, R, cwd] of [["V", V, P.V], ["S", S, wt]]) {
+    const other = arm === "V" ? path.join(P.S, "scratch", "notes.md") : path.join(P.V, "src", "ccc", "main.clj");
+    const deny = [
+      ["Bash", { command: `cat ${path.join(P.hidden, "manifest.json")}` }], ["Read", { file_path: path.join(P.hidden, "tests", "w1-0002.c") }],
+      ["Bash", { command: `ls ${path.join(P.hidden, "upstream", "gcc")}` }], ["Grep", { pattern: "abort", path: path.join(P.hidden, "upstream") }],
+      ["Read", { file_path: P.runner }], ["Bash", { command: `head ${path.join(P.op, "access.jsonl")}` }], ["Read", { file_path: other }],
+      ["Read", { file_path: path.join(REPO_ROOT, "CLAUDE.md") }], ["Bash", { command: `cat ${path.join(REPO_ROOT, "company", "ops", "progress.md")}` }],
+      ["Read", { file_path: path.join(cfg, "settings.json") }], ...(hooksMode() ? [["Bash", { command: "cat ~/.claude/settings.json" }], ["Bash", { command: "ls ~" }]] : []),
+      ["Read", { file_path: path.join(scratch, "b8-pilot", "README.md") }], ["Glob", { pattern: "**/*.c", path: scratch }], ["Bash", { command: `ls ${scratch}` }],
+      ["Bash", { command: "curl -sS https://github.com" }], ["Bash", { command: "wget -q https://example.org/x.tar.gz" }], ["Bash", { command: "git ls-remote https://github.com/c-testsuite/c-testsuite" }],
+      ["Bash", { command: "git fetch origin" }], ["Bash", { command: "git pull" }], ["Bash", { command: "pip install pycparser" }], ["Bash", { command: "python3 -m pip install pycparser" }],
+      ["Bash", { command: "npm run build" }], ["Bash", { command: "npx tsx x.ts" }], ["Bash", { command: "uv pip install x" }], ["Bash", { command: "nc example.org 80" }],
+      ["Bash", { command: "ssh git@github.com" }], ["Bash", { command: "python3 x.py https://raw.githubusercontent.com/x" }], ["Bash", { command: "claude --version" }],
+      ["Bash", { command: "gcc probe.c -o probe" }], ["Bash", { command: "/usr/bin/gcc -S t.c" }], ["Bash", { command: "clang -c t.c" }], ["Bash", { command: "tcc -run t.c" }],
+      ["Bash", { command: "chibicc t.c" }], ["Bash", { command: "cc -x c -o t t.txt" }],
+    ];
+    for (const [tool, input] of deny) c(arm, R, tool, input, cwd, true);
+    const own = arm === "V" ? P.V : wt;
+    for (const [tool, input] of [["Bash", { command: "gcc t.s -o t && ./t" }], ["Bash", { command: "gcc -c t.s -o t.o && gcc t.o -o t" }], ["Read", { file_path: path.join(own, "spec", "CONTRACT.md") }], ["Read", { file_path: path.join(P.toolchain, "VERSIONS.md") }], ["Write", { file_path: path.join(boxPaths(P, arm).tmp, "x.s") }], ["Bash", { command: `${P.clj} -m ccc.main -I spec/include visible/W1/w1-0001.c -o out.s` }]]) c(arm, R, tool, input, cwd, false);
+    c(arm, R, "Write", { file_path: path.join(P.toolchain, "VERSIONS.md") }, cwd, true);
+  }
+  return { isolation: isolationOf(), cases, failed: cases.filter((x) => !x.ok) };
 }
 
 // ---------------------------------------------------------------- CLI
 async function main() {
   const [cmd] = process.argv.slice(2).filter((a) => !a.startsWith("--"));
   const opt = Object.fromEntries(process.argv.slice(2).filter((a) => a.startsWith("--")).map((a) => { const [k, ...v] = a.slice(2).split("="); return [k, v.join("=") || true]; }));
+  // the run's isolation, for this process and every process it starts (the broker, the accept, the launcher, the hook)
+  process.env.B8_ISOLATION = ["box-check", "egress"].includes(cmd) ? "box" : isolationOf(opt); // the box's own commands are box mode
   const P = paths(opt);
   if (cmd === "hook") {
     // fail closed (exit 2) on a decision that denies; unreadable input is allowed (a logger first: the audit backstops)
@@ -905,6 +1108,12 @@ async function main() {
   if (cmd === "accept") { if (!opt.wave || !opt.dir) { console.error("usage: setup.mjs accept --arm=S --wave=Wn --dir=<workdir>"); process.exit(2); } if (opt.broker) { await acceptClient(P, opt); return; } sAccept(P, opt); return; }
   if (cmd === "broker") { broker(P, opt); return; }
   if (cmd === "egress") { const { egressServer } = await import("./sandbox.mjs"); const arm = opt.arm === "S" ? "S" : "V", B = boxPaths(P, arm); egressServer({ sock: B.egress, log: path.join(P.op, `egress-${arm}.jsonl`), uid: B.uid }); return; }
+  if (cmd === "preflight" || cmd === "probe") {
+    const arm = opt.arm === "S" ? "S" : "V";
+    const r = cmd === "preflight" ? await preflight(P, arm, opt) : await probe(P, arm, opt);
+    append(path.join(P.op, `${cmd}.jsonl`), { event: cmd, ...r });
+    console.log(JSON.stringify(r, null, 1)); process.exit(r.ok ? 0 : 1);
+  }
   if (cmd === "box-check") { const { check } = await import("./sandbox.mjs"); const r = await check(P, opt.arm === "S" ? "S" : "V"); console.log(JSON.stringify(r, null, 1)); process.exit(r.failed.length ? 1 : 0); }
   let out;
   if (cmd === "place") out = sPlace(P, opt);

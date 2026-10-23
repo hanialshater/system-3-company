@@ -141,7 +141,7 @@ export function boxEnv(P, arm, extra = {}) {
     HTTPS_PROXY: proxy, HTTP_PROXY: proxy, https_proxy: proxy, http_proxy: proxy, NO_PROXY: "", no_proxy: "",
     SSL_CERT_FILE: "/etc/ssl/certs/ca-certificates.crt", NODE_EXTRA_CA_CERTS: "/etc/ssl/certs/ca-certificates.crt",
     CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC: "1", DISABLE_AUTOUPDATER: "1", DISABLE_TELEMETRY: "1", DISABLE_ERROR_REPORTING: "1",
-    B8_ARM: arm, B8_SHIM_LOG: B.shimLog,
+    B8_ARM: arm, B8_SHIM_LOG: B.shimLog, B8_ISOLATION: "box",
   };
   for (const k of authKeys()) if (process.env[k] != null) env[k] = process.env[k];
   return { ...env, ...extra };
@@ -275,5 +275,57 @@ export async function check(P, arm) {
   try { egress.kill(); } catch {} try { broker?.kill(); } catch {}
   return { arm, probes: out, failed: out.filter((x) => !x.ok).map((x) => x.name) };
 }
+
+// ---------------------------------------------------------------- --isolation=hooks (the default since 2026-10-23)
+// The box above needs the model API reachable from inside a network namespace, through the egress tunnel, with the
+// CLI's credentials in an allowlisted env. In this container the model API is reached through the host's proxy and the
+// session's own credentials, and the founder's operator decided not to chain the box through that proxy: no session can
+// authenticate in a box. So `--isolation=hooks` (PROTOCOL.md "Isolation deviation") runs both arms' sessions without
+// the box, the way Benchmarks 6 and 7 ran: the normal Agent SDK query() (no spawnClaudeCodeProcess), as this process's
+// user (root), with this process's env minus the launcher's four variables (launch.mjs) and the context variables
+// below. What the box enforced is then enforced by the access hook (PreToolUse, and V's canUseTool), the PATH shims
+// for code the agents run, and the audit after the run; identical for both arms. `--isolation=box` keeps the box.
+export const ISOLATIONS = ["hooks", "box"];
+/** The run's isolation: --isolation, else B8_ISOLATION, else "hooks". */
+export function isolationOf(opt = {}) {
+  const m = String(opt.isolation ?? process.env.B8_ISOLATION ?? "hooks");
+  if (!ISOLATIONS.includes(m)) throw new Error(`--isolation takes ${ISOLATIONS.join("|")} (got ${m})`);
+  return m;
+}
+export const hooksMode = () => isolationOf() === "hooks";
+// launch.mjs's rule (Benchmark 5): an agent is its own Claude Code process, not a child of the operator's session
+export const LAUNCHER_STRIP = ["CLAUDECODE", "CLAUDE_CODE_SESSION_ID", "CLAUDE_AUTO_BACKGROUND_TASKS", "CLAUDE_CODE_BG_TASKS_REPORT_RUNNING"];
+// the pilot's env findings that are not credentials: a CLAUDE.md channel (additional directories), the effort and
+// compaction overrides (effort is the SDK option for both arms), the messaging channel to the operator's session,
+// debug logs, Java's proxy options, and tokens for other services. B8_KEEP_ENV=NAME,… keeps one if a session needs it.
+// CLAUDE_CODE_REMOTE_SESSION_ID (found by the hooks-mode probe, 2026-10-23): the SDK and the CLI derive the session id
+// from it (a UUID v5), so with it every session of both arms got the operator's session id: one transcript file per
+// project folder, the access log's `sid` the same for every session, and a resume that could pick the wrong one.
+export const CONTEXT_STRIP = ["CLAUDE_CODE_REMOTE_SESSION_ID", "CLAUDE_ADDITIONAL_DIRECTORIES", "CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD", "CLAUDE_EFFORT", "MAX_THINKING_TOKENS", "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE", "CLAUDE_AFTER_LAST_COMPACT", "CLAUDE_CODE_MESSAGING_SOCKET", "CLAUDE_CODE_MESSAGING_TOKEN", "CLAUDE_CODE_DEBUG", "CLAUDE_CODE_DIAGNOSTICS_FILE", "CLAUDE_CODE_TEE_SDK_STDOUT", "JAVA_TOOL_OPTIONS", "GH_TOKEN", "GITHUB_TOKEN", "GIT_ASKPASS", "AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY", "CLOUDSDK_AUTH_ACCESS_TOKEN", "NODE_TEST_CONTEXT", "META_ROLE", "META_LAUNCH", "META_STATE", "META_LIVE_DIR", "B8_HOME"];
+/** Make the arm's own folders that hooks mode uses (its TMPDIR, its shim log): no uid, no chown. */
+export function prepareHooks(P, arm) {
+  const B = boxPaths(P, arm);
+  fs.mkdirSync(P.op, { recursive: true });
+  for (const d of [P.b8, P.op]) if (fs.existsSync(d)) fs.chmodSync(d, 0o700);
+  for (const d of [B.tmp, B.log, B.sock]) fs.mkdirSync(d, { recursive: true }); // B.sock: the broker's socket (root only)
+  fs.chmodSync(B.sock, 0o700);
+  return B;
+}
+/** The arm's env in hooks mode: this process's env minus LAUNCHER_STRIP and CONTEXT_STRIP (and GIT_CONFIG_*, which
+ *  carry the operator's git credentials and proxy), with the shims first on PATH and a TMPDIR of the arm's own. */
+export function hooksEnv(P, arm, extra = {}) {
+  const B = boxPaths(P, arm), keep = new Set(String(process.env.B8_KEEP_ENV ?? "").split(",").map((x) => x.trim()).filter(Boolean));
+  const env = { ...process.env };
+  for (const k of [...LAUNCHER_STRIP, ...CONTEXT_STRIP]) if (!keep.has(k) || LAUNCHER_STRIP.includes(k)) delete env[k];
+  for (const k of Object.keys(env)) if (/^GIT_CONFIG_(COUNT|KEY_\d+|VALUE_\d+)$/.test(k) && !keep.has(k)) delete env[k];
+  Object.assign(env, { PATH: `${P.shim(arm)}:${process.env.PATH ?? "/usr/bin:/bin"}`, TMPDIR: B.tmp, B8_ARM: arm, B8_SHIM_LOG: B.shimLog, B8_ISOLATION: "hooks", CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC: "1", DISABLE_AUTOUPDATER: "1" });
+  return { ...env, ...extra };
+}
+/** The arm's session env in the run's isolation. */
+export const armEnvFor = (P, arm, extra = {}) => (hooksMode() ? hooksEnv(P, arm, extra) : boxEnv(P, arm, extra));
+/** Names of the env variables an arm gets, in the run's isolation (values are never recorded). */
+export const armEnvNames = (P, arm) => Object.keys(armEnvFor(P, arm)).sort();
+/** Prepare the arm for the run's isolation (the box, or hooks mode's folders). */
+export const prepareArm = (P, arm) => (hooksMode() ? prepareHooks(P, arm) : prepareBox(P, arm));
 
 // The CLI lives in setup.mjs (setup.mjs imports this module): `setup.mjs egress --arm=…` and `setup.mjs box-check --arm=…`.

@@ -1,7 +1,8 @@
 # Benchmark 8: the material (a C-subset compiler in Clojure, 6 waves)
 
 owner: vp-meta · date: 2026-10-23 · status: **v2 (after the pilot): the material is rebuilt with the wider W4/W5 scope
-and the UB screen, and re-validated; the arms' harness runs every agent in a box (PROTOCOL.md v2). No arm has run.**
+and the UB screen, and re-validated; the arms' harness can run every agent in a box (PROTOCOL.md v2), but no session
+authenticates there, so the default is `--isolation=hooks` (PROTOCOL.md "Isolation deviation"). No arm has run.**
 
 ## What this is
 
@@ -224,9 +225,11 @@ A real Clojure compiler adds its own load time once per batch JVM (4 JVMs), plus
 
 1. **Network.** ~~Only the hook enforces it.~~ Closed in v2 (2026-10-23, after the pilot): every agent process runs in
    its arm's box (`sandbox.mjs`, PROTOCOL.md "Box"), whose network namespace reaches only the orderer's egress proxy,
-   which allows the model API and nothing else.
+   which allows the model API and nothing else. **Reopened by `--isolation=hooks` (the default, PROTOCOL.md "Isolation
+   deviation"):** the sessions run without the box, so the hook, the shims and the audit enforce it again.
 2. **Contract rule 2.** ~~Enforceable only in the hook.~~ Closed in v2: the box has no cc1, cc1plus, lto1 or clang, so
-   no path, response file or script can compile C there; gcc only assembles and links.
+   no path, response file or script can compile C there; gcc only assembles and links. **Reopened by
+   `--isolation=hooks`** in the same way: the hook and the shims refuse C, and the audit scans the arms' files.
 3. **Contamination.** chibicc, 8cc and tcc are well known, so an arm can write from memory. Requiring Clojure (no
    C compiler in Clojure to copy) is the mitigation; the audit can grep for chibicc's identifiers.
 4. **What a torture pass shows.** Most torture tests signal failure only by calling abort. The wrapper removes the
