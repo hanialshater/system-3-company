@@ -71,6 +71,8 @@ import { raiseBudgetAsk } from "./asks.mjs";
 import { applyActs } from "./acts.mjs";
 import { storeArtifacts, snapshotArtifacts } from "./artifacts.mjs";
 import { learnTick, learnPending, reviewerRoles, independentAuthor, RULE_MAX_CHARS as LEARN_RULE_MAX } from "./learn.mjs";
+import { spawnSync } from "node:child_process";
+import { ownershipOf, split as splitFindings, DEFAULT_MAX_TRIES } from "./owners.mjs";
 
 /** K1: a stage signed by code, or any stage with a `run` cmd (plan 2026-10-21 §3: the lesson flow's stages 2, 3, 4, 8 and 9
  *  are scripts; the old table only knew test1/uat/ship by name). No `run`: test1 as before (the order's text checks or
@@ -148,6 +150,56 @@ export function applyCmdResult(co, o, s, t) {
     return say(t);
   }
   return null; // validateSpec allows `run` only on code, orderer and release stages
+}
+
+/** K31/K32: the integration check after an owner's hand-in: the spec's integration.run and the contract cmd of each
+ *  interface due (one whose paths a hand-in or an approved change request touched), on the commit as made (a clean
+ *  export of the order's head: the other owners' work in progress is not in it; integration.at "workdir" runs in the
+ *  worktree itself). All pass: the stage passes once every part is in. A failure's findings are routed (K30) as
+ *  reopened parts, unmatched lines to the owner who handed in; a contract failure goes to that owner too. A cmd that
+ *  could not run holds the order as a stage-error. */
+export function runIntegration(co, o) {
+  const { engine, log } = co, own = ownershipOf(co.spec), p = engine.partsNow(o), I = own?.integration ?? {};
+  if (!p?.integrate?.due) return null;
+  const by = p.integrate.by, stage = o.stage;
+  const cmds = [...(I.run ? [{ name: "integration", cmd: I.run }] : []), ...(o.contractsDue ?? []).map((n) => ({ name: `interface ${n}`, iface: n, cmd: own.interfaces.find((i) => i.name === n)?.contract })).filter((x) => x.cmd)];
+  let dir = o.workdir, snap = null;
+  if ((I.at ?? "head") === "head" && WS.commitOf(WS.specOf(co)) && o.workspace?.dir && o.workspace.head) {
+    snap = fs.mkdtempSync(path.join(os.tmpdir(), "meta-integrate-"));
+    const env = { ...process.env, ...WS.gitPins(o.workspace.dir) };
+    const a = spawnSync("git", ["-C", o.workspace.dir, "archive", "--format=tar", o.workspace.head], { env, maxBuffer: 1 << 30, timeout: 60_000 });
+    const x = a.status === 0 ? spawnSync("tar", ["-x", "-C", snap], { input: a.stdout, timeout: 60_000 }) : a;
+    if (x.status !== 0) { fs.rmSync(snap, { recursive: true, force: true }); const why = `integration: could not export ${o.workspace.head.slice(0, 7)}: ${String(x.stderr ?? x.error?.message ?? "").trim().slice(0, 200)}`; o.stageError = { stage, loops: o.loops, why, t: engine.clock.now() }; log.add({ type: "stage-error", order: o.id, stage, loops: o.loops, why }); return { step: "integration", order: o.id, result: "stage-error", output: why }; }
+    dir = snap;
+  }
+  const results = [];
+  try { for (const c of cmds) results.push({ ...c, t: runCmdCheck({ ...o, workdir: dir }, c.cmd) }); }
+  finally { if (snap) fs.rmSync(snap, { recursive: true, force: true }); }
+  const bad = results.filter((r) => !r.t.pass);
+  log.add({ type: "integration", order: o.id, stage, loops: o.loops, by, sha: p.integrate.sha, pass: !bad.length, results: results.map((r) => ({ name: r.name, pass: r.t.pass, output: String(r.t.output).slice(0, 300) })) });
+  const err = bad.find((r) => r.t.stageError);
+  if (err) { const why = `integration: ${err.name}: ${err.t.output}`; o.stageError = { stage, loops: o.loops, why, t: engine.clock.now() }; log.add({ type: "stage-error", order: o.id, stage, loops: o.loops, why }); return { step: "integration", order: o.id, result: "stage-error", output: why }; }
+  p.integrate.due = false;
+  if (!bad.length) {
+    o.contractsDue = [];
+    p.integrated = { sha: p.integrate.sha, by, t: engine.clock.now() };
+    engine.finishParts(o);
+    return { step: "integration", order: o.id, result: "pass", output: results.map((r) => r.name).join(", ") || "nothing to check" };
+  }
+  // the failure, routed: an integration cmd's categories to their owners (unmatched: the owner who handed in); a
+  // contract to the owner who handed in (it changed the interface, or broke what the contract checks)
+  const reopen = {};
+  const add = (role, cats, lines) => { const x = (reopen[role] ??= { categories: [], lines: [] }); for (const c of cats) if (!x.categories.includes(c)) x.categories.push(c); x.lines.push(...lines); };
+  for (const r of bad) {
+    if (r.iface) { add(by, [`interface-${r.iface}`], [`interface ${r.iface}: its contract failed: ${r.t.output}${r.t.findings ? `\n${r.t.findings}` : ""}`]); continue; }
+    const sp = splitFindings(co, o, { findings: r.t.findings ?? r.t.output, by: "code", fallback: by, whole: by });
+    for (const [role, it] of Object.entries(sp.items)) add(role, it.categories, [it.findings ?? r.t.output]);
+  }
+  for (const [role, x] of Object.entries(reopen)) {
+    if (!engine.partsNow(o)) break; // parked by an earlier part's tries
+    engine.reopenPart(o, role, { categories: x.categories, findings: `integration check after ${by}'s hand-in failed:\n${x.lines.join("\n")}`.slice(0, 2000), maxTries: I.maxTries ?? DEFAULT_MAX_TRIES });
+  }
+  return { step: "integration", order: o.id, result: o.stage === "parked" ? "park" : "revise", output: Object.entries(reopen).map(([r, x]) => `${r}: ${x.categories.join(", ") || "uncategorized"}`).join("; ") };
 }
 
 /** M5: run stage `sd`'s `pre` cmd for order `o` (sync, under the lock: the pre-checks are quick reads). */
@@ -467,9 +519,12 @@ export function tick(co, { acceptance = null, faults = null, probe = hostProbe }
       }
       // K7: a commit refused or failed after a stage left; `retry` lifted the hold, so it is tried again here
       if (WS.commitDue(co, o)) {
-        const c = WS.afterStage(co, o, o.workspace.pendingCommit.stage);
+        const pc = o.workspace.pendingCommit;
+        const c = WS.afterStage(co, o, pc.stage, { by: pc.by ?? null, owner: pc.owner ?? null });
         if (o.stageError?.kind === "workspace") { steps.push({ step: o.stage, kind: "workspace", order: o.id, result: "stage-error", output: o.stageError.why }); continue; }
         if (c) steps.push({ step: "commit", order: o.id, result: c.sha ? "committed" : "nothing to commit", output: c.sha ?? "" });
+        // K31: an owner's part committed late: its integration check is due now (or the stage passes)
+        if (pc.owner && engine.partsNow(o, pc.stage)) { WS.markIntegrate(co, o, pc.owner, c?.files ?? []); engine.finishParts(o); changed = true; }
       }
       if (o.stage === "done" || off) continue; // only its pending commit was left to do
       const sd = engine.stageDef(o);
@@ -484,6 +539,8 @@ export function tick(co, { acceptance = null, faults = null, probe = hostProbe }
       // M5: a stage's pre-check (holds.mjs, ledger-gate.mjs) runs before its work is planned: a pass lets the planner
       // start it, a route to park parks it with an ask (no session spent), any other failure holds it as a stage-error
       if (engine.preDue(o) && o.builder) { steps.push(runPreCheck(co, o, sd)); changed = true; continue; }
+      // K31/K32: an owner handed in: the integration check (and the contracts due) before the stage can pass
+      if (engine.partsNow(o)?.integrate?.due) { const st = runIntegration(co, o); if (st) { steps.push(st); changed = true; } continue; }
       if (sd?.run || sd?.signer === "code" || o.stage === "test1") {
         const st = runCodeStage(co, o, sd);
         if (st) { const { acts, ...one } = st; steps.push(one, ...(acts ?? [])); changed = true; }
@@ -533,6 +590,8 @@ export function tick(co, { acceptance = null, faults = null, probe = hostProbe }
     if (o.stage === "done" || o.blocked || !o.builder) { o.orphanSince = null; continue; }
     const s = engine.stageDef(o);
     if (!s || s.signer === "code" || s.signer === "orderer" || s.signer === "founder") { o.orphanSince = null; continue; }
+    // K31: every part in, the integration check due: code's work, not a lost message
+    if (engine.partsNow(o) && Object.values(engine.partsNow(o).items).every((x) => x.state === "in")) { o.orphanSince = null; continue; }
     const carried = [...mailbox.msgs.values()].some((m) => m.ref === o.id && m.kind === "work" && m.state === "open" && m.body?.stage === o.stage && m.body?.loops === o.loops)
       || [...rooms.runs.values()].some((x) => x.order === o.id && x.state === "running");
     if (carried) { o.orphanSince = null; continue; }

@@ -18,9 +18,18 @@
 // to the math manager it reports to).
 import { Refused, lanesOf } from "./lib.mjs";
 import { create, update, comment, get } from "./tracker.mjs";
+import { ownershipOf, approversOf } from "./owners.mjs";
 
 const refuse = (m) => { throw new Refused(`HARD: ${m}`); };
-export const ASK_KINDS = ["deploy", "org-change", "budget", "cross-lane", "priority", "lane", "decision"];
+export const ASK_KINDS = ["deploy", "org-change", "budget", "cross-lane", "priority", "lane", "decision", "change-request"];
+/** K29/K32: the module or interface a change request names, by name, or a refusal. */
+export function changeTarget(co, name) {
+  const own = ownershipOf(co.spec);
+  if (!own) refuse("a change-request needs a spec with modules or interfaces");
+  const e = [...own.interfaces, ...own.modules].find((x) => x.name === name);
+  if (!e) refuse(`--module=${name ?? ""} is none of this company's modules or interfaces (${[...own.modules, ...own.interfaces].map((x) => x.name).join(", ")})`);
+  return { own, e };
+}
 const RANK = { founder: 0, "chief-of-staff": 1, manager: 2, builder: 3, checker: 3, release: 3, contractor: 4 };
 
 /** M6 prep review: the lane `asker` asks in: its own lane, or for a role of several lanes the lane of the order the ask
@@ -42,7 +51,7 @@ export function workLane(co, asker, { order = null, launch = null } = {}) {
   return lanes.size ? [...lanes][0] : asker.lane ?? null;
 }
 
-export function route(co, { by, kind, amount = 0, lane = null, order = null, launch = null }) {
+export function route(co, { by, kind, amount = 0, lane = null, order = null, launch = null, module = null }) {
   const asker = co.org.role(by);
   if (!asker?.active) refuse(`no active role ${by}`);
   const role = (lvl) => co.org.active().find((r) => r.level === lvl)?.id;
@@ -51,6 +60,12 @@ export function route(co, { by, kind, amount = 0, lane = null, order = null, lau
   if (!ASK_KINDS.includes(kind)) refuse(`ask kind is ${ASK_KINDS.join(", ")} (or info, which is not an ask)`);
   const wl = ["budget", "lane", "decision"].includes(kind) ? workLane(co, asker, { order, launch }) : asker.lane;
   let to;
+  // K29/K32: a change request goes to the owner of the module or interface it names (the architect may decide it too)
+  if (kind === "change-request") {
+    const { e } = changeTarget(co, module);
+    if (e.owner === by) refuse(`${e.kind} ${e.name} is ${by}'s own: change it yourself`);
+    return e.owner;
+  }
   if (kind === "deploy" || kind === "org-change") to = role("founder");
   else if (kind === "budget") {
     if (amount > co.engine.limits["chief-of-staff"]) to = role("founder");
@@ -89,7 +104,7 @@ export function recommends(options, rec) {
   });
 }
 
-export function raise(co, { by, kind, title, why, due, to = null, amount = 0, lane = null, escalate = null, goal = null, options = null, recommend = null, decider: forced = null, order = null, launch = null }) {
+export function raise(co, { by, kind, title, why, due, to = null, amount = 0, lane = null, escalate = null, goal = null, options = null, recommend = null, decider: forced = null, order = null, launch = null, module = null }) {
   if (!title || !why || !due) refuse("an ask states what, why and by when");
   // K14 (plan 2026-10-21 §M5): the founder inbox gives every item its options and a recommendation
   const opts = parseOptions(options);
@@ -97,9 +112,18 @@ export function raise(co, { by, kind, title, why, due, to = null, amount = 0, la
   if (recommend != null && opts && !recommends(opts, recommend)) refuse(`--recommend "${recommend.trim().slice(0, 80)}" is not one of the options (${opts.join(" | ")}): recommend one of them, by its label or in full`);
   // `decider` is code's own routing (budgetDecider: a budget ask on an order), never a CLI flag
   if (forced && !co.org.role(by)?.active) refuse(`no active role ${by}`);
-  const decider = forced ?? route(co, { by, kind, amount, lane, order, launch });
-  let assignee = decider, rerouted = false, escalated = false;
-  if (to && to !== decider) {
+  const decider = forced ?? route(co, { by, kind, amount, lane, order, launch, module });
+  let assignee = decider, rerouted = false, escalated = false, change = null;
+  if (kind === "change-request") {
+    // K29/K32: on one order the asker works (its builder, an owner of a part, or its manager); decided by the owner or
+    // the architect (--to), never anyone else
+    const { own, e } = changeTarget(co, module), o = co.engine.orders.get(String(order ?? ""));
+    if (!o) refuse("a change-request names the order it is for (--order=<O>)");
+    if (!(co.engine.built(o, by) || o.manager === by)) refuse(`${by} does not work ${o.id}: a change request is asked by the order's builder, an owner of one of its parts, or its manager`);
+    if (to && !approversOf(own, e).includes(to)) refuse(`${to} cannot decide a change request for ${e.kind} ${e.name}: ${approversOf(own, e).join(" or ")} decides it`);
+    if (to) assignee = to;
+    change = { order: o.id, module: e.name, target: e.kind, paths: e.paths, approvers: approversOf(own, e) };
+  } else if (to && to !== decider) {
     const higher = (RANK[co.org.role(to)?.level] ?? 9) < (RANK[co.org.role(decider).level] ?? 9);
     if (higher && escalate) { assignee = to; escalated = true; }
     else if (higher) rerouted = true;
@@ -108,7 +132,7 @@ export function raise(co, { by, kind, title, why, due, to = null, amount = 0, la
   const it = create(co, { by, kind: "ask", title, body: why, assignee, due, goal, labels: [`ask:${kind}`, ...(rerouted ? ["rerouted"] : []), ...(escalated ? ["escalated"] : [])], state: "todo", priority: 2 });
   // routedTo is the router's choice, frozen: the assignee is a tracker field anyone may edit (K8+K9 review: a builder
   // reassigned its own park ask to itself and then resumed past its own loop cap)
-  it.ask = { kind, amount, from: by, addressedTo: to, decider, escalate, routedTo: assignee, answer: null, ...(opts ? { options: opts } : {}), ...(recommend != null ? { recommend: recommend.trim() } : {}) };
+  it.ask = { kind, amount, from: by, addressedTo: to, decider, escalate, routedTo: assignee, answer: null, ...(opts ? { options: opts } : {}), ...(recommend != null ? { recommend: recommend.trim() } : {}), ...(change ?? {}) };
   if (rerouted) co.log.add({ type: "ask-reroute", item: it.id, from: by, addressedTo: to, to: decider, kind });
   if (escalated) co.log.add({ type: "ask-escalate", item: it.id, from: by, to, over: decider, reason: escalate });
   co.log.add({ type: "ask", item: it.id, from: by, to: assignee, kind });
@@ -118,7 +142,8 @@ export function raise(co, { by, kind, title, why, due, to = null, amount = 0, la
 export function answer(co, { by, id, decision, text, viaOrder = false }) {
   const it = get(co, id);
   if (it.kind !== "ask") refuse(`${id} is not an ask`);
-  if (by !== it.assignee) refuse(`${id} is ${it.assignee}'s to answer`);
+  // K29/K32: a change request is its module's owner's or the architect's (the frozen list, never the editable assignee)
+  if (it.ask?.kind === "change-request" ? !(it.ask.approvers ?? []).includes(by) : by !== it.assignee) refuse(`${id} is ${it.ask?.kind === "change-request" ? (it.ask.approvers ?? []).join(" or ") : it.assignee}'s to answer`);
   // K8+K9 review: a plain answer closed the loop-cap ask and left its order parked for good (settled() false, serve ran
   // to maxMin); a park ask is answered only by deciding its order
   const po = parkedOn(co, it);
@@ -135,10 +160,22 @@ export function answer(co, { by, id, decision, text, viaOrder = false }) {
   comment(co, { by, id, text: `${decision}: ${text}` });
   update(co, { by, id, state: "done" });
   co.log.add({ type: "ask-answer", item: id, by, decision });
+  if (it.ask.kind === "change-request" && decision === "yes") grant(co, it, by);
   if (bo && decision === "yes") co.engine.topUp(bo.id, { amount: it.ask.amount, by, ask: id }); // the planner takes it up again
   // M5 review: a no (or a redirect) is in force on the order itself, until its owner resumes or reopens it (Engine)
   else if (bo && bo.budgetHold?.ask === id) { bo.budgetHold.no = { decision, by, text: String(text).slice(0, 300), t: co.engine.clock.now() }; co.log.add({ type: "budget-no", order: bo.id, item: id, by, decision }); }
   return it;
+}
+
+/** K29/K32: an approved change request lets its asker write the module's or interface's paths on that order (the guard
+ *  and K7's commit read data.grants); an interface's contract is then due at the order's next integration check. */
+function grant(co, it, by) {
+  const g = { id: `G-${(co.data.grants ??= []).length + 1}`, order: it.ask.order, role: it.ask.from, module: it.ask.module, target: it.ask.target, paths: it.ask.paths, by, item: it.id, t: co.engine.clock.now() };
+  co.data.grants.push(g);
+  const o = co.engine.orders.get(g.order);
+  if (o && g.target === "interface") o.contractsDue = [...new Set([...(o.contractsDue ?? []), g.module])];
+  co.log.add({ type: "grant", grant: g.id, order: g.order, role: g.role, module: g.module, target: g.target, by, item: it.id });
+  return g;
 }
 
 // a top-up ask (raiseBudgetAsk); a budget park ask (raiseBudgetParkAsk) is answered by resuming its order, never a top-up

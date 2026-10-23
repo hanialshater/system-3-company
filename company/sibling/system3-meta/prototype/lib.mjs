@@ -374,6 +374,8 @@ export function unitHash(str) {
 /** B7 dry run 2: a defect class as a stage run's `checked` list keeps it (K28 scores a rule only where its class was
  *  checked): a short hash of the class name, so the order's history does not list the classes a hidden suite checks
  *  (a worker can read its history; a guessed name can still be confirmed). */
+/** K28: a finding line's defect class, group 1 of "<class>: …" (learn.mjs; K30 routes by the same categories). */
+export const DEFAULT_CLASSIFY = "^(?:[-*•]\\s*)?(?:failed:\\s*)?([A-Za-z][\\w ./-]{0,40}?)\\s*(?::|—|–| - )\\s";
 export const classNorm = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 40);
 export const classTag = (c) => Math.floor(unitHash(`class:${classNorm(c)}`) * 2 ** 32).toString(16).padStart(8, "0");
 const reviewStage = (s) => isIndependent(s) && s.run == null && !["code", "founder", "builder", "orderer", "chair"].includes(s.signer);
@@ -507,6 +509,71 @@ export class Engine {
     this.standing = []; // K15: the spec's approvals.standing (state.mjs make; not persisted: the spec is in the state)
     this.sampleRates = {}; // K27: "<flow name>:<stage>" → the rate now (K28 may move it within the stage's bounds; persisted)
     this.sampleSalt = null; // K27 (B7 review): the company's salt for sample draws (meta.mjs init sets one; persisted)
+    this.parts = null; // K30/K31: fn(o) → {items: {role: {categories, findings}}, routed} (state.mjs: owners.mjs partsFor); null: one builder (not persisted)
+    this.onPartIn = []; // [fn(o, {stage, by})]: K31, after an owner hands in its part (its commit, the integration check); not persisted
+  }
+
+  // ---- K30/K31: a work stage worked in parts, one per owner (owners.mjs)
+  /** Did `role` build order `o`? Its builder, or any owner that worked a part of it (K4: never its independent reviewer). */
+  built(o, role) { return !!o && (role === o.builder || (o.owners ?? []).includes(role)); }
+  /** The parts of the stage and loop `o` is at now, or null. */
+  partsNow(o, stage = o?.stage) { const p = o?.parts; return p && p.stage === stage && p.loops === o.loops ? p : null; }
+  /** Role `role`'s part of `o` at `stage` (this loop), or null. */
+  partOf(o, stage, role) { return this.partsNow(o, stage)?.items?.[role] ?? null; }
+  /** Send the open parts of a builder-signed stage, one work item per owner (made from this.parts when the stage and
+   *  loop have none yet). */
+  sendParts(o, { duplicate = false } = {}) {
+    if (!this.partsNow(o)) {
+      const r = this.parts(o);
+      o.parts = { stage: o.stage, loops: o.loops, items: Object.fromEntries(Object.entries(r.items).map(([role, x]) => [role, { categories: x.categories ?? [], findings: x.findings ?? null, state: "open", tries: 0 }])), routed: r.routed ?? {} };
+      o.owners = [...new Set([...(o.owners ?? []), ...Object.keys(o.parts.items)])];
+      this.log.add({ type: "parts", order: o.id, stage: o.stage, loops: o.loops, owners: Object.fromEntries(Object.entries(o.parts.items).map(([k, v]) => [k, v.categories])) });
+    }
+    const out = [];
+    for (const [role, it] of Object.entries(o.parts.items)) {
+      if (it.state !== "open") continue;
+      const key = `${o.id}:${o.stage}:${o.loops}:${role}:${it.tries}`;
+      out.push(this.mailbox.send({ from: o.manager, to: `role:${role}`, kind: "work", key: duplicate ? (this.config.dedupe ? key : `${key}:dup${this.mailbox.n}`) : key, ref: o.id, body: { stage: o.stage, loops: o.loops, part: role }, priority: o.priority ?? "next", due: o.due ?? null }));
+    }
+    return out;
+  }
+  /** An owner hands in its part: recorded, then the onPartIn hooks (K31: its commit, which may refuse the hand-in by
+   *  throwing; the integration check due), then the stage advances if every part is in. */
+  partIn(o, { stage, by, evidence }) {
+    const it = o.parts.items[by];
+    for (const fn of this.onPartIn) fn(o, { stage, by }); // first: a refused commit refuses the hand-in, nothing recorded
+    it.state = "in"; it.t = this.clock.now();
+    o.history.push({ stage, by, verdict: "part", t: this.clock.now(), ...(evidence ? { evidence: String(evidence).slice(0, 300) } : {}) });
+    this.log.add({ type: "part-in", order: o.id, stage, by, loops: o.loops, left: Object.entries(o.parts.items).filter(([, x]) => x.state !== "in").map(([k]) => k) });
+    this.finishParts(o);
+    return o;
+  }
+  /** Every part in and no integration check due: the stage passes, signed by the last owner in. */
+  finishParts(o) {
+    const p = this.partsNow(o);
+    if (!p || o.stage !== p.stage || o.stageError?.kind === "workspace" || p.integrate?.due || Object.values(p.items).some((x) => x.state !== "in")) return null;
+    const last = Object.entries(p.items).sort((a, b) => b[1].t - a[1].t)[0][0];
+    return this.advance(o.id, { stage: p.stage, by: last, verdict: "pass", evidence: `every part in: ${Object.keys(p.items).join(", ")}`, postChecked: true, final: true });
+  }
+  /** K31: a failed integration check sends role `role`'s part back (open, with these findings), or gives it a part; past
+   *  `maxTries` reopenings of one part the order parks with an ask to its orderer. */
+  reopenPart(o, role, { categories = [], findings, maxTries, by = "code" }) {
+    const p = this.partsNow(o);
+    hard(p, `${o.id} has no parts at ${o.stage}`);
+    const it = p.items[role];
+    // a part still open (its owner is at work, or not yet started) takes the new findings as well; its item stays
+    if (it?.state === "open") { it.findings = [it.findings, findings].filter(Boolean).join("\n").slice(0, 2000); it.categories = [...new Set([...it.categories, ...categories])]; this.log.add({ type: "part-reopen", order: o.id, stage: o.stage, role, tries: it.tries, by, categories, open: true }); return o; }
+    if (it) { it.state = "open"; it.tries++; it.findings = findings; it.categories = categories; }
+    else { p.items[role] = { categories, findings, state: "open", tries: 0 }; o.owners = [...new Set([...(o.owners ?? []), role])]; }
+    const n = p.items[role].tries;
+    this.log.add({ type: "part-reopen", order: o.id, stage: o.stage, role, tries: n, by, categories });
+    if (n > maxTries) {
+      const all = o.history.filter((h) => h.findings).map((h) => ({ stage: h.stage, by: h.by, verdict: h.verdict, findings: h.findings }));
+      this.park(o.id, { by: "engine", reason: `integration: ${role}'s part of ${o.stage} failed the integration check ${n} times (maxTries ${maxTries})`, ask: { kind: "decision", findings: [...all, { stage: o.stage, by, verdict: "integration", findings: String(findings).slice(0, 2000) }], routed: true } });
+      return o;
+    }
+    this.notifyStage(o);
+    return o;
   }
 
   /** M5: the knobs of a lane's active policy (the lane as it runs now; an order's own pinned version is policyOf). */
@@ -697,7 +764,7 @@ export class Engine {
     return o;
   }
 
-  delegate(id, { by, to, budget }) {
+  delegate(id, { by, to, budget, owners = null }) {
     const o = this.orders.get(id);
     hard(o, `no order ${id}`);
     const toRole = this.org.role(to);
@@ -707,9 +774,16 @@ export class Engine {
     // M6 prep: a builder of several lanes (spec `lanes`) takes work from the manager of any of them
     this.guard(lanesOf(toRole).includes(this.org.role(o.manager).lane), "lane", `${to} is not in lane ${this.org.role(o.manager).lane}`, { order: id, by });
     this.guard(budget <= this.limits.manager, "limit", `${budget} over the manager limit ${this.limits.manager}`, { order: id, by });
+    // K31: several owners work the first stage at once, each its own part (a spec with ownership: owners.mjs)
+    if (owners != null) {
+      hard(this.parts, `${id}: --owners needs a spec with modules or interfaces (each owner works its own part)`);
+      const all = [...new Set([to, ...owners])];
+      for (const r of all) { const x = this.org.role(r); hard(x?.active && !x.human, `--owners: ${r} is not an active agent role`); this.guard(lanesOf(x).includes(this.org.role(o.manager).lane) || r === o.manager, "lane", `${r} is not in lane ${this.org.role(o.manager).lane}`, { order: id, by }); }
+      o.initialOwners = all;
+    }
     o.builder = to;
     o.chain.push(to);
-    this.log.add({ type: "delegate", order: id, by, to, budget });
+    this.log.add({ type: "delegate", order: id, by, to, budget, ...(o.initialOwners ? { owners: o.initialOwners } : {}) });
     if (o.blocked) this.log.add({ type: "blocked", order: id, after: o.after.filter((d) => this.orders.get(d).stage !== "done") });
     else this.notifyStage(o);
     return o;
@@ -724,6 +798,7 @@ export class Engine {
     if (s.sample && !duplicate) { const d = this.sampleDecision(o, s, { log: true }); if (!d.run) return this.advance(o.id, { stage: o.stage, by: "code", sampled: true }); }
     if (s.signer === "code") return this.log.add({ type: "code-stage", order: o.id, stage: o.stage });
     if (s.signer === "founder") return this.request({ order: o.id, stage: o.stage, approver: "founder", kind: "release", dueMin: 24 * 60, key });
+    if (s.signer === "builder" && this.parts && o.builder) return this.sendParts(o, { duplicate }); // K30/K31: one item per owner
     const to = signerRole(s) ? `role:${signerRole(s)}` : s.signer === "chair" ? `role:${o.chair}` : s.signer === "attendee" ? `role:${o.attendee}` : s.signer === "builder" ? o.builder : s.signer === "orderer" ? o.manager : `pool:${s.signer}`; // K3: role:<id>; K19: the order's chair or attendee
     return this.mailbox.send({ from: o.manager, to, kind: "work", key: duplicate ? (this.config.dedupe ? key : `${key}:dup${this.mailbox.n}`) : key, ref: o.id, body: { stage: o.stage, loops: o.loops }, priority: o.priority ?? "next", due: o.due ?? null });
   }
@@ -734,7 +809,7 @@ export class Engine {
     if (s.signer === "code") return roleId === "code";
     const r = this.org.role(roleId);
     if (!r?.active) return false;
-    if (s.signer === "builder") return roleId === o.builder;
+    if (s.signer === "builder") return roleId === o.builder || !!this.partOf(o, stage, roleId); // K30: an owner's part
     if (s.signer === "orderer") return roleId === o.manager;
     if (s.signer === "founder") return roleId === "founder";
     if (s.signer === "chair") return roleId === o.chair; // K19
@@ -746,13 +821,13 @@ export class Engine {
    *  evidence)? Pure; a leave that is refused anyway runs no post-check (a QA stamp or diff guard can be slow). */
   refusesSign(o, stage, by, { evidence = null, consult = false } = {}) {
     const s = this.flows.get(o.flow)?.stages.find((x) => x.stage === stage);
-    return !s || consult || !this.mayAssign(o, stage, by) || (isIndependent(s) && by === o.builder) || (s.signer !== "code" && !evidence);
+    return !s || consult || !this.mayAssign(o, stage, by) || (isIndependent(s) && this.built(o, by)) || (s.signer !== "code" && !evidence);
   }
   /** K4: may this role work on (enter or sign) this stage of this order? Only the builder is kept off independent stages. */
-  independentOf(o, stage, roleId) { return !(isIndependent(this.flows.get(o.flow)?.stages.find((x) => x.stage === stage)) && roleId === o.builder); }
+  independentOf(o, stage, roleId) { return !(isIndependent(this.flows.get(o.flow)?.stages.find((x) => x.stage === stage)) && this.built(o, roleId)); } // K30: every owner of a part built it
 
   // ---- stages, up the chain
-  advance(id, { stage, by, verdict = "pass", evidence = null, findings = null, consult = false, postChecked = false, to = null, sampled = false, checked = null }) {
+  advance(id, { stage, by, verdict = "pass", evidence = null, findings = null, consult = false, postChecked = false, to = null, sampled = false, checked = null, final = false }) {
     const o = this.orders.get(id);
     hard(o, `no order ${id}`);
     hard(o.stage === stage, `${id} is at ${o.stage}, not ${stage}`);
@@ -766,12 +841,19 @@ export class Engine {
     const earlier = to != null && st.indexOf(to) >= 0 && st.indexOf(to) < st.indexOf(stage);
     if (to != null) { hard(verdict === "revise", `${stage} on ${id}: only a revise is routed (to ${to})`); this.guard(earlier, "route", `${stage} on ${id} cannot send work to ${to}: a revise goes back to an earlier stage (${st.slice(0, st.indexOf(stage)).join(", ") || "none"})`, { order: id, by }); }
     // K4: every independent stage, not only check; who signed it is kept per stage (o.checker stays for check)
-    if (isIndependent(s)) { this.guard(by !== o.builder, "independence", `${by} built ${id} and cannot ${stage === "check" ? "check it" : `sign ${stage}`}`, { order: id, by }); (o.signers ??= {})[stage] = by; }
+    if (isIndependent(s)) { this.guard(!this.built(o, by), "independence", `${by} built ${id} and cannot ${stage === "check" ? "check it" : `sign ${stage}`}`, { order: id, by }); (o.signers ??= {})[stage] = by; }
     if (stage === "check") o.checker = by;
     if (s.signer !== "code") this.guard(!!evidence, "evidence", `${stage} needs evidence`, { order: id, by });
     // K12 review: the check lives with the signature: a stage with a post-check is signed only by a room leave, which ran
     // it (`flow advance --stage=build --evidence=x` signed toy build.post=exit 1 without running it)
     if (s.post) this.guard(postChecked, "post-check", `${stage} on ${id} has a post-check: sign it with room leave (it runs the check), not flow advance`, { order: id, by });
+    // K30/K31: a stage worked in parts: each owner hands in its own part; the stage passes when every part is in
+    if (!final && s.signer === "builder" && this.partsNow(o, stage)) {
+      hard(verdict === "pass", `${stage} on ${id} is worked in parts: an owner hands in its part with a pass (a revise is a reviewer's)`);
+      const it = this.partOf(o, stage, by);
+      hard(it && it.state === "open", `${by} has ${it ? `already handed in its part of ${id} at ${stage}` : `no part of ${id} at ${stage} in this loop (the parts are ${Object.keys(o.parts.items).join(", ")})`}`);
+      return this.partIn(o, { stage, by, evidence });
+    }
     const dflt = this.reviseStage(o, stage); // K19: build, or a ritual's run; K25: the last work stage before this one
     const back = verdict === "revise" ? (earlier ? to : dflt) : null; // with enforce off a bad route is recorded and goes to the default
     // M7 (K21): the evidence a stage was signed with travels in its history (events-export.mjs names a ritual's record)

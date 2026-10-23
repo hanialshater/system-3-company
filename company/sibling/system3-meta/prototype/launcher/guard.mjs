@@ -376,6 +376,8 @@ export const GUARDED = ["Bash", ...WRITE_TOOLS];
 
 /** A protected-paths glob as a regex: the company hook's own translation (as workspace.mjs globRe). */
 export const globRe = (g) => new RegExp("^" + g.replace(/[.+^${}()|[\]\\]/g, "\\$&").replace(/\*\*/g, "§").replace(/\*/g, "[^/]*").replace(/§/g, ".*") + "$");
+/** K29: an ownership glob (owners.mjs ownGlobRe: a trailing `/` is the whole folder). */
+const ownRe = (g) => globRe(String(g).replace(/\/$/, "/**"));
 /** The real path of `p`, through its deepest existing ancestor (a new file under a symlinked dir is still caught). */
 export function realish(p) {
   let head = path.resolve(p), tail = [];
@@ -428,6 +430,13 @@ function pathDenial(abs, roots) {
     if (!rel || rel.startsWith("..") || path.isAbsolute(rel)) continue;
     if (r.nested) rel = rel.split("/").slice(r.nested).join("/"); // a root of checkouts (workspace.root): <worktree>/<path>
     if (!rel) continue;
+    // K29 (owners.mjs guardRoot): the ownership table of an order's workdir: an interface or module another role owns
+    // is read-only for this role unless a change request granted it (its owner or the architect approved it)
+    if (r.kind === "owned") {
+      const e = (r.owned ?? []).find((x) => (x.globs ?? []).some((y) => ownRe(y).test(rel)));
+      if (e && e.owner !== r.role && !(r.granted ?? []).some((y) => ownRe(y).test(rel))) return { rule: "module-owner", why: `${rel} is in ${e.kind} ${e.name}, owned by ${e.owner}: every role reads it, only ${e.owner} writes it. Ask for the change: node meta.mjs ask raise --kind=change-request --module=${e.name}${r.order ? ` --order=${r.order}` : ""} --title=… --why=… --due=<min> (its owner or the architect decides)`, detail: abs };
+      continue;
+    }
     const g = (r.globs ?? []).find((x) => globRe(x).test(rel));
     if (g) return { rule: "protected-path", why: `${rel} is a protected path (${g} in ${r.file ?? "protected-paths.txt"}): only a ratified amendment changes it`, detail: abs };
   }

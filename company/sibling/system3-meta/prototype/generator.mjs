@@ -13,6 +13,7 @@ import { artifactsProblem, STAGE_REF, RESERVED_STAGES } from "./artifacts.mjs";
 import { signerRole, signerName, isIndependent, packProblem, packHistory, postProblems, standingProblems, isChairFlow, flowProblems, workProblems, workStagesOf, batchProblems, sampleProblems, CHAIR_SIGNERS, CHAIR_ORDER_BY } from "./lib.mjs";
 import { policyProblems } from "./policy.mjs";
 import { learnProblems, varsProblems } from "./learn.mjs";
+import { ownersProblems } from "./owners.mjs";
 
 const SIGNERS = ["builder", "code", "checker", "orderer", "release", "founder", "evaluator", "chair", "attendee"]; // K4: evaluator signs as a level, independent by default; K19: a chair flow's chair and attendee
 /** K19: every flow of a spec, [{name, stages, …, legacy}]: the single `flow` first (legacy: true), then `flows` in
@@ -301,6 +302,8 @@ export function validateSpec(s) {
   }
   // K28: the self-improvement playbook (learn.mjs): its store (a spec variable, outside the live dir), roles and retro
   for (const e of [...(s.learn == null ? varsProblems(s.vars) : []), ...learnProblems(s, roles)]) need(false, e);
+  // K29-K32: module ownership, failure routes, interfaces and the owners' integration check (owners.mjs)
+  for (const e of ownersProblems(s, roles, validateCmd)) need(false, e);
   // K15: approvals.standing, AMD-015's scoped pre-approval as data: {action, role, trigger, record}, nothing else
   if (s.approvals != null) {
     if (typeof s.approvals !== "object" || Array.isArray(s.approvals)) need(false, "approvals is {standing:[…]}");
@@ -322,6 +325,15 @@ export function orgDoc(s, name) {
     if (fl.length > 1) L.push(`### ${f.name}${isChairFlow(f) ? " (each order names its chair and a second attendee: `order new --flow=" + f.name + " --chair=<role> --attendee=<role>`)" : ""}`, "");
     for (const x of f.stages) L.push(`1. **${x.stage}**, signed by the ${x.signer === "code" ? "supervisor's code" : signerName(x)}${isIndependent(x) && x.stage !== "check" ? " (independent: never the builder)" : ""}${x.evidence?.length ? ` (evidence: ${x.evidence.join(", ")})` : ""}${x.pack ? ` (pack: ${[!packHistory(x) && "no prior findings or history", x.pack.include?.length && `only ${x.pack.include.join(", ")}`, x.pack.exclude?.length && `never ${x.pack.exclude.join(", ")}`].filter(Boolean).join("; ")})` : ""}`);
     if (fl.length > 1) L.push("");
+  }
+  // K29-K32: who owns which paths (every role reads all of them), where failures go, and the shared contracts
+  if (s.modules || s.interfaces) {
+    L.push("", "## Ownership (every role reads every path; only a path's owner writes it)", "");
+    for (const [n, m] of Object.entries(s.modules ?? {})) L.push(`- module \`${n}\` (${m.owner}): ${m.paths.join(", ")}`);
+    for (const i of s.interfaces ?? []) L.push(`- interface \`${i.name}\` (${i.owner}): ${i.paths.join(", ")}; contract \`${(i.contract?.argv ?? []).join(" ")}\``);
+    for (const r of s.routes ?? []) L.push(`- findings in categories matching \`${r.match}\` go to ${s.modules?.[r.owner] ? `module ${r.owner} (${s.modules[r.owner].owner})` : r.owner}`);
+    L.push(`- any other category goes to ${s.triage ?? "the order's manager"}; a change to a path you do not own: \`ask raise --kind=change-request --module=<name> --order=<O>\` (its owner${s.architect || s.interfaces?.length ? ` or the architect, ${s.architect ?? s.interfaces[0].owner},` : ""} decides)`);
+    if (s.integration) L.push(`- after each owner's hand-in, code runs the integration check${s.integration.run ? ` \`${s.integration.run.argv.join(" ")}\`` : ""} (and the contract of any interface changed); the stage passes when every part is in and it passes`);
   }
   if (s.rules?.length) { L.push("", "## Standing rules (checked by code on every matching order)", ""); for (const r of s.rules) L.push(`- orders whose task starts with \`${r.tasks}\`: ${Object.keys(r.checks).join(", ")}`); }
   if (s.channels?.length) { L.push("", "## Channels", ""); for (const c of s.channels) L.push(`- \`${c.id}\` (${c.kind})${c.title ? `: ${c.title}` : ""}`); }

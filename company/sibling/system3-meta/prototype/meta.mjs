@@ -10,7 +10,11 @@
 //        K19 --flow: one of the spec's flows (default the first); a chair flow (the ritual flow) takes --chair=<role>
 //        --attendee=<role> instead of --to: the chair works its first stage, the attendee its check
 //   node meta.mjs order new --flow=ritual --chair=<role> --attendee=<role> --title=… --task=<T> --accept=… [--slug=<kebab>]
-//   node meta.mjs order delegate <O> --by=<manager> --to=<builder> [--budget=150000]
+//   node meta.mjs order delegate <O> --by=<manager> --to=<builder> [--budget=150000] [--owners=<role>,<role>]
+//        K31: with spec modules, --owners has the first stage worked at once by several owners, a part each
+//   node meta.mjs order route <O> --by=<triage or owner> --to=<owner> --categories=<a>,<b>   K30: hand routed findings on
+//   node meta.mjs ask raise --kind=change-request --module=<module or interface> --order=<O> [--to=<architect>] …   K29/K32:
+//        a change to a path another role owns; a yes from its owner (or the architect) lets the asker write it on that order
 //   node meta.mjs order reopen <O> --by=<manager|founder> --findings=… [--reason=…]   a shipped order back to build
 //   node meta.mjs order park <O> --by=<orderer|manager|founder> --reason=…   K8: stop it where it is (stage parked, messages
 //        withdrawn, runs on it abandoned); order resume <O> --by --reason [--extra-loops=<n>] [--to=<stage>] puts it back at that stage (or an earlier one: M6 prep review)
@@ -91,6 +95,7 @@ import * as A from "./asks.mjs";
 import * as JOBS from "./jobs.mjs";
 import * as RIT from "./rituals.mjs";
 import * as LEARN from "./learn.mjs";
+import * as OWN from "./owners.mjs";
 export { LIVE_ROOMS, LIVE_ROLES, TASK_FLOW } from "./state.mjs";
 
 const argv = process.argv.slice(2);
@@ -152,8 +157,12 @@ function pack(co, run, ctx, session, item) {
   const sd = co.engine.flows.get(o.flow)?.stages.find((x) => x.stage === ctx.stage);
   const hist = packHistory(sd), pf = WS.packFiles(dir, sd?.pack, vars);
   const mem = hist ? ctx.memory : ctx.memory.filter((e) => !String(e.did ?? "").includes(` on ${o.id}:`));
+  // K30/K31: an owner's part carries only its own findings; the pack says what it owns and how to ask for the rest
+  const who = co.rooms.runs.get(run)?.role, part = co.engine.partOf(o, ctx.stage, who), own = OWN.ownershipOf(co.spec);
+  const k30 = { ...(part ? { part: { owner: who, categories: part.categories, tries: part.tries, owners: Object.keys(o.parts.items), means: "this stage is worked in parts, one per owner, at once on the same workdir: work only your own paths, and hand in your part with room leave; the stage passes when every part is in and the integration check passes" } } : {}),
+    ...(own ? { ownership: { yours: OWN.ownedPaths(co, o, who), others: [...own.interfaces, ...own.modules].filter((e) => e.owner !== who).map((e) => ({ [e.kind]: e.name, owner: e.owner, paths: e.paths })), means: "every role reads every path; a path another role owns is written only by it (the guard and the commit refuse it). To change one, ask its owner or the architect", ask_with: absCmds(`${pre}node meta.mjs ask raise --by=${who} --kind=change-request --module=<module or interface> --order=${o.id} --title='…' --why='…' --due=<minutes from now>`) } } : {}) };
   const k6 = { ...(hist ? {} : { history_withheld: "this stage judges the artifact before the account: no prior findings, build history or notes on this order; do not look them up (flow show, item show, events, build notes)" }), ...(pf ? { files: pf.files, files_truncated: pf.truncated, read_only: pf.include.length ? pf.include : null, never_read: pf.exclude } : {}) };
-  return { run, session, item, lease_min: Number(opt.lease ?? 30), order: o.id, task: o.task, title: o.title, priority: o.priority, stage: ctx.stage, accept: ws ? interpolate(o.accept ?? "", vars) : o.accept, workdir: dir + "/", workdir_exists: fs.existsSync(dir), ...(ws ? (ws.error ? { workspace_error: ws.error } : { branch: o.workspace.branch, base_sha: o.workspace.sha, env: o.workspace.env, run_meta_from: HERE }) : {}), findings: hist ? o.findings ?? null : null, memory: mem.map((e) => ({ ...e, t: iso(e.t) })), history: hist ? o.history.map((h) => ({ ...h, t: iso(h.t) })) : [], ...k6,
+  return { run, session, item, lease_min: Number(opt.lease ?? 30), order: o.id, task: o.task, title: o.title, priority: o.priority, stage: ctx.stage, accept: ws ? interpolate(o.accept ?? "", vars) : o.accept, workdir: dir + "/", workdir_exists: fs.existsSync(dir), ...(ws ? (ws.error ? { workspace_error: ws.error } : { branch: o.workspace.branch, base_sha: o.workspace.sha, env: o.workspace.env, run_meta_from: HERE }) : {}), findings: hist ? (part ? part.findings ?? null : o.findings ?? null) : null, memory: mem.map((e) => ({ ...e, t: iso(e.t) })), history: hist ? o.history.map((h) => ({ ...h, t: iso(h.t), ...(part && h.routed && h.findings ? { findings: "(split by owner: your part's lines are this pack's findings)" } : {}) })) : [], ...k6, ...k30,
     // K24: the stages' kept copies in the run's artifact store (each stage's newest, by name; ${artifacts} in the pack rules)
     ...(Object.keys(o.artifacts ?? {}).length ? { artifacts: { latest: vars.artifacts, stages: Object.fromEntries(Object.entries(o.artifacts).map(([k, v]) => [k, v.dir])) } } : {}),
     ...(sd?.post ? { post_check: `your leave first runs: ${sd.post.argv.join(" ")} (code's check of this stage; a failure refuses the leave, prints its findings and keeps this run open to fix)` } : {}), // K12
@@ -356,8 +365,15 @@ function dispatch(co, cmd, sub, arg) {
   }
   if (cmd === "order" && sub === "delegate") {
     need("by", "to");
-    const o = engine.delegate(arg, { by: opt.by, to: opt.to, budget: Number(opt.budget ?? 150_000) });
-    return { order: o.id, builder: o.builder, messages: mailbox.thread(o.id).map((m) => m.id) };
+    const o = engine.delegate(arg, { by: opt.by, to: opt.to, budget: Number(opt.budget ?? 150_000), owners: opt.owners != null ? String(opt.owners).split(",").map((x) => x.trim()).filter(Boolean) : null });
+    return { order: o.id, builder: o.builder, ...(o.initialOwners ? { owners: o.initialOwners } : {}), messages: mailbox.thread(o.id).map((m) => m.id) };
+  }
+  if (cmd === "order" && sub === "route") {
+    need("by", "to", "categories");
+    const o = engine.orders.get(arg);
+    if (!o) throw new Refused(`no order ${arg}`);
+    const it = OWN.reroute(co, o, { by: opt.by, to: opt.to, categories: String(opt.categories).split(",").map((x) => x.trim()).filter(Boolean) });
+    return { order: o.id, to: opt.to, part: { state: it.state, categories: it.categories } };
   }
   if (cmd === "queue") return mailbox.queue(sub, "work").map((m) => ({ msg: m.id, order: m.ref, stage: m.body.stage, loop: m.body.loops, priority: m.priority, title: engine.orders.get(m.ref).title }));
   if (cmd === "room" && sub === "enter") {
@@ -526,8 +542,8 @@ function dispatch(co, cmd, sub, arg) {
   if (cmd === "meeting" && sub === "close") { need("id", "by"); return { minutes: M.closeMeeting(co, { id: opt.id, by: opt.by }).minutes }; }
   if (cmd === "meeting" && sub === "show") { need("id"); const m = M.getMeeting(co, opt.id); return { id: m.id, title: m.title, kind: m.kind, chair: m.chair, state: m.state, invitees: m.invitees, agenda: m.agenda.map((a) => ({ n: a.n, title: a.title, rounds: a.rounds.length, revealed: a.rounds.at(-1).revealed, written: Object.keys(a.rounds.at(-1).positions), objections: a.objections.length, decided: !!a.decision })), whiteboard: m.board, pack: m.pack ?? null, minutes: m.minutes ?? null }; }
   // ---- asks and rituals
-  if (cmd === "ask" && sub === "raise") { need("by", "kind", "title", "why", "due"); return A.raise(co, { by: opt.by, kind: opt.kind, title: opt.title, why: opt.why, due: opt.due, to: opt.to ?? null, amount: N("amount") ?? 0, lane: opt.lane ?? null, escalate: opt.escalate ?? null, goal: opt.goal ?? null, options: opt.options ?? null, recommend: opt.recommend === true ? "" : opt.recommend ?? null, order: opt.order ?? null, launch: process.env.META_LAUNCH || null }); }
-  if (cmd === "ask" && sub === "route") { need("by", "kind"); return { decider: A.route(co, { by: opt.by, kind: opt.kind, amount: N("amount") ?? 0, lane: opt.lane ?? null, order: opt.order ?? null, launch: process.env.META_LAUNCH || null }) }; }
+  if (cmd === "ask" && sub === "raise") { need("by", "kind", "title", "why", "due"); return A.raise(co, { by: opt.by, kind: opt.kind, title: opt.title, why: opt.why, due: opt.due, to: opt.to ?? null, amount: N("amount") ?? 0, lane: opt.lane ?? null, escalate: opt.escalate ?? null, goal: opt.goal ?? null, options: opt.options ?? null, recommend: opt.recommend === true ? "" : opt.recommend ?? null, order: opt.order ?? null, launch: process.env.META_LAUNCH || null, module: opt.module ?? null }); }
+  if (cmd === "ask" && sub === "route") { need("by", "kind"); return { decider: A.route(co, { by: opt.by, kind: opt.kind, amount: N("amount") ?? 0, lane: opt.lane ?? null, order: opt.order ?? null, launch: process.env.META_LAUNCH || null, module: opt.module ?? null }) }; }
   if (cmd === "ask" && sub === "answer") { need("by", "id", "decision", "text"); return A.answer(co, { by: opt.by, id: opt.id, decision: opt.decision, text: opt.text }); }
   if (cmd === "ask" && sub === "summary") return A.askSummary(co);
   if (cmd === "wbr" && sub === "open") { need("by"); T.syncOrders(co); return RIT.wbrOpen(co, { by: opt.by, room: opt.room ?? null, start: opt.start ? Date.parse(opt.start) / 60000 : null, invitees: L("invitees") ?? null, channel: opt.channel ?? null }); }

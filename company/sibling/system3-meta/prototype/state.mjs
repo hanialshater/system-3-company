@@ -7,7 +7,8 @@ import { fileURLToPath } from "node:url";
 import { Log, Mailbox, Org, Engine, Rooms, DEFAULT_CONFIG, DEFAULT_MAX_LOOPS } from "./lib.mjs";
 import { SPECS } from "./specs.mjs";
 import { applyFloor } from "./building.mjs";
-import { afterStage, gitPins } from "./workspace.mjs";
+import { afterStage, gitPins, partHandIn } from "./workspace.mjs";
+import { ownershipOf, partsFor } from "./owners.mjs";
 import { raiseParkAsk } from "./asks.mjs";
 import { storeArtifacts, snapshotArtifacts, artifactVars } from "./artifacts.mjs";
 export const HERE = path.dirname(fileURLToPath(import.meta.url));
@@ -81,7 +82,10 @@ export function make(specName = "toy", specDef = null) {
   const rooms = new Rooms({ log, clock, config, mailbox, engine, org });
   const co = { log, mailbox, org, engine, rooms, data: { spec: specName, ...(specDef ? { specDef } : {}) }, spec };
   engine.onApproved.push({ prefix: "FLOOR-", fn: (ref) => applyFloor(co, ref) });
-  engine.onAdvanced.push((o, { stage }) => afterStage(co, o, stage)); // K7: only with spec workspace.commit
+  engine.onAdvanced.push((o, { stage, by }) => afterStage(co, o, stage, { by })); // K7: only with spec workspace.commit (K29: by's ownership)
+  // K30/K31: with modules or interfaces, a builder's work stage is worked in parts (one per owner, routed findings);
+  // each hand-in commits that owner's paths and makes the integration check due (owners.mjs, workspace.mjs)
+  if (ownershipOf(spec)) { engine.parts = (o) => partsFor(co, o); engine.onPartIn.push((o, x) => partHandIn(co, o, x)); }
   rooms.postCheck = (o, cmd, vars) => runCmdCheck(o, cmd, vars); // K12: a stage's post cmd, at the agent's leave
   rooms.storeArtifacts = (o, sd, opts) => storeArtifacts(co, o, sd, opts); // K24: a passing leave's files, into the run's store
   rooms.snapshotArtifacts = (o, sd, opts) => snapshotArtifacts(co, o, sd, opts); // K24 review: what was there before the run
@@ -96,7 +100,7 @@ export function make(specName = "toy", specDef = null) {
 
 export const rep = (k, v) => (v instanceof Map ? { __map: [...v] } : v instanceof Set ? { __set: [...v] } : v);
 export const rev = (k, v) => (v && v.__map ? new Map(v.__map) : v && v.__set ? new Set(v.__set) : v);
-export const FIELDS = { data: ["spec", "specDef", "building", "channels", "tracker", "goals", "meetings", "rituals", "rules", "jobs", "host", "exports", "schedulers", "gates", "serve", "warm", "learn", "vars"], log: ["events"], mailbox: ["msgs", "keys", "n"], org: ["roles", "changes", "n", "rooms"], engine: ["flows", "active", "orders", "approvals", "n", "limits", "policies", "contracts", "sampleRates", "sampleSalt"], rooms: ["runs", "n", "memory", "sessions", "nS"] };
+export const FIELDS = { data: ["spec", "specDef", "building", "channels", "tracker", "goals", "meetings", "rituals", "rules", "jobs", "host", "exports", "schedulers", "gates", "serve", "warm", "learn", "vars", "grants"], log: ["events"], mailbox: ["msgs", "keys", "n"], org: ["roles", "changes", "n", "rooms"], engine: ["flows", "active", "orders", "approvals", "n", "limits", "policies", "contracts", "sampleRates", "sampleSalt"], rooms: ["runs", "n", "memory", "sessions", "nS"] };
 
 export function save(co) {
   const data = Object.fromEntries(Object.entries(FIELDS).map(([o, fs_]) => [o, Object.fromEntries(fs_.map((f) => [f, co[o][f]]))]));

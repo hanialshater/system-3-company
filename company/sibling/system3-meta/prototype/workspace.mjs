@@ -26,6 +26,9 @@ import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { LIVE, lookupVar } from "./state.mjs";
 import { touchesStore, storeFiles } from "./artifacts.mjs";
+import os from "node:os";
+import crypto from "node:crypto";
+import { ownershipOf, ownerOf, ownedPaths, writeDenial, guardRoot, ownGlobRe } from "./owners.mjs";
 
 export const WS_KEYS = ["kind", "repo", "base", "root", "dir", "branch", "env", "nodeModules", "run", "portBase", "commit", "cleanup"];
 export const WS_KINDS = ["git-worktree"];
@@ -388,11 +391,42 @@ function headOf(o, stage) {
   o.workspace.headN = (o.workspace.headN ?? 0) + 1;
   (o.workspace.headSeq ??= {})[stage] = o.workspace.headN;
 }
-export function commit(co, o, stage) {
+/** K31: one commit at a time per worktree, across processes (several owners hand in on one worktree): an O_EXCL lock
+ *  file outside the repo, keyed by the worktree; a dead holder's lock is broken. Re-entrant within a process. */
+const commitHeld = new Map();
+export function commitLock(dir, fn, { waitMs = 30_000 } = {}) {
+  const key = path.resolve(dir);
+  if (commitHeld.get(key)) return fn();
+  const lock = path.join(os.tmpdir(), `meta-commit-${crypto.createHash("sha1").update(key).digest("hex").slice(0, 16)}.lock`), until = Date.now() + waitMs;
+  for (;;) {
+    try { fs.writeFileSync(lock, String(process.pid), { flag: "wx" }); break; }
+    catch (e) {
+      if (e.code !== "EEXIST") throw e;
+      let text = ""; try { text = fs.readFileSync(lock, "utf8"); } catch { continue; }
+      const pid = Number(text.trim()); let alive = false; try { if (pid > 0) { process.kill(pid, 0); alive = true; } } catch (x) { alive = x.code === "EPERM"; }
+      if (!alive) { fs.rmSync(lock, { force: true }); continue; }
+      if (Date.now() > until) throw new Error(`the commit lock of ${dir} is held by process ${pid} (${waitMs} ms)`);
+      Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 25);
+    }
+  }
+  commitHeld.set(key, true);
+  try { return fn(); } finally { commitHeld.delete(key); fs.rmSync(lock, { force: true }); }
+}
+/** K29: why role `by`'s commit of `files` on order `o` is refused (a path another role owns, not granted), or null. */
+export function ownershipRefusal(co, o, by, files) {
+  if (!ownershipOf(co.spec) || !by || by === "code" || !co.org.role(by) || co.org.role(by).human) return null;
+  const hit = files.map((f) => ({ f, d: writeDenial(co, o, by, f) })).filter((x) => x.d);
+  if (!hit.length) return null;
+  return `${by}'s change touches ${hit.map((x) => `${x.f} (${x.d.entry.kind} ${x.d.entry.name}, owned by ${x.d.entry.owner})`).join(", ")}: only a path's owner writes it, or a role whose change request its owner or the architect approved (ask raise --kind=change-request); undo it in ${o.workspace?.dir ?? o.workdir}`;
+}
+export function commit(co, o, stage, opts = {}) {
   const c = commitOf(specOf(co));
   if (!c || !o.workspace?.dir) return null;
+  return commitLock(o.workspace.dir, () => commitLocked(co, o, stage, c, opts));
+}
+function commitLocked(co, o, stage, c, { by = null, owner = null } = {}) {
   const git = gitBy(Date.now() + ENSURE_BUDGET_MS), dir = o.workspace.dir;
-  const msg = `meta: ${o.id} ${stage} ${o.slug ?? o.task ?? ""}`.trim();
+  const msg = `meta: ${o.id} ${stage}${owner ? `:${owner}` : ""} ${o.slug ?? o.task ?? ""}`.trim();
   if (DEPLOY.test(msg)) return { refused: true, error: `commit message ${JSON.stringify(msg)} names [deploy] (a deploy needs the founder's approval): rename the order's slug` };
   // the branch is checked again: a builder's `git checkout` would otherwise put the order's commit on another branch
   const h = git(dir, "rev-parse", "--abbrev-ref", "HEAD");
@@ -406,7 +440,16 @@ export function commit(co, o, stage) {
   if (added.length) return { refused: true, error: `the repo's git config or hooks gained ${added.join("; ")} since the order's worktree was made: git would run that command in the founder's checkout too (worktrees share ${w_common(dir)}config); remove it (git config --unset <key>, or delete the hook) and retry` };
   const pre = git(dir, "rev-parse", "HEAD"), staged = git(dir, "write-tree"); // the agent's own index, to put back
   if (!ok(pre)) return { error: why(pre, `git rev-parse HEAD in ${dir}`) };
-  const add = git(dir, "add", "-A");
+  // K31: an owner's hand-in stages only its own paths (its modules, its interfaces, its grants); the other owners'
+  // work in progress on the same worktree stays as it is, theirs to hand in
+  let add;
+  if (owner) {
+    const st = git(dir, "status", "--porcelain=v1", "-z", "--untracked-files=all", "--no-renames");
+    if (!ok(st)) return { error: why(st, `git status in ${dir}`) };
+    const mine = ownedPaths(co, o, owner).map(ownGlobRe);
+    const changed = st.stdout.split("\0").filter(Boolean).map((l) => l.slice(3)).filter((f) => mine.some((g) => g.test(f)));
+    add = changed.length ? git(dir, "add", "-A", "--", ...changed.map((f) => `:(literal)${f}`)) : { status: 0, stdout: "", stderr: "" };
+  } else add = git(dir, "add", "-A");
   if (!ok(add)) return { error: why(add, `git add -A in ${dir}`) };
   // K7 review: `git reset -q` also unstaged what the agent had staged itself (`git add -p`); now the index goes back
   // to exactly what it was before the kernel's add (reset only when write-tree failed: an unmerged index)
@@ -443,6 +486,8 @@ export function commit(co, o, stage) {
   const st = git(dir, "diff", "--no-ext-diff", "--no-textconv", "--cached", "--name-only", "--no-renames", "-z"); // this stage's own change
   if (!ok(st)) { unstage(); return { error: why(st, `git diff --cached in ${dir}`) }; }
   const files = st.stdout.split("\0").filter(Boolean);
+  // K29: a write to a path another role owns (not granted) is refused, as the guard refuses it at the write
+  { const e = ownershipRefusal(co, o, by ?? owner, files); if (e) { unstage(); return { refused: true, rule: "module-owner", error: e }; } }
   // M6 prep review: nothing to commit, so the head the stage left is the branch's tip as it was signed (${head_sha})
   // K25: and the head each stage left, ${head_of:<stage>} (test1's --base after a plan check: the claims as approved)
   if (!files.length) { o.workspace.head = out(pre)[0]; headOf(o, stage); return { skipped: true }; }
@@ -466,7 +511,7 @@ export function commit(co, o, stage) {
   if (!ok(sha)) return { error: why(sha, `git rev-parse HEAD in ${dir}`) };
   o.workspace.head = out(sha)[0];
   headOf(o, stage);
-  co.log.add({ type: "commit", order: o.id, stage, branch: o.workspace.branch, sha: o.workspace.head, files: files.length, message: msg });
+  co.log.add({ type: "commit", order: o.id, stage, branch: o.workspace.branch, sha: o.workspace.head, files: files.length, message: msg, ...(owner ? { owner } : {}) });
   return { sha: o.workspace.head, files };
 }
 
@@ -477,16 +522,43 @@ export const commitDue = (co, o) => !!(o.workspace?.pendingCommit && o.workspace
 /** engine.advance's hook (state.mjs make): commit after `stage`; a failure or refusal holds the order (hold) and
  *  keeps the stage in o.workspace.pendingCommit, which the tick commits again after a retry. Never throws: the stage
  *  has already been signed. */
-export function afterStage(co, o, stage) {
+export function afterStage(co, o, stage, { by = null, owner = null } = {}) {
   if (!commitOf(specOf(co)) || !o.workspace?.dir) return null;
   let r;
-  try { r = commit(co, o, stage); } catch (e) { r = { error: `commit: ${e.message}` }; }
+  try { r = commit(co, o, stage, { by, owner }); } catch (e) { r = { error: `commit: ${e.message}` }; }
   if (r?.error) {
-    o.workspace.pendingCommit = { stage };
-    if (r.refused) co.log.add({ type: "commit-refused", order: o.id, stage, why: r.error });
+    o.workspace.pendingCommit = { stage, ...(by && ownershipOf(co.spec) ? { by } : {}), ...(owner ? { owner } : {}) }; // K29: whose change it is
+    if (r.refused) co.log.add({ type: "commit-refused", order: o.id, stage, why: r.error, ...(r.rule ? { rule: r.rule } : {}), ...(by ?? owner ? { by: by ?? owner } : {}) });
     hold(co, o, `commit after ${stage}: ${r.error}`);
   } else if (r) delete o.workspace.pendingCommit;
   return r;
+}
+
+// ---- K31: an owner's hand-in (Engine.partIn's hook): its own paths committed, then the integration check due
+/** Commit owner `by`'s part of `o` at `stage` (only its paths). A K29 refusal refuses the hand-in (the run stays open:
+ *  undo the change and hand in again); a git failure holds the order as K7 does (retried by the tick, which then marks
+ *  the integration due). No commit setting: nothing is committed, and every contract is due. */
+export function partHandIn(co, o, { stage, by }) {
+  let files = null;
+  if (commitOf(specOf(co)) && o.workspace?.dir) {
+    let r; try { r = commit(co, o, stage, { by, owner: by }); } catch (e) { r = { error: `commit: ${e.message}` }; }
+    if (r?.refused) { if (!co.engine.guard(false, r.rule ?? "commit", `${by}'s part of ${o.id} at ${stage} is not handed in: ${r.error}`, { order: o.id, by, stage })) return; }
+    if (r?.error) { o.workspace.pendingCommit = { stage, by, owner: by }; hold(co, o, `commit of ${by}'s part after ${stage}: ${r.error}`); return; }
+    files = r?.files ?? [];
+  }
+  markIntegrate(co, o, by, files);
+}
+/** The integration check (spec integration.run) and the contracts of the interfaces `files` touched (every interface
+ *  when the files are unknown) are due on the order's parts: the stage waits for them (supervisor.mjs runIntegration). */
+export function markIntegrate(co, o, by, files) {
+  const own = ownershipOf(co.spec), p = co.engine.partsNow(o);
+  if (!own || !p) return null;
+  const touched = own.interfaces.filter((i) => files == null || files.some((f) => i.paths.some((g) => ownGlobRe(g).test(f)))).map((i) => i.name);
+  if (touched.length) o.contractsDue = [...new Set([...(o.contractsDue ?? []), ...touched])];
+  if (!own.integration?.run && !(o.contractsDue ?? []).length) return null;
+  p.integrate = { due: true, by, sha: o.workspace?.head ?? null, t: co.engine.clock.now() };
+  co.log.add({ type: "integration-due", order: o.id, stage: p.stage, by, contracts: o.contractsDue ?? [] });
+  return p.integrate;
 }
 
 // ---- K10: what the launcher needs for one session (launcher/launch.mjs --workdir-from=order, launcher/guard.mjs)
@@ -554,6 +626,15 @@ export function launchConfig(co, { role, msgs = [] }) {
     for (const o of [...orders.filter((o) => mine.has(o.workdir)), ...orders.filter((o) => !mine.has(o.workdir))]) { const p = protectedGlobs(co, o, cache); add(o.workdir, p); add(o.workspace.repo, p); }
     const p = globsAt(w, w.repo, w.base ?? "HEAD", cache);
     add(w.repo, p); add(w.root, p, { nested: 1 });
+  }
+  // K29: module ownership. Each order's workdir is a root of the spec's ownership table for this role: a write to a
+  // path another role owns (an interface, a module) is denied unless its owner or the architect approved a change
+  // request for that order; reads are never denied. A worktree made after this launch is covered by K7's commit check
+  if (ownershipOf(co.spec)) {
+    for (const o of co.engine.orders.values()) {
+      const dir = o.workdir ?? (o.task ? path.join(LIVE, "work", o.task) : null), g = guardRoot(co, o, role, dir);
+      if (g && !roots.some((x) => x.dir === dir && x.kind === "owned")) roots.push(g);
+    }
   }
   // K28 (B7 review): the playbook store is code's (learn propose changes it, validated): no agent writes there, with
   // or without a spec workspace
