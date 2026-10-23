@@ -56,7 +56,9 @@ fs.mkdirSync(PROTO, { recursive: true });
 for (const f of KERNEL_FILES) fs.copyFileSync(path.join(SRC, f), path.join(PROTO, f));
 fs.cpSync(path.join(SRC, "specs"), path.join(PROTO, "specs"), { recursive: true });
 // briefs and specs name paths like live/<dir>/SPEC.md, relative to the prototype: the copy sees the same live/
-if (!fs.existsSync(path.join(PROTO, "live"))) fs.symlinkSync(path.join(SRC, "live"), path.join(PROTO, "live"));
+// B8: lstat, not existsSync: a dangling link (a frozen kernel copy has no live/) read as missing, and the second
+// launcher on one live dir (the next wave's, a retro's, a restart's) died on EEXIST before it started serve
+{ let link = true; try { fs.lstatSync(path.join(PROTO, "live")); link = false; } catch {} if (link) fs.symlinkSync(path.join(SRC, "live"), path.join(PROTO, "live")); }
 const KERNEL_HASH = crypto.createHash("sha256").update(KERNEL_FILES.sort().map((f) => fs.readFileSync(path.join(PROTO, f))).join("\0")).digest("hex").slice(0, 12);
 const MODEL = opt.model ?? "claude-opus-5-5";
 const MAX_PAR = Number(opt["max-parallel"] ?? 4);
@@ -83,7 +85,11 @@ const ledger = path.join(LIVE, "launches.jsonl");
 const note = (x) => { const line = JSON.stringify({ t: new Date().toISOString(), ...x }); fs.appendFileSync(ledger, line + "\n"); console.log(line); };
 
 const meta = (...args) => {
-  const r = spawnSync("node", [path.join(PROTO, "meta.mjs"), ...args], { env, encoding: "utf8" });
+  // B8: a tick that holds the state lock longer than meta.mjs waits (an integration check runs the visible tests under
+  // it) refused the launcher's report ("state is locked"), and the launch's finish, usage and warm record were lost:
+  // the report is tried again, a few times, before it is noted as an error
+  let r;
+  for (let i = 0; i < 6; i++) { r = spawnSync("node", [path.join(PROTO, "meta.mjs"), ...args], { env, encoding: "utf8" }); if (r.status === 0 || !/state is locked/.test(r.stderr ?? "")) break; spawnSync("sleep", ["5"]); }
   if (r.status !== 0) note({ event: "meta-error", args: args.join(" "), err: r.stderr.trim().slice(0, 300) });
   return r.status === 0 ? JSON.parse(r.stdout) : null;
 };
@@ -126,7 +132,9 @@ async function run(ev) {
       // unless the role, --setting-sources or --workdir-from=order (K10: the company's hooks and rules) loads them;
       // permissions, tools and the guard as guard.mjs queryOptions says (tests/guard.test.mjs checks that shape)
       for await (const m of query({ prompt: text, options: queryOptions(plan, guard, { model: MODEL, abortController: ac, env: { ...env, META_LAUNCH: id, META_ROLE: ev.role }, resume, extraHooks, effort: EFFORT }) })) {
-        if (typeof m.session_id === "string" && m.session_id) sdk = m.session_id;
+        // B8 restart: the session's id is in the ledger as soon as it is known, so a launcher that dies with the machine
+        // leaves it behind (the harness reports the dead launch with it: meta.mjs launch finished --intact)
+        if (typeof m.session_id === "string" && m.session_id && m.session_id !== sdk) { sdk = m.session_id; note({ event: "sdk", launch: id, n: k, role: ev.role, sdk }); }
         if (m.type === "assistant") saw = true;
         if (m.type === "assistant" && m.parent_tool_use_id == null && m.message?.usage) last = m.message.usage;
         if (m.type === "result") result = m;

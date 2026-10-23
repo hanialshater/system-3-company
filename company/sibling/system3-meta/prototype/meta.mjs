@@ -73,6 +73,8 @@
 //        an order at or over its budget gets no new session (room enter refuses; the supervisor asks kind:budget).
 //        M5 review: the launcher's report only: refused in an agent session (as `guard denied`), and a launch id names its role
 //        K26: --sdk-session=<id> records a warm role's Agent SDK session per order it worked; its next item resumes it
+//        B8 restart: --ok=false --intact=true (the process died with the machine, its SDK session is whole): its runs are
+//        abandoned and its sessions closed as for any failed process, but the warm record stays resumable
 //   node meta.mjs launch resume-failed --launch=<L> --role=<r> --sdk-session=<id> --why=…   K26: the launcher fell back to a cold start
 //   node meta.mjs guard denied --role=<r> --tool=<t> --rule=<rule> --why=… [--launch=<L>] [--detail=…]   K10: a guard denial (the launcher)
 //   node meta.mjs events [--type=<t>]   ·   node meta.mjs memory <role>   ·   node meta.mjs org activity <role>
@@ -584,17 +586,19 @@ function dispatch(co, cmd, sub, arg) {
     // K26: a warm role's Agent SDK session id, per order it worked at a work stage in this launch: the planner resumes
     // it for that order's next item (supervisor.mjs plan, warmFor). A failed process is recorded as not ok (cold next)
     const sdk = typeof opt["sdk-session"] === "string" && /^[\w-]{8,100}$/.test(opt["sdk-session"]) ? opt["sdk-session"] : null;
+    // B8 restart: a process killed with the machine (not by its own failure) keeps a resumable session (--intact=true)
+    const intact = !ok && opt.intact === "true";
     const warmed = [];
     if (sdk && org.role(opt.role)?.warm) {
       for (const x of rooms.runs.values()) {
         const wo = engine.orders.get(x.order);
         if (!ss.some((s) => s.id === x.session) || !wo || !engine.isWorkStage(wo, x.stage) || warmed.includes(x.order)) continue;
-        (co.data.warm ??= {})[`${x.order}|${opt.role}`] = { sdk, launch: opt.launch, ok, stage: x.stage, t: clock.now() };
+        (co.data.warm ??= {})[`${x.order}|${opt.role}`] = { sdk, launch: opt.launch, ok: ok || intact, ...(intact ? { intact: true } : {}), stage: x.stage, t: clock.now() };
         warmed.push(x.order);
       }
-      if (warmed.length) log.add({ type: "warm-record", launch: opt.launch, role: opt.role, sdk, ok, orders: warmed });
+      if (warmed.length) log.add({ type: "warm-record", launch: opt.launch, role: opt.role, sdk, ok, ...(intact ? { intact: true } : {}), orders: warmed });
     }
-    log.add({ type: "launch-finished", launch: opt.launch, role: opt.role, ok, tokens, cumulative: N("cumulative") ?? null, cost: N("cost") ?? null, sessions: ss.map((s) => s.id), abandoned, reason: opt.reason ?? null, ...(sdk ? { sdk } : {}) });
+    log.add({ type: "launch-finished", launch: opt.launch, role: opt.role, ok, tokens, cumulative: N("cumulative") ?? null, cost: N("cost") ?? null, sessions: ss.map((s) => s.id), abandoned, reason: opt.reason ?? null, ...(sdk ? { sdk } : {}), ...(intact ? { intact: true } : {}) });
     return { sessions: ss.map((s) => s.id), abandoned, charged, ...(warmed.length ? { warm: warmed } : {}) };
   }
   // K26: the launcher could not resume a warm session (gone, expired) and started cold instead: never resumed again

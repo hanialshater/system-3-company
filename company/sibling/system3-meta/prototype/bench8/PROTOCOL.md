@@ -5,7 +5,8 @@ checked from inside, and dry-run; no arm has run.** Running starts Agent SDK ses
 go. The v2 changes are marked "(v2)" where they replace v1's text, and summed up in "v2: the pilot's findings and what
 changed" at the end, which takes precedence where the two differ. **The "Isolation deviation (2026-10-23)" section at
 the end takes precedence over both: no session can authenticate inside the box here, so the arms run with
-`--isolation=hooks` (the default), without the box.**
+`--isolation=hooks` (the default), without the box.** **"Restarts (2026-10-23)" at the end: both arms resume after
+a machine restart (`--resume`), `keepalive.mjs` restarts them, and the caps exclude the downtime.**
 
 ## The question
 
@@ -355,3 +356,114 @@ now fail unless the session's id is its own. (The same variable may have been in
 calls denied by the access hook and logged with the session's id, no call allowed; $0.05 each). The kernel suite:
 319 of 319.
 
+
+## Restarts (2026-10-23): both arms restart-safe, and kept alive
+
+**Why.** The container was restarted (reclaimed) without warning twice in one hour: every process died, the files
+survived. A first attempt at the real runs (04:44) died that way in its first minutes, and neither arm could continue:
+V's ledger held no session id yet (it was written only at a turn's end), and S had no way to continue a wave at all.
+Both arms are now restart-safe in the same way, and `keepalive.mjs` restarts them. This section takes precedence over
+the earlier ones where they differ.
+
+**The rule, for both arms alike.** The disk is the arm's memory. A restart costs the arm only the work in flight at the
+moment of death; the caps count only the time the arm ran; the downtime is recorded, never charged.
+
+| | V (`vanilla-compiler.mjs --resume`) | S (`setup.mjs run --resume`) |
+|---|---|---|
+| What is on disk | each turn is announced (`turn-start`) before it runs; the session id is written as soon as the SDK reports it (`session`) | the launcher writes each session's id as soon as it is known (`sdk` in launches.jsonl, kernel change); state.json, launches.jsonl and waves.jsonl as before |
+| Clock | `_operator/V/clock.json`: active minutes, a beat every 5 s | `_operator/S/clock.json`, the same |
+| On resume | kills what the dead run left (its CLI, by cwd in V's folder; its hidden runner); continues the same SDK session (`resume`), the current wave and round: a turn cut mid-way gets `You were interrupted (the machine restarted). Continue where you left off.`; a turn that ended unscored is scored; a failed turn gets its one retry as before | kills the dead run's launcher, serve, agents (cwd in S's folder), broker and its accept runs, K2 job wrappers; removes a dead holder's state lock and stale git index locks; reports every launch the dead launcher left unfinished as failed (`abandonDead`: `launch finished --ok=false`), so its runs are abandoned, its leases released and serve plans the work again at once; restarts the broker and the observer; continues the current wave's order (or its retro) |
+| Sessions | a session the SDK cannot resume (no assistant message, an error) is replaced by a new one given the wave's doc and a note (`session-lost`); a run from before these ledger lines finds its session in the access log | an abandoned launch whose session id is known is reported `--intact=true` (kernel change, `tests/k26-restart.test.mjs`): a warm owner's next item for that order resumes that SDK session (K26); if the resume fails, the launcher falls back to the cold brief, recorded (`warm-fallback`); a session with no warm record starts cold, as after any crash |
+| Caps | wall clock on the active clock; cost carried from the ledger (a new session's total adds on) | the same: `--max-min` against the active clock, cost from launches.jsonl |
+| Recorded | a `resume` line: downMin, activeMin, wave, round, point (`interrupted`, `retry`, `score`, `send`), session and where it was found, leftovers killed | a `resume` line: downMin, activeMin, wave, the launches abandoned and how each goes on (`warm: resumes <id>` or `cold`), leftovers killed; `wave-resume`; the observer's stage retries in operator.jsonl |
+| Finished | an `end` line (or a cap's `stop`, or every wave summed up): `--resume` exits 0 at once | a `run-end` line (or `stop`, or every wave ended) |
+| One at a time | `_operator/V/arm.pid`, checked against /proc (cmdline) and the boot id: a second V on the same runs refuses (exit 3) | `_operator/S/arm.pid`, the same |
+
+A restart's stage-error (a K2 job that died with the machine, or an accept that lost the broker) holds an S order until
+`supervisor.mjs retry` (K2). The observer now retries those, as the founder, at most 6 times a wave; any other
+stage-error stays as before.
+
+**Found and fixed while testing it** (each would have stopped a real S run, restart or not):
+- **The launcher could not start twice on one live dir** (kernel, `launch.mjs`). It re-linked `live/kernel/live` with
+  `existsSync`, which reads a dangling link as missing; the frozen kernel has no `live/`, so every second launcher
+  (the next wave's, a retro's, any restart's) died on EEXIST before serve started, and the observer then cancelled the
+  wave. It now checks with `lstat`. A run on an older frozen kernel gets a real `S/proto/live/` folder from the
+  harness, so its link resolves.
+- **Launcher reports lost to the state lock** (kernel, `launch.mjs`). An integration check runs the visible tests
+  under the state lock for up to about 20 s; meta.mjs waits 10 s, so `launch finished` failed and its usage, its
+  sessions' close and its warm record were lost (owners went cold on their revise). The launcher now retries
+  (6 times, 5 s apart), and so does the harness's `metaCli`; on resume, a launch the launcher finished but the kernel
+  never heard of is reported again with its recorded numbers.
+- **A unix socket path over 107 bytes is cut short silently.** A runs dir with a long name made the broker listen
+  somewhere else, and S died at "the broker did not start". `startBroker` now refuses such a path with a clear error.
+  The real runs dir (`<scratchpad>/b8-runs`) is well under the limit.
+- **The hidden-run lock after a restart.** A lock left by a dead process whose pid now belongs to another process was
+  held for ever. The lock records the boot id too, and a holder is alive only if its pid lives under the same boot.
+- `setup.mjs run` now exits when it is done; the broker child had kept the process alive.
+
+**`keepalive.mjs`.** Every 30 s it checks each arm: alive (its arm.pid names a live process of this boot running the
+arm's script), finished (its ledger), or neither; neither means (re)start it with `--resume` (on a runs dir where the
+arm never started, `--resume` is a fresh start). Each arm runs in its own process group, its output in
+`_operator/<arm>/arm.out`; before a restart the dead arm's group is killed if it is of this boot. Each start and
+restart is a line in `_operator/<arm>/restarts.jsonl` (`operator: start`, `operator: restart` with downMin from the
+arm's last beat, lastBeat, activeMin); an arm that dies within 60 s of its start 5 times in a row, or more than
+`--max-restarts` (50) times, is given up (`operator: gave up`). It exits when every arm has finished. It is safe to
+start again at any time: `_operator/keepalive.pid` (checked the same way) makes a second copy exit at once, and an
+arm already running is never started twice. It does not survive a restart itself: after one, start it again (by
+hand, or from a boot hook).
+
+**Tally and audit.** `setup.mjs tally` gives each arm `restarts`: operatorRestarts (keepalive's lines), resumes,
+downMin, keepaliveDownMin, activeMin, and what was lost (V: sessionsLost; S: launchesAbandoned, warmResumed,
+warmFallbacks, stageRetries, reReported); `tally --md` adds a table. Wave minutes are active minutes (downtime is
+out). `setup.mjs audit` carries the same under `restarts`, and audits sessions killed in flight by their `sdk` lines.
+`setup.mjs status` shows where each arm stands (started, finished, alive, its clock and restarts).
+
+**Commands** (from `company/sibling/system3-meta/prototype`; the real runs dir is the default `--runs`):
+
+```sh
+# fresh start, both arms kept alive (each arm's first start is a fresh run; caps 300 min, $120 each)
+node bench8/keepalive.mjs --arms=V,S
+# after a machine restart: the same command (it resumes every arm that has not finished)
+node bench8/keepalive.mjs --arms=V,S
+# by hand, without keepalive: fresh start / resume
+node bench8/vanilla-compiler.mjs            # V fresh      node bench8/vanilla-compiler.mjs --resume
+node bench8/setup.mjs run                   # S fresh      node bench8/setup.mjs run --resume
+node bench8/setup.mjs status                # where each arm stands
+```
+
+Arm options go through keepalive as `--v='<V args>'` and `--s='<S args>'`. Running the two arms at once (as
+`keepalive --arms=V,S` does) shares the 4 CPUs between them; `--arms=V` and then `--arms=S` keeps the protocol's
+one-after-the-other order.
+
+**Checks (2026-10-23, no long session).**
+- `node bench8/restart-test.mjs` (no Agent SDK session; about 7 min): both arms on a scratch runs dir under
+  keepalive (`--interval=5`), V with its fake agent (`--dry-run --fake=dryrun/stub --fake-sec=45`), S with
+  `bench8/fake-sdk` (`setup.mjs run --fake`: the real launcher, serve, broker, accept and hidden runner; each "agent"
+  plays its role by the kernel's CLI). It passed:
+  - a second keepalive exited at once; a second V and a second S refused while one ran;
+  - **machine restart**: with V mid-turn (W1, round 0) and S with launches in flight, every process of the run was
+    killed with SIGKILL, keepalive too; 20 s later keepalive was started again by hand. V resumed its session with
+    the restart turn (point `interrupted`, downMin 0.36); S abandoned its 4 unfinished launches (all cold: none had
+    a warm record yet) and continued W1 (downMin 0.36);
+  - **arm crash**: with S's hidden accept in flight (V in W1 round 1), both arms' process groups were killed and
+    keepalive restarted both within its interval (downMin 0.02 and 0.09; S abandoned 1 launch);
+  - both arms ran W1 and W2 to their end, each wave once; V kept one SDK session through both restarts;
+    keepalive's lines: 1 start and 2 restarts per arm; tally: 2 resumes per arm, downtime V 0.38 min, S 0.45 min;
+    wall time = active time + downtime within the beat (V 4.45 = 4.07 + 0.38 min, S 6.12 = 5.67 + 0.45).
+- V with `--fake-lose-session` after a kill: the resume failed as a gone session does, `session-lost` was recorded,
+  a new session got the wave's doc and the note, and the wave ran to its end (tally: sessionsLost 1).
+- **One real check** (`node bench8/vanilla-compiler.mjs --resume-check --runs=<scratch>`): a one-turn preflight
+  session (V's env and hooks; `ready`, $0.0048), then the restart turn on its id with `resume`: the same session id
+  came back and the model answered `ready`, the word of its first turn ($0.0102). Total $0.015. (The resumed turn's
+  cost alone does not show whether the CLI restores a session's running total; V's cost logic takes a total that does
+  not fall below the session's last as the running total, and adds a new session's.)
+- The kernel suite: 322 of 322 (3 new, `tests/k26-restart.test.mjs`). `setup.mjs selftest` 121 of 121;
+  `vanilla-compiler.mjs --dry-run`, `setup.mjs run --dry-run` and `dryrun.mjs` pass.
+
+**Known limits.**
+- The spend of a turn or launch killed in flight is unknown to both arms (the SDK reports cost at a result). V's
+  resumed session may carry it in its running total; S's abandoned launch counts 0. Both caps can be overshot by that
+  much per restart.
+- A restart costs S its in-flight sessions' context unless they had a warm record (an owner's revise); V always
+  resumes its one session. That is how each design keeps its memory, and the tally reports what each lost.
+- keepalive itself must be started again after a machine restart.

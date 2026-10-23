@@ -220,7 +220,7 @@ export async function check(P, arm) {
     const H = path.dirname(SELF), S = await import("./setup.mjs");
     if (!fs.existsSync(path.join(P.sproto, "meta.mjs"))) S.freezeKernel(P);
     fs.mkdirSync(P.harness, { recursive: true });
-    for (const f of ["setup.mjs", "sandbox.mjs", "visible-check.mjs", "contract.mjs"]) fs.copyFileSync(path.join(H, f), path.join(P.harness, f));
+    for (const f of ["setup.mjs", "sandbox.mjs", "visible-check.mjs", "contract.mjs", "restart.mjs"]) fs.copyFileSync(path.join(H, f), path.join(P.harness, f));
     try { fs.rmSync(boxPaths(P, "S").broker, { force: true }); } catch {}
     broker = spawn(process.execPath, [path.join(H, "setup.mjs"), "broker", "--arm=S", `--runs=${P.runs}`, `--b8=${P.b8}`], { stdio: "ignore" });
     for (let k = 0; k < 100 && !fs.existsSync(boxPaths(P, "S").broker); k++) spawnSync("sleep", ["0.05"]);

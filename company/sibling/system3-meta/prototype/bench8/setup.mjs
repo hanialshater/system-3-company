@@ -12,6 +12,13 @@
 //   node setup.mjs run [--waves=W1..W6] [--max-min=300] [--max-cost=120] [--max-parallel=4] [--poll=5] [--model=<id>] [--dry-run]
 //        S: for each wave, place it, run the launcher (Agent SDK) with the observer beside it, the protocol's stops, the
 //        architect's retro; --dry-run prints the launcher command and runs one observer pass (no session)
+//        --resume (PROTOCOL.md "Restarts"): continue after the machine restarted: the dead run's leftovers killed, its
+//        unfinished launches abandoned and planned again (warm sessions resumed by SDK id, K26, or cold, recorded),
+//        the broker and the observer started again, the current wave and order continued, the caps on the active
+//        clock (_operator/S/clock.json: downtime recorded, never counted); a finished run exits at once.
+//        --fake [--fake-sec=2] [--fake-lose-session] (restart tests, a scratch --runs only): bench8/fake-sdk plays
+//        every session by the kernel's CLI, so the real launcher, serve, broker, accept and hidden runner run
+//   node setup.mjs status [--arm=V|S]                 where each arm stands (started, finished, alive, restarts)
 //   node setup.mjs watch [--once]                     the observer alone
 //   node setup.mjs accept --arm=S --wave=Wn --dir=<workdir> [--runs] [--b8]   the S order's accept cmd (code runs it)
 //   node setup.mjs hook --arm=V|S [--runs] [--b8]     PreToolUse command hook (stdin JSON; exit 2 denies)
@@ -49,6 +56,7 @@ import { spawn, spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import net from "node:net";
 import { boxPaths, boxEnv, boxEnvNames, boxArgv, prepareBox, startEgress, ARM_UID, NODE_DIR, isolationOf, hooksMode, hooksEnv, armEnvFor, armEnvNames, prepareArm } from "./sandbox.mjs";
+import { armClock, clockOf, procAlive, readPid, writePid, killLeftovers, bootId } from "./restart.mjs";
 
 const SELF = fileURLToPath(import.meta.url);
 const HERE = path.dirname(SELF);
@@ -61,7 +69,7 @@ export const RUN_MIN = 300, RUN_COST = 120; // the caps, every arm: wall clock (
 const DEFAULT_BUDGET = 400_000_000; // cumulative tokens per S order: a runaway cap only (the cost cap is the real one)
 const SPEC_FILE = "ccompiler-specialized.json";
 const DEFAULT_RUNS = path.join(SCRATCH, "b8-runs");
-const HARNESS_FILES = ["setup.mjs", "sandbox.mjs", "visible-check.mjs", "contract.mjs"];
+const HARNESS_FILES = ["setup.mjs", "sandbox.mjs", "visible-check.mjs", "contract.mjs", "restart.mjs"];
 export const EFFORT = "high"; // the SDK effort option, the same for both arms (pilot fix: it was inherited from this session's env)
 export const TOOLS_OK = ["Bash", "Read", "Write", "Edit", "Glob", "Grep"];
 
@@ -139,9 +147,10 @@ function withHiddenLock(P, fn) {
   const lock = path.join(P.op, "hidden.lock");
   fs.mkdirSync(P.op, { recursive: true });
   for (let i = 0; ; i++) {
-    try { fs.mkdirSync(lock); fs.writeFileSync(path.join(lock, "pid"), String(process.pid)); break; } catch {}
-    let pid = null; try { pid = Number(fs.readFileSync(path.join(lock, "pid"), "utf8")); } catch {}
-    let alive = false; if (pid) { try { process.kill(pid, 0); alive = true; } catch {} }
+    try { fs.mkdirSync(lock); fs.writeFileSync(path.join(lock, "pid"), `${process.pid} ${bootId() ?? ""}`); break; } catch {}
+    // restart safety: a lock left by a process of an earlier boot is free, whatever runs at its pid now
+    let pid = null, boot = null; try { [pid, boot] = fs.readFileSync(path.join(lock, "pid"), "utf8").trim().split(" "); pid = Number(pid); } catch {}
+    const alive = !!pid && procAlive(pid, { boot: boot || null });
     if (!alive && i > 2) { fs.rmSync(lock, { recursive: true, force: true }); continue; }
     spawnSync("sleep", ["2"]);
   }
@@ -456,7 +465,7 @@ export const armEnv = (P, arm, extra = {}) => armEnvFor(P, arm, extra);
 const metaEnv = (P) => { const env = { ...process.env, META_LIVE_DIR: P.live }; for (const x of ["META_ROLE", "META_LAUNCH", "NODE_TEST_CONTEXT", "META_STATE"]) delete env[x]; return env; };
 // the orderer's kernel calls (root): S's frozen kernel copy when the run has one; the live dir goes back to S's uid after
 const kernelDir = (P) => (fs.existsSync(path.join(P.sproto, "meta.mjs")) ? P.sproto : P.proto);
-export const metaCli = (P, ...a) => { const r = spawnSync(process.execPath, [path.join(kernelDir(P), "meta.mjs"), ...a], { env: metaEnv(P), encoding: "utf8" }); if (fs.existsSync(path.join(P.sproto, "meta.mjs"))) chownArm("S", P.live, P.store); if (r.status !== 0) throw new Error(`meta.mjs ${a.slice(0, 2).join(" ")}: ${(r.stderr || r.stdout).slice(0, 600)}`); try { return JSON.parse(r.stdout); } catch { return r.stdout; } };
+export const metaCli = (P, ...a) => { let r; for (let i = 0; i < 6; i++) { r = spawnSync(process.execPath, [path.join(kernelDir(P), "meta.mjs"), ...a], { env: metaEnv(P), encoding: "utf8" }); if (r.status === 0 || !/state is locked/.test(r.stderr ?? "")) break; spawnSync("sleep", ["5"]); } /* a tick holding the lock: try again */ if (fs.existsSync(path.join(P.sproto, "meta.mjs"))) chownArm("S", P.live, P.store); if (r.status !== 0) throw new Error(`meta.mjs ${a.slice(0, 2).join(" ")}: ${(r.stderr || r.stdout).slice(0, 600)}`); try { return JSON.parse(r.stdout); } catch { return r.stdout; } };
 /** S's frozen copy of the kernel and the launcher (with its node_modules: the SDK), the only Meta code S's box sees. */
 export function freezeKernel(P) {
   fs.mkdirSync(P.sproto, { recursive: true });
@@ -661,10 +670,15 @@ function broker(P, opt) {
 }
 function startBroker(P) {
   const B = boxPaths(P, "S");
+  // a unix socket path over 107 bytes is cut short by the kernel, silently: the broker then listens somewhere else
+  if (Buffer.byteLength(B.broker) > 107) throw new Error(`the broker's socket path is ${Buffer.byteLength(B.broker)} bytes (unix sockets take 107): use a shorter --runs (${B.broker})`);
   try { fs.rmSync(B.broker, { force: true }); } catch {}
-  const ch = spawn(process.execPath, [SELF, "broker", "--arm=S", `--runs=${P.runs}`, `--b8=${P.b8}`, `--proto=${P.proto}`], { stdio: "ignore" });
+  fs.mkdirSync(path.join(P.op, "S"), { recursive: true });
+  const bo = fs.openSync(path.join(P.op, "S", "broker.out"), "a");
+  const ch = spawn(process.execPath, [SELF, "broker", "--arm=S", `--runs=${P.runs}`, `--b8=${P.b8}`, `--proto=${P.proto}`], { stdio: ["ignore", bo, bo] });
+  fs.closeSync(bo);
   process.on("exit", () => { try { ch.kill("SIGKILL"); } catch {} });
-  for (let k = 0; k < 100 && !fs.existsSync(B.broker); k++) spawnSync("sleep", ["0.05"]);
+  for (let k = 0; k < 600 && !fs.existsSync(B.broker); k++) spawnSync("sleep", ["0.05"]); // 30 s: a loaded host (the restart test) took over 5
   if (!fs.existsSync(B.broker)) throw new Error("the broker did not start");
   return ch;
 }
@@ -708,25 +722,126 @@ function launcherArgv(P, opt, maxMin) {
   return [node, path.join(P.sproto, "launcher", "launch.mjs"), `--live=${P.live}`, "--workdir-from=order", `--max-parallel=${opt["max-parallel"] ?? 4}`, `--max-min=${Math.max(1, Math.floor(maxMin))}`, `--pretool-hook=${hook}`, `--effort=${opt.effort ?? EFFORT}`, ...(opt.model ? [`--model=${opt.model}`] : [])];
 }
 const learnOpen = (st) => !!st?.data?.learn && (!st.data.learn.closed || st.data.learn.retros?.some((x) => x.state === "open"));
+
+// ---------------------------------------------------------------- restart safety (PROTOCOL.md "Restarts", 2026-10-23)
+/** Where V stands in its ledger: started, finished (every wave summed up, a cap's stop, or an end after its last
+ *  start). keepalive.mjs and --resume read it. */
+export function vStatus(rows, waves = WAVES) {
+  const i = rows.findLastIndex((x) => x.event === "start" || x.event === "resume");
+  const stop = rows.find((x) => x.event === "stop"), end = i >= 0 ? rows.slice(i + 1).find((x) => x.event === "end") : null;
+  const all = waves.every((w) => rows.some((x) => x.event === "wave-summary" && x.wave === w));
+  return { started: i >= 0, finished: !!stop || all || !!end, why: stop ? `stopped: ${stop.why}` : end ? `ended: ${end.why}` : all ? "every wave ran" : null };
+}
+/** Where S stands in waves.jsonl: started (a run began), finished (every wave ended, a cap's stop, or a run-end after its
+ *  last run-start or resume). */
+export function sStatus(rows, waves = WAVES) {
+  const i = rows.findLastIndex((x) => x.event === "run-start" || x.event === "resume");
+  const stop = rows.find((x) => x.event === "stop"), end = i >= 0 ? rows.slice(i + 1).find((x) => x.event === "run-end") : null;
+  const all = waves.every((w) => rows.some((x) => x.event === "wave-end" && x.wave === w));
+  return { started: i >= 0 || rows.some((x) => x.event === "wave-start"), finished: !!stop || all || !!end, why: stop ? `stopped: ${stop.why}` : end ? `ended: ${end.why}` : all ? "every wave ended" : null };
+}
+const supCli = (P, ...a) => spawnSync(process.execPath, [path.join(kernelDir(P), "supervisor.mjs"), ...a], { env: metaEnv(P), encoding: "utf8" });
+/** After a restart, every launch the dead launcher left unfinished (started, or reserved and still queued) is reported
+ *  failed (`launch finished --ok=false`): its runs are abandoned, its leases released and its sessions closed, so
+ *  serve plans the work again at once (K22's serve-resume alone keeps them standing until their leases expire). A
+ *  launch whose SDK session id is known (the launcher's `sdk` line, its `resume`, or the access log) is reported
+ *  --intact: a warm builder's next item resumes that session (K26), and the launcher falls back cold, recorded, if the
+ *  resume fails. Each gets a `finish` line in launches.jsonl (restart: true; no sdk field, so dedupCost counts nothing
+ *  twice). Returns what was abandoned. */
+export function abandonDead(P, why = "abandoned: the machine restarted (B8 resume)") {
+  const st = readState(P.live); if (!st) return [];
+  const ledger = path.join(P.live, "launches.jsonl"), L = readJsonl(ledger), acc = readJsonl(P.access);
+  const ev = st.log?.events ?? [], lid = (e) => `${String(e.seq).padStart(4, "0")}-${e.role}`;
+  const ended = new Set(ev.filter((e) => e.type === "launch-finished" && e.launch).map((e) => e.launch));
+  const out = [];
+  for (const e of ev.filter((x) => x.type === "launch" && !ended.has(lid(x)))) {
+    const id = lid(e), started = L.find((x) => x.event === "start" && x.launch === id);
+    // the launcher finished it, but its report was refused (an older frozen launcher did not retry the state lock):
+    // reported again with what the launcher recorded, so its usage, its sessions and its warm record are the kernel's
+    const fin = L.find((x) => x.event === "finish" && x.launch === id);
+    if (fin) {
+      let error = null; try { metaCli(P, "launch", "finished", `--launch=${id}`, `--role=${e.role}`, `--tokens=${fin.tokens ?? 0}`, `--cumulative=${fin.cumulative ?? 0}`, `--cost=${fin.cost ?? 0}`, `--ok=${!!fin.ok}`, ...(fin.reason ? [`--reason=${fin.reason}`] : []), ...(fin.sdk ? [`--sdk-session=${fin.sdk}`] : [])); } catch (x) { error = String(x.message).slice(0, 300); }
+      out.push({ launch: id, role: e.role, reReported: true, ...(error ? { error } : {}) });
+      continue;
+    }
+    const sdk = L.findLast((x) => x.event === "sdk" && x.launch === id)?.sdk ?? started?.resume ?? acc.findLast((x) => x.arm === "S" && x.launch === id && x.sid)?.sid ?? null;
+    let rec = null, error = null;
+    try { rec = metaCli(P, "launch", "finished", `--launch=${id}`, `--role=${e.role}`, "--tokens=0", "--cumulative=0", "--cost=0", "--ok=false", `--reason=${why}`, ...(sdk ? [`--sdk-session=${sdk}`, "--intact=true"] : [])); } catch (x) { error = String(x.message).slice(0, 300); }
+    const r = { event: "finish", launch: id, n: null, role: e.role, ok: false, reason: why, tokens: 0, cumulative: 0, cost: 0, turns: null, minutes: null, sessions: rec?.sessions ?? [], abandoned: rec?.abandoned ?? [], denials: 0, said: "", restart: true, started: !!started, ...(sdk ? { sdkLost: sdk } : {}), ...(started?.resume ? { resumed: started.resume } : {}), warm: rec?.warm ?? [], ...(error ? { error } : {}) };
+    append(ledger, r);
+    out.push({ launch: id, role: e.role, started: !!started, sdk, runs: r.abandoned, next: rec?.warm?.length ? `warm: resumes ${sdk}` : "cold", ...(error ? { error } : {}) });
+  }
+  return out;
+}
+/** A stage-error the restart caused (the accept job died with the machine, or lost the broker) holds the order until
+ *  `supervisor.mjs retry` (K2): the observer retries it, as the founder, at most 6 times a wave (a runner error that
+ *  is not a restart's stays a stage-error, as before). */
+const RESTART_ERROR = /died without an exit record|the job was killed|the orderer's broker|could not start/;
+function retryLost(P, wave) {
+  const o = orderOf(readState(P.live), wave);
+  if (!o?.stageError || !RESTART_ERROR.test(String(o.stageError.why ?? ""))) return null;
+  if (readJsonl(P.operator).filter((x) => x.act === "retry" && x.wave === wave).length >= 6) return null;
+  const r = supCli(P, "retry", `--order=${o.id}`, "--by=founder");
+  const rec = { act: "retry", wave, order: o.id, stage: o.stageError.stage, why: String(o.stageError.why).slice(0, 300), ok: r.status === 0 };
+  append(P.operator, rec);
+  return rec;
+}
+/** --fake (restart tests only): the frozen launcher's SDK replaced by bench8/fake-sdk, which plays each role by the CLI. */
+function installFakeSdk(P) {
+  if (P.runs === DEFAULT_RUNS) throw new Error("--fake never runs on the real runs dir");
+  const d = path.join(P.sproto, "launcher", "node_modules", "@anthropic-ai", "claude-agent-sdk");
+  if (fs.existsSync(path.join(d, "package.json")) && JSON.parse(fs.readFileSync(path.join(d, "package.json"), "utf8")).version?.includes("b8-fake")) return;
+  fs.rmSync(d, { recursive: true, force: true }); fs.cpSync(path.join(HERE, "fake-sdk"), d, { recursive: true });
+}
+
 async function sRun(P, opt) {
   const waves = String(opt.waves ?? WAVES.join(",")).split(/[,.]+/).filter(Boolean).map((x) => x.toUpperCase());
   const maxMin = Number(opt["max-min"] ?? RUN_MIN), maxCost = Number(opt["max-cost"] ?? RUN_COST), poll = Number(opt.poll ?? 5) * 1000;
-  // the caps are for the whole run: time already used by earlier waves (waves.jsonl) counts
-  const used = readJsonl(P.waves).filter((x) => x.event === "wave-end").reduce((a, x) => a + (x.minutes ?? 0), 0);
-  const hooks = hooksMode();
-  if (opt["dry-run"]) return { dry: true, isolation: hooks ? "hooks" : "box", launcher: launcherArgv(P, opt, maxMin - used), ...(hooks ? { cwd: P.S } : { box: boxArgv(P, "S", P.S, ["<launcher>"])[1].slice(0, 8) }), envNames: armEnvNames(P, "S"), caps: { maxMin, maxCost, usedMin: used }, observe: fs.existsSync(path.join(P.live, "state.json")) ? summarizeOrder(P, waves[0]) : null };
-  if (!opt["no-preflight"] && !readJsonl(P.waves).some((x) => x.event === "preflight" && x.ok)) { const pf = await preflight(P, "S", opt); append(P.waves, { event: "preflight", ...pf }); if (!pf.ok) throw new Error(`S preflight failed (${pf.why}): no session could start ${hooks ? "with S's env and hooks" : "in S's box"}. ${hooks ? "" : AUTH_HINT}`); }
+  const hooks = hooksMode(), FAKE = !!opt.fake, RESUME = !!opt.resume;
+  const rows0 = readJsonl(P.waves), st0 = sStatus(rows0, waves);
+  // the caps are for the whole run: the active clock (restart-safe), or for a run from before it, the waves' minutes
+  const clockFile = path.join(P.op, "S", "clock.json"), legacyMin = !clockOf(clockFile) ? rows0.filter((x) => x.event === "wave-end").reduce((a, x) => a + (x.minutes ?? 0), 0) : 0;
+  if (opt["dry-run"]) { const used = (clockOf(clockFile)?.activeMs ?? 0) / 60000 + legacyMin; return { dry: true, isolation: hooks ? "hooks" : "box", launcher: launcherArgv(P, opt, maxMin - used), ...(hooks ? { cwd: P.S } : { box: boxArgv(P, "S", P.S, ["<launcher>"])[1].slice(0, 8) }), envNames: armEnvNames(P, "S"), caps: { maxMin, maxCost, usedMin: used }, status: st0, observe: fs.existsSync(path.join(P.live, "state.json")) ? summarizeOrder(P, waves[0]) : null }; }
+  if (RESUME && st0.finished) return { resume: true, finished: true, why: st0.why };
+  // one S at a time on these runs (arm.pid, checked against /proc and the boot)
+  const PIDF = path.join(P.op, "S", "arm.pid"), other = readPid(PIDF);
+  if (other && other.pid !== process.pid && procAlive(other.pid, { match: ["setup.mjs", "run"], boot: other.boot })) { console.error(`refused: S is already running on ${P.runs} (pid ${other.pid}); one S at a time`); process.exit(3); }
+  writePid(PIDF, { arm: "S", runs: P.runs }); process.on("exit", () => { try { if (readPid(PIDF)?.pid === process.pid) fs.rmSync(PIDF, { force: true }); } catch {} });
+  if (FAKE) { process.env.B8_FAKE_STUB = path.join(HERE, "dryrun", "stub"); process.env.B8_FAKE_SEC = String(opt["fake-sec"] ?? 2); if (opt["fake-lose-session"]) process.env.B8_FAKE_LOSE_SESSION = "1"; process.env.B8_NO_CHOWN = "1"; }
+  // what the dead run left: the launcher, serve and every agent (cwd in S's folder), the broker and its accept runs,
+  // the K2 job wrappers, a hidden runner on S's worktrees
+  const leftovers = st0.started ? killLeftovers({ dirs: [P.S], names: [["setup.mjs", "broker", `--runs=${P.runs}`], ["setup.mjs", "accept", `--runs=${P.runs}`], ["run-hidden.mjs", `--dir=${P.wt}`], ["jobs.mjs", "exec", P.live]] }) : [];
+  if (!opt["no-preflight"] && !FAKE && !rows0.some((x) => x.event === "preflight" && x.ok)) { const pf = await preflight(P, "S", opt); append(P.waves, { event: "preflight", ...pf }); if (!pf.ok) throw new Error(`S preflight failed (${pf.why}): no session could start ${hooks ? "with S's env and hooks" : "in S's box"}. ${hooks ? "" : AUTH_HINT}`); }
+  const clock = armClock(clockFile);
+  const activeMin = () => clock.activeMin() + legacyMin;
+  if (st0.started) {
+    // the state lock a killed tick held (state.mjs breaks a dead holder's lock only after 30 s, and a serve that waits
+    // its 10 s for it dies): its holder is dead (or of this run's leftovers, killed above), so it goes
+    { const lk = path.join(P.live, "state.lock"); let holder = null; try { holder = Number(fs.readFileSync(lk, "utf8").trim()); } catch {} if (holder != null && !procAlive(holder)) fs.rmSync(lk, { force: true }); }
+    // a stale git index lock (a git killed mid-command) would stop every hand-in's commit
+    for (const d of [P.repo, ...(fs.existsSync(P.wt) ? fs.readdirSync(P.wt).map((x) => path.join(P.wt, x)) : [])]) { const g = git(d, "rev-parse", "--git-dir").stdout.trim(); const f = g && path.resolve(d, g, "index.lock"); if (f && fs.existsSync(f)) fs.rmSync(f, { force: true }); }
+    const dead = abandonDead(P);
+    append(P.waves, { event: RESUME ? "resume" : "run-start", resumed: true, downMin: Math.round(clock.downMs / 600) / 100, activeMin: Math.round(activeMin() * 100) / 100, lastBeat: clock.prev?.t ?? null, cost: cost(P).cost, abandoned: dead, leftovers: leftovers.map((x) => x.argv.slice(0, 120)), wave: waves.find((w) => !rows0.some((x) => x.event === "wave-end" && x.wave === w)) ?? null });
+  } else append(P.waves, { event: "run-start", waves, fake: FAKE || undefined });
   append(P.waves, { event: "isolation", isolation: hooks ? "hooks" : "box", envNames: armEnvNames(P, "S") });
   if (!hooks) startEgress(P, "S");
   startBroker(P);
   const out = [];
+  let runWhy = "every wave ran";
   for (const w of waves) {
+    if (readJsonl(P.waves).some((x) => x.event === "wave-end" && x.wave === w)) continue;
     const st = fs.existsSync(path.join(P.live, "state.json")) ? readState(P.live) : null;
     if (!orderOf(st, w)) out.push(sPlace(P, { ...opt, wave: w }));
-    const left = maxMin - readJsonl(P.waves).filter((x) => x.event === "wave-end").reduce((a, x) => a + (x.minutes ?? 0), 0);
-    if (left <= 0 || cost(P).cost >= maxCost) { endIfStopped(P, w, { why: left <= 0 ? `the run's wall clock (${maxMin} min)` : `the run's cost cap ($${maxCost})` }); append(P.waves, { event: "stop", wave: w, why: "caps" }); break; }
-    const t0 = Date.now(), lines0 = readJsonl(path.join(P.live, "launches.jsonl")).length;
-    append(P.waves, { event: "wave-start", wave: w, launchesFrom: lines0, leftMin: left });
+    if (FAKE) installFakeSdk(P);
+    // an older frozen launcher re-linked live/kernel/live on every start and died on EEXIST when the link dangled (the
+    // frozen kernel has no live/): a real folder there keeps the link whole
+    fs.mkdirSync(path.join(P.sproto, "live"), { recursive: true });
+    const left = maxMin - activeMin();
+    if (left <= 0 || cost(P).cost >= maxCost) { const why = left <= 0 ? `the run's wall clock (${maxMin} min)` : `the run's cost cap ($${maxCost})`; endIfStopped(P, w, { why }); append(P.waves, { event: "stop", wave: w, why: "caps" }); runWhy = why; break; }
+    const ws = readJsonl(P.waves).findLast((x) => x.event === "wave-start" && x.wave === w);
+    if (!ws) append(P.waves, { event: "wave-start", wave: w, launchesFrom: readJsonl(path.join(P.live, "launches.jsonl")).length, leftMin: left, activeMin: Math.round(activeMin() * 100) / 100 });
+    else append(P.waves, { event: "wave-resume", wave: w, leftMin: left, activeMin: Math.round(activeMin() * 100) / 100 });
+    const a0 = ws?.activeMin ?? (ws ? activeMin() - (Date.parse(clock.prev?.t ?? new Date().toISOString()) - Date.parse(ws.t)) / 60000 : activeMin());
     let stopped = null;
     const launch = async (argv) => {
       const fd = fs.openSync(path.join(P.op, "S", "launcher.out"), "a");
@@ -737,22 +852,29 @@ async function sRun(P, opt) {
       const [bin, args] = hooks ? [argv[0], argv.slice(1)] : boxArgv(P, "S", P.S, argv, { killSignal: "SIGINT" });
       const child = spawn(bin, args, { env: armEnvFor(P, "S"), cwd: P.S, stdio: ["ignore", fd, fd] });
       let exited = false; child.on("exit", () => { exited = true; });
+      // the observer: the protocol's stops, the caps (the active clock: downtime never counts), and a restart's
+      // stage-errors retried
       while (!exited) {
         endIfStopped(P, w);
-        const c = cost(P).cost, mins = (Date.now() - t0) / 60000;
-        if (!stopped && (c >= maxCost || mins >= left)) { stopped = c >= maxCost ? `the run's cost cap ($${maxCost}: $${c})` : `the run's wall clock (${maxMin} min)`; append(P.operator, { act: "stop", wave: w, why: stopped }); child.kill("SIGINT"); setTimeout(() => { try { child.kill("SIGKILL"); } catch {} }, 60_000); }
+        retryLost(P, w);
+        const c = cost(P).cost;
+        if (!stopped && (c >= maxCost || activeMin() >= maxMin)) { stopped = c >= maxCost ? `the run's cost cap ($${maxCost}: $${c})` : `the run's wall clock (${maxMin} min)`; append(P.operator, { act: "stop", wave: w, why: stopped }); child.kill("SIGINT"); setTimeout(() => { try { child.kill("SIGKILL"); } catch {} }, 60_000); }
         await new Promise((r) => setTimeout(r, poll));
       }
     };
-    await launch(launcherArgv(P, opt, left));
-    endIfStopped(P, w, { why: stopped ?? (TERMINAL.includes(orderOf(readState(P.live), w)?.stage) ? null : `the launcher stopped after ${Math.round((Date.now() - t0) / 60000)} min`) });
+    if (!TERMINAL.includes(orderOf(readState(P.live), w)?.stage)) {
+      await launch(launcherArgv(P, opt, maxMin - activeMin()));
+      endIfStopped(P, w, { why: stopped ?? (TERMINAL.includes(orderOf(readState(P.live), w)?.stage) ? null : `the launcher stopped after ${Math.round(activeMin() - a0)} min`) });
+    }
     // the cancelled order's evidence and the architect's retro still run, in a short launcher of their own
     if (!stopped && learnOpen(readState(P.live))) { append(P.operator, { act: "retro-launch", wave: w }); await launch(launcherArgv(P, opt, 30)); }
-    const minutes = Math.round((Date.now() - t0) / 600) / 100;
+    const minutes = Math.round((activeMin() - a0) * 100) / 100;
     append(P.waves, { event: "wave-end", wave: w, launchesTo: readJsonl(path.join(P.live, "launches.jsonl")).length, minutes, stage: orderOf(readState(P.live), w)?.stage ?? null, stopped });
     out.push(summarizeOrder(P, w));
-    if (stopped) break;
+    if (stopped) { runWhy = stopped; break; }
   }
+  clock.stop();
+  append(P.waves, { event: "run-end", why: runWhy, activeMin: Math.round(activeMin() * 100) / 100, cost: cost(P).cost });
   return out;
 }
 function summarizeOrder(P, w) {
@@ -848,11 +970,32 @@ export function knowledge(S, V) {
   const mods = [...new Set([...S, ...V].flatMap((g) => Object.keys(g.firstByModule ?? {})))].sort();
   return mods.map((m) => ({ module: m, waves: WAVES.map((w) => { const s = S.find((g) => g.wave === w), v = V.find((g) => g.wave === w); return { wave: w, sRules: s?.rulesAtStart?.[m] ?? (s ? 0 : null), sFailPct: s?.firstByModule?.[m]?.pct ?? null, vFailPct: v?.firstByModule?.[m]?.pct ?? null }; }).filter((x) => x.sFailPct != null || x.vFailPct != null) }));
 }
+/** Restarts (PROTOCOL.md "Restarts"): keepalive's `operator: restart` lines (_operator/<arm>/restarts.jsonl), the arm's
+ *  own resumes with their downtime (the gap between the dead process's last clock beat and the resume), what each lost
+ *  (V: sessions that could not be resumed; S: launches abandoned, and how they went on: warm or cold), and the arm's
+ *  active minutes (the caps' clock). */
+export function restartsOf(P, arm) {
+  const ops = readJsonl(path.join(P.op, arm, "restarts.jsonl")), clock = clockOf(path.join(P.op, arm, "clock.json"));
+  const rows = arm === "V" ? readJsonl(P.vledger) : readJsonl(P.waves);
+  const own = rows.filter((x) => x.event === "resume" || (x.event === "run-start" && x.resumed));
+  const r2 = (x) => Math.round(x * 100) / 100;
+  const out = {
+    operatorRestarts: ops.filter((x) => x.event === "operator: restart").length,
+    resumes: own.length,
+    downMin: r2(own.reduce((a, x) => a + (x.downMin ?? 0), 0)),
+    keepaliveDownMin: r2(ops.filter((x) => x.event === "operator: restart").reduce((a, x) => a + (x.downMin ?? 0), 0)),
+    activeMin: clock ? r2(clock.activeMs / 60000) : null,
+    list: own.map((x) => ({ t: x.t, downMin: x.downMin ?? null, wave: x.wave ?? null, ...(arm === "V" ? { round: x.round, point: x.point, session: x.session, sessionFrom: x.sessionFrom } : { abandoned: (x.abandoned ?? []).map((a) => `${a.launch} ${a.reReported ? "re-reported" : a.next}`) }) })),
+  };
+  if (arm === "V") out.sessionsLost = rows.filter((x) => x.event === "session-lost").length;
+  else { const ab = own.flatMap((x) => x.abandoned ?? []).filter((a) => !a.reReported); out.reReported = own.flatMap((x) => x.abandoned ?? []).length - ab.length; out.launchesAbandoned = ab.length; out.warmResumed = ab.filter((a) => /^warm/.test(a.next)).length; out.warmFallbacks = readJsonl(path.join(P.live, "launches.jsonl")).filter((x) => x.event === "warm-fallback").length; out.stageRetries = readJsonl(P.operator).filter((x) => x.act === "retry").length; }
+  return out;
+}
 export function tally(P, opt = {}) {
   const T = routeTable(P), arms = opt.arm ? [opt.arm] : ARMS;
   const V = arms.includes("V") ? tallyV(P, T) : [], S = arms.includes("S") ? tallyS(P, T) : [];
   const total = (G) => ({ cost: Number(G.reduce((a, g) => a + (g.cost ?? 0), 0).toFixed(2)), minutes: Math.round(G.reduce((a, g) => a + (g.minutes ?? 0), 0) * 10) / 10, w6: G.find((g) => g.wave === "W6")?.final?.w6 ?? null });
-  return { V: { waves: V, total: total(V) }, S: { waves: S, total: total(S) }, knowledge: knowledge(S, V) };
+  return { V: { waves: V, total: total(V), restarts: restartsOf(P, "V") }, S: { waves: S, total: total(S), restarts: restartsOf(P, "S") }, knowledge: knowledge(S, V) };
 }
 function tallyMd(T) {
   const f = (x) => (x ? `${x.pass}/${x.total} (${x.pct}%)${x.own ? `; own ${x.own.pct}%` : ""}${x.w6 != null ? `; W6 ${x.w6}` : ""}` : "-");
@@ -860,6 +1003,8 @@ function tallyMd(T) {
   for (const a of ["V", "S"]) for (const g of T[a].waves) L.push(`| ${a} | ${g.wave} | ${f(g.firstHandin)} | ${f(g.final)} | ${g.rounds} | ${g.cost} | ${g.minutes ?? "-"} | ${g.sessions ?? 1} |`);
   L.push("", `| arm | total cost $ | total min | W6 score |`, "|---|---|---|---|");
   for (const a of ["V", "S"]) L.push(`| ${a} | ${T[a].total.cost} | ${T[a].total.minutes} | ${T[a].total.w6 ?? "-"} |`);
+  L.push("", "| arm | restarts (keepalive) | resumes | downtime min | active min | lost |", "|---|---|---|---|---|---|");
+  for (const a of ["V", "S"]) { const r = T[a].restarts; if (r) L.push(`| ${a} | ${r.operatorRestarts} | ${r.resumes} | ${r.downMin} | ${r.activeMin ?? "-"} | ${a === "V" ? `${r.sessionsLost} session(s) not resumable` : `${r.launchesAbandoned} launch(es) abandoned, ${r.warmResumed} warm, ${r.warmFallbacks} fell back cold, ${r.stageRetries} stage retries`} |`); }
   L.push("", "| module | wave | S rules at start | S first hand-in fail % | V first hand-in fail % |", "|---|---|---|---|---|");
   for (const m of T.knowledge) for (const w of m.waves) L.push(`| ${m.module} | ${w.wave} | ${w.sRules ?? "-"} | ${w.sFailPct ?? "-"} | ${w.vFailPct ?? "-"} |`);
   return L.join("\n");
@@ -968,8 +1113,10 @@ export function audit(P) {
   const egress = Object.fromEntries(ARMS.map((a) => [a, readJsonl(path.join(P.op, `egress-${a}.jsonl`))]));
   const NETWORDS = /urlopen|fetch\(|java\.net|HttpClient|https?:\/\/|api\.anthropic|x-api-key|\bnc\b|socat|\/dev\/tcp/;
   const sessions = [];
-  for (const t of readJsonl(P.vledger).filter((x) => x.event === "turn" && x.session)) sessions.push({ arm: "V", sid: t.session, role: "vanilla" });
-  for (const f of readJsonl(path.join(P.live, "launches.jsonl")).filter((x) => x.event === "finish" && x.sdk)) sessions.push({ arm: "S", sid: f.sdk, role: f.role });
+  for (const t of readJsonl(P.vledger).filter((x) => (x.event === "turn" || x.event === "session") && x.session)) sessions.push({ arm: "V", sid: t.session, role: "vanilla" });
+  // a session killed with the machine has no finish line with its id: the launcher's `sdk` line (and the restart's
+  // finish line, sdkLost) still name it
+  for (const f of readJsonl(path.join(P.live, "launches.jsonl")).filter((x) => (x.event === "finish" || x.event === "sdk") && (x.sdk || x.sdkLost))) sessions.push({ arm: "S", sid: f.sdk ?? f.sdkLost, role: f.role });
   const uniq = [...new Map(sessions.map((s) => [s.sid, s])).values()];
   const rows = uniq.map((s) => {
     const logged = acc.filter((a) => a.sid === s.sid), file = transcriptOf(s.sid, P);
@@ -993,6 +1140,7 @@ export function audit(P) {
   const scanDirty = ARMS.some((a) => files[a].hiddenPaths.length || files[a].hiddenText.length || files[a].compiler.length || tools[a].holes.length);
   return {
     isolation: iso,
+    restarts: Object.fromEntries(ARMS.map((a) => [a, restartsOf(P, a)])),
     fileScan: files, toolScan: tools,
     canaries: C.content.length, sessions: rows.length,
     hookMissing: rows.filter((r) => !r.hookCalls).map((r) => `${r.arm} ${r.role} ${r.sid}`),
@@ -1121,8 +1269,10 @@ async function main() {
   else if (cmd === "watch") { const w = WAVES.find((x) => { const o = orderOf(readState(P.live), x); return o && !TERMINAL.includes(o.stage); }); out = w ? { ...summarizeOrder(P, w), stop: endIfStopped(P, w) } : { open: null }; }
   else if (cmd === "tally") { const T = tally(P, opt); if (opt.md) { console.log(tallyMd(T)); return; } out = T; }
   else if (cmd === "audit") out = audit(P);
+  else if (cmd === "status") out = Object.fromEntries((opt.arm ? [opt.arm] : ARMS).map((a) => { const pid = readPid(path.join(P.op, a, "arm.pid")); return [a, { ...(a === "V" ? vStatus(readJsonl(P.vledger)) : sStatus(readJsonl(P.waves))), alive: !!pid && procAlive(pid.pid, { match: a === "V" ? ["vanilla-compiler.mjs"] : ["setup.mjs", "run"], boot: pid.boot }), pid: pid?.pid ?? null, clock: clockOf(path.join(P.op, a, "clock.json")), restarts: restartsOf(P, a) }]; }));
   else if (cmd === "selftest") { out = await selftest(P); if (out.failed.length) { console.log(JSON.stringify(out, null, 1)); process.exit(1); } }
   else { console.error("usage: node setup.mjs place|run|watch|accept|hook|tally|audit|selftest … (see the header)"); process.exit(2); }
   console.log(JSON.stringify(out, null, 1));
+  if (cmd === "run") process.exit(0); // the broker child would keep the process alive (keepalive.mjs reads a live process as a running arm)
 }
 if (process.argv[1] && real(process.argv[1]) === real(SELF)) main().catch((e) => { console.error(e.stack ?? e.message); process.exit(1); });
