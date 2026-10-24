@@ -35,6 +35,19 @@ work on automated alignment researchers.
 5. **An independent referee and credit.** A judge the agents cannot influence measures every merged change. Credit goes
    to the change and to the practice it used, so the org learns what works and who to trust.
 
+## Proportion (founder, 2026-10-24: "use your judgement not to over use principles")
+
+The principles are for work that needs an organisation, and they cost tokens (warm contexts scale with the number of
+agents). So:
+- **The default is one strong agent.** An organisation is formed only where the work gives a reason: it does not fit
+  one context, it runs over a long horizon, it recurs, or its risk needs independent checking. "Spend attention where
+  it changes the result."
+- **Same budget as the simpler arrangement.** Every multi-agent design runs at the single agent's budget and must beat
+  it there, or be dropped.
+- **Smallest dose that works:** a few warm forks, not many; a compacted context where the whole one is not needed;
+  cheaper models for some members; stop when the measured curve flattens.
+- **Cost per improvement is reported** beside every result.
+
 ## What follows for the next designs
 
 - **B9b, P-fork:** a population forked from a warm session, each member with a generic temperament prompt (principle 2)
