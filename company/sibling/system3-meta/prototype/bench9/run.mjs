@@ -73,7 +73,9 @@ function makeRoot(id, from, rev = "HEAD") {
     const cfg = J(path.join(P.toolchain, "judge", "judge.json")); cfg.clj = P.clj; fs.writeFileSync(path.join(P.toolchain, "judge", "judge.json"), JSON.stringify(cfg, null, 1));
   }
   // B9b: the findings board, through its script only (the board file is outside every root)
-  if (opt.board || id.startsWith("PF-")) { fs.copyFileSync(path.join(HERE, "board.mjs"), path.join(P.toolchain, "board.mjs")); fs.writeFileSync(path.join(P.toolchain, "board.json"), JSON.stringify({ file: path.join(B9, "_board", "PF.jsonl") })); }
+  // B9c: the AO arm's own board (with claims)
+  const pre = id.startsWith("PF-") ? "PF" : id.startsWith("AO-") ? "AO" : opt.board ? "PF" : null;
+  if (pre) { fs.copyFileSync(path.join(HERE, "board.mjs"), path.join(P.toolchain, "board.mjs")); fs.writeFileSync(path.join(P.toolchain, "board.json"), JSON.stringify({ file: path.join(B9, "_board", `${pre}.jsonl`) })); }
   S8.installShims(P, "V");
   return P;
 }
@@ -88,12 +90,16 @@ async function withJudgeLock(fn) {
 const runNode = (args, timeout) => new Promise((resolve) => { const ch = spawn(process.execPath, args, { stdio: ["ignore", "pipe", "pipe"] }); let out = "", err = ""; const t = setTimeout(() => ch.kill("SIGKILL"), timeout); ch.stdout.on("data", (d) => (out += d)); ch.stderr.on("data", (d) => (err += d)); ch.on("close", (code) => { clearTimeout(t); resolve({ code, out, err }); }); });
 const lastJson = (s) => { for (const l of String(s ?? "").trim().split("\n").reverse()) { try { return JSON.parse(l); } catch {} } return null; };
 /** The full judge on a tree (a fresh clone of its HEAD, so only committed work counts). */
+// --fake-judge (dry runs beside a real run): no timings, deterministic scores, so a dry run does not load the machine
+let fakeN = 0; const FAKE_JUDGE = FAKE && !!opt["fake-judge"];
 async function full(dir, { reps = JREPS, out = null } = {}) {
+  if (FAKE_JUDGE) return { score: Number((0.9 - 0.01 * fakeN++).toFixed(4)), raw: null, gateOk: true, lines: ["B9 fake judge"], code: 0 };
   const snap = fs.mkdtempSync(path.join(B9, "snap-")); fs.rmSync(snap, { recursive: true }); gitOk(B9, "clone", "-q", "--no-hardlinks", dir, snap);
   try { return await withJudgeLock(async () => { const r = await runNode([path.join(judgeDir, "judge.mjs"), "full", `--dir=${snap}`, `--reps=${reps}`, ...(out ? [`--out=${out}`] : [])], 5 * 3600_000); const j = lastJson(r.out); return { ...j, lines: r.out.split("\n").filter((l) => /^B9 /.test(l)), code: r.code, ...(j ? {} : { error: r.err.slice(-600) }) }; }); }
   finally { fs.rmSync(snap, { recursive: true, force: true }); }
 }
 async function fast(P) {
+  if (FAKE_JUDGE) { const n = fakeN++; return { ok: n % 5 !== 3, score: Number((1 - 0.02 * n + (n % 4 === 2 ? 0.05 : 0)).toFixed(4)), lines: ["B9 fake judge"] }; }
   return withJudgeLock(async () => { const r = await runNode([path.join(P.toolchain, "judge", "judge.mjs"), "fast", `--dir=${P.V}`], 2 * 3600_000); const lines = r.out.split("\n").filter((l) => /^B9 /.test(l)); const m = lines.join("\n").match(/B9 fast score: ([\d.]+)/); return { ok: r.code === 0, score: m ? Number(m[1]) : null, lines }; });
 }
 
@@ -281,7 +287,8 @@ function carryTranscript(fromCwd, toCwd, sid) {
   fs.mkdirSync(path.dirname(dst), { recursive: true }); fs.copyFileSync(src, dst);
 }
 const BOARD_CMD = (P) => `node ${path.join(P.toolchain, "board.mjs")}`;
-const boardText = () => { try { return fs.readFileSync(path.join(B9, "_board", "PF.jsonl"), "utf8").trim().split("\n").filter(Boolean).map((l) => JSON.parse(l)).map((e) => `#${e.n} ${e.kind} [${e.area}] by ${e.by}: ${e.text} (evidence: ${e.evidence}; wrong if: ${e.wrongIf})`).join("\n"); } catch { return ""; } };
+const boardRows = (pre = "PF") => { try { return fs.readFileSync(path.join(B9, "_board", `${pre}.jsonl`), "utf8").trim().split("\n").filter(Boolean).map((l) => JSON.parse(l)); } catch { return []; } };
+const boardText = (pre = "PF") => { try { return boardRows(pre).filter((e) => e.kind !== "claim" && e.kind !== "drop").map((e) => `#${e.n} ${e.kind} [${e.area}] by ${e.by}: ${e.text} (evidence: ${e.evidence}; wrong if: ${e.wrongIf})`).join("\n"); } catch { return ""; } };
 async function armPF() {
   const led = ledgerOf("PF"), rows = S8.readJsonl(led);
   if (rows.some((x) => x.event === "end")) return { done: true, final: rows.find((x) => x.event === "end") };
@@ -341,10 +348,116 @@ async function armPF() {
   log(led, end); return end;
 }
 
+
+// ---------------------------------------------------------------- arm AO (B9c, B9C.md): the autonomous org
+// Three persistent workers forked once from B9b's scout (warm), generic temperaments, claims instead of scopes, a
+// findings board; after each round code merges their heads into main in order of score and keeps a merge only if the
+// referee (the fast judge) says main did not get worse; an arbiter fork of the scout resolves merge conflicts.
+const AO_TEMPS = ["measure", "bold", "lean"].map((id) => TEMPERAMENTS.find((t) => t.id === id));
+const AREAS = { driver: ["main.clj"], frontend: ["lexer.clj", "preproc.clj"], parser: ["parser.clj", "types.clj"], backend: ["codegen.clj"] };
+const areaOf = (f) => Object.entries(AREAS).find(([, fs_]) => fs_.includes(path.basename(f)))?.[0] ?? (/^src\//.test(f) ? "other-src" : null);
+const AO_MIN = Number(opt["ao-min"] ?? 35), AO_ROUNDS = Number(opt["ao-rounds"] ?? 3);
+const boardPost = (e) => { const f = path.join(B9, "_board", "AO.jsonl"); fs.mkdirSync(path.dirname(f), { recursive: true }); fs.appendFileSync(f, JSON.stringify({ n: boardRows("AO").length + 1, t: new Date().toISOString(), ...e }) + "\n"); };
+async function armAO() {
+  const led = ledgerOf("AO"), rows = S8.readJsonl(led);
+  if (rows.some((x) => x.event === "end")) return { done: true, final: rows.find((x) => x.event === "end") };
+  const pfRows = S8.readJsonl(ledgerOf("PF")), scoutRow = pfRows.find((x) => x.event === "turn" && x.label === "PF scout" && x.ok);
+  if (!scoutRow) throw new Error("AO forks B9b's scout: run pf first");
+  const scoutCwd = path.join(B9, "arms", "PF-scout", "V");
+  if (!rows.length) log(led, { event: "start", arm: "AO", start: START, model: MODEL, caps: { cost: CAP_COST, min: CAP_MIN }, fake: FAKE, scout: { sid: scoutRow.sid, cost: scoutRow.cost, min: scoutRow.min } });
+  const clock = clockFor("AO"), done = (label) => rows.find((x) => x.event === "turn" && x.label === label && x.ok);
+  let spent = (scoutRow.cost ?? 0) + rows.filter((x) => x.event === "turn").reduce((a, x) => a + (x.cost ?? 0), 0);
+  const M = makeRoot("AO-main", scoutCwd); // main: the scout's tree (the start plus NOTES.md)
+  if (fs.existsSync(path.join(M.V, ".git", "MERGE_HEAD"))) git(M.V, "merge", "--abort");
+  let base = rows.findLast((x) => x.event === "main")?.score ?? null;
+  if (base == null) { const f = await fast(M); base = f.score; log(led, { event: "main", round: 0, head: gitOk(M.V, "rev-parse", "HEAD"), score: base, ok: f.ok, lines: f.lines }); }
+  const workers = AO_TEMPS.map((tm) => ({ id: `w-${tm.id}`, tm, R: makeRoot(`AO-w-${tm.id}`, M.V), sid: null }));
+  for (const w of workers) w.sid = rows.findLast((x) => x.event === "turn" && x.label?.startsWith("AO r") && x.label.endsWith(` ${w.id}`) && x.sid)?.sid ?? null;
+  let arbiter = rows.findLast((x) => x.event === "turn" && x.label?.startsWith("AO arbiter") && x.sid)?.sid ?? null;
+  const B = (R) => BOARD_CMD(R);
+  for (let k = 1; k <= AO_ROUNDS; k++) {
+    if (rows.some((x) => x.event === "round-end" && x.round === k)) continue;
+    if (clock.min() + AO_MIN + 15 > CAP_MIN || spent + 3 * 6 > CAP_COST) { log(led, { event: "stop", round: k, why: "caps", spent, min: clock.min() }); break; }
+    const mainHead = gitOk(M.V, "rev-parse", "HEAD");
+    if (!rows.some((x) => x.event === "round-start" && x.round === k)) log(led, { event: "round-start", round: k, main: mainHead });
+    const lastMerges = S8.readJsonl(led).filter((x) => x.event === "merge" && x.round === k - 1);
+    await Promise.all(workers.map(async (w) => {
+      const label = `AO r${k} ${w.id}`;
+      if (done(label)) return;
+      // each round starts from the org's main
+      gitOk(w.R.V, "fetch", "-q", M.V, "HEAD"); gitOk(w.R.V, "reset", "-q", "--hard", "FETCH_HEAD"); git(w.R.V, "clean", "-qfd");
+      const tools = `Tools:\n- the findings board: \`${B(w.R)} read\`; post each measured finding and each dead end as you go: \`${B(w.R)} post --by=${w.id} --kind=finding|dead-end|hypothesis --area=<topic> --text='…' --evidence='<commit or numbers>' --wrong-if='…'\`;\n- claims: before you change an area, \`${B(w.R)} claim --by=${w.id} --area=<driver|frontend|parser|backend|…> --text='what you are about to change'\`; see the others' with \`${B(w.R)} claims\`; \`${B(w.R)} drop --by=${w.id} --area=…\` when you move on. A claim is a courtesy that avoids two people rewriting the same code at once, not an ownership: anyone may work anywhere;\n- the fast judge, as often as you like: \`${fastCmd(w.R)}\`. Keep the gate green.`;
+      let prompt, fork = false;
+      if (k === 1) {
+        carryTranscript(scoutCwd, w.R.V, scoutRow.sid); fork = true;
+        prompt = `You are now one of ${workers.length} engineers of a small team that continues from the session above. Each works in parallel on its own clone of the team's main; yours is **${w.R.V}** (a git repository; commit there; ${scoutCwd} is no longer yours and you may not write it).\n\nHow the team works: after each round of about ${AO_MIN} minutes, an independent referee merges every engineer's committed work into main, one engineer at a time, and measures main after each merge with the judge. A merge that breaks the gate or makes main slower is reverted. Your credit is the measured gain your merged work adds to main. There are ${AO_ROUNDS} rounds; you keep your memory between them, and each round you start from the new main, which holds everyone's kept work. Combined work wins, so changes that compose (and do not fight the others' changes) are worth the most.\n\nYour temperament: **${w.tm.text}** Choose your own focus: nobody assigns areas.\n\n1. Before you read the board, write your own plan in ${w.R.V}/PLAN-${w.id}.md.\n2. Then read the board and the claims, claim what you start on, and work.\n\n${tools}\n\nCommit your best working state as you go (your last commit is what the referee merges). Then say briefly what you changed and what it gained.`;
+      } else {
+        const res = lastMerges.map((m) => `- ${m.id}: ${m.kept ? `kept, credit ${m.credit} (main ${m.before} → ${m.after})` : `reverted (${m.why})`}, areas ${m.areas.join(", ") || "none"}`).join("\n");
+        prompt = `Round ${k} of ${AO_ROUNDS}. The referee merged round ${k - 1}:\n${res || "(nothing merged)"}\nMain is now at score ${base} (lower is better; the start is 1.0). Your clone ${w.R.V} has been reset to the new main, which holds everyone's kept work (\`git log\` shows it); work of yours that was not kept is gone from your clone, so redo what still matters on top of main.\n\nRead the board and the claims first: others' findings and dead ends since your last round are there. Then choose your focus again, claim, and work, for about ${AO_MIN} minutes.\n\n${tools}\n\nCommit your best working state as you go. Then say briefly what you changed and what it gained.`;
+      }
+      const r = await turn(w.R, prompt, { resume: w.sid ?? scoutRow.sid, fork, ms: AO_MIN * 60000, label, ledger: led });
+      w.sid = r.sid ?? w.sid; spent += r.cost;
+      commitLeftover(w.R, w.id);
+    }));
+    // integration: score each head alone, then merge into main in that order, keeping only what the referee accepts
+    const merged = S8.readJsonl(led).filter((x) => x.event === "merge" && x.round === k).map((x) => x.id);
+    const scored = [];
+    for (const w of workers) {
+      const prev = S8.readJsonl(led).find((x) => x.event === "head" && x.round === k && x.id === w.id);
+      if (prev) { scored.push({ w, ...prev }); continue; }
+      const head = gitOk(w.R.V, "rev-parse", "HEAD"), changed = head !== mainHead;
+      const f = changed ? await fast(w.R) : { ok: false, score: null, lines: [] };
+      const x = { event: "head", round: k, id: w.id, head, changed, ok: f.ok, score: f.score, lines: f.lines }; log(led, x); scored.push({ w, ...x });
+    }
+    scored.sort((a, b) => (a.ok ? a.score : 9) - (b.ok ? b.score : 9));
+    for (const s of scored) {
+      if (merged.includes(s.w.id)) continue;
+      const before = gitOk(M.V, "rev-parse", "HEAD"), rec = { event: "merge", round: k, id: s.w.id, head: s.head, before: base, kept: false, credit: 0, areas: [], conflict: false };
+      const finish = (x) => { log(led, x); boardPost({ by: "judge", kind: x.kept ? "finding" : "dead-end", area: x.areas.join("+") || "none", text: `round ${k}: ${s.w.id}'s work ${x.kept ? `merged into main, score ${x.before} → ${x.after} (credit ${x.credit})` : `not merged: ${x.why}`}`, evidence: `head ${s.head.slice(0, 10)}; main ${gitOk(M.V, "rev-parse", "HEAD").slice(0, 10)}`, wrongIf: "a quiet re-judge reverses the sign" }); };
+      if (!s.changed) { finish({ ...rec, why: "no change" }); continue; }
+      if (!s.ok) { finish({ ...rec, why: "its own head fails the fast judge's check" }); continue; }
+      gitOk(M.V, "fetch", "-q", s.w.R.V, "HEAD");
+      const m = git(M.V, "merge", "--no-ff", "--no-edit", "-m", `merge ${s.w.id} (round ${k})`, "FETCH_HEAD");
+      if (m.status !== 0) {
+        rec.conflict = true;
+        const files = git(M.V, "diff", "--name-only", "--diff-filter=U").stdout.trim().split("\n").filter(Boolean);
+        if (FAKE) { git(M.V, "checkout", "--ours", "--", "."); git(M.V, "add", "-A"); git(M.V, "commit", "-qm", `fake arbiter: ${s.w.id}`); }
+        else {
+          const fork = !arbiter; if (fork) carryTranscript(scoutCwd, M.V, scoutRow.sid);
+          const r = await turn(M, `${fork ? `You are now the team's architect and arbiter, continuing from the session above. ${workers.length} engineers work in parallel on clones of main; after each round a referee merges their work into main, in **${M.V}** (yours; ${scoutCwd} is no longer yours), and measures it. You assign no work. You are called only when a merge conflicts, and you own the interfaces between the compiler's parts.\n\n` : ""}A merge conflicts now: round ${k}, ${s.w.id}'s work into main, in ${M.V} (a merge is in progress; conflicted files: ${files.join(", ")}). Resolve it so that **both sides' intent survives**: read both versions and the board (\`${B(M)} read\`) if it helps. Then check with the fast judge (\`${fastCmd(M)}\`), and commit the merge (git commit, no rebase). You have at most 10 minutes; if the two cannot be combined, keep main's side (\`git checkout --ours\`) and commit, and say why.`, { resume: arbiter ?? scoutRow.sid, fork, ms: 10 * 60000, label: `AO arbiter r${k} ${s.w.id}`, ledger: led });
+          arbiter = r.sid ?? arbiter; spent += r.cost;
+        }
+        if (fs.existsSync(path.join(M.V, ".git", "MERGE_HEAD")) || git(M.V, "diff", "--name-only", "--diff-filter=U").stdout.trim()) { git(M.V, "merge", "--abort"); git(M.V, "reset", "-q", "--hard", before); finish({ ...rec, why: "merge conflict not resolved" }); continue; }
+        commitLeftover(M, "arbiter");
+      }
+      rec.areas = [...new Set(git(M.V, "diff", "--name-only", before, "HEAD").stdout.trim().split("\n").filter(Boolean).map(areaOf).filter(Boolean))];
+      const f = await fast(M);
+      if (!f.ok || f.score == null || f.score > base * 1.01) { git(M.V, "reset", "-q", "--hard", before); finish({ ...rec, after: f.score, why: !f.ok ? "main fails the check after the merge" : `main got slower (${base} → ${f.score})`, lines: f.lines }); continue; }
+      const credit = Number((base - f.score).toFixed(4)); finish({ ...rec, kept: true, after: f.score, credit, lines: f.lines }); base = f.score;
+    }
+    const head = gitOk(M.V, "rev-parse", "HEAD");
+    const fj = S8.readJsonl(led).find((x) => x.event === "main-full" && x.round === k) ?? await full(M.V, { out: path.join(B9, "_operator", "AO", `full-r${k}.json`) });
+    if (fj.event !== "main-full") log(led, { event: "main-full", round: k, head, score: fj.score, raw: fj.raw, gateOk: fj.gateOk, lines: fj.lines });
+    log(led, { event: "main", round: k, head, score: base });
+    log(led, { event: "round-end", round: k, head, fast: base, full: fj.score, gateOk: fj.gateOk, spent: Number(spent.toFixed(4)), min: Math.round(clock.min() * 100) / 100 });
+  }
+  clock.stop();
+  // the coverage map: per area, who claimed or posted there, which merges touched it, kept credit and reverts
+  const all = S8.readJsonl(led), merges = all.filter((x) => x.event === "merge"), board = boardRows("AO"), cov = {};
+  for (const a of [...Object.keys(AREAS), "other-src"]) cov[a] = { claimedBy: [], postedBy: [], kept: [], reverted: [], credit: 0 };
+  const norm = (s) => Object.keys(cov).find((a) => String(s ?? "").toLowerCase().includes(a)) ?? null;
+  for (const e of board) { const a = norm(e.area); if (!a || e.by === "judge") continue; const key = e.kind === "claim" ? "claimedBy" : e.kind === "drop" ? null : "postedBy"; if (key && !cov[a][key].includes(e.by)) cov[a][key].push(e.by); }
+  for (const m of merges) for (const a of m.areas) { if (!cov[a]) continue; if (m.kept) { cov[a].kept.push(`r${m.round}:${m.id}`); cov[a].credit = Number((cov[a].credit + m.credit).toFixed(4)); } else cov[a].reverted.push(`r${m.round}:${m.id}`); }
+  fs.writeFileSync(path.join(B9, "_operator", "AO", "coverage.json"), JSON.stringify(cov, null, 1));
+  const lastFull = all.findLast((x) => x.event === "main-full");
+  const end = { event: "end", final: { id: "main", full: lastFull?.score ?? null, gateOk: lastFull?.gateOk ?? null, dir: M.V, head: gitOk(M.V, "rev-parse", "HEAD") }, cost: Number(spent.toFixed(4)), min: Math.round(clock.min() * 100) / 100, kept: merges.filter((m) => m.kept).length, reverted: merges.filter((m) => !m.kept).length, board: board.length, coverage: cov };
+  log(led, end); return end;
+}
+
 // ---------------------------------------------------------------- status and the quiet final scoring
 function status() {
   const out = {};
-  for (const arm of ["V", "P", "S"]) { const r = S8.readJsonl(ledgerOf(arm)); if (!r.length) continue; out[arm] = { rows: r.length, last: r.at(-1), cost: Number(r.filter((x) => x.event === "turn").reduce((a, x) => a + (x.cost ?? 0), 0).toFixed(2)) }; }
+  for (const arm of ["V", "P", "S", "PF", "AO"]) { const r = S8.readJsonl(ledgerOf(arm)); if (!r.length) continue; out[arm] = { rows: r.length, last: r.at(-1), cost: Number(r.filter((x) => x.event === "turn").reduce((a, x) => a + (x.cost ?? 0), 0).toFixed(2)) }; }
   return out;
 }
 async function finalScoring() {
@@ -360,6 +473,7 @@ async function finalScoring() {
   if (pGated.length > 1) for (const id of pGated) if (id !== p?.final?.id) cands[`P:${id}`] = path.join(B9, "arms", `P-${id}`, "V");
   const s = S8.readJsonl(ledgerOf("S")).find((x) => x.event === "end"); if (s?.dir) cands.S = s.dir;
   const pf = S8.readJsonl(ledgerOf("PF")).find((x) => x.event === "end"); if (pf?.final?.dir) cands.PF = pf.final.dir;
+  const ao = S8.readJsonl(ledgerOf("AO")).find((x) => x.event === "end"); if (ao?.final?.dir) cands.AO = ao.final.dir;
   // --only=S,start: score only these (S ran after the others' final scoring)
   if (opt.only) { const keep = String(opt.only).split(","); for (const k of Object.keys(cands)) if (!keep.includes(k)) delete cands[k]; }
   for (const [arm, dir] of Object.entries(cands)) { out[arm] = await full(dir, { reps: 5, out: path.join(B9, "_operator", `final-${arm.replace(":", "-")}.json`) }); log(path.join(B9, "_operator", "final.jsonl"), { arm, dir, ...out[arm] }); }
@@ -368,7 +482,7 @@ async function finalScoring() {
   return out;
 }
 
-const fns = { setup, v: armV, p: armP, s: armS, pf: armPF, status, final: finalScoring, full: () => full(path.resolve(opt.dir), { reps: Number(opt.reps ?? 5) }) };
-if (!fns[cmd]) { console.error("usage: run.mjs setup|v|p|s|pf|full|final|status"); process.exit(2); }
-if (!MODEL && ["v", "p", "s", "pf"].includes(cmd) && !FAKE) { console.error("no --model and the launcher's default could not be read"); process.exit(2); }
+const fns = { setup, v: armV, p: armP, s: armS, pf: armPF, ao: armAO, status, final: finalScoring, full: () => full(path.resolve(opt.dir), { reps: Number(opt.reps ?? 5) }) };
+if (!fns[cmd]) { console.error("usage: run.mjs setup|v|p|s|pf|ao|full|final|status"); process.exit(2); }
+if (!MODEL && ["v", "p", "s", "pf", "ao"].includes(cmd) && !FAKE) { console.error("no --model and the launcher's default could not be read"); process.exit(2); }
 console.log(JSON.stringify(await fns[cmd](), null, 1));
