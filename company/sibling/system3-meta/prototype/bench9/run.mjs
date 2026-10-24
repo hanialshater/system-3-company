@@ -72,6 +72,8 @@ function makeRoot(id, from, rev = "HEAD") {
     fs.cpSync(judgeDir, path.join(P.toolchain, "judge"), { recursive: true });
     const cfg = J(path.join(P.toolchain, "judge", "judge.json")); cfg.clj = P.clj; fs.writeFileSync(path.join(P.toolchain, "judge", "judge.json"), JSON.stringify(cfg, null, 1));
   }
+  // B9b: the findings board, through its script only (the board file is outside every root)
+  if (opt.board || id.startsWith("PF-")) { fs.copyFileSync(path.join(HERE, "board.mjs"), path.join(P.toolchain, "board.mjs")); fs.writeFileSync(path.join(P.toolchain, "board.json"), JSON.stringify({ file: path.join(B9, "_board", "PF.jsonl") })); }
   S8.installShims(P, "V");
   return P;
 }
@@ -107,17 +109,19 @@ function clockFor(arm) {
 }
 let query = null;
 /** One turn of a session in root P: { sid, cost (the session's running total), ok, why }. */
-async function turn(P, prompt, { resume = null, ms, label, ledger }) {
+async function turn(P, prompt, { resume = null, fork = false, ms, label, ledger }) {
   const t0 = Date.now();
   if (FAKE) {
     fs.appendFileSync(path.join(P.V, "src", "ccc", "main.clj"), `\n;; fake turn ${label}\n`); gitOk(P.V, "add", "-A"); git(P.V, "commit", "-qm", `fake ${label}`);
-    log(ledger, { event: "turn", label, sid: resume ?? `fake-${label}`, cost: 0, ok: true, min: 0 }); return { sid: resume ?? `fake-${label}`, cost: 0, ok: true };
+    const fsid = fork || !resume ? `fake-${label}` : resume;
+    log(ledger, { event: "turn", label, sid: fsid, cost: 0, ok: true, min: 0 }); return { sid: fsid, cost: 0, ok: true };
   }
   query ??= (await import(pathToFileURL(path.join(HERE, "..", "launcher", "node_modules", "@anthropic-ai", "claude-agent-sdk", "sdk.mjs")).href)).query;
   const ac = new AbortController(), timer = setTimeout(() => ac.abort(new Error("time cap")), Math.max(5000, ms));
   let sid = resume, result = null, error = null;
   try {
     const options = await S8.vOptions(P, { cwd: P.V, model: MODEL, effort: S8.EFFORT, abortController: ac, tools: S8.TOOLS_OK, maxTurns: 500, sid: () => sid, resume, stderrLog: path.join(P.op, "V", "cli-stderr.log") });
+    if (fork) options.forkSession = true; // B9b: a new session that starts with the resumed one's whole context
     for await (const m of query({ prompt, options })) { if (typeof m.session_id === "string" && m.session_id) sid = m.session_id; if (m.type === "result") result = m; }
   } catch (e) { error = e?.message ?? String(e); }
   clearTimeout(timer);
@@ -260,6 +264,83 @@ async function armS() {
   log(led, x); return x;
 }
 
+// ---------------------------------------------------------------- arm PF (B9b, B9B.md): forks of a warm scout session
+export const TEMPERAMENTS = [
+  { id: "measure", text: "Measure before you change anything, and let the numbers pick each next move." },
+  { id: "bold", text: "Look for the one restructuring that removes a whole class of cost, and do it well." },
+  { id: "sceptic", text: "Assume a speedup breaks something until you have shown it does not; check the claims others post on the board before you build on them." },
+  { id: "lean", text: "Find the smallest change with the largest effect, and stop a line of work when its returns fall." },
+];
+/** The CLI keeps a session's transcript under ~/.claude/projects/<its cwd, encoded>: a fork in another folder needs the
+ *  parent's transcript there to resume it. */
+const projDir = (cwd) => path.join(process.env.HOME ?? "/root", ".claude", "projects", path.resolve(cwd).replace(/[^A-Za-z0-9]/g, "-"));
+function carryTranscript(fromCwd, toCwd, sid) {
+  if (FAKE || !sid) return;
+  const src = path.join(projDir(fromCwd), `${sid}.jsonl`), dst = path.join(projDir(toCwd), `${sid}.jsonl`);
+  if (!fs.existsSync(src)) throw new Error(`no transcript ${src} to fork`);
+  fs.mkdirSync(path.dirname(dst), { recursive: true }); fs.copyFileSync(src, dst);
+}
+const BOARD_CMD = (P) => `node ${path.join(P.toolchain, "board.mjs")}`;
+const boardText = () => { try { return fs.readFileSync(path.join(B9, "_board", "PF.jsonl"), "utf8").trim().split("\n").filter(Boolean).map((l) => JSON.parse(l)).map((e) => `#${e.n} ${e.kind} [${e.area}] by ${e.by}: ${e.text} (evidence: ${e.evidence}; wrong if: ${e.wrongIf})`).join("\n"); } catch { return ""; } };
+async function armPF() {
+  const led = ledgerOf("PF"), rows = S8.readJsonl(led);
+  if (rows.some((x) => x.event === "end")) return { done: true, final: rows.find((x) => x.event === "end") };
+  if (!rows.length) log(led, { event: "start", arm: "PF", start: START, model: MODEL, caps: { cost: CAP_COST, min: CAP_MIN }, fake: FAKE });
+  const clock = clockFor("PF"), done = (label) => rows.find((x) => x.event === "turn" && x.label === label && x.ok);
+  let spent = rows.filter((x) => x.event === "turn").reduce((a, x) => a + (x.cost ?? 0), 0);
+  const scoredRows = rows.filter((x) => x.event === "scored").map((x) => x.c), fulls = new Map(rows.filter((x) => x.event === "full").map((x) => [x.id, x]));
+  // 1. the scout: understand, measure, write NOTES.md; no compiler change
+  const S = makeRoot("PF-scout", startDir, START);
+  let scout = done("PF scout");
+  if (!scout) {
+    const r = await turn(S, `${TASK(S)}\n\n**Your part comes first, and it is only this: understand the whole system before anyone changes it.** Read the compiler's code, profile the Lua batch (spec/W7.md's build) by phase and by function, and write NOTES.md in ${S.V}: where the time goes, with numbers, and the most promising directions you see. Do not change the compiler itself. Commit NOTES.md and say when you are done.`, { ms: 25 * 60000, label: "PF scout", ledger: led });
+    spent += r.cost; commitLeftover(S, "scout"); scout = { sid: r.sid };
+  }
+  const roundOf = async (k, parent, temperaments, mins, extra) => {
+    const out = [];
+    await Promise.all(temperaments.map(async (tm, i) => {
+      const id = `r${k}-${tm.id}`, label = `PF ${id}`;
+      const R = makeRoot(`PF-${id}`, parent.repo);
+      let row = done(label);
+      if (!row) {
+        carryTranscript(parent.cwd, R.V, parent.sid);
+        const prompt = `You are one of ${temperaments.length} independent copies of the session above, now working on your own copy of the compiler in **${R.V}** (a git repository; commit there; the earlier folder ${parent.cwd} is no longer yours and you may not write it). The others work in parallel on their own copies.\n\nYour temperament: **${tm.text}** Choose your own focus: nobody assigns areas.\n\n1. Before you read the findings board, write your own plan in ${R.V}/PLAN.md.\n2. Then read the board (\`${BOARD_CMD(R)} read\`) and work. Post every measured finding and every dead end as you go: \`${BOARD_CMD(R)} post --by=${id} --kind=finding|dead-end|hypothesis --area=<topic> --text='…' --evidence='<commit or numbers>' --wrong-if='…'\`.\n3. The fast judge, as often as you like: \`${fastCmd(R)}\`. Keep the gate green: a version that breaks it scores nothing.\n\nYou have about ${mins} minutes. Commit your best working state as you go (your last commit is judged). Then say briefly what you changed and what it gained.${extra ? `\n\n${extra}` : ""}`;
+        const r = await turn(R, prompt, { resume: parent.sid, fork: true, ms: mins * 60000, label, ledger: led });
+        row = { sid: r.sid, cost: r.cost }; spent += r.cost;
+      }
+      const head = commitLeftover(R, id);
+      out[i] = { id, temperament: tm.id, sid: row.sid, R, head, repo: R.V, cwd: R.V };
+    }));
+    // selection: the fast judge on each, serially, nothing else running
+    for (const c of out) {
+      const prev = scoredRows.find((x) => x.id === c.id);
+      if (prev) { Object.assign(c, prev); continue; }
+      const f = await fast(c.R); c.fastOk = f.ok; c.score = f.ok ? f.score : null;
+      log(led, { event: "scored", c: { id: c.id, temperament: c.temperament, round: k, head: c.head, sid: c.sid, fastOk: c.fastOk, score: c.score, lines: f.lines } });
+    }
+    const live = out.filter((c) => c.fastOk && c.score != null).sort((a, b) => a.score - b.score);
+    for (const c of live) { // the best whose full gate passes (judged on its committed head)
+      const x = fulls.get(c.id) ?? (await full(c.repo, { out: path.join(B9, "_operator", "PF", `full-${c.id}.json`) }));
+      if (!fulls.has(c.id)) { log(led, { event: "full", id: c.id, score: x.score, raw: x.raw, gateOk: x.gateOk, lines: x.lines }); fulls.set(c.id, x); }
+      if (x.gateOk) return { ...c, full: x.score };
+    }
+    return null;
+  };
+  const scoutNode = { sid: scout.sid, repo: S.V, cwd: S.V };
+  const w1 = await roundOf(1, scoutNode, TEMPERAMENTS, 45, null);
+  log(led, { event: "round-end", round: 1, best: w1?.id ?? null, full: w1?.full ?? null, spent: Number(spent.toFixed(4)), min: Math.round(clock.min() * 100) / 100 });
+  let best = w1;
+  if (w1 && clock.min() + 60 < CAP_MIN && spent + 3 * 7 < CAP_COST) {
+    const rot = TEMPERAMENTS.filter((t) => t.id !== w1.temperament).slice(0, 3), board = boardText();
+    const w2 = await roundOf(2, { sid: w1.sid, repo: w1.repo, cwd: w1.cwd }, rot, 40, `You start from the round-1 winner's work and context (its temperament was "${w1.temperament}"; its full-judge score ${w1.full}). The board so far:\n${board || "(empty)"}`);
+    log(led, { event: "round-end", round: 2, best: w2?.id ?? null, full: w2?.full ?? null, spent: Number(spent.toFixed(4)), min: Math.round(clock.min() * 100) / 100 });
+    if (w2 && w2.full <= best.full) best = w2;
+  }
+  clock.stop();
+  const end = { event: "end", final: best ? { id: best.id, full: best.full, dir: best.repo } : null, cost: Number(spent.toFixed(4)), min: Math.round(clock.min() * 100) / 100, board: boardText().split("\n").filter(Boolean).length };
+  log(led, end); return end;
+}
+
 // ---------------------------------------------------------------- status and the quiet final scoring
 function status() {
   const out = {};
@@ -278,6 +359,7 @@ async function finalScoring() {
   const pGated = [...new Set(pRows.filter((x) => x.event === "full" && x.gateOk).map((x) => x.id))];
   if (pGated.length > 1) for (const id of pGated) if (id !== p?.final?.id) cands[`P:${id}`] = path.join(B9, "arms", `P-${id}`, "V");
   const s = S8.readJsonl(ledgerOf("S")).find((x) => x.event === "end"); if (s?.dir) cands.S = s.dir;
+  const pf = S8.readJsonl(ledgerOf("PF")).find((x) => x.event === "end"); if (pf?.final?.dir) cands.PF = pf.final.dir;
   // --only=S,start: score only these (S ran after the others' final scoring)
   if (opt.only) { const keep = String(opt.only).split(","); for (const k of Object.keys(cands)) if (!keep.includes(k)) delete cands[k]; }
   for (const [arm, dir] of Object.entries(cands)) { out[arm] = await full(dir, { reps: 5, out: path.join(B9, "_operator", `final-${arm.replace(":", "-")}.json`) }); log(path.join(B9, "_operator", "final.jsonl"), { arm, dir, ...out[arm] }); }
@@ -286,7 +368,7 @@ async function finalScoring() {
   return out;
 }
 
-const fns = { setup, v: armV, p: armP, s: armS, status, final: finalScoring, full: () => full(path.resolve(opt.dir), { reps: Number(opt.reps ?? 5) }) };
-if (!fns[cmd]) { console.error("usage: run.mjs setup|v|p|s|full|final|status"); process.exit(2); }
-if (!MODEL && ["v", "p", "s"].includes(cmd) && !FAKE) { console.error("no --model and the launcher's default could not be read"); process.exit(2); }
+const fns = { setup, v: armV, p: armP, s: armS, pf: armPF, status, final: finalScoring, full: () => full(path.resolve(opt.dir), { reps: Number(opt.reps ?? 5) }) };
+if (!fns[cmd]) { console.error("usage: run.mjs setup|v|p|s|pf|full|final|status"); process.exit(2); }
+if (!MODEL && ["v", "p", "s", "pf"].includes(cmd) && !FAKE) { console.error("no --model and the launcher's default could not be read"); process.exit(2); }
 console.log(JSON.stringify(await fns[cmd](), null, 1));
