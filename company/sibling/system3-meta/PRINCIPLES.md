@@ -35,6 +35,21 @@ work on automated alignment researchers.
 5. **An independent referee and credit.** A judge the agents cannot influence measures every merged change. Credit goes
    to the change and to the practice it used, so the org learns what works and who to trust.
 
+## Roles and hierarchy (founder, 2026-10-24: "are we eliminating roles and hierarchy?" No.)
+
+What the principles remove is **prescribing the work in advance** (assigned scopes, directions, files), not roles or
+hierarchy. "Let go of the path, not the boundary": the hierarchy holds the boundary and the intent; the agents choose
+the path.
+- **Fixed, assigned roles stay where they need independence, authority or accountability:** the founder (intent,
+  budgets, changing the rules: "the human stays in the loop that changes the loops"); the referee and the independent
+  checkers ("the judged do not amend the judge alone"); the architect or manager, who owns the interfaces, settles
+  conflicting claims and allocates budget (an arbiter, not an allocator of tasks); and specialist roles whose value has
+  been shown on recurring work (the lesson company's fact-checker: all 7 of M6's revises were real defects).
+- **Work roles emerge:** an agent becomes the company's parser specialist by choosing that focus and earning credit
+  for it on the record ("let the work change the architecture"), not by an org chart drawn up front.
+- **The hierarchy gives intent and constraints, not instructions** ("make it faster; here is the budget; here is the
+  gate"): mission command.
+
 ## Proportion (founder, 2026-10-24: "use your judgement not to over use principles")
 
 The principles are for work that needs an organisation, and they cost tokens (warm contexts scale with the number of
