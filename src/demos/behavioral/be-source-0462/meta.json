@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0462",
+  "title": "An immediate need meets borrowing",
+  "hook": "Two stated cases: explore the next-period debt from a stated short-term payment.",
+  "domain": "behavioral",
+  "concept": "be-source-0462",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the next-period debt from a stated short-term payment affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Next, regardless of the stated inputs.",
+  "objective": "Compare the next-period debt from a stated short-term payment in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0462.predict",
+      "text": "A toy balance of 100 accrues interest 0.1, then payment 5. What balance remains?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0462/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #462. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0462.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0462/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #462. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0462.reveal.0",
+      "text": "The retained results are Payment=5; Next=105 and Payment=20; Next=90.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0462/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #462. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0462.reveal.1",
+      "text": "A salient payment can be smaller than the new interest. The calculation separates the displayed payment from the balance path. This comparison isolates the next-period debt from a stated short-term payment.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0462/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #462. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0462.case.0.witness",
+      "text": "Payment=5; Next=105",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0462/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #462. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0462.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Balance\",100],[\"Interest\",0.1],[\"Payment\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0462/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #462. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0462.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"Input\",\"value\":100},{\"label\":\"Result\",\"value\":105.00000000000001}]},\"metrics\":[{\"label\":\"Next\",\"value\":\"105\"},{\"label\":\"Payment\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0462/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #462. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0462.case.1.witness",
+      "text": "Payment=20; Next=90",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0462/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #462. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0462.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Balance\",100],[\"Interest\",0.1],[\"Payment\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0462/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #462. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0462.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"Input\",\"value\":100},{\"label\":\"Result\",\"value\":90.00000000000001}]},\"metrics\":[{\"label\":\"Next\",\"value\":\"90\"},{\"label\":\"Payment\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0462/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #462. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0462.recall",
+      "text": "A toy balance of 101 accrues interest 0.1, then payment 5. What balance remains? Answer 106.1.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0462/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #462. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy balance of 101 accrues interest 0.1, then payment 5. What balance remains?",
+    "options": [
+      "63.66",
+      "106.1",
+      "148.54"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Next 106.1 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0462",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-462"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 462,
+    "sourceSection": "24. Scarcity, attention & cognitive load",
+    "sourceEntryOriginal": "- **462.** Players made \"poor\" in lab games borrowed more and focused narrowly on immediate needs (Shah, Mullainathan & Shafir, 2012).",
+    "modelBoundary": "the next-period debt from a stated short-term payment",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

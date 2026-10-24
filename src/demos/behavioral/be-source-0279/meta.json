@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0279",
+  "title": "Fear and the starting estimate",
+  "hook": "Two stated cases: explore the cue entering a risk-judgment rule.",
+  "domain": "behavioral",
+  "concept": "be-source-0279",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the cue entering a risk-judgment rule affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Estimate, regardless of the stated inputs.",
+  "objective": "Compare the cue entering a risk-judgment rule in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0279.predict",
+      "text": "A toy estimate gives anchor 80 weight 0.6 and evidence 30 the remaining weight. What estimate results?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0279/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #279. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0279.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0279/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #279. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0279.reveal.0",
+      "text": "The retained results are Anchor=80; Estimate=60 and Anchor=10; Estimate=18.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0279/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #279. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0279.reveal.1",
+      "text": "An estimate can move because the arbitrary starting point moves. The contrast holds the evidence fixed to expose that channel. This comparison isolates the cue entering a risk-judgment rule.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0279/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #279. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0279.case.0.witness",
+      "text": "Anchor=80; Estimate=60",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0279/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #279. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0279.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Anchor\",80],[\"Evidence\",30],[\"Weight\",0.6]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0279/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #279. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0279.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Estimate\",\"value\":60}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"60\"},{\"label\":\"Anchor\",\"value\":\"80\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0279/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #279. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0279.case.1.witness",
+      "text": "Anchor=10; Estimate=18",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0279/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #279. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0279.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Anchor\",10],[\"Evidence\",30],[\"Weight\",0.6]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0279/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #279. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0279.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Estimate\",\"value\":18}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"18\"},{\"label\":\"Anchor\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0279/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #279. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0279.recall",
+      "text": "A toy estimate gives anchor 81 weight 0.6 and evidence 30 the remaining weight. What estimate results? Answer 60.6.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0279/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #279. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy estimate gives anchor 81 weight 0.6 and evidence 30 the remaining weight. What estimate results?",
+    "options": [
+      "36.36",
+      "60.6",
+      "84.84"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Estimate 60.6 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0279",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-279"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 279,
+    "sourceSection": "14. Risk & probability weighting",
+    "sourceEntryOriginal": "- **279.** Fearful people judge risks higher, while angry people judge them lower (Lerner & Keltner, 2001).",
+    "modelBoundary": "the cue entering a risk-judgment rule",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

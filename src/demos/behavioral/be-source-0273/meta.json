@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0273",
+  "title": "Chasing the break-even point",
+  "hook": "Two stated cases: explore the expected payoff separate from a desired target.",
+  "domain": "behavioral",
+  "concept": "be-source-0273",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the expected payoff separate from a desired target affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Expected, regardless of the stated inputs.",
+  "objective": "Compare the expected payoff separate from a desired target in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0273.predict",
+      "text": "A toy gamble gains 60 with probability 0.4 and loses 30 otherwise. What is its expected cash change?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0273/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #273. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0273.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0273/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #273. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0273.reveal.0",
+      "text": "The retained results are Probability=0.4; Expected=6 and Probability=0.6; Expected=24.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0273/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #273. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0273.reveal.1",
+      "text": "Reaching an emotionally important balance is different from maximizing expected cash change. Neither guarantees the outcome of one play. This comparison isolates the expected payoff separate from a desired target.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0273/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #273. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0273.case.0.witness",
+      "text": "Probability=0.4; Expected=6",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0273/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #273. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0273.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Loss\",30],[\"Win\",60],[\"Probability\",0.4]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0273/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #273. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0273.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Expected\",\"value\":6}]},\"metrics\":[{\"label\":\"Expected\",\"value\":\"6\"},{\"label\":\"Probability\",\"value\":\"0.4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0273/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #273. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0273.case.1.witness",
+      "text": "Probability=0.6; Expected=24",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0273/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #273. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0273.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Loss\",30],[\"Win\",60],[\"Probability\",0.6]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0273/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #273. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0273.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Expected\",\"value\":24}]},\"metrics\":[{\"label\":\"Expected\",\"value\":\"24\"},{\"label\":\"Probability\",\"value\":\"0.6\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0273/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #273. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0273.recall",
+      "text": "A toy gamble gains 60 with probability 0.4 and loses 31 otherwise. What is its expected cash change? Answer 5.4.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0273/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #273. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy gamble gains 60 with probability 0.4 and loses 31 otherwise. What is its expected cash change?",
+    "options": [
+      "3.24",
+      "5.4",
+      "7.56"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Expected 5.4 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0273",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-273"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 273,
+    "sourceSection": "14. Risk & probability weighting",
+    "sourceEntryOriginal": "- **273.** *Deal or No Deal* contestants took more risk after bad luck, consistent with break-even seeking (Post, van den Assem, Baltussen & Thaler, 2008).",
+    "modelBoundary": "the expected payoff separate from a desired target",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,3 +1,9 @@
+## 2026-10-24 · remaining source demos · second continuation batch (200 behavioral drafts)
+
+Implemented batch 03 as exactly 200 additional behavioral source entries. Together with PR16 and PR17, this completes implementation coverage of the 500-entry behavioral list; independent source and learner approval remain open. Explicit curation, fixtures, unverified claim records and manifest live in company/reviews/continuation-batch-03. The single operator makes no independent review claim.
+
+Arithmetic/schema/state: 812 checks; 14 relationship checks; TypeScript pass. Company diagnostics are identical to the inherited 811 errors/four warnings. Build and browser validation pending. The remaining implementation queue is 900 probability entries in four batches of 200 and a final 100. W-2031/2032 track draft batches, W-2033 the remaining probability queue and W-2034 independent template review. No merge or deploy authorized.
+
 ## 2026-10-24 · chief-of-staff · PR #16: 100 behavioral + 100 probability/causal demos
 
 Implemented exactly 200 new draft lessons from the two attached source lists: 100 behavioral (four per each of 25 sections) and 100 probability/causal (34 sections). PR: https://github.com/hanialshater/system-3-company/pull/16. Each has its own computed cases, original source provenance, curriculum entry and recall. Shared renderer has eight visual kinds and retained evidence through Reset; local wrappers render the actual kit Lesson and four controls. No new role, dependency version or protected path changed.

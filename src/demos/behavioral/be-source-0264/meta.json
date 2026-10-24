@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0264",
+  "title": "Lottery spending as income share",
+  "hook": "Two stated cases: explore the income denominator with fixed spending.",
+  "domain": "behavioral",
+  "concept": "be-source-0264",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the income denominator with fixed spending affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Percent, regardless of the stated inputs.",
+  "objective": "Compare the income denominator with fixed spending in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0264.predict",
+      "text": "A toy saving is 100 on a price of 1000. What percentage of the original price is saved?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0264/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #264. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0264.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0264/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #264. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0264.reveal.0",
+      "text": "The retained results are Price=1,000; Percent=10 and Price=5,000; Percent=2.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0264/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #264. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0264.reveal.1",
+      "text": "The cash saving is the numerator; the reference price supplies the denominator. The same saving can therefore have different relative sizes. This comparison isolates the income denominator with fixed spending.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0264/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #264. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0264.case.0.witness",
+      "text": "Price=1,000; Percent=10",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0264/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #264. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0264.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Saving\",100],[\"Price\",1000]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0264/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #264. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0264.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Percent\",\"value\":10}]},\"metrics\":[{\"label\":\"Percent\",\"value\":\"10\"},{\"label\":\"Price\",\"value\":\"1,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0264/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #264. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0264.case.1.witness",
+      "text": "Price=5,000; Percent=2",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0264/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #264. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0264.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Saving\",100],[\"Price\",5000]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0264/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #264. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0264.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Percent\",\"value\":2}]},\"metrics\":[{\"label\":\"Percent\",\"value\":\"2\"},{\"label\":\"Price\",\"value\":\"5,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0264/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #264. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0264.recall",
+      "text": "A toy saving is 101 on a price of 1,000. What percentage of the original price is saved? Answer 10.1.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0264/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #264. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy saving is 101 on a price of 1,000. What percentage of the original price is saved?",
+    "options": [
+      "6.06",
+      "10.1",
+      "14.14"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Percent 10.1 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0264",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-264"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 264,
+    "sourceSection": "14. Risk & probability weighting",
+    "sourceEntryOriginal": "- **264.** Lower-income households spend a larger share of income on lottery tickets (Clotfelter & Cook, 1990).",
+    "modelBoundary": "the income denominator with fixed spending",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

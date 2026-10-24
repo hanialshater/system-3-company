@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0294",
+  "title": "Equal changes, different slopes",
+  "hook": "Two stated cases: explore an explicitly asymmetric response rule.",
+  "domain": "behavioral",
+  "concept": "be-source-0294",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How an explicitly asymmetric response rule affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Difference, regardless of the stated inputs.",
+  "objective": "Compare an explicitly asymmetric response rule in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0294.predict",
+      "text": "A toy response has slope 1 for gains and 2 for losses. For size 5, how much larger is the loss-side response?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0294/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #294. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0294.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0294/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #294. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0294.reveal.0",
+      "text": "The retained results are LossSlope=2; Difference=5 and LossSlope=1; Difference=0.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0294/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #294. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0294.reveal.1",
+      "text": "Two different slopes encode asymmetric sensitivity. The chosen slopes illustrate a model and do not validate a psychological or brain finding. This comparison isolates an explicitly asymmetric response rule.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0294/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #294. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0294.case.0.witness",
+      "text": "LossSlope=2; Difference=5",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0294/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #294. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0294.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"GainSlope\",1],[\"LossSlope\",2],[\"Size\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0294/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #294. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0294.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":0},{\"x\":0.4166666666666667,\"y\":0.4166666666666667},{\"x\":0.8333333333333334,\"y\":0.8333333333333334},{\"x\":1.25,\"y\":1.25},{\"x\":1.6666666666666667,\"y\":1.6666666666666667},{\"x\":2.0833333333333335,\"y\":2.0833333333333335},{\"x\":2.5,\"y\":2.5},{\"x\":2.9166666666666665,\"y\":2.9166666666666665},{\"x\":3.3333333333333335,\"y\":3.3333333333333335},{\"x\":3.75,\"y\":3.75},{\"x\":4.166666666666667,\"y\":4.166666666666667},{\"x\":4.583333333333333,\"y\":4.583333333333333},{\"x\":5,\"y\":5},{\"x\":5.416666666666667,\"y\":5.416666666666667},{\"x\":5.833333333333333,\"y\":5.833333333333333},{\"x\":6.25,\"y\":6.25},{\"x\":6.666666666666667,\"y\":6.666666666666667},{\"x\":7.083333333333333,\"y\":7.083333333333333},{\"x\":7.5,\"y\":7.5},{\"x\":7.916666666666667,\"y\":7.916666666666667},{\"x\":8.333333333333334,\"y\":8.333333333333334},{\"x\":8.75,\"y\":8.75},{\"x\":9.166666666666666,\"y\":9.166666666666666},{\"x\":9.583333333333334,\"y\":9.583333333333334},{\"x\":10,\"y\":10}],\"xLabel\":\"Size\",\"yLabel\":\"Difference\"},\"metrics\":[{\"label\":\"Difference\",\"value\":\"5\"},{\"label\":\"LossSlope\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0294/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #294. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0294.case.1.witness",
+      "text": "LossSlope=1; Difference=0",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0294/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #294. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0294.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"GainSlope\",1],[\"LossSlope\",1],[\"Size\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0294/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #294. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0294.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":0},{\"x\":0.4166666666666667,\"y\":0},{\"x\":0.8333333333333334,\"y\":0},{\"x\":1.25,\"y\":0},{\"x\":1.6666666666666667,\"y\":0},{\"x\":2.0833333333333335,\"y\":0},{\"x\":2.5,\"y\":0},{\"x\":2.9166666666666665,\"y\":0},{\"x\":3.3333333333333335,\"y\":0},{\"x\":3.75,\"y\":0},{\"x\":4.166666666666667,\"y\":0},{\"x\":4.583333333333333,\"y\":0},{\"x\":5,\"y\":0},{\"x\":5.416666666666667,\"y\":0},{\"x\":5.833333333333333,\"y\":0},{\"x\":6.25,\"y\":0},{\"x\":6.666666666666667,\"y\":0},{\"x\":7.083333333333333,\"y\":0},{\"x\":7.5,\"y\":0},{\"x\":7.916666666666667,\"y\":0},{\"x\":8.333333333333334,\"y\":0},{\"x\":8.75,\"y\":0},{\"x\":9.166666666666666,\"y\":0},{\"x\":9.583333333333334,\"y\":0},{\"x\":10,\"y\":0}],\"xLabel\":\"Size\",\"yLabel\":\"Difference\"},\"metrics\":[{\"label\":\"Difference\",\"value\":\"0\"},{\"label\":\"LossSlope\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0294/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #294. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0294.recall",
+      "text": "A toy response has slope 2 for gains and 2 for losses. For size 5, how much larger is the loss-side response? Answer 0.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0294/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #294. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy response has slope 2 for gains and 2 for losses. For size 5, how much larger is the loss-side response?",
+    "options": [
+      "-0.1",
+      "0",
+      "0.1"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Difference 0 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0294",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-294"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 294,
+    "sourceSection": "15. Pricing & consumer behavior",
+    "sourceEntryOriginal": "- **294.** Brand choice data show loss aversion: price rises hurt sales more than equal cuts help (Hardie, Johnson & Fader, 1993).",
+    "modelBoundary": "an explicitly asymmetric response rule",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

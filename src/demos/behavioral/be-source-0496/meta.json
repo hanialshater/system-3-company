@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0496",
+  "title": "A few extreme storms move the mean",
+  "hook": "Two stated cases: explore the sensitivity of a mean to a specified extreme observation.",
+  "domain": "behavioral",
+  "concept": "be-source-0496",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the sensitivity of a mean to a specified extreme observation affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Mean, regardless of the stated inputs.",
+  "objective": "Compare the sensitivity of a mean to a specified extreme observation in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0496.predict",
+      "text": "A toy sample has 20 identical values 10 and one extreme 500. What is the sample mean?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0496/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #496. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0496.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0496/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #496. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0496.reveal.0",
+      "text": "The retained results are Extreme=500; Mean=33.333 and Extreme=10; Mean=10.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0496/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #496. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0496.reveal.1",
+      "text": "The extreme value can move the mean substantially while the median of this sample stays at the repeated value. Sensitivity does not itself establish which observations are invalid. This comparison isolates the sensitivity of a mean to a specified extreme observation.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0496/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #496. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0496.case.0.witness",
+      "text": "Extreme=500; Mean=33.333",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0496/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #496. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0496.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Regular\",10],[\"N\",20],[\"Extreme\",500]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0496/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #496. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0496.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":33.333333333333336},{\"label\":\"Median\",\"value\":10}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"33.333\"},{\"label\":\"Extreme\",\"value\":\"500\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0496/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #496. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0496.case.1.witness",
+      "text": "Extreme=10; Mean=10",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0496/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #496. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0496.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Regular\",10],[\"N\",20],[\"Extreme\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0496/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #496. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0496.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":10},{\"label\":\"Median\",\"value\":10}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"10\"},{\"label\":\"Extreme\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0496/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #496. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0496.recall",
+      "text": "A toy sample has 20 identical values 11 and one extreme 500. What is the sample mean? Answer 34.286.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0496/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #496. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy sample has 20 identical values 11 and one extreme 500. What is the sample mean?",
+    "options": [
+      "20.571",
+      "48",
+      "34.286"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Mean 34.286 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0496",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-496"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 496,
+    "sourceSection": "25. Famous findings that failed to replicate or shrank",
+    "sourceEntryOriginal": "- **496.** Hurricanes with female names were said to kill more people because they seemed less threatening (Jung, Shavitt, Viswanathan & Hilbe, 2014); critics showed the result hinged on a few outliers.",
+    "modelBoundary": "the sensitivity of a mean to a specified extreme observation",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

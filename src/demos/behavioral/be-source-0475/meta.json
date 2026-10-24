@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0475",
+  "title": "A salient attribute gets extra weight",
+  "hook": "Two stated cases: explore the weight assigned to a prominent attribute.",
+  "domain": "behavioral",
+  "concept": "be-source-0475",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the weight assigned to a prominent attribute affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Estimate, regardless of the stated inputs.",
+  "objective": "Compare the weight assigned to a prominent attribute in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0475.predict",
+      "text": "A toy estimate gives anchor 90 weight 0.8 and evidence 30 the remaining weight. What estimate results?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0475/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #475. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0475.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0475/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #475. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0475.reveal.0",
+      "text": "The retained results are Weight=0.8; Estimate=78 and Weight=0.2; Estimate=42.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0475/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #475. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0475.reveal.1",
+      "text": "An estimate can move because the arbitrary starting point moves. The contrast holds the evidence fixed to expose that channel. This comparison isolates the weight assigned to a prominent attribute.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0475/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #475. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0475.case.0.witness",
+      "text": "Weight=0.8; Estimate=78",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0475/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #475. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0475.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Anchor\",90],[\"Evidence\",30],[\"Weight\",0.8]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0475/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #475. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0475.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Estimate\",\"value\":78}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"78\"},{\"label\":\"Weight\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0475/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #475. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0475.case.1.witness",
+      "text": "Weight=0.2; Estimate=42",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0475/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #475. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0475.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Anchor\",90],[\"Evidence\",30],[\"Weight\",0.2]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0475/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #475. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0475.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Estimate\",\"value\":42}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"42\"},{\"label\":\"Weight\",\"value\":\"0.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0475/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #475. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0475.recall",
+      "text": "A toy estimate gives anchor 91 weight 0.8 and evidence 30 the remaining weight. What estimate results? Answer 78.8.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0475/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #475. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy estimate gives anchor 91 weight 0.8 and evidence 30 the remaining weight. What estimate results?",
+    "options": [
+      "47.28",
+      "110.32",
+      "78.8"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Estimate 78.8 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0475",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-475"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 475,
+    "sourceSection": "24. Scarcity, attention & cognitive load",
+    "sourceEntryOriginal": "- **475.** People overweight whichever attribute stands out most in a given comparison, salience theory (Bordalo, Gennaioli & Shleifer, 2012).",
+    "modelBoundary": "the weight assigned to a prominent attribute",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

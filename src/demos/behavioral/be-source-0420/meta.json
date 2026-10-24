@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0420",
+  "title": "A bubble and an assumed correction",
+  "hook": "Two stated cases: explore the stated adjustment path toward a valuation benchmark.",
+  "domain": "behavioral",
+  "concept": "be-source-0420",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the stated adjustment path toward a valuation benchmark affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Estimate, regardless of the stated inputs.",
+  "objective": "Compare the stated adjustment path toward a valuation benchmark in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0420.predict",
+      "text": "Starting at 200, move fraction 0.3 of the remaining distance toward 100 for 1 steps. Where does the estimate finish?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0420/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #420. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0420.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0420/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #420. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0420.reveal.0",
+      "text": "The retained results are Steps=1; Estimate=170 and Steps=5; Estimate=116.807.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0420/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #420. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0420.reveal.1",
+      "text": "Each adjustment leaves a fraction of the original distance. Stopping after a small number of steps preserves dependence on the start. This comparison isolates the stated adjustment path toward a valuation benchmark.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0420/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #420. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0420.case.0.witness",
+      "text": "Steps=1; Estimate=170",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0420/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #420. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0420.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Start\",200],[\"Target\",100],[\"Steps\",1],[\"Fraction\",0.3]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0420/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #420. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0420.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":200},{\"label\":\"1\",\"value\":170}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"170\"},{\"label\":\"Steps\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0420/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #420. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0420.case.1.witness",
+      "text": "Steps=5; Estimate=116.807",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0420/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #420. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0420.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Start\",200],[\"Target\",100],[\"Steps\",5],[\"Fraction\",0.3]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0420/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #420. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0420.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":200},{\"label\":\"1\",\"value\":170},{\"label\":\"2\",\"value\":149},{\"label\":\"3\",\"value\":134.29999999999998},{\"label\":\"4\",\"value\":124.00999999999999},{\"label\":\"5\",\"value\":116.80699999999999}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"116.807\"},{\"label\":\"Steps\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0420/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #420. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0420.recall",
+      "text": "Starting at 201, move fraction 0.3 of the remaining distance toward 100 for 1 steps. Where does the estimate finish? Answer 170.7.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0420/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #420. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Starting at 201, move fraction 0.3 of the remaining distance toward 100 for 1 steps. Where does the estimate finish?",
+    "options": [
+      "102.42",
+      "170.7",
+      "238.98"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Estimate 170.7 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0420",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-420"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 420,
+    "sourceSection": "21. Behavioral finance & markets",
+    "sourceEntryOriginal": "- **420.** In lab asset markets, bubbles and crashes form reliably until traders have been through them before (Smith, Suchanek & Williams, 1988).",
+    "modelBoundary": "the stated adjustment path toward a valuation benchmark",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

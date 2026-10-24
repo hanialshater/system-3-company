@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0304",
+  "title": "Payment passed to charity",
+  "hook": "Two stated cases: explore the destination of a payment in cash accounting.",
+  "domain": "behavioral",
+  "concept": "be-source-0304",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the destination of a payment in cash accounting affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Profit, regardless of the stated inputs.",
+  "objective": "Compare the destination of a payment in cash accounting in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0304.predict",
+      "text": "A toy sale has 100 units at price 10, unit cost 0 and fraction 0 of revenue donated. What profit remains?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0304/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #304. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0304.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0304/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #304. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0304.reveal.0",
+      "text": "The retained results are Charity=0; Profit=1,000 and Charity=1; Profit=0.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0304/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #304. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0304.reveal.1",
+      "text": "Quantity, price, costs and transfers all enter profit. Sales alone cannot establish the profitability of a pricing policy. This comparison isolates the destination of a payment in cash accounting.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0304/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #304. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0304.case.0.witness",
+      "text": "Charity=0; Profit=1,000",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0304/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #304. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0304.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Quantity\",100],[\"Price\",10],[\"Cost\",0],[\"Charity\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0304/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #304. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0304.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Profit\",\"value\":1000}]},\"metrics\":[{\"label\":\"Profit\",\"value\":\"1,000\"},{\"label\":\"Charity\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0304/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #304. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0304.case.1.witness",
+      "text": "Charity=1; Profit=0",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0304/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #304. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0304.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Quantity\",100],[\"Price\",10],[\"Cost\",0],[\"Charity\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0304/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #304. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0304.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Profit\",\"value\":0}]},\"metrics\":[{\"label\":\"Profit\",\"value\":\"0\"},{\"label\":\"Charity\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0304/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #304. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0304.recall",
+      "text": "A toy sale has 101 units at price 10, unit cost 0 and fraction 0 of revenue donated. What profit remains? Answer 1,010.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0304/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #304. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy sale has 101 units at price 10, unit cost 0 and fraction 0 of revenue donated. What profit remains?",
+    "options": [
+      "606",
+      "1,414",
+      "1,010"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Profit 1,010 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0304",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-304"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 304,
+    "sourceSection": "16. Incentives & motivation",
+    "sourceEntryOriginal": "- **304.** Paying for blood reduced women's donations, unless the payment could be given to charity (Mellström & Johannesson, 2008).",
+    "modelBoundary": "the destination of a payment in cash accounting",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0263",
+  "title": "Probability and decision weight",
+  "hook": "Two stated cases: explore a nonlinear decision-weight curve.",
+  "domain": "behavioral",
+  "concept": "be-source-0263",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How a nonlinear decision-weight curve affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Weight, regardless of the stated inputs.",
+  "objective": "Compare a nonlinear decision-weight curve in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0263.predict",
+      "text": "A toy probability-weighting rule is exp(-(-log(P))^Alpha). With P 0.01 and Alpha 0.65, what decision weight results?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0263/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #263. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0263.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0263/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #263. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0263.reveal.0",
+      "text": "The retained results are P=0.01; Weight=0.067 and P=0.8; Weight=0.686.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0263/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #263. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0263.reveal.1",
+      "text": "A decision weight differs from an event frequency. The specified curve is a model assumption and cannot establish what every person believes. This comparison isolates a nonlinear decision-weight curve.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0263/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #263. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0263.case.0.witness",
+      "text": "P=0.01; Weight=0.067",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0263/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #263. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0263.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.01],[\"Alpha\",0.65]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0263/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #263. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0263.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":0},{\"x\":0.041666666666666664,\"y\":0.11999123151975506},{\"x\":0.08333333333333333,\"y\":0.16415034519024202},{\"x\":0.125,\"y\":0.20000656850167975},{\"x\":0.16666666666666666,\"y\":0.23201851980586247},{\"x\":0.20833333333333334,\"y\":0.26186101649421445},{\"x\":0.25,\"y\":0.29038897663413055},{\"x\":0.2916666666666667,\"y\":0.3181195556711913},{\"x\":0.3333333333333333,\"y\":0.3454047861404085},{\"x\":0.375,\"y\":0.37250797031348043},{\"x\":0.4166666666666667,\"y\":0.39964289664028857},{\"x\":0.4583333333333333,\"y\":0.42699667500326},{\"x\":0.5,\"y\":0.4547448678354724},{\"x\":0.5416666666666666,\"y\":0.48306313703872433},{\"x\":0.5833333333333334,\"y\":0.5121378895376061},{\"x\":0.625,\"y\":0.5421778565499404},{\"x\":0.6666666666666666,\"y\":0.5734287403438163},{\"x\":0.7083333333333334,\"y\":0.6061940881404471},{\"x\":0.75,\"y\":0.6408680654052579},{\"x\":0.7916666666666666,\"y\":0.6779917707764423},{\"x\":0.8333333333333334,\"y\":0.7183601984310792},{\"x\":0.875,\"y\":0.7632534945705327},{\"x\":0.9166666666666666,\"y\":0.8150428000110822},{\"x\":0.9583333333333334,\"y\":0.8794277772003082},{\"x\":1,\"y\":1}],\"xLabel\":\"P\",\"yLabel\":\"Weight\"},\"metrics\":[{\"label\":\"Weight\",\"value\":\"0.067\"},{\"label\":\"P\",\"value\":\"0.01\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0263/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #263. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0263.case.1.witness",
+      "text": "P=0.8; Weight=0.686",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0263/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #263. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0263.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.8],[\"Alpha\",0.65]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0263/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #263. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0263.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":0},{\"x\":0.041666666666666664,\"y\":0.11999123151975506},{\"x\":0.08333333333333333,\"y\":0.16415034519024202},{\"x\":0.125,\"y\":0.20000656850167975},{\"x\":0.16666666666666666,\"y\":0.23201851980586247},{\"x\":0.20833333333333334,\"y\":0.26186101649421445},{\"x\":0.25,\"y\":0.29038897663413055},{\"x\":0.2916666666666667,\"y\":0.3181195556711913},{\"x\":0.3333333333333333,\"y\":0.3454047861404085},{\"x\":0.375,\"y\":0.37250797031348043},{\"x\":0.4166666666666667,\"y\":0.39964289664028857},{\"x\":0.4583333333333333,\"y\":0.42699667500326},{\"x\":0.5,\"y\":0.4547448678354724},{\"x\":0.5416666666666666,\"y\":0.48306313703872433},{\"x\":0.5833333333333334,\"y\":0.5121378895376061},{\"x\":0.625,\"y\":0.5421778565499404},{\"x\":0.6666666666666666,\"y\":0.5734287403438163},{\"x\":0.7083333333333334,\"y\":0.6061940881404471},{\"x\":0.75,\"y\":0.6408680654052579},{\"x\":0.7916666666666666,\"y\":0.6779917707764423},{\"x\":0.8333333333333334,\"y\":0.7183601984310792},{\"x\":0.875,\"y\":0.7632534945705327},{\"x\":0.9166666666666666,\"y\":0.8150428000110822},{\"x\":0.9583333333333334,\"y\":0.8794277772003082},{\"x\":1,\"y\":1}],\"xLabel\":\"P\",\"yLabel\":\"Weight\"},\"metrics\":[{\"label\":\"Weight\",\"value\":\"0.686\"},{\"label\":\"P\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0263/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #263. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0263.recall",
+      "text": "A toy probability-weighting rule is exp(-(-log(P))^Alpha). With P 0.008 and Alpha 0.65, what decision weight results? Answer 0.062.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0263/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #263. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy probability-weighting rule is exp(-(-log(P))^Alpha). With P 0.008 and Alpha 0.65, what decision weight results?",
+    "options": [
+      "0.062",
+      "-0.038",
+      "0.162"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Weight 0.062 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0263",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-263"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 263,
+    "sourceSection": "14. Risk & probability weighting",
+    "sourceEntryOriginal": "- **263.** People overweight small probabilities and underweight large ones, an inverse-S curve (Tversky & Kahneman, 1992; Prelec, 1998).",
+    "modelBoundary": "a nonlinear decision-weight curve",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

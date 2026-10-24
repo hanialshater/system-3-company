@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0345",
+  "title": "A lottery estimate near zero",
+  "hook": "Two stated cases: explore the distinction between a tiny estimate and proof of an effect.",
+  "domain": "behavioral",
+  "concept": "be-source-0345",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the distinction between a tiny estimate and proof of an effect affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines D, regardless of the stated inputs.",
+  "objective": "Compare the distinction between a tiny estimate and proof of an effect in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0345.predict",
+      "text": "Two toy means are 0.501 and 0.5, with common standard deviation 0.2. What is their standardized difference?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0345/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #345. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0345.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0345/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #345. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0345.reveal.0",
+      "text": "The retained results are MeanA=0.501; D=0.005 and MeanA=0.5; D=0.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0345/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #345. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0345.reveal.1",
+      "text": "A standardized effect divides the raw difference by spread. It does not by itself describe practical importance or replication success. This comparison isolates the distinction between a tiny estimate and proof of an effect.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0345/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #345. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0345.case.0.witness",
+      "text": "MeanA=0.501; D=0.005",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0345/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #345. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0345.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"MeanA\",0.501],[\"MeanB\",0.5],[\"SD\",0.2]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0345/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #345. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0345.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"D\",\"value\":0.0050000000000000044}]},\"metrics\":[{\"label\":\"D\",\"value\":\"0.005\"},{\"label\":\"MeanA\",\"value\":\"0.501\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0345/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #345. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0345.case.1.witness",
+      "text": "MeanA=0.5; D=0",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0345/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #345. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0345.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"MeanA\",0.5],[\"MeanB\",0.5],[\"SD\",0.2]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0345/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #345. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0345.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"D\",\"value\":0}]},\"metrics\":[{\"label\":\"D\",\"value\":\"0\"},{\"label\":\"MeanA\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0345/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #345. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0345.recall",
+      "text": "Two toy means are 0.601 and 0.5, with common standard deviation 0.2. What is their standardized difference? Answer 0.505.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0345/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #345. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two toy means are 0.601 and 0.5, with common standard deviation 0.2. What is their standardized difference?",
+    "options": [
+      "0.303",
+      "0.505",
+      "0.707"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives D 0.505 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0345",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-345"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 345,
+    "sourceSection": "18. Health behavior",
+    "sourceEntryOriginal": "- **345.** **\\[contested\\]** Ohio's COVID vaccine lottery showed no clear increase in vaccination in several analyses (Walkey, Law & Bosch, 2021).",
+    "modelBoundary": "the distinction between a tiny estimate and proof of an effect",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

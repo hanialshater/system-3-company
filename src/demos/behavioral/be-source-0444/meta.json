@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0444",
+  "title": "The honor-box payment share",
+  "hook": "Two stated cases: explore the denominator behind two recorded payment rates.",
+  "domain": "behavioral",
+  "concept": "be-source-0444",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the denominator behind two recorded payment rates affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Gap, regardless of the stated inputs.",
+  "objective": "Compare the denominator behind two recorded payment rates in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0444.predict",
+      "text": "A toy comparison has 87/100 in A and 90/100 in B. What is A minus B in percentage points?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0444/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #444. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0444.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0444/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #444. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0444.reveal.0",
+      "text": "The retained results are HitA=87 TotalA=100; Gap=-3 and HitA=174 TotalA=200; Gap=-3.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0444/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #444. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0444.reveal.1",
+      "text": "Divide by each group’s own denominator before subtracting. A rate difference alone does not explain the cause of that difference. This comparison isolates the denominator behind two recorded payment rates.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0444/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #444. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0444.case.0.witness",
+      "text": "HitA=87 TotalA=100; Gap=-3",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0444/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #444. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0444.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"HitA\",87],[\"TotalA\",100],[\"HitB\",90],[\"TotalB\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0444/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #444. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0444.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":-3.0000000000000027}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"-3\"},{\"label\":\"HitA\",\"value\":\"87\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0444/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #444. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0444.case.1.witness",
+      "text": "HitA=174 TotalA=200; Gap=-3",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0444/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #444. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0444.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"HitA\",174],[\"TotalA\",200],[\"HitB\",180],[\"TotalB\",200]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0444/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #444. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0444.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":-3.0000000000000027}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"-3\"},{\"label\":\"HitA\",\"value\":\"174\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0444/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #444. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0444.recall",
+      "text": "A toy comparison has 88/100 in A and 90/100 in B. What is A minus B in percentage points? Answer -2.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0444/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #444. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy comparison has 88/100 in A and 90/100 in B. What is A minus B in percentage points?",
+    "options": [
+      "-2.8",
+      "-2",
+      "-1.2"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Gap -2 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0444",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-444"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 444,
+    "sourceSection": "23. Honesty & dishonesty",
+    "sourceEntryOriginal": "- **444.** An office bagel seller using an honor box was paid for about 87–90% of bagels (Levitt, 2006).",
+    "modelBoundary": "the denominator behind two recorded payment rates",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

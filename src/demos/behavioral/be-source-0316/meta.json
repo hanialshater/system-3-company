@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0316",
+  "title": "An adherence lottery budget",
+  "hook": "Two stated cases: explore the expected payment under an explicit lottery rule.",
+  "domain": "behavioral",
+  "concept": "be-source-0316",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the expected payment under an explicit lottery rule affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Net, regardless of the stated inputs.",
+  "objective": "Compare the expected payment under an explicit lottery rule in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0316.predict",
+      "text": "A toy policy reduces a loss by 10 with probability 0.1 and costs 2. What is its expected cash gain minus cost?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0316/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #316. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0316.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0316/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #316. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0316.reveal.0",
+      "text": "The retained results are Probability=0.1; Net=-1 and Probability=0.3; Net=1.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0316/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #316. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0316.reveal.1",
+      "text": "Expected cash value weights the avoided loss by its probability. Utility, liquidity and risk tolerance are separate assumptions. This comparison isolates the expected payment under an explicit lottery rule.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0316/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #316. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0316.case.0.witness",
+      "text": "Probability=0.1; Net=-1",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0316/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #316. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0316.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Probability\",0.1],[\"Reduction\",10],[\"Cost\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0316/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #316. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0316.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Net\",\"value\":-1}]},\"metrics\":[{\"label\":\"Net\",\"value\":\"-1\"},{\"label\":\"Probability\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0316/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #316. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0316.case.1.witness",
+      "text": "Probability=0.3; Net=1",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0316/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #316. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0316.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Probability\",0.3],[\"Reduction\",10],[\"Cost\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0316/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #316. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0316.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Net\",\"value\":1}]},\"metrics\":[{\"label\":\"Net\",\"value\":\"1\"},{\"label\":\"Probability\",\"value\":\"0.3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0316/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #316. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0316.recall",
+      "text": "A toy policy reduces a loss by 10 with probability 0.08 and costs 2. What is its expected cash gain minus cost? Answer -1.2.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0316/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #316. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy policy reduces a loss by 10 with probability 0.08 and costs 2. What is its expected cash gain minus cost?",
+    "options": [
+      "-1.68",
+      "-0.72",
+      "-1.2"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Net -1.2 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0316",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-316"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 316,
+    "sourceSection": "16. Incentives & motivation",
+    "sourceEntryOriginal": "- **316.** Daily lottery incentives improved adherence to the blood thinner warfarin (Volpp et al., 2008).",
+    "modelBoundary": "the expected payment under an explicit lottery rule",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

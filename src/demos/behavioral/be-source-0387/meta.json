@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0387",
+  "title": "Benefits and recent reference pay",
+  "hook": "Two stated cases: explore the reference wage behind a stated value comparison.",
+  "domain": "behavioral",
+  "concept": "be-source-0387",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the reference wage behind a stated value comparison affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Value, regardless of the stated inputs.",
+  "objective": "Compare the reference wage behind a stated value comparison in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0387.predict",
+      "text": "An outcome is 80, its reference is 100, and negative differences count 2 times positive ones. What is its signed model value?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0387/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #387. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0387.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0387/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #387. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0387.reveal.0",
+      "text": "The retained results are Reference=100; Value=-40 and Reference=70; Value=10.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0387/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #387. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0387.reveal.1",
+      "text": "The same outcome changes sign when its reference crosses it. The reference is a stated assumption, not a measure of anyone’s feelings. This comparison isolates the reference wage behind a stated value comparison.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0387/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #387. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0387.case.0.witness",
+      "text": "Reference=100; Value=-40",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0387/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #387. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0387.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Outcome\",80],[\"Reference\",100],[\"Lambda\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0387/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #387. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0387.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"Input\",\"value\":80},{\"label\":\"Result\",\"value\":-40}]},\"metrics\":[{\"label\":\"Value\",\"value\":\"-40\"},{\"label\":\"Reference\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0387/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #387. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0387.case.1.witness",
+      "text": "Reference=70; Value=10",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0387/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #387. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0387.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Outcome\",80],[\"Reference\",70],[\"Lambda\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0387/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #387. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0387.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"Input\",\"value\":80},{\"label\":\"Result\",\"value\":10}]},\"metrics\":[{\"label\":\"Value\",\"value\":\"10\"},{\"label\":\"Reference\",\"value\":\"70\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0387/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #387. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0387.recall",
+      "text": "An outcome is 81, its reference is 100, and negative differences count 2 times positive ones. What is its signed model value? Answer -38.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0387/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #387. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "An outcome is 81, its reference is 100, and negative differences count 2 times positive ones. What is its signed model value?",
+    "options": [
+      "-53.2",
+      "-38",
+      "-22.8"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Value -38 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0387",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-387"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 387,
+    "sourceSection": "20. Labor & the workplace",
+    "sourceEntryOriginal": "- **387.** Job seekers in Hungary searched in ways consistent with comparing benefits to recent reference levels (DellaVigna, Lindner, Reizer & Schmieder, 2017).",
+    "modelBoundary": "the reference wage behind a stated value comparison",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

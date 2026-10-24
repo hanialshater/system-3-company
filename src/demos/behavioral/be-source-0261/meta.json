@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0261",
+  "title": "Cancel the common payoff",
+  "hook": "Two stated cases: explore a truly shared outcome in expected-cash arithmetic.",
+  "domain": "behavioral",
+  "concept": "be-source-0261",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How a truly shared outcome in expected-cash arithmetic affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Advantage, regardless of the stated inputs.",
+  "objective": "Compare a truly shared outcome in expected-cash arithmetic in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0261.predict",
+      "text": "A toy pair shares payoff 80. One adds gain 100 with probability 0.3; the other adds sure 20. What is risky minus sure expected cash?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0261/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #261. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0261.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0261/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #261. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0261.reveal.0",
+      "text": "The retained results are Common=80; Advantage=10 and Common=0; Advantage=10.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0261/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #261. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0261.reveal.1",
+      "text": "A truly common component cancels from this expected-cash comparison. Preferences over lotteries require an additional utility model. This comparison isolates a truly shared outcome in expected-cash arithmetic.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0261/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #261. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0261.case.0.witness",
+      "text": "Common=80; Advantage=10",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0261/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #261. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0261.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Common\",80],[\"Gain\",100],[\"Sure\",20],[\"P\",0.3]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0261/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #261. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0261.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Advantage\",\"value\":10}]},\"metrics\":[{\"label\":\"Advantage\",\"value\":\"10\"},{\"label\":\"Common\",\"value\":\"80\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0261/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #261. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0261.case.1.witness",
+      "text": "Common=0; Advantage=10",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0261/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #261. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0261.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Common\",0],[\"Gain\",100],[\"Sure\",20],[\"P\",0.3]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0261/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #261. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0261.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Advantage\",\"value\":10}]},\"metrics\":[{\"label\":\"Advantage\",\"value\":\"10\"},{\"label\":\"Common\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0261/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #261. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0261.recall",
+      "text": "A toy pair shares payoff 80. One adds gain 101 with probability 0.3; the other adds sure 20. What is risky minus sure expected cash? Answer 10.3.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0261/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #261. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy pair shares payoff 80. One adds gain 101 with probability 0.3; the other adds sure 20. What is risky minus sure expected cash?",
+    "options": [
+      "6.18",
+      "10.3",
+      "14.42"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Advantage 10.3 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0261",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-261"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 261,
+    "sourceSection": "14. Risk & probability weighting",
+    "sourceEntryOriginal": "- **261.** The Allais paradox: people's choices between gambles violate expected utility theory when a certain outcome is involved (Allais, 1953).",
+    "modelBoundary": "a truly shared outcome in expected-cash arithmetic",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

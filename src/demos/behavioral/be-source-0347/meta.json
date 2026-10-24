@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0347",
+  "title": "Calories per transaction",
+  "hook": "Two stated cases: explore the starting calories behind a relative change.",
+  "domain": "behavioral",
+  "concept": "be-source-0347",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the starting calories behind a relative change affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Final, regardless of the stated inputs.",
+  "objective": "Compare the starting calories behind a relative change in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0347.predict",
+      "text": "A toy baseline is 300; it changes by -6 percent. What is the final level?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0347/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #347. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0347.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0347/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #347. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0347.reveal.0",
+      "text": "The retained results are Baseline=300; Final=282 and Baseline=500; Final=470.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0347/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #347. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0347.reveal.1",
+      "text": "A relative percentage uses the baseline as denominator. It is different from the same number of percentage points. This comparison isolates the starting calories behind a relative change.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0347/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #347. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0347.case.0.witness",
+      "text": "Baseline=300; Final=282",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0347/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #347. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0347.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Baseline\",300],[\"Percent\",-6]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0347/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #347. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0347.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":282}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"282\"},{\"label\":\"Baseline\",\"value\":\"300\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0347/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #347. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0347.case.1.witness",
+      "text": "Baseline=500; Final=470",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0347/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #347. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0347.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Baseline\",500],[\"Percent\",-6]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0347/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #347. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0347.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":470}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"470\"},{\"label\":\"Baseline\",\"value\":\"500\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0347/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #347. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0347.recall",
+      "text": "A toy baseline is 301; it changes by -6 percent. What is the final level? Answer 282.94.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0347/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #347. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy baseline is 301; it changes by -6 percent. What is the final level?",
+    "options": [
+      "282.94",
+      "169.764",
+      "396.116"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Final 282.94 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0347",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-347"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 347,
+    "sourceSection": "18. Health behavior",
+    "sourceEntryOriginal": "- **347.** Posting calories at New York Starbucks cut calories per transaction about 6% (Bollinger, Leslie & Sorensen, 2011).",
+    "modelBoundary": "the starting calories behind a relative change",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

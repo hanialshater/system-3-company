@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0254",
+  "title": "Benefit colors the risk estimate",
+  "hook": "Two stated cases: explore the weight given to a favorable cue.",
+  "domain": "behavioral",
+  "concept": "be-source-0254",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the weight given to a favorable cue affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Estimate, regardless of the stated inputs.",
+  "objective": "Compare the weight given to a favorable cue in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0254.predict",
+      "text": "A toy estimate gives anchor 20 weight 0.7 and evidence 60 the remaining weight. What estimate results?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0254/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #254. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0254.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0254/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #254. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0254.reveal.0",
+      "text": "The retained results are Weight=0.7; Estimate=32 and Weight=0.1; Estimate=56.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0254/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #254. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0254.reveal.1",
+      "text": "An estimate can move because the arbitrary starting point moves. The contrast holds the evidence fixed to expose that channel. This comparison isolates the weight given to a favorable cue.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0254/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #254. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0254.case.0.witness",
+      "text": "Weight=0.7; Estimate=32",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0254/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #254. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0254.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Anchor\",20],[\"Evidence\",60],[\"Weight\",0.7]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0254/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #254. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0254.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Estimate\",\"value\":32}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"32\"},{\"label\":\"Weight\",\"value\":\"0.7\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0254/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #254. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0254.case.1.witness",
+      "text": "Weight=0.1; Estimate=56",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0254/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #254. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0254.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Anchor\",20],[\"Evidence\",60],[\"Weight\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0254/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #254. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0254.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Estimate\",\"value\":56}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"56\"},{\"label\":\"Weight\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0254/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #254. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0254.recall",
+      "text": "A toy estimate gives anchor 21 weight 0.7 and evidence 60 the remaining weight. What estimate results? Answer 32.7.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0254/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #254. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy estimate gives anchor 21 weight 0.7 and evidence 60 the remaining weight. What estimate results?",
+    "options": [
+      "32.7",
+      "19.62",
+      "45.78"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Estimate 32.7 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0254",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-254"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 254,
+    "sourceSection": "13. Availability, representativeness & other heuristics",
+    "sourceEntryOriginal": "- **254.** Under time pressure, people who see a technology as beneficial also see it as low-risk, an affect heuristic (Finucane et al., 2000).",
+    "modelBoundary": "the weight given to a favorable cue",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0283",
+  "title": "Price ending and revenue",
+  "hook": "Two stated cases: explore quantity and margin in a price comparison.",
+  "domain": "behavioral",
+  "concept": "be-source-0283",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How quantity and margin in a price comparison affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Profit, regardless of the stated inputs.",
+  "objective": "Compare quantity and margin in a price comparison in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0283.predict",
+      "text": "A toy sale has 100 units at price 39, unit cost 20 and fraction 0 of revenue donated. What profit remains?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0283/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #283. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0283.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0283/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #283. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0283.reveal.0",
+      "text": "The retained results are Quantity=100 Price=39; Profit=1,900 and Quantity=110 Price=34; Profit=1,540.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0283/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #283. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0283.reveal.1",
+      "text": "Quantity, price, costs and transfers all enter profit. Sales alone cannot establish the profitability of a pricing policy. This comparison isolates quantity and margin in a price comparison.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0283/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #283. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0283.case.0.witness",
+      "text": "Quantity=100 Price=39; Profit=1,900",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0283/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #283. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0283.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Quantity\",100],[\"Price\",39],[\"Cost\",20],[\"Charity\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0283/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #283. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0283.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Profit\",\"value\":1900}]},\"metrics\":[{\"label\":\"Profit\",\"value\":\"1,900\"},{\"label\":\"Quantity\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0283/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #283. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0283.case.1.witness",
+      "text": "Quantity=110 Price=34; Profit=1,540",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0283/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #283. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0283.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Quantity\",110],[\"Price\",34],[\"Cost\",20],[\"Charity\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0283/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #283. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0283.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Profit\",\"value\":1540}]},\"metrics\":[{\"label\":\"Profit\",\"value\":\"1,540\"},{\"label\":\"Quantity\",\"value\":\"110\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0283/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #283. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0283.recall",
+      "text": "A toy sale has 101 units at price 39, unit cost 20 and fraction 0 of revenue donated. What profit remains? Answer 1,919.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0283/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #283. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy sale has 101 units at price 39, unit cost 20 and fraction 0 of revenue donated. What profit remains?",
+    "options": [
+      "1,151.4",
+      "2,686.6",
+      "1,919"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Profit 1,919 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0283",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-283"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 283,
+    "sourceSection": "15. Pricing & consumer behavior",
+    "sourceEntryOriginal": "- **283.** Women's clothing priced at $39 outsold the same item at $34 or $44 (Anderson & Simester, 2003).",
+    "modelBoundary": "quantity and margin in a price comparison",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

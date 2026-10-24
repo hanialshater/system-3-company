@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0359",
+  "title": "A gym commitment horizon",
+  "hook": "Two stated cases: explore the horizon over which a commitment cost is evaluated.",
+  "domain": "behavioral",
+  "concept": "be-source-0359",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the horizon over which a commitment cost is evaluated affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Saving, regardless of the stated inputs.",
+  "objective": "Compare the horizon over which a commitment cost is evaluated in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0359.predict",
+      "text": "A toy switch saves 20 per year for 12 years and costs 50 now. Ignoring discounting, what is its net saving?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0359/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #359. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0359.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0359/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #359. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0359.reveal.0",
+      "text": "The retained results are Years=12; Saving=190 and Years=1; Saving=-30.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0359/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #359. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0359.reveal.1",
+      "text": "Include the switching cost and horizon. Inertia may have a financial cost, but this model alone cannot explain real choices. This comparison isolates the horizon over which a commitment cost is evaluated.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0359/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #359. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0359.case.0.witness",
+      "text": "Years=12; Saving=190",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0359/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #359. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0359.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Annual\",20],[\"Years\",12],[\"SwitchCost\",50]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0359/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #359. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0359.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Saving\",\"value\":190}]},\"metrics\":[{\"label\":\"Saving\",\"value\":\"190\"},{\"label\":\"Years\",\"value\":\"12\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0359/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #359. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0359.case.1.witness",
+      "text": "Years=1; Saving=-30",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0359/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #359. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0359.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Annual\",20],[\"Years\",1],[\"SwitchCost\",50]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0359/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #359. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0359.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Saving\",\"value\":-30}]},\"metrics\":[{\"label\":\"Saving\",\"value\":\"-30\"},{\"label\":\"Years\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0359/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #359. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0359.recall",
+      "text": "A toy switch saves 21 per year for 12 years and costs 50 now. Ignoring discounting, what is its net saving? Answer 202.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0359/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #359. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy switch saves 21 per year for 12 years and costs 50 now. Ignoring discounting, what is its net saving?",
+    "options": [
+      "202",
+      "121.2",
+      "282.8"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Saving 202 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0359",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-359"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 359,
+    "sourceSection": "18. Health behavior",
+    "sourceEntryOriginal": "- **359.** Workplace commitment contracts improved long-run gym attendance for some employees (Royer, Stehr & Sydnor, 2015).",
+    "modelBoundary": "the horizon over which a commitment cost is evaluated",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

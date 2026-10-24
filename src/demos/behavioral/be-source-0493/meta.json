@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0493",
+  "title": "A cleansing prime meets replication",
+  "hook": "Two stated cases: explore the study weights behind a failed-replication contrast.",
+  "domain": "behavioral",
+  "concept": "be-source-0493",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the study weights behind a failed-replication contrast affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Pooled, regardless of the stated inputs.",
+  "objective": "Compare the study weights behind a failed-replication contrast in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0493.predict",
+      "text": "Toy visible studies average 0.5 across 1 equal-weight studies; missing studies average 0 across 6. What is the mean if all are included?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0493/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #493. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0493.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0493/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #493. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0493.reveal.0",
+      "text": "The retained results are MissingN=6; Pooled=0.071 and MissingN=1; Pooled=0.25.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0493/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #493. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0493.reveal.1",
+      "text": "Selection of studies can change a pooled estimate. Missing results here are explicit sensitivity assumptions, not recovered observations. This comparison isolates the study weights behind a failed-replication contrast.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0493/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #493. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0493.case.0.witness",
+      "text": "MissingN=6; Pooled=0.071",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0493/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #493. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0493.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Visible\",0.5],[\"VisibleN\",1],[\"Missing\",0],[\"MissingN\",6]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0493/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #493. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0493.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Pooled\",\"value\":0.07142857142857142}]},\"metrics\":[{\"label\":\"Pooled\",\"value\":\"0.071\"},{\"label\":\"MissingN\",\"value\":\"6\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0493/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #493. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0493.case.1.witness",
+      "text": "MissingN=1; Pooled=0.25",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0493/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #493. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0493.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Visible\",0.5],[\"VisibleN\",1],[\"Missing\",0],[\"MissingN\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0493/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #493. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0493.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Pooled\",\"value\":0.25}]},\"metrics\":[{\"label\":\"Pooled\",\"value\":\"0.25\"},{\"label\":\"MissingN\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0493/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #493. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0493.recall",
+      "text": "Toy visible studies average 0.6 across 1 equal-weight studies; missing studies average 0 across 6. What is the mean if all are included? Answer 0.086.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0493/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #493. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy visible studies average 0.6 across 1 equal-weight studies; missing studies average 0 across 6. What is the mean if all are included?",
+    "options": [
+      "-0.014",
+      "0.186",
+      "0.086"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Pooled 0.086 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0493",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-493"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 493,
+    "sourceSection": "25. Famous findings that failed to replicate or shrank",
+    "sourceEntryOriginal": "- **493.** Thinking about past wrongdoing was said to make people want to wash, the \"Macbeth effect\" (Zhong & Liljenquist, 2006); replications failed (Earp, Everett, Madva & Hamlin, 2014).",
+    "modelBoundary": "the study weights behind a failed-replication contrast",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

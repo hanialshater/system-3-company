@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0292",
+  "title": "A scarce-looking cookie jar",
+  "hook": "Two stated cases: explore unit quantity separate from a scarcity cue.",
+  "domain": "behavioral",
+  "concept": "be-source-0292",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How unit quantity separate from a scarcity cue affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines UnitCost, regardless of the stated inputs.",
+  "objective": "Compare unit quantity separate from a scarcity cue in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0292.predict",
+      "text": "A toy pack costs 4 for 2 units. What is its price per 1 units?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0292/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #292. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0292.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0292/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #292. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0292.reveal.0",
+      "text": "The retained results are Quantity=2; UnitCost=2 and Quantity=8; UnitCost=0.5.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0292/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #292. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0292.reveal.1",
+      "text": "A common unit denominator makes unequal packages comparable. Package appearance does not change their stated contents. This comparison isolates unit quantity separate from a scarcity cue.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0292/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #292. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0292.case.0.witness",
+      "text": "Quantity=2; UnitCost=2",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0292/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #292. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0292.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Price\",4],[\"Quantity\",2],[\"Units\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0292/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #292. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0292.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"UnitCost\",\"value\":2}]},\"metrics\":[{\"label\":\"UnitCost\",\"value\":\"2\"},{\"label\":\"Quantity\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0292/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #292. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0292.case.1.witness",
+      "text": "Quantity=8; UnitCost=0.5",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0292/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #292. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0292.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Price\",4],[\"Quantity\",8],[\"Units\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0292/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #292. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0292.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"UnitCost\",\"value\":0.5}]},\"metrics\":[{\"label\":\"UnitCost\",\"value\":\"0.5\"},{\"label\":\"Quantity\",\"value\":\"8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0292/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #292. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0292.recall",
+      "text": "A toy pack costs 5 for 2 units. What is its price per 1 units? Answer 2.5.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0292/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #292. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy pack costs 5 for 2 units. What is its price per 1 units?",
+    "options": [
+      "1.5",
+      "3.5",
+      "2.5"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives UnitCost 2.5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0292",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-292"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 292,
+    "sourceSection": "15. Pricing & consumer behavior",
+    "sourceEntryOriginal": "- **292.** Cookies from a nearly empty jar were rated more desirable than identical cookies from a full one (Worchel, Lee & Adewole, 1975).",
+    "modelBoundary": "unit quantity separate from a scarcity cue",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0320",
+  "title": "A symbolic award, a baseline",
+  "hook": "Two stated cases: explore the base behind a stated twelve-percent change.",
+  "domain": "behavioral",
+  "concept": "be-source-0320",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the base behind a stated twelve-percent change affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Final, regardless of the stated inputs.",
+  "objective": "Compare the base behind a stated twelve-percent change in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0320.predict",
+      "text": "A toy baseline is 100; it changes by 12 percent. What is the final level?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0320/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #320. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0320.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0320/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #320. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0320.reveal.0",
+      "text": "The retained results are Baseline=100; Final=112 and Baseline=250; Final=280.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0320/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #320. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0320.reveal.1",
+      "text": "A relative percentage uses the baseline as denominator. It is different from the same number of percentage points. This comparison isolates the base behind a stated twelve-percent change.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0320/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #320. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0320.case.0.witness",
+      "text": "Baseline=100; Final=112",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0320/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #320. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0320.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Baseline\",100],[\"Percent\",12]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0320/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #320. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0320.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":112.00000000000001}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"112\"},{\"label\":\"Baseline\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0320/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #320. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0320.case.1.witness",
+      "text": "Baseline=250; Final=280",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0320/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #320. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0320.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Baseline\",250],[\"Percent\",12]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0320/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #320. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0320.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":280}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"280\"},{\"label\":\"Baseline\",\"value\":\"250\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0320/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #320. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0320.recall",
+      "text": "A toy baseline is 101; it changes by 12 percent. What is the final level? Answer 113.12.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0320/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #320. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy baseline is 101; it changes by 12 percent. What is the final level?",
+    "options": [
+      "113.12",
+      "67.872",
+      "158.368"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Final 113.12 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0320",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-320"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 320,
+    "sourceSection": "16. Incentives & motivation",
+    "sourceEntryOriginal": "- **320.** A purely symbolic award raised workers' performance about 12% (Kosfeld & Neckermann, 2011).",
+    "modelBoundary": "the base behind a stated twelve-percent change",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

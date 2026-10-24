@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0390",
+  "title": "A job-search belief barely moves",
+  "hook": "Two stated cases: explore the weight given to repeated unfavorable news.",
+  "domain": "behavioral",
+  "concept": "be-source-0390",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the weight given to repeated unfavorable news affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Posterior, regardless of the stated inputs.",
+  "objective": "Compare the weight given to repeated unfavorable news in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0390.predict",
+      "text": "A toy belief starts at 0.8, receives estimate 0.3, and moves fraction 0.1 toward it. What belief results?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0390/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #390. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0390.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0390/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #390. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0390.reveal.0",
+      "text": "The retained results are Weight=0.1; Posterior=0.75 and Weight=0.8; Posterior=0.4.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0390/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #390. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0390.reveal.1",
+      "text": "Different update weights can create asymmetric learning from equally informative news. The toy rule is an assumption, not a psychological measurement. This comparison isolates the weight given to repeated unfavorable news.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0390/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #390. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0390.case.0.witness",
+      "text": "Weight=0.1; Posterior=0.75",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0390/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #390. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0390.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0.8],[\"News\",0.3],[\"Weight\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0390/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #390. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0390.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Posterior\",\"value\":0.75}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"0.75\"},{\"label\":\"Weight\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0390/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #390. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0390.case.1.witness",
+      "text": "Weight=0.8; Posterior=0.4",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0390/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #390. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0390.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0.8],[\"News\",0.3],[\"Weight\",0.8]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0390/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #390. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0390.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Posterior\",\"value\":0.4}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"0.4\"},{\"label\":\"Weight\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0390/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #390. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0390.recall",
+      "text": "A toy belief starts at 0.64, receives estimate 0.3, and moves fraction 0.1 toward it. What belief results? Answer 0.606.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0390/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #390. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy belief starts at 0.64, receives estimate 0.3, and moves fraction 0.1 toward it. What belief results?",
+    "options": [
+      "0.364",
+      "0.606",
+      "0.848"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Posterior 0.606 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0390",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-390"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 390,
+    "sourceSection": "20. Labor & the workplace",
+    "sourceEntryOriginal": "- **390.** Their expectations barely fall as unemployment drags on, which helps explain long spells (Mueller, Spinnewijn & Topa, 2021).",
+    "modelBoundary": "the weight given to repeated unfavorable news",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

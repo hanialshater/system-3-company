@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0319",
+  "title": "Absence and attendance",
+  "hook": "Two stated cases: explore the difference between absence and its complement.",
+  "domain": "behavioral",
+  "concept": "be-source-0319",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the difference between absence and its complement affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Gap, regardless of the stated inputs.",
+  "objective": "Compare the difference between absence and its complement in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0319.predict",
+      "text": "A toy comparison has 42/100 in A and 21/100 in B. What is A minus B in percentage points?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0319/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #319. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0319.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0319/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #319. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0319.reveal.0",
+      "text": "The retained results are HitA=42 HitB=21; Gap=21 and HitA=58 HitB=79; Gap=-21.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0319/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #319. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0319.reveal.1",
+      "text": "Divide by each group’s own denominator before subtracting. A rate difference alone does not explain the cause of that difference. This comparison isolates the difference between absence and its complement.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0319/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #319. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0319.case.0.witness",
+      "text": "HitA=42 HitB=21; Gap=21",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0319/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #319. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0319.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"HitA\",42],[\"TotalA\",100],[\"HitB\",21],[\"TotalB\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0319/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #319. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0319.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":21}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"21\"},{\"label\":\"HitA\",\"value\":\"42\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0319/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #319. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0319.case.1.witness",
+      "text": "HitA=58 HitB=79; Gap=-21",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0319/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #319. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0319.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"HitA\",58],[\"TotalA\",100],[\"HitB\",79],[\"TotalB\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0319/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #319. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0319.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":-21.000000000000007}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"-21\"},{\"label\":\"HitA\",\"value\":\"58\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0319/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #319. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0319.recall",
+      "text": "A toy comparison has 43/100 in A and 21/100 in B. What is A minus B in percentage points? Answer 22.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0319/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #319. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy comparison has 43/100 in A and 21/100 in B. What is A minus B in percentage points?",
+    "options": [
+      "13.2",
+      "30.8",
+      "22"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Gap 22 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0319",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-319"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 319,
+    "sourceSection": "16. Incentives & motivation",
+    "sourceEntryOriginal": "- **319.** Camera monitoring plus pay tied to attendance cut teacher absence in Rajasthan from 42% to 21% (Duflo, Hanna & Ryan, 2012).",
+    "modelBoundary": "the difference between absence and its complement",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0321",
+  "title": "Save a share of future raises",
+  "hook": "Two stated cases: explore the savings allocation rule for future salary increases.",
+  "domain": "behavioral",
+  "concept": "be-source-0321",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the savings allocation rule for future salary increases affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines SavedRate, regardless of the stated inputs.",
+  "objective": "Compare the savings allocation rule for future salary increases in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0321.predict",
+      "text": "Toy salary 100 grows by 0.05 each year for 4 years. Initial savings are fraction 0.035 of initial salary; fraction 0.5 of all raises is added to annual saving. What is the final saving rate?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0321/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #321. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0321.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0321/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #321. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0321.reveal.0",
+      "text": "The retained results are Allocated=0.5; SavedRate=0.117 and Allocated=0; SavedRate=0.029.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0321/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #321. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0321.reveal.1",
+      "text": "Committing part of future raises changes the saving rate without requiring the same immediate cut to current consumption. The salary path is assumed. This comparison isolates the savings allocation rule for future salary increases.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0321/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #321. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0321.case.0.witness",
+      "text": "Allocated=0.5; SavedRate=0.117",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0321/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #321. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0321.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Salary\",100],[\"Initial\",0.035],[\"Raise\",0.05],[\"Allocated\",0.5],[\"Years\",4]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0321/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #321. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0321.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"SavedRate\",\"value\":0.11744334922177496},{\"label\":\"Salary\",\"value\":121.55062500000003}]},\"metrics\":[{\"label\":\"SavedRate\",\"value\":\"0.117\"},{\"label\":\"Allocated\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0321/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #321. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0321.case.1.witness",
+      "text": "Allocated=0; SavedRate=0.029",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0321/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #321. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0321.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Salary\",100],[\"Initial\",0.035],[\"Raise\",0.05],[\"Allocated\",0],[\"Years\",4]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0321/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #321. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0321.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"SavedRate\",\"value\":0.02879458661771587},{\"label\":\"Salary\",\"value\":121.55062500000003}]},\"metrics\":[{\"label\":\"SavedRate\",\"value\":\"0.029\"},{\"label\":\"Allocated\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0321/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #321. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0321.recall",
+      "text": "Toy salary 100 grows by 0.05 each year for 4 years. Initial savings are fraction 0.135 of initial salary; fraction 0.5 of all raises is added to annual saving. What is the final saving rate? Answer 0.2.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0321/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #321. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy salary 100 grows by 0.05 each year for 4 years. Initial savings are fraction 0.135 of initial salary; fraction 0.5 of all raises is added to annual saving. What is the final saving rate?",
+    "options": [
+      "0.1",
+      "0.2",
+      "0.3"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives SavedRate 0.2 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0321",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-321"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 321,
+    "sourceSection": "17. Saving, retirement & household finance",
+    "sourceEntryOriginal": "- **321.** Save More Tomorrow, where workers commit future raises to savings, lifted saving rates from 3.5% to 13.6% over 40 months (Thaler & Benartzi, 2004).",
+    "modelBoundary": "the savings allocation rule for future salary increases",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

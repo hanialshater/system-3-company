@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0401",
+  "title": "Price swings and cash-flow forecasts",
+  "hook": "Two stated cases: explore the numerical gap between prices and a stated benchmark.",
+  "domain": "behavioral",
+  "concept": "be-source-0401",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the numerical gap between prices and a stated benchmark affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Error, regardless of the stated inputs.",
+  "objective": "Compare the numerical gap between prices and a stated benchmark in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0401.predict",
+      "text": "A toy result is at percentile 10; the forecast was percentile 40. What signed forecasting error is guessed minus actual?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0401/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #401. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0401.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0401/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #401. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0401.reveal.0",
+      "text": "The retained results are Guessed=40; Error=30 and Guessed=15; Error=5.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0401/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #401. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0401.reveal.1",
+      "text": "A rank gap describes the two numbers. Measurement noise and mathematical coupling can also affect patterns in such gaps. This comparison isolates the numerical gap between prices and a stated benchmark.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0401/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #401. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0401.case.0.witness",
+      "text": "Guessed=40; Error=30",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0401/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #401. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0401.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Actual\",10],[\"Guessed\",40]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0401/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #401. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0401.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"scatter\",\"points\":[{\"x\":0,\"y\":0},{\"x\":10,\"y\":40}],\"xLabel\":\"Actual\",\"yLabel\":\"Guessed\"},\"metrics\":[{\"label\":\"Error\",\"value\":\"30\"},{\"label\":\"Guessed\",\"value\":\"40\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0401/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #401. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0401.case.1.witness",
+      "text": "Guessed=15; Error=5",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0401/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #401. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0401.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Actual\",10],[\"Guessed\",15]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0401/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #401. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0401.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"scatter\",\"points\":[{\"x\":0,\"y\":0},{\"x\":10,\"y\":15}],\"xLabel\":\"Actual\",\"yLabel\":\"Guessed\"},\"metrics\":[{\"label\":\"Error\",\"value\":\"5\"},{\"label\":\"Guessed\",\"value\":\"15\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0401/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #401. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0401.recall",
+      "text": "A toy result is at percentile 11; the forecast was percentile 40. What signed forecasting error is guessed minus actual? Answer 29.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0401/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #401. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy result is at percentile 11; the forecast was percentile 40. What signed forecasting error is guessed minus actual?",
+    "options": [
+      "29",
+      "17.4",
+      "40.6"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Error 29 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0401",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-401"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 401,
+    "sourceSection": "21. Behavioral finance & markets",
+    "sourceEntryOriginal": "- **401.** Stock prices move far more than later dividends can justify (Shiller, 1981).",
+    "modelBoundary": "the numerical gap between prices and a stated benchmark",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

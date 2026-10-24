@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0335",
+  "title": "One employer dominates savings",
+  "hook": "Two stated cases: explore the loss exposure from a specified concentrated holding.",
+  "domain": "behavioral",
+  "concept": "be-source-0335",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the loss exposure from a specified concentrated holding affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Difference, regardless of the stated inputs.",
+  "objective": "Compare the loss exposure from a specified concentrated holding in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0335.predict",
+      "text": "Across 100 toy cases, action risk is 0 and inaction risk 0.6. How many fewer expected harms come with action?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0335/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #335. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0335.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0335/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #335. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0335.reveal.0",
+      "text": "The retained results are InactionRisk=0.6; Difference=60 and InactionRisk=0.1; Difference=10.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0335/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #335. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0335.reveal.1",
+      "text": "Count both action and inaction using the same population. These are specified risks in a toy comparison. This comparison isolates the loss exposure from a specified concentrated holding.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0335/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #335. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0335.case.0.witness",
+      "text": "InactionRisk=0.6; Difference=60",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0335/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #335. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0335.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Cases\",100],[\"ActionRisk\",0],[\"InactionRisk\",0.6]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0335/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #335. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0335.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Difference\",\"value\":60}]},\"metrics\":[{\"label\":\"Difference\",\"value\":\"60\"},{\"label\":\"InactionRisk\",\"value\":\"0.6\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0335/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #335. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0335.case.1.witness",
+      "text": "InactionRisk=0.1; Difference=10",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0335/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #335. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0335.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Cases\",100],[\"ActionRisk\",0],[\"InactionRisk\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0335/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #335. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0335.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Difference\",\"value\":10}]},\"metrics\":[{\"label\":\"Difference\",\"value\":\"10\"},{\"label\":\"InactionRisk\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0335/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #335. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0335.recall",
+      "text": "Across 101 toy cases, action risk is 0 and inaction risk 0.6. How many fewer expected harms come with action? Answer 60.6.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0335/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #335. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Across 101 toy cases, action risk is 0 and inaction risk 0.6. How many fewer expected harms come with action?",
+    "options": [
+      "60.6",
+      "36.36",
+      "84.84"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Difference 60.6 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0335",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-335"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 335,
+    "sourceSection": "17. Saving, retirement & household finance",
+    "sourceEntryOriginal": "- **335.** About 60% of Enron's 401(k) assets were in Enron stock before its collapse.",
+    "modelBoundary": "the loss exposure from a specified concentrated holding",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

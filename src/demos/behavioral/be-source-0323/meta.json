@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0323",
+  "title": "Saving per public-cost unit",
+  "hook": "Two stated cases: explore net saving after a stated program cost.",
+  "domain": "behavioral",
+  "concept": "be-source-0323",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How net saving after a stated program cost affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Saving, regardless of the stated inputs.",
+  "objective": "Compare net saving after a stated program cost in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0323.predict",
+      "text": "A toy switch saves 100 per year for 1 years and costs 10 now. Ignoring discounting, what is its net saving?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0323/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #323. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0323.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0323/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #323. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0323.reveal.0",
+      "text": "The retained results are SwitchCost=10; Saving=90 and SwitchCost=90; Saving=10.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0323/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #323. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0323.reveal.1",
+      "text": "Include the switching cost and horizon. Inertia may have a financial cost, but this model alone cannot explain real choices. This comparison isolates net saving after a stated program cost.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0323/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #323. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0323.case.0.witness",
+      "text": "SwitchCost=10; Saving=90",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0323/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #323. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0323.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Annual\",100],[\"Years\",1],[\"SwitchCost\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0323/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #323. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0323.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Saving\",\"value\":90}]},\"metrics\":[{\"label\":\"Saving\",\"value\":\"90\"},{\"label\":\"SwitchCost\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0323/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #323. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0323.case.1.witness",
+      "text": "SwitchCost=90; Saving=10",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0323/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #323. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0323.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Annual\",100],[\"Years\",1],[\"SwitchCost\",90]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0323/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #323. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0323.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Saving\",\"value\":10}]},\"metrics\":[{\"label\":\"Saving\",\"value\":\"10\"},{\"label\":\"SwitchCost\",\"value\":\"90\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0323/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #323. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0323.recall",
+      "text": "A toy switch saves 101 per year for 1 years and costs 10 now. Ignoring discounting, what is its net saving? Answer 91.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0323/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #323. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy switch saves 101 per year for 1 years and costs 10 now. Ignoring discounting, what is its net saving?",
+    "options": [
+      "91",
+      "54.6",
+      "127.4"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Saving 91 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0323",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-323"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 323,
+    "sourceSection": "17. Saving, retirement & household finance",
+    "sourceEntryOriginal": "- **323.** In the same data, automatic contributions raised total savings far more per dollar of public cost than tax subsidies (Chetty et al., 2014).",
+    "modelBoundary": "net saving after a stated program cost",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0476",
+  "title": "Unequal attention to applications",
+  "hook": "Two stated cases: explore the reading time in a specified review process.",
+  "domain": "behavioral",
+  "concept": "be-source-0476",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the reading time in a specified review process affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Checks, regardless of the stated inputs.",
+  "objective": "Compare the reading time in a specified review process in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0476.predict",
+      "text": "A toy decision inspects 5 attributes for each of 10 options, spending 10 seconds per check. What total time is needed?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0476/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #476. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0476.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0476/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #476. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0476.reveal.0",
+      "text": "The retained results are Attributes=5; Checks=500 and Attributes=2; Checks=200.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0476/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #476. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0476.reveal.1",
+      "text": "Decision cost depends on both the number of options and the dimensions compared. A smaller interface can change this cost without removing alternatives. This comparison isolates the reading time in a specified review process.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0476/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #476. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0476.case.0.witness",
+      "text": "Attributes=5; Checks=500",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0476/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #476. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0476.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Options\",10],[\"Attributes\",5],[\"Seconds\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0476/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #476. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0476.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"Input\",\"value\":10},{\"label\":\"Result\",\"value\":500}]},\"metrics\":[{\"label\":\"Checks\",\"value\":\"500\"},{\"label\":\"Attributes\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0476/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #476. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0476.case.1.witness",
+      "text": "Attributes=2; Checks=200",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0476/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #476. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0476.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Options\",10],[\"Attributes\",2],[\"Seconds\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0476/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #476. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0476.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"Input\",\"value\":10},{\"label\":\"Result\",\"value\":200}]},\"metrics\":[{\"label\":\"Checks\",\"value\":\"200\"},{\"label\":\"Attributes\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0476/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #476. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0476.recall",
+      "text": "A toy decision inspects 5 attributes for each of 11 options, spending 10 seconds per check. What total time is needed? Answer 550.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0476/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #476. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy decision inspects 5 attributes for each of 11 options, spending 10 seconds per check. What total time is needed?",
+    "options": [
+      "550",
+      "330",
+      "770"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Checks 550 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0476",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-476"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 476,
+    "sourceSection": "24. Scarcity, attention & cognitive load",
+    "sourceEntryOriginal": "- **476.** Landlords read more about applicants with majority-sounding names, a form of \"attention discrimination\" (Bartoš, Bauer, Chytilová & Matějka, 2016).",
+    "modelBoundary": "the reading time in a specified review process",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}
