@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0197",
+  "title": "A rule for a shared resource",
+  "hook": "Two stated cases: explore the common-pool payoff under two specified rules.",
+  "domain": "behavioral",
+  "concept": "be-source-0197",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the common-pool payoff under two specified rules affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Payoff, regardless of the stated inputs.",
+  "objective": "Compare the common-pool payoff under two specified rules in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0197.predict",
+      "text": "In a toy group of 5, everyone starts with 10, contributes 5, and the pot is multiplied by 1.5 then split equally. What is each payoff?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0197/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #197. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0197.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0197/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #197. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0197.reveal.0",
+      "text": "The retained results are Contribution=5; Payoff=12.5 and Contribution=2; Payoff=11.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0197/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #197. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0197.reveal.1",
+      "text": "Group benefit and the private return to one extra contribution differ. This symmetric case shows the accounting, not a predicted participation rate. This comparison isolates the common-pool payoff under two specified rules.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0197/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #197. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0197.case.0.witness",
+      "text": "Contribution=5; Payoff=12.5",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0197/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #197. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0197.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"People\",5],[\"Endowment\",10],[\"Contribution\",5],[\"Multiplier\",1.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0197/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #197. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0197.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Payoff\",\"value\":12.5}]},\"metrics\":[{\"label\":\"Payoff\",\"value\":\"12.5\"},{\"label\":\"Contribution\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0197/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #197. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0197.case.1.witness",
+      "text": "Contribution=2; Payoff=11",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0197/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #197. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0197.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"People\",5],[\"Endowment\",10],[\"Contribution\",2],[\"Multiplier\",1.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0197/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #197. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0197.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Payoff\",\"value\":11}]},\"metrics\":[{\"label\":\"Payoff\",\"value\":\"11\"},{\"label\":\"Contribution\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0197/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #197. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0197.recall",
+      "text": "In a toy group of 5, everyone starts with 11, contributes 5, and the pot is multiplied by 1.5 then split equally. What is each payoff? Answer 13.5.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0197/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #197. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In a toy group of 5, everyone starts with 11, contributes 5, and the pot is multiplied by 1.5 then split equally. What is each payoff?",
+    "options": [
+      "13.5",
+      "8.1",
+      "18.9"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Payoff 13.5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0197",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-197"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 197,
+    "sourceSection": "10. Trust, reciprocity & cooperation",
+    "sourceEntryOriginal": "- **197.** Groups that could make agreements and sanction each other managed shared resources well (Ostrom, Walker & Gardner, 1992; Ostrom, 1990).",
+    "modelBoundary": "the common-pool payoff under two specified rules",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

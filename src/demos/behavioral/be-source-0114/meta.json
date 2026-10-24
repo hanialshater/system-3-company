@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0114",
+  "title": "A windfall in a new envelope",
+  "hook": "Two stated cases: explore the allocation rule applied to a windfall.",
+  "domain": "behavioral",
+  "concept": "be-source-0114",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the allocation rule applied to a windfall affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Shortfall, regardless of the stated inputs.",
+  "objective": "Compare the allocation rule applied to a windfall in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0114.predict",
+      "text": "A toy household has 100, ring-fences 20, and must pay 90 from the remainder. What is the shortfall?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0114/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #114. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0114.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0114/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #114. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0114.reveal.0",
+      "text": "The retained results are Locked=20; Shortfall=10 and Locked=80; Shortfall=70.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0114/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #114. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0114.reveal.1",
+      "text": "The label changes which funds are treated as available. It does not change the household’s total resources. This comparison isolates the allocation rule applied to a windfall.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0114/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #114. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0114.case.0.witness",
+      "text": "Locked=20; Shortfall=10",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0114/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #114. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0114.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Total\",100],[\"Locked\",20],[\"Need\",90]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0114/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #114. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0114.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Shortfall\",\"value\":10}]},\"metrics\":[{\"label\":\"Shortfall\",\"value\":\"10\"},{\"label\":\"Locked\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0114/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #114. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0114.case.1.witness",
+      "text": "Locked=80; Shortfall=70",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0114/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #114. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0114.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Total\",100],[\"Locked\",80],[\"Need\",90]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0114/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #114. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0114.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Shortfall\",\"value\":70}]},\"metrics\":[{\"label\":\"Shortfall\",\"value\":\"70\"},{\"label\":\"Locked\",\"value\":\"80\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0114/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #114. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0114.recall",
+      "text": "A toy household has 101, ring-fences 20, and must pay 90 from the remainder. What is the shortfall? Answer 9.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0114/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #114. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy household has 101, ring-fences 20, and must pay 90 from the remainder. What is the shortfall?",
+    "options": [
+      "5.4",
+      "9",
+      "12.6"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Shortfall 9 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0114",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-114"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 114,
+    "sourceSection": "6. Mental accounting",
+    "sourceEntryOriginal": "- **114.** Windfall money is gambled and spent more readily than earned money (Arkes et al., 1994).",
+    "modelBoundary": "the allocation rule applied to a windfall",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

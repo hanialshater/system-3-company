@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "be-source-0183", "title": "Contributions across rounds", "op": "public", "labels": ["People", "Endowment", "Contribution", "Multiplier"], "outputs": ["Payoff"], "a": [4.0, 10.0, 5.0, 1.6], "b": [4.0, 10.0, 1.0, 1.6], "question": "In a toy group of 4, everyone starts with 10, contributes 5, and the pot is multiplied by 1.6 then split equally. What is each payoff?", "explain": "Group benefit and the private return to one extra contribution differ. This symmetric case shows the accounting, not a predicted participation rate.", "lens": "the public-good payoff under two contribution levels", "kind": "grid", "answerPosition": 0, "questionTemplate": "In a toy group of {People}, everyone starts with {Endowment}, contributes {Contribution}, and the pot is multiplied by {Multiplier} then split equally. What is each payoff?"};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

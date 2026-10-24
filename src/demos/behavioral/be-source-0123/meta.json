@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0123",
+  "title": "A ratio across valuations",
+  "hook": "Two stated cases: explore the unit behind a sell-to-buy ratio.",
+  "domain": "behavioral",
+  "concept": "be-source-0123",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the unit behind a sell-to-buy ratio affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Ratio, regardless of the stated inputs.",
+  "objective": "Compare the unit behind a sell-to-buy ratio in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0123.predict",
+      "text": "A toy seller asks 26; a buyer offers 10 for the same item. What is the sell-to-buy ratio?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0123/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #123. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0123.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0123/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #123. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0123.reveal.0",
+      "text": "The retained results are Sell=26; Ratio=2.6 and Sell=52; Ratio=5.2.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0123/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #123. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0123.reveal.1",
+      "text": "The ratio describes a valuation gap. It does not identify whether ownership, procedures or information caused it. This comparison isolates the unit behind a sell-to-buy ratio.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0123/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #123. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0123.case.0.witness",
+      "text": "Sell=26; Ratio=2.6",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0123/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #123. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0123.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Sell\",26],[\"Buy\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0123/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #123. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0123.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Ratio\",\"value\":2.6}]},\"metrics\":[{\"label\":\"Ratio\",\"value\":\"2.6\"},{\"label\":\"Sell\",\"value\":\"26\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0123/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #123. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0123.case.1.witness",
+      "text": "Sell=52; Ratio=5.2",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0123/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #123. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0123.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Sell\",52],[\"Buy\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0123/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #123. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0123.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Ratio\",\"value\":5.2}]},\"metrics\":[{\"label\":\"Ratio\",\"value\":\"5.2\"},{\"label\":\"Sell\",\"value\":\"52\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0123/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #123. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0123.recall",
+      "text": "A toy seller asks 27; a buyer offers 10 for the same item. What is the sell-to-buy ratio? Answer 2.7.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0123/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #123. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy seller asks 27; a buyer offers 10 for the same item. What is the sell-to-buy ratio?",
+    "options": [
+      "1.62",
+      "2.7",
+      "3.78"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Ratio 2.7 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0123",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-123"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 123,
+    "sourceSection": "7. Endowment effect & status quo bias",
+    "sourceEntryOriginal": "- **123.** Across studies, the median ratio of selling to buying price is about 2.6, and much higher for non-market goods (Horowitz & McConnell, 2002).",
+    "modelBoundary": "the unit behind a sell-to-buy ratio",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

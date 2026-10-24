@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0004",
+  "title": "Two equal cash gaps",
+  "hook": "Two stated cases: explore diminishing sensitivity in a curved scale.",
+  "domain": "behavioral",
+  "concept": "be-source-0004",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How diminishing sensitivity in a curved scale affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Gap, regardless of the stated inputs.",
+  "objective": "Compare diminishing sensitivity in a curved scale in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0004.predict",
+      "text": "A toy value curve is square root of the amount. Compare amounts 100+0 and 200+0. What is the value gap?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0004/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #4. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0004.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0004/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #4. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0004.reveal.0",
+      "text": "The retained results are Shift=0; Gap=4.142 and Shift=1,000; Gap=1.475.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0004/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #4. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0004.reveal.1",
+      "text": "The square-root curve bends. Equal cash gaps have smaller value gaps farther from zero. This is the stated curve, not a universal preference. This comparison isolates diminishing sensitivity in a curved scale.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0004/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #4. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0004.case.0.witness",
+      "text": "Shift=0; Gap=4.142",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0004/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #4. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0004.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Low\",100],[\"High\",200],[\"Shift\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0004/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #4. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0004.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":14.142135623730951},{\"x\":4.166666666666667,\"y\":12.100894171411635},{\"x\":8.333333333333334,\"y\":11.255384277782822},{\"x\":12.5,\"y\":10.606601717798213},{\"x\":16.666666666666668,\"y\":10.05965271909232},{\"x\":20.833333333333332,\"y\":9.577780977854566},{\"x\":25,\"y\":9.142135623730951},{\"x\":29.166666666666668,\"y\":8.741518375057733},{\"x\":33.333333333333336,\"y\":8.368632931834693},{\"x\":37.5,\"y\":8.018411266773006},{\"x\":41.666666666666664,\"y\":7.687163380051923},{\"x\":45.833333333333336,\"y\":7.372103619867651},{\"x\":50,\"y\":7.0710678118654755},{\"x\":54.166666666666664,\"y\":6.782334901791079},{\"x\":58.333333333333336,\"y\":6.504509465471218},{\"x\":62.5,\"y\":6.236441473310003},{\"x\":66.66666666666667,\"y\":5.97716981445369},{\"x\":70.83333333333333,\"y\":5.72588150842922},{\"x\":75,\"y\":5.481881585886564},{\"x\":79.16666666666667,\"y\":5.244570413704858},{\"x\":83.33333333333333,\"y\":5.013426331978183},{\"x\":87.5,\"y\":4.787992156796097},{\"x\":91.66666666666667,\"y\":4.56786454616757},{\"x\":95.83333333333333,\"y\":4.352685520005343},{\"x\":100,\"y\":4.142135623730951}],\"xLabel\":\"Low\",\"yLabel\":\"Gap\"},\"metrics\":[{\"label\":\"Gap\",\"value\":\"4.142\"},{\"label\":\"Shift\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0004/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #4. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0004.case.1.witness",
+      "text": "Shift=1,000; Gap=1.475",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0004/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #4. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0004.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Low\",100],[\"High\",200],[\"Shift\",1000]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0004/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #4. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0004.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":3.0182395496937566},{\"x\":4.166666666666667,\"y\":2.9524272483249767},{\"x\":8.333333333333334,\"y\":2.886751345948131},{\"x\":12.5,\"y\":2.8212109979829094},{\"x\":16.666666666666668,\"y\":2.7558053685292307},{\"x\":20.833333333333332,\"y\":2.6905336302428573},{\"x\":25,\"y\":2.6253949642133065},{\"x\":29.166666666666668,\"y\":2.5603885598439504},{\"x\":33.333333333333336,\"y\":2.4955136147343637},{\"x\":37.5,\"y\":2.4307693345647365},{\"x\":41.666666666666664,\"y\":2.366154932982404},{\"x\":45.833333333333336,\"y\":2.301669631490462},{\"x\":50,\"y\":2.237312659338251},{\"x\":54.166666666666664,\"y\":2.1730832534139566},{\"x\":58.333333333333336,\"y\":2.1089806581389894},{\"x\":62.5,\"y\":2.045004125364308},{\"x\":66.66666666666667,\"y\":1.981152914268506},{\"x\":70.83333333333333,\"y\":1.917426291257783},{\"x\":75,\"y\":1.8538235298675474},{\"x\":79.16666666666667,\"y\":1.7903439106658396},{\"x\":83.33333333333333,\"y\":1.726986721158383},{\"x\":87.5,\"y\":1.663751255695253},{\"x\":91.66666666666667,\"y\":1.6006368153791968},{\"x\":95.83333333333333,\"y\":1.537642707975543},{\"x\":100,\"y\":1.4747682478235475}],\"xLabel\":\"Low\",\"yLabel\":\"Gap\"},\"metrics\":[{\"label\":\"Gap\",\"value\":\"1.475\"},{\"label\":\"Shift\",\"value\":\"1,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0004/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #4. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0004.recall",
+      "text": "A toy value curve is square root of the amount. Compare amounts 101+0 and 200+0. What is the value gap? Answer 4.092.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0004/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #4. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy value curve is square root of the amount. Compare amounts 101+0 and 200+0. What is the value gap?",
+    "options": [
+      "2.455",
+      "5.729",
+      "4.092"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Gap 4.092 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0004",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-4"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 4,
+    "sourceSection": "1. Loss aversion & prospect theory",
+    "sourceEntryOriginal": "- **4.** Diminishing sensitivity: the gap between $100 and $200 feels larger than the gap between $1,100 and $1,200 (Kahneman & Tversky, 1979).",
+    "modelBoundary": "diminishing sensitivity in a curved scale",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

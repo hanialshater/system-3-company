@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0181",
+  "title": "Money sent and money returned",
+  "hook": "Two stated cases: explore the two decisions inside a trust game.",
+  "domain": "behavioral",
+  "concept": "be-source-0181",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the two decisions inside a trust game affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Sender, regardless of the stated inputs.",
+  "objective": "Compare the two decisions inside a trust game in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0181.predict",
+      "text": "A toy sender has 10, sends 5, which is multiplied by 3; the recipient returns fraction 0.5 of that pot. What does the sender finish with?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0181/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #181. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0181.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0181/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #181. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0181.reveal.0",
+      "text": "The retained results are Returned=0.5; Sender=12.5 and Returned=0.2; Sender=8.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0181/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #181. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0181.reveal.1",
+      "text": "Sending and returning are two decisions. A multiplier creates surplus, but the sender’s payoff also depends on the return rule. This comparison isolates the two decisions inside a trust game.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0181/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #181. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0181.case.0.witness",
+      "text": "Returned=0.5; Sender=12.5",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0181/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #181. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0181.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Endowment\",10],[\"Sent\",5],[\"Multiplier\",3],[\"Returned\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0181/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #181. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0181.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"Input\",\"value\":10},{\"label\":\"Result\",\"value\":12.5}]},\"metrics\":[{\"label\":\"Sender\",\"value\":\"12.5\"},{\"label\":\"Returned\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0181/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #181. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0181.case.1.witness",
+      "text": "Returned=0.2; Sender=8",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0181/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #181. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0181.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Endowment\",10],[\"Sent\",5],[\"Multiplier\",3],[\"Returned\",0.2]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0181/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #181. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0181.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"Input\",\"value\":10},{\"label\":\"Result\",\"value\":8}]},\"metrics\":[{\"label\":\"Sender\",\"value\":\"8\"},{\"label\":\"Returned\",\"value\":\"0.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0181/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #181. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0181.recall",
+      "text": "A toy sender has 11, sends 5, which is multiplied by 3; the recipient returns fraction 0.5 of that pot. What does the sender finish with? Answer 13.5.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0181/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #181. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy sender has 11, sends 5, which is multiplied by 3; the recipient returns fraction 0.5 of that pot. What does the sender finish with?",
+    "options": [
+      "8.1",
+      "18.9",
+      "13.5"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Sender 13.5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0181",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-181"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 181,
+    "sourceSection": "10. Trust, reciprocity & cooperation",
+    "sourceEntryOriginal": "- **181.** In the trust game, senders gave about half their money to strangers, and many receivers returned at least that much (Berg, Dickhaut & McCabe, 1995).",
+    "modelBoundary": "the two decisions inside a trust game",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0056",
+  "title": "Which bowl has better odds?",
+  "hook": "Two stated cases: explore winning tokens versus winning proportions.",
+  "domain": "behavioral",
+  "concept": "be-source-0056",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How winning tokens versus winning proportions affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Gap, regardless of the stated inputs.",
+  "objective": "Compare winning tokens versus winning proportions in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0056.predict",
+      "text": "A toy comparison has 7/100 in A and 1/10 in B. What is A minus B in percentage points?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0056/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #56. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0056.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0056/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #56. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0056.reveal.0",
+      "text": "The retained results are HitA=7; Gap=-3 and HitA=14; Gap=4.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0056/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #56. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0056.reveal.1",
+      "text": "Divide by each group’s own denominator before subtracting. A rate difference alone does not explain the cause of that difference. This comparison isolates winning tokens versus winning proportions.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0056/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #56. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0056.case.0.witness",
+      "text": "HitA=7; Gap=-3",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0056/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #56. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0056.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"HitA\",7],[\"TotalA\",100],[\"HitB\",1],[\"TotalB\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0056/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #56. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0056.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":-3}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"-3\"},{\"label\":\"HitA\",\"value\":\"7\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0056/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #56. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0056.case.1.witness",
+      "text": "HitA=14; Gap=4",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0056/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #56. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0056.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"HitA\",14],[\"TotalA\",100],[\"HitB\",1],[\"TotalB\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0056/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #56. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0056.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":4.000000000000001}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"4\"},{\"label\":\"HitA\",\"value\":\"14\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0056/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #56. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0056.recall",
+      "text": "A toy comparison has 8/100 in A and 1/10 in B. What is A minus B in percentage points? Answer -2.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0056/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #56. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy comparison has 8/100 in A and 1/10 in B. What is A minus B in percentage points?",
+    "options": [
+      "-2",
+      "-2.8",
+      "-1.2"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Gap -2 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0056",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-56"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 56,
+    "sourceSection": "3. Framing",
+    "sourceEntryOriginal": "- **56.** People often picked a bowl with 7 red beans in 100 over 1 in 10, preferring more winning items to better odds (Denes-Raj & Epstein, 1994).",
+    "modelBoundary": "winning tokens versus winning proportions",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

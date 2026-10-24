@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0121",
+  "title": "Buying and selling the mug",
+  "hook": "Two stated cases: explore the size of a valuation gap.",
+  "domain": "behavioral",
+  "concept": "be-source-0121",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the size of a valuation gap affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Ratio, regardless of the stated inputs.",
+  "objective": "Compare the size of a valuation gap in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0121.predict",
+      "text": "A toy seller asks 7.12; a buyer offers 2.87 for the same item. What is the sell-to-buy ratio?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0121/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #121. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0121.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0121/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #121. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0121.reveal.0",
+      "text": "The retained results are Sell=7.12 Buy=2.87; Ratio=2.481 and Sell=5 Buy=5; Ratio=1.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0121/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #121. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0121.reveal.1",
+      "text": "The ratio describes a valuation gap. It does not identify whether ownership, procedures or information caused it. This comparison isolates the size of a valuation gap.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0121/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #121. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0121.case.0.witness",
+      "text": "Sell=7.12 Buy=2.87; Ratio=2.481",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0121/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #121. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0121.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Sell\",7.12],[\"Buy\",2.87]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0121/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #121. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0121.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Ratio\",\"value\":2.480836236933798}]},\"metrics\":[{\"label\":\"Ratio\",\"value\":\"2.481\"},{\"label\":\"Sell\",\"value\":\"7.12\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0121/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #121. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0121.case.1.witness",
+      "text": "Sell=5 Buy=5; Ratio=1",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0121/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #121. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0121.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Sell\",5],[\"Buy\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0121/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #121. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0121.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Ratio\",\"value\":1}]},\"metrics\":[{\"label\":\"Ratio\",\"value\":\"1\"},{\"label\":\"Sell\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0121/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #121. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0121.recall",
+      "text": "A toy seller asks 7.22; a buyer offers 2.87 for the same item. What is the sell-to-buy ratio? Answer 2.516.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0121/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #121. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy seller asks 7.22; a buyer offers 2.87 for the same item. What is the sell-to-buy ratio?",
+    "options": [
+      "1.509",
+      "3.522",
+      "2.516"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Ratio 2.516 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0121",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-121"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 121,
+    "sourceSection": "7. Endowment effect & status quo bias",
+    "sourceEntryOriginal": "- **121.** Students given a mug asked about $7.12 to sell it; those without one offered about $2.87 (Kahneman, Knetsch & Thaler, 1990).",
+    "modelBoundary": "the size of a valuation gap",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

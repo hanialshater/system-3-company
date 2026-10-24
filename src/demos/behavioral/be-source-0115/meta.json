@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0115",
+  "title": "A predictable refund arrives",
+  "hook": "Two stated cases: explore a buffer after a stated spending path.",
+  "domain": "behavioral",
+  "concept": "be-source-0115",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How a buffer after a stated spending path affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Remaining, regardless of the stated inputs.",
+  "objective": "Compare a buffer after a stated spending path in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0115.predict",
+      "text": "A toy budget starts with 1000 and spends 100 per day for 5 days. What remains?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0115/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #115. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0115.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0115/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #115. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0115.reveal.0",
+      "text": "The retained results are Spend=100; Remaining=500 and Spend=150; Remaining=250.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0115/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #115. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0115.reveal.1",
+      "text": "The timing of an inflow and the rate of spending determine the remaining buffer. The schedule is an illustration, not observed household data. This comparison isolates a buffer after a stated spending path.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0115/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #115. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0115.case.0.witness",
+      "text": "Spend=100; Remaining=500",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0115/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #115. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0115.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Income\",1000],[\"Days\",5],[\"Spend\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0115/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #115. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0115.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":1000},{\"label\":\"2.5\",\"value\":750},{\"label\":\"5\",\"value\":500}]},\"metrics\":[{\"label\":\"Remaining\",\"value\":\"500\"},{\"label\":\"Spend\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0115/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #115. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0115.case.1.witness",
+      "text": "Spend=150; Remaining=250",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0115/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #115. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0115.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Income\",1000],[\"Days\",5],[\"Spend\",150]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0115/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #115. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0115.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":1000},{\"label\":\"2.5\",\"value\":625},{\"label\":\"5\",\"value\":250}]},\"metrics\":[{\"label\":\"Remaining\",\"value\":\"250\"},{\"label\":\"Spend\",\"value\":\"150\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0115/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #115. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0115.recall",
+      "text": "A toy budget starts with 1,001 and spends 100 per day for 5 days. What remains? Answer 501.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0115/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #115. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy budget starts with 1,001 and spends 100 per day for 5 days. What remains?",
+    "options": [
+      "300.6",
+      "701.4",
+      "501"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Remaining 501 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0115",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-115"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 115,
+    "sourceSection": "6. Mental accounting",
+    "sourceEntryOriginal": "- **115.** Households spend a large share of tax refunds within the same quarter they arrive (Souleles, 1999).",
+    "modelBoundary": "a buffer after a stated spending path",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

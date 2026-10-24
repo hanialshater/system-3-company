@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0117",
+  "title": "A monthly food budget",
+  "hook": "Two stated cases: explore the shrinking remainder within a fixed payment cycle.",
+  "domain": "behavioral",
+  "concept": "be-source-0117",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the shrinking remainder within a fixed payment cycle affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Remaining, regardless of the stated inputs.",
+  "objective": "Compare the shrinking remainder within a fixed payment cycle in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0117.predict",
+      "text": "A toy budget starts with 300 and spends 12 per day for 20 days. What remains?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0117/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #117. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0117.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0117/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #117. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0117.reveal.0",
+      "text": "The retained results are Days=20; Remaining=60 and Days=25; Remaining=0.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0117/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #117. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0117.reveal.1",
+      "text": "The timing of an inflow and the rate of spending determine the remaining buffer. The schedule is an illustration, not observed household data. This comparison isolates the shrinking remainder within a fixed payment cycle.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0117/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #117. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0117.case.0.witness",
+      "text": "Days=20; Remaining=60",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0117/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #117. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0117.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Income\",300],[\"Days\",20],[\"Spend\",12]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0117/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #117. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0117.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":300},{\"label\":\"10\",\"value\":180},{\"label\":\"20\",\"value\":60}]},\"metrics\":[{\"label\":\"Remaining\",\"value\":\"60\"},{\"label\":\"Days\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0117/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #117. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0117.case.1.witness",
+      "text": "Days=25; Remaining=0",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0117/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #117. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0117.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Income\",300],[\"Days\",25],[\"Spend\",12]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0117/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #117. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0117.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":300},{\"label\":\"12.5\",\"value\":150},{\"label\":\"25\",\"value\":0}]},\"metrics\":[{\"label\":\"Remaining\",\"value\":\"0\"},{\"label\":\"Days\",\"value\":\"25\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0117/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #117. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0117.recall",
+      "text": "A toy budget starts with 301 and spends 12 per day for 20 days. What remains? Answer 61.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0117/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #117. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy budget starts with 301 and spends 12 per day for 20 days. What remains?",
+    "options": [
+      "36.6",
+      "61",
+      "85.4"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Remaining 61 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0117",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-117"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 117,
+    "sourceSection": "6. Mental accounting",
+    "sourceEntryOriginal": "- **117.** Food stamp recipients' calorie intake fell 10–15% over the month between payments (Shapiro, 2005).",
+    "modelBoundary": "the shrinking remainder within a fixed payment cycle",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

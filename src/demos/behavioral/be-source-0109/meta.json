@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0109",
+  "title": "What counts as house money?",
+  "hook": "Two stated cases: explore the future gamble rather than the source of earlier money.",
+  "domain": "behavioral",
+  "concept": "be-source-0109",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the future gamble rather than the source of earlier money affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Expected, regardless of the stated inputs.",
+  "objective": "Compare the future gamble rather than the source of earlier money in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0109.predict",
+      "text": "A toy gamble gains 20 with probability 0.5 and loses 10 otherwise. What is its expected cash change?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0109/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #109. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0109.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0109/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #109. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0109.reveal.0",
+      "text": "The retained results are Probability=0.5; Expected=5 and Probability=0.25; Expected=-2.5.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0109/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #109. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0109.reveal.1",
+      "text": "Reaching an emotionally important balance is different from maximizing expected cash change. Neither guarantees the outcome of one play. This comparison isolates the future gamble rather than the source of earlier money.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0109/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #109. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0109.case.0.witness",
+      "text": "Probability=0.5; Expected=5",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0109/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #109. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0109.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Loss\",10],[\"Win\",20],[\"Probability\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0109/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #109. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0109.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Expected\",\"value\":5}]},\"metrics\":[{\"label\":\"Expected\",\"value\":\"5\"},{\"label\":\"Probability\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0109/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #109. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0109.case.1.witness",
+      "text": "Probability=0.25; Expected=-2.5",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0109/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #109. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0109.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Loss\",10],[\"Win\",20],[\"Probability\",0.25]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0109/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #109. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0109.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Expected\",\"value\":-2.5}]},\"metrics\":[{\"label\":\"Expected\",\"value\":\"-2.5\"},{\"label\":\"Probability\",\"value\":\"0.25\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0109/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #109. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0109.recall",
+      "text": "A toy gamble gains 20 with probability 0.5 and loses 11 otherwise. What is its expected cash change? Answer 4.5.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0109/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #109. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy gamble gains 20 with probability 0.5 and loses 11 otherwise. What is its expected cash change?",
+    "options": [
+      "2.7",
+      "6.3",
+      "4.5"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Expected 4.5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0109",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-109"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 109,
+    "sourceSection": "6. Mental accounting",
+    "sourceEntryOriginal": "- **109.** After a gain, people take more risk with the \"house money\" (Thaler & Johnson, 1990).",
+    "modelBoundary": "the future gamble rather than the source of earlier money",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

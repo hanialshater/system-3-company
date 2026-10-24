@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0099",
+  "title": "Today's weather in a choice",
+  "hook": "Two stated cases: explore a current-state cue weighted against long-run conditions.",
+  "domain": "behavioral",
+  "concept": "be-source-0099",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How a current-state cue weighted against long-run conditions affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Estimate, regardless of the stated inputs.",
+  "objective": "Compare a current-state cue weighted against long-run conditions in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0099.predict",
+      "text": "A toy estimate gives anchor 1 weight 0.8 and evidence 0.5 the remaining weight. What estimate results?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0099/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #99. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0099.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0099/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #99. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0099.reveal.0",
+      "text": "The retained results are Anchor=1; Estimate=0.9 and Anchor=0; Estimate=0.1.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0099/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #99. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0099.reveal.1",
+      "text": "An estimate can move because the arbitrary starting point moves. The contrast holds the evidence fixed to expose that channel. This comparison isolates a current-state cue weighted against long-run conditions.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0099/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #99. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0099.case.0.witness",
+      "text": "Anchor=1; Estimate=0.9",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0099/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #99. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0099.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Anchor\",1],[\"Evidence\",0.5],[\"Weight\",0.8]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0099/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #99. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0099.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Estimate\",\"value\":0.9}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"0.9\"},{\"label\":\"Anchor\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0099/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #99. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0099.case.1.witness",
+      "text": "Anchor=0; Estimate=0.1",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0099/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #99. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0099.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Anchor\",0],[\"Evidence\",0.5],[\"Weight\",0.8]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0099/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #99. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0099.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Estimate\",\"value\":0.09999999999999998}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"0.1\"},{\"label\":\"Anchor\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0099/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #99. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0099.recall",
+      "text": "A toy estimate gives anchor 2 weight 0.8 and evidence 0.5 the remaining weight. What estimate results? Answer 1.7.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0099/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #99. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy estimate gives anchor 2 weight 0.8 and evidence 0.5 the remaining weight. What estimate results?",
+    "options": [
+      "1.02",
+      "1.7",
+      "2.38"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Estimate 1.7 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0099",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-99"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 99,
+    "sourceSection": "5. Present bias & time preferences",
+    "sourceEntryOriginal": "- **99.** Convertibles sell better on sunny days and four-wheel drives after snowstorms (Busse, Pope, Pope & Silva-Risso, 2015).",
+    "modelBoundary": "a current-state cue weighted against long-run conditions",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

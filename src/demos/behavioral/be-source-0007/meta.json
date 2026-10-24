@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0007",
+  "title": "A busy day in the cab",
+  "hook": "Two stated cases: explore an income-target stopping rule.",
+  "domain": "behavioral",
+  "concept": "be-source-0007",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How an income-target stopping rule affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Hours, regardless of the stated inputs.",
+  "objective": "Compare an income-target stopping rule in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0007.predict",
+      "text": "A toy worker stops exactly at income 200 and earns 20 per hour. After how many hours do they stop?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0007/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #7. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0007.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0007/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #7. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0007.reveal.0",
+      "text": "The retained results are Hourly=20; Hours=10 and Hourly=40; Hours=5.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0007/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #7. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0007.reveal.1",
+      "text": "A fixed income target produces fewer hours on high-rate days. This illustrates the stopping rule; it cannot establish a real worker’s motive. This comparison isolates an income-target stopping rule.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0007/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #7. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0007.case.0.witness",
+      "text": "Hourly=20; Hours=10",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0007/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #7. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0007.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Target\",200],[\"Hourly\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0007/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #7. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0007.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0h\",\"value\":0},{\"label\":\"5h\",\"value\":100},{\"label\":\"10h\",\"value\":200}]},\"metrics\":[{\"label\":\"Hours\",\"value\":\"10\"},{\"label\":\"Hourly\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0007/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #7. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0007.case.1.witness",
+      "text": "Hourly=40; Hours=5",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0007/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #7. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0007.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Target\",200],[\"Hourly\",40]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0007/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #7. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0007.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0h\",\"value\":0},{\"label\":\"2.5h\",\"value\":100},{\"label\":\"5h\",\"value\":200}]},\"metrics\":[{\"label\":\"Hours\",\"value\":\"5\"},{\"label\":\"Hourly\",\"value\":\"40\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0007/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #7. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0007.recall",
+      "text": "A toy worker stops exactly at income 201 and earns 20 per hour. After how many hours do they stop? Answer 10.05.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0007/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #7. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy worker stops exactly at income 201 and earns 20 per hour. After how many hours do they stop?",
+    "options": [
+      "6.03",
+      "14.07",
+      "10.05"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Hours 10.05 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0007",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-7"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 7,
+    "sourceSection": "1. Loss aversion & prospect theory",
+    "sourceEntryOriginal": "- **7.** New York cab drivers quit earlier on high-earning days, consistent with daily income targets (Camerer, Babcock, Loewenstein & Thaler, 1997). **\\[contested\\]** Farber (2005, 2015) found weaker evidence.",
+    "modelBoundary": "an income-target stopping rule",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

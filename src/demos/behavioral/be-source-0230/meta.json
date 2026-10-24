@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0230",
+  "title": "The thesis finish date",
+  "hook": "Two stated cases: explore the planned duration as the overrun denominator.",
+  "domain": "behavioral",
+  "concept": "be-source-0230",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the planned duration as the overrun denominator affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Overrun, regardless of the stated inputs.",
+  "objective": "Compare the planned duration as the overrun denominator in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0230.predict",
+      "text": "A toy task was planned at 33.9 and used 55.5. What percentage over the plan did it run?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0230/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #230. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0230.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0230/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #230. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0230.reveal.0",
+      "text": "The retained results are Planned=33.9; Overrun=63.717 and Planned=50; Overrun=11.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0230/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #230. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0230.reveal.1",
+      "text": "The plan is the denominator for an overrun. Forecast error and its cause remain separate questions. This comparison isolates the planned duration as the overrun denominator.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0230/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #230. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0230.case.0.witness",
+      "text": "Planned=33.9; Overrun=63.717",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0230/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #230. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0230.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Planned\",33.9],[\"Actual\",55.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0230/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #230. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0230.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Overrun\",\"value\":63.71681415929204}]},\"metrics\":[{\"label\":\"Overrun\",\"value\":\"63.717\"},{\"label\":\"Planned\",\"value\":\"33.9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0230/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #230. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0230.case.1.witness",
+      "text": "Planned=50; Overrun=11",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0230/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #230. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0230.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Planned\",50],[\"Actual\",55.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0230/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #230. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0230.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Overrun\",\"value\":11.00000000000001}]},\"metrics\":[{\"label\":\"Overrun\",\"value\":\"11\"},{\"label\":\"Planned\",\"value\":\"50\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0230/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #230. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0230.recall",
+      "text": "A toy task was planned at 34 and used 55.5. What percentage over the plan did it run? Answer 63.235.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0230/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #230. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy task was planned at 34 and used 55.5. What percentage over the plan did it run?",
+    "options": [
+      "63.235",
+      "37.941",
+      "88.529"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Overrun 63.235 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0230",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-230"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 230,
+    "sourceSection": "12. Overconfidence & self-assessment",
+    "sourceEntryOriginal": "- **230.** Students predicted finishing their theses in 33.9 days; it took 55.5 on average (Buehler, Griffin & Ross, 1994).",
+    "modelBoundary": "the planned duration as the overrun denominator",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

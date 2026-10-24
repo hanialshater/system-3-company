@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0022",
+  "title": "Which end of the product?",
+  "hook": "Two stated cases: explore the invariant product behind order-dependent guesses.",
+  "domain": "behavioral",
+  "concept": "be-source-0022",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the invariant product behind order-dependent guesses affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Fold, regardless of the stated inputs.",
+  "objective": "Compare the invariant product behind order-dependent guesses in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0022.predict",
+      "text": "An estimate for 8 factorial is 512. How many times larger is the exact product?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0022/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #22. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0022.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0022/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #22. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0022.reveal.0",
+      "text": "The retained results are Estimate=512; Fold=78.75 and Estimate=2,250; Fold=17.92.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0022/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #22. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0022.reveal.1",
+      "text": "The complete product is invariant to order; a rushed estimate can depend on which factors are encountered first. This comparison isolates the invariant product behind order-dependent guesses.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0022/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #22. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0022.case.0.witness",
+      "text": "Estimate=512; Fold=78.75",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0022/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #22. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0022.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"N\",8],[\"Estimate\",512]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0022/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #22. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0022.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Fold\",\"value\":78.75}]},\"metrics\":[{\"label\":\"Fold\",\"value\":\"78.75\"},{\"label\":\"Estimate\",\"value\":\"512\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0022/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #22. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0022.case.1.witness",
+      "text": "Estimate=2,250; Fold=17.92",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0022/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #22. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0022.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"N\",8],[\"Estimate\",2250]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0022/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #22. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0022.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Fold\",\"value\":17.92}]},\"metrics\":[{\"label\":\"Fold\",\"value\":\"17.92\"},{\"label\":\"Estimate\",\"value\":\"2,250\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0022/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #22. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0022.recall",
+      "text": "An estimate for 9 factorial is 512. How many times larger is the exact product? Answer 708.75.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0022/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #22. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "An estimate for 9 factorial is 512. How many times larger is the exact product?",
+    "options": [
+      "425.25",
+      "992.25",
+      "708.75"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Fold 708.75 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0022",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-22"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 22,
+    "sourceSection": "2. Anchoring",
+    "sourceEntryOriginal": "- **22.** People estimating 8×7×6×5×4×3×2×1 in five seconds guessed a median 2,250; those shown 1×2×…×8 guessed 512. The answer is 40,320 (Tversky & Kahneman, 1974).",
+    "modelBoundary": "the invariant product behind order-dependent guesses",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

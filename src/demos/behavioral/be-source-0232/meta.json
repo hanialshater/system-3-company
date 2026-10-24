@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0232",
+  "title": "Above which average?",
+  "hook": "Two stated cases: explore the distinction between a mean and a median.",
+  "domain": "behavioral",
+  "concept": "be-source-0232",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the distinction between a mean and a median affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Above, regardless of the stated inputs.",
+  "objective": "Compare the distinction between a mean and a median in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0232.predict",
+      "text": "A toy group has 99 people scoring 10 each and one scoring 0. How many are strictly above the group mean?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0232/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #232. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0232.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0232/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #232. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0232.reveal.0",
+      "text": "The retained results are Value=10 Outlier=0; Above=99 and Value=0 Outlier=10; Above=1.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0232/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #232. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0232.reveal.1",
+      "text": "A mean is not a median. Many people can be above a mean when a low outlier pulls it down; the median ceiling cannot simply be substituted. This comparison isolates the distinction between a mean and a median.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0232/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #232. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0232.case.0.witness",
+      "text": "Value=10 Outlier=0; Above=99",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0232/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #232. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0232.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Others\",99],[\"Value\",10],[\"Outlier\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0232/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #232. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0232.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Above\",\"value\":99},{\"label\":\"Mean\",\"value\":9.9}]},\"metrics\":[{\"label\":\"Above\",\"value\":\"99\"},{\"label\":\"Value\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0232/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #232. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0232.case.1.witness",
+      "text": "Value=0 Outlier=10; Above=1",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0232/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #232. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0232.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Others\",99],[\"Value\",0],[\"Outlier\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0232/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #232. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0232.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Above\",\"value\":1},{\"label\":\"Mean\",\"value\":0.1}]},\"metrics\":[{\"label\":\"Above\",\"value\":\"1\"},{\"label\":\"Value\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0232/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #232. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0232.recall",
+      "text": "A toy group has 100 people scoring 10 each and one scoring 0. How many are strictly above the group mean? Answer 100.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0232/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #232. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy group has 100 people scoring 10 each and one scoring 0. How many are strictly above the group mean?",
+    "options": [
+      "60",
+      "140",
+      "100"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Above 100 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0232",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-232"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 232,
+    "sourceSection": "12. Overconfidence & self-assessment",
+    "sourceEntryOriginal": "- **232.** 94% of university professors rated themselves above average at their job (Cross, 1977).",
+    "modelBoundary": "the distinction between a mean and a median",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

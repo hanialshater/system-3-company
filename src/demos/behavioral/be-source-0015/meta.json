@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0015",
+  "title": "How often do you look?",
+  "hook": "Two stated cases: explore valuing the same cash path at different intervals.",
+  "domain": "behavioral",
+  "concept": "be-source-0015",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How valuing the same cash path at different intervals affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Value, regardless of the stated inputs.",
+  "objective": "Compare valuing the same cash path at different intervals in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0015.predict",
+      "text": "A fixed toy cash path is gain 10, loss 8, gain 10. Negative values have weight 2. Group 1 means separate if 1, combined if 3. What model value results?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0015/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #15. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0015.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0015/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #15. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0015.reveal.0",
+      "text": "The retained results are Group=1; Value=4 and Group=3; Value=12.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0015/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #15. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0015.reveal.1",
+      "text": "The cash path stays fixed. Valuing each interval before adding can disagree with adding the cash first under an asymmetric value rule. This comparison isolates valuing the same cash path at different intervals.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0015/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #15. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0015.case.0.witness",
+      "text": "Group=1; Value=4",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0015/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #15. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0015.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Gain\",10],[\"Loss\",8],[\"Lambda\",2],[\"Group\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0015/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #15. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0015.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":0},{\"label\":\"1\",\"value\":10},{\"label\":\"2\",\"value\":2},{\"label\":\"3\",\"value\":12}]},\"metrics\":[{\"label\":\"Value\",\"value\":\"4\"},{\"label\":\"Group\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0015/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #15. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0015.case.1.witness",
+      "text": "Group=3; Value=12",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0015/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #15. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0015.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Gain\",10],[\"Loss\",8],[\"Lambda\",2],[\"Group\",3]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0015/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #15. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0015.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":0},{\"label\":\"1\",\"value\":10},{\"label\":\"2\",\"value\":2},{\"label\":\"3\",\"value\":12}]},\"metrics\":[{\"label\":\"Value\",\"value\":\"12\"},{\"label\":\"Group\",\"value\":\"3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0015/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #15. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0015.recall",
+      "text": "A fixed toy cash path is gain 11, loss 8, gain 11. Negative values have weight 2. Group 1 means separate if 1, combined if 3. What model value results? Answer 6.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0015/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #15. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A fixed toy cash path is gain 11, loss 8, gain 11. Negative values have weight 2. Group 1 means separate if 1, combined if 3. What model value results?",
+    "options": [
+      "3.6",
+      "6",
+      "8.4"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Value 6 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0015",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-15"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 15,
+    "sourceSection": "1. Loss aversion & prospect theory",
+    "sourceEntryOriginal": "- **15.** Investors who evaluate portfolios often feel losses more often, which can explain why stocks pay such a high premium over bonds (Benartzi & Thaler, 1995).",
+    "modelBoundary": "valuing the same cash path at different intervals",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

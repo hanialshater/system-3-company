@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0236",
+  "title": "Precision on paper",
+  "hook": "Two stated cases: explore the realized coverage of a stated interval procedure.",
+  "domain": "behavioral",
+  "concept": "be-source-0236",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the realized coverage of a stated interval procedure affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Misses, regardless of the stated inputs.",
+  "objective": "Compare the realized coverage of a stated interval procedure in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0236.predict",
+      "text": "A toy interval procedure claims coverage 0.9; it covers 5 of 10 targets. How many targets were missed?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0236/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #236. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0236.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0236/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #236. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0236.reveal.0",
+      "text": "The retained results are Hits=5; Misses=5 and Hits=9; Misses=1.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0236/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #236. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0236.reveal.1",
+      "text": "Count realized coverage before trusting the stated confidence. A narrow interval can be precise in appearance and poorly calibrated. This comparison isolates the realized coverage of a stated interval procedure.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0236/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #236. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0236.case.0.witness",
+      "text": "Hits=5; Misses=5",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0236/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #236. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0236.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Nominal\",0.9],[\"Hits\",5],[\"Trials\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0236/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #236. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0236.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Misses\",\"value\":5}]},\"metrics\":[{\"label\":\"Misses\",\"value\":\"5\"},{\"label\":\"Hits\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0236/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #236. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0236.case.1.witness",
+      "text": "Hits=9; Misses=1",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0236/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #236. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0236.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Nominal\",0.9],[\"Hits\",9],[\"Trials\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0236/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #236. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0236.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Misses\",\"value\":1}]},\"metrics\":[{\"label\":\"Misses\",\"value\":\"1\"},{\"label\":\"Hits\",\"value\":\"9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0236/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #236. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0236.recall",
+      "text": "A toy interval procedure claims coverage 0.9; it covers 6 of 10 targets. How many targets were missed? Answer 4.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0236/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #236. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy interval procedure claims coverage 0.9; it covers 6 of 10 targets. How many targets were missed?",
+    "options": [
+      "4",
+      "2.4",
+      "5.6"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Misses 4 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0236",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-236"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 236,
+    "sourceSection": "12. Overconfidence & self-assessment",
+    "sourceEntryOriginal": "- **236.** Of three kinds of overconfidence, being too sure of one's precision is the most persistent (Moore & Healy, 2008).",
+    "modelBoundary": "the realized coverage of a stated interval procedure",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}
