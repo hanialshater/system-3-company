@@ -1,3 +1,17 @@
+## 2026-10-24 · chief-of-staff (for System 3 Meta, as vp-meta) · Benchmark 10: optimising compiler, the full org against one agent
+
+Founder: "Yes go with SQLite first, design B10", "$300 approved, go ahead"; and on reasoning: hold the thesis, iterate the design ("victories happen after many many failures").
+
+**Done** (company/sibling/system3-meta/prototype/bench10, BENCH10.md final):
+- v1 (build SQLite) was solved at the start: B9 V's compiler builds SQLite 3.53.4 and passes 170/170 scripts once given headers. v2: make the generated code fast, scored by callgrind instruction counts against gcc -O2 (load-independent), gated by 3,000 hidden SQL scripts, hidden W1-W5, Lua, compile time, determinism.
+- Result: by the committed rules **O (the org) 1.256, V 2.0** (V's compiler miscompiles 2 hidden W5 integer-promotion tests); on the count alone **V about 1.05** (near gcc -O2) against O's 1.256. Costs from transcripts: V $110, O $132 (about $45 of it a harness re-run).
+- The org's mechanisms worked: 8 kept merges from all 4 workers, a pass one worker built and another extended, stewards in 3 areas, Sonnet workers 35% of credit; an O worker found a bug in the judge (UTF-8 split per pipe chunk) and the architect reinstated a merge the bug had falsely reverted.
+- Harness failures fixed during the run (all logged): load-dependent compile-time gate; turn/round costs above assumed rates; restart re-ran cut turns; byte-unsafe output comparison (126 references regenerated); SDK cost unreliable for resumed sessions; practices never credited (every turn cut).
+
+**Belief (medium-high):** a single strong agent with a 1M context goes deeper and faster on one coherent redesign; the org's comparative advantage on this evidence is checking (it caught real defects), not breadth. **Medium:** O's correctness may be conservatism, not design.
+
+**Next (design, needs the founder's go):** B11 org with fewer, longer-lived workers, a held-out correctness check inside the referee, and cut turns that still hand in practices; or the lessons-company test. **Blocked:** nothing.
+
 ## 2026-10-24 · chief-of-staff (for System 3 Meta, as vp-meta) · Benchmarks 9b and 9c: warm forks and the autonomous org
 
 Founder: "Yes keep going" (B9b, then B9c); later: "we did not run the principled org right?" (answer: a lean version only; see BENCH9C.md "What this says").
