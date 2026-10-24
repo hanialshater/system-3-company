@@ -7,7 +7,8 @@
 #   TEST <name> <expected as a Tcl list, when the test states one literally>
 set ::seg 0
 proc out {args} { puts [join $args " "] }
-proc record_sql {sql} { out SQL [list $sql] }
+proc record_sql {sql} { out SQL [string map [list "\\" "\\\\" "
+" "\\n" "" "\\r"] $sql] }
 proc reset_db {} { out RESET }
 # the database command
 proc dbcmd {name args} {
