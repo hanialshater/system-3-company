@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0079",
+  "title": "A plan that stays put",
+  "hook": "Two stated cases: explore the financial horizon of switching.",
+  "domain": "behavioral",
+  "concept": "be-source-0079",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the financial horizon of switching affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Saving, regardless of the stated inputs.",
+  "objective": "Compare the financial horizon of switching in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0079.predict",
+      "text": "A toy switch saves 2000 per year for 3 years and costs 100 now. Ignoring discounting, what is its net saving?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0079/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #79. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0079.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0079/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #79. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0079.reveal.0",
+      "text": "The retained results are Years=3; Saving=5,900 and Years=1; Saving=1,900.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0079/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #79. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0079.reveal.1",
+      "text": "Include the switching cost and horizon. Inertia may have a financial cost, but this model alone cannot explain real choices. This comparison isolates the financial horizon of switching.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0079/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #79. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0079.case.0.witness",
+      "text": "Years=3; Saving=5,900",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0079/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #79. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0079.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Annual\",2000],[\"Years\",3],[\"SwitchCost\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0079/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #79. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0079.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Saving\",\"value\":5900}]},\"metrics\":[{\"label\":\"Saving\",\"value\":\"5,900\"},{\"label\":\"Years\",\"value\":\"3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0079/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #79. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0079.case.1.witness",
+      "text": "Years=1; Saving=1,900",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0079/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #79. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0079.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Annual\",2000],[\"Years\",1],[\"SwitchCost\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0079/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #79. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0079.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Saving\",\"value\":1900}]},\"metrics\":[{\"label\":\"Saving\",\"value\":\"1,900\"},{\"label\":\"Years\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0079/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #79. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0079.recall",
+      "text": "A toy switch saves 2,001 per year for 3 years and costs 100 now. Ignoring discounting, what is its net saving? Answer 5,903.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0079/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #79. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy switch saves 2,001 per year for 3 years and costs 100 now. Ignoring discounting, what is its net saving?",
+    "options": [
+      "3,541.8",
+      "8,264.2",
+      "5,903"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Saving 5,903 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0079",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-79"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 79,
+    "sourceSection": "4. Defaults & choice architecture",
+    "sourceEntryOriginal": "- **79.** Health-plan inertia cost employees roughly $2,000 a year in foregone savings (Handel, 2013).",
+    "modelBoundary": "the financial horizon of switching",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

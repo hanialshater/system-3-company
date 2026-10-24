@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0149",
+  "title": "Add an inferior option",
+  "hook": "Two stated cases: explore strictly worse attributes versus a genuine tradeoff.",
+  "domain": "behavioral",
+  "concept": "be-source-0149",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How strictly worse attributes versus a genuine tradeoff affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines NetGap, regardless of the stated inputs.",
+  "objective": "Compare strictly worse attributes versus a genuine tradeoff in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0149.predict",
+      "text": "Toy option A costs 10 and provides value 20; B costs 12 and provides 18. What is A net value minus B net value?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0149/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #149. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0149.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0149/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #149. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0149.reveal.0",
+      "text": "The retained results are CostB=12; NetGap=4 and CostB=8; NetGap=0.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0149/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #149. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0149.reveal.1",
+      "text": "A dominated option and a genuine tradeoff differ. The stated value scale is necessary for this particular net comparison. This comparison isolates strictly worse attributes versus a genuine tradeoff.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0149/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #149. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0149.case.0.witness",
+      "text": "CostB=12; NetGap=4",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0149/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #149. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0149.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"CostA\",10],[\"BenefitA\",20],[\"CostB\",12],[\"BenefitB\",18]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0149/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #149. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0149.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"scatter\",\"points\":[{\"x\":10,\"y\":20},{\"x\":12,\"y\":18}],\"xLabel\":\"First\",\"yLabel\":\"Second\"},\"metrics\":[{\"label\":\"NetGap\",\"value\":\"4\"},{\"label\":\"CostB\",\"value\":\"12\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0149/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #149. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0149.case.1.witness",
+      "text": "CostB=8; NetGap=0",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0149/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #149. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0149.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"CostA\",10],[\"BenefitA\",20],[\"CostB\",8],[\"BenefitB\",18]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0149/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #149. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0149.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"scatter\",\"points\":[{\"x\":10,\"y\":20},{\"x\":8,\"y\":18}],\"xLabel\":\"First\",\"yLabel\":\"Second\"},\"metrics\":[{\"label\":\"NetGap\",\"value\":\"0\"},{\"label\":\"CostB\",\"value\":\"8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0149/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #149. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0149.recall",
+      "text": "Toy option A costs 11 and provides value 20; B costs 12 and provides 18. What is A net value minus B net value? Answer 3.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0149/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #149. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy option A costs 11 and provides value 20; B costs 12 and provides 18. What is A net value minus B net value?",
+    "options": [
+      "3",
+      "1.8",
+      "4.2"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives NetGap 3 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0149",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-149"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 149,
+    "sourceSection": "8. Choice overload & complexity",
+    "sourceEntryOriginal": "- **149.** Adding a clearly inferior \"decoy\" boosts the option it most resembles (Huber, Payne & Puto, 1982).",
+    "modelBoundary": "strictly worse attributes versus a genuine tradeoff",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

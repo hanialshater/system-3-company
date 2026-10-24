@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0043",
+  "title": "A difference in standardized units",
+  "hook": "Two stated cases: explore the spread behind a standardized effect.",
+  "domain": "behavioral",
+  "concept": "be-source-0043",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the spread behind a standardized effect affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines D, regardless of the stated inputs.",
+  "objective": "Compare the spread behind a standardized effect in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0043.predict",
+      "text": "Two toy means are 0.7 and 0.5, with common standard deviation 0.4. What is their standardized difference?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0043/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #43. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0043.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0043/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #43. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0043.reveal.0",
+      "text": "The retained results are SD=0.4; D=0.5 and SD=0.8; D=0.25.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0043/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #43. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0043.reveal.1",
+      "text": "A standardized effect divides the raw difference by spread. It does not by itself describe practical importance or replication success. This comparison isolates the spread behind a standardized effect.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0043/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #43. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0043.case.0.witness",
+      "text": "SD=0.4; D=0.5",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0043/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #43. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0043.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"MeanA\",0.7],[\"MeanB\",0.5],[\"SD\",0.4]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0043/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #43. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0043.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"D\",\"value\":0.4999999999999999}]},\"metrics\":[{\"label\":\"D\",\"value\":\"0.5\"},{\"label\":\"SD\",\"value\":\"0.4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0043/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #43. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0043.case.1.witness",
+      "text": "SD=0.8; D=0.25",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0043/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #43. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0043.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"MeanA\",0.7],[\"MeanB\",0.5],[\"SD\",0.8]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0043/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #43. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0043.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"D\",\"value\":0.24999999999999994}]},\"metrics\":[{\"label\":\"D\",\"value\":\"0.25\"},{\"label\":\"SD\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0043/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #43. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0043.recall",
+      "text": "Two toy means are 0.8 and 0.5, with common standard deviation 0.4. What is their standardized difference? Answer 0.75.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0043/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #43. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two toy means are 0.8 and 0.5, with common standard deviation 0.4. What is their standardized difference?",
+    "options": [
+      "0.45",
+      "1.05",
+      "0.75"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives D 0.75 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0043",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-43"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 43,
+    "sourceSection": "3. Framing",
+    "sourceEntryOriginal": "- **43.** A meta-analysis of risky-choice framing found a reliable, moderate effect (Kühberger, 1998).",
+    "modelBoundary": "the spread behind a standardized effect",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

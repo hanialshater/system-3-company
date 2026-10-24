@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0041",
+  "title": "Two descriptions of 600",
+  "hook": "Two stated cases: explore the saved and lost frames of one unchanged outcome.",
+  "domain": "behavioral",
+  "concept": "be-source-0041",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the saved and lost frames of one unchanged outcome affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Display, regardless of the stated inputs.",
+  "objective": "Compare the saved and lost frames of one unchanged outcome in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0041.predict",
+      "text": "In a toy population of 600, 200 are saved. Frame 0 displays saved when 0 and lost when 1. Which count does that frame display?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0041/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #41. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0041.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0041/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #41. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0041.reveal.0",
+      "text": "The retained results are Frame=0; Display=200 and Frame=1; Display=400.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0041/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #41. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0041.reveal.1",
+      "text": "The displayed count changes its meaning with the frame; the saved and lost counts describe one unchanged outcome. This comparison isolates the saved and lost frames of one unchanged outcome.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0041/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #41. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0041.case.0.witness",
+      "text": "Frame=0; Display=200",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0041/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #41. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0041.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Total\",600],[\"Saved\",200],[\"Frame\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0041/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #41. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0041.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Display\",\"value\":200},{\"label\":\"Saved\",\"value\":200},{\"label\":\"Lost\",\"value\":400}]},\"metrics\":[{\"label\":\"Display\",\"value\":\"200\"},{\"label\":\"Frame\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0041/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #41. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0041.case.1.witness",
+      "text": "Frame=1; Display=400",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0041/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #41. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0041.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Total\",600],[\"Saved\",200],[\"Frame\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0041/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #41. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0041.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Display\",\"value\":400},{\"label\":\"Saved\",\"value\":200},{\"label\":\"Lost\",\"value\":400}]},\"metrics\":[{\"label\":\"Display\",\"value\":\"400\"},{\"label\":\"Frame\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0041/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #41. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0041.recall",
+      "text": "In a toy population of 600, 201 are saved. Frame 0 displays saved when 0 and lost when 1. Which count does that frame display? Answer 201.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0041/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #41. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In a toy population of 600, 201 are saved. Frame 0 displays saved when 0 and lost when 1. Which count does that frame display?",
+    "options": [
+      "201",
+      "120.6",
+      "281.4"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Display 201 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0041",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-41"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 41,
+    "sourceSection": "3. Framing",
+    "sourceEntryOriginal": "- **41.** \"Asian disease\" problem: 72% chose a sure plan saving 200 of 600 lives, but 78% chose the gamble when the same plan was described as 400 dying (Tversky & Kahneman, 1981).",
+    "modelBoundary": "the saved and lost frames of one unchanged outcome",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

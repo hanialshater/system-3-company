@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0130",
+  "title": "A food item and an exchange",
+  "hook": "Two stated cases: explore the explicit exchange cost rather than a species-level claim.",
+  "domain": "behavioral",
+  "concept": "be-source-0130",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the explicit exchange cost rather than a species-level claim affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Gain, regardless of the stated inputs.",
+  "objective": "Compare the explicit exchange cost rather than a species-level claim in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0130.predict",
+      "text": "Keeping a toy option yields 3. Switching yields 5 and costs 1. What is the gain from switching?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0130/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #130. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0130.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0130/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #130. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0130.reveal.0",
+      "text": "The retained results are SwitchFee=1; Gain=1 and SwitchFee=0; Gain=2.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0130/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #130. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0130.reveal.1",
+      "text": "Make the opportunity cost visible before judging a refusal to switch. Equal-risk labels can obscure a straightforward payoff difference. This comparison isolates the explicit exchange cost rather than a species-level claim.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0130/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #130. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0130.case.0.witness",
+      "text": "SwitchFee=1; Gain=1",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0130/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #130. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0130.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Before\",3],[\"SwitchFee\",1],[\"After\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0130/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #130. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0130.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Gain\",\"value\":1}]},\"metrics\":[{\"label\":\"Gain\",\"value\":\"1\"},{\"label\":\"SwitchFee\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0130/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #130. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0130.case.1.witness",
+      "text": "SwitchFee=0; Gain=2",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0130/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #130. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0130.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Before\",3],[\"SwitchFee\",0],[\"After\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0130/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #130. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0130.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Gain\",\"value\":2}]},\"metrics\":[{\"label\":\"Gain\",\"value\":\"2\"},{\"label\":\"SwitchFee\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0130/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #130. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0130.recall",
+      "text": "Keeping a toy option yields 4. Switching yields 5 and costs 1. What is the gain from switching? Answer 0.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0130/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #130. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Keeping a toy option yields 4. Switching yields 5 and costs 1. What is the gain from switching?",
+    "options": [
+      "-0.1",
+      "0.1",
+      "0"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Gain 0 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0130",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-130"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 130,
+    "sourceSection": "7. Endowment effect & status quo bias",
+    "sourceEntryOriginal": "- **130.** Chimpanzees show an endowment effect for food (Brosnan et al., 2007).",
+    "modelBoundary": "the explicit exchange cost rather than a species-level claim",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

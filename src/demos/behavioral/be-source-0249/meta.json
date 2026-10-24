@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0249",
+  "title": "A streak in a small sample",
+  "hook": "Two stated cases: explore the sampling protocol before a claim about a hot hand.",
+  "domain": "behavioral",
+  "concept": "be-source-0249",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the sampling protocol before a claim about a hot hand affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Gap, regardless of the stated inputs.",
+  "objective": "Compare the sampling protocol before a claim about a hot hand in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0249.predict",
+      "text": "A toy forecast claims probability 0.5; 4 of 10 matched it. What is claimed probability minus observed share?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0249/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #249. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0249.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0249/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #249. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0249.reveal.0",
+      "text": "The retained results are Hits=4; Gap=0.1 and Hits=5; Gap=0.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0249/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #249. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0249.reveal.1",
+      "text": "Calibration compares forecasts with repeated outcomes. One correct or incorrect outcome cannot settle a probability claim. This comparison isolates the sampling protocol before a claim about a hot hand.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0249/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #249. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0249.case.0.witness",
+      "text": "Hits=4; Gap=0.1",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0249/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #249. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0249.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Claimed\",0.5],[\"Hits\",4],[\"Trials\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0249/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #249. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0249.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":0.09999999999999998}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"0.1\"},{\"label\":\"Hits\",\"value\":\"4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0249/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #249. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0249.case.1.witness",
+      "text": "Hits=5; Gap=0",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0249/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #249. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0249.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Claimed\",0.5],[\"Hits\",5],[\"Trials\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0249/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #249. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0249.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":0}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"0\"},{\"label\":\"Hits\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0249/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #249. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0249.recall",
+      "text": "A toy forecast claims probability 0.4; 4 of 10 matched it. What is claimed probability minus observed share? Answer 0.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0249/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #249. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy forecast claims probability 0.4; 4 of 10 matched it. What is claimed probability minus observed share?",
+    "options": [
+      "-0.1",
+      "0",
+      "0.1"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Gap 0 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0249",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-249"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 249,
+    "sourceSection": "13. Availability, representativeness & other heuristics",
+    "sourceEntryOriginal": "- **249.** Early research found no \"hot hand\" in basketball (Gilovich, Vallone & Tversky, 1985). **\\[contested\\]** Correcting a subtle statistical bias suggests a hot hand does exist (Miller & Sanjurjo, 2018).",
+    "modelBoundary": "the sampling protocol before a claim about a hot hand",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

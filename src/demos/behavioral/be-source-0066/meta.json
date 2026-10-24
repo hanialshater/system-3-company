@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0066",
+  "title": "The path with less resistance",
+  "hook": "Two stated cases: explore which option receives the default weight.",
+  "domain": "behavioral",
+  "concept": "be-source-0066",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How which option receives the default weight affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Final, regardless of the stated inputs.",
+  "objective": "Compare which option receives the default weight in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0066.predict",
+      "text": "A toy population keeps default contribution 0 with probability 0.8; otherwise chooses 1. What is the mean contribution?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0066/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #66. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0066.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0066/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #66. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0066.reveal.0",
+      "text": "The retained results are Default=0 Other=1; Final=0.2 and Default=1 Other=0; Final=0.8.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0066/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #66. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0066.reveal.1",
+      "text": "The aggregate combines retained defaults and active choices. Automatic participation and the chosen contribution rate are different outcomes. This comparison isolates which option receives the default weight.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0066/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #66. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0066.case.0.witness",
+      "text": "Default=0 Other=1; Final=0.2",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0066/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #66. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0066.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Default\",0],[\"Other\",1],[\"Inertia\",0.8]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0066/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #66. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0066.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":0.19999999999999996}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"0.2\"},{\"label\":\"Default\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0066/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #66. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0066.case.1.witness",
+      "text": "Default=1 Other=0; Final=0.8",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0066/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #66. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0066.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Default\",1],[\"Other\",0],[\"Inertia\",0.8]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0066/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #66. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0066.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":0.8}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"0.8\"},{\"label\":\"Default\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0066/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #66. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0066.recall",
+      "text": "A toy population keeps default contribution 1 with probability 0.8; otherwise chooses 1. What is the mean contribution? Answer 1.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0066/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #66. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy population keeps default contribution 1 with probability 0.8; otherwise chooses 1. What is the mean contribution?",
+    "options": [
+      "0.6",
+      "1",
+      "1.4"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Final 1 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0066",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-66"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 66,
+    "sourceSection": "4. Defaults & choice architecture",
+    "sourceEntryOriginal": "- **66.** Employees tend to follow the \"path of least resistance\" across nearly every plan default (Choi, Laibson, Madrian & Metrick, 2004).",
+    "modelBoundary": "which option receives the default weight",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

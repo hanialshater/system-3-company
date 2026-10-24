@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0225",
+  "title": "An active trader's return",
+  "hook": "Two stated cases: explore the accumulation of an annual return difference.",
+  "domain": "behavioral",
+  "concept": "be-source-0225",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the accumulation of an annual return difference affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Balance, regardless of the stated inputs.",
+  "objective": "Compare the accumulation of an annual return difference in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0225.predict",
+      "text": "A toy balance starts at 100, compounds at rate 0.114 per period, for 10 periods. What balance results?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0225/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #225. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0225.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0225/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #225. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0225.reveal.0",
+      "text": "The retained results are Rate=0.114; Balance=294.342 and Rate=0.179; Balance=518.965.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0225/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #225. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0225.reveal.1",
+      "text": "Compounding applies the rate to the changing balance. Compare the same horizon under the altered rate. This comparison isolates the accumulation of an annual return difference.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0225/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #225. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0225.case.0.witness",
+      "text": "Rate=0.114; Balance=294.342",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0225/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #225. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0225.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Start\",100],[\"Rate\",0.114],[\"Years\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0225/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #225. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0225.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":100},{\"label\":\"3.333\",\"value\":143.31246613816606},{\"label\":\"6.667\",\"value\":205.38462950602994},{\"label\":\"10\",\"value\":294.341777613827}]},\"metrics\":[{\"label\":\"Balance\",\"value\":\"294.342\"},{\"label\":\"Rate\",\"value\":\"0.114\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0225/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #225. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0225.case.1.witness",
+      "text": "Rate=0.179; Balance=518.965",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0225/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #225. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0225.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Start\",100],[\"Rate\",0.179],[\"Years\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0225/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #225. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0225.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":100},{\"label\":\"3.333\",\"value\":173.13279903516866},{\"label\":\"6.667\",\"value\":299.74966101752096},{\"label\":\"10\",\"value\":518.964978218064}]},\"metrics\":[{\"label\":\"Balance\",\"value\":\"518.965\"},{\"label\":\"Rate\",\"value\":\"0.179\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0225/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #225. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0225.recall",
+      "text": "A toy balance starts at 101, compounds at rate 0.114 per period, for 10 periods. What balance results? Answer 297.285.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0225/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #225. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy balance starts at 101, compounds at rate 0.114 per period, for 10 periods. What balance results?",
+    "options": [
+      "178.371",
+      "297.285",
+      "416.199"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Balance 297.285 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0225",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-225"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 225,
+    "sourceSection": "12. Overconfidence & self-assessment",
+    "sourceEntryOriginal": "- **225.** Households that traded most earned 11.4% a year versus 17.9% for the market (Barber & Odean, 2000).",
+    "modelBoundary": "the accumulation of an annual return difference",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

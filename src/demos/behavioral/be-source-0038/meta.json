@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0038",
+  "title": "The previous auction price",
+  "hook": "Two stated cases: explore the historical price held against current evidence.",
+  "domain": "behavioral",
+  "concept": "be-source-0038",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the historical price held against current evidence affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Estimate, regardless of the stated inputs.",
+  "objective": "Compare the historical price held against current evidence in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0038.predict",
+      "text": "A toy estimate gives anchor 100 weight 0.5 and evidence 120 the remaining weight. What estimate results?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0038/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #38. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0038.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0038/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #38. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0038.reveal.0",
+      "text": "The retained results are Anchor=100; Estimate=110 and Anchor=200; Estimate=160.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0038/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #38. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0038.reveal.1",
+      "text": "An estimate can move because the arbitrary starting point moves. The contrast holds the evidence fixed to expose that channel. This comparison isolates the historical price held against current evidence.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0038/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #38. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0038.case.0.witness",
+      "text": "Anchor=100; Estimate=110",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0038/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #38. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0038.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Anchor\",100],[\"Evidence\",120],[\"Weight\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0038/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #38. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0038.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Estimate\",\"value\":110}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"110\"},{\"label\":\"Anchor\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0038/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #38. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0038.case.1.witness",
+      "text": "Anchor=200; Estimate=160",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0038/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #38. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0038.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Anchor\",200],[\"Evidence\",120],[\"Weight\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0038/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #38. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0038.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Estimate\",\"value\":160}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"160\"},{\"label\":\"Anchor\",\"value\":\"200\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0038/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #38. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0038.recall",
+      "text": "A toy estimate gives anchor 101 weight 0.5 and evidence 120 the remaining weight. What estimate results? Answer 110.5.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0038/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #38. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy estimate gives anchor 101 weight 0.5 and evidence 120 the remaining weight. What estimate results?",
+    "options": [
+      "110.5",
+      "66.3",
+      "154.7"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Estimate 110.5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0038",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-38"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 38,
+    "sourceSection": "2. Anchoring",
+    "sourceEntryOriginal": "- **38.** At art auctions, an artwork's previous sale price anchors its next price (Beggs & Graddy, 2009).",
+    "modelBoundary": "the historical price held against current evidence",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

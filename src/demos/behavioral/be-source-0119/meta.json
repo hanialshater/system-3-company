@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0119",
+  "title": "Two gains, one account",
+  "hook": "Two stated cases: explore valuing separate and combined changes on a curved scale.",
+  "domain": "behavioral",
+  "concept": "be-source-0119",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How valuing separate and combined changes on a curved scale affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Separate, regardless of the stated inputs.",
+  "objective": "Compare valuing separate and combined changes on a curved scale in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0119.predict",
+      "text": "Two toy changes 100 and 100 are valued separately by signed square root, with loss weight 2. What is their combined model value?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0119/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #119. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0119.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0119/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #119. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0119.reveal.0",
+      "text": "The retained results are First=100 Second=100; Separate=20 and First=200 Second=0; Separate=14.142.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0119/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #119. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0119.reveal.1",
+      "text": "Combining outcomes before valuation and valuing them separately need not agree under a curved value function. This comparison isolates valuing separate and combined changes on a curved scale.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0119/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #119. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0119.case.0.witness",
+      "text": "First=100 Second=100; Separate=20",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0119/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #119. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0119.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"First\",100],[\"Second\",100],[\"Lambda\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0119/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #119. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0119.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":10},{\"x\":4.166666666666667,\"y\":12.041241452319316},{\"x\":8.333333333333334,\"y\":12.886751345948129},{\"x\":12.5,\"y\":13.535533905932738},{\"x\":16.666666666666668,\"y\":14.082482904638631},{\"x\":20.833333333333332,\"y\":14.564354645876385},{\"x\":25,\"y\":15},{\"x\":29.166666666666668,\"y\":15.400617248673218},{\"x\":33.333333333333336,\"y\":15.773502691896258},{\"x\":37.5,\"y\":16.123724356957943},{\"x\":41.666666666666664,\"y\":16.454972243679027},{\"x\":45.833333333333336,\"y\":16.7700320038633},{\"x\":50,\"y\":17.071067811865476},{\"x\":54.166666666666664,\"y\":17.359800721939873},{\"x\":58.333333333333336,\"y\":17.637626158259735},{\"x\":62.5,\"y\":17.90569415042095},{\"x\":66.66666666666667,\"y\":18.164965809277263},{\"x\":70.83333333333333,\"y\":18.416254115301733},{\"x\":75,\"y\":18.66025403784439},{\"x\":79.16666666666667,\"y\":18.897565210026094},{\"x\":83.33333333333333,\"y\":19.12870929175277},{\"x\":87.5,\"y\":19.354143466934854},{\"x\":91.66666666666667,\"y\":19.57427107756338},{\"x\":95.83333333333333,\"y\":19.789450103725606},{\"x\":100,\"y\":20}],\"xLabel\":\"First\",\"yLabel\":\"Separate\"},\"metrics\":[{\"label\":\"Separate\",\"value\":\"20\"},{\"label\":\"First\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0119/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #119. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0119.case.1.witness",
+      "text": "First=200 Second=0; Separate=14.142",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0119/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #119. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0119.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"First\",200],[\"Second\",0],[\"Lambda\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0119/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #119. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0119.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":0},{\"x\":8.333333333333334,\"y\":2.886751345948129},{\"x\":16.666666666666668,\"y\":4.08248290463863},{\"x\":25,\"y\":5},{\"x\":33.333333333333336,\"y\":5.773502691896258},{\"x\":41.666666666666664,\"y\":6.454972243679028},{\"x\":50,\"y\":7.0710678118654755},{\"x\":58.333333333333336,\"y\":7.637626158259733},{\"x\":66.66666666666667,\"y\":8.16496580927726},{\"x\":75,\"y\":8.660254037844387},{\"x\":83.33333333333333,\"y\":9.128709291752768},{\"x\":91.66666666666667,\"y\":9.574271077563381},{\"x\":100,\"y\":10},{\"x\":108.33333333333333,\"y\":10.408329997330663},{\"x\":116.66666666666667,\"y\":10.801234497346433},{\"x\":125,\"y\":11.180339887498949},{\"x\":133.33333333333334,\"y\":11.547005383792516},{\"x\":141.66666666666666,\"y\":11.902380714238083},{\"x\":150,\"y\":12.24744871391589},{\"x\":158.33333333333334,\"y\":12.583057392117917},{\"x\":166.66666666666666,\"y\":12.909944487358056},{\"x\":175,\"y\":13.228756555322953},{\"x\":183.33333333333334,\"y\":13.5400640077266},{\"x\":191.66666666666666,\"y\":13.844373104863458},{\"x\":200,\"y\":14.142135623730951}],\"xLabel\":\"First\",\"yLabel\":\"Separate\"},\"metrics\":[{\"label\":\"Separate\",\"value\":\"14.142\"},{\"label\":\"First\",\"value\":\"200\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0119/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #119. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0119.recall",
+      "text": "Two toy changes 101 and 100 are valued separately by signed square root, with loss weight 2. What is their combined model value? Answer 20.05.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0119/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #119. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two toy changes 101 and 100 are valued separately by signed square root, with loss weight 2. What is their combined model value?",
+    "options": [
+      "20.05",
+      "12.03",
+      "28.07"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Separate 20.05 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0119",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-119"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 119,
+    "sourceSection": "6. Mental accounting",
+    "sourceEntryOriginal": "- **119.** People prefer to hear gains separately and losses bundled together (Thaler, 1985).",
+    "modelBoundary": "valuing separate and combined changes on a curved scale",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

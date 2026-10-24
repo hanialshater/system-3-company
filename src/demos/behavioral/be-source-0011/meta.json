@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0011",
+  "title": "Whose bonus is at risk?",
+  "hook": "Two stated cases: explore the reference used for a bonus.",
+  "domain": "behavioral",
+  "concept": "be-source-0011",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the reference used for a bonus affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Value, regardless of the stated inputs.",
+  "objective": "Compare the reference used for a bonus in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0011.predict",
+      "text": "An outcome is 200, its reference is 0, and negative differences count 2 times positive ones. What is its signed model value?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0011/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #11. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0011.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0011/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #11. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0011.reveal.0",
+      "text": "The retained results are Reference=0; Value=200 and Reference=300; Value=-200.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0011/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #11. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0011.reveal.1",
+      "text": "The same outcome changes sign when its reference crosses it. The reference is a stated assumption, not a measure of anyone’s feelings. This comparison isolates the reference used for a bonus.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0011/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #11. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0011.case.0.witness",
+      "text": "Reference=0; Value=200",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0011/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #11. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0011.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Outcome\",200],[\"Reference\",0],[\"Lambda\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0011/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #11. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0011.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"Input\",\"value\":200},{\"label\":\"Result\",\"value\":200}]},\"metrics\":[{\"label\":\"Value\",\"value\":\"200\"},{\"label\":\"Reference\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0011/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #11. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0011.case.1.witness",
+      "text": "Reference=300; Value=-200",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0011/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #11. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0011.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Outcome\",200],[\"Reference\",300],[\"Lambda\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0011/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #11. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0011.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"Input\",\"value\":200},{\"label\":\"Result\",\"value\":-200}]},\"metrics\":[{\"label\":\"Value\",\"value\":\"-200\"},{\"label\":\"Reference\",\"value\":\"300\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0011/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #11. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0011.recall",
+      "text": "An outcome is 201, its reference is 0, and negative differences count 2 times positive ones. What is its signed model value? Answer 201.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0011/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #11. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "An outcome is 201, its reference is 0, and negative differences count 2 times positive ones. What is its signed model value?",
+    "options": [
+      "201",
+      "120.6",
+      "281.4"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Value 201 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0011",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-11"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 11,
+    "sourceSection": "1. Loss aversion & prospect theory",
+    "sourceEntryOriginal": "- **11.** Chinese factory teams worked harder when a bonus was framed as something they would lose rather than gain (Hossain & List, 2012).",
+    "modelBoundary": "the reference used for a bonus",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

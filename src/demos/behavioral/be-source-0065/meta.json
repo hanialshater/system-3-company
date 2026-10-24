@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0065",
+  "title": "The default contribution",
+  "hook": "Two stated cases: explore a contribution rate as well as enrollment.",
+  "domain": "behavioral",
+  "concept": "be-source-0065",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How a contribution rate as well as enrollment affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Final, regardless of the stated inputs.",
+  "objective": "Compare a contribution rate as well as enrollment in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0065.predict",
+      "text": "A toy population keeps default contribution 0.03 with probability 0.8; otherwise chooses 0.08. What is the mean contribution?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0065/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #65. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0065.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0065/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #65. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0065.reveal.0",
+      "text": "The retained results are Default=0.03; Final=0.04 and Default=0.06; Final=0.064.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0065/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #65. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0065.reveal.1",
+      "text": "The aggregate combines retained defaults and active choices. Automatic participation and the chosen contribution rate are different outcomes. This comparison isolates a contribution rate as well as enrollment.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0065/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #65. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0065.case.0.witness",
+      "text": "Default=0.03; Final=0.04",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0065/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #65. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0065.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Default\",0.03],[\"Other\",0.08],[\"Inertia\",0.8]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0065/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #65. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0065.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":0.039999999999999994}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"0.04\"},{\"label\":\"Default\",\"value\":\"0.03\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0065/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #65. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0065.case.1.witness",
+      "text": "Default=0.06; Final=0.064",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0065/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #65. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0065.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Default\",0.06],[\"Other\",0.08],[\"Inertia\",0.8]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0065/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #65. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0065.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":0.064}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"0.064\"},{\"label\":\"Default\",\"value\":\"0.06\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0065/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #65. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0065.recall",
+      "text": "A toy population keeps default contribution 0.13 with probability 0.8; otherwise chooses 0.08. What is the mean contribution? Answer 0.12.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0065/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #65. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy population keeps default contribution 0.13 with probability 0.8; otherwise chooses 0.08. What is the mean contribution?",
+    "options": [
+      "0.12",
+      "0.02",
+      "0.22"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Final 0.12 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0065",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-65"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 65,
+    "sourceSection": "4. Defaults & choice architecture",
+    "sourceEntryOriginal": "- **65.** Most auto-enrolled workers stayed at the 3% default rate, so some saved less than they would have chosen (Madrian & Shea, 2001).",
+    "modelBoundary": "a contribution rate as well as enrollment",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

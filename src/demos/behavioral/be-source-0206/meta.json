@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0206",
+  "title": "A letter and on-time payment",
+  "hook": "Two stated cases: explore the comparison behind a small percentage-point lift.",
+  "domain": "behavioral",
+  "concept": "be-source-0206",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the comparison behind a small percentage-point lift affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Gap, regardless of the stated inputs.",
+  "objective": "Compare the comparison behind a small percentage-point lift in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0206.predict",
+      "text": "A toy comparison has 94/100 in A and 90/100 in B. What is A minus B in percentage points?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0206/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #206. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0206.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0206/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #206. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0206.reveal.0",
+      "text": "The retained results are HitA=94; Gap=4 and HitA=92; Gap=2.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0206/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #206. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0206.reveal.1",
+      "text": "Divide by each group’s own denominator before subtracting. A rate difference alone does not explain the cause of that difference. This comparison isolates the comparison behind a small percentage-point lift.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0206/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #206. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0206.case.0.witness",
+      "text": "HitA=94; Gap=4",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0206/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #206. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0206.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"HitA\",94],[\"TotalA\",100],[\"HitB\",90],[\"TotalB\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0206/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #206. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0206.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":3.9999999999999925}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"4\"},{\"label\":\"HitA\",\"value\":\"94\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0206/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #206. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0206.case.1.witness",
+      "text": "HitA=92; Gap=2",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0206/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #206. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0206.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"HitA\",92],[\"TotalA\",100],[\"HitB\",90],[\"TotalB\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0206/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #206. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0206.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":2.0000000000000018}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"2\"},{\"label\":\"HitA\",\"value\":\"92\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0206/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #206. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0206.recall",
+      "text": "A toy comparison has 95/100 in A and 90/100 in B. What is A minus B in percentage points? Answer 5.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0206/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #206. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy comparison has 95/100 in A and 90/100 in B. What is A minus B in percentage points?",
+    "options": [
+      "5",
+      "3",
+      "7"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Gap 5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0206",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-206"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 206,
+    "sourceSection": "11. Social norms & conformity",
+    "sourceEntryOriginal": "- **206.** UK tax letters saying \"9 out of 10 people pay on time\" raised on-time payment several percentage points (Hallsworth, List, Metcalfe & Vlaev, 2017).",
+    "modelBoundary": "the comparison behind a small percentage-point lift",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

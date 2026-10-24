@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0156",
+  "title": "Enrollment with one click",
+  "hook": "Two stated cases: explore the absolute change in a toy enrollment comparison.",
+  "domain": "behavioral",
+  "concept": "be-source-0156",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the absolute change in a toy enrollment comparison affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Gap, regardless of the stated inputs.",
+  "objective": "Compare the absolute change in a toy enrollment comparison in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0156.predict",
+      "text": "A toy comparison has 60/100 in A and 45/100 in B. What is A minus B in percentage points?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0156/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #156. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0156.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0156/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #156. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0156.reveal.0",
+      "text": "The retained results are HitA=60; Gap=15 and HitA=50; Gap=5.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0156/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #156. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0156.reveal.1",
+      "text": "Divide by each group’s own denominator before subtracting. A rate difference alone does not explain the cause of that difference. This comparison isolates the absolute change in a toy enrollment comparison.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0156/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #156. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0156.case.0.witness",
+      "text": "HitA=60; Gap=15",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0156/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #156. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0156.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"HitA\",60],[\"TotalA\",100],[\"HitB\",45],[\"TotalB\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0156/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #156. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0156.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":14.999999999999996}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"15\"},{\"label\":\"HitA\",\"value\":\"60\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0156/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #156. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0156.case.1.witness",
+      "text": "HitA=50; Gap=5",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0156/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #156. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0156.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"HitA\",50],[\"TotalA\",100],[\"HitB\",45],[\"TotalB\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0156/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #156. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0156.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":4.999999999999999}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"5\"},{\"label\":\"HitA\",\"value\":\"50\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0156/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #156. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0156.recall",
+      "text": "A toy comparison has 61/100 in A and 45/100 in B. What is A minus B in percentage points? Answer 16.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0156/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #156. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy comparison has 61/100 in A and 45/100 in B. What is A minus B in percentage points?",
+    "options": [
+      "9.6",
+      "16",
+      "22.4"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Gap 16 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0156",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-156"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 156,
+    "sourceSection": "8. Choice overload & complexity",
+    "sourceEntryOriginal": "- **156.** Simple one-click \"quick enrollment\" raised 401(k) participation by 10–20 percentage points (Beshears, Choi, Laibson & Madrian, 2013).",
+    "modelBoundary": "the absolute change in a toy enrollment comparison",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

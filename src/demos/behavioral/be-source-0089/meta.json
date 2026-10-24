@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0089",
+  "title": "A snack now or later",
+  "hook": "Two stated cases: explore the timing in a stated temptation model.",
+  "domain": "behavioral",
+  "concept": "be-source-0089",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the timing in a stated temptation model affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Advantage, regardless of the stated inputs.",
+  "objective": "Compare the timing in a stated temptation model in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0089.predict",
+      "text": "A toy model values immediate 7 normally, but delayed 10 after 1 periods as Beta 0.6 times Delta 1 to the delay. What is delayed minus immediate value?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0089/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #89. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0089.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0089/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #89. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0089.reveal.0",
+      "text": "The retained results are Beta=0.6; Advantage=-1 and Beta=1; Advantage=3.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0089/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #89. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0089.reveal.1",
+      "text": "An extra present-time weight can reverse the ranking when an option becomes immediate. The weights are explicit model assumptions. This comparison isolates the timing in a stated temptation model.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0089/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #89. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0089.case.0.witness",
+      "text": "Beta=0.6; Advantage=-1",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0089/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #89. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0089.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Soon\",7],[\"Later\",10],[\"Delay\",1],[\"Beta\",0.6],[\"Delta\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0089/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #89. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0089.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"Now\",\"value\":7},{\"label\":\"t1\",\"value\":10}]},\"metrics\":[{\"label\":\"Advantage\",\"value\":\"-1\"},{\"label\":\"Beta\",\"value\":\"0.6\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0089/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #89. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0089.case.1.witness",
+      "text": "Beta=1; Advantage=3",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0089/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #89. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0089.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Soon\",7],[\"Later\",10],[\"Delay\",1],[\"Beta\",1],[\"Delta\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0089/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #89. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0089.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"Now\",\"value\":7},{\"label\":\"t1\",\"value\":10}]},\"metrics\":[{\"label\":\"Advantage\",\"value\":\"3\"},{\"label\":\"Beta\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0089/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #89. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0089.recall",
+      "text": "A toy model values immediate 8 normally, but delayed 10 after 1 periods as Beta 0.6 times Delta 1 to the delay. What is delayed minus immediate value? Answer -2.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0089/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #89. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy model values immediate 8 normally, but delayed 10 after 1 periods as Beta 0.6 times Delta 1 to the delay. What is delayed minus immediate value?",
+    "options": [
+      "-2",
+      "-2.8",
+      "-1.2"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Advantage -2 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0089",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-89"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 89,
+    "sourceSection": "5. Present bias & time preferences",
+    "sourceEntryOriginal": "- **89.** 74% chose fruit as a snack for next week, but 70% chose chocolate for right now (Read & van Leeuwen, 1998).",
+    "modelBoundary": "the timing in a stated temptation model",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0168",
+  "title": "Who can observe the allocation?",
+  "hook": "Two stated cases: explore the supplied allocation rather than an inferred motive.",
+  "domain": "behavioral",
+  "concept": "be-source-0168",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the supplied allocation rather than an inferred motive affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Kept, regardless of the stated inputs.",
+  "objective": "Compare the supplied allocation rather than an inferred motive in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0168.predict",
+      "text": "A toy allocator starts with 10, gives 3, and pays fee 0. What remains?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0168/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #168. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0168.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0168/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #168. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0168.reveal.0",
+      "text": "The retained results are Gift=3; Kept=7 and Gift=1; Kept=9.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0168/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #168. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0168.reveal.1",
+      "text": "An allocation rule determines the available payoff. Preferences, observability and social pressure require evidence beyond the accounting. This comparison isolates the supplied allocation rather than an inferred motive.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0168/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #168. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0168.case.0.witness",
+      "text": "Gift=3; Kept=7",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0168/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #168. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0168.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Pie\",10],[\"Gift\",3],[\"ExitCost\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0168/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #168. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0168.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Kept\",\"value\":7}]},\"metrics\":[{\"label\":\"Kept\",\"value\":\"7\"},{\"label\":\"Gift\",\"value\":\"3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0168/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #168. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0168.case.1.witness",
+      "text": "Gift=1; Kept=9",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0168/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #168. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0168.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Pie\",10],[\"Gift\",1],[\"ExitCost\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0168/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #168. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0168.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Kept\",\"value\":9}]},\"metrics\":[{\"label\":\"Kept\",\"value\":\"9\"},{\"label\":\"Gift\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0168/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #168. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0168.recall",
+      "text": "A toy allocator starts with 11, gives 3, and pays fee 0. What remains? Answer 8.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0168/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #168. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy allocator starts with 11, gives 3, and pays fee 0. What remains?",
+    "options": [
+      "4.8",
+      "8",
+      "11.2"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Kept 8 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0168",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-168"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 168,
+    "sourceSection": "9. Fairness: ultimatum & dictator games",
+    "sourceEntryOriginal": "- **168.** Giving drops when even the experimenter cannot see who gave what (Hoffman, McCabe, Shachat & Smith, 1994).",
+    "modelBoundary": "the supplied allocation rather than an inferred motive",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

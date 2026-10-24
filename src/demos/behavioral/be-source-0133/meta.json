@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0133",
+  "title": "Swap the lottery ticket?",
+  "hook": "Two stated cases: explore the payoff difference between equal-risk labels.",
+  "domain": "behavioral",
+  "concept": "be-source-0133",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the payoff difference between equal-risk labels affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Gain, regardless of the stated inputs.",
+  "objective": "Compare the payoff difference between equal-risk labels in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0133.predict",
+      "text": "Keeping a toy option yields 10. Switching yields 11 and costs 0. What is the gain from switching?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0133/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #133. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0133.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0133/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #133. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0133.reveal.0",
+      "text": "The retained results are After=11; Gain=1 and After=10; Gain=0.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0133/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #133. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0133.reveal.1",
+      "text": "Make the opportunity cost visible before judging a refusal to switch. Equal-risk labels can obscure a straightforward payoff difference. This comparison isolates the payoff difference between equal-risk labels.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0133/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #133. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0133.case.0.witness",
+      "text": "After=11; Gain=1",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0133/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #133. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0133.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Before\",10],[\"SwitchFee\",0],[\"After\",11]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0133/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #133. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0133.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Gain\",\"value\":1}]},\"metrics\":[{\"label\":\"Gain\",\"value\":\"1\"},{\"label\":\"After\",\"value\":\"11\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0133/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #133. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0133.case.1.witness",
+      "text": "After=10; Gain=0",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0133/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #133. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0133.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Before\",10],[\"SwitchFee\",0],[\"After\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0133/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #133. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0133.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Gain\",\"value\":0}]},\"metrics\":[{\"label\":\"Gain\",\"value\":\"0\"},{\"label\":\"After\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0133/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #133. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0133.recall",
+      "text": "Keeping a toy option yields 11. Switching yields 11 and costs 0. What is the gain from switching? Answer 0.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0133/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #133. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Keeping a toy option yields 11. Switching yields 11 and costs 0. What is the gain from switching?",
+    "options": [
+      "-0.1",
+      "0.1",
+      "0"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Gain 0 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0133",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-133"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 133,
+    "sourceSection": "7. Endowment effect & status quo bias",
+    "sourceEntryOriginal": "- **133.** Many refuse to swap a lottery ticket for an identical one, even with a sweetener (Bar-Hillel & Neter, 1996).",
+    "modelBoundary": "the payoff difference between equal-risk labels",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

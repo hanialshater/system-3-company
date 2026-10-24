@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0222",
+  "title": "A rank and its self-estimate",
+  "hook": "Two stated cases: explore the signed rank gap without diagnosing its cause.",
+  "domain": "behavioral",
+  "concept": "be-source-0222",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the signed rank gap without diagnosing its cause affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Error, regardless of the stated inputs.",
+  "objective": "Compare the signed rank gap without diagnosing its cause in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0222.predict",
+      "text": "A toy result is at percentile 12; the forecast was percentile 62. What signed forecasting error is guessed minus actual?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0222/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #222. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0222.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0222/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #222. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0222.reveal.0",
+      "text": "The retained results are Actual=12; Error=50 and Actual=50; Error=12.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0222/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #222. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0222.reveal.1",
+      "text": "A rank gap describes the two numbers. Measurement noise and mathematical coupling can also affect patterns in such gaps. This comparison isolates the signed rank gap without diagnosing its cause.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0222/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #222. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0222.case.0.witness",
+      "text": "Actual=12; Error=50",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0222/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #222. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0222.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Actual\",12],[\"Guessed\",62]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0222/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #222. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0222.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"scatter\",\"points\":[{\"x\":0,\"y\":0},{\"x\":12,\"y\":62}],\"xLabel\":\"Actual\",\"yLabel\":\"Guessed\"},\"metrics\":[{\"label\":\"Error\",\"value\":\"50\"},{\"label\":\"Actual\",\"value\":\"12\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0222/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #222. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0222.case.1.witness",
+      "text": "Actual=50; Error=12",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0222/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #222. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0222.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Actual\",50],[\"Guessed\",62]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0222/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #222. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0222.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"scatter\",\"points\":[{\"x\":0,\"y\":0},{\"x\":50,\"y\":62}],\"xLabel\":\"Actual\",\"yLabel\":\"Guessed\"},\"metrics\":[{\"label\":\"Error\",\"value\":\"12\"},{\"label\":\"Actual\",\"value\":\"50\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0222/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #222. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0222.recall",
+      "text": "A toy result is at percentile 13; the forecast was percentile 62. What signed forecasting error is guessed minus actual? Answer 49.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0222/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #222. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy result is at percentile 13; the forecast was percentile 62. What signed forecasting error is guessed minus actual?",
+    "options": [
+      "29.4",
+      "49",
+      "68.6"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Error 49 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0222",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-222"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 222,
+    "sourceSection": "12. Overconfidence & self-assessment",
+    "sourceEntryOriginal": "- **222.** The weakest performers on logic and grammar tests, scoring around the 12th percentile, guessed they were near the 62nd (Kruger & Dunning, 1999). **\\[contested\\]** Part of the pattern is a statistical artifact (Nuhfer et al., 2016).",
+    "modelBoundary": "the signed rank gap without diagnosing its cause",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

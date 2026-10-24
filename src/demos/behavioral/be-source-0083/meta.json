@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0083",
+  "title": "Today and next month",
+  "hook": "Two stated cases: explore the extra weight applied when one option is immediate.",
+  "domain": "behavioral",
+  "concept": "be-source-0083",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the extra weight applied when one option is immediate affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Advantage, regardless of the stated inputs.",
+  "objective": "Compare the extra weight applied when one option is immediate in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0083.predict",
+      "text": "A toy model values immediate 100 normally, but delayed 110 after 1 periods as Beta 0.8 times Delta 1 to the delay. What is delayed minus immediate value?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0083/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #83. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0083.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0083/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #83. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0083.reveal.0",
+      "text": "The retained results are Beta=0.8; Advantage=-12 and Beta=1; Advantage=10.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0083/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #83. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0083.reveal.1",
+      "text": "An extra present-time weight can reverse the ranking when an option becomes immediate. The weights are explicit model assumptions. This comparison isolates the extra weight applied when one option is immediate.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0083/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #83. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0083.case.0.witness",
+      "text": "Beta=0.8; Advantage=-12",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0083/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #83. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0083.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Soon\",100],[\"Later\",110],[\"Delay\",1],[\"Beta\",0.8],[\"Delta\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0083/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #83. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0083.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"Now\",\"value\":100},{\"label\":\"t1\",\"value\":110}]},\"metrics\":[{\"label\":\"Advantage\",\"value\":\"-12\"},{\"label\":\"Beta\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0083/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #83. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0083.case.1.witness",
+      "text": "Beta=1; Advantage=10",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0083/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #83. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0083.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Soon\",100],[\"Later\",110],[\"Delay\",1],[\"Beta\",1],[\"Delta\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0083/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #83. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0083.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"Now\",\"value\":100},{\"label\":\"t1\",\"value\":110}]},\"metrics\":[{\"label\":\"Advantage\",\"value\":\"10\"},{\"label\":\"Beta\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0083/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #83. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0083.recall",
+      "text": "A toy model values immediate 101 normally, but delayed 110 after 1 periods as Beta 0.8 times Delta 1 to the delay. What is delayed minus immediate value? Answer -13.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0083/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #83. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy model values immediate 101 normally, but delayed 110 after 1 periods as Beta 0.8 times Delta 1 to the delay. What is delayed minus immediate value?",
+    "options": [
+      "-13",
+      "-18.2",
+      "-7.8"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Advantage -13 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0083",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-83"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 83,
+    "sourceSection": "5. Present bias & time preferences",
+    "sourceEntryOriginal": "- **83.** Many prefer $100 today over $110 tomorrow, yet prefer $110 in 31 days over $100 in 30 days, a preference reversal (Thaler, 1981; Ainslie, 1975).",
+    "modelBoundary": "the extra weight applied when one option is immediate",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

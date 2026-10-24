@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0196",
+  "title": "A future that might end",
+  "hook": "Two stated cases: explore the continuation weight required by a repeated-game comparison.",
+  "domain": "behavioral",
+  "concept": "be-source-0196",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the continuation weight required by a repeated-game comparison affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Advantage, regardless of the stated inputs.",
+  "objective": "Compare the continuation weight required by a repeated-game comparison in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0196.predict",
+      "text": "Toy cooperation pays 3 forever, discounted by 0.9 each round. Defection pays 5 once, then zero. What is cooperation’s discounted advantage?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0196/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #196. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0196.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0196/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #196. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0196.reveal.0",
+      "text": "The retained results are Delta=0.9; Advantage=25 and Delta=0.1; Advantage=-1.667.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0196/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #196. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0196.reveal.1",
+      "text": "Continuation can make a one-time temptation unattractive. The comparison depends on the specified future and discount factor. This comparison isolates the continuation weight required by a repeated-game comparison.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0196/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #196. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0196.case.0.witness",
+      "text": "Delta=0.9; Advantage=25",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0196/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #196. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0196.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Cooperate\",3],[\"Defect\",5],[\"Delta\",0.9]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0196/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #196. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0196.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"1\",\"value\":3},{\"label\":\"2\",\"value\":5.699999999999999},{\"label\":\"3\",\"value\":8.129999999999999},{\"label\":\"4\",\"value\":10.317},{\"label\":\"5\",\"value\":12.2853},{\"label\":\"6\",\"value\":14.056770000000002}]},\"metrics\":[{\"label\":\"Advantage\",\"value\":\"25\"},{\"label\":\"Delta\",\"value\":\"0.9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0196/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #196. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0196.case.1.witness",
+      "text": "Delta=0.1; Advantage=-1.667",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0196/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #196. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0196.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Cooperate\",3],[\"Defect\",5],[\"Delta\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0196/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #196. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0196.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"1\",\"value\":3},{\"label\":\"2\",\"value\":3.3},{\"label\":\"3\",\"value\":3.3299999999999996},{\"label\":\"4\",\"value\":3.3329999999999997},{\"label\":\"5\",\"value\":3.3333000000000004},{\"label\":\"6\",\"value\":3.33333}]},\"metrics\":[{\"label\":\"Advantage\",\"value\":\"-1.667\"},{\"label\":\"Delta\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0196/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #196. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0196.recall",
+      "text": "Toy cooperation pays 4 forever, discounted by 0.9 each round. Defection pays 5 once, then zero. What is cooperation’s discounted advantage? Answer 35.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0196/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #196. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy cooperation pays 4 forever, discounted by 0.9 each round. Defection pays 5 once, then zero. What is cooperation’s discounted advantage?",
+    "options": [
+      "21",
+      "49",
+      "35"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Advantage 35 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0196",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-196"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 196,
+    "sourceSection": "10. Trust, reciprocity & cooperation",
+    "sourceEntryOriginal": "- **196.** Cooperation in repeated games emerges mainly when it is both an equilibrium and not too risky (Dal Bó & Fréchette, 2011).",
+    "modelBoundary": "the continuation weight required by a repeated-game comparison",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

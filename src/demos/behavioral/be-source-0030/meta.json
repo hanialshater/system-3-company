@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0030",
+  "title": "A warning before the cue",
+  "hook": "Two stated cases: explore a reduction rather than elimination of anchoring.",
+  "domain": "behavioral",
+  "concept": "be-source-0030",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How a reduction rather than elimination of anchoring affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Estimate, regardless of the stated inputs.",
+  "objective": "Compare a reduction rather than elimination of anchoring in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0030.predict",
+      "text": "A toy estimate gives anchor 20 weight 0.5 and evidence 60 the remaining weight. What estimate results?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0030/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #30. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0030.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0030/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #30. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0030.reveal.0",
+      "text": "The retained results are Weight=0.5; Estimate=40 and Weight=0.4; Estimate=44.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0030/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #30. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0030.reveal.1",
+      "text": "An estimate can move because the arbitrary starting point moves. The contrast holds the evidence fixed to expose that channel. This comparison isolates a reduction rather than elimination of anchoring.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0030/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #30. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0030.case.0.witness",
+      "text": "Weight=0.5; Estimate=40",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0030/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #30. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0030.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Anchor\",20],[\"Evidence\",60],[\"Weight\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0030/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #30. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0030.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Estimate\",\"value\":40}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"40\"},{\"label\":\"Weight\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0030/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #30. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0030.case.1.witness",
+      "text": "Weight=0.4; Estimate=44",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0030/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #30. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0030.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Anchor\",20],[\"Evidence\",60],[\"Weight\",0.4]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0030/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #30. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0030.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Estimate\",\"value\":44}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"44\"},{\"label\":\"Weight\",\"value\":\"0.4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0030/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #30. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0030.recall",
+      "text": "A toy estimate gives anchor 21 weight 0.5 and evidence 60 the remaining weight. What estimate results? Answer 40.5.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0030/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #30. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy estimate gives anchor 21 weight 0.5 and evidence 60 the remaining weight. What estimate results?",
+    "options": [
+      "24.3",
+      "40.5",
+      "56.7"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Estimate 40.5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0030",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-30"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 30,
+    "sourceSection": "2. Anchoring",
+    "sourceEntryOriginal": "- **30.** Forewarning people about anchoring did not remove it (Wilson, Houston, Etling & Brekke, 1996).",
+    "modelBoundary": "a reduction rather than elimination of anchoring",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0120",
+  "title": "The bottle bought long ago",
+  "hook": "Two stated cases: explore the historical cost versus the remaining use decision.",
+  "domain": "behavioral",
+  "concept": "be-source-0120",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the historical cost versus the remaining use decision affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Net, regardless of the stated inputs.",
+  "objective": "Compare the historical cost versus the remaining use decision in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0120.predict",
+      "text": "A toy decision has future benefit 30, future cost 0, and an unrecoverable past cost 20. What is the future net benefit?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0120/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #120. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0120.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0120/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #120. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0120.reveal.0",
+      "text": "The retained results are PastCost=20; Net=30 and PastCost=40; Net=30.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0120/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #120. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0120.reveal.1",
+      "text": "The sunk payment is absent from the future comparison because either choice leaves it paid. A past bill cannot change the remaining payoff. This comparison isolates the historical cost versus the remaining use decision.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0120/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #120. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0120.case.0.witness",
+      "text": "PastCost=20; Net=30",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0120/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #120. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0120.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"FutureBenefit\",30],[\"FutureCost\",0],[\"PastCost\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0120/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #120. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0120.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Net\",\"value\":30}]},\"metrics\":[{\"label\":\"Net\",\"value\":\"30\"},{\"label\":\"PastCost\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0120/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #120. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0120.case.1.witness",
+      "text": "PastCost=40; Net=30",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0120/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #120. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0120.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"FutureBenefit\",30],[\"FutureCost\",0],[\"PastCost\",40]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0120/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #120. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0120.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Net\",\"value\":30}]},\"metrics\":[{\"label\":\"Net\",\"value\":\"30\"},{\"label\":\"PastCost\",\"value\":\"40\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0120/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #120. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0120.recall",
+      "text": "A toy decision has future benefit 31, future cost 0, and an unrecoverable past cost 20. What is the future net benefit? Answer 31.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0120/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #120. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy decision has future benefit 31, future cost 0, and an unrecoverable past cost 20. What is the future net benefit?",
+    "options": [
+      "18.6",
+      "31",
+      "43.4"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Net 31 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0120",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-120"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 120,
+    "sourceSection": "6. Mental accounting",
+    "sourceEntryOriginal": "- **120.** Wine bought years ago and drunk now often feels free, while breaking a bottle feels like a loss (Shafir & Thaler, 2006).",
+    "modelBoundary": "the historical cost versus the remaining use decision",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0152",
+  "title": "Pay to wait for a decision",
+  "hook": "Two stated cases: explore the cost of delay when final outcomes are unchanged.",
+  "domain": "behavioral",
+  "concept": "be-source-0152",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the cost of delay when final outcomes are unchanged affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Final, regardless of the stated inputs.",
+  "objective": "Compare the cost of delay when final outcomes are unchanged in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0152.predict",
+      "text": "A toy price starts at 100, subtracts discount 0, and adds surcharge 5. What is the final price?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0152/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #152. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0152.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0152/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #152. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0152.reveal.0",
+      "text": "The retained results are Surcharge=5; Final=105 and Surcharge=0; Final=100.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0152/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #152. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0152.reveal.1",
+      "text": "Compare final prices under the two labels. Fairness or preference judgments are not implied by equal arithmetic. This comparison isolates the cost of delay when final outcomes are unchanged.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0152/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #152. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0152.case.0.witness",
+      "text": "Surcharge=5; Final=105",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0152/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #152. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0152.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Base\",100],[\"Discount\",0],[\"Surcharge\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0152/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #152. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0152.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":105}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"105\"},{\"label\":\"Surcharge\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0152/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #152. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0152.case.1.witness",
+      "text": "Surcharge=0; Final=100",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0152/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #152. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0152.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Base\",100],[\"Discount\",0],[\"Surcharge\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0152/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #152. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0152.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":100}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"100\"},{\"label\":\"Surcharge\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0152/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #152. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0152.recall",
+      "text": "A toy price starts at 101, subtracts discount 0, and adds surcharge 5. What is the final price? Answer 106.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0152/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #152. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy price starts at 101, subtracts discount 0, and adds surcharge 5. What is the final price?",
+    "options": [
+      "106",
+      "63.6",
+      "148.4"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Final 106 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0152",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-152"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 152,
+    "sourceSection": "8. Choice overload & complexity",
+    "sourceEntryOriginal": "- **152.** People pay to delay a choice until uncertainty resolves, even when they would choose the same either way (Tversky & Shafir, 1992).",
+    "modelBoundary": "the cost of delay when final outcomes are unchanged",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}
