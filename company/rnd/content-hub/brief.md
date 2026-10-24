@@ -30,7 +30,7 @@ would_be_wrong_if: any unrelated edit rebuilds an unchanged demo; a failed build
 
 - Baseline: build every demo after each write. Treatment: content-based input comparison per demo, including its dependency closure and compiler/SDK identity. Count build/test executions; record wall times as local feasibility evidence only.
 - One local Git repository per space. Scoped writes require an expected HEAD and validate the complete patch before mutation.
-- SQLite metadata and durable queue; filesystem object storage emulates object-store/CDN delivery. No new npm dependencies. Existing TypeScript and Next-vendored webpack perform compilation.
+- SQLite metadata and durable queue; filesystem object storage emulates object-store/CDN delivery. No new npm dependencies. Existing TypeScript performs type checking and emits a browser ESM module graph with resolved dependency imports.
 - Versioned local package sources model pinned dependencies; package revisions are immutable through the write API. New package versions do not automatically move demo pins.
 - Save commits and enqueues work. A separate worker tests/compiles committed snapshots. Publishing is explicit and per-demo, with provenance retained even on cache hits.
 - Standalone loopback host loads compiled ESM artifacts on demand in sandboxed frames. No production routes, lesson sources, credentials or protected paths change.

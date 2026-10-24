@@ -1,0 +1,53 @@
+{
+  "results": [
+    {
+      "name": "initial builds",
+      "statuses": [
+        "ready",
+        "ready"
+      ],
+      "jobs": 2
+    },
+    {
+      "name": "scoped code edit",
+      "jobs": 1,
+      "demos": [
+        "alpha"
+      ],
+      "milliseconds": 1547.809541
+    },
+    {
+      "name": "documentation edit",
+      "jobs": 0
+    },
+    {
+      "name": "compiler failure",
+      "status": "failed",
+      "publicationPreserved": true
+    },
+    {
+      "name": "identical-input restore",
+      "status": "cached",
+      "differentCommit": true,
+      "sameArtifact": true
+    },
+    {
+      "name": "rollback without compilation",
+      "artifact": "372467d2b15c2d1646ac2dad2a16c457842815d784067d5413ef0490909a75b0",
+      "generation": 3
+    },
+    {
+      "name": "explicit dependency upgrade",
+      "demos": [
+        "alpha"
+      ],
+      "oldBetaArtifactPreserved": true
+    },
+    {
+      "name": "finite fixture comparison",
+      "scopedCompilerRuns": 5,
+      "rebuildAllCompilerRuns": 14,
+      "caveat": "Counts for this deterministic two-demo sequence; not a throughput benchmark."
+    }
+  ]
+}

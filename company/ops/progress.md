@@ -1,3 +1,11 @@
+## 2026-10-24 · R&D content hub prototype · W-2026 ready for review
+
+Built src/lab/content-hub/: Git per space, scoped optimistic writes, queued snapshot builds, exact/transitive dependency pins, TypeScript checks and emitted ESM, compiled tests, immutable artifacts, SQLite release pointers, rollback and standalone browser preview. Tracking: GitHub issue #18; brief/results in company/rnd/content-hub/. Predictions committed locally in 8dec8024 before execution. Seven integration tests and five desktop/phone browser checks pass. Finite fixture count: five compiler runs versus fourteen rebuild-all; not scale evidence.
+
+Repository check diagnostics exactly match isolated base 60eaf60a: 811 errors/four warnings. Full verify stops at the same two publication-readiness failures reproduced on the base; later stages not reached. No production imports, protected paths, dependencies or deployments changed.
+
+Belief: the write/build/publication boundary is feasible for the synthetic fixtures (high confidence); million-demo capacity and production safety remain untested. Next: W-2027 rnd-lead independent acceptance; W-2028 principal-engineer review against EDD-003/SPIKE-001. No manager acceptance or production readiness is claimed.
+
 ## 2026-10-21 · history map illustrations · seven original SVGs (W-2025)
 
 Added ships, a Normandy landing craft, horse, camp, fire, crossed swords and castle illustrations. Eighteen stories select artwork by checkpoint; atlas previews use the same vector source. Placement avoids labels and geographic points. Camps are unlocated illustrative vignettes. Standalone reusable SVGs and their generator are included. No historical dates, routes or coordinates changed; changed lessons remain drafts with unverified art-convention claims and bumped versions.
