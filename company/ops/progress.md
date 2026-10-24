@@ -1,3 +1,17 @@
+## 2026-10-24 · chief-of-staff (for System 3 Meta, as vp-meta) · Benchmarks 9b and 9c: warm forks and the autonomous org
+
+Founder: "Yes keep going" (B9b, then B9c); later: "we did not run the principled org right?" (answer: a lean version only; see BENCH9C.md "What this says").
+
+**Done** (company/sibling/system3-meta/prototype/bench9):
+- **B9b, PF** (BENCH9B.md): a scout session, 4 then 3 warm forks with generic temperaments and a findings board. Quiet 0.624 for $60.53, against V 0.529 (re-judged) for $18. Forks held 220-280k context, used the board (23 entries, round-2 plans cite round-1 entries), but went for the same first change, stopped early, and could not measure under four parallel sessions.
+- **B9c, AO** (B9C.md, BENCH9C.md): three persistent warm workers, claims, the board, merges kept only if the referee's fast judge says main did not get worse, an arbiter for conflicts (never needed), a coverage map. Quiet 0.637 for $66.54 (true). Every mechanism worked (no collisions, a duplicate avoided through the board, 2 regressions reverted, merges from all 3 workers in all 4 areas); it still lost to V by 20% at 3.7x cost.
+- **Deviation:** AO stopped after 2 of 3 rounds: time-capped turns logged $0, so the cap rule would have run round 3 over $70. Fixed in run.mjs (cost estimated from the transcript).
+- Board claims (board.mjs), fake judge for dry runs.
+
+**Belief (high):** on a bounded problem that fits one context, with a wall-clock referee on one shared machine, one strong agent beats every multi-agent design we have tried (cold population 0.613, warm forks 0.624, autonomous org 0.637, all at about 0.62 against 0.53). The proportion principle predicted it. **Medium:** the org's mechanisms (claims, board, referee, merge) are sound and are what a long-horizon or too-big-for-one-context task would need.
+
+**Next:** a fair test of the full principled org (stewardship, K38/K39 beliefs on the board, per-worker measurement, possibly a second model family) on work that gives an org a reason: too big for one context or long-running, e.g. a large batch of lessons in the lesson company. Needs the founder's go. **Blocked:** nothing.
+
 ## 2026-10-24 · chief-of-staff (for System 3 Meta, as vp-meta) · Benchmark 9 written up; founder principles recorded
 
 Founder: "go after B8", "no native image", "go with K39", then the principles (autonomy, diversity without restriction, full context, shared organised learning, roles and ownership as stewardship, coverage and reach, in proportion).
