@@ -11,7 +11,10 @@ const opt = Object.fromEntries(process.argv.slice(2).filter((a) => a.startsWith(
 /** mulberry32: small, fast, deterministic */
 function rng(seed) { let a = seed >>> 0; return () => { a = (a + 0x6d2b79f5) >>> 0; let t = a; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
 
-export function generate(seed, n) {
+/** opts.core (B11): only the core families, and no recursive CTE in the schema prologue; the random stream is the same
+ *  as without it, so B10's corpora are unchanged */
+export const CORE = ["dml", "expr", "strings", "aggregates", "joins", "subqueries", "indexes"];
+export function generate(seed, n, opts = {}) {
   const R = rng(seed);
   const int = (lo, hi) => lo + Math.floor(R() * (hi - lo + 1));
   const pick = (a) => a[Math.floor(R() * a.length)];
@@ -43,7 +46,7 @@ export function generate(seed, n) {
         out.push(`INSERT ${chance(0.15) ? "OR IGNORE " : ""}INTO ${name}(${cols.slice(1).map((c) => c.n).join(", ")}) VALUES(${vs.join(", ")});`);
       }
     }
-    if (chance(0.3)) out.push(`INSERT INTO t0(${tables[0].cols.slice(1).join(", ")}) SELECT ${tables[0].cols.slice(1).map((c, i) => (i === 0 ? "x" : i === 1 ? "x * 7 % 13" : "'v' || x")).join(", ")} FROM (WITH RECURSIVE s(x) AS (SELECT 1 UNION ALL SELECT x + 1 FROM s WHERE x < ${int(50, 3000)}) SELECT x FROM s);`);
+    if (chance(0.3) && !opts.core) out.push(`INSERT INTO t0(${tables[0].cols.slice(1).join(", ")}) SELECT ${tables[0].cols.slice(1).map((c, i) => (i === 0 ? "x" : i === 1 ? "x * 7 % 13" : "'v' || x")).join(", ")} FROM (WITH RECURSIVE s(x) AS (SELECT 1 UNION ALL SELECT x + 1 FROM s WHERE x < ${int(50, 3000)}) SELECT x FROM s);`);
     return { out, tables };
   }
   const col = (t) => pick(t.cols);
@@ -79,7 +82,7 @@ export function generate(seed, n) {
     errors: (t) => [pick([`SELEC 1;`, `SELECT * FROM ${t.name} WHERE;`, `INSERT INTO ${t.name}(nope) VALUES(1);`, `SELECT ${t.name}.nope FROM ${t.name};`, `CREATE TABLE ${t.name}(x);`, `SELECT 1 FROM (SELECT 1, 2) ORDER BY 3;`, `SELECT abs(-9223372036854775808);`, `SELECT CAST('9e999' AS REAL), 1 / 0, 1 % 0, 9223372036854775807 + 1;`, `INSERT INTO ${t.name}(id) VALUES(1), (1);`, `SELECT json('{');`, `SELECT substr();`, `SELECT x'zz';`, `DROP TABLE nope;`, `COMMIT;`, `ROLLBACK TO nope;`, `SELECT 'a' + 'b', 'a' > 1, x'01' < 1;`])],
     pragma: (t) => [`PRAGMA table_info(${t.name});`, `PRAGMA index_list(${t.name});`, `PRAGMA foreign_key_list(${t.name});`, `PRAGMA integrity_check;`, `SELECT name, type FROM sqlite_schema ORDER BY name;`],
   };
-  const names = Object.keys(FAMILIES), scripts = [];
+  const names = opts.core ? CORE : Object.keys(FAMILIES), scripts = [];
   for (let k = 0; k < n; k++) {
     const fam = names[k % names.length];
     const { out, tables } = schema();
@@ -94,8 +97,8 @@ export function generate(seed, n) {
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
-  const seed = Number(opt.seed ?? 1), n = Number(opt.n ?? 100), out = path.resolve(opt.out ?? "corpus");
+  const seed = Number(opt.seed ?? 1), n = Number(opt.n ?? 100), out = path.resolve(opt.out ?? "corpus"), core = !!opt.core;
   fs.mkdirSync(out, { recursive: true });
-  for (const s of generate(seed, n)) fs.writeFileSync(path.join(out, `${s.name}.sql`), s.sql);
+  for (const s of generate(seed, n, { core })) fs.writeFileSync(path.join(out, `${s.name}.sql`), s.sql);
   console.log(`wrote ${n} scripts (seed ${seed}) to ${out}`);
 }
