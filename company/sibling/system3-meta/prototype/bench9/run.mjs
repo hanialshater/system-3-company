@@ -244,7 +244,8 @@ async function armP() {
 async function armS() {
   const led = ledgerOf("S"), rows = S8.readJsonl(led);
   if (rows.some((x) => x.event === "end")) return { done: true, final: rows.find((x) => x.event === "end") };
-  const runs = path.join(B9, "arms", "S");
+  // a short root: the broker's unix socket under it must stay within 107 bytes (b9-runs/arms/S/_sock/S9/broker.sock was 108)
+  const runs = path.join(B9, "S");
   if (!rows.length) log(led, { event: "start", arm: "S", start: START, model: MODEL, caps: { cost: CAP_COST, min: CAP_MIN }, fake: FAKE });
   const args = [path.join(HERE, "..", "bench8", "setup.mjs"), "run", "--arm=S9", `--runs=${runs}`, `--b8=${B8}`, `--max-min=${CAP_MIN}`, `--max-cost=${CAP_COST}`, "--max-rounds=0", ...(opt.resume ? ["--resume"] : []), ...(FAKE ? ["--fake", "--no-preflight"] : [])];
   log(led, { event: "launch", args: args.slice(1) });
@@ -277,6 +278,8 @@ async function finalScoring() {
   const pGated = [...new Set(pRows.filter((x) => x.event === "full" && x.gateOk).map((x) => x.id))];
   if (pGated.length > 1) for (const id of pGated) if (id !== p?.final?.id) cands[`P:${id}`] = path.join(B9, "arms", `P-${id}`, "V");
   const s = S8.readJsonl(ledgerOf("S")).find((x) => x.event === "end"); if (s?.dir) cands.S = s.dir;
+  // --only=S,start: score only these (S ran after the others' final scoring)
+  if (opt.only) { const keep = String(opt.only).split(","); for (const k of Object.keys(cands)) if (!keep.includes(k)) delete cands[k]; }
   for (const [arm, dir] of Object.entries(cands)) { out[arm] = await full(dir, { reps: 5, out: path.join(B9, "_operator", `final-${arm.replace(":", "-")}.json`) }); log(path.join(B9, "_operator", "final.jsonl"), { arm, dir, ...out[arm] }); }
   const pAll = Object.entries(out).filter(([k, x]) => (k === "P" || k.startsWith("P:")) && x.gateOk).sort((a, b) => a[1].score - b[1].score);
   if (pAll.length) log(path.join(B9, "_operator", "final.jsonl"), { arm: "P-best", from: pAll[0][0], score: pAll[0][1].score, ownPick: out.P ? { id: p?.final?.id, score: out.P.score } : null, candidates: pAll.map(([k, x]) => [k, x.score]) });
