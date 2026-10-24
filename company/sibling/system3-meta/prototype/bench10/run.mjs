@@ -150,10 +150,14 @@ async function armV() {
   let spent = rows.filter((x) => x.event === "turn").reduce((a, x) => a + (x.cost ?? 0), 0), sid = rows.findLast((x) => x.event === "turn" && x.sid)?.sid ?? null, k = rows.filter((x) => x.event === "turn").length;
   while (clock.min() < CAP_MIN - 5 && spent < CAP_COST - 3) {
     const left = CAP_MIN - clock.min();
+    // Fix (operator, 2026-10-24 14:55, during the run): a turn's cost is bounded only by its time, so size the turn to
+    // the budget left at V's own observed cost per active minute (turn 1: $47 in 90 min), keeping $3 in hand
+    const rate = clock.min() > 5 && spent > 0 ? spent / clock.min() : 0.55, byBudget = Math.floor((CAP_COST - 3 - spent) / rate);
+    if (byBudget < 5) break;
     const prompt = k === 0
       ? `${TASK(P)}\nYou work alone, in charge of your own plan, for about ${CAP_MIN / 60} hours of working time and $${CAP_COST} in total. Work in long stretches; commit as you go (your last commit is what is judged). When you stop, I will say "go on" until the time or the budget runs out.`
       : `Go on. So far: $${spent.toFixed(2)} of $${CAP_COST}, ${Math.round(clock.min())} of ${CAP_MIN} minutes. Your last commit: ${gitOk(P.V, "log", "--oneline", "-1")}. Keep improving the generated code; commit as you go.`;
-    const r = await turn(P, prompt, { resume: sid, ms: Math.min(90, left) * 60000, label: `V turn ${k + 1}`, ledger: led });
+    const r = await turn(P, prompt, { resume: sid, ms: Math.min(90, left, byBudget) * 60000, label: `V turn ${k + 1}`, ledger: led });
     spent += r.cost; sid = r.sid ?? sid; k++;
     log(led, { event: "checkpoint", turn: k, head: gitOk(P.V, "rev-parse", "HEAD"), dirty: !!git(P.V, "status", "--porcelain").stdout.trim(), spent: Number(spent.toFixed(4)), min: Math.round(clock.min() * 100) / 100 });
     if (FAKE && k >= 3) break;
@@ -216,11 +220,15 @@ async function armO() {
 - the fast judge, as often as you like: \`${fastCmd(w.R)}\`; \`valgrind --tool=callgrind\` and \`callgrind_annotate\` on one workload are faster for a single question.`;
   for (let k = 1; k <= MAX_ROUNDS; k++) {
     if (all().some((x) => x.event === "round-end" && x.round === k)) continue;
-    if (clock.min() + ROUND_MIN + 20 > CAP_MIN || spent + ROUND_COST > CAP_COST) { log(led, { event: "stop", round: k, why: "caps", spent: Number(spent.toFixed(2)), min: Math.round(clock.min()) }); break; }
+    // Fix (operator, 2026-10-24 14:55, during the run): the round's cost estimate is the observed mean of O's rounds so far
+    // (round 1: $63, not the $40 assumed); a round that would not fit is shortened to fit, or not started under 15 min
+    const ends = all().filter((x) => x.event === "round-end"), perRound = ends.length ? Math.max(ROUND_COST, ends.at(-1).spent / ends.length) : ROUND_COST;
+    const roundMin = Math.min(ROUND_MIN, Math.floor(ROUND_MIN * (CAP_COST - 3 - spent) / perRound), Math.floor(CAP_MIN - clock.min() - 20));
+    if (roundMin < 15) { log(led, { event: "stop", round: k, why: "caps", spent: Number(spent.toFixed(2)), min: Math.round(clock.min()), perRound: Number(perRound.toFixed(2)) }); break; }
     const gains = all().filter((x) => x.event === "round-end").slice(-2).map((x) => x.gain ?? 1);
     if (gains.length === 2 && gains.every((g) => g < 0.01)) { log(led, { event: "stop", round: k, why: "two rounds under 1%" }); break; }
     const mainHead = gitOk(M.V, "rev-parse", "HEAD");
-    if (!all().some((x) => x.event === "round-start" && x.round === k)) log(led, { event: "round-start", round: k, main: mainHead, ratio: base });
+    if (!all().some((x) => x.event === "round-start" && x.round === k)) log(led, { event: "round-start", round: k, main: mainHead, ratio: base, minutes: roundMin });
     const merges = effMerges(), stewards = k >= 3 ? stewardsOf(coverage(merges.filter((m) => m.round <= k - 1))) : {};
     const intent = all().findLast((x) => x.event === "intent")?.text ?? "";
     const beliefs = practiceBeliefs(merges).slice(0, 8);
@@ -252,12 +260,12 @@ Commit your best working state as you go (your last commit is what the referee m
 ${last || "(nothing merged)"}
 Main is now at ratio ${base} (lower is better; gcc -O2 is 1.0). Your clone ${w.R.V} has been reset to the new main (\`git log\` shows everyone's kept work); work of yours that was not kept is gone from your clone, so redo on top of main what still matters.${leftNote}
 ${intent ? `\nThe architect's picture for this round:\n${intent}\n` : ""}${mine.length ? `\nYou are the steward of: ${mine.join(", ")} (from the referee's record). Keep docs/areas/<area>.md up to date. ${review.length ? `Review these merges by others in your area${review.length > 1 ? "s" : ""} from the last round: ${review.map((m) => `${m.id}'s (${m.head.slice(0, 10)})`).join(", ")}; if one is wrong or harmful, post a finding with evidence and \`--area=revert-request\`, naming the commit.` : ""}\n` : ""}${beliefs.length ? `\nThe board's practices by belief (from the referee's results): ${beliefs.map((p) => `#${p.n} ${p.belief} "${p.text.slice(0, 80)}"`).join("; ")}\n` : ""}
-Read the board and the claims first. Then choose your focus, claim, and work for about ${ROUND_MIN} minutes.
+Read the board and the claims first. Then choose your focus, claim, and work for about ${roundMin} minutes (this round's length).
 
 ${tools(w)}
 
 Commit as you go. Then say briefly what you changed and what it gained, and end with the practices line.`;
-      const r = await turn(w.R, prompt, { resume: w.sid, ms: ROUND_MIN * 60000, label, ledger: led, model: w.model });
+      const r = await turn(w.R, prompt, { resume: w.sid, ms: roundMin * 60000, label, ledger: led, model: w.model });
       w.sid = r.sid ?? w.sid; spent += r.cost;
       const practices = [...String(r.text).matchAll(/practices?:\s*([#\d,\s]+)/gi)].flatMap((m) => [...m[1].matchAll(/#?(\d+)/g)].map((x) => Number(x[1])));
       const hi = FAKE ? { head: gitOk(w.R.V, "rev-parse", "HEAD"), patch: null } : handIn(w.R, `r${k}`);
