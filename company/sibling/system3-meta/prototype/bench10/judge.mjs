@@ -23,6 +23,11 @@ const cfg = JSON.parse(fs.readFileSync(path.join(HERE, "judge.json"), "utf8"));
 const DIR = path.resolve(opt.dir ?? ".");
 if (!["fast", "full"].includes(mode)) { console.error("usage: judge.mjs fast|full --dir=<compiler>"); process.exit(2); }
 export const LIMITS = { compileSec: 60, runtime: 1.1, failRatio: 2.0 };
+// Deviation (operator, 2026-10-24 14:05, during the run, both arms alike): compile time is wall-clock and depends on the
+// machine's load (round 1's checks ran four builds beside V's session; two heads that compile far under 60 s alone were
+// measured at 72 and 94 s). The fast judge (and the org's merge checks) apply 180 s, a sanity bound; the 60 s gate is
+// applied by the full judge in the final scoring, on the quiet machine.
+const COMPILE_LIMIT = mode === "fast" ? Number(opt["compile-limit"] ?? 180) : LIMITS.compileSec;
 const POOL = Math.max(1, Math.min(4, os.cpus().length));
 const r3 = (x) => Math.round(x * 1000) / 1000;
 const geo = (xs) => Math.exp(xs.reduce((a, x) => a + Math.log(x), 0) / xs.length);
@@ -89,7 +94,7 @@ const wline = (w, label) => { for (const x of w.rows) say(`workload ${label}${x.
 if (mode === "fast") {
   const b = await build("fast");
   if (!b.ok) { say(`build: ${b.why}`); process.exit(1); }
-  say(`build: ok (sqlite3.c compiled in ${b.compileSec} s; limit ${LIMITS.compileSec} s${b.compileSec > LIMITS.compileSec ? ": OVER" : ""})`);
+  say(`build: ok (sqlite3.c compiled in ${b.compileSec} s; limit here ${COMPILE_LIMIT} s, a sanity bound under load${b.compileSec > COMPILE_LIMIT ? ": OVER" : ""}; the final scoring, on the quiet machine, requires ${LIMITS.compileSec} s)`);
   const c = await corpus(b.exe, cfg.visCorpus);
   say(`visible corpus: ${c.pass} of ${c.total} scripts give gcc's output${c.fails.length ? `; failing: ${c.fails.slice(0, 25).map((f) => `${f.n} (${f.why})`).join(", ")}${c.fails.length > 25 ? ", …" : ""}` : ""}`);
   const base = path.join(tmp, "baseline.json"); fs.copyFileSync(cfg.startVisible, base);
@@ -97,7 +102,7 @@ if (mode === "fast") {
   const v = opt["skip-visible"] ? { status: 0, stdout: "" } : spawnSync(process.execPath, [path.join(HERE, "visible-check.mjs"), "--wave=W7", `--dir=${DIR}`, `--clj=${cfg.clj}`, `--baseline=${base}`], { encoding: "utf8", env, timeout: 3600_000, maxBuffer: 64 << 20 });
   const vf = String(v.stdout ?? "").split("\n").filter((l) => /^failed: /.test(l));
   if (!opt["skip-visible"]) say(v.status === 0 ? "visible W1-W5 and Lua: ok (nothing the start passes fails)" : `visible W1-W5 and Lua: ${vf.length ? vf.map((l) => l.replace(/^failed: /, "")).join("; ").slice(0, 1500) : `exit ${v.status}`}`);
-  const gateOk = c.pass === c.total && v.status === 0 && b.compileSec <= LIMITS.compileSec;
+  const gateOk = c.pass === c.total && v.status === 0 && b.compileSec <= COMPILE_LIMIT;
   if (!gateOk) { say("fast check: FAILED (fix the failures above; workloads not counted)"); process.exit(1); }
   say("fast check: ok");
   const w = await workloads(b.exe, cfg.visWork); wline(w, "");
