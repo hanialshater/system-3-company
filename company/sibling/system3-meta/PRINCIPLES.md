@@ -50,6 +50,20 @@ the path.
 - **The hierarchy gives intent and constraints, not instructions** ("make it faster; here is the budget; here is the
   gate"): mission command.
 
+## Ownership as stewardship (founder, 2026-10-24: "ownership area could help")
+
+Ownership areas stay, as **stewardship, not exclusivity**:
+- an owner is accountable for its area's health (not only its next change), keeps its design coherent, builds memory
+  there (K33's per-module playbooks), and reviews what others change in it;
+- others may contribute to an owned area and the owner reviews afterwards (K37 borrow); interfaces stay owned and change
+  by request (K32);
+- ownership can be **earned** (an agent that keeps choosing an area and earning credit there becomes its owner) or
+  **assigned** where the area is stable and long-lived;
+- areas follow the durable structure of the work; short-term focus is still chosen freely, by claims.
+
+In proportion: light for short bounded work (B9: claims, owners optional); strong for running work over long horizons
+and recurring orders, where accountability and memory pay (RESEARCH-AGENDA E1, E2); always for interfaces.
+
 ## Proportion (founder, 2026-10-24: "use your judgement not to over use principles")
 
 The principles are for work that needs an organisation, and they cost tokens (warm contexts scale with the number of
