@@ -206,7 +206,9 @@ async function armO() {
   const clock = clockFor("O"), all = () => S8.readJsonl(led);
   /** the merges as they stand: the last row per (round, worker) (a round-end revert appends a corrected row) */
   const effMerges = () => { const m = new Map(); for (const x of all().filter((x) => x.event === "merge")) m.set(`${x.round} ${x.id}`, x); return [...m.values()]; };
-  const done = (label) => all().find((x) => x.event === "turn" && x.label === label && x.ok);
+  // a worker's turn is done when it was handed in, whether it ended itself or was cut by the round's time cap (fix,
+  // 2026-10-24: the restart after round 2 re-ran all four cut round-2 turns, $57, and the harness then ignored their work)
+  const done = (label) => { const m = label.match(/^O r(\d+) (w-\S+)$/); return m ? all().some((x) => x.event === "handin" && x.round === Number(m[1]) && x.id === m[2]) : all().some((x) => x.event === "turn" && x.label === label && x.ok); };
   let spent = rows.filter((x) => x.event === "turn").reduce((a, x) => a + (x.cost ?? 0), 0);
   const M = makeRoot("O-main", startDir);
   if (fs.existsSync(path.join(M.V, ".git", "MERGE_HEAD"))) git(M.V, "merge", "--abort");

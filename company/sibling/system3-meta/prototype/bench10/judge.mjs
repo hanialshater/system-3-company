@@ -41,10 +41,12 @@ const say = (s) => console.log(`B10 ${s}`);
 /** run a command, collecting stdout; resolves { code, out, err, ms, timedOut } */
 const run = (cmd, args, { cwd, timeout, env: e = env }) => new Promise((resolve) => {
   const t0 = Date.now(), ch = spawn(cmd, args, { cwd, env: e, stdio: ["ignore", "pipe", "pipe"] });
-  let out = "", err = "", timedOut = false;
+  // bytes, not strings: decoding each pipe chunk on its own split UTF-8 characters at chunk boundaries (w-measure,
+  // board #19, during the run: expr-0528 failed at random when its "é" straddled byte 4096)
+  const outB = [], errB = []; let outN = 0, errN = 0, timedOut = false;
   const t = setTimeout(() => { timedOut = true; ch.kill("SIGKILL"); }, timeout);
-  ch.stdout.on("data", (d) => { if (out.length < 32 << 20) out += d; }); ch.stderr.on("data", (d) => { if (err.length < 1 << 20) err += d; });
-  ch.on("close", (code) => { clearTimeout(t); resolve({ code, out, err, ms: Date.now() - t0, timedOut }); });
+  ch.stdout.on("data", (d) => { if (outN < 32 << 20) { outB.push(d); outN += d.length; } }); ch.stderr.on("data", (d) => { if (errN < 1 << 20) { errB.push(d); errN += d.length; } });
+  ch.on("close", (code) => { clearTimeout(t); const outBuf = Buffer.concat(outB); resolve({ code, outBuf, out: outBuf.toString("utf8"), err: Buffer.concat(errB).toString("utf8"), ms: Date.now() - t0, timedOut }); });
 });
 async function pool(items, fn) { const res = new Array(items.length); let i = 0; await Promise.all(Array.from({ length: POOL }, async () => { while (i < items.length) { const k = i++; res[k] = await fn(items[k]); } })); return res; }
 
@@ -68,7 +70,7 @@ async function build(tag) {
 // ---- the SQL corpus: every script's output against gcc's
 async function corpus(exe, dir) {
   const names = fs.readdirSync(dir).filter((f) => f.endsWith(".sql")).sort();
-  const res = await pool(names, async (n) => { const r = await run(exe, [path.join(dir, n)], { cwd: tmp, timeout: 20_000 }); const ref = fs.readFileSync(path.join(dir, n.replace(/\.sql$/, ".ref")), "utf8"); return { n, ok: !r.timedOut && r.code === 0 && r.out === ref, why: r.timedOut ? "timeout" : r.code !== 0 ? `exit ${r.code}` : "output differs" }; });
+  const res = await pool(names, async (n) => { const r = await run(exe, [path.join(dir, n)], { cwd: tmp, timeout: 20_000 }); const ref = fs.readFileSync(path.join(dir, n.replace(/\.sql$/, ".ref"))); return { n, ok: !r.timedOut && r.code === 0 && r.outBuf.equals(ref), why: r.timedOut ? "timeout" : r.code !== 0 ? `exit ${r.code}` : "output differs" }; });
   const fails = res.filter((x) => !x.ok), byFam = {};
   for (const f of fails) { const fam = f.n.replace(/-\d+\.sql$/, ""); byFam[fam] = (byFam[fam] ?? 0) + 1; }
   return { total: names.length, pass: names.length - fails.length, fails, byFam };
@@ -80,10 +82,10 @@ async function workloads(exe, dir) {
   const names = Object.keys(o2).sort();
   const res = await pool(names, async (n) => {
     const r = await run("valgrind", ["--tool=callgrind", `--callgrind-out-file=${path.join(tmp, `cg-${n}-${process.pid}.out`)}`, exe, path.join(dir, `${n}.sql`)], { cwd: tmp, timeout: 1800_000 });
-    const m = r.err.match(/Collected : (\d+)/), ref = fs.readFileSync(path.join(dir, `${n}.ref`), "utf8");
+    const m = r.err.match(/Collected : (\d+)/), ref = fs.readFileSync(path.join(dir, `${n}.ref`));
     fs.rmSync(path.join(tmp, `cg-${n}-${process.pid}.out`), { force: true });
     if (r.timedOut || r.code !== 0 || !m) return { n, ok: false, why: r.timedOut ? "timeout" : `exit ${r.code}` };
-    if (r.out !== ref) return { n, ok: false, why: "output differs from gcc's" };
+    if (!r.outBuf.equals(ref)) return { n, ok: false, why: "output differs from gcc's" };
     const ir = Number(m[1]); return { n, ok: true, ir, o2: o2[n], ratio: ir / o2[n] };
   });
   const ok = res.every((x) => x.ok);

@@ -23,7 +23,8 @@ const sh = (cmd, args, o = {}) => { const r = spawnSync(cmd, args, { encoding: "
 const git = (cwd, ...a) => sh("git", ["-c", "safe.directory=*", "-C", cwd, ...a]);
 const step = (name, done, fn) => { if (done()) { console.log(`= ${name}: exists`); return; } const t0 = Date.now(); fn(); console.log(`+ ${name} (${Math.round((Date.now() - t0) / 1000)} s)`); };
 async function pool(items, n, fn) { let i = 0; await Promise.all(Array.from({ length: n }, async () => { while (i < items.length) { const k = i++; await fn(items[k]); } })); }
-const runOut = (exe, args, cwd) => new Promise((res) => { const ch = spawn(exe, args, { cwd, stdio: ["ignore", "pipe", "pipe"] }); let o = "", e = ""; ch.stdout.on("data", (d) => (o += d)); ch.stderr.on("data", (d) => (e += d)); ch.on("close", (code) => res({ code, out: o, err: e })); });
+// bytes, not strings (see judge.mjs run()): a per-chunk decode split UTF-8 characters
+const runOut = (exe, args, cwd) => new Promise((res) => { const ch = spawn(exe, args, { cwd, stdio: ["ignore", "pipe", "pipe"] }); const o = [], e = []; ch.stdout.on("data", (d) => o.push(d)); ch.stderr.on("data", (d) => e.push(d)); ch.on("close", (code) => res({ code, out: Buffer.concat(o), err: Buffer.concat(e).toString("utf8") })); });
 
 fs.mkdirSync(B10, { recursive: true });
 const M = path.join(B10, "material"), REF = path.join(B10, "ref");
@@ -49,7 +50,7 @@ async function makeCorpus(dir, seed, n) {
   await pool(scripts, os.cpus().length, async (s) => {
     const f = path.join(dir, `${s.name}.sql`); fs.writeFileSync(f, s.sql);
     const a = await runOut(O2, [f], dir), b = await runOut(O0, [f], dir);
-    if (a.code !== 0 || a.out !== b.out) { unstable++; fs.rmSync(f); return; }
+    if (a.code !== 0 || !a.out.equals(b.out)) { unstable++; fs.rmSync(f); return; }
     fs.writeFileSync(path.join(dir, `${s.name}.ref`), a.out);
   });
   fs.writeFileSync(path.join(dir, "DONE"), JSON.stringify({ seed, n, dropped: unstable }));
@@ -62,7 +63,7 @@ async function makeWork(dir, seed, scale) {
   await pool(workloads(seed, scale), os.cpus().length, async (w) => {
     const f = path.join(dir, `${w.name}.sql`); fs.writeFileSync(f, w.sql);
     const r = await runOut("valgrind", ["--tool=callgrind", "--callgrind-out-file=/dev/null", O2, f], dir), b = await runOut(O0, [f], dir);
-    if (r.code !== 0 || r.out !== b.out || /^error/m.test(r.out)) throw new Error(`workload ${w.name}: exit ${r.code}, or -O0/-O2 differ, or an error`);
+    if (r.code !== 0 || !r.out.equals(b.out) || /^error/m.test(r.out.toString("utf8"))) throw new Error(`workload ${w.name}: exit ${r.code}, or -O0/-O2 differ, or an error`);
     fs.writeFileSync(path.join(dir, `${w.name}.ref`), r.out); counts[w.name] = Number(r.err.match(/Collected : (\d+)/)[1]);
   });
   fs.writeFileSync(path.join(dir, "o2.json"), JSON.stringify(counts, null, 1));
