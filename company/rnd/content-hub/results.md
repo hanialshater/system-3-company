@@ -20,6 +20,8 @@ Feasibility supports proceeding to R&D review of the Git/write/build/publication
 
 ## Limits and next experiment
 
+Follow-up completed: [real-catalogue results](catalogue-results.md) and [Next.js integration proposal](nextjs-architecture.md). These extend the evidence; they do not change the scope of the original DOM-only prototype described above.
+
 This result does not establish million-demo capacity. Planning currently scans committed snapshots; the next scale experiment should compare an indexed change/dependency graph against the current scanner using measured writes, queue wait, Git operations, build reuse, storage and read latency. Register its workload and acceptance thresholds before running it.
 
 Production still needs tenant authorization, distributed Git/storage and worker leases, hostile-code build isolation, a separate registrable artifact domain, real object-store/CDN adapters, SDK security/support policy, editorial acceptance integration and an SSR decision. Current compilation targets a synthetic DOM SDK with local pinned packages and static imports, not arbitrary existing React lessons or remote npm installation. See [prototype README](../../../src/lab/content-hub/README.md) for all boundaries and run commands.

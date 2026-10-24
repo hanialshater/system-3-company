@@ -1,3 +1,11 @@
+## 2026-10-24 · R&D real-catalogue content hub test · W-2029 ready for review
+
+All 1,645 real React demos bundled independently in 185.84 s; shared kit 4.15 s separately. One scoped comment-only source revision rebuilt in 36.6 ms. Selected exactly 1/10/0 demos for isolated/ten/docs edits; shared controls selected 1,643 consumers. Dependency index: 801 ms real / 813 ms with 1,000 labelled source copies (2,645 records). Copies are deduplication fixtures, not incoming authored demos.
+
+28/28 preselected phone/desktop runtime checks and 14/14 independent resolver sample audits pass; 8/8 hub/index integration cases and full TypeScript check pass. Company check has exactly the prior 811 errors/four warnings; aggregate verify still stops at the same two publication-readiness failures. Evidence and limits: company/rnd/content-hub/catalogue-results.md. No production routes, demo sources or protected paths changed; no deployment.
+
+Belief: independent React artifact delivery is feasible for this catalogue; the timings are local single observations, not million-demo capacity or full QA. Production integration needs generated loaders/catalogue replaced and static-only slug routing removed (company/rnd/content-hub/nextjs-architecture.md). Original DOM write API and new React adapter are not yet integrated. Next: W-2027 R&D acceptance, W-2028 production architecture review, repeat with actual incoming authored demos when available.
+
 ## 2026-10-24 · R&D content hub prototype · W-2026 ready for review
 
 Built src/lab/content-hub/: Git per space, scoped optimistic writes, queued snapshot builds, exact/transitive dependency pins, TypeScript checks and emitted ESM, compiled tests, immutable artifacts, SQLite release pointers, rollback and standalone browser preview. Tracking: GitHub issue #18; brief/results in company/rnd/content-hub/. Predictions committed locally in 8dec8024 before execution. Seven integration tests and five desktop/phone browser checks pass. Finite fixture count: five compiler runs versus fourteen rebuild-all; not scale evidence.

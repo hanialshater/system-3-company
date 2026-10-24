@@ -72,6 +72,17 @@ The host page fetches publication state and loads a frame whose module graph com
 
 ## Limits and next decision
 
+The subsequent [real-catalogue experiment](../../../company/rnd/content-hub/catalogue-results.md) bundled all 1,645 available React demos and exercised 1,000 labelled growth copies. It is a separate lab compiler/index adapter, not a completed integration into the original DOM hub or production Next.js routes. [Next.js integration proposal](../../../company/rnd/content-hub/nextjs-architecture.md).
+
+```sh
+# Use a fresh output parent; the harness freezes source into an isolated Git repository.
+node src/lab/content-hub/catalogue-bench.mjs --out=artifacts/content-hub-catalogue/dist
+node src/lab/content-hub/catalogue-browser.mjs
+node src/lab/content-hub/catalogue-audit.mjs
+```
+
+The benchmark uses existing TypeScript and Next-vendored webpack/terser, with compiler helpers exported from `spike/build.mjs`. It does not modify the original spike CLI behavior. Browser checks use the preselected 14-domain sample on two viewports; the graph audit compares that sample's actual webpack-resolved source files against the static index. Growth copies are never published.
+
 - This is a local feasibility prototype, not million-demo throughput evidence. Impact analysis currently scans snapshots and compares demo keys; production needs path/dependency indexes, event-driven scheduling, limits and measured queue capacity.
 - Git repositories are local directories, not a replicated/sharded Git farm. No production auth, tenant quotas, Git push service, distributed locking, remote package registry, real object store/CDN, SSR workers or garbage collection.
 - Artifact reads verify bytes from disk; production should verify at ingest and rely on immutable storage/CDN integrity policies. The local host's catalogue UI is intentionally limited to the two fixtures; the core API creates arbitrary demo IDs.
