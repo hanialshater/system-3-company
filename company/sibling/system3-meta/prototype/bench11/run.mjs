@@ -188,6 +188,27 @@ Commit as you go. When you stop, I will say "go on" while the organisation's tim
   log(led, end); return end;
 }
 
+// ---------------------------------------------------------------- off-boarding (founder, 2026-10-24: "i thought we have
+// agents off boarding"): each finished session gets one last turn to record what it learned, with evidence, into the
+// persistent knowledge base (company/sibling/system3-meta/knowledge/), which later runs' members read at the start
+const KB = path.resolve(HERE, "..", "..", "knowledge");
+const OFFBOARD = (who, run) => `Off-boarding: the run is over (${run}). Before you leave, record what you learned, for whoever works on a problem like this next (they will read it before they start, and decide for themselves what to use). Write only what you would bet on, from your own experience in this run: practices that paid, dead ends, pitfalls, and what you would do differently, each with its evidence (a commit, a score, a number) and how sure you are (a belief between 0 and 1). Do not run any more commands. Answer with a JSON array between the lines BEGIN-KB and END-KB, each item {"topic": "<short area, e.g. sql-parsing, value-formatting, testing, coordination>", "kind": "practice|finding|dead-end|pitfall", "text": "…", "evidence": "…", "belief": 0.0-1.0}, 3 to 12 items.`;
+async function offboard() {
+  fs.mkdirSync(KB, { recursive: true });
+  const run = opt.run ?? "B11", sessions = [];
+  const v = S8.readJsonl(ledgerOf("V")).findLast((x) => x.event === "turn" && x.sid); if (v) sessions.push({ who: "V", arm: "V", sid: v.sid, P: makeRoot("V", startDir), model: MODEL });
+  for (const m of MEMBERS) { const t = S8.readJsonl(ledgerOf("O")).findLast((x) => x.event === "turn" && x.label?.startsWith(`O ${m.id} `) && x.sid); if (t) sessions.push({ who: m.id, arm: "O", sid: t.sid, P: makeRoot(`O-${m.id}`, startDir), model: m.model }); }
+  const led = path.join(B11, "_operator", "offboard.jsonl"), out = [];
+  for (const s of sessions) {
+    const r = await turn(s.P, OFFBOARD(s.who, run), { resume: s.sid, ms: 8 * 60000, label: `offboard ${s.who}`, ledger: led, model: s.model });
+    const m = String(r.text).match(/BEGIN-KB\s*([\s\S]*?)\s*END-KB/); let items = [];
+    try { items = JSON.parse(m ? m[1] : "[]"); } catch { items = []; }
+    for (const it of items) { const e = { run, arm: s.arm, by: s.who, model: s.model, t: new Date().toISOString(), ...it }; out.push(e); fs.appendFileSync(path.join(KB, "entries.jsonl"), JSON.stringify(e) + "\n"); }
+    log(led, { event: "offboarded", who: s.who, items: items.length, cost: r.cost });
+  }
+  return { sessions: sessions.length, entries: out.length };
+}
+
 async function finalScoring() {
   const out = {}, cands = { start: startDir };
   for (const arm of ["V", "O"]) { const e = S8.readJsonl(ledgerOf(arm)).find((x) => x.event === "end"); if (e?.dir) cands[arm] = e.dir; }
@@ -195,7 +216,7 @@ async function finalScoring() {
   for (const [arm, dir] of Object.entries(cands)) { out[arm] = await full(dir, path.join(B11, "_operator", `final-${arm}.json`)); const { lines, ...x } = out[arm]; log(path.join(B11, "_operator", "final.jsonl"), { arm, ...x }); }
   return out;
 }
-const fns = { v: armV, o: armO, final: finalScoring, full: () => full(path.resolve(opt.dir)) };
+const fns = { v: armV, o: armO, final: finalScoring, offboard, full: () => full(path.resolve(opt.dir)) };
 if (!fns[cmd]) { console.error("usage: run.mjs v|o|full|final"); process.exit(2); }
 if (!MODEL && ["v", "o"].includes(cmd) && !FAKE) { console.error("no model"); process.exit(2); }
 console.log(JSON.stringify(await fns[cmd](), null, 1));

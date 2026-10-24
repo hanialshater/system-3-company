@@ -1,3 +1,13 @@
+## 2026-10-24 · chief-of-staff (for System 3 Meta, as vp-meta) · Benchmark 11: SQLite-compatible database in Clojure; off-boarding and a persistent knowledge base
+
+Founder: "go for sqllight", "Clojure, core families"; the org must have autonomy (continuous work, self-landing, roles not limits); "add the persistent knowledge base", "i thought we have agents off boarding"; "make it grounded in real compatibility test".
+
+**Done:** bench11/BENCH11.md (final). Hidden core corpus: V 1.0000 ($145.69), O 0.9998 ($117.91): a tie at the ceiling; the task was too easy. The autonomous org set its own contract, built in parallel, landed 23 times, sent 45 notes and stopped itself when done. Harness bug (org land's stale lock, found by O's m-engine) blocked O's lands for ~50 min; fixed. Off-boarding added: 54 entries with evidence and beliefs in company/sibling/system3-meta/knowledge/ (entries.jsonl, KB.md, README.md).
+
+**B12 groundwork:** SQLite 3.53.4's full source (with its TCL test suite, 1,281 files) from Ubuntu's archive (sqlite.org and GitHub are blocked); tclsh installed; bench12/record.tcl records each test file's SQL.
+
+**Belief (medium-high):** both arrangements saturate a task this size; B12 must be grounded in SQLite's own tests and be larger than one context. **Next:** build B12 (extract and cap the suite's SQL, references from real SQLite, visible/hidden split by test file, a speed component), with on-boarding from the knowledge base. **Blocked:** nothing.
+
 ## 2026-10-24 · chief-of-staff (for System 3 Meta, as vp-meta) · Benchmark 10: optimising compiler, the full org against one agent
 
 Founder: "Yes go with SQLite first, design B10", "$300 approved, go ahead"; and on reasoning: hold the thesis, iterate the design ("victories happen after many many failures").
