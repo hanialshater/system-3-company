@@ -1,0 +1,162 @@
+{
+  "slug": "p100-add-a-selection-node",
+  "title": "What does selection add?",
+  "hook": "Keep anyone with X or Y. What happens to the relationship inside that group?",
+  "domain": "probability",
+  "concept": "p100-add-a-selection-node",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "show how filtering a dataset adds a hidden collider to the graph."
+    ]
+  },
+  "misconception": "Treating add a selection node as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "show how filtering a dataset adds a hidden collider to the graph.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-add-a-selection-node.predict",
+      "text": "Independent fair binary X,Y produce four equally likely worlds. Keep a world if X or Y is 1. Among selected worlds with X=0, what is P(Y=1)?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-add-a-selection-node/spec.ts; exact finite illustration specified in manager numericCase: IndependentX,Y binary; selectionS=1 iffXorY. Full4 worlds give independent; selected3 worlds yieldP(Y1|X1)=.5 vsP(Y1|X0)=1. Show selection-node collider and retained rows.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-add-a-selection-node.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-add-a-selection-node/spec.ts; exact finite illustration specified in manager numericCase: IndependentX,Y binary; selectionS=1 iffXorY. Full4 worlds give independent; selected3 worlds yieldP(Y1|X1)=.5 vsP(Y1|X0)=1. Show selection-node collider and retained rows.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-add-a-selection-node.reveal.0",
+      "text": "Selection retains P(Y=1|X=0)=100%; the full population retains 50%. In the selected set, a zero X can enter only alongside a one Y.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-add-a-selection-node/spec.ts; exact finite illustration specified in manager numericCase: IndependentX,Y binary; selectionS=1 iffXorY. Full4 worlds give independent; selected3 worlds yieldP(Y1|X1)=.5 vsP(Y1|X0)=1. Show selection-node collider and retained rows.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-add-a-selection-node.reveal.1",
+      "text": "The selection rule is a shared effect of X and Y. Conditioning on entry opens that collider and creates dependence between originally independent variables. Adding a selection node makes the filtering operation part of the causal story.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-add-a-selection-node/spec.ts; exact finite illustration specified in manager numericCase: IndependentX,Y binary; selectionS=1 iffXorY. Full4 worlds give independent; selected3 worlds yieldP(Y1|X1)=.5 vsP(Y1|X0)=1. Show selection-node collider and retained rows.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-add-a-selection-node.recall",
+      "text": "A sample includes anyone strong OR fast. Among sampled people who are not strong, what must be true? The OR admission rule requires speed when strength is absent.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-add-a-selection-node/spec.ts; exact finite illustration specified in manager numericCase: IndependentX,Y binary; selectionS=1 iffXorY. Full4 worlds give independent; selected3 worlds yieldP(Y1|X1)=.5 vsP(Y1|X0)=1. Show selection-node collider and retained rows.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-add-a-selection-node.scenario.0.summary",
+      "text": "P(Y=1|X=0)=100%",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-add-a-selection-node/spec.ts; exact finite illustration specified in manager numericCase: IndependentX,Y binary; selectionS=1 iffXorY. Full4 worlds give independent; selected3 worlds yieldP(Y1|X1)=.5 vsP(Y1|X0)=1. Show selection-node collider and retained rows.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-add-a-selection-node.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"X\",\"x\":40,\"y\":45},{\"id\":\"1\",\"label\":\"Select\",\"x\":160,\"y\":115},{\"id\":\"2\",\"label\":\"Y\",\"x\":280,\"y\":45}],\"edges\":[{\"from\":\"0\",\"to\":\"1\",\"active\":true},{\"from\":\"2\",\"to\":\"1\",\"active\":true}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-add-a-selection-node/spec.ts; exact finite illustration specified in manager numericCase: IndependentX,Y binary; selectionS=1 iffXorY. Full4 worlds give independent; selected3 worlds yieldP(Y1|X1)=.5 vsP(Y1|X0)=1. Show selection-node collider and retained rows.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-add-a-selection-node.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Selected worlds\",\"visual\":{\"kind\":\"scatter\",\"points\":[{\"x\":0,\"y\":1},{\"x\":1,\"y\":0},{\"x\":1,\"y\":1}]},\"metrics\":[{\"label\":\"If X=1\",\"value\":\"50%\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-add-a-selection-node/spec.ts; exact finite illustration specified in manager numericCase: IndependentX,Y binary; selectionS=1 iffXorY. Full4 worlds give independent; selected3 worlds yieldP(Y1|X1)=.5 vsP(Y1|X0)=1. Show selection-node collider and retained rows.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-add-a-selection-node.scenario.1.summary",
+      "text": "P(Y=1|X=0)=50%",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-add-a-selection-node/spec.ts; exact finite illustration specified in manager numericCase: IndependentX,Y binary; selectionS=1 iffXorY. Full4 worlds give independent; selected3 worlds yieldP(Y1|X1)=.5 vsP(Y1|X0)=1. Show selection-node collider and retained rows.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-add-a-selection-node.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Worlds\"],\"rows\":[[4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-add-a-selection-node/spec.ts; exact finite illustration specified in manager numericCase: IndependentX,Y binary; selectionS=1 iffXorY. Full4 worlds give independent; selected3 worlds yieldP(Y1|X1)=.5 vsP(Y1|X0)=1. Show selection-node collider and retained rows.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-add-a-selection-node.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · All worlds\",\"visual\":{\"kind\":\"scatter\",\"points\":[{\"x\":0,\"y\":0},{\"x\":0,\"y\":1},{\"x\":1,\"y\":0},{\"x\":1,\"y\":1}]},\"metrics\":[{\"label\":\"If X=1\",\"value\":\"50%\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-add-a-selection-node/spec.ts; exact finite illustration specified in manager numericCase: IndependentX,Y binary; selectionS=1 iffXorY. Full4 worlds give independent; selected3 worlds yieldP(Y1|X1)=.5 vsP(Y1|X0)=1. Show selection-node collider and retained rows.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-add-a-selection-node.hook",
+      "text": "Keep anyone with X or Y. What happens to the relationship inside that group?",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-add-a-selection-node/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A sample includes anyone strong OR fast. Among sampled people who are not strong, what must be true?",
+    "options": [
+      "They are fast",
+      "They are slow",
+      "No constraint remains"
+    ],
+    "answer": 0,
+    "why": "The OR admission rule requires speed when strength is absent."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-add-a-selection-node",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "selection-node"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 358,
+    "sourceSection": "18. Causal graphs & the do-operator",
+    "sourceTitle": "Add a selection node",
+    "sourceText": "show how filtering a dataset adds a hidden collider to the graph.",
+    "sourceEntryOriginal": "- **358. Add a selection node** \\[Slider\\]: show how filtering a dataset adds a hidden collider to the graph.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "lifehacks/name-the-next-owner",
+    "difference": "New teaching boundary: Add a selection node. Existing boundary: Add a named owner and next action to a fixture handoff.",
+    "numericCase": "IndependentX,Y binary; selectionS=1 iffXorY. Full4 worlds give independent; selected3 worlds yieldP(Y1|X1)=.5 vsP(Y1|X0)=1. Show selection-node collider and retained rows."
+  },
+  "modelAudit": {
+    "a": 1,
+    "b": 0.5,
+    "selectedXOne": 0.5
+  }
+}

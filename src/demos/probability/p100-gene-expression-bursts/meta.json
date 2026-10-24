@@ -1,0 +1,163 @@
+{
+  "slug": "p100-gene-expression-bursts",
+  "title": "Why do identical cells differ?",
+  "hook": "Why do identical cells differ? Change one condition and inspect the result.",
+  "domain": "probability",
+  "concept": "p100-gene-expression-bursts",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "fractions and arithmetic",
+      "that a toy model states its assumptions"
+    ],
+    "doesNotKnow": [
+      "simulate molecule counts with the Gillespie algorithm; identical cells end up very different."
+    ]
+  },
+  "misconception": "A toy molecule count has birth rate 2 and death rate 0.5X. At X=6, what is the probability the next reaction is a birth? The prediction alternatives contrast different consequences of the stated model.",
+  "objective": "simulate molecule counts with the Gillespie algorithm; identical cells end up very different.",
+  "keyState": "Both computed cases completed, with their numerical summaries retained across Reset.",
+  "claims": [
+    {
+      "id": "probability.p100-gene-expression-bursts.case",
+      "text": "A toy molecule count has birth rate 2 and death rate 0.5X. At X=6, what is the probability the next reaction is a birth? Options: 0.2; 0.4; 0.667. Toy model: compare two controlled cases.",
+      "support": "convention",
+      "source": "Stipulated numerical case in model.ts, based on manager numericCase: MoleculesXstart0, birthrate2,deathrate.5X. AtX0totalrate2,meanwait.5;X2rate3,wait1/3,birthprob2/3;X6rate5,wait.2,birthprob.4. Gillepsiewait-then-reactionrule; disclosefixeduniforms forsamplepath.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-gene-expression-bursts.recall",
+      "text": "Birth rate 3 and death rate 1 give next-birth probability? 3/(3+1)=0.75.",
+      "support": "derivation",
+      "source": "Transfer arithmetic or model implication under the same explicitly stated assumptions. Independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-gene-expression-bursts.hook",
+      "text": "Why do identical cells differ? Change one condition and inspect the result.",
+      "support": "convention",
+      "source": "Invitation to manipulate the labelled toy case, not a population claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-gene-expression-bursts.c4",
+      "text": "At count 6, birth probability is 0.4 and mean wait 0.2. At count 2, birth probability is 0.667 and mean wait 1/3.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-gene-expression-bursts/model.ts#compute().reveal[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-gene-expression-bursts.c5",
+      "text": "A continuous-time reaction step uses the sum of propensities for its exponential waiting rate, then chooses the reaction proportionally to propensity. These are exact next-event calculations, not a sampled gene-expression trajectory or measured cell data.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-gene-expression-bursts/model.ts#compute().reveal[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-gene-expression-bursts.c6",
+      "text": "Run the question case, compare the changed case, and inspect both retained results.",
+      "support": "convention",
+      "source": "src/demos/probability/p100-gene-expression-bursts/spec.ts#hint; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-gene-expression-bursts.c7",
+      "text": "Birth chance: 0.4",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-gene-expression-bursts/model.ts#compute().scenarios[0].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-gene-expression-bursts.c8",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"Birth rate\",\"value\":2},{\"label\":\"Death rate\",\"value\":3}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-gene-expression-bursts/model.ts#compute().scenarios[0].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-gene-expression-bursts.c9",
+      "text": "Toy model: case A. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"Birth chance\",\"value\":0.4},{\"label\":\"Mean wait\",\"value\":0.2}]}. [{\"label\":\"Birth chance\",\"value\":\"0.4\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-gene-expression-bursts/model.ts#compute().scenarios[0].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-gene-expression-bursts.c10",
+      "text": "Birth chance: 0.667",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-gene-expression-bursts/model.ts#compute().scenarios[1].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-gene-expression-bursts.c11",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"Birth rate\",\"value\":2},{\"label\":\"Death rate\",\"value\":1}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-gene-expression-bursts/model.ts#compute().scenarios[1].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-gene-expression-bursts.c12",
+      "text": "Toy model: case B. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"Birth chance\",\"value\":0.6666666666666666},{\"label\":\"Mean wait\",\"value\":0.3333333333333333}]}. [{\"label\":\"Birth chance\",\"value\":\"0.667\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-gene-expression-bursts/model.ts#compute().scenarios[1].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Birth rate 3 and death rate 1 give next-birth probability?",
+    "options": [
+      "0.25",
+      "0.5",
+      "0.75"
+    ],
+    "answer": 2,
+    "why": "3/(3+1)=0.75."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-gene-expression-bursts",
+    "also": [],
+    "prerequisites": [],
+    "level": "stretch",
+    "references": [],
+    "tags": [
+      "founder-2026-10-24",
+      "source-entry-988",
+      "timeline"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "controlled-case-comparison",
+    "step-through-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 988,
+    "sourceSection": "50. Stochastic models in physics, finance & biology",
+    "sourceTitle": "Gene expression bursts",
+    "sourceText": "simulate molecule counts with the Gillespie algorithm; identical cells end up very different.",
+    "sourceEntryOriginal": "- **988. Gene expression bursts** \\[Slider\\]: simulate molecule counts with the Gillespie algorithm; identical cells end up very different.",
+    "numericCase": "MoleculesXstart0, birthrate2,deathrate.5X. AtX0totalrate2,meanwait.5;X2rate3,wait1/3,birthprob2/3;X6rate5,wait.2,birthprob.4. Gillepsiewait-then-reactionrule; disclosefixeduniforms forsamplepath.",
+    "sourceStatus": "unverified idea pointer; empirical and historical claims excluded from learner copy",
+    "nearestExistingLesson": "life/dish-runs-out",
+    "difference": "New teaching boundary: Gene expression bursts. Existing boundary: The learner can explain that 10 hours of 20-minute doublings is 30 doublings, about a billion cells, that most of that growth happens at the very end, and that a finite food supply bends the curve and stops it."
+  },
+  "modelOutputs": [
+    0.4,
+    0.6666666666666666
+  ]
+}

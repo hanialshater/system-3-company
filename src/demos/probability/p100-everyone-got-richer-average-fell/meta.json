@@ -1,0 +1,162 @@
+{
+  "slug": "p100-everyone-got-richer-average-fell",
+  "title": "Did every group earn more?",
+  "hook": "Group incomes and group sizes both change. Inspect the weighted mean.",
+  "domain": "probability",
+  "concept": "p100-everyone-got-richer-average-fell",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "every group's income rises while the mix shifts toward lower-paid groups."
+    ]
+  },
+  "misconception": "Treating everyone got richer, average fell as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "every group's income rises while the mix shifts toward lower-paid groups.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-everyone-got-richer-average-fell.predict",
+      "text": "Group incomes rise 10→12 and 30→32. Their shares change from 20%/80% to 80%/20%. What happens to the pooled mean?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-everyone-got-richer-average-fell/spec.ts; exact finite illustration specified in manager numericCase: Group A incomes 10→12, B 30→32. Before mix 20%A/80%B mean26; after80%A/20%B mean16. Both group gains2 despite pooled change-10.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-everyone-got-richer-average-fell.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-everyone-got-richer-average-fell/spec.ts; exact finite illustration specified in manager numericCase: Group A incomes 10→12, B 30→32. Before mix 20%A/80%B mean26; after80%A/20%B mean16. Both group gains2 despite pooled change-10.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-everyone-got-richer-average-fell.reveal.0",
+      "text": "The changing mix retains 26→16, while fixed weights retain 26→28. Each group gained 2; the pooled decline comes from shifting weight toward the lower-income group.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-everyone-got-richer-average-fell/spec.ts; exact finite illustration specified in manager numericCase: Group A incomes 10→12, B 30→32. Before mix 20%A/80%B mean26; after80%A/20%B mean16. Both group gains2 despite pooled change-10.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-everyone-got-richer-average-fell.reveal.1",
+      "text": "A group-level improvement and an aggregate decline can coexist. To describe within-group change, use a common population mix; to describe actual aggregate income, retain the changing mix and say what it measures.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-everyone-got-richer-average-fell/spec.ts; exact finite illustration specified in manager numericCase: Group A incomes 10→12, B 30→32. Before mix 20%A/80%B mean26; after80%A/20%B mean16. Both group gains2 despite pooled change-10.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-everyone-got-richer-average-fell.recall",
+      "text": "Two group means each rise by 1. With their weights held fixed, what happens to the weighted mean? A fixed weighted average of two +1 changes is also +1.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-everyone-got-richer-average-fell/spec.ts; exact finite illustration specified in manager numericCase: Group A incomes 10→12, B 30→32. Before mix 20%A/80%B mean26; after80%A/20%B mean16. Both group gains2 despite pooled change-10.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-everyone-got-richer-average-fell.scenario.0.summary",
+      "text": "Pooled 26→16",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-everyone-got-richer-average-fell/spec.ts; exact finite illustration specified in manager numericCase: Group A incomes 10→12, B 30→32. Before mix 20%A/80%B mean26; after80%A/20%B mean16. Both group gains2 despite pooled change-10.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-everyone-got-richer-average-fell.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Group\",\"Before\",\"After\"],\"rows\":[[\"A\",10,12],[\"B\",30,32]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-everyone-got-richer-average-fell/spec.ts; exact finite illustration specified in manager numericCase: Group A incomes 10→12, B 30→32. Before mix 20%A/80%B mean26; after80%A/20%B mean16. Both group gains2 despite pooled change-10.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-everyone-got-richer-average-fell.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Changing mix\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Before\",\"value\":26},{\"label\":\"After\",\"value\":16}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-everyone-got-richer-average-fell/spec.ts; exact finite illustration specified in manager numericCase: Group A incomes 10→12, B 30→32. Before mix 20%A/80%B mean26; after80%A/20%B mean16. Both group gains2 despite pooled change-10.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-everyone-got-richer-average-fell.scenario.1.summary",
+      "text": "Standardized 26→28",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-everyone-got-richer-average-fell/spec.ts; exact finite illustration specified in manager numericCase: Group A incomes 10→12, B 30→32. Before mix 20%A/80%B mean26; after80%A/20%B mean16. Both group gains2 despite pooled change-10.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-everyone-got-richer-average-fell.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"A share\",\"B share\"],\"rows\":[[0.2,0.8]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-everyone-got-richer-average-fell/spec.ts; exact finite illustration specified in manager numericCase: Group A incomes 10→12, B 30→32. Before mix 20%A/80%B mean26; after80%A/20%B mean16. Both group gains2 despite pooled change-10.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-everyone-got-richer-average-fell.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · Fixed mix\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Before\",\"value\":26},{\"label\":\"After\",\"value\":28}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-everyone-got-richer-average-fell/spec.ts; exact finite illustration specified in manager numericCase: Group A incomes 10→12, B 30→32. Before mix 20%A/80%B mean26; after80%A/20%B mean16. Both group gains2 despite pooled change-10.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-everyone-got-richer-average-fell.hook",
+      "text": "Group incomes and group sizes both change. Inspect the weighted mean.",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-everyone-got-richer-average-fell/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two group means each rise by 1. With their weights held fixed, what happens to the weighted mean?",
+    "options": [
+      "Rises by 1",
+      "Falls by 1",
+      "Cannot be calculated"
+    ],
+    "answer": 0,
+    "why": "A fixed weighted average of two +1 changes is also +1."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-everyone-got-richer-average-fell",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "composition"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 289,
+    "sourceSection": "15. Simpson's paradox & aggregation",
+    "sourceTitle": "Everyone got richer, average fell",
+    "sourceText": "every group's income rises while the mix shifts toward lower-paid groups.",
+    "sourceEntryOriginal": "- **289. Everyone got richer, average fell** \\[Gotcha\\]: every group's income rises while the mix shifts toward lower-paid groups.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "economics/price-tag-or-auction",
+    "difference": "New teaching boundary: Everyone got richer, average fell. Existing boundary: The learner can explain that with values spread evenly from $0 to $100, the best price tag out-earns a second-price auction with 1 or 2 bidders and the auction wins from 3 bidders on, because the auction's price is set by the second-highest bidder and rises with every rival, while a tag is a guess.",
+    "numericCase": "Group A incomes 10→12, B 30→32. Before mix 20%A/80%B mean26; after80%A/20%B mean16. Both group gains2 despite pooled change-10."
+  },
+  "modelAudit": {
+    "a": 16,
+    "b": 28,
+    "before": 26
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "slug": "be-one-mile-across-the-boundary",
+  "title": "One mile across the boundary",
+  "hook": "Should crossing 100,000 miles create a large step in a car's value?",
+  "domain": "behavioral",
+  "concept": "be-one-mile-across-the-boundary",
+  "status": "draft",
+  "durationSec": 60,
+  "version": 1,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and reading a small table"
+    ],
+    "doesNotKnow": [
+      "Distinguish smooth wear from a discontinuity at an odometer's round-number boundary."
+    ]
+  },
+  "misconception": "The quantities in this case can be combined without checking their reference, denominator, or information boundary.",
+  "objective": "Distinguish smooth wear from a discontinuity at an odometer's round-number boundary.",
+  "keyState": "Both complete computed cases are visible as retained observations; the question-case picture survives Reset.",
+  "claims": [
+    {
+      "id": "behavioral.be-one-mile-across-the-boundary.inputs",
+      "text": "A toy car’s price moves from €10,000 to €9,800 at a round mileage boundary. What is the price change? Toy inputs A=[10000, 9800, -1]; B=[10000, 9999, -1].",
+      "support": "convention",
+      "source": "Local explicit hypothetical assumptions in spec.ts and model.ts; not participant measurements.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-one-mile-across-the-boundary.trace",
+      "text": "Computed results: [[-200, -1, -199], [-1, -1, 0]]. Labels: Observed change €, Smooth change €, Extra jump €.",
+      "support": "derivation",
+      "source": "compute() in the lesson-local model.ts; finite numeric operations over the explicit inputs.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-one-mile-across-the-boundary.reveal",
+      "text": "The boundary case has a discrete jump compared with the smooth one-mile depreciation rule. The difference isolates a discontinuity in this toy price schedule; it does not mean physical wear jumps at the displayed number.",
+      "support": "derivation",
+      "source": "The two controlled cases in spec.ts; scope limited to these toy inputs and displayed model rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-one-mile-across-the-boundary.recall",
+      "text": "A new toy case uses Before price €=10000, After price €=9999, Smooth change €=-1. What is Observed change €? Answer: -1.",
+      "support": "derivation",
+      "source": "compute() applied to the contrasting new input case; source list is an idea pointer only.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A new toy case uses Before price €=10000, After price €=9999, Smooth change €=-1. What is Observed change €?",
+    "options": [
+      "0",
+      "-1",
+      "-2"
+    ],
+    "answer": 1,
+    "why": "Applying the stated toy rule to the new inputs gives -1. The result depends on these assumptions; it is not a universal behavioral response."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "behavioral:be-one-mile-across-the-boundary",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "behavioral",
+      "toy-model",
+      "source-entry-281"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "run-case",
+    "compare-case",
+    "step-trace",
+    "reset-retained-evidence"
+  ],
+  "sourceProvenance": {
+    "file": "500-behavioral-economics-findings.md",
+    "entry": 281,
+    "section": "15. Pricing & consumer behavior",
+    "text": "Used-car prices drop discretely each time the odometer crosses a 10,000-mile mark (Lacetera, Pope & Sydnor, 2012).",
+    "pointer": "500-behavioral-economics-findings.md entry 281: Lacetera, Pope & Sydnor, 2012",
+    "status": "unverified-primary-source",
+    "caveat": "Original list says figures are approximate and papers were not individually rechecked. No empirical source is verified by this build."
+  },
+  "nearestExistingLesson": "unit-price-aisle",
+  "meaningfulDifference": "Distinguish smooth wear from a discontinuity at an odometer's round-number boundary."
+}

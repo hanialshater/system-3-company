@@ -1,0 +1,103 @@
+{
+  "slug": "be-a-precise-opening-offer",
+  "title": "A precise opening offer",
+  "hook": "Would $4,988 and $5,000 invite the same counteroffer?",
+  "domain": "behavioral",
+  "concept": "be-a-precise-opening-offer",
+  "status": "draft",
+  "durationSec": 60,
+  "version": 1,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and reading a small table"
+    ],
+    "doesNotKnow": [
+      "Identify opening-price precision as distinct from the opening-price level."
+    ]
+  },
+  "misconception": "The quantities in this case can be combined without checking their reference, denominator, or information boundary.",
+  "objective": "Identify opening-price precision as distinct from the opening-price level.",
+  "keyState": "Both complete computed cases are visible as retained observations; the question-case picture survives Reset.",
+  "claims": [
+    {
+      "id": "behavioral.be-a-precise-opening-offer.inputs",
+      "text": "A toy quote is rounded to the nearest €1,000 and shown as €5,000. Which range could round to that quote? Toy inputs A=[5000, 1000]; B=[4988, 1].",
+      "support": "convention",
+      "source": "Local explicit hypothetical assumptions in spec.ts and model.ts; not participant measurements.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-a-precise-opening-offer.trace",
+      "text": "Computed results: [[4500, 5000, 5500], [4987.5, 4988, 4988.5]]. Labels: Low €, Mid €, High €.",
+      "support": "derivation",
+      "source": "compute() in the lesson-local model.ts; finite numeric operations over the explicit inputs.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-a-precise-opening-offer.reveal",
+      "text": "Under the stated rounding convention, precision changes the implied interval around the quote. A precise first offer may convey different information, but this arithmetic does not predict a negotiator’s response.",
+      "support": "derivation",
+      "source": "The two controlled cases in spec.ts; scope limited to these toy inputs and displayed model rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-a-precise-opening-offer.recall",
+      "text": "A new toy case uses Quoted €=4988, Rounding €=1. What is Mid €? Answer: 4988.",
+      "support": "derivation",
+      "source": "compute() applied to the contrasting new input case; source list is an idea pointer only.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A new toy case uses Quoted €=4988, Rounding €=1. What is Mid €?",
+    "options": [
+      "6484.4",
+      "4988",
+      "3491.6"
+    ],
+    "answer": 1,
+    "why": "Applying the stated toy rule to the new inputs gives 4988. The result depends on these assumptions; it is not a universal behavioral response."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "behavioral:be-a-precise-opening-offer",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "behavioral",
+      "toy-model",
+      "source-entry-29"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "run-case",
+    "compare-case",
+    "step-trace",
+    "reset-retained-evidence"
+  ],
+  "sourceProvenance": {
+    "file": "500-behavioral-economics-findings.md",
+    "entry": 29,
+    "section": "2. Anchoring",
+    "text": "Precise opening prices like $4,988 draw smaller counteroffers than round ones like $5,000 (Janiszewski & Uy, 2008; Mason et al., 2013).",
+    "pointer": "500-behavioral-economics-findings.md entry 29: Janiszewski & Uy, 2008; Mason et al., 2013",
+    "status": "unverified-primary-source",
+    "caveat": "Original list says figures are approximate and papers were not individually rechecked. No empirical source is verified by this build."
+  },
+  "nearestExistingLesson": "wheel-number-pulls-guess",
+  "meaningfulDifference": "Identify opening-price precision as distinct from the opening-price level."
+}

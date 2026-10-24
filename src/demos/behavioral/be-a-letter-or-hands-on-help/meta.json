@@ -1,0 +1,103 @@
+{
+  "slug": "be-a-letter-or-hands-on-help",
+  "title": "A letter or hands-on help?",
+  "hook": "How much does application help add beyond information alone?",
+  "domain": "behavioral",
+  "concept": "be-a-letter-or-hands-on-help",
+  "status": "draft",
+  "durationSec": 60,
+  "version": 1,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and reading a small table"
+    ],
+    "doesNotKnow": [
+      "Compare control, information, and assisted-application arms as separate interventions."
+    ]
+  },
+  "misconception": "The quantities in this case can be combined without checking their reference, denominator, or information boundary.",
+  "objective": "Compare control, information, and assisted-application arms as separate interventions.",
+  "keyState": "Both complete computed cases are visible as retained observations; the question-case picture survives Reset.",
+  "claims": [
+    {
+      "id": "behavioral.be-a-letter-or-hands-on-help.inputs",
+      "text": "An illustrative enrollment table has 6% control, 11% information and 18% assistance. What is the extra assistance-versus-information difference? Toy inputs A=[6, 11, 18]; B=[6, 11, 11].",
+      "support": "convention",
+      "source": "Local explicit hypothetical assumptions in spec.ts and model.ts; not participant measurements.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-a-letter-or-hands-on-help.trace",
+      "text": "Computed results: [[5, 7, 12], [5, 0, 5]]. Labels: Info lift pp, Extra help pp, Total lift pp.",
+      "support": "derivation",
+      "source": "compute() in the lesson-local model.ts; finite numeric operations over the explicit inputs.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-a-letter-or-hands-on-help.reveal",
+      "text": "Three arms separate contact, information and hands-on help. Combining both treated groups would hide the incremental assistance comparison. These supplied rates permit arithmetic, while causal and transport claims need their own study support.",
+      "support": "derivation",
+      "source": "The two controlled cases in spec.ts; scope limited to these toy inputs and displayed model rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-a-letter-or-hands-on-help.recall",
+      "text": "A new toy case uses Control %=6, Information %=11, Assistance %=11. What is Extra help pp? Answer: 0.",
+      "support": "derivation",
+      "source": "compute() applied to the contrasting new input case; source list is an idea pointer only.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A new toy case uses Control %=6, Information %=11, Assistance %=11. What is Extra help pp?",
+    "options": [
+      "1",
+      "0",
+      "-1"
+    ],
+    "answer": 1,
+    "why": "Applying the stated toy rule to the new inputs gives 0. The result depends on these assumptions; it is not a universal behavioral response."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "behavioral:be-a-letter-or-hands-on-help",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "behavioral",
+      "toy-model",
+      "source-entry-367"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "run-case",
+    "compare-case",
+    "step-trace",
+    "reset-retained-evidence"
+  ],
+  "sourceProvenance": {
+    "file": "500-behavioral-economics-findings.md",
+    "entry": 367,
+    "section": "19. Public policy nudges: tax, energy, voting",
+    "text": "SNAP enrollment among eligible seniors was 6% with no contact, 11% with an information letter and 18% with help applying (Finkelstein & Notowidigdo, 2019).",
+    "pointer": "500-behavioral-economics-findings.md entry 367: Finkelstein & Notowidigdo, 2019",
+    "status": "unverified-primary-source",
+    "caveat": "Original list says figures are approximate and papers were not individually rechecked. No empirical source is verified by this build."
+  },
+  "nearestExistingLesson": "bk-nudge-default-choice-model",
+  "meaningfulDifference": "Compare control, information, and assisted-application arms as separate interventions."
+}

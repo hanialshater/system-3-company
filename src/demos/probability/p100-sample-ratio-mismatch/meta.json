@@ -1,0 +1,161 @@
+{
+  "slug": "p100-sample-ratio-mismatch",
+  "title": "Is this split really fifty-fifty?",
+  "hook": "The same split percentages appear in a thousand users and a million.",
+  "domain": "probability",
+  "concept": "p100-sample-ratio-mismatch",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "a 50/50 test that ends 50.8/49.2 with millions of users signals a bug, not luck."
+    ]
+  },
+  "misconception": "Treating sample ratio mismatch as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "a 50/50 test that ends 50.8/49.2 with millions of users signals a bug, not luck.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-sample-ratio-mismatch.predict",
+      "text": "A 50/50 test ends with 508,000 and 492,000 users. For expected 500,000 each, what is the Pearson χ² allocation statistic?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-sample-ratio-mismatch/spec.ts; exact finite illustration specified in manager numericCase: Expected counts500/500. Observed508/492 chi-square.256 (not alarming); scaled508000/492000 chi-square256 (alarming). Make denominator visible. Avoid saying any deviation proves bug.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-sample-ratio-mismatch.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-sample-ratio-mismatch/spec.ts; exact finite illustration specified in manager numericCase: Expected counts500/500. Observed508/492 chi-square.256 (not alarming); scaled508000/492000 chi-square256 (alarming). Make denominator visible. Avoid saying any deviation proves bug.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-sample-ratio-mismatch.reveal.0",
+      "text": "The million-user case retains χ²=256; the thousand-user case retains 0.256. Both have the same percentage split, but the larger denominator makes that deviation much more surprising under a 50/50 model.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-sample-ratio-mismatch/spec.ts; exact finite illustration specified in manager numericCase: Expected counts500/500. Observed508/492 chi-square.256 (not alarming); scaled508000/492000 chi-square256 (alarming). Make denominator visible. Avoid saying any deviation proves bug.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-sample-ratio-mismatch.reveal.1",
+      "text": "An allocation mismatch is a diagnostic signal, not proof of one particular bug. Check assignment, eligibility and logging before interpreting outcome differences from the affected experiment.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-sample-ratio-mismatch/spec.ts; exact finite illustration specified in manager numericCase: Expected counts500/500. Observed508/492 chi-square.256 (not alarming); scaled508000/492000 chi-square256 (alarming). Make denominator visible. Avoid saying any deviation proves bug.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-sample-ratio-mismatch.recall",
+      "text": "Holding the observed split percentages fixed, multiplying total sample size by ten does what to χ²? Observed-minus-expected counts scale tenfold; squared deviations divided by expected counts therefore scale tenfold.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-sample-ratio-mismatch/spec.ts; exact finite illustration specified in manager numericCase: Expected counts500/500. Observed508/492 chi-square.256 (not alarming); scaled508000/492000 chi-square256 (alarming). Make denominator visible. Avoid saying any deviation proves bug.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-sample-ratio-mismatch.scenario.0.summary",
+      "text": "χ²=256",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-sample-ratio-mismatch/spec.ts; exact finite illustration specified in manager numericCase: Expected counts500/500. Observed508/492 chi-square.256 (not alarming); scaled508000/492000 chi-square256 (alarming). Make denominator visible. Avoid saying any deviation proves bug.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-sample-ratio-mismatch.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"A\",\"B\"],\"rows\":[[508000,492000]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-sample-ratio-mismatch/spec.ts; exact finite illustration specified in manager numericCase: Expected counts500/500. Observed508/492 chi-square.256 (not alarming); scaled508000/492000 chi-square256 (alarming). Make denominator visible. Avoid saying any deviation proves bug.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-sample-ratio-mismatch.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Million users\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Observed A\",\"value\":508000},{\"label\":\"Observed B\",\"value\":492000}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-sample-ratio-mismatch/spec.ts; exact finite illustration specified in manager numericCase: Expected counts500/500. Observed508/492 chi-square.256 (not alarming); scaled508000/492000 chi-square256 (alarming). Make denominator visible. Avoid saying any deviation proves bug.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-sample-ratio-mismatch.scenario.1.summary",
+      "text": "χ²=0.256",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-sample-ratio-mismatch/spec.ts; exact finite illustration specified in manager numericCase: Expected counts500/500. Observed508/492 chi-square.256 (not alarming); scaled508000/492000 chi-square256 (alarming). Make denominator visible. Avoid saying any deviation proves bug.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-sample-ratio-mismatch.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"A\",\"B\"],\"rows\":[[508,492]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-sample-ratio-mismatch/spec.ts; exact finite illustration specified in manager numericCase: Expected counts500/500. Observed508/492 chi-square.256 (not alarming); scaled508000/492000 chi-square256 (alarming). Make denominator visible. Avoid saying any deviation proves bug.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-sample-ratio-mismatch.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · Thousand users\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Observed A\",\"value\":508},{\"label\":\"Observed B\",\"value\":492}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-sample-ratio-mismatch/spec.ts; exact finite illustration specified in manager numericCase: Expected counts500/500. Observed508/492 chi-square.256 (not alarming); scaled508000/492000 chi-square256 (alarming). Make denominator visible. Avoid saying any deviation proves bug.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-sample-ratio-mismatch.hook",
+      "text": "The same split percentages appear in a thousand users and a million.",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-sample-ratio-mismatch/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Holding the observed split percentages fixed, multiplying total sample size by ten does what to χ²?",
+    "options": [
+      "Divides by ten",
+      "Leaves it unchanged",
+      "Multiplies by ten"
+    ],
+    "answer": 2,
+    "why": "Observed-minus-expected counts scale tenfold; squared deviations divided by expected counts therefore scale tenfold."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-sample-ratio-mismatch",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "srm"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 330,
+    "sourceSection": "17. Randomized experiments & A/B tests",
+    "sourceTitle": "Sample ratio mismatch",
+    "sourceText": "a 50/50 test that ends 50.8/49.2 with millions of users signals a bug, not luck.",
+    "sourceEntryOriginal": "- **330. Sample ratio mismatch** \\[Gotcha\\]: a 50/50 test that ends 50.8/49.2 with millions of users signals a bug, not luck.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "ai/ai-mcmc-random-walk",
+    "difference": "New teaching boundary: Sample ratio mismatch. Existing boundary: Compute and contrast the finite mcmc random walk cases while preserving the declared boundary.",
+    "numericCase": "Expected counts500/500. Observed508/492 chi-square.256 (not alarming); scaled508000/492000 chi-square256 (alarming). Make denominator visible. Avoid saying any deviation proves bug."
+  },
+  "modelAudit": {
+    "a": 256,
+    "b": 0.256
+  }
+}

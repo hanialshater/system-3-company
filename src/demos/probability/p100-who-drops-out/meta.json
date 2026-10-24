@@ -1,0 +1,161 @@
+{
+  "slug": "p100-who-drops-out",
+  "title": "Who left the study early?",
+  "hook": "The lowest outcomes disappear from just one arm of an otherwise equal study.",
+  "domain": "probability",
+  "concept": "p100-who-drops-out",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "let sicker patients leave a study and watch a useless treatment look effective."
+    ]
+  },
+  "misconception": "Treating who drops out? as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "let sicker patients leave a study and watch a useless treatment look effective.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-who-drops-out.predict",
+      "text": "Treatment and control both have outcomes 0,0,10,10. If only the treatment zeros drop out, what difference appears among completers?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-who-drops-out/spec.ts; exact finite illustration specified in manager numericCase: Treatment outcomes [0,0,10,10], control [0,0,10,10], bothmean5. Drop treatment zeros only: completer treatmentmean10 vs control5, apparent+5 from attrition.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-who-drops-out.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-who-drops-out/spec.ts; exact finite illustration specified in manager numericCase: Treatment outcomes [0,0,10,10], control [0,0,10,10], bothmean5. Drop treatment zeros only: completer treatmentmean10 vs control5, apparent+5 from attrition.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-who-drops-out.reveal.0",
+      "text": "Selective dropout retains a completer difference of 5, while keeping every outcome retains 0. The low treatment outcomes disappeared; no outcome improved.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-who-drops-out/spec.ts; exact finite illustration specified in manager numericCase: Treatment outcomes [0,0,10,10], control [0,0,10,10], bothmean5. Drop treatment zeros only: completer treatmentmean10 vs control5, apparent+5 from attrition.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-who-drops-out.reveal.1",
+      "text": "Comparing completers can break the balance that assignment created. Whether missing outcomes can be recovered depends on the missingness assumptions and available follow-up information, not merely on having randomized the original invitation.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-who-drops-out/spec.ts; exact finite illustration specified in manager numericCase: Treatment outcomes [0,0,10,10], control [0,0,10,10], bothmean5. Drop treatment zeros only: completer treatmentmean10 vs control5, apparent+5 from attrition.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-who-drops-out.recall",
+      "text": "Identical groups start with outcomes 2 and 8. Only the treated 2 disappears. What apparent mean difference remains? The treated completer mean is 8; the complete control mean is 5, so the difference is 3.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-who-drops-out/spec.ts; exact finite illustration specified in manager numericCase: Treatment outcomes [0,0,10,10], control [0,0,10,10], bothmean5. Drop treatment zeros only: completer treatmentmean10 vs control5, apparent+5 from attrition.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-who-drops-out.scenario.0.summary",
+      "text": "Completer difference 5",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-who-drops-out/spec.ts; exact finite illustration specified in manager numericCase: Treatment outcomes [0,0,10,10], control [0,0,10,10], bothmean5. Drop treatment zeros only: completer treatmentmean10 vs control5, apparent+5 from attrition.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-who-drops-out.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"T\",\"C\"],\"rows\":[[0,0],[0,0],[10,10],[10,10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-who-drops-out/spec.ts; exact finite illustration specified in manager numericCase: Treatment outcomes [0,0,10,10], control [0,0,10,10], bothmean5. Drop treatment zeros only: completer treatmentmean10 vs control5, apparent+5 from attrition.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-who-drops-out.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Selective dropout\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"T mean\",\"value\":10},{\"label\":\"C mean\",\"value\":5}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-who-drops-out/spec.ts; exact finite illustration specified in manager numericCase: Treatment outcomes [0,0,10,10], control [0,0,10,10], bothmean5. Drop treatment zeros only: completer treatmentmean10 vs control5, apparent+5 from attrition.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-who-drops-out.scenario.1.summary",
+      "text": "Full difference 0",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-who-drops-out/spec.ts; exact finite illustration specified in manager numericCase: Treatment outcomes [0,0,10,10], control [0,0,10,10], bothmean5. Drop treatment zeros only: completer treatmentmean10 vs control5, apparent+5 from attrition.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-who-drops-out.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Kept T\",\"Kept C\"],\"rows\":[[4,4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-who-drops-out/spec.ts; exact finite illustration specified in manager numericCase: Treatment outcomes [0,0,10,10], control [0,0,10,10], bothmean5. Drop treatment zeros only: completer treatmentmean10 vs control5, apparent+5 from attrition.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-who-drops-out.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · Keep every outcome\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"T mean\",\"value\":5},{\"label\":\"C mean\",\"value\":5}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-who-drops-out/spec.ts; exact finite illustration specified in manager numericCase: Treatment outcomes [0,0,10,10], control [0,0,10,10], bothmean5. Drop treatment zeros only: completer treatmentmean10 vs control5, apparent+5 from attrition.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-who-drops-out.hook",
+      "text": "The lowest outcomes disappear from just one arm of an otherwise equal study.",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-who-drops-out/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Identical groups start with outcomes 2 and 8. Only the treated 2 disappears. What apparent mean difference remains?",
+    "options": [
+      "0",
+      "3",
+      "6"
+    ],
+    "answer": 1,
+    "why": "The treated completer mean is 8; the complete control mean is 5, so the difference is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-who-drops-out",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "attrition"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 315,
+    "sourceSection": "16. Selection bias, colliders & survivorship",
+    "sourceTitle": "Who drops out?",
+    "sourceText": "let sicker patients leave a study and watch a useless treatment look effective.",
+    "sourceEntryOriginal": "- **315. Who drops out?** \\[Slider\\]: let sicker patients leave a study and watch a useless treatment look effective.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "ai/ai-random-forest-decorrelation",
+    "difference": "New teaching boundary: Who drops out?. Existing boundary: Compute the random forest decorrelation construction and explain its countercase and stated boundary.",
+    "numericCase": "Treatment outcomes [0,0,10,10], control [0,0,10,10], bothmean5. Drop treatment zeros only: completer treatmentmean10 vs control5, apparent+5 from attrition."
+  },
+  "modelAudit": {
+    "a": 5,
+    "b": 0
+  }
+}

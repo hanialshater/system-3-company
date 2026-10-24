@@ -1,0 +1,162 @@
+{
+  "slug": "p100-minimum-detectable-effect",
+  "title": "What can this test detect?",
+  "hook": "Match a traffic budget to an approximate detectable lift.",
+  "domain": "probability",
+  "concept": "p100-minimum-detectable-effect",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "with your traffic, what's the smallest change you can reliably see?"
+    ]
+  },
+  "misconception": "Treating minimum detectable effect as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "with your traffic, what's the smallest change you can reliably see?",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-minimum-detectable-effect.predict",
+      "text": "A fixed design uses baseline .5, 80% power, and 100 observations per arm. Using MDE=(1.96+.84)√(.5/n), what approximate absolute lift can it detect?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-minimum-detectable-effect/spec.ts; exact finite illustration specified in manager numericCase: At baseline.5 and80%power, normal approximation MDE=(1.96+.84)*sqrt(.5/n), n per arm. n=100→19.799%,400→9.899%,1600→4.950%. Explain approximation and fixed design, not guarantee.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-minimum-detectable-effect.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-minimum-detectable-effect/spec.ts; exact finite illustration specified in manager numericCase: At baseline.5 and80%power, normal approximation MDE=(1.96+.84)*sqrt(.5/n), n per arm. n=100→19.799%,400→9.899%,1600→4.950%. Explain approximation and fixed design, not guarantee.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-minimum-detectable-effect.reveal.0",
+      "text": "The retained approximations are 19.799 points at 100 per arm and 9.899 at 400 per arm. Quadrupling sample size halves this design’s minimum detectable effect.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-minimum-detectable-effect/spec.ts; exact finite illustration specified in manager numericCase: At baseline.5 and80%power, normal approximation MDE=(1.96+.84)*sqrt(.5/n), n per arm. n=100→19.799%,400→9.899%,1600→4.950%. Explain approximation and fixed design, not guarantee.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-minimum-detectable-effect.reveal.1",
+      "text": "This normal approximation fixes the baseline, significance threshold and target power. An MDE describes the design’s detection probability under a specified effect, not a guarantee that any one experiment will detect it.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-minimum-detectable-effect/spec.ts; exact finite illustration specified in manager numericCase: At baseline.5 and80%power, normal approximation MDE=(1.96+.84)*sqrt(.5/n), n per arm. n=100→19.799%,400→9.899%,1600→4.950%. Explain approximation and fixed design, not guarantee.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-minimum-detectable-effect.recall",
+      "text": "Under the same approximation, halving MDE requires sample size to do what? MDE scales with 1/√n, so reducing it by two requires four times as many observations.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-minimum-detectable-effect/spec.ts; exact finite illustration specified in manager numericCase: At baseline.5 and80%power, normal approximation MDE=(1.96+.84)*sqrt(.5/n), n per arm. n=100→19.799%,400→9.899%,1600→4.950%. Explain approximation and fixed design, not guarantee.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-minimum-detectable-effect.scenario.0.summary",
+      "text": "n=100: 19.799pp",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-minimum-detectable-effect/spec.ts; exact finite illustration specified in manager numericCase: At baseline.5 and80%power, normal approximation MDE=(1.96+.84)*sqrt(.5/n), n per arm. n=100→19.799%,400→9.899%,1600→4.950%. Explain approximation and fixed design, not guarantee.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-minimum-detectable-effect.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Per arm\"],\"rows\":[[100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-minimum-detectable-effect/spec.ts; exact finite illustration specified in manager numericCase: At baseline.5 and80%power, normal approximation MDE=(1.96+.84)*sqrt(.5/n), n per arm. n=100→19.799%,400→9.899%,1600→4.950%. Explain approximation and fixed design, not guarantee.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-minimum-detectable-effect.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · 100 per arm\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":100,\"y\":19.79898987322333},{\"x\":400,\"y\":9.899494936611665},{\"x\":1600,\"y\":4.949747468305833}],\"xLabel\":\"n per arm\",\"yLabel\":\"MDE pp\"}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-minimum-detectable-effect/spec.ts; exact finite illustration specified in manager numericCase: At baseline.5 and80%power, normal approximation MDE=(1.96+.84)*sqrt(.5/n), n per arm. n=100→19.799%,400→9.899%,1600→4.950%. Explain approximation and fixed design, not guarantee.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-minimum-detectable-effect.scenario.1.summary",
+      "text": "n=400: 9.899pp",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-minimum-detectable-effect/spec.ts; exact finite illustration specified in manager numericCase: At baseline.5 and80%power, normal approximation MDE=(1.96+.84)*sqrt(.5/n), n per arm. n=100→19.799%,400→9.899%,1600→4.950%. Explain approximation and fixed design, not guarantee.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-minimum-detectable-effect.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Per arm\"],\"rows\":[[400]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-minimum-detectable-effect/spec.ts; exact finite illustration specified in manager numericCase: At baseline.5 and80%power, normal approximation MDE=(1.96+.84)*sqrt(.5/n), n per arm. n=100→19.799%,400→9.899%,1600→4.950%. Explain approximation and fixed design, not guarantee.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-minimum-detectable-effect.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · 400 per arm\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"100\",\"value\":19.79898987322333},{\"label\":\"400\",\"value\":9.899494936611665}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-minimum-detectable-effect/spec.ts; exact finite illustration specified in manager numericCase: At baseline.5 and80%power, normal approximation MDE=(1.96+.84)*sqrt(.5/n), n per arm. n=100→19.799%,400→9.899%,1600→4.950%. Explain approximation and fixed design, not guarantee.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-minimum-detectable-effect.hook",
+      "text": "Match a traffic budget to an approximate detectable lift.",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-minimum-detectable-effect/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Under the same approximation, halving MDE requires sample size to do what?",
+    "options": [
+      "Double",
+      "Quadruple",
+      "Halve"
+    ],
+    "answer": 1,
+    "why": "MDE scales with 1/√n, so reducing it by two requires four times as many observations."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-minimum-detectable-effect",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "mde"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 324,
+    "sourceSection": "17. Randomized experiments & A/B tests",
+    "sourceTitle": "Minimum detectable effect",
+    "sourceText": "with your traffic, what's the smallest change you can reliably see?",
+    "sourceEntryOriginal": "- **324. Minimum detectable effect** \\[Slider\\]: with your traffic, what's the smallest change you can reliably see?",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "lifehacks/measure-inside-not-outside",
+    "difference": "New teaching boundary: Minimum detectable effect. Existing boundary: A container’s outer width includes both walls. The insert must fit the clear inside opening, so subtracting the walls can change an apparent fit into a collision.",
+    "numericCase": "At baseline.5 and80%power, normal approximation MDE=(1.96+.84)*sqrt(.5/n), n per arm. n=100→19.799%,400→9.899%,1600→4.950%. Explain approximation and fixed design, not guarantee."
+  },
+  "modelAudit": {
+    "a": 19.79898987322333,
+    "b": 9.899494936611665,
+    "c": 4.949747468305833
+  }
+}

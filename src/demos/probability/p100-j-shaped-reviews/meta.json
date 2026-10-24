@@ -1,0 +1,162 @@
+{
+  "slug": "p100-j-shaped-reviews",
+  "title": "Who bothers to leave a review?",
+  "hook": "Start with a flat population and choose who leaves a rating.",
+  "domain": "probability",
+  "concept": "p100-j-shaped-reviews",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "mostly 1- and 5-star reviews, because people with moderate experiences don't post."
+    ]
+  },
+  "misconception": "Treating j-shaped reviews as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "mostly 1- and 5-star reviews, because people with moderate experiences don't post.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-j-shaped-reviews.predict",
+      "text": "Each rating 1–5 has 20 users. All 1- and 5-star users review, but only one user at each middle rating does. What share of visible reviews is extreme?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-j-shaped-reviews/spec.ts; exact finite illustration specified in manager numericCase: Experience ratings [1,2,3,4,5] each20 people. Full mean3. Select all1/5 star users and only1 each at2/3/4: 43 reviews, mean3 but extreme share40/43 instead of40/100; symmetric selection changes shape, not necessarily mean.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-j-shaped-reviews.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-j-shaped-reviews/spec.ts; exact finite illustration specified in manager numericCase: Experience ratings [1,2,3,4,5] each20 people. Full mean3. Select all1/5 star users and only1 each at2/3/4: 43 reviews, mean3 but extreme share40/43 instead of40/100; symmetric selection changes shape, not necessarily mean.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-j-shaped-reviews.reveal.0",
+      "text": "The selected reviews retain 93.023% extreme ratings, versus 40% in the full population. Both retained means are 3 because this selection is symmetric.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-j-shaped-reviews/spec.ts; exact finite illustration specified in manager numericCase: Experience ratings [1,2,3,4,5] each20 people. Full mean3. Select all1/5 star users and only1 each at2/3/4: 43 reviews, mean3 but extreme share40/43 instead of40/100; symmetric selection changes shape, not necessarily mean.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-j-shaped-reviews.reveal.1",
+      "text": "Selection can change a distribution’s shape without changing its mean. These counts are a stipulated toy rule, not measured reviewer behavior; an observed J-shape alone does not identify the selection mechanism.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-j-shaped-reviews/spec.ts; exact finite illustration specified in manager numericCase: Experience ratings [1,2,3,4,5] each20 people. Full mean3. Select all1/5 star users and only1 each at2/3/4: 43 reviews, mean3 but extreme share40/43 instead of40/100; symmetric selection changes shape, not necessarily mean.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-j-shaped-reviews.recall",
+      "text": "Symmetrically remove middle ratings from a symmetric 1–5 distribution. Must the mean move? A symmetric deletion can preserve the center while making the remaining distribution more extreme.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-j-shaped-reviews/spec.ts; exact finite illustration specified in manager numericCase: Experience ratings [1,2,3,4,5] each20 people. Full mean3. Select all1/5 star users and only1 each at2/3/4: 43 reviews, mean3 but extreme share40/43 instead of40/100; symmetric selection changes shape, not necessarily mean.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-j-shaped-reviews.scenario.0.summary",
+      "text": "Extreme 93.023%; mean 3",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-j-shaped-reviews/spec.ts; exact finite illustration specified in manager numericCase: Experience ratings [1,2,3,4,5] each20 people. Full mean3. Select all1/5 star users and only1 each at2/3/4: 43 reviews, mean3 but extreme share40/43 instead of40/100; symmetric selection changes shape, not necessarily mean.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-j-shaped-reviews.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"1\",\"value\":20},{\"label\":\"2\",\"value\":20},{\"label\":\"3\",\"value\":20},{\"label\":\"4\",\"value\":20},{\"label\":\"5\",\"value\":20}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-j-shaped-reviews/spec.ts; exact finite illustration specified in manager numericCase: Experience ratings [1,2,3,4,5] each20 people. Full mean3. Select all1/5 star users and only1 each at2/3/4: 43 reviews, mean3 but extreme share40/43 instead of40/100; symmetric selection changes shape, not necessarily mean.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-j-shaped-reviews.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Selected reviewers\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"1\",\"value\":20},{\"label\":\"2\",\"value\":1},{\"label\":\"3\",\"value\":1},{\"label\":\"4\",\"value\":1},{\"label\":\"5\",\"value\":20}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-j-shaped-reviews/spec.ts; exact finite illustration specified in manager numericCase: Experience ratings [1,2,3,4,5] each20 people. Full mean3. Select all1/5 star users and only1 each at2/3/4: 43 reviews, mean3 but extreme share40/43 instead of40/100; symmetric selection changes shape, not necessarily mean.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-j-shaped-reviews.scenario.1.summary",
+      "text": "Extreme 40%; mean 3",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-j-shaped-reviews/spec.ts; exact finite illustration specified in manager numericCase: Experience ratings [1,2,3,4,5] each20 people. Full mean3. Select all1/5 star users and only1 each at2/3/4: 43 reviews, mean3 but extreme share40/43 instead of40/100; symmetric selection changes shape, not necessarily mean.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-j-shaped-reviews.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Users\"],\"rows\":[[100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-j-shaped-reviews/spec.ts; exact finite illustration specified in manager numericCase: Experience ratings [1,2,3,4,5] each20 people. Full mean3. Select all1/5 star users and only1 each at2/3/4: 43 reviews, mean3 but extreme share40/43 instead of40/100; symmetric selection changes shape, not necessarily mean.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-j-shaped-reviews.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · Every user reviews\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"1\",\"value\":20},{\"label\":\"2\",\"value\":20},{\"label\":\"3\",\"value\":20},{\"label\":\"4\",\"value\":20},{\"label\":\"5\",\"value\":20}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-j-shaped-reviews/spec.ts; exact finite illustration specified in manager numericCase: Experience ratings [1,2,3,4,5] each20 people. Full mean3. Select all1/5 star users and only1 each at2/3/4: 43 reviews, mean3 but extreme share40/43 instead of40/100; symmetric selection changes shape, not necessarily mean.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-j-shaped-reviews.hook",
+      "text": "Start with a flat population and choose who leaves a rating.",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-j-shaped-reviews/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Symmetrically remove middle ratings from a symmetric 1–5 distribution. Must the mean move?",
+    "options": [
+      "No",
+      "Yes: upward",
+      "Yes: downward"
+    ],
+    "answer": 0,
+    "why": "A symmetric deletion can preserve the center while making the remaining distribution more extreme."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-j-shaped-reviews",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "selection"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 311,
+    "sourceSection": "16. Selection bias, colliders & survivorship",
+    "sourceTitle": "J-shaped reviews",
+    "sourceText": "mostly 1- and 5-star reviews, because people with moderate experiences don't post.",
+    "sourceEntryOriginal": "- **311. J-shaped reviews** \\[Gotcha\\]: mostly 1- and 5-star reviews, because people with moderate experiences don't post.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "math/thirteen-pigeons",
+    "difference": "New teaching boundary: J-shaped reviews. Existing boundary: The learner can explain that 12 people can all have different birth months, but any 13 must include two who share one, because there are only 12 months.",
+    "numericCase": "Experience ratings [1,2,3,4,5] each20 people. Full mean3. Select all1/5 star users and only1 each at2/3/4: 43 reviews, mean3 but extreme share40/43 instead of40/100; symmetric selection changes shape, not necessarily mean."
+  },
+  "modelAudit": {
+    "a": 0.9302325581395349,
+    "b": 3,
+    "populationMean": 3
+  }
+}

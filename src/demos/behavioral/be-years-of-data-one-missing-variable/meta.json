@@ -1,0 +1,103 @@
+{
+  "slug": "be-years-of-data-one-missing-variable",
+  "title": "Years of data, one missing variable",
+  "hook": "Can experience teach an effect you never notice or vary?",
+  "domain": "behavioral",
+  "concept": "be-years-of-data-one-missing-variable",
+  "status": "draft",
+  "durationSec": 60,
+  "version": 1,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and reading a small table"
+    ],
+    "doesNotKnow": [
+      "Distinguish accumulated observations from attention to the yield-relevant input."
+    ]
+  },
+  "misconception": "The quantities in this case can be combined without checking their reference, denominator, or information boundary.",
+  "objective": "Distinguish accumulated observations from attention to the yield-relevant input.",
+  "keyState": "Both complete computed cases are visible as retained observations; the question-case picture survives Reset.",
+  "claims": [
+    {
+      "id": "behavioral.be-years-of-data-one-missing-variable.inputs",
+      "text": "A toy yield rule is two times pod size. A farmer observes five years but only ever uses size two. What yield does that input produce? Toy inputs A=[2, 5]; B=[4, 5].",
+      "support": "convention",
+      "source": "Local explicit hypothetical assumptions in spec.ts and model.ts; not participant measurements.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-years-of-data-one-missing-variable.trace",
+      "text": "Computed results: [[4, 2, 5], [8, 4, 5]]. Labels: Model yield, Pod size, Years.",
+      "support": "derivation",
+      "source": "compute() in the lesson-local model.ts; finite numeric operations over the explicit inputs.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-years-of-data-one-missing-variable.reveal",
+      "text": "Repeated observation at one input value can leave the effect of changing that input unexamined. The comparison varies pod size and keeps years fixed. More records and a more informative experimental variation are different resources.",
+      "support": "derivation",
+      "source": "The two controlled cases in spec.ts; scope limited to these toy inputs and displayed model rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-years-of-data-one-missing-variable.recall",
+      "text": "A new toy case uses Pod size=4, Observed years=5. What is Model yield? Answer: 8.",
+      "support": "derivation",
+      "source": "compute() applied to the contrasting new input case; source list is an idea pointer only.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A new toy case uses Pod size=4, Observed years=5. What is Model yield?",
+    "options": [
+      "10.4",
+      "8",
+      "5.6"
+    ],
+    "answer": 1,
+    "why": "Applying the stated toy rule to the new inputs gives 8. The result depends on these assumptions; it is not a universal behavioral response."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "behavioral:be-years-of-data-one-missing-variable",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "behavioral",
+      "toy-model",
+      "source-entry-464"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "run-case",
+    "compare-case",
+    "step-trace",
+    "reset-retained-evidence"
+  ],
+  "sourceProvenance": {
+    "file": "500-behavioral-economics-findings.md",
+    "entry": 464,
+    "section": "24. Scarcity, attention & cognitive load",
+    "text": "Indonesian seaweed farmers ignored pod size, which mattered for yield, despite years of their own data (Hanna, Mullainathan & Schwartzstein, 2014).",
+    "pointer": "500-behavioral-economics-findings.md entry 464: Hanna, Mullainathan & Schwartzstein, 2014",
+    "status": "unverified-primary-source",
+    "caveat": "Original list says figures are approximate and papers were not individually rechecked. No empirical source is verified by this build."
+  },
+  "nearestExistingLesson": "bk-scarcity-attention-budget",
+  "meaningfulDifference": "Distinguish accumulated observations from attention to the yield-relevant input."
+}

@@ -1,0 +1,163 @@
+{
+  "slug": "p100-strong-but-flat",
+  "title": "How steep is a strong link?",
+  "hook": "Change the outcome’s units and compare slope with correlation.",
+  "domain": "probability",
+  "concept": "p100-strong-but-flat",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "correlation measures tightness, not slope; a near-flat line can have r = 0.99."
+    ]
+  },
+  "misconception": "Treating strong but flat as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "correlation measures tightness, not slope; a near-flat line can have r = 0.99.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-strong-but-flat.predict",
+      "text": "The points x=1,2,3 and y=.01,.02,.03 lie on one line. What happens to correlation when y is multiplied by 1,000?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-strong-but-flat/spec.ts; exact finite illustration specified in manager numericCase: x=[1,2,3], y=[.01,.02,.03] gives r=1, slope .01. Rescale y to [10,20,30]: r still1, slope10. Learner changes units, not association tightness.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-strong-but-flat.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-strong-but-flat/spec.ts; exact finite illustration specified in manager numericCase: x=[1,2,3], y=[.01,.02,.03] gives r=1, slope .01. Rescale y to [10,20,30]: r still1, slope10. Learner changes units, not association tightness.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-strong-but-flat.reveal.0",
+      "text": "Both cases retain correlation 1, while the slopes are 0.01 and 10. Rescaling the outcome changes its units but preserves the points’ perfect linear ordering.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-strong-but-flat/spec.ts; exact finite illustration specified in manager numericCase: x=[1,2,3], y=[.01,.02,.03] gives r=1, slope .01. Rescale y to [10,20,30]: r still1, slope10. Learner changes units, not association tightness.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-strong-but-flat.reveal.1",
+      "text": "Correlation normalizes covariance by both variables’ standard deviations. Slope keeps the units of outcome per predictor, so a near-flat line can still have perfect correlation. The axes show their own scales.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-strong-but-flat/spec.ts; exact finite illustration specified in manager numericCase: x=[1,2,3], y=[.01,.02,.03] gives r=1, slope .01. Rescale y to [10,20,30]: r still1, slope10. Learner changes units, not association tightness.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-strong-but-flat.recall",
+      "text": "Convert a positive straight-line outcome from meters to centimeters. What happens to Pearson correlation? Positive unit rescaling changes slope but leaves normalized correlation unchanged.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-strong-but-flat/spec.ts; exact finite illustration specified in manager numericCase: x=[1,2,3], y=[.01,.02,.03] gives r=1, slope .01. Rescale y to [10,20,30]: r still1, slope10. Learner changes units, not association tightness.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-strong-but-flat.scenario.0.summary",
+      "text": "r=1; slope=0.01",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-strong-but-flat/spec.ts; exact finite illustration specified in manager numericCase: x=[1,2,3], y=[.01,.02,.03] gives r=1, slope .01. Rescale y to [10,20,30]: r still1, slope10. Learner changes units, not association tightness.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-strong-but-flat.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"x\",\"y\"],\"rows\":[[1,0.01],[2,0.02],[3,0.03]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-strong-but-flat/spec.ts; exact finite illustration specified in manager numericCase: x=[1,2,3], y=[.01,.02,.03] gives r=1, slope .01. Rescale y to [10,20,30]: r still1, slope10. Learner changes units, not association tightness.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-strong-but-flat.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Small units\",\"visual\":{\"kind\":\"scatter\",\"points\":[{\"x\":1,\"y\":0.01},{\"x\":2,\"y\":0.02},{\"x\":3,\"y\":0.03}],\"xLabel\":\"x\",\"yLabel\":\"y\"}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-strong-but-flat/spec.ts; exact finite illustration specified in manager numericCase: x=[1,2,3], y=[.01,.02,.03] gives r=1, slope .01. Rescale y to [10,20,30]: r still1, slope10. Learner changes units, not association tightness.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-strong-but-flat.scenario.1.summary",
+      "text": "r=1; slope=10",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-strong-but-flat/spec.ts; exact finite illustration specified in manager numericCase: x=[1,2,3], y=[.01,.02,.03] gives r=1, slope .01. Rescale y to [10,20,30]: r still1, slope10. Learner changes units, not association tightness.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-strong-but-flat.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"x\",\"y\"],\"rows\":[[1,10],[2,20],[3,30]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-strong-but-flat/spec.ts; exact finite illustration specified in manager numericCase: x=[1,2,3], y=[.01,.02,.03] gives r=1, slope .01. Rescale y to [10,20,30]: r still1, slope10. Learner changes units, not association tightness.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-strong-but-flat.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · Large units\",\"visual\":{\"kind\":\"scatter\",\"points\":[{\"x\":1,\"y\":10},{\"x\":2,\"y\":20},{\"x\":3,\"y\":30}],\"xLabel\":\"x\",\"yLabel\":\"y\"}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-strong-but-flat/spec.ts; exact finite illustration specified in manager numericCase: x=[1,2,3], y=[.01,.02,.03] gives r=1, slope .01. Rescale y to [10,20,30]: r still1, slope10. Learner changes units, not association tightness.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-strong-but-flat.hook",
+      "text": "Change the outcome’s units and compare slope with correlation.",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-strong-but-flat/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Convert a positive straight-line outcome from meters to centimeters. What happens to Pearson correlation?",
+    "options": [
+      "Unchanged",
+      "Multiplied by 100",
+      "Divided by 100"
+    ],
+    "answer": 0,
+    "why": "Positive unit rescaling changes slope but leaves normalized correlation unchanged."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-strong-but-flat",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "correlation"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 276,
+    "sourceSection": "14. Correlation vs causation",
+    "sourceTitle": "Strong but flat",
+    "sourceText": "correlation measures tightness, not slope; a near-flat line can have r = 0.99.",
+    "sourceEntryOriginal": "- **276. Strong but flat** \\[Slider\\]: correlation measures tightness, not slope; a near-flat line can have r = 0.99.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "lifehacks/care-label-first-choice",
+    "difference": "New teaching boundary: Strong but flat. Existing boundary: The example garment’s instruction is flat dry. Selecting a convenient line-dry arrangement does not override that instruction; the task is to choose a compatible method before optimising space.",
+    "numericCase": "x=[1,2,3], y=[.01,.02,.03] gives r=1, slope .01. Rescale y to [10,20,30]: r still1, slope10. Learner changes units, not association tightness."
+  },
+  "modelAudit": {
+    "a": 0.9999999999999999,
+    "b": 1,
+    "smallSlope": 0.009999999999999998,
+    "largeSlope": 10.000000000000002
+  }
+}

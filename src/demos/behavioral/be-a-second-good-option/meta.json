@@ -1,0 +1,103 @@
+{
+  "slug": "be-a-second-good-option",
+  "title": "A second good option",
+  "hook": "Would adding another attractive player make buying easier?",
+  "domain": "behavioral",
+  "concept": "be-a-second-good-option",
+  "status": "draft",
+  "durationSec": 60,
+  "version": 1,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and reading a small table"
+    ],
+    "doesNotKnow": [
+      "Show how choice conflict can change deferral while both options remain available."
+    ]
+  },
+  "misconception": "The quantities in this case can be combined without checking their reference, denominator, or information boundary.",
+  "objective": "Show how choice conflict can change deferral while both options remain available.",
+  "keyState": "Both complete computed cases are visible as retained observations; the question-case picture survives Reset.",
+  "claims": [
+    {
+      "id": "behavioral.be-a-second-good-option.inputs",
+      "text": "A toy choice has option A worth eight units at a cost of three. Adding B worth seven at a cost of three changes A’s net value to what? Toy inputs A=[8, 3, 0, 0]; B=[8, 3, 7, 3].",
+      "support": "convention",
+      "source": "Local explicit hypothetical assumptions in spec.ts and model.ts; not participant measurements.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-a-second-good-option.trace",
+      "text": "Computed results: [[5, 5, 0], [5, 5, 4]]. Labels: A net, Best net, B net.",
+      "support": "derivation",
+      "source": "compute() in the lesson-local model.ts; finite numeric operations over the explicit inputs.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-a-second-good-option.reveal",
+      "text": "Adding an alternative changes the choice set but leaves A’s stated payoff unchanged. A person may still defer when choices conflict; the arithmetic separates that behavioral response from removal or degradation of the original option.",
+      "support": "derivation",
+      "source": "The two controlled cases in spec.ts; scope limited to these toy inputs and displayed model rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-a-second-good-option.recall",
+      "text": "A new toy case uses Option A value=8, A cost=3, Option B value=7, B cost=3. What is A net? Answer: 5.",
+      "support": "derivation",
+      "source": "compute() applied to the contrasting new input case; source list is an idea pointer only.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A new toy case uses Option A value=8, A cost=3, Option B value=7, B cost=3. What is A net?",
+    "options": [
+      "6.5",
+      "5",
+      "3.5"
+    ],
+    "answer": 1,
+    "why": "Applying the stated toy rule to the new inputs gives 5. The result depends on these assumptions; it is not a universal behavioral response."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "behavioral:be-a-second-good-option",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "behavioral",
+      "toy-model",
+      "source-entry-151"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "run-case",
+    "compare-case",
+    "step-trace",
+    "reset-retained-evidence"
+  ],
+  "sourceProvenance": {
+    "file": "500-behavioral-economics-findings.md",
+    "entry": 151,
+    "section": "8. Choice overload & complexity",
+    "text": "With one good CD player on sale, 34% chose to wait; adding a second good option raised waiting to 46% (Tversky & Shafir, 1992).",
+    "pointer": "500-behavioral-economics-findings.md entry 151: Tversky & Shafir, 1992",
+    "status": "unverified-primary-source",
+    "caveat": "Original list says figures are approximate and papers were not individually rechecked. No empirical source is verified by this build."
+  },
+  "nearestExistingLesson": "bk-choosing-information-budget",
+  "meaningfulDifference": "Show how choice conflict can change deferral while both options remain available."
+}

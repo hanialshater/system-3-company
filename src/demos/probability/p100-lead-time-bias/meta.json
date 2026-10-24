@@ -1,0 +1,162 @@
+{
+  "slug": "p100-lead-time-bias",
+  "title": "Did survival actually improve?",
+  "hook": "Move the diagnosis date while keeping the death date fixed.",
+  "domain": "probability",
+  "concept": "p100-lead-time-bias",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "earlier diagnosis lengthens \"survival time\" even if death comes on the same day."
+    ]
+  },
+  "misconception": "Treating lead-time bias as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "earlier diagnosis lengthens \"survival time\" even if death comes on the same day.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-lead-time-bias.predict",
+      "text": "In both toy worlds death is at year 10. Diagnosis is at year 8 without screening and year 5 with screening. How much does recorded post-diagnosis survival increase?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-lead-time-bias/spec.ts; exact finite illustration specified in manager numericCase: Symptom diagnosis at year8, screened diagnosis at year5, death year10 in both worlds. Recorded survival2 vs5 years; lifespan unchanged10. Shift screen date, keep death pin fixed.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-lead-time-bias.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-lead-time-bias/spec.ts; exact finite illustration specified in manager numericCase: Symptom diagnosis at year8, screened diagnosis at year5, death year10 in both worlds. Recorded survival2 vs5 years; lifespan unchanged10. Shift screen date, keep death pin fixed.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-lead-time-bias.reveal.0",
+      "text": "Earlier diagnosis retains five years of recorded survival; symptom diagnosis retains two. Both cases still retain death at year 10.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-lead-time-bias/spec.ts; exact finite illustration specified in manager numericCase: Symptom diagnosis at year8, screened diagnosis at year5, death year10 in both worlds. Recorded survival2 vs5 years; lifespan unchanged10. Shift screen date, keep death pin fixed.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-lead-time-bias.reveal.1",
+      "text": "Moving the starting line changes elapsed time after diagnosis without changing lifespan. A survival-time comparison can therefore improve even when mortality is unchanged. These dates illustrate the arithmetic, not an actual screening program.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-lead-time-bias/spec.ts; exact finite illustration specified in manager numericCase: Symptom diagnosis at year8, screened diagnosis at year5, death year10 in both worlds. Recorded survival2 vs5 years; lifespan unchanged10. Shift screen date, keep death pin fixed.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-lead-time-bias.recall",
+      "text": "Diagnosis moves from year 6 to year 4, death stays year 9. What happens to lifespan? Post-diagnosis survival increases from 3 to 5, but the stipulated death date and lifespan do not change.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-lead-time-bias/spec.ts; exact finite illustration specified in manager numericCase: Symptom diagnosis at year8, screened diagnosis at year5, death year10 in both worlds. Recorded survival2 vs5 years; lifespan unchanged10. Shift screen date, keep death pin fixed.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-lead-time-bias.scenario.0.summary",
+      "text": "Survival 5y; death 10y",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-lead-time-bias/spec.ts; exact finite illustration specified in manager numericCase: Symptom diagnosis at year8, screened diagnosis at year5, death year10 in both worlds. Recorded survival2 vs5 years; lifespan unchanged10. Shift screen date, keep death pin fixed.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-lead-time-bias.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"Diagnosis\",\"value\":5},{\"label\":\"Death\",\"value\":10}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-lead-time-bias/spec.ts; exact finite illustration specified in manager numericCase: Symptom diagnosis at year8, screened diagnosis at year5, death year10 in both worlds. Recorded survival2 vs5 years; lifespan unchanged10. Shift screen date, keep death pin fixed.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-lead-time-bias.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Earlier diagnosis\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Survival\",\"value\":5}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-lead-time-bias/spec.ts; exact finite illustration specified in manager numericCase: Symptom diagnosis at year8, screened diagnosis at year5, death year10 in both worlds. Recorded survival2 vs5 years; lifespan unchanged10. Shift screen date, keep death pin fixed.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-lead-time-bias.scenario.1.summary",
+      "text": "Survival 2y; death 10y",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-lead-time-bias/spec.ts; exact finite illustration specified in manager numericCase: Symptom diagnosis at year8, screened diagnosis at year5, death year10 in both worlds. Recorded survival2 vs5 years; lifespan unchanged10. Shift screen date, keep death pin fixed.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-lead-time-bias.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"Diagnosis\",\"value\":8},{\"label\":\"Death\",\"value\":10}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-lead-time-bias/spec.ts; exact finite illustration specified in manager numericCase: Symptom diagnosis at year8, screened diagnosis at year5, death year10 in both worlds. Recorded survival2 vs5 years; lifespan unchanged10. Shift screen date, keep death pin fixed.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-lead-time-bias.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · Symptom diagnosis\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Survival\",\"value\":2}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-lead-time-bias/spec.ts; exact finite illustration specified in manager numericCase: Symptom diagnosis at year8, screened diagnosis at year5, death year10 in both worlds. Recorded survival2 vs5 years; lifespan unchanged10. Shift screen date, keep death pin fixed.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-lead-time-bias.hook",
+      "text": "Move the diagnosis date while keeping the death date fixed.",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-lead-time-bias/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Diagnosis moves from year 6 to year 4, death stays year 9. What happens to lifespan?",
+    "options": [
+      "Unchanged",
+      "Increases by 2",
+      "Decreases by 2"
+    ],
+    "answer": 0,
+    "why": "Post-diagnosis survival increases from 3 to 5, but the stipulated death date and lifespan do not change."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-lead-time-bias",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "lead-time"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 314,
+    "sourceSection": "16. Selection bias, colliders & survivorship",
+    "sourceTitle": "Lead-time bias",
+    "sourceText": "earlier diagnosis lengthens \"survival time\" even if death comes on the same day.",
+    "sourceEntryOriginal": "- **314. Lead-time bias** \\[Gotcha\\]: earlier diagnosis lengthens \"survival time\" even if death comes on the same day.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "life/screening-survival-clock",
+    "difference": "New teaching boundary: Lead-time bias. Existing boundary: The learner can explain that in a group of 14 whose deaths do not move, finding the illness 3 years earlier raises 'alive 5 years after diagnosis' from 6 to 12 because only the start of the clock moved (lead time), and that comparing deaths in whole groups is not fooled by this.",
+    "numericCase": "Symptom diagnosis at year8, screened diagnosis at year5, death year10 in both worlds. Recorded survival2 vs5 years; lifespan unchanged10. Shift screen date, keep death pin fixed."
+  },
+  "modelAudit": {
+    "a": 5,
+    "b": 2,
+    "difference": 3
+  }
+}

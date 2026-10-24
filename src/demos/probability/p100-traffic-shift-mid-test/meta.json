@@ -1,0 +1,161 @@
+{
+  "slug": "p100-traffic-shift-mid-test",
+  "title": "Why did the test result flip?",
+  "hook": "Allocation changes across periods. Compare pooled and common-weight results.",
+  "domain": "probability",
+  "concept": "p100-traffic-shift-mid-test",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "changing an A/B split partway through can reverse the pooled result."
+    ]
+  },
+  "misconception": "Treating traffic shift mid-test as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "changing an A/B split partway through can reverse the pooled result.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-traffic-shift-mid-test.predict",
+      "text": "Early A converts 90/100 and B 19/20; late A converts 2/20 and B 20/100. With equal weight on the two periods, which version wins?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-traffic-shift-mid-test/spec.ts; exact finite illustration specified in manager numericCase: Early period A90/100,B19/20; late period A2/20,B20/100. B beats A in each period (95>90%,20>10%) but A pooled92/120=76.6667% vs B39/120=32.5%. Standardize equal period weights A50%,B57.5%.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-traffic-shift-mid-test.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-traffic-shift-mid-test/spec.ts; exact finite illustration specified in manager numericCase: Early period A90/100,B19/20; late period A2/20,B20/100. B beats A in each period (95>90%,20>10%) but A pooled92/120=76.6667% vs B39/120=32.5%. Standardize equal period weights A50%,B57.5%.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-traffic-shift-mid-test.reveal.0",
+      "text": "Equal-period weighting retains A=50%, B=57.5%. Pooling instead retains A=76.667%, B=32.5%, because A receives more early traffic and B more late traffic.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-traffic-shift-mid-test/spec.ts; exact finite illustration specified in manager numericCase: Early period A90/100,B19/20; late period A2/20,B20/100. B beats A in each period (95>90%,20>10%) but A pooled92/120=76.6667% vs B39/120=32.5%. Standardize equal period weights A50%,B57.5%.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-traffic-shift-mid-test.reveal.1",
+      "text": "B is better in both periods. Changing assignment shares across time mixes treatment with period composition. A common weighting answers the stated equal-period question; it does not automatically repair every adaptive experiment.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-traffic-shift-mid-test/spec.ts; exact finite illustration specified in manager numericCase: Early period A90/100,B19/20; late period A2/20,B20/100. B beats A in each period (95>90%,20>10%) but A pooled92/120=76.6667% vs B39/120=32.5%. Standardize equal period weights A50%,B57.5%.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-traffic-shift-mid-test.recall",
+      "text": "One version receives mostly high-conversion Monday traffic, another mostly low-conversion Sunday traffic. What should you check first? Compare like periods or use a specified common weighting before interpreting a pooled difference.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-traffic-shift-mid-test/spec.ts; exact finite illustration specified in manager numericCase: Early period A90/100,B19/20; late period A2/20,B20/100. B beats A in each period (95>90%,20>10%) but A pooled92/120=76.6667% vs B39/120=32.5%. Standardize equal period weights A50%,B57.5%.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-traffic-shift-mid-test.scenario.0.summary",
+      "text": "A 50%; B 57.5%",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-traffic-shift-mid-test/spec.ts; exact finite illustration specified in manager numericCase: Early period A90/100,B19/20; late period A2/20,B20/100. B beats A in each period (95>90%,20>10%) but A pooled92/120=76.6667% vs B39/120=32.5%. Standardize equal period weights A50%,B57.5%.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-traffic-shift-mid-test.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Period\",\"A\",\"B\"],\"rows\":[[\"Early\",0.9,0.95],[\"Late\",0.1,0.2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-traffic-shift-mid-test/spec.ts; exact finite illustration specified in manager numericCase: Early period A90/100,B19/20; late period A2/20,B20/100. B beats A in each period (95>90%,20>10%) but A pooled92/120=76.6667% vs B39/120=32.5%. Standardize equal period weights A50%,B57.5%.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-traffic-shift-mid-test.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Equal period weights\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"A %\",\"value\":50},{\"label\":\"B %\",\"value\":57.49999999999999}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-traffic-shift-mid-test/spec.ts; exact finite illustration specified in manager numericCase: Early period A90/100,B19/20; late period A2/20,B20/100. B beats A in each period (95>90%,20>10%) but A pooled92/120=76.6667% vs B39/120=32.5%. Standardize equal period weights A50%,B57.5%.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-traffic-shift-mid-test.scenario.1.summary",
+      "text": "A 76.667%; B 32.5%",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-traffic-shift-mid-test/spec.ts; exact finite illustration specified in manager numericCase: Early period A90/100,B19/20; late period A2/20,B20/100. B beats A in each period (95>90%,20>10%) but A pooled92/120=76.6667% vs B39/120=32.5%. Standardize equal period weights A50%,B57.5%.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-traffic-shift-mid-test.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"A n\",\"B n\"],\"rows\":[[120,120]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-traffic-shift-mid-test/spec.ts; exact finite illustration specified in manager numericCase: Early period A90/100,B19/20; late period A2/20,B20/100. B beats A in each period (95>90%,20>10%) but A pooled92/120=76.6667% vs B39/120=32.5%. Standardize equal period weights A50%,B57.5%.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-traffic-shift-mid-test.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · Raw pooled counts\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"A %\",\"value\":76.66666666666667},{\"label\":\"B %\",\"value\":32.5}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-traffic-shift-mid-test/spec.ts; exact finite illustration specified in manager numericCase: Early period A90/100,B19/20; late period A2/20,B20/100. B beats A in each period (95>90%,20>10%) but A pooled92/120=76.6667% vs B39/120=32.5%. Standardize equal period weights A50%,B57.5%.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-traffic-shift-mid-test.hook",
+      "text": "Allocation changes across periods. Compare pooled and common-weight results.",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-traffic-shift-mid-test/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "One version receives mostly high-conversion Monday traffic, another mostly low-conversion Sunday traffic. What should you check first?",
+    "options": [
+      "The traffic and time mix",
+      "Only the pooled winner",
+      "Only total sample size"
+    ],
+    "answer": 0,
+    "why": "Compare like periods or use a specified common weighting before interpreting a pooled difference."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-traffic-shift-mid-test",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "traffic-mix"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 299,
+    "sourceSection": "15. Simpson's paradox & aggregation",
+    "sourceTitle": "Traffic shift mid-test",
+    "sourceText": "changing an A/B split partway through can reverse the pooled result.",
+    "sourceEntryOriginal": "- **299. Traffic shift mid-test** \\[Gotcha\\]: changing an A/B split partway through can reverse the pooled result.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "cs/algo-btree-delete-borrow",
+    "difference": "New teaching boundary: Traffic shift mid-test. Existing boundary: Preserve minimum occupancy during B-tree deletion by borrowing through the parent.",
+    "numericCase": "Early period A90/100,B19/20; late period A2/20,B20/100. B beats A in each period (95>90%,20>10%) but A pooled92/120=76.6667% vs B39/120=32.5%. Standardize equal period weights A50%,B57.5%."
+  },
+  "modelAudit": {
+    "a": 0.07499999999999996,
+    "b": 0.4416666666666667
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "slug": "be-check-daily-or-yearly",
+  "title": "Check daily or yearly?",
+  "hook": "Would you choose the same portfolio after changing the reporting interval?",
+  "domain": "behavioral",
+  "concept": "be-check-daily-or-yearly",
+  "status": "draft",
+  "durationSec": 60,
+  "version": 1,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and reading a small table"
+    ],
+    "doesNotKnow": [
+      "Explain how aggregating returns changes how often a loss appears without changing the assets."
+    ]
+  },
+  "misconception": "The quantities in this case can be combined without checking their reference, denominator, or information boundary.",
+  "objective": "Explain how aggregating returns changes how often a loss appears without changing the assets.",
+  "keyState": "Both complete computed cases are visible as retained observations; the question-case picture survives Reset.",
+  "claims": [
+    {
+      "id": "behavioral.be-check-daily-or-yearly.inputs",
+      "text": "A €100 account falls 10%, then rises 20%. What is its total return across both periods? Toy inputs A=[-10, 20]; B=[-5, 10].",
+      "support": "convention",
+      "source": "Local explicit hypothetical assumptions in spec.ts and model.ts; not participant measurements.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-check-daily-or-yearly.trace",
+      "text": "Computed results: [[8, 1, 108], [4.500000000000014, 1, 104.50000000000001]]. Labels: Net %, Loss periods, Final €.",
+      "support": "derivation",
+      "source": "compute() in the lesson-local model.ts; finite numeric operations over the explicit inputs.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-check-daily-or-yearly.reveal",
+      "text": "The period path includes a loss even though the combined return is positive. Aggregating the same asset’s returns changes the reporting window, not the cash flows that produced the ending balance.",
+      "support": "derivation",
+      "source": "The two controlled cases in spec.ts; scope limited to these toy inputs and displayed model rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-check-daily-or-yearly.recall",
+      "text": "A new toy case uses Period 1 %=-5, Period 2 %=10. What is Net %? Answer: 4.5.",
+      "support": "derivation",
+      "source": "compute() applied to the contrasting new input case; source list is an idea pointer only.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A new toy case uses Period 1 %=-5, Period 2 %=10. What is Net %?",
+    "options": [
+      "5.85",
+      "4.5",
+      "3.15"
+    ],
+    "answer": 1,
+    "why": "Applying the stated toy rule to the new inputs gives 4.5. The result depends on these assumptions; it is not a universal behavioral response."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "behavioral:be-check-daily-or-yearly",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "behavioral",
+      "toy-model",
+      "source-entry-16"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "run-case",
+    "compare-case",
+    "step-trace",
+    "reset-retained-evidence"
+  ],
+  "sourceProvenance": {
+    "file": "500-behavioral-economics-findings.md",
+    "entry": 16,
+    "section": "1. Loss aversion & prospect theory",
+    "text": "People shown investment results less often put more money in stocks (Gneezy & Potters, 1997; Thaler, Tversky, Kahneman & Schwartz, 1997).",
+    "pointer": "500-behavioral-economics-findings.md entry 16: Gneezy & Potters, 1997; Thaler, Tversky, Kahneman & Schwartz, 1997",
+    "status": "unverified-primary-source",
+    "caveat": "Original list says figures are approximate and papers were not individually rechecked. No empirical source is verified by this build."
+  },
+  "nearestExistingLesson": "square-root-wealth",
+  "meaningfulDifference": "Explain how aggregating returns changes how often a loss appears without changing the assets."
+}

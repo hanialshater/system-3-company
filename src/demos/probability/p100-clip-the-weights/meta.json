@@ -1,0 +1,163 @@
+{
+  "slug": "p100-clip-the-weights",
+  "title": "Should we cap the big weights?",
+  "hook": "Should we cap the big weights? Change one condition and inspect the result.",
+  "domain": "probability",
+  "concept": "p100-clip-the-weights",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "fractions and arithmetic",
+      "that a toy model states its assumptions"
+    ],
+    "doesNotKnow": [
+      "cap importance weights and trade variance for bias."
+    ]
+  },
+  "misconception": "The same ten rows have eight A rewards 1, two B rewards 3, and importance weights 0.25 and 4. Cap weights at 2. What is the clipped mean? The prediction alternatives contrast different consequences of the stated model.",
+  "objective": "cap importance weights and trade variance for bias.",
+  "keyState": "Both computed cases completed, with their numerical summaries retained across Reset.",
+  "claims": [
+    {
+      "id": "probability.p100-clip-the-weights.case",
+      "text": "The same ten rows have eight A rewards 1, two B rewards 3, and importance weights 0.25 and 4. Cap weights at 2. What is the clipped mean? Options: 0.8; 1.4; 2.6. Toy model: compare two controlled cases.",
+      "support": "convention",
+      "source": "Stipulated numerical case in model.ts, based on manager numericCase: Sametenrows8Areward1,2Breward3; q[.8,.2],π[.2,.8],weights.25,4. Cap2givesestimatedvalue1.4 vsuncapped2.6; cap1gives.8. Showbias-variancetradeoffwithout claimingfixedsample varianceproved.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-clip-the-weights.recall",
+      "text": "An importance weight of 6 capped at 3 becomes? The cap replaces any weight above 3 with 3.",
+      "support": "derivation",
+      "source": "Transfer arithmetic or model implication under the same explicitly stated assumptions. Independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-clip-the-weights.hook",
+      "text": "Should we cap the big weights? Change one condition and inspect the result.",
+      "support": "convention",
+      "source": "Invitation to manipulate the labelled toy case, not a population claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-clip-the-weights.c4",
+      "text": "Capping weights at 2 changes this estimate to 1.4, compared with uncapped 2.6. The B rows lose half their weight.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-clip-the-weights/model.ts#compute().reveal[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-clip-the-weights.c5",
+      "text": "Clipping limits the influence of rare logged actions but changes the target-weighting identity. This fixture shows the resulting bias relative to its exact target value; it does not, by itself, measure the variance reduction across repeated samples.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-clip-the-weights/model.ts#compute().reveal[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-clip-the-weights.c6",
+      "text": "Run the question case, compare the changed case, and inspect both retained results.",
+      "support": "convention",
+      "source": "src/demos/probability/p100-clip-the-weights/spec.ts#hint; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-clip-the-weights.c7",
+      "text": "Clipped value: 1.4",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-clip-the-weights/model.ts#compute().scenarios[0].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-clip-the-weights.c8",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"A weight\",\"value\":0.25},{\"label\":\"B weight\",\"value\":4}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-clip-the-weights/model.ts#compute().scenarios[0].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-clip-the-weights.c9",
+      "text": "Toy model: case A. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"A capped\",\"value\":0.25},{\"label\":\"B capped\",\"value\":2},{\"label\":\"Value\",\"value\":1.4}]}. [{\"label\":\"Clipped value\",\"value\":\"1.4\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-clip-the-weights/model.ts#compute().scenarios[0].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-clip-the-weights.c10",
+      "text": "IPS value: 2.6",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-clip-the-weights/model.ts#compute().scenarios[1].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-clip-the-weights.c11",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"A weight\",\"value\":0.25},{\"label\":\"B weight\",\"value\":4}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-clip-the-weights/model.ts#compute().scenarios[1].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-clip-the-weights.c12",
+      "text": "Toy model: case B. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"A uncapped\",\"value\":0.25},{\"label\":\"B uncapped\",\"value\":4},{\"label\":\"Value\",\"value\":2.6}]}. [{\"label\":\"IPS value\",\"value\":\"2.6\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-clip-the-weights/model.ts#compute().scenarios[1].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "An importance weight of 6 capped at 3 becomes?",
+    "options": [
+      "2",
+      "3",
+      "6"
+    ],
+    "answer": 1,
+    "why": "The cap replaces any weight above 3 with 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-clip-the-weights",
+    "also": [],
+    "prerequisites": [],
+    "level": "stretch",
+    "references": [],
+    "tags": [
+      "founder-2026-10-24",
+      "source-entry-912",
+      "ranking"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "controlled-case-comparison",
+    "step-through-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 912,
+    "sourceSection": "46. Off-policy evaluation & causal recommender systems",
+    "sourceTitle": "Clip the weights",
+    "sourceText": "cap importance weights and trade variance for bias.",
+    "sourceEntryOriginal": "- **912. Clip the weights** \\[Slider\\]: cap importance weights and trade variance for bias.",
+    "numericCase": "Sametenrows8Areward1,2Breward3; q[.8,.2],π[.2,.8],weights.25,4. Cap2givesestimatedvalue1.4 vsuncapped2.6; cap1gives.8. Showbias-variancetradeoffwithout claimingfixedsample varianceproved.",
+    "sourceStatus": "unverified idea pointer; empirical and historical claims excluded from learner copy",
+    "nearestExistingLesson": "lifehacks/lh-weighted-volume-allocation",
+    "difference": "New teaching boundary: Clip the weights. Existing boundary: Allocate a conserved volume according to stated relative weights."
+  },
+  "modelOutputs": [
+    1.4,
+    2.6
+  ]
+}

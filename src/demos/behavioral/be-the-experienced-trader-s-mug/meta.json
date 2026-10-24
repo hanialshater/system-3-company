@@ -1,0 +1,103 @@
+{
+  "slug": "be-the-experienced-trader-s-mug",
+  "title": "The experienced trader's mug",
+  "hook": "Should market experience change the gap between buying and selling prices?",
+  "domain": "behavioral",
+  "concept": "be-the-experienced-trader-s-mug",
+  "status": "draft",
+  "durationSec": 60,
+  "version": 1,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and reading a small table"
+    ],
+    "doesNotKnow": [
+      "Contrast ownership valuation across experience groups rather than asserting a universal endowment ratio."
+    ]
+  },
+  "misconception": "The quantities in this case can be combined without checking their reference, denominator, or information boundary.",
+  "objective": "Contrast ownership valuation across experience groups rather than asserting a universal endowment ratio.",
+  "keyState": "Both complete computed cases are visible as retained observations; the question-case picture survives Reset.",
+  "claims": [
+    {
+      "id": "behavioral.be-the-experienced-trader-s-mug.inputs",
+      "text": "In a toy valuation table, a buyer offers €5 while an owner asks €8. What is the sell-to-buy ratio? Toy inputs A=[5, 8]; B=[6, 6].",
+      "support": "convention",
+      "source": "Local explicit hypothetical assumptions in spec.ts and model.ts; not participant measurements.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-the-experienced-trader-s-mug.trace",
+      "text": "Computed results: [[1.6, 5, 8], [1, 6, 6]]. Labels: Sell/buy, Buy €, Sell €.",
+      "support": "derivation",
+      "source": "compute() in the lesson-local model.ts; finite numeric operations over the explicit inputs.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-the-experienced-trader-s-mug.reveal",
+      "text": "The two elicited prices define a gap for this table. The comparison has no gap, showing why one universal ownership multiplier would be a stronger claim than the arithmetic supports. Neither case is a measured participant sample.",
+      "support": "derivation",
+      "source": "The two controlled cases in spec.ts; scope limited to these toy inputs and displayed model rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-the-experienced-trader-s-mug.recall",
+      "text": "A new toy case uses Buy €=6, Sell €=6. What is Sell/buy? Answer: 1.",
+      "support": "derivation",
+      "source": "compute() applied to the contrasting new input case; source list is an idea pointer only.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A new toy case uses Buy €=6, Sell €=6. What is Sell/buy?",
+    "options": [
+      "2",
+      "1",
+      "0"
+    ],
+    "answer": 1,
+    "why": "Applying the stated toy rule to the new inputs gives 1. The result depends on these assumptions; it is not a universal behavioral response."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "behavioral:be-the-experienced-trader-s-mug",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "behavioral",
+      "toy-model",
+      "source-entry-124"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "run-case",
+    "compare-case",
+    "step-trace",
+    "reset-retained-evidence"
+  ],
+  "sourceProvenance": {
+    "file": "500-behavioral-economics-findings.md",
+    "entry": 124,
+    "section": "7. Endowment effect & status quo bias",
+    "text": "Experienced sports-card dealers showed little endowment effect (List, 2003).",
+    "pointer": "500-behavioral-economics-findings.md entry 124: List, 2003",
+    "status": "unverified-primary-source",
+    "caveat": "Original list says figures are approximate and papers were not individually rechecked. No empirical source is verified by this build."
+  },
+  "nearestExistingLesson": "bk-irrational-decoy-dominance",
+  "meaningfulDifference": "Contrast ownership valuation across experience groups rather than asserting a universal endowment ratio."
+}

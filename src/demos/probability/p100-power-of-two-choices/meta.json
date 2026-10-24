@@ -1,0 +1,163 @@
+{
+  "slug": "p100-power-of-two-choices",
+  "title": "Which server gets the next job?",
+  "hook": "Which server gets the next job? Change one condition and inspect the result.",
+  "domain": "probability",
+  "concept": "p100-power-of-two-choices",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "fractions and arithmetic",
+      "that a toy model states its assumptions"
+    ],
+    "doesNotKnow": [
+      "send each job to the shorter of two random servers; the worst queue shrinks dramatically versus picking one at random."
+    ]
+  },
+  "misconception": "Eight arrivals all choose server 0 first, paired in turn with servers 1,1,2,3,4,5,6,7. Starting empty, assign each to the shorter queue, choosing the second on a tie. What is the largest queue? The prediction alternatives contrast different consequences of the stated model.",
+  "objective": "send each job to the shorter of two random servers; the worst queue shrinks dramatically versus picking one at random.",
+  "keyState": "Both computed cases completed, with their numerical summaries retained across Reset.",
+  "claims": [
+    {
+      "id": "probability.p100-power-of-two-choices.case",
+      "text": "Eight arrivals all choose server 0 first, paired in turn with servers 1,1,2,3,4,5,6,7. Starting empty, assign each to the shorter queue, choosing the second on a tie. What is the largest queue? Options: 1; 2; 8. Toy model: compare two controlled cases.",
+      "support": "convention",
+      "source": "Stipulated numerical case in model.ts, based on manager numericCase: Eightemptyservers, fixedarrivalchoices[(0,1),(0,1),(0,2),(0,3),(0,4),(0,5),(0,6),(0,7)]. Singlechoice alwaysfirst→maxqueue8. Choose shorterof eachpair→maxqueue1; disclose deliberately chosen illustrativefixture, not averagecase benchmark.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-power-of-two-choices.recall",
+      "text": "Two empty servers receive four pairs (0,1); choosing the shorter each time gives what maximum? Alternating the shorter destination leaves two jobs at each server.",
+      "support": "derivation",
+      "source": "Transfer arithmetic or model implication under the same explicitly stated assumptions. Independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-power-of-two-choices.hook",
+      "text": "Which server gets the next job? Change one condition and inspect the result.",
+      "support": "convention",
+      "source": "Invitation to manipulate the labelled toy case, not a population claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-power-of-two-choices.c4",
+      "text": "For this disclosed fixture, shorter-of-two gives a maximum queue of 1; always taking the first gives 8.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-power-of-two-choices/model.ts#compute().reveal[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-power-of-two-choices.c5",
+      "text": "The comparison exposes how an alternative destination spreads this particular load. These eight deliberately chosen arrival pairs are an illustrative case, not a random simulation or a benchmark of average performance.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-power-of-two-choices/model.ts#compute().reveal[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-power-of-two-choices.c6",
+      "text": "Run the question case, compare the changed case, and inspect both retained results.",
+      "support": "convention",
+      "source": "src/demos/probability/p100-power-of-two-choices/spec.ts#hint; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-power-of-two-choices.c7",
+      "text": "Max queue: 1",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-power-of-two-choices/model.ts#compute().scenarios[0].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-power-of-two-choices.c8",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"0\",\"value\":0},{\"label\":\"1\",\"value\":0},{\"label\":\"2\",\"value\":0},{\"label\":\"3\",\"value\":0},{\"label\":\"4\",\"value\":0},{\"label\":\"5\",\"value\":0},{\"label\":\"6\",\"value\":0},{\"label\":\"7\",\"value\":0}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-power-of-two-choices/model.ts#compute().scenarios[0].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-power-of-two-choices.c9",
+      "text": "Toy model: case A. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"0\",\"value\":1},{\"label\":\"1\",\"value\":1},{\"label\":\"2\",\"value\":1},{\"label\":\"3\",\"value\":1},{\"label\":\"4\",\"value\":1},{\"label\":\"5\",\"value\":1},{\"label\":\"6\",\"value\":1},{\"label\":\"7\",\"value\":1}]}. [{\"label\":\"Max queue\",\"value\":\"1\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-power-of-two-choices/model.ts#compute().scenarios[0].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-power-of-two-choices.c10",
+      "text": "Max queue: 8",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-power-of-two-choices/model.ts#compute().scenarios[1].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-power-of-two-choices.c11",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"0\",\"value\":0},{\"label\":\"1\",\"value\":0},{\"label\":\"2\",\"value\":0},{\"label\":\"3\",\"value\":0},{\"label\":\"4\",\"value\":0},{\"label\":\"5\",\"value\":0},{\"label\":\"6\",\"value\":0},{\"label\":\"7\",\"value\":0}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-power-of-two-choices/model.ts#compute().scenarios[1].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-power-of-two-choices.c12",
+      "text": "Toy model: case B. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"0\",\"value\":8},{\"label\":\"1\",\"value\":0},{\"label\":\"2\",\"value\":0},{\"label\":\"3\",\"value\":0},{\"label\":\"4\",\"value\":0},{\"label\":\"5\",\"value\":0},{\"label\":\"6\",\"value\":0},{\"label\":\"7\",\"value\":0}]}. [{\"label\":\"Max queue\",\"value\":\"8\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-power-of-two-choices/model.ts#compute().scenarios[1].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two empty servers receive four pairs (0,1); choosing the shorter each time gives what maximum?",
+    "options": [
+      "1",
+      "2",
+      "4"
+    ],
+    "answer": 1,
+    "why": "Alternating the shorter destination leaves two jobs at each server."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-power-of-two-choices",
+    "also": [],
+    "prerequisites": [],
+    "level": "stretch",
+    "references": [],
+    "tags": [
+      "founder-2026-10-24",
+      "source-entry-521",
+      "queue"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "controlled-case-comparison",
+    "step-through-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 521,
+    "sourceSection": "27. Queueing networks, scheduling & load balancing",
+    "sourceTitle": "Power of two choices",
+    "sourceText": "send each job to the shorter of two random servers; the worst queue shrinks dramatically versus picking one at random.",
+    "sourceEntryOriginal": "- **521. Power of two choices** \\[Slider\\]: send each job to the shorter of two random servers; the worst queue shrinks dramatically versus picking one at random.",
+    "numericCase": "Eightemptyservers, fixedarrivalchoices[(0,1),(0,1),(0,2),(0,3),(0,4),(0,5),(0,6),(0,7)]. Singlechoice alwaysfirst→maxqueue8. Choose shorterof eachpair→maxqueue1; disclose deliberately chosen illustrativefixture, not averagecase benchmark.",
+    "sourceStatus": "unverified idea pointer; empirical and historical claims excluded from learner copy",
+    "nearestExistingLesson": "math/halving-powers",
+    "difference": "New teaching boundary: Power of two choices. Existing boundary: The learner can explain that each step down in the power divides by 2, so 2⁰ = 2 ÷ 2 = 1, and the pattern continues to 1/2 and 1/4."
+  },
+  "modelOutputs": [
+    1,
+    8
+  ]
+}

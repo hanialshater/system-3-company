@@ -1,0 +1,161 @@
+{
+  "slug": "p100-kitchen-sink-regression",
+  "title": "Will one more control help?",
+  "hook": "An extra column may help prediction while changing the causal comparison.",
+  "domain": "probability",
+  "concept": "p100-kitchen-sink-regression",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "adding every available variable can increase bias rather than remove it."
+    ]
+  },
+  "misconception": "Treating kitchen-sink regression as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "adding every available variable can increase bias rather than remove it.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-kitchen-sink-regression.predict",
+      "text": "Let independent fair binary T,U generate Y=2T+U and the proposed control M=T+U. Comparing T=1 and T=0 within M=1 gives what outcome difference?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-kitchen-sink-regression/spec.ts; exact finite illustration specified in manager numericCase: T independent binary,U fairbinary; Y=2T+U. Bad controlM=T+U. Raw causaldifference2; atM1 compare(T1,U0,Y2)with(T0,U1,Y1), coefficient1. Added collider control biases.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-kitchen-sink-regression.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-kitchen-sink-regression/spec.ts; exact finite illustration specified in manager numericCase: T independent binary,U fairbinary; Y=2T+U. Bad controlM=T+U. Raw causaldifference2; atM1 compare(T1,U0,Y2)with(T0,U1,Y1), coefficient1. Added collider control biases.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-kitchen-sink-regression.reveal.0",
+      "text": "Controlling M=1 retains difference 1; the unadjusted randomized comparison retains 2. At fixed M, treated units must have lower U, so the new comparison changes more than T.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-kitchen-sink-regression/spec.ts; exact finite illustration specified in manager numericCase: T independent binary,U fairbinary; Y=2T+U. Bad controlM=T+U. Raw causaldifference2; atM1 compare(T1,U0,Y2)with(T0,U1,Y1), coefficient1. Added collider control biases.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-kitchen-sink-regression.reveal.1",
+      "text": "M is a shared effect of treatment and the outcome’s other cause. More controls can create bias rather than remove it. Choose controls from the causal question and graph, not simply from every available column.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-kitchen-sink-regression/spec.ts; exact finite illustration specified in manager numericCase: T independent binary,U fairbinary; Y=2T+U. Bad controlM=T+U. Raw causaldifference2; atM1 compare(T1,U0,Y2)with(T0,U1,Y1), coefficient1. Added collider control biases.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-kitchen-sink-regression.recall",
+      "text": "Should every available post-treatment variable automatically enter a causal adjustment set? Post-treatment variables may be mediators or colliders, changing the estimand or introducing bias.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-kitchen-sink-regression/spec.ts; exact finite illustration specified in manager numericCase: T independent binary,U fairbinary; Y=2T+U. Bad controlM=T+U. Raw causaldifference2; atM1 compare(T1,U0,Y2)with(T0,U1,Y1), coefficient1. Added collider control biases.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-kitchen-sink-regression.scenario.0.summary",
+      "text": "Adjusted difference 1",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-kitchen-sink-regression/spec.ts; exact finite illustration specified in manager numericCase: T independent binary,U fairbinary; Y=2T+U. Bad controlM=T+U. Raw causaldifference2; atM1 compare(T1,U0,Y2)with(T0,U1,Y1), coefficient1. Added collider control biases.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-kitchen-sink-regression.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"T\",\"x\":40,\"y\":45},{\"id\":\"1\",\"label\":\"M\",\"x\":120,\"y\":115},{\"id\":\"2\",\"label\":\"U\",\"x\":200,\"y\":45},{\"id\":\"3\",\"label\":\"Y\",\"x\":280,\"y\":115}],\"edges\":[{\"from\":\"0\",\"to\":\"1\",\"active\":true},{\"from\":\"2\",\"to\":\"1\",\"active\":true},{\"from\":\"0\",\"to\":\"3\",\"active\":true},{\"from\":\"2\",\"to\":\"3\",\"active\":true}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-kitchen-sink-regression/spec.ts; exact finite illustration specified in manager numericCase: T independent binary,U fairbinary; Y=2T+U. Bad controlM=T+U. Raw causaldifference2; atM1 compare(T1,U0,Y2)with(T0,U1,Y1), coefficient1. Added collider control biases.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-kitchen-sink-regression.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Control M=1\",\"visual\":{\"kind\":\"table\",\"columns\":[\"T\",\"U\",\"Y\"],\"rows\":[[0,1,1],[1,0,2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-kitchen-sink-regression/spec.ts; exact finite illustration specified in manager numericCase: T independent binary,U fairbinary; Y=2T+U. Bad controlM=T+U. Raw causaldifference2; atM1 compare(T1,U0,Y2)with(T0,U1,Y1), coefficient1. Added collider control biases.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-kitchen-sink-regression.scenario.1.summary",
+      "text": "Unadjusted difference 2",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-kitchen-sink-regression/spec.ts; exact finite illustration specified in manager numericCase: T independent binary,U fairbinary; Y=2T+U. Bad controlM=T+U. Raw causaldifference2; atM1 compare(T1,U0,Y2)with(T0,U1,Y1), coefficient1. Added collider control biases.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-kitchen-sink-regression.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"T\",\"U\",\"Y\"],\"rows\":[[0,0,0],[0,1,1],[1,0,2],[1,1,3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-kitchen-sink-regression/spec.ts; exact finite illustration specified in manager numericCase: T independent binary,U fairbinary; Y=2T+U. Bad controlM=T+U. Raw causaldifference2; atM1 compare(T1,U0,Y2)with(T0,U1,Y1), coefficient1. Added collider control biases.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-kitchen-sink-regression.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · No bad control\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"T=0\",\"value\":0.5},{\"label\":\"T=1\",\"value\":2.5}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-kitchen-sink-regression/spec.ts; exact finite illustration specified in manager numericCase: T independent binary,U fairbinary; Y=2T+U. Bad controlM=T+U. Raw causaldifference2; atM1 compare(T1,U0,Y2)with(T0,U1,Y1), coefficient1. Added collider control biases.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-kitchen-sink-regression.hook",
+      "text": "An extra column may help prediction while changing the causal comparison.",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-kitchen-sink-regression/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Should every available post-treatment variable automatically enter a causal adjustment set?",
+    "options": [
+      "No",
+      "Yes: more is always better",
+      "Yes: sample size removes all bias"
+    ],
+    "answer": 0,
+    "why": "Post-treatment variables may be mediators or colliders, changing the estimand or introducing bias."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-kitchen-sink-regression",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "bad-control"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 359,
+    "sourceSection": "18. Causal graphs & the do-operator",
+    "sourceTitle": "Kitchen-sink regression",
+    "sourceText": "adding every available variable can increase bias rather than remove it.",
+    "sourceEntryOriginal": "- **359. Kitchen-sink regression** \\[Gotcha\\]: adding every available variable can increase bias rather than remove it.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "cs/algo-natural-merge",
+    "difference": "New teaching boundary: Kitchen-sink regression. Existing boundary: Detect ascending runs and merge runs rather than treating every element as a singleton.",
+    "numericCase": "T independent binary,U fairbinary; Y=2T+U. Bad controlM=T+U. Raw causaldifference2; atM1 compare(T1,U0,Y2)with(T0,U1,Y1), coefficient1. Added collider control biases."
+  },
+  "modelAudit": {
+    "a": 1,
+    "b": 2
+  }
+}

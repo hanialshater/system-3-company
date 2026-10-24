@@ -1,0 +1,103 @@
+{
+  "slug": "be-the-ad-says-negotiable",
+  "title": "The ad says negotiable",
+  "hook": "Would stating a negotiation rule change who opens a negotiation?",
+  "domain": "behavioral",
+  "concept": "be-the-ad-says-negotiable",
+  "status": "draft",
+  "durationSec": 60,
+  "version": 1,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and reading a small table"
+    ],
+    "doesNotKnow": [
+      "Contrast ambiguity about negotiability with an explicit common rule."
+    ]
+  },
+  "misconception": "The quantities in this case can be combined without checking their reference, denominator, or information boundary.",
+  "objective": "Contrast ambiguity about negotiability with an explicit common rule.",
+  "keyState": "Both complete computed cases are visible as retained observations; the question-case picture survives Reset.",
+  "claims": [
+    {
+      "id": "behavioral.be-the-ad-says-negotiable.inputs",
+      "text": "A toy applicant believes negotiation is allowed with probability 0.3. It yields €20 if allowed and costs €4 effort. What is expected net value? Toy inputs A=[0.3, 20, 4]; B=[1, 20, 4].",
+      "support": "convention",
+      "source": "Local explicit hypothetical assumptions in spec.ts and model.ts; not participant measurements.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-the-ad-says-negotiable.trace",
+      "text": "Computed results: [[2, 0.3, 4], [16, 1, 4]]. Labels: Expected net €, Belief P, Effort €.",
+      "support": "derivation",
+      "source": "compute() in the lesson-local model.ts; finite numeric operations over the explicit inputs.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-the-ad-says-negotiable.reveal",
+      "text": "Ambiguity changes the belief input while the skill, gain and effort cost remain fixed. The explicit-rule comparison removes that uncertainty. The toy does not attribute any observed group difference to inherent negotiating ability.",
+      "support": "derivation",
+      "source": "The two controlled cases in spec.ts; scope limited to these toy inputs and displayed model rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-the-ad-says-negotiable.recall",
+      "text": "A new toy case uses P(allowed)=1, Gain if allowed €=20, Effort €=4. What is Expected net €? Answer: 16.",
+      "support": "derivation",
+      "source": "compute() applied to the contrasting new input case; source list is an idea pointer only.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A new toy case uses P(allowed)=1, Gain if allowed €=20, Effort €=4. What is Expected net €?",
+    "options": [
+      "20.8",
+      "16",
+      "11.2"
+    ],
+    "answer": 1,
+    "why": "Applying the stated toy rule to the new inputs gives 16. The result depends on these assumptions; it is not a universal behavioral response."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "behavioral:be-the-ad-says-negotiable",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "behavioral",
+      "toy-model",
+      "source-entry-392"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "run-case",
+    "compare-case",
+    "step-trace",
+    "reset-retained-evidence"
+  ],
+  "sourceProvenance": {
+    "file": "500-behavioral-economics-findings.md",
+    "entry": 392,
+    "section": "20. Labor & the workplace",
+    "text": "When job ads stated wages were negotiable, the gender gap in negotiating disappeared (Leibbrandt & List, 2015).",
+    "pointer": "500-behavioral-economics-findings.md entry 392: Leibbrandt & List, 2015",
+    "status": "unverified-primary-source",
+    "caveat": "Original list says figures are approximate and papers were not individually rechecked. No empirical source is verified by this build."
+  },
+  "nearestExistingLesson": "net-hourly-after-costs",
+  "meaningfulDifference": "Contrast ambiguity about negotiability with an explicit common rule."
+}

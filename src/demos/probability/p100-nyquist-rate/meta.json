@@ -1,0 +1,163 @@
+{
+  "slug": "p100-nyquist-rate",
+  "title": "Which wave did you actually see?",
+  "hook": "Which wave did you actually see? Change one condition and inspect the result.",
+  "domain": "probability",
+  "concept": "p100-nyquist-rate",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "fractions and arithmetic",
+      "that a toy model states its assumptions"
+    ],
+    "doesNotKnow": [
+      "sample a wave too slowly and it masquerades as a slower wave."
+    ]
+  },
+  "misconception": "Sample sin(2πft) at integer seconds. Frequencies 0.2 Hz and 1.2 Hz produce what relationship between sampled values? The prediction alternatives contrast different consequences of the stated model.",
+  "objective": "sample a wave too slowly and it masquerades as a slower wave.",
+  "keyState": "Both computed cases completed, with their numerical summaries retained across Reset.",
+  "claims": [
+    {
+      "id": "probability.p100-nyquist-rate.case",
+      "text": "Sample sin(2πft) at integer seconds. Frequencies 0.2 Hz and 1.2 Hz produce what relationship between sampled values? Options: Identical samples; Opposite samples; Unrelated samples. Toy model: compare two controlled cases.",
+      "support": "convention",
+      "source": "Stipulated numerical case in model.ts, based on manager numericCase: Sample sine atintegerseconds fs1Hz. Signalsfrequencies.2and1.2Hzhaveidenticalsamples sin(2πf n). Atfs4Hztheydiffer; show continuous curvesand samplingdots.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-nyquist-rate.recall",
+      "text": "At integer times, sin(2π×0.3t) and sin(2π×1.3t) are? Their phases differ by integer multiples of 2π.",
+      "support": "derivation",
+      "source": "Transfer arithmetic or model implication under the same explicitly stated assumptions. Independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-nyquist-rate.hook",
+      "text": "Which wave did you actually see? Change one condition and inspect the result.",
+      "support": "convention",
+      "source": "Invitation to manipulate the labelled toy case, not a population claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-nyquist-rate.c4",
+      "text": "At 1 sample/second the maximum sampled gap is 0 after rounding; at 4/second it is 1.902. The faster samples distinguish these two sine waves.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-nyquist-rate/model.ts#compute().reveal[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-nyquist-rate.c5",
+      "text": "Adding one full cycle between integer sample times leaves the sampled phase unchanged. Matching samples therefore need not identify a unique continuous signal. The toy compares two exact frequencies; it does not establish reconstruction for arbitrary signals without a bandwidth assumption.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-nyquist-rate/model.ts#compute().reveal[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-nyquist-rate.c6",
+      "text": "Run the question case, compare the changed case, and inspect both retained results.",
+      "support": "convention",
+      "source": "src/demos/probability/p100-nyquist-rate/spec.ts#hint; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-nyquist-rate.c7",
+      "text": "Max gap: 0",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-nyquist-rate/model.ts#compute().scenarios[0].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-nyquist-rate.c8",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":0},{\"x\":1,\"y\":0.9510565162951535},{\"x\":2,\"y\":0.5877852522924732},{\"x\":3,\"y\":-0.587785252292473},{\"x\":4,\"y\":-0.9510565162951536},{\"x\":5,\"y\":-2.4492935982947064e-16},{\"x\":6,\"y\":0.9510565162951535},{\"x\":7,\"y\":0.5877852522924734},{\"x\":8,\"y\":-0.5877852522924728}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-nyquist-rate/model.ts#compute().scenarios[0].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-nyquist-rate.c9",
+      "text": "Toy model: case A. Displayed values: {\"kind\":\"scatter\",\"points\":[{\"x\":0,\"y\":0},{\"x\":1,\"y\":0.9510565162951535},{\"x\":2,\"y\":0.5877852522924736},{\"x\":3,\"y\":-0.5877852522924725},{\"x\":4,\"y\":-0.951056516295154},{\"x\":5,\"y\":-1.4695761589768238e-15},{\"x\":6,\"y\":0.951056516295153},{\"x\":7,\"y\":0.5877852522924748},{\"x\":8,\"y\":-0.5877852522924712}]}. [{\"label\":\"Max gap\",\"value\":\"0\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-nyquist-rate/model.ts#compute().scenarios[0].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-nyquist-rate.c10",
+      "text": "Max gap: 1.902",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-nyquist-rate/model.ts#compute().scenarios[1].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-nyquist-rate.c11",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":0},{\"x\":0.25,\"y\":0.3090169943749474},{\"x\":0.5,\"y\":0.5877852522924731},{\"x\":0.75,\"y\":0.8090169943749475},{\"x\":1,\"y\":0.9510565162951535},{\"x\":1.25,\"y\":1},{\"x\":1.5,\"y\":0.9510565162951536},{\"x\":1.75,\"y\":0.8090169943749475},{\"x\":2,\"y\":0.5877852522924732}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-nyquist-rate/model.ts#compute().scenarios[1].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-nyquist-rate.c12",
+      "text": "Toy model: case B. Displayed values: {\"kind\":\"scatter\",\"points\":[{\"x\":0,\"y\":0},{\"x\":0.25,\"y\":0.9510565162951536},{\"x\":0.5,\"y\":-0.587785252292473},{\"x\":0.75,\"y\":-0.5877852522924734},{\"x\":1,\"y\":0.9510565162951535},{\"x\":1.25,\"y\":3.6739403974420594e-16},{\"x\":1.5,\"y\":-0.9510565162951538},{\"x\":1.75,\"y\":0.5877852522924727},{\"x\":2,\"y\":0.5877852522924736}]}. [{\"label\":\"Max gap\",\"value\":\"1.902\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-nyquist-rate/model.ts#compute().scenarios[1].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "At integer times, sin(2π×0.3t) and sin(2π×1.3t) are?",
+    "options": [
+      "Identical",
+      "Always opposite",
+      "Different at every point"
+    ],
+    "answer": 0,
+    "why": "Their phases differ by integer multiples of 2π."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-nyquist-rate",
+    "also": [],
+    "prerequisites": [],
+    "level": "stretch",
+    "references": [],
+    "tags": [
+      "founder-2026-10-24",
+      "source-entry-946",
+      "curve"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "controlled-case-comparison",
+    "step-through-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 946,
+    "sourceSection": "48. Fourier, spectra & signals",
+    "sourceTitle": "Nyquist rate",
+    "sourceText": "sample a wave too slowly and it masquerades as a slower wave.",
+    "sourceEntryOriginal": "- **946. Nyquist rate** \\[Slider\\]: sample a wave too slowly and it masquerades as a slower wave.",
+    "numericCase": "Sample sine atintegerseconds fs1Hz. Signalsfrequencies.2and1.2Hzhaveidenticalsamples sin(2πf n). Atfs4Hztheydiffer; show continuous curvesand samplingdots.",
+    "sourceStatus": "unverified idea pointer; empirical and historical claims excluded from learner copy",
+    "nearestExistingLesson": "cs/alias-wave-wagon-wheel",
+    "difference": "New teaching boundary: Nyquist rate. Existing boundary: The learner can say that a wave faster than half the sample rate gives the same samples as a slower wave, so audio is sampled at more than twice the highest frequency."
+  },
+  "modelOutputs": [
+    0,
+    1.9021130325903073
+  ]
+}

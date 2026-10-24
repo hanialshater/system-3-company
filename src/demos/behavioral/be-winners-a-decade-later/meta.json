@@ -1,0 +1,103 @@
+{
+  "slug": "be-winners-a-decade-later",
+  "title": "Winners a decade later",
+  "hook": "Does an early small study settle what lottery wins do to satisfaction?",
+  "domain": "behavioral",
+  "concept": "be-winners-a-decade-later",
+  "status": "draft",
+  "durationSec": 60,
+  "version": 1,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and reading a small table"
+    ],
+    "doesNotKnow": [
+      "Distinguish the larger long-run lottery evidence from the blanket adaptation claim."
+    ]
+  },
+  "misconception": "The quantities in this case can be combined without checking their reference, denominator, or information boundary.",
+  "objective": "Distinguish the larger long-run lottery evidence from the blanket adaptation claim.",
+  "keyState": "Both complete computed cases are visible as retained observations; the question-case picture survives Reset.",
+  "claims": [
+    {
+      "id": "behavioral.be-winners-a-decade-later.inputs",
+      "text": "A toy satisfaction path starts one unit higher and retains 100% of that gain each year. What gain remains at year ten? Toy inputs A=[1, 1]; B=[1, 0.5].",
+      "support": "convention",
+      "source": "Local explicit hypothetical assumptions in spec.ts and model.ts; not participant measurements.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-winners-a-decade-later.trace",
+      "text": "Computed results: [[1, 1, 1], [1, 0.03125, 0.0009765625]]. Labels: Year 0 gain, Year 5 gain, Year 10 gain.",
+      "support": "derivation",
+      "source": "compute() in the lesson-local model.ts; finite numeric operations over the explicit inputs.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-winners-a-decade-later.reveal",
+      "text": "An initial gain is compatible with either sustained or adapting paths, depending on the retention rule. The contrast makes the long-run assumption visible. A short follow-up alone cannot choose between these paths for real lottery winners.",
+      "support": "derivation",
+      "source": "The two controlled cases in spec.ts; scope limited to these toy inputs and displayed model rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-winners-a-decade-later.recall",
+      "text": "A new toy case uses Initial gain=1, Yearly retention=0.5. What is Year 10 gain? Answer: 0.001.",
+      "support": "derivation",
+      "source": "compute() applied to the contrasting new input case; source list is an idea pointer only.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A new toy case uses Initial gain=1, Yearly retention=0.5. What is Year 10 gain?",
+    "options": [
+      "1.001",
+      "0.001",
+      "-0.999"
+    ],
+    "answer": 1,
+    "why": "Applying the stated toy rule to the new inputs gives 0.001. The result depends on these assumptions; it is not a universal behavioral response."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "behavioral:be-winners-a-decade-later",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "behavioral",
+      "toy-model",
+      "source-entry-425"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "run-case",
+    "compare-case",
+    "step-trace",
+    "reset-retained-evidence"
+  ],
+  "sourceProvenance": {
+    "file": "500-behavioral-economics-findings.md",
+    "entry": 425,
+    "section": "22. Experience, memory & happiness",
+    "text": "Large Swedish lottery winners reported higher life satisfaction for over a decade (Lindqvist, Östling & Cesarini, 2020).",
+    "pointer": "500-behavioral-economics-findings.md entry 425: Lindqvist, Östling & Cesarini, 2020",
+    "status": "unverified-primary-source",
+    "caveat": "Original list says figures are approximate and papers were not individually rechecked. No empirical source is verified by this build."
+  },
+  "nearestExistingLesson": "bk-bets-process-versus-outcome",
+  "meaningfulDifference": "Distinguish the larger long-run lottery evidence from the blanket adaptation claim."
+}

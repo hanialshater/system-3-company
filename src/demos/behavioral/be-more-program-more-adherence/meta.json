@@ -1,0 +1,103 @@
+{
+  "slug": "be-more-program-more-adherence",
+  "title": "More program, more adherence?",
+  "hook": "Does a multi-part intervention guarantee a measurable improvement?",
+  "domain": "behavioral",
+  "concept": "be-more-program-more-adherence",
+  "status": "draft",
+  "durationSec": 60,
+  "version": 1,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and reading a small table"
+    ],
+    "doesNotKnow": [
+      "Distinguish intervention complexity from evidence of benefit in a randomized result."
+    ]
+  },
+  "misconception": "The quantities in this case can be combined without checking their reference, denominator, or information boundary.",
+  "objective": "Distinguish intervention complexity from evidence of benefit in a randomized result.",
+  "keyState": "Both complete computed cases are visible as retained observations; the question-case picture survives Reset.",
+  "claims": [
+    {
+      "id": "behavioral.be-more-program-more-adherence.inputs",
+      "text": "A toy program with four components has outcome ninety, matching control at ninety. What is the observed difference? Toy inputs A=[90, 90, 4]; B=[95, 90, 1].",
+      "support": "convention",
+      "source": "Local explicit hypothetical assumptions in spec.ts and model.ts; not participant measurements.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-more-program-more-adherence.trace",
+      "text": "Computed results: [[0, 90, 4], [5, 95, 1]]. Labels: Difference, Program, Components.",
+      "support": "derivation",
+      "source": "compute() in the lesson-local model.ts; finite numeric operations over the explicit inputs.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-more-program-more-adherence.reveal",
+      "text": "Counting intervention components is not the same as measuring benefit. The comparison has fewer components and a larger supplied outcome difference. The toy makes that distinction; uncertainty and causal interpretation still depend on the study design.",
+      "support": "derivation",
+      "source": "The two controlled cases in spec.ts; scope limited to these toy inputs and displayed model rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-more-program-more-adherence.recall",
+      "text": "A new toy case uses Program outcome=95, Control outcome=90, Components=1. What is Difference? Answer: 5.",
+      "support": "derivation",
+      "source": "compute() applied to the contrasting new input case; source list is an idea pointer only.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A new toy case uses Program outcome=95, Control outcome=90, Components=1. What is Difference?",
+    "options": [
+      "6.5",
+      "5",
+      "3.5"
+    ],
+    "answer": 1,
+    "why": "Applying the stated toy rule to the new inputs gives 5. The result depends on these assumptions; it is not a universal behavioral response."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "behavioral:be-more-program-more-adherence",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "behavioral",
+      "toy-model",
+      "source-entry-350"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "run-case",
+    "compare-case",
+    "step-trace",
+    "reset-retained-evidence"
+  ],
+  "sourceProvenance": {
+    "file": "500-behavioral-economics-findings.md",
+    "entry": 350,
+    "section": "18. Health behavior",
+    "text": "A multi-part behavioral program for heart-attack patients' medication adherence had no effect (Volpp et al., 2017).",
+    "pointer": "500-behavioral-economics-findings.md entry 350: Volpp et al., 2017",
+    "status": "unverified-primary-source",
+    "caveat": "Original list says figures are approximate and papers were not individually rechecked. No empirical source is verified by this build."
+  },
+  "nearestExistingLesson": "halved-risk-one-in-thousand",
+  "meaningfulDifference": "Distinguish intervention complexity from evidence of benefit in a randomized result."
+}

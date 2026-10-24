@@ -1,0 +1,163 @@
+{
+  "slug": "p100-one-value-dominates",
+  "title": "Can one draw outweigh the rest?",
+  "hook": "Can one draw outweigh the rest? Change one condition and inspect the result.",
+  "domain": "probability",
+  "concept": "p100-one-value-dominates",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "fractions and arithmetic",
+      "that a toy model states its assumptions"
+    ],
+    "doesNotKnow": [
+      "with very heavy tails, a single draw can outweigh all the others combined."
+    ]
+  },
+  "misconception": "Nine values are 1 and one is 100. What share of their sum belongs to the largest? The prediction alternatives contrast different consequences of the stated model.",
+  "objective": "with very heavy tails, a single draw can outweigh all the others combined.",
+  "keyState": "Both computed cases completed, with their numerical summaries retained across Reset.",
+  "claims": [
+    {
+      "id": "probability.p100-one-value-dominates.case",
+      "text": "Nine values are 1 and one is 100. What share of their sum belongs to the largest? Options: 10%; 50%; 91.7%. Toy model: compare two controlled cases.",
+      "support": "convention",
+      "source": "Stipulated numerical case in model.ts, based on manager numericCase: Contributions[1,1,1,1,1,1,1,1,1,100]. Topshare100/109≈91.743%; baseline[1×10]topshare10%. Sliderchangeslargestvalue1,10,100 and recomputes top share, no assertionoffittedpowerlaw.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-one-value-dominates.recall",
+      "text": "Four values are 1 and one is 6. Largest share? 6/(4+6)=60%.",
+      "support": "derivation",
+      "source": "Transfer arithmetic or model implication under the same explicitly stated assumptions. Independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-one-value-dominates.hook",
+      "text": "Can one draw outweigh the rest? Change one condition and inspect the result.",
+      "support": "convention",
+      "source": "Invitation to manipulate the labelled toy case, not a population claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-one-value-dominates.c4",
+      "text": "The largest value contributes 91.743% of the total when it is 100, versus 52.632% when it is 10. The other nine stay at 1.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-one-value-dominates/model.ts#compute().reveal[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-one-value-dominates.c5",
+      "text": "A single observation can dominate a sum. These finite values demonstrate concentration; they do not establish a power-law distribution or explain why a real dataset has a heavy tail.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-one-value-dominates/model.ts#compute().reveal[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-one-value-dominates.c6",
+      "text": "Run the question case, compare the changed case, and inspect both retained results.",
+      "support": "convention",
+      "source": "src/demos/probability/p100-one-value-dominates/spec.ts#hint; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-one-value-dominates.c7",
+      "text": "Top share: 0.917",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-one-value-dominates/model.ts#compute().scenarios[0].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-one-value-dominates.c8",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"Nine small\",\"value\":9},{\"label\":\"Largest\",\"value\":100}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-one-value-dominates/model.ts#compute().scenarios[0].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-one-value-dominates.c9",
+      "text": "Toy model: case A. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"Top share\",\"value\":0.9174311926605505},{\"label\":\"Other share\",\"value\":0.08256880733944949}]}. [{\"label\":\"Top share\",\"value\":\"0.917\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-one-value-dominates/model.ts#compute().scenarios[0].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-one-value-dominates.c10",
+      "text": "Top share: 0.526",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-one-value-dominates/model.ts#compute().scenarios[1].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-one-value-dominates.c11",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"Nine small\",\"value\":9},{\"label\":\"Largest\",\"value\":10}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-one-value-dominates/model.ts#compute().scenarios[1].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-one-value-dominates.c12",
+      "text": "Toy model: case B. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"Top share\",\"value\":0.5263157894736842},{\"label\":\"Other share\",\"value\":0.4736842105263158}]}. [{\"label\":\"Top share\",\"value\":\"0.526\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-one-value-dominates/model.ts#compute().scenarios[1].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Four values are 1 and one is 6. Largest share?",
+    "options": [
+      "20%",
+      "50%",
+      "60%"
+    ],
+    "answer": 2,
+    "why": "6/(4+6)=60%."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-one-value-dominates",
+    "also": [],
+    "prerequisites": [],
+    "level": "stretch",
+    "references": [],
+    "tags": [
+      "founder-2026-10-24",
+      "source-entry-747",
+      "distribution"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "controlled-case-comparison",
+    "step-through-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 747,
+    "sourceSection": "38. Extreme values, heavy tails & risk",
+    "sourceTitle": "One value dominates",
+    "sourceText": "with very heavy tails, a single draw can outweigh all the others combined.",
+    "sourceEntryOriginal": "- **747. One value dominates** \\[Slider\\]: with very heavy tails, a single draw can outweigh all the others combined.",
+    "numericCase": "Contributions[1,1,1,1,1,1,1,1,1,100]. Topshare100/109≈91.743%; baseline[1×10]topshare10%. Sliderchangeslargestvalue1,10,100 and recomputes top share, no assertionoffittedpowerlaw.",
+    "sourceStatus": "unverified idea pointer; empirical and historical claims excluded from learner copy",
+    "nearestExistingLesson": "cs/algo-second-best-tree",
+    "difference": "New teaching boundary: One value dominates. Existing boundary: Find the least positive spanning-tree cost increase over all valid single-edge replacements."
+  },
+  "modelOutputs": [
+    0.9174311926605505,
+    0.5263157894736842
+  ]
+}

@@ -1,0 +1,163 @@
+{
+  "slug": "p100-carryover-in-switchbacks",
+  "title": "When should a switchback count?",
+  "hook": "When should a switchback count? Change one condition and inspect the result.",
+  "domain": "probability",
+  "concept": "p100-carryover-in-switchbacks",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "fractions and arithmetic",
+      "that a toy model states its assumptions"
+    ],
+    "doesNotKnow": [
+      "effects linger past each switch; drop buffer periods to remove them."
+    ]
+  },
+  "misconception": "A toy treatment adds 10 while active and leaves a one-period carryover of 5. Alternating new/old yields lifts 10,5,10,5. What is the observed new-minus-old contrast? The prediction alternatives contrast different consequences of the stated model.",
+  "objective": "effects linger past each switch; drop buffer periods to remove them.",
+  "keyState": "Both computed cases completed, with their numerical summaries retained across Reset.",
+  "claims": [
+    {
+      "id": "probability.p100-carryover-in-switchbacks.case",
+      "text": "A toy treatment adds 10 while active and leaves a one-period carryover of 5. Alternating new/old yields lifts 10,5,10,5. What is the observed new-minus-old contrast? Options: 0; 5; 10. Toy model: compare two controlled cases.",
+      "support": "convention",
+      "source": "Stipulated numerical case in model.ts, based on manager numericCase: Switchbackeffectnew+10,carryoverretainshalfnextperiod. Slotsnew/old/new/oldwithobservedlift10,5,10,5givescontrast5ratherthan10. Droponebufferobservationaftereachswitchinlongerblocks restores steadystatenew10vsold0; statecarryoverlength.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-carryover-in-switchbacks.recall",
+      "text": "Treatment lift 8 persists as carryover 3 in the next control slot. Immediate contrast? 8−3=5.",
+      "support": "derivation",
+      "source": "Transfer arithmetic or model implication under the same explicitly stated assumptions. Independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-carryover-in-switchbacks.hook",
+      "text": "When should a switchback count? Change one condition and inspect the result.",
+      "support": "convention",
+      "source": "Invitation to manipulate the labelled toy case, not a population claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-carryover-in-switchbacks.c4",
+      "text": "Immediate switching yields contrast 5; comparing stable periods after a one-period buffer gives 10. The assumed carryover lasts exactly one period.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-carryover-in-switchbacks/model.ts#compute().reveal[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-carryover-in-switchbacks.c5",
+      "text": "An old-policy slot can still contain effects of the previous treatment. Here that contaminates the comparison. The buffer result follows from the stipulated duration; real carryover may be longer or different, so dropping one period is not a universal remedy.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-carryover-in-switchbacks/model.ts#compute().reveal[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-carryover-in-switchbacks.c6",
+      "text": "Run the question case, compare the changed case, and inspect both retained results.",
+      "support": "convention",
+      "source": "src/demos/probability/p100-carryover-in-switchbacks/spec.ts#hint; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-carryover-in-switchbacks.c7",
+      "text": "Switch contrast: 5",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-carryover-in-switchbacks/model.ts#compute().scenarios[0].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-carryover-in-switchbacks.c8",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":10},{\"label\":\"1\",\"value\":5},{\"label\":\"2\",\"value\":10},{\"label\":\"3\",\"value\":5}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-carryover-in-switchbacks/model.ts#compute().scenarios[0].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-carryover-in-switchbacks.c9",
+      "text": "Toy model: case A. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"New\",\"value\":10},{\"label\":\"Old\",\"value\":5}]}. [{\"label\":\"Switch contrast\",\"value\":\"5\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-carryover-in-switchbacks/model.ts#compute().scenarios[0].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-carryover-in-switchbacks.c10",
+      "text": "Buffered contrast: 10",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-carryover-in-switchbacks/model.ts#compute().scenarios[1].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-carryover-in-switchbacks.c11",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":10},{\"label\":\"1\",\"value\":10},{\"label\":\"2\",\"value\":0},{\"label\":\"3\",\"value\":0}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-carryover-in-switchbacks/model.ts#compute().scenarios[1].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-carryover-in-switchbacks.c12",
+      "text": "Toy model: case B. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"New stable\",\"value\":10},{\"label\":\"Old stable\",\"value\":0}]}. [{\"label\":\"Buffered contrast\",\"value\":\"10\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-carryover-in-switchbacks/model.ts#compute().scenarios[1].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Treatment lift 8 persists as carryover 3 in the next control slot. Immediate contrast?",
+    "options": [
+      "3",
+      "5",
+      "8"
+    ],
+    "answer": 1,
+    "why": "8−3=5."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-carryover-in-switchbacks",
+    "also": [],
+    "prerequisites": [],
+    "level": "stretch",
+    "references": [],
+    "tags": [
+      "founder-2026-10-24",
+      "source-entry-849",
+      "timeline"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "controlled-case-comparison",
+    "step-through-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 849,
+    "sourceSection": "43. Interference, networks & marketplace experiments",
+    "sourceTitle": "Carryover in switchbacks",
+    "sourceText": "effects linger past each switch; drop buffer periods to remove them.",
+    "sourceEntryOriginal": "- **849. Carryover in switchbacks** \\[Slider\\]: effects linger past each switch; drop buffer periods to remove them.",
+    "numericCase": "Switchbackeffectnew+10,carryoverretainshalfnextperiod. Slotsnew/old/new/oldwithobservedlift10,5,10,5givescontrast5ratherthan10. Droponebufferobservationaftereachswitchinlongerblocks restores steadystatenew10vsold0; statecarryoverlength.",
+    "sourceStatus": "unverified idea pointer; empirical and historical claims excluded from learner copy",
+    "nearestExistingLesson": "economics/compound-interest",
+    "difference": "New teaching boundary: Carryover in switchbacks. Existing boundary: The learner can explain that compounding pays interest on past interest, so each decade earns more than the one before, and that over long periods interest-on-interest becomes most of the balance."
+  },
+  "modelOutputs": [
+    5,
+    10
+  ]
+}

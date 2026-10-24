@@ -1,0 +1,163 @@
+{
+  "slug": "p100-cluster-trials",
+  "title": "How many independent units?",
+  "hook": "A hundred pupils share ten classrooms. How much information is independent?",
+  "domain": "probability",
+  "concept": "p100-cluster-trials",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "randomize whole schools instead of students and the effective sample shrinks."
+    ]
+  },
+  "misconception": "Treating cluster trials as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "randomize whole schools instead of students and the effective sample shrinks.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-cluster-trials.predict",
+      "text": "A trial has 100 pupils in 10 schools of size 10. With intraclass correlation .2, use design effect 1+(m−1)ρ. What approximate effective sample size follows?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-cluster-trials/spec.ts; exact finite illustration specified in manager numericCase: Design effect1+(m-1)rho. 100 pupils in10 groups,m10,rho.2 givesdesign effect2.8 and effective n35.714; rho0 gives100; rho1 gives10. Label approximation.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-cluster-trials.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-cluster-trials/spec.ts; exact finite illustration specified in manager numericCase: Design effect1+(m-1)rho. 100 pupils in10 groups,m10,rho.2 givesdesign effect2.8 and effective n35.714; rho0 gives100; rho1 gives10. Label approximation.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-cluster-trials.reveal.0",
+      "text": "The correlated-school case retains effective n=35.714; independent pupils retain 100. The design effect is 2.8 because classmates supply partly overlapping information.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-cluster-trials/spec.ts; exact finite illustration specified in manager numericCase: Design effect1+(m-1)rho. 100 pupils in10 groups,m10,rho.2 givesdesign effect2.8 and effective n35.714; rho0 gives100; rho1 gives10. Label approximation.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-cluster-trials.reveal.1",
+      "text": "This equal-size approximation summarizes a mean-estimation variance penalty. Actual cluster-trial analysis also depends on cluster counts, unequal sizes and design details; 100 pupils do not automatically provide 100 independent observations.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-cluster-trials/spec.ts; exact finite illustration specified in manager numericCase: Design effect1+(m-1)rho. 100 pupils in10 groups,m10,rho.2 givesdesign effect2.8 and effective n35.714; rho0 gives100; rho1 gives10. Label approximation.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-cluster-trials.recall",
+      "text": "If group size is 5 and ρ=1, what is the design effect? The formula gives 1+(5−1)×1=5; completely correlated group members act as one information unit.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-cluster-trials/spec.ts; exact finite illustration specified in manager numericCase: Design effect1+(m-1)rho. 100 pupils in10 groups,m10,rho.2 givesdesign effect2.8 and effective n35.714; rho0 gives100; rho1 gives10. Label approximation.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-cluster-trials.scenario.0.summary",
+      "text": "Effective n 35.714",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-cluster-trials/spec.ts; exact finite illustration specified in manager numericCase: Design effect1+(m-1)rho. 100 pupils in10 groups,m10,rho.2 givesdesign effect2.8 and effective n35.714; rho0 gives100; rho1 gives10. Label approximation.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-cluster-trials.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"n\",\"m\",\"rho\"],\"rows\":[[100,10,0.2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-cluster-trials/spec.ts; exact finite illustration specified in manager numericCase: Design effect1+(m-1)rho. 100 pupils in10 groups,m10,rho.2 givesdesign effect2.8 and effective n35.714; rho0 gives100; rho1 gives10. Label approximation.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-cluster-trials.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Within-school similarity\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Actual n\",\"value\":100},{\"label\":\"Effective n\",\"value\":35.714285714285715}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-cluster-trials/spec.ts; exact finite illustration specified in manager numericCase: Design effect1+(m-1)rho. 100 pupils in10 groups,m10,rho.2 givesdesign effect2.8 and effective n35.714; rho0 gives100; rho1 gives10. Label approximation.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-cluster-trials.scenario.1.summary",
+      "text": "Effective n 100",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-cluster-trials/spec.ts; exact finite illustration specified in manager numericCase: Design effect1+(m-1)rho. 100 pupils in10 groups,m10,rho.2 givesdesign effect2.8 and effective n35.714; rho0 gives100; rho1 gives10. Label approximation.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-cluster-trials.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"rho\"],\"rows\":[[0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-cluster-trials/spec.ts; exact finite illustration specified in manager numericCase: Design effect1+(m-1)rho. 100 pupils in10 groups,m10,rho.2 givesdesign effect2.8 and effective n35.714; rho0 gives100; rho1 gives10. Label approximation.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-cluster-trials.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · Independent pupils\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Actual n\",\"value\":100},{\"label\":\"Effective n\",\"value\":100}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-cluster-trials/spec.ts; exact finite illustration specified in manager numericCase: Design effect1+(m-1)rho. 100 pupils in10 groups,m10,rho.2 givesdesign effect2.8 and effective n35.714; rho0 gives100; rho1 gives10. Label approximation.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-cluster-trials.hook",
+      "text": "A hundred pupils share ten classrooms. How much information is independent?",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-cluster-trials/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "If group size is 5 and ρ=1, what is the design effect?",
+    "options": [
+      "1",
+      "4",
+      "5"
+    ],
+    "answer": 2,
+    "why": "The formula gives 1+(5−1)×1=5; completely correlated group members act as one information unit."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-cluster-trials",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "clustering"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 329,
+    "sourceSection": "17. Randomized experiments & A/B tests",
+    "sourceTitle": "Cluster trials",
+    "sourceText": "randomize whole schools instead of students and the effective sample shrinks.",
+    "sourceEntryOriginal": "- **329. Cluster trials** \\[Slider\\]: randomize whole schools instead of students and the effective sample shrinks.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "probability/halve-the-margin-cost",
+    "difference": "New teaching boundary: Cluster trials. Existing boundary: The learner can explain that the margin shrinks with the square root of the sample size: 1,000 people give about 3.1 points, 2,000 only 2.2, and 4,000 (four times as many) 1.5.",
+    "numericCase": "Design effect1+(m-1)rho. 100 pupils in10 groups,m10,rho.2 givesdesign effect2.8 and effective n35.714; rho0 gives100; rho1 gives10. Label approximation."
+  },
+  "modelAudit": {
+    "a": 35.714285714285715,
+    "b": 100,
+    "designEffect": 2.8,
+    "rhoOne": 10
+  }
+}

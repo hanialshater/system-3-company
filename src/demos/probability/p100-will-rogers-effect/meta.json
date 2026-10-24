@@ -1,0 +1,163 @@
+{
+  "slug": "p100-will-rogers-effect",
+  "title": "Who should change groups?",
+  "hook": "Move one unchanged score between groups and recompute both averages.",
+  "domain": "probability",
+  "concept": "p100-will-rogers-effect",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "move one person between groups and both group averages rise."
+    ]
+  },
+  "misconception": "Treating will rogers effect as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "move one person between groups and both group averages rise.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-will-rogers-effect.predict",
+      "text": "Group A has scores 1,2 and B has 3,4,9. Move score 3 from B into A without changing any score. What happens to both group means?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-will-rogers-effect/spec.ts; exact finite illustration specified in manager numericCase: Group A [1,2] mean1.5, B [3,4,9] mean5.3333. Move3 from B to A: Amean2, Bmean6.5. Individual scores unchanged; both group averages rise.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-will-rogers-effect.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-will-rogers-effect/spec.ts; exact finite illustration specified in manager numericCase: Group A [1,2] mean1.5, B [3,4,9] mean5.3333. Move3 from B to A: Amean2, Bmean6.5. Individual scores unchanged; both group averages rise.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-will-rogers-effect.reveal.0",
+      "text": "After reassignment the retained means are 2 and 6.5, versus 1.5 and 5.333 in the original groups. Score 3 is above A’s old mean and below B’s old mean.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-will-rogers-effect/spec.ts; exact finite illustration specified in manager numericCase: Group A [1,2] mean1.5, B [3,4,9] mean5.3333. Move3 from B to A: Amean2, Bmean6.5. Individual scores unchanged; both group averages rise.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-will-rogers-effect.reveal.1",
+      "text": "Adding it raises A’s mean, and removing it raises B’s mean. No individual improved: group membership changed. Both group summaries can improve while the combined population remains identical.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-will-rogers-effect/spec.ts; exact finite illustration specified in manager numericCase: Group A [1,2] mean1.5, B [3,4,9] mean5.3333. Move3 from B to A: Amean2, Bmean6.5. Individual scores unchanged; both group averages rise.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-will-rogers-effect.recall",
+      "text": "Move a score above the receiving group’s mean and below the sending group’s mean. What happens? The moved score pulls the receiving mean up, and its removal pulls the sending mean up.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-will-rogers-effect/spec.ts; exact finite illustration specified in manager numericCase: Group A [1,2] mean1.5, B [3,4,9] mean5.3333. Move3 from B to A: Amean2, Bmean6.5. Individual scores unchanged; both group averages rise.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-will-rogers-effect.scenario.0.summary",
+      "text": "Means 2, 6.5",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-will-rogers-effect/spec.ts; exact finite illustration specified in manager numericCase: Group A [1,2] mean1.5, B [3,4,9] mean5.3333. Move3 from B to A: Amean2, Bmean6.5. Individual scores unchanged; both group averages rise.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-will-rogers-effect.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"A\",\"B\"],\"rows\":[[1,3],[2,4],[\"—\",9]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-will-rogers-effect/spec.ts; exact finite illustration specified in manager numericCase: Group A [1,2] mean1.5, B [3,4,9] mean5.3333. Move3 from B to A: Amean2, Bmean6.5. Individual scores unchanged; both group averages rise.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-will-rogers-effect.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · After moving 3\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"A\",\"value\":2},{\"label\":\"B\",\"value\":6.5}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-will-rogers-effect/spec.ts; exact finite illustration specified in manager numericCase: Group A [1,2] mean1.5, B [3,4,9] mean5.3333. Move3 from B to A: Amean2, Bmean6.5. Individual scores unchanged; both group averages rise.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-will-rogers-effect.scenario.1.summary",
+      "text": "Means 1.5, 5.333",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-will-rogers-effect/spec.ts; exact finite illustration specified in manager numericCase: Group A [1,2] mean1.5, B [3,4,9] mean5.3333. Move3 from B to A: Amean2, Bmean6.5. Individual scores unchanged; both group averages rise.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-will-rogers-effect.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Moved score\"],\"rows\":[[3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-will-rogers-effect/spec.ts; exact finite illustration specified in manager numericCase: Group A [1,2] mean1.5, B [3,4,9] mean5.3333. Move3 from B to A: Amean2, Bmean6.5. Individual scores unchanged; both group averages rise.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-will-rogers-effect.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · Original groups\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"A\",\"value\":1.5},{\"label\":\"B\",\"value\":5.333333333333333}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-will-rogers-effect/spec.ts; exact finite illustration specified in manager numericCase: Group A [1,2] mean1.5, B [3,4,9] mean5.3333. Move3 from B to A: Amean2, Bmean6.5. Individual scores unchanged; both group averages rise.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-will-rogers-effect.hook",
+      "text": "Move one unchanged score between groups and recompute both averages.",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-will-rogers-effect/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Move a score above the receiving group’s mean and below the sending group’s mean. What happens?",
+    "options": [
+      "Both means rise",
+      "Both means fall",
+      "One must fall"
+    ],
+    "answer": 0,
+    "why": "The moved score pulls the receiving mean up, and its removal pulls the sending mean up."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-will-rogers-effect",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "group-transfer"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 297,
+    "sourceSection": "15. Simpson's paradox & aggregation",
+    "sourceTitle": "Will Rogers effect",
+    "sourceText": "move one person between groups and both group averages rise.",
+    "sourceEntryOriginal": "- **297. Will Rogers effect** \\[Gotcha\\]: move one person between groups and both group averages rise.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "probability/the-doctor-picks-the-patients",
+    "difference": "New teaching boundary: Will Rogers effect. Existing boundary: The learner can explain that when a person chooses who is treated, whatever guides the choice (here fitness) shows up as a treatment effect, and that random assignment spreads it evenly over both groups.",
+    "numericCase": "Group A [1,2] mean1.5, B [3,4,9] mean5.3333. Move3 from B to A: Amean2, Bmean6.5. Individual scores unchanged; both group averages rise."
+  },
+  "modelAudit": {
+    "a": 2,
+    "b": 6.5,
+    "oldA": 1.5,
+    "oldB": 5.333333333333333
+  }
+}
