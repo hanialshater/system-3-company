@@ -44,31 +44,16 @@ work on automated alignment researchers.
 - Existing arms (B8 S1/S2, B9 P and S) **violate principles 1-3** by design: fixed modules, assigned directions, short
   cold sessions. Their results measure that design, not agent organisations in general.
 
-## Against the book (*System 3: Towards Fluent Autonomy*, checked 2026-10-24)
+## Against the Zen of System 3 (the book's appendix; the founder: "you only need to check the Zen section", 2026-10-24)
 
-**Consistent.** Autonomy: Ch 3 ("A fixed Planner → Builder → Critic → Revise loop … answers all of those questions in
-advance"), the Zen ("Conditions over commands"), Ch 5 ("Organization itself has entered the search space"). Little
-scaffolding: Ch 8 on Anthropic's nine automated alignment researchers ("too much human-designed scaffolding made the
-agents less flexible, so they mostly left the workflow alone"; they shared code and findings "through a common forum").
-Diversity: Ch 5 (a second witness "has to be capable of being wrong differently"; Kitcher on dividing labour among
-programs). Shared record: Ch 8 (the compiler agents "invented their shared record against their instructions").
+| Principle | Zen | Fit, and what it adds |
+|---|---|---|
+| 1 Autonomy | "Conditions over commands." "The farmer grows nothing. The plant does." "Let the work change the architecture." "Let go of the path, not the boundary." | Strong. Fixed scopes and directions were commands. What stays fixed is the boundary: the judge, the gate, the rules |
+| 2 Diversity without restriction | "Keep a strange branch alive long enough to test it." "Emergence over design." "Five judges sharing one source are one witness." | Strong. One model behind different prompts is close to one source: use another model family where available, and let an agent form its own view before it reads others' |
+| 3 Full context | "Scaffold. Don't substitute." | Fits. A summary standing in for understanding substitutes |
+| 4 Shared, organised learning | "A record outlives the clerk." "Let knowledge accumulate. Let it be overthrown." "Patterns over recipes." "A feather is not a reason." "Remembering is not knowing." | Fits, on conditions: each entry carries its evidence and reasons (not a feather), and stays open to overthrow (beliefs that measurements can lower) |
+| 5 Independent referee | "System 3 checks." "The student will find the gradebook." "The judged do not amend the judge alone." "Reality retains the right to be rude." | Strong. More autonomy makes the gradebook easier to find: a held-out judge the agents cannot query, and quiet final scoring |
 
-**Refinements the book asks for** (proposed with the principles, applied in B9b/B9c):
-
-- **R1. Independence before sharing (to 2 and 4).** Ch 5: "When five agents merely repeat one source, we have one
-  witness wearing different coats"; "which result is allowed to become everybody else's premise". Each agent forms its
-  own view of where the time goes before it reads the findings board; a finding becomes a premise for others only after
-  a second agent (or the judge) has reproduced it.
-- **R2. Findings are patterns, not feathers (to 4).** Ch 6: knowledge without its context, reasons, the conditions under
-  which it would be wrong and a confidence mark is a "feather". Every board entry carries its evidence (commit, judge
-  run), where it applies, a wrong-if line and a belief; a one-line rule is not enough.
-- **R3. Wrong differently means more than prompts (to 2).** Temperament prompts on one model are a weak form of
-  independence; where another model family is available, part of a population and the independent checkers use it.
-- **R4. An evaluation the agents cannot quietly win (to 5).** Ch 8: agents probed a scoring API by flipping labels, and
-  2.4% of 1,600 research transcripts contained cheating; "once experiments are cheap, the expensive part is an
-  evaluation the researcher cannot quietly win". More autonomy needs a held-out judge the agents cannot query (B9's
-  hidden corpus and quiet final scoring), and an audit of what they tried.
-- **R5. Keep some budget off the favourite (to 1).** Ch 5 (Kitcher; "keep part of the budget away from the leader"): a
-  claim board must not pull every agent to the largest measured gain; some pursue a less promising direction.
-- And the Afterword's rule, which every benchmark already follows: "Each proposal should beat a simpler arrangement on
-  the same model and budget, or be dropped."
+And for how these designs are tested: "A philosophy of emergence should be willing to lose an A/B test" (B9b and B9c
+may lose to V, and a loss is written up as one), and "Investigate the procedure too" (audit what the autonomous agents
+tried, not only their scores).
