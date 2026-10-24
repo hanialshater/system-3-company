@@ -37,6 +37,9 @@ if (mode === "fast") {
   const v = node(path.join(HERE, "visible-check.mjs"), ["--wave=W7", `--dir=${DIR}`, `--clj=${cfg.clj}`, `--baseline=${base}`], 3600_000);
   const fails = String(v.stdout ?? "").split("\n").filter((l) => /^failed: /.test(l));
   console.log(v.status === 0 ? "B9 fast check: ok (no visible W1-W5 test or visible Lua file that the start passes fails)" : `B9 fast check: ${fails.length ? fails.map((l) => l.replace(/^failed: /, "")).join("; ") : `visible check exit ${v.status}`}`);
+  // a candidate that fails the check fails the fast judge whatever its timings: none are taken (a deadlocking compiler
+  // would spend 6 batch timeouts on them)
+  if (v.status !== 0) process.exit(1);
   const vis = path.join(tmp, "visible.txt");
   fs.writeFileSync(vis, cfg.visibleCorpus.join("\n") + "\n");
   const tl = time("lua", 3), tc = time("corpus", 3, vis);
