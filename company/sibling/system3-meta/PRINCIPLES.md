@@ -64,6 +64,22 @@ Ownership areas stay, as **stewardship, not exclusivity**:
 In proportion: light for short bounded work (B9: claims, owners optional); strong for running work over long horizons
 and recurring orders, where accountability and memory pay (RESEARCH-AGENDA E1, E2); always for interfaces.
 
+## Coverage and reach (founder, 2026-10-24)
+
+Owners and free exploration do different jobs, and the org needs both:
+- **owners give coverage**, a floor: every area has a steward watching its health, tests and design, so nothing quietly
+  rots (alone they miss the cross-cutting wins, as B8/B9's module owners did);
+- **free exploration gives reach**, the ceiling: anyone may follow the largest opportunity wherever it lies (alone,
+  everyone piles onto the obvious hotspot and some areas go unwatched);
+- **the findings board connects them**: what explorers find reaches the owners, and what owners know reaches the
+  explorers.
+
+An explorer's change in an owned area goes through, the owner reviews it, and the referee's measurement settles a
+disagreement: ideas compete on numbers, not on rank (maintainers and patches, as in open source).
+
+**Measured:** every multi-agent arm reports a **coverage map**: per area, who looked, who changed it, its measured gain,
+and its regressions. It shows whether the org got coverage and reach, or a crowd on one hotspot.
+
 ## Proportion (founder, 2026-10-24: "use your judgement not to over use principles")
 
 The principles are for work that needs an organisation, and they cost tokens (warm contexts scale with the number of
