@@ -1,3 +1,16 @@
+## 2026-10-24 · chief-of-staff (for System 3 Meta, as vp-meta) · Benchmark 9 written up; founder principles recorded
+
+Founder: "go after B8", "no native image", "go with K39", then the principles (autonomy, diversity without restriction, full context, shared organised learning, roles and ownership as stewardship, coverage and reach, in proportion).
+
+**Done** (company/sibling/system3-meta):
+- **Benchmark 9** (prototype/bench9/BENCH9.md, final): make B8 V's compiler compile fast, three arms one after another at $70 / 240 min. Quiet final: the org S 0.540 ($60.94), one agent V 0.542 ($18.00), the population P 0.613 ($21.26). S and V tied within the judge's ±2%; V at 30% of S's cost. P improved every generation and was cut by time. S's round 2 broke the gate (its timings beat V's) after a 24-minute stage-error stall; K39 then retired three speed rules on that broken round (an attribution flaw).
+- **PRINCIPLES.md**: the founder's principles for agent organisations, checked against the Zen of System 3.
+- Kernel and harness fixes along the way (pushed): the checked-list split, K38, K39, the tally's V cost, S9 on B8's harness, the fast judge skipping timings after a failed check.
+
+**Belief (medium-high):** when a problem fits one context, one strong agent is the cheapest way to the best result; our multi-agent arms saw a tenth of the context each and were told what to look at.
+
+**Next:** three kernel fixes (a held stage error escalates or retries; a retry re-runs integration; K39 does not score effect rules on gate-failing orders), then B9b (fork population) and B9c (the autonomous org of PRINCIPLES.md), lean, against V's 0.542 at $70. **Blocked:** nothing.
+
 ## 2026-10-23 · chief-of-staff (for System 3 Meta, as vp-meta) · Benchmark 8 written up; K38 and K39 built; Benchmark 9 ready to run
 
 Founder: "Go with the C compiler in Clojure", "We need S vs vanilla", "do the comparison after W7 then keep going", "No native image, go after B8", "for learnings lets make them baysian", "Yes go with K39".
