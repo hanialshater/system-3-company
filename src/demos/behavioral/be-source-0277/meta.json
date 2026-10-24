@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0277",
+  "title": "Risk after a recent disaster",
+  "hook": "Two stated cases: explore an assumed change in sensitivity after a shock.",
+  "domain": "behavioral",
+  "concept": "be-source-0277",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How an assumed change in sensitivity after a shock affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Value, regardless of the stated inputs.",
+  "objective": "Compare an assumed change in sensitivity after a shock in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0277.predict",
+      "text": "A toy bet wins 100 with probability 0.5; otherwise it loses 80. Losses count 1 times gains. What is its expected model value?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0277/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #277. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0277.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0277/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #277. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0277.reveal.0",
+      "text": "The retained results are Lambda=1; Value=10 and Lambda=2; Value=-30.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0277/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #277. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0277.reveal.1",
+      "text": "The model weights a loss separately from its probability. A positive cash expectation can coexist with a negative model valuation. This comparison isolates an assumed change in sensitivity after a shock.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0277/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #277. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0277.case.0.witness",
+      "text": "Lambda=1; Value=10",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0277/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #277. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0277.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Gain\",100],[\"Loss\",80],[\"Lambda\",1],[\"P\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0277/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #277. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0277.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Value\",\"value\":10}]},\"metrics\":[{\"label\":\"Value\",\"value\":\"10\"},{\"label\":\"Lambda\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0277/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #277. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0277.case.1.witness",
+      "text": "Lambda=2; Value=-30",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0277/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #277. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0277.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Gain\",100],[\"Loss\",80],[\"Lambda\",2],[\"P\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0277/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #277. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0277.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Value\",\"value\":-30}]},\"metrics\":[{\"label\":\"Value\",\"value\":\"-30\"},{\"label\":\"Lambda\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0277/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #277. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0277.recall",
+      "text": "A toy bet wins 101 with probability 0.5; otherwise it loses 80. Losses count 1 times gains. What is its expected model value? Answer 10.5.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0277/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #277. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy bet wins 101 with probability 0.5; otherwise it loses 80. Losses count 1 times gains. What is its expected model value?",
+    "options": [
+      "6.3",
+      "14.7",
+      "10.5"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Value 10.5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0277",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-277"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 277,
+    "sourceSection": "14. Risk & probability weighting",
+    "sourceEntryOriginal": "- **277.** Indonesian villagers recently hit by floods or earthquakes became more risk-averse (Cameron & Shah, 2015).",
+    "modelBoundary": "an assumed change in sensitivity after a shock",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

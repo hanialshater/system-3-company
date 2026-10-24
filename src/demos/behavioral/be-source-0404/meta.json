@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0404",
+  "title": "News enters the price gradually",
+  "hook": "Two stated cases: explore the remaining adjustment after a news signal.",
+  "domain": "behavioral",
+  "concept": "be-source-0404",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the remaining adjustment after a news signal affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Estimate, regardless of the stated inputs.",
+  "objective": "Compare the remaining adjustment after a news signal in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0404.predict",
+      "text": "Starting at 80, move fraction 0.2 of the remaining distance toward 100 for 1 steps. Where does the estimate finish?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0404/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #404. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0404.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0404/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #404. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0404.reveal.0",
+      "text": "The retained results are Steps=1; Estimate=84 and Steps=5; Estimate=93.446.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0404/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #404. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0404.reveal.1",
+      "text": "Each adjustment leaves a fraction of the original distance. Stopping after a small number of steps preserves dependence on the start. This comparison isolates the remaining adjustment after a news signal.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0404/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #404. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0404.case.0.witness",
+      "text": "Steps=1; Estimate=84",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0404/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #404. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0404.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Start\",80],[\"Target\",100],[\"Steps\",1],[\"Fraction\",0.2]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0404/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #404. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0404.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":80},{\"label\":\"1\",\"value\":84}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"84\"},{\"label\":\"Steps\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0404/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #404. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0404.case.1.witness",
+      "text": "Steps=5; Estimate=93.446",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0404/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #404. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0404.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Start\",80],[\"Target\",100],[\"Steps\",5],[\"Fraction\",0.2]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0404/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #404. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0404.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":80},{\"label\":\"1\",\"value\":84},{\"label\":\"2\",\"value\":87.2},{\"label\":\"3\",\"value\":89.75999999999999},{\"label\":\"4\",\"value\":91.80799999999999},{\"label\":\"5\",\"value\":93.4464}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"93.446\"},{\"label\":\"Steps\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0404/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #404. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0404.recall",
+      "text": "Starting at 81, move fraction 0.2 of the remaining distance toward 100 for 1 steps. Where does the estimate finish? Answer 84.8.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0404/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #404. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Starting at 81, move fraction 0.2 of the remaining distance toward 100 for 1 steps. Where does the estimate finish?",
+    "options": [
+      "84.8",
+      "50.88",
+      "118.72"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Estimate 84.8 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0404",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-404"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 404,
+    "sourceSection": "21. Behavioral finance & markets",
+    "sourceEntryOriginal": "- **404.** Prices keep drifting in the direction of an earnings surprise for weeks afterward (Bernard & Thomas, 1989).",
+    "modelBoundary": "the remaining adjustment after a news signal",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

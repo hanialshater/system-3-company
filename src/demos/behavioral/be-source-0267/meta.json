@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0267",
+  "title": "Coverage for any cause",
+  "hook": "Two stated cases: explore the covered event and the premium together.",
+  "domain": "behavioral",
+  "concept": "be-source-0267",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the covered event and the premium together affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Net, regardless of the stated inputs.",
+  "objective": "Compare the covered event and the premium together in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0267.predict",
+      "text": "A toy policy reduces a loss by 1000 with probability 0.01 and costs 14. What is its expected cash gain minus cost?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0267/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #267. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0267.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0267/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #267. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0267.reveal.0",
+      "text": "The retained results are Probability=0.01 Cost=14; Net=-4 and Probability=0.03 Cost=12; Net=18.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0267/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #267. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0267.reveal.1",
+      "text": "Expected cash value weights the avoided loss by its probability. Utility, liquidity and risk tolerance are separate assumptions. This comparison isolates the covered event and the premium together.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0267/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #267. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0267.case.0.witness",
+      "text": "Probability=0.01 Cost=14; Net=-4",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0267/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #267. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0267.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Probability\",0.01],[\"Reduction\",1000],[\"Cost\",14]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0267/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #267. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0267.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Net\",\"value\":-4}]},\"metrics\":[{\"label\":\"Net\",\"value\":\"-4\"},{\"label\":\"Probability\",\"value\":\"0.01\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0267/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #267. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0267.case.1.witness",
+      "text": "Probability=0.03 Cost=12; Net=18",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0267/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #267. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0267.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Probability\",0.03],[\"Reduction\",1000],[\"Cost\",12]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0267/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #267. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0267.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Net\",\"value\":18}]},\"metrics\":[{\"label\":\"Net\",\"value\":\"18\"},{\"label\":\"Probability\",\"value\":\"0.03\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0267/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #267. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0267.recall",
+      "text": "A toy policy reduces a loss by 1,000 with probability 0.008 and costs 14. What is its expected cash gain minus cost? Answer -6.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0267/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #267. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy policy reduces a loss by 1,000 with probability 0.008 and costs 14. What is its expected cash gain minus cost?",
+    "options": [
+      "-8.4",
+      "-6",
+      "-3.6"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Net -6 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0267",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-267"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 267,
+    "sourceSection": "14. Risk & probability weighting",
+    "sourceEntryOriginal": "- **267.** People would pay $14.12 for flight insurance against terrorism but only $12.03 for insurance against any cause (Johnson, Hershey, Meszaros & Kunreuther, 1993).",
+    "modelBoundary": "the covered event and the premium together",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

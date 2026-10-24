@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0397",
+  "title": "Two work-from-home outcomes",
+  "hook": "Two stated cases: explore separate baselines and meanings of two reported changes.",
+  "domain": "behavioral",
+  "concept": "be-source-0397",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How separate baselines and meanings of two reported changes affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Final, regardless of the stated inputs.",
+  "objective": "Compare separate baselines and meanings of two reported changes in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0397.predict",
+      "text": "A toy baseline is 100; it changes by 13 percent. What is the final level?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0397/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #397. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0397.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0397/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #397. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0397.reveal.0",
+      "text": "The retained results are Percent=13; Final=113 and Percent=-50; Final=50.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0397/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #397. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0397.reveal.1",
+      "text": "A relative percentage uses the baseline as denominator. It is different from the same number of percentage points. This comparison isolates separate baselines and meanings of two reported changes.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0397/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #397. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0397.case.0.witness",
+      "text": "Percent=13; Final=113",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0397/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #397. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0397.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Baseline\",100],[\"Percent\",13]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0397/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #397. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0397.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":112.99999999999999}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"113\"},{\"label\":\"Percent\",\"value\":\"13\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0397/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #397. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0397.case.1.witness",
+      "text": "Percent=-50; Final=50",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0397/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #397. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0397.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Baseline\",100],[\"Percent\",-50]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0397/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #397. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0397.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":50}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"50\"},{\"label\":\"Percent\",\"value\":\"-50\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0397/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #397. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0397.recall",
+      "text": "A toy baseline is 101; it changes by 13 percent. What is the final level? Answer 114.13.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0397/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #397. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy baseline is 101; it changes by 13 percent. What is the final level?",
+    "options": [
+      "68.478",
+      "159.782",
+      "114.13"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Final 114.13 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0397",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-397"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 397,
+    "sourceSection": "20. Labor & the workplace",
+    "sourceEntryOriginal": "- **397.** Working from home raised Chinese call-center performance 13% and halved quit rates (Bloom, Liang, Roberts & Ying, 2015).",
+    "modelBoundary": "separate baselines and meanings of two reported changes",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

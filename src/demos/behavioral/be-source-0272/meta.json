@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0272",
+  "title": "Scale the same lottery",
+  "hook": "Two stated cases: explore stakes relative to fixed wealth.",
+  "domain": "behavioral",
+  "concept": "be-source-0272",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How stakes relative to fixed wealth affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Change, regardless of the stated inputs.",
+  "objective": "Compare stakes relative to fixed wealth in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0272.predict",
+      "text": "A toy log-utility agent has wealth 10000, gains 100 with probability 0.5 and otherwise loses 80. What is expected log utility minus log current wealth?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0272/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #272. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0272.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0272/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #272. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0272.reveal.0",
+      "text": "The retained results are Gain=100 Loss=80; Change=9.59e-4 and Gain=5,000 Loss=4,000; Change=-0.053.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0272/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #272. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0272.reveal.1",
+      "text": "Curvature, initial wealth and stakes jointly determine this model comparison. Log utility is an assumed rule, not a universal account of risk preferences. This comparison isolates stakes relative to fixed wealth.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0272/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #272. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0272.case.0.witness",
+      "text": "Gain=100 Loss=80; Change=9.59e-4",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0272/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #272. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0272.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Wealth\",10000],[\"Gain\",100],[\"Loss\",80],[\"P\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0272/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #272. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0272.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Change\",\"value\":0.0009590795779512717}]},\"metrics\":[{\"label\":\"Change\",\"value\":\"9.59e-4\"},{\"label\":\"Gain\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0272/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #272. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0272.case.1.witness",
+      "text": "Gain=5,000 Loss=4,000; Change=-0.053",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0272/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #272. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0272.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Wealth\",10000],[\"Gain\",5000],[\"Loss\",4000],[\"P\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0272/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #272. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0272.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Change\",\"value\":-0.05268025782891428}]},\"metrics\":[{\"label\":\"Change\",\"value\":\"-0.053\"},{\"label\":\"Gain\",\"value\":\"5,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0272/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #272. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0272.recall",
+      "text": "A toy log-utility agent has wealth 10,000, gains 101 with probability 0.5 and otherwise loses 80. What is expected log utility minus log current wealth? Answer 0.001.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0272/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #272. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy log-utility agent has wealth 10,000, gains 101 with probability 0.5 and otherwise loses 80. What is expected log utility minus log current wealth?",
+    "options": [
+      "0.001",
+      "-0.099",
+      "0.101"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Change 0.001 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0272",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-272"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 272,
+    "sourceSection": "14. Risk & probability weighting",
+    "sourceEntryOriginal": "- **272.** Risk aversion rises when stakes are scaled up (Holt & Laury, 2002).",
+    "modelBoundary": "stakes relative to fixed wealth",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

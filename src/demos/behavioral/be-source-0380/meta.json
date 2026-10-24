@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0380",
+  "title": "Impact per program dollar",
+  "hook": "Two stated cases: explore the cost per specified incremental action.",
+  "domain": "behavioral",
+  "concept": "be-source-0380",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the cost per specified incremental action affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines UnitCost, regardless of the stated inputs.",
+  "objective": "Compare the cost per specified incremental action in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0380.predict",
+      "text": "A toy pack costs 100 for 500 units. What is its price per 1 units?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0380/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #380. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0380.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0380/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #380. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0380.reveal.0",
+      "text": "The retained results are Quantity=500; UnitCost=0.2 and Quantity=50; UnitCost=2.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0380/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #380. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0380.reveal.1",
+      "text": "A common unit denominator makes unequal packages comparable. Package appearance does not change their stated contents. This comparison isolates the cost per specified incremental action.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0380/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #380. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0380.case.0.witness",
+      "text": "Quantity=500; UnitCost=0.2",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0380/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #380. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0380.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Price\",100],[\"Quantity\",500],[\"Units\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0380/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #380. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0380.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"UnitCost\",\"value\":0.2}]},\"metrics\":[{\"label\":\"UnitCost\",\"value\":\"0.2\"},{\"label\":\"Quantity\",\"value\":\"500\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0380/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #380. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0380.case.1.witness",
+      "text": "Quantity=50; UnitCost=2",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0380/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #380. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0380.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Price\",100],[\"Quantity\",50],[\"Units\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0380/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #380. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0380.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"UnitCost\",\"value\":2}]},\"metrics\":[{\"label\":\"UnitCost\",\"value\":\"2\"},{\"label\":\"Quantity\",\"value\":\"50\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0380/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #380. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0380.recall",
+      "text": "A toy pack costs 101 for 500 units. What is its price per 1 units? Answer 0.202.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0380/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #380. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy pack costs 101 for 500 units. What is its price per 1 units?",
+    "options": [
+      "0.202",
+      "0.102",
+      "0.302"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives UnitCost 0.202 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0380",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-380"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 380,
+    "sourceSection": "19. Public policy nudges: tax, energy, voting",
+    "sourceEntryOriginal": "- **380.** Nudges like auto-enrollment often deliver more impact per dollar than traditional incentives such as tax credits (Benartzi et al., 2017).",
+    "modelBoundary": "the cost per specified incremental action",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

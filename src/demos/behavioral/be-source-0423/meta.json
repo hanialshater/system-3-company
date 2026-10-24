@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0423",
+  "title": "Double the duration",
+  "hook": "Two stated cases: explore duration in total exposure but not an assumed memory rule.",
+  "domain": "behavioral",
+  "concept": "be-source-0423",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How duration in total exposure but not an assumed memory rule affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Memory, regardless of the stated inputs.",
+  "objective": "Compare duration in total exposure but not an assumed memory rule in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0423.predict",
+      "text": "A toy memory rule averages peak 8 and end 2. The actual experience has mean 5 and duration 10. What is the memory-rule score?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0423/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #423. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0423.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0423/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #423. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0423.reveal.0",
+      "text": "The retained results are Duration=10; Memory=5 and Duration=20; Memory=5.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0423/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #423. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0423.reveal.1",
+      "text": "The peak-end summary and the time-integrated total answer different questions. Changing duration alone changes total exposure while leaving this assumed summary fixed. This comparison isolates duration in total exposure but not an assumed memory rule.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0423/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #423. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0423.case.0.witness",
+      "text": "Duration=10; Memory=5",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0423/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #423. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0423.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Peak\",8],[\"End\",2],[\"Mean\",5],[\"Duration\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0423/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #423. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0423.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Memory\",\"value\":5},{\"label\":\"Total\",\"value\":50}]},\"metrics\":[{\"label\":\"Memory\",\"value\":\"5\"},{\"label\":\"Duration\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0423/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #423. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0423.case.1.witness",
+      "text": "Duration=20; Memory=5",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0423/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #423. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0423.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Peak\",8],[\"End\",2],[\"Mean\",5],[\"Duration\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0423/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #423. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0423.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Memory\",\"value\":5},{\"label\":\"Total\",\"value\":100}]},\"metrics\":[{\"label\":\"Memory\",\"value\":\"5\"},{\"label\":\"Duration\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0423/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #423. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0423.recall",
+      "text": "A toy memory rule averages peak 9 and end 2. The actual experience has mean 5 and duration 10. What is the memory-rule score? Answer 5.5.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0423/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #423. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy memory rule averages peak 9 and end 2. The actual experience has mean 5 and duration 10. What is the memory-rule score?",
+    "options": [
+      "3.3",
+      "5.5",
+      "7.7"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Memory 5.5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0423",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-423"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 423,
+    "sourceSection": "22. Experience, memory & happiness",
+    "sourceEntryOriginal": "- **423.** How long an experience lasts barely affects how it is remembered, duration neglect (Fredrickson & Kahneman, 1993).",
+    "modelBoundary": "duration in total exposure but not an assumed memory rule",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

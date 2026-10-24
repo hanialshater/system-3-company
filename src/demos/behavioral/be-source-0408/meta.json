@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0408",
+  "title": "Two claims on one cash flow",
+  "hook": "Two stated cases: explore the observed price ratio versus a fixed claim ratio.",
+  "domain": "behavioral",
+  "concept": "be-source-0408",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the observed price ratio versus a fixed claim ratio affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Ratio, regardless of the stated inputs.",
+  "objective": "Compare the observed price ratio versus a fixed claim ratio in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0408.predict",
+      "text": "A toy seller asks 60; a buyer offers 40 for the same item. What is the sell-to-buy ratio?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0408/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #408. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0408.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0408/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #408. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0408.reveal.0",
+      "text": "The retained results are Sell=60; Ratio=1.5 and Sell=90; Ratio=2.25.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0408/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #408. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0408.reveal.1",
+      "text": "The ratio describes a valuation gap. It does not identify whether ownership, procedures or information caused it. This comparison isolates the observed price ratio versus a fixed claim ratio.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0408/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #408. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0408.case.0.witness",
+      "text": "Sell=60; Ratio=1.5",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0408/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #408. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0408.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Sell\",60],[\"Buy\",40]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0408/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #408. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0408.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Ratio\",\"value\":1.5}]},\"metrics\":[{\"label\":\"Ratio\",\"value\":\"1.5\"},{\"label\":\"Sell\",\"value\":\"60\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0408/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #408. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0408.case.1.witness",
+      "text": "Sell=90; Ratio=2.25",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0408/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #408. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0408.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Sell\",90],[\"Buy\",40]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0408/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #408. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0408.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Ratio\",\"value\":2.25}]},\"metrics\":[{\"label\":\"Ratio\",\"value\":\"2.25\"},{\"label\":\"Sell\",\"value\":\"90\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0408/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #408. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0408.recall",
+      "text": "A toy seller asks 61; a buyer offers 40 for the same item. What is the sell-to-buy ratio? Answer 1.525.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0408/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #408. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy seller asks 61; a buyer offers 40 for the same item. What is the sell-to-buy ratio?",
+    "options": [
+      "0.915",
+      "1.525",
+      "2.135"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Ratio 1.525 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0408",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-408"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 408,
+    "sourceSection": "21. Behavioral finance & markets",
+    "sourceEntryOriginal": "- **408.** Royal Dutch and Shell shares, with fixed claims on the same cash flows, traded far from their theoretical ratio for years (Froot & Dabora, 1999).",
+    "modelBoundary": "the observed price ratio versus a fixed claim ratio",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

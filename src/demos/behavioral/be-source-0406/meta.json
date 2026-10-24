@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0406",
+  "title": "An old story gets new attention",
+  "hook": "Two stated cases: explore the baseline behind a large price jump.",
+  "domain": "behavioral",
+  "concept": "be-source-0406",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the baseline behind a large price jump affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Final, regardless of the stated inputs.",
+  "objective": "Compare the baseline behind a large price jump in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0406.predict",
+      "text": "A toy baseline is 10; it changes by 300 percent. What is the final level?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0406/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #406. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0406.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0406/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #406. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0406.reveal.0",
+      "text": "The retained results are Percent=300; Final=40 and Percent=0; Final=10.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0406/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #406. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0406.reveal.1",
+      "text": "A relative percentage uses the baseline as denominator. It is different from the same number of percentage points. This comparison isolates the baseline behind a large price jump.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0406/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #406. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0406.case.0.witness",
+      "text": "Percent=300; Final=40",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0406/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #406. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0406.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Baseline\",10],[\"Percent\",300]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0406/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #406. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0406.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":40}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"40\"},{\"label\":\"Percent\",\"value\":\"300\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0406/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #406. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0406.case.1.witness",
+      "text": "Percent=0; Final=10",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0406/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #406. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0406.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Baseline\",10],[\"Percent\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0406/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #406. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0406.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":10}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"10\"},{\"label\":\"Percent\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0406/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #406. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0406.recall",
+      "text": "A toy baseline is 11; it changes by 300 percent. What is the final level? Answer 44.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0406/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #406. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy baseline is 11; it changes by 300 percent. What is the final level?",
+    "options": [
+      "26.4",
+      "61.6",
+      "44"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Final 44 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0406",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-406"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 406,
+    "sourceSection": "21. Behavioral finance & markets",
+    "sourceEntryOriginal": "- **406.** EntreMed's stock jumped over 300% after a front-page *New York Times* story on research published months earlier (Huberman & Regev, 2001).",
+    "modelBoundary": "the baseline behind a large price jump",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

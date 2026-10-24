@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0338",
+  "title": "The same index, different fees",
+  "hook": "Two stated cases: explore the compounding drag of a fee difference.",
+  "domain": "behavioral",
+  "concept": "be-source-0338",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the compounding drag of a fee difference affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Balance, regardless of the stated inputs.",
+  "objective": "Compare the compounding drag of a fee difference in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0338.predict",
+      "text": "Toy principal 1000 grows at annual return 0.05 minus annual fee 0.002 for 20 years. What balance results?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0338/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #338. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0338.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0338/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #338. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0338.reveal.0",
+      "text": "The retained results are Fee=0.002; Balance=2,554.028 and Fee=0.02; Balance=1,806.111.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0338/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #338. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0338.reveal.1",
+      "text": "Repeated fees compound through the balance. The constant return is an illustrative assumption and excludes taxes and uncertainty. This comparison isolates the compounding drag of a fee difference.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0338/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #338. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0338.case.0.witness",
+      "text": "Fee=0.002; Balance=2,554.028",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0338/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #338. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0338.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Principal\",1000],[\"Return\",0.05],[\"Fee\",0.002],[\"Years\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0338/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #338. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0338.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Balance\",\"value\":2554.0279929298604}]},\"metrics\":[{\"label\":\"Balance\",\"value\":\"2,554.028\"},{\"label\":\"Fee\",\"value\":\"0.002\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0338/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #338. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0338.case.1.witness",
+      "text": "Fee=0.02; Balance=1,806.111",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0338/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #338. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0338.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Principal\",1000],[\"Return\",0.05],[\"Fee\",0.02],[\"Years\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0338/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #338. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0338.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Balance\",\"value\":1806.111234669415}]},\"metrics\":[{\"label\":\"Balance\",\"value\":\"1,806.111\"},{\"label\":\"Fee\",\"value\":\"0.02\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0338/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #338. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0338.recall",
+      "text": "Toy principal 1,001 grows at annual return 0.05 minus annual fee 0.002 for 20 years. What balance results? Answer 2,556.582.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0338/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #338. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy principal 1,001 grows at annual return 0.05 minus annual fee 0.002 for 20 years. What balance results?",
+    "options": [
+      "2,556.582",
+      "1,533.949",
+      "3,579.215"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Balance 2,556.582 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0338",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-338"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 338,
+    "sourceSection": "17. Saving, retirement & household finance",
+    "sourceEntryOriginal": "- **338.** Even staff given clear fee sheets mostly failed to pick the cheapest S&P 500 index fund (Choi, Laibson & Madrian, 2010).",
+    "modelBoundary": "the compounding drag of a fee difference",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0393",
+  "title": "A blind-audition estimate varies",
+  "hook": "Two stated cases: explore the sensitivity of a contested pooled estimate.",
+  "domain": "behavioral",
+  "concept": "be-source-0393",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the sensitivity of a contested pooled estimate affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Pooled, regardless of the stated inputs.",
+  "objective": "Compare the sensitivity of a contested pooled estimate in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0393.predict",
+      "text": "Toy visible studies average 0.3 across 4 equal-weight studies; missing studies average 0 across 20. What is the mean if all are included?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0393/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #393. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0393.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0393/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #393. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0393.reveal.0",
+      "text": "The retained results are MissingN=20; Pooled=0.05 and MissingN=4; Pooled=0.15.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0393/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #393. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0393.reveal.1",
+      "text": "Selection of studies can change a pooled estimate. Missing results here are explicit sensitivity assumptions, not recovered observations. This comparison isolates the sensitivity of a contested pooled estimate.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0393/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #393. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0393.case.0.witness",
+      "text": "MissingN=20; Pooled=0.05",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0393/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #393. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0393.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Visible\",0.3],[\"VisibleN\",4],[\"Missing\",0],[\"MissingN\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0393/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #393. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0393.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Pooled\",\"value\":0.049999999999999996}]},\"metrics\":[{\"label\":\"Pooled\",\"value\":\"0.05\"},{\"label\":\"MissingN\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0393/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #393. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0393.case.1.witness",
+      "text": "MissingN=4; Pooled=0.15",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0393/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #393. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0393.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Visible\",0.3],[\"VisibleN\",4],[\"Missing\",0],[\"MissingN\",4]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0393/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #393. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0393.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Pooled\",\"value\":0.15}]},\"metrics\":[{\"label\":\"Pooled\",\"value\":\"0.15\"},{\"label\":\"MissingN\",\"value\":\"4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0393/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #393. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0393.recall",
+      "text": "Toy visible studies average 0.4 across 4 equal-weight studies; missing studies average 0 across 20. What is the mean if all are included? Answer 0.067.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0393/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #393. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy visible studies average 0.4 across 4 equal-weight studies; missing studies average 0 across 20. What is the mean if all are included?",
+    "options": [
+      "-0.033",
+      "0.067",
+      "0.167"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Pooled 0.067 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0393",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-393"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 393,
+    "sourceSection": "20. Labor & the workplace",
+    "sourceEntryOriginal": "- **393.** Blind auditions behind a screen raised the odds of women advancing in orchestras (Goldin & Rouse, 2000). **\\[contested\\]** Critics argue the statistical evidence is weaker than often cited.",
+    "modelBoundary": "the sensitivity of a contested pooled estimate",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

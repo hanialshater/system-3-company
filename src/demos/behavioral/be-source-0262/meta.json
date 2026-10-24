@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0262",
+  "title": "Known odds, unknown odds",
+  "hook": "Two stated cases: explore the expectation bounds left by ambiguous odds.",
+  "domain": "behavioral",
+  "concept": "be-source-0262",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the expectation bounds left by ambiguous odds affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Lower, regardless of the stated inputs.",
+  "objective": "Compare the expectation bounds left by ambiguous odds in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0262.predict",
+      "text": "A toy prize is 100; its unknown win probability lies between 0.5 and 0.5. What is the lower bound on expected winnings?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0262/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #262. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0262.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0262/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #262. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0262.reveal.0",
+      "text": "The retained results are Low=0.5 High=0.5; Lower=50 and Low=0.2 High=0.8; Lower=20.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0262/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #262. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0262.reveal.1",
+      "text": "An interval of plausible probabilities yields bounds, rather than a uniquely identified expectation. It does not specify anyone’s attitude toward ambiguity. This comparison isolates the expectation bounds left by ambiguous odds.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0262/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #262. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0262.case.0.witness",
+      "text": "Low=0.5 High=0.5; Lower=50",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0262/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #262. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0262.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prize\",100],[\"Low\",0.5],[\"High\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0262/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #262. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0262.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Lower\",\"value\":50},{\"label\":\"Upper\",\"value\":50}]},\"metrics\":[{\"label\":\"Lower\",\"value\":\"50\"},{\"label\":\"Low\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0262/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #262. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0262.case.1.witness",
+      "text": "Low=0.2 High=0.8; Lower=20",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0262/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #262. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0262.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prize\",100],[\"Low\",0.2],[\"High\",0.8]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0262/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #262. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0262.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Lower\",\"value\":20},{\"label\":\"Upper\",\"value\":80}]},\"metrics\":[{\"label\":\"Lower\",\"value\":\"20\"},{\"label\":\"Low\",\"value\":\"0.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0262/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #262. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0262.recall",
+      "text": "A toy prize is 101; its unknown win probability lies between 0.5 and 0.5. What is the lower bound on expected winnings? Answer 50.5.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0262/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #262. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy prize is 101; its unknown win probability lies between 0.5 and 0.5. What is the lower bound on expected winnings?",
+    "options": [
+      "30.3",
+      "70.7",
+      "50.5"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Lower 50.5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0262",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-262"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 262,
+    "sourceSection": "14. Risk & probability weighting",
+    "sourceEntryOriginal": "- **262.** People prefer bets with known odds over unknown odds, even when unknown odds are no worse (Ellsberg, 1961).",
+    "modelBoundary": "the expectation bounds left by ambiguous odds",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,6 +1,7 @@
 from pathlib import Path
 import csv,json,sys,math,re,subprocess
 from math_ops import OPS
+import behavioral_extra
 batch=sys.argv[1];domain=sys.argv[2];curation=Path(sys.argv[3])
 root=Path.cwd();rows=list(csv.DictReader(curation.open(),delimiter='\t'))
 remaining=json.load(open(f'company/domains/briefs/continuation/{domain}-remaining.json'))

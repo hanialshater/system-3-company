@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0330",
+  "title": "Debt beside low-yield cash",
+  "hook": "Two stated cases: explore the interest-rate spread on both balance-sheet sides.",
+  "domain": "behavioral",
+  "concept": "be-source-0330",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the interest-rate spread on both balance-sheet sides affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Drag, regardless of the stated inputs.",
+  "objective": "Compare the interest-rate spread on both balance-sheet sides in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0330.predict",
+      "text": "Toy debt 1000 costs interest 0.2; cash 1000 earns yield 0.02 over the same period. What is interest cost minus cash income?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0330/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #330. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0330.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0330/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #330. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0330.reveal.0",
+      "text": "The retained results are Yield=0.02; Drag=180 and Yield=0.1; Drag=100.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0330/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #330. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0330.reveal.1",
+      "text": "Use the same horizon for both sides of the balance sheet. The arithmetic excludes liquidity needs and transaction costs. This comparison isolates the interest-rate spread on both balance-sheet sides.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0330/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #330. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0330.case.0.witness",
+      "text": "Yield=0.02; Drag=180",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0330/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #330. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0330.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Debt\",1000],[\"Interest\",0.2],[\"Cash\",1000],[\"Yield\",0.02]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0330/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #330. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0330.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Drag\",\"value\":180}]},\"metrics\":[{\"label\":\"Drag\",\"value\":\"180\"},{\"label\":\"Yield\",\"value\":\"0.02\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0330/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #330. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0330.case.1.witness",
+      "text": "Yield=0.1; Drag=100",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0330/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #330. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0330.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Debt\",1000],[\"Interest\",0.2],[\"Cash\",1000],[\"Yield\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0330/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #330. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0330.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Drag\",\"value\":100}]},\"metrics\":[{\"label\":\"Drag\",\"value\":\"100\"},{\"label\":\"Yield\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0330/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #330. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0330.recall",
+      "text": "Toy debt 1,001 costs interest 0.2; cash 1,000 earns yield 0.02 over the same period. What is interest cost minus cash income? Answer 180.2.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0330/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #330. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy debt 1,001 costs interest 0.2; cash 1,000 earns yield 0.02 over the same period. What is interest cost minus cash income?",
+    "options": [
+      "108.12",
+      "180.2",
+      "252.28"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Drag 180.2 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0330",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-330"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 330,
+    "sourceSection": "17. Saving, retirement & household finance",
+    "sourceEntryOriginal": "- **330.** Many households carry high-interest card debt while holding low-yield cash (Gross & Souleles, 2002).",
+    "modelBoundary": "the interest-rate spread on both balance-sheet sides",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0486",
+  "title": "Facial feedback across setups",
+  "hook": "Two stated cases: explore the sensitivity of an estimate to setup-specific later results.",
+  "domain": "behavioral",
+  "concept": "be-source-0486",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the sensitivity of an estimate to setup-specific later results affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Pooled, regardless of the stated inputs.",
+  "objective": "Compare the sensitivity of an estimate to setup-specific later results in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0486.predict",
+      "text": "Toy visible studies average 0.5 across 1 equal-weight studies; missing studies average 0 across 17. What is the mean if all are included?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0486/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #486. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0486.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0486/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #486. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0486.reveal.0",
+      "text": "The retained results are Missing=0; Pooled=0.028 and Missing=0.1; Pooled=0.122.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0486/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #486. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0486.reveal.1",
+      "text": "Selection of studies can change a pooled estimate. Missing results here are explicit sensitivity assumptions, not recovered observations. This comparison isolates the sensitivity of an estimate to setup-specific later results.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0486/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #486. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0486.case.0.witness",
+      "text": "Missing=0; Pooled=0.028",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0486/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #486. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0486.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Visible\",0.5],[\"VisibleN\",1],[\"Missing\",0],[\"MissingN\",17]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0486/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #486. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0486.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Pooled\",\"value\":0.027777777777777776}]},\"metrics\":[{\"label\":\"Pooled\",\"value\":\"0.028\"},{\"label\":\"Missing\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0486/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #486. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0486.case.1.witness",
+      "text": "Missing=0.1; Pooled=0.122",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0486/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #486. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0486.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Visible\",0.5],[\"VisibleN\",1],[\"Missing\",0.1],[\"MissingN\",17]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0486/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #486. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0486.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Pooled\",\"value\":0.12222222222222223}]},\"metrics\":[{\"label\":\"Pooled\",\"value\":\"0.122\"},{\"label\":\"Missing\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0486/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #486. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0486.recall",
+      "text": "Toy visible studies average 0.6 across 1 equal-weight studies; missing studies average 0 across 17. What is the mean if all are included? Answer 0.033.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0486/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #486. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy visible studies average 0.6 across 1 equal-weight studies; missing studies average 0 across 17. What is the mean if all are included?",
+    "options": [
+      "-0.067",
+      "0.033",
+      "0.133"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Pooled 0.033 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0486",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-486"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 486,
+    "sourceSection": "25. Famous findings that failed to replicate or shrank",
+    "sourceEntryOriginal": "- **486.** Holding a pen in the teeth to force a smile was said to make cartoons funnier (Strack, Martin & Stepper, 1988); a 17-lab replication found no effect (Wagenmakers et al., 2016), though later work found small effects in some setups (Coles et al., 2022).",
+    "modelBoundary": "the sensitivity of an estimate to setup-specific later results",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

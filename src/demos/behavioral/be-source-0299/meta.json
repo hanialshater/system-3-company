@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0299",
+  "title": "Cup size and actual ice cream",
+  "hook": "Two stated cases: explore the price per stated ounce.",
+  "domain": "behavioral",
+  "concept": "be-source-0299",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the price per stated ounce affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines UnitCost, regardless of the stated inputs.",
+  "objective": "Compare the price per stated ounce in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0299.predict",
+      "text": "A toy pack costs 2.26 for 7 units. What is its price per 1 units?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0299/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #299. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0299.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0299/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #299. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0299.reveal.0",
+      "text": "The retained results are Price=2.26 Quantity=7; UnitCost=0.323 and Price=1.66 Quantity=8; UnitCost=0.207.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0299/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #299. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0299.reveal.1",
+      "text": "A common unit denominator makes unequal packages comparable. Package appearance does not change their stated contents. This comparison isolates the price per stated ounce.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0299/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #299. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0299.case.0.witness",
+      "text": "Price=2.26 Quantity=7; UnitCost=0.323",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0299/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #299. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0299.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Price\",2.26],[\"Quantity\",7],[\"Units\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0299/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #299. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0299.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"UnitCost\",\"value\":0.32285714285714284}]},\"metrics\":[{\"label\":\"UnitCost\",\"value\":\"0.323\"},{\"label\":\"Price\",\"value\":\"2.26\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0299/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #299. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0299.case.1.witness",
+      "text": "Price=1.66 Quantity=8; UnitCost=0.207",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0299/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #299. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0299.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Price\",1.66],[\"Quantity\",8],[\"Units\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0299/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #299. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0299.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"UnitCost\",\"value\":0.2075}]},\"metrics\":[{\"label\":\"UnitCost\",\"value\":\"0.207\"},{\"label\":\"Price\",\"value\":\"1.66\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0299/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #299. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0299.recall",
+      "text": "A toy pack costs 2.36 for 7 units. What is its price per 1 units? Answer 0.337.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0299/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #299. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy pack costs 2.36 for 7 units. What is its price per 1 units?",
+    "options": [
+      "0.337",
+      "0.202",
+      "0.472"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives UnitCost 0.337 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0299",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-299"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 299,
+    "sourceSection": "15. Pricing & consumer behavior",
+    "sourceEntryOriginal": "- **299.** Viewed alone, 7 oz of ice cream overflowing a small cup was valued more ($2.26) than 8 oz in a large cup ($1.66) (Hsee, 1998).",
+    "modelBoundary": "the price per stated ounce",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

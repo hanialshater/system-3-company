@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0298",
+  "title": "Compare the shelf units",
+  "hook": "Two stated cases: explore the common quantity denominator.",
+  "domain": "behavioral",
+  "concept": "be-source-0298",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the common quantity denominator affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines UnitCost, regardless of the stated inputs.",
+  "objective": "Compare the common quantity denominator in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0298.predict",
+      "text": "A toy pack costs 6 for 750 units. What is its price per 1000 units?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0298/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #298. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0298.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0298/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #298. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0298.reveal.0",
+      "text": "The retained results are Price=6 Quantity=750; UnitCost=8 and Price=5 Quantity=500; UnitCost=10.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0298/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #298. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0298.reveal.1",
+      "text": "A common unit denominator makes unequal packages comparable. Package appearance does not change their stated contents. This comparison isolates the common quantity denominator.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0298/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #298. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0298.case.0.witness",
+      "text": "Price=6 Quantity=750; UnitCost=8",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0298/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #298. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0298.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Price\",6],[\"Quantity\",750],[\"Units\",1000]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0298/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #298. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0298.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"UnitCost\",\"value\":8}]},\"metrics\":[{\"label\":\"UnitCost\",\"value\":\"8\"},{\"label\":\"Price\",\"value\":\"6\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0298/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #298. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0298.case.1.witness",
+      "text": "Price=5 Quantity=500; UnitCost=10",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0298/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #298. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0298.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Price\",5],[\"Quantity\",500],[\"Units\",1000]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0298/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #298. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0298.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"UnitCost\",\"value\":10}]},\"metrics\":[{\"label\":\"UnitCost\",\"value\":\"10\"},{\"label\":\"Price\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0298/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #298. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0298.recall",
+      "text": "A toy pack costs 7 for 750 units. What is its price per 1,000 units? Answer 9.333.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0298/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #298. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy pack costs 7 for 750 units. What is its price per 1,000 units?",
+    "options": [
+      "5.6",
+      "13.067",
+      "9.333"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives UnitCost 9.333 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0298",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-298"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 298,
+    "sourceSection": "15. Pricing & consumer behavior",
+    "sourceEntryOriginal": "- **298.** Posting unit-price lists in supermarkets moved shoppers toward cheaper products (Russo, 1977).",
+    "modelBoundary": "the common quantity denominator",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

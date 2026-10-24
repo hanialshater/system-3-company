@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0337",
+  "title": "Make overdraft fees visible",
+  "hook": "Two stated cases: explore the complete bill once a contingent fee is counted.",
+  "domain": "behavioral",
+  "concept": "be-source-0337",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the complete bill once a contingent fee is counted affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Final, regardless of the stated inputs.",
+  "objective": "Compare the complete bill once a contingent fee is counted in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0337.predict",
+      "text": "A toy price starts at 100, subtracts discount 0, and adds surcharge 35. What is the final price?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0337/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #337. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0337.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0337/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #337. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0337.reveal.0",
+      "text": "The retained results are Surcharge=35; Final=135 and Surcharge=0; Final=100.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0337/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #337. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0337.reveal.1",
+      "text": "Compare final prices under the two labels. Fairness or preference judgments are not implied by equal arithmetic. This comparison isolates the complete bill once a contingent fee is counted.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0337/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #337. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0337.case.0.witness",
+      "text": "Surcharge=35; Final=135",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0337/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #337. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0337.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Base\",100],[\"Discount\",0],[\"Surcharge\",35]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0337/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #337. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0337.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":135}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"135\"},{\"label\":\"Surcharge\",\"value\":\"35\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0337/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #337. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0337.case.1.witness",
+      "text": "Surcharge=0; Final=100",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0337/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #337. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0337.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Base\",100],[\"Discount\",0],[\"Surcharge\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0337/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #337. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0337.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":100}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"100\"},{\"label\":\"Surcharge\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0337/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #337. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0337.recall",
+      "text": "A toy price starts at 101, subtracts discount 0, and adds surcharge 35. What is the final price? Answer 136.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0337/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #337. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy price starts at 101, subtracts discount 0, and adds surcharge 35. What is the final price?",
+    "options": [
+      "81.6",
+      "190.4",
+      "136"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Final 136 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0337",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-337"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 337,
+    "sourceSection": "17. Saving, retirement & household finance",
+    "sourceEntryOriginal": "- **337.** Survey questions that merely mentioned overdraft fees reduced overdrafts in the following months (Stango & Zinman, 2014).",
+    "modelBoundary": "the complete bill once a contingent fee is counted",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

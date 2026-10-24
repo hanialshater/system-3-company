@@ -5,6 +5,7 @@ import path from 'node:path';
 import {createHash} from 'node:crypto';
 import {validateSpec,advance,initialState,formatNumber} from '../../src/lib/mini-lab/model.ts';
 const batch=process.argv[2], dir=`company/reviews/continuation-${batch}`;
+const curationPath=process.argv[3]??'tools/continuation/behavioral-2.tsv';
 const records=JSON.parse(fs.readFileSync(`${dir}/curation.json`));
 const fixtures=JSON.parse(fs.readFileSync(`${dir}/fixtures.json`));
 const curricula={}, failures=[], manifest=[];
@@ -30,7 +31,7 @@ for(let i=0;i<records.length;i++){
   const template=c.questionTemplate??c.question;
   const recallQuestion=template.replace(/\{(\w+)\}/g,(_,name)=>formatNumber(recallP[c.labels.indexOf(name)]));
   const position=(r.sourceEntryId+1)%3, delta=Math.max(Math.abs(recallValue)*.4,.1), options=[formatNumber(recallValue-delta),formatNumber(recallValue+delta)];options.splice(position,0,formatNumber(recallValue));
-  const modelSource=`${folder}/model.ts; finite explicit model from tools/continuation/${r.domain==='behavioral'?'behavioral-2.tsv':'curation'}; source idea ${r.sourceFile} #${r.sourceEntryId}. Empirical source remains unverified.`;
+  const modelSource=`${folder}/model.ts; finite explicit model from ${curationPath}; source idea ${r.sourceFile} #${r.sourceEntryId}. Empirical source remains unverified.`;
   const claims=[];const add=(key,text,support='derivation')=>claims.push({id:`${r.domain}.${r.slug}.${key}`,text,support,source:modelSource,status:'unverified'});
   add('predict',spec.predict.question);add('setup',spec.setup,'convention');spec.reveal.forEach((t,k)=>add(`reveal.${k}`,t));
   for(let j=0;j<spec.scenarios.length;j++){

@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0402",
+  "title": "A past loser and a future return",
+  "hook": "Two stated cases: explore the separate periods in a return-reversal example.",
+  "domain": "behavioral",
+  "concept": "be-source-0402",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the separate periods in a return-reversal example affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Final, regardless of the stated inputs.",
+  "objective": "Compare the separate periods in a return-reversal example in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0402.predict",
+      "text": "A toy baseline is 80; it changes by 20 percent. What is the final level?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0402/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #402. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0402.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0402/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #402. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0402.reveal.0",
+      "text": "The retained results are Baseline=80 Percent=20; Final=96 and Baseline=120 Percent=-10; Final=108.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0402/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #402. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0402.reveal.1",
+      "text": "A relative percentage uses the baseline as denominator. It is different from the same number of percentage points. This comparison isolates the separate periods in a return-reversal example.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0402/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #402. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0402.case.0.witness",
+      "text": "Baseline=80 Percent=20; Final=96",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0402/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #402. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0402.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Baseline\",80],[\"Percent\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0402/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #402. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0402.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":96}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"96\"},{\"label\":\"Baseline\",\"value\":\"80\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0402/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #402. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0402.case.1.witness",
+      "text": "Baseline=120 Percent=-10; Final=108",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0402/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #402. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0402.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Baseline\",120],[\"Percent\",-10]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0402/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #402. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0402.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":108}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"108\"},{\"label\":\"Baseline\",\"value\":\"120\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0402/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #402. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0402.recall",
+      "text": "A toy baseline is 81; it changes by 20 percent. What is the final level? Answer 97.2.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0402/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #402. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy baseline is 81; it changes by 20 percent. What is the final level?",
+    "options": [
+      "58.32",
+      "97.2",
+      "136.08"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Final 97.2 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0402",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-402"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 402,
+    "sourceSection": "21. Behavioral finance & markets",
+    "sourceEntryOriginal": "- **402.** Portfolios of past 3–5-year losers beat past winners over the next 3–5 years (De Bondt & Thaler, 1985).",
+    "modelBoundary": "the separate periods in a return-reversal example",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

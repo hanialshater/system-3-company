@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0296",
+  "title": "The flat plan versus usage",
+  "hook": "Two stated cases: explore the usage threshold in a plan comparison.",
+  "domain": "behavioral",
+  "concept": "be-source-0296",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the usage threshold in a plan comparison affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Extra, regardless of the stated inputs.",
+  "objective": "Compare the usage threshold in a plan comparison in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0296.predict",
+      "text": "A toy flat plan costs 50; usage pricing costs 2 for each of 10 uses. How much more does the flat plan cost?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0296/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #296. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0296.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0296/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #296. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0296.reveal.0",
+      "text": "The retained results are Uses=10; Extra=30 and Uses=30; Extra=-10.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0296/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #296. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0296.reveal.1",
+      "text": "Compare plans at the same usage level. Uncertainty about future use would be a separate input. This comparison isolates the usage threshold in a plan comparison.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0296/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #296. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0296.case.0.witness",
+      "text": "Uses=10; Extra=30",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0296/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #296. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0296.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Fixed\",50],[\"PerUse\",2],[\"Uses\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0296/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #296. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0296.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Extra\",\"value\":30}]},\"metrics\":[{\"label\":\"Extra\",\"value\":\"30\"},{\"label\":\"Uses\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0296/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #296. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0296.case.1.witness",
+      "text": "Uses=30; Extra=-10",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0296/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #296. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0296.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Fixed\",50],[\"PerUse\",2],[\"Uses\",30]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0296/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #296. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0296.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Extra\",\"value\":-10}]},\"metrics\":[{\"label\":\"Extra\",\"value\":\"-10\"},{\"label\":\"Uses\",\"value\":\"30\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0296/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #296. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0296.recall",
+      "text": "A toy flat plan costs 51; usage pricing costs 2 for each of 10 uses. How much more does the flat plan cost? Answer 31.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0296/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #296. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy flat plan costs 51; usage pricing costs 2 for each of 10 uses. How much more does the flat plan cost?",
+    "options": [
+      "31",
+      "18.6",
+      "43.4"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Extra 31 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0296",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-296"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 296,
+    "sourceSection": "15. Pricing & consumer behavior",
+    "sourceEntryOriginal": "- **296.** Many consumers pick flat-rate internet plans even when pay-per-use would cost less (Lambrecht & Skiera, 2006).",
+    "modelBoundary": "the usage threshold in a plan comparison",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0327",
+  "title": "The growth that compounds",
+  "hook": "Two stated cases: explore the horizon of compound growth.",
+  "domain": "behavioral",
+  "concept": "be-source-0327",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the horizon of compound growth affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Balance, regardless of the stated inputs.",
+  "objective": "Compare the horizon of compound growth in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0327.predict",
+      "text": "A toy balance starts at 100, compounds at rate 0.1 per period, for 10 periods. What balance results?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0327/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #327. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0327.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0327/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #327. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0327.reveal.0",
+      "text": "The retained results are Years=10; Balance=259.374 and Years=20; Balance=672.75.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0327/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #327. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0327.reveal.1",
+      "text": "Compounding applies the rate to the changing balance. Compare the same horizon under the altered rate. This comparison isolates the horizon of compound growth.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0327/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #327. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0327.case.0.witness",
+      "text": "Years=10; Balance=259.374",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0327/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #327. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0327.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Start\",100],[\"Rate\",0.1],[\"Years\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0327/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #327. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0327.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":100},{\"label\":\"3.333\",\"value\":137.3964833672425},{\"label\":\"6.667\",\"value\":188.77793641684949},{\"label\":\"10\",\"value\":259.3742460100002}]},\"metrics\":[{\"label\":\"Balance\",\"value\":\"259.374\"},{\"label\":\"Years\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0327/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #327. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0327.case.1.witness",
+      "text": "Years=20; Balance=672.75",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0327/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #327. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0327.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Start\",100],[\"Rate\",0.1],[\"Years\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0327/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #327. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0327.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":100},{\"label\":\"6.667\",\"value\":188.77793641684949},{\"label\":\"13.333\",\"value\":356.37109277804063},{\"label\":\"20\",\"value\":672.7499949325611}]},\"metrics\":[{\"label\":\"Balance\",\"value\":\"672.75\"},{\"label\":\"Years\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0327/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #327. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0327.recall",
+      "text": "A toy balance starts at 101, compounds at rate 0.1 per period, for 10 periods. What balance results? Answer 261.968.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0327/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #327. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy balance starts at 101, compounds at rate 0.1 per period, for 10 periods. What balance results?",
+    "options": [
+      "157.181",
+      "261.968",
+      "366.755"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Balance 261.968 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0327",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-327"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 327,
+    "sourceSection": "17. Saving, retirement & household finance",
+    "sourceEntryOriginal": "- **327.** People underestimate compound growth, and those who do so most borrow more and save less (Stango & Zinman, 2009).",
+    "modelBoundary": "the horizon of compound growth",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "slug": "be-source-0295",
+  "title": "Every bid has a fee",
+  "hook": "Two stated cases: explore the accumulated bid fees in an auction bill.",
+  "domain": "behavioral",
+  "concept": "be-source-0295",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the accumulated bid fees in an auction bill affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Final, regardless of the stated inputs.",
+  "objective": "Compare the accumulated bid fees in an auction bill in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0295.predict",
+      "text": "A toy price starts at 20, subtracts discount 0, and adds surcharge 100. What is the final price?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0295/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #295. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0295.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0295/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #295. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0295.reveal.0",
+      "text": "The retained results are Surcharge=100; Final=120 and Surcharge=10; Final=30.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0295/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #295. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0295.reveal.1",
+      "text": "Compare final prices under the two labels. Fairness or preference judgments are not implied by equal arithmetic. This comparison isolates the accumulated bid fees in an auction bill.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0295/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #295. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0295.case.0.witness",
+      "text": "Surcharge=100; Final=120",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0295/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #295. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0295.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Base\",20],[\"Discount\",0],[\"Surcharge\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0295/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #295. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0295.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":120}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"120\"},{\"label\":\"Surcharge\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0295/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #295. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0295.case.1.witness",
+      "text": "Surcharge=10; Final=30",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0295/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #295. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0295.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Base\",20],[\"Discount\",0],[\"Surcharge\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0295/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #295. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0295.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":30}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"30\"},{\"label\":\"Surcharge\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0295/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #295. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0295.recall",
+      "text": "A toy price starts at 21, subtracts discount 0, and adds surcharge 100. What is the final price? Answer 121.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0295/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #295. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy price starts at 21, subtracts discount 0, and adds surcharge 100. What is the final price?",
+    "options": [
+      "72.6",
+      "169.4",
+      "121"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Final 121 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0295",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-295"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 295,
+    "sourceSection": "15. Pricing & consumer behavior",
+    "sourceEntryOriginal": "- **295.** Penny auctions earn sellers far more than item value as bidders chase sunk costs (Augenblick, 2016).",
+    "modelBoundary": "the accumulated bid fees in an auction bill",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

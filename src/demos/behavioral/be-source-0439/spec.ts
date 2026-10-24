@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "be-source-0439", "title": "An anticipated reward and waiting", "op": "beta", "labels": ["Soon", "Later", "Delay", "Beta", "Delta"], "outputs": ["Advantage"], "a": [10.0, 15.0, 3.0, 1.0, 0.95], "b": [10.0, 15.0, 10.0, 1.0, 0.95], "question": "A toy model values immediate 10 normally, but delayed 15 after 3 periods as Beta 1 times Delta 0.95 to the delay. What is delayed minus immediate value?", "questionTemplate": "A toy model values immediate {Soon} normally, but delayed {Later} after {Delay} periods as Beta {Beta} times Delta {Delta} to the delay. What is delayed minus immediate value?", "explain": "An extra present-time weight can reverse the ranking when an option becomes immediate. The weights are explicit model assumptions.", "lens": "the assumed value of a later option at different delays", "kind": "timeline", "answerPosition": 1};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;
