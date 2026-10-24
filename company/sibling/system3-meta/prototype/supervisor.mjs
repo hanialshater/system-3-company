@@ -67,7 +67,7 @@ import * as CH from "./channels.mjs";
 import * as JOBS from "./jobs.mjs";
 import * as WS from "./workspace.mjs";
 import { isIndependent, packHistory, preKey, lanesOf, Refused } from "./lib.mjs";
-import { raiseBudgetAsk } from "./asks.mjs";
+import { raiseBudgetAsk, raiseHoldAsk, liftHold } from "./asks.mjs";
 import { applyActs } from "./acts.mjs";
 import { storeArtifacts, snapshotArtifacts } from "./artifacts.mjs";
 import { learnTick, learnPending, reviewerRoles, independentAuthor, RULE_MAX_CHARS as LEARN_RULE_MAX } from "./learn.mjs";
@@ -158,6 +158,31 @@ export function applyCmdResult(co, o, s, t) {
  *  worktree itself). All pass: the stage passes once every part is in. A failure's findings are routed (K30) as
  *  reopened parts, unmatched lines to the owner who handed in; a contract failure goes to that owner too. A cmd that
  *  could not run holds the order as a stage-error. */
+/** K40: the integration check again, on the order's head as it is now, after a lifted workspace hold (the order's
+ *  parts are in; this is the check, not a new part). Pass: the recheck is cleared and the order goes on. Fail: the order
+ *  is held (stage-error kind "recheck") with the check's findings, which K40's hold ask takes to its manager. */
+export function runRecheck(co, o) {
+  const { engine, log } = co, I = ownershipOf(co.spec)?.integration ?? co.spec?.integration ?? {};
+  if (!I.run) { delete o.recheck; return { step: "recheck", order: o.id, result: "skipped", output: "no integration check in the spec" }; }
+  let dir = o.workdir, snap = null;
+  if ((I.at ?? "head") === "head" && WS.commitOf(WS.specOf(co)) && o.workspace?.dir && o.workspace.head) {
+    snap = fs.mkdtempSync(path.join(os.tmpdir(), "meta-recheck-"));
+    const env = { ...process.env, ...WS.gitPins(o.workspace.dir) };
+    const a = spawnSync("git", ["-C", o.workspace.dir, "archive", "--format=tar", o.workspace.head], { env, maxBuffer: 1 << 30, timeout: 60_000 });
+    const x = a.status === 0 ? spawnSync("tar", ["-x", "-C", snap], { input: a.stdout, timeout: 60_000 }) : a;
+    if (x.status !== 0) { fs.rmSync(snap, { recursive: true, force: true }); snap = null; dir = null; }
+    else dir = snap;
+  }
+  let t;
+  try { t = dir ? runCmdCheck({ ...o, workdir: dir }, I.run) : { pass: false, stageError: true, output: "could not export the head" }; }
+  finally { if (snap) fs.rmSync(snap, { recursive: true, force: true }); }
+  log.add({ type: "recheck", order: o.id, stage: o.stage, sha: o.workspace?.head ?? null, pass: !!t.pass, output: String(t.output ?? "").slice(0, 300) });
+  if (t.pass) { delete o.recheck; return { step: "recheck", order: o.id, result: "pass", output: t.output }; }
+  const why = `recheck: the integration check on the head after a lifted hold ${t.stageError ? "could not run" : "fails"}: ${t.output}${t.findings ? `\n${String(t.findings).slice(0, 1200)}` : ""}`;
+  o.stageError = { kind: "recheck", stage: o.stage, loops: o.loops, why, t: engine.clock.now() };
+  log.add({ type: "stage-error", kind: "recheck", order: o.id, stage: o.stage, loops: o.loops, why });
+  return { step: "recheck", order: o.id, result: "stage-error", output: why };
+}
 export function runIntegration(co, o) {
   const { engine, log } = co, own = ownershipOf(co.spec), p = engine.partsNow(o), I = own?.integration ?? {};
   if (!p?.integrate?.due) return null;
@@ -493,6 +518,8 @@ export function tick(co, { acceptance = null, faults = null, probe = hostProbe }
   steps.push(...sweepGateNotices(co)); // K20: a notice whose item is gone blocks nothing
   // K13: an order at or over its charged budget gets one budget ask (the planner below starts no session on it)
   for (const o of engine.orders.values()) { const it = raiseBudgetAsk(co, o); if (it) steps.push({ step: "budget", order: o.id, result: "stopped", output: `${o.spent} of ${o.budget}: ${it.id} to ${it.assignee}` }); }
+  // K40: a hold that has lasted holdAskMin minutes is asked about (once), never left silent
+  for (const o of engine.orders.values()) { const it = raiseHoldAsk(co, o); if (it) steps.push({ step: "hold", order: o.id, result: "asked", output: `${it.id} to ${it.assignee}` }); }
   let madeOne = false;
   for (let changed = true; changed;) {
     changed = false;
@@ -529,6 +556,8 @@ export function tick(co, { acceptance = null, faults = null, probe = hostProbe }
         if (pc.owner && engine.partsNow(o, pc.stage)) { WS.markIntegrate(co, o, pc.owner, c?.files ?? []); engine.finishParts(o); changed = true; }
       }
       if (o.stage === "done" || off) continue; // only its pending commit was left to do
+      // K40: a lifted workspace hold re-runs the integration check on the head before the order goes on
+      if (o.recheck) { steps.push(runRecheck(co, o)); changed = true; if (o.recheck || o.stageError) continue; }
       const sd = engine.stageDef(o);
       // K12 review: a post on a stage the supervisor signs (a flow defined before validation refused it) holds the order
       // with nothing done: toy ship.post=exit 1 entered, copied to live/shipped, then threw out of tick on every tick
@@ -1163,9 +1192,8 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     print(withLock(() => {
       const co = load(); const o = co.engine.orders.get(opt.order);
       if (!o?.stageError) { process.exitCode = 1; return { refused: `${opt.order} has no stage-error` }; }
-      const was = o.stageError; delete o.stageError;
-      co.log.add({ type: "stage-retry", order: o.id, stage: was.stage, loops: was.loops, by: opt.by ?? null });
-      save(co); return { order: o.id, stage: o.stage, retried: was.why };
+      const was = liftHold(co, o, { by: opt.by ?? null }); // K40: a workspace hold is lifted with a recheck due
+      save(co); return { order: o.id, stage: o.stage, retried: was.why, ...(o.recheck ? { recheck: "the integration check runs again on the head first" } : {}) };
     }));
   } else if (cmd === "jobs") print(withLock(() => Object.values(JOBS.jobsOf(load()))));
   else if (cmd === "tick") print(once(opts));

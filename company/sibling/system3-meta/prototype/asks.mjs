@@ -161,6 +161,8 @@ export function answer(co, { by, id, decision, text, viaOrder = false }) {
   update(co, { by, id, state: "done" });
   co.log.add({ type: "ask-answer", item: id, by, decision });
   if (it.ask.kind === "change-request" && decision === "yes") grant(co, it, by);
+  // K40: a hold ask's yes lifts its order's hold (only the hold it was raised for)
+  if (it.labels?.includes("hold") && decision === "yes") { const ho = co.engine.orders.get(it.ask.order); if (ho?.stageError?.ask === id) liftHold(co, ho, { by, via: id }); }
   if (it.ask.kind === "review-borrow") borrowAnswered(co, it, { decision, text }); // K37: a no is work for the module's owner
   if (bo && decision === "yes") co.engine.topUp(bo.id, { amount: it.ask.amount, by, ask: id }); // the planner takes it up again
   // M5 review: a no (or a redirect) is in force on the order itself, until its owner resumes or reopens it (Engine)
@@ -224,6 +226,36 @@ export function raiseBudgetAsk(co, o) {
   it.ask.order = o.id; it.labels.push("budget");
   co.log.add({ type: "budget-stop", order: o.id, spent: o.spent, budget: o.budget, amount, item: it.id, to: it.assignee });
   return it;
+}
+
+/** K40 (B8 S2 held 2 h, B9 S 24 min: a stage-error holds an order until `supervisor retry`, and nothing escalated it):
+ *  a hold older than the spec's holdAskMin (default DEFAULT_HOLD_ASK_MIN minutes; 0: never) raises one ask to the
+ *  order's manager, citing the hold. A yes lifts it as `supervisor retry` does (a workspace hold, a refused or failed
+ *  commit, then re-runs the integration check on the head before the order goes on: liftHold); a no leaves it held. */
+export const DEFAULT_HOLD_ASK_MIN = 10;
+export function raiseHoldAsk(co, o) {
+  const h = o?.stageError, min = co.spec?.holdAskMin ?? DEFAULT_HOLD_ASK_MIN, now = co.engine.clock.now();
+  if (!h || !min || h.ask || ["done", "cancelled", "parked"].includes(o.stage) || now - (h.t ?? now) < min) return null;
+  const decider = o.manager ?? o.builder, by = o.builder ?? o.manager;
+  if (!decider || !co.org.role(by)?.active) { h.ask = "none"; co.log.add({ type: "hold-ask-failed", order: o.id, why: "no active builder or manager" }); return null; }
+  const mins = Math.round(now - h.t);
+  const why = [`${o.id}${o.title ? ` (${o.title})` : ""} has been held for ${mins} minutes at ${h.stage}${h.kind ? ` (a ${h.kind} hold)` : ""}, and nothing retries it by itself:`, String(h.why ?? "").slice(0, 1500),
+    `Fix the cause first${o.workdir ? ` (its worktree: ${o.workdir})` : ""}, then decide: \`node meta.mjs ask answer --by=${decider} --id=<this ask> --decision=yes --text='…'\` retries the stage${h.kind === "workspace" ? " (after the integration check runs again on the order's head)" : ""}; \`--decision=no\` leaves it held (cancel or park the order if it cannot go on).`].join("\n");
+  let it = null;
+  try { it = raise(co, { by, kind: "decision", title: `Held: ${o.id} at ${h.stage} for ${mins} min`, why, due: now + 60, decider, order: o.id, options: ["yes: retry the stage (I fixed the cause)", "no: leave it held"], recommend: "yes: retry the stage (I fixed the cause)" }); }
+  catch (e) { if (!e.refused) throw e; h.ask = "failed"; co.log.add({ type: "hold-ask-failed", order: o.id, why: e.message }); return null; }
+  it.ask.order = o.id; it.labels.push("hold"); h.ask = it.id;
+  co.log.add({ type: "hold-ask", order: o.id, item: it.id, to: it.assignee, stage: h.stage, kind: h.kind ?? null, minutes: mins });
+  return it;
+}
+/** K40: lift order `o`'s hold (a hold ask's yes, or `supervisor retry`); a workspace hold is lifted with a recheck due
+ *  (the integration check runs again on the head before the order goes on: B9 S's round 2 went to accept unchecked). */
+export function liftHold(co, o, { by, via = null }) {
+  const was = o.stageError; if (!was) return null;
+  delete o.stageError;
+  if (["workspace", "recheck"].includes(was.kind)) o.recheck = { why: String(was.why ?? "").slice(0, 300), by, t: co.engine.clock.now() };
+  co.log.add({ type: "stage-retry", order: o.id, stage: was.stage, loops: was.loops, by, ...(via ? { via } : {}), ...(o.recheck ? { recheck: true } : {}) });
+  return was;
 }
 
 /** M5 review: a cancelled order's open budget ask is closed (state cancelled), so no decider is asked to top up an

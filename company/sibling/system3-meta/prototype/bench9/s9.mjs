@@ -66,6 +66,15 @@ export function waveAccept(P, w) {
 /** bench9's full judge on `dir` (the caller holds the hidden lock), in bench8 hidden()'s shape. */
 export function hidden(P, dir, { b9 = null } = {}) {
   const { NODE_TEST_CONTEXT, ...env } = process.env;
+  // B9 correction (2026-10-24): judge a clean export of the worktree's committed head, as V's and P's full judge judged
+  // their committed trees: round 2 was judged on the live worktree and failed every test, while its commit passes
+  const snap = fs.mkdtempSync(path.join(path.dirname(judgeDir(b9)), "s9-snap-"));
+  const ar = spawnSync("sh", ["-c", `git -c safe.directory='*' -C '${dir}' archive HEAD | tar -x -C '${snap}'`], { encoding: "utf8" });
+  if (ar.status !== 0) { fs.rmSync(snap, { recursive: true, force: true }); return { error: `bench9 judge: could not export ${dir}'s head: ${ar.stderr}`, code: 3 }; }
+  dir = snap;
+  try { return judgeHead(dir, env, b9); } finally { fs.rmSync(snap, { recursive: true, force: true }); }
+}
+function judgeHead(dir, env, b9) {
   const r = spawnSync(process.execPath, [path.join(judgeDir(b9), "judge.mjs"), "full", `--dir=${dir}`, `--reps=${Number(process.env.B9_JUDGE_REPS ?? 5)}`], { encoding: "utf8", env, timeout: 5 * 3600_000, maxBuffer: 64 << 20 });
   const out = String(r.stdout ?? "").trim().split("\n"), lines = out.filter((l) => /^B9 /.test(l));
   let j = null; for (const l of [...out].reverse()) { try { j = JSON.parse(l); break; } catch {} }

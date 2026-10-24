@@ -365,3 +365,20 @@ test("K39: a metric line is read like checked; an effect rule's belief follows t
   assert.deepEqual(L.effectScore(co, book, { id: "E-6", order: "E-6", lastWorkMs: 40, classes: [] }, all), []);
   assert.ok(Math.abs(L.normCdf(0) - 0.5) < 1e-7 && Math.abs(L.normCdf(1.96) - 0.975) < 1e-3);
 });
+
+test("K40: a K39 metric's `valid` flag: an order whose gate failed scores no effect rule and is no later baseline", () => {
+  const spec = JSON.parse(JSON.stringify(SPEC)); spec.learn.metric = { name: "score", noise: 0.15, baseline: 1, valid: "gate" };
+  assert.deepEqual(validateSpec(spec), []);
+  const bad = JSON.parse(JSON.stringify(SPEC)); bad.learn.metric = { name: "score", valid: 3 };
+  assert.match(validateSpec(bad).join("\n"), /learn.metric is/);
+  const events = [], co = { spec, log: { add: (e) => events.push(e) } };
+  const rule = { id: "P-1", kind: "effect", status: "active", addedMs: 5, prior: 0.6, effect: { m: Math.log(0.95), v: 0.01, n: 0, obs: [] } };
+  const book = { rules: [rule] }, all = [{ id: "E-1", order: "O-1", metric: { score: 0.6, gate: 1 }, lastWorkMs: 1, classes: [] }];
+  const step = (id, score, gate, t) => { const rec = { id, order: id, metric: { score, gate }, lastWorkMs: t, classes: [] }; all.push(rec); return L.effectScore(co, book, rec, all); };
+  assert.deepEqual(step("O-2", 1, 0, 10), [], "a broken round scores nothing");
+  assert.equal(rule.effect.n, 0);
+  assert.equal(events.at(-1).type, "learn-effect-skip");
+  step("O-3", 0.55, 1, 20);
+  assert.equal(rule.effect.n, 1);
+  assert.ok(Math.abs(rule.effect.obs[0].d - Math.log(0.55 / 0.6)) < 1e-3, "against the last valid order (0.6), not the broken one (1.0)");
+});

@@ -373,3 +373,61 @@ test("M6 prep review: o.workspace.head (the merge's ${head_sha}) is the branch t
   assert.equal(o.workspace.head, sh(dir, "rev-parse", "HEAD"));
   assert.notEqual(o.workspace.head, first);
 });
+
+// ---- K40 (B8 S2 held 2 h, B9 S 24 min: a stage-error held an order silently until an operator ran `retry`)
+test("K40: a hold older than holdAskMin asks the order's manager once; a yes lifts it with a recheck due; retry does too", async () => {
+  const { answer } = await import("../asks.mjs");
+  const co = fresh();
+  const o = order(co, "HA");
+  tick(co);
+  const dir = o.workdir;
+  fs.appendFileSync(path.join(dir, "tests", "qa", "contract.md"), "weakened\n");
+  build(co, o);
+  assert.equal(o.stageError.kind, "workspace");
+  tick(co);
+  assert.equal(co.log.events.filter((e) => e.type === "hold-ask").length, 0, "not yet: under holdAskMin");
+  o.stageError.t -= 11; // aged (the clock is real time)
+  const steps = tick(co);
+  const st = steps.find((s) => s.step === "hold" && s.order === o.id);
+  assert.ok(st, "asked after 10 minutes");
+  const it = co.data.tracker.items.get(o.stageError.ask);
+  assert.equal(it.assignee, o.manager, "the order's manager decides");
+  assert.match(it.body, /held for 1\d minutes at test1 \(a workspace hold\)/);
+  tick(co); o.stageError.t -= 30; tick(co);
+  assert.equal(co.log.events.filter((e) => e.type === "hold-ask").length, 1, "once per hold");
+  // the manager fixes the cause and says yes: the hold is lifted, the recheck is due (no integration check here: skipped)
+  sh(dir, "checkout", "--", "tests/qa/contract.md");
+  fs.writeFileSync(path.join(dir, "ok"), "");
+  answer(co, { by: o.manager, id: it.id, decision: "yes", text: "reverted the protected file" });
+  assert.equal(o.stageError, undefined);
+  assert.ok(o.recheck, "a workspace hold lifts with a recheck due");
+  const s2 = tick(co);
+  assert.equal(s2.find((s) => s.step === "recheck")?.result, "skipped");
+  assert.equal(o.recheck, undefined);
+  assert.equal(s2.find((s) => s.step === "test1")?.result, "pass");
+  // holdAskMin 0: never asks
+  const c2 = fresh({ ...spec(), holdAskMin: 0 });
+  const q = order(c2, "HB"); tick(c2);
+  fs.appendFileSync(path.join(q.workdir, "tests", "qa", "contract.md"), "x\n");
+  build(c2, q); q.stageError.t -= 60; tick(c2);
+  assert.equal(c2.log.events.filter((e) => e.type === "hold-ask").length, 0);
+  assert.match(validateSpec({ ...spec(), holdAskMin: -1 }).join("\n"), /holdAskMin is a whole number/);
+});
+
+test("K40: a recheck that fails holds the order again (kind recheck), and its lift rechecks once more", async () => {
+  const { runRecheck } = await import("../supervisor.mjs");
+  const { liftHold } = await import("../asks.mjs");
+  const co = fresh();
+  const o = order(co, "RC"); tick(co);
+  co.spec.integration = { run: { argv: ["node", "-e", "process.exit(require('fs').existsSync('ok') ? 0 : 1)"] }, at: "workdir" };
+  o.recheck = { why: "test", t: 0 };
+  const r = runRecheck(co, o);
+  assert.equal(r.result, "stage-error");
+  assert.equal(o.stageError.kind, "recheck");
+  assert.match(o.stageError.why, /^recheck: the integration check on the head after a lifted hold fails/);
+  liftHold(co, o, { by: o.manager });
+  assert.ok(o.recheck, "a recheck hold lifts with another recheck due");
+  fs.writeFileSync(path.join(o.workdir, "ok"), "");
+  assert.equal(runRecheck(co, o).result, "pass");
+  assert.equal(o.recheck, undefined);
+});

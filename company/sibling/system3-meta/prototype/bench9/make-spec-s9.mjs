@@ -50,7 +50,7 @@ const spec = {
   ],
   integration: { ...s2.integration, run: { ...s2.integration.run, argv: s2.integration.run.argv.map((a) => (a === "--wave=${task}" ? "--wave=W7" : a)) } },
   // K39: the judge's score is the accept stage's metric; each order's change in it scores the effect rules
-  learn: { ...s2.learn, roles: OWNERS, metric: { name: "score", lower: true, noise: 0.15, baseline: 1 } },
+  learn: { ...s2.learn, roles: OWNERS, metric: { name: "score", lower: true, noise: 0.15, baseline: 1, valid: "gate" } },
   flow: { ...s2.flow, stages: s2.flow.stages.map((x) => (x.stage === "accept" ? { ...x, run: { ...x.run, findings: { ...x.run.findings, metric: "^metric: (.+)$" } } } : x)) },
   borrow: { modules: OWNERS },
 };

@@ -91,7 +91,7 @@ export function learnProblems(s, roles = new Map()) {
   if (L.maxRules != null && !(Number.isInteger(L.maxRules) && L.maxRules >= 1 && L.maxRules <= 50)) p.push("learn.maxRules is a whole number 1-50");
   if (L.retireAfter != null && !(Number.isInteger(L.retireAfter) && L.retireAfter >= 1 && L.retireAfter <= 10)) p.push("learn.retireAfter is a whole number of runs 1-10");
   if (L.retireBelow != null && !(typeof L.retireBelow === "number" && L.retireBelow >= 0.05 && L.retireBelow <= 0.5)) p.push("learn.retireBelow is a belief 0.05-0.5");
-  if (L.metric != null) { const M = L.metric; if (typeof M !== "object" || Array.isArray(M) || Object.keys(M).some((k) => !["name", "lower", "noise", "baseline"].includes(k)) || typeof M.name !== "string" || !/^[A-Za-z][\w-]*$/.test(M.name) || (M.lower != null && typeof M.lower !== "boolean") || (M.noise != null && !(typeof M.noise === "number" && M.noise >= 0.01 && M.noise <= 1)) || (M.baseline != null && !(typeof M.baseline === "number" && M.baseline > 0))) p.push("learn.metric is {name, lower, noise 0.01-1, baseline > 0}"); }
+  if (L.metric != null) { const M = L.metric; if (typeof M !== "object" || Array.isArray(M) || Object.keys(M).some((k) => !["name", "lower", "noise", "baseline", "valid"].includes(k)) || (M.valid != null && (typeof M.valid !== "string" || !/^[A-Za-z][\w-]*$/.test(M.valid))) || typeof M.name !== "string" || !/^[A-Za-z][\w-]*$/.test(M.name) || (M.lower != null && typeof M.lower !== "boolean") || (M.noise != null && !(typeof M.noise === "number" && M.noise >= 0.01 && M.noise <= 1)) || (M.baseline != null && !(typeof M.baseline === "number" && M.baseline > 0))) p.push("learn.metric is {name, lower, noise 0.01-1, baseline > 0, valid (the name of a 0/1 metric: 0 means the measurement does not count)}"); }
   if (L.classify != null) { let ok = typeof L.classify === "string"; try { ok = ok && /\((?!\?)/.test(L.classify) && !!new RegExp(L.classify); } catch { ok = false; } if (!ok) p.push("learn.classify is a regular expression with a capture group (the defect class)"); }
   return p;
 }
@@ -375,7 +375,11 @@ function score(co, pb, rec, evidence) {
 export function effectScore(co, pb, rec, evidence) {
   const M = co.spec.learn.metric, out = [];
   if (!M || !(rec.metric?.[M.name] > 0)) return out;
-  const prior = evidence.filter((e) => e.id !== rec.id && e.metric?.[M.name] > 0 && (e.lastWorkMs ?? 0) < (rec.lastWorkMs ?? 0)).at(-1);
+  // K40 (B9 S: a broken round's score of 1.0 retired three speed rules): an order whose `valid` metric is 0 (B9: the
+  // gate failed) is not a measurement of any practice: it scores nothing, and is no later order's baseline
+  const valid = (e) => !M.valid || e.metric?.[M.valid] !== 0;
+  if (!valid(rec)) { co.log.add({ type: "learn-effect-skip", order: rec.order, metric: M.name, why: `${M.valid} = 0: not a measurement of a practice` }); return out; }
+  const prior = evidence.filter((e) => e.id !== rec.id && e.metric?.[M.name] > 0 && valid(e) && (e.lastWorkMs ?? 0) < (rec.lastWorkMs ?? 0)).at(-1);
   const prev = prior?.metric?.[M.name] ?? M.baseline ?? null;
   if (!(prev > 0)) return out;
   const d = (M.lower === false ? -1 : 1) * Math.log(rec.metric[M.name] / prev), s2 = (M.noise ?? 0.15) ** 2;

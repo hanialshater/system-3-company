@@ -213,6 +213,8 @@ export function validateSpec(s) {
   // K5: an order workspace (one git worktree per order, workspace.mjs)
   if (s.workspace != null) { const e = validateWorkspace(s.workspace); need(!e, `workspace: ${e}`); }
   // K9: the loop cap (true: lib.mjs DEFAULT_MAX_LOOPS; a lane policy's maxLoops wins), the same range as the knob
+  // K40: minutes a stage-error may hold an order before code asks its manager (0: never; default asks.mjs DEFAULT_HOLD_ASK_MIN)
+  if (s.holdAskMin != null) need(Number.isInteger(s.holdAskMin) && s.holdAskMin >= 0 && s.holdAskMin <= 1440, "holdAskMin is a whole number of minutes 0-1440");
   if (s.maxLoops != null) need(s.maxLoops === true || (Number.isInteger(s.maxLoops) && s.maxLoops >= 1 && s.maxLoops <= 10), "maxLoops is true (3) or a whole number 1-10");
   for (const r of s.rules ?? []) need(!!r.tasks && r.checks && typeof r.checks === "object", "a standing rule is {tasks, checks}");
   // K17 + M6 prep: `policy` {levelCaps: {<level>: N}, host: {maxLoadPerCpu, minFreeGB}, lanes: {<lane>: {knobs, reason,
