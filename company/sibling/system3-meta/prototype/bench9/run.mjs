@@ -113,6 +113,16 @@ function clockFor(arm) {
   const iv = setInterval(tick, 15_000); iv.unref();
   return { min: () => { tick(); return acc / 60000; }, stop: () => { tick(); clearInterval(iv); } };
 }
+/** The cost of a session's assistant messages since t0, from its transcript (list prices per million tokens: input 5,
+ *  cache write 6.25, cache read 0.5, output 25; times 1.33, the ratio of the SDK's reported cost to these prices on
+ *  AO's completed round-1 turn). An estimate: used only when the SDK reports none. */
+function transcriptCost(cwd, sid, t0) {
+  const f = path.join(process.env.HOME ?? "/root", ".claude", "projects", path.resolve(cwd).replace(/[^A-Za-z0-9]/g, "-"), `${sid}.jsonl`);
+  let txt; try { txt = fs.readFileSync(f, "utf8"); } catch { return null; }
+  const seen = new Set(); let usd = 0;
+  for (const l of txt.split("\n")) { let m; try { m = JSON.parse(l); } catch { continue; } if (m.type !== "assistant" || !m.message?.usage || Date.parse(m.timestamp) < t0) continue; if (seen.has(m.message.id)) continue; seen.add(m.message.id); const u = m.message.usage; usd += ((u.input_tokens ?? 0) * 5 + (u.cache_creation_input_tokens ?? 0) * 6.25 + (u.cache_read_input_tokens ?? 0) * 0.5 + (u.output_tokens ?? 0) * 25) / 1e6; }
+  return usd * 1.33;
+}
 let query = null;
 /** One turn of a session in root P: { sid, cost (the session's running total), ok, why }. */
 async function turn(P, prompt, { resume = null, fork = false, ms, label, ledger }) {
@@ -131,9 +141,12 @@ async function turn(P, prompt, { resume = null, fork = false, ms, label, ledger 
     for await (const m of query({ prompt, options })) { if (typeof m.session_id === "string" && m.session_id) sid = m.session_id; if (m.type === "result") result = m; }
   } catch (e) { error = e?.message ?? String(e); }
   clearTimeout(timer);
-  const cost = Object.values(result?.modelUsage ?? {}).reduce((a, u) => a + (u.costUSD ?? 0), 0);
+  let cost = Object.values(result?.modelUsage ?? {}).reduce((a, u) => a + (u.costUSD ?? 0), 0), costEstimated = false;
+  // B9c fix: a turn cut by its time cap gets no result message, and so logged $0 (two of AO's round-1 workers did);
+  // estimate it from the session transcript's token usage instead, so the cost caps see it
+  if (!result && sid) { const est = transcriptCost(P.V, sid, t0); if (est != null) { cost = est; costEstimated = true; } }
   const ok = !error && !!result && !result.is_error;
-  log(ledger, { event: "turn", label, sid, cost: Number(cost.toFixed(4)), ok, why: ok ? null : String(error ?? result?.subtype ?? "no result").slice(0, 300), turns: result?.num_turns ?? null, min: Math.round((Date.now() - t0) / 600) / 100 });
+  log(ledger, { event: "turn", label, sid, cost: Number(cost.toFixed(4)), ...(costEstimated ? { costEstimated } : {}), ok, why: ok ? null : String(error ?? result?.subtype ?? "no result").slice(0, 300), turns: result?.num_turns ?? null, min: Math.round((Date.now() - t0) / 600) / 100 });
   return { sid, cost, ok, why: error };
 }
 /** Commit whatever the session left uncommitted (only committed work is judged; this keeps a cut session's work). */
