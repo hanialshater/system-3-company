@@ -1,0 +1,162 @@
+{
+  "slug": "p100-intervene",
+  "title": "See it or set it?",
+  "hook": "Filtering a variable and forcing its value can select different worlds.",
+  "domain": "probability",
+  "concept": "p100-intervene",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "set do(X = x) in a simulated system and compare it with filtering for X = x."
+    ]
+  },
+  "misconception": "Treating intervene as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "set do(X = x) in a simulated system and compare it with filtering for X = x.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-intervene.predict",
+      "text": "Let fair binary Z generate X=Z and Y=2X+4Z. If you intervene to set X=1, what mean Y follows?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-intervene/spec.ts; exact finite illustration specified in manager numericCase: Z fairbinary; X=Z (observational), Y=2X+4Z. Filter X=1 givesY6 vsX0 gives0. Intervene X1 averagesY4; interveneX0 averagesY2, causaldifference2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-intervene.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-intervene/spec.ts; exact finite illustration specified in manager numericCase: Z fairbinary; X=Z (observational), Y=2X+4Z. Filter X=1 givesY6 vsX0 gives0. Intervene X1 averagesY4; interveneX0 averagesY2, causaldifference2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-intervene.reveal.0",
+      "text": "Setting X=1 retains mean Y=4; selecting observed X=1 retains Y=6. Intervention leaves both values of Z represented, while selection identifies Z=1 in this model.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-intervene/spec.ts; exact finite illustration specified in manager numericCase: Z fairbinary; X=Z (observational), Y=2X+4Z. Filter X=1 givesY6 vsX0 gives0. Intervene X1 averagesY4; interveneX0 averagesY2, causaldifference2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-intervene.reveal.1",
+      "text": "The difference comes from cutting Z→X rather than conditioning on X. The causal effect of setting X from 0 to 1 is 2, even though the observed group gap is 6.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-intervene/spec.ts; exact finite illustration specified in manager numericCase: Z fairbinary; X=Z (observational), Y=2X+4Z. Filter X=1 givesY6 vsX0 gives0. Intervene X1 averagesY4; interveneX0 averagesY2, causaldifference2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-intervene.recall",
+      "text": "If Z confounds X and Y, is selecting X=1 generally the same operation as forcing X=1? Selection can change the upstream-Z mix; intervention replaces the X assignment rule.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-intervene/spec.ts; exact finite illustration specified in manager numericCase: Z fairbinary; X=Z (observational), Y=2X+4Z. Filter X=1 givesY6 vsX0 gives0. Intervene X1 averagesY4; interveneX0 averagesY2, causaldifference2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-intervene.scenario.0.summary",
+      "text": "Intervened mean Y=4",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-intervene/spec.ts; exact finite illustration specified in manager numericCase: Z fairbinary; X=Z (observational), Y=2X+4Z. Filter X=1 givesY6 vsX0 gives0. Intervene X1 averagesY4; interveneX0 averagesY2, causaldifference2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-intervene.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"Z\",\"x\":40,\"y\":45},{\"id\":\"1\",\"label\":\"X\",\"x\":160,\"y\":115},{\"id\":\"2\",\"label\":\"Y\",\"x\":280,\"y\":45}],\"edges\":[{\"from\":\"0\",\"to\":\"1\",\"active\":true},{\"from\":\"0\",\"to\":\"2\",\"active\":true},{\"from\":\"1\",\"to\":\"2\",\"active\":true}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-intervene/spec.ts; exact finite illustration specified in manager numericCase: Z fairbinary; X=Z (observational), Y=2X+4Z. Filter X=1 givesY6 vsX0 gives0. Intervene X1 averagesY4; interveneX0 averagesY2, causaldifference2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-intervene.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Set X=1\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"Z\",\"x\":40,\"y\":45},{\"id\":\"1\",\"label\":\"X=1\",\"x\":160,\"y\":115},{\"id\":\"2\",\"label\":\"Y\",\"x\":280,\"y\":45}],\"edges\":[{\"from\":\"0\",\"to\":\"1\",\"active\":false},{\"from\":\"0\",\"to\":\"2\",\"active\":true},{\"from\":\"1\",\"to\":\"2\",\"active\":true}]},\"metrics\":[{\"label\":\"Z=0 / Z=1\",\"value\":\"Y=2 / Y=6\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-intervene/spec.ts; exact finite illustration specified in manager numericCase: Z fairbinary; X=Z (observational), Y=2X+4Z. Filter X=1 givesY6 vsX0 gives0. Intervene X1 averagesY4; interveneX0 averagesY2, causaldifference2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-intervene.scenario.1.summary",
+      "text": "Observed mean Y=6",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-intervene/spec.ts; exact finite illustration specified in manager numericCase: Z fairbinary; X=Z (observational), Y=2X+4Z. Filter X=1 givesY6 vsX0 gives0. Intervene X1 averagesY4; interveneX0 averagesY2, causaldifference2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-intervene.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"Z\",\"x\":40,\"y\":45},{\"id\":\"1\",\"label\":\"X\",\"x\":160,\"y\":115},{\"id\":\"2\",\"label\":\"Y\",\"x\":280,\"y\":45}],\"edges\":[{\"from\":\"0\",\"to\":\"1\",\"active\":true},{\"from\":\"0\",\"to\":\"2\",\"active\":true},{\"from\":\"1\",\"to\":\"2\",\"active\":true}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-intervene/spec.ts; exact finite illustration specified in manager numericCase: Z fairbinary; X=Z (observational), Y=2X+4Z. Filter X=1 givesY6 vsX0 gives0. Intervene X1 averagesY4; interveneX0 averagesY2, causaldifference2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-intervene.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · Select X=1\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"Z=1\",\"x\":40,\"y\":45},{\"id\":\"1\",\"label\":\"X=1\",\"x\":160,\"y\":115},{\"id\":\"2\",\"label\":\"Y=6\",\"x\":280,\"y\":45}],\"edges\":[{\"from\":\"0\",\"to\":\"1\",\"active\":true},{\"from\":\"0\",\"to\":\"2\",\"active\":true},{\"from\":\"1\",\"to\":\"2\",\"active\":true}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-intervene/spec.ts; exact finite illustration specified in manager numericCase: Z fairbinary; X=Z (observational), Y=2X+4Z. Filter X=1 givesY6 vsX0 gives0. Intervene X1 averagesY4; interveneX0 averagesY2, causaldifference2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-intervene.hook",
+      "text": "Filtering a variable and forcing its value can select different worlds.",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-intervene/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "If Z confounds X and Y, is selecting X=1 generally the same operation as forcing X=1?",
+    "options": [
+      "No",
+      "Yes, by definition",
+      "Yes, if X is binary"
+    ],
+    "answer": 0,
+    "why": "Selection can change the upstream-Z mix; intervention replaces the X assignment rule."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-intervene",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "structural-intervention"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 348,
+    "sourceSection": "18. Causal graphs & the do-operator",
+    "sourceTitle": "Intervene",
+    "sourceText": "set do(X = x) in a simulated system and compare it with filtering for X = x.",
+    "sourceEntryOriginal": "- **348. Intervene** \\[Slider\\]: set do(X = x) in a simulated system and compare it with filtering for X = x.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "economics/odds-average-the-bettors",
+    "difference": "New teaching boundary: Intervene. Existing boundary: The learner can explain that $300 x 80% + $100 x 40% = $280 of a $400 pool on A gives implied odds of 70%, because each belief counts in proportion to the money behind it, not the simple average of 60%.",
+    "numericCase": "Z fairbinary; X=Z (observational), Y=2X+4Z. Filter X=1 givesY6 vsX0 gives0. Intervene X1 averagesY4; interveneX0 averagesY2, causaldifference2."
+  },
+  "modelAudit": {
+    "a": 4,
+    "b": 6,
+    "doZero": 2
+  }
+}

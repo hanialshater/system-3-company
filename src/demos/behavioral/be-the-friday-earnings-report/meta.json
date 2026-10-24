@@ -1,0 +1,103 @@
+{
+  "slug": "be-the-friday-earnings-report",
+  "title": "The Friday earnings report",
+  "hook": "Would the same news receive the same immediate reaction on Friday?",
+  "domain": "behavioral",
+  "concept": "be-the-friday-earnings-report",
+  "status": "draft",
+  "durationSec": 60,
+  "version": 1,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and reading a small table"
+    ],
+    "doesNotKnow": [
+      "Separate the timing of attention from the direction of the earnings information."
+    ]
+  },
+  "misconception": "The quantities in this case can be combined without checking their reference, denominator, or information boundary.",
+  "objective": "Separate the timing of attention from the direction of the earnings information.",
+  "keyState": "Both complete computed cases are visible as retained observations; the question-case picture survives Reset.",
+  "claims": [
+    {
+      "id": "behavioral.be-the-friday-earnings-report.inputs",
+      "text": "A toy price response is thirty units immediately and seventy later. What is the total response across both windows? Toy inputs A=[30, 70]; B=[60, 40].",
+      "support": "convention",
+      "source": "Local explicit hypothetical assumptions in spec.ts and model.ts; not participant measurements.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-the-friday-earnings-report.trace",
+      "text": "Computed results: [[30, 70, 100], [60, 40, 100]]. Labels: Immediate, Later, Total.",
+      "support": "derivation",
+      "source": "compute() in the lesson-local model.ts; finite numeric operations over the explicit inputs.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-the-friday-earnings-report.reveal",
+      "text": "A delayed reaction can differ from the immediate reaction without changing the total supplied information response. The two timing paths expose that distinction. No real-market abnormal return is verified by this toy decomposition.",
+      "support": "derivation",
+      "source": "The two controlled cases in spec.ts; scope limited to these toy inputs and displayed model rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-the-friday-earnings-report.recall",
+      "text": "A new toy case uses Immediate reaction=60, Later reaction=40. What is Total? Answer: 100.",
+      "support": "derivation",
+      "source": "compute() applied to the contrasting new input case; source list is an idea pointer only.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A new toy case uses Immediate reaction=60, Later reaction=40. What is Total?",
+    "options": [
+      "130",
+      "100",
+      "70"
+    ],
+    "answer": 1,
+    "why": "Applying the stated toy rule to the new inputs gives 100. The result depends on these assumptions; it is not a universal behavioral response."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "behavioral:be-the-friday-earnings-report",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "behavioral",
+      "toy-model",
+      "source-entry-405"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "run-case",
+    "compare-case",
+    "step-trace",
+    "reset-retained-evidence"
+  ],
+  "sourceProvenance": {
+    "file": "500-behavioral-economics-findings.md",
+    "entry": 405,
+    "section": "21. Behavioral finance & markets",
+    "text": "Earnings announced on Fridays get a weaker immediate reaction and more later drift (DellaVigna & Pollet, 2009).",
+    "pointer": "500-behavioral-economics-findings.md entry 405: DellaVigna & Pollet, 2009",
+    "status": "unverified-primary-source",
+    "caveat": "Original list says figures are approximate and papers were not individually rechecked. No empirical source is verified by this build."
+  },
+  "nearestExistingLesson": "winning-bid-overpays",
+  "meaningfulDifference": "Separate the timing of attention from the direction of the earnings information."
+}

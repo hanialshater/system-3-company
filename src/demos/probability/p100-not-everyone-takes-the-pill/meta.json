@@ -1,0 +1,162 @@
+{
+  "slug": "p100-not-everyone-takes-the-pill",
+  "title": "What if few take the offer?",
+  "hook": "The treatment response stays fixed while the share taking the offer changes.",
+  "domain": "probability",
+  "concept": "p100-not-everyone-takes-the-pill",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "as compliance drops, the measured effect shrinks."
+    ]
+  },
+  "misconception": "Treating not everyone takes the pill as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "as compliance drops, the measured effect shrinks.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-not-everyone-takes-the-pill.predict",
+      "text": "A treatment adds 10 for every complier, and an offer changes nothing else. If only 20% take it up, what mean effect does assignment have?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-not-everyone-takes-the-pill/spec.ts; exact finite illustration specified in manager numericCase: Treatment effect among compliers10, take-up share.2,.5,.8. Assignment effect2,5,8 under exclusion and no defiers. Vary take-up and show effect diluted, not treatment becoming weaker.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-not-everyone-takes-the-pill.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-not-everyone-takes-the-pill/spec.ts; exact finite illustration specified in manager numericCase: Treatment effect among compliers10, take-up share.2,.5,.8. Assignment effect2,5,8 under exclusion and no defiers. Vary take-up and show effect diluted, not treatment becoming weaker.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-not-everyone-takes-the-pill.reveal.0",
+      "text": "The 20% case retains assignment effect 2; the 80% case retains 8. The stipulated complier effect stays 10 in both cases.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-not-everyone-takes-the-pill/spec.ts; exact finite illustration specified in manager numericCase: Treatment effect among compliers10, take-up share.2,.5,.8. Assignment effect2,5,8 under exclusion and no defiers. Vary take-up and show effect diluted, not treatment becoming weaker.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-not-everyone-takes-the-pill.reveal.1",
+      "text": "The offer affects only those whose treatment receipt changes, so lower uptake dilutes the population-average assignment effect. Dividing by uptake needs the exclusion and compliance assumptions; it does not automatically identify effects for people who never comply.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-not-everyone-takes-the-pill/spec.ts; exact finite illustration specified in manager numericCase: Treatment effect among compliers10, take-up share.2,.5,.8. Assignment effect2,5,8 under exclusion and no defiers. Vary take-up and show effect diluted, not treatment becoming weaker.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-not-everyone-takes-the-pill.recall",
+      "text": "Complier effect is 12 and uptake is 50%, with no direct offer effect. What is assignment effect? Half the assigned population receives a gain of 12, producing an average gain of 6.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-not-everyone-takes-the-pill/spec.ts; exact finite illustration specified in manager numericCase: Treatment effect among compliers10, take-up share.2,.5,.8. Assignment effect2,5,8 under exclusion and no defiers. Vary take-up and show effect diluted, not treatment becoming weaker.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-not-everyone-takes-the-pill.scenario.0.summary",
+      "text": "20% uptake: effect 2",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-not-everyone-takes-the-pill/spec.ts; exact finite illustration specified in manager numericCase: Treatment effect among compliers10, take-up share.2,.5,.8. Assignment effect2,5,8 under exclusion and no defiers. Vary take-up and show effect diluted, not treatment becoming weaker.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-not-everyone-takes-the-pill.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Effect\",\"Take-up\"],\"rows\":[[10,0.2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-not-everyone-takes-the-pill/spec.ts; exact finite illustration specified in manager numericCase: Treatment effect among compliers10, take-up share.2,.5,.8. Assignment effect2,5,8 under exclusion and no defiers. Vary take-up and show effect diluted, not treatment becoming weaker.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-not-everyone-takes-the-pill.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · 20% take-up\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":20,\"y\":2},{\"x\":50,\"y\":5},{\"x\":80,\"y\":8}],\"xLabel\":\"Take-up %\",\"yLabel\":\"Assignment effect\"}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-not-everyone-takes-the-pill/spec.ts; exact finite illustration specified in manager numericCase: Treatment effect among compliers10, take-up share.2,.5,.8. Assignment effect2,5,8 under exclusion and no defiers. Vary take-up and show effect diluted, not treatment becoming weaker.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-not-everyone-takes-the-pill.scenario.1.summary",
+      "text": "80% uptake: effect 8",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-not-everyone-takes-the-pill/spec.ts; exact finite illustration specified in manager numericCase: Treatment effect among compliers10, take-up share.2,.5,.8. Assignment effect2,5,8 under exclusion and no defiers. Vary take-up and show effect diluted, not treatment becoming weaker.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-not-everyone-takes-the-pill.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Effect\",\"Take-up\"],\"rows\":[[10,0.8]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-not-everyone-takes-the-pill/spec.ts; exact finite illustration specified in manager numericCase: Treatment effect among compliers10, take-up share.2,.5,.8. Assignment effect2,5,8 under exclusion and no defiers. Vary take-up and show effect diluted, not treatment becoming weaker.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-not-everyone-takes-the-pill.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · 80% take-up\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Assignment\",\"value\":8},{\"label\":\"Complier\",\"value\":10}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-not-everyone-takes-the-pill/spec.ts; exact finite illustration specified in manager numericCase: Treatment effect among compliers10, take-up share.2,.5,.8. Assignment effect2,5,8 under exclusion and no defiers. Vary take-up and show effect diluted, not treatment becoming weaker.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-not-everyone-takes-the-pill.hook",
+      "text": "The treatment response stays fixed while the share taking the offer changes.",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-not-everyone-takes-the-pill/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Complier effect is 12 and uptake is 50%, with no direct offer effect. What is assignment effect?",
+    "options": [
+      "3",
+      "6",
+      "12"
+    ],
+    "answer": 1,
+    "why": "Half the assigned population receives a gain of 12, producing an average gain of 6."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-not-everyone-takes-the-pill",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "dilution"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 332,
+    "sourceSection": "17. Randomized experiments & A/B tests",
+    "sourceTitle": "Not everyone takes the pill",
+    "sourceText": "as compliance drops, the measured effect shrinks.",
+    "sourceEntryOriginal": "- **332. Not everyone takes the pill** \\[Slider\\]: as compliance drops, the measured effect shrinks.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "books/bk-learn-cue-overlap",
+    "difference": "New teaching boundary: Not everyone takes the pill. Existing boundary: Identify the assumed cue dependence instead of treating the toy as a measured memory effect.",
+    "numericCase": "Treatment effect among compliers10, take-up share.2,.5,.8. Assignment effect2,5,8 under exclusion and no defiers. Vary take-up and show effect diluted, not treatment becoming weaker."
+  },
+  "modelAudit": {
+    "a": 2,
+    "b": 8,
+    "complierEffect": 10
+  }
+}

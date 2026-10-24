@@ -1,0 +1,161 @@
+{
+  "slug": "p100-find-each-one-s-twin",
+  "title": "Which untreated person is a twin?",
+  "hook": "Compare people at the same measured age before averaging outcomes.",
+  "domain": "probability",
+  "concept": "p100-find-each-one-s-twin",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "dots for treated and untreated people pair up by age and income, and lines connect the matches."
+    ]
+  },
+  "misconception": "Treating find each one's twin as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "dots for treated and untreated people pair up by age and income, and lines connect the matches.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-find-each-one-s-twin.predict",
+      "text": "Treated people aged 60 and 20 have outcomes 80 and 60. Untreated people aged 20, 60, 90 have outcomes 50, 70, 10. What mean difference follows exact-age matching?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-find-each-one-s-twin/spec.ts; exact finite illustration specified in manager numericCase: Treated outcomes [80,60] at ages [60,20]; untreated outcomes [50,70,10] at ages [20,60,90]. Match by exact age: effects 10 and 10. Unmatched means 70 vs 43.3333 exaggerate to 26.6667.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-find-each-one-s-twin.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-find-each-one-s-twin/spec.ts; exact finite illustration specified in manager numericCase: Treated outcomes [80,60] at ages [60,20]; untreated outcomes [50,70,10] at ages [20,60,90]. Match by exact age: effects 10 and 10. Unmatched means 70 vs 43.3333 exaggerate to 26.6667.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-find-each-one-s-twin.reveal.0",
+      "text": "The matched difference is 10; using every control gives 26.667. Matching uses the same ages instead of letting the unmatched 90-year-old change the comparison.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-find-each-one-s-twin/spec.ts; exact finite illustration specified in manager numericCase: Treated outcomes [80,60] at ages [60,20]; untreated outcomes [50,70,10] at ages [20,60,90]. Match by exact age: effects 10 and 10. Unmatched means 70 vs 43.3333 exaggerate to 26.6667.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-find-each-one-s-twin.reveal.1",
+      "text": "Matching can improve comparability on measured variables. It identifies a treatment effect only with adequate overlap and no remaining unmeasured confounding; a neat pair of dots does not establish those assumptions.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-find-each-one-s-twin/spec.ts; exact finite illustration specified in manager numericCase: Treated outcomes [80,60] at ages [60,20]; untreated outcomes [50,70,10] at ages [20,60,90]. Match by exact age: effects 10 and 10. Unmatched means 70 vs 43.3333 exaggerate to 26.6667.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-find-each-one-s-twin.recall",
+      "text": "At the same measured age, treated outcomes are 9 and 7, matched controls 6 and 6. What mean difference remains? The matched differences are 3 and 1, averaging 2.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-find-each-one-s-twin/spec.ts; exact finite illustration specified in manager numericCase: Treated outcomes [80,60] at ages [60,20]; untreated outcomes [50,70,10] at ages [20,60,90]. Match by exact age: effects 10 and 10. Unmatched means 70 vs 43.3333 exaggerate to 26.6667.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-find-each-one-s-twin.scenario.0.summary",
+      "text": "Matched difference 10",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-find-each-one-s-twin/spec.ts; exact finite illustration specified in manager numericCase: Treated outcomes [80,60] at ages [60,20]; untreated outcomes [50,70,10] at ages [20,60,90]. Match by exact age: effects 10 and 10. Unmatched means 70 vs 43.3333 exaggerate to 26.6667.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-find-each-one-s-twin.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Age\",\"T\",\"C\"],\"rows\":[[60,80,70],[20,60,50]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-find-each-one-s-twin/spec.ts; exact finite illustration specified in manager numericCase: Treated outcomes [80,60] at ages [60,20]; untreated outcomes [50,70,10] at ages [20,60,90]. Match by exact age: effects 10 and 10. Unmatched means 70 vs 43.3333 exaggerate to 26.6667.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-find-each-one-s-twin.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Exact-age matches\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"60\",\"value\":10},{\"label\":\"20\",\"value\":10}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-find-each-one-s-twin/spec.ts; exact finite illustration specified in manager numericCase: Treated outcomes [80,60] at ages [60,20]; untreated outcomes [50,70,10] at ages [20,60,90]. Match by exact age: effects 10 and 10. Unmatched means 70 vs 43.3333 exaggerate to 26.6667.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-find-each-one-s-twin.scenario.1.summary",
+      "text": "Unmatched difference 26.667",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-find-each-one-s-twin/spec.ts; exact finite illustration specified in manager numericCase: Treated outcomes [80,60] at ages [60,20]; untreated outcomes [50,70,10] at ages [20,60,90]. Match by exact age: effects 10 and 10. Unmatched means 70 vs 43.3333 exaggerate to 26.6667.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-find-each-one-s-twin.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"T mean\",\"C mean\"],\"rows\":[[70,43.333333333333336]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-find-each-one-s-twin/spec.ts; exact finite illustration specified in manager numericCase: Treated outcomes [80,60] at ages [60,20]; untreated outcomes [50,70,10] at ages [20,60,90]. Match by exact age: effects 10 and 10. Unmatched means 70 vs 43.3333 exaggerate to 26.6667.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-find-each-one-s-twin.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · All controls\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"T\",\"value\":70},{\"label\":\"C\",\"value\":43.333333333333336}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-find-each-one-s-twin/spec.ts; exact finite illustration specified in manager numericCase: Treated outcomes [80,60] at ages [60,20]; untreated outcomes [50,70,10] at ages [20,60,90]. Match by exact age: effects 10 and 10. Unmatched means 70 vs 43.3333 exaggerate to 26.6667.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-find-each-one-s-twin.hook",
+      "text": "Compare people at the same measured age before averaging outcomes.",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-find-each-one-s-twin/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "At the same measured age, treated outcomes are 9 and 7, matched controls 6 and 6. What mean difference remains?",
+    "options": [
+      "1",
+      "2",
+      "4"
+    ],
+    "answer": 1,
+    "why": "The matched differences are 3 and 1, averaging 2."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-find-each-one-s-twin",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "matching"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 401,
+    "sourceSection": "21. Matching, weighting & propensity scores",
+    "sourceTitle": "Find each one's twin",
+    "sourceText": "dots for treated and untreated people pair up by age and income, and lines connect the matches.",
+    "sourceEntryOriginal": "- **401. Find each one's twin** \\[Slider\\]: dots for treated and untreated people pair up by age and income, and lines connect the matches.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "cs/algo-rotating-calipers",
+    "difference": "New teaching boundary: Find each one's twin. Existing boundary: Find a convex polygon's diameter by advancing antipodal support pairs.",
+    "numericCase": "Treated outcomes [80,60] at ages [60,20]; untreated outcomes [50,70,10] at ages [20,60,90]. Match by exact age: effects 10 and 10. Unmatched means 70 vs 43.3333 exaggerate to 26.6667."
+  },
+  "modelAudit": {
+    "a": 10,
+    "b": 26.666666666666664
+  }
+}

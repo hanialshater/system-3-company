@@ -1,0 +1,103 @@
+{
+  "slug": "be-registered-or-donated",
+  "title": "Registered or donated?",
+  "hook": "Do donor-registration rates tell us the actual donation gap?",
+  "domain": "behavioral",
+  "concept": "be-registered-or-donated",
+  "status": "draft",
+  "durationSec": 60,
+  "version": 1,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and reading a small table"
+    ],
+    "doesNotKnow": [
+      "Separate a participation proxy from the downstream clinical outcome in country comparisons."
+    ]
+  },
+  "misconception": "The quantities in this case can be combined without checking their reference, denominator, or information boundary.",
+  "objective": "Separate a participation proxy from the downstream clinical outcome in country comparisons.",
+  "keyState": "Both complete computed cases are visible as retained observations; the question-case picture survives Reset.",
+  "claims": [
+    {
+      "id": "behavioral.be-registered-or-donated.inputs",
+      "text": "In a toy population, 90% register and 20% of registered people complete the outcome. What fraction of the whole population completes it? Toy inputs A=[90, 20]; B=[50, 25].",
+      "support": "convention",
+      "source": "Local explicit hypothetical assumptions in spec.ts and model.ts; not participant measurements.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-registered-or-donated.trace",
+      "text": "Computed results: [[90, 18, 20], [50, 12.5, 25]]. Labels: Registered %, Donated %, Conditional %.",
+      "support": "derivation",
+      "source": "compute() in the lesson-local model.ts; finite numeric operations over the explicit inputs.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-registered-or-donated.reveal",
+      "text": "A registration rate is an intermediate measure. Multiplying it by completion among registrants gives the downstream rate in this toy process. A larger registration gap need not translate into an equally large outcome gap.",
+      "support": "derivation",
+      "source": "The two controlled cases in spec.ts; scope limited to these toy inputs and displayed model rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-registered-or-donated.recall",
+      "text": "A new toy case uses Registered %=50, Conversion %=25. What is Donated %? Answer: 12.5.",
+      "support": "derivation",
+      "source": "compute() applied to the contrasting new input case; source list is an idea pointer only.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A new toy case uses Registered %=50, Conversion %=25. What is Donated %?",
+    "options": [
+      "16.25",
+      "12.5",
+      "8.75"
+    ],
+    "answer": 1,
+    "why": "Applying the stated toy rule to the new inputs gives 12.5. The result depends on these assumptions; it is not a universal behavioral response."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "behavioral:be-registered-or-donated",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "behavioral",
+      "toy-model",
+      "source-entry-63"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "run-case",
+    "compare-case",
+    "step-trace",
+    "reset-retained-evidence"
+  ],
+  "sourceProvenance": {
+    "file": "500-behavioral-economics-findings.md",
+    "entry": 63,
+    "section": "4. Defaults & choice architecture",
+    "text": "Presumed-consent countries have roughly 25–30% higher actual donation rates, a smaller gap than registration suggests (Abadie & Gay, 2006).",
+    "pointer": "500-behavioral-economics-findings.md entry 63: Abadie & Gay, 2006",
+    "status": "unverified-primary-source",
+    "caveat": "Original list says figures are approximate and papers were not individually rechecked. No empirical source is verified by this build."
+  },
+  "nearestExistingLesson": "bk-nudge-default-choice-model",
+  "meaningfulDifference": "Separate a participation proxy from the downstream clinical outcome in country comparisons."
+}

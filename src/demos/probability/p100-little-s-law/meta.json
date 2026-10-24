@@ -1,0 +1,163 @@
+{
+  "slug": "p100-little-s-law",
+  "title": "How long will the line take?",
+  "hook": "How long will the line take? Change one condition and inspect the result.",
+  "domain": "probability",
+  "concept": "p100-little-s-law",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "fractions and arithmetic",
+      "that a toy model states its assumptions"
+    ],
+    "doesNotKnow": [
+      "count people in line and the arrival rate, then predict the wait as L = λW."
+    ]
+  },
+  "misconception": "A stable toy service has 12 people present on average and 3 arrivals/minute. What is the mean time in the system? The prediction alternatives contrast different consequences of the stated model.",
+  "objective": "count people in line and the arrival rate, then predict the wait as L = λW.",
+  "keyState": "Both computed cases completed, with their numerical summaries retained across Reset.",
+  "claims": [
+    {
+      "id": "probability.p100-little-s-law.case",
+      "text": "A stable toy service has 12 people present on average and 3 arrivals/minute. What is the mean time in the system? Options: 2 minutes; 4 minutes; 12 minutes. Toy model: compare two controlled cases.",
+      "support": "convention",
+      "source": "Stipulated numerical case in model.ts, based on manager numericCase: Stable flow with meanarrivalrate3/min and averagepeopleL=12 impliesmeanW4min. DoubleLto24withrate3 gives8min; doublebothL24andrate6 restores4min. Distinguish long-run law from per-customer promise.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-little-s-law.recall",
+      "text": "A stable system averages 18 items and 6 arrivals/hour. Mean time? 18/6=3 hours.",
+      "support": "derivation",
+      "source": "Transfer arithmetic or model implication under the same explicitly stated assumptions. Independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-little-s-law.hook",
+      "text": "How long will the line take? Change one condition and inspect the result.",
+      "support": "convention",
+      "source": "Invitation to manipulate the labelled toy case, not a population claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-little-s-law.c4",
+      "text": "The retained cases show 4 and 8 minutes. The arrival rate is unchanged; doubling average occupancy doubles the corresponding average time.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-little-s-law/model.ts#compute().reveal[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-little-s-law.c5",
+      "text": "Little’s law is L=λW for a stable flow with consistent boundaries and long-run averages. It relates averages, not a promise that each customer waits exactly that long.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-little-s-law/model.ts#compute().reveal[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-little-s-law.c6",
+      "text": "Run the question case, compare the changed case, and inspect both retained results.",
+      "support": "convention",
+      "source": "src/demos/probability/p100-little-s-law/spec.ts#hint; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-little-s-law.c7",
+      "text": "Mean minutes: 4",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-little-s-law/model.ts#compute().scenarios[0].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-little-s-law.c8",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"People\",\"value\":12},{\"label\":\"Per minute\",\"value\":3}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-little-s-law/model.ts#compute().scenarios[0].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-little-s-law.c9",
+      "text": "Toy model: case A. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"Mean minutes\",\"value\":4}]}. [{\"label\":\"Mean minutes\",\"value\":\"4\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-little-s-law/model.ts#compute().scenarios[0].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-little-s-law.c10",
+      "text": "Mean minutes: 8",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-little-s-law/model.ts#compute().scenarios[1].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-little-s-law.c11",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"People\",\"value\":24},{\"label\":\"Per minute\",\"value\":3}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-little-s-law/model.ts#compute().scenarios[1].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-little-s-law.c12",
+      "text": "Toy model: case B. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"Mean minutes\",\"value\":8}]}. [{\"label\":\"Mean minutes\",\"value\":\"8\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-little-s-law/model.ts#compute().scenarios[1].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A stable system averages 18 items and 6 arrivals/hour. Mean time?",
+    "options": [
+      "2 hours",
+      "3 hours",
+      "6 hours"
+    ],
+    "answer": 1,
+    "why": "18/6=3 hours."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-little-s-law",
+    "also": [],
+    "prerequisites": [],
+    "level": "stretch",
+    "references": [],
+    "tags": [
+      "founder-2026-10-24",
+      "source-entry-503",
+      "queue"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "controlled-case-comparison",
+    "step-through-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 503,
+    "sourceSection": "26. Queueing theory: single queues & Little's law",
+    "sourceTitle": "Little's law",
+    "sourceText": "count people in line and the arrival rate, then predict the wait as L = λW.",
+    "sourceEntryOriginal": "- **503. Little's law** \\[Predict\\]: count people in line and the arrival rate, then predict the wait as L = λW.",
+    "numericCase": "Stable flow with meanarrivalrate3/min and averagepeopleL=12 impliesmeanW4min. DoubleLto24withrate3 gives8min; doublebothL24andrate6 restores4min. Distinguish long-run law from per-customer promise.",
+    "sourceStatus": "unverified idea pointer; empirical and historical claims excluded from learner copy",
+    "nearestExistingLesson": "ai/winner-word-evidence",
+    "difference": "New teaching boundary: Little's law. Existing boundary: The learner can count a word's appearances in spam and in real mail to get the chance an email with that word is spam, and explain why the base rate of spam changes the answer."
+  },
+  "modelOutputs": [
+    4,
+    8
+  ]
+}

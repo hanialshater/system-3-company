@@ -1,0 +1,104 @@
+{
+  "date": "2026-10-24",
+  "owner": "chief-of-staff",
+  "pr": "https://github.com/hanialshater/system-3-company/pull/16",
+  "baseline": "60eaf60ac461e502094cc3cdf6f784bb00ccd784",
+  "localSourceCommit": "422b110914f210bd091a2dfbab4e952524cc3fe7",
+  "exactPublishedSourceTree": "8b484292995440178a43c7b73d38b1d0b4dcb07c",
+  "buildId": "ydI9elesNl3Kmkrgi3pfe",
+  "manifestSha256": "3397cffa991f0e6e6c3ec25d213ffc8a3b05447cbbaa1f60d8e5f2506fbee7c9",
+  "newLessons": {
+    "behavioral": 100,
+    "probability": 100,
+    "total": 200,
+    "status": "draft",
+    "unverifiedClaims": 1601
+  },
+  "checks": {
+    "batchManifest": "pass; 200 unique new lessons, exact source entries, matching curricula and valid runtime specs",
+    "behavioral": "500 arithmetic/state/provenance assertions pass",
+    "probabilityA": "100 numeric assertions and 50 runtime specs pass",
+    "probabilityB": "50 finite fixture tests and 50 runtime specs pass",
+    "engine": "12 regression tests pass; mutation restoring old behavior fails five",
+    "wrappers": "independent JSX AST enumeration: 200 actual Lesson/Stage/four-Control wrappers",
+    "memory": "109 role memory files within cap",
+    "companyCheck": {
+      "errors": 811,
+      "warnings": 4,
+      "addedErrors": 0,
+      "removedErrors": 0,
+      "errorWarningIdentitySha256": "4e7cb9877e04b711ae169373c31d8e8e26beed51b17508bd69a9e3041c6c4338"
+    },
+    "fullVerify": {
+      "status": "failed at pre-existing test:publish failures",
+      "tests": 34,
+      "passed": 32,
+      "failed": 2,
+      "sameBaselineFailures": true
+    },
+    "build": {
+      "status": "pass on supported retry",
+      "lessonPages": 1845,
+      "frameworkAdvisory": "Existing Next.js 16.4.0 reported a security advisory on first attempt; no dependency upgrade performed."
+    },
+    "protectedPaths": "unchanged",
+    "dependencyVersions": "unchanged"
+  },
+  "browserQA": {
+    "contract": {
+      "passed": 400,
+      "failed": 0,
+      "flaky": 0,
+      "skipped": 0,
+      "retries": 0,
+      "routes": 200,
+      "projects": [
+        "phone",
+        "desktop"
+      ]
+    },
+    "strictPhoneFit": {
+      "passed": 200,
+      "total": 200,
+      "viewport": "390x844",
+      "scroll": 0,
+      "clip": 0,
+      "thumbnail": 0,
+      "errors": 0,
+      "stageCrop": 0,
+      "namedHidden": 0,
+      "toolClean": true
+    },
+    "supplementalReset": {
+      "passed": 27,
+      "completed": 27,
+      "planned": 200,
+      "remaining": 173,
+      "status": "additional loop interrupted; unchanged protected contract already exercises Reset-last for all 200 routes"
+    },
+    "visualInspection": {
+      "sample": 20,
+      "perDomain": 10,
+      "visualKinds": 8,
+      "status": "actual screenshots viewed; QA inspection, no learner launch verdict"
+    },
+    "records": [
+      "2026-10-24-qa.md",
+      "2026-10-24-qa-summary.json",
+      "2026-10-24-qa-index.json"
+    ]
+  },
+  "openGates": [
+    "Independent per-claim fact checking",
+    "Independent learner reviews",
+    "Cross-category publication boundary reviews",
+    "Operational-readiness approval before shipping a shared tier-2 engine"
+  ],
+  "authorization": "PR only; all lesson status/claim gates remain in force.",
+  "sourcePublicationCommit": "cc61db3abc0ccea2e256901b24b31c846f44e91f",
+  "openContentFindings": [
+    "QA-P1: retained B payoff/minimum detail in two behavioral drafts",
+    "QA-P2: retained common-shock evidence behind invariant DiD",
+    "QA-P3: semantic probability-curve axes"
+  ]
+}

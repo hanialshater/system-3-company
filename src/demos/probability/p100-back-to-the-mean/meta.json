@@ -1,0 +1,163 @@
+{
+  "slug": "p100-back-to-the-mean",
+  "title": "What happens far from the data?",
+  "hook": "What happens far from the data? Change one condition and inspect the result.",
+  "domain": "probability",
+  "concept": "p100-back-to-the-mean",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "fractions and arithmetic",
+      "that a toy model states its assumptions"
+    ],
+    "doesNotKnow": [
+      "far from data, a GP's prediction drifts back to its prior mean and its band widens."
+    ]
+  },
+  "misconception": "A zero-mean, unit-variance noiseless GP has one observation y=4 at x=0 and RBF length scale 1. What is its posterior mean at x=3? The prediction alternatives contrast different consequences of the stated model.",
+  "objective": "far from data, a GP's prediction drifts back to its prior mean and its band widens.",
+  "keyState": "Both computed cases completed, with their numerical summaries retained across Reset.",
+  "claims": [
+    {
+      "id": "probability.p100-back-to-the-mean.case",
+      "text": "A zero-mean, unit-variance noiseless GP has one observation y=4 at x=0 and RBF length scale 1. What is its posterior mean at x=3? Options: 0.044; 2.426; 4. Toy model: compare two controlled cases.",
+      "support": "convention",
+      "source": "Stipulated numerical case in model.ts, based on manager numericCase: One noiselessGPdatumy=4atx0,zeroprior,RBFell1. Posterioratx=0,1,3: means4,2.42612,.044436; variances0,.632121,.999877. Showuncertaintyreturnsto1faraway.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-back-to-the-mean.recall",
+      "text": "With a zero-mean prior and a kernel tending to zero at great distance, the posterior mean approaches? The datum’s kernel weight tends to zero.",
+      "support": "derivation",
+      "source": "Transfer arithmetic or model implication under the same explicitly stated assumptions. Independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-back-to-the-mean.hook",
+      "text": "What happens far from the data? Change one condition and inspect the result.",
+      "support": "convention",
+      "source": "Invitation to manipulate the labelled toy case, not a population claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-back-to-the-mean.c4",
+      "text": "At x=3, posterior mean is 0.044 and variance 1. At the observed point, the table instead has mean 4 and variance 0.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-back-to-the-mean/model.ts#compute().reveal[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-back-to-the-mean.c5",
+      "text": "Far from the one noiseless datum, the RBF correlation fades and the posterior returns toward the stipulated prior. These closed-form tables distinguish prediction mean from uncertainty; distance does not create confidence.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-back-to-the-mean/model.ts#compute().reveal[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-back-to-the-mean.c6",
+      "text": "Run the question case, compare the changed case, and inspect both retained results.",
+      "support": "convention",
+      "source": "src/demos/probability/p100-back-to-the-mean/spec.ts#hint; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-back-to-the-mean.c7",
+      "text": "Mean x3: 0.044",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-back-to-the-mean/model.ts#compute().scenarios[0].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-back-to-the-mean.c8",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":4},{\"x\":0.2,\"y\":3.920794693227021},{\"x\":0.4,\"y\":3.692465385546543},{\"x\":0.6,\"y\":3.341080845645088},{\"x\":0.8,\"y\":2.9045961482947638},{\"x\":1,\"y\":2.4261226388505337},{\"x\":1.2,\"y\":1.9470090238398867},{\"x\":1.4,\"y\":1.5012443954055983},{\"x\":1.6,\"y\":1.1121492018127763},{\"x\":1.8,\"y\":0.7915947963344586},{\"x\":2,\"y\":0.5413411329464508},{\"x\":2.2,\"y\":0.3556864698375452},{\"x\":2.4,\"y\":0.2245390513365349},{\"x\":2.6,\"y\":0.13618981893839732},{\"x\":2.8,\"y\":0.07936437897748119},{\"x\":3,\"y\":0.044435986152969224},{\"x\":3.2,\"y\":0.02390409158002375},{\"x\":3.4,\"y\":0.012354861632947087},{\"x\":3.6,\"y\":0.006135242717297852},{\"x\":3.8,\"y\":0.002927209675521891},{\"x\":4,\"y\":0.0013418505116100474}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-back-to-the-mean/model.ts#compute().scenarios[0].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-back-to-the-mean.c9",
+      "text": "Toy model: case A. Displayed values: {\"kind\":\"table\",\"columns\":[\"x\",\"Mean\"],\"rows\":[[0,4],[1,2.4261226388505337],[3,0.044435986152969224]]}. [{\"label\":\"Mean x3\",\"value\":\"0.044\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-back-to-the-mean/model.ts#compute().scenarios[0].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-back-to-the-mean.c10",
+      "text": "Variance x3: 1",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-back-to-the-mean/model.ts#compute().scenarios[1].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-back-to-the-mean.c11",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":0},{\"x\":0.2,\"y\":0.039210560847676934},{\"x\":0.4,\"y\":0.14785621103378876},{\"x\":0.6,\"y\":0.302323673928969},{\"x\":0.8,\"y\":0.47270757595695145},{\"x\":1,\"y\":0.6321205588285577},{\"x\":1.2,\"y\":0.7630722413178782},{\"x\":1.4,\"y\":0.8591415790789549},{\"x\":1.6,\"y\":0.9226952595567003},{\"x\":1.8,\"y\":0.9608361049010129},{\"x\":2,\"y\":0.9816843611112658},{\"x\":2.2,\"y\":0.9920929459484066},{\"x\":2.4,\"y\":0.9968488884015556},{\"x\":2.6,\"y\":0.9988407708260955},{\"x\":2.8,\"y\":0.9996063309593449},{\"x\":3,\"y\":0.9998765901959134},{\"x\":3.2,\"y\":0.9999642871503583},{\"x\":3.4,\"y\":0.9999904598371269},{\"x\":3.6,\"y\":0.9999976474248},{\"x\":3.8,\"y\":0.9999994644652197},{\"x\":4,\"y\":0.9999998874648253}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-back-to-the-mean/model.ts#compute().scenarios[1].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-back-to-the-mean.c12",
+      "text": "Toy model: case B. Displayed values: {\"kind\":\"table\",\"columns\":[\"x\",\"Variance\"],\"rows\":[[0,0],[1,0.6321205588285577],[3,0.9998765901959134]]}. [{\"label\":\"Variance x3\",\"value\":\"1\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-back-to-the-mean/model.ts#compute().scenarios[1].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "With a zero-mean prior and a kernel tending to zero at great distance, the posterior mean approaches?",
+    "options": [
+      "0",
+      "The observed y",
+      "Infinity"
+    ],
+    "answer": 0,
+    "why": "The datum’s kernel weight tends to zero."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-back-to-the-mean",
+    "also": [],
+    "prerequisites": [],
+    "level": "stretch",
+    "references": [],
+    "tags": [
+      "founder-2026-10-24",
+      "source-entry-647",
+      "curve"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "controlled-case-comparison",
+    "step-through-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 647,
+    "sourceSection": "33. Gaussian processes & Bayesian optimization",
+    "sourceTitle": "Back to the mean",
+    "sourceText": "far from data, a GP's prediction drifts back to its prior mean and its band widens.",
+    "sourceEntryOriginal": "- **647. Back to the mean** \\[Gotcha\\]: far from data, a GP's prediction drifts back to its prior mean and its band widens.",
+    "numericCase": "One noiselessGPdatumy=4atx0,zeroprior,RBFell1. Posterioratx=0,1,3: means4,2.42612,.044436; variances0,.632121,.999877. Showuncertaintyreturnsto1faraway.",
+    "sourceStatus": "unverified idea pointer; empirical and historical claims excluded from learner copy",
+    "nearestExistingLesson": "ai/ai-loss-choice-mean-median",
+    "difference": "New teaching boundary: Back to the mean. Existing boundary: the loss function changes the best constant prediction even on identical data. Compare squared versus absolute loss, rather than treating the mean as the one correct summary."
+  },
+  "modelOutputs": [
+    0.044435986152969224,
+    0.9998765901959134
+  ]
+}

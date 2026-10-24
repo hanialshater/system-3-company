@@ -1,0 +1,163 @@
+{
+  "slug": "p100-coffee-shop-queue",
+  "title": "How busy is too busy?",
+  "hook": "How busy is too busy? Change one condition and inspect the result.",
+  "domain": "probability",
+  "concept": "p100-coffee-shop-queue",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "fractions and arithmetic",
+      "that a toy model states its assumptions"
+    ],
+    "doesNotKnow": [
+      "set arrival and service rates; customers animate in, and the line explodes as utilization nears 100%."
+    ]
+  },
+  "misconception": "A toy M/M/1 queue serves 10 people/hour. Arrivals increase from 5 to 8/hour. What is the long-run mean number in the system at 8/hour? The prediction alternatives contrast different consequences of the stated model.",
+  "objective": "set arrival and service rates; customers animate in, and the line explodes as utilization nears 100%.",
+  "keyState": "Both computed cases completed, with their numerical summaries retained across Reset.",
+  "claims": [
+    {
+      "id": "probability.p100-coffee-shop-queue.case",
+      "text": "A toy M/M/1 queue serves 10 people/hour. Arrivals increase from 5 to 8/hour. What is the long-run mean number in the system at 8/hour? Options: 2; 4; 8. Toy model: compare two controlled cases.",
+      "support": "convention",
+      "source": "Stipulated numerical case in model.ts, based on manager numericCase: M/M/1 hypothetical arrivallambda and serviceratemu=10/hour; lambda5,8,9 givesutilization.5,.8,.9 and meanL=rho/(1-rho)=1,4,9. Never useformulaatlambda>=mu; show unstable.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-coffee-shop-queue.recall",
+      "text": "A matching queue serves 12/hour and receives 6/hour. What is the mean number in the system? ρ=1/2, so ρ/(1−ρ)=1.",
+      "support": "derivation",
+      "source": "Transfer arithmetic or model implication under the same explicitly stated assumptions. Independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-coffee-shop-queue.hook",
+      "text": "How busy is too busy? Change one condition and inspect the result.",
+      "support": "convention",
+      "source": "Invitation to manipulate the labelled toy case, not a population claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-coffee-shop-queue.c4",
+      "text": "At 8 arrivals/hour, the retained mean is 4 people; at 9/hour it is 9. The service rate stays 10/hour.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-coffee-shop-queue/model.ts#compute().reveal[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-coffee-shop-queue.c5",
+      "text": "The toy M/M/1 formula is ρ/(1−ρ), with Poisson arrivals, independent exponential service and one server. Approaching full utilization makes the mean grow nonlinearly; this formula applies only below capacity.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-coffee-shop-queue/model.ts#compute().reveal[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-coffee-shop-queue.c6",
+      "text": "Run the question case, compare the changed case, and inspect both retained results.",
+      "support": "convention",
+      "source": "src/demos/probability/p100-coffee-shop-queue/spec.ts#hint; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-coffee-shop-queue.c7",
+      "text": "Mean people: 4",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-coffee-shop-queue/model.ts#compute().scenarios[0].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-coffee-shop-queue.c8",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"Arrivals\",\"value\":8},{\"label\":\"Service\",\"value\":10}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-coffee-shop-queue/model.ts#compute().scenarios[0].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-coffee-shop-queue.c9",
+      "text": "Toy model: case A. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"Waiting+served\",\"value\":4.000000000000001}]}. [{\"label\":\"Mean people\",\"value\":\"4\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-coffee-shop-queue/model.ts#compute().scenarios[0].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-coffee-shop-queue.c10",
+      "text": "Mean people: 9",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-coffee-shop-queue/model.ts#compute().scenarios[1].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-coffee-shop-queue.c11",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"Arrivals\",\"value\":9},{\"label\":\"Service\",\"value\":10}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-coffee-shop-queue/model.ts#compute().scenarios[1].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-coffee-shop-queue.c12",
+      "text": "Toy model: case B. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"Waiting+served\",\"value\":9.000000000000002}]}. [{\"label\":\"Mean people\",\"value\":\"9\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-coffee-shop-queue/model.ts#compute().scenarios[1].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A matching queue serves 12/hour and receives 6/hour. What is the mean number in the system?",
+    "options": [
+      "1",
+      "2",
+      "6"
+    ],
+    "answer": 0,
+    "why": "ρ=1/2, so ρ/(1−ρ)=1."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-coffee-shop-queue",
+    "also": [],
+    "prerequisites": [],
+    "level": "stretch",
+    "references": [],
+    "tags": [
+      "founder-2026-10-24",
+      "source-entry-501",
+      "queue"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "controlled-case-comparison",
+    "step-through-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 501,
+    "sourceSection": "26. Queueing theory: single queues & Little's law",
+    "sourceTitle": "Coffee shop queue",
+    "sourceText": "set arrival and service rates; customers animate in, and the line explodes as utilization nears 100%.",
+    "sourceEntryOriginal": "- **501. Coffee shop queue** \\[Slider\\]: set arrival and service rates; customers animate in, and the line explodes as utilization nears 100%.",
+    "numericCase": "M/M/1 hypothetical arrivallambda and serviceratemu=10/hour; lambda5,8,9 givesutilization.5,.8,.9 and meanL=rho/(1-rho)=1,4,9. Never useformulaatlambda>=mu; show unstable.",
+    "sourceStatus": "unverified idea pointer; empirical and historical claims excluded from learner copy",
+    "nearestExistingLesson": "books/bk-flow-utilization-queue",
+    "difference": "New teaching boundary: Coffee shop queue. Existing boundary: Identify the sign of net flow when arrivals cross fixed service capacity."
+  },
+  "modelOutputs": [
+    4.000000000000001,
+    9.000000000000002
+  ]
+}

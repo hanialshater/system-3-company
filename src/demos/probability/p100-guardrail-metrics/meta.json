@@ -1,0 +1,162 @@
+{
+  "slug": "p100-guardrail-metrics",
+  "title": "Which metric got left behind?",
+  "hook": "A click increase shares the screen with a revenue result.",
+  "domain": "probability",
+  "concept": "p100-guardrail-metrics",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "clicks go up while revenue or retention quietly drops."
+    ]
+  },
+  "misconception": "Treating guardrail metrics as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "clicks go up while revenue or retention quietly drops.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-guardrail-metrics.predict",
+      "text": "Per 1,000 visits a baseline has 100 clicks and revenue 2,000; a variant has 150 clicks and revenue 1,750. What revenue change accompanies the click increase?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-guardrail-metrics/spec.ts; exact finite illustration specified in manager numericCase: Per1000 visits baseline clicks100,purchases40,revenue2000; variant clicks150,purchases35,revenue1750. CTR+50%, revenue-12.5%; move attention from clicks to guardrail outcomes.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-guardrail-metrics.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-guardrail-metrics/spec.ts; exact finite illustration specified in manager numericCase: Per1000 visits baseline clicks100,purchases40,revenue2000; variant clicks150,purchases35,revenue1750. CTR+50%, revenue-12.5%; move attention from clicks to guardrail outcomes.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-guardrail-metrics.reveal.0",
+      "text": "The revenue guardrail retains −12.5%, while the click target retains +50%. The variant’s extra clicks do not translate into more purchases in these stipulated counts.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-guardrail-metrics/spec.ts; exact finite illustration specified in manager numericCase: Per1000 visits baseline clicks100,purchases40,revenue2000; variant clicks150,purchases35,revenue1750. CTR+50%, revenue-12.5%; move attention from clicks to guardrail outcomes.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-guardrail-metrics.reveal.1",
+      "text": "A target metric can improve while another important outcome worsens. Predeclared guardrails make that tradeoff visible; these aggregate arithmetic differences alone do not establish statistical certainty or a launch decision.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-guardrail-metrics/spec.ts; exact finite illustration specified in manager numericCase: Per1000 visits baseline clicks100,purchases40,revenue2000; variant clicks150,purchases35,revenue1750. CTR+50%, revenue-12.5%; move attention from clicks to guardrail outcomes.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-guardrail-metrics.recall",
+      "text": "Clicks rise 20% while revenue falls 5%. Does the click win establish a business win? The decision needs the predeclared goals, guardrails and uncertainty, rather than a selected winning metric.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-guardrail-metrics/spec.ts; exact finite illustration specified in manager numericCase: Per1000 visits baseline clicks100,purchases40,revenue2000; variant clicks150,purchases35,revenue1750. CTR+50%, revenue-12.5%; move attention from clicks to guardrail outcomes.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-guardrail-metrics.scenario.0.summary",
+      "text": "Revenue -12.5%",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-guardrail-metrics/spec.ts; exact finite illustration specified in manager numericCase: Per1000 visits baseline clicks100,purchases40,revenue2000; variant clicks150,purchases35,revenue1750. CTR+50%, revenue-12.5%; move attention from clicks to guardrail outcomes.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-guardrail-metrics.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Base\",\"Variant\"],\"rows\":[[2000,1750]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-guardrail-metrics/spec.ts; exact finite illustration specified in manager numericCase: Per1000 visits baseline clicks100,purchases40,revenue2000; variant clicks150,purchases35,revenue1750. CTR+50%, revenue-12.5%; move attention from clicks to guardrail outcomes.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-guardrail-metrics.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Revenue guardrail\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Base\",\"value\":2000},{\"label\":\"Variant\",\"value\":1750}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-guardrail-metrics/spec.ts; exact finite illustration specified in manager numericCase: Per1000 visits baseline clicks100,purchases40,revenue2000; variant clicks150,purchases35,revenue1750. CTR+50%, revenue-12.5%; move attention from clicks to guardrail outcomes.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-guardrail-metrics.scenario.1.summary",
+      "text": "Clicks +50%",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-guardrail-metrics/spec.ts; exact finite illustration specified in manager numericCase: Per1000 visits baseline clicks100,purchases40,revenue2000; variant clicks150,purchases35,revenue1750. CTR+50%, revenue-12.5%; move attention from clicks to guardrail outcomes.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-guardrail-metrics.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Purchases\"],\"rows\":[[40],[35]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-guardrail-metrics/spec.ts; exact finite illustration specified in manager numericCase: Per1000 visits baseline clicks100,purchases40,revenue2000; variant clicks150,purchases35,revenue1750. CTR+50%, revenue-12.5%; move attention from clicks to guardrail outcomes.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-guardrail-metrics.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · Click target\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Base\",\"value\":100},{\"label\":\"Variant\",\"value\":150}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-guardrail-metrics/spec.ts; exact finite illustration specified in manager numericCase: Per1000 visits baseline clicks100,purchases40,revenue2000; variant clicks150,purchases35,revenue1750. CTR+50%, revenue-12.5%; move attention from clicks to guardrail outcomes.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-guardrail-metrics.hook",
+      "text": "A click increase shares the screen with a revenue result.",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-guardrail-metrics/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Clicks rise 20% while revenue falls 5%. Does the click win establish a business win?",
+    "options": [
+      "No: the outcomes conflict",
+      "Yes: clicks define every goal",
+      "Yes: any positive metric suffices"
+    ],
+    "answer": 0,
+    "why": "The decision needs the predeclared goals, guardrails and uncertainty, rather than a selected winning metric."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-guardrail-metrics",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "guardrails"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 334,
+    "sourceSection": "17. Randomized experiments & A/B tests",
+    "sourceTitle": "Guardrail metrics",
+    "sourceText": "clicks go up while revenue or retention quietly drops.",
+    "sourceEntryOriginal": "- **334. Guardrail metrics** \\[Gotcha\\]: clicks go up while revenue or retention quietly drops.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "books/bk-scarcity-attention-budget",
+    "difference": "New teaching boundary: Guardrail metrics. Existing boundary: Explain the lost task time while keeping the psychological claim separate.",
+    "numericCase": "Per1000 visits baseline clicks100,purchases40,revenue2000; variant clicks150,purchases35,revenue1750. CTR+50%, revenue-12.5%; move attention from clicks to guardrail outcomes."
+  },
+  "modelAudit": {
+    "a": -12.5,
+    "b": 50,
+    "purchaseChange": -12.5
+  }
+}

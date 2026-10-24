@@ -1,0 +1,103 @@
+{
+  "slug": "be-two-days-at-home",
+  "title": "Two days at home",
+  "hook": "Could retention improve without a measured performance increase?",
+  "domain": "behavioral",
+  "concept": "be-two-days-at-home",
+  "status": "draft",
+  "durationSec": 60,
+  "version": 1,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and reading a small table"
+    ],
+    "doesNotKnow": [
+      "Distinguish worker-retention outcomes from performance outcomes in the hybrid-work trial."
+    ]
+  },
+  "misconception": "The quantities in this case can be combined without checking their reference, denominator, or information boundary.",
+  "objective": "Distinguish worker-retention outcomes from performance outcomes in the hybrid-work trial.",
+  "keyState": "Both complete computed cases are visible as retained observations; the question-case picture survives Reset.",
+  "claims": [
+    {
+      "id": "behavioral.be-two-days-at-home.inputs",
+      "text": "Illustrative quit rates are 6% in office and 4% in hybrid, while performance is 100 in both. What is the relative quit reduction? Toy inputs A=[6, 4, 100, 100]; B=[6, 6, 100, 100].",
+      "support": "convention",
+      "source": "Local explicit hypothetical assumptions in spec.ts and model.ts; not participant measurements.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-two-days-at-home.trace",
+      "text": "Computed results: [[33.333333333333336, 2, 0], [0, 0, 0]]. Labels: Quit reduction %, Quit gap pp, Performance gap.",
+      "support": "derivation",
+      "source": "compute() in the lesson-local model.ts; finite numeric operations over the explicit inputs.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-two-days-at-home.reveal",
+      "text": "Retention and performance are separate outcomes. The relative quit reduction divides the two-point drop by the original six-percent rate, while the performance gap remains zero in this table. One outcome does not establish a gain in the other.",
+      "support": "derivation",
+      "source": "The two controlled cases in spec.ts; scope limited to these toy inputs and displayed model rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-two-days-at-home.recall",
+      "text": "A new toy case uses Office quits %=6, Hybrid quits %=6, Office performance=100, Hybrid performance=100. What is Quit reduction %? Answer: 0.",
+      "support": "derivation",
+      "source": "compute() applied to the contrasting new input case; source list is an idea pointer only.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A new toy case uses Office quits %=6, Hybrid quits %=6, Office performance=100, Hybrid performance=100. What is Quit reduction %?",
+    "options": [
+      "1",
+      "0",
+      "-1"
+    ],
+    "answer": 1,
+    "why": "Applying the stated toy rule to the new inputs gives 0. The result depends on these assumptions; it is not a universal behavioral response."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "behavioral:be-two-days-at-home",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "behavioral",
+      "toy-model",
+      "source-entry-398"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "run-case",
+    "compare-case",
+    "step-trace",
+    "reset-retained-evidence"
+  ],
+  "sourceProvenance": {
+    "file": "500-behavioral-economics-findings.md",
+    "entry": 398,
+    "section": "20. Labor & the workplace",
+    "text": "Hybrid work two days a week left performance unchanged and cut quits by a third (Bloom, Han & Liang, 2024).",
+    "pointer": "500-behavioral-economics-findings.md entry 398: Bloom, Han & Liang, 2024",
+    "status": "unverified-primary-source",
+    "caveat": "Original list says figures are approximate and papers were not individually rechecked. No empirical source is verified by this build."
+  },
+  "nearestExistingLesson": "net-hourly-after-costs",
+  "meaningfulDifference": "Distinguish worker-retention outcomes from performance outcomes in the hybrid-work trial."
+}

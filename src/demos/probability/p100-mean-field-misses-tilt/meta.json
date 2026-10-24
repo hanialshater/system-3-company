@@ -1,0 +1,163 @@
+{
+  "slug": "p100-mean-field-misses-tilt",
+  "title": "What did the round cloud miss?",
+  "hook": "What did the round cloud miss? Change one condition and inspect the result.",
+  "domain": "probability",
+  "concept": "p100-mean-field-misses-tilt",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "fractions and arithmetic",
+      "that a toy model states its assumptions"
+    ],
+    "doesNotKnow": [
+      "a round approximation over a tilted ellipse underestimates uncertainty."
+    ]
+  },
+  "misconception": "A two-dimensional Gaussian has variances 1 and correlation 0.9. A diagonal reverse-KL Gaussian approximation has each variance 1−ρ². What is that variance? The prediction alternatives contrast different consequences of the stated model.",
+  "objective": "a round approximation over a tilted ellipse underestimates uncertainty.",
+  "keyState": "Both computed cases completed, with their numerical summaries retained across Reset.",
+  "claims": [
+    {
+      "id": "probability.p100-mean-field-misses-tilt.case",
+      "text": "A two-dimensional Gaussian has variances 1 and correlation 0.9. A diagonal reverse-KL Gaussian approximation has each variance 1−ρ². What is that variance? Options: 0.19; 0.9; 1. Toy model: compare two controlled cases.",
+      "support": "convention",
+      "source": "Stipulated numerical case in model.ts, based on manager numericCase: TiltedGaussian covariance[[1,.9],[.9,1]]. Mean-fieldreverse-KLoptimumdiagonals1-rho²=.19 instead of1. Varyrho0,.5,.9; axesvariances1,.75,.19 despitecorrelatedtargetmarginals1.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-mean-field-misses-tilt.recall",
+      "text": "Under the same formula at ρ=0.5, the diagonal variance is? 1−0.5²=0.75.",
+      "support": "derivation",
+      "source": "Transfer arithmetic or model implication under the same explicitly stated assumptions. Independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-mean-field-misses-tilt.hook",
+      "text": "What did the round cloud miss? Change one condition and inspect the result.",
+      "support": "convention",
+      "source": "Invitation to manipulate the labelled toy case, not a population claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-mean-field-misses-tilt.c4",
+      "text": "The retained diagonal variances are 0.19 at correlation 0.9 and 1 at correlation 0. The target marginal variance remains 1.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-mean-field-misses-tilt/model.ts#compute().reveal[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-mean-field-misses-tilt.c5",
+      "text": "For this Gaussian reverse-KL optimum, diagonal precision uses the target precision diagonal. It gives variance 1−ρ² and misses the tilt. The narrower intervals illustrate this restricted approximation, not a claim that every approximate posterior is too narrow.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-mean-field-misses-tilt/model.ts#compute().reveal[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-mean-field-misses-tilt.c6",
+      "text": "Run the question case, compare the changed case, and inspect both retained results.",
+      "support": "convention",
+      "source": "src/demos/probability/p100-mean-field-misses-tilt/spec.ts#hint; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-mean-field-misses-tilt.c7",
+      "text": "Variance: 0.19",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-mean-field-misses-tilt/model.ts#compute().scenarios[0].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-mean-field-misses-tilt.c8",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"scatter\",\"points\":[{\"x\":1,\"y\":0.9},{\"x\":0.9659258262890683,\"y\":0.9821498498867198},{\"x\":0.8660254037844387,\"y\":0.9973678105830285},{\"x\":0.7071067811865476,\"y\":0.9446168032163416},{\"x\":0.5000000000000001,\"y\":0.8274917217635376},{\"x\":0.25881904510252074,\"y\":0.6539744469672758},{\"x\":6.123233995736766e-17,\"y\":0.43588989435406733},{\"x\":-0.25881904510252063,\"y\":0.18810016578273855},{\"x\":-0.4999999999999998,\"y\":-0.07250827823646233},{\"x\":-0.7071067811865475,\"y\":-0.32817540291944397},{\"x\":-0.8660254037844387,\"y\":-0.5614779162289613},{\"x\":-0.9659258262890682,\"y\":-0.756516637433603},{\"x\":-1,\"y\":-0.9},{\"x\":-0.9659258262890683,\"y\":-0.9821498498867198},{\"x\":-0.8660254037844388,\"y\":-0.9973678105830285},{\"x\":-0.7071067811865479,\"y\":-0.9446168032163418},{\"x\":-0.5000000000000004,\"y\":-0.8274917217635378},{\"x\":-0.25881904510252063,\"y\":-0.6539744469672757},{\"x\":-1.8369701987210297e-16,\"y\":-0.43588989435406744},{\"x\":0.2588190451025203,\"y\":-0.18810016578273892},{\"x\":0.5000000000000001,\"y\":0.07250827823646272},{\"x\":0.7071067811865474,\"y\":0.3281754029194438},{\"x\":0.8660254037844384,\"y\":0.5614779162289607},{\"x\":0.9659258262890681,\"y\":0.7565166374336025},{\"x\":1,\"y\":0.8999999999999999}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-mean-field-misses-tilt/model.ts#compute().scenarios[0].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-mean-field-misses-tilt.c9",
+      "text": "Toy model: case A. Displayed values: {\"kind\":\"intervals\",\"items\":[{\"label\":\"Target\",\"low\":-1,\"mid\":0,\"high\":1},{\"label\":\"Diagonal\",\"low\":-0.4358898943540673,\"mid\":0,\"high\":0.4358898943540673}]}. [{\"label\":\"Variance\",\"value\":\"0.19\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-mean-field-misses-tilt/model.ts#compute().scenarios[0].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-mean-field-misses-tilt.c10",
+      "text": "Variance: 1",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-mean-field-misses-tilt/model.ts#compute().scenarios[1].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-mean-field-misses-tilt.c11",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"scatter\",\"points\":[{\"x\":1,\"y\":0},{\"x\":0.9659258262890683,\"y\":0.25881904510252074},{\"x\":0.8660254037844387,\"y\":0.49999999999999994},{\"x\":0.7071067811865476,\"y\":0.7071067811865475},{\"x\":0.5000000000000001,\"y\":0.8660254037844386},{\"x\":0.25881904510252074,\"y\":0.9659258262890683},{\"x\":6.123233995736766e-17,\"y\":1},{\"x\":-0.25881904510252063,\"y\":0.9659258262890683},{\"x\":-0.4999999999999998,\"y\":0.8660254037844387},{\"x\":-0.7071067811865475,\"y\":0.7071067811865476},{\"x\":-0.8660254037844387,\"y\":0.49999999999999994},{\"x\":-0.9659258262890682,\"y\":0.258819045102521},{\"x\":-1,\"y\":1.2246467991473532e-16},{\"x\":-0.9659258262890683,\"y\":-0.2588190451025208},{\"x\":-0.8660254037844388,\"y\":-0.4999999999999997},{\"x\":-0.7071067811865479,\"y\":-0.7071067811865471},{\"x\":-0.5000000000000004,\"y\":-0.8660254037844385},{\"x\":-0.25881904510252063,\"y\":-0.9659258262890683},{\"x\":-1.8369701987210297e-16,\"y\":-1},{\"x\":0.2588190451025203,\"y\":-0.9659258262890684},{\"x\":0.5000000000000001,\"y\":-0.8660254037844386},{\"x\":0.7071067811865474,\"y\":-0.7071067811865477},{\"x\":0.8660254037844384,\"y\":-0.5000000000000004},{\"x\":0.9659258262890681,\"y\":-0.25881904510252157},{\"x\":1,\"y\":-2.4492935982947064e-16}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-mean-field-misses-tilt/model.ts#compute().scenarios[1].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-mean-field-misses-tilt.c12",
+      "text": "Toy model: case B. Displayed values: {\"kind\":\"intervals\",\"items\":[{\"label\":\"Target\",\"low\":-1,\"mid\":0,\"high\":1},{\"label\":\"Diagonal\",\"low\":-1,\"mid\":0,\"high\":1}]}. [{\"label\":\"Variance\",\"value\":\"1\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-mean-field-misses-tilt/model.ts#compute().scenarios[1].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Under the same formula at ρ=0.5, the diagonal variance is?",
+    "options": [
+      "0.25",
+      "0.5",
+      "0.75"
+    ],
+    "answer": 2,
+    "why": "1−0.5²=0.75."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-mean-field-misses-tilt",
+    "also": [],
+    "prerequisites": [],
+    "level": "stretch",
+    "references": [],
+    "tags": [
+      "founder-2026-10-24",
+      "source-entry-603",
+      "scatter"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "controlled-case-comparison",
+    "step-through-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 603,
+    "sourceSection": "31. Variational inference & approximate Bayes",
+    "sourceTitle": "Mean-field misses tilt",
+    "sourceText": "a round approximation over a tilted ellipse underestimates uncertainty.",
+    "sourceEntryOriginal": "- **603. Mean-field misses tilt** \\[Gotcha\\]: a round approximation over a tilted ellipse underestimates uncertainty.",
+    "numericCase": "TiltedGaussian covariance[[1,.9],[.9,1]]. Mean-fieldreverse-KLoptimumdiagonals1-rho²=.19 instead of1. Varyrho0,.5,.9; axesvariances1,.75,.19 despitecorrelatedtargetmarginals1.",
+    "sourceStatus": "unverified idea pointer; empirical and historical claims excluded from learner copy",
+    "nearestExistingLesson": "geography/iss-never-over-moscow",
+    "difference": "New teaching boundary: Mean-field misses tilt. Existing boundary: The learner can say that a satellite's ground track reaches latitudes up to its orbital tilt and no further, so the ISS at 51.6 degrees reaches London but not Moscow."
+  },
+  "modelOutputs": [
+    0.18999999999999995,
+    1
+  ]
+}

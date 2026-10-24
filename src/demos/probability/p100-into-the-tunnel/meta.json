@@ -1,0 +1,163 @@
+{
+  "slug": "p100-into-the-tunnel",
+  "title": "What happens inside the tunnel?",
+  "hook": "What happens inside the tunnel? Change one condition and inspect the result.",
+  "domain": "probability",
+  "concept": "p100-into-the-tunnel",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "fractions and arithmetic",
+      "that a toy model states its assumptions"
+    ],
+    "doesNotKnow": [
+      "measurements stop and the uncertainty ellipse balloons until signal returns."
+    ]
+  },
+  "misconception": "Initial position variance is 1. Each prediction-only step adds process variance 2. After three steps without measurements, what is the variance? The prediction alternatives contrast different consequences of the stated model.",
+  "objective": "measurements stop and the uncertainty ellipse balloons until signal returns.",
+  "keyState": "Both computed cases completed, with their numerical summaries retained across Reset.",
+  "claims": [
+    {
+      "id": "probability.p100-into-the-tunnel.case",
+      "text": "Initial position variance is 1. Each prediction-only step adds process variance 2. After three steps without measurements, what is the variance? Options: 3; 6; 7. Toy model: compare two controlled cases.",
+      "support": "convention",
+      "source": "Stipulated numerical case in model.ts, based on manager numericCase: Initialvariance1,processnoiseQ2perstep; n0,1,3prediction-onlyvariance1,3,7. ReturningmeasurementvarianceR1reducesvar7to7/8; meanupdateusesKalmanrule.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-into-the-tunnel.recall",
+      "text": "Initial variance 2; two missing-measurement steps each add 3. New variance? 2+2×3=8.",
+      "support": "derivation",
+      "source": "Transfer arithmetic or model implication under the same explicitly stated assumptions. Independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-into-the-tunnel.hook",
+      "text": "What happens inside the tunnel? Change one condition and inspect the result.",
+      "support": "convention",
+      "source": "Invitation to manipulate the labelled toy case, not a population claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-into-the-tunnel.c4",
+      "text": "Three prediction-only steps raise variance to 7. Adding a returning independent measurement with variance 1 reduces it to 0.875.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-into-the-tunnel/model.ts#compute().reveal[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-into-the-tunnel.c5",
+      "text": "Without measurements, this toy adds process uncertainty at each step. The scalar update then combines that uncertainty with the sensor variance. The result concerns variance, not a guarantee that the estimated position is correct.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-into-the-tunnel/model.ts#compute().reveal[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-into-the-tunnel.c6",
+      "text": "Run the question case, compare the changed case, and inspect both retained results.",
+      "support": "convention",
+      "source": "src/demos/probability/p100-into-the-tunnel/spec.ts#hint; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-into-the-tunnel.c7",
+      "text": "Variance: 7",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-into-the-tunnel/model.ts#compute().scenarios[0].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-into-the-tunnel.c8",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":1}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-into-the-tunnel/model.ts#compute().scenarios[0].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-into-the-tunnel.c9",
+      "text": "Toy model: case A. Displayed values: {\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":1},{\"label\":\"1\",\"value\":3},{\"label\":\"2\",\"value\":5},{\"label\":\"3\",\"value\":7}]}. [{\"label\":\"Variance\",\"value\":\"7\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-into-the-tunnel/model.ts#compute().scenarios[0].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-into-the-tunnel.c10",
+      "text": "Updated variance: 0.875",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-into-the-tunnel/model.ts#compute().scenarios[1].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-into-the-tunnel.c11",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":1},{\"label\":\"1\",\"value\":3},{\"label\":\"2\",\"value\":5},{\"label\":\"3\",\"value\":7}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-into-the-tunnel/model.ts#compute().scenarios[1].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-into-the-tunnel.c12",
+      "text": "Toy model: case B. Displayed values: {\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":1},{\"label\":\"1\",\"value\":3},{\"label\":\"2\",\"value\":5},{\"label\":\"3\",\"value\":7},{\"label\":\"4\",\"value\":0.875}]}. [{\"label\":\"Updated variance\",\"value\":\"0.875\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-into-the-tunnel/model.ts#compute().scenarios[1].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Initial variance 2; two missing-measurement steps each add 3. New variance?",
+    "options": [
+      "5",
+      "6",
+      "8"
+    ],
+    "answer": 2,
+    "why": "2+2×3=8."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-into-the-tunnel",
+    "also": [],
+    "prerequisites": [],
+    "level": "stretch",
+    "references": [],
+    "tags": [
+      "founder-2026-10-24",
+      "source-entry-665",
+      "timeline"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "controlled-case-comparison",
+    "step-through-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 665,
+    "sourceSection": "34. State-space models, Kalman & particle filters",
+    "sourceTitle": "Into the tunnel",
+    "sourceText": "measurements stop and the uncertainty ellipse balloons until signal returns.",
+    "sourceEntryOriginal": "- **665. Into the tunnel** \\[Slider\\]: measurements stop and the uncertainty ellipse balloons until signal returns.",
+    "numericCase": "Initialvariance1,processnoiseQ2perstep; n0,1,3prediction-onlyvariance1,3,7. ReturningmeasurementvarianceR1reducesvar7to7/8; meanupdateusesKalmanrule.",
+    "sourceStatus": "unverified idea pointer; empirical and historical claims excluded from learner copy",
+    "nearestExistingLesson": "cs/clear-the-lowest-one",
+    "difference": "New teaching boundary: Into the tunnel. Existing boundary: The learner can explain that x - 1 turns the lowest 1 bit into 0 and the zeros below it into 1s, so x & (x - 1) clears exactly that bit; repeating it until 0 counts the 1 bits (10110 takes 3), and x > 0 is a power of two exactly when one repeat gives 0."
+  },
+  "modelOutputs": [
+    7,
+    0.875
+  ]
+}

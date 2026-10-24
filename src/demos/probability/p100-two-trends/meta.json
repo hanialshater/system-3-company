@@ -1,0 +1,161 @@
+{
+  "slug": "p100-two-trends",
+  "title": "Are these trends connected?",
+  "hook": "Subtract two known time trends, then inspect the residual relationship.",
+  "domain": "probability",
+  "concept": "p100-two-trends",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "any two series that both trend upward correlate strongly; remove the trend and it vanishes."
+    ]
+  },
+  "misconception": "Treating two trends as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "any two series that both trend upward correlate strongly; remove the trend and it vanishes.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-two-trends.predict",
+      "text": "Two sequences are x=t+[1,−1,0,−1,1] and y=3t+[1,1,−2,1,1], for t=1…5. After subtracting the stipulated trends, what covariance remains?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-two-trends/spec.ts; exact finite illustration specified in manager numericCase: Days x=[1,2,3,4,5], y=[3,6,9,12,15] share r=1 solely by the stipulated calendar trend. Subtract each known trend; show residuals [1,-1,0,-1,1] and [1,1,-2,1,1] with covariance zero.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-two-trends.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-two-trends/spec.ts; exact finite illustration specified in manager numericCase: Days x=[1,2,3,4,5], y=[3,6,9,12,15] share r=1 solely by the stipulated calendar trend. Subtract each known trend; show residuals [1,-1,0,-1,1] and [1,1,-2,1,1] with covariance zero.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-two-trends.reveal.0",
+      "text": "The detrended case retains covariance 0; keeping the calendar trends retains covariance 6. Both variables share time structure in this toy model.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-two-trends/spec.ts; exact finite illustration specified in manager numericCase: Days x=[1,2,3,4,5], y=[3,6,9,12,15] share r=1 solely by the stipulated calendar trend. Subtract each known trend; show residuals [1,-1,0,-1,1] and [1,1,-2,1,1] with covariance zero.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-two-trends.reveal.1",
+      "text": "Subtracting the known trends exposes the residual relationship. In real data the trend is estimated and may be misspecified, so detrending is a model choice rather than proof that all remaining associations are causal.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-two-trends/spec.ts; exact finite illustration specified in manager numericCase: Days x=[1,2,3,4,5], y=[3,6,9,12,15] share r=1 solely by the stipulated calendar trend. Subtract each known trend; show residuals [1,-1,0,-1,1] and [1,1,-2,1,1] with covariance zero.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-two-trends.recall",
+      "text": "A=2t+u and B=5t+v, with independent zero-mean u and v. What links their raw values? Both include t. Their raw association alone does not orient a causal arrow.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-two-trends/spec.ts; exact finite illustration specified in manager numericCase: Days x=[1,2,3,4,5], y=[3,6,9,12,15] share r=1 solely by the stipulated calendar trend. Subtract each known trend; show residuals [1,-1,0,-1,1] and [1,1,-2,1,1] with covariance zero.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-two-trends.scenario.0.summary",
+      "text": "Residual covariance 0",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-two-trends/spec.ts; exact finite illustration specified in manager numericCase: Days x=[1,2,3,4,5], y=[3,6,9,12,15] share r=1 solely by the stipulated calendar trend. Subtract each known trend; show residuals [1,-1,0,-1,1] and [1,1,-2,1,1] with covariance zero.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-two-trends.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"scatter\",\"points\":[{\"x\":2,\"y\":4},{\"x\":1,\"y\":7},{\"x\":3,\"y\":7},{\"x\":3,\"y\":13},{\"x\":6,\"y\":16}],\"xLabel\":\"x\",\"yLabel\":\"y\"}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-two-trends/spec.ts; exact finite illustration specified in manager numericCase: Days x=[1,2,3,4,5], y=[3,6,9,12,15] share r=1 solely by the stipulated calendar trend. Subtract each known trend; show residuals [1,-1,0,-1,1] and [1,1,-2,1,1] with covariance zero.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-two-trends.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Remove known trends\",\"visual\":{\"kind\":\"scatter\",\"points\":[{\"x\":1,\"y\":1},{\"x\":-1,\"y\":1},{\"x\":0,\"y\":-2},{\"x\":-1,\"y\":1},{\"x\":1,\"y\":1}],\"xLabel\":\"x\",\"yLabel\":\"y\"}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-two-trends/spec.ts; exact finite illustration specified in manager numericCase: Days x=[1,2,3,4,5], y=[3,6,9,12,15] share r=1 solely by the stipulated calendar trend. Subtract each known trend; show residuals [1,-1,0,-1,1] and [1,1,-2,1,1] with covariance zero.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-two-trends.scenario.1.summary",
+      "text": "Raw covariance 6",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-two-trends/spec.ts; exact finite illustration specified in manager numericCase: Days x=[1,2,3,4,5], y=[3,6,9,12,15] share r=1 solely by the stipulated calendar trend. Subtract each known trend; show residuals [1,-1,0,-1,1] and [1,1,-2,1,1] with covariance zero.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-two-trends.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Time\"],\"rows\":[[1],[2],[3],[4],[5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-two-trends/spec.ts; exact finite illustration specified in manager numericCase: Days x=[1,2,3,4,5], y=[3,6,9,12,15] share r=1 solely by the stipulated calendar trend. Subtract each known trend; show residuals [1,-1,0,-1,1] and [1,1,-2,1,1] with covariance zero.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-two-trends.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · Keep trends\",\"visual\":{\"kind\":\"scatter\",\"points\":[{\"x\":2,\"y\":4},{\"x\":1,\"y\":7},{\"x\":3,\"y\":7},{\"x\":3,\"y\":13},{\"x\":6,\"y\":16}],\"xLabel\":\"x\",\"yLabel\":\"y\"}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-two-trends/spec.ts; exact finite illustration specified in manager numericCase: Days x=[1,2,3,4,5], y=[3,6,9,12,15] share r=1 solely by the stipulated calendar trend. Subtract each known trend; show residuals [1,-1,0,-1,1] and [1,1,-2,1,1] with covariance zero.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-two-trends.hook",
+      "text": "Subtract two known time trends, then inspect the residual relationship.",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-two-trends/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A=2t+u and B=5t+v, with independent zero-mean u and v. What links their raw values?",
+    "options": [
+      "The shared time trend",
+      "A must cause B",
+      "B must cause A"
+    ],
+    "answer": 0,
+    "why": "Both include t. Their raw association alone does not orient a causal arrow."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-two-trends",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "detrending"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 269,
+    "sourceSection": "14. Correlation vs causation",
+    "sourceTitle": "Two trends",
+    "sourceText": "any two series that both trend upward correlate strongly; remove the trend and it vanishes.",
+    "sourceEntryOriginal": "- **269. Two trends** \\[Slider\\]: any two series that both trend upward correlate strongly; remove the trend and it vanishes.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "probability/three-cards-one-red-face",
+    "difference": "New teaching boundary: Two trends. Existing boundary: The learner can explain that a red face up is equally likely to be any of the three red faces, two of which belong to the red/red card, so the hidden side is red 2/3 of the time.",
+    "numericCase": "Days x=[1,2,3,4,5], y=[3,6,9,12,15] share r=1 solely by the stipulated calendar trend. Subtract each known trend; show residuals [1,-1,0,-1,1] and [1,1,-2,1,1] with covariance zero."
+  },
+  "modelAudit": {
+    "a": 0,
+    "b": 6
+  }
+}

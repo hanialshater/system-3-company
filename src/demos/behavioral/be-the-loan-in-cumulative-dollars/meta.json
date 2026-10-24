@@ -1,0 +1,103 @@
+{
+  "slug": "be-the-loan-in-cumulative-dollars",
+  "title": "The loan in cumulative dollars",
+  "hook": "Does a cumulative dollar bill tell a different story than a two-week fee?",
+  "domain": "behavioral",
+  "concept": "be-the-loan-in-cumulative-dollars",
+  "status": "draft",
+  "durationSec": 60,
+  "version": 1,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and reading a small table"
+    ],
+    "doesNotKnow": [
+      "Distinguish cost disclosure salience from a change in the loan's actual terms."
+    ]
+  },
+  "misconception": "The quantities in this case can be combined without checking their reference, denominator, or information boundary.",
+  "objective": "Distinguish cost disclosure salience from a change in the loan's actual terms.",
+  "keyState": "Both complete computed cases are visible as retained observations; the question-case picture survives Reset.",
+  "claims": [
+    {
+      "id": "behavioral.be-the-loan-in-cumulative-dollars.inputs",
+      "text": "A toy €400 loan incurs a €60 fee in each of three cycles. What is the cumulative fee? Toy inputs A=[60, 3, 400]; B=[60, 1, 400].",
+      "support": "convention",
+      "source": "Local explicit hypothetical assumptions in spec.ts and model.ts; not participant measurements.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-the-loan-in-cumulative-dollars.trace",
+      "text": "Computed results: [[180, 400, 60], [60, 400, 60]]. Labels: Cumulative fee €, Principal €, Fee/cycle €.",
+      "support": "derivation",
+      "source": "compute() in the lesson-local model.ts; finite numeric operations over the explicit inputs.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-the-loan-in-cumulative-dollars.reveal",
+      "text": "Cumulative disclosure adds the fees across cycles without changing the underlying fee schedule. The principal remains a different quantity. Making a total salient is an information change, not an automatic change to the loan’s contractual cost.",
+      "support": "derivation",
+      "source": "The two controlled cases in spec.ts; scope limited to these toy inputs and displayed model rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-the-loan-in-cumulative-dollars.recall",
+      "text": "A new toy case uses Fee/cycle €=60, Cycles=1, Principal €=400. What is Cumulative fee €? Answer: 60.",
+      "support": "derivation",
+      "source": "compute() applied to the contrasting new input case; source list is an idea pointer only.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A new toy case uses Fee/cycle €=60, Cycles=1, Principal €=400. What is Cumulative fee €?",
+    "options": [
+      "78",
+      "60",
+      "42"
+    ],
+    "answer": 1,
+    "why": "Applying the stated toy rule to the new inputs gives 60. The result depends on these assumptions; it is not a universal behavioral response."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "behavioral:be-the-loan-in-cumulative-dollars",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "behavioral",
+      "toy-model",
+      "source-entry-328"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "run-case",
+    "compare-case",
+    "step-trace",
+    "reset-retained-evidence"
+  ],
+  "sourceProvenance": {
+    "file": "500-behavioral-economics-findings.md",
+    "entry": 328,
+    "section": "17. Saving, retirement & household finance",
+    "text": "Showing payday borrowers the cumulative dollar cost of a loan cut borrowing about 11% (Bertrand & Morse, 2011).",
+    "pointer": "500-behavioral-economics-findings.md entry 328: Bertrand & Morse, 2011",
+    "status": "unverified-primary-source",
+    "caveat": "Original list says figures are approximate and papers were not individually rechecked. No empirical source is verified by this build."
+  },
+  "nearestExistingLesson": "minimum-payment-trap",
+  "meaningfulDifference": "Distinguish cost disclosure salience from a change in the loan's actual terms."
+}

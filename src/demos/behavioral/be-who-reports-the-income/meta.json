@@ -1,0 +1,103 @@
+{
+  "slug": "be-who-reports-the-income",
+  "title": "Who reports the income?",
+  "hook": "Would third-party records change the opportunity for tax evasion?",
+  "domain": "behavioral",
+  "concept": "be-who-reports-the-income",
+  "status": "draft",
+  "durationSec": 60,
+  "version": 1,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and reading a small table"
+    ],
+    "doesNotKnow": [
+      "Contrast third-party and self-reported income without treating their association as an individual moral trait."
+    ]
+  },
+  "misconception": "The quantities in this case can be combined without checking their reference, denominator, or information boundary.",
+  "objective": "Contrast third-party and self-reported income without treating their association as an individual moral trait.",
+  "keyState": "Both complete computed cases are visible as retained observations; the question-case picture survives Reset.",
+  "claims": [
+    {
+      "id": "behavioral.be-who-reports-the-income.inputs",
+      "text": "An illustrative income table has €1,000 and an unreported share of 0.3%. What amount is unreported? Toy inputs A=[1000, 0.3]; B=[1000, 37].",
+      "support": "convention",
+      "source": "Local explicit hypothetical assumptions in spec.ts and model.ts; not participant measurements.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-who-reports-the-income.trace",
+      "text": "Computed results: [[3, 1000, 0.3], [370, 1000, 37]]. Labels: Unreported €, Income €, Unreported %.",
+      "support": "derivation",
+      "source": "compute() in the lesson-local model.ts; finite numeric operations over the explicit inputs.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-who-reports-the-income.reveal",
+      "text": "Reporting channel and unreported amount are separate variables. Applying two supplied rates to the same income shows their numerical contrast. It does not convert a channel-level association into an individual moral trait or a universal tax parameter.",
+      "support": "derivation",
+      "source": "The two controlled cases in spec.ts; scope limited to these toy inputs and displayed model rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-who-reports-the-income.recall",
+      "text": "A new toy case uses Income €=1000, Unreported %=37. What is Unreported €? Answer: 370.",
+      "support": "derivation",
+      "source": "compute() applied to the contrasting new input case; source list is an idea pointer only.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A new toy case uses Income €=1000, Unreported %=37. What is Unreported €?",
+    "options": [
+      "481",
+      "370",
+      "259"
+    ],
+    "answer": 1,
+    "why": "Applying the stated toy rule to the new inputs gives 370. The result depends on these assumptions; it is not a universal behavioral response."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "behavioral:be-who-reports-the-income",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "behavioral",
+      "toy-model",
+      "source-entry-454"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "run-case",
+    "compare-case",
+    "step-trace",
+    "reset-retained-evidence"
+  ],
+  "sourceProvenance": {
+    "file": "500-behavioral-economics-findings.md",
+    "entry": 454,
+    "section": "23. Honesty & dishonesty",
+    "text": "Danish tax evasion was about 0.3% of income reported by employers or banks, versus about 37% of self-reported income (Kleven et al., 2011).",
+    "pointer": "500-behavioral-economics-findings.md entry 454: Kleven et al., 2011",
+    "status": "unverified-primary-source",
+    "caveat": "Original list says figures are approximate and papers were not individually rechecked. No empirical source is verified by this build."
+  },
+  "nearestExistingLesson": "two-suspects-payoff",
+  "meaningfulDifference": "Contrast third-party and self-reported income without treating their association as an individual moral trait."
+}

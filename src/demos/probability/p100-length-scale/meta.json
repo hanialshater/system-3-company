@@ -1,0 +1,163 @@
+{
+  "slug": "p100-length-scale",
+  "title": "How wiggly should a curve be?",
+  "hook": "How wiggly should a curve be? Change one condition and inspect the result.",
+  "domain": "probability",
+  "concept": "p100-length-scale",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "fractions and arithmetic",
+      "that a toy model states its assumptions"
+    ],
+    "doesNotKnow": [
+      "short length scales give wiggly functions, long ones give smooth curves."
+    ]
+  },
+  "misconception": "An RBF kernel is exp(−d²/(2ℓ²)). At distance 1 and length scale ℓ=0.5, what is the correlation? The prediction alternatives contrast different consequences of the stated model.",
+  "objective": "short length scales give wiggly functions, long ones give smooth curves.",
+  "keyState": "Both computed cases completed, with their numerical summaries retained across Reset.",
+  "claims": [
+    {
+      "id": "probability.p100-length-scale.case",
+      "text": "An RBF kernel is exp(−d²/(2ℓ²)). At distance 1 and length scale ℓ=0.5, what is the correlation? Options: 0.135; 0.607; 0.882. Toy model: compare two controlled cases.",
+      "support": "convention",
+      "source": "Stipulated numerical case in model.ts, based on manager numericCase: RBFkernelk(x,xprime)=exp(-(distance²)/(2ell²)). At distance1,ell.5,1,2givescorrelation.135335,.606531,.882497. Plotkernelcurve, show lengthscaleisnotnoise.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-length-scale.recall",
+      "text": "At zero distance, this normalized RBF correlation equals? The exponent is zero, so exp(0)=1.",
+      "support": "derivation",
+      "source": "Transfer arithmetic or model implication under the same explicitly stated assumptions. Independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-length-scale.hook",
+      "text": "How wiggly should a curve be? Change one condition and inspect the result.",
+      "support": "convention",
+      "source": "Invitation to manipulate the labelled toy case, not a population claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-length-scale.c4",
+      "text": "At distance 1, correlation is 0.135 for length scale 0.5 and 0.882 for length scale 2. The wider kernel keeps distant points more related.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-length-scale/model.ts#compute().reveal[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-length-scale.c5",
+      "text": "Length scale controls how quickly this RBF correlation decays with distance. It is distinct from observation noise. The curves use an explicit kernel definition; they do not assert that a real process follows it.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-length-scale/model.ts#compute().reveal[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-length-scale.c6",
+      "text": "Run the question case, compare the changed case, and inspect both retained results.",
+      "support": "convention",
+      "source": "src/demos/probability/p100-length-scale/spec.ts#hint; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-length-scale.c7",
+      "text": "k(1): 0.135",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-length-scale/model.ts#compute().scenarios[0].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-length-scale.c8",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":1},{\"x\":0.2,\"y\":0.7261490370736909},{\"x\":0.4,\"y\":0.2780373004531941},{\"x\":0.6,\"y\":0.056134762834133725},{\"x\":0.8,\"y\":0.0059760228950059375},{\"x\":1,\"y\":0.00033546262790251185},{\"x\":1.2,\"y\":0.000009929504305851081},{\"x\":1.4,\"y\":1.5497531357028994e-7},{\"x\":1.6,\"y\":1.2754076295260396e-9},{\"x\":1.8,\"y\":5.5346100717010135e-12},{\"x\":2,\"y\":1.2664165549094176e-14},{\"x\":2.2,\"y\":1.5279799682872937e-17},{\"x\":2.4,\"y\":9.72098502030078e-21},{\"x\":2.6,\"y\":3.261027180711029e-24},{\"x\":2.8,\"y\":5.768329961247925e-28},{\"x\":3,\"y\":5.380186160021138e-32},{\"x\":3.2,\"y\":2.6460377906875844e-36},{\"x\":3.4,\"y\":6.861930476761463e-41},{\"x\":3.6,\"y\":9.383138272830622e-46},{\"x\":3.8,\"y\":6.765524179769529e-51},{\"x\":4,\"y\":2.572209372642415e-56}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-length-scale/model.ts#compute().scenarios[0].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-length-scale.c9",
+      "text": "Toy model: case A. Displayed values: {\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":1},{\"x\":0.2,\"y\":0.9231163463866358},{\"x\":0.4,\"y\":0.7261490370736909},{\"x\":0.6,\"y\":0.4867522559599717},{\"x\":0.8,\"y\":0.2780373004531941},{\"x\":1,\"y\":0.1353352832366127},{\"x\":1.2,\"y\":0.056134762834133725},{\"x\":1.4,\"y\":0.019841094744370298},{\"x\":1.6,\"y\":0.0059760228950059375},{\"x\":1.8,\"y\":0.001533810679324463},{\"x\":2,\"y\":0.00033546262790251185},{\"x\":2.2,\"y\":0.00006252150377482015},{\"x\":2.4,\"y\":0.000009929504305851081},{\"x\":2.6,\"y\":0.000001343812277631519},{\"x\":2.8,\"y\":1.5497531357028994e-7},{\"x\":3,\"y\":1.522997974471263e-8},{\"x\":3.2,\"y\":1.2754076295260396e-9},{\"x\":3.4,\"y\":9.101470764487967e-11},{\"x\":3.6,\"y\":5.5346100717010135e-12},{\"x\":3.8,\"y\":2.867975008888098e-13},{\"x\":4,\"y\":1.2664165549094176e-14}]}. [{\"label\":\"k(1)\",\"value\":\"0.135\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-length-scale/model.ts#compute().scenarios[0].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-length-scale.c10",
+      "text": "k(1): 0.882",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-length-scale/model.ts#compute().scenarios[1].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-length-scale.c11",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":1},{\"x\":0.2,\"y\":0.9801986733067553},{\"x\":0.4,\"y\":0.9231163463866358},{\"x\":0.6,\"y\":0.835270211411272},{\"x\":0.8,\"y\":0.7261490370736909},{\"x\":1,\"y\":0.6065306597126334},{\"x\":1.2,\"y\":0.4867522559599717},{\"x\":1.4,\"y\":0.37531109885139957},{\"x\":1.6,\"y\":0.2780373004531941},{\"x\":1.8,\"y\":0.19789869908361465},{\"x\":2,\"y\":0.1353352832366127},{\"x\":2.2,\"y\":0.0889216174593863},{\"x\":2.4,\"y\":0.056134762834133725},{\"x\":2.6,\"y\":0.03404745473459933},{\"x\":2.8,\"y\":0.019841094744370298},{\"x\":3,\"y\":0.011108996538242306},{\"x\":3.2,\"y\":0.0059760228950059375},{\"x\":3.4,\"y\":0.0030887154082367718},{\"x\":3.6,\"y\":0.001533810679324463},{\"x\":3.8,\"y\":0.0007318024188804728},{\"x\":4,\"y\":0.00033546262790251185}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-length-scale/model.ts#compute().scenarios[1].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-length-scale.c12",
+      "text": "Toy model: case B. Displayed values: {\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":1},{\"x\":0.2,\"y\":0.9950124791926823},{\"x\":0.4,\"y\":0.9801986733067553},{\"x\":0.6,\"y\":0.9559974818331},{\"x\":0.8,\"y\":0.9231163463866358},{\"x\":1,\"y\":0.8824969025845955},{\"x\":1.2,\"y\":0.835270211411272},{\"x\":1.4,\"y\":0.7827045382418683},{\"x\":1.6,\"y\":0.7261490370736909},{\"x\":1.8,\"y\":0.6669768108584744},{\"x\":2,\"y\":0.6065306597126334},{\"x\":2.2,\"y\":0.5460744266397094},{\"x\":2.4,\"y\":0.4867522559599717},{\"x\":2.6,\"y\":0.4295573582107391},{\"x\":2.8,\"y\":0.37531109885139957},{\"x\":3,\"y\":0.32465246735834974},{\"x\":3.2,\"y\":0.2780373004531941},{\"x\":3.4,\"y\":0.23574607655586358},{\"x\":3.6,\"y\":0.19789869908361465},{\"x\":3.8,\"y\":0.1644744565771549},{\"x\":4,\"y\":0.1353352832366127}]}. [{\"label\":\"k(1)\",\"value\":\"0.882\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-length-scale/model.ts#compute().scenarios[1].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "At zero distance, this normalized RBF correlation equals?",
+    "options": [
+      "0",
+      "0.5",
+      "1"
+    ],
+    "answer": 2,
+    "why": "The exponent is zero, so exp(0)=1."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-length-scale",
+    "also": [],
+    "prerequisites": [],
+    "level": "stretch",
+    "references": [],
+    "tags": [
+      "founder-2026-10-24",
+      "source-entry-642",
+      "curve"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "controlled-case-comparison",
+    "step-through-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 642,
+    "sourceSection": "33. Gaussian processes & Bayesian optimization",
+    "sourceTitle": "Length scale",
+    "sourceText": "short length scales give wiggly functions, long ones give smooth curves.",
+    "sourceEntryOriginal": "- **642. Length scale** \\[Slider\\]: short length scales give wiggly functions, long ones give smooth curves.",
+    "numericCase": "RBFkernelk(x,xprime)=exp(-(distance²)/(2ell²)). At distance1,ell.5,1,2givescorrelation.135335,.606531,.882497. Plotkernelcurve, show lengthscaleisnotnoise.",
+    "sourceStatus": "unverified idea pointer; empirical and historical claims excluded from learner copy",
+    "nearestExistingLesson": "cs/algo-sequence-affine-gap",
+    "difference": "New teaching boundary: Length scale. Existing boundary: Use separate match, insertion and deletion states to distinguish gap opening from extension costs."
+  },
+  "modelOutputs": [
+    0.1353352832366127,
+    0.8824969025845955
+  ]
+}

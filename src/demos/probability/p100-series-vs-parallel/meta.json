@@ -1,0 +1,163 @@
+{
+  "slug": "p100-series-vs-parallel",
+  "title": "Which backup keeps it working?",
+  "hook": "Which backup keeps it working? Change one condition and inspect the result.",
+  "domain": "probability",
+  "concept": "p100-series-vs-parallel",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "fractions and arithmetic",
+      "that a toy model states its assumptions"
+    ],
+    "doesNotKnow": [
+      "chain components and reliability multiplies down; add redundancy and it climbs."
+    ]
+  },
+  "misconception": "Two independent components work with probabilities 0.9 and 0.8. A parallel system works if either works. What is system reliability? The prediction alternatives contrast different consequences of the stated model.",
+  "objective": "chain components and reliability multiplies down; add redundancy and it climbs.",
+  "keyState": "Both computed cases completed, with their numerical summaries retained across Reset.",
+  "claims": [
+    {
+      "id": "probability.p100-series-vs-parallel.case",
+      "text": "Two independent components work with probabilities 0.9 and 0.8. A parallel system works if either works. What is system reliability? Options: 0.72; 0.9; 0.98. Toy model: compare two controlled cases.",
+      "support": "convention",
+      "source": "Stipulated numerical case in model.ts, based on manager numericCase: Twocomponentsreliabilities.9,.8 independent. Series.72,parallel1-(.1*.2)=.98. Vary secondcomponent.5,.8,1 to show independenceassumption and differentwiring.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-series-vs-parallel.recall",
+      "text": "Two independent 0.5-reliable components in parallel have reliability? 1−(1−0.5)²=0.75.",
+      "support": "derivation",
+      "source": "Transfer arithmetic or model implication under the same explicitly stated assumptions. Independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-series-vs-parallel.hook",
+      "text": "Which backup keeps it working? Change one condition and inspect the result.",
+      "support": "convention",
+      "source": "Invitation to manipulate the labelled toy case, not a population claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-series-vs-parallel.c4",
+      "text": "Parallel reliability is 0.98; series reliability is 0.72 for the same component probabilities.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-series-vs-parallel/model.ts#compute().reveal[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-series-vs-parallel.c5",
+      "text": "Series needs both successes. Parallel fails only when both components fail, so its reliability is one minus that joint failure probability. Both calculations assume independent component states; shared failure causes would change the result.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-series-vs-parallel/model.ts#compute().reveal[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-series-vs-parallel.c6",
+      "text": "Run the question case, compare the changed case, and inspect both retained results.",
+      "support": "convention",
+      "source": "src/demos/probability/p100-series-vs-parallel/spec.ts#hint; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-series-vs-parallel.c7",
+      "text": "Parallel: 0.98",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-series-vs-parallel/model.ts#compute().scenarios[0].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-series-vs-parallel.c8",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"Input\",\"x\":40,\"y\":75},{\"id\":\"1\",\"label\":\"A\",\"x\":120,\"y\":120},{\"id\":\"2\",\"label\":\"B\",\"x\":200,\"y\":75},{\"id\":\"3\",\"label\":\"Out\",\"x\":280,\"y\":120}],\"edges\":[{\"from\":\"0\",\"to\":\"1\"},{\"from\":\"0\",\"to\":\"2\"},{\"from\":\"1\",\"to\":\"3\"},{\"from\":\"2\",\"to\":\"3\"}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-series-vs-parallel/model.ts#compute().scenarios[0].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-series-vs-parallel.c9",
+      "text": "Toy model: case A. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"Works\",\"value\":0.98},{\"label\":\"Fails\",\"value\":0.020000000000000018}]}. [{\"label\":\"Parallel\",\"value\":\"0.98\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-series-vs-parallel/model.ts#compute().scenarios[0].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-series-vs-parallel.c10",
+      "text": "Series: 0.72",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-series-vs-parallel/model.ts#compute().scenarios[1].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-series-vs-parallel.c11",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"Input\",\"x\":40,\"y\":75},{\"id\":\"1\",\"label\":\"A\",\"x\":120,\"y\":120},{\"id\":\"2\",\"label\":\"B\",\"x\":200,\"y\":75},{\"id\":\"3\",\"label\":\"Out\",\"x\":280,\"y\":120}],\"edges\":[{\"from\":\"0\",\"to\":\"1\"},{\"from\":\"1\",\"to\":\"2\"},{\"from\":\"2\",\"to\":\"3\"}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-series-vs-parallel/model.ts#compute().scenarios[1].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-series-vs-parallel.c12",
+      "text": "Toy model: case B. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"Works\",\"value\":0.7200000000000001},{\"label\":\"Fails\",\"value\":0.2799999999999999}]}. [{\"label\":\"Series\",\"value\":\"0.72\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-series-vs-parallel/model.ts#compute().scenarios[1].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two independent 0.5-reliable components in parallel have reliability?",
+    "options": [
+      "0.25",
+      "0.5",
+      "0.75"
+    ],
+    "answer": 2,
+    "why": "1−(1−0.5)²=0.75."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-series-vs-parallel",
+    "also": [],
+    "prerequisites": [],
+    "level": "stretch",
+    "references": [],
+    "tags": [
+      "founder-2026-10-24",
+      "source-entry-737",
+      "graph"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "controlled-case-comparison",
+    "step-through-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 737,
+    "sourceSection": "37. Survival analysis & reliability",
+    "sourceTitle": "Series vs parallel",
+    "sourceText": "chain components and reliability multiplies down; add redundancy and it climbs.",
+    "sourceEntryOriginal": "- **737. Series vs parallel** \\[Slider\\]: chain components and reliability multiplies down; add redundancy and it climbs.",
+    "numericCase": "Twocomponentsreliabilities.9,.8 independent. Series.72,parallel1-(.1*.2)=.98. Vary secondcomponent.5,.8,1 to show independenceassumption and differentwiring.",
+    "sourceStatus": "unverified idea pointer; empirical and historical claims excluded from learner copy",
+    "nearestExistingLesson": "books/bk-information-repeated-messages",
+    "difference": "New teaching boundary: Series vs parallel. Existing boundary: Separate explicit redundancy cost from its unmodeled reliability benefit."
+  },
+  "modelOutputs": [
+    0.98,
+    0.7200000000000001
+  ]
+}

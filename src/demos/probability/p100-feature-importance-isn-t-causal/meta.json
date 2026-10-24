@@ -1,0 +1,161 @@
+{
+  "slug": "p100-feature-importance-isn-t-causal",
+  "title": "Should we ban the umbrellas?",
+  "hook": "A perfect predictor need not be a useful intervention.",
+  "domain": "probability",
+  "concept": "p100-feature-importance-isn-t-causal",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "a model leans on umbrella sales to predict rain; banning umbrellas won't stop it."
+    ]
+  },
+  "misconception": "Treating feature importance isn't causal as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "a model leans on umbrella sales to predict rain; banning umbrellas won't stop it.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-feature-importance-isn-t-causal.predict",
+      "text": "Rain R is equally likely 0/1; umbrella sales U=100R and street wetness W=R. If an intervention forces umbrella sales to zero, what wet-street probability remains?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-feature-importance-isn-t-causal/spec.ts; exact finite illustration specified in manager numericCase: RainR fairbinary, umbrellasU=100R, wetstreetW=R. Umbrellas perfectly predictwetstreet; doU=0 keepsP(W=1)=.5. Contrast prediction error with intervention effect0.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-feature-importance-isn-t-causal.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-feature-importance-isn-t-causal/spec.ts; exact finite illustration specified in manager numericCase: RainR fairbinary, umbrellasU=100R, wetstreetW=R. Umbrellas perfectly predictwetstreet; doU=0 keepsP(W=1)=.5. Contrast prediction error with intervention effect0.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-feature-importance-isn-t-causal.reveal.0",
+      "text": "Banning sales retains wet-street probability 50%; observing zero sales retains 0%. In the observational data, sales perfectly predict rain and wetness.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-feature-importance-isn-t-causal/spec.ts; exact finite illustration specified in manager numericCase: RainR fairbinary, umbrellasU=100R, wetstreetW=R. Umbrellas perfectly predictwetstreet; doU=0 keepsP(W=1)=.5. Contrast prediction error with intervention effect0.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-feature-importance-isn-t-causal.reveal.1",
+      "text": "The prediction works because rain causes both variables. Intervening on umbrella sales cuts their rain-generated assignment without removing rain’s path to wet streets. A model’s predictive feature importance does not by itself measure an intervention effect.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-feature-importance-isn-t-causal/spec.ts; exact finite illustration specified in manager numericCase: RainR fairbinary, umbrellasU=100R, wetstreetW=R. Umbrellas perfectly predictwetstreet; doU=0 keepsP(W=1)=.5. Contrast prediction error with intervention effect0.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-feature-importance-isn-t-causal.recall",
+      "text": "A thermometer reading predicts fever. Changing only its displayed number does what to the underlying fever in that causal model? A downstream measurement can predict a condition without being its cause.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-feature-importance-isn-t-causal/spec.ts; exact finite illustration specified in manager numericCase: RainR fairbinary, umbrellasU=100R, wetstreetW=R. Umbrellas perfectly predictwetstreet; doU=0 keepsP(W=1)=.5. Contrast prediction error with intervention effect0.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-feature-importance-isn-t-causal.scenario.0.summary",
+      "text": "Wet probability 50%",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-feature-importance-isn-t-causal/spec.ts; exact finite illustration specified in manager numericCase: RainR fairbinary, umbrellasU=100R, wetstreetW=R. Umbrellas perfectly predictwetstreet; doU=0 keepsP(W=1)=.5. Contrast prediction error with intervention effect0.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-feature-importance-isn-t-causal.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"Rain\",\"x\":40,\"y\":45},{\"id\":\"1\",\"label\":\"Umbrellas\",\"x\":160,\"y\":115},{\"id\":\"2\",\"label\":\"Wet\",\"x\":280,\"y\":45}],\"edges\":[{\"from\":\"0\",\"to\":\"1\",\"active\":true},{\"from\":\"0\",\"to\":\"2\",\"active\":true}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-feature-importance-isn-t-causal/spec.ts; exact finite illustration specified in manager numericCase: RainR fairbinary, umbrellasU=100R, wetstreetW=R. Umbrellas perfectly predictwetstreet; doU=0 keepsP(W=1)=.5. Contrast prediction error with intervention effect0.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-feature-importance-isn-t-causal.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Ban umbrella sales\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"Rain\",\"x\":40,\"y\":45},{\"id\":\"1\",\"label\":\"U=0\",\"x\":160,\"y\":115},{\"id\":\"2\",\"label\":\"Wet\",\"x\":280,\"y\":45}],\"edges\":[{\"from\":\"0\",\"to\":\"1\",\"active\":false},{\"from\":\"0\",\"to\":\"2\",\"active\":true}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-feature-importance-isn-t-causal/spec.ts; exact finite illustration specified in manager numericCase: RainR fairbinary, umbrellasU=100R, wetstreetW=R. Umbrellas perfectly predictwetstreet; doU=0 keepsP(W=1)=.5. Contrast prediction error with intervention effect0.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-feature-importance-isn-t-causal.scenario.1.summary",
+      "text": "Observed wet probability 0%",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-feature-importance-isn-t-causal/spec.ts; exact finite illustration specified in manager numericCase: RainR fairbinary, umbrellasU=100R, wetstreetW=R. Umbrellas perfectly predictwetstreet; doU=0 keepsP(W=1)=.5. Contrast prediction error with intervention effect0.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-feature-importance-isn-t-causal.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"Rain\",\"x\":40,\"y\":45},{\"id\":\"1\",\"label\":\"Umbrellas\",\"x\":160,\"y\":115},{\"id\":\"2\",\"label\":\"Wet\",\"x\":280,\"y\":45}],\"edges\":[{\"from\":\"0\",\"to\":\"1\",\"active\":true},{\"from\":\"0\",\"to\":\"2\",\"active\":true}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-feature-importance-isn-t-causal/spec.ts; exact finite illustration specified in manager numericCase: RainR fairbinary, umbrellasU=100R, wetstreetW=R. Umbrellas perfectly predictwetstreet; doU=0 keepsP(W=1)=.5. Contrast prediction error with intervention effect0.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-feature-importance-isn-t-causal.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · Observe zero sales\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"Rain=0\",\"x\":40,\"y\":45},{\"id\":\"1\",\"label\":\"U=0\",\"x\":160,\"y\":115},{\"id\":\"2\",\"label\":\"Wet=0\",\"x\":280,\"y\":45}],\"edges\":[{\"from\":\"0\",\"to\":\"1\",\"active\":true},{\"from\":\"0\",\"to\":\"2\",\"active\":true}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-feature-importance-isn-t-causal/spec.ts; exact finite illustration specified in manager numericCase: RainR fairbinary, umbrellasU=100R, wetstreetW=R. Umbrellas perfectly predictwetstreet; doU=0 keepsP(W=1)=.5. Contrast prediction error with intervention effect0.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-feature-importance-isn-t-causal.hook",
+      "text": "A perfect predictor need not be a useful intervention.",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-feature-importance-isn-t-causal/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A thermometer reading predicts fever. Changing only its displayed number does what to the underlying fever in that causal model?",
+    "options": [
+      "Nothing by itself",
+      "Always cures it",
+      "Always worsens it"
+    ],
+    "answer": 0,
+    "why": "A downstream measurement can predict a condition without being its cause."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-feature-importance-isn-t-causal",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "predict-vs-act"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 355,
+    "sourceSection": "18. Causal graphs & the do-operator",
+    "sourceTitle": "Feature importance isn't causal",
+    "sourceText": "a model leans on umbrella sales to predict rain; banning umbrellas won't stop it.",
+    "sourceEntryOriginal": "- **355. Feature importance isn't causal** \\[Gotcha\\]: a model leans on umbrella sales to predict rain; banning umbrellas won't stop it.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "ai/ai-feature-hashing",
+    "difference": "New teaching boundary: Feature importance isn't causal. Existing boundary: Compute the feature hashing finite model and explain its changed countercase and stated boundary.",
+    "numericCase": "RainR fairbinary, umbrellasU=100R, wetstreetW=R. Umbrellas perfectly predictwetstreet; doU=0 keepsP(W=1)=.5. Contrast prediction error with intervention effect0."
+  },
+  "modelAudit": {
+    "a": 0.5,
+    "b": 0
+  }
+}

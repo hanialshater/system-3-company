@@ -1,0 +1,163 @@
+{
+  "slug": "p100-bootstrap",
+  "title": "One sample, many resamples",
+  "hook": "Three data points can make 27 ordered resamples. Inspect what varies.",
+  "domain": "probability",
+  "concept": "p100-bootstrap",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "resample your own data thousands of times to get an interval without formulas."
+    ]
+  },
+  "misconception": "Treating bootstrap as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "resample your own data thousands of times to get an interval without formulas.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-bootstrap.predict",
+      "text": "Your data are 2, 4, and 6. You enumerate every size-3 resample with replacement and average each. What is the mean of those resample means?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-bootstrap/spec.ts; exact finite illustration specified in manager numericCase: Data [2,4,6]. Enumerate all 27 ordered size-3 bootstrap resamples; means span 2 to 6, average 4. Compare to size-1 resamples [2,4,6] to expose sample-size effect.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-bootstrap.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-bootstrap/spec.ts; exact finite illustration specified in manager numericCase: Data [2,4,6]. Enumerate all 27 ordered size-3 bootstrap resamples; means span 2 to 6, average 4. Compare to size-1 resamples [2,4,6] to expose sample-size effect.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-bootstrap.reveal.0",
+      "text": "Both retained resampling means are 4, but the size-three means vary less. The first histogram enumerates all 27 ordered resamples, not 27 new independent observations.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-bootstrap/spec.ts; exact finite illustration specified in manager numericCase: Data [2,4,6]. Enumerate all 27 ordered size-3 bootstrap resamples; means span 2 to 6, average 4. Compare to size-1 resamples [2,4,6] to expose sample-size effect.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-bootstrap.reveal.1",
+      "text": "Resampling explores uncertainty under the empirical distribution of these three values. It cannot add a missing kind of observation or repair biased data.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-bootstrap/spec.ts; exact finite illustration specified in manager numericCase: Data [2,4,6]. Enumerate all 27 ordered size-3 bootstrap resamples; means span 2 to 6, average 4. Compare to size-1 resamples [2,4,6] to expose sample-size effect.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-bootstrap.recall",
+      "text": "For data 1 and 5, what is the average of the four size-2 resample means? The ordered means are 1, 3, 3, 5, averaging 3.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-bootstrap/spec.ts; exact finite illustration specified in manager numericCase: Data [2,4,6]. Enumerate all 27 ordered size-3 bootstrap resamples; means span 2 to 6, average 4. Compare to size-1 resamples [2,4,6] to expose sample-size effect.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-bootstrap.scenario.0.summary",
+      "text": "Mean 4; variance 0.889",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-bootstrap/spec.ts; exact finite illustration specified in manager numericCase: Data [2,4,6]. Enumerate all 27 ordered size-3 bootstrap resamples; means span 2 to 6, average 4. Compare to size-1 resamples [2,4,6] to expose sample-size effect.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-bootstrap.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Data\"],\"rows\":[[2],[4],[6]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-bootstrap/spec.ts; exact finite illustration specified in manager numericCase: Data [2,4,6]. Enumerate all 27 ordered size-3 bootstrap resamples; means span 2 to 6, average 4. Compare to size-1 resamples [2,4,6] to expose sample-size effect.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-bootstrap.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Size three\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"2\",\"value\":1},{\"label\":\"2.667\",\"value\":3},{\"label\":\"3.333\",\"value\":6},{\"label\":\"4\",\"value\":7},{\"label\":\"4.667\",\"value\":6},{\"label\":\"5.333\",\"value\":3},{\"label\":\"6\",\"value\":1}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-bootstrap/spec.ts; exact finite illustration specified in manager numericCase: Data [2,4,6]. Enumerate all 27 ordered size-3 bootstrap resamples; means span 2 to 6, average 4. Compare to size-1 resamples [2,4,6] to expose sample-size effect.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-bootstrap.scenario.1.summary",
+      "text": "Mean 4; variance 2.667",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-bootstrap/spec.ts; exact finite illustration specified in manager numericCase: Data [2,4,6]. Enumerate all 27 ordered size-3 bootstrap resamples; means span 2 to 6, average 4. Compare to size-1 resamples [2,4,6] to expose sample-size effect.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-bootstrap.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Resample size\"],\"rows\":[[1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-bootstrap/spec.ts; exact finite illustration specified in manager numericCase: Data [2,4,6]. Enumerate all 27 ordered size-3 bootstrap resamples; means span 2 to 6, average 4. Compare to size-1 resamples [2,4,6] to expose sample-size effect.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-bootstrap.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · Size one\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"2\",\"value\":1},{\"label\":\"4\",\"value\":1},{\"label\":\"6\",\"value\":1}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-bootstrap/spec.ts; exact finite illustration specified in manager numericCase: Data [2,4,6]. Enumerate all 27 ordered size-3 bootstrap resamples; means span 2 to 6, average 4. Compare to size-1 resamples [2,4,6] to expose sample-size effect.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-bootstrap.hook",
+      "text": "Three data points can make 27 ordered resamples. Inspect what varies.",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-bootstrap/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For data 1 and 5, what is the average of the four size-2 resample means?",
+    "options": [
+      "2",
+      "3",
+      "4"
+    ],
+    "answer": 1,
+    "why": "The ordered means are 1, 3, 3, 5, averaging 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-bootstrap",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "bootstrap"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 244,
+    "sourceSection": "13. Estimation, fitting & uncertainty",
+    "sourceTitle": "Bootstrap",
+    "sourceText": "resample your own data thousands of times to get an interval without formulas.",
+    "sourceEntryOriginal": "- **244. Bootstrap** \\[Slider\\]: resample your own data thousands of times to get an interval without formulas.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "economics/lower-bid-takes-the-top-ad",
+    "difference": "New teaching boundary: Bootstrap. Existing boundary: The learner can rank two ads by bid × quality, see that the lower bid can come first, and work out that under a pay-the-least-that-keeps-your-rank rule the winner pays the next ad's score divided by its own quality.",
+    "numericCase": "Data [2,4,6]. Enumerate all 27 ordered size-3 bootstrap resamples; means span 2 to 6, average 4. Compare to size-1 resamples [2,4,6] to expose sample-size effect."
+  },
+  "modelAudit": {
+    "a": 4,
+    "b": 0.8888888888888892,
+    "singleVariance": 2.6666666666666665,
+    "resamples": 27
+  }
+}

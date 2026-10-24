@@ -1,0 +1,163 @@
+{
+  "slug": "p100-two-right-answers",
+  "title": "Which way should the robot bend?",
+  "hook": "Which way should the robot bend? Change one condition and inspect the result.",
+  "domain": "probability",
+  "concept": "p100-two-right-answers",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "fractions and arithmetic",
+      "that a toy model states its assumptions"
+    ],
+    "doesNotKnow": [
+      "a robot arm can reach a point two ways; a mixture density network predicts both, a plain network averages them into nonsense."
+    ]
+  },
+  "misconception": "A toy robot can take only angles −60° or +60°, equally likely. A squared-error point predictor returns their mean. What angle does it return? The prediction alternatives contrast different consequences of the stated model.",
+  "objective": "a robot arm can reach a point two ways; a mixture density network predicts both, a plain network averages them into nonsense.",
+  "keyState": "Both computed cases completed, with their numerical summaries retained across Reset.",
+  "claims": [
+    {
+      "id": "probability.p100-two-right-answers.case",
+      "text": "A toy robot can take only angles −60° or +60°, equally likely. A squared-error point predictor returns their mean. What angle does it return? Options: −60°; 0°; +60°. Toy model: compare two controlled cases.",
+      "support": "convention",
+      "source": "Stipulated numerical case in model.ts, based on manager numericCase: Twoequallyvalidrobotangles-60and60degrees. Meanpredictor0has no massin targetmixture; mixturecomponents-60,60preserveboth. SquaredlossmeanminimizesnumericMSEbutcanbeinvalidconfiguration; diagrammustshowreachabilitytoy.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-two-right-answers.recall",
+      "text": "Allowed positions are −2 and +2 only. Is their mean necessarily an allowed position? The mean is 0, which is outside the stated allowed set.",
+      "support": "derivation",
+      "source": "Transfer arithmetic or model implication under the same explicitly stated assumptions. Independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-two-right-answers.hook",
+      "text": "Which way should the robot bend? Change one condition and inspect the result.",
+      "support": "convention",
+      "source": "Invitation to manipulate the labelled toy case, not a population claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-two-right-answers.c4",
+      "text": "The mean predictor returns 0°, between the two allowed angles. The second picture keeps probability at −60° and +60° instead.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-two-right-answers/model.ts#compute().reveal[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-two-right-answers.c5",
+      "text": "A squared-error point estimate can minimize numeric error while landing in a forbidden configuration. Retaining multiple possible answers preserves the toy constraint. This example does not say that every averaged prediction is invalid.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-two-right-answers/model.ts#compute().reveal[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-two-right-answers.c6",
+      "text": "Run the question case, compare the changed case, and inspect both retained results.",
+      "support": "convention",
+      "source": "src/demos/probability/p100-two-right-answers/spec.ts#hint; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-two-right-answers.c7",
+      "text": "Mean angle: 0",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-two-right-answers/model.ts#compute().scenarios[0].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-two-right-answers.c8",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"−60°\",\"value\":0.5},{\"label\":\"+60°\",\"value\":0.5}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-two-right-answers/model.ts#compute().scenarios[0].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-two-right-answers.c9",
+      "text": "Toy model: case A. Displayed values: {\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"−60°\",\"x\":40,\"y\":75},{\"id\":\"1\",\"label\":\"Mean 0°\",\"x\":160,\"y\":120},{\"id\":\"2\",\"label\":\"+60°\",\"x\":280,\"y\":75}],\"edges\":[{\"from\":\"0\",\"to\":\"1\"},{\"from\":\"1\",\"to\":\"2\"}]}. [{\"label\":\"Mean angle\",\"value\":\"0\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-two-right-answers/model.ts#compute().scenarios[0].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-two-right-answers.c10",
+      "text": "Second mode: 60",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-two-right-answers/model.ts#compute().scenarios[1].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-two-right-answers.c11",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"−60°\",\"value\":0.5},{\"label\":\"+60°\",\"value\":0.5}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-two-right-answers/model.ts#compute().scenarios[1].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-two-right-answers.c12",
+      "text": "Toy model: case B. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"−60°\",\"value\":0.5},{\"label\":\"0°\",\"value\":0},{\"label\":\"+60°\",\"value\":0.5}]}. [{\"label\":\"Second mode\",\"value\":\"60\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-two-right-answers/model.ts#compute().scenarios[1].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Allowed positions are −2 and +2 only. Is their mean necessarily an allowed position?",
+    "options": [
+      "Yes",
+      "No",
+      "Only with equal probabilities"
+    ],
+    "answer": 1,
+    "why": "The mean is 0, which is outside the stated allowed set."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-two-right-answers",
+    "also": [],
+    "prerequisites": [],
+    "level": "stretch",
+    "references": [],
+    "tags": [
+      "founder-2026-10-24",
+      "source-entry-790",
+      "graph"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "controlled-case-comparison",
+    "step-through-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 790,
+    "sourceSection": "40. Probabilistic deep learning & generative models",
+    "sourceTitle": "Two right answers",
+    "sourceText": "a robot arm can reach a point two ways; a mixture density network predicts both, a plain network averages them into nonsense.",
+    "sourceEntryOriginal": "- **790. Two right answers** \\[Slider\\]: a robot arm can reach a point two ways; a mixture density network predicts both, a plain network averages them into nonsense.",
+    "numericCase": "Twoequallyvalidrobotangles-60and60degrees. Meanpredictor0has no massin targetmixture; mixturecomponents-60,60preserveboth. SquaredlossmeanminimizesnumericMSEbutcanbeinvalidconfiguration; diagrammustshowreachabilitytoy.",
+    "sourceStatus": "unverified idea pointer; empirical and historical claims excluded from learner copy",
+    "nearestExistingLesson": "cs/groups-where-everyone-reaches-everyone",
+    "difference": "New teaching boundary: Two right answers. Existing boundary: The learner can explain that a group needs reaching both ways, so the 7-town map splits into 3 groups ({1, 2, 3}, {4, 5, 6}, {7}) even though 3 reaches 4, and that two depth-first passes (finish order, then the reversed roads from the last to finish) find them."
+  },
+  "modelOutputs": [
+    0,
+    60
+  ]
+}

@@ -1,0 +1,161 @@
+{
+  "slug": "p100-split-or-pool",
+  "title": "Which comparison answers it?",
+  "hook": "The numeric table stays fixed while its causal graph changes.",
+  "domain": "probability",
+  "concept": "p100-split-or-pool",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "the same table, two causal stories; the right answer depends on the arrows, not the numbers."
+    ]
+  },
+  "misconception": "Treating split or pool? as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "the same table, two causal stories; the right answer depends on the arrows, not the numbers.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-split-or-pool.predict",
+      "text": "A table has pooled treated 44%, control 66%, but +10 percentage points within each stratum. If the stratum is a pre-treatment confounder and adjustment assumptions hold, which contrast targets the total effect?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-split-or-pool/spec.ts; exact finite illustration specified in manager numericCase: Use stratum rates: treatment low80%, high40%; control low70%, high30%. Treatment mix90%high gives44%, control mix10%high gives66%. If strata pre-treatment confounder adjust gives+10pp; if strata mediator, adjustment removes indirect path. State graph assumptions explicitly.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-split-or-pool.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-split-or-pool/spec.ts; exact finite illustration specified in manager numericCase: Use stratum rates: treatment low80%, high40%; control low70%, high30%. Treatment mix90%high gives44%, control mix10%high gives66%. If strata pre-treatment confounder adjust gives+10pp; if strata mediator, adjustment removes indirect path. State graph assumptions explicitly.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-split-or-pool.reveal.0",
+      "text": "The pre-treatment graph retains an adjusted +10-point contrast; the mediator graph changes what adjustment targets. The same numeric table does not identify which story generated it.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-split-or-pool/spec.ts; exact finite illustration specified in manager numericCase: Use stratum rates: treatment low80%, high40%; control low70%, high30%. Treatment mix90%high gives44%, control mix10%high gives66%. If strata pre-treatment confounder adjust gives+10pp; if strata mediator, adjustment removes indirect path. State graph assumptions explicitly.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-split-or-pool.reveal.1",
+      "text": "Balancing a confounder blocks a noncausal path. Holding a mediator fixed blocks part of the causal pathway instead; interpreting that as a direct effect requires additional assumptions. The arrows, timing and target matter.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-split-or-pool/spec.ts; exact finite illustration specified in manager numericCase: Use stratum rates: treatment low80%, high40%; control low70%, high30%. Treatment mix90%high gives44%, control mix10%high gives66%. If strata pre-treatment confounder adjust gives+10pp; if strata mediator, adjustment removes indirect path. State graph assumptions explicitly.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-split-or-pool.recall",
+      "text": "A treatment changes sleep, which changes alertness. Adjusting for sleep can remove which part? Sleep is a mediator in this stated graph; conditioning on it blocks the sleep-mediated pathway.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-split-or-pool/spec.ts; exact finite illustration specified in manager numericCase: Use stratum rates: treatment low80%, high40%; control low70%, high30%. Treatment mix90%high gives44%, control mix10%high gives66%. If strata pre-treatment confounder adjust gives+10pp; if strata mediator, adjustment removes indirect path. State graph assumptions explicitly.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-split-or-pool.scenario.0.summary",
+      "text": "Adjusted 10pp",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-split-or-pool/spec.ts; exact finite illustration specified in manager numericCase: Use stratum rates: treatment low80%, high40%; control low70%, high30%. Treatment mix90%high gives44%, control mix10%high gives66%. If strata pre-treatment confounder adjust gives+10pp; if strata mediator, adjustment removes indirect path. State graph assumptions explicitly.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-split-or-pool.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"Z\",\"x\":40,\"y\":45},{\"id\":\"1\",\"label\":\"T\",\"x\":160,\"y\":115},{\"id\":\"2\",\"label\":\"Y\",\"x\":280,\"y\":45}],\"edges\":[{\"from\":\"0\",\"to\":\"1\",\"active\":true},{\"from\":\"0\",\"to\":\"2\",\"active\":true},{\"from\":\"1\",\"to\":\"2\",\"active\":true}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-split-or-pool/spec.ts; exact finite illustration specified in manager numericCase: Use stratum rates: treatment low80%, high40%; control low70%, high30%. Treatment mix90%high gives44%, control mix10%high gives66%. If strata pre-treatment confounder adjust gives+10pp; if strata mediator, adjustment removes indirect path. State graph assumptions explicitly.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-split-or-pool.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Pre-treatment Z\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"Z\",\"x\":40,\"y\":45},{\"id\":\"1\",\"label\":\"T\",\"x\":160,\"y\":115},{\"id\":\"2\",\"label\":\"Y\",\"x\":280,\"y\":45}],\"edges\":[{\"from\":\"0\",\"to\":\"1\",\"active\":true},{\"from\":\"0\",\"to\":\"2\",\"active\":true},{\"from\":\"1\",\"to\":\"2\",\"active\":true}]},\"metrics\":[{\"label\":\"Pooled\",\"value\":\"-22pp\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-split-or-pool/spec.ts; exact finite illustration specified in manager numericCase: Use stratum rates: treatment low80%, high40%; control low70%, high30%. Treatment mix90%high gives44%, control mix10%high gives66%. If strata pre-treatment confounder adjust gives+10pp; if strata mediator, adjustment removes indirect path. State graph assumptions explicitly.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-split-or-pool.scenario.1.summary",
+      "text": "Adjusted: direct-path contrast",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-split-or-pool/spec.ts; exact finite illustration specified in manager numericCase: Use stratum rates: treatment low80%, high40%; control low70%, high30%. Treatment mix90%high gives44%, control mix10%high gives66%. If strata pre-treatment confounder adjust gives+10pp; if strata mediator, adjustment removes indirect path. State graph assumptions explicitly.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-split-or-pool.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"Z\",\"x\":40,\"y\":45},{\"id\":\"1\",\"label\":\"T\",\"x\":160,\"y\":115},{\"id\":\"2\",\"label\":\"Y\",\"x\":280,\"y\":45}],\"edges\":[{\"from\":\"0\",\"to\":\"1\",\"active\":true},{\"from\":\"0\",\"to\":\"2\",\"active\":true},{\"from\":\"1\",\"to\":\"2\",\"active\":true}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-split-or-pool/spec.ts; exact finite illustration specified in manager numericCase: Use stratum rates: treatment low80%, high40%; control low70%, high30%. Treatment mix90%high gives44%, control mix10%high gives66%. If strata pre-treatment confounder adjust gives+10pp; if strata mediator, adjustment removes indirect path. State graph assumptions explicitly.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-split-or-pool.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · Post-treatment M\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"T\",\"x\":40,\"y\":45},{\"id\":\"1\",\"label\":\"M\",\"x\":160,\"y\":115},{\"id\":\"2\",\"label\":\"Y\",\"x\":280,\"y\":45}],\"edges\":[{\"from\":\"0\",\"to\":\"1\",\"active\":true},{\"from\":\"1\",\"to\":\"2\",\"active\":true},{\"from\":\"0\",\"to\":\"2\",\"active\":true}]},\"metrics\":[{\"label\":\"Total effect\",\"value\":\"Needs mediation assumptions\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-split-or-pool/spec.ts; exact finite illustration specified in manager numericCase: Use stratum rates: treatment low80%, high40%; control low70%, high30%. Treatment mix90%high gives44%, control mix10%high gives66%. If strata pre-treatment confounder adjust gives+10pp; if strata mediator, adjustment removes indirect path. State graph assumptions explicitly.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-split-or-pool.hook",
+      "text": "The numeric table stays fixed while its causal graph changes.",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-split-or-pool/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A treatment changes sleep, which changes alertness. Adjusting for sleep can remove which part?",
+    "options": [
+      "An indirect treatment pathway",
+      "All measurement error",
+      "Random assignment itself"
+    ],
+    "answer": 0,
+    "why": "Sleep is a mediator in this stated graph; conditioning on it blocks the sleep-mediated pathway."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-split-or-pool",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "causal-adjustment"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 293,
+    "sourceSection": "15. Simpson's paradox & aggregation",
+    "sourceTitle": "Split or pool?",
+    "sourceText": "the same table, two causal stories; the right answer depends on the arrows, not the numbers.",
+    "sourceEntryOriginal": "- **293. Split or pool?** \\[Split\\]: the same table, two causal stories; the right answer depends on the arrows, not the numbers.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "economics/odds-average-the-bettors",
+    "difference": "New teaching boundary: Split or pool?. Existing boundary: The learner can explain that $300 x 80% + $100 x 40% = $280 of a $400 pool on A gives implied odds of 70%, because each belief counts in proportion to the money behind it, not the simple average of 60%.",
+    "numericCase": "Use stratum rates: treatment low80%, high40%; control low70%, high30%. Treatment mix90%high gives44%, control mix10%high gives66%. If strata pre-treatment confounder adjust gives+10pp; if strata mediator, adjustment removes indirect path. State graph assumptions explicitly."
+  },
+  "modelAudit": {
+    "a": 0.10000000000000006,
+    "b": -0.21999999999999997
+  }
+}

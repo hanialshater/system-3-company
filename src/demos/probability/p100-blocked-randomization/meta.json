@@ -1,0 +1,161 @@
+{
+  "slug": "p100-blocked-randomization",
+  "title": "How should we split the groups?",
+  "hook": "Four people, two baseline levels: compare two ways to assign them.",
+  "domain": "probability",
+  "concept": "p100-blocked-randomization",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "randomize within strata and estimates wobble less."
+    ]
+  },
+  "misconception": "Treating blocked randomization as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "randomize within strata and estimates wobble less.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-blocked-randomization.predict",
+      "text": "Four people have baseline outcomes 0,0,10,10, and treatment adds 2. If each arm gets one low and one high person, what treated-minus-control mean results?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-blocked-randomization/spec.ts; exact finite illustration specified in manager numericCase: Four units have baselines[0,0,10,10], treatment adds2. Split low/low vs high/high gives observed difference12; block one low+one high in each arm gives2 exactly. Randomization here concerns allocation, not guaranteed balance in all samples.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-blocked-randomization.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-blocked-randomization/spec.ts; exact finite illustration specified in manager numericCase: Four units have baselines[0,0,10,10], treatment adds2. Split low/low vs high/high gives observed difference12; block one low+one high in each arm gives2 exactly. Randomization here concerns allocation, not guaranteed balance in all samples.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-blocked-randomization.reveal.0",
+      "text": "The blocked allocation retains difference 2; the unbalanced allocation retains 12. The same treatment rule operates in both, but the second comparison also contains a baseline gap.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-blocked-randomization/spec.ts; exact finite illustration specified in manager numericCase: Four units have baselines[0,0,10,10], treatment adds2. Split low/low vs high/high gives observed difference12; block one low+one high in each arm gives2 exactly. Randomization here concerns allocation, not guaranteed balance in all samples.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-blocked-randomization.reveal.1",
+      "text": "Blocking on this known prognostic feature forces both arms to contain the same baseline mix. It removes this source of allocation variation in the toy population; randomization alone does not guarantee exact balance in each realized draw.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-blocked-randomization/spec.ts; exact finite illustration specified in manager numericCase: Four units have baselines[0,0,10,10], treatment adds2. Split low/low vs high/high gives observed difference12; block one low+one high in each arm gives2 exactly. Randomization here concerns allocation, not guaranteed balance in all samples.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-blocked-randomization.recall",
+      "text": "Baseline levels are 1 and 9. Each arm receives one of each; treatment adds 3. What difference follows? The shared baseline average cancels, leaving the stipulated treatment effect 3.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-blocked-randomization/spec.ts; exact finite illustration specified in manager numericCase: Four units have baselines[0,0,10,10], treatment adds2. Split low/low vs high/high gives observed difference12; block one low+one high in each arm gives2 exactly. Randomization here concerns allocation, not guaranteed balance in all samples.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-blocked-randomization.scenario.0.summary",
+      "text": "Balanced difference 2",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-blocked-randomization/spec.ts; exact finite illustration specified in manager numericCase: Four units have baselines[0,0,10,10], treatment adds2. Split low/low vs high/high gives observed difference12; block one low+one high in each arm gives2 exactly. Randomization here concerns allocation, not guaranteed balance in all samples.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-blocked-randomization.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"T\",\"C\"],\"rows\":[[2,0],[12,10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-blocked-randomization/spec.ts; exact finite illustration specified in manager numericCase: Four units have baselines[0,0,10,10], treatment adds2. Split low/low vs high/high gives observed difference12; block one low+one high in each arm gives2 exactly. Randomization here concerns allocation, not guaranteed balance in all samples.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-blocked-randomization.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Block by baseline\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"T mean\",\"value\":7},{\"label\":\"C mean\",\"value\":5}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-blocked-randomization/spec.ts; exact finite illustration specified in manager numericCase: Four units have baselines[0,0,10,10], treatment adds2. Split low/low vs high/high gives observed difference12; block one low+one high in each arm gives2 exactly. Randomization here concerns allocation, not guaranteed balance in all samples.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-blocked-randomization.scenario.1.summary",
+      "text": "Unbalanced difference 12",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-blocked-randomization/spec.ts; exact finite illustration specified in manager numericCase: Four units have baselines[0,0,10,10], treatment adds2. Split low/low vs high/high gives observed difference12; block one low+one high in each arm gives2 exactly. Randomization here concerns allocation, not guaranteed balance in all samples.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-blocked-randomization.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"T\",\"C\"],\"rows\":[[12,0],[12,0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-blocked-randomization/spec.ts; exact finite illustration specified in manager numericCase: Four units have baselines[0,0,10,10], treatment adds2. Split low/low vs high/high gives observed difference12; block one low+one high in each arm gives2 exactly. Randomization here concerns allocation, not guaranteed balance in all samples.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-blocked-randomization.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · Unbalanced draw\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"T mean\",\"value\":12},{\"label\":\"C mean\",\"value\":0}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-blocked-randomization/spec.ts; exact finite illustration specified in manager numericCase: Four units have baselines[0,0,10,10], treatment adds2. Split low/low vs high/high gives observed difference12; block one low+one high in each arm gives2 exactly. Randomization here concerns allocation, not guaranteed balance in all samples.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-blocked-randomization.hook",
+      "text": "Four people, two baseline levels: compare two ways to assign them.",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-blocked-randomization/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Baseline levels are 1 and 9. Each arm receives one of each; treatment adds 3. What difference follows?",
+    "options": [
+      "3",
+      "5",
+      "8"
+    ],
+    "answer": 0,
+    "why": "The shared baseline average cancels, leaving the stipulated treatment effect 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-blocked-randomization",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "blocking"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 328,
+    "sourceSection": "17. Randomized experiments & A/B tests",
+    "sourceTitle": "Blocked randomization",
+    "sourceText": "randomize within strata and estimates wobble less.",
+    "sourceEntryOriginal": "- **328. Blocked randomization** \\[Slider\\]: randomize within strata and estimates wobble less.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "lifehacks/unlock-the-following-work",
+    "difference": "New teaching boundary: Blocked randomization. Existing boundary: Identify the work that releases a blocked successor.",
+    "numericCase": "Four units have baselines[0,0,10,10], treatment adds2. Split low/low vs high/high gives observed difference12; block one low+one high in each arm gives2 exactly. Randomization here concerns allocation, not guaranteed balance in all samples."
+  },
+  "modelAudit": {
+    "a": 2,
+    "b": 12
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "slug": "be-the-conflict-is-disclosed",
+  "title": "The conflict is disclosed",
+  "hook": "Does a conflict warning automatically remove biased advice?",
+  "domain": "behavioral",
+  "concept": "be-the-conflict-is-disclosed",
+  "status": "draft",
+  "durationSec": 60,
+  "version": 1,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and reading a small table"
+    ],
+    "doesNotKnow": [
+      "Separate disclosure from adviser behavior and recipient adjustment."
+    ]
+  },
+  "misconception": "The quantities in this case can be combined without checking their reference, denominator, or information boundary.",
+  "objective": "Separate disclosure from adviser behavior and recipient adjustment.",
+  "keyState": "Both complete computed cases are visible as retained observations; the question-case picture survives Reset.",
+  "claims": [
+    {
+      "id": "behavioral.be-the-conflict-is-disclosed.inputs",
+      "text": "A toy adviser adds twenty units of bias to true value fifty. The recipient discounts five. What estimate remains? Toy inputs A=[50, 20, 5]; B=[50, 10, 0].",
+      "support": "convention",
+      "source": "Local explicit hypothetical assumptions in spec.ts and model.ts; not participant measurements.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-the-conflict-is-disclosed.trace",
+      "text": "Computed results: [[65, 15, 50], [60, 10, 50]]. Labels: Recipient estimate, Residual bias, True value.",
+      "support": "derivation",
+      "source": "compute() in the lesson-local model.ts; finite numeric operations over the explicit inputs.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-the-conflict-is-disclosed.reveal",
+      "text": "The disclosure case contains both a sender response and a recipient response. The net bias depends on their difference. Disclosure does not mechanically guarantee unbiased advice; these explicit toy responses are assumptions rather than measured behavior.",
+      "support": "derivation",
+      "source": "The two controlled cases in spec.ts; scope limited to these toy inputs and displayed model rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-the-conflict-is-disclosed.recall",
+      "text": "A new toy case uses True value=50, Adviser bias=10, Recipient discount=0. What is Recipient estimate? Answer: 60.",
+      "support": "derivation",
+      "source": "compute() applied to the contrasting new input case; source list is an idea pointer only.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A new toy case uses True value=50, Adviser bias=10, Recipient discount=0. What is Recipient estimate?",
+    "options": [
+      "78",
+      "60",
+      "42"
+    ],
+    "answer": 1,
+    "why": "Applying the stated toy rule to the new inputs gives 60. The result depends on these assumptions; it is not a universal behavioral response."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "behavioral:be-the-conflict-is-disclosed",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "behavioral",
+      "toy-model",
+      "source-entry-378"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "run-case",
+    "compare-case",
+    "step-trace",
+    "reset-retained-evidence"
+  ],
+  "sourceProvenance": {
+    "file": "500-behavioral-economics-findings.md",
+    "entry": 378,
+    "section": "19. Public policy nudges: tax, energy, voting",
+    "text": "Advisors who disclosed a conflict of interest gave more biased advice, and recipients didn't discount it enough (Cain, Loewenstein & Moore, 2005).",
+    "pointer": "500-behavioral-economics-findings.md entry 378: Cain, Loewenstein & Moore, 2005",
+    "status": "unverified-primary-source",
+    "caveat": "Original list says figures are approximate and papers were not individually rechecked. No empirical source is verified by this build."
+  },
+  "nearestExistingLesson": "bk-nudge-default-choice-model",
+  "meaningfulDifference": "Separate disclosure from adviser behavior and recipient adjustment."
+}

@@ -1,0 +1,161 @@
+{
+  "slug": "p100-windmills-cause-wind",
+  "title": "Which way does the wind blow?",
+  "hook": "Wind generates rotation. Compare measuring rotation with forcing it.",
+  "domain": "probability",
+  "concept": "p100-windmills-cause-wind",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "faster spinning blades go with stronger wind, but the arrow runs the other way."
+    ]
+  },
+  "misconception": "Treating windmills cause wind as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "faster spinning blades go with stronger wind, but the arrow runs the other way.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-windmills-cause-wind.predict",
+      "text": "In a toy world, wind W is equally likely 1, 2, or 3 and rotation R=4W. If you force R=12 rather than select R=12, what mean wind remains?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-windmills-cause-wind/spec.ts; exact finite illustration specified in manager numericCase: Wind W=1,2,3 sets turbine rotation R=4W. Filtering R=12 picks W=3. Intervention R=12 cuts W→R and leaves W distribution [1,2,3] unchanged (mean2).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-windmills-cause-wind.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-windmills-cause-wind/spec.ts; exact finite illustration specified in manager numericCase: Wind W=1,2,3 sets turbine rotation R=4W. Filtering R=12 picks W=3. Intervention R=12 cuts W→R and leaves W distribution [1,2,3] unchanged (mean2).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-windmills-cause-wind.reveal.0",
+      "text": "Forcing rotation retains mean wind 2; selecting rotation 12 retains mean wind 3. Forcing cuts the incoming wind-to-rotation arrow, while selecting leaves that arrow intact.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-windmills-cause-wind/spec.ts; exact finite illustration specified in manager numericCase: Wind W=1,2,3 sets turbine rotation R=4W. Filtering R=12 picks W=3. Intervention R=12 cuts W→R and leaves W distribution [1,2,3] unchanged (mean2).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-windmills-cause-wind.reveal.1",
+      "text": "The model makes wind cause rotation. A rotation measurement carries information about wind; changing the rotation variable by intervention does not change the stipulated wind generator.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-windmills-cause-wind/spec.ts; exact finite illustration specified in manager numericCase: Wind W=1,2,3 sets turbine rotation R=4W. Filtering R=12 picks W=3. Intervention R=12 cuts W→R and leaves W distribution [1,2,3] unchanged (mean2).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-windmills-cause-wind.recall",
+      "text": "If rain causes wet pavement, forcing the pavement wet identifies which rain rate? An intervention on the effect does not by itself alter its upstream cause in the stipulated causal model.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-windmills-cause-wind/spec.ts; exact finite illustration specified in manager numericCase: Wind W=1,2,3 sets turbine rotation R=4W. Filtering R=12 picks W=3. Intervention R=12 cuts W→R and leaves W distribution [1,2,3] unchanged (mean2).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-windmills-cause-wind.scenario.0.summary",
+      "text": "Mean wind 2",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-windmills-cause-wind/spec.ts; exact finite illustration specified in manager numericCase: Wind W=1,2,3 sets turbine rotation R=4W. Filtering R=12 picks W=3. Intervention R=12 cuts W→R and leaves W distribution [1,2,3] unchanged (mean2).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-windmills-cause-wind.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"Wind\",\"x\":80,\"y\":45},{\"id\":\"1\",\"label\":\"Rotation\",\"x\":240,\"y\":115}],\"edges\":[{\"from\":\"0\",\"to\":\"1\",\"active\":true}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-windmills-cause-wind/spec.ts; exact finite illustration specified in manager numericCase: Wind W=1,2,3 sets turbine rotation R=4W. Filtering R=12 picks W=3. Intervention R=12 cuts W→R and leaves W distribution [1,2,3] unchanged (mean2).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-windmills-cause-wind.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Force rotation\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"Wind\",\"x\":80,\"y\":45},{\"id\":\"1\",\"label\":\"Rotation\",\"x\":240,\"y\":115}],\"edges\":[{\"from\":\"0\",\"to\":\"1\",\"active\":false}]},\"metrics\":[{\"label\":\"Wind\",\"value\":\"1, 2, 3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-windmills-cause-wind/spec.ts; exact finite illustration specified in manager numericCase: Wind W=1,2,3 sets turbine rotation R=4W. Filtering R=12 picks W=3. Intervention R=12 cuts W→R and leaves W distribution [1,2,3] unchanged (mean2).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-windmills-cause-wind.scenario.1.summary",
+      "text": "Mean wind 3",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-windmills-cause-wind/spec.ts; exact finite illustration specified in manager numericCase: Wind W=1,2,3 sets turbine rotation R=4W. Filtering R=12 picks W=3. Intervention R=12 cuts W→R and leaves W distribution [1,2,3] unchanged (mean2).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-windmills-cause-wind.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"Wind\",\"x\":80,\"y\":45},{\"id\":\"1\",\"label\":\"Rotation\",\"x\":240,\"y\":115}],\"edges\":[{\"from\":\"0\",\"to\":\"1\",\"active\":true}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-windmills-cause-wind/spec.ts; exact finite illustration specified in manager numericCase: Wind W=1,2,3 sets turbine rotation R=4W. Filtering R=12 picks W=3. Intervention R=12 cuts W→R and leaves W distribution [1,2,3] unchanged (mean2).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-windmills-cause-wind.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · Select rotation\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"Wind=3\",\"x\":80,\"y\":45},{\"id\":\"1\",\"label\":\"R=12\",\"x\":240,\"y\":115}],\"edges\":[{\"from\":\"0\",\"to\":\"1\",\"active\":true}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-windmills-cause-wind/spec.ts; exact finite illustration specified in manager numericCase: Wind W=1,2,3 sets turbine rotation R=4W. Filtering R=12 picks W=3. Intervention R=12 cuts W→R and leaves W distribution [1,2,3] unchanged (mean2).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-windmills-cause-wind.hook",
+      "text": "Wind generates rotation. Compare measuring rotation with forcing it.",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-windmills-cause-wind/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "If rain causes wet pavement, forcing the pavement wet identifies which rain rate?",
+    "options": [
+      "The original rain rate",
+      "Always 100% rain",
+      "Always 0% rain"
+    ],
+    "answer": 0,
+    "why": "An intervention on the effect does not by itself alter its upstream cause in the stipulated causal model."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-windmills-cause-wind",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "intervention"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 270,
+    "sourceSection": "14. Correlation vs causation",
+    "sourceTitle": "Windmills cause wind",
+    "sourceText": "faster spinning blades go with stronger wind, but the arrow runs the other way.",
+    "sourceEntryOriginal": "- **270. Windmills cause wind** \\[Gotcha\\]: faster spinning blades go with stronger wind, but the arrow runs the other way.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "cs/algo-heap-delete-arbitrary",
+    "difference": "New teaching boundary: Windmills cause wind. Existing boundary: Choose upward or downward repair after replacing an arbitrary deleted heap item.",
+    "numericCase": "Wind W=1,2,3 sets turbine rotation R=4W. Filtering R=12 picks W=3. Intervention R=12 cuts W→R and leaves W distribution [1,2,3] unchanged (mean2)."
+  },
+  "modelAudit": {
+    "a": 2,
+    "b": 3
+  }
+}

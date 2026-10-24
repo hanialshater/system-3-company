@@ -1,0 +1,103 @@
+{
+  "slug": "be-the-fuel-budget-shrinks",
+  "title": "The fuel budget shrinks",
+  "hook": "If fuel gets cheaper, would you buy more premium gasoline?",
+  "domain": "behavioral",
+  "concept": "be-the-fuel-budget-shrinks",
+  "status": "draft",
+  "durationSec": 60,
+  "version": 1,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and reading a small table"
+    ],
+    "doesNotKnow": [
+      "Separate a general income increase from spending inside a labeled fuel account."
+    ]
+  },
+  "misconception": "The quantities in this case can be combined without checking their reference, denominator, or information boundary.",
+  "objective": "Separate a general income increase from spending inside a labeled fuel account.",
+  "keyState": "Both complete computed cases are visible as retained observations; the question-case picture survives Reset.",
+  "claims": [
+    {
+      "id": "behavioral.be-the-fuel-budget-shrinks.inputs",
+      "text": "A toy household saves €20 on fuel and spends €10 of that on an upgrade. How much of the saving remains? Toy inputs A=[80, 20, 10]; B=[80, 20, 0].",
+      "support": "convention",
+      "source": "Local explicit hypothetical assumptions in spec.ts and model.ts; not participant measurements.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-the-fuel-budget-shrinks.trace",
+      "text": "Computed results: [[60, 10, 10, 70], [60, 20, 0, 80]]. Labels: Fuel base €, Saving left €, Upgrade €, Total left €.",
+      "support": "derivation",
+      "source": "compute() in the lesson-local model.ts; finite numeric operations over the explicit inputs.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-the-fuel-budget-shrinks.reveal",
+      "text": "The fuel account’s label can organize a spending decision, but it cannot create extra income. The two allocations use the same saving; only the upgrade purchase differs. A household income effect and account-specific spending are separate comparisons.",
+      "support": "derivation",
+      "source": "The two controlled cases in spec.ts; scope limited to these toy inputs and displayed model rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-the-fuel-budget-shrinks.recall",
+      "text": "A new toy case uses Old budget €=80, Fuel saving €=20, Upgrade €=0. What is Saving left €? Answer: 20.",
+      "support": "derivation",
+      "source": "compute() applied to the contrasting new input case; source list is an idea pointer only.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A new toy case uses Old budget €=80, Fuel saving €=20, Upgrade €=0. What is Saving left €?",
+    "options": [
+      "26",
+      "20",
+      "14"
+    ],
+    "answer": 1,
+    "why": "Applying the stated toy rule to the new inputs gives 20. The result depends on these assumptions; it is not a universal behavioral response."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "behavioral:be-the-fuel-budget-shrinks",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "behavioral",
+      "toy-model",
+      "source-entry-103"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "run-case",
+    "compare-case",
+    "step-trace",
+    "reset-retained-evidence"
+  ],
+  "sourceProvenance": {
+    "file": "500-behavioral-economics-findings.md",
+    "entry": 103,
+    "section": "6. Mental accounting",
+    "text": "When gas prices fell, US households upgraded to premium gasoline far more than the income gain would predict (Hastings & Shapiro, 2013).",
+    "pointer": "500-behavioral-economics-findings.md entry 103: Hastings & Shapiro, 2013",
+    "status": "unverified-primary-source",
+    "caveat": "Original list says figures are approximate and papers were not individually rechecked. No empirical source is verified by this build."
+  },
+  "nearestExistingLesson": "bk-smart-sunk-cost-boundary",
+  "meaningfulDifference": "Separate a general income increase from spending inside a labeled fuel account."
+}

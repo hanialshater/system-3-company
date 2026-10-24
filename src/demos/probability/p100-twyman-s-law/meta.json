@@ -1,0 +1,162 @@
+{
+  "slug": "p100-twyman-s-law",
+  "title": "Can this win be real?",
+  "hook": "A spectacular sales lift arrives with a duplicate-event bug.",
+  "domain": "probability",
+  "concept": "p100-twyman-s-law",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "any result that looks too good is usually an error; walk through a surprising win and find the bug."
+    ]
+  },
+  "misconception": "Treating twyman's law as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "any result that looks too good is usually an error; walk through a surprising win and find the bug.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-twyman-s-law.predict",
+      "text": "Both versions truly have 1,000 visits and 100 sales. The variant logs each sale twice. After de-duplicating by sale ID, what sales lift remains?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-twyman-s-law/spec.ts; exact finite illustration specified in manager numericCase: Actual visits1000 and sales100 in both versions. Variant accidentally logs each sale twice: displayed200 and apparent+100%. De-duplicate event IDs to restore100; plot raw vs unique counts.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-twyman-s-law.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-twyman-s-law/spec.ts; exact finite illustration specified in manager numericCase: Actual visits1000 and sales100 in both versions. Variant accidentally logs each sale twice: displayed200 and apparent+100%. De-duplicate event IDs to restore100; plot raw vs unique counts.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-twyman-s-law.reveal.0",
+      "text": "Unique IDs retain lift 0%; raw event counts retain +100%. The apparently spectacular win came from recording every variant sale twice.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-twyman-s-law/spec.ts; exact finite illustration specified in manager numericCase: Actual visits1000 and sales100 in both versions. Variant accidentally logs each sale twice: displayed200 and apparent+100%. De-duplicate event IDs to restore100; plot raw vs unique counts.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-twyman-s-law.reveal.1",
+      "text": "A surprising result is a reason to test the measurement pipeline before inventing a product explanation. This example supplies the bug explicitly; it does not say that every large result is false or that de-duplication solves every logging problem.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-twyman-s-law/spec.ts; exact finite illustration specified in manager numericCase: Actual visits1000 and sales100 in both versions. Variant accidentally logs each sale twice: displayed200 and apparent+100%. De-duplicate event IDs to restore100; plot raw vs unique counts.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-twyman-s-law.recall",
+      "text": "200 events represent 100 distinct transactions, while control has 100 distinct transactions. What transaction lift follows? Compare distinct transactions: both versions have 100.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-twyman-s-law/spec.ts; exact finite illustration specified in manager numericCase: Actual visits1000 and sales100 in both versions. Variant accidentally logs each sale twice: displayed200 and apparent+100%. De-duplicate event IDs to restore100; plot raw vs unique counts.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-twyman-s-law.scenario.0.summary",
+      "text": "Unique lift 0%",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-twyman-s-law/spec.ts; exact finite illustration specified in manager numericCase: Actual visits1000 and sales100 in both versions. Variant accidentally logs each sale twice: displayed200 and apparent+100%. De-duplicate event IDs to restore100; plot raw vs unique counts.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-twyman-s-law.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Logged\",\"Unique\"],\"rows\":[[200,100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-twyman-s-law/spec.ts; exact finite illustration specified in manager numericCase: Actual visits1000 and sales100 in both versions. Variant accidentally logs each sale twice: displayed200 and apparent+100%. De-duplicate event IDs to restore100; plot raw vs unique counts.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-twyman-s-law.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Unique sale IDs\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Base\",\"value\":100},{\"label\":\"Variant\",\"value\":100}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-twyman-s-law/spec.ts; exact finite illustration specified in manager numericCase: Actual visits1000 and sales100 in both versions. Variant accidentally logs each sale twice: displayed200 and apparent+100%. De-duplicate event IDs to restore100; plot raw vs unique counts.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-twyman-s-law.scenario.1.summary",
+      "text": "Raw lift 100%",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-twyman-s-law/spec.ts; exact finite illustration specified in manager numericCase: Actual visits1000 and sales100 in both versions. Variant accidentally logs each sale twice: displayed200 and apparent+100%. De-duplicate event IDs to restore100; plot raw vs unique counts.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-twyman-s-law.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Copies per sale\"],\"rows\":[[2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-twyman-s-law/spec.ts; exact finite illustration specified in manager numericCase: Actual visits1000 and sales100 in both versions. Variant accidentally logs each sale twice: displayed200 and apparent+100%. De-duplicate event IDs to restore100; plot raw vs unique counts.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-twyman-s-law.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · Raw event count\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Base\",\"value\":100},{\"label\":\"Variant\",\"value\":200}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-twyman-s-law/spec.ts; exact finite illustration specified in manager numericCase: Actual visits1000 and sales100 in both versions. Variant accidentally logs each sale twice: displayed200 and apparent+100%. De-duplicate event IDs to restore100; plot raw vs unique counts.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-twyman-s-law.hook",
+      "text": "A spectacular sales lift arrives with a duplicate-event bug.",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-twyman-s-law/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "200 events represent 100 distinct transactions, while control has 100 distinct transactions. What transaction lift follows?",
+    "options": [
+      "0%",
+      "50%",
+      "100%"
+    ],
+    "answer": 0,
+    "why": "Compare distinct transactions: both versions have 100."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-twyman-s-law",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "instrumentation"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 337,
+    "sourceSection": "17. Randomized experiments & A/B tests",
+    "sourceTitle": "Twyman's law",
+    "sourceText": "any result that looks too good is usually an error; walk through a surprising win and find the bug.",
+    "sourceEntryOriginal": "- **337. Twyman's law** \\[Gotcha\\]: any result that looks too good is usually an error; walk through a surprising win and find the bug.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "ai/chain-of-blame",
+    "difference": "New teaching boundary: Twyman's law. Existing boundary: The learner can measure a weight's slope by nudging it, and explain that an early weight's slope is the error passed back through the later weights (the chain rule).",
+    "numericCase": "Actual visits1000 and sales100 in both versions. Variant accidentally logs each sale twice: displayed200 and apparent+100%. De-duplicate event IDs to restore100; plot raw vs unique counts."
+  },
+  "modelAudit": {
+    "a": 0,
+    "b": 100,
+    "unique": 100
+  }
+}

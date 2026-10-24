@@ -1,0 +1,103 @@
+{
+  "slug": "be-look-or-pick-it-up",
+  "title": "Look, or pick it up?",
+  "hook": "Would touching an item change your valuation before you own it?",
+  "domain": "behavioral",
+  "concept": "be-look-or-pick-it-up",
+  "status": "draft",
+  "durationSec": 60,
+  "version": 1,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and reading a small table"
+    ],
+    "doesNotKnow": [
+      "Distinguish physical contact and perceived ownership from legal ownership."
+    ]
+  },
+  "misconception": "The quantities in this case can be combined without checking their reference, denominator, or information boundary.",
+  "objective": "Distinguish physical contact and perceived ownership from legal ownership.",
+  "keyState": "Both complete computed cases are visible as retained observations; the question-case picture survives Reset.",
+  "claims": [
+    {
+      "id": "behavioral.be-look-or-pick-it-up.inputs",
+      "text": "In this toy ownership ledger, touching a token does not edit its assigned owner. After a touch with no reassignment, how many owner records change? Toy inputs A=[1, 0, 0]; B=[0, 1, 1].",
+      "support": "convention",
+      "source": "Local explicit hypothetical assumptions in spec.ts and model.ts; not participant measurements.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-look-or-pick-it-up.trace",
+      "text": "Computed results: [[1, 0, 0], [0, 1, 1]]. Labels: Touched, Reassigned, Owner id.",
+      "support": "derivation",
+      "source": "compute() in the lesson-local model.ts; finite numeric operations over the explicit inputs.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-look-or-pick-it-up.reveal",
+      "text": "A contact action and a change to the assignment ledger are separate events in this toy system. The comparison explicitly reassigns the token. Perceived ownership in a study is not the same measure as the assigned-owner field here.",
+      "support": "derivation",
+      "source": "The two controlled cases in spec.ts; scope limited to these toy inputs and displayed model rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-look-or-pick-it-up.recall",
+      "text": "A new toy case uses Touch token=0, Assignment changed=1, Owner id=1. What is Reassigned? Answer: 1.",
+      "support": "derivation",
+      "source": "compute() applied to the contrasting new input case; source list is an idea pointer only.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A new toy case uses Touch token=0, Assignment changed=1, Owner id=1. What is Reassigned?",
+    "options": [
+      "2",
+      "1",
+      "0"
+    ],
+    "answer": 1,
+    "why": "Applying the stated toy rule to the new inputs gives 1. The result depends on these assumptions; it is not a universal behavioral response."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "behavioral:be-look-or-pick-it-up",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "behavioral",
+      "toy-model",
+      "source-entry-129"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "run-case",
+    "compare-case",
+    "step-trace",
+    "reset-retained-evidence"
+  ],
+  "sourceProvenance": {
+    "file": "500-behavioral-economics-findings.md",
+    "entry": 129,
+    "section": "7. Endowment effect & status quo bias",
+    "text": "Just touching an object raises the feeling of ownership and its value (Peck & Shu, 2009).",
+    "pointer": "500-behavioral-economics-findings.md entry 129: Peck & Shu, 2009",
+    "status": "unverified-primary-source",
+    "caveat": "Original list says figures are approximate and papers were not individually rechecked. No empirical source is verified by this build."
+  },
+  "nearestExistingLesson": "bk-irrational-decoy-dominance",
+  "meaningfulDifference": "Distinguish physical contact and perceived ownership from legal ownership."
+}

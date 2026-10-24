@@ -1,0 +1,163 @@
+{
+  "slug": "p100-random-surfer",
+  "title": "Where does the surfer settle?",
+  "hook": "Where does the surfer settle? Change one condition and inspect the result.",
+  "domain": "probability",
+  "concept": "p100-random-surfer",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "fractions and arithmetic",
+      "that a toy model states its assumptions"
+    ],
+    "doesNotKnow": [
+      "a dot hops along links; page sizes grow with visit share until PageRank emerges. Tune the damping factor."
+    ]
+  },
+  "misconception": "Two pages: A links only to B; B links equally to A and B. Teleport is uniform with probability 0.2. What is B’s stationary share? The prediction alternatives contrast different consequences of the stated model.",
+  "objective": "a dot hops along links; page sizes grow with visit share until PageRank emerges. Tune the damping factor.",
+  "keyState": "Both computed cases completed, with their numerical summaries retained across Reset.",
+  "claims": [
+    {
+      "id": "probability.p100-random-surfer.case",
+      "text": "Two pages: A links only to B; B links equally to A and B. Teleport is uniform with probability 0.2. What is B’s stationary share? Options: 35.7%; 50%; 64.3%. Toy model: compare two controlled cases.",
+      "support": "convention",
+      "source": "Stipulated numerical case in model.ts, based on manager numericCase: Twopagechain A→Balways,B→AandBequally. Withteleportprob.2uniformtransitionP=[[.1,.9],[.5,.5]], stationary[A5/14,B9/14]; teleport1gives.5/.5. Learnerchangesdampingand sees stationarysolution.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-random-surfer.recall",
+      "text": "A two-state chain switches A→B with probability 0.6 and B→A with 0.3. Stationary B share? Flow balance gives B=0.6/(0.6+0.3)=2/3.",
+      "support": "derivation",
+      "source": "Transfer arithmetic or model implication under the same explicitly stated assumptions. Independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-random-surfer.hook",
+      "text": "Where does the surfer settle? Change one condition and inspect the result.",
+      "support": "convention",
+      "source": "Invitation to manipulate the labelled toy case, not a population claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-random-surfer.c4",
+      "text": "B receives 64.286% of stationary mass with 0.2 teleport and 50% with teleport always on. The retained shares solve the two-state balance equations.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-random-surfer/model.ts#compute().reveal[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-random-surfer.c5",
+      "text": "A always sends link-following mass to B, while B sends only half back. Uniform teleport weakens that asymmetry. This is a two-page Markov model, not a full web-ranking implementation.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-random-surfer/model.ts#compute().reveal[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-random-surfer.c6",
+      "text": "Run the question case, compare the changed case, and inspect both retained results.",
+      "support": "convention",
+      "source": "src/demos/probability/p100-random-surfer/spec.ts#hint; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-random-surfer.c7",
+      "text": "B share: 0.643",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-random-surfer/model.ts#compute().scenarios[0].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-random-surfer.c8",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"A\",\"x\":40,\"y\":75},{\"id\":\"1\",\"label\":\"B\",\"x\":280,\"y\":120}],\"edges\":[{\"from\":\"0\",\"to\":\"1\"},{\"from\":\"1\",\"to\":\"0\"},{\"from\":\"1\",\"to\":\"1\"}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-random-surfer/model.ts#compute().scenarios[0].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-random-surfer.c9",
+      "text": "Toy model: case A. Displayed values: {\"kind\":\"table\",\"columns\":[\"Page\",\"Share\"],\"rows\":[[\"A\",0.35714285714285715],[\"B\",0.6428571428571428]]}. [{\"label\":\"B share\",\"value\":\"0.643\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-random-surfer/model.ts#compute().scenarios[0].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-random-surfer.c10",
+      "text": "B share: 0.5",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-random-surfer/model.ts#compute().scenarios[1].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-random-surfer.c11",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"A\",\"x\":40,\"y\":75},{\"id\":\"1\",\"label\":\"B\",\"x\":280,\"y\":120}],\"edges\":[{\"from\":\"0\",\"to\":\"1\"},{\"from\":\"1\",\"to\":\"0\"}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-random-surfer/model.ts#compute().scenarios[1].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-random-surfer.c12",
+      "text": "Toy model: case B. Displayed values: {\"kind\":\"table\",\"columns\":[\"Page\",\"Share\"],\"rows\":[[\"A\",0.5],[\"B\",0.5]]}. [{\"label\":\"B share\",\"value\":\"0.5\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-random-surfer/model.ts#compute().scenarios[1].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A two-state chain switches A→B with probability 0.6 and B→A with 0.3. Stationary B share?",
+    "options": [
+      "1/3",
+      "1/2",
+      "2/3"
+    ],
+    "answer": 2,
+    "why": "Flow balance gives B=0.6/(0.6+0.3)=2/3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-random-surfer",
+    "also": [],
+    "prerequisites": [],
+    "level": "stretch",
+    "references": [],
+    "tags": [
+      "founder-2026-10-24",
+      "source-entry-561",
+      "graph"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "controlled-case-comparison",
+    "step-through-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 561,
+    "sourceSection": "29. Markov chains, mixing & PageRank",
+    "sourceTitle": "Random surfer",
+    "sourceText": "a dot hops along links; page sizes grow with visit share until PageRank emerges. Tune the damping factor.",
+    "sourceEntryOriginal": "- **561. Random surfer** \\[Slider\\]: a dot hops along links; page sizes grow with visit share until PageRank emerges. Tune the damping factor.",
+    "numericCase": "Twopagechain A→Balways,B→AandBequally. Withteleportprob.2uniformtransitionP=[[.1,.9],[.5,.5]], stationary[A5/14,B9/14]; teleport1gives.5/.5. Learnerchangesdampingand sees stationarysolution.",
+    "sourceStatus": "unverified idea pointer; empirical and historical claims excluded from learner copy",
+    "nearestExistingLesson": "cs/random-surfer-finds-the-rank",
+    "difference": "New teaching boundary: Random surfer. Existing boundary: The learner can explain that a random surfer who follows links and jumps anywhere 15% of the time spends about 31% of its time on A (1 in-link, from C) and about 33% on C (3 in-links), because a link from a busy page brings many visits, and that these long-run shares are PageRank."
+  },
+  "modelOutputs": [
+    0.6428571428571428,
+    0.5
+  ]
+}

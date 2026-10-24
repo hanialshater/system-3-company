@@ -1,0 +1,161 @@
+{
+  "slug": "p100-instrument-visualized",
+  "title": "How much does the instrument move?",
+  "hook": "The instrument moves uptake and outcomes. Inspect the ratio and its assumptions.",
+  "domain": "probability",
+  "concept": "p100-instrument-visualized",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "the instrument's effect on the outcome divided by its effect on treatment gives the causal effect."
+    ]
+  },
+  "misconception": "Treating instrument, visualized as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "the instrument's effect on the outcome divided by its effect on treatment gives the causal effect.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-instrument-visualized.predict",
+      "text": "An instrument raises treatment probability .2→.6 and outcome mean 10→12. Under relevance, exclusion, independence and monotonicity, what is the Wald estimate?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-instrument-visualized/spec.ts; exact finite illustration specified in manager numericCase: Instrument Z changes treatment probability .2→.6 and outcome mean10→12. Wald estimate2/.4=5. Direct Z→Y path+1 would inflate observed outcome difference to3 and estimate7.5; highlight exclusion assumption.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-instrument-visualized.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-instrument-visualized/spec.ts; exact finite illustration specified in manager numericCase: Instrument Z changes treatment probability .2→.6 and outcome mean10→12. Wald estimate2/.4=5. Direct Z→Y path+1 would inflate observed outcome difference to3 and estimate7.5; highlight exclusion assumption.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-instrument-visualized.reveal.0",
+      "text": "The valid-instrument case retains Wald 5; adding a direct outcome effect of 1 retains a naive 7.5. The denominator is the instrument’s 0.4 change in treatment uptake.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-instrument-visualized/spec.ts; exact finite illustration specified in manager numericCase: Instrument Z changes treatment probability .2→.6 and outcome mean10→12. Wald estimate2/.4=5. Direct Z→Y path+1 would inflate observed outcome difference to3 and estimate7.5; highlight exclusion assumption.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-instrument-visualized.reveal.1",
+      "text": "A direct instrument-to-outcome arrow contaminates the numerator. Under the stated assumptions the ratio identifies a local effect for compliers, not necessarily the effect for every person.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-instrument-visualized/spec.ts; exact finite illustration specified in manager numericCase: Instrument Z changes treatment probability .2→.6 and outcome mean10→12. Wald estimate2/.4=5. Direct Z→Y path+1 would inflate observed outcome difference to3 and estimate7.5; highlight exclusion assumption.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-instrument-visualized.recall",
+      "text": "An instrument changes uptake by 0.25 and outcome by 1.5. What is their Wald ratio? The ratio is 1.5/0.25=6, with causal interpretation conditional on the instrument assumptions.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-instrument-visualized/spec.ts; exact finite illustration specified in manager numericCase: Instrument Z changes treatment probability .2→.6 and outcome mean10→12. Wald estimate2/.4=5. Direct Z→Y path+1 would inflate observed outcome difference to3 and estimate7.5; highlight exclusion assumption.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-instrument-visualized.scenario.0.summary",
+      "text": "Wald 5",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-instrument-visualized/spec.ts; exact finite illustration specified in manager numericCase: Instrument Z changes treatment probability .2→.6 and outcome mean10→12. Wald estimate2/.4=5. Direct Z→Y path+1 would inflate observed outcome difference to3 and estimate7.5; highlight exclusion assumption.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-instrument-visualized.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"ΔT\",\"ΔY\"],\"rows\":[[0.39999999999999997,2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-instrument-visualized/spec.ts; exact finite illustration specified in manager numericCase: Instrument Z changes treatment probability .2→.6 and outcome mean10→12. Wald estimate2/.4=5. Direct Z→Y path+1 would inflate observed outcome difference to3 and estimate7.5; highlight exclusion assumption.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-instrument-visualized.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Exclusion holds\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"Z\",\"x\":40,\"y\":45},{\"id\":\"1\",\"label\":\"T\",\"x\":160,\"y\":115},{\"id\":\"2\",\"label\":\"Y\",\"x\":280,\"y\":45}],\"edges\":[{\"from\":\"0\",\"to\":\"1\",\"active\":true},{\"from\":\"1\",\"to\":\"2\",\"active\":true}]},\"metrics\":[{\"label\":\"ΔY / ΔT\",\"value\":5}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-instrument-visualized/spec.ts; exact finite illustration specified in manager numericCase: Instrument Z changes treatment probability .2→.6 and outcome mean10→12. Wald estimate2/.4=5. Direct Z→Y path+1 would inflate observed outcome difference to3 and estimate7.5; highlight exclusion assumption.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-instrument-visualized.scenario.1.summary",
+      "text": "Naive Wald 7.5",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-instrument-visualized/spec.ts; exact finite illustration specified in manager numericCase: Instrument Z changes treatment probability .2→.6 and outcome mean10→12. Wald estimate2/.4=5. Direct Z→Y path+1 would inflate observed outcome difference to3 and estimate7.5; highlight exclusion assumption.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-instrument-visualized.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"Z\",\"x\":40,\"y\":45},{\"id\":\"1\",\"label\":\"T\",\"x\":160,\"y\":115},{\"id\":\"2\",\"label\":\"Y\",\"x\":280,\"y\":45}],\"edges\":[{\"from\":\"0\",\"to\":\"1\",\"active\":true},{\"from\":\"1\",\"to\":\"2\",\"active\":true}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-instrument-visualized/spec.ts; exact finite illustration specified in manager numericCase: Instrument Z changes treatment probability .2→.6 and outcome mean10→12. Wald estimate2/.4=5. Direct Z→Y path+1 would inflate observed outcome difference to3 and estimate7.5; highlight exclusion assumption.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-instrument-visualized.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · Direct Z effect\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"Z\",\"x\":40,\"y\":45},{\"id\":\"1\",\"label\":\"T\",\"x\":160,\"y\":115},{\"id\":\"2\",\"label\":\"Y\",\"x\":280,\"y\":45}],\"edges\":[{\"from\":\"0\",\"to\":\"1\",\"active\":true},{\"from\":\"1\",\"to\":\"2\",\"active\":true},{\"from\":\"0\",\"to\":\"2\",\"active\":true}]},\"metrics\":[{\"label\":\"ΔY / ΔT\",\"value\":7.500000000000001}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-instrument-visualized/spec.ts; exact finite illustration specified in manager numericCase: Instrument Z changes treatment probability .2→.6 and outcome mean10→12. Wald estimate2/.4=5. Direct Z→Y path+1 would inflate observed outcome difference to3 and estimate7.5; highlight exclusion assumption.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-instrument-visualized.hook",
+      "text": "The instrument moves uptake and outcomes. Inspect the ratio and its assumptions.",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-instrument-visualized/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "An instrument changes uptake by 0.25 and outcome by 1.5. What is their Wald ratio?",
+    "options": [
+      "0.375",
+      "1.75",
+      "6"
+    ],
+    "answer": 2,
+    "why": "The ratio is 1.5/0.25=6, with causal interpretation conditional on the instrument assumptions."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-instrument-visualized",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "iv"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 391,
+    "sourceSection": "20. Natural experiments: IV, RDD, diff-in-diff, synthetic control",
+    "sourceTitle": "Instrument, visualized",
+    "sourceText": "the instrument's effect on the outcome divided by its effect on treatment gives the causal effect.",
+    "sourceEntryOriginal": "- **391. Instrument, visualized** \\[Slider\\]: the instrument's effect on the outcome divided by its effect on treatment gives the causal effect.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "physics/clap-at-the-cliff",
+    "difference": "New teaching boundary: Instrument, visualized. Existing boundary: The learner can explain that an echo's delay covers the trip out and back, so the distance to the cliff is the speed of sound times the echo time, divided by two.",
+    "numericCase": "Instrument Z changes treatment probability .2→.6 and outcome mean10→12. Wald estimate2/.4=5. Direct Z→Y path+1 would inflate observed outcome difference to3 and estimate7.5; highlight exclusion assumption."
+  },
+  "modelAudit": {
+    "a": 5,
+    "b": 7.500000000000001
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "slug": "p100-honest-diff-in-diff",
+  "title": "How much trend drift can it take?",
+  "hook": "How much trend drift can it take? Change one condition and inspect the result.",
+  "domain": "probability",
+  "concept": "p100-honest-diff-in-diff",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "fractions and arithmetic",
+      "that a toy model states its assumptions"
+    ],
+    "doesNotKnow": [
+      "allow post-period trend violations up to a bound and see how the confidence interval widens (Rambachan & Roth, 2023)."
+    ]
+  },
+  "misconception": "Observed DiD is 5. In a sensitivity model, the untreated differential trend could be anywhere from \u22123 to +3. What effect range is compatible? The prediction alternatives contrast different consequences of the stated model.",
+  "objective": "allow post-period trend violations up to a bound and see how the confidence interval widens (Rambachan & Roth, 2023).",
+  "keyState": "Both computed cases completed, with their numerical summaries retained across Reset.",
+  "claims": [
+    {
+      "id": "probability.p100-honest-diff-in-diff.case",
+      "text": "Observed DiD is 5. In a sensitivity model, the untreated differential trend could be anywhere from \u22123 to +3. What effect range is compatible? Options: 2\u20138; 3\u20137; 5\u20135. Toy model: compare two controlled cases.",
+      "support": "convention",
+      "source": "Stipulated numerical case in model.ts, based on manager numericCase: ObservedDiD5; allowableuntreatedtrenddeparture\u03b40,1,3yieldseffectbounds[5,5],[4,6],[2,8]. Labelsensitivityboundsundermodel, notconfidenceintervalunlesssampling added.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-honest-diff-in-diff.recall",
+      "text": "Observed DiD 8 and allowed trend departure \u00b12. Effect bounds? 8\u22122=6 and 8+2=10.",
+      "support": "derivation",
+      "source": "Transfer arithmetic or model implication under the same explicitly stated assumptions. Independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-honest-diff-in-diff.hook",
+      "text": "How much trend drift can it take? Change one condition and inspect the result.",
+      "support": "convention",
+      "source": "Invitation to manipulate the labelled toy case, not a population claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-honest-diff-in-diff.c4",
+      "text": "Allowing a trend departure of \u00b13 gives effect bounds 2 to 8. Allowing only \u00b11 gives 4 to 6.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-honest-diff-in-diff/model.ts#compute().reveal[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-honest-diff-in-diff.c5",
+      "text": "The result subtracts each allowed untreated differential trend from the observed DiD of 5. Wider departures weaken identification. These stipulated sensitivity bounds omit sampling uncertainty and must not be read as confidence intervals.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-honest-diff-in-diff/model.ts#compute().reveal[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-honest-diff-in-diff.c6",
+      "text": "Run the question case, compare the changed case, and inspect both retained results.",
+      "support": "convention",
+      "source": "src/demos/probability/p100-honest-diff-in-diff/spec.ts#hint; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-honest-diff-in-diff.c7",
+      "text": "\u03b43: 2\u20138",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-honest-diff-in-diff/model.ts#compute().scenarios[0].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-honest-diff-in-diff.c8",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"intervals\",\"items\":[{\"label\":\"\u03b4=0\",\"low\":5,\"mid\":5,\"high\":5}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-honest-diff-in-diff/model.ts#compute().scenarios[0].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-honest-diff-in-diff.c9",
+      "text": "Toy model: case A. Displayed values: {\"kind\":\"intervals\",\"items\":[{\"label\":\"\u03b4=3\",\"low\":2,\"mid\":5,\"high\":8}]}. [{\"label\":\"Effect bounds\",\"value\":\"2\u20138\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-honest-diff-in-diff/model.ts#compute().scenarios[0].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-honest-diff-in-diff.c10",
+      "text": "\u03b41: 4\u20136",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-honest-diff-in-diff/model.ts#compute().scenarios[1].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-honest-diff-in-diff.c11",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"intervals\",\"items\":[{\"label\":\"\u03b4=0\",\"low\":5,\"mid\":5,\"high\":5}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-honest-diff-in-diff/model.ts#compute().scenarios[1].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-honest-diff-in-diff.c12",
+      "text": "Toy model: case B. Displayed values: {\"kind\":\"intervals\",\"items\":[{\"label\":\"\u03b4=1\",\"low\":4,\"mid\":5,\"high\":6}]}. [{\"label\":\"Effect bounds\",\"value\":\"4\u20136\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-honest-diff-in-diff/model.ts#compute().scenarios[1].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Observed DiD 8 and allowed trend departure \u00b12. Effect bounds?",
+    "options": [
+      "2\u20138",
+      "6\u201310",
+      "8\u201310"
+    ],
+    "answer": 1,
+    "why": "8\u22122=6 and 8+2=10."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "probability:p100-honest-diff-in-diff",
+    "also": [],
+    "prerequisites": [],
+    "level": "stretch",
+    "references": [],
+    "tags": [
+      "founder-2026-10-24",
+      "source-entry-887",
+      "curve"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "controlled-case-comparison",
+    "step-through-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 887,
+    "sourceSection": "45. Advanced diff-in-diff, synthetic control & causal time series",
+    "sourceTitle": "Honest diff-in-diff",
+    "sourceText": "allow post-period trend violations up to a bound and see how the confidence interval widens (Rambachan & Roth, 2023).",
+    "sourceEntryOriginal": "- **887. Honest diff-in-diff** \\[Slider\\]: allow post-period trend violations up to a bound and see how the confidence interval widens (Rambachan & Roth, 2023).",
+    "numericCase": "ObservedDiD5; allowableuntreatedtrenddeparture\u03b40,1,3yieldseffectbounds[5,5],[4,6],[2,8]. Labelsensitivityboundsundermodel, notconfidenceintervalunlesssampling added.",
+    "sourceStatus": "unverified idea pointer; empirical and historical claims excluded from learner copy",
+    "nearestExistingLesson": "cs/algo-segmented-sieve",
+    "difference": "New teaching boundary: Honest diff-in-diff. Existing boundary: Sieve a remote interval using primes up to the square root of its upper end and a correct first multiple."
+  },
+  "modelOutputs": [
+    2,
+    8
+  ]
+}

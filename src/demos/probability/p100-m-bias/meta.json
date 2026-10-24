@@ -1,0 +1,161 @@
+{
+  "slug": "p100-m-bias",
+  "title": "Should we adjust for this?",
+  "hook": "Two independent causes share an effect. Try conditioning on that effect.",
+  "domain": "probability",
+  "concept": "p100-m-bias",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "adjusting for a variable caused by two hidden factors can create bias where none existed."
+    ]
+  },
+  "misconception": "Treating m-bias as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "adjusting for a variable caused by two hidden factors can create bias where none existed.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-m-bias.predict",
+      "text": "Independent fair binary variables U and V generate X=U, Y=V, and M=U+V. Restrict to M=1. What correlation remains between X and Y?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-m-bias/spec.ts; exact finite illustration specified in manager numericCase: Independent latent U,V∈{0,1}; X=U,Y=V,M=U+V. Unconditional X,Y covariance0. Filter M=1 leaves pairs(0,1),(1,0), perfect negative association. Draw M collider, not confounder.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-m-bias.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-m-bias/spec.ts; exact finite illustration specified in manager numericCase: Independent latent U,V∈{0,1}; X=U,Y=V,M=U+V. Unconditional X,Y covariance0. Filter M=1 leaves pairs(0,1),(1,0), perfect negative association. Draw M collider, not confounder.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-m-bias.reveal.0",
+      "text": "Conditioning on M=1 retains correlation −1; the full four worlds retain 0. Inside the selected set, knowing one variable is 1 forces the other to be 0.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-m-bias/spec.ts; exact finite illustration specified in manager numericCase: Independent latent U,V∈{0,1}; X=U,Y=V,M=U+V. Unconditional X,Y covariance0. Filter M=1 leaves pairs(0,1),(1,0), perfect negative association. Draw M collider, not confounder.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-m-bias.reveal.1",
+      "text": "M is a collider, a shared effect rather than a shared cause. Adjusting for it creates an association that was absent before selection. The toy graph states the causal assumptions explicitly.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-m-bias/spec.ts; exact finite illustration specified in manager numericCase: Independent latent U,V∈{0,1}; X=U,Y=V,M=U+V. Unconditional X,Y covariance0. Filter M=1 leaves pairs(0,1),(1,0), perfect negative association. Draw M collider, not confounder.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-m-bias.recall",
+      "text": "Two independent causes both make an alarm ring. Restricting analysis to alarms can make the causes appear what? Conditioning on a shared effect can couple its independent causes.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-m-bias/spec.ts; exact finite illustration specified in manager numericCase: Independent latent U,V∈{0,1}; X=U,Y=V,M=U+V. Unconditional X,Y covariance0. Filter M=1 leaves pairs(0,1),(1,0), perfect negative association. Draw M collider, not confounder.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-m-bias.scenario.0.summary",
+      "text": "Selected r=-1",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-m-bias/spec.ts; exact finite illustration specified in manager numericCase: Independent latent U,V∈{0,1}; X=U,Y=V,M=U+V. Unconditional X,Y covariance0. Filter M=1 leaves pairs(0,1),(1,0), perfect negative association. Draw M collider, not confounder.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-m-bias.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"X\",\"x\":40,\"y\":45},{\"id\":\"1\",\"label\":\"M\",\"x\":160,\"y\":115},{\"id\":\"2\",\"label\":\"Y\",\"x\":280,\"y\":45}],\"edges\":[{\"from\":\"0\",\"to\":\"1\",\"active\":true},{\"from\":\"2\",\"to\":\"1\",\"active\":true}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-m-bias/spec.ts; exact finite illustration specified in manager numericCase: Independent latent U,V∈{0,1}; X=U,Y=V,M=U+V. Unconditional X,Y covariance0. Filter M=1 leaves pairs(0,1),(1,0), perfect negative association. Draw M collider, not confounder.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-m-bias.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Condition on M=1\",\"visual\":{\"kind\":\"scatter\",\"points\":[{\"x\":0,\"y\":1},{\"x\":1,\"y\":0}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-m-bias/spec.ts; exact finite illustration specified in manager numericCase: Independent latent U,V∈{0,1}; X=U,Y=V,M=U+V. Unconditional X,Y covariance0. Filter M=1 leaves pairs(0,1),(1,0), perfect negative association. Draw M collider, not confounder.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-m-bias.scenario.1.summary",
+      "text": "Full r=0",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-m-bias/spec.ts; exact finite illustration specified in manager numericCase: Independent latent U,V∈{0,1}; X=U,Y=V,M=U+V. Unconditional X,Y covariance0. Filter M=1 leaves pairs(0,1),(1,0), perfect negative association. Draw M collider, not confounder.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-m-bias.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"X\",\"x\":40,\"y\":45},{\"id\":\"1\",\"label\":\"M\",\"x\":160,\"y\":115},{\"id\":\"2\",\"label\":\"Y\",\"x\":280,\"y\":45}],\"edges\":[{\"from\":\"0\",\"to\":\"1\",\"active\":true},{\"from\":\"2\",\"to\":\"1\",\"active\":true}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-m-bias/spec.ts; exact finite illustration specified in manager numericCase: Independent latent U,V∈{0,1}; X=U,Y=V,M=U+V. Unconditional X,Y covariance0. Filter M=1 leaves pairs(0,1),(1,0), perfect negative association. Draw M collider, not confounder.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-m-bias.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · No conditioning\",\"visual\":{\"kind\":\"scatter\",\"points\":[{\"x\":0,\"y\":0},{\"x\":0,\"y\":1},{\"x\":1,\"y\":0},{\"x\":1,\"y\":1}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-m-bias/spec.ts; exact finite illustration specified in manager numericCase: Independent latent U,V∈{0,1}; X=U,Y=V,M=U+V. Unconditional X,Y covariance0. Filter M=1 leaves pairs(0,1),(1,0), perfect negative association. Draw M collider, not confounder.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-m-bias.hook",
+      "text": "Two independent causes share an effect. Try conditioning on that effect.",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-m-bias/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two independent causes both make an alarm ring. Restricting analysis to alarms can make the causes appear what?",
+    "options": [
+      "Associated",
+      "Necessarily identical",
+      "Still always independent"
+    ],
+    "answer": 0,
+    "why": "Conditioning on a shared effect can couple its independent causes."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-m-bias",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "m-bias"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 319,
+    "sourceSection": "16. Selection bias, colliders & survivorship",
+    "sourceTitle": "M-bias",
+    "sourceText": "adjusting for a variable caused by two hidden factors can create bias where none existed.",
+    "sourceEntryOriginal": "- **319. M-bias** \\[Gotcha\\]: adjusting for a variable caused by two hidden factors can create bias where none existed.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "ai/ai-hidden-markov",
+    "difference": "New teaching boundary: M-bias. Existing boundary: Compute the hidden markov finite model and explain its changed countercase and stated boundary.",
+    "numericCase": "Independent latent U,V∈{0,1}; X=U,Y=V,M=U+V. Unconditional X,Y covariance0. Filter M=1 leaves pairs(0,1),(1,0), perfect negative association. Draw M collider, not confounder."
+  },
+  "modelAudit": {
+    "a": -1,
+    "b": 0
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "slug": "be-one-second-before-four-hours",
+  "title": "One second before four hours",
+  "hook": "Would a round-number finish change the pace you choose?",
+  "domain": "behavioral",
+  "concept": "be-one-second-before-four-hours",
+  "status": "draft",
+  "durationSec": 60,
+  "version": 1,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and reading a small table"
+    ],
+    "doesNotKnow": [
+      "Recognize bunching just below a round-number target in a finish-time distribution."
+    ]
+  },
+  "misconception": "The quantities in this case can be combined without checking their reference, denominator, or information boundary.",
+  "objective": "Recognize bunching just below a round-number target in a finish-time distribution.",
+  "keyState": "Both complete computed cases are visible as retained observations; the question-case picture survives Reset.",
+  "claims": [
+    {
+      "id": "behavioral.be-one-second-before-four-hours.inputs",
+      "text": "A toy finish histogram has 12 and 28 runners in the two bins before a target, and 10 and 10 after. How many finish before it? Toy inputs A=[12, 28, 10, 10]; B=[15, 15, 15, 15].",
+      "support": "convention",
+      "source": "Local explicit hypothetical assumptions in spec.ts and model.ts; not participant measurements.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-one-second-before-four-hours.trace",
+      "text": "Computed results: [[40, 20, 18], [30, 30, 0]]. Labels: Before, After, Edge gap.",
+      "support": "derivation",
+      "source": "compute() in the lesson-local model.ts; finite numeric operations over the explicit inputs.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-one-second-before-four-hours.reveal",
+      "text": "The same four bins can show a sharp target-edge difference or a smooth distribution. Bunching describes the shape; it does not by itself identify why individual runners changed pace.",
+      "support": "derivation",
+      "source": "The two controlled cases in spec.ts; scope limited to these toy inputs and displayed model rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-one-second-before-four-hours.recall",
+      "text": "A new toy case uses Before−2=15, Before−1=15, After+1=15, After+2=15. What is Before? Answer: 30.",
+      "support": "derivation",
+      "source": "compute() applied to the contrasting new input case; source list is an idea pointer only.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A new toy case uses Before−2=15, Before−1=15, After+1=15, After+2=15. What is Before?",
+    "options": [
+      "39",
+      "30",
+      "21"
+    ],
+    "answer": 1,
+    "why": "Applying the stated toy rule to the new inputs gives 30. The result depends on these assumptions; it is not a universal behavioral response."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "behavioral:be-one-second-before-four-hours",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "behavioral",
+      "toy-model",
+      "source-entry-9"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "run-case",
+    "compare-case",
+    "step-trace",
+    "reset-retained-evidence"
+  ],
+  "sourceProvenance": {
+    "file": "500-behavioral-economics-findings.md",
+    "entry": 9,
+    "section": "1. Loss aversion & prospect theory",
+    "text": "Marathon finishing times bunch just under round numbers like 4:00, which act as reference points (Allen, Dechow, Pope & Wu, 2017).",
+    "pointer": "500-behavioral-economics-findings.md entry 9: Allen, Dechow, Pope & Wu, 2017",
+    "status": "unverified-primary-source",
+    "caveat": "Original list says figures are approximate and papers were not individually rechecked. No empirical source is verified by this build."
+  },
+  "nearestExistingLesson": "square-root-wealth",
+  "meaningfulDifference": "Recognize bunching just below a round-number target in a finish-time distribution."
+}

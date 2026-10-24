@@ -1,0 +1,103 @@
+{
+  "slug": "be-a-book-only-at-the-gym",
+  "title": "A book only at the gym",
+  "hook": "What changes when a tempting audiobook is available only during exercise?",
+  "domain": "behavioral",
+  "concept": "be-a-book-only-at-the-gym",
+  "status": "draft",
+  "durationSec": 60,
+  "version": 1,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and reading a small table"
+    ],
+    "doesNotKnow": [
+      "Identify temptation bundling and distinguish its early effect from sustained adherence."
+    ]
+  },
+  "misconception": "The quantities in this case can be combined without checking their reference, denominator, or information boundary.",
+  "objective": "Identify temptation bundling and distinguish its early effect from sustained adherence.",
+  "keyState": "Both complete computed cases are visible as retained observations; the question-case picture survives Reset.",
+  "claims": [
+    {
+      "id": "behavioral.be-a-book-only-at-the-gym.inputs",
+      "text": "In a toy model a gym visit costs six effort units and unlocks four reward units. What is its net effort cost? Toy inputs A=[6, 4]; B=[6, 0].",
+      "support": "convention",
+      "source": "Local explicit hypothetical assumptions in spec.ts and model.ts; not participant measurements.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-a-book-only-at-the-gym.trace",
+      "text": "Computed results: [[2, 6, 4], [6, 6, 0]]. Labels: Net cost, Effort, Reward.",
+      "support": "derivation",
+      "source": "compute() in the lesson-local model.ts; finite numeric operations over the explicit inputs.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-a-book-only-at-the-gym.reveal",
+      "text": "Bundling changes the reward attached to the activity, not the exercise’s effort requirement. The comparison removes that reward. An immediate incentive difference does not establish that attendance will remain higher months later.",
+      "support": "derivation",
+      "source": "The two controlled cases in spec.ts; scope limited to these toy inputs and displayed model rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-a-book-only-at-the-gym.recall",
+      "text": "A new toy case uses Effort cost=6, Bundled reward=0. What is Net cost? Answer: 6.",
+      "support": "derivation",
+      "source": "compute() applied to the contrasting new input case; source list is an idea pointer only.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A new toy case uses Effort cost=6, Bundled reward=0. What is Net cost?",
+    "options": [
+      "7.8",
+      "6",
+      "4.2"
+    ],
+    "answer": 1,
+    "why": "Applying the stated toy rule to the new inputs gives 6. The result depends on these assumptions; it is not a universal behavioral response."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "behavioral:be-a-book-only-at-the-gym",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "behavioral",
+      "toy-model",
+      "source-entry-94"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "run-case",
+    "compare-case",
+    "step-trace",
+    "reset-retained-evidence"
+  ],
+  "sourceProvenance": {
+    "file": "500-behavioral-economics-findings.md",
+    "entry": 94,
+    "section": "5. Present bias & time preferences",
+    "text": "Allowing gym-goers to hear tempting audiobooks only at the gym raised visits 51% at first (Milkman, Minson & Volpp, 2014).",
+    "pointer": "500-behavioral-economics-findings.md entry 94: Milkman, Minson & Volpp, 2014",
+    "status": "unverified-primary-source",
+    "caveat": "Original list says figures are approximate and papers were not individually rechecked. No empirical source is verified by this build."
+  },
+  "nearestExistingLesson": "same-week-a-year-apart",
+  "meaningfulDifference": "Identify temptation bundling and distinguish its early effect from sustained adherence."
+}

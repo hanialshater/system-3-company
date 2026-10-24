@@ -1,0 +1,163 @@
+{
+  "slug": "p100-varying-slopes",
+  "title": "Does every city have one slope?",
+  "hook": "Does every city have one slope? Change one condition and inspect the result.",
+  "domain": "probability",
+  "concept": "p100-varying-slopes",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "fractions and arithmetic",
+      "that a toy model states its assumptions"
+    ],
+    "doesNotKnow": [
+      "each city gets its own price-sensitivity line, partially pooled toward a shared slope."
+    ]
+  },
+  "misconception": "Two city slopes are −4 and −1, from 2 and 20 observations. A shared slope prior is −2 with strength 4. What is the small city’s partial slope? The prediction alternatives contrast different consequences of the stated model.",
+  "objective": "each city gets its own price-sensitivity line, partially pooled toward a shared slope.",
+  "keyState": "Both computed cases completed, with their numerical summaries retained across Reset.",
+  "claims": [
+    {
+      "id": "probability.p100-varying-slopes.case",
+      "text": "Two city slopes are −4 and −1, from 2 and 20 observations. A shared slope prior is −2 with strength 4. What is the small city’s partial slope? Options: −4; −2.667; −1.167. Toy model: compare two controlled cases.",
+      "support": "convention",
+      "source": "Stipulated numerical case in model.ts, based on manager numericCase: Cityslopesraw[-4,-1],samplecounts[2,20],sharedprior-2strength4. Partialpooled[-2.6667,-1.1667]. Draw separateprice-demandlines; cityslopepatternsretain differences.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-varying-slopes.recall",
+      "text": "Slope −6 from 3 observations, prior −2 with strength 3: partial slope? Equal weights give (−6−2)/2=−4.",
+      "support": "derivation",
+      "source": "Transfer arithmetic or model implication under the same explicitly stated assumptions. Independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-varying-slopes.hook",
+      "text": "Does every city have one slope? Change one condition and inspect the result.",
+      "support": "convention",
+      "source": "Invitation to manipulate the labelled toy case, not a population claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-varying-slopes.c4",
+      "text": "The retained partial slopes are -2.667 and -1.167. Both move toward the stipulated prior slope −2, while retaining a difference.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-varying-slopes/model.ts#compute().reveal[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-varying-slopes.c5",
+      "text": "The smaller sample gives the prior a larger fraction of total weight. This is an explicit weighted-average toy, not a hierarchical model fitted to real city data. Its lines show the effect on predicted response as price changes.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-varying-slopes/model.ts#compute().reveal[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-varying-slopes.c6",
+      "text": "Run the question case, compare the changed case, and inspect both retained results.",
+      "support": "convention",
+      "source": "src/demos/probability/p100-varying-slopes/spec.ts#hint; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-varying-slopes.c7",
+      "text": "Small slope: -2.667",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-varying-slopes/model.ts#compute().scenarios[0].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-varying-slopes.c8",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":20},{\"x\":1,\"y\":16},{\"x\":2,\"y\":12},{\"x\":3,\"y\":8},{\"x\":4,\"y\":4},{\"x\":5,\"y\":0}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-varying-slopes/model.ts#compute().scenarios[0].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-varying-slopes.c9",
+      "text": "Toy model: case A. Displayed values: {\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":20},{\"x\":1,\"y\":17.333333333333332},{\"x\":2,\"y\":14.666666666666668},{\"x\":3,\"y\":12},{\"x\":4,\"y\":9.333333333333334},{\"x\":5,\"y\":6.666666666666668}]}. [{\"label\":\"Small slope\",\"value\":\"-2.667\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-varying-slopes/model.ts#compute().scenarios[0].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-varying-slopes.c10",
+      "text": "Large slope: -1.167",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-varying-slopes/model.ts#compute().scenarios[1].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-varying-slopes.c11",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":20},{\"x\":1,\"y\":19},{\"x\":2,\"y\":18},{\"x\":3,\"y\":17},{\"x\":4,\"y\":16},{\"x\":5,\"y\":15}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-varying-slopes/model.ts#compute().scenarios[1].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-varying-slopes.c12",
+      "text": "Toy model: case B. Displayed values: {\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":20},{\"x\":1,\"y\":18.833333333333332},{\"x\":2,\"y\":17.666666666666668},{\"x\":3,\"y\":16.5},{\"x\":4,\"y\":15.333333333333332},{\"x\":5,\"y\":14.166666666666666}]}. [{\"label\":\"Large slope\",\"value\":\"-1.167\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-varying-slopes/model.ts#compute().scenarios[1].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Slope −6 from 3 observations, prior −2 with strength 3: partial slope?",
+    "options": [
+      "−6",
+      "−4",
+      "−2"
+    ],
+    "answer": 1,
+    "why": "Equal weights give (−6−2)/2=−4."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-varying-slopes",
+    "also": [],
+    "prerequisites": [],
+    "level": "stretch",
+    "references": [],
+    "tags": [
+      "founder-2026-10-24",
+      "source-entry-627",
+      "scatter"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "controlled-case-comparison",
+    "step-through-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 627,
+    "sourceSection": "32. Hierarchical & multilevel models",
+    "sourceTitle": "Varying slopes",
+    "sourceText": "each city gets its own price-sensitivity line, partially pooled toward a shared slope.",
+    "sourceEntryOriginal": "- **627. Varying slopes** \\[Slider\\]: each city gets its own price-sensitivity line, partially pooled toward a shared slope.",
+    "numericCase": "Cityslopesraw[-4,-1],samplecounts[2,20],sharedprior-2strength4. Partialpooled[-2.6667,-1.1667]. Draw separateprice-demandlines; cityslopepatternsretain differences.",
+    "sourceStatus": "unverified idea pointer; empirical and historical claims excluded from learner copy",
+    "nearestExistingLesson": "ai/one-nudge-per-mistake",
+    "difference": "New teaching boundary: Varying slopes. Existing boundary: The learner can explain that a perceptron checks points one at a time, changes its line only on a mistake, and each nudge moves the line toward putting the missed point on the right side."
+  },
+  "modelOutputs": [
+    -2.6666666666666665,
+    -1.1666666666666667
+  ]
+}

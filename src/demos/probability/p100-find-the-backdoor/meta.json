@@ -1,0 +1,161 @@
+{
+  "slug": "p100-find-the-backdoor",
+  "title": "Which path remains open?",
+  "hook": "Treatment and outcome share an upstream cause. Trace both routes.",
+  "domain": "probability",
+  "concept": "p100-find-the-backdoor",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "trace every non-causal path from treatment to outcome before the app reveals them."
+    ]
+  },
+  "misconception": "Treating find the backdoor as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "trace every non-causal path from treatment to outcome before the app reveals them.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-find-the-backdoor.predict",
+      "text": "Let independent fair Z,U generate T=Z+U and Y=2T+3Z. What outcome change follows increasing T by one while holding Z fixed?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-find-the-backdoor/spec.ts; exact finite illustration specified in manager numericCase: DAG Z→T,Z→Y,T→Y with T=Z+U,Y=2T+3Z. Compare observed mean difference with Z path open and standardized difference after balancing Z. Toy Z,U independent binary; causal unit effect2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-find-the-backdoor.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-find-the-backdoor/spec.ts; exact finite illustration specified in manager numericCase: DAG Z→T,Z→Y,T→Y with T=Z+U,Y=2T+3Z. Compare observed mean difference with Z path open and standardized difference after balancing Z. Toy Z,U independent binary; causal unit effect2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-find-the-backdoor.reveal.0",
+      "text": "Holding Z fixed retains a unit-treatment effect of 2; the raw association retains slope 3.5. The graph’s T←Z→Y route contributes an extra noncausal association.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-find-the-backdoor/spec.ts; exact finite illustration specified in manager numericCase: DAG Z→T,Z→Y,T→Y with T=Z+U,Y=2T+3Z. Compare observed mean difference with Z path open and standardized difference after balancing Z. Toy Z,U independent binary; causal unit effect2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-find-the-backdoor.reveal.1",
+      "text": "A suitable pre-treatment adjustment blocks that backdoor while preserving T→Y. This toy model supplies the equations and measured confounder; in observed data their completeness is an assumption to investigate.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-find-the-backdoor/spec.ts; exact finite illustration specified in manager numericCase: DAG Z→T,Z→Y,T→Y with T=Z+U,Y=2T+3Z. Compare observed mean difference with Z path open and standardized difference after balancing Z. Toy Z,U independent binary; causal unit effect2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-find-the-backdoor.recall",
+      "text": "In Y=4T+7Z, with Z fixed, increasing T by one changes Y by how much? The coefficient of T in the stipulated structural equation is 4.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-find-the-backdoor/spec.ts; exact finite illustration specified in manager numericCase: DAG Z→T,Z→Y,T→Y with T=Z+U,Y=2T+3Z. Compare observed mean difference with Z path open and standardized difference after balancing Z. Toy Z,U independent binary; causal unit effect2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-find-the-backdoor.scenario.0.summary",
+      "text": "Unit-T effect 2",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-find-the-backdoor/spec.ts; exact finite illustration specified in manager numericCase: DAG Z→T,Z→Y,T→Y with T=Z+U,Y=2T+3Z. Compare observed mean difference with Z path open and standardized difference after balancing Z. Toy Z,U independent binary; causal unit effect2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-find-the-backdoor.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"Z\",\"x\":40,\"y\":45},{\"id\":\"1\",\"label\":\"T\",\"x\":160,\"y\":115},{\"id\":\"2\",\"label\":\"Y\",\"x\":280,\"y\":45}],\"edges\":[{\"from\":\"0\",\"to\":\"1\",\"active\":true},{\"from\":\"0\",\"to\":\"2\",\"active\":true},{\"from\":\"1\",\"to\":\"2\",\"active\":true}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-find-the-backdoor/spec.ts; exact finite illustration specified in manager numericCase: DAG Z→T,Z→Y,T→Y with T=Z+U,Y=2T+3Z. Compare observed mean difference with Z path open and standardized difference after balancing Z. Toy Z,U independent binary; causal unit effect2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-find-the-backdoor.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Hold Z fixed\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"Z fixed\",\"x\":40,\"y\":45},{\"id\":\"1\",\"label\":\"T\",\"x\":160,\"y\":115},{\"id\":\"2\",\"label\":\"Y\",\"x\":280,\"y\":45}],\"edges\":[{\"from\":\"0\",\"to\":\"1\",\"active\":false},{\"from\":\"0\",\"to\":\"2\",\"active\":false},{\"from\":\"1\",\"to\":\"2\",\"active\":true}]},\"metrics\":[{\"label\":\"Y change\",\"value\":2}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-find-the-backdoor/spec.ts; exact finite illustration specified in manager numericCase: DAG Z→T,Z→Y,T→Y with T=Z+U,Y=2T+3Z. Compare observed mean difference with Z path open and standardized difference after balancing Z. Toy Z,U independent binary; causal unit effect2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-find-the-backdoor.scenario.1.summary",
+      "text": "Raw slope 3.5",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-find-the-backdoor/spec.ts; exact finite illustration specified in manager numericCase: DAG Z→T,Z→Y,T→Y with T=Z+U,Y=2T+3Z. Compare observed mean difference with Z path open and standardized difference after balancing Z. Toy Z,U independent binary; causal unit effect2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-find-the-backdoor.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Z\",\"T\",\"Y\"],\"rows\":[[0,0,0],[0,1,2],[1,1,5],[1,2,7]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-find-the-backdoor/spec.ts; exact finite illustration specified in manager numericCase: DAG Z→T,Z→Y,T→Y with T=Z+U,Y=2T+3Z. Compare observed mean difference with Z path open and standardized difference after balancing Z. Toy Z,U independent binary; causal unit effect2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-find-the-backdoor.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · Backdoor open\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"Z\",\"x\":40,\"y\":45},{\"id\":\"1\",\"label\":\"T\",\"x\":160,\"y\":115},{\"id\":\"2\",\"label\":\"Y\",\"x\":280,\"y\":45}],\"edges\":[{\"from\":\"0\",\"to\":\"1\",\"active\":true},{\"from\":\"0\",\"to\":\"2\",\"active\":true},{\"from\":\"1\",\"to\":\"2\",\"active\":true}]},\"metrics\":[{\"label\":\"Raw slope\",\"value\":3.5}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-find-the-backdoor/spec.ts; exact finite illustration specified in manager numericCase: DAG Z→T,Z→Y,T→Y with T=Z+U,Y=2T+3Z. Compare observed mean difference with Z path open and standardized difference after balancing Z. Toy Z,U independent binary; causal unit effect2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-find-the-backdoor.hook",
+      "text": "Treatment and outcome share an upstream cause. Trace both routes.",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-find-the-backdoor/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In Y=4T+7Z, with Z fixed, increasing T by one changes Y by how much?",
+    "options": [
+      "4",
+      "7",
+      "11"
+    ],
+    "answer": 0,
+    "why": "The coefficient of T in the stipulated structural equation is 4."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-find-the-backdoor",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "backdoor"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 343,
+    "sourceSection": "18. Causal graphs & the do-operator",
+    "sourceTitle": "Find the backdoor",
+    "sourceText": "trace every non-causal path from treatment to outcome before the app reveals them.",
+    "sourceEntryOriginal": "- **343. Find the backdoor** \\[Predict\\]: trace every non-causal path from treatment to outcome before the app reveals them.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "books/bk-personal-mba-break-even",
+    "difference": "New teaching boundary: Find the backdoor. Existing boundary: Include fixed costs in every outcome before computing expected net.",
+    "numericCase": "DAG Z→T,Z→Y,T→Y with T=Z+U,Y=2T+3Z. Compare observed mean difference with Z path open and standardized difference after balancing Z. Toy Z,U independent binary; causal unit effect2."
+  },
+  "modelAudit": {
+    "a": 2,
+    "b": 3.5
+  }
+}

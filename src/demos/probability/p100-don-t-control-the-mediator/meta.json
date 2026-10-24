@@ -1,0 +1,162 @@
+{
+  "slug": "p100-don-t-control-the-mediator",
+  "title": "Where did the effect go?",
+  "hook": "Hold a treatment consequence fixed, then trace which outcome path remains.",
+  "domain": "probability",
+  "concept": "p100-don-t-control-the-mediator",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "adjusting for a drug's effect on blood pressure hides the drug's effect on strokes."
+    ]
+  },
+  "misconception": "Treating don't control the mediator as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "adjusting for a drug's effect on blood pressure hides the drug's effect on strokes.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-don-t-control-the-mediator.predict",
+      "text": "A treatment raises mediator M by 2 and outcome obeys Y=3M+T. What total effect follows increasing T from 0 to 1 if you let M respond?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-don-t-control-the-mediator/spec.ts; exact finite illustration specified in manager numericCase: Treatment raises mediator M by2; outcome Y=3M+T. Total effect7, direct1, mediated6. Fix M removes6; learner can block or leave mediator path open.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-don-t-control-the-mediator.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-don-t-control-the-mediator/spec.ts; exact finite illustration specified in manager numericCase: Treatment raises mediator M by2; outcome Y=3M+T. Total effect7, direct1, mediated6. Fix M removes6; learner can block or leave mediator path open.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-don-t-control-the-mediator.reveal.0",
+      "text": "Letting M respond retains total effect 7; holding M fixed retains direct effect 1. The mediator carries 2×3=6 units of the stipulated effect.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-don-t-control-the-mediator/spec.ts; exact finite illustration specified in manager numericCase: Treatment raises mediator M by2; outcome Y=3M+T. Total effect7, direct1, mediated6. Fix M removes6; learner can block or leave mediator path open.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-don-t-control-the-mediator.reveal.1",
+      "text": "Controlling a treatment consequence removes that pathway from the contrast. A direct-effect question may want that operation, but it is a different question from the total effect and needs its own identification assumptions.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-don-t-control-the-mediator/spec.ts; exact finite illustration specified in manager numericCase: Treatment raises mediator M by2; outcome Y=3M+T. Total effect7, direct1, mediated6. Fix M removes6; learner can block or leave mediator path open.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-don-t-control-the-mediator.recall",
+      "text": "Treatment changes M by 3; M changes Y by 2 per unit; the direct path adds 4. What total effect follows? The indirect effect is 3×2=6, plus direct effect 4, giving 10.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-don-t-control-the-mediator/spec.ts; exact finite illustration specified in manager numericCase: Treatment raises mediator M by2; outcome Y=3M+T. Total effect7, direct1, mediated6. Fix M removes6; learner can block or leave mediator path open.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-don-t-control-the-mediator.scenario.0.summary",
+      "text": "Total effect 7",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-don-t-control-the-mediator/spec.ts; exact finite illustration specified in manager numericCase: Treatment raises mediator M by2; outcome Y=3M+T. Total effect7, direct1, mediated6. Fix M removes6; learner can block or leave mediator path open.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-don-t-control-the-mediator.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"ΔM\",\"M→Y\",\"Direct\"],\"rows\":[[2,3,1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-don-t-control-the-mediator/spec.ts; exact finite illustration specified in manager numericCase: Treatment raises mediator M by2; outcome Y=3M+T. Total effect7, direct1, mediated6. Fix M removes6; learner can block or leave mediator path open.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-don-t-control-the-mediator.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Let M respond\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"T\",\"x\":40,\"y\":45},{\"id\":\"1\",\"label\":\"M\",\"x\":160,\"y\":115},{\"id\":\"2\",\"label\":\"Y\",\"x\":280,\"y\":45}],\"edges\":[{\"from\":\"0\",\"to\":\"1\",\"active\":true},{\"from\":\"1\",\"to\":\"2\",\"active\":true},{\"from\":\"0\",\"to\":\"2\",\"active\":true}]},\"metrics\":[{\"label\":\"Via M\",\"value\":6}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-don-t-control-the-mediator/spec.ts; exact finite illustration specified in manager numericCase: Treatment raises mediator M by2; outcome Y=3M+T. Total effect7, direct1, mediated6. Fix M removes6; learner can block or leave mediator path open.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-don-t-control-the-mediator.scenario.1.summary",
+      "text": "Direct effect 1",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-don-t-control-the-mediator/spec.ts; exact finite illustration specified in manager numericCase: Treatment raises mediator M by2; outcome Y=3M+T. Total effect7, direct1, mediated6. Fix M removes6; learner can block or leave mediator path open.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-don-t-control-the-mediator.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"T\",\"x\":40,\"y\":45},{\"id\":\"1\",\"label\":\"M\",\"x\":160,\"y\":115},{\"id\":\"2\",\"label\":\"Y\",\"x\":280,\"y\":45}],\"edges\":[{\"from\":\"0\",\"to\":\"1\",\"active\":true},{\"from\":\"1\",\"to\":\"2\",\"active\":true},{\"from\":\"0\",\"to\":\"2\",\"active\":true}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-don-t-control-the-mediator/spec.ts; exact finite illustration specified in manager numericCase: Treatment raises mediator M by2; outcome Y=3M+T. Total effect7, direct1, mediated6. Fix M removes6; learner can block or leave mediator path open.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-don-t-control-the-mediator.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · Hold M fixed\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"T\",\"x\":40,\"y\":45},{\"id\":\"1\",\"label\":\"M fixed\",\"x\":160,\"y\":115},{\"id\":\"2\",\"label\":\"Y\",\"x\":280,\"y\":45}],\"edges\":[{\"from\":\"0\",\"to\":\"1\",\"active\":false},{\"from\":\"1\",\"to\":\"2\",\"active\":false},{\"from\":\"0\",\"to\":\"2\",\"active\":true}]},\"metrics\":[{\"label\":\"Via M\",\"value\":0}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-don-t-control-the-mediator/spec.ts; exact finite illustration specified in manager numericCase: Treatment raises mediator M by2; outcome Y=3M+T. Total effect7, direct1, mediated6. Fix M removes6; learner can block or leave mediator path open.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-don-t-control-the-mediator.hook",
+      "text": "Hold a treatment consequence fixed, then trace which outcome path remains.",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-don-t-control-the-mediator/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Treatment changes M by 3; M changes Y by 2 per unit; the direct path adds 4. What total effect follows?",
+    "options": [
+      "6",
+      "10",
+      "12"
+    ],
+    "answer": 1,
+    "why": "The indirect effect is 3×2=6, plus direct effect 4, giving 10."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-don-t-control-the-mediator",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "mediator"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 346,
+    "sourceSection": "18. Causal graphs & the do-operator",
+    "sourceTitle": "Don't control the mediator",
+    "sourceText": "adjusting for a drug's effect on blood pressure hides the drug's effect on strokes.",
+    "sourceEntryOriginal": "- **346. Don't control the mediator** \\[Gotcha\\]: adjusting for a drug's effect on blood pressure hides the drug's effect on strokes.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "history/history-new-york-boston-1700-1900",
+    "difference": "New teaching boundary: Don't control the mediator. Existing boundary: Distinguish Congress’s 1776 declaration from the British Crown’s 1783 treaty acknowledgment, without substituting either for city control.",
+    "numericCase": "Treatment raises mediator M by2; outcome Y=3M+T. Total effect7, direct1, mediated6. Fix M removes6; learner can block or leave mediator path open."
+  },
+  "modelAudit": {
+    "a": 7,
+    "b": 1,
+    "mediated": 6
+  }
+}
