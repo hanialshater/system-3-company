@@ -82,6 +82,7 @@ step("start", () => fs.existsSync(path.join(START, "spec", "B10.md")), () => {
   fs.cpSync(path.join(M, "include"), path.join(s, "include"), { recursive: true });
   fs.cpSync(path.join(B10, "visible", "corpus"), path.join(s, "corpus"), { recursive: true }); fs.rmSync(path.join(s, "corpus", "DONE"));
   fs.cpSync(path.join(B10, "visible", "work"), path.join(s, "work"), { recursive: true });
+  fs.appendFileSync(path.join(START, ".gitignore"), "\n# B10: build and profiling output, the harness's saved leftovers\nbuild/\n*.s\n*.o\ncallgrind.out*\ncg*.out\nsqlrun\n.b10-leftover/\n");
   git(START, "add", "-A"); git(START, "-c", "user.name=operator", "-c", "user.email=operator@b10", "commit", "-qm", "B10: the task (spec/B10.md) and its visible material (spec/b10/)");
 });
 // 6. the judge: install, the start's hidden W7 results and visible pass set

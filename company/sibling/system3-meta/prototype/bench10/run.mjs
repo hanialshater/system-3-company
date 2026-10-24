@@ -126,6 +126,18 @@ async function turn(P, prompt, { resume = null, ms, label, ledger, model = MODEL
   return { sid, cost, ok, why: error, text: String(result?.result ?? lastText ?? "") };
 }
 const commitLeftover = (P, who) => { if (git(P.V, "status", "--porcelain").stdout.trim()) { gitOk(P.V, "add", "-A"); git(P.V, "commit", "-qm", `harness: ${who}'s uncommitted work at hand-in`); } return gitOk(P.V, "rev-parse", "HEAD"); };
+/** A hand-in is the last commit: uncommitted work (often an edit cut half-way by the time cap) is not merged; it is
+ *  saved as a patch in .b10-leftover/ (ignored by git, kept across the next round's reset) for its author to reapply.
+ *  Returns { head, patch } (patch: its path, or null). Smoke test, 2026-10-24: a cut worker's half-written edit,
+ *  committed by the old rule, failed the check and took the round's committed work down with it. */
+function handIn(P, tag) {
+  const head = gitOk(P.V, "rev-parse", "HEAD");
+  if (!git(P.V, "status", "--porcelain").stdout.trim()) return { head, patch: null };
+  const dir = path.join(P.V, ".b10-leftover"); fs.mkdirSync(dir, { recursive: true });
+  git(P.V, "add", "-A", "--", ".", ":(exclude).b10-leftover"); const diff = git(P.V, "diff", "--cached", "--binary", "HEAD").stdout; git(P.V, "reset", "-q");
+  const patch = path.join(dir, `${tag}.patch`); fs.writeFileSync(patch, diff);
+  return { head, patch: diff.trim() ? patch : null };
+}
 
 const TASK = (P) => `${fs.readFileSync(path.join(P.V, "spec", "B10.md"), "utf8")}\n\n## Where things are\n\n- Your compiler: **${P.V}** (a git repository; commit your work there). Read \`spec/\` and the code; \`docs/\` may hold notes from earlier work.\n- The fast judge: \`${fastCmd(P)}\`\n- \`clj-run\`, gcc and valgrind are on your PATH.\n`;
 
@@ -143,11 +155,12 @@ async function armV() {
       : `Go on. So far: $${spent.toFixed(2)} of $${CAP_COST}, ${Math.round(clock.min())} of ${CAP_MIN} minutes. Your last commit: ${gitOk(P.V, "log", "--oneline", "-1")}. Keep improving the generated code; commit as you go.`;
     const r = await turn(P, prompt, { resume: sid, ms: Math.min(90, left) * 60000, label: `V turn ${k + 1}`, ledger: led });
     spent += r.cost; sid = r.sid ?? sid; k++;
-    log(led, { event: "checkpoint", turn: k, head: commitLeftover(P, "V"), spent: Number(spent.toFixed(4)), min: Math.round(clock.min() * 100) / 100 });
+    log(led, { event: "checkpoint", turn: k, head: gitOk(P.V, "rev-parse", "HEAD"), dirty: !!git(P.V, "status", "--porcelain").stdout.trim(), spent: Number(spent.toFixed(4)), min: Math.round(clock.min() * 100) / 100 });
     if (FAKE && k >= 3) break;
   }
   clock.stop();
-  const end = { event: "end", head: gitOk(P.V, "rev-parse", "HEAD"), dir: P.V, cost: Number(spent.toFixed(4)), min: Math.round(clock.min() * 100) / 100, turns: k, ctx: sid ? contextStats(P.V, sid) : null };
+  const hv = handIn(P, "V-end");
+  const end = { event: "end", head: hv.head, leftover: hv.patch, dir: P.V, cost: Number(spent.toFixed(4)), min: Math.round(clock.min() * 100) / 100, turns: k, ctx: sid ? contextStats(P.V, sid) : null };
   log(led, end); return end;
 }
 
@@ -217,11 +230,13 @@ async function armO() {
       const mine = Object.entries(stewards).filter(([, s]) => s === w.id).map(([a]) => a);
       const review = mine.length ? merges.filter((m) => m.round === k - 1 && m.kept && m.id !== w.id && m.areas.some((a) => mine.includes(a))) : [];
       const last = merges.filter((m) => m.round === k - 1).map((m) => `- ${m.id}: ${m.kept ? `kept, credit ${m.credit} (main ${m.before} → ${m.after})` : `not kept (${m.why})`}; areas ${m.areas.join(", ") || "none"}`).join("\n");
+      const prevHand = all().find((x) => x.event === "handin" && x.round === k - 1 && x.id === w.id);
+      const leftNote = prevHand?.leftover ? ` Your uncommitted work when the last round was cut is saved in ${prevHand.leftover} (only committed work is merged; reapply it with git apply if it is still useful).` : "";
       const prompt = k === 1
         ? `${TASK(w.R)}
 ## You are one of a team of ${W.length}
 
-You are **${w.id}**, one of ${W.length} engineers working in parallel on this compiler, each on its own clone of the team's **main**; yours is ${w.R.V} (commit there). After each round of about ${ROUND_MIN} minutes an independent referee merges every engineer's committed work into main, one at a time, and measures main after each merge (the build, the visible corpus and the visible workloads' instruction counts): a merge that breaks anything or raises the instruction count is reverted, and your credit is the fall in the ratio your merged work causes. Once a round the visible W1-W5 and Lua check runs on main. You keep your memory between rounds, and each round you start again from the new main, which holds everyone's kept work. Work that composes with the others' is worth the most. An architect owns the interfaces between the compiler's parts (if someone introduces an intermediate representation, its shape is the architect's call), settles disputed claims and merge conflicts, and writes each round's picture of where the instructions go; the architect assigns no work.
+You are **${w.id}**, one of ${W.length} engineers working in parallel on this compiler, each on its own clone of the team's **main**; yours is ${w.R.V} (commit there). After each round of about ${ROUND_MIN} minutes an independent referee merges every engineer's committed work into main, one at a time, and measures main after each merge (the build, the visible corpus and the visible workloads' instruction counts): a merge that breaks anything or raises the instruction count is reverted, and your credit is the fall in the ratio your merged work causes. Once a round the visible W1-W5 and Lua check runs on main. Each round ends at about ${ROUND_MIN} minutes whether you are done or not, and only your committed work is merged, so commit each working step. You keep your memory between rounds, and each round you start again from the new main, which holds everyone's kept work. Work that composes with the others' is worth the most. An architect owns the interfaces between the compiler's parts (if someone introduces an intermediate representation, its shape is the architect's call), settles disputed claims and merge conflicts, and writes each round's picture of where the instructions go; the architect assigns no work.
 
 From round 3, whoever has earned the most kept credit in an area becomes its **steward**: it keeps \`docs/areas/<area>.md\` (what the area does, what was tried, what is next), reviews what others changed there, and may ask the architect to revert a merge with evidence. Stewards still work wherever they like.
 
@@ -235,7 +250,7 @@ ${tools(w)}
 Commit your best working state as you go (your last commit is what the referee merges). Then say briefly what you changed and what it gained, and end with the practices line.`
         : `Round ${k}. The referee's results for round ${k - 1}:
 ${last || "(nothing merged)"}
-Main is now at ratio ${base} (lower is better; gcc -O2 is 1.0). Your clone ${w.R.V} has been reset to the new main (\`git log\` shows everyone's kept work); work of yours that was not kept is gone from your clone, so redo on top of main what still matters.
+Main is now at ratio ${base} (lower is better; gcc -O2 is 1.0). Your clone ${w.R.V} has been reset to the new main (\`git log\` shows everyone's kept work); work of yours that was not kept is gone from your clone, so redo on top of main what still matters.${leftNote}
 ${intent ? `\nThe architect's picture for this round:\n${intent}\n` : ""}${mine.length ? `\nYou are the steward of: ${mine.join(", ")} (from the referee's record). Keep docs/areas/<area>.md up to date. ${review.length ? `Review these merges by others in your area${review.length > 1 ? "s" : ""} from the last round: ${review.map((m) => `${m.id}'s (${m.head.slice(0, 10)})`).join(", ")}; if one is wrong or harmful, post a finding with evidence and \`--area=revert-request\`, naming the commit.` : ""}\n` : ""}${beliefs.length ? `\nThe board's practices by belief (from the referee's results): ${beliefs.map((p) => `#${p.n} ${p.belief} "${p.text.slice(0, 80)}"`).join("; ")}\n` : ""}
 Read the board and the claims first. Then choose your focus, claim, and work for about ${ROUND_MIN} minutes.
 
@@ -245,7 +260,8 @@ Commit as you go. Then say briefly what you changed and what it gained, and end 
       const r = await turn(w.R, prompt, { resume: w.sid, ms: ROUND_MIN * 60000, label, ledger: led, model: w.model });
       w.sid = r.sid ?? w.sid; spent += r.cost;
       const practices = [...String(r.text).matchAll(/practices?:\s*([#\d,\s]+)/gi)].flatMap((m) => [...m[1].matchAll(/#?(\d+)/g)].map((x) => Number(x[1])));
-      log(led, { event: "handin", round: k, id: w.id, head: commitLeftover(w.R, w.id), practices: [...new Set(practices)], note: String(r.text).slice(-1500) });
+      const hi = FAKE ? { head: gitOk(w.R.V, "rev-parse", "HEAD"), patch: null } : handIn(w.R, `r${k}`);
+      log(led, { event: "handin", round: k, id: w.id, head: hi.head, leftover: hi.patch, practices: [...new Set(practices)], note: String(r.text).slice(-1500) });
     }));
     // integration: check each changed head alone, then merge best first, keeping a merge only if main does not get worse
     const handins = all().filter((x) => x.event === "handin" && x.round === k), merged = all().filter((x) => x.event === "merge" && x.round === k).map((x) => x.id);
