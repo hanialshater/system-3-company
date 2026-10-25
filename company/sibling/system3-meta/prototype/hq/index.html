@@ -63,7 +63,7 @@ function nav() {
   let h = `<div class="sec">City</div><a class="${state.view === "city" ? "on" : ""}" onclick="go(null,'city')">All companies</a><div class="sec">Companies</div>`;
   for (const c of state.city) {
     h += `<a class="${state.company === c.id && state.view === "overview" ? "on" : ""}" onclick="go('${c.id}','overview')"><span class="dot ${c.health.state}"></span>${esc(c.name)}</a>`;
-    if (state.company === c.id) h += `<div class="sub">${VIEWS.map(([v, n]) => `<a class="${state.view === v ? "on" : ""}" onclick="go('${c.id}','${v}')">${n}</a>`).join("")}</div>`;
+    if (state.company === c.id) h += `<div class="sub">${[...VIEWS, ...(c.pages ?? []).map((p) => [`x-${p.id}`, esc(p.title)])].map(([v, n]) => `<a class="${state.view === v ? "on" : ""}" onclick="go('${c.id}','${v}')">${n}</a>`).join("")}</div>`;
   }
   $("#nav").innerHTML = h;
 }
@@ -131,12 +131,17 @@ function viewKnowledge() {
 }
 function render() {
   nav(); const c = state.city.find((x) => x.id === state.company);
-  const v = !c ? viewCity() : { overview: () => viewOverview(c), landings: viewLandings, board: viewBoard, notes: viewNotes, meetings: viewMeetings, people: viewPeople, knowledge: viewKnowledge }[state.view]?.() ?? viewOverview(c);
+  const v = !c ? viewCity() : state.view.startsWith("x-") ? state.custom : { overview: () => viewOverview(c), landings: viewLandings, board: viewBoard, notes: viewNotes, meetings: viewMeetings, people: viewPeople, knowledge: viewKnowledge }[state.view]?.() ?? viewOverview(c);
   const focus = document.activeElement?.classList?.contains("search"); $("#main").innerHTML = v; if (focus) { const s = $("input.search"); s.focus(); s.setSelectionRange(s.value.length, s.value.length); }
 }
 async function load() {
   state.city = await api("/api/city");
   if (state.company) { [state.events, state.knowledge] = await Promise.all([api(`/api/company/${state.company}/events`), api(`/api/company/${state.company}/knowledge`)]); }
+  // a company's own page (the extension point): its module renders from the same events and knowledge
+  if (state.company && state.view.startsWith("x-")) {
+    try { const mod = await import(`/api/company/${state.company}/page/${state.view.slice(2)}.js?t=${Date.now()}`); state.custom = mod.render({ events: state.events, knowledge: state.knowledge, company: state.city.find((x) => x.id === state.company), esc, time, pct }); }
+    catch (e) { state.custom = `<h1>Page error</h1><div class="empty">${esc(e.message)}</div>`; }
+  }
   render();
 }
 (() => { const [c, v] = location.hash.slice(1).split("/"); if (c && c !== "city") { state.company = c; state.view = v || "overview"; } load(); setInterval(() => { if (!document.activeElement?.classList?.contains("search")) load(); }, 15000); })();

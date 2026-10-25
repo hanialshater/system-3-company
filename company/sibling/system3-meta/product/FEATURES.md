@@ -47,13 +47,14 @@ benchmark harness, not yet in the kernel). Update this file in the same change t
 
 | Feature | Layer | Where | Status |
 |---|---|---|---|
-| A dependency-free server over companies' v1 event logs: `/api/city`, `/api/company/<id>/events`, `/api/company/<id>/knowledge` | starter | `hq/server.mjs` | built; tests/hq.test.mjs (3 tests) |
+| A dependency-free server over companies' v1 event logs: `/api/city`, `/api/company/<id>/events`, `/api/company/<id>/knowledge` | starter | `hq/server.mjs` | built; tests/hq.test.mjs (4 tests) |
 | A city file lists the companies (id, name, archetype, owner, events or a bench runs dir, knowledge) | starter | `city.json` (per install) | built |
 | Health per company from its events: score, start, lands, refusals, spend vs budget, members, running or ended | starter | `hq/server.mjs health()` | built |
 | Linear-like sidebar (city → company → Overview, Landings, Board, Notes, People, Knowledge), score chart, notes threads by hour, knowledge search, light and dark | starter | `hq/index.html` | built; refreshes every 15 s |
 | Benchmark orgs shown live (status, notes, board, ledger read as v1 events) | Meta research | `hq/bench2events.mjs` | built: B11, B12, B13 |
 | Meetings page: the minutes members recorded, newest first | starter | `hq/index.html` | built |
-| Company extension points for custom pages (HQ developers); the kernel's meetings (meetings.mjs) as v1 events | starter | — | next |
+| Extension point: a company's HQ developers add pages (`<hq>/pages.json`, ES modules exporting `render({events, knowledge, …})`), listed in its sidebar, served only from its hq folder | starter | `hq/server.mjs`, `hq/index.html` | built; generated companies get an empty `hq/` |
+| The kernel's meetings (meetings.mjs) as v1 events | starter | — | next |
 
 ## Onboarding (`prototype/onboard.mjs`), since 2026-10-25
 

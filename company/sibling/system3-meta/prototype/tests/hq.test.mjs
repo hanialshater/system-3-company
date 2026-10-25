@@ -36,3 +36,20 @@ test("the API: /api/city and a company's events", async () => {
   const [s4, b4] = await get("/"); assert.equal(s4, 200); assert.match(b4, /System 3 HQ/);
   srv.close(); process.argv.pop();
 });
+
+test("extension point: a company's own pages are listed and served from its hq folder, and only from there", async () => {
+  const d = fs.mkdtempSync(path.join(os.tmpdir(), "hq-")), hq = path.join(d, "hq"); fs.mkdirSync(hq);
+  fs.writeFileSync(path.join(d, "events.jsonl"), ""); fs.writeFileSync(path.join(d, "secret.js"), "nope");
+  fs.writeFileSync(path.join(hq, "pages.json"), JSON.stringify([{ id: "mine", title: "Mine", file: "mine.js" }, { id: "out", file: "../secret.js" }, { id: "Bad Id", file: "mine.js" }]));
+  fs.writeFileSync(path.join(hq, "mine.js"), "export const render = () => 'hi';");
+  const city = path.join(d, "city.json"); fs.writeFileSync(city, JSON.stringify({ companies: [{ id: "c1", name: "C1", events: path.join(d, "events.jsonl"), hq }] }));
+  process.argv.push(`--city=${city}`);
+  const { handler: h } = await import(`../hq/server.mjs?y=${Date.now()}`);
+  const srv = http.createServer(h); await new Promise((r) => srv.listen(0, r)); const port = srv.address().port;
+  const get = (p) => new Promise((res) => http.get(`http://localhost:${port}${p}`, (r) => { let b = ""; r.on("data", (c) => (b += c)); r.on("end", () => res([r.statusCode, b, r.headers["content-type"]])); }));
+  const [, city1] = await get("/api/city"); assert.deepEqual(JSON.parse(city1)[0].pages.map((p) => p.id), ["mine", "out"]);
+  const [s1, b1, t1] = await get("/api/company/c1/page/mine.js"); assert.equal(s1, 200); assert.match(t1, /javascript/); assert.match(b1, /render/);
+  const [s2] = await get("/api/company/c1/page/out.js"); assert.equal(s2, 403);
+  const [s3] = await get("/api/company/c1/page/none.js"); assert.equal(s3, 404);
+  srv.close(); process.argv.pop();
+});

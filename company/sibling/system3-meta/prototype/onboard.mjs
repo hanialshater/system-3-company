@@ -83,11 +83,12 @@ export function generate(proposal, dir) {
   const t = new Date().toISOString(), roles = (d.roles ?? []).map((r) => (typeof r === "string" ? r : r.id));
   fs.writeFileSync(path.join(dir, "company.json"), JSON.stringify({ v: 1, id: intake.id, name: intake.name, owner: intake.owner, archetype: d.archetype, intake, design: d, approvedBy: proposal.approvedBy, approvedAt: proposal.approvedAt, roles, newRoles: (d.roles ?? []).filter((r) => typeof r !== "string") }, null, 2) + "\n");
   fs.writeFileSync(path.join(dir, "knowledge", "entries.jsonl"), "");
+  fs.mkdirSync(path.join(dir, "hq"), { recursive: true }); fs.writeFileSync(path.join(dir, "hq", "pages.json"), "[]\n"); // the HQ developers' pages
   if (a.shape === "crew") fs.writeFileSync(path.join(dir, "crew.json"), JSON.stringify({ members: d.members.map((m) => ({ id: m.id, model: m.model, role: m.role, tree: path.join(dir, "trees", m.id) })), main: path.join(dir, "main"), referee: intake.referee ?? { cmd: "" }, budget: intake.budget, minutes: intake.minutes ?? 600, task: intake.task ?? null, knowledge: path.join(dir, "knowledge", "KB.md"), plateauMin: intake.plateauMin ?? null }, null, 2) + "\n");
   else fs.writeFileSync(path.join(dir, "spec.json"), JSON.stringify({ name: intake.id, roles: roles.map((id) => ({ id })), rooms: [], skills: [], flow: null, _todo: "complete the spec (generator.mjs validate) before `meta.mjs init --spec-file`" }, null, 2) + "\n");
   const ev = [{ type: "company.proposed", by: proposal.by, t: proposal.t, designs: proposal.designs.map((x) => x.archetype) }, { type: "company.approved", by: proposal.approvedBy, t: proposal.approvedAt, archetype: d.archetype }, { type: "company.start", by: "meta", t, archetype: d.archetype, roles, budget: intake.budget }];
   fs.writeFileSync(path.join(dir, "events.jsonl"), ev.map((e) => JSON.stringify({ v: 1, ...e })).join("\n") + "\n");
-  return { id: intake.id, name: intake.name, archetype: a.title, owner: intake.owner, events: path.join(dir, "events.jsonl"), knowledge: path.join(dir, "knowledge") };
+  return { id: intake.id, name: intake.name, archetype: a.title, owner: intake.owner, events: path.join(dir, "events.jsonl"), knowledge: path.join(dir, "knowledge"), hq: path.join(dir, "hq") };
 }
 
 // ---------------------------------------------------------------- CLI
