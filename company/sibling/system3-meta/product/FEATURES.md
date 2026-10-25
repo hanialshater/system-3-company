@@ -66,19 +66,19 @@ benchmark harness, not yet in the kernel). Update this file in the same change t
 | The CEO's approval: only the company's owner approves one design | starter | `onboard.mjs approve` | built |
 | Generation: company.json, crew.json (crew-shaped) or a spec skeleton (corporate), a knowledge base, a v1 event log, the city entry; a science company refused without a held-out referee | starter | `onboard.mjs generate` | built; the HQ shows it as onboarded |
 
-## Proven in benchmarks, to be folded into the kernel (the rest)
+## Proven in benchmarks, folded into the kernel (2026-10-25) or still to fold
 
 | Feature | Layer | Where | Evidence |
 |---|---|---|---|
-| Continuous member sessions (no rounds, no resets) | bench → starter | `bench11/run.mjs`, `bench12/run.mjs` | B11, B12 |
-| Self-landing past a referee (`org sync`, `org land`, serialised, refused if main gets worse) | bench → starter | `bench11/org.mjs` | B12: 46 lands, none lowered main |
-| Shared, visible budget; members may go idle; a live cost guard | bench → starter | `bench11/run.mjs` | B11, B12 (members stopped themselves) |
-| Direct notes between members | bench → starter | `bench11/org.mjs` | B11: 45 notes; B12: 10 |
-| The board with claims, evidence and wrong-if required | bench → starter | `bench9/board.mjs` | B9b onwards |
-| Off-boarding into the knowledge base; on-boarding reads it | bench → starter | `bench11/run.mjs offboard`, `knowledge/` | 158 entries; read by every B12 member |
-| Cost from transcripts (the SDK's cost is unreliable on resumed sessions) | bench → starter | `bench10/run.mjs`, `bench11/run.mjs` | B10 |
-| Byte-exact output comparison | bench → starter | `bench10/judge.mjs` | B10 (found by an org member) |
-| Mixed models in one org | bench → starter | `bench10`, `bench11`, `bench12` | B12: Sonnet members 46% of gains |
+| Continuous member sessions (no rounds, no resets) | **folded** | `crew-run.mjs` (from `bench11-13/run.mjs`) | B11, B12 |
+| Self-landing past a referee (`org sync`, `org land`, serialised, refused if main gets worse) | **folded** | `crew.mjs` (from `bench11/org.mjs`) | B12: 46 lands, none lowered main |
+| Shared, visible budget; members may go idle; a live cost guard | **folded** | `crew-run.mjs` (stop guard every 10 s) | B11, B12 (members stopped themselves) |
+| Direct notes between members | **folded** | `crew.mjs` | B11: 45 notes; B12: 10 |
+| The board with claims, evidence and wrong-if required | **folded** | `crew.mjs` | B9b onwards |
+| Off-boarding into the knowledge base; on-boarding reads it | **folded** | `crew-run.mjs OFFBOARD, recordOffboard`; `knowledge/build.mjs` stays Meta's | 158 entries; read by every B12 member |
+| Cost from transcripts (the SDK's cost is unreliable on resumed sessions) | **folded** | `crew-run.mjs transcriptCost` | B10 |
+| Byte-exact output comparison | referee practice (each company's referee owns it; noted in the referee contract) | `bench10/judge.mjs` | B10 (found by an org member) |
+| Mixed models in one org | **folded** | `crew.json` members' `model` | B12: Sonnet members 46% of gains; B13 adds Haiku |
 
 ## Benchmarks and their material (Meta's research instruments)
 
