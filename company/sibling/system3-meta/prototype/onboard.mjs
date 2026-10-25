@@ -34,7 +34,7 @@ const PROPOSERS = ["chief-of-staff", "chief-of-staff-ceo-office"];
 /** the catalog: System 3 Company's org as data until the migration moves it to the starter kit */
 export async function loadCatalog(file = path.join(HERE, "..", "..", "..", "..", "tools", "org", "roles.mjs")) {
   const { roles } = await import(pathToFileURL(path.resolve(file)).href);
-  return roles.map((r) => ({ id: r.id, title: r.title, team: r.team, mission: r.mission ?? "", description: r.description ?? "", layer: STARTER_ROLES.includes(r.id) ? "starter" : "domain" }));
+  return roles.map((r) => ({ id: r.id, title: r.title, team: r.team, reportsTo: r.reportsTo ?? null, mission: r.mission ?? "", description: r.description ?? "", layer: STARTER_ROLES.includes(r.id) ? "starter" : "domain" }));
 }
 /** roles ranked by how many of the words they mention (id, title, team, mission, description) */
 export function searchCatalog(catalog, words) {
@@ -74,7 +74,7 @@ export function approve(proposal, by, choice) {
 }
 
 /** step 6: the company's folder from an approved proposal; returns its city entry */
-export function generate(proposal, dir) {
+export function generate(proposal, dir, catalog = []) {
   if (proposal.status !== "approved") refuse("generate needs an approved proposal (its owner approves it first)");
   const { intake } = proposal, d = proposal.designs[proposal.choice - 1], a = ARCHETYPES[d.archetype];
   if (fs.existsSync(path.join(dir, "company.json"))) refuse(`${dir} already holds a company`);
@@ -83,12 +83,17 @@ export function generate(proposal, dir) {
   const t = new Date().toISOString(), roles = (d.roles ?? []).map((r) => (typeof r === "string" ? r : r.id));
   fs.writeFileSync(path.join(dir, "company.json"), JSON.stringify({ v: 1, id: intake.id, name: intake.name, owner: intake.owner, archetype: d.archetype, intake, design: d, approvedBy: proposal.approvedBy, approvedAt: proposal.approvedAt, roles, newRoles: (d.roles ?? []).filter((r) => typeof r !== "string") }, null, 2) + "\n");
   fs.writeFileSync(path.join(dir, "knowledge", "entries.jsonl"), "");
+  // the org file (the HQ's Org page): the chosen roles, each reporting to its catalog manager if that role was chosen
+  // too, else to the owner; a crew's members report to the owner
+  const byId = Object.fromEntries(catalog.map((r) => [r.id, r])), chosen = new Set(roles);
+  const org = [{ id: intake.owner, title: "Owner (CEO)", reportsTo: null }, ...(d.roles ?? []).map((r) => { const id = typeof r === "string" ? r : r.id, c = byId[id]; return { id, title: c?.title ?? (typeof r === "string" ? id : r.title ?? id), reportsTo: chosen.has(c?.reportsTo) ? c.reportsTo : intake.owner, team: c?.team ?? null }; }), ...(d.members ?? []).map((m) => ({ id: m.id, title: m.role, reportsTo: intake.owner, team: "crew", model: m.model }))];
+  fs.writeFileSync(path.join(dir, "org.json"), JSON.stringify(org, null, 1) + "\n");
   fs.mkdirSync(path.join(dir, "hq"), { recursive: true }); fs.writeFileSync(path.join(dir, "hq", "pages.json"), "[]\n"); // the HQ developers' pages
   if (a.shape === "crew") fs.writeFileSync(path.join(dir, "crew.json"), JSON.stringify({ members: d.members.map((m) => ({ id: m.id, model: m.model, role: m.role, tree: path.join(dir, "trees", m.id) })), main: path.join(dir, "main"), referee: intake.referee ?? { cmd: "" }, budget: intake.budget, minutes: intake.minutes ?? 600, task: intake.task ?? null, knowledge: path.join(dir, "knowledge", "KB.md"), plateauMin: intake.plateauMin ?? null }, null, 2) + "\n");
   else fs.writeFileSync(path.join(dir, "spec.json"), JSON.stringify({ name: intake.id, roles: roles.map((id) => ({ id })), rooms: [], skills: [], flow: null, _todo: "complete the spec (generator.mjs validate) before `meta.mjs init --spec-file`" }, null, 2) + "\n");
   const ev = [{ type: "company.proposed", by: proposal.by, t: proposal.t, designs: proposal.designs.map((x) => x.archetype) }, { type: "company.approved", by: proposal.approvedBy, t: proposal.approvedAt, archetype: d.archetype }, { type: "company.start", by: "meta", t, archetype: d.archetype, roles, budget: intake.budget }];
   fs.writeFileSync(path.join(dir, "events.jsonl"), ev.map((e) => JSON.stringify({ v: 1, ...e })).join("\n") + "\n");
-  return { id: intake.id, name: intake.name, archetype: a.title, owner: intake.owner, events: path.join(dir, "events.jsonl"), knowledge: path.join(dir, "knowledge"), hq: path.join(dir, "hq") };
+  return { id: intake.id, name: intake.name, archetype: a.title, owner: intake.owner, events: path.join(dir, "events.jsonl"), knowledge: path.join(dir, "knowledge"), hq: path.join(dir, "hq"), org: path.join(dir, "org.json") };
 }
 
 // ---------------------------------------------------------------- CLI
@@ -101,7 +106,7 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.a
     else if (cmd === "search") for (const r of searchCatalog(await loadCatalog(opt.catalog), args.join(" ")).slice(0, 15)) console.log(`${r.id.padEnd(34)} ${r.layer.padEnd(7)} ${r.mission.slice(0, 90)}`);
     else if (cmd === "propose") { const p = propose(await loadCatalog(opt.catalog), J(args[0]), J(args[1]), opt.by), out = path.join(path.dirname(args[0]), "proposal.json"); fs.writeFileSync(out, JSON.stringify(p, null, 2) + "\n"); console.log(`proposed ${p.designs.length} designs → ${out}; the owner (${p.intake.owner}) approves one`); }
     else if (cmd === "approve") { const p = approve(J(args[0]), opt.by, opt.choice); fs.writeFileSync(args[0], JSON.stringify(p, null, 2) + "\n"); console.log(`approved design ${p.choice} (${p.designs[p.choice - 1].archetype})`); }
-    else if (cmd === "generate") console.log(JSON.stringify(generate(J(args[0]), path.resolve(args[1])), null, 2));
+    else if (cmd === "generate") console.log(JSON.stringify(generate(J(args[0]), path.resolve(args[1]), await loadCatalog(opt.catalog)), null, 2));
     else refuse("usage: onboard.mjs archetypes | search <words> | propose <intake> <designs> --by= | approve <proposal> --by= --choice= | generate <proposal> <dir>");
   } catch (e) { if (e instanceof OnboardRefusal) { console.error(e.message); process.exit(1); } throw e; }
 }

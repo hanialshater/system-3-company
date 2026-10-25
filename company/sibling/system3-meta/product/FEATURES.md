@@ -47,14 +47,17 @@ benchmark harness, not yet in the kernel). Update this file in the same change t
 
 | Feature | Layer | Where | Status |
 |---|---|---|---|
-| A dependency-free server over companies' v1 event logs: `/api/city`, `/api/company/<id>/events`, `/api/company/<id>/knowledge` | starter | `hq/server.mjs` | built; tests/hq.test.mjs (5 tests) |
+| A dependency-free server over companies' v1 event logs: `/api/city`, `/api/company/<id>/events`, `/api/company/<id>/knowledge` | starter | `hq/server.mjs` | built; tests/hq.test.mjs (6 tests) |
 | A city file lists the companies (id, name, archetype, owner, events or a bench runs dir, knowledge) | starter | `city.json` (per install) | built |
 | Health per company from its events: score, start, lands, refusals, spend vs budget, members, running or ended | starter | `hq/server.mjs health()` | built |
-| Linear-like sidebar (city → company → Overview, Landings, Board, Notes, People, Knowledge), score chart, notes threads by hour, knowledge search, light and dark | starter | `hq/index.html` | built; refreshes every 15 s |
-| Benchmark orgs shown live (status, notes, board, ledger read as v1 events) | Meta research | `hq/bench2events.mjs` | built: B11, B12, B13 |
+| Linear-like sidebar, few generic pages (city → company → Overview with landings, Rooms, Org, Board, Notes, Meetings, Knowledge); a page with no data is hidden; anything else is the company's own page (extension point) | starter | `hq/index.html` | built; refreshes every 15 s |
+| Rooms: who works where, from the event log (a kernel event's `room`, else the area last claimed or posted about; idle, offline and gone apart) | starter | `hq/index.html` | built |
+| Replay: a time slider and play over every page (score, rooms, org, notes as they were) | starter | `hq/index.html` | built |
+| Org: reporting lines from the company's org file (written by tools: `onboard generate`, `hq/org-from-roles.mjs`), each node with its member's work; crews as peers under the owner | starter | `hq/index.html`, `/api/company/<id>/org` | built; System 3 Company's 109 roles render |
+| Benchmark orgs shown live (status, notes, board, ledger read as v1 events) | Meta research (not in the starter) | `hq/bench2events.mjs` | built: B11, B12, B13 |
 | Meetings page: the minutes members recorded, newest first | starter | `hq/index.html` | built |
 | Extension point: a company's HQ developers add pages (`<hq>/pages.json`, ES modules exporting `render({events, knowledge, …})`), listed in its sidebar, served only from its hq folder | starter | `hq/server.mjs`, `hq/index.html` | built; generated companies get an empty `hq/` |
-| Kernel companies (corporate archetype, `meta.mjs` state) in the HQ: closed meetings as `meeting` events with minutes, the rest of the log as `kernel.<type>` | starter | `hq/kernel2events.mjs` | built |
+| Kernel companies (corporate archetype, `meta.mjs` state) in the HQ: closed meetings as `meeting` events with minutes, rooms from enter/leave, the org from its roles | migration bridge (not in the starter; the kernel will emit v1 itself) | `hq/kernel2events.mjs` | built |
 
 ## Onboarding (`prototype/onboard.mjs`), since 2026-10-25
 

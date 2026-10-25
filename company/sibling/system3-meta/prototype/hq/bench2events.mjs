@@ -1,4 +1,4 @@
-// Reads a benchmark org (bench11-13's runs dir: _org/status.json, lands.jsonl, notes-log.jsonl, board.jsonl, spend.json
+// Meta research, not part of the starter: reads a benchmark org (bench11-13's runs dir: _org/status.json, lands.jsonl, notes-log.jsonl, board.jsonl, spend.json
 // and _operator/O/ledger.jsonl) as v1 crew events (crew.mjs), so the starter HQ can show the benchmarks' orgs live.
 import fs from "node:fs";
 import path from "node:path";
@@ -22,6 +22,7 @@ export function benchEvents(runs) {
     if (x.event === "idle") ev.push({ v: 1, t: x.t, type: "idle", by: x.id });
     if (x.event === "wake") ev.push({ v: 1, t: x.t, type: "wake", by: x.id });
     if (x.event === "crash" || x.event === "recover") ev.push({ v: 1, t: x.t, type: x.event, by: x.id });
+    if (x.event === "resume" || x.event === "continue") ev.push({ v: 1, t: x.t, type: "crew.resume", by: "operator", why: x.why ?? null });
     if (x.event === "end") ev.push({ v: 1, t: x.t, type: "crew.end", by: "operator", spent: x.cost ?? null });
   }
   return ev.sort((a, b) => Date.parse(a.t) - Date.parse(b.t));

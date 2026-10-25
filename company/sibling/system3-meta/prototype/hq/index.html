@@ -19,7 +19,7 @@ aside { background:var(--side); border-right:1px solid var(--line); padding:14px
 .nav .sub a { padding-left:22px; color:var(--muted); }
 .nav .sub a.on { color:var(--text); }
 .dot { width:8px; height:8px; border-radius:50%; background:var(--muted); flex:none; }
-.dot.running { background:var(--good); } .dot.ended { background:var(--muted); } .dot.empty { background:var(--line); }
+.dot.s-running { background:var(--good); } .dot.s-onboarded { background:var(--accent); } .dot.s-ended { background:var(--muted); } .dot.s-empty { background:var(--line); }
 main { padding:22px 28px; max-width:1200px; }
 h1 { font-size:20px; margin:0 0 4px; } .sub1 { color:var(--muted); margin-bottom:18px; }
 .cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:12px; }
@@ -41,6 +41,17 @@ svg.spark { width:100%; height:120px; background:var(--panel); border:1px solid 
 .empty { color:var(--muted); padding:30px; text-align:center; background:var(--panel); border:1px dashed var(--line); border-radius:10px; }
 input.search { width:100%; padding:7px 10px; border:1px solid var(--line); border-radius:8px; background:var(--panel); color:var(--text); margin-bottom:12px; }
 @media (max-width: 760px) { .app { grid-template-columns:1fr; } aside { position:static; height:auto; } main { padding:16px; } }
+.replay { display:flex; align-items:center; gap:10px; background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:8px 12px; margin-bottom:16px; }
+.replay input[type=range] { flex:1; accent-color:var(--accent); } .replay button { border:1px solid var(--line); background:var(--chip); color:var(--text); border-radius:6px; padding:3px 10px; cursor:pointer; font:inherit; }
+.replay .live { color:var(--good); font-weight:600; } .replay .past { color:var(--warn); font-weight:600; }
+.floor { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px; }
+.room { background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:12px; min-height:120px; }
+.room h4 { margin:0 0 8px; font-size:13px; display:flex; justify-content:space-between; } .room.quiet { opacity:.75; border-style:dashed; }
+.av { display:inline-flex; align-items:center; gap:6px; margin:0 6px 6px 0; padding:3px 8px 3px 3px; border-radius:999px; background:var(--chip); font-size:12px; }
+.av b { width:22px; height:22px; border-radius:50%; display:inline-grid; place-items:center; color:#fff; font-size:10px; }
+.av.idle { opacity:.55; } .av.crashed { outline:1px solid var(--bad); }
+.tree ul { list-style:none; margin:0; padding-left:18px; border-left:1px solid var(--line); } .tree > ul { padding-left:0; border-left:none; }
+.tree li { margin:4px 0; } .node { display:inline-flex; gap:8px; align-items:baseline; padding:4px 8px; border:1px solid var(--line); border-radius:8px; background:var(--panel); }
 main{min-width:0} .msg,.thread,td{overflow-wrap:anywhere}
 </style>
 </head>
@@ -50,8 +61,11 @@ main{min-width:0} .msg,.thread,td{overflow-wrap:anywhere}
   <main id="main"><div class="empty">Loading…</div></main>
 </div>
 <script>
-const VIEWS = [["overview", "Overview"], ["landings", "Landings"], ["board", "Board"], ["notes", "Notes"], ["meetings", "Meetings"], ["people", "People"], ["knowledge", "Knowledge"]];
-let state = { city: [], company: null, view: "city", events: [], knowledge: [], q: "" };
+// the starter's pages: few and generic; a page with nothing to show is hidden. Anything else is a company's own page
+// (its HQ developers' extension point), not a starter page
+const VIEWS = [["overview", "Overview"], ["rooms", "Rooms"], ["org", "Org"], ["board", "Board"], ["notes", "Notes"], ["meetings", "Meetings"], ["knowledge", "Knowledge"]];
+const HAS = { rooms: () => members(state.all).length, org: () => state.org.length || members(state.all).length, board: () => state.all.some((e) => e.type === "board.post" || e.type === "claim"), notes: () => state.all.some((e) => e.type === "note"), meetings: () => state.all.some((e) => e.type === "meeting"), knowledge: () => state.knowledge.length };
+let state = { city: [], company: null, view: "city", all: [], events: [], knowledge: [], org: [], q: "", at: null, playing: null };
 const $ = (s) => document.querySelector(s);
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const pct = (x) => (x == null ? "—" : `${(x * 100).toFixed(2)}%`);
@@ -63,18 +77,39 @@ window.addEventListener("hashchange", () => { const [c, v] = location.hash.slice
 function nav() {
   let h = `<div class="sec">City</div><a class="${state.view === "city" ? "on" : ""}" onclick="go(null,'city')">All companies</a><div class="sec">Companies</div>`;
   for (const c of state.city) {
-    h += `<a class="${state.company === c.id && state.view === "overview" ? "on" : ""}" onclick="go('${c.id}','overview')"><span class="dot ${c.health.state}"></span>${esc(c.name)}</a>`;
-    if (state.company === c.id) h += `<div class="sub">${[...VIEWS, ...(c.pages ?? []).map((p) => [`x-${p.id}`, esc(p.title)])].map(([v, n]) => `<a class="${state.view === v ? "on" : ""}" onclick="go('${c.id}','${v}')">${n}</a>`).join("")}</div>`;
+    h += `<a class="${state.company === c.id && state.view === "overview" ? "on" : ""}" onclick="go('${c.id}','overview')"><span class="dot s-${c.health.state}"></span>${esc(c.name)}</a>`;
+    if (state.company === c.id) h += `<div class="sub">${[...VIEWS.filter(([v]) => !HAS[v] || HAS[v]() || state.view === v), ...(c.pages ?? []).map((p) => [`x-${p.id}`, esc(p.title)])].map(([v, n]) => `<a class="${state.view === v ? "on" : ""}" onclick="go('${c.id}','${v}')">${n}</a>`).join("")}</div>`;
   }
   $("#nav").innerHTML = h;
 }
+const HUES = [210, 340, 150, 30, 270, 190, 0, 90, 300, 50];
+const hue = (id) => HUES[[...String(id)].reduce((a, c) => a + c.charCodeAt(0), 0) % HUES.length];
+const avatar = (id, cls = "", extra = "") => `<span class="av ${cls}" title="${esc(id)}${extra ? ` · ${esc(extra)}` : ""}"><b style="background:hsl(${hue(id)} 55% 48%)">${esc(String(id).replace(/^m-/, "").slice(0, 2).toUpperCase())}</b>${esc(id)}</span>`;
+// replay: every company page draws from events up to state.at (null = live)
+function setAt(v) { state.at = v == null ? null : Number(v); applyAt(); render(); }
+function applyAt() { state.events = state.at == null ? state.all : state.all.filter((e) => Date.parse(e.t) <= state.at); }
+function play() {
+  if (state.playing) { clearInterval(state.playing); state.playing = null; return render(); }
+  const t0 = Date.parse(state.all[0]?.t), t1 = Date.parse(state.all.at(-1)?.t); if (!(t1 > t0)) return;
+  if (state.at == null || state.at >= t1) state.at = t0;
+  state.playing = setInterval(() => { state.at = Math.min(t1, state.at + (t1 - t0) / 240); applyAt(); render(); if (state.at >= t1) { clearInterval(state.playing); state.playing = null; state.at = null; applyAt(); render(); } }, 100);
+  render();
+}
+function replayBar() {
+  if (state.all.length < 2) return "";
+  const t0 = Date.parse(state.all[0].t), t1 = Date.parse(state.all.at(-1).t), at = state.at ?? t1;
+  return `<div class="replay"><button onclick="play()">${state.playing ? "❚❚ pause" : "▶ replay"}</button><input type="range" min="${t0}" max="${t1}" step="${Math.max(1000, Math.round((t1 - t0) / 1000))}" value="${at}" oninput="if(state.playing){clearInterval(state.playing);state.playing=null}setAt(this.value)"><span class="${state.at == null ? "live" : "past"}">${state.at == null ? "live" : time(new Date(state.at).toISOString())}</span>${state.at != null ? `<button onclick="setAt(null)">live</button>` : ""}</div>`;
+}
+/** ended: the last crew.end has nothing after it (a run can be resumed after an end) */
+const ended = (ev) => { const e = ev.findLast((x) => x.type === "crew.end"); return !!e && !ev.some((x) => x.t > e.t && x.type !== "crew.end"); };
 function members(ev) {
   const start = ev.find((e) => e.type === "crew.start"), ids = new Set((start?.members ?? []).map((m) => m.id));
-  for (const e of ev) if (["land", "spend", "note", "board.post", "claim", "idle", "wake"].includes(e.type) && e.by && e.by !== "operator" && e.by !== "judge" && e.by !== "architect") ids.add(e.by);
+  for (const r of ev.find((e) => e.type === "company.start")?.roles ?? []) if (!["founder"].includes(r)) ids.add(r);
+  for (const e of ev) if ((["land", "spend", "note", "board.post", "claim", "idle", "wake"].includes(e.type) || (e.type.startsWith("kernel.") && e.room)) && e.by && !["operator", "judge", "architect", "kernel", "code", "supervisor", "meta"].includes(e.by)) ids.add(e.by);
   return [...ids].map((id) => {
     const mine = ev.filter((e) => e.by === id), lands = mine.filter((e) => e.type === "land"), last = mine.at(-1), st = [...mine].reverse().find((e) => ["idle", "wake", "spend", "crash", "recover"].includes(e.type));
     const model = (start?.members ?? []).find((m) => m.id === id)?.model ?? "";
-    return { id, model, lands: lands.length, gain: lands.reduce((a, l) => a + Math.max(0, l.after - l.before), 0), refused: mine.filter((e) => e.type === "land.refused").length, spent: mine.filter((e) => e.type === "spend").reduce((a, e) => a + (e.usd ?? 0), 0), notes: mine.filter((e) => e.type === "note").length, status: st?.type === "idle" ? "idle" : st?.type === "crash" ? "crashed" : ev.some((e) => e.type === "crew.end") ? "done" : "working", last: last?.t };
+    return { id, model, lands: lands.length, gain: lands.reduce((a, l) => a + Math.max(0, l.after - l.before), 0), refused: mine.filter((e) => e.type === "land.refused").length, spent: mine.filter((e) => e.type === "spend").reduce((a, e) => a + (e.usd ?? 0), 0), notes: mine.filter((e) => e.type === "note").length, status: st?.type === "idle" ? "idle" : st?.type === "crash" ? "crashed" : ended(ev) ? "done" : "working", last: last?.t };
   });
 }
 function spark(ev) {
@@ -88,23 +123,49 @@ function spark(ev) {
 }
 function viewCity() {
   if (!state.city.length) return `<div class="empty">No companies in the city file yet.</div>`;
-  return `<h1>The city</h1><div class="sub1">${state.city.length} companies · owners choose what to share</div><div class="cards">${state.city.map((c) => `<div class="card" style="cursor:pointer" onclick="go('${c.id}','overview')"><h3><span class="dot ${c.health.state}" style="display:inline-block;margin-right:6px"></span>${esc(c.name)}</h3><div class="k">${esc(c.archetype ?? "")} · ${c.health.members} members · ${c.health.state}</div><div class="row" style="margin-top:10px"><div class="stat"><div class="k">score</div><div class="v">${pct(c.health.score)}</div></div><div class="stat"><div class="k">spent</div><div class="v">$${c.health.spent}</div></div></div><div class="k">${c.health.lands} lands · ${c.health.refused} refused · ${ago(c.health.last)}</div></div>`).join("")}</div>`;
+  return `<h1>The city</h1><div class="sub1">${state.city.length} companies · owners choose what to share</div><div class="cards">${state.city.map((c) => `<div class="card" style="cursor:pointer" onclick="go('${c.id}','overview')"><h3><span class="dot s-${c.health.state}" style="display:inline-block;margin-right:6px"></span>${esc(c.name)}</h3><div class="k">${esc(c.archetype ?? "")} · ${c.health.members} members · ${c.health.state}</div><div class="row" style="margin-top:10px"><div class="stat"><div class="k">score</div><div class="v">${pct(c.health.score)}</div></div><div class="stat"><div class="k">spent</div><div class="v">$${c.health.spent}</div></div></div><div class="k">${c.health.lands} lands · ${c.health.refused} refused · ${ago(c.health.last)}</div></div>`).join("")}</div>`;
 }
 function viewOverview(c) {
-  const ev = state.events, h = c.health, ms = members(ev), budget = h.budget ?? 0;
-  return `<h1>${esc(c.name)}</h1><div class="sub1">${esc(c.archetype ?? "")} · ${h.state} · last activity ${ago(h.last)}</div>
+  const ev = state.events, ms = members(ev), lands = ev.filter((e) => e.type === "land"), h = state.at == null ? c.health : { ...c.health, score: lands.at(-1)?.after ?? c.health.start, lands: lands.length, refused: ev.filter((e) => e.type === "land.refused").length, spent: Number(ev.filter((e) => e.type === "spend").reduce((a, e) => a + (e.usd ?? 0), 0).toFixed(2)), last: ev.at(-1)?.t }, budget = h.budget ?? 0;
+  return `<h1>${esc(c.name)}</h1><div class="sub1">${esc(c.archetype ?? "")} · ${h.state} · last activity ${ago(h.last)}</div>${replayBar()}
   <div class="row"><div class="card stat"><div class="k">score (the referee's)</div><div class="v">${pct(h.score)}</div><div class="k">from ${pct(h.start)}</div></div>
   <div class="card stat"><div class="k">spend</div><div class="v">$${h.spent}${budget ? ` <span class="k">of $${budget}</span>` : ""}</div>${budget ? `<div class="bar" style="margin-top:8px"><i style="width:${Math.min(100, (100 * h.spent) / budget)}%"></i></div>` : ""}</div>
   <div class="card stat"><div class="k">landings</div><div class="v">${h.lands}</div><div class="k">${h.refused} refused by the referee</div></div>
   <div class="card stat"><div class="k">members</div><div class="v">${ms.length}</div><div class="k">${ms.filter((m) => m.status === "working").length} working · ${ms.filter((m) => m.status === "idle").length} idle</div></div></div>
   <h3 style="margin:20px 0 8px">Progress</h3>${spark(ev)}
-  <h3 style="margin:20px 0 8px">Recent</h3>${table(ev.filter((e) => ["land", "land.refused", "crash", "recover", "crew.end"].includes(e.type)).slice(-10).reverse())}`;
+  <h3 style="margin:20px 0 8px">Landings</h3>${table(ev.filter((e) => ["land", "land.refused", "crash", "recover", "crew.end"].includes(e.type)).reverse())}`;
 }
 function table(list) {
   if (!list.length) return `<div class="empty">Nothing yet.</div>`;
   return `<table><tr><th>when</th><th>who</th><th>what</th><th>score</th></tr>${list.map((e) => `<tr><td class="k">${time(e.t)}</td><td class="who">${esc(e.by)}</td><td>${e.type === "land" ? esc(e.msg || "landed") : e.type === "land.refused" ? `<span class="down">refused</span> ${esc(e.why)}` : `<span class="chip">${e.type}</span>`}</td><td>${e.type === "land" ? `${pct(e.before)} → ${pct(e.after)} <span class="${e.after > e.before ? "up" : "flat"}">${e.after > e.before ? "▲" : "="}</span>` : ""}</td></tr>`).join("")}</table>`;
 }
-function viewLandings() { return `<h1>Landings</h1><div class="sub1">every change that reached main, and every one the referee refused</div>${table(state.events.filter((e) => e.type === "land" || e.type === "land.refused").reverse())}`; }
+// rooms: where each member is working, from their latest claim, board post or land area (a kernel event's room wins)
+function viewRooms() {
+  const ev = state.events, ms = members(ev), where = {};
+  for (const e of ev) {
+    if (!e.by) continue;
+    if (e.room) where[e.by] = e.room;
+    else if (e.type === "claim" || e.type === "board.post") where[e.by] = e.area;
+    else if (e.type === "claim.drop" && where[e.by] === e.area) delete where[e.by];
+  }
+  const rooms = {}; const put = (r, m) => (rooms[r] ??= []).push(m);
+  for (const m of ms) put(m.status === "idle" ? "Lounge (idle)" : m.status === "crashed" ? "Offline" : m.status === "done" ? "Gone home" : where[m.id] ?? "The floor", m);
+  const last = (id) => [...ev].reverse().find((e) => e.by === id && ["land", "board.post", "claim", "note"].includes(e.type));
+  const order = Object.keys(rooms).sort((a, b) => (/\(idle\)|Offline|Gone/.test(a) - /\(idle\)|Offline|Gone/.test(b)) || rooms[b].length - rooms[a].length);
+  if (!ms.length) return `<h1>Rooms</h1>${replayBar()}<div class="empty">Nobody here yet.</div>`;
+  return `<h1>Rooms</h1><div class="sub1">who is working where: a room is the area a member last claimed or posted about</div>${replayBar()}<div class="floor">${order.map((r) => `<div class="room ${/\(idle\)|Offline|Gone/.test(r) ? "quiet" : ""}"><h4><span>${esc(r)}</span><span class="k">${rooms[r].length}</span></h4>${rooms[r].map((m) => { const l = last(m.id); return `<div>${avatar(m.id, m.status, m.model)}<div class="k" style="margin:-2px 0 8px 4px">${l ? `${l.type === "land" ? "landed" : l.type === "note" ? "noted" : l.type === "claim" ? "claimed" : "posted"} ${ago(l.t)}` : ""}</div></div>`; }).join("")}</div>`).join("")}</div>`;
+}
+// the org: reporting lines from the company's org file, or the crew's members as peers under its owner
+function viewOrg(c) {
+  let nodes = state.org;
+  if (!nodes.length) { const ms = members(state.events); nodes = [{ id: c.owner ?? "owner", title: "Owner (CEO)" }, ...ms.map((m) => ({ id: m.id, title: (state.events.find((e) => e.type === "crew.start")?.members ?? []).find((x) => x.id === m.id)?.role ?? "member", reportsTo: c.owner ?? "owner", model: m.model, status: m.status }))]; }
+  if (!nodes.length) return `<h1>Org</h1><div class="empty">No org yet.</div>`;
+  const ids = new Set(nodes.map((n) => n.id)), kids = {}; for (const n of nodes) (kids[ids.has(n.reportsTo) && n.reportsTo !== n.id ? n.reportsTo : "_root"] ??= []).push(n);
+  const teams = new Set(nodes.map((n) => n.team).filter(Boolean));
+  const stats = Object.fromEntries(members(state.events).map((m) => [m.id, m]));
+  const li = (n, d) => { const m = stats[n.id]; return `<li><span class="node">${avatar(n.id, m?.status ?? n.status ?? "", n.model ?? m?.model ?? "")}<span>${esc(n.title ?? "")}</span>${n.team ? `<span class="chip">${esc(n.team)}</span>` : ""}${m && (m.lands || m.spent) ? `<span class="k">${m.status} · ${m.lands} lands · +${(m.gain * 100).toFixed(1)} pts · $${m.spent.toFixed(2)}${m.refused ? ` · ${m.refused} refused` : ""}</span>` : ""}</span>${kids[n.id] && d < 12 ? `<ul>${kids[n.id].map((k) => li(k, d + 1)).join("")}</ul>` : ""}</li>`; };
+  return `<h1>Org</h1><div class="sub1">${nodes.length} roles${teams.size ? ` in ${teams.size} teams` : ""}; who reports to whom, and each member's work (a role is a responsibility, not a limit)</div>${replayBar()}<div class="tree"><ul>${(kids._root ?? []).map((n) => li(n, 0)).join("")}</ul></div>`;
+}
 function viewBoard() {
   const posts = state.events.filter((e) => e.type === "board.post" && e.by !== "judge").reverse(), cl = state.events.filter((e) => e.type === "claim").slice(-15).reverse();
   return `<h1>Board</h1><div class="sub1">findings, dead ends and hypotheses, each with its evidence and what would show it wrong</div>
@@ -120,11 +181,7 @@ function viewNotes() {
   const seen = new Set(), msgs = state.events.filter((e) => e.type === "note").filter((e) => { const k = `${e.t}${e.by}${e.text}`; if (e.broadcast && seen.has(k)) return false; seen.add(k); return true; });
   if (!msgs.length) return `<h1>Notes</h1><div class="empty">No notes yet.</div>`;
   const byDay = {}; for (const m of msgs) (byDay[m.t.slice(0, 13)] ??= []).push(m);
-  return `<h1>Notes</h1><div class="sub1">the members' conversations, as a record (${msgs.length} messages)</div>${Object.entries(byDay).reverse().map(([hr, ms]) => `<div class="thread"><div class="k">${time(hr + ":00:00Z")}</div>${ms.map((m) => `<div class="msg"><span class="who">${esc(m.by)}</span> → ${m.broadcast ? "all" : esc(m.to)}<span class="when">${time(m.t)}</span><div>${esc(m.text)}</div></div>`).join("")}</div>`).join("")}`;
-}
-function viewPeople() {
-  const ms = members(state.events);
-  return `<h1>People</h1><div class="sub1">each member's work, spend and status</div><table><tr><th>member</th><th>model</th><th>status</th><th>lands</th><th>points gained</th><th>refused</th><th>notes</th><th>spent</th><th>last</th></tr>${ms.map((m) => `<tr><td class="who">${esc(m.id)}</td><td class="k">${esc(m.model)}</td><td><span class="chip">${m.status}</span></td><td>${m.lands}</td><td>${(m.gain * 100).toFixed(1)}</td><td>${m.refused}</td><td>${m.notes}</td><td>$${m.spent.toFixed(2)}</td><td class="k">${ago(m.last)}</td></tr>`).join("")}</table>`;
+  return `<h1>Notes</h1><div class="sub1">the members' conversations, as a record (${msgs.length} messages)</div>${replayBar()}${Object.entries(byDay).reverse().map(([hr, ms]) => `<div class="thread"><div class="k">${time(hr + ":00:00Z")}</div>${ms.map((m) => `<div class="msg"><span class="who">${esc(m.by)}</span> → ${m.broadcast ? "all" : esc(m.to)}<span class="when">${time(m.t)}</span><div>${esc(m.text)}</div></div>`).join("")}</div>`).join("")}`;
 }
 function viewKnowledge() {
   const q = state.q.toLowerCase(), ks = state.knowledge.filter((e) => !q || JSON.stringify(e).toLowerCase().includes(q)).sort((a, b) => (b.belief ?? 0) - (a.belief ?? 0));
@@ -132,12 +189,12 @@ function viewKnowledge() {
 }
 function render() {
   nav(); const c = state.city.find((x) => x.id === state.company);
-  const v = !c ? viewCity() : state.view.startsWith("x-") ? state.custom : { overview: () => viewOverview(c), landings: viewLandings, board: viewBoard, notes: viewNotes, meetings: viewMeetings, people: viewPeople, knowledge: viewKnowledge }[state.view]?.() ?? viewOverview(c);
+  const v = !c ? viewCity() : state.view.startsWith("x-") ? state.custom : { overview: () => viewOverview(c), rooms: viewRooms, org: () => viewOrg(c), board: viewBoard, notes: viewNotes, meetings: viewMeetings, knowledge: viewKnowledge }[state.view]?.() ?? viewOverview(c);
   const focus = document.activeElement?.classList?.contains("search"); $("#main").innerHTML = v; if (focus) { const s = $("input.search"); s.focus(); s.setSelectionRange(s.value.length, s.value.length); }
 }
 async function load() {
   state.city = await api("/api/city");
-  if (state.company) { [state.events, state.knowledge] = await Promise.all([api(`/api/company/${state.company}/events`), api(`/api/company/${state.company}/knowledge`)]); }
+  if (state.company) { if (state.loaded !== state.company) { state.at = null; state.loaded = state.company; } [state.all, state.knowledge, state.org] = await Promise.all([api(`/api/company/${state.company}/events`), api(`/api/company/${state.company}/knowledge`), api(`/api/company/${state.company}/org`)]); applyAt(); }
   // a company's own page (the extension point): its module renders from the same events and knowledge
   if (state.company && state.view.startsWith("x-")) {
     try { const mod = await import(`/api/company/${state.company}/page/${state.view.slice(2)}.js?t=${Date.now()}`); state.custom = mod.render({ events: state.events, knowledge: state.knowledge, company: state.city.find((x) => x.id === state.company), esc, time, pct }); }
@@ -145,7 +202,7 @@ async function load() {
   }
   render();
 }
-(() => { const [c, v] = location.hash.slice(1).split("/"); if (c && c !== "city") { state.company = c; state.view = v || "overview"; } load(); setInterval(() => { if (!document.activeElement?.classList?.contains("search")) load(); }, 15000); })();
+(() => { const [c, v] = location.hash.slice(1).split("/"); if (c && c !== "city") { state.company = c; state.view = v || "overview"; } load(); setInterval(() => { if (!document.activeElement?.classList?.contains("search") && !state.playing) load(); }, 15000); })();
 </script>
 </body>
 </html>

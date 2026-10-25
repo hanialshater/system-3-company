@@ -62,3 +62,12 @@ test("kernel2events: a kernel company's closed meetings become meeting events wi
   assert.ok(m.title && m.attendees.length && m.decisions.length && /^# /.test(m.text));
   assert.ok(ev.every((e) => e.v === 1 && !Number.isNaN(Date.parse(e.t))));
 });
+
+test("the org: a kernel company's roles with their reporting lines; System 3 Company's from its roles as data", async () => {
+  const { kernelOrg, kernelEvents } = await import("../hq/kernel2events.mjs"), { orgFromRoles } = await import("../hq/org-from-roles.mjs");
+  const HERE2 = path.dirname(new URL(import.meta.url).pathname), st = path.join(HERE2, "..", "live", "bench3-a", "state.json");
+  const org = kernelOrg(st); assert.ok(org.find((r) => r.id === "editor" && r.reportsTo));
+  assert.ok(kernelEvents(st).some((e) => e.type === "kernel.enter" && e.room), "rooms come through");
+  const s3 = await orgFromRoles(path.join(HERE2, "..", "..", "..", "..", "..", "tools", "org", "roles.mjs")), ids = new Set(s3.map((r) => r.id));
+  assert.ok(s3.length > 100); assert.ok(s3.every((r) => r.reportsTo === null || ids.has(r.reportsTo)));
+});
