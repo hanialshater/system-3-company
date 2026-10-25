@@ -41,6 +41,11 @@ milestone M2; to be extended with the autonomous org and the HQ).
 | Knowledge base: entries by topic, with evidence and beliefs | today's `library` page (promoted) over `knowledge/` |
 | Extension points: a company adds its own pages, sidebar sections and panels | (new: a registry of company pages) |
 
+### Archetypes and the role and skill catalog
+
+The org designs a company starts from (corporate, science, committee, dynamic workflow, population, single agent,
+open source) and the generic roles every company may draw on, HQ developers included: [ONBOARDING.md](ONBOARDING.md).
+
 ### The city registry
 
 The list of companies, each one's health, spend and budget, and a link into its HQ; an optional city-wide knowledge

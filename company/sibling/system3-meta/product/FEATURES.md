@@ -72,6 +72,15 @@ benchmark harness, not yet in the kernel). Update this file in the same change t
 | Releases, R&D, strategy | company | `releases/`, `rnd/`, `strategy/` |
 | Press | company | `Press.tsx` |
 
+## Onboarding (product/ONBOARDING.md)
+
+| Feature | Layer | Where | Status |
+|---|---|---|---|
+| Org archetypes as templates (corporate, science, committee, dynamic workflow, population, single agent, open source) | starter | (to build: archetype specs for `generator.mjs`) | designed; evidence per archetype in ONBOARDING.md |
+| The role catalog (111 roles today; generic part to the starter catalog) | starter (generic) / company (domain) | `company/roles/`, `tools/org/` | exists in System 3 Company |
+| HQ developers in every company | starter | `hq-engineer` role | exists in System 3 Company |
+| The onboarding plan (intake → archetype → roles → referee → budgets → generate → on-board → first review) | starter | ONBOARDING.md | designed |
+
 ## The lesson company's knowledge and process (`company/`)
 
 | Feature | Layer | Where |
