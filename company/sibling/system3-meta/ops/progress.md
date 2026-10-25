@@ -5,6 +5,32 @@ what's next, what's blocked). Until 2026-10-25 Meta's handoffs were written into
 `company/ops/progress.md`; the entries below were copied from it on 2026-10-25 (product/MIGRATION.md, step 1). From
 now on Meta writes here; the copies in System 3 Company's log stay there until the records split at the migration.
 
+## 2026-10-25 · vp-meta · B13 final; HQ floors
+
+**Done:**
+- **B13 is final** (prototype/bench13/BENCH13.md).
+  - Hidden: 88.50% → **91.85%** (+3.35) for **$429.84** ($408.21 for the run, $21.63 for off-boarding), in 241 minutes. The run stopped by its plateau rule.
+  - Predictions: 5 right, 4 wrong. The wrong ones are throughput, the gain target, and the fallible member being noticed.
+  - The biggest gain went against the knowledge base: m-planner modelled EXPLAIN QUERY PLAN, which four B12 members had recorded as a dead end, and it generalised to hidden (about a third of the gain).
+  - The referee guards only the visible set: 17 hidden files regressed while main never fell on the visible set.
+  - The knowledge base now holds 245 entries in 53 topics. Two came from the final scoring: the EQP finding, which overturns the dead end, and the visible-referee pitfall.
+- Meta's B13 budget line and its B-SCALE milestone (partly) are updated.
+- **HQ floors:**
+  - the org contract gains optional seating fields;
+  - System 3 Company's adapter seats 97 roles on 7 named floors;
+  - floor tabs with headcounts, a lift and stairs, and walking between floors.
+
+**Belief:**
+- High: at 8 members near the ceiling, headcount does not buy throughput; one exploratory bet did.
+- High: a visible-only referee leaks hidden regressions.
+
+**Next:**
+- A guard-slice referee, with B13's start rerun.
+- Fewer members and an exploration budget.
+- Migration steps 2-4 once the founder provides the repositories and Vercel access.
+
+**Blocked:** the repositories and Vercel access (the founder).
+
 ## 2026-10-25 · vp-meta · Migration step 1 done; HQ dashboards; B13 near its end
 
 Founder: "go ahead with step 1"; "system 3 co need restructuring … different content type, multi level/priority/budget based execution"; "we also need dashboards in hq meta (eg token budget, mission, big milestones)"; no V arm for B13.

@@ -1,10 +1,46 @@
-{ "v": 1, "id": "meta", "name": "System 3 Meta", "owner": "founder", "archetype": "science (benchmarks) + corporate (kernel)",
-  "mission": "Build the platform for self-running organisations of agents: the kernel, the starter kit, onboarding and the city; prove by benchmarks, with predictions committed first, that an organisation of fallible agents scales and keeps getting better.",
-  "note": "Meta's own record as company zero (product/VISION.md). Budget lines are the founder's approvals; spent is the recorded figure from each benchmark's write-up, or a live ledger while a run is going. Read through prototype/dashboard.mjs.",
-  "budget": { "unit": "USD", "lines": [
-    { "id": "B10", "title": "B10: optimising compiler, org vs one agent", "approved": 300, "spent": 242.28, "source": "prototype/bench10/BENCH10.md (V $110.28, O $132.00)", "approvedBy": "founder, 2026-10-24" },
-    { "id": "B11", "title": "B11: SQLite-compatible database in Clojure (core families)", "approved": null, "spent": 263.60, "source": "prototype/bench11/BENCH11.md (V $145.69, O $117.91)", "approvedBy": "founder, 2026-10-24: don't worry about budget" },
-    { "id": "B12", "title": "B12: SQLite's own test suite, with continuation", "approved": 600, "spent": 589.43, "source": "prototype/bench12/BENCH12.md (V $294.71, O $294.72)", "approvedBy": "founder, 2026-10-24 and 2026-10-25 (+$150 each)" },
-    { "id": "B13", "title": "B13: the org at scale with fallible agents (8 members)", "approved": 500, "spent": null, "ledger": "/tmp/claude-0/-home-user/aa2da695-733d-5610-822b-d0f420a6080f/scratchpad/b13-runs/_org/spend.json", "source": "live: the run's spend ledger", "approvedBy": "founder, 2026-10-25" }
-  ] }
+{
+ "v": 1,
+ "id": "meta",
+ "name": "System 3 Meta",
+ "owner": "founder",
+ "archetype": "science (benchmarks) + corporate (kernel)",
+ "mission": "Build the platform for self-running organisations of agents: the kernel, the starter kit, onboarding and the city; prove by benchmarks, with predictions committed first, that an organisation of fallible agents scales and keeps getting better.",
+ "note": "Meta's own record as company zero (product/VISION.md). Budget lines are the founder's approvals; spent is the recorded figure from each benchmark's write-up, or a live ledger while a run is going. Read through prototype/dashboard.mjs.",
+ "budget": {
+  "unit": "USD",
+  "lines": [
+   {
+    "id": "B10",
+    "title": "B10: optimising compiler, org vs one agent",
+    "approved": 300,
+    "spent": 242.28,
+    "source": "prototype/bench10/BENCH10.md (V $110.28, O $132.00)",
+    "approvedBy": "founder, 2026-10-24"
+   },
+   {
+    "id": "B11",
+    "title": "B11: SQLite-compatible database in Clojure (core families)",
+    "approved": null,
+    "spent": 263.6,
+    "source": "prototype/bench11/BENCH11.md (V $145.69, O $117.91)",
+    "approvedBy": "founder, 2026-10-24: don't worry about budget"
+   },
+   {
+    "id": "B12",
+    "title": "B12: SQLite's own test suite, with continuation",
+    "approved": 600,
+    "spent": 589.43,
+    "source": "prototype/bench12/BENCH12.md (V $294.71, O $294.72)",
+    "approvedBy": "founder, 2026-10-24 and 2026-10-25 (+$150 each)"
+   },
+   {
+    "id": "B13",
+    "title": "B13: the org at scale with fallible agents (8 members)",
+    "approved": 500,
+    "spent": 429.84,
+    "source": "prototype/bench13/BENCH13.md ($408.21 the run, $21.63 off-boarding)",
+    "approvedBy": "founder, 2026-10-25"
+   }
+  ]
+ }
 }
