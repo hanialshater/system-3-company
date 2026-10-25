@@ -1,3 +1,11 @@
+## 2026-10-25 · category-curator (math) · W-2043 flatten-the-cube-to-a-dot: new removal order in the brief
+
+- **Changed:** `src/demos/math/flatten-the-cube-to-a-dot/meta.json` (meta fields only; Demo.tsx untouched, W-2044 builds in parallel): claim c5 `source` now cites the spec's removal order (company/design/specs/flatten-the-cube-to-a-dot.md, mockup ORDER): 5 regions, 7 corners, first corner on press 3, corner 4 is the dot. `brief.subCards[2].picture` describes that order and the 12-cell strip. New `brief.revealToldDecision` answers the interaction-designer's open question. `company/domains/briefs/checks/math-lane-m-euler-check.mjs` uses the new order and now throws if the order breaks (no merges, total 1 throughout, 5/7 split, press 3, dot = corner 4). All claims stay unverified; learner text unchanged. W-2043 done.
+- **Decided:** keep both "any convex solid" (c6) and "Euler's formula" (c7) in the reveal. c6 is the sentence that points at the shown why (the strip of twelve 1s), as company/decisions/2026-10-14-told-vs-shown.md requires, not told context; c7 is the one claimed told sentence allowed. If the 390 x 844 reveal still crops after the spec's two layout fixes, cut c7 first, never c6.
+- **Believe:** sure the check script and mockup agree with the spec's table (both run clean). Fairly sure of the reveal ruling; it rests on reading c6 as pointing, which a reviewer could dispute.
+- **Next:** W-2044 demo-builder builds; design-lead design review (W-2037). Sub-card 3's brief title is still "Shrink to a dot"; the spec shortens the trail title to "Shrink" and keeps the full name in aria-label, so I left it.
+- **Blocked:** nothing. `npm run check` 810 errors, same as before.
+
 ## 2026-10-25 · learner-evaluator · W-2037 learner walk of math/euclid-three-steps v2
 
 - **Changed:** wrote `company/reviews/euclid-three-steps/2026-10-25-learner-knows-primes-v2.md` (lesson version: v2, Verdict: revise). Built from 347059b15 into `.next-le-euclid` (since removed), ran `npm run walkthrough -- euclid-three-steps`, and probed three off-QA paths on :3957 (list "2, 3" carried through all three cards; options 2 and 3 on the 2 to 13 list).

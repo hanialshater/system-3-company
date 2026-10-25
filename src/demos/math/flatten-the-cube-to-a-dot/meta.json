@@ -55,7 +55,7 @@
       "id": "math.flatten-the-cube-to-a-dot.c5",
       "text": "Twelve removals shrink the flat cube to one dot: 1 − 0 + 0 = 1, the total it had all along. Put the top face back and the cube's total is 1 + 1 = 2.",
       "support": "derivation",
-      "source": "Scripted order in company/domains/briefs/checks/math-lane-m-euler-check.mjs: the 4 outer edges, then one inner edge (5 regions gone), then the 7 loose edges; the total is 1 after every step.",
+      "source": "Scripted order in company/design/specs/flatten-the-cube-to-a-dot.md (removal-order table; W-2042) and company/design/specs/flatten-the-cube-to-a-dot-mockup.mjs ORDER, rechecked by company/domains/briefs/checks/math-lane-m-euler-check.mjs: outer 0-1, outer 3-0, spoke 0-4 (first corner, press 3), outer 1-2, spoke 1-5, outer 2-3, spokes 2-6 and 3-7, inner 4-5 (last region), then inner 5-6, 6-7, 7-4; 5 removals take a region and 7 a corner, no merges or splits, the total is 1 after every step and corner 4 is the dot left.",
       "status": "unverified"
     },
     {
@@ -161,7 +161,7 @@
       {
         "id": "shrink",
         "title": "Shrink to a dot",
-        "picture": "The flat drawing from sub-card 2. Each press removes the next edge in a fixed order (the 4 outer edges, one inner edge, then the 7 loose edges); the removed edge fades and the readout updates, with a change line '−1 edge, −1 region' or '−1 edge, −1 corner'. Ends at one dot: '1 − 0 + 0 = 1', then '+ the top face = 2'.",
+        "picture": "The flat drawing from sub-card 2. Each press removes the next edge in the fixed order of the interaction spec (company/design/specs/flatten-the-cube-to-a-dot.md, W-2042): two outer edges (regions), then a spoke (the first corner, on press 3), then regions and corners interleaved, ending with the inner square; 5 removals take a region and 7 a corner. The removed edge fades and the readout updates, with a change line '−1 edge, −1 region' or '−1 edge, −1 corner', and a row of 12 cells fills with 1s (square for a region, circle for a corner). Ends at one dot: '1 − 0 + 0 = 1', then '+ the top face = 2'.",
         "controls": [
           "Remove an edge",
           "Remove the rest"
@@ -179,6 +179,17 @@
       "pairwise": "For pedagogy-critic (company/ceo-office/consultations/2026-10-25-restructuring/pedagogy-critic.md): build the twin from its brief as written, then judge both on the shared prediction and on this recall question. The question the pairwise answers: does showing the why (sub-cards 2 and 3) earn its extra time over telling it?"
     },
     "nearest": "math/bridge-parity (Euler paths) shares the name, not the idea; math/two-colours-enough is about plane maps; math/domino-chain is induction. No lesson teaches V − E + F (coverage math: euler-polyhedron-formula unmet, 2026-10-25).",
-    "next": "Lane M step 2: interaction-designer writes the interaction spec plus mockup before build (company/ceo-office/2026-10-25-restructuring-proposal.md §2c). Builder: build in CardSequence / SubCard; do not mark claims verified."
+    "next": "Lane M step 2: interaction-designer writes the interaction spec plus mockup before build (company/ceo-office/2026-10-25-restructuring-proposal.md §2c). Builder: build in CardSequence / SubCard; do not mark claims verified.",
+    "revealToldDecision": {
+      "by": "category-curator (math), 2026-10-25, board W-2043 (answers the open question in company/design/specs/flatten-the-cube-to-a-dot.md)",
+      "question": "Is it one told sentence too many to have both 'any convex solid' (c6) and 'Euler's formula' (c7) in the reveal?",
+      "answer": "No: keep both, as drafted.",
+      "why": [
+        "c6 is not told context; it is the pointing sentence for doesNotKnow item 2. The why (each removal takes an edge with a region or a corner) is on the stage as the strip of twelve 1s, and 'flattened and shrunk the same way' points at that. Rule 'Show the why you promised' (company/product/demo-standard.md; company/decisions/2026-10-14-told-vs-shown.md) requires the stage stand-in plus a reveal sentence that points at it, which is what c6 is. Cutting it would leave the objective's 'any convex solid' unsaid and the recall question unanswerable from the reveal.",
+        "c7 is the only told context outside the gap (a name), so the reveal holds exactly the one claimed told sentence the rule allows."
+      ],
+      "ifItCrops": "If the 390 x 844 reveal crops after the spec's two layout fixes, cut c7 ('This is Euler's formula.', 5 words) first and keep c6; the name can move to the title or hook only with a new claim. Never cut c6.",
+      "knownGap": "'Every convex solid can be flattened' is itself taken on trust (the Cauchy/Lakatos rigour gap, listed in knowledgeBoundary.doesNotTeach); the fact-checker's source check on c6 covers it."
+    }
   }
 }
