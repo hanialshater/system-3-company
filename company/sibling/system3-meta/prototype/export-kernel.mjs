@@ -37,7 +37,7 @@ for (const f of ["API.md", "ROLES.md", "TOOLS.md", "MILESTONES.md"]) fs.copyFile
 // 2026-10-25 (product/MIGRATION.md step 1): the starter HQ, Meta's own records, the knowledge base, the product docs,
 // and the benchmark harnesses with their write-ups (research/; their material is fetched, not stored)
 copy("hq", "hq");
-for (const d of ["catalog", "org", "ops", "knowledge"]) fs.cpSync(path.join(HERE, "..", d), path.join(OUT, d), { recursive: true });
+for (const d of ["catalog", "org", "ops", "knowledge", "city"]) fs.cpSync(path.join(HERE, "..", d), path.join(OUT, d), { recursive: true });
 for (const f of ["company.json", "milestones.json"]) fs.copyFileSync(path.join(HERE, "..", f), path.join(OUT, f));
 fs.cpSync(path.join(HERE, "..", "product"), path.join(OUT, "docs", "product"), { recursive: true });
 // a benchmark that ran on System 3 Company (B6-B9 drive its lessons and tools) gives only its write-ups; the others
@@ -76,7 +76,7 @@ const KERNEL = new Set(fs.readdirSync(HERE).filter((f) => f.endsWith(".mjs") || 
 // Meta's own records sit beside src/ in the export (catalog/, org/, knowledge/), two levels up in the company tree
 const toSrc = (t) => t
   .replace(/(["'])\.\.\/([\w.-]+)\1/g, (m, q, f) => (KERNEL.has(f) ? `${q}../src/${f}${q}` : m))
-  .replace(/path\.join\(HERE, "\.\.", "\.\.", "(catalog|org|knowledge)"/g, 'path.join(HERE, "..", "$1"')
+  .replace(/path\.join\(HERE, "\.\.", "\.\.", "(catalog|org|knowledge|city)"/g, 'path.join(HERE, "..", "$1"')
   .replace(/path\.join\(HERE, "\.\."(?!, "(?:launcher|\.\.|hq|catalog|org|knowledge)")/g, 'path.join(HERE, "..", "src"');
 for (const f of fs.readdirSync(path.join(OUT, "tests")).filter((f) => f.endsWith(".mjs"))) { // fixtures/ is data
   const p = path.join(OUT, "tests", f);

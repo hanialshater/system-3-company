@@ -110,6 +110,13 @@ They are company pages; a company that wants one in the city HQ adds it through 
    - `evolve.mjs` as the population runner;
    - the sandbox out of `bench8/`.
 
+## The repositories (decided 2026-10-25, decisions/2026-10-25-repositories.md)
+
+`hanialshater/system3-meta` (private), `hanialshater/system3-city` (public), `hanialshater/system-3-company` (stays;
+Meta moves out of it). Ready to push: Meta's export (`export-kernel.mjs`) and the city's first content (`city/`:
+registry, shared-knowledge format, rules, `tools/check.mjs`, CI). Publishing to the city: `prototype/city-publish.mjs`.
+Waiting: the two empty repositories, created by the founder (this session may not create repositories).
+
 ## Step 1: done (2026-10-25)
 
 | Item | Result |
