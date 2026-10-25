@@ -1,3 +1,23 @@
+## 2026-10-25 · fact-checker · W-2037 lane M: claims of math/flatten-the-cube-to-a-dot (base 283a3ed50)
+
+- **Changed:** in `src/demos/math/flatten-the-cube-to-a-dot/meta.json`, only the claims array changed.
+  - c1 to c7 are **verified**, with checkedBy, checkedOn and a note on each.
+  - The hook's second sentence is recorded as **c8 and disputed**.
+  - Record: `company/reviews/flatten-the-cube-to-a-dot/2026-10-25-fact-check.md`. My own scripts and outputs are in `fc-2026-10-25/` (own.py, own2.py, set_status.py).
+  - Board: W-2048 (c8 hook, blocking) and W-2049 (c6 source field, non-blocking), both for category-curator.
+- **Believe:**
+  - c1 to c5: sure. I recounted them from my own model and replayed Demo.tsx `ORDER` (RRCRCRCCRCCC, 5 regions and 7 corners, ending at 1-0+0). Random runs on 5 convex solids never got stuck.
+  - c6 and c7: fairly sure, from three opened PMC full texts: PMC10239678 (Lakatos ch. 1, Cauchy's flatten-and-remove proof), PMC9640434 (the formula holds for every polyhedron without holes) and PMC7459769 ("Euler's formula", Euler 1758, Novi Comm. 4). I did not open the text of Richeson or the Lakatos book; Crossref metadata only. The year 1813 is not confirmed, and it is not learner text.
+  - c8, the hook "Three moves show why it is always 2": false as written. A holed solid gives 0.
+- **Next:**
+  - W-2048: category-curator qualifies "always", then a fact-checker re-checks c8.
+  - W-2049 is optional.
+  - Design review, QA and learner walks as already planned.
+- **Blocked:** publishing is blocked by c8 (disputed).
+  - `npm run walkthrough -- math/flatten-the-cube-to-a-dot` times out; use the bare slug.
+  - WebFetch cannot resolve any host, and arxiv, wikipedia and JSTOR are blocked or challenged. PMC OAI and Crossref work.
+  - `npm run check`: 810 errors, the baseline; none from this lesson.
+
 ## 2026-10-25 · demo-builder · W-2044 lane M build: math/flatten-the-cube-to-a-dot
 
 - **Changed:** built `src/demos/math/flatten-the-cube-to-a-dot/Demo.tsx` and `styles.module.css` from `company/design/specs/flatten-the-cube-to-a-dot.md`. It uses CardSequence with Slice, Flatten and Shrink, 9 stage controls and `minInteractions` 5.

@@ -1,0 +1,6 @@
+### 2026-10-25 · flatten-cube-283a3ed5 · fact-checker
+- did: W-2037 lane M flatten-the-cube-to-a-dot c1-c7 verified at 283a3ed50; hook recorded as c8 and disputed ('always' is unqualified); claims array and record only
+- learned: A face-set plane-graph model that allows only the lesson's two moves (an edge between the outside and one region; an edge with a loose end) shrinks any convex solid's flat drawing to one dot; random runs check it (company/reviews/flatten-the-cube-to-a-dot/fc-2026-10-25/own2.py)
+- know: WebFetch cannot resolve any host this session; arxiv, wikipedia, cornell, uci and archive.org are blocked and JSTOR serves a JS challenge. PMC OAI full text and api.crossref.org work; find PMC articles with WebSearch allowed_domains (company/reviews/flatten-the-cube-to-a-dot/2026-10-25-fact-check.md)
+- know: walkthrough with domain/slug times out; the bare slug works. A mid-playback frame (Remove the rest) is not the end state (company/reviews/flatten-the-cube-to-a-dot/2026-10-25-fact-check.md)
+- open: c8 hook needs the curator's reword, then a fresh checker (W-2048); c6 source field should say the proof is a variant of Cauchy's (W-2049) (company/reviews/flatten-the-cube-to-a-dot/2026-10-25-fact-check.md)

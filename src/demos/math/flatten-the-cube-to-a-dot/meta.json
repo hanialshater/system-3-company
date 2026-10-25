@@ -28,49 +28,80 @@
       "text": "A cube has 8 corners, 12 edges and 6 faces: 8 − 12 + 6 = 2. With one corner sliced off it has 10, 15 and 7: still 2.",
       "support": "derivation",
       "source": "Counted from the solids; company/domains/briefs/checks/math-lane-m-euler-check.mjs (brief check, category-curator 2026-10-25). Builder recounts from the drawn solid.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-25",
+      "note": "Own recount (own.py, own coordinates, not the curator's script): cube 8-12+6=2; corner (1,1,1) cut on its 3 edges gives 10-15+7=2. Matches the drawn wireframe (8 dots, 12 lines, hidden ones dashed) and the sliced drawing (3 new dots on a shaded triangle) in the walkthrough at 283a3ed50. Record: company/reviews/flatten-the-cube-to-a-dot/2026-10-25-fact-check.md; own scripts company/reviews/flatten-the-cube-to-a-dot/fc-2026-10-25/."
     },
     {
       "id": "math.flatten-the-cube-to-a-dot.c2",
       "text": "Slicing off a corner where 3 edges meet removes 1 corner and adds 3, adds 3 edges and adds 1 face: +2 − 3 + 1 = 0, so the total does not change.",
       "support": "derivation",
       "source": "The cut is a new triangular face with 3 new corners and 3 new edges; the old corner goes.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-25",
+      "note": "Own recount: deltas +2 corners (-1 old, +3 new), +3 edges (the 3 old edges are shortened, 3 new edges bound the triangle), +1 face; +2-3+1=0. Holds for any cut that crosses only the 3 edges at a corner where 3 edges meet. Record: company/reviews/flatten-the-cube-to-a-dot/2026-10-25-fact-check.md; own scripts company/reviews/flatten-the-cube-to-a-dot/fc-2026-10-25/."
     },
     {
       "id": "math.flatten-the-cube-to-a-dot.c3",
       "text": "Take the top face off the cube and stretch the rest flat: 8 corners, 12 edges and 5 regions, so 8 − 12 + 5 = 1. The missing 1 is the face you took off.",
       "support": "derivation",
       "source": "Flat drawing: a square inside a square joined at the corners (Schlegel diagram of the cube through the top face). company/domains/briefs/checks/math-lane-m-euler-check.mjs.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-25",
+      "note": "Own count of the flat drawing on the stage (square inside a square, 4 spokes): 8 dots, 12 lines, 5 bounded regions (inner square and 4 trapezoids); the outside is not counted, it stands for the removed top face: 8-12+5=1. Record: company/reviews/flatten-the-cube-to-a-dot/2026-10-25-fact-check.md; own scripts company/reviews/flatten-the-cube-to-a-dot/fc-2026-10-25/."
     },
     {
       "id": "math.flatten-the-cube-to-a-dot.c4",
       "text": "Removing an edge on the outside of a region removes 1 edge and 1 region; removing an edge with a loose end removes 1 edge and 1 corner. Either way corners − edges + regions does not change.",
       "support": "derivation",
       "source": "(−0 corners) − (−1 edge) + (−1 region) = 0 and (−1 corner) − (−1 edge) + 0 = 0.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-25",
+      "note": "Own derivation: an edge between the outside and one region: corners 0, edges -1, regions -1, change 0-(-1)+(-1)=0; an edge with a loose end: corners -1, edges -1, change -1-(-1)+0=0. own2.py asserts the total after every such move on 5 solids x every removed face x 300 random orders. Record: company/reviews/flatten-the-cube-to-a-dot/2026-10-25-fact-check.md; own scripts company/reviews/flatten-the-cube-to-a-dot/fc-2026-10-25/."
     },
     {
       "id": "math.flatten-the-cube-to-a-dot.c5",
       "text": "Twelve removals shrink the flat cube to one dot: 1 − 0 + 0 = 1, the total it had all along. Put the top face back and the cube's total is 1 + 1 = 2.",
       "support": "derivation",
       "source": "Scripted order in company/design/specs/flatten-the-cube-to-a-dot.md (removal-order table; W-2042) and company/design/specs/flatten-the-cube-to-a-dot-mockup.mjs ORDER, rechecked by company/domains/briefs/checks/math-lane-m-euler-check.mjs: outer 0-1, outer 3-0, spoke 0-4 (first corner, press 3), outer 1-2, spoke 1-5, outer 2-3, spokes 2-6 and 3-7, inner 4-5 (last region), then inner 5-6, 6-7, 7-4; 5 removals take a region and 7 a corner, no merges or splits, the total is 1 after every step and corner 4 is the dot left.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-25",
+      "note": "Own replay of Demo.tsx ORDER (line 58) on my own face model (own2.py): kinds R R C R C R C C R C C C, 12 removals, 5 regions and 7 corners, total 1 after each, ends 1-0+0. Matches the stage strip at the reveal (5 squares, 7 circles in that order) and readout 1-0+0=1 with '+ the top face = 2'. Also matches both curator/designer scripts (run as a cross-check after my own count). Record: company/reviews/flatten-the-cube-to-a-dot/2026-10-25-fact-check.md; own scripts company/reviews/flatten-the-cube-to-a-dot/fc-2026-10-25/."
     },
     {
       "id": "math.flatten-the-cube-to-a-dot.c6",
       "text": "Every convex solid can be flattened and shrunk the same way, so corners − edges + faces is 2 for every convex solid.",
       "support": "source",
       "source": "Euler's polyhedron formula; the flatten-and-remove-edges proof is Cauchy's (1813). D. S. Richeson, Euler's Gem (Princeton University Press, 2008), on Cauchy's proof; I. Lakatos, Proofs and Refutations (Cambridge, 1976), ch. 1. Fact-checker opens a source; the derivation of c3 to c5 holds for any connected flat drawing.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-25",
+      "note": "Opened PMC10239678 (Phil. Trans. R. Soc. A, doi 10.1098/rsta.2022.0052; OAI full text): Lakatos's book [Proofs and refutations, CUP 1976] 'starts with a proof, due to Cauchy': 'a face is removed from the polyhedron and it is stretched onto the plane', the pieces are removed one at a time, 'V - E + F = 1' at the end, 'this invariant is preserved by each step, except the first', so V - E + F = 2; its counterexamples (hollow cube, star polyhedron) are ones where flattening is impossible. Opened PMC9640434: Euler's conjecture 'applies to all polyhedra except for those with holes running through them'. Convex solids have no holes and flatten (central projection from a point just outside one face); own derivation that the shrink works for any connected flat drawing, checked on 5 convex solids x every face x 300 random orders (own2.py): never stuck, always one dot. Caveats in the record: Cauchy removes triangles, the lesson removes edges (a variant, not 'Cauchy's proof' as the source field says); Richeson ch. 12 'Cauchy's Flattened Polyhedra' pp. 112-118 confirmed by Crossref metadata only (10.2307/j.ctvbj7gs1.17), text not opened; the Lakatos book itself not opened (two secondary accounts); the year 1813 not confirmed from an opened source. None of these is learner text. Record: company/reviews/flatten-the-cube-to-a-dot/2026-10-25-fact-check.md; own scripts company/reviews/flatten-the-cube-to-a-dot/fc-2026-10-25/."
     },
     {
       "id": "math.flatten-the-cube-to-a-dot.c7",
       "text": "This is Euler's formula for solids.",
       "support": "source",
       "source": "Euler, 'Elementa doctrinae solidorum' (written 1750s; Novi Commentarii Academiae Scientiarum Petropolitanae 4, 1758). Name only if the fact-checker accepts the attribution; no date in learner text.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-25",
+      "note": "Opened PMC7459769 (Acta Cryst. A, doi 10.1107/S2053273320007093; OAI full text): 'The famous Euler's formula (Euler, 1758) states that for any three-dimensional polyhedron ... F + V is by two larger than E', reference 'Euler, L. (1758). Novi Commun. Acad. Sci. Imp. Petropol. 4 (1752-3), 109-140', the volume the claim's source names. PMC10239678 and PMC9640434 also name it Euler's theorem/conjecture. Note: the reveal shows 'This is Euler's formula.'; the trust sheet shows this claim text with 'for solids'; both true. Record: company/reviews/flatten-the-cube-to-a-dot/2026-10-25-fact-check.md; own scripts company/reviews/flatten-the-cube-to-a-dot/fc-2026-10-25/."
+    },
+    {
+      "id": "math.flatten-the-cube-to-a-dot.c8",
+      "text": "Three moves show why it is always 2.",
+      "support": "source",
+      "source": "Hook (meta.json hook, second sentence), recorded by the fact-checker 2026-10-25 as an unrecorded learner-visible claim.",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-25",
+      "note": "DISPUTED: 'always' is unqualified, and corners - edges + faces is not always 2: a solid with a hole through it (picture frame) gives 16-32+16=0 (company/domains/briefs/checks/math-lane-m-euler-check.mjs prints it; PMC9640434: the formula fails for polyhedra 'with holes running through them'). The lesson's own reveal and c6 say 'any convex solid'. Fix (category-curator, owner of the hook): qualify it, e.g. '... why it is 2 for every convex solid' or '... why it is 2 for solids like it'; then a fact-checker re-checks. Record: company/reviews/flatten-the-cube-to-a-dot/2026-10-25-fact-check.md; own scripts company/reviews/flatten-the-cube-to-a-dot/fc-2026-10-25/."
     }
   ],
   "confidence": "",
