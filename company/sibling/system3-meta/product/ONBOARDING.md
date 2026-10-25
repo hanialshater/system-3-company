@@ -1,6 +1,6 @@
 # Company onboarding: archetypes, the role and skill catalog, and the plan for a new company
 
-owner: vp-meta · status: **draft for the founder's review** · founder, 2026-10-25: "to complete the picture we need
+owner: vp-meta · status: **decided** (founder, 2026-10-25: archetypes, catalog and approval route below) · founder, 2026-10-25: "to complete the picture we need
 company onboarding plans (we have amazon/corp like, science like, committee, dynamic workflow, etc.) we can add
 different company archetypes to allow for org design, we always have catalog of roles and skills that we can use to
 bootstrap a company org and HQ developers (also in current s3 company)"
@@ -48,16 +48,20 @@ fast, founder-led), **guild** (craft standards across companies).
 | Step | What | Who | Output |
 |---|---|---|---|
 | 1. Intake | the founder (or an approved requester) states the company's purpose, its product, its success measure, its budget and what stays with the founder | founder, Meta's chief of staff | an intake record (`company/decisions/_template-founder-intake.md`) |
-| 2. Archetype | choose an archetype per lane (or a mix), with the reason | Meta's org designer (chief of staff, CEO-office) | the org design in the spec |
-| 3. Roles and skills | pick roles from the catalog; write any domain roles the company needs; every company includes HQ developers and a referee | Meta's org designer | the spec's roles and skills |
+| 2. Archetype | choose an archetype per lane (or a mix), with the reason, and at least one alternative | the company's chief of staff with its org-health head | the proposed org designs |
+| 3. Roles and skills | search the catalog and pick the roles and skills that fit the mission; write any domain roles the company needs (and add them to the catalog); every company includes HQ developers and a referee | the company's chief of staff with its org-health head | the spec's roles and skills |
+| 3b. Approval | the company's CEO (its owner) approves one org design, or asks for another | the company's CEO | the approved spec |
 | 4. Referee | define the company's score (`score(tree) → rate, by area, ok`), its held-out set, its gates | the company's evaluation steward | the referee hook |
 | 5. Budgets and approvals | the company's budget, lane budgets, what needs the founder (deploys, money, external accounts) | founder | the spec's governance |
 | 6. Generate | `generator.mjs` validates the spec and builds the company: repository, org, starter HQ, event log, knowledge base | Meta | a new company in the city registry |
 | 7. On-board | members read the starter knowledge (city-wide entries, if on) and the company's purpose; HQ developers set up its HQ pages | the company | first orders on the tracker |
 | 8. First review | after the first orders: the referee's results, cost, and whether the archetype fits | founder, Meta | keep, adjust the archetype, or retire |
 
-## Open questions for the founder
+## Decided (founder, 2026-10-25)
 
-1. Which archetypes go into the first starter kit (proposal: corporate, science, committee, dynamic workflow, single
-   agent; population and open source as lane options)?
-2. Is the role catalog's generic part moved out of System 3 Company now, or at the migration?
+- **The first starter kit's archetypes:** corporate, and those tried in System 3 Meta's runs: dynamic workflow
+  (autonomous), science (the benchmark method), population, single strong agent. Committee, open source and the
+  candidates are added when a company has tried them.
+- **The catalog is one catalog** of roles and skills that every company draws from. At onboarding the company's chief
+  of staff (with its org-health head, the CEO office's chief of staff) **searches the catalog, picks what fits the
+  company's mission, and proposes the org design with alternatives**; the company's CEO (its owner) approves one.

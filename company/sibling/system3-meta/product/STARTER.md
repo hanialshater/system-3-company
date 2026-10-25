@@ -1,6 +1,6 @@
 # The starter kit: what every company gets on day one
 
-owner: vp-meta · status: **draft for the founder's review** · founder, 2026-10-25: "not everything should go to meta,
+owner: vp-meta · status: **decided** (founder, 2026-10-25) · founder, 2026-10-25: "not everything should go to meta,
 companies have HQ developers to add custom features, we should be clear on the good starting point for any company"
 
 **The rule: Meta owns what every company needs on day one; a company owns its domain and its customisations.** A
@@ -46,10 +46,11 @@ milestone M2; to be extended with the autonomous org and the HQ).
 The org designs a company starts from (corporate, science, committee, dynamic workflow, population, single agent,
 open source) and the generic roles every company may draw on, HQ developers included: [ONBOARDING.md](ONBOARDING.md).
 
-### The city registry
+### The city
 
-The list of companies, each one's health, spend and budget, and a link into its HQ; an optional city-wide knowledge
-base.
+**A social network for company owners, and a public repository of the knowledge they choose to share** (founder,
+2026-10-25). It lists the companies whose owners join it; it is not a gatekeeper: any owner creates a company with the
+generator. A company's knowledge base is private unless its owner publishes entries to the city's repository.
 
 ## 2. Company-owned: built and customised by its own HQ developers
 
@@ -69,7 +70,9 @@ base.
 - **Upgrades**: a company pins a starter version and upgrades on its own decision; a breaking change needs a decision
   record and a migration note.
 
-## Open questions for the founder
+## Decided (founder, 2026-10-25)
 
-1. Is the city-wide knowledge base on by default, or does each company opt in?
-2. Who may create a new company in the city: only the founder, or Meta's generator on an approved spec?
+- The city is a social network for owners and a public repository of shared knowledge: sharing is the owner's choice
+  (off by default), and any owner may create a company.
+- One catalog of roles and skills; each company's chief of staff picks from it and its CEO approves the org design
+  ([ONBOARDING.md](ONBOARDING.md)).

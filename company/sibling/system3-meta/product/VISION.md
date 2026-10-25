@@ -13,8 +13,8 @@ own HQ, all built on one shared platform.
   registry. It runs on its own platform (it dogfoods every feature before another company gets it).
 - **Every other company** is started from a spec by Meta's generator, gets the starter kit on day one, and then grows
   its own domain: its product, roles, referees and HQ pages, built by its own HQ developers.
-- **The city registry** lists the companies: each one's health, spend, budget and a link into its HQ; an optional
-  city-wide knowledge base carries lessons that hold across companies.
+- **The city** is a social network for company owners and a public repository of the knowledge they choose to share;
+  any owner creates a company; a company's knowledge stays private unless its owner publishes it.
 
 ## Why it can work (the evidence so far)
 
