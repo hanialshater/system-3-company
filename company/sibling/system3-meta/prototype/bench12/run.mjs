@@ -77,6 +77,7 @@ function clockFor(arm) {
   return { min: () => { tick(); return acc / 60000; }, stop: () => { tick(); clearInterval(iv); } };
 }
 let query = null;
+const w_cont = {};
 /** one turn; aborted early by `stop()` returning true (the live budget guard) or by its time cap */
 async function turn(P, prompt, { resume = null, ms, label, ledger, model = MODEL, stop = () => false, onSid = () => {} }) {
   const t0 = Date.now();
@@ -103,7 +104,8 @@ const TASK = (P) => `${fs.readFileSync(path.join(P.V, "spec", "B12.md"), "utf8")
 // ---------------------------------------------------------------- arm V
 async function armV() {
   const led = ledgerOf("V"), rows = S8.readJsonl(led);
-  if (rows.some((x) => x.event === "end")) return { done: true };
+  if (rows.some((x) => x.event === "end") && !opt.continue) return { done: true };
+  if (opt.continue) log(led, { event: "continue", caps: { cost: CAP_COST, min: CAP_MIN }, why: "founder: +$150 each (2026-10-25)" });
   if (!rows.length) log(led, { event: "start", arm: "V", model: MODEL, caps: { cost: CAP_COST, min: CAP_MIN }, fake: FAKE });
   const P = makeRoot("V", startDir), clock = clockFor("V");
   let sid = rows.findLast((x) => x.event === "turn" && x.sid)?.sid ?? null, k = rows.filter((x) => x.event === "turn").length;
@@ -113,7 +115,7 @@ async function armV() {
     if (byBudget < 3) break;
     const prompt = k === 0
       ? `${TASK(P)}\nYou work alone, in charge of your own plan, for about ${CAP_MIN / 60} hours of working time and $${CAP_COST} in total. Work in long stretches; commit as you go (your last commit is what is judged). When you stop, I will say "go on" until the time or the budget runs out.`
-      : `Go on. So far: $${spent.toFixed(2)} of $${CAP_COST}, ${Math.round(clock.min())} of ${CAP_MIN} minutes. Your last commit: ${gitOk(P.V, "log", "--oneline", "-1")}. Keep raising the compatibility; commit as you go.`;
+      : `${opt.continue && !w_cont.V ? ((w_cont.V = true), "The founder has raised your budget by $150 (to $" + CAP_COST + ") so that you can keep working. ") : ""}Go on. So far: $${spent.toFixed(2)} of $${CAP_COST}, ${Math.round(clock.min())} of ${CAP_MIN} minutes. Your last commit: ${gitOk(P.V, "log", "--oneline", "-1")}. Keep raising the compatibility; commit as you go.`;
     const r = await turn(P, prompt, { resume: sid, ms: Math.min(TURN_MAX, CAP_MIN - clock.min(), byBudget) * 60000, label: `V turn ${k + 1}`, ledger: led, stop: () => spentNow() >= CAP_COST, onSid: (s) => (sid = s) });
     sid = r.sid ?? sid; k++;
     log(led, { event: "checkpoint", turn: k, head: gitOk(P.V, "rev-parse", "HEAD"), spent: Number(spentNow().toFixed(4)), min: Math.round(clock.min() * 100) / 100 });
@@ -133,7 +135,8 @@ export const MEMBERS = [
 ];
 async function armO() {
   const led = ledgerOf("O"); let rows = S8.readJsonl(led);
-  if (rows.some((x) => x.event === "end")) return { done: true };
+  if (rows.some((x) => x.event === "end") && !opt.continue) return { done: true };
+  if (opt.continue) log(led, { event: "continue", caps: { cost: CAP_COST, min: CAP_MIN }, why: "founder: +$150 each (2026-10-25)" });
   if (!rows.length) log(led, { event: "start", arm: "O", model: MODEL, second: SECOND_MODEL, caps: { cost: CAP_COST, min: CAP_MIN }, fake: FAKE });
   const clock = clockFor("O");
   fs.mkdirSync(ORG, { recursive: true });
@@ -153,7 +156,9 @@ async function armO() {
   const iv = setInterval(spendTick, 30_000); spendTick();
   const ORGCMD = (w) => `node ${path.join(w.R.toolchain, "org.mjs")}`, BOARD = (w) => `node ${path.join(w.R.toolchain, "board.mjs")}`;
   const notesFor = (w) => { try { return fs.readFileSync(path.join(ORG, "notes", `${w.id}.jsonl`), "utf8").trim().split("\n").filter(Boolean).length; } catch { return 0; } };
-  const seenFor = (w) => { try { return Number(fs.readFileSync(path.join(ORG, "notes", `${w.id}.seen`), "utf8")); } catch { return 0; } };
+  // seen: what the member read (org notes), or what it was woken for (fix, B12: a woken member that did not read its
+  // notes was woken again at once)
+  const seenFor = (w) => { const r = (f) => { try { return Number(fs.readFileSync(path.join(ORG, "notes", f), "utf8")); } catch { return 0; } }; return Math.max(r(`${w.id}.seen`), r(`${w.id}.seen.wake`)); };
   const intro = (w) => `${TASK(w.R)}
 ## You are a member of an organisation of ${W.length}
 
@@ -171,11 +176,11 @@ Commit as you go. When you stop, I will say "go on" while the organisation's tim
     while (true) {
       const spent = spentNow(), left = CAP_MIN - clock.min();
       if (left < 3 || spent >= CAP_COST - 2) return;
-      if (w.idle) { if (notesFor(w) > seenFor(w)) { w.idle = false; log(led, { event: "wake", id: w.id }); } else { await new Promise((r) => setTimeout(r, 20_000)); continue; } }
+      if (w.idle) { if (notesFor(w) > seenFor(w)) { w.idle = false; fs.writeFileSync(path.join(ORG, "notes", `${w.id}.seen.wake`), String(notesFor(w))); log(led, { event: "wake", id: w.id }); } else { await new Promise((r) => setTimeout(r, 20_000)); continue; } }
       const active = W.filter((x) => !x.idle).length, rate = clock.min() > 5 && spent > 0 ? spent / clock.min() : 0.5 * active, byBudget = Math.floor((CAP_COST - 2 - spent) / Math.max(rate, 0.05));
       if (byBudget < 3) return;
       const unread = notesFor(w) - seenFor(w);
-      const prompt = w.k === 0 ? intro(w) : `Go on. The organisation: $${spent.toFixed(2)} of $${CAP_COST} spent, ${Math.round(clock.min())} of ${CAP_MIN} minutes; main at ${JSON.parse(fs.readFileSync(path.join(ORG, "status.json"), "utf8")).rate}.${unread > 0 ? ` You have ${unread} unread note${unread > 1 ? "s" : ""} (\`${ORGCMD(w)} notes\`).` : ""} Your last commit: ${gitOk(w.R.V, "log", "--oneline", "-1")}.`;
+      const prompt = w.k === 0 ? intro(w) : `${opt.continue && !w.told ? ((w.told = true), "The founder has raised the organisation's budget by $150 (to $" + CAP_COST + ") so that you can keep working. ") : ""}Go on. The organisation: $${spent.toFixed(2)} of $${CAP_COST} spent, ${Math.round(clock.min())} of ${CAP_MIN} minutes; main at ${JSON.parse(fs.readFileSync(path.join(ORG, "status.json"), "utf8")).rate}.${unread > 0 ? ` You have ${unread} unread note${unread > 1 ? "s" : ""} (\`${ORGCMD(w)} notes\`).` : ""} Your last commit: ${gitOk(w.R.V, "log", "--oneline", "-1")}.`;
       const r = await turn(w.R, prompt, { resume: w.sid, ms: Math.min(TURN_MAX, left, byBudget) * 60000, label: `O ${w.id} ${w.k + 1}`, ledger: led, model: w.model, stop: () => spentNow() >= CAP_COST || clock.min() >= CAP_MIN, onSid: (s) => (w.sid = s) });
       w.sid = r.sid ?? w.sid; w.k++;
       if (/(^|\n)\s*IDLE\s*$/.test(r.text)) { w.idle = true; log(led, { event: "idle", id: w.id }); }
