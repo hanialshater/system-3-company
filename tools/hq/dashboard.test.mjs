@@ -39,9 +39,9 @@ test("principles: Meta's audit when Meta is checked out, and the field left out 
   assert.equal(p.total, 13); assert.equal(p.followed + p.gaps + p.manual, p.total);
 });
 
-test("the three city pages are copied and render this company's dashboard", async () => {
+test("the four city pages are copied and render this company's dashboard", async () => {
   const pages = JSON.parse(fs.readFileSync(path.join(HERE, "pages.json"), "utf8"));
-  assert.deepEqual(pages.map((p) => p.id), ["principles", "features", "releases"]);
+  assert.deepEqual(pages.map((p) => p.id), ["principles", "features", "releases", "pipeline"]);
   const city = JSON.parse(fs.readFileSync(path.join(HERE, "hq-city.json"), "utf8")).companies.find((c) => c.id === "system-3-company");
   assert.equal(city.hq, ".");
   const d = dashboard(ROOT, { audit: await metaAudit() });

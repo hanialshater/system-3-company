@@ -9,12 +9,15 @@
 //   features     company/features.json (the city's Features page)
 //   releases     company/ops/releases.json, newest first (the city's Release log): canonical rN releases plus the
 //                historical production deploys recorded there; approvedBy is null where the record names no approval
+//   pipeline     tools/hq/lifecycle.mjs: each content type's life cycle (the lanes' lifecycle blocks in
+//                company/ops/projects.json) and where every lesson is in it (the city's Pipeline page)
 //   principles   Meta's audit (\$META/src/principles.mjs, default ../../../system3-meta from this folder); left out if
 //                Meta is not there
 // Read-only.  node hq-dashboard.mjs [<company root>]
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import { loadPipeline } from "./lifecycle.mjs";
 
 const NOT_APPROVED = /not recorded|unapproved|none found/i;
 /** company/ops/releases.json → the dashboard contract's releases, newest first. Never invents an approval. */
@@ -30,6 +33,7 @@ export function releasesOf(rec) {
   return all.sort((x, y) => Date.parse(y.at) - Date.parse(x.at));
 }
 
+const pipelineCache = new Map(); // one computation per root per process (it walks every lesson and runs git)
 export function dashboard(root, { audit } = {}) {
   const read = (f) => { try { return fs.readFileSync(path.join(root, f), "utf8"); } catch { return ""; } };
   const mission = (/\*\*(.+?)\*\*/.exec(read("company/mission.md"))?.[1] ?? "").trim();
@@ -51,6 +55,7 @@ export function dashboard(root, { audit } = {}) {
   const features = JSON.parse(read("company/features.json") || "{}").features ?? [];
   const releases = releasesOf(JSON.parse(read("company/ops/releases.json") || "{}"));
   const out = { v: 1, id: "system-3-company", name: "System 3 Lessons", mission, owner: "founder", links, asks, budget: { unit: "tokens", approved, spent: total, spentCapped: capped, spentUncapped: total - capped, lines }, milestones: ms, kpis, features, releases };
+  try { out.pipeline = pipelineCache.get(root) ?? pipelineCache.set(root, loadPipeline(root)).get(root); } catch {}
   if (audit) { try { out.principles = audit(root); } catch {} }
   return out;
 }
