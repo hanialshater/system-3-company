@@ -71,17 +71,29 @@ test("the org: a kernel company's roles with their reporting lines, and its room
 });
 
 test("the org contract: each tool answers `org` with the same shape, and the HQ reads it through the tool", async () => {
-  const { spawnSync } = await import("node:child_process"), HERE2 = path.dirname(new URL(import.meta.url).pathname), P = path.join(HERE2, "..");
+  const { spawnSync } = await import("node:child_process"), HERE = path.dirname(new URL(import.meta.url).pathname);
   const shape = (org) => { assert.ok(Array.isArray(org) && org.length); const ids = new Set(org.map((r) => r.id)); for (const r of org) { assert.ok(r.id && "title" in r && "reportsTo" in r, JSON.stringify(r)); assert.ok(r.reportsTo === null || ids.has(r.reportsTo), `${r.id} → ${r.reportsTo}`); } assert.ok(org.some((r) => r.reportsTo === null)); return org; };
   // kernel: meta.mjs org roles (read-only, on a copy of a recorded company)
-  const live = fs.mkdtempSync(path.join(os.tmpdir(), "k-")); fs.copyFileSync(path.join(P, "tests", "fixtures", "kernel-bench3a-state.json"), path.join(live, "state.json"));
-  const k = shape(JSON.parse(spawnSync(process.execPath, [path.join(P, "meta.mjs"), "org", "roles"], { encoding: "utf8", env: { ...process.env, META_LIVE_DIR: live } }).stdout));
+  const live = fs.mkdtempSync(path.join(os.tmpdir(), "k-")); fs.copyFileSync(path.join(HERE, "fixtures", "kernel-bench3a-state.json"), path.join(live, "state.json"));
+  const k = shape(JSON.parse(spawnSync(process.execPath, [path.join(HERE, "..", "meta.mjs"), "org", "roles"], { encoding: "utf8", env: { ...process.env, META_LIVE_DIR: live } }).stdout));
   assert.equal(k.find((r) => r.id === "editor").reportsTo, "cos"); assert.ok(k.every((r) => "level" in r && "lane" in r && "room" in r), "the old fields stay");
   // crew: crew.mjs org
   const cd = fs.mkdtempSync(path.join(os.tmpdir(), "c-")); fs.writeFileSync(path.join(cd, "crew.json"), JSON.stringify({ owner: "ana", members: [{ id: "m-a", role: "parser: all of it", model: "x", tree: cd }], main: cd, referee: { cmd: "true" }, budget: 1, minutes: 1 }));
-  const c = shape(JSON.parse(spawnSync(process.execPath, [path.join(P, "crew.mjs"), "org"], { encoding: "utf8", env: { ...process.env, CREW_DIR: cd } }).stdout));
+  const c = shape(JSON.parse(spawnSync(process.execPath, [path.join(HERE, "..", "crew.mjs"), "org"], { encoding: "utf8", env: { ...process.env, CREW_DIR: cd } }).stdout));
   assert.deepEqual(c.map((r) => [r.id, r.reportsTo, r.title]), [["ana", null, "Owner (CEO)"], ["m-a", "ana", "parser"]]);
   // the HQ: orgCmd
   const { orgOf } = await import("../hq/server.mjs");
-  assert.equal(orgOf({ id: "t1", orgCmd: `CREW_DIR=${JSON.stringify(cd)} node ${JSON.stringify(path.join(P, "crew.mjs"))} org` }).length, 2);
+  assert.equal(orgOf({ id: "t1", orgCmd: `CREW_DIR=${JSON.stringify(cd)} node ${JSON.stringify(path.join(HERE, "..", "crew.mjs"))} org` }).length, 2);
+});
+
+test("the static build: each company's tools run once; the page reads the snapshot (window.HQ_STATIC)", async () => {
+  const HERE = path.dirname(new URL(import.meta.url).pathname), d = fs.mkdtempSync(path.join(os.tmpdir(), "hqb-")), out = path.join(d, "dist");
+  fs.writeFileSync(path.join(d, "events.jsonl"), JSON.stringify({ v: 1, t: "2026-10-25T00:00:00Z", type: "crew.start", by: "operator", rate: 0.3, members: [] }) + "\n");
+  fs.writeFileSync(path.join(d, "org.json"), JSON.stringify([{ id: "o", title: "Owner", reportsTo: null }]));
+  fs.writeFileSync(path.join(d, "city.json"), JSON.stringify({ companies: [{ id: "c1", name: "C1", events: "events.jsonl", orgCmd: `node ${JSON.stringify(path.join(HERE, "..", "orgfile.mjs"))} org.json` }] })); // paths relative to the city file
+  const { build } = await import("../hq/build.mjs");
+  assert.equal((await build(path.join(d, "city.json"), out)).companies, 1);
+  assert.equal(JSON.parse(fs.readFileSync(path.join(out, "data", "city.json"), "utf8"))[0].health.score, 0.3);
+  assert.equal(JSON.parse(fs.readFileSync(path.join(out, "data", "company", "c1", "org.json"), "utf8"))[0].id, "o");
+  assert.match(fs.readFileSync(path.join(out, "index.html"), "utf8"), /window\.HQ_STATIC/);
 });

@@ -5,6 +5,7 @@ import os from "node:os";
 import path from "node:path";
 
 // The dashboard and org-file tools (product/STARTER.md §3): what the HQ's Dashboard and Org pages read.
+const HERE = path.dirname(new URL(import.meta.url).pathname);
 const { dashboard } = await import("../dashboard.mjs");
 const { orgProblems } = await import("../orgfile.mjs");
 
@@ -23,11 +24,11 @@ test("orgfile: the org contract's checks", () => {
   assert.deepEqual(orgProblems([{ id: "a", title: "A", reportsTo: null }, { id: "b", title: "B", reportsTo: "a" }]), []);
   assert.match(orgProblems([{ id: "a", title: "A", reportsTo: null }, { id: "b", title: "B", reportsTo: "z" }]).join(), /not in the org/);
   assert.match(orgProblems([{ id: "a", title: "A", reportsTo: "b" }, { id: "b", title: "B", reportsTo: "a" }]).join(), /one root/);
-  const meta = JSON.parse(fs.readFileSync(path.join(path.dirname(new URL(import.meta.url).pathname), "..", "..", "org", "org.json"), "utf8")).roles;
+  const meta = JSON.parse(fs.readFileSync(path.join(HERE, "..", "..", "org", "org.json"), "utf8")).roles;
   assert.deepEqual(orgProblems(meta), [], "Meta's own org keeps the contract");
 });
 
 test("the starter catalog: 11 generic roles, each reporting inside the catalog or to the founder", () => {
-  const c = JSON.parse(fs.readFileSync(path.join(path.dirname(new URL(import.meta.url).pathname), "..", "..", "catalog", "roles.json"), "utf8")).roles, ids = new Set(c.map((r) => r.id));
+  const c = JSON.parse(fs.readFileSync(path.join(HERE, "..", "..", "catalog", "roles.json"), "utf8")).roles, ids = new Set(c.map((r) => r.id));
   assert.equal(c.length, 11); assert.ok(c.every((r) => r.reportsTo === "founder" || ids.has(r.reportsTo)));
 });

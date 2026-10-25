@@ -27,7 +27,9 @@ const HERE = path.dirname(fileURLToPath(import.meta.url));
 const opt = Object.fromEntries(process.argv.slice(2).filter((a) => a.startsWith("--")).map((a) => { const [k, ...v] = a.slice(2).split("="); return [k, v.join("=") || true]; }));
 const cityFile = path.resolve(opt.city ?? path.join(HERE, "city.json"));
 const readJsonl = (f) => { try { return fs.readFileSync(f, "utf8").trim().split("\n").filter(Boolean).map((l) => JSON.parse(l)); } catch { return []; } };
-const city = () => JSON.parse(fs.readFileSync(cityFile, "utf8"));
+// a city file's paths are relative to its own folder (so one city file works in any checkout)
+const FILE_KEYS = ["events", "knowledge", "hq", "org", "kernel", "bench"];
+export const city = (file = cityFile) => { const c = JSON.parse(fs.readFileSync(file, "utf8")), dir = path.dirname(path.resolve(file)); for (const co of c.companies) { for (const k of FILE_KEYS) if (typeof co[k] === "string") co[k] = path.resolve(dir, co[k]); co.cwd ??= dir; } return c; };
 export function pagesOf(c) { if (!c.hq) return []; try { return JSON.parse(fs.readFileSync(path.join(c.hq, "pages.json"), "utf8")).filter((p) => /^[a-z0-9-]+$/.test(p.id ?? "") && p.file); } catch { return []; } }
 /** the org (the org contract, product/STARTER.md): from the company's own org tool, `orgCmd` in its entry, a
  *  read-only command that prints [{ id, name?, title, reportsTo, team?, level?, room?, floor?, model? }]

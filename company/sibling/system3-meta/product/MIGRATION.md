@@ -6,7 +6,7 @@ migrating meta and system 3 company"; earlier: "if we are successful it will mig
 
 ## Bottom line
 
-- **Meta can move first, after about a day of work.** The kernel has exported itself before (M1:
+- **Meta can move first: step 1 is done (§ "Step 1").** The kernel has exported itself before (M1:
   `export-kernel.mjs`, no path into System 3 Company). An export today passes 341 tests and fails 2 (the HQ and
   onboarding tests): the exporter predates `hq/`, `onboard.mjs`, the knowledge base and the product docs, and two of
   today's modules read System 3 Company's role catalog by relative path.
@@ -108,6 +108,34 @@ They are company pages; a company that wants one in the city HQ adds it through 
    - risks and ops health;
    - `evolve.mjs` as the population runner;
    - the sandbox out of `bench8/`.
+
+## Step 1: done (2026-10-25)
+
+| Item | Result |
+|---|---|
+| Export complete | `export-kernel.mjs` now exports `hq/`, `catalog/`, `org/`, `ops/`, `knowledge/`, `company.json`, `milestones.json`, the product docs and `research/` (the benchmark write-ups; harness code only for benchmarks that did not run on System 3 Company). **A clean export passes 359 of 359 tests, with no path into System 3 Company.** Left out: 4 `s3c-*` specs, `m5-refusals`, the code of B6-B9 (and with B8, the sandbox: still to fold out) |
+| Meta's own catalog | `catalog/roles.json`: the 11 generic roles; `onboard.mjs` reads it plus any domain catalogs |
+| Meta's own records | `org/org.json` (through `orgfile.mjs`, the org contract validated), `company.json` (mission, budget lines), `milestones.json`, `ops/progress.md` (Meta's handoffs, copied from System 3 Company's log), `ops/events.jsonl` |
+| Dashboards | the HQ's Dashboard page and city totals, through `dashboard.mjs` (the dashboard contract) |
+| Vercel | `hq/build.mjs`: a static snapshot (each company's tools run once at build time; no server, no secrets). The export carries `vercel.json` (build only `[deploy]` commits, the founder's rule) and `hq/city.example.json` (Meta as company zero) |
+| CI | the export carries `.github/workflows/ci.yml`: `npm test`, then the static build |
+| System 3 Company's org adapter | moved to `adapters/s3c/org-from-roles.mjs`, with its own test; it stays with the company |
+
+## 4. System 3 Company's restructuring before it moves (founder, 2026-10-25)
+
+Founder: "system 3 co need restructuring though to streamline, different content type, multi level/priority/budget
+based execution". It is System 3 Company's own work: board item W-2002, owner chief-of-staff-ceo-office (the
+org-health head), a proposal with alternatives to the founder. What the kernel already offers it:
+
+| Ask | Kernel feature it can adopt |
+|---|---|
+| Different content types (beyond the single-card lesson: courses, sequences, book summaries, …) | several flows per company, one per content type (K19 `flows`, `order new --flow=`), each with its own stages, signers and checks |
+| Multi-level execution | goals with levels and breakdown (`goals.mjs`); asks routed to the lowest level that can decide (`asks.mjs`); lane managers with their policy (`policy.mjs`) |
+| Priority-based execution | mailbox priorities (`now`, `next`, `later`) and the supervisor's plan; the tracker's priorities |
+| Budget-based execution | lane budgets, approval over limits, refusals (K13-K15, M5); budget lines on the dashboard (`dashboard.mjs`) |
+| Streamlining | org evaluation (`orgeval.mjs`) and org gaps (`org gaps`) to find unused, overlapping or missing roles; 85 domain roles today |
+
+Order: restructure first (in System 3 Company, by its roles), then move it as-is to its own repository.
 
 ## What is not covered by any plan yet
 

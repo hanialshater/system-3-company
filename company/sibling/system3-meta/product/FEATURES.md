@@ -61,6 +61,18 @@ benchmark harness, not yet in the kernel). Update this file in the same change t
 | Extension point: a company's HQ developers add pages (`<hq>/pages.json`, ES modules exporting `render({events, knowledge, …})`), listed in its sidebar, served only from its hq folder | starter | `hq/server.mjs`, `hq/index.html` | built; generated companies get an empty `hq/` |
 | Kernel companies (corporate archetype, `meta.mjs` state) in the HQ: closed meetings as `meeting` events with minutes, rooms from enter/leave, the org from its roles | migration bridge (not in the starter; the kernel will emit v1 itself) | `hq/kernel2events.mjs` | built |
 
+## Meta's own records, dashboards and the static build, since 2026-10-25
+
+| Feature | Layer | Where | Status |
+|---|---|---|---|
+| The starter catalog: the 11 generic roles, Meta-owned; onboarding adds a company's domain catalogs | starter | `catalog/roles.json`, `onboard.mjs loadCatalog` | built |
+| The org tool for an org kept as a file: validates the org contract (one root, managers in the org, no cycles) and prints it | starter | `orgfile.mjs` | built; tests/dashboard.test.mjs |
+| The dashboard contract and tool: mission, budget lines (recorded or live from a ledger; capped vs uncapped spend), milestones by state | starter | `dashboard.mjs`, `company.json`, `milestones.json` | built |
+| HQ Dashboard page: mission, spent vs approved, budget lines (bar: spent, tick: approved), spend over time, spend by member, milestones by state; city totals | starter | `hq/index.html`, `/api/company/<id>/dashboard` | built |
+| The static build for Vercel or any static host: each company's tools run once at build time; the page reads the snapshot | starter | `hq/build.mjs` | built; tested; the export's `vercel.json` builds only `[deploy]` commits |
+| A city file's paths are relative to the city file | starter | `hq/server.mjs city()` | built |
+| Meta's own org, mission, budget lines, milestones and progress log (company zero) | Meta | `org/`, `company.json`, `milestones.json`, `ops/` | built |
+
 ## Onboarding (`prototype/onboard.mjs`), since 2026-10-25
 
 | Feature | Layer | Where | Status |
