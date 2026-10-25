@@ -10,11 +10,12 @@ company (`hanialshater/system3-meta`). All of them are read-only.
 | `hq-city.json` | the city entry (`eventsCmd`, `orgCmd`, `buildingCmd`, `dashboardCmd`, `knowledgeCmd`, `docsCmd`), paths relative to this folder | |
 | `hq-events.mjs` | event log v1 | `company/ops/events.jsonl` |
 | `org-from-roles.mjs` | org, and `--building` for the seating | `tools/org/roles.mjs`, `people.mjs`, `src/lib/hq.ts`, `src/lib/hq-floors.ts`, `src/app/hq/people.ts` |
-| `hq-dashboard.mjs` | dashboard | `company/mission.md`, `company/ops/projects.json`, `ledger.jsonl`, `founder-inbox.json`, lesson `meta.json` |
+| `hq-dashboard.mjs` | dashboard, with `principles`, `features`, `releases` | `company/mission.md`, `company/ops/projects.json`, `ledger.jsonl`, `founder-inbox.json`, lesson `meta.json`, `company/features.json`, `company/ops/releases.json`; `principles` from Meta's `$META/src/principles.mjs` (left out without Meta) |
+| `principles.js`, `features.js`, `releases.js`, `pages.json` | the city pages Principles, Features and Release log (copied by Meta's `src/city-copy.mjs page <id>`; `"hq": "."` in hq-city.json carries them) | the dashboard |
 | `hq-knowledge.mjs` | knowledge | `company/knowledge/` |
 | `hq-docs.json` | config for Meta's docs tool (`$META/src/docs.mjs`) | the folders it lists |
 
 Run one from the repo root: `node tools/hq/hq-dashboard.mjs .`. Publish the company's city snapshot from this folder,
 with a checkout of system3-meta beside this repository (or set `META`):
 `node ${META:-../../../system3-meta}/hq/build.mjs --city=hq-city.json --snapshot=system-3-company --out=<dir>`.
-Test: `node --test tools/hq/org.test.mjs`, and `tests/hq/city-door.test.mjs` (inside `npm run test:hq`).
+Test: `node --test tools/hq/org.test.mjs tools/hq/dashboard.test.mjs`, and `tests/hq/city-door.test.mjs` (inside `npm run test:hq`).

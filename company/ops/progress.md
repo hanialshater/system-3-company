@@ -1,3 +1,12 @@
+## 2026-10-25 · tools-lead · city dashboard gains principles, features and releases; the three city pages in tools/hq/
+
+- **Changed:** `tools/hq/hq-dashboard.mjs` now outputs `principles` (Meta's `audit` from `$META/src/principles.mjs`, default `../../../system3-meta`; left out when Meta is absent), `features` (new `company/features.json`, 16 features: 10 live, 4 building, 2 planned, checked against the code and records) and `releases` (from release-manager's `company/ops/releases.json`, newest first: r1-r21 plus the two unapproved 2026-10-18 deploys; `approvedBy` null for r1, r2 and those two, because the record says not recorded or unapproved). City pages Principles, Features, Release log copied with Meta's `src/city-copy.mjs` (`tools/hq/{principles,features,releases}.js`, `pages.json`); `"hq": "."` in `tools/hq/hq-city.json`. New `tools/hq/dashboard.test.mjs` (4 tests). Readiness self-check `company/engineering/readiness/2026-10-25-hq-dashboard-principles-features-releases.md`; changelog line.
+- **Snapshot check:** from tools/hq, `META=/home/user/system3-meta node $META/hq/build.mjs --city=hq-city.json --snapshot=system-3-company --out=<scratch>`: dashboard.json has principles 9 followed, 4 gaps (P3, P4, P6, P8) of 13; 16 features; 23 releases, newest r21; pages.json lists principles, features, releases.
+- **Not used:** Meta's `src/releases.mjs` greps `[deploy]` anywhere in a message, so here it returns 34 "releases", most of them Meta commits that only name the marker. releases.json is the company's record, so the adapter reads that instead.
+- **Believe:** high that the dashboard reports the records as they are. Medium that features.json stays right: it is a hand list, and each feature's owner should correct its own line.
+- **Next:** release-manager adds math/euclid-three-steps (the first lane M lesson, published 2026-10-25) to the next release's notes when one is approved; feature owners keep company/features.json current.
+- **Blocked:** nothing.
+
 ## 2026-10-25 · learner-evaluator (W-2037) · flatten-the-cube-to-a-dot v1 walked: launch with notes
 
 - **Changed:** new record `company/reviews/flatten-the-cube-to-a-dot/2026-10-25-learner-knows-faces-not-euler.md` (lesson version: v1, Verdict: launch). Boundary: knows corners, edges and faces; does not know Euler's formula or flat drawings. The walkthrough ran on a private build of d5ed24fa4 (clean worktree; the shared tree's HQ files did not build at b3138bd43), plus 9 own probe paths at 390x844. Board W-2063 (demo-builder) carries the non-blocking notes.
