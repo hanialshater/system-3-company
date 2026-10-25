@@ -1,0 +1,73 @@
+<!doctype html>
+<!-- W-2047 fixture for tools/sequence-probe.mjs: the CardSequence DOM the probe reads (src/kit/sequence.tsx), no React.
+     Served by tests/platform/sequence-probe.test.mjs at /d/<mode>:
+       fixture-fast     each card's "Play" sets its counter to 10 at once; state kept.
+       fixture-slow     "Play" counts 0 to 10 in 220 ms steps (2.2 s, like flatten-the-cube's playback); state kept.
+       fixture-lost     as slow, but a card shown again through the trail is reset to 0: state really lost.
+       fixture-forever  "Play" on card 1 never stops counting: the card never settles. -->
+<html><head><meta name="viewport" content="width=device-width,initial-scale=1"><style>
+body{margin:0;font:16px sans-serif} [data-testid=stage]{width:340px;margin:0 auto}
+button{min-height:44px;min-width:44px} ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));list-style:none;padding:0;margin:0}
+</style></head><body>
+<div data-testid="lesson" data-phase="predict">
+  <div id="predict"><button data-testid="predict-option">A</button><button data-testid="predict-option">B</button>
+    <button data-testid="commit-prediction">Commit</button></div>
+  <div data-testid="stage"><div role="group" aria-roledescription="card sequence" aria-label="fixture">
+    <ol></ol><div id="cards"></div></div></div>
+  <button data-testid="reveal-button" disabled>Reveal</button><div id="reveal-slot"></div>
+</div>
+<script>
+const mode = location.pathname.split("/").pop();
+const N = 3, counts = [0, 0, 0], timers = [], visited = new Set([0]);
+let active = 0;
+const ol = document.querySelector("ol"), cardsEl = document.getElementById("cards");
+const steps = [], cards = [];
+for (let i = 0; i < N; i++) {
+  const li = document.createElement("li");
+  const b = document.createElement("button");
+  b.setAttribute("data-qa", "control"); b.textContent = `Step ${i + 1}`; b.disabled = true;
+  b.onclick = () => show(i);
+  li.appendChild(b); ol.appendChild(li); steps.push(b);
+  const c = document.createElement("div");
+  c.setAttribute("data-subcard", `c${i + 1}`); c.setAttribute("data-subcard-index", String(i)); c.hidden = i !== 0;
+  c.innerHTML = `<p class="count">Card ${i + 1}: 0</p><svg width="100" height="20"><rect class="bar" x="0" y="0" width="0" height="20"/></svg>
+    <div><button data-qa="control" class="play">Play ${i + 1}</button></div>` + (i < N - 1 ? `<div><button data-qa="control">Next: card ${i + 2}</button></div>` : "");
+  c.querySelector(".play").onclick = () => play(i);
+  const next = c.querySelectorAll("button")[1];
+  if (next) next.onclick = () => show(i + 1);
+  cardsEl.appendChild(c); cards.push(c);
+}
+function paint(i) {
+  cards[i].querySelector(".count").textContent = `Card ${i + 1}: ${counts[i]}`;
+  cards[i].querySelector(".bar").setAttribute("width", String(counts[i] * 10));
+}
+function play(i) {
+  clearInterval(timers[i]);
+  if (mode === "fixture-fast") { counts[i] = 10; paint(i); return done(); }
+  counts[i] = 0; paint(i);
+  timers[i] = setInterval(() => {
+    counts[i]++;
+    if (mode === "fixture-forever" && i === 0) counts[i] %= 10;
+    paint(i);
+    if (counts[i] >= 10) { clearInterval(timers[i]); done(); }
+  }, 220);
+}
+function show(i) {
+  if (mode === "fixture-lost" && visited.has(i) && i !== active) { clearInterval(timers[i]); counts[i] = 0; paint(i); }
+  active = i; visited.add(i);
+  cards.forEach((c, k) => (c.hidden = k !== i));
+  steps.forEach((s, k) => { s.disabled = !visited.has(k); if (k === i) s.setAttribute("aria-current", "step"); else s.removeAttribute("aria-current"); });
+}
+function done() { if (counts.every((c) => c >= 10) || active === N - 1) document.querySelector("[data-testid=reveal-button]").disabled = false; }
+document.querySelectorAll("[data-testid=predict-option]").forEach((b) => (b.onclick = () => {}));
+document.querySelector("[data-testid=commit-prediction]").onclick = () => {
+  document.getElementById("predict").hidden = true;
+  document.querySelector("[data-testid=lesson]").setAttribute("data-phase", "explore");
+  steps[0].setAttribute("aria-current", "step");
+};
+document.querySelector("[data-testid=reveal-button]").onclick = () => {
+  show(N - 1);
+  const r = document.createElement("div"); r.setAttribute("data-testid", "reveal"); r.textContent = "Revealed";
+  document.getElementById("reveal-slot").appendChild(r);
+};
+</script></body></html>

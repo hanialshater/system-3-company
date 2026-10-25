@@ -19,7 +19,13 @@
 //                least 24x24 px (contract floor); the kit's own trail and Next are also held to 44 px tall.
 //   back         each earlier trail step is enabled after the walk; pressing it shows that sub-card with
 //                the same picture and text it had when the walk left it (state kept); then the probe
-//                returns to the last card through the trail.
+//                returns to the last card through the trail. Both fingerprints are settled (W-2047): read
+//                until two readings SETTLE_GAP_MS (500) apart match, up to SETTLE_CEILING_MS (6 s), after
+//                every walk press and every trail press. The gap must exceed the longest single step of any
+//                motion: 200 ms reads can both land inside one 220 ms playback step and call a moving card
+//                settled (company/reviews/flatten-the-cube-to-a-dot/v2-maker-probe.mjs). A card still moving
+//                at the ceiling FAILs "back" as "never settled", not as "state not kept". Motion stays on
+//                (no reduced-motion emulation): the probe tests the path most learners take.
 //   revealCard   the learner taps back to sub-card 1, then presses the reveal: the reveal card (the
 //                lesson's revealCard, default the last) is the one showing in the same commit that adds the
 //                reveal (MutationObserver) and in the first animation frame (before first paint).
@@ -55,6 +61,9 @@ if (!base) {
   process.exit(2);
 }
 const timeout = Number(opt("timeout", 120000));
+// W-2047 settle rule (design review R1, company/reviews/flatten-the-cube-to-a-dot/2026-10-25-design.md).
+const SETTLE_GAP_MS = 500;
+const SETTLE_CEILING_MS = 6000;
 const shots = args.includes("--shots");
 const only = opt("only", null);
 
@@ -252,6 +261,23 @@ async function probe(browser, slug, vpDef) {
       if (firstTime) await shot(`card${m.active + 1}`);
       return m;
     };
+    // The shown card's fingerprint once it stops moving: two readings SETTLE_GAP_MS apart that match
+    // (card index included), or the last reading with unsettled: true at SETTLE_CEILING_MS.
+    const settle = async () => {
+      const read = async () => {
+        const m = await page.evaluate(measureShown);
+        return { active: m.active, fingerprint: m.fingerprint };
+      };
+      let prev = await read();
+      for (let t = 0; t < SETTLE_CEILING_MS; t += SETTLE_GAP_MS) {
+        await page.waitForTimeout(SETTLE_GAP_MS);
+        const cur = await read();
+        if (cur.active === prev.active && cur.fingerprint === prev.fingerprint) return cur;
+        prev = cur;
+      }
+      return { ...prev, unsettled: true };
+    };
+    const unsettledCards = new Set();
 
     stepName = "predict";
     // Predict (the last option, as QA does), then measure card 1 as unlocked.
@@ -265,11 +291,13 @@ async function probe(browser, slug, vpDef) {
     const controls = page.locator('[data-testid="stage"] [data-qa="control"]');
     const total = await controls.count();
     let pressed = 0;
+    let lastSettled = null;
     for (let i = 0; i < Math.min(total, 16); i++) {
       const c = page.locator('[data-testid="stage"] [data-qa="control"]').nth(i);
       if ((await c.count()) === 0 || !(await c.isVisible()) || (await c.isDisabled())) continue;
       const before = (await page.evaluate(pageState)).active;
-      const pre = await page.evaluate(measureShown);
+      // Settled after the previous press (below), so this is the card as the learner leaves it.
+      const pre = lastSettled ?? (await settle());
       const tag = await c.evaluate((el) => `${el.tagName}:${el.type ?? ""}`);
       stepName = `walk press ${pressed + 1} on card ${before + 1}`;
       if (tag === "INPUT:range") {
@@ -281,11 +309,18 @@ async function probe(browser, slug, vpDef) {
       pressed++;
       await page.waitForTimeout(300);
       const after = (await page.evaluate(pageState)).active;
-      if (after !== before) left.set(before, pre.fingerprint);
+      if (after !== before) {
+        left.set(before, pre.fingerprint);
+        if (pre.unsettled) unsettledCards.add(before);
+      }
+      // Layout is still measured at 300 ms, mid-motion included; only the state fingerprint waits.
       await measure();
+      lastSettled = await settle();
     }
     const last = await page.evaluate(pageState);
-    left.set(last.active, (await page.evaluate(measureShown)).fingerprint);
+    const lastFp = lastSettled ?? (await settle());
+    left.set(last.active, lastFp.fingerprint);
+    if (lastFp.unsettled) unsettledCards.add(last.active);
     const revealEnabled = await page.locator('[data-testid="reveal-button"]').isEnabled().catch(() => false);
     const missed = [...Array(n).keys()].filter((i) => !seen.has(i));
     record(
@@ -309,18 +344,21 @@ async function probe(browser, slug, vpDef) {
       }
       await steps.nth(i).click();
       await page.waitForTimeout(300);
-      const m = await measure();
-      if (m.active !== i) backProblems.push(`trail step ${i + 1} showed card ${m.active + 1}`);
-      else if (left.has(i) && left.get(i) !== m.fingerprint) backProblems.push(`card ${i + 1} changed after leaving it (state not kept)`);
+      await measure();
+      const s = await settle();
+      if (s.active !== i) backProblems.push(`trail step ${i + 1} showed card ${s.active + 1}`);
+      else if (s.unsettled || unsettledCards.has(i)) backProblems.push(`card ${i + 1} never settled (still changing after ${SETTLE_CEILING_MS / 1000} s), so state could not be compared`);
+      else if (left.has(i) && left.get(i) !== s.fingerprint) backProblems.push(`card ${i + 1} changed after leaving it (state not kept)`);
     }
     if (last.active > 0) {
       await steps.nth(last.active).click();
       await page.waitForTimeout(300);
-      const back = await page.evaluate(pageState);
-      if (back.active !== last.active) backProblems.push(`trail step ${last.active + 1} did not return to card ${last.active + 1}`);
-      else if ((await page.evaluate(measureShown)).fingerprint !== left.get(last.active)) backProblems.push(`card ${last.active + 1} changed after going back and forth`);
+      const s = await settle();
+      if (s.active !== last.active) backProblems.push(`trail step ${last.active + 1} did not return to card ${last.active + 1}`);
+      else if (s.unsettled || unsettledCards.has(last.active)) backProblems.push(`card ${last.active + 1} never settled (still changing after ${SETTLE_CEILING_MS / 1000} s), so state could not be compared`);
+      else if (s.fingerprint !== left.get(last.active)) backProblems.push(`card ${last.active + 1} changed after going back and forth`);
     }
-    record(slug, vp, "back", last.active > 0 && backProblems.length === 0, backProblems.length ? backProblems.join("; ") : last.active > 0 ? `trail back to cards ${last.active} to 1 and forward again, state kept` : "walk never left card 1");
+    record(slug, vp, "back", last.active > 0 && backProblems.length === 0, backProblems.length ? backProblems.join("; ") : last.active > 0 ? `trail back to cards ${last.active} to 1 and forward again, state kept (settled: ${SETTLE_GAP_MS} ms reads match, ceiling ${SETTLE_CEILING_MS / 1000} s)` : "walk never left card 1");
 
     // revealCard: go back to card 1, then press the reveal; check the shown card before first paint.
     const expected = await page.evaluate(() => {

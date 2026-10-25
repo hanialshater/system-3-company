@@ -1,5 +1,7 @@
 # Changelog
 
+2026-10-25 · platform-engineer: tools/sequence-probe.mjs "back" waits for each card to settle (two readings 500 ms apart match, 6 s ceiling) before recording or comparing it, so long spec'd motion (flatten-the-cube-to-a-dot's 700 ms flatten, 2.4 s playback) no longer reads as lost state; a card that never settles FAILs as "never settled"; motion stays on. New tests/platform/sequence-probe.test.mjs (fixture: fast, slow, lost, forever). W-2047; tier 1 (company/engineering/readiness/2026-10-25-w2047-sequence-probe-settle.md).
+
 2026-10-25 · tools-lead: the city dashboard (tools/hq/hq-dashboard.mjs) gains `principles` (Meta's audit, left out without Meta), `features` (new company/features.json, 16 features) and `releases` (company/ops/releases.json, newest first, approvals only as recorded); the city pages Principles, Features and Release log copied into tools/hq/ with `"hq": "."`; test tools/hq/dashboard.test.mjs. Read-only; tier 1 (company/engineering/readiness/2026-10-25-hq-dashboard-principles-features-releases.md).
 
 2026-10-20 · tools-lead: new tools/reconcile.mjs (W-2026, EXP-009): deterministic reconciliation of events.jsonl/ledger.jsonl against an independent list (dispatch requests, role memory, run labels in records, role commits, founder quotes, meta.json publishes, releases.json, mailboxes when present), coded gap causes and a ±10/±60 min spread; tests in tests/reconcile/; first run in company/experiments/EXP-009/run-2026-10-20.json. Read-only; tier 1 (company/engineering/readiness/2026-10-20-reconcile-exp009.md).
