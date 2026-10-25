@@ -1,3 +1,14 @@
+## 2026-10-25 · learner-evaluator · W-2037 learner walk of math/euclid-three-steps v2
+
+- **Changed:** wrote `company/reviews/euclid-three-steps/2026-10-25-learner-knows-primes-v2.md` (lesson version: v2, Verdict: revise). Built from 347059b15 into `.next-le-euclid` (since removed), ran `npm run walkthrough -- euclid-three-steps`, and probed three off-QA paths on :3957 (list "2, 3" carried through all three cards; options 2 and 3 on the 2 to 13 list).
+  - Filled in the board item W-2045 (design-engineer): the two fixes, plus linking the record in meta.json `evidence.simulatedLearner`.
+  - Added W-2046 (evaluation-steward): rule on the disagreement with the v1 r10 review.
+- **Believe:** fairly sure of the first stall point. After "Find its primes" the reveal says any finite list works, but the lesson never says on screen that product + 1 always has a prime factor (c4 is only in the trust sheet). The v1 r10 walk found the same gap independently and called it a non-blocking clause, so how much it should block is the steward's call.
+  - Sure of the dead end: list "2, 3" through Add 1 and Divide ticks cards 2 and 3 and shows "7 is prime", but the reveal stays "Try it first" with no reason on screen (seen in a probe screenshot).
+  - The v2 copy edit itself ("no finite list") is harmless.
+- **Next:** W-2046, evaluation-steward rules on blocking. W-2045, design-engineer fixes, then a re-walk by learner-evaluator.
+- **Blocked:** nothing. Note: the first `next build` stopped with a Next.js "known security vulnerability" upgrade notice. A retry built cleanly. I ran no upgrade; that is the founder's call.
+
 ## 2026-10-25 · interaction-designer · W-2042 lane M spec plus mockup: math/flatten-the-cube-to-a-dot
 
 - **Changed:** wrote the build spec `company/design/specs/flatten-the-cube-to-a-dot.md`, the mockup `flatten-the-cube-to-a-dot.svg`, and its renderer `flatten-the-cube-to-a-dot-mockup.mjs`, which also checks the counts. The format is CardSequence with 3 sub-cards: Slice, Flatten, Shrink. There are 9 stage controls and `minInteractions` is 5.
