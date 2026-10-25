@@ -25380,8 +25380,18 @@
       "id": "W-2065",
       "title": "flatten-the-cube-to-a-dot v2: reveal-fit at 1280x800 reports thumb because the reveal-fitted main picture is skipped and the 284x20 strip svg becomes the 'main picture' (0.68 of allowed width); unchanged since v1. Decide whether the heuristic should skip short decorative svgs or the lesson should mark the strip. artifacts/reveal-fit/flatten-the-cube-to-a-dot-v2-1280.json; company/reviews/flatten-the-cube-to-a-dot/build.md v2",
       "owner": "qa-tester",
-      "state": "backlog",
+      "state": "done",
       "domain": "math",
+      "created": "2026-10-25",
+      "links": [],
+      "updated": "2026-10-25"
+    },
+    {
+      "id": "W-2066",
+      "title": "tools/reveal-fit.mjs: skip aria-hidden, under-60px-tall or fixed-width svgs when picking the main picture, and do not fall back to a smaller svg when the largest carries data-reveal-fit (false 'thumb' at 1280 on flatten-the-cube-to-a-dot, W-2065 verdict: tool quirk). company/reviews/flatten-the-cube-to-a-dot/2026-10-25-qa-v2.md section 4",
+      "owner": "platform-engineer",
+      "state": "backlog",
+      "domain": null,
       "created": "2026-10-25",
       "links": []
     }

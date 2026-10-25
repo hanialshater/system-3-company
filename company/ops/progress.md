@@ -1,3 +1,13 @@
+## 2026-10-25 · qa-tester (W-2037, W-2065) · flatten-the-cube-to-a-dot v2: QA record, pass
+
+- **Changed:** new `company/reviews/flatten-the-cube-to-a-dot/2026-10-25-qa.md` (company qa-record, with the external-server stamp) and `2026-10-25-qa-v2.md` (hand-written: probes, reveal-fit, hand run, W-2065). Both linked in the lesson's `evidence.qa`. W-2065 done; W-2066 added for platform-engineer (reveal-fit heuristic). Nothing else touched (lesson, tests and tools unedited).
+- **Result: pass.** Contract 2/2 phone and desktop, 0 retries, on a private build of 3e365688e (`.next-qa-v2`, removed). sequence-probe at 390 and 1280: everything passes except `four-cards` at 390 (hypothetical 4-step trail, W-601). Hand run (wrong order, double taps, resize mid-sequence including during playback, keyboard only): state, ticks and totals held on every path; Shrink stays inert until the flatten; reveal text matched the stage; 0 px overflow; only console error is the 404 on `/api/account/me`.
+- **W-2047 "back":** the committed tool FAILs it on both viewports (state not kept); the platform-engineer's uncommitted working-tree fix (settled reads) PASSES it on both. The lesson kept state by hand too, so the FAIL was the tool. Re-run once the fix is committed: it was not committed when I finished.
+- **W-2065:** a tool quirk, not a lesson defect. reveal-fit skips the reveal-fitted main picture and measures the fixed-size 284x20 aria-hidden strip against the stage width (0.68 < 0.75); the whole 417 px stage is visible at 1280. Proposed fix is in W-2066. The 1280 `pass: 0` is a false positive; the QA v2 record is the evidence.
+- **Observations (none blocks):** landscape phone 844x390 puts controls below the stage window (kit-wide); focus drops to the page start after Lock it in, Slice, Take the top off and Remove the rest.
+- **Not run:** WebKit (binary absent), reduced motion, dark mode, feed swipe-away. **Believe:** the lesson passes the browser layer, high for what was exercised; it says nothing about learning.
+- **Next:** platform-engineer commits the W-2047 fix and W-2066; release-manager can cite the qa-v2 record. **Blocked:** nothing.
+
 ## 2026-10-25 · fact-checker (W-2064) · flatten-the-cube-to-a-dot v2: c9 verified, card 1 line consistent with c2
 
 - **Changed:** `src/demos/math/flatten-the-cube-to-a-dot/meta.json`: c9 is now **verified** (checkedBy, checkedOn, note), and c2 stays verified with one sentence added to its note. Both changes were made by `fc-2026-10-25/set_status_pass3.py`, which only touches the claims array and asserts that nothing else moved. The record is pass 3 in `company/reviews/flatten-the-cube-to-a-dot/2026-10-25-fact-check.md`, and my own derivation is in `fc-2026-10-25/own3.py` + `.out`. No learner text was edited.
