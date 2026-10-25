@@ -1,3 +1,19 @@
+## 2026-10-25 · chief-of-staff-ceo-office (Leonie) · F-53 drafted: the category as the unit of scale, broad central teams, physical agents (proposal only)
+
+- **Changed:** new `company/ceo-office/2026-10-25-f53-categories-and-agents.md`; board W-2069 (chief-of-staff files F-53 in the founder inbox). Nothing applied: no edit to roles.mjs, gates or protected paths.
+- **Proposal:**
+  - 14 category owners restored as logical roles (cm-* domain leads un-parked, with their own memory and queue; strands and cm-course-ncm stay parked), under one category lead (principal-pm-verticals re-scoped).
+  - One physical `category-owner` agent is launched as `cm-<d>`. As a top-level session (Meta's SDK launcher, `src/crew-run.mjs` sdkSession), it dispatches its own makers and never checkers. The checkers come from a quality desk on standing orders.
+  - Five central teams (content types, engineering, quality, product and portfolio, release); depth goes from 3 layers to 2.
+  - A tester agent groups qa-tester and accessibility-reviewer (probe, fit, scan), and the witnesses stay apart.
+  - Counts: 33 distinct agents become 26 (24 after 11-23) for 47 logical roles; 8 sessions at once typical, 10 peak, against P7's 8.
+- **Believe:**
+  - High that the un-park rule has shown nothing and cannot yet: 0 cycles have passed, there is no meter, and route-reviewer has 0 runs. 0 of 173 category items have closed since the re-own, and the last cm-* close is 10-17 (board.json).
+  - High that the cube lesson had at least 7 separate builds, 2 of them of the same commit 3e365688e.
+  - Medium on the cost: the ledger is off (W-2034).
+- **Next:** chief-of-staff files F-53 (W-2069), and the founder decides F53-1..9. If yes: written consults, then B1 spike (principal-engineer), B2 allow-list and B4 meter (tools-lead), B3 deploy guard (W-1051, W-1052).
+- **Blocked:** F53-3 (self-dispatch) on B1, B3 and B4. B3 and B4 are not met today.
+
 ## 2026-10-25 · learner-evaluator (v2 walk) · flatten-the-cube-to-a-dot v2: two minds, both launch
 
 - **Changed:** two new learner records, both stamped `lesson version: v2`. `company/reviews/flatten-the-cube-to-a-dot/2026-10-25-learner-knows-faces-not-euler-v2.md` uses the v1 boundary and has a closure table for the v1 findings. `2026-10-25-learner-no-convex-v2.md` is a learner who does not know "convex". Board W-2068 (category-curator): decide whether to gloss "convex". Lesson, meta.json and tools are untouched. Linking the records in `evidence.simulatedLearner` is the lesson owner's job.
