@@ -1,3 +1,18 @@
+## 2026-10-25 · interaction-designer · W-2042 lane M spec plus mockup: math/flatten-the-cube-to-a-dot
+
+- **Changed:** wrote the build spec `company/design/specs/flatten-the-cube-to-a-dot.md`, the mockup `flatten-the-cube-to-a-dot.svg`, and its renderer `flatten-the-cube-to-a-dot-mockup.mjs`, which also checks the counts. The format is CardSequence with 3 sub-cards: Slice, Flatten, Shrink. There are 9 stage controls and `minInteractions` is 5.
+- **Decided (the curator's doubt):** 12 hand removals do not fit; the time budget is about 66 s against 53 s. The learner removes edges by hand, then "Remove the rest" plays the remainder at 220 ms each.
+  - "Remove the rest" is disabled until the first removal.
+  - The removal order is changed so that a corner goes on press 3, not press 6. A learner then sees both kinds by hand, where the brief's order showed only regions.
+  - The order keeps the same 12 edges, 5 regions and 7 corners, with the total 1 throughout.
+  - The third trail title is shortened to "Shrink", since EDD-006 allows two words at most.
+  - Milestones are reached on the press, never at the end of an animation.
+  - A row of twelve "1" cells, squares for regions and circles for corners, keeps "the total never moved" on the stage for the reveal.
+- **Believe:** fairly sure the interaction teaches by hand and passes the QA path, since the path is traced control by control in the spec.
+  - Less sure of phone fit. The estimate is 753 of 844 px with the reveal open, but it is not measured. The spec gives the fix order.
+- **Next:** W-2044 demo-builder builds from the spec. W-2043 category-curator updates claim c5's source and the brief's picture text to the new order; the learner text is unchanged. After that, design-lead runs the design review (W-2037).
+- **Blocked:** nothing.
+
 ## 2026-10-25 · category-curator (math) · W-2037 lane M brief: math/flatten-the-cube-to-a-dot
 
 - **Changed:** one lane M brief, scaffolded as `src/demos/math/flatten-the-cube-to-a-dot/` (status draft; Demo.tsx is the untouched scaffold). The brief is in its `meta.json` under `brief`: 3 sub-cards (Slice, Flatten, Shrink to a dot), each with picture and milestone; knowledge boundary; 7 unverified claims; reviewRoute standard; priority 2 proposed. Concept `euler-polyhedron-formula` (unmet in `coverage math`). Numbers in `company/domains/briefs/checks/math-lane-m-euler-check.mjs`. Pointer section added to `company/domains/briefs/math.geometry.md`. Board W-2042 (interaction-designer, spec plus mockup).
