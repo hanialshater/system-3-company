@@ -66,3 +66,16 @@ topics, `knowledge/KB.md`).
    reached; the gap is now 1.2 points, down from 18-40% in B9 and B10.** The next design should test the org's speed
    advantage directly: the same wall-clock limit for both arms (where four agents get four times the work done), or a
    budget large enough that neither arm's money runs out before the work does.
+
+## Continuation (founder, 2026-10-25: "Could they work more" → "Yes": +$150 each, from the same heads and sessions)
+
+| Arm | Hidden mean per test file | All hidden statements | Scripts entirely right | Cost in total |
+|---|---|---|---|---|
+| **V** | **88.97%** (+2.05) | 90.26% | 1,124 / 1,520 | $294.71 |
+| **O** | **88.50%** (+2.74) | 90.08% | 1,066 / 1,520 | $294.72 |
+
+At the same cost the gap closed from 1.16 to 0.47 points: the org gained more with the extra money. Its 46 lands (none
+refused), by member: m-architect $63, 12 lands, 10.2 visible points (1.62 per $10); m-language (Sonnet) $54, 9 lands,
+6.5 points (1.21); m-values (Sonnet) $83, 10 lands, 9.3 points (1.12); m-engine $95, 15 lands, 8.3 points (0.87).
+The two Sonnet members, at about 60% of Opus's price, earned 46% of the gains. The single agent still went deeper (more
+scripts entirely right). Off-boarding again: 52 entries; the knowledge base now holds 158 entries in 41 topics.
