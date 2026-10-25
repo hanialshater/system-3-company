@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0060",
+  "title": "Crashes need exposure denominators",
+  "hook": "Two stated cases: explore driving exposure rather than crash counts alone.",
+  "domain": "probability",
+  "concept": "cp-source-0060",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How driving exposure rather than crash counts alone affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Gap, regardless of the stated inputs.",
+  "objective": "Compare driving exposure rather than crash counts alone in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0060.predict",
+      "text": "A toy comparison has 80/8000 in A and 20/1000 in B. What is A minus B in percentage points?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0060/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #60. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0060.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0060/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #60. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0060.reveal.0",
+      "text": "The retained results are TotalB=1,000; Gap=-1 and TotalB=2,000; Gap=0.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0060/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #60. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0060.reveal.1",
+      "text": "Divide by each group’s own denominator before subtracting. A rate difference alone does not explain the cause of that difference. This comparison isolates driving exposure rather than crash counts alone.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0060/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #60. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0060.case.0.witness",
+      "text": "TotalB=1,000; Gap=-1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0060/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #60. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0060.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"HitA\",80],[\"TotalA\",8000],[\"HitB\",20],[\"TotalB\",1000]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0060/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #60. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0060.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":-1}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"-1\"},{\"label\":\"TotalB\",\"value\":\"1,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0060/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #60. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0060.case.1.witness",
+      "text": "TotalB=2,000; Gap=0",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0060/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #60. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0060.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"HitA\",80],[\"TotalA\",8000],[\"HitB\",20],[\"TotalB\",2000]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0060/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #60. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0060.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":0}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"0\"},{\"label\":\"TotalB\",\"value\":\"2,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0060/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #60. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0060.recall",
+      "text": "A toy comparison has 81/8,000 in A and 20/1,000 in B. What is A minus B in percentage points? Answer -0.988.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0060/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #60. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy comparison has 81/8,000 in A and 20/1,000 in B. What is A minus B in percentage points?",
+    "options": [
+      "-1.383",
+      "-0.988",
+      "-0.593"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Gap -0.988 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0060",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-60"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 60,
+    "sourceSection": "3. Conditional probability & Bayes' rule",
+    "sourceEntryOriginal": "- **60. \"Most crashes happen near home\"** \\[Gotcha\\]: because most driving happens near home, not because home roads are dangerous.",
+    "modelBoundary": "driving exposure rather than crash counts alone",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

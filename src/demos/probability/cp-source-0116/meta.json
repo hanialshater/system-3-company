@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0116",
+  "title": "Predict the next free throw",
+  "hook": "Two stated cases: explore posterior prediction rather than a maximum-likelihood point.",
+  "domain": "probability",
+  "concept": "cp-source-0116",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How posterior prediction rather than a maximum-likelihood point affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Mean, regardless of the stated inputs.",
+  "objective": "Compare posterior prediction rather than a maximum-likelihood point in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0116.predict",
+      "text": "A toy coin has Beta(2,2) prior and independent data of 7 wins and 3 losses. What is the posterior predictive win probability?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0116/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #116. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0116.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0116/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #116. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0116.reveal.0",
+      "text": "The retained results are Alpha=2 Beta=2; Mean=0.643 and Alpha=20 Beta=20; Mean=0.54.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0116/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #116. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0116.reveal.1",
+      "text": "Prior counts and observed counts add under this model. The posterior mean also gives the next-trial predictive probability. This comparison isolates posterior prediction rather than a maximum-likelihood point.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0116/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #116. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0116.case.0.witness",
+      "text": "Alpha=2 Beta=2; Mean=0.643",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0116/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #116. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0116.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Alpha\",2],[\"Beta\",2],[\"Wins\",7],[\"Losses\",3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0116/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #116. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0116.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":0.6428571428571429}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"0.643\"},{\"label\":\"Alpha\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0116/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #116. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0116.case.1.witness",
+      "text": "Alpha=20 Beta=20; Mean=0.54",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0116/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #116. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0116.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Alpha\",20],[\"Beta\",20],[\"Wins\",7],[\"Losses\",3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0116/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #116. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0116.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":0.54}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"0.54\"},{\"label\":\"Alpha\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0116/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #116. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0116.recall",
+      "text": "A toy coin has Beta(3,2) prior and independent data of 7 wins and 3 losses. What is the posterior predictive win probability? Answer 0.667.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0116/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #116. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy coin has Beta(3,2) prior and independent data of 7 wins and 3 losses. What is the posterior predictive win probability?",
+    "options": [
+      "0.667",
+      "0.4",
+      "0.933"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Mean 0.667 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0116",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-116"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 116,
+    "sourceSection": "6. Bayesian updating & inference",
+    "sourceEntryOriginal": "- **116. Next free throw** \\[Predict\\]: predict the next shot from the full posterior, not just the best guess.",
+    "modelBoundary": "posterior prediction rather than a maximum-likelihood point",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

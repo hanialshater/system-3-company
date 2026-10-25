@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0199",
+  "title": "Precision and recall use different sets",
+  "hook": "Two stated cases: explore the threshold's true-positive and false-positive tradeoff.",
+  "domain": "probability",
+  "concept": "cp-source-0199",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the threshold's true-positive and false-positive tradeoff affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Precision, regardless of the stated inputs.",
+  "objective": "Compare the threshold's true-positive and false-positive tradeoff in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0199.predict",
+      "text": "A toy classifier records TP 80, FP 20, FN 20, TN 880. What is its precision?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0199/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #199. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0199.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0199/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #199. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0199.reveal.0",
+      "text": "The retained results are TP=80 FP=20; Precision=0.8 and TP=90 FP=90; Precision=0.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0199/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #199. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0199.reveal.1",
+      "text": "Precision conditions on positive predictions; recall conditions on actual positives. Accuracy can hide poor performance on a rare class. This comparison isolates the threshold's true-positive and false-positive tradeoff.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0199/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #199. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0199.case.0.witness",
+      "text": "TP=80 FP=20; Precision=0.8",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0199/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #199. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0199.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"TP\",80],[\"FP\",20],[\"FN\",20],[\"TN\",880]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0199/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #199. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0199.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Precision\",\"value\":0.8},{\"label\":\"Recall\",\"value\":0.8},{\"label\":\"Accuracy\",\"value\":0.96}]},\"metrics\":[{\"label\":\"Precision\",\"value\":\"0.8\"},{\"label\":\"TP\",\"value\":\"80\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0199/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #199. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0199.case.1.witness",
+      "text": "TP=90 FP=90; Precision=0.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0199/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #199. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0199.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"TP\",90],[\"FP\",90],[\"FN\",10],[\"TN\",810]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0199/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #199. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0199.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Precision\",\"value\":0.5},{\"label\":\"Recall\",\"value\":0.9},{\"label\":\"Accuracy\",\"value\":0.9}]},\"metrics\":[{\"label\":\"Precision\",\"value\":\"0.5\"},{\"label\":\"TP\",\"value\":\"90\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0199/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #199. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0199.recall",
+      "text": "A toy classifier records TP 81, FP 20, FN 20, TN 880. What is its precision? Answer 0.802.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0199/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #199. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy classifier records TP 81, FP 20, FN 20, TN 880. What is its precision?",
+    "options": [
+      "0.481",
+      "1.123",
+      "0.802"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Precision 0.802 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0199",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-199"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 199,
+    "sourceSection": "10. Probabilistic models in ML",
+    "sourceEntryOriginal": "- **199. Precision vs recall** \\[Slider\\]: move the decision threshold and trade missed cases against false alarms.",
+    "modelBoundary": "the threshold's true-positive and false-positive tradeoff",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

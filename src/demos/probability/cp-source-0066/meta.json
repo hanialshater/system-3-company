@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0066",
+  "title": "Short waits and a long tail",
+  "hook": "Two stated cases: explore a constant-rate waiting-time model.",
+  "domain": "probability",
+  "concept": "cp-source-0066",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How a constant-rate waiting-time model affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Survival, regardless of the stated inputs.",
+  "objective": "Compare a constant-rate waiting-time model in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0066.predict",
+      "text": "A toy exponential waiting time has rate 0.2. What is the probability the wait exceeds 5?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0066/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #66. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0066.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0066/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #66. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0066.reveal.0",
+      "text": "The retained results are Time=5; Survival=0.368 and Time=15; Survival=0.05.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0066/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #66. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0066.reveal.1",
+      "text": "A constant hazard gives exponential survival and memorylessness. A real waiting process need not have a constant hazard. This comparison isolates a constant-rate waiting-time model.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0066/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #66. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0066.case.0.witness",
+      "text": "Time=5; Survival=0.368",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0066/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #66. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0066.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Rate\",0.2],[\"Time\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0066/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #66. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0066.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Survival\",\"value\":0.36787944117144233},{\"label\":\"Mean\",\"value\":5}]},\"metrics\":[{\"label\":\"Survival\",\"value\":\"0.368\"},{\"label\":\"Time\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0066/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #66. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0066.case.1.witness",
+      "text": "Time=15; Survival=0.05",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0066/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #66. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0066.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Rate\",0.2],[\"Time\",15]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0066/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #66. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0066.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Survival\",\"value\":0.049787068367863944},{\"label\":\"Mean\",\"value\":5}]},\"metrics\":[{\"label\":\"Survival\",\"value\":\"0.05\"},{\"label\":\"Time\",\"value\":\"15\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0066/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #66. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0066.recall",
+      "text": "A toy exponential waiting time has rate 0.3. What is the probability the wait exceeds 5? Answer 0.223.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0066/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #66. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy exponential waiting time has rate 0.3. What is the probability the wait exceeds 5?",
+    "options": [
+      "0.123",
+      "0.223",
+      "0.323"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Survival 0.223 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0066",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-66"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 66,
+    "sourceSection": "4. Distributions you can feel",
+    "sourceEntryOriginal": "- **66. Waiting times** \\[Slider\\]: set an arrival rate and watch exponential gaps: lots of short waits, a few very long.",
+    "modelBoundary": "a constant-rate waiting-time model",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

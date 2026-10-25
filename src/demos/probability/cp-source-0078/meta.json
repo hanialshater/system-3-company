@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0078",
+  "title": "A stated normal-coverage approximation",
+  "hook": "Two stated cases: explore the coverage as a band widens.",
+  "domain": "probability",
+  "concept": "cp-source-0078",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the coverage as a band widens affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Coverage, regardless of the stated inputs.",
+  "objective": "Compare the coverage as a band widens in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0078.predict",
+      "text": "Use the explicit toy approximation C(z)=1-exp(-0.717z-0.416z²). At nonnegative z 1, what central normal coverage does it approximate?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0078/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #78. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0078.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0078/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #78. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0078.reveal.0",
+      "text": "The retained results are Z=1; Coverage=0.678 and Z=3; Coverage=0.997.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0078/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #78. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0078.reveal.1",
+      "text": "This visible approximation illustrates central coverage; it is not an exact normal CDF or a confidence statement about a particular unknown parameter. This comparison isolates the coverage as a band widens.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0078/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #78. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0078.case.0.witness",
+      "text": "Z=1; Coverage=0.678",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0078/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #78. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0078.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Z\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0078/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #78. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0078.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Coverage\",\"value\":0.67793439114992}]},\"metrics\":[{\"label\":\"Coverage\",\"value\":\"0.678\"},{\"label\":\"Z\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0078/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #78. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0078.case.1.witness",
+      "text": "Z=3; Coverage=0.997",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0078/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #78. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0078.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Z\",3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0078/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #78. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0078.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Coverage\",\"value\":0.9972468236569344}]},\"metrics\":[{\"label\":\"Coverage\",\"value\":\"0.997\"},{\"label\":\"Z\",\"value\":\"3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0078/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #78. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0078.recall",
+      "text": "Use the explicit toy approximation C(z)=1-exp(-0.717z-0.416z²). At nonnegative z 2, what central normal coverage does it approximate? Answer 0.955.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0078/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #78. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Use the explicit toy approximation C(z)=1-exp(-0.717z-0.416z²). At nonnegative z 2, what central normal coverage does it approximate?",
+    "options": [
+      "0.573",
+      "0.955",
+      "1.337"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Coverage 0.955 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0078",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-78"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 78,
+    "sourceSection": "4. Distributions you can feel",
+    "sourceEntryOriginal": "- **78. 68–95–99.7** \\[Slider\\]: drag a band of ±1, 2, 3 standard deviations and watch the coverage.",
+    "modelBoundary": "the coverage as a band widens",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

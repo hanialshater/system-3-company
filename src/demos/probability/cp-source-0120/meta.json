@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0120",
+  "title": "A toy hidden skill update",
+  "hook": "Two stated cases: explore the update weight after new skill evidence.",
+  "domain": "probability",
+  "concept": "cp-source-0120",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the update weight after new skill evidence affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Posterior, regardless of the stated inputs.",
+  "objective": "Compare the update weight after new skill evidence in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0120.predict",
+      "text": "A toy belief starts at 1500, receives estimate 1700, and moves fraction 0.1 toward it. What belief results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0120/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #120. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0120.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0120/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #120. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0120.reveal.0",
+      "text": "The retained results are Weight=0.1; Posterior=1,520 and Weight=0.5; Posterior=1,600.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0120/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #120. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0120.reveal.1",
+      "text": "Different update weights can create asymmetric learning from equally informative news. The toy rule is an assumption, not a psychological measurement. This comparison isolates the update weight after new skill evidence.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0120/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #120. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0120.case.0.witness",
+      "text": "Weight=0.1; Posterior=1,520",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0120/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #120. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0120.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",1500],[\"News\",1700],[\"Weight\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0120/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #120. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0120.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Posterior\",\"value\":1520}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"1,520\"},{\"label\":\"Weight\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0120/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #120. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0120.case.1.witness",
+      "text": "Weight=0.5; Posterior=1,600",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0120/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #120. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0120.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",1500],[\"News\",1700],[\"Weight\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0120/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #120. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0120.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Posterior\",\"value\":1600}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"1,600\"},{\"label\":\"Weight\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0120/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #120. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0120.recall",
+      "text": "A toy belief starts at 1,501, receives estimate 1,700, and moves fraction 0.1 toward it. What belief results? Answer 1,520.9.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0120/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #120. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy belief starts at 1,501, receives estimate 1,700, and moves fraction 0.1 toward it. What belief results?",
+    "options": [
+      "912.54",
+      "1,520.9",
+      "2,129.26"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Posterior 1,520.9 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0120",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-120"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 120,
+    "sourceSection": "6. Bayesian updating & inference",
+    "sourceEntryOriginal": "- **120. Your hidden rating** \\[Predict\\]: play matches and watch an Elo or TrueSkill estimate of your skill update.",
+    "modelBoundary": "the update weight after new skill evidence",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

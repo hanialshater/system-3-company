@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0050", "title": "Stadium matching and false alarms", "op": "bayes", "labels": ["Prior", "Sensitivity", "FalsePositive"], "outputs": ["Posterior"], "a": [0.0001, 0.99, 0.001], "b": [0.01, 0.99, 0.001], "question": "A toy condition has prevalence 0.0001; a test catches fraction 0.99 of cases and flags fraction 0.001 of noncases. Given a positive, what probability is a case?", "questionTemplate": "A toy condition has prevalence {Prior}; a test catches fraction {Sensitivity} of cases and flags fraction {FalsePositive} of noncases. Given a positive, what probability is a case?", "explain": "Count true and false positives in one common population. A test’s sensitivity is not the probability of a condition after a positive.", "lens": "the target fraction in the screened crowd", "kind": "grid", "answerPosition": 2};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

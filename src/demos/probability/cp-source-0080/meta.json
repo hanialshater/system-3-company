@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0080",
+  "title": "A process gives the count shape",
+  "hook": "Two stated cases: explore the mean of a specified count-generating process.",
+  "domain": "probability",
+  "concept": "cp-source-0080",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the mean of a specified count-generating process affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Probability, regardless of the stated inputs.",
+  "objective": "Compare the mean of a specified count-generating process in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0080.predict",
+      "text": "A toy Poisson count has mean 2. What is the probability of exactly 2 events?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0080/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #80. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0080.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0080/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #80. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0080.reveal.0",
+      "text": "The retained results are Rate=2; Probability=0.271 and Rate=5; Probability=0.084.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0080/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #80. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0080.reveal.1",
+      "text": "The mean fixes this Poisson distribution. Agreement at one count does not establish that real events satisfy the model. This comparison isolates the mean of a specified count-generating process.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0080/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #80. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0080.case.0.witness",
+      "text": "Rate=2; Probability=0.271",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0080/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #80. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0080.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Rate\",2],[\"Count\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0080/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #80. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0080.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Probability\",\"value\":0.2706705664732254}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.271\"},{\"label\":\"Rate\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0080/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #80. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0080.case.1.witness",
+      "text": "Rate=5; Probability=0.084",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0080/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #80. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0080.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Rate\",5],[\"Count\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0080/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #80. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0080.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Probability\",\"value\":0.08422433748856833}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.084\"},{\"label\":\"Rate\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0080/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #80. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0080.recall",
+      "text": "A toy Poisson count has mean 3. What is the probability of exactly 2 events? Answer 0.224.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0080/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #80. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy Poisson count has mean 3. What is the probability of exactly 2 events?",
+    "options": [
+      "0.224",
+      "0.124",
+      "0.324"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Probability 0.224 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0080",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-80"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 80,
+    "sourceSection": "4. Distributions you can feel",
+    "sourceEntryOriginal": "- **80. Name that distribution** \\[Predict\\]: see a histogram, guess which process made it: dice, waiting times, counts or wealth.",
+    "modelBoundary": "the mean of a specified count-generating process",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

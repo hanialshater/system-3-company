@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0063",
+  "title": "A typical value versus an extreme",
+  "hook": "Two stated cases: explore the effect of an extreme observation on the mean.",
+  "domain": "probability",
+  "concept": "cp-source-0063",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the effect of an extreme observation on the mean affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Mean, regardless of the stated inputs.",
+  "objective": "Compare the effect of an extreme observation on the mean in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0063.predict",
+      "text": "A toy sample has 99 identical values 100 and one extreme 150. What is the sample mean?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0063/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #63. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0063.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0063/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #63. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0063.reveal.0",
+      "text": "The retained results are Extreme=150; Mean=100.5 and Extreme=1.00e+6; Mean=10,099.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0063/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #63. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0063.reveal.1",
+      "text": "The extreme value can move the mean substantially while the median of this sample stays at the repeated value. Sensitivity does not itself establish which observations are invalid. This comparison isolates the effect of an extreme observation on the mean.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0063/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #63. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0063.case.0.witness",
+      "text": "Extreme=150; Mean=100.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0063/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #63. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0063.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Regular\",100],[\"N\",99],[\"Extreme\",150]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0063/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #63. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0063.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":100.5},{\"label\":\"Median\",\"value\":100}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"100.5\"},{\"label\":\"Extreme\",\"value\":\"150\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0063/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #63. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0063.case.1.witness",
+      "text": "Extreme=1.00e+6; Mean=10,099",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0063/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #63. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0063.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Regular\",100],[\"N\",99],[\"Extreme\",1000000]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0063/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #63. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0063.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":10099},{\"label\":\"Median\",\"value\":100}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"10,099\"},{\"label\":\"Extreme\",\"value\":\"1.00e+6\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0063/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #63. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0063.recall",
+      "text": "A toy sample has 99 identical values 101 and one extreme 150. What is the sample mean? Answer 101.49.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0063/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #63. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy sample has 99 identical values 101 and one extreme 150. What is the sample mean?",
+    "options": [
+      "60.894",
+      "101.49",
+      "142.086"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Mean 101.49 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0063",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-63"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 63,
+    "sourceSection": "4. Distributions you can feel",
+    "sourceEntryOriginal": "- **63. Height vs wealth** \\[Split\\]: the tallest person is under 1.5× average height; the richest is millions of times average wealth.",
+    "modelBoundary": "the effect of an extreme observation on the mean",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0166",
+  "title": "Add uncertain task times correctly",
+  "hook": "Two stated cases: explore expected duration versus a high-reliability deadline.",
+  "domain": "probability",
+  "concept": "cp-source-0166",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How expected duration versus a high-reliability deadline affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Mean, regardless of the stated inputs.",
+  "objective": "Compare expected duration versus a high-reliability deadline in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0166.predict",
+      "text": "Two independent toy task times have means 5,7 and variances 4,9. What is their total expected duration?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0166/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #166. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0166.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0166/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #166. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0166.reveal.0",
+      "text": "The retained results are VarA=4 VarB=9; Mean=12 and VarA=16 VarB=36; Mean=12.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0166/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #166. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0166.reveal.1",
+      "text": "Independent variances add, as do means. A high-reliability deadline requires more information than simply the total expectation. This comparison isolates expected duration versus a high-reliability deadline.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0166/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #166. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0166.case.0.witness",
+      "text": "VarA=4 VarB=9; Mean=12",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0166/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #166. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0166.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"MeanA\",5],[\"VarA\",4],[\"MeanB\",7],[\"VarB\",9]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0166/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #166. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0166.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":12},{\"label\":\"SD\",\"value\":3.605551275463989}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"12\"},{\"label\":\"VarA\",\"value\":\"4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0166/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #166. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0166.case.1.witness",
+      "text": "VarA=16 VarB=36; Mean=12",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0166/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #166. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0166.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"MeanA\",5],[\"VarA\",16],[\"MeanB\",7],[\"VarB\",36]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0166/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #166. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0166.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":12},{\"label\":\"SD\",\"value\":7.211102550927978}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"12\"},{\"label\":\"VarA\",\"value\":\"16\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0166/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #166. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0166.recall",
+      "text": "Two independent toy task times have means 6,7 and variances 4,9. What is their total expected duration? Answer 13.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0166/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #166. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two independent toy task times have means 6,7 and variances 4,9. What is their total expected duration?",
+    "options": [
+      "7.8",
+      "18.2",
+      "13"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Mean 13 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0166",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-166"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 166,
+    "sourceSection": "9. Monte Carlo & simulation",
+    "sourceEntryOriginal": "- **166. Project deadline** \\[Predict\\]: add up uncertain task durations; the realistic finish date sits well past the sum of the averages.",
+    "modelBoundary": "expected duration versus a high-reliability deadline",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

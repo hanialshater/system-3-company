@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0014",
+  "title": "HH and HT take different times",
+  "hook": "Two stated cases: explore prefix overlap in waiting times.",
+  "domain": "probability",
+  "concept": "cp-source-0014",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How prefix overlap in waiting times affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Expected, regardless of the stated inputs.",
+  "objective": "Compare prefix overlap in waiting times in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0014.predict",
+      "text": "Independent flips have heads probability 0.5. Pattern 0 means HH if 0, HT if 1. What is the expected waiting time from no prefix?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0014/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #14. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0014.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0014/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #14. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0014.reveal.0",
+      "text": "The retained results are Pattern=0; Expected=6 and Pattern=1; Expected=4.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0014/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #14. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0014.reveal.1",
+      "text": "Overlapping prefixes alter the waiting time. Both patterns have the same one-window probability for a fair coin but different restart behavior. This comparison isolates prefix overlap in waiting times.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0014/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #14. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0014.case.0.witness",
+      "text": "Pattern=0; Expected=6",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0014/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #14. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0014.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.5],[\"Pattern\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0014/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #14. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0014.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Expected\",\"value\":6}]},\"metrics\":[{\"label\":\"Expected\",\"value\":\"6\"},{\"label\":\"Pattern\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0014/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #14. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0014.case.1.witness",
+      "text": "Pattern=1; Expected=4",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0014/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #14. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0014.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.5],[\"Pattern\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0014/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #14. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0014.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Expected\",\"value\":4}]},\"metrics\":[{\"label\":\"Expected\",\"value\":\"4\"},{\"label\":\"Pattern\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0014/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #14. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0014.recall",
+      "text": "Independent flips have heads probability 0.4. Pattern 0 means HH if 0, HT if 1. What is the expected waiting time from no prefix? Answer 8.75.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0014/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #14. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Independent flips have heads probability 0.4. Pattern 0 means HH if 0, HT if 1. What is the expected waiting time from no prefix?",
+    "options": [
+      "8.75",
+      "5.25",
+      "12.25"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Expected 8.75 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0014",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-14"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 14,
+    "sourceSection": "1. Probability paradoxes & puzzles",
+    "sourceEntryOriginal": "- **14. HH vs HT** \\[Predict\\]: which takes more flips on average to appear? HH takes 6, HT takes 4.",
+    "modelBoundary": "prefix overlap in waiting times",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

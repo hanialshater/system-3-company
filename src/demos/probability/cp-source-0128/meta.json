@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0128",
+  "title": "An enormous payoff times tiny odds",
+  "hook": "Two stated cases: explore the explicitly assumed probability-payoff product.",
+  "domain": "probability",
+  "concept": "cp-source-0128",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the explicitly assumed probability-payoff product affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Net, regardless of the stated inputs.",
+  "objective": "Compare the explicitly assumed probability-payoff product in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0128.predict",
+      "text": "A toy policy reduces a loss by 1e+06 with probability 1e-06 and costs 2. What is its expected cash gain minus cost?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0128/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #128. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0128.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0128/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #128. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0128.reveal.0",
+      "text": "The retained results are Reduction=1.00e+6; Net=-1 and Reduction=1.00e+7; Net=8.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0128/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #128. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0128.reveal.1",
+      "text": "Expected cash value weights the avoided loss by its probability. Utility, liquidity and risk tolerance are separate assumptions. This comparison isolates the explicitly assumed probability-payoff product.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0128/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #128. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0128.case.0.witness",
+      "text": "Reduction=1.00e+6; Net=-1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0128/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #128. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0128.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Probability\",0.000001],[\"Reduction\",1000000],[\"Cost\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0128/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #128. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0128.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Net\",\"value\":-1}]},\"metrics\":[{\"label\":\"Net\",\"value\":\"-1\"},{\"label\":\"Reduction\",\"value\":\"1.00e+6\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0128/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #128. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0128.case.1.witness",
+      "text": "Reduction=1.00e+7; Net=8",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0128/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #128. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0128.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Probability\",0.000001],[\"Reduction\",10000000],[\"Cost\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0128/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #128. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0128.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Net\",\"value\":8}]},\"metrics\":[{\"label\":\"Net\",\"value\":\"8\"},{\"label\":\"Reduction\",\"value\":\"1.00e+7\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0128/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #128. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0128.recall",
+      "text": "A toy policy reduces a loss by 1.00e+6 with probability 8.00e-7 and costs 2. What is its expected cash gain minus cost? Answer -1.2.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0128/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #128. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy policy reduces a loss by 1.00e+6 with probability 8.00e-7 and costs 2. What is its expected cash gain minus cost?",
+    "options": [
+      "-1.2",
+      "-1.68",
+      "-0.72"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Net -1.2 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0128",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-128"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 128,
+    "sourceSection": "7. Expected value, risk & decisions",
+    "sourceEntryOriginal": "- **128. Pascal's mugging** \\[Split\\]: a tiny chance of an enormous payoff; poll whether to pay, then discuss.",
+    "modelBoundary": "the explicitly assumed probability-payoff product",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

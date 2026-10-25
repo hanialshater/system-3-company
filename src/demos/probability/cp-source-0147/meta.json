@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0147",
+  "title": "Another checkout line wins the race",
+  "hook": "Two stated cases: explore exchangeable lines without ties.",
+  "domain": "probability",
+  "concept": "cp-source-0147",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How exchangeable lines without ties affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Probability, regardless of the stated inputs.",
+  "objective": "Compare exchangeable lines without ties in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0147.predict",
+      "text": "A correct toy reservoir keeps 2 items uniformly from a completed stream of 3. What is each item’s inclusion probability?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0147/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #147. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0147.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0147/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #147. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0147.reveal.0",
+      "text": "The retained results are Items=3 Kept=2; Probability=0.667 and Items=5 Kept=4; Probability=0.8.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0147/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #147. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0147.reveal.1",
+      "text": "Uniform inclusion depends on the reservoir replacement rule, not on knowing the final stream length in advance. This comparison isolates exchangeable lines without ties.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0147/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #147. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0147.case.0.witness",
+      "text": "Items=3 Kept=2; Probability=0.667",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0147/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #147. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0147.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Items\",3],[\"Kept\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0147/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #147. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0147.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Probability\",\"value\":0.6666666666666666}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.667\"},{\"label\":\"Items\",\"value\":\"3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0147/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #147. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0147.case.1.witness",
+      "text": "Items=5 Kept=4; Probability=0.8",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0147/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #147. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0147.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Items\",5],[\"Kept\",4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0147/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #147. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0147.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Probability\",\"value\":0.8}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.8\"},{\"label\":\"Items\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0147/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #147. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0147.recall",
+      "text": "A correct toy reservoir keeps 2 items uniformly from a completed stream of 4. What is each item’s inclusion probability? Answer 0.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0147/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #147. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A correct toy reservoir keeps 2 items uniformly from a completed stream of 4. What is each item’s inclusion probability?",
+    "options": [
+      "0.3",
+      "0.5",
+      "0.7"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Probability 0.5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0147",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-147"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 147,
+    "sourceSection": "8. Random processes: walks, chains, queues",
+    "sourceEntryOriginal": "- **147. The other line is faster** \\[Gotcha\\]: with three checkout lines, another one beats yours two times out of three.",
+    "modelBoundary": "exchangeable lines without ties",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0179",
+  "title": "Coverage under a random design",
+  "hook": "Two stated cases: explore the empty-cell baseline before comparing a structured sampler.",
+  "domain": "probability",
+  "concept": "cp-source-0179",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the empty-cell baseline before comparing a structured sampler affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Empty, regardless of the stated inputs.",
+  "objective": "Compare the empty-cell baseline before comparing a structured sampler in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0179.predict",
+      "text": "Throw 100 independent toy points into 100 equally likely cells. What is the expected number of empty cells?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0179/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #179. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0179.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0179/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #179. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0179.reveal.0",
+      "text": "The retained results are Balls=100; Empty=36.603 and Balls=1,000; Empty=0.004.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0179/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #179. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0179.reveal.1",
+      "text": "Uniform independent placement still produces gaps and clusters. The expected empty-cell count is not a rule that every sample must meet. This comparison isolates the empty-cell baseline before comparing a structured sampler.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0179/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #179. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0179.case.0.witness",
+      "text": "Balls=100; Empty=36.603",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0179/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #179. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0179.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Balls\",100],[\"Bins\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0179/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #179. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0179.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Empty\",\"value\":36.60323412732292}]},\"metrics\":[{\"label\":\"Empty\",\"value\":\"36.603\"},{\"label\":\"Balls\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0179/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #179. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0179.case.1.witness",
+      "text": "Balls=1,000; Empty=0.004",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0179/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #179. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0179.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Balls\",1000],[\"Bins\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0179/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #179. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0179.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Empty\",\"value\":0.004317124741065786}]},\"metrics\":[{\"label\":\"Empty\",\"value\":\"0.004\"},{\"label\":\"Balls\",\"value\":\"1,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0179/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #179. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0179.recall",
+      "text": "Throw 101 independent toy points into 100 equally likely cells. What is the expected number of empty cells? Answer 36.237.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0179/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #179. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Throw 101 independent toy points into 100 equally likely cells. What is the expected number of empty cells?",
+    "options": [
+      "36.237",
+      "21.742",
+      "50.732"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Empty 36.237 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0179",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-179"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 179,
+    "sourceSection": "9. Monte Carlo & simulation",
+    "sourceEntryOriginal": "- **179. Random vs quasi-random** \\[Split\\]: scattered random points vs evenly spread Sobol points; the second estimates faster.",
+    "modelBoundary": "the empty-cell baseline before comparing a structured sampler",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

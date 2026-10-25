@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0122",
+  "title": "Bet sizing under known odds",
+  "hook": "Two stated cases: explore the log-growth optimum under specified odds.",
+  "domain": "probability",
+  "concept": "cp-source-0122",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the log-growth optimum under specified odds affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Fraction, regardless of the stated inputs.",
+  "objective": "Compare the log-growth optimum under specified odds in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0122.predict",
+      "text": "A toy repeatable bet wins with probability 0.6, paying net Odds 1 per unit staked. What unconstrained Kelly fraction maximizes expected log growth?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0122/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #122. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0122.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0122/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #122. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0122.reveal.0",
+      "text": "The retained results are Odds=1; Fraction=0.2 and Odds=2; Fraction=0.4.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0122/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #122. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0122.reveal.1",
+      "text": "The optimum depends on a known probability and payoff model. Estimation error, constraints and risk preferences can justify a different stake. This comparison isolates the log-growth optimum under specified odds.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0122/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #122. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0122.case.0.witness",
+      "text": "Odds=1; Fraction=0.2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0122/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #122. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0122.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.6],[\"Odds\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0122/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #122. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0122.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Fraction\",\"value\":0.19999999999999996}]},\"metrics\":[{\"label\":\"Fraction\",\"value\":\"0.2\"},{\"label\":\"Odds\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0122/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #122. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0122.case.1.witness",
+      "text": "Odds=2; Fraction=0.4",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0122/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #122. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0122.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.6],[\"Odds\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0122/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #122. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0122.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Fraction\",\"value\":0.39999999999999997}]},\"metrics\":[{\"label\":\"Fraction\",\"value\":\"0.4\"},{\"label\":\"Odds\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0122/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #122. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0122.recall",
+      "text": "A toy repeatable bet wins with probability 0.48, paying net Odds 1 per unit staked. What unconstrained Kelly fraction maximizes expected log growth? Answer -0.04.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0122/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #122. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy repeatable bet wins with probability 0.48, paying net Odds 1 per unit staked. What unconstrained Kelly fraction maximizes expected log growth?",
+    "options": [
+      "-0.04",
+      "-0.14",
+      "0.06"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Fraction -0.04 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0122",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-122"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 122,
+    "sourceSection": "7. Expected value, risk & decisions",
+    "sourceEntryOriginal": "- **122. Kelly betting** \\[Slider\\]: choose a bet fraction on a favorable coin; too high and you go broke despite your edge.",
+    "modelBoundary": "the log-growth optimum under specified odds",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

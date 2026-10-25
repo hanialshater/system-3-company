@@ -1,0 +1,21 @@
+// Mathematical relationships that fixtures alone do not establish.
+import assert from 'node:assert/strict';
+const model=async id=>(await import(`../../src/demos/probability/cp-source-${String(id).padStart(4,'0')}/model.ts`)).compute;
+const near=(a,b)=>assert(Math.abs(a-b)<1e-9,`${a} != ${b}`);
+const monty=await model(1);near(monty([3])[0]+monty([3])[1],1);assert(monty([100])[0]>monty([3])[0]);
+const birthdays=await model(4);near(birthdays([1,365])[0],0);assert(birthdays([70,365])[0]>birthdays([23,365])[0]);
+const child=await model(6);near(child([1])[0],1/3);near(child([7])[0],13/27);
+const race=await model(13);near(race([0,4])[0],7/8);near(race([0,4])[0]+race([4,0])[0],1);
+const dice=await model(15);for(let i=0;i<4;i++)near(dice([i,(i+1)%4])[0],2/3);
+const mixed=await model(16);assert(mixed([.495,.095,.745,1])[0]<0);assert(mixed([.495,.095,.745,0])[0]<0);assert(mixed([.495,.095,.745,.5])[0]>0);
+const selected=await model(24);assert(selected([4,.5])[0]<selected([8,.5])[0]);assert(selected([8,.5])[0]<.5);
+const prior=await model(114);near(prior([0,1000000])[0],0);assert(prior([.01,100])[0]>0);
+const compound=await model(135);near(compound([.5,-.5])[0],.75);
+const ruin=await model(130);near(ruin([50,100,.5])[0],.5);assert(ruin([10,100,.5])[0]>.5);
+const queue=await model(148);assert(queue([9.5,10])[0]>queue([8,10])[0]);
+const capped=await model(73);near(capped([1])[0],1);assert(capped([3])[0]<capped([10])[0]);assert(capped([10])[0]<Math.E);
+const volume=await model(174);assert(volume([2])[0]>volume([10])[0]);
+const logistic=await model(182);near(logistic([-3])[0]+logistic([3])[0],1);
+const edge=await model(180),small=edge([100,.01,1]),large=edge([10000,.01,1]);near(large[0]/small[0],100);near(large[1]/small[1],10);
+const rare=await model(198);assert(rare([990,10])[0]>.98);near(rare([990,10])[1],0);
+console.log('32 probability-model relationship checks pass.');

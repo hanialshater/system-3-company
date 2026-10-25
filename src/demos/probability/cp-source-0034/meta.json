@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0034",
+  "title": "An ideal ten-card riffle model",
+  "hook": "Two stated cases: explore one permutation's deviation from uniformity.",
+  "domain": "probability",
+  "concept": "cp-source-0034",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How one permutation's deviation from uniformity affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines IdentityRatio, regardless of the stated inputs.",
+  "objective": "Compare one permutation's deviation from uniformity in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0034.predict",
+      "text": "Under the ideal GSR riffle model, use 10 distinct cards and 1 riffles. What is the identity-permutation probability divided by its uniform probability?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0034/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #34. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0034.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0034/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #34. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0034.reveal.0",
+      "text": "The retained results are Shuffles=1; IdentityRatio=38,981.25 and Shuffles=7; IdentityRatio=1.409.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0034/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #34. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0034.reveal.1",
+      "text": "Repeated ideal riffles form an a-shuffle with a equal to two to the riffle count. One permutation’s ratio alone is not a full mixing-distance measure. This comparison isolates one permutation's deviation from uniformity.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0034/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #34. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0034.case.0.witness",
+      "text": "Shuffles=1; IdentityRatio=38,981.25",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0034/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #34. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0034.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Cards\",10],[\"Shuffles\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0034/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #34. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0034.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"IdentityRatio\",\"value\":38981.25}]},\"metrics\":[{\"label\":\"IdentityRatio\",\"value\":\"38,981.25\"},{\"label\":\"Shuffles\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0034/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #34. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0034.case.1.witness",
+      "text": "Shuffles=7; IdentityRatio=1.409",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0034/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #34. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0034.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Cards\",10],[\"Shuffles\",7]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0034/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #34. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0034.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"IdentityRatio\",\"value\":1.4094129124079129}]},\"metrics\":[{\"label\":\"IdentityRatio\",\"value\":\"1.409\"},{\"label\":\"Shuffles\",\"value\":\"7\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0034/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #34. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0034.recall",
+      "text": "Under the ideal GSR riffle model, use 11 distinct cards and 1 riffles. What is the identity-permutation probability divided by its uniform probability? Answer 233,887.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0034/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #34. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Under the ideal GSR riffle model, use 11 distinct cards and 1 riffles. What is the identity-permutation probability divided by its uniform probability?",
+    "options": [
+      "140,332.5",
+      "327,442.5",
+      "233,887.5"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives IdentityRatio 233,887.5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0034",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-34"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 34,
+    "sourceSection": "2. Coins, dice & randomness intuition",
+    "sourceEntryOriginal": "- **34. Seven shuffles** \\[Slider\\]: it takes about 7 riffle shuffles to mix a deck well (Bayer & Diaconis, 1992).",
+    "modelBoundary": "one permutation's deviation from uniformity",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0181",
+  "title": "A toy language feature changes odds",
+  "hook": "Two stated cases: explore the feature likelihood ratio in a two-language model.",
+  "domain": "probability",
+  "concept": "cp-source-0181",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the feature likelihood ratio in a two-language model affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Posterior, regardless of the stated inputs.",
+  "objective": "Compare the feature likelihood ratio in a two-language model in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0181.predict",
+      "text": "A toy hypothesis has prior probability 0.5; evidence has likelihood ratio 9 in its favor. What is its posterior probability?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0181/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #181. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0181.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0181/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #181. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0181.reveal.0",
+      "text": "The retained results are LR=9; Posterior=0.9 and LR=0.111; Posterior=0.1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0181/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #181. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0181.reveal.1",
+      "text": "A likelihood ratio multiplies prior odds, rather than replacing the prior probability. The likelihood model must be specified. This comparison isolates the feature likelihood ratio in a two-language model.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0181/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #181. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0181.case.0.witness",
+      "text": "LR=9; Posterior=0.9",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0181/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #181. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0181.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0.5],[\"LR\",9]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0181/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #181. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0181.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Posterior\",\"value\":0.9}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"0.9\"},{\"label\":\"LR\",\"value\":\"9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0181/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #181. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0181.case.1.witness",
+      "text": "LR=0.111; Posterior=0.1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0181/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #181. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0181.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0.5],[\"LR\",0.1111111111111111]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0181/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #181. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0181.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Posterior\",\"value\":0.09999999999999999}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"0.1\"},{\"label\":\"LR\",\"value\":\"0.111\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0181/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #181. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0181.recall",
+      "text": "A toy hypothesis has prior probability 0.4; evidence has likelihood ratio 9 in its favor. What is its posterior probability? Answer 0.857.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0181/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #181. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy hypothesis has prior probability 0.4; evidence has likelihood ratio 9 in its favor. What is its posterior probability?",
+    "options": [
+      "0.514",
+      "1.2",
+      "0.857"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Posterior 0.857 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0181",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-181"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 181,
+    "sourceSection": "10. Probabilistic models in ML",
+    "sourceEntryOriginal": "- **181. Language detector** \\[Predict\\]: type a sentence; a letter-pair Naive Bayes model guesses the language with probabilities.",
+    "modelBoundary": "the feature likelihood ratio in a two-language model",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

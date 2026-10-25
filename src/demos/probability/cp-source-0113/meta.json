@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0113",
+  "title": "Combine normal prior and measurement",
+  "hook": "Two stated cases: explore the relative precisions in a normal update.",
+  "domain": "probability",
+  "concept": "cp-source-0113",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the relative precisions in a normal update affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Mean, regardless of the stated inputs.",
+  "objective": "Compare the relative precisions in a normal update in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0113.predict",
+      "text": "A toy normal prior has mean 0, variance 4; one normal measurement is 3 with noise variance 1. What is the posterior mean?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0113/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #113. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0113.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0113/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #113. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0113.reveal.0",
+      "text": "The retained results are Noise=1; Mean=2.4 and Noise=16; Mean=0.6.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0113/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #113. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0113.reveal.1",
+      "text": "Precisions weight the prior and measurement. The variance calculation assumes the stated independent normal model. This comparison isolates the relative precisions in a normal update.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0113/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #113. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0113.case.0.witness",
+      "text": "Noise=1; Mean=2.4",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0113/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #113. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0113.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0],[\"Variance\",4],[\"Measurement\",3],[\"Noise\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0113/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #113. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0113.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":2.4},{\"label\":\"Variance\",\"value\":0.8}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"2.4\"},{\"label\":\"Noise\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0113/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #113. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0113.case.1.witness",
+      "text": "Noise=16; Mean=0.6",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0113/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #113. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0113.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0],[\"Variance\",4],[\"Measurement\",3],[\"Noise\",16]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0113/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #113. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0113.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":0.6},{\"label\":\"Variance\",\"value\":3.2}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"0.6\"},{\"label\":\"Noise\",\"value\":\"16\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0113/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #113. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0113.recall",
+      "text": "A toy normal prior has mean 0, variance 5; one normal measurement is 3 with noise variance 1. What is the posterior mean? Answer 2.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0113/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #113. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy normal prior has mean 0, variance 5; one normal measurement is 3 with noise variance 1. What is the posterior mean?",
+    "options": [
+      "2.5",
+      "1.5",
+      "3.5"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Mean 2.5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0113",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-113"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 113,
+    "sourceSection": "6. Bayesian updating & inference",
+    "sourceEntryOriginal": "- **113. Normal meets normal** \\[Slider\\]: blend a prior mean with noisy measurements and watch the posterior shift and tighten.",
+    "modelBoundary": "the relative precisions in a normal update",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

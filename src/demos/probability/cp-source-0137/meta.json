@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0137",
+  "title": "Reciprocal odds exceed one",
+  "hook": "Two stated cases: explore the overround in an exhaustive two-outcome book.",
+  "domain": "probability",
+  "concept": "cp-source-0137",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the overround in an exhaustive two-outcome book affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Excess, regardless of the stated inputs.",
+  "objective": "Compare the overround in an exhaustive two-outcome book in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0137.predict",
+      "text": "Two exhaustive outcomes have toy decimal odds 1.9 and 1.9. What is the sum of implied probabilities minus one?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0137/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #137. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0137.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0137/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #137. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0137.reveal.0",
+      "text": "The retained results are OddsA=1.9 OddsB=1.9; Excess=0.053 and OddsA=2 OddsB=2; Excess=0.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0137/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #137. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0137.reveal.1",
+      "text": "The reciprocal-odds total describes the quoted margin. It is not automatically the realized house profit on every set of stakes. This comparison isolates the overround in an exhaustive two-outcome book.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0137/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #137. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0137.case.0.witness",
+      "text": "OddsA=1.9 OddsB=1.9; Excess=0.053",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0137/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #137. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0137.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"OddsA\",1.9],[\"OddsB\",1.9]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0137/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #137. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0137.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Excess\",\"value\":0.05263157894736836}]},\"metrics\":[{\"label\":\"Excess\",\"value\":\"0.053\"},{\"label\":\"OddsA\",\"value\":\"1.9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0137/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #137. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0137.case.1.witness",
+      "text": "OddsA=2 OddsB=2; Excess=0",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0137/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #137. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0137.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"OddsA\",2],[\"OddsB\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0137/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #137. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0137.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Excess\",\"value\":0}]},\"metrics\":[{\"label\":\"Excess\",\"value\":\"0\"},{\"label\":\"OddsA\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0137/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #137. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0137.recall",
+      "text": "Two exhaustive outcomes have toy decimal odds 2 and 1.9. What is the sum of implied probabilities minus one? Answer 0.026.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0137/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #137. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two exhaustive outcomes have toy decimal odds 2 and 1.9. What is the sum of implied probabilities minus one?",
+    "options": [
+      "0.026",
+      "-0.074",
+      "0.126"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Excess 0.026 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0137",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-137"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 137,
+    "sourceSection": "7. Expected value, risk & decisions",
+    "sourceEntryOriginal": "- **137. Bookmaker odds** \\[Gotcha\\]: convert odds to implied probabilities and they sum past 100%; that gap is the house edge.",
+    "modelBoundary": "the overround in an exhaustive two-outcome book",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

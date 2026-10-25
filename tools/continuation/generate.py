@@ -2,6 +2,7 @@ from pathlib import Path
 import csv,json,sys,math,re,subprocess
 from math_ops import OPS
 import behavioral_extra
+import probability_ops
 batch=sys.argv[1];domain=sys.argv[2];curation=Path(sys.argv[3])
 root=Path.cwd();rows=list(csv.DictReader(curation.open(),delimiter='\t'))
 remaining=json.load(open(f'company/domains/briefs/continuation/{domain}-remaining.json'))
@@ -40,6 +41,8 @@ export function compute(p:number[]):number[] {
 '''%(len(a),o['ts']))
  question=o['question'].format(**dict(zip(o['labels'],map(lambda x:f'{x:g}',a))))
  config=dict(id=slug,title=row['title'],op=row['op'],labels=o['labels'],outputs=o['out'],a=a,b=b,question=question,questionTemplate=o['question'],explain=o['explain'],lens=row['lens'],kind=o['kind'],answerPosition=id%3)
+ if 'plot' in o: config['plot']=o['plot']
+ if row.get('Recall'):config['recall']=list(map(float,row['Recall'].split(',')))
  (d/'spec.ts').write_text("import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';\nimport {compute} from './model';\nconst c:CuratedCase="+json.dumps(config,ensure_ascii=False)+";\nexport const spec=makeCuratedSpec(c,compute);\nexport const curation=c;\n")
  records.append(dict(slug=slug,domain=domain,sourceEntryId=id,sourceSection=s['section'],sourceText=s['line'],sourceFile=s['file'],title=row['title'],lens=row['lens'],model=row['op']))
  fixtures.append(dict(slug=slug,domain=domain,a=a,b=b,expectedA=av,expectedB=bv))

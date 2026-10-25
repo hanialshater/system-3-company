@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0088",
+  "title": "A city poll versus a country poll",
+  "hook": "Two stated cases: explore the finite-population sampling fraction.",
+  "domain": "probability",
+  "concept": "cp-source-0088",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the finite-population sampling fraction affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines SE, regardless of the stated inputs.",
+  "objective": "Compare the finite-population sampling fraction in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0088.predict",
+      "text": "A simple random toy poll samples 1000 without replacement from population 1e+06 with proportion 0.5. What is the standard error of its proportion?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0088/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #88. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0088.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0088/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #88. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0088.reveal.0",
+      "text": "The retained results are Population=1.00e+6; SE=0.016 and Population=3.00e+8; SE=0.016.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0088/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #88. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0088.reveal.1",
+      "text": "The finite-population correction depends on the sampling fraction. Large populations can have nearly equal sampling errors at the same sample size. This comparison isolates the finite-population sampling fraction.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0088/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #88. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0088.case.0.witness",
+      "text": "Population=1.00e+6; SE=0.016",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0088/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #88. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0088.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.5],[\"N\",1000],[\"Population\",1000000]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0088/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #88. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0088.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"SE\",\"value\":0.01580348853102535}]},\"metrics\":[{\"label\":\"SE\",\"value\":\"0.016\"},{\"label\":\"Population\",\"value\":\"1.00e+6\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0088/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #88. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0088.case.1.witness",
+      "text": "Population=3.00e+8; SE=0.016",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0088/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #88. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0088.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.5],[\"N\",1000],[\"Population\",300000000]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0088/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #88. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0088.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"SE\",\"value\":0.01581136197485837}]},\"metrics\":[{\"label\":\"SE\",\"value\":\"0.016\"},{\"label\":\"Population\",\"value\":\"3.00e+8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0088/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #88. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0088.recall",
+      "text": "A simple random toy poll samples 1,000 without replacement from population 1.00e+6 with proportion 0.4. What is the standard error of its proportion? Answer 0.015.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0088/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #88. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A simple random toy poll samples 1,000 without replacement from population 1.00e+6 with proportion 0.4. What is the standard error of its proportion?",
+    "options": [
+      "-0.085",
+      "0.115",
+      "0.015"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives SE 0.015 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0088",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-88"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 88,
+    "sourceSection": "5. Sampling, variance & regression to the mean",
+    "sourceEntryOriginal": "- **88. City vs country** \\[Gotcha\\]: a poll of 1,000 is about as precise for a city of a million as for a country of 300 million.",
+    "modelBoundary": "the finite-population sampling fraction",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

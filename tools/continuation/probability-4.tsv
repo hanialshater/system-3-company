@@ -1,0 +1,201 @@
+id	op	title	A	B	lens	Recall
+1	monty	A host who knows the prize	3	4	the knowledgeable host protocol	
+2	monty	Ninety-eight goat doors	100	3	the unchosen probability mass	20
+3	bayes	The host opened a goat by accident	0.3333333333333333,1,0.5	0.3333333333333333,1,1	the random-host likelihood	
+4	birthday	Any pair shares a birthday	23,365	70,365	the event of any matching pair	
+5	anyevent	Someone shares your birthday	0.0027397260273972603,253	0.0027397260273972603,23	a specified birthday rather than any pair	
+6	reportchild	Condition on at least one boy	1	7	the family-level conditioning event	
+7	reportchild	A boy in a named day category	7	1	the specified reporting category	
+8	bayes	Gold from a mixed box	0.5,1,0.5	0.3333333333333333,1,0.5	the box-selection prior and gold likelihood	
+9	bayes	What the guard could have said	0.3333333333333333,0.5,0.5	0.3333333333333333,1,0.5	the guard's announcement protocol	
+10	envelopes	Assign the envelopes first	100,0.5	100,0.8	the assignment probability before observing money	
+11	awake	Sample experiments or visits?	0.5,1,2	0.5,1,1	the unit being sampled in repeated experiments	
+12	chord	Two ways to randomize a chord	0.5,0	0.5,1	the midpoint sampling measure	
+13	patternrace	A race between overlapping patterns	0,4	1,5	the suffix state in first-pattern arrival	
+14	runwait	HH and HT take different times	0.5,0	0.5,1	prefix overlap in waiting times	
+15	efron	Dice can beat each other in a cycle	0,1	1,2	the ordered face-pair comparison	
+16	parrondo	Mixing changes the capital states	0.495,0.095,0.745,0.5	0.495,0.095,0.745,0	the stationary capital-residue distribution	
+17	secretary	When to start accepting records	100,37	100,10	the skip threshold under random ordering	100,20
+18	sizebias	Popular friends get sampled more	2,5,8,1	2,5,4,1	size-weighted degree sampling	
+19	sizebias	Long bus gaps catch more arrivals	5,1,15,1	10,1,10,1	gap-length weighting rather than uniform gaps	
+20	coupon	The last missing sticker	50	10	the sum of successive collection waits	
+21	runs	How many runs should a coin make?	100,0.5	100,0.8	transitions in an independent sequence	
+22	runbound	A bound on long heads windows	100,0.5,7	100,0.5,10	overlap in a longest-run upper bound	
+23	nextiid	The coin does not owe you tails	0.5,5	0.5,20	independence after a specified streak	
+24	hotselection	Average the selected short sequences	4,0.5	8,0.5	sequence-level averaging after heads	
+25	sameartist	Uniform shuffles allow repeats	5,5	9,1	adjacent artist repeats under uniform shuffling	
+26	emptybins	Random points leave empty cells	20,20	60,20	gaps under independent uniform placement	
+27	dice	Why seven has more pairs	6,7	6,2	ordered pairs behind a sum	
+28	anyevent	One six or one double six?	0.16666666666666666,4	0.027777777777777776,24	the complement over independent attempts	
+29	anyevent	A six within six rolls	0.16666666666666666,6	0.16666666666666666,12	finite-horizon success versus mean waiting time	
+30	binomial	A biased die produces a count	100,0.2,20	100,0.16666666666666666,20	the likelihood of one specified count	
+31	benford	The first digit is not uniform	1	9	a logarithmic leading-digit model	
+32	mixture	A toy crowd favors seven	0.7,0.3,0.05	0.2,0.3,0.05	the group mixture behind an observed choice share	
+33	breakeven	Exploit a predictable opponent	1,1,0.6	1,1,0.3333333333333333	the payoff from an assumed response probability	
+34	riffle	An ideal ten-card riffle model	10,1	10,7	one permutation's deviation from uniformity	
+35	logfactorial	Count orders on a logarithmic scale	52	20	the factorial number of distinct permutations	
+36	rmswalk	A coin walk can look like a trend	100,1	400,1	diffusive displacement rather than a market forecast	
+37	unitprice	Share the winning lottery pot	1000000,1,1	1000000,1000,1	the number of co-winners sharing a fixed prize	
+38	lcg	A seed reproduces the next state	7,5,3,97	8,5,3,97	a deterministic generator recurrence	
+39	calibration	A tiny excess over half	0.5,508,1000	0.5,500,1000	the observed share versus the proposed coin model	
+40	chain	A toy jail-detour chain	0.2,0.5,0,20	0.05,0.5,0,20	the visit rate in a stated two-state board model	
+41	bayes	A positive result needs a base rate	0.01,0.9,0.09	0.1,0.9,0.09	true and false positives in one population	
+42	bayes	The same cases as proportions	0.01,0.9,0.09	0.02,0.9,0.09	the common-population denominator	
+43	bayes	A witness names the rare cab	0.15,0.8,0.2	0.5,0.8,0.2	the cab prevalence before the witness report	
+44	bayes	A rare match is not a posterior	0.000001,1,0.000001	0.01,1,0.000001	the prior odds behind a match likelihood	
+45	bayes	Reverse the conditional carefully	0.1,0.8,0.02	0.01,0.8,0.02	the specified population and reverse conditional	
+46	posteriorodds	A word changes spam odds	0.2,8	0.2,0.25	the likelihood ratio of a specified word	
+47	bayes	Slide the base rate, keep the test	0.001,0.9,0.09	0.5,0.9,0.09	the base rate with unchanged test characteristics	
+48	testrepeat	Two conditionally independent positives	0.01,0.9,0.09,2	0.01,0.9,0.09,1	conditional independence across repeated tests	
+49	bayes	A rare target in a large crowd	0.000001,0.999,0.001	0.001,0.999,0.001	the prevalence behind a highly accurate alarm	
+50	bayes	Stadium matching and false alarms	0.0001,0.99,0.001	0.01,0.99,0.001	the target fraction in the screened crowd	
+51	posteriorodds	A description versus prior odds	0.05,4	0.5,4	the occupational base rate before a description	
+52	bayes	Weight the two branches of the tree	0.3,0.8,0.1	0.7,0.8,0.1	the prior branch widths in Bayes' rule	
+53	negative	A negative test with a high prior	0.5,0.8,0.02	0.01,0.8,0.02	the probability left after a negative result	
+54	testrepeat	Three independent reports of rain	0.25,0.6666666666666666,0.3333333333333333,3	0.25,0.6666666666666666,0.3333333333333333,1	the conditional independence of witness reports	
+55	bayes	A lie detector in an honest crowd	0.01,0.9,0.1	0.5,0.9,0.1	the share of liars before a detector alarm	
+56	calibration	Seventy percent over repeated days	0.7,70,100	0.7,50,100	forecast calibration over repeated outcomes	
+57	posteriorodds	Which urn supplied the ball?	0.5,4	0.5,0.25	the likelihood ratio of a specified draw	
+58	bayes	A doping alarm in a rare class	0.01,0.95,0.02	0.1,0.95,0.02	the base rate among tested athletes	
+59	bayes	An early test changes sensitivity	0.1,0.5,0.01	0.1,0.95,0.01	the sensitivity at a stated testing time	
+60	rates	Crashes need exposure denominators	80,8000,20,1000	80,8000,20,2000	driving exposure rather than crash counts alone	
+61	binomial	The peg board counts right turns	10,0.5,5	10,0.5,0	binomial paths through independent pegs	
+62	samplesd	Averages shrink their sampling spread	0.3,10	0.3,100	the finite-variance averaging scale	
+63	outlier	A typical value versus an extreme	100,99,150	100,99,1000000	the effect of an extreme observation on the mean	
+64	poisson	A zero-goal toy count	1.5,0	3,0	the event-count rate in a Poisson model	
+65	poisson	Rare incidents per unit of exposure	0.6,0	1.2,0	the stated Poisson rate per exposure unit	
+66	exponential	Short waits and a long tail	0.2,5	0.2,15	a constant-rate waiting-time model	
+67	memoryless	The age of a memoryless bulb	0.001,1000,1000	0.001,5000,1000	elapsed age in exponential conditional survival	
+68	binomtail	Ten shots from a seventy-percent shooter	10,0.7,5	10,0.5,5	the complement of five-or-fewer successes	
+69	anyevent	Twenty tries is not a guarantee	0.05,20	0.05,60	finite attempts for a geometric waiting process	
+70	zipf	Normalize a finite Zipf vocabulary	1000,1	1000,1.2	the normalization of ranked frequency weights	
+71	pareto	How much does the top fifth hold?	0.2,1.2	0.2,3	the Pareto shape behind concentration	
+72	outlier	A tail observation changes the mean	0,99,-20	0,99,-2	tail sensitivity rather than proof of a normal law	
+73	uniformsumcap	Uniform draws until the sum passes one	3	10	the capped waiting-time survival sum	
+74	betamean	Wins sharpen an explicit prior	1,1,7,3	1,1,70,30	prior counts and observed coin data	
+75	birthday	A toy calendar with fewer dates	23,365	23,300	the support size of a simplified birthday model	
+76	mixture	Two height groups in one mean	0.5,180,166	0.8,180,166	group weights without inferring histogram modality	
+77	cauchyscale	A Cauchy average keeps its scale	1,1	1,100	the failure of finite-variance averaging assumptions	
+78	normalcoverage	A stated normal-coverage approximation	1	3	the coverage as a band widens	
+79	anyevent	A one-percent annual flood risk	0.01,30	0.01,100	independent annual risk over a mortgage horizon	
+80	poisson	A process gives the count shape	2,2	5,2	the mean of a specified count-generating process	
+81	samplesd	Small schools have noisy proportions	0.5,20	0.5,2000	sample size behind extreme observed school rates	
+82	samplesd	Small counties have variable rates	0.01,100	0.01,10000	population exposure behind a noisy proportion	
+83	regression	A cover follows a lucky peak	50,90,0.4	50,90,1	selection on an extreme noisy score	
+84	regression	The next season after a rookie peak	50,85,0.3	50,85,0.8	reliability in a repeat-performance model	
+85	regression	Improvement after a bad landing	50,20,0.4	50,20,1	regression without assigning a punishment effect	
+86	regression	An extreme parent-height score	170,200,0.6	170,200,1	the regression coefficient in a stated height model	
+87	samplesd	The poll margin has a square root	0.5,1000	0.5,10000	the standard error before applying an interval multiplier	
+88	pollse	A city poll versus a country poll	0.5,1000,1000000	0.5,1000,300000000	the finite-population sampling fraction	
+89	mixture	Self-selection changes the poll mix	0.8,0.8,0.2	0.5,0.8,0.2	selection weights rather than random-sampling precision	
+90	samplesd	Four times the sample, half the spread	0.5,100	0.5,400	the square-root precision law	
+91	rmswalk	A fraction settles while counts wander	100,1	10000,1	absolute random-walk displacement	
+92	shrink	Three perfect reviews or many good ones	5,3,4	4.8,2000,4	review counts in a stated shrinkage rule	
+93	regression	Last year's top fund regresses	5,25,0.2	5,25,0.8	an assumed repeat-return reliability	
+94	regression	Treatment starts at a symptom peak	5,10,0.3	5,10,1	regression before claiming treatment causation	
+95	regression	A camera follows a crash spike	10,25,0.4	10,25,1	selection of sites after unusually high counts	
+96	regression	A retake without new teaching	50,20,0.5	50,80,0.5	opposite deviations under the same repeat-score rule	
+97	regression	The sales star and next quarter	100,160,0.2	100,160,0.9	the noise share behind selected top performers	
+98	samplesize	Choose a desired poll half-width	0.5,1.96,0.03	0.5,1.96,0.015	the sample cost of tighter precision	
+99	mixture	Strata have explicit population weights	0.2,0.9,0.1	0.8,0.9,0.1	the strata weights needed for an aggregate estimate	
+100	mixture	Reweight the Xbox-like sample	0.9,0.7,0.3	0.5,0.7,0.3	the target-population mixture rather than sample composition	
+101	betamean	Learn the coin's next-head probability	1,1,6,4	1,1,60,40	the Beta-Bernoulli predictive mean	
+102	betamean	A strong prior takes more data	50,50,8,2	1,1,8,2	prior strength under identical observations	
+103	betamean	Opposite priors see the same evidence	9,1,70,30	1,9,70,30	the influence of fixed prior counts as data accumulate	
+104	betamean	A success streak is not probability one	1,1,100,0	1,1,1000,0	Laplace smoothing of repeated successes	
+105	tank	The largest serial is not the total	100,5	100,20	the expected unseen gap beyond a sampled maximum	
+106	normalband	A posterior band uses an explicit prior	0,1,2,1,1.96	0,100,2,1,1.96	posterior conditioning rather than repeated-sampling coverage	
+107	likelihoodpower	Heads favor a specified trick coin	0.1,0.9,0.5,5	0.1,0.9,0.5,10	the likelihood ratio against a stated alternative	
+108	posteriorodds	Evidence rewards concentrated prediction	0.5,4	0.5,0.25	the marginal likelihood ratio of two stated models	
+109	shrink	Blend ratings with a prior mean	5,3,4	5,300,4	the relative weight of reviews and a prior pseudoreview	
+110	betabeatsuniform	B versus a uniform uncertain A	8,3	3,8	the special case of a uniform comparator posterior	
+111	logistic	Uniform probability is not uniform odds	0	3	the nonlinear mapping from log-odds to probability	
+112	posteriorodds	A search clue changes regional odds	0.2,5	0.2,0.2	the regional prior and clue likelihood ratio	
+113	normalshrink	Combine normal prior and measurement	0,4,3,1	0,4,3,16	the relative precisions in a normal update	
+114	posteriorodds	A zero prior stays zero	0,100	0.01,100	the difference between impossible and merely unlikely	0.02,20
+115	inclusion	A stated rank-sampling assumption	100,10	1000,10	the sampling assumption rather than a doomsday conclusion	
+116	betamean	Predict the next free throw	2,2,7,3	20,20,7,3	posterior prediction rather than a maximum-likelihood point	
+117	posteriorodds	Multiply odds, then convert back	0.1,10	0.1,100	likelihood ratios on the odds scale	
+118	betamean	Three heads with a finite prior	1,1,3,0	10,10,3,0	the prior behind a prediction after a short streak	
+119	posteriorodds	A p-value alone is not a Bayes factor	0.01,10	0.5,10	the prior odds in a stated Bayesian comparison	
+120	update	A toy hidden skill update	1500,1700,0.1	1500,1700,0.5	the update weight after new skill evidence	
+121	petersburg	Cap the doubling-payoff game	20	40	the distinction between capped expectation and typical payout	
+122	kelly	Bet sizing under known odds	0.6,1	0.6,2	the log-growth optimum under specified odds	
+123	tworeturns	Positive mean, negative compound growth	0.5,-0.4	0.5,-0.3	arithmetic versus compound return	
+124	logutility	Insurance and curved utility	1000,20,400,0.95	100000,20,400,0.95	wealth-relative utility curvature in a stated model	
+125	unitprice	Share the rollover prize	10000000,1,1	10000000,10,1	the split jackpot conditional on a shared win	
+126	breakeven	An offer versus a specified gamble	100,200,0.4	100,200,0.6	the probability behind the cash expectation	
+127	accuracy	A predictor's observed track record	99,100	50,100	the stated evidence about a predictor without resolving a decision theory	
+128	premium	An enormous payoff times tiny odds	0.000001,1000000,2	0.000001,10000000,2	the explicitly assumed probability-payoff product	
+129	outlier	A startup mean exceeds the typical case	0,99,10000	0,99,100000	an extreme success in a toy payoff distribution	
+130	ruin	A small bankroll can hit zero first	10,100,0.5	50,100,0.5	absorbing boundaries in a fair game	
+131	doubling	The bankroll needed after losses	1,10	1,20	the geometric cost of a doubling strategy	
+132	perfectinfo	The upper value of a perfect forecast	0.5,100,100	0.9,100,100	state-contingent choices under perfect information	
+133	offerthreshold	A higher threshold means more waiting	100,50	100,90	the accepted-offer mean and waiting tradeoff	
+134	portfoliosd	Correlations limit diversification	0.5,0.2,0.2,0	0.5,0.2,0.2,1	covariance between asset returns	
+135	tworeturns	Up fifty, down fifty	0.5,-0.5	0.1,-0.1	multiplicative return arithmetic	
+136	premium	Expected warranty saving minus price	0.03,500,40	0.1,500,40	the failure probability behind a warranty comparison	
+137	overround	Reciprocal odds exceed one	1.9,1.9	2,2	the overround in an exhaustive two-outcome book	
+138	ruin	An edge still faces bankroll risk	10,100,0.51	50,100,0.51	a favorable step probability with finite bankroll	
+139	risk	Compare explicit expected harms	1000,0.02,0.05	1000,0.06,0.05	the stipulated risks in a decision tree	
+140	logutility	One gamble, different initial wealth	1000,110,100,0.5	100000,110,100,0.5	initial wealth in a log-utility comparison	
+141	rmswalk	Root-mean-square distance after steps	100,1	400,1	the square-root displacement scale	
+142	returnwalk	Return at a finite time	6,1	6,3	finite endpoint return versus ever returning	
+143	walls	A fair walk between two walls	10,10	20,10	the boundary distances in an absorption time	
+144	anyevent	One ladder, one waiting-time question	0.16666666666666666,6	0.16666666666666666,12	the chance of reaching a required die face within a horizon	
+145	chain	A weather chain forgets its start	0.2,0.4,0,10	0.2,0.4,1,10	transition rates and a finite-time weather distribution	
+146	posteriorodds	A toy word-pair model comparison	0.5,4	0.5,0.25	the likelihood ratio assigned to a specified text feature	
+147	inclusion	Another checkout line wins the race	3,2	5,4	exchangeable lines without ties	
+148	queue	Delay grows near service capacity	8,10	9.5,10	the load of a stated single-server queue	
+149	queue	Random service delay near saturation	9,10	5,10	the queueing analogy under explicit arrival and service assumptions	
+150	rmswalk	A diffusive toy particle	100,0.1	10000,0.1	the variance scale of independent microscopic kicks	
+151	arcsine	Time ahead need not be evenly split	0.1	0.5	the limiting occupation-time distribution	
+152	ballot	Win the election and lead throughout	60,40	80,20	the strict lead event under random vote ordering	
+153	ehrenfest	Particles move but the mean settles	100,100,10	100,100,100	expectation versus fluctuating equilibrium counts	
+154	walls	A maze reduced to a corridor	3,5	6,5	the absorbing-boundary corridor model	
+155	birthdeath	Expected growth can hide extinction	10,0.3,0.2,10	10,0.1,0.2,10	the per-capita rates in a mean population model	
+156	branch	A lineage can vanish as the mean grows	0.4,0.5	0.6,0.3	the offspring generating-function fixed point	
+157	urn	Reinforcement preserves expected share	1,1,10	1,1,100	the mean of reinforced paths rather than a deterministic limit	
+158	attachment	A popular node attracts the next link	20,100	5,100	degree-proportional attachment	
+159	giant	An asymptotic giant-component equation	2	0.5	the Poisson branching fixed point	
+160	allindep	One path through a toy forest	0.6,10	0.9,10	a single independent tree corridor rather than a grid threshold	
+161	mcse	Darts estimate a circle's area	785,1000,4	7850,10000,4	the hit fraction and Monte Carlo sampling error	
+162	mcse	Needle crossings need a denominator	637,1000,1	6370,10000,1	the crossing fraction before any nonlinear pi transformation	
+163	mcse	Scatter points over a bounded lake	250,1000,100	2500,10000,100	the bounding-area scale in an area estimate	
+164	mcse	A hundredfold sample buys tenfold SE	500,1000,1	50000,100000,1	the square-root Monte Carlo error scale	
+165	binomtail	Enough successful transfer stages	5,0.8,3	5,0.95,3	the probability of a specified minimum number of successes	
+166	sumvariance	Add uncertain task times correctly	5,4,7,9	5,16,7,36	expected duration versus a high-reliability deadline	
+167	fees	A single retirement return assumption	100000,0.05,0.01,20	100000,0.01,0.01,20	the stated constant-return path rather than a survival guarantee	
+168	allindep	The favorite must survive each round	0.7,4	0.9,4	multiplication across independent tournament rounds	
+169	acceptance	How many proposals survive rejection?	2,10,1000	8,10,1000	the accepted area under a uniform proposal	
+170	inverseexp	Turn a uniform draw into a wait	0.5,0.2	0.9,0.2	the inverse exponential CDF	
+171	importance	Oversample, then correct the weight	0.000001,0.1	0.000001,0.5	the proposal-to-target likelihood correction	
+172	inclusion	A correct shuffle needs equal inclusion	52,1	10,1	the single-card position probability required by a uniform shuffle	
+173	anneal	Accept an uphill move while warm	5,10	5,1	the temperature in a stated annealing acceptance rule	
+174	ballvolume	The inscribed ball loses cube volume	2	10	the uniform cube-to-ball volume ratio	
+175	distance	Distance scale in a larger cube	2	100	the root-mean-square distance between uniform points	
+176	binomtail	A live game with shots remaining	5,0.6,2	5,0.6,3	the successes still needed in a finite horizon	
+177	coprime	Count coprime pairs before the limit	100	200	the finite integer sampling range	
+178	inclusion	A fair sample from a completed stream	1000,10	10000,10	the reservoir's uniform final inclusion probability	
+179	emptybins	Coverage under a random design	100,100	1000,100	the empty-cell baseline before comparing a structured sampler	
+180	houseedge	A small edge over many bets	100,0.01,1	1000000,0.01,1	mean profit versus its finite-run spread	
+181	posteriorodds	A toy language feature changes odds	0.5,9	0.5,0.1111111111111111	the feature likelihood ratio in a two-language model	
+182	logistic	A straight score becomes a probability	0	3	the logistic link applied to an explicit score	
+183	gaussclass	Two Gaussian classes overlap	0.5,1,3,1	0.5,2,2,1	class densities and priors at one specified point	
+184	gaussclass	A hard cluster hides soft membership	0.5,1,1.2,1	0.5,1,3,1	the posterior membership under equal-variance Gaussian classes	
+185	bayes	A six can suggest a loaded die	0.2,0.5,0.16666666666666666	0.8,0.5,0.16666666666666666	the hidden-state prior before a specified die outcome	
+186	shrink	A neighbor rating with little evidence	5,2,3	5,200,3	the weight of sparse ratings in a stated blend	
+187	temperature	Two candidate next words	2,1,1	2,1,2	the normalized probabilities of an explicit two-word model	
+188	temperature	Temperature flattens the same logits	4,1,0.5	4,1,3	the sampling concentration with fixed model scores	
+189	topp	Keep the smallest probability prefix	0.6,0.3,0.65	0.6,0.3,0.95	the retained mass and renormalization in top-p sampling	0.7,0.2,0.6
+190	calibration	High scores can be wrong often	0.99,20,100	0.99,99,100	the gap between a model score and observed correctness	
+191	dispersion	Three dropout predictions disagree	0.1,0.5,0.9	0.45,0.5,0.55	the spread of repeated model predictions	
+192	dispersion	The committee can agree and err	0.9,0.91,0.89	0.2,0.5,0.8	prediction disagreement without an accuracy guarantee	
+193	linpredvar	Predict farther from the training mean	1,100,0,100	1,100,10,100	leverage in a specified linear prediction model	
+194	surprisal	Rare under a model is an anomaly score	0.1	0.0001	the negative log probability under the fitted model	
+195	posteriorodds	Two toy headline themes	0.5,4	0.1,4	the topic prior behind an observed-word likelihood ratio	
+196	savedkeys	Count the keystrokes actually saved	100,60	100,90	the metric boundary for an autocomplete saving	
+197	calibration	Softmax scores need outcome checks	0.9,60,100	0.9,90,100	calibration rather than normalization alone	
+198	rareaccuracy	Always negative still scores highly	990,10	900,100	the rare-class base rate behind apparent accuracy	
+199	confusion	Precision and recall use different sets	80,20,20,880	90,90,10,810	the threshold's true-positive and false-positive tradeoff	
+200	errorcost	Change the cost of a missed case	20,10,1,10	20,10,10,1	the explicit costs assigned to two error types	

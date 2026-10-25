@@ -23,7 +23,8 @@ for(let i=0;i<records.length;i++){
   }
   let state=advance(spec,initialState(),'run');state=advance(spec,state,'compare');const seen=[...state.witnessed];state=advance(spec,state,'reset');assert.deepEqual(state.witnessed,seen);assert(seen.every(Boolean));assertions++;
   let recallP=null,recallValue;
-  for(let j=0;j<c.a.length;j++){
+  if(c.recall){assert.equal(c.recall.length,c.a.length);assert.notDeepEqual(c.recall,c.a);assert.notDeepEqual(c.recall,c.b);recallP=c.recall;recallValue=compute(recallP)[0];assert(Number.isFinite(recallValue));}
+  for(let j=0;!recallP&&j<c.a.length;j++){
    const p=[...c.a];p[j]=probabilityNames.has(c.labels[j])&&p[j]>=0&&p[j]<=1?p[j]*.8:(Number.isInteger(p[j])?p[j]+1:p[j]+.1);
    try {const v=compute(p)[0];if(Number.isFinite(v)&&formatNumber(v)!==formatNumber(compute(c.a)[0])) {recallP=p;recallValue=v;break;}}catch{}
   }

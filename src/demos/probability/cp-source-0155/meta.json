@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0155",
+  "title": "Expected growth can hide extinction",
+  "hook": "Two stated cases: explore the per-capita rates in a mean population model.",
+  "domain": "probability",
+  "concept": "cp-source-0155",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the per-capita rates in a mean population model affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Mean, regardless of the stated inputs.",
+  "objective": "Compare the per-capita rates in a mean population model in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0155.predict",
+      "text": "A toy continuous-time branching population starts at 10; per-capita birth 0.3 and death 0.2 rates remain constant for Time 10. What is its expected population?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0155/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #155. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0155.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0155/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #155. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0155.reveal.0",
+      "text": "The retained results are Birth=0.3; Mean=27.183 and Birth=0.1; Mean=3.679.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0155/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #155. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0155.reveal.1",
+      "text": "Expected population follows a growth equation, while individual paths can go extinct. A growing mean is not a survival guarantee. This comparison isolates the per-capita rates in a mean population model.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0155/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #155. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0155.case.0.witness",
+      "text": "Birth=0.3; Mean=27.183",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0155/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #155. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0155.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Initial\",10],[\"Birth\",0.3],[\"Death\",0.2],[\"Time\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0155/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #155. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0155.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":27.182818284590446}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"27.183\"},{\"label\":\"Birth\",\"value\":\"0.3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0155/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #155. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0155.case.1.witness",
+      "text": "Birth=0.1; Mean=3.679",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0155/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #155. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0155.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Initial\",10],[\"Birth\",0.1],[\"Death\",0.2],[\"Time\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0155/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #155. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0155.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":3.6787944117144233}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"3.679\"},{\"label\":\"Birth\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0155/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #155. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0155.recall",
+      "text": "A toy continuous-time branching population starts at 11; per-capita birth 0.3 and death 0.2 rates remain constant for Time 10. What is its expected population? Answer 29.901.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0155/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #155. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy continuous-time branching population starts at 11; per-capita birth 0.3 and death 0.2 rates remain constant for Time 10. What is its expected population?",
+    "options": [
+      "29.901",
+      "17.941",
+      "41.862"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Mean 29.901 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0155",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-155"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 155,
+    "sourceSection": "8. Random processes: walks, chains, queues",
+    "sourceEntryOriginal": "- **155. Birth and death** \\[Slider\\]: set birth and death rates and watch a small population boom or go extinct.",
+    "modelBoundary": "the per-capita rates in a mean population model",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

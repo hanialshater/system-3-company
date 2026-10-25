@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0144",
+  "title": "One ladder, one waiting-time question",
+  "hook": "Two stated cases: explore the chance of reaching a required die face within a horizon.",
+  "domain": "probability",
+  "concept": "cp-source-0144",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the chance of reaching a required die face within a horizon affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines AtLeastOne, regardless of the stated inputs.",
+  "objective": "Compare the chance of reaching a required die face within a horizon in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0144.predict",
+      "text": "An event independently occurs with probability 0.166667 on each of 6 trials. What is the probability of at least one occurrence?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0144/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #144. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0144.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0144/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #144. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0144.reveal.0",
+      "text": "The retained results are Trials=6; AtLeastOne=0.665 and Trials=12; AtLeastOne=0.888.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0144/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #144. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0144.reveal.1",
+      "text": "The complement is no occurrence on every trial. Independence is required for the product used here. This comparison isolates the chance of reaching a required die face within a horizon.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0144/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #144. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0144.case.0.witness",
+      "text": "Trials=6; AtLeastOne=0.665",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0144/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #144. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0144.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.16666666666666666],[\"Trials\",6]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0144/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #144. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0144.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"AtLeastOne\",\"value\":0.6651020233196159}]},\"metrics\":[{\"label\":\"AtLeastOne\",\"value\":\"0.665\"},{\"label\":\"Trials\",\"value\":\"6\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0144/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #144. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0144.case.1.witness",
+      "text": "Trials=12; AtLeastOne=0.888",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0144/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #144. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0144.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.16666666666666666],[\"Trials\",12]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0144/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #144. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0144.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"AtLeastOne\",\"value\":0.8878433452153849}]},\"metrics\":[{\"label\":\"AtLeastOne\",\"value\":\"0.888\"},{\"label\":\"Trials\",\"value\":\"12\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0144/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #144. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0144.recall",
+      "text": "An event independently occurs with probability 0.133 on each of 6 trials. What is the probability of at least one occurrence? Answer 0.576.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0144/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #144. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "An event independently occurs with probability 0.133 on each of 6 trials. What is the probability of at least one occurrence?",
+    "options": [
+      "0.346",
+      "0.576",
+      "0.807"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives AtLeastOne 0.576 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0144",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-144"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 144,
+    "sourceSection": "8. Random processes: walks, chains, queues",
+    "sourceEntryOriginal": "- **144. Snakes and ladders** \\[Predict\\]: guess the average game length, then solve it exactly as a Markov chain.",
+    "modelBoundary": "the chance of reaching a required die face within a horizon",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

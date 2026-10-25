@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0044",
+  "title": "A rare match is not a posterior",
+  "hook": "Two stated cases: explore the prior odds behind a match likelihood.",
+  "domain": "probability",
+  "concept": "cp-source-0044",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the prior odds behind a match likelihood affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Posterior, regardless of the stated inputs.",
+  "objective": "Compare the prior odds behind a match likelihood in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0044.predict",
+      "text": "A toy condition has prevalence 1e-06; a test catches fraction 1 of cases and flags fraction 1e-06 of noncases. Given a positive, what probability is a case?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0044/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #44. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0044.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0044/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #44. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0044.reveal.0",
+      "text": "The retained results are Prior=1.00e-6; Posterior=0.5 and Prior=0.01; Posterior=1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0044/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #44. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0044.reveal.1",
+      "text": "Count true and false positives in one common population. A test’s sensitivity is not the probability of a condition after a positive. This comparison isolates the prior odds behind a match likelihood.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0044/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #44. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0044.case.0.witness",
+      "text": "Prior=1.00e-6; Posterior=0.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0044/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #44. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0044.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0.000001],[\"Sensitivity\",1],[\"FalsePositive\",0.000001]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0044/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #44. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0044.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Posterior\",\"value\":0.5000002500001249}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"0.5\"},{\"label\":\"Prior\",\"value\":\"1.00e-6\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0044/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #44. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0044.case.1.witness",
+      "text": "Prior=0.01; Posterior=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0044/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #44. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0044.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0.01],[\"Sensitivity\",1],[\"FalsePositive\",0.000001]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0044/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #44. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0044.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Posterior\",\"value\":0.9999010098000298}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"1\"},{\"label\":\"Prior\",\"value\":\"0.01\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0044/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #44. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0044.recall",
+      "text": "A toy condition has prevalence 8.00e-7; a test catches fraction 1 of cases and flags fraction 1.00e-6 of noncases. Given a positive, what probability is a case? Answer 0.444.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0044/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #44. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy condition has prevalence 8.00e-7; a test catches fraction 1 of cases and flags fraction 1.00e-6 of noncases. Given a positive, what probability is a case?",
+    "options": [
+      "0.444",
+      "0.267",
+      "0.622"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Posterior 0.444 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0044",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-44"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 44,
+    "sourceSection": "3. Conditional probability & Bayes' rule",
+    "sourceEntryOriginal": "- **44. Prosecutor's fallacy** \\[Gotcha\\]: \"1 in a million chance of a match if innocent\" is not \"1 in a million chance of being innocent\".",
+    "modelBoundary": "the prior odds behind a match likelihood",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

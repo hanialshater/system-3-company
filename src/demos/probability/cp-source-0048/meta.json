@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0048",
+  "title": "Two conditionally independent positives",
+  "hook": "Two stated cases: explore conditional independence across repeated tests.",
+  "domain": "probability",
+  "concept": "cp-source-0048",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How conditional independence across repeated tests affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Posterior, regardless of the stated inputs.",
+  "objective": "Compare conditional independence across repeated tests in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0048.predict",
+      "text": "Toy prevalence is 0.01; sensitivity 0.9, false-positive rate 0.09. Given 2 positive tests independent conditional on status, what is posterior probability?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0048/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #48. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0048.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0048/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #48. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0048.reveal.0",
+      "text": "The retained results are Tests=2; Posterior=0.503 and Tests=1; Posterior=0.092.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0048/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #48. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0048.reveal.1",
+      "text": "Conditional independence permits multiplication within each status. Repeating a correlated test need not provide the same evidence. This comparison isolates conditional independence across repeated tests.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0048/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #48. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0048.case.0.witness",
+      "text": "Tests=2; Posterior=0.503",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0048/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #48. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0048.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0.01],[\"Sensitivity\",0.9],[\"FalsePositive\",0.09],[\"Tests\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0048/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #48. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0048.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Posterior\",\"value\":0.5025125628140704}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"0.503\"},{\"label\":\"Tests\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0048/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #48. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0048.case.1.witness",
+      "text": "Tests=1; Posterior=0.092",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0048/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #48. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0048.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0.01],[\"Sensitivity\",0.9],[\"FalsePositive\",0.09],[\"Tests\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0048/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #48. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0048.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Posterior\",\"value\":0.09174311926605506}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"0.092\"},{\"label\":\"Tests\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0048/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #48. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0048.recall",
+      "text": "Toy prevalence is 0.008; sensitivity 0.9, false-positive rate 0.09. Given 2 positive tests independent conditional on status, what is posterior probability? Answer 0.446.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0048/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #48. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy prevalence is 0.008; sensitivity 0.9, false-positive rate 0.09. Given 2 positive tests independent conditional on status, what is posterior probability?",
+    "options": [
+      "0.268",
+      "0.446",
+      "0.625"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Posterior 0.446 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0048",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-48"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 48,
+    "sourceSection": "3. Conditional probability & Bayes' rule",
+    "sourceEntryOriginal": "- **48. Test twice** \\[Predict\\]: a second independent positive takes the posterior from 9% to about 50%.",
+    "modelBoundary": "conditional independence across repeated tests",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

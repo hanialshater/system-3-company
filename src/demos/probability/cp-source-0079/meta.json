@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0079",
+  "title": "A one-percent annual flood risk",
+  "hook": "Two stated cases: explore independent annual risk over a mortgage horizon.",
+  "domain": "probability",
+  "concept": "cp-source-0079",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How independent annual risk over a mortgage horizon affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines AtLeastOne, regardless of the stated inputs.",
+  "objective": "Compare independent annual risk over a mortgage horizon in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0079.predict",
+      "text": "An event independently occurs with probability 0.01 on each of 30 trials. What is the probability of at least one occurrence?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0079/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #79. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0079.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0079/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #79. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0079.reveal.0",
+      "text": "The retained results are Trials=30; AtLeastOne=0.26 and Trials=100; AtLeastOne=0.634.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0079/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #79. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0079.reveal.1",
+      "text": "The complement is no occurrence on every trial. Independence is required for the product used here. This comparison isolates independent annual risk over a mortgage horizon.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0079/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #79. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0079.case.0.witness",
+      "text": "Trials=30; AtLeastOne=0.26",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0079/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #79. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0079.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.01],[\"Trials\",30]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0079/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #79. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0079.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"AtLeastOne\",\"value\":0.2602996266117198}]},\"metrics\":[{\"label\":\"AtLeastOne\",\"value\":\"0.26\"},{\"label\":\"Trials\",\"value\":\"30\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0079/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #79. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0079.case.1.witness",
+      "text": "Trials=100; AtLeastOne=0.634",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0079/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #79. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0079.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.01],[\"Trials\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0079/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #79. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0079.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"AtLeastOne\",\"value\":0.6339676587267709}]},\"metrics\":[{\"label\":\"AtLeastOne\",\"value\":\"0.634\"},{\"label\":\"Trials\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0079/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #79. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0079.recall",
+      "text": "An event independently occurs with probability 0.008 on each of 30 trials. What is the probability of at least one occurrence? Answer 0.214.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0079/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #79. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "An event independently occurs with probability 0.008 on each of 30 trials. What is the probability of at least one occurrence?",
+    "options": [
+      "0.114",
+      "0.314",
+      "0.214"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives AtLeastOne 0.214 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0079",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-79"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 79,
+    "sourceSection": "4. Distributions you can feel",
+    "sourceEntryOriginal": "- **79. 100-year flood** \\[Gotcha\\]: it has about a 26% chance of hitting during a 30-year mortgage.",
+    "modelBoundary": "independent annual risk over a mortgage horizon",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

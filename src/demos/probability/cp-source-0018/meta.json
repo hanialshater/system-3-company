@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0018",
+  "title": "Popular friends get sampled more",
+  "hook": "Two stated cases: explore size-weighted degree sampling.",
+  "domain": "probability",
+  "concept": "cp-source-0018",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How size-weighted degree sampling affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Weighted, regardless of the stated inputs.",
+  "objective": "Compare size-weighted degree sampling in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0018.predict",
+      "text": "A toy population has 5 units of size 2 and 1 of size 8. Sampling units proportional to size, what mean size is seen?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0018/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #18. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0018.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0018/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #18. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0018.reveal.0",
+      "text": "The retained results are ValueB=8; Weighted=4.667 and ValueB=4; Weighted=2.571.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0018/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #18. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0018.reveal.1",
+      "text": "Size-weighted sampling overrepresents large units. Compare it with the ordinary mean over units before interpreting an apparent paradox. This comparison isolates size-weighted degree sampling.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0018/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #18. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0018.case.0.witness",
+      "text": "ValueB=8; Weighted=4.667",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0018/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #18. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0018.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"ValueA\",2],[\"CountA\",5],[\"ValueB\",8],[\"CountB\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0018/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #18. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0018.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Weighted\",\"value\":4.666666666666667},{\"label\":\"Ordinary\",\"value\":3}]},\"metrics\":[{\"label\":\"Weighted\",\"value\":\"4.667\"},{\"label\":\"ValueB\",\"value\":\"8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0018/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #18. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0018.case.1.witness",
+      "text": "ValueB=4; Weighted=2.571",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0018/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #18. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0018.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"ValueA\",2],[\"CountA\",5],[\"ValueB\",4],[\"CountB\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0018/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #18. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0018.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Weighted\",\"value\":2.5714285714285716},{\"label\":\"Ordinary\",\"value\":2.3333333333333335}]},\"metrics\":[{\"label\":\"Weighted\",\"value\":\"2.571\"},{\"label\":\"ValueB\",\"value\":\"4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0018/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #18. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0018.recall",
+      "text": "A toy population has 5 units of size 3 and 1 of size 8. Sampling units proportional to size, what mean size is seen? Answer 4.739.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0018/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #18. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy population has 5 units of size 3 and 1 of size 8. Sampling units proportional to size, what mean size is seen?",
+    "options": [
+      "2.843",
+      "4.739",
+      "6.635"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Weighted 4.739 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0018",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-18"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 18,
+    "sourceSection": "1. Probability paradoxes & puzzles",
+    "sourceEntryOriginal": "- **18. Friendship paradox** \\[Gotcha\\]: on average, your friends have more friends than you do. Popular people are overcounted.",
+    "modelBoundary": "size-weighted degree sampling",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

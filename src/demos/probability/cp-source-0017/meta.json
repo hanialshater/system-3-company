@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0017",
+  "title": "When to start accepting records",
+  "hook": "Two stated cases: explore the skip threshold under random ordering.",
+  "domain": "probability",
+  "concept": "cp-source-0017",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the skip threshold under random ordering affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Success, regardless of the stated inputs.",
+  "objective": "Compare the skip threshold under random ordering in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0017.predict",
+      "text": "There are 100 randomly ordered distinct candidates. Skip 37, then choose the next record, or the last if none. What is the probability of selecting the best?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0017/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #17. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0017.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0017/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #17. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0017.reveal.0",
+      "text": "The retained results are Skip=37; Success=0.371 and Skip=10; Success=0.235.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0017/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #17. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0017.reveal.1",
+      "text": "The stopping threshold trades off learning the scale and leaving enough candidates. The formula assumes random order and a single irrevocable selection. This comparison isolates the skip threshold under random ordering.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0017/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #17. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0017.case.0.witness",
+      "text": "Skip=37; Success=0.371",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0017/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #17. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0017.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"N\",100],[\"Skip\",37]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0017/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #17. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0017.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Success\",\"value\":0.3710427787126428}]},\"metrics\":[{\"label\":\"Success\",\"value\":\"0.371\"},{\"label\":\"Skip\",\"value\":\"37\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0017/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #17. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0017.case.1.witness",
+      "text": "Skip=10; Success=0.235",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0017/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #17. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0017.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"N\",100],[\"Skip\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0017/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #17. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0017.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Success\",\"value\":0.2348409263671365}]},\"metrics\":[{\"label\":\"Success\",\"value\":\"0.235\"},{\"label\":\"Skip\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0017/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #17. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0017.recall",
+      "text": "There are 100 randomly ordered distinct candidates. Skip 20, then choose the next record, or the last if none. What is the probability of selecting the best? Answer 0.326.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0017/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #17. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "There are 100 randomly ordered distinct candidates. Skip 20, then choose the next record, or the last if none. What is the probability of selecting the best?",
+    "options": [
+      "0.326",
+      "0.196",
+      "0.456"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Success 0.326 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0017",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-17"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 17,
+    "sourceSection": "1. Probability paradoxes & puzzles",
+    "sourceEntryOriginal": "- **17. The secretary problem** \\[Measure\\]: swipe through 100 candidates and stop on the best. Skipping the first 37% maximizes your odds.",
+    "modelBoundary": "the skip threshold under random ordering",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

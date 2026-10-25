@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0098",
+  "title": "Choose a desired poll half-width",
+  "hook": "Two stated cases: explore the sample cost of tighter precision.",
+  "domain": "probability",
+  "concept": "cp-source-0098",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the sample cost of tighter precision affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines N, regardless of the stated inputs.",
+  "objective": "Compare the sample cost of tighter precision in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0098.predict",
+      "text": "Use the toy large-population normal approximation with proportion 0.5, multiplier 1.96, and desired half-width 0.03. What rounded-up sample size is required?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0098/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #98. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0098.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0098/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #98. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0098.reveal.0",
+      "text": "The retained results are Error=0.03; N=1,068 and Error=0.015; N=4,269.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0098/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #98. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0098.reveal.1",
+      "text": "Precision improves with the square root of sample size. The calculation assumes a simple random sample and ignores nonresponse and design effects. This comparison isolates the sample cost of tighter precision.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0098/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #98. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0098.case.0.witness",
+      "text": "Error=0.03; N=1,068",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0098/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #98. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0098.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.5],[\"Z\",1.96],[\"Error\",0.03]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0098/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #98. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0098.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"N\",\"value\":1068}]},\"metrics\":[{\"label\":\"N\",\"value\":\"1,068\"},{\"label\":\"Error\",\"value\":\"0.03\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0098/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #98. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0098.case.1.witness",
+      "text": "Error=0.015; N=4,269",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0098/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #98. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0098.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.5],[\"Z\",1.96],[\"Error\",0.015]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0098/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #98. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0098.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"N\",\"value\":4269}]},\"metrics\":[{\"label\":\"N\",\"value\":\"4,269\"},{\"label\":\"Error\",\"value\":\"0.015\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0098/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #98. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0098.recall",
+      "text": "Use the toy large-population normal approximation with proportion 0.4, multiplier 1.96, and desired half-width 0.03. What rounded-up sample size is required? Answer 1,025.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0098/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #98. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Use the toy large-population normal approximation with proportion 0.4, multiplier 1.96, and desired half-width 0.03. What rounded-up sample size is required?",
+    "options": [
+      "1,025",
+      "615",
+      "1,435"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives N 1,025 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0098",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-98"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 98,
+    "sourceSection": "5. Sampling, variance & regression to the mean",
+    "sourceEntryOriginal": "- **98. How many to survey?** \\[Slider\\]: set the precision you want and get the sample size.",
+    "modelBoundary": "the sample cost of tighter precision",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

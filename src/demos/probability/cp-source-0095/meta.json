@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0095",
+  "title": "A camera follows a crash spike",
+  "hook": "Two stated cases: explore selection of sites after unusually high counts.",
+  "domain": "probability",
+  "concept": "cp-source-0095",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How selection of sites after unusually high counts affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines ExpectedNext, regardless of the stated inputs.",
+  "objective": "Compare selection of sites after unusually high counts in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0095.predict",
+      "text": "A toy repeat-score model predicts Mean 10 plus Reliability 0.4 times the deviation of Observed 25. What is the expected next score?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0095/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #95. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0095.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0095/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #95. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0095.reveal.0",
+      "text": "The retained results are Reliability=0.4; ExpectedNext=16 and Reliability=1; ExpectedNext=25.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0095/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #95. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0095.reveal.1",
+      "text": "Selecting an extreme noisy score can be followed by a less extreme score without any intervention effect. This prediction rule is explicitly assumed. This comparison isolates selection of sites after unusually high counts.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0095/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #95. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0095.case.0.witness",
+      "text": "Reliability=0.4; ExpectedNext=16",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0095/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #95. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0095.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Mean\",10],[\"Observed\",25],[\"Reliability\",0.4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0095/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #95. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0095.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"ExpectedNext\",\"value\":16}]},\"metrics\":[{\"label\":\"ExpectedNext\",\"value\":\"16\"},{\"label\":\"Reliability\",\"value\":\"0.4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0095/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #95. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0095.case.1.witness",
+      "text": "Reliability=1; ExpectedNext=25",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0095/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #95. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0095.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Mean\",10],[\"Observed\",25],[\"Reliability\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0095/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #95. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0095.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"ExpectedNext\",\"value\":25}]},\"metrics\":[{\"label\":\"ExpectedNext\",\"value\":\"25\"},{\"label\":\"Reliability\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0095/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #95. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0095.recall",
+      "text": "A toy repeat-score model predicts Mean 11 plus Reliability 0.4 times the deviation of Observed 25. What is the expected next score? Answer 16.6.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0095/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #95. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy repeat-score model predicts Mean 11 plus Reliability 0.4 times the deviation of Observed 25. What is the expected next score?",
+    "options": [
+      "16.6",
+      "9.96",
+      "23.24"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives ExpectedNext 16.6 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0095",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-95"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 95,
+    "sourceSection": "5. Sampling, variance & regression to the mean",
+    "sourceEntryOriginal": "- **95. Speed cameras** \\[Gotcha\\]: cameras go up after a run of crashes, so crashes fall partly by regression alone.",
+    "modelBoundary": "selection of sites after unusually high counts",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

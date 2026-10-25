@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0189",
+  "title": "Keep the smallest probability prefix",
+  "hook": "Two stated cases: explore the retained mass and renormalization in top-p sampling.",
+  "domain": "probability",
+  "concept": "cp-source-0189",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the retained mass and renormalization in top-p sampling affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Count, regardless of the stated inputs.",
+  "objective": "Compare the retained mass and renormalization in top-p sampling in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0189.predict",
+      "text": "Three sorted toy probabilities are First 0.6, Second 0.3, and the remainder. Keep the smallest prefix reaching Threshold 0.65. How many candidates remain?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0189/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #189. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0189.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0189/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #189. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0189.reveal.0",
+      "text": "The retained results are Threshold=0.65; Count=2 and Threshold=0.95; Count=3.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0189/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #189. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0189.reveal.1",
+      "text": "Nucleus sampling retains a probability-mass prefix and renormalizes it. It does not keep a fixed number of candidates across distributions. This comparison isolates the retained mass and renormalization in top-p sampling.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0189/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #189. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0189.case.0.witness",
+      "text": "Threshold=0.65; Count=2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0189/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #189. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0189.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"First\",0.6],[\"Second\",0.3],[\"Threshold\",0.65]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0189/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #189. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0189.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Count\",\"value\":2},{\"label\":\"Mass\",\"value\":0.8999999999999999},{\"label\":\"RenormalizedFirst\",\"value\":0.6666666666666667}]},\"metrics\":[{\"label\":\"Count\",\"value\":\"2\"},{\"label\":\"Threshold\",\"value\":\"0.65\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0189/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #189. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0189.case.1.witness",
+      "text": "Threshold=0.95; Count=3",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0189/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #189. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0189.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"First\",0.6],[\"Second\",0.3],[\"Threshold\",0.95]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0189/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #189. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0189.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Count\",\"value\":3},{\"label\":\"Mass\",\"value\":1},{\"label\":\"RenormalizedFirst\",\"value\":0.6}]},\"metrics\":[{\"label\":\"Count\",\"value\":\"3\"},{\"label\":\"Threshold\",\"value\":\"0.95\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0189/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #189. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0189.recall",
+      "text": "Three sorted toy probabilities are First 0.7, Second 0.2, and the remainder. Keep the smallest prefix reaching Threshold 0.6. How many candidates remain? Answer 1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0189/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #189. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Three sorted toy probabilities are First 0.7, Second 0.2, and the remainder. Keep the smallest prefix reaching Threshold 0.6. How many candidates remain?",
+    "options": [
+      "0.6",
+      "1",
+      "1.4"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Count 1 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0189",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-189"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 189,
+    "sourceSection": "10. Probabilistic models in ML",
+    "sourceEntryOriginal": "- **189. Top-p sampling** \\[Slider\\]: shrink the candidate pool and see repetition rise and weirdness fall.",
+    "modelBoundary": "the retained mass and renormalization in top-p sampling",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0012", "title": "Two ways to randomize a chord", "op": "chord", "labels": ["Threshold", "RadiusMode"], "outputs": ["Longer"], "a": [0.5, 0.0], "b": [0.5, 1.0], "question": "A toy chord has midpoint radius r in a unit disk. It is long when r is below 0.5. Mode 0 uses radius-uniform if 0, area-uniform if 1. What is the long-chord probability?", "questionTemplate": "A toy chord has midpoint radius r in a unit disk. It is long when r is below {Threshold}. Mode {RadiusMode} uses radius-uniform if 0, area-uniform if 1. What is the long-chord probability?", "explain": "A random procedure needs a measure. Radius-uniform and area-uniform midpoint sampling assign different probabilities to the same geometric event.", "lens": "the midpoint sampling measure", "kind": "grid", "answerPosition": 0};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

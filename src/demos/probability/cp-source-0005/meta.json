@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0005",
+  "title": "Someone shares your birthday",
+  "hook": "Two stated cases: explore a specified birthday rather than any pair.",
+  "domain": "probability",
+  "concept": "cp-source-0005",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How a specified birthday rather than any pair affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines AtLeastOne, regardless of the stated inputs.",
+  "objective": "Compare a specified birthday rather than any pair in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0005.predict",
+      "text": "An event independently occurs with probability 0.00273973 on each of 253 trials. What is the probability of at least one occurrence?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0005/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #5. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0005.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0005/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #5. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0005.reveal.0",
+      "text": "The retained results are Trials=253; AtLeastOne=0.5 and Trials=23; AtLeastOne=0.061.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0005/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #5. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0005.reveal.1",
+      "text": "The complement is no occurrence on every trial. Independence is required for the product used here. This comparison isolates a specified birthday rather than any pair.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0005/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #5. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0005.case.0.witness",
+      "text": "Trials=253; AtLeastOne=0.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0005/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #5. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0005.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.0027397260273972603],[\"Trials\",253]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0005/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #5. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0005.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"AtLeastOne\",\"value\":0.5004771540365807}]},\"metrics\":[{\"label\":\"AtLeastOne\",\"value\":\"0.5\"},{\"label\":\"Trials\",\"value\":\"253\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0005/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #5. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0005.case.1.witness",
+      "text": "Trials=23; AtLeastOne=0.061",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0005/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #5. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0005.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.0027397260273972603],[\"Trials\",23]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0005/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #5. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0005.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"AtLeastOne\",\"value\":0.06115058190745448}]},\"metrics\":[{\"label\":\"AtLeastOne\",\"value\":\"0.061\"},{\"label\":\"Trials\",\"value\":\"23\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0005/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #5. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0005.recall",
+      "text": "An event independently occurs with probability 0.002 on each of 253 trials. What is the probability of at least one occurrence? Answer 0.426.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0005/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #5. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "An event independently occurs with probability 0.002 on each of 253 trials. What is the probability of at least one occurrence?",
+    "options": [
+      "0.426",
+      "0.256",
+      "0.596"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives AtLeastOne 0.426 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0005",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-5"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 5,
+    "sourceSection": "1. Probability paradoxes & puzzles",
+    "sourceEntryOriginal": "- **5. Your birthday** \\[Split\\]: half are asked about any shared birthday, half about someone sharing *theirs*. The second needs 253 people for 50%.",
+    "modelBoundary": "a specified birthday rather than any pair",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

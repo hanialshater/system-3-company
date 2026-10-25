@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0096",
+  "title": "A retake without new teaching",
+  "hook": "Two stated cases: explore opposite deviations under the same repeat-score rule.",
+  "domain": "probability",
+  "concept": "cp-source-0096",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How opposite deviations under the same repeat-score rule affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines ExpectedNext, regardless of the stated inputs.",
+  "objective": "Compare opposite deviations under the same repeat-score rule in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0096.predict",
+      "text": "A toy repeat-score model predicts Mean 50 plus Reliability 0.5 times the deviation of Observed 20. What is the expected next score?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0096/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #96. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0096.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0096/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #96. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0096.reveal.0",
+      "text": "The retained results are Observed=20; ExpectedNext=35 and Observed=80; ExpectedNext=65.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0096/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #96. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0096.reveal.1",
+      "text": "Selecting an extreme noisy score can be followed by a less extreme score without any intervention effect. This prediction rule is explicitly assumed. This comparison isolates opposite deviations under the same repeat-score rule.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0096/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #96. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0096.case.0.witness",
+      "text": "Observed=20; ExpectedNext=35",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0096/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #96. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0096.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Mean\",50],[\"Observed\",20],[\"Reliability\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0096/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #96. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0096.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"ExpectedNext\",\"value\":35}]},\"metrics\":[{\"label\":\"ExpectedNext\",\"value\":\"35\"},{\"label\":\"Observed\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0096/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #96. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0096.case.1.witness",
+      "text": "Observed=80; ExpectedNext=65",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0096/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #96. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0096.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Mean\",50],[\"Observed\",80],[\"Reliability\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0096/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #96. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0096.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"ExpectedNext\",\"value\":65}]},\"metrics\":[{\"label\":\"ExpectedNext\",\"value\":\"65\"},{\"label\":\"Observed\",\"value\":\"80\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0096/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #96. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0096.recall",
+      "text": "A toy repeat-score model predicts Mean 51 plus Reliability 0.5 times the deviation of Observed 20. What is the expected next score? Answer 35.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0096/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #96. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy repeat-score model predicts Mean 51 plus Reliability 0.5 times the deviation of Observed 20. What is the expected next score?",
+    "options": [
+      "21.3",
+      "35.5",
+      "49.7"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives ExpectedNext 35.5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0096",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-96"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 96,
+    "sourceSection": "5. Sampling, variance & regression to the mean",
+    "sourceEntryOriginal": "- **96. Retake the test** \\[Predict\\]: bottom scorers improve and top scorers slip on a retake, with no teaching.",
+    "modelBoundary": "opposite deviations under the same repeat-score rule",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

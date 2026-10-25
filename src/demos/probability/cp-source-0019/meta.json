@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0019",
+  "title": "Long bus gaps catch more arrivals",
+  "hook": "Two stated cases: explore gap-length weighting rather than uniform gaps.",
+  "domain": "probability",
+  "concept": "cp-source-0019",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How gap-length weighting rather than uniform gaps affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Weighted, regardless of the stated inputs.",
+  "objective": "Compare gap-length weighting rather than uniform gaps in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0019.predict",
+      "text": "A toy population has 1 units of size 5 and 1 of size 15. Sampling units proportional to size, what mean size is seen?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0019/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #19. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0019.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0019/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #19. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0019.reveal.0",
+      "text": "The retained results are ValueA=5 ValueB=15; Weighted=12.5 and ValueA=10 ValueB=10; Weighted=10.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0019/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #19. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0019.reveal.1",
+      "text": "Size-weighted sampling overrepresents large units. Compare it with the ordinary mean over units before interpreting an apparent paradox. This comparison isolates gap-length weighting rather than uniform gaps.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0019/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #19. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0019.case.0.witness",
+      "text": "ValueA=5 ValueB=15; Weighted=12.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0019/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #19. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0019.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"ValueA\",5],[\"CountA\",1],[\"ValueB\",15],[\"CountB\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0019/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #19. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0019.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Weighted\",\"value\":12.5},{\"label\":\"Ordinary\",\"value\":10}]},\"metrics\":[{\"label\":\"Weighted\",\"value\":\"12.5\"},{\"label\":\"ValueA\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0019/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #19. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0019.case.1.witness",
+      "text": "ValueA=10 ValueB=10; Weighted=10",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0019/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #19. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0019.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"ValueA\",10],[\"CountA\",1],[\"ValueB\",10],[\"CountB\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0019/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #19. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0019.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Weighted\",\"value\":10},{\"label\":\"Ordinary\",\"value\":10}]},\"metrics\":[{\"label\":\"Weighted\",\"value\":\"10\"},{\"label\":\"ValueA\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0019/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #19. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0019.recall",
+      "text": "A toy population has 1 units of size 6 and 1 of size 15. Sampling units proportional to size, what mean size is seen? Answer 12.429.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0019/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #19. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy population has 1 units of size 6 and 1 of size 15. Sampling units proportional to size, what mean size is seen?",
+    "options": [
+      "7.457",
+      "17.4",
+      "12.429"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Weighted 12.429 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0019",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-19"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 19,
+    "sourceSection": "1. Probability paradoxes & puzzles",
+    "sourceEntryOriginal": "- **19. Inspection paradox** \\[Gotcha\\]: buses come every 10 minutes on average, yet your typical wait is longer than 5. Long gaps catch more arrivals.",
+    "modelBoundary": "gap-length weighting rather than uniform gaps",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

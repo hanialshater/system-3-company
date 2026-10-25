@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0193",
+  "title": "Predict farther from the training mean",
+  "hook": "Two stated cases: explore leverage in a specified linear prediction model.",
+  "domain": "probability",
+  "concept": "cp-source-0193",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How leverage in a specified linear prediction model affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Variance, regardless of the stated inputs.",
+  "objective": "Compare leverage in a specified linear prediction model in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0193.predict",
+      "text": "A toy linear-model prediction has noise variance 1, N 100, distance 0 from the training mean and centered predictor sum of squares 100. What is predictive variance?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0193/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #193. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0193.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0193/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #193. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0193.reveal.0",
+      "text": "The retained results are Distance=0; Variance=1.01 and Distance=10; Variance=2.01.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0193/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #193. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0193.reveal.1",
+      "text": "Under this linear model, leverage grows away from the training mean. Structural misspecification can create additional uncertainty absent from the formula. This comparison isolates leverage in a specified linear prediction model.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0193/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #193. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0193.case.0.witness",
+      "text": "Distance=0; Variance=1.01",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0193/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #193. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0193.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Noise\",1],[\"N\",100],[\"Distance\",0],[\"SumSquares\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0193/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #193. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0193.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Variance\",\"value\":1.01}]},\"metrics\":[{\"label\":\"Variance\",\"value\":\"1.01\"},{\"label\":\"Distance\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0193/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #193. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0193.case.1.witness",
+      "text": "Distance=10; Variance=2.01",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0193/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #193. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0193.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Noise\",1],[\"N\",100],[\"Distance\",10],[\"SumSquares\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0193/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #193. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0193.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Variance\",\"value\":2.01}]},\"metrics\":[{\"label\":\"Variance\",\"value\":\"2.01\"},{\"label\":\"Distance\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0193/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #193. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0193.recall",
+      "text": "A toy linear-model prediction has noise variance 2, N 100, distance 0 from the training mean and centered predictor sum of squares 100. What is predictive variance? Answer 2.02.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0193/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #193. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy linear-model prediction has noise variance 2, N 100, distance 0 from the training mean and centered predictor sum of squares 100. What is predictive variance?",
+    "options": [
+      "1.212",
+      "2.828",
+      "2.02"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Variance 2.02 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0193",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-193"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 193,
+    "sourceSection": "10. Probabilistic models in ML",
+    "sourceEntryOriginal": "- **193. Error bars widen** \\[Slider\\]: drag a prediction point away from the data and watch uncertainty balloon.",
+    "modelBoundary": "leverage in a specified linear prediction model",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

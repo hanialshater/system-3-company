@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0157",
+  "title": "Reinforcement preserves expected share",
+  "hook": "Two stated cases: explore the mean of reinforced paths rather than a deterministic limit.",
+  "domain": "probability",
+  "concept": "cp-source-0157",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the mean of reinforced paths rather than a deterministic limit affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines ExpectedRedShare, regardless of the stated inputs.",
+  "objective": "Compare the mean of reinforced paths rather than a deterministic limit in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0157.predict",
+      "text": "A toy Polya urn starts with 1 red and 1 blue. Each of 10 draws returns the ball and adds one of its color. What is the expected red share?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0157/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #157. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0157.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0157/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #157. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0157.reveal.0",
+      "text": "The retained results are Draws=10; ExpectedRedShare=0.5 and Draws=100; ExpectedRedShare=0.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0157/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #157. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0157.reveal.1",
+      "text": "The expected share remains the initial share, even though individual reinforced paths can diverge. Expectation and concentration are separate properties. This comparison isolates the mean of reinforced paths rather than a deterministic limit.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0157/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #157. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0157.case.0.witness",
+      "text": "Draws=10; ExpectedRedShare=0.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0157/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #157. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0157.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Red\",1],[\"Blue\",1],[\"Draws\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0157/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #157. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0157.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"ExpectedRedShare\",\"value\":0.5}]},\"metrics\":[{\"label\":\"ExpectedRedShare\",\"value\":\"0.5\"},{\"label\":\"Draws\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0157/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #157. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0157.case.1.witness",
+      "text": "Draws=100; ExpectedRedShare=0.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0157/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #157. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0157.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Red\",1],[\"Blue\",1],[\"Draws\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0157/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #157. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0157.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"ExpectedRedShare\",\"value\":0.5}]},\"metrics\":[{\"label\":\"ExpectedRedShare\",\"value\":\"0.5\"},{\"label\":\"Draws\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0157/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #157. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0157.recall",
+      "text": "A toy Polya urn starts with 2 red and 1 blue. Each of 10 draws returns the ball and adds one of its color. What is the expected red share? Answer 0.667.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0157/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #157. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy Polya urn starts with 2 red and 1 blue. Each of 10 draws returns the ball and adds one of its color. What is the expected red share?",
+    "options": [
+      "0.4",
+      "0.933",
+      "0.667"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives ExpectedRedShare 0.667 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0157",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-157"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 157,
+    "sourceSection": "8. Random processes: walks, chains, queues",
+    "sourceEntryOriginal": "- **157. Pólya's urn** \\[Predict\\]: draw a ball, add another of the same color. Final shares are random but lock in early.",
+    "modelBoundary": "the mean of reinforced paths rather than a deterministic limit",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

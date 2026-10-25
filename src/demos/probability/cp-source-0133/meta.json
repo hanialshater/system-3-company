@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0133",
+  "title": "A higher threshold means more waiting",
+  "hook": "Two stated cases: explore the accepted-offer mean and waiting tradeoff.",
+  "domain": "probability",
+  "concept": "cp-source-0133",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the accepted-offer mean and waiting tradeoff affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines AcceptedMean, regardless of the stated inputs.",
+  "objective": "Compare the accepted-offer mean and waiting tradeoff in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0133.predict",
+      "text": "Independent toy offers are uniform from 0 to 100. Accept the first above 50, ignoring waiting costs. What is the mean accepted offer?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0133/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #133. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0133.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0133/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #133. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0133.reveal.0",
+      "text": "The retained results are Threshold=50; AcceptedMean=75 and Threshold=90; AcceptedMean=95.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0133/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #133. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0133.reveal.1",
+      "text": "A higher threshold raises the conditional offer but also raises expected waiting time. A complete stopping decision must price that delay. This comparison isolates the accepted-offer mean and waiting tradeoff.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0133/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #133. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0133.case.0.witness",
+      "text": "Threshold=50; AcceptedMean=75",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0133/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #133. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0133.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Maximum\",100],[\"Threshold\",50]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0133/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #133. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0133.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"AcceptedMean\",\"value\":75},{\"label\":\"Wait\",\"value\":2}]},\"metrics\":[{\"label\":\"AcceptedMean\",\"value\":\"75\"},{\"label\":\"Threshold\",\"value\":\"50\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0133/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #133. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0133.case.1.witness",
+      "text": "Threshold=90; AcceptedMean=95",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0133/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #133. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0133.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Maximum\",100],[\"Threshold\",90]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0133/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #133. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0133.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"AcceptedMean\",\"value\":95},{\"label\":\"Wait\",\"value\":10.000000000000002}]},\"metrics\":[{\"label\":\"AcceptedMean\",\"value\":\"95\"},{\"label\":\"Threshold\",\"value\":\"90\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0133/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #133. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0133.recall",
+      "text": "Independent toy offers are uniform from 0 to 101. Accept the first above 50, ignoring waiting costs. What is the mean accepted offer? Answer 75.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0133/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #133. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Independent toy offers are uniform from 0 to 101. Accept the first above 50, ignoring waiting costs. What is the mean accepted offer?",
+    "options": [
+      "45.3",
+      "105.7",
+      "75.5"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives AcceptedMean 75.5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0133",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-133"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 133,
+    "sourceSection": "7. Expected value, risk & decisions",
+    "sourceEntryOriginal": "- **133. Selling a house** \\[Slider\\]: offers arrive one by one; set your threshold and see the expected price.",
+    "modelBoundary": "the accepted-offer mean and waiting tradeoff",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

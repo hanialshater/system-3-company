@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0136",
+  "title": "Expected warranty saving minus price",
+  "hook": "Two stated cases: explore the failure probability behind a warranty comparison.",
+  "domain": "probability",
+  "concept": "cp-source-0136",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the failure probability behind a warranty comparison affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Net, regardless of the stated inputs.",
+  "objective": "Compare the failure probability behind a warranty comparison in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0136.predict",
+      "text": "A toy policy reduces a loss by 500 with probability 0.03 and costs 40. What is its expected cash gain minus cost?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0136/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #136. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0136.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0136/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #136. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0136.reveal.0",
+      "text": "The retained results are Probability=0.03; Net=-25 and Probability=0.1; Net=10.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0136/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #136. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0136.reveal.1",
+      "text": "Expected cash value weights the avoided loss by its probability. Utility, liquidity and risk tolerance are separate assumptions. This comparison isolates the failure probability behind a warranty comparison.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0136/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #136. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0136.case.0.witness",
+      "text": "Probability=0.03; Net=-25",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0136/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #136. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0136.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Probability\",0.03],[\"Reduction\",500],[\"Cost\",40]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0136/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #136. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0136.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Net\",\"value\":-25}]},\"metrics\":[{\"label\":\"Net\",\"value\":\"-25\"},{\"label\":\"Probability\",\"value\":\"0.03\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0136/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #136. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0136.case.1.witness",
+      "text": "Probability=0.1; Net=10",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0136/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #136. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0136.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Probability\",0.1],[\"Reduction\",500],[\"Cost\",40]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0136/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #136. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0136.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Net\",\"value\":10}]},\"metrics\":[{\"label\":\"Net\",\"value\":\"10\"},{\"label\":\"Probability\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0136/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #136. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0136.recall",
+      "text": "A toy policy reduces a loss by 500 with probability 0.024 and costs 40. What is its expected cash gain minus cost? Answer -28.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0136/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #136. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy policy reduces a loss by 500 with probability 0.024 and costs 40. What is its expected cash gain minus cost?",
+    "options": [
+      "-39.2",
+      "-16.8",
+      "-28"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Net -28 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0136",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-136"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 136,
+    "sourceSection": "7. Expected value, risk & decisions",
+    "sourceEntryOriginal": "- **136. Extended warranty** \\[Slider\\]: plug in failure rate and repair cost to see the expected loss on the warranty.",
+    "modelBoundary": "the failure probability behind a warranty comparison",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

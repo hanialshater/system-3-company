@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0169",
+  "title": "How many proposals survive rejection?",
+  "hook": "Two stated cases: explore the accepted area under a uniform proposal.",
+  "domain": "probability",
+  "concept": "cp-source-0169",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the accepted area under a uniform proposal affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Accepted, regardless of the stated inputs.",
+  "objective": "Compare the accepted area under a uniform proposal in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0169.predict",
+      "text": "A toy rejection sampler proposes uniformly in area 10; accepted region area is 2. Over 1000 attempts, what accepted count is expected?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0169/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #169. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0169.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0169/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #169. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0169.reveal.0",
+      "text": "The retained results are Area=2; Accepted=200 and Area=8; Accepted=800.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0169/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #169. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0169.reveal.1",
+      "text": "Acceptance is proportional to area under a uniform proposal. Correctly drawing inside the retained region still depends on that proposal rule. This comparison isolates the accepted area under a uniform proposal.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0169/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #169. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0169.case.0.witness",
+      "text": "Area=2; Accepted=200",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0169/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #169. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0169.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Area\",2],[\"Rectangle\",10],[\"Attempts\",1000]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0169/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #169. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0169.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Accepted\",\"value\":200}]},\"metrics\":[{\"label\":\"Accepted\",\"value\":\"200\"},{\"label\":\"Area\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0169/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #169. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0169.case.1.witness",
+      "text": "Area=8; Accepted=800",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0169/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #169. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0169.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Area\",8],[\"Rectangle\",10],[\"Attempts\",1000]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0169/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #169. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0169.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Accepted\",\"value\":800}]},\"metrics\":[{\"label\":\"Accepted\",\"value\":\"800\"},{\"label\":\"Area\",\"value\":\"8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0169/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #169. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0169.recall",
+      "text": "A toy rejection sampler proposes uniformly in area 10; accepted region area is 3. Over 1,000 attempts, what accepted count is expected? Answer 300.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0169/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #169. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy rejection sampler proposes uniformly in area 10; accepted region area is 3. Over 1,000 attempts, what accepted count is expected?",
+    "options": [
+      "180",
+      "420",
+      "300"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Accepted 300 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0169",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-169"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 169,
+    "sourceSection": "9. Monte Carlo & simulation",
+    "sourceEntryOriginal": "- **169. Rejection sampling** \\[Slider\\]: sample a strange shape by throwing points and keeping those under the curve.",
+    "modelBoundary": "the accepted area under a uniform proposal",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

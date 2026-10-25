@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0015",
+  "title": "Dice can beat each other in a cycle",
+  "hook": "Two stated cases: explore the ordered face-pair comparison.",
+  "domain": "probability",
+  "concept": "cp-source-0015",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the ordered face-pair comparison affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines AWin, regardless of the stated inputs.",
+  "objective": "Compare the ordered face-pair comparison in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0015.predict",
+      "text": "Toy dice: 0=[0,0,4,4,4,4], 1=[3,3,3,3,3,3], 2=[2,2,2,2,6,6], 3=[1,1,1,5,5,5]. What is P(die 0 beats die 1)?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0015/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #15. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0015.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0015/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #15. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0015.reveal.0",
+      "text": "The retained results are A=0 B=1; AWin=0.667 and A=1 B=2; AWin=0.667.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0015/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #15. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0015.reveal.1",
+      "text": "Enumerating ordered face pairs exposes pairwise advantages. Pairwise winning relations need not form a transitive ranking. This comparison isolates the ordered face-pair comparison.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0015/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #15. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0015.case.0.witness",
+      "text": "A=0 B=1; AWin=0.667",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0015/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #15. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0015.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"A\",0],[\"B\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0015/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #15. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0015.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"AWin\",\"value\":0.6666666666666666}]},\"metrics\":[{\"label\":\"AWin\",\"value\":\"0.667\"},{\"label\":\"A\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0015/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #15. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0015.case.1.witness",
+      "text": "A=1 B=2; AWin=0.667",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0015/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #15. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0015.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"A\",1],[\"B\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0015/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #15. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0015.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"AWin\",\"value\":0.6666666666666666}]},\"metrics\":[{\"label\":\"AWin\",\"value\":\"0.667\"},{\"label\":\"A\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0015/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #15. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0015.recall",
+      "text": "Toy dice: 0=[0,0,4,4,4,4], 1=[3,3,3,3,3,3], 2=[2,2,2,2,6,6], 3=[1,1,1,5,5,5]. What is P(die 1 beats die 1)? Answer 0.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0015/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #15. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy dice: 0=[0,0,4,4,4,4], 1=[3,3,3,3,3,3], 2=[2,2,2,2,6,6], 3=[1,1,1,5,5,5]. What is P(die 1 beats die 1)?",
+    "options": [
+      "-0.1",
+      "0",
+      "0.1"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives AWin 0 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0015",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-15"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 15,
+    "sourceSection": "1. Probability paradoxes & puzzles",
+    "sourceEntryOriginal": "- **15. Nontransitive dice** \\[Predict\\]: pick any of Efron's dice; the app picks one that beats yours 2/3 of the time.",
+    "modelBoundary": "the ordered face-pair comparison",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

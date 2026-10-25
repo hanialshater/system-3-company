@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0073",
+  "title": "Uniform draws until the sum passes one",
+  "hook": "Two stated cases: explore the capped waiting-time survival sum.",
+  "domain": "probability",
+  "concept": "cp-source-0073",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the capped waiting-time survival sum affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Expected, regardless of the stated inputs.",
+  "objective": "Compare the capped waiting-time survival sum in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0073.predict",
+      "text": "Add independent Uniform(0,1) draws until their sum exceeds 1, but stop after Cap 3. What is the expected number of draws used?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0073/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #73. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0073.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0073/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #73. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0073.reveal.0",
+      "text": "The retained results are Cap=3; Expected=2.5 and Cap=10; Expected=2.718.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0073/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #73. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0073.reveal.1",
+      "text": "The survival-sum expectation uses the simplex probability 1/n factorial. Increasing the cap approaches a limit; individual draw counts remain variable. This comparison isolates the capped waiting-time survival sum.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0073/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #73. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0073.case.0.witness",
+      "text": "Cap=3; Expected=2.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0073/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #73. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0073.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Cap\",3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0073/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #73. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0073.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Expected\",\"value\":2.5}]},\"metrics\":[{\"label\":\"Expected\",\"value\":\"2.5\"},{\"label\":\"Cap\",\"value\":\"3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0073/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #73. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0073.case.1.witness",
+      "text": "Cap=10; Expected=2.718",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0073/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #73. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0073.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Cap\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0073/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #73. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0073.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Expected\",\"value\":2.7182815255731922}]},\"metrics\":[{\"label\":\"Expected\",\"value\":\"2.718\"},{\"label\":\"Cap\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0073/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #73. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0073.recall",
+      "text": "Add independent Uniform(0,1) draws until their sum exceeds 1, but stop after Cap 4. What is the expected number of draws used? Answer 2.667.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0073/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #73. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Add independent Uniform(0,1) draws until their sum exceeds 1, but stop after Cap 4. What is the expected number of draws used?",
+    "options": [
+      "1.6",
+      "3.733",
+      "2.667"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Expected 2.667 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0073",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-73"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 73,
+    "sourceSection": "4. Distributions you can feel",
+    "sourceEntryOriginal": "- **73. Hidden e** \\[Predict\\]: add random numbers between 0 and 1 until the sum passes 1. The average count is e ≈ 2.718.",
+    "modelBoundary": "the capped waiting-time survival sum",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

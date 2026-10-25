@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0104",
+  "title": "A success streak is not probability one",
+  "hook": "Two stated cases: explore Laplace smoothing of repeated successes.",
+  "domain": "probability",
+  "concept": "cp-source-0104",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How Laplace smoothing of repeated successes affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Mean, regardless of the stated inputs.",
+  "objective": "Compare Laplace smoothing of repeated successes in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0104.predict",
+      "text": "A toy coin has Beta(1,1) prior and independent data of 100 wins and 0 losses. What is the posterior predictive win probability?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0104/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #104. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0104.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0104/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #104. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0104.reveal.0",
+      "text": "The retained results are Wins=100; Mean=0.99 and Wins=1,000; Mean=0.999.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0104/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #104. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0104.reveal.1",
+      "text": "Prior counts and observed counts add under this model. The posterior mean also gives the next-trial predictive probability. This comparison isolates Laplace smoothing of repeated successes.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0104/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #104. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0104.case.0.witness",
+      "text": "Wins=100; Mean=0.99",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0104/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #104. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0104.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Alpha\",1],[\"Beta\",1],[\"Wins\",100],[\"Losses\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0104/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #104. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0104.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":0.9901960784313726}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"0.99\"},{\"label\":\"Wins\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0104/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #104. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0104.case.1.witness",
+      "text": "Wins=1,000; Mean=0.999",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0104/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #104. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0104.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Alpha\",1],[\"Beta\",1],[\"Wins\",1000],[\"Losses\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0104/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #104. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0104.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":0.999001996007984}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"0.999\"},{\"label\":\"Wins\",\"value\":\"1,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0104/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #104. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0104.recall",
+      "text": "A toy coin has Beta(1,2) prior and independent data of 100 wins and 0 losses. What is the posterior predictive win probability? Answer 0.981.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0104/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #104. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy coin has Beta(1,2) prior and independent data of 100 wins and 0 losses. What is the posterior predictive win probability?",
+    "options": [
+      "0.981",
+      "0.588",
+      "1.373"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Mean 0.981 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0104",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-104"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 104,
+    "sourceSection": "6. Bayesian updating & inference",
+    "sourceEntryOriginal": "- **104. Will the sun rise?** \\[Gotcha\\]: Laplace's rule of succession gives (n+1)/(n+2) after n sunrises, never quite 1.",
+    "modelBoundary": "Laplace smoothing of repeated successes",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0121",
+  "title": "Cap the doubling-payoff game",
+  "hook": "Two stated cases: explore the distinction between capped expectation and typical payout.",
+  "domain": "probability",
+  "concept": "cp-source-0121",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the distinction between capped expectation and typical payout affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Expected, regardless of the stated inputs.",
+  "objective": "Compare the distinction between capped expectation and typical payout in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0121.predict",
+      "text": "A toy fair-coin game pays 2^k when the first head occurs on round k, but zero if no head in 20 rounds. What is expected payout?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0121/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #121. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0121.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0121/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #121. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0121.reveal.0",
+      "text": "The retained results are Rounds=20; Expected=20 and Rounds=40; Expected=40.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0121/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #121. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0121.reveal.1",
+      "text": "Every allowed first-head round contributes one unit to expectation. Extending the cap increases expectation without making a typical payoff grow the same way. This comparison isolates the distinction between capped expectation and typical payout.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0121/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #121. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0121.case.0.witness",
+      "text": "Rounds=20; Expected=20",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0121/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #121. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0121.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Rounds\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0121/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #121. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0121.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Expected\",\"value\":20}]},\"metrics\":[{\"label\":\"Expected\",\"value\":\"20\"},{\"label\":\"Rounds\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0121/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #121. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0121.case.1.witness",
+      "text": "Rounds=40; Expected=40",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0121/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #121. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0121.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Rounds\",40]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0121/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #121. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0121.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Expected\",\"value\":40}]},\"metrics\":[{\"label\":\"Expected\",\"value\":\"40\"},{\"label\":\"Rounds\",\"value\":\"40\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0121/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #121. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0121.recall",
+      "text": "A toy fair-coin game pays 2^k when the first head occurs on round k, but zero if no head in 21 rounds. What is expected payout? Answer 21.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0121/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #121. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy fair-coin game pays 2^k when the first head occurs on round k, but zero if no head in 21 rounds. What is expected payout?",
+    "options": [
+      "12.6",
+      "29.4",
+      "21"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Expected 21 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0121",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-121"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 121,
+    "sourceSection": "7. Expected value, risk & decisions",
+    "sourceEntryOriginal": "- **121. St. Petersburg game** \\[Measure\\]: name your price to play a game with infinite expected value. Most say under $20.",
+    "modelBoundary": "the distinction between capped expectation and typical payout",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0106",
+  "title": "A posterior band uses an explicit prior",
+  "hook": "Two stated cases: explore posterior conditioning rather than repeated-sampling coverage.",
+  "domain": "probability",
+  "concept": "cp-source-0106",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How posterior conditioning rather than repeated-sampling coverage affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Lower, regardless of the stated inputs.",
+  "objective": "Compare posterior conditioning rather than repeated-sampling coverage in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0106.predict",
+      "text": "A toy normal prior has mean 0, variance 1; normal measurement 2 has variance 1. What is the lower endpoint of posterior mean ±1.96 posterior SD?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0106/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #106. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0106.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0106/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #106. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0106.reveal.0",
+      "text": "The retained results are Variance=1; Lower=-0.386 and Variance=100; Lower=0.03.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0106/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #106. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0106.reveal.1",
+      "text": "This is a posterior band under the specified prior and likelihood. A repeated-sampling confidence procedure has a different probability interpretation. This comparison isolates posterior conditioning rather than repeated-sampling coverage.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0106/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #106. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0106.case.0.witness",
+      "text": "Variance=1; Lower=-0.386",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0106/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #106. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0106.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0],[\"Variance\",1],[\"Measurement\",2],[\"Noise\",1],[\"Z\",1.96]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0106/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #106. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0106.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Lower\",\"value\":-0.3859292911256331},{\"label\":\"Upper\",\"value\":2.385929291125633}]},\"metrics\":[{\"label\":\"Lower\",\"value\":\"-0.386\"},{\"label\":\"Variance\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0106/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #106. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0106.case.1.witness",
+      "text": "Variance=100; Lower=0.03",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0106/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #106. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0106.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0],[\"Variance\",100],[\"Measurement\",2],[\"Noise\",1],[\"Z\",1.96]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0106/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #106. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0106.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Lower\",\"value\":0.029925126990401507},{\"label\":\"Upper\",\"value\":3.9304709126135586}]},\"metrics\":[{\"label\":\"Lower\",\"value\":\"0.03\"},{\"label\":\"Variance\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0106/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #106. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0106.recall",
+      "text": "A toy normal prior has mean 0, variance 2; normal measurement 2 has variance 1. What is the lower endpoint of posterior mean ±1.96 posterior SD? Answer -0.267.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0106/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #106. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy normal prior has mean 0, variance 2; normal measurement 2 has variance 1. What is the lower endpoint of posterior mean ±1.96 posterior SD?",
+    "options": [
+      "-0.374",
+      "-0.16",
+      "-0.267"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Lower -0.267 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0106",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-106"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 106,
+    "sourceSection": "6. Bayesian updating & inference",
+    "sourceEntryOriginal": "- **106. Credible vs confidence** \\[Split\\]: the same data, two intervals, two very different meanings.",
+    "modelBoundary": "posterior conditioning rather than repeated-sampling coverage",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

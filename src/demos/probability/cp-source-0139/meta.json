@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0139",
+  "title": "Compare explicit expected harms",
+  "hook": "Two stated cases: explore the stipulated risks in a decision tree.",
+  "domain": "probability",
+  "concept": "cp-source-0139",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the stipulated risks in a decision tree affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Difference, regardless of the stated inputs.",
+  "objective": "Compare the stipulated risks in a decision tree in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0139.predict",
+      "text": "Across 1000 toy cases, action risk is 0.02 and inaction risk 0.05. How many fewer expected harms come with action?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0139/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #139. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0139.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0139/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #139. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0139.reveal.0",
+      "text": "The retained results are ActionRisk=0.02; Difference=30 and ActionRisk=0.06; Difference=-10.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0139/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #139. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0139.reveal.1",
+      "text": "Count both action and inaction using the same population. These are specified risks in a toy comparison. This comparison isolates the stipulated risks in a decision tree.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0139/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #139. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0139.case.0.witness",
+      "text": "ActionRisk=0.02; Difference=30",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0139/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #139. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0139.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Cases\",1000],[\"ActionRisk\",0.02],[\"InactionRisk\",0.05]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0139/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #139. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0139.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Difference\",\"value\":30.000000000000004}]},\"metrics\":[{\"label\":\"Difference\",\"value\":\"30\"},{\"label\":\"ActionRisk\",\"value\":\"0.02\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0139/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #139. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0139.case.1.witness",
+      "text": "ActionRisk=0.06; Difference=-10",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0139/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #139. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0139.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Cases\",1000],[\"ActionRisk\",0.06],[\"InactionRisk\",0.05]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0139/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #139. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0139.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Difference\",\"value\":-9.999999999999995}]},\"metrics\":[{\"label\":\"Difference\",\"value\":\"-10\"},{\"label\":\"ActionRisk\",\"value\":\"0.06\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0139/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #139. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0139.recall",
+      "text": "Across 1,001 toy cases, action risk is 0.02 and inaction risk 0.05. How many fewer expected harms come with action? Answer 30.03.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0139/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #139. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Across 1,001 toy cases, action risk is 0.02 and inaction risk 0.05. How many fewer expected harms come with action?",
+    "options": [
+      "18.018",
+      "42.042",
+      "30.03"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Difference 30.03 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0139",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-139"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 139,
+    "sourceSection": "7. Expected value, risk & decisions",
+    "sourceEntryOriginal": "- **139. Treatment decision tree** \\[Slider\\]: drag probabilities and outcomes in a medical decision tree until the best option flips.",
+    "modelBoundary": "the stipulated risks in a decision tree",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

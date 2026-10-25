@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0107",
+  "title": "Heads favor a specified trick coin",
+  "hook": "Two stated cases: explore the likelihood ratio against a stated alternative.",
+  "domain": "probability",
+  "concept": "cp-source-0107",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the likelihood ratio against a stated alternative affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Posterior, regardless of the stated inputs.",
+  "objective": "Compare the likelihood ratio against a stated alternative in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0107.predict",
+      "text": "Toy hypothesis H1 has prior 0.1 and heads chance 0.9; H0 has heads chance 0.5. After 5 independent heads, what is P(H1)?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0107/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #107. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0107.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0107/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #107. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0107.reveal.0",
+      "text": "The retained results are Heads=5; Posterior=0.677 and Heads=10; Posterior=0.975.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0107/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #107. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0107.reveal.1",
+      "text": "Evidence compares how both hypotheses predict the same data. A high likelihood under one hypothesis is insufficient without the alternative and prior. This comparison isolates the likelihood ratio against a stated alternative.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0107/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #107. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0107.case.0.witness",
+      "text": "Heads=5; Posterior=0.677",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0107/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #107. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0107.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0.1],[\"P1\",0.9],[\"P0\",0.5],[\"Heads\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0107/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #107. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0107.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Posterior\",\"value\":0.677369399132769}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"0.677\"},{\"label\":\"Heads\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0107/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #107. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0107.case.1.witness",
+      "text": "Heads=10; Posterior=0.975",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0107/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #107. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0107.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0.1],[\"P1\",0.9],[\"P0\",0.5],[\"Heads\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0107/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #107. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0107.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Posterior\",\"value\":0.9754129747849141}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"0.975\"},{\"label\":\"Heads\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0107/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #107. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0107.recall",
+      "text": "Toy hypothesis H1 has prior 0.08 and heads chance 0.9; H0 has heads chance 0.5. After 5 independent heads, what is P(H1)? Answer 0.622.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0107/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #107. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy hypothesis H1 has prior 0.08 and heads chance 0.9; H0 has heads chance 0.5. After 5 independent heads, what is P(H1)?",
+    "options": [
+      "0.622",
+      "0.373",
+      "0.87"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Posterior 0.622 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0107",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-107"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 107,
+    "sourceSection": "6. Bayesian updating & inference",
+    "sourceEntryOriginal": "- **107. Bayes factor** \\[Slider\\]: how many heads in a row before \"trick coin\" beats \"fair coin\"?",
+    "modelBoundary": "the likelihood ratio against a stated alternative",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

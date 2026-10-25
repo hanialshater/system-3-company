@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0016",
+  "title": "Mixing changes the capital states",
+  "hook": "Two stated cases: explore the stationary capital-residue distribution.",
+  "domain": "probability",
+  "concept": "cp-source-0016",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the stationary capital-residue distribution affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Drift, regardless of the stated inputs.",
+  "objective": "Compare the stationary capital-residue distribution in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0016.predict",
+      "text": "A toy walk changes capital by ±1. Game A wins with 0.495; B wins with 0.095 at capital modulo 3 equal 0, otherwise 0.745. Independently choose A with chance 0.5. What is long-run mean drift, numerically iterated?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0016/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #16. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0016.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0016/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #16. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0016.reveal.0",
+      "text": "The retained results are Mix=0.5; Drift=0.016 and Mix=0; Drift=-0.009.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0016/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #16. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0016.reveal.1",
+      "text": "Mixing changes the distribution of capital residues as well as the win rule. The computed stationary drift belongs to this specified three-state model. This comparison isolates the stationary capital-residue distribution.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0016/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #16. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0016.case.0.witness",
+      "text": "Mix=0.5; Drift=0.016",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0016/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #16. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0016.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"A\",0.495],[\"Bad\",0.095],[\"Good\",0.745],[\"Mix\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0016/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #16. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0016.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Drift\",\"value\":0.015704225352112675}]},\"metrics\":[{\"label\":\"Drift\",\"value\":\"0.016\"},{\"label\":\"Mix\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0016/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #16. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0016.case.1.witness",
+      "text": "Mix=0; Drift=-0.009",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0016/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #16. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0016.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"A\",0.495],[\"Bad\",0.095],[\"Good\",0.745],[\"Mix\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0016/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #16. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0016.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Drift\",\"value\":-0.00869528669358191}]},\"metrics\":[{\"label\":\"Drift\",\"value\":\"-0.009\"},{\"label\":\"Mix\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0016/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #16. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0016.recall",
+      "text": "A toy walk changes capital by ±1. Game A wins with 0.595; B wins with 0.095 at capital modulo 3 equal 0, otherwise 0.745. Independently choose A with chance 0.5. What is long-run mean drift, numerically iterated? Answer 0.113.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0016/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #16. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy walk changes capital by ±1. Game A wins with 0.595; B wins with 0.095 at capital modulo 3 equal 0, otherwise 0.745. Independently choose A with chance 0.5. What is long-run mean drift, numerically iterated?",
+    "options": [
+      "0.013",
+      "0.213",
+      "0.113"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Drift 0.113 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0016",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-16"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 16,
+    "sourceSection": "1. Probability paradoxes & puzzles",
+    "sourceEntryOriginal": "- **16. Parrondo's paradox** \\[Slider\\]: two games that each lose money win when alternated.",
+    "modelBoundary": "the stationary capital-residue distribution",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0068",
+  "title": "Ten shots from a seventy-percent shooter",
+  "hook": "Two stated cases: explore the complement of five-or-fewer successes.",
+  "domain": "probability",
+  "concept": "cp-source-0068",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the complement of five-or-fewer successes affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Tail, regardless of the stated inputs.",
+  "objective": "Compare the complement of five-or-fewer successes in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0068.predict",
+      "text": "For 10 independent toy births with boy probability 0.7, what is the probability of strictly more than 5 boys?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0068/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #68. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0068.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0068/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #68. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0068.reveal.0",
+      "text": "The retained results are P=0.7; Tail=0.85 and P=0.5; Tail=0.377.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0068/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #68. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0068.reveal.1",
+      "text": "The binomial calculation counts every qualifying outcome. Smaller samples have more variable proportions; equal expected proportions do not mean equal tail probabilities. This comparison isolates the complement of five-or-fewer successes.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0068/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #68. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0068.case.0.witness",
+      "text": "P=0.7; Tail=0.85",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0068/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #68. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0068.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"N\",10],[\"P\",0.7],[\"Cut\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0068/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #68. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0068.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Tail\",\"value\":0.8497316673999998}]},\"metrics\":[{\"label\":\"Tail\",\"value\":\"0.85\"},{\"label\":\"P\",\"value\":\"0.7\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0068/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #68. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0068.case.1.witness",
+      "text": "P=0.5; Tail=0.377",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0068/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #68. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0068.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"N\",10],[\"P\",0.5],[\"Cut\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0068/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #68. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0068.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Tail\",\"value\":0.376953125}]},\"metrics\":[{\"label\":\"Tail\",\"value\":\"0.377\"},{\"label\":\"P\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0068/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #68. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0068.recall",
+      "text": "For 11 independent toy births with boy probability 0.7, what is the probability of strictly more than 5 boys? Answer 0.922.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0068/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #68. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For 11 independent toy births with boy probability 0.7, what is the probability of strictly more than 5 boys?",
+    "options": [
+      "0.922",
+      "0.553",
+      "1.29"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Tail 0.922 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0068",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-68"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 68,
+    "sourceSection": "4. Distributions you can feel",
+    "sourceEntryOriginal": "- **68. Free throws** \\[Slider\\]: a 70% shooter takes 10 shots; see how often they hit 5 or fewer.",
+    "modelBoundary": "the complement of five-or-fewer successes",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

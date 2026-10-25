@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0127",
+  "title": "A predictor's observed track record",
+  "hook": "Two stated cases for a predictor's observed track record.",
+  "domain": "probability",
+  "concept": "cp-source-0127",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the stated evidence about a predictor without resolving a decision theory affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Accuracy, regardless of the stated inputs.",
+  "objective": "Compare the stated evidence about a predictor without resolving a decision theory in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0127.predict",
+      "text": "A toy assessment has 99 correct answers among 100. What fraction is correct?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0127/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #127. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0127.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0127/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #127. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0127.reveal.0",
+      "text": "The retained results are Correct=99; Accuracy=0.99 and Correct=50; Accuracy=0.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0127/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #127. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0127.reveal.1",
+      "text": "A score needs its denominator. This descriptive fraction does not establish skill, causation or the accuracy of another population. This comparison isolates the stated evidence about a predictor without resolving a decision theory.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0127/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #127. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0127.case.0.witness",
+      "text": "Correct=99; Accuracy=0.99",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0127/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #127. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0127.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Correct\",99],[\"Total\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0127/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #127. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0127.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Accuracy\",\"value\":0.99}]},\"metrics\":[{\"label\":\"Accuracy\",\"value\":\"0.99\"},{\"label\":\"Correct\",\"value\":\"99\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0127/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #127. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0127.case.1.witness",
+      "text": "Correct=50; Accuracy=0.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0127/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #127. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0127.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Correct\",50],[\"Total\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0127/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #127. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0127.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Accuracy\",\"value\":0.5}]},\"metrics\":[{\"label\":\"Accuracy\",\"value\":\"0.5\"},{\"label\":\"Correct\",\"value\":\"50\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0127/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #127. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0127.recall",
+      "text": "A toy assessment has 100 correct answers among 100. What fraction is correct? Answer 1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0127/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #127. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy assessment has 100 correct answers among 100. What fraction is correct?",
+    "options": [
+      "0.6",
+      "1.4",
+      "1"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Accuracy 1 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0127",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-127"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 127,
+    "sourceSection": "7. Expected value, risk & decisions",
+    "sourceEntryOriginal": "- **127. Newcomb's problem** \\[Split\\]: one box or two? Show the poll, then both camps' arguments.",
+    "modelBoundary": "the stated evidence about a predictor without resolving a decision theory",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0110",
+  "title": "B versus a uniform uncertain A",
+  "hook": "Two stated cases: explore the special case of a uniform comparator posterior.",
+  "domain": "probability",
+  "concept": "cp-source-0110",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the special case of a uniform comparator posterior affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines WinProbability, regardless of the stated inputs.",
+  "objective": "Compare the special case of a uniform comparator posterior in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0110.predict",
+      "text": "Independent A is uniform on [0,1]; B is Beta(8,3). What is the probability that B exceeds A?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0110/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #110. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0110.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0110/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #110. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0110.reveal.0",
+      "text": "The retained results are Alpha=8 Beta=3; WinProbability=0.727 and Alpha=3 Beta=8; WinProbability=0.273.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0110/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #110. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0110.reveal.1",
+      "text": "Conditioning on B makes the probability equal to B, so averaging gives its mean. This simplification relies on the specifically uniform comparator. This comparison isolates the special case of a uniform comparator posterior.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0110/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #110. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0110.case.0.witness",
+      "text": "Alpha=8 Beta=3; WinProbability=0.727",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0110/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #110. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0110.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Alpha\",8],[\"Beta\",3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0110/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #110. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0110.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"WinProbability\",\"value\":0.7272727272727273}]},\"metrics\":[{\"label\":\"WinProbability\",\"value\":\"0.727\"},{\"label\":\"Alpha\",\"value\":\"8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0110/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #110. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0110.case.1.witness",
+      "text": "Alpha=3 Beta=8; WinProbability=0.273",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0110/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #110. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0110.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Alpha\",3],[\"Beta\",8]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0110/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #110. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0110.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"WinProbability\",\"value\":0.2727272727272727}]},\"metrics\":[{\"label\":\"WinProbability\",\"value\":\"0.273\"},{\"label\":\"Alpha\",\"value\":\"3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0110/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #110. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0110.recall",
+      "text": "Independent A is uniform on [0,1]; B is Beta(9,3). What is the probability that B exceeds A? Answer 0.75.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0110/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #110. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Independent A is uniform on [0,1]; B is Beta(9,3). What is the probability that B exceeds A?",
+    "options": [
+      "0.75",
+      "0.45",
+      "1.05"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives WinProbability 0.75 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0110",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-110"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 110,
+    "sourceSection": "6. Bayesian updating & inference",
+    "sourceEntryOriginal": "- **110. \"Chance B beats A\"** \\[Slider\\]: feed in A/B conversions and watch the posterior probability that B is better.",
+    "modelBoundary": "the special case of a uniform comparator posterior",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

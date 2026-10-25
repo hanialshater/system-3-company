@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0143",
+  "title": "A fair walk between two walls",
+  "hook": "Two stated cases: explore the boundary distances in an absorption time.",
+  "domain": "probability",
+  "concept": "cp-source-0143",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the boundary distances in an absorption time affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Steps, regardless of the stated inputs.",
+  "objective": "Compare the boundary distances in an absorption time in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0143.predict",
+      "text": "A fair unit-step toy walk starts at 0, stops at -10 or +10. What is the expected number of steps until stopping?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0143/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #143. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0143.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0143/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #143. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0143.reveal.0",
+      "text": "The retained results are Left=10; Steps=100 and Left=20; Steps=200.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0143/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #143. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0143.reveal.1",
+      "text": "Finite absorbing boundaries make this hitting-time expectation finite. The two boundary distances jointly determine it. This comparison isolates the boundary distances in an absorption time.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0143/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #143. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0143.case.0.witness",
+      "text": "Left=10; Steps=100",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0143/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #143. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0143.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Left\",10],[\"Right\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0143/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #143. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0143.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Steps\",\"value\":100},{\"label\":\"HitRight\",\"value\":0.5}]},\"metrics\":[{\"label\":\"Steps\",\"value\":\"100\"},{\"label\":\"Left\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0143/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #143. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0143.case.1.witness",
+      "text": "Left=20; Steps=200",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0143/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #143. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0143.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Left\",20],[\"Right\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0143/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #143. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0143.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Steps\",\"value\":200},{\"label\":\"HitRight\",\"value\":0.6666666666666666}]},\"metrics\":[{\"label\":\"Steps\",\"value\":\"200\"},{\"label\":\"Left\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0143/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #143. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0143.recall",
+      "text": "A fair unit-step toy walk starts at 0, stops at -11 or +10. What is the expected number of steps until stopping? Answer 110.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0143/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #143. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A fair unit-step toy walk starts at 0, stops at -11 or +10. What is the expected number of steps until stopping?",
+    "options": [
+      "110",
+      "66",
+      "154"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Steps 110 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0143",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-143"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 143,
+    "sourceSection": "8. Random processes: walks, chains, queues",
+    "sourceEntryOriginal": "- **143. Hitting the wall** \\[Slider\\]: move the wall closer or farther and see how long a random walk takes to reach it.",
+    "modelBoundary": "the boundary distances in an absorption time",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

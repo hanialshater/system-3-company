@@ -1,3 +1,9 @@
+## 2026-10-25 · source batch 04 · 200 probability drafts
+
+Implemented probability source entries 1–200 as explicit finite mini-labs. Manifest, original provenance, curation and fixtures are in company/reviews/continuation-batch-04. Validation: 854 arithmetic/schema/state assertions, 32 mathematical relationships and TypeScript pass. Company check remains 811 errors/four warnings; full verify retains publication failures. Build and browser validation remain pending after session interruption; no completed result is fabricated. No independent source or learner approval is claimed.
+
+Implementation progress against supplied lists: 500 behavioral and 300 probability entries are implemented across PR16, PR17, PR19 and this batch; 700 probability entries remain. W-2035 tracks this draft batch and W-2033 the remaining queue. Each new batch is at most 200, with a final 100 remainder. All new lessons remain drafts. No merge or deploy.
+
 ## 2026-10-24 · remaining source demos · second continuation batch (200 behavioral drafts)
 
 Implemented batch 03 as exactly 200 additional behavioral source entries. Together with PR16 and PR17, this completes implementation coverage of the 500-entry behavioral list; independent source and learner approval remain open. Explicit curation, fixtures, unverified claim records and manifest live in company/reviews/continuation-batch-03. The single operator makes no independent review claim.

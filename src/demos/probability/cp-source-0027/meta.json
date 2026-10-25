@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0027",
+  "title": "Why seven has more pairs",
+  "hook": "Two stated cases: explore ordered pairs behind a sum.",
+  "domain": "probability",
+  "concept": "cp-source-0027",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How ordered pairs behind a sum affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Probability, regardless of the stated inputs.",
+  "objective": "Compare ordered pairs behind a sum in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0027.predict",
+      "text": "Roll two independent uniform 6-sided dice numbered from 1. What is the probability their sum is 7?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0027/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #27. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0027.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0027/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #27. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0027.reveal.0",
+      "text": "The retained results are Sum=7; Probability=0.167 and Sum=2; Probability=0.028.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0027/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #27. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0027.reveal.1",
+      "text": "Count ordered pairs, not just possible sums. Middle sums can be formed by more pairs. This comparison isolates ordered pairs behind a sum.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0027/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #27. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0027.case.0.witness",
+      "text": "Sum=7; Probability=0.167",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0027/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #27. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0027.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Sides\",6],[\"Sum\",7]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0027/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #27. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0027.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Probability\",\"value\":0.16666666666666666}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.167\"},{\"label\":\"Sum\",\"value\":\"7\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0027/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #27. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0027.case.1.witness",
+      "text": "Sum=2; Probability=0.028",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0027/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #27. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0027.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Sides\",6],[\"Sum\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0027/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #27. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0027.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Probability\",\"value\":0.027777777777777776}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.028\"},{\"label\":\"Sum\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0027/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #27. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0027.recall",
+      "text": "Roll two independent uniform 7-sided dice numbered from 1. What is the probability their sum is 7? Answer 0.122.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0027/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #27. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Roll two independent uniform 7-sided dice numbered from 1. What is the probability their sum is 7?",
+    "options": [
+      "0.022",
+      "0.122",
+      "0.222"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Probability 0.122 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0027",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-27"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 27,
+    "sourceSection": "2. Coins, dice & randomness intuition",
+    "sourceEntryOriginal": "- **27. Two-dice sums** \\[Predict\\]: build the histogram roll by roll; 7 wins because it has the most combinations.",
+    "modelBoundary": "ordered pairs behind a sum",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

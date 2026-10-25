@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0157", "title": "Reinforcement preserves expected share", "op": "urn", "labels": ["Red", "Blue", "Draws"], "outputs": ["ExpectedRedShare"], "a": [1.0, 1.0, 10.0], "b": [1.0, 1.0, 100.0], "question": "A toy Polya urn starts with 1 red and 1 blue. Each of 10 draws returns the ball and adds one of its color. What is the expected red share?", "questionTemplate": "A toy Polya urn starts with {Red} red and {Blue} blue. Each of {Draws} draws returns the ball and adds one of its color. What is the expected red share?", "explain": "The expected share remains the initial share, even though individual reinforced paths can diverge. Expectation and concentration are separate properties.", "lens": "the mean of reinforced paths rather than a deterministic limit", "kind": "grid", "answerPosition": 1};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

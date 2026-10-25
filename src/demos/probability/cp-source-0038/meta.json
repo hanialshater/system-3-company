@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0038",
+  "title": "A seed reproduces the next state",
+  "hook": "Two stated cases: explore a deterministic generator recurrence.",
+  "domain": "probability",
+  "concept": "cp-source-0038",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How a deterministic generator recurrence affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Next, regardless of the stated inputs.",
+  "objective": "Compare a deterministic generator recurrence in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0038.predict",
+      "text": "A toy generator updates x as (A 5 × x + C 3) modulo 97, starting at Seed 7. What is the next state?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0038/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #38. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0038.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0038/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #38. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0038.reveal.0",
+      "text": "The retained results are Seed=7; Next=38 and Seed=8; Next=43.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0038/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #38. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0038.reveal.1",
+      "text": "A seed and deterministic recurrence reproduce a sequence. Reproducibility is distinct from unpredictability or statistical quality. This comparison isolates a deterministic generator recurrence.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0038/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #38. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0038.case.0.witness",
+      "text": "Seed=7; Next=38",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0038/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #38. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0038.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Seed\",7],[\"A\",5],[\"C\",3],[\"Modulus\",97]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0038/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #38. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0038.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Next\",\"value\":38}]},\"metrics\":[{\"label\":\"Next\",\"value\":\"38\"},{\"label\":\"Seed\",\"value\":\"7\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0038/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #38. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0038.case.1.witness",
+      "text": "Seed=8; Next=43",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0038/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #38. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0038.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Seed\",8],[\"A\",5],[\"C\",3],[\"Modulus\",97]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0038/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #38. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0038.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Next\",\"value\":43}]},\"metrics\":[{\"label\":\"Next\",\"value\":\"43\"},{\"label\":\"Seed\",\"value\":\"8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0038/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #38. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0038.recall",
+      "text": "A toy generator updates x as (A 5 × x + C 3) modulo 97, starting at Seed 8. What is the next state? Answer 43.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0038/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #38. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy generator updates x as (A 5 × x + C 3) modulo 97, starting at Seed 8. What is the next state?",
+    "options": [
+      "43",
+      "25.8",
+      "60.2"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Next 43 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0038",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-38"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 38,
+    "sourceSection": "2. Coins, dice & randomness intuition",
+    "sourceEntryOriginal": "- **38. Seeds** \\[Slider\\]: set a pseudo-random seed and the \"random\" sequence repeats exactly.",
+    "modelBoundary": "a deterministic generator recurrence",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

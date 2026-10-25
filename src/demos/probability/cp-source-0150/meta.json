@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0150",
+  "title": "A diffusive toy particle",
+  "hook": "Two stated cases: explore the variance scale of independent microscopic kicks.",
+  "domain": "probability",
+  "concept": "cp-source-0150",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the variance scale of independent microscopic kicks affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines RMS, regardless of the stated inputs.",
+  "objective": "Compare the variance scale of independent microscopic kicks in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0150.predict",
+      "text": "A symmetric independent toy walk takes 100 steps of magnitude 0.1. What is its root-mean-square displacement?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0150/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #150. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0150.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0150/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #150. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0150.reveal.0",
+      "text": "The retained results are Steps=100; RMS=1 and Steps=10,000; RMS=10.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0150/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #150. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0150.reveal.1",
+      "text": "Independent zero-mean increments add variances. Root-mean-square displacement differs from total distance traveled and mean absolute displacement. This comparison isolates the variance scale of independent microscopic kicks.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0150/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #150. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0150.case.0.witness",
+      "text": "Steps=100; RMS=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0150/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #150. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0150.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Steps\",100],[\"Size\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0150/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #150. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0150.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"RMS\",\"value\":1}]},\"metrics\":[{\"label\":\"RMS\",\"value\":\"1\"},{\"label\":\"Steps\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0150/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #150. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0150.case.1.witness",
+      "text": "Steps=10,000; RMS=10",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0150/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #150. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0150.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Steps\",10000],[\"Size\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0150/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #150. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0150.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"RMS\",\"value\":10}]},\"metrics\":[{\"label\":\"RMS\",\"value\":\"10\"},{\"label\":\"Steps\",\"value\":\"10,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0150/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #150. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0150.recall",
+      "text": "A symmetric independent toy walk takes 101 steps of magnitude 0.1. What is its root-mean-square displacement? Answer 1.005.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0150/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #150. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A symmetric independent toy walk takes 101 steps of magnitude 0.1. What is its root-mean-square displacement?",
+    "options": [
+      "0.603",
+      "1.005",
+      "1.407"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives RMS 1.005 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0150",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-150"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 150,
+    "sourceSection": "8. Random processes: walks, chains, queues",
+    "sourceEntryOriginal": "- **150. Brownian motion** \\[Slider\\]: shake a pollen grain with invisible molecules and watch it jitter.",
+    "modelBoundary": "the variance scale of independent microscopic kicks",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

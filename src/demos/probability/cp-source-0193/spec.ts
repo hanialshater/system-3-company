@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0193", "title": "Predict farther from the training mean", "op": "linpredvar", "labels": ["Noise", "N", "Distance", "SumSquares"], "outputs": ["Variance"], "a": [1.0, 100.0, 0.0, 100.0], "b": [1.0, 100.0, 10.0, 100.0], "question": "A toy linear-model prediction has noise variance 1, N 100, distance 0 from the training mean and centered predictor sum of squares 100. What is predictive variance?", "questionTemplate": "A toy linear-model prediction has noise variance {Noise}, N {N}, distance {Distance} from the training mean and centered predictor sum of squares {SumSquares}. What is predictive variance?", "explain": "Under this linear model, leverage grows away from the training mean. Structural misspecification can create additional uncertainty absent from the formula.", "lens": "leverage in a specified linear prediction model", "kind": "grid", "answerPosition": 1};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

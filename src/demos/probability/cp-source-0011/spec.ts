@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0011", "title": "Sample experiments or visits?", "op": "awake", "labels": ["Prior", "HeadsVisits", "TailsVisits"], "outputs": ["HeadsGivenVisit"], "a": [0.5, 1.0, 2.0], "b": [0.5, 1.0, 1.0], "question": "A toy experiment has heads probability 0.5, 1 visits after heads and 2 after tails. Sampling a visit uniformly from repeated experiments, what fraction come from heads?", "questionTemplate": "A toy experiment has heads probability {Prior}, {HeadsVisits} visits after heads and {TailsVisits} after tails. Sampling a visit uniformly from repeated experiments, what fraction come from heads?", "explain": "Sampling visits weights experiments by their number of visits. This resolves the stated sampling question, not every philosophical formulation.", "lens": "the unit being sampled in repeated experiments", "kind": "grid", "answerPosition": 2};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

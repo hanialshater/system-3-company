@@ -4,7 +4,7 @@ import {formatNumber} from '../mini-lab/model';
 export type CuratedCase = {
  id:string; title:string; op:string; labels:string[]; outputs:string[];
  a:number[]; b:number[]; question:string; questionTemplate?:string; explain:string; lens:string;
- kind:'bars'|'curve'|'timeline'|'grid'|'scatter'|'table'|'intervals'; answerPosition:number;
+ kind:'bars'|'curve'|'timeline'|'grid'|'scatter'|'table'|'intervals'; answerPosition:number; plot?:[number,number,number]; recall?:number[];
 };
 export type Calculator=(p:number[])=>number[];
 const f=formatNumber;
@@ -19,9 +19,9 @@ function picture(c:CuratedCase,p:number[],v:number[],calc:Calculator):MiniLabVis
  if(c.kind==='scatter' && p.length>=4) return {kind:'scatter',points:[{x:p[0],y:p[1]},{x:p[2],y:p[3]}],xLabel:'First',yLabel:'Second'};
  if(c.kind==='scatter') return {kind:'scatter',points:[{x:0,y:0},{x:p[0],y:p[1]}],xLabel:c.labels[0],yLabel:c.labels[1]};
  if(c.kind==='curve') {
-  const index=c.op==='hyperbolic'?2:c.op==='slope'?2:0;
-  const maximum=c.op==='weightprob'?1:Math.max(10,p[index]);
-  const points=Array.from({length:25},(_,i)=>{const q=[...p];q[index]=maximum*i/24;return {x:q[index],y:checked(calc,q)[0]};});
+  const index=c.plot?.[0]??(c.op==='hyperbolic'?2:c.op==='slope'?2:0);
+  const minimum=c.plot?.[1]??0, maximum=c.plot?.[2]??(c.op==='weightprob'?1:Math.max(10,p[index]));
+  const points=Array.from({length:25},(_,i)=>{const q=[...p];q[index]=minimum+(maximum-minimum)*i/24;return {x:q[index],y:checked(calc,q)[0]};});
   return {kind:'curve',points,xLabel:c.labels[index],yLabel:c.outputs[0]};
  }
  if(c.kind==='timeline') {

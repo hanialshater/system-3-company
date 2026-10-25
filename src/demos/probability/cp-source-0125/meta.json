@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0125",
+  "title": "Share the rollover prize",
+  "hook": "Two stated cases: explore the split jackpot conditional on a shared win.",
+  "domain": "probability",
+  "concept": "cp-source-0125",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the split jackpot conditional on a shared win affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines UnitCost, regardless of the stated inputs.",
+  "objective": "Compare the split jackpot conditional on a shared win in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0125.predict",
+      "text": "A toy pack costs 1e+07 for 1 units. What is its price per 1 units?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0125/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #125. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0125.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0125/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #125. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0125.reveal.0",
+      "text": "The retained results are Quantity=1; UnitCost=1.00e+7 and Quantity=10; UnitCost=1.00e+6.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0125/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #125. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0125.reveal.1",
+      "text": "A common unit denominator makes unequal packages comparable. Package appearance does not change their stated contents. This comparison isolates the split jackpot conditional on a shared win.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0125/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #125. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0125.case.0.witness",
+      "text": "Quantity=1; UnitCost=1.00e+7",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0125/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #125. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0125.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Price\",10000000],[\"Quantity\",1],[\"Units\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0125/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #125. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0125.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"UnitCost\",\"value\":10000000}]},\"metrics\":[{\"label\":\"UnitCost\",\"value\":\"1.00e+7\"},{\"label\":\"Quantity\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0125/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #125. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0125.case.1.witness",
+      "text": "Quantity=10; UnitCost=1.00e+6",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0125/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #125. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0125.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Price\",10000000],[\"Quantity\",10],[\"Units\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0125/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #125. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0125.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"UnitCost\",\"value\":1000000}]},\"metrics\":[{\"label\":\"UnitCost\",\"value\":\"1.00e+6\"},{\"label\":\"Quantity\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0125/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #125. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0125.recall",
+      "text": "A toy pack costs 1.00e+7 for 2 units. What is its price per 1 units? Answer 5.00e+6.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0125/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #125. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy pack costs 1.00e+7 for 2 units. What is its price per 1 units?",
+    "options": [
+      "5.00e+6",
+      "3.00e+6",
+      "7.00e+6"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives UnitCost 5.00e+6 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0125",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-125"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 125,
+    "sourceSection": "7. Expected value, risk & decisions",
+    "sourceEntryOriginal": "- **125. Lottery rollover** \\[Slider\\]: grow the jackpot until the ticket's expected value turns positive, then add shared winners.",
+    "modelBoundary": "the split jackpot conditional on a shared win",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

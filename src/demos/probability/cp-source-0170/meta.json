@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0170",
+  "title": "Turn a uniform draw into a wait",
+  "hook": "Two stated cases: explore the inverse exponential CDF.",
+  "domain": "probability",
+  "concept": "cp-source-0170",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the inverse exponential CDF affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Time, regardless of the stated inputs.",
+  "objective": "Compare the inverse exponential CDF in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0170.predict",
+      "text": "Transform a toy uniform value U 0.5 by -log(1-U)/Rate 0.2. What exponential waiting time results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0170/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #170. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0170.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0170/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #170. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0170.reveal.0",
+      "text": "The retained results are U=0.5; Time=3.466 and U=0.9; Time=11.513.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0170/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #170. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0170.reveal.1",
+      "text": "Applying an inverse CDF maps uniform draws into the specified distribution. Values must lie inside the stated uniform domain. This comparison isolates the inverse exponential CDF.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0170/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #170. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0170.case.0.witness",
+      "text": "U=0.5; Time=3.466",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0170/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #170. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0170.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"U\",0.5],[\"Rate\",0.2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0170/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #170. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0170.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Time\",\"value\":3.465735902799726}]},\"metrics\":[{\"label\":\"Time\",\"value\":\"3.466\"},{\"label\":\"U\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0170/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #170. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0170.case.1.witness",
+      "text": "U=0.9; Time=11.513",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0170/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #170. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0170.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"U\",0.9],[\"Rate\",0.2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0170/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #170. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0170.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Time\",\"value\":11.512925464970229}]},\"metrics\":[{\"label\":\"Time\",\"value\":\"11.513\"},{\"label\":\"U\",\"value\":\"0.9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0170/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #170. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0170.recall",
+      "text": "Transform a toy uniform value U 0.6 by -log(1-U)/Rate 0.2. What exponential waiting time results? Answer 4.581.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0170/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #170. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Transform a toy uniform value U 0.6 by -log(1-U)/Rate 0.2. What exponential waiting time results?",
+    "options": [
+      "4.581",
+      "2.749",
+      "6.414"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Time 4.581 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0170",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-170"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 170,
+    "sourceSection": "9. Monte Carlo & simulation",
+    "sourceEntryOriginal": "- **170. Inverse transform** \\[Slider\\]: turn uniform random numbers into any distribution through its CDF.",
+    "modelBoundary": "the inverse exponential CDF",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

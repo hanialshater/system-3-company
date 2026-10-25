@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0100",
+  "title": "Reweight the Xbox-like sample",
+  "hook": "Two stated cases: explore the target-population mixture rather than sample composition.",
+  "domain": "probability",
+  "concept": "cp-source-0100",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the target-population mixture rather than sample composition affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Rate, regardless of the stated inputs.",
+  "objective": "Compare the target-population mixture rather than sample composition in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0100.predict",
+      "text": "A toy mixture puts fraction 0.9 at rate 0.7 and the remainder at rate 0.3. What is its aggregate rate?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0100/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #100. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0100.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0100/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #100. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0100.reveal.0",
+      "text": "The retained results are Weight=0.9; Rate=0.66 and Weight=0.5; Rate=0.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0100/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #100. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0100.reveal.1",
+      "text": "An aggregate mixes groups with their weights. Changes in composition can move it while component rates stay fixed. This comparison isolates the target-population mixture rather than sample composition.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0100/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #100. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0100.case.0.witness",
+      "text": "Weight=0.9; Rate=0.66",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0100/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #100. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0100.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Weight\",0.9],[\"RateA\",0.7],[\"RateB\",0.3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0100/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #100. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0100.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Rate\",\"value\":0.66}]},\"metrics\":[{\"label\":\"Rate\",\"value\":\"0.66\"},{\"label\":\"Weight\",\"value\":\"0.9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0100/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #100. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0100.case.1.witness",
+      "text": "Weight=0.5; Rate=0.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0100/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #100. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0100.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Weight\",0.5],[\"RateA\",0.7],[\"RateB\",0.3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0100/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #100. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0100.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Rate\",\"value\":0.5}]},\"metrics\":[{\"label\":\"Rate\",\"value\":\"0.5\"},{\"label\":\"Weight\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0100/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #100. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0100.recall",
+      "text": "A toy mixture puts fraction 0.72 at rate 0.7 and the remainder at rate 0.3. What is its aggregate rate? Answer 0.588.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0100/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #100. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy mixture puts fraction 0.72 at rate 0.7 and the remainder at rate 0.3. What is its aggregate rate?",
+    "options": [
+      "0.353",
+      "0.823",
+      "0.588"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Rate 0.588 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0100",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-100"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 100,
+    "sourceSection": "5. Sampling, variance & regression to the mean",
+    "sourceEntryOriginal": "- **100. The Xbox poll** \\[Story\\]: a heavily skewed 2012 poll of Xbox users, reweighted by demographics, forecast the US election well (Wang, Rothschild, Goel & Gelman, 2015).",
+    "modelBoundary": "the target-population mixture rather than sample composition",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

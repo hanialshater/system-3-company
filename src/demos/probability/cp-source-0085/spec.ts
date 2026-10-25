@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0085", "title": "Improvement after a bad landing", "op": "regression", "labels": ["Mean", "Observed", "Reliability"], "outputs": ["ExpectedNext"], "a": [50.0, 20.0, 0.4], "b": [50.0, 20.0, 1.0], "question": "A toy repeat-score model predicts Mean 50 plus Reliability 0.4 times the deviation of Observed 20. What is the expected next score?", "questionTemplate": "A toy repeat-score model predicts Mean {Mean} plus Reliability {Reliability} times the deviation of Observed {Observed}. What is the expected next score?", "explain": "Selecting an extreme noisy score can be followed by a less extreme score without any intervention effect. This prediction rule is explicitly assumed.", "lens": "regression without assigning a punishment effect", "kind": "bars", "answerPosition": 1};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

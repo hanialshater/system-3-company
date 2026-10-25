@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0090",
+  "title": "Four times the sample, half the spread",
+  "hook": "Two stated cases: explore the square-root precision law.",
+  "domain": "probability",
+  "concept": "cp-source-0090",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the square-root precision law affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines SD, regardless of the stated inputs.",
+  "objective": "Compare the square-root precision law in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0090.predict",
+      "text": "For 100 independent toy Bernoulli observations with probability 0.5, what is the standard deviation of the sample proportion?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0090/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #90. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0090.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0090/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #90. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0090.reveal.0",
+      "text": "The retained results are N=100; SD=0.05 and N=400; SD=0.025.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0090/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #90. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0090.reveal.1",
+      "text": "Sampling spread depends on sample size as well as the underlying probability. This exact model assumes independent observations. This comparison isolates the square-root precision law.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0090/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #90. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0090.case.0.witness",
+      "text": "N=100; SD=0.05",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0090/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #90. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0090.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.5],[\"N\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0090/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #90. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0090.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"SD\",\"value\":0.05}]},\"metrics\":[{\"label\":\"SD\",\"value\":\"0.05\"},{\"label\":\"N\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0090/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #90. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0090.case.1.witness",
+      "text": "N=400; SD=0.025",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0090/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #90. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0090.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.5],[\"N\",400]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0090/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #90. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0090.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"SD\",\"value\":0.025}]},\"metrics\":[{\"label\":\"SD\",\"value\":\"0.025\"},{\"label\":\"N\",\"value\":\"400\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0090/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #90. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0090.recall",
+      "text": "For 100 independent toy Bernoulli observations with probability 0.4, what is the standard deviation of the sample proportion? Answer 0.049.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0090/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #90. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For 100 independent toy Bernoulli observations with probability 0.4, what is the standard deviation of the sample proportion?",
+    "options": [
+      "-0.051",
+      "0.049",
+      "0.149"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives SD 0.049 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0090",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-90"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 90,
+    "sourceSection": "5. Sampling, variance & regression to the mean",
+    "sourceEntryOriginal": "- **90. The square-root law** \\[Slider\\]: to halve the error, you need four times the sample.",
+    "modelBoundary": "the square-root precision law",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

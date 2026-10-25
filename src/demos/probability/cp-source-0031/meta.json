@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0031",
+  "title": "The first digit is not uniform",
+  "hook": "Two stated cases: explore a logarithmic leading-digit model.",
+  "domain": "probability",
+  "concept": "cp-source-0031",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How a logarithmic leading-digit model affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Probability, regardless of the stated inputs.",
+  "objective": "Compare a logarithmic leading-digit model in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0031.predict",
+      "text": "A toy base-ten leading digit follows the Benford model. What probability is assigned to digit 1?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0031/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #31. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0031.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0031/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #31. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0031.reveal.0",
+      "text": "The retained results are Digit=1; Probability=0.301 and Digit=9; Probability=0.046.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0031/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #31. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0031.reveal.1",
+      "text": "A uniform logarithmic mantissa yields unequal leading-digit shares. The model does not apply to every numerical dataset. This comparison isolates a logarithmic leading-digit model.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0031/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #31. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0031.case.0.witness",
+      "text": "Digit=1; Probability=0.301",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0031/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #31. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0031.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Digit\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0031/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #31. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0031.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Probability\",\"value\":0.3010299956639812}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.301\"},{\"label\":\"Digit\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0031/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #31. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0031.case.1.witness",
+      "text": "Digit=9; Probability=0.046",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0031/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #31. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0031.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Digit\",9]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0031/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #31. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0031.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Probability\",\"value\":0.04575749056067514}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.046\"},{\"label\":\"Digit\",\"value\":\"9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0031/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #31. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0031.recall",
+      "text": "A toy base-ten leading digit follows the Benford model. What probability is assigned to digit 2? Answer 0.176.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0031/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #31. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy base-ten leading digit follows the Benford model. What probability is assigned to digit 2?",
+    "options": [
+      "0.076",
+      "0.276",
+      "0.176"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Probability 0.176 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0031",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-31"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 31,
+    "sourceSection": "2. Coins, dice & randomness intuition",
+    "sourceEntryOriginal": "- **31. Benford's law** \\[Predict\\]: guess how often real-world numbers start with 1. About 30%.",
+    "modelBoundary": "a logarithmic leading-digit model",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

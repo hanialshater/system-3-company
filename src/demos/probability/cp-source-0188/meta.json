@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0188",
+  "title": "Temperature flattens the same logits",
+  "hook": "Two stated cases: explore the sampling concentration with fixed model scores.",
+  "domain": "probability",
+  "concept": "cp-source-0188",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the sampling concentration with fixed model scores affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines ProbabilityA, regardless of the stated inputs.",
+  "objective": "Compare the sampling concentration with fixed model scores in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0188.predict",
+      "text": "Two toy logits are 4 and 1, divided by positive Temperature 0.5 before softmax. What probability is assigned to A?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0188/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #188. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0188.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0188/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #188. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0188.reveal.0",
+      "text": "The retained results are Temperature=0.5; ProbabilityA=0.998 and Temperature=3; ProbabilityA=0.731.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0188/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #188. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0188.reveal.1",
+      "text": "Temperature changes sampling concentration while preserving logit order. It does not supply evidence that the scores are calibrated. This comparison isolates the sampling concentration with fixed model scores.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0188/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #188. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0188.case.0.witness",
+      "text": "Temperature=0.5; ProbabilityA=0.998",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0188/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #188. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0188.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"LogitA\",4],[\"LogitB\",1],[\"Temperature\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0188/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #188. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0188.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"ProbabilityA\",\"value\":0.9975273768433653}]},\"metrics\":[{\"label\":\"ProbabilityA\",\"value\":\"0.998\"},{\"label\":\"Temperature\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0188/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #188. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0188.case.1.witness",
+      "text": "Temperature=3; ProbabilityA=0.731",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0188/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #188. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0188.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"LogitA\",4],[\"LogitB\",1],[\"Temperature\",3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0188/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #188. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0188.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"ProbabilityA\",\"value\":0.7310585786300049}]},\"metrics\":[{\"label\":\"ProbabilityA\",\"value\":\"0.731\"},{\"label\":\"Temperature\",\"value\":\"3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0188/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #188. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0188.recall",
+      "text": "Two toy logits are 5 and 1, divided by positive Temperature 0.5 before softmax. What probability is assigned to A? Answer 1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0188/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #188. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two toy logits are 5 and 1, divided by positive Temperature 0.5 before softmax. What probability is assigned to A?",
+    "options": [
+      "1",
+      "0.6",
+      "1.4"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives ProbabilityA 1 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0188",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-188"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 188,
+    "sourceSection": "10. Probabilistic models in ML",
+    "sourceEntryOriginal": "- **188. Temperature** \\[Slider\\]: raise sampling temperature and watch text go from dull to creative to nonsense.",
+    "modelBoundary": "the sampling concentration with fixed model scores",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

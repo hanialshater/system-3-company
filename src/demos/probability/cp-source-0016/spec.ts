@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0016", "title": "Mixing changes the capital states", "op": "parrondo", "labels": ["A", "Bad", "Good", "Mix"], "outputs": ["Drift"], "a": [0.495, 0.095, 0.745, 0.5], "b": [0.495, 0.095, 0.745, 0.0], "question": "A toy walk changes capital by ±1. Game A wins with 0.495; B wins with 0.095 at capital modulo 3 equal 0, otherwise 0.745. Independently choose A with chance 0.5. What is long-run mean drift, numerically iterated?", "questionTemplate": "A toy walk changes capital by ±1. Game A wins with {A}; B wins with {Bad} at capital modulo 3 equal 0, otherwise {Good}. Independently choose A with chance {Mix}. What is long-run mean drift, numerically iterated?", "explain": "Mixing changes the distribution of capital residues as well as the win rule. The computed stationary drift belongs to this specified three-state model.", "lens": "the stationary capital-residue distribution", "kind": "grid", "answerPosition": 1};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

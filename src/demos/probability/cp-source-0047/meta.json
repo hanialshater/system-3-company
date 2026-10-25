@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0047",
+  "title": "Slide the base rate, keep the test",
+  "hook": "Two stated cases: explore the base rate with unchanged test characteristics.",
+  "domain": "probability",
+  "concept": "cp-source-0047",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the base rate with unchanged test characteristics affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Posterior, regardless of the stated inputs.",
+  "objective": "Compare the base rate with unchanged test characteristics in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0047.predict",
+      "text": "A toy condition has prevalence 0.001; a test catches fraction 0.9 of cases and flags fraction 0.09 of noncases. Given a positive, what probability is a case?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0047/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #47. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0047.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0047/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #47. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0047.reveal.0",
+      "text": "The retained results are Prior=0.001; Posterior=0.01 and Prior=0.5; Posterior=0.909.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0047/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #47. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0047.reveal.1",
+      "text": "Count true and false positives in one common population. A test’s sensitivity is not the probability of a condition after a positive. This comparison isolates the base rate with unchanged test characteristics.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0047/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #47. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0047.case.0.witness",
+      "text": "Prior=0.001; Posterior=0.01",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0047/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #47. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0047.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0.001],[\"Sensitivity\",0.9],[\"FalsePositive\",0.09]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0047/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #47. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0047.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Posterior\",\"value\":0.009910802775024779}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"0.01\"},{\"label\":\"Prior\",\"value\":\"0.001\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0047/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #47. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0047.case.1.witness",
+      "text": "Prior=0.5; Posterior=0.909",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0047/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #47. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0047.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0.5],[\"Sensitivity\",0.9],[\"FalsePositive\",0.09]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0047/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #47. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0047.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Posterior\",\"value\":0.9090909090909092}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"0.909\"},{\"label\":\"Prior\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0047/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #47. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0047.recall",
+      "text": "A toy condition has prevalence 8.00e-4; a test catches fraction 0.9 of cases and flags fraction 0.09 of noncases. Given a positive, what probability is a case? Answer 0.008.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0047/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #47. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy condition has prevalence 8.00e-4; a test catches fraction 0.9 of cases and flags fraction 0.09 of noncases. Given a positive, what probability is a case?",
+    "options": [
+      "0.008",
+      "-0.092",
+      "0.108"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Posterior 0.008 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0047",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-47"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 47,
+    "sourceSection": "3. Conditional probability & Bayes' rule",
+    "sourceEntryOriginal": "- **47. Base-rate slider** \\[Slider\\]: keep the test fixed, slide prevalence from 0.1% to 50%, and watch a positive result's meaning flip.",
+    "modelBoundary": "the base rate with unchanged test characteristics",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

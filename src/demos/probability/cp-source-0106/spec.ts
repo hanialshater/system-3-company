@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0106", "title": "A posterior band uses an explicit prior", "op": "normalband", "labels": ["Prior", "Variance", "Measurement", "Noise", "Z"], "outputs": ["Lower", "Upper"], "a": [0.0, 1.0, 2.0, 1.0, 1.96], "b": [0.0, 100.0, 2.0, 1.0, 1.96], "question": "A toy normal prior has mean 0, variance 1; normal measurement 2 has variance 1. What is the lower endpoint of posterior mean ±1.96 posterior SD?", "questionTemplate": "A toy normal prior has mean {Prior}, variance {Variance}; normal measurement {Measurement} has variance {Noise}. What is the lower endpoint of posterior mean ±{Z} posterior SD?", "explain": "This is a posterior band under the specified prior and likelihood. A repeated-sampling confidence procedure has a different probability interpretation.", "lens": "posterior conditioning rather than repeated-sampling coverage", "kind": "grid", "answerPosition": 1};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

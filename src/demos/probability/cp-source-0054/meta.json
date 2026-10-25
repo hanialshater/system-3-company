@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0054",
+  "title": "Three independent reports of rain",
+  "hook": "Two stated cases: explore the conditional independence of witness reports.",
+  "domain": "probability",
+  "concept": "cp-source-0054",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the conditional independence of witness reports affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Posterior, regardless of the stated inputs.",
+  "objective": "Compare the conditional independence of witness reports in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0054.predict",
+      "text": "Toy prevalence is 0.25; sensitivity 0.666667, false-positive rate 0.333333. Given 3 positive tests independent conditional on status, what is posterior probability?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0054/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #54. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0054.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0054/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #54. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0054.reveal.0",
+      "text": "The retained results are Tests=3; Posterior=0.727 and Tests=1; Posterior=0.4.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0054/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #54. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0054.reveal.1",
+      "text": "Conditional independence permits multiplication within each status. Repeating a correlated test need not provide the same evidence. This comparison isolates the conditional independence of witness reports.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0054/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #54. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0054.case.0.witness",
+      "text": "Tests=3; Posterior=0.727",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0054/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #54. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0054.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0.25],[\"Sensitivity\",0.6666666666666666],[\"FalsePositive\",0.3333333333333333],[\"Tests\",3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0054/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #54. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0054.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Posterior\",\"value\":0.7272727272727272}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"0.727\"},{\"label\":\"Tests\",\"value\":\"3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0054/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #54. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0054.case.1.witness",
+      "text": "Tests=1; Posterior=0.4",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0054/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #54. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0054.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0.25],[\"Sensitivity\",0.6666666666666666],[\"FalsePositive\",0.3333333333333333],[\"Tests\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0054/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #54. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0054.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Posterior\",\"value\":0.4}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"0.4\"},{\"label\":\"Tests\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0054/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #54. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0054.recall",
+      "text": "Toy prevalence is 0.2; sensitivity 0.667, false-positive rate 0.333. Given 3 positive tests independent conditional on status, what is posterior probability? Answer 0.667.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0054/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #54. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy prevalence is 0.2; sensitivity 0.667, false-positive rate 0.333. Given 3 positive tests independent conditional on status, what is posterior probability?",
+    "options": [
+      "0.4",
+      "0.667",
+      "0.933"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Posterior 0.667 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0054",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-54"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 54,
+    "sourceSection": "3. Conditional probability & Bayes' rule",
+    "sourceEntryOriginal": "- **54. Three friends in Seattle** \\[Predict\\]: each lies 1/3 of the time; all say it's raining. With a 25% prior, the chance it's raining is about 73%.",
+    "modelBoundary": "the conditional independence of witness reports",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

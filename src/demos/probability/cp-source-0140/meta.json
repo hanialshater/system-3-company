@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0140",
+  "title": "One gamble, different initial wealth",
+  "hook": "Two stated cases: explore initial wealth in a log-utility comparison.",
+  "domain": "probability",
+  "concept": "cp-source-0140",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How initial wealth in a log-utility comparison affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Change, regardless of the stated inputs.",
+  "objective": "Compare initial wealth in a log-utility comparison in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0140.predict",
+      "text": "A toy log-utility agent has wealth 1000, gains 110 with probability 0.5 and otherwise loses 100. What is expected log utility minus log current wealth?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0140/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #140. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0140.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0140/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #140. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0140.reveal.0",
+      "text": "The retained results are Wealth=1,000; Change=-5.00e-4 and Wealth=100,000; Change=4.94e-5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0140/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #140. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0140.reveal.1",
+      "text": "Curvature, initial wealth and stakes jointly determine this model comparison. Log utility is an assumed rule, not a universal account of risk preferences. This comparison isolates initial wealth in a log-utility comparison.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0140/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #140. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0140.case.0.witness",
+      "text": "Wealth=1,000; Change=-5.00e-4",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0140/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #140. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0140.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Wealth\",1000],[\"Gain\",110],[\"Loss\",100],[\"P\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0140/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #140. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0140.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Change\",\"value\":-0.0005002501667910053}]},\"metrics\":[{\"label\":\"Change\",\"value\":\"-5.00e-4\"},{\"label\":\"Wealth\",\"value\":\"1,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0140/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #140. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0140.case.1.witness",
+      "text": "Wealth=100,000; Change=4.94e-5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0140/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #140. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0140.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Wealth\",100000],[\"Gain\",110],[\"Loss\",100],[\"P\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0140/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #140. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0140.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Change\",\"value\":0.000049447554859582965}]},\"metrics\":[{\"label\":\"Change\",\"value\":\"4.94e-5\"},{\"label\":\"Wealth\",\"value\":\"100,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0140/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #140. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0140.recall",
+      "text": "A toy log-utility agent has wealth 1,001, gains 110 with probability 0.5 and otherwise loses 100. What is expected log utility minus log current wealth? Answer -4.94e-4.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0140/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #140. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy log-utility agent has wealth 1,001, gains 110 with probability 0.5 and otherwise loses 100. What is expected log utility minus log current wealth?",
+    "options": [
+      "-4.94e-4",
+      "-0.1",
+      "0.1"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Change -4.94e-4 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0140",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-140"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 140,
+    "sourceSection": "7. Expected value, risk & decisions",
+    "sourceEntryOriginal": "- **140. Log utility** \\[Slider\\]: compare linear and log utility for the same gamble and watch the preferred choice change.",
+    "modelBoundary": "initial wealth in a log-utility comparison",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

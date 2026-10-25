@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0183", "title": "Two Gaussian classes overlap", "op": "gaussclass", "labels": ["Prior", "DistanceA", "DistanceB", "Variance"], "outputs": ["PosteriorA"], "a": [0.5, 1.0, 3.0, 1.0], "b": [0.5, 2.0, 2.0, 1.0], "question": "Two toy equal-variance Gaussian classes have prior A 0.5; the point is DistanceA 1, DistanceB 3 from their means; variance 1. What is posterior A?", "questionTemplate": "Two toy equal-variance Gaussian classes have prior A {Prior}; the point is DistanceA {DistanceA}, DistanceB {DistanceB} from their means; variance {Variance}. What is posterior A?", "explain": "Soft membership weighs densities and priors. A hard nearest-center label discards this uncertainty and may ignore unequal class priors.", "lens": "class densities and priors at one specified point", "kind": "grid", "answerPosition": 0};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

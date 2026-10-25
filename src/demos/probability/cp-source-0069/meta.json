@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0069",
+  "title": "Twenty tries is not a guarantee",
+  "hook": "Two stated cases: explore finite attempts for a geometric waiting process.",
+  "domain": "probability",
+  "concept": "cp-source-0069",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How finite attempts for a geometric waiting process affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines AtLeastOne, regardless of the stated inputs.",
+  "objective": "Compare finite attempts for a geometric waiting process in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0069.predict",
+      "text": "An event independently occurs with probability 0.05 on each of 20 trials. What is the probability of at least one occurrence?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0069/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #69. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0069.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0069/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #69. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0069.reveal.0",
+      "text": "The retained results are Trials=20; AtLeastOne=0.642 and Trials=60; AtLeastOne=0.954.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0069/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #69. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0069.reveal.1",
+      "text": "The complement is no occurrence on every trial. Independence is required for the product used here. This comparison isolates finite attempts for a geometric waiting process.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0069/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #69. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0069.case.0.witness",
+      "text": "Trials=20; AtLeastOne=0.642",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0069/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #69. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0069.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.05],[\"Trials\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0069/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #69. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0069.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"AtLeastOne\",\"value\":0.6415140775914581}]},\"metrics\":[{\"label\":\"AtLeastOne\",\"value\":\"0.642\"},{\"label\":\"Trials\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0069/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #69. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0069.case.1.witness",
+      "text": "Trials=60; AtLeastOne=0.954",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0069/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #69. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0069.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.05],[\"Trials\",60]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0069/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #69. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0069.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"AtLeastOne\",\"value\":0.953930201013048}]},\"metrics\":[{\"label\":\"AtLeastOne\",\"value\":\"0.954\"},{\"label\":\"Trials\",\"value\":\"60\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0069/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #69. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0069.recall",
+      "text": "An event independently occurs with probability 0.04 on each of 20 trials. What is the probability of at least one occurrence? Answer 0.558.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0069/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #69. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "An event independently occurs with probability 0.04 on each of 20 trials. What is the probability of at least one occurrence?",
+    "options": [
+      "0.335",
+      "0.558",
+      "0.781"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives AtLeastOne 0.558 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0069",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-69"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 69,
+    "sourceSection": "4. Distributions you can feel",
+    "sourceEntryOriginal": "- **69. Tries until success** \\[Predict\\]: with a 1-in-20 chance per try, how many tries is typical? Many need far more than 20.",
+    "modelBoundary": "finite attempts for a geometric waiting process",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

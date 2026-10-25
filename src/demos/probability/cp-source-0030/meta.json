@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0030",
+  "title": "A biased die produces a count",
+  "hook": "Two stated cases: explore the likelihood of one specified count.",
+  "domain": "probability",
+  "concept": "cp-source-0030",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the likelihood of one specified count affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Probability, regardless of the stated inputs.",
+  "objective": "Compare the likelihood of one specified count in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0030.predict",
+      "text": "In 100 independent Bernoulli trials with success probability 0.2, what is the probability of exactly 20 successes?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0030/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #30. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0030.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0030/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #30. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0030.reveal.0",
+      "text": "The retained results are P=0.2; Probability=0.099 and P=0.167; Probability=0.068.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0030/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #30. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0030.reveal.1",
+      "text": "The binomial coefficient counts placements of the successes. A single ordered sequence is only one of those placements. This comparison isolates the likelihood of one specified count.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0030/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #30. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0030.case.0.witness",
+      "text": "P=0.2; Probability=0.099",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0030/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #30. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0030.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"N\",100],[\"P\",0.2],[\"K\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0030/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #30. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0030.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Probability\",\"value\":0.09930021480882525}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.099\"},{\"label\":\"P\",\"value\":\"0.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0030/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #30. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0030.case.1.witness",
+      "text": "P=0.167; Probability=0.068",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0030/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #30. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0030.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"N\",100],[\"P\",0.16666666666666666],[\"K\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0030/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #30. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0030.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Probability\",\"value\":0.06786199515844854}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.068\"},{\"label\":\"P\",\"value\":\"0.167\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0030/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #30. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0030.recall",
+      "text": "In 100 independent Bernoulli trials with success probability 0.16, what is the probability of exactly 20 successes? Answer 0.057.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0030/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #30. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In 100 independent Bernoulli trials with success probability 0.16, what is the probability of exactly 20 successes?",
+    "options": [
+      "-0.043",
+      "0.057",
+      "0.157"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Probability 0.057 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0030",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-30"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 30,
+    "sourceSection": "2. Coins, dice & randomness intuition",
+    "sourceEntryOriginal": "- **30. Catch the loaded die** \\[Slider\\]: set the bias, roll until you're sure. Small biases need hundreds of rolls.",
+    "modelBoundary": "the likelihood of one specified count",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

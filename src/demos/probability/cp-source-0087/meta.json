@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0087",
+  "title": "The poll margin has a square root",
+  "hook": "Two stated cases: explore the standard error before applying an interval multiplier.",
+  "domain": "probability",
+  "concept": "cp-source-0087",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the standard error before applying an interval multiplier affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines SD, regardless of the stated inputs.",
+  "objective": "Compare the standard error before applying an interval multiplier in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0087.predict",
+      "text": "For 1000 independent toy Bernoulli observations with probability 0.5, what is the standard deviation of the sample proportion?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0087/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #87. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0087.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0087/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #87. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0087.reveal.0",
+      "text": "The retained results are N=1,000; SD=0.016 and N=10,000; SD=0.005.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0087/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #87. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0087.reveal.1",
+      "text": "Sampling spread depends on sample size as well as the underlying probability. This exact model assumes independent observations. This comparison isolates the standard error before applying an interval multiplier.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0087/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #87. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0087.case.0.witness",
+      "text": "N=1,000; SD=0.016",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0087/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #87. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0087.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.5],[\"N\",1000]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0087/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #87. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0087.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"SD\",\"value\":0.015811388300841896}]},\"metrics\":[{\"label\":\"SD\",\"value\":\"0.016\"},{\"label\":\"N\",\"value\":\"1,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0087/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #87. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0087.case.1.witness",
+      "text": "N=10,000; SD=0.005",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0087/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #87. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0087.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.5],[\"N\",10000]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0087/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #87. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0087.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"SD\",\"value\":0.005}]},\"metrics\":[{\"label\":\"SD\",\"value\":\"0.005\"},{\"label\":\"N\",\"value\":\"10,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0087/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #87. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0087.recall",
+      "text": "For 1,000 independent toy Bernoulli observations with probability 0.4, what is the standard deviation of the sample proportion? Answer 0.015.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0087/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #87. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For 1,000 independent toy Bernoulli observations with probability 0.4, what is the standard deviation of the sample proportion?",
+    "options": [
+      "-0.085",
+      "0.015",
+      "0.115"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives SD 0.015 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0087",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-87"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 87,
+    "sourceSection": "5. Sampling, variance & regression to the mean",
+    "sourceEntryOriginal": "- **87. Margin of error** \\[Slider\\]: poll 100, 1,000, 10,000 people; the ±3% at 1,000 appears on its own.",
+    "modelBoundary": "the standard error before applying an interval multiplier",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0017", "title": "When to start accepting records", "op": "secretary", "labels": ["N", "Skip"], "outputs": ["Success"], "a": [100.0, 37.0], "b": [100.0, 10.0], "question": "There are 100 randomly ordered distinct candidates. Skip 37, then choose the next record, or the last if none. What is the probability of selecting the best?", "questionTemplate": "There are {N} randomly ordered distinct candidates. Skip {Skip}, then choose the next record, or the last if none. What is the probability of selecting the best?", "explain": "The stopping threshold trades off learning the scale and leaving enough candidates. The formula assumes random order and a single irrevocable selection.", "lens": "the skip threshold under random ordering", "kind": "grid", "answerPosition": 2, "recall": [100.0, 20.0]};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

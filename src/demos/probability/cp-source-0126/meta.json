@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0126",
+  "title": "An offer versus a specified gamble",
+  "hook": "Two stated cases: explore the probability behind the cash expectation.",
+  "domain": "probability",
+  "concept": "cp-source-0126",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the probability behind the cash expectation affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Expected, regardless of the stated inputs.",
+  "objective": "Compare the probability behind the cash expectation in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0126.predict",
+      "text": "A toy gamble gains 200 with probability 0.4 and loses 100 otherwise. What is its expected cash change?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0126/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #126. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0126.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0126/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #126. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0126.reveal.0",
+      "text": "The retained results are Probability=0.4; Expected=20 and Probability=0.6; Expected=80.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0126/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #126. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0126.reveal.1",
+      "text": "Reaching an emotionally important balance is different from maximizing expected cash change. Neither guarantees the outcome of one play. This comparison isolates the probability behind the cash expectation.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0126/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #126. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0126.case.0.witness",
+      "text": "Probability=0.4; Expected=20",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0126/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #126. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0126.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Loss\",100],[\"Win\",200],[\"Probability\",0.4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0126/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #126. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0126.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Expected\",\"value\":20}]},\"metrics\":[{\"label\":\"Expected\",\"value\":\"20\"},{\"label\":\"Probability\",\"value\":\"0.4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0126/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #126. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0126.case.1.witness",
+      "text": "Probability=0.6; Expected=80",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0126/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #126. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0126.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Loss\",100],[\"Win\",200],[\"Probability\",0.6]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0126/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #126. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0126.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Expected\",\"value\":80}]},\"metrics\":[{\"label\":\"Expected\",\"value\":\"80\"},{\"label\":\"Probability\",\"value\":\"0.6\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0126/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #126. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0126.recall",
+      "text": "A toy gamble gains 200 with probability 0.4 and loses 101 otherwise. What is its expected cash change? Answer 19.4.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0126/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #126. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy gamble gains 200 with probability 0.4 and loses 101 otherwise. What is its expected cash change?",
+    "options": [
+      "11.64",
+      "19.4",
+      "27.16"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Expected 19.4 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0126",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-126"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 126,
+    "sourceSection": "7. Expected value, risk & decisions",
+    "sourceEntryOriginal": "- **126. Be the banker** \\[Measure\\]: play a *Deal or No Deal*-style game and see your implied risk attitude.",
+    "modelBoundary": "the probability behind the cash expectation",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

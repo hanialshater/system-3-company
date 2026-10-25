@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0151",
+  "title": "Time ahead need not be evenly split",
+  "hook": "Two stated cases: explore the limiting occupation-time distribution.",
+  "domain": "probability",
+  "concept": "cp-source-0151",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the limiting occupation-time distribution affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines CDF, regardless of the stated inputs.",
+  "objective": "Compare the limiting occupation-time distribution in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0151.predict",
+      "text": "In the stated limiting arcsine model, the fraction of time ahead has CDF (2/pi)asin(sqrt(u)). At u=0.1, what is this CDF?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0151/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #151. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0151.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0151/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #151. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0151.reveal.0",
+      "text": "The retained results are Fraction=0.1; CDF=0.205 and Fraction=0.5; CDF=0.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0151/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #151. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0151.reveal.1",
+      "text": "The limiting occupation-time distribution concentrates near the ends. It is not the same as a uniform share or an exact finite-game formula. This comparison isolates the limiting occupation-time distribution.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0151/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #151. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0151.case.0.witness",
+      "text": "Fraction=0.1; CDF=0.205",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0151/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #151. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0151.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Fraction\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0151/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #151. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0151.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"CDF\",\"value\":0.20483276469913345}]},\"metrics\":[{\"label\":\"CDF\",\"value\":\"0.205\"},{\"label\":\"Fraction\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0151/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #151. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0151.case.1.witness",
+      "text": "Fraction=0.5; CDF=0.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0151/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #151. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0151.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Fraction\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0151/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #151. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0151.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"CDF\",\"value\":0.5000000000000001}]},\"metrics\":[{\"label\":\"CDF\",\"value\":\"0.5\"},{\"label\":\"Fraction\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0151/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #151. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0151.recall",
+      "text": "In the stated limiting arcsine model, the fraction of time ahead has CDF (2/pi)asin(sqrt(u)). At u=0.08, what is this CDF? Answer 0.183.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0151/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #151. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In the stated limiting arcsine model, the fraction of time ahead has CDF (2/pi)asin(sqrt(u)). At u=0.08, what is this CDF?",
+    "options": [
+      "0.083",
+      "0.283",
+      "0.183"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives CDF 0.183 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0151",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-151"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 151,
+    "sourceSection": "8. Random processes: walks, chains, queues",
+    "sourceEntryOriginal": "- **151. Arcsine law** \\[Gotcha\\]: in a fair coin game, one player usually leads for most of the time.",
+    "modelBoundary": "the limiting occupation-time distribution",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

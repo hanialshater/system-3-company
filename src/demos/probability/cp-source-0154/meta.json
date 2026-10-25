@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0154",
+  "title": "A maze reduced to a corridor",
+  "hook": "Two stated cases: explore the absorbing-boundary corridor model.",
+  "domain": "probability",
+  "concept": "cp-source-0154",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the absorbing-boundary corridor model affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Steps, regardless of the stated inputs.",
+  "objective": "Compare the absorbing-boundary corridor model in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0154.predict",
+      "text": "A fair unit-step toy walk starts at 0, stops at -3 or +5. What is the expected number of steps until stopping?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0154/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #154. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0154.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0154/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #154. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0154.reveal.0",
+      "text": "The retained results are Left=3; Steps=15 and Left=6; Steps=30.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0154/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #154. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0154.reveal.1",
+      "text": "Finite absorbing boundaries make this hitting-time expectation finite. The two boundary distances jointly determine it. This comparison isolates the absorbing-boundary corridor model.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0154/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #154. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0154.case.0.witness",
+      "text": "Left=3; Steps=15",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0154/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #154. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0154.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Left\",3],[\"Right\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0154/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #154. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0154.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Steps\",\"value\":15},{\"label\":\"HitRight\",\"value\":0.375}]},\"metrics\":[{\"label\":\"Steps\",\"value\":\"15\"},{\"label\":\"Left\",\"value\":\"3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0154/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #154. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0154.case.1.witness",
+      "text": "Left=6; Steps=30",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0154/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #154. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0154.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Left\",6],[\"Right\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0154/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #154. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0154.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Steps\",\"value\":30},{\"label\":\"HitRight\",\"value\":0.5454545454545454}]},\"metrics\":[{\"label\":\"Steps\",\"value\":\"30\"},{\"label\":\"Left\",\"value\":\"6\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0154/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #154. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0154.recall",
+      "text": "A fair unit-step toy walk starts at 0, stops at -4 or +5. What is the expected number of steps until stopping? Answer 20.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0154/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #154. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A fair unit-step toy walk starts at 0, stops at -4 or +5. What is the expected number of steps until stopping?",
+    "options": [
+      "12",
+      "28",
+      "20"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Steps 20 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0154",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-154"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 154,
+    "sourceSection": "8. Random processes: walks, chains, queues",
+    "sourceEntryOriginal": "- **154. Mouse in a maze** \\[Predict\\]: guess the expected time to reach the cheese for a randomly wandering mouse.",
+    "modelBoundary": "the absorbing-boundary corridor model",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

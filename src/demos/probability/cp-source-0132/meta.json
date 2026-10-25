@@ -1,0 +1,147 @@
+{
+  "slug": "cp-source-0132",
+  "title": "The upper value of a perfect forecast",
+  "hook": "Two stated cases: explore state-contingent choices under perfect information.",
+  "domain": "probability",
+  "concept": "cp-source-0132",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How state-contingent choices under perfect information affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Value, regardless of the stated inputs.",
+  "objective": "Compare state-contingent choices under perfect information in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0132.predict",
+      "text": "A toy action gains 100 in a good state of probability 0.5, loses 100 otherwise; abstaining pays zero. What is the expected value of perfect state information?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0132/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #132. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0132.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0132/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #132. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0132.reveal.0",
+      "text": "The retained results are P=0.5; Value=50 and P=0.9; Value=10.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0132/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #132. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0132.reveal.1",
+      "text": "Perfect information lets the decision condition on the state. Its value is an upper bound for an imperfect forecast under this payoff model. This comparison isolates state-contingent choices under perfect information.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0132/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #132. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0132.case.0.witness",
+      "text": "P=0.5; Value=50",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0132/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #132. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0132.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.5],[\"Gain\",100],[\"Loss\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0132/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #132. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0132.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Value\",\"value\":50}]},\"metrics\":[{\"label\":\"Value\",\"value\":\"50\"},{\"label\":\"P\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0132/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #132. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0132.case.1.witness",
+      "text": "P=0.9; Value=10",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0132/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #132. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0132.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.9],[\"Gain\",100],[\"Loss\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0132/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #132. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0132.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Value\",\"value\":10}]},\"metrics\":[{\"label\":\"Value\",\"value\":\"10\"},{\"label\":\"P\",\"value\":\"0.9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0132/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #132. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0132.recall",
+      "text": "A toy action gains 100 in a good state of probability 0.4, loses 100 otherwise; abstaining pays zero. What is the expected value of perfect state information? Answer 40.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0132/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #132. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy action gains 100 in a good state of probability 0.4, loses 100 otherwise; abstaining pays zero. What is the expected value of perfect state information?",
+    "options": [
+      "24",
+      "40",
+      "56"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Value 40 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0132",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-132"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 132,
+    "sourceSection": "7. Expected value, risk & decisions",
+    "sourceEntryOriginal": "- **132. Value of information** \\[Slider\\]: how much should you pay for a forecast before planning a picnic?",
+    "modelBoundary": "state-contingent choices under perfect information",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}
