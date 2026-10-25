@@ -1,0 +1,46 @@
+#!/usr/bin/env node
+// The starter HQ (product/STARTER.md "The starter HQ"): a dependency-free web app over companies' v1 event logs
+// (crew.mjs). One page (index.html) and a small JSON API:
+//   GET /api/city                      the companies in the city file: [{ id, name, archetype, health }]
+//   GET /api/company/<id>/events       the company's events (v1), newest last
+//   GET /api/company/<id>/knowledge    its knowledge base entries (knowledge/entries.jsonl), if it has one
+// A company is { id, name, archetype, events: <path to events.jsonl>, knowledge?: <dir> } in the city file, or a
+// benchmark org ({ bench: <runs dir> }) read through bench2events.mjs.
+//   node hq/server.mjs --city=<city.json> [--port=4173]
+import http from "node:http";
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { benchEvents } from "./bench2events.mjs";
+
+const HERE = path.dirname(fileURLToPath(import.meta.url));
+const opt = Object.fromEntries(process.argv.slice(2).filter((a) => a.startsWith("--")).map((a) => { const [k, ...v] = a.slice(2).split("="); return [k, v.join("=") || true]; }));
+const cityFile = path.resolve(opt.city ?? path.join(HERE, "city.json"));
+const readJsonl = (f) => { try { return fs.readFileSync(f, "utf8").trim().split("\n").filter(Boolean).map((l) => JSON.parse(l)); } catch { return []; } };
+const city = () => JSON.parse(fs.readFileSync(cityFile, "utf8"));
+export function eventsOf(c) { return c.bench ? benchEvents(c.bench) : readJsonl(c.events); }
+export function health(ev) {
+  const start = ev.find((e) => e.type === "crew.start"), lands = ev.filter((e) => e.type === "land"), last = lands.at(-1);
+  const spent = ev.filter((e) => e.type === "spend").reduce((a, e) => a + (e.usd ?? 0), 0), end = ev.find((e) => e.type === "crew.end");
+  return { score: last?.after ?? start?.rate ?? null, start: start?.rate ?? null, lands: lands.length, refused: ev.filter((e) => e.type === "land.refused").length, spent: Number(spent.toFixed(2)), budget: start?.budget ?? null, state: end ? "ended" : ev.length ? "running" : "empty", members: start?.members?.length ?? 0, last: ev.at(-1)?.t ?? null };
+}
+const send = (res, code, body, type = "application/json") => { res.writeHead(code, { "content-type": type, "cache-control": "no-store" }); res.end(type === "application/json" ? JSON.stringify(body) : body); };
+
+export function handler(req, res) {
+  const u = new URL(req.url, "http://x"), parts = u.pathname.split("/").filter(Boolean);
+  try {
+    if (u.pathname === "/" || u.pathname === "/index.html") return send(res, 200, fs.readFileSync(path.join(HERE, "index.html"), "utf8"), "text/html; charset=utf-8");
+    if (u.pathname === "/api/city") return send(res, 200, city().companies.map((c) => ({ id: c.id, name: c.name, archetype: c.archetype, owner: c.owner ?? null, health: health(eventsOf(c)) })));
+    if (parts[0] === "api" && parts[1] === "company") {
+      const c = city().companies.find((x) => x.id === parts[2]); if (!c) return send(res, 404, { error: "no such company" });
+      if (parts[3] === "events") return send(res, 200, eventsOf(c));
+      if (parts[3] === "knowledge") return send(res, 200, c.knowledge ? readJsonl(path.join(c.knowledge, "entries.jsonl")) : []);
+    }
+    send(res, 404, { error: "not found" });
+  } catch (e) { send(res, 500, { error: String(e.message ?? e) }); }
+}
+
+if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1])) {
+  const port = Number(opt.port ?? 4173);
+  http.createServer(handler).listen(port, () => console.log(`HQ on http://localhost:${port} (city: ${cityFile})`));
+}

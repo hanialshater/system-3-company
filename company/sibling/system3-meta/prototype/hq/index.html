@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>System 3 HQ</title>
+<style>
+:root { --bg:#f7f7f8; --panel:#ffffff; --side:#f0f0f2; --text:#1c1d21; --muted:#6b6f76; --line:#e3e4e8; --accent:#5e6ad2; --good:#2e9d66; --bad:#d64545; --warn:#c98a1b; --chip:#eceef4; }
+@media (prefers-color-scheme: dark) { :root { --bg:#0f1012; --panel:#16171a; --side:#121316; --text:#e6e7ea; --muted:#8a8f98; --line:#26282d; --accent:#7c86ff; --good:#4cc38a; --bad:#ff6b6b; --warn:#e2a93b; --chip:#1f2126; } }
+* { box-sizing:border-box; }
+body { margin:0; font:14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif; background:var(--bg); color:var(--text); }
+.app { display:grid; grid-template-columns:240px 1fr; min-height:100vh; }
+aside { background:var(--side); border-right:1px solid var(--line); padding:14px 10px; position:sticky; top:0; height:100vh; overflow:auto; }
+.brand { font-weight:650; padding:4px 8px 14px; letter-spacing:.2px; }
+.sec { font-size:11px; text-transform:uppercase; color:var(--muted); padding:12px 8px 4px; letter-spacing:.6px; }
+.nav a { display:flex; align-items:center; gap:8px; padding:5px 8px; border-radius:6px; color:var(--text); text-decoration:none; cursor:pointer; }
+.nav a:hover { background:var(--chip); }
+.nav a.on { background:var(--chip); font-weight:600; }
+.nav .sub a { padding-left:22px; color:var(--muted); }
+.nav .sub a.on { color:var(--text); }
+.dot { width:8px; height:8px; border-radius:50%; background:var(--muted); flex:none; }
+.dot.running { background:var(--good); } .dot.ended { background:var(--muted); } .dot.empty { background:var(--line); }
+main { padding:22px 28px; max-width:1200px; }
+h1 { font-size:20px; margin:0 0 4px; } .sub1 { color:var(--muted); margin-bottom:18px; }
+.cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:12px; }
+.card { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:14px; }
+.card h3 { margin:0 0 6px; font-size:15px; } .k { color:var(--muted); font-size:12px; } .v { font-size:22px; font-weight:650; }
+.row { display:flex; gap:12px; flex-wrap:wrap; }
+.stat { flex:1; min-width:150px; }
+table { width:100%; border-collapse:collapse; background:var(--panel); border:1px solid var(--line); border-radius:10px; overflow:hidden; }
+th, td { text-align:left; padding:8px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
+th { font-size:12px; color:var(--muted); font-weight:600; background:var(--side); }
+tr:last-child td { border-bottom:none; }
+.chip { display:inline-block; padding:1px 8px; border-radius:999px; background:var(--chip); font-size:12px; color:var(--muted); }
+.up { color:var(--good); } .down { color:var(--bad); } .flat { color:var(--muted); }
+.bar { height:8px; background:var(--chip); border-radius:4px; overflow:hidden; } .bar > i { display:block; height:100%; background:var(--accent); }
+.thread { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:10px 14px; margin-bottom:10px; }
+.msg { padding:6px 0; border-bottom:1px dashed var(--line); } .msg:last-child { border-bottom:none; }
+.who { font-weight:600; } .when { color:var(--muted); font-size:12px; margin-left:6px; }
+svg.spark { width:100%; height:120px; background:var(--panel); border:1px solid var(--line); border-radius:10px; }
+.empty { color:var(--muted); padding:30px; text-align:center; background:var(--panel); border:1px dashed var(--line); border-radius:10px; }
+input.search { width:100%; padding:7px 10px; border:1px solid var(--line); border-radius:8px; background:var(--panel); color:var(--text); margin-bottom:12px; }
+@media (max-width: 760px) { .app { grid-template-columns:1fr; } aside { position:static; height:auto; } main { padding:16px; } }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside><div class="brand">System 3 HQ</div><nav class="nav" id="nav"></nav></aside>
+  <main id="main"><div class="empty">Loading…</div></main>
+</div>
+<script>
+const VIEWS = [["overview", "Overview"], ["landings", "Landings"], ["board", "Board"], ["notes", "Notes"], ["people", "People"], ["knowledge", "Knowledge"]];
+let state = { city: [], company: null, view: "city", events: [], knowledge: [], q: "" };
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const pct = (x) => (x == null ? "—" : `${(x * 100).toFixed(2)}%`);
+const time = (t) => (t ? new Date(t).toLocaleString([], { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" }) : "");
+const ago = (t) => { if (!t) return ""; const m = (Date.now() - Date.parse(t)) / 60000; return m < 1 ? "just now" : m < 60 ? `${Math.round(m)} min ago` : m < 1440 ? `${Math.round(m / 60)} h ago` : `${Math.round(m / 1440)} d ago`; };
+async function api(p) { const r = await fetch(p); return r.json(); }
+function go(company, view) { state.company = company; state.view = view; location.hash = company ? `${company}/${view}` : "city"; load(); }
+window.addEventListener("hashchange", () => { const [c, v] = location.hash.slice(1).split("/"); if (c && c !== "city") { state.company = c; state.view = v || "overview"; } else { state.company = null; state.view = "city"; } load(); });
+function nav() {
+  let h = `<div class="sec">City</div><a class="${state.view === "city" ? "on" : ""}" onclick="go(null,'city')">All companies</a><div class="sec">Companies</div>`;
+  for (const c of state.city) {
+    h += `<a class="${state.company === c.id && state.view === "overview" ? "on" : ""}" onclick="go('${c.id}','overview')"><span class="dot ${c.health.state}"></span>${esc(c.name)}</a>`;
+    if (state.company === c.id) h += `<div class="sub">${VIEWS.map(([v, n]) => `<a class="${state.view === v ? "on" : ""}" onclick="go('${c.id}','${v}')">${n}</a>`).join("")}</div>`;
+  }
+  $("#nav").innerHTML = h;
+}
+function members(ev) {
+  const start = ev.find((e) => e.type === "crew.start"), ids = new Set((start?.members ?? []).map((m) => m.id));
+  for (const e of ev) if (["land", "spend", "note", "board.post", "claim", "idle", "wake"].includes(e.type) && e.by && e.by !== "operator" && e.by !== "judge" && e.by !== "architect") ids.add(e.by);
+  return [...ids].map((id) => {
+    const mine = ev.filter((e) => e.by === id), lands = mine.filter((e) => e.type === "land"), last = mine.at(-1), st = [...mine].reverse().find((e) => ["idle", "wake", "spend", "crash", "recover"].includes(e.type));
+    const model = (start?.members ?? []).find((m) => m.id === id)?.model ?? "";
+    return { id, model, lands: lands.length, gain: lands.reduce((a, l) => a + Math.max(0, l.after - l.before), 0), refused: mine.filter((e) => e.type === "land.refused").length, spent: mine.filter((e) => e.type === "spend").reduce((a, e) => a + (e.usd ?? 0), 0), notes: mine.filter((e) => e.type === "note").length, status: st?.type === "idle" ? "idle" : st?.type === "crash" ? "crashed" : ev.some((e) => e.type === "crew.end") ? "done" : "working", last: last?.t };
+  });
+}
+function spark(ev) {
+  const pts = [], start = ev.find((e) => e.type === "crew.start"); if (start) pts.push([Date.parse(start.t), start.rate ?? 0]);
+  for (const l of ev.filter((e) => e.type === "land")) pts.push([Date.parse(l.t), l.after]);
+  if (pts.length < 2) return `<div class="empty">No landings yet.</div>`;
+  const x0 = pts[0][0], x1 = Math.max(pts.at(-1)[0], x0 + 1), ys = pts.map((p) => p[1]), y0 = Math.min(...ys), y1 = Math.max(...ys, y0 + 0.001), W = 1000, H = 120, P = 10;
+  const X = (x) => P + ((x - x0) / (x1 - x0)) * (W - 2 * P), Y = (y) => H - P - ((y - y0) / (y1 - y0)) * (H - 2 * P);
+  const d = pts.map((p, i) => `${i ? "L" : "M"}${X(p[0]).toFixed(1)},${Y(p[1]).toFixed(1)}`).join(" ");
+  return `<svg class="spark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none"><path d="${d}" fill="none" stroke="var(--accent)" stroke-width="2.5" vector-effect="non-scaling-stroke"/>${pts.map((p) => `<circle cx="${X(p[0])}" cy="${Y(p[1])}" r="3" fill="var(--accent)"><title>${pct(p[1])} · ${time(p[0])}</title></circle>`).join("")}</svg><div class="k" style="margin-top:4px">score over time: ${pct(y0)} → ${pct(ys.at(-1))}</div>`;
+}
+function viewCity() {
+  if (!state.city.length) return `<div class="empty">No companies in the city file yet.</div>`;
+  return `<h1>The city</h1><div class="sub1">${state.city.length} companies · owners choose what to share</div><div class="cards">${state.city.map((c) => `<div class="card" style="cursor:pointer" onclick="go('${c.id}','overview')"><h3><span class="dot ${c.health.state}" style="display:inline-block;margin-right:6px"></span>${esc(c.name)}</h3><div class="k">${esc(c.archetype ?? "")} · ${c.health.members} members · ${c.health.state}</div><div class="row" style="margin-top:10px"><div class="stat"><div class="k">score</div><div class="v">${pct(c.health.score)}</div></div><div class="stat"><div class="k">spent</div><div class="v">$${c.health.spent}</div></div></div><div class="k">${c.health.lands} lands · ${c.health.refused} refused · ${ago(c.health.last)}</div></div>`).join("")}</div>`;
+}
+function viewOverview(c) {
+  const ev = state.events, h = c.health, ms = members(ev), budget = h.budget ?? 0;
+  return `<h1>${esc(c.name)}</h1><div class="sub1">${esc(c.archetype ?? "")} · ${h.state} · last activity ${ago(h.last)}</div>
+  <div class="row"><div class="card stat"><div class="k">score (the referee's)</div><div class="v">${pct(h.score)}</div><div class="k">from ${pct(h.start)}</div></div>
+  <div class="card stat"><div class="k">spend</div><div class="v">$${h.spent}${budget ? ` <span class="k">of $${budget}</span>` : ""}</div>${budget ? `<div class="bar" style="margin-top:8px"><i style="width:${Math.min(100, (100 * h.spent) / budget)}%"></i></div>` : ""}</div>
+  <div class="card stat"><div class="k">landings</div><div class="v">${h.lands}</div><div class="k">${h.refused} refused by the referee</div></div>
+  <div class="card stat"><div class="k">members</div><div class="v">${ms.length}</div><div class="k">${ms.filter((m) => m.status === "working").length} working · ${ms.filter((m) => m.status === "idle").length} idle</div></div></div>
+  <h3 style="margin:20px 0 8px">Progress</h3>${spark(ev)}
+  <h3 style="margin:20px 0 8px">Recent</h3>${table(ev.filter((e) => ["land", "land.refused", "crash", "recover", "crew.end"].includes(e.type)).slice(-10).reverse())}`;
+}
+function table(list) {
+  if (!list.length) return `<div class="empty">Nothing yet.</div>`;
+  return `<table><tr><th>when</th><th>who</th><th>what</th><th>score</th></tr>${list.map((e) => `<tr><td class="k">${time(e.t)}</td><td class="who">${esc(e.by)}</td><td>${e.type === "land" ? esc(e.msg || "landed") : e.type === "land.refused" ? `<span class="down">refused</span> ${esc(e.why)}` : `<span class="chip">${e.type}</span>`}</td><td>${e.type === "land" ? `${pct(e.before)} → ${pct(e.after)} <span class="${e.after > e.before ? "up" : "flat"}">${e.after > e.before ? "▲" : "="}</span>` : ""}</td></tr>`).join("")}</table>`;
+}
+function viewLandings() { return `<h1>Landings</h1><div class="sub1">every change that reached main, and every one the referee refused</div>${table(state.events.filter((e) => e.type === "land" || e.type === "land.refused").reverse())}`; }
+function viewBoard() {
+  const posts = state.events.filter((e) => e.type === "board.post" && e.by !== "judge").reverse(), cl = state.events.filter((e) => e.type === "claim").slice(-15).reverse();
+  return `<h1>Board</h1><div class="sub1">findings, dead ends and hypotheses, each with its evidence and what would show it wrong</div>
+  ${posts.length ? `<table><tr><th>kind</th><th>area</th><th>by</th><th>finding</th></tr>${posts.map((e) => `<tr><td><span class="chip">${esc(e.kind)}</span></td><td>${esc(e.area)}</td><td class="who">${esc(e.by)}</td><td>${esc(e.text)}<div class="k">evidence: ${esc(e.evidence)} · wrong if: ${esc(e.wrongIf)}</div></td></tr>`).join("")}</table>` : `<div class="empty">No posts yet.</div>`}
+  <h3 style="margin:20px 0 8px">Claims</h3>${cl.length ? `<table><tr><th>when</th><th>who</th><th>area</th><th>what</th></tr>${cl.map((e) => `<tr><td class="k">${time(e.t)}</td><td class="who">${esc(e.by)}</td><td>${esc(e.area)}</td><td>${esc(e.text)}</td></tr>`).join("")}</table>` : `<div class="empty">No claims.</div>`}`;
+}
+function viewNotes() {
+  const seen = new Set(), msgs = state.events.filter((e) => e.type === "note").filter((e) => { const k = `${e.t}${e.by}${e.text}`; if (e.broadcast && seen.has(k)) return false; seen.add(k); return true; });
+  if (!msgs.length) return `<h1>Notes</h1><div class="empty">No notes yet.</div>`;
+  const byDay = {}; for (const m of msgs) (byDay[m.t.slice(0, 13)] ??= []).push(m);
+  return `<h1>Notes</h1><div class="sub1">the members' conversations, as a record (${msgs.length} messages)</div>${Object.entries(byDay).reverse().map(([hr, ms]) => `<div class="thread"><div class="k">${time(hr + ":00:00Z")}</div>${ms.map((m) => `<div class="msg"><span class="who">${esc(m.by)}</span> → ${m.broadcast ? "all" : esc(m.to)}<span class="when">${time(m.t)}</span><div>${esc(m.text)}</div></div>`).join("")}</div>`).join("")}`;
+}
+function viewPeople() {
+  const ms = members(state.events);
+  return `<h1>People</h1><div class="sub1">each member's work, spend and status</div><table><tr><th>member</th><th>model</th><th>status</th><th>lands</th><th>points gained</th><th>refused</th><th>notes</th><th>spent</th><th>last</th></tr>${ms.map((m) => `<tr><td class="who">${esc(m.id)}</td><td class="k">${esc(m.model)}</td><td><span class="chip">${m.status}</span></td><td>${m.lands}</td><td>${(m.gain * 100).toFixed(1)}</td><td>${m.refused}</td><td>${m.notes}</td><td>$${m.spent.toFixed(2)}</td><td class="k">${ago(m.last)}</td></tr>`).join("")}</table>`;
+}
+function viewKnowledge() {
+  const q = state.q.toLowerCase(), ks = state.knowledge.filter((e) => !q || JSON.stringify(e).toLowerCase().includes(q)).sort((a, b) => (b.belief ?? 0) - (a.belief ?? 0));
+  return `<h1>Knowledge</h1><div class="sub1">what members recorded when they left: practices, findings, dead ends, pitfalls, with evidence and belief</div><input class="search" placeholder="search the knowledge base" value="${esc(state.q)}" oninput="state.q=this.value;render()">${ks.length ? `<table><tr><th>belief</th><th>kind</th><th>topic</th><th>entry</th></tr>${ks.slice(0, 200).map((e) => `<tr><td>${e.belief ?? ""}</td><td><span class="chip">${esc(e.kind)}</span></td><td>${esc(e.topic)}</td><td>${esc(e.text)}<div class="k">evidence: ${esc(e.evidence)} · ${esc(e.run ?? "")} ${esc(e.by ?? "")}</div></td></tr>`).join("")}</table>` : `<div class="empty">No entries.</div>`}`;
+}
+function render() {
+  nav(); const c = state.city.find((x) => x.id === state.company);
+  const v = !c ? viewCity() : { overview: () => viewOverview(c), landings: viewLandings, board: viewBoard, notes: viewNotes, people: viewPeople, knowledge: viewKnowledge }[state.view]?.() ?? viewOverview(c);
+  const focus = document.activeElement?.classList?.contains("search"); $("#main").innerHTML = v; if (focus) { const s = $("input.search"); s.focus(); s.setSelectionRange(s.value.length, s.value.length); }
+}
+async function load() {
+  state.city = await api("/api/city");
+  if (state.company) { [state.events, state.knowledge] = await Promise.all([api(`/api/company/${state.company}/events`), api(`/api/company/${state.company}/knowledge`)]); }
+  render();
+}
+(() => { const [c, v] = location.hash.slice(1).split("/"); if (c && c !== "city") { state.company = c; state.view = v || "overview"; } load(); setInterval(() => { if (!document.activeElement?.classList?.contains("search")) load(); }, 15000); })();
+</script>
+</body>
+</html>

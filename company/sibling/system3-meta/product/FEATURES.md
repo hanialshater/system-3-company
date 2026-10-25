@@ -42,6 +42,17 @@ benchmark harness, not yet in the kernel). Update this file in the same change t
 | The v1 event log (`events.jsonl`): crew.start, land, land.refused, sync, note, board.post, claim, idle, wake, spend, crew.end | starter | `crew.mjs` | built: the contract for the starter HQ |
 | The runner: continuous member sessions, the shared budget, idle and wake, a plateau stop, off-boarding into the knowledge base | starter | `crew-run.mjs` | built (fake mode tested; SDK sessions wired by the launcher: next) |
 
+## The starter HQ (`prototype/hq/`), since 2026-10-25
+
+| Feature | Layer | Where | Status |
+|---|---|---|---|
+| A dependency-free server over companies' v1 event logs: `/api/city`, `/api/company/<id>/events`, `/api/company/<id>/knowledge` | starter | `hq/server.mjs` | built; tests/hq.test.mjs (3 tests) |
+| A city file lists the companies (id, name, archetype, owner, events or a bench runs dir, knowledge) | starter | `city.json` (per install) | built |
+| Health per company from its events: score, start, lands, refusals, spend vs budget, members, running or ended | starter | `hq/server.mjs health()` | built |
+| Linear-like sidebar (city → company → Overview, Landings, Board, Notes, People, Knowledge), score chart, notes threads by hour, knowledge search, light and dark | starter | `hq/index.html` | built; refreshes every 15 s |
+| Benchmark orgs shown live (status, notes, board, ledger read as v1 events) | Meta research | `hq/bench2events.mjs` | built: B11, B12, B13 |
+| Meeting records page; company extension points for custom pages (HQ developers) | starter | — | next |
+
 ## Proven in benchmarks, to be folded into the kernel (the rest)
 
 | Feature | Layer | Where | Evidence |
