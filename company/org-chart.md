@@ -1,5 +1,19 @@
 # Org chart
 
+> **Since 2026-10-25 (restructuring, F-50 option A, company/decisions/2026-10-25-founder-restructuring.md): 39 roles.** The drawing below is from before that date and is kept for history. The org as data is `tools/org/roles.mjs`, and `company/roles/README.md` lists the active and parked roles. Reporting lines now:
+>
+> | Manager | Reports |
+> |---|---|
+> | founder | chief-of-staff, chief-of-staff-ceo-office, head-of-product, evaluation-steward, principal-engineer, vp-personalization, head-of-strategic-initiatives, vp-marketing |
+> | head-of-product | principal-pm-verticals (lane S), design-lead (lane M), platform-engineer, release-manager, analytics-steward, research-scientist |
+> | principal-pm-verticals | category-curator (pool, category as data), demo-builder (pool) |
+> | design-lead | interaction-designer |
+> | evaluation-steward | fact-checker, learner-evaluator, qa-tester, accessibility-reviewer, pedagogy-critic, route-reviewer (pool) |
+> | principal-engineer | principal-engineer-ops, backend-engineer, privacy-reviewer, rnd-lead |
+> | vp-personalization | growth-designer, personalization-eval, applied-scientist-personalization, learning-scientist-personalization, personalization-engineer, learner-model-engineer, learner-data-engineer |
+> | chief-of-staff | tools-lead (and hq-engineer under it), pattern-librarian |
+> | chief-of-staff-ceo-office | portfolio-manager |
+
 ```text
                                  Founder (human)
                      desire layer · Surface Value · constitution

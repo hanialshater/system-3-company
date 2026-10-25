@@ -8,6 +8,24 @@ The company runs as Claude Code sessions in this repository. A session is one tu
 state of the company → choose a move → dispatch the narrowest role → observe → update the state
 ```
 
+## 0. Lanes, levels and budgets (2026-10-25, F-50 option A; company/decisions/2026-10-25-founder-restructuring.md)
+
+This section overrides the rest of this file where they disagree. Owners of the rest of this file may rewrite it to match. The design is in company/ceo-office/2026-10-25-restructuring-proposal.md, sections 2 and 3.
+
+| Level | Who | Decides |
+|---|---|---|
+| L0 | founder | content types, lane budgets per cycle, amendments, every deploy |
+| L1 | head-of-product (priority across lanes), portfolio-manager (budget register, priority 1-4 on every queued item) | which lane gets the next slot; tranches |
+| L2 | lane S: principal-pm-verticals · lane M: design-lead · quality: evaluation-steward · support lanes on company/ceo-office/poc-map.md | what the lane's workers do next, inside the lane budget |
+| L3 | pools: category-curator (category=<domain>), demo-builder, checkers, research-scientist | one item |
+
+- **Two production lanes, one flow each.** Lane S covers single-card lessons in every single-card format, on budget line `lane-single-card`. Lane M covers multi-card sequences, on budget line `lane-multi-card`. Each flow is in the proposal: §2b for lane S, §2c for lane M.
+- **Who chooses.** Lane managers choose by mailbox dispatch request (F-42). The chief of staff drains requests mechanically: first by board priority, then by lane budget headroom, then by age. The chief of staff does no production itself: a founder ask that touches lessons becomes a lane batch, with priority 1 if the founder wants it first.
+- **Budget stop.** Every lane request carries `project: lane-…`. `dispatch-check` B1 runs `ledger.mjs gate`, and that gate fails a lane at 100% of its cycle budget. A spent lane asks the portfolio-manager for a tranche and never borrows from another lane.
+- **Checkers come only from the quality lane** (rule 3 of the POC map), through the steward's standing orders for both lanes.
+- **One revision round.** A finding gets one fix and one re-check of the failed check only. Then the item is published or parked.
+- **Parked roles are not dispatched.** dispatch-check S2 refuses them in every slot mode. Their work belongs to the role named in the banner of their onboarding doc (company/roles/README.md, "Parked").
+
 ## 1. Read the state (2 minutes)
 
 ```sh
