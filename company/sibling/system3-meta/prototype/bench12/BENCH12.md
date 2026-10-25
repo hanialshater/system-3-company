@@ -79,3 +79,9 @@ refused), by member: m-architect $63, 12 lands, 10.2 visible points (1.62 per $1
 6.5 points (1.21); m-values (Sonnet) $83, 10 lands, 9.3 points (1.12); m-engine $95, 15 lands, 8.3 points (0.87).
 The two Sonnet members, at about 60% of Opus's price, earned 46% of the gains. The single agent still went deeper (more
 scripts entirely right). Off-boarding again: 52 entries; the knowledge base now holds 158 entries in 41 topics.
+
+Why both arms ended at the same cost ($294.71 and $294.72): the same stopping rule, not chance and not idleness. Each
+arm stops starting turns when its spend comes within $2 of the $300 cap and cuts the running turn when it reaches it
+(`run.mjs`: `spentNow() < CAP_COST - 2`), so both stop just under $295. The operator's ledger note for O ("members
+idle near the cap") is wrong on the cause: the budget rule ended O's turns; a correction row was added to the ledger
+(2026-10-25).

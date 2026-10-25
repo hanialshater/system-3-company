@@ -1,3 +1,28 @@
+## 2026-10-25 · chief-of-staff (for System 3 Meta, as vp-meta) · B13 running; the starter HQ, crew sessions, meetings and onboarding as code
+
+Founder: "need to go do b13, write code for other features, when you need new repos for migration I will provide them later"; B13 approved at about $500.
+
+**Done:**
+- **B13 launched** at 09:50 UTC (bench13/B13.md, predictions B13-1 to B13-9 committed before the run). Eight members: two Opus, five Sonnet, one Haiku. B13 adds a plateau stop and a planned crash and resume of m-engine. At 10:17 it had 5 lands, none refused, and visible was 0.9271.
+- **The starter HQ** (prototype/hq/): a dependency-free server over v1 event logs (/api/city, events, knowledge) and a Linear-like page. The page has a sidebar, Overview, Landings, Board, Notes, Meetings, People and Knowledge. bench2events.mjs shows B11 to B13 live.
+- **The crew runner:** `sdkSession({options})` for real members; the company passes its own sandbox and permissions, and the CLI refuses real members without `--sandboxed`. A failed turn emits turn.error, and three in a row make the member idle.
+- **Meeting minutes:** `crew minutes` emits a v1 meeting event, which the HQ Meetings page shows.
+- **Onboarding as code** (prototype/onboard.mjs): the five starter archetypes, catalog search, proposals with alternatives (by the chief of staff or the org-health head), approval only by the company's owner, and generation (company folder, events, city entry).
+- B12's ledger cause corrected: the budget rule stopped the continuation, not idleness.
+- Tests: 360/360. product/FEATURES.md is updated.
+
+**Belief:**
+- High: the event log is a sufficient contract for the HQ, since the benchmarks render from it with no other source.
+- Medium: onboarding's rules (alternative required, owner-only approval, referee owner and HQ developers always) are the right minimum. A first real company will show what is missing.
+
+**Next:**
+- B13's end: final scoring, off-boarding, KB rebuild, BENCH13.md.
+- HQ extension points for company pages.
+- The kernel's meetings.mjs as v1 events.
+- Migration once the founder provides the repos.
+
+**Blocked:** the migration repos (the founder will provide them).
+
 ## 2026-10-25 · chief-of-staff (for System 3 Meta, as vp-meta) · Benchmark 12: SQLite compatibility by SQLite's own test suite
 
 Founder: "make it grounded in real compatibility test", "Yes go ahead with B12".
