@@ -55,7 +55,7 @@ sentence the learner reads, and the title must not answer it.
    needs a claim update and fact-checker re-verification. Plan that with the fact-checker first;
    otherwise the pass can only prefix a scene or skip (most ai/*, lifehacks, history, all algo-*).
    Never edit `claims[]` in a copy pass. Before committing, diff every lesson's claim texts against
-   HEAD (W-1994 asks for a check that does this).
+   HEAD (W-2020 asks for a check that does this).
 2. **Know where the text lives.** Not always `Demo.tsx`: books in `idea.json`; life hacks in
    `src/lib/lifehacks/studyCatalog.ts`, `home-lessons.ts`, `resource-specs.json` (meta and spec titles
    must stay equal, tests check it); algorithms in `src/lib/algorithms/topics/*.ts` (claim coverage is

@@ -48,9 +48,9 @@ If P4 to P6 are wrong (coverage near complete), the WBR's diagnosis was a readin
 
 **Phase-1 bar (decides the next experiment):** dispatch, report and usage coverage each ≥ 95% over the last 48 h of a rerun window, and founder events ≥ 90%. Below that, the named causes go to their owners (W-1689 usage, W-1694 founder and publish events) and the reconciliation reruns after their fixes.
 
-**Budget and stop rule.** 200k tokens, tagged `[project:meta-phase0]` (registration: W-2000), hard stop. Stop early once every gap type has a confirmed cause. No change to the event writers, hooks or gates inside this experiment: fixes go to their owners.
+**Budget and stop rule.** 200k tokens, tagged `[project:meta-phase0]` (registration: W-2028), hard stop. Stop early once every gap type has a confirmed cause. No change to the event writers, hooks or gates inside this experiment: fixes go to their owners.
 
-**Board.** Build W-1998 (tools-lead), acceptance W-1999 (analytics-steward), project tag W-2000 (portfolio-manager).
+**Board.** Build W-2026 (tools-lead), acceptance W-2027 (analytics-steward), project tag W-2028 (portfolio-manager).
 
 **Independence.** tools-lead builds the script and the independent list. analytics-steward writes its acceptance findings on the coverage table and a 10-gap sample before reading tools-lead's notes.
 

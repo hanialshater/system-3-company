@@ -53,6 +53,7 @@ export default function Catalog() {
                 <span className="tag domain">{d.short}</span> {d.name}
                 {d.status !== "active" && <span className="tag status">{d.status}</span>}
               </h2>
+              {d.id === "history" && <p><Link href="/history" className="concept-lesson">Explore interactive history map stories →</Link></p>}
               {/* Algorithms (decision company/decisions/2026-10-16-pr6-catalog-algorithms-section.md R1-R5):
                   only visible lessons; no planned titles or counts; nothing when none is visible. */}
               {d.id === "cs" && (() => {

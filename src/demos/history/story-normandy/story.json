@@ -1,0 +1,127 @@
+{
+  "slug": "story-normandy",
+  "title": "Normandy: beyond the landing",
+  "family": "Campaigns",
+  "hook": "After D-Day, what kept the armies supplied?",
+  "predict": {
+    "question": "Which supply route still mattered at the end of June?",
+    "options": [
+      "Beaches",
+      "Cherbourg alone",
+      "Only artificial harbors"
+    ],
+    "answer": 0
+  },
+  "frames": [
+    {
+      "date": "6 Jun",
+      "heading": "Landings",
+      "text": "Allied forces land on Normandy beaches.",
+      "active": [
+        "omaha",
+        "gold"
+      ]
+    },
+    {
+      "date": "16 Jun",
+      "heading": "Artificial harbors",
+      "text": "Mulberries begin unloading supplies.",
+      "active": [
+        "omaha",
+        "gold"
+      ]
+    },
+    {
+      "date": "19–21 Jun",
+      "heading": "Storm",
+      "text": "A storm damages the American harbor.",
+      "active": [
+        "omaha"
+      ]
+    },
+    {
+      "date": "Late Jun",
+      "heading": "Beaches endure",
+      "text": "Beach supply continues; Cherbourg remains unusable.",
+      "active": [
+        "omaha",
+        "gold"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "ports",
+      "name": "Britain",
+      "coordinates": [
+        -1.1,
+        50.8
+      ]
+    },
+    {
+      "id": "omaha",
+      "name": "Omaha",
+      "coordinates": [
+        -0.87,
+        49.37
+      ]
+    },
+    {
+      "id": "gold",
+      "name": "Gold",
+      "coordinates": [
+        -0.62,
+        49.34
+      ]
+    },
+    {
+      "id": "cherbourg",
+      "name": "Cherbourg",
+      "coordinates": [
+        -1.62,
+        49.64
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "frame": 0,
+      "nodes": [
+        "ports",
+        "omaha"
+      ]
+    },
+    {
+      "frame": 0,
+      "nodes": [
+        "ports",
+        "gold"
+      ]
+    },
+    {
+      "frame": 1,
+      "nodes": [
+        "ports",
+        "cherbourg"
+      ],
+      "kind": "objective"
+    }
+  ],
+  "reveal": "The landing was the start of a supply problem. Artificial harbors helped, but the June storm damaged the American Mulberry. Beaches continued handling supplies while Cherbourg’s damaged port could not yet serve the armies. A captured port was not automatically a usable one.",
+  "limit": "Schematic supply links, not ship tracks or a front line.",
+  "sources": [
+    {
+      "url": "https://www.nationalww2museum.org/war/articles/over-shore-logistics-d-day",
+      "section": "Curatola, June 2025: Cherbourg, Mulberries, storm and beach logistics; USHMM D-Day for June 6",
+      "opened": "2026-10-21",
+      "reviewStatus": "unverified"
+    },
+    {
+      "url": "https://encyclopedia.ushmm.org/content/en/timeline-event/holocaust/1942-1945/d-day",
+      "section": "June 6, 1944 landings",
+      "opened": "2026-10-21",
+      "reviewStatus": "unverified"
+    }
+  ],
+  "mode": "network"
+}

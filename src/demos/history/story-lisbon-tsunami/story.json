@@ -1,0 +1,95 @@
+{
+  "slug": "story-lisbon-tsunami",
+  "title": "1755: beyond Lisbon",
+  "family": "Disease & disasters",
+  "hook": "Was the tsunami’s reach confined to the damaged city?",
+  "predict": {
+    "question": "Did tsunami reports stop at Portugal’s coast?",
+    "options": [
+      "Yes",
+      "No, they crossed the Atlantic"
+    ],
+    "answer": 1
+  },
+  "frames": [
+    {
+      "date": "1 Nov 1755",
+      "heading": "Earthquake",
+      "text": "An earthquake devastates Lisbon.",
+      "active": [
+        "lisbon"
+      ]
+    },
+    {
+      "date": "About 1 h later",
+      "heading": "Tagus",
+      "text": "A tsunami surges into the estuary.",
+      "active": [
+        "lisbon"
+      ]
+    },
+    {
+      "date": "Later that day",
+      "heading": "Regional shores",
+      "text": "Waves damage Spanish and Moroccan ports.",
+      "active": [
+        "cadiz",
+        "safi"
+      ]
+    },
+    {
+      "date": "Later",
+      "heading": "Across the Atlantic",
+      "text": "Observers report waves in the West Indies.",
+      "active": [
+        "barbados"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "lisbon",
+      "name": "Lisbon",
+      "coordinates": [
+        -9.14,
+        38.72
+      ]
+    },
+    {
+      "id": "cadiz",
+      "name": "Cádiz",
+      "coordinates": [
+        -6.29,
+        36.53
+      ]
+    },
+    {
+      "id": "safi",
+      "name": "Safi",
+      "coordinates": [
+        -9.24,
+        32.3
+      ]
+    },
+    {
+      "id": "barbados",
+      "name": "Barbados",
+      "coordinates": [
+        -59.55,
+        13.2
+      ]
+    }
+  ],
+  "edges": [],
+  "reveal": "Local destruction and ocean-wide effects are different scales of the same event. Reports place tsunami impacts around Iberia and Morocco and across the Atlantic in the West Indies. This map shows selected observations; it does not calculate wave heights, arrival times or a precise source fault.",
+  "limit": "Later checkpoints group reports; their ordering is not a complete wave-arrival timetable.",
+  "sources": [
+    {
+      "url": "https://sos.noaa.gov/catalog/datasets/tsunami-historical-series-lisbon-1755/",
+      "section": "NOAA description: Lisbon, Tagus, Cádiz, Safi and West Indies",
+      "opened": "2026-10-21",
+      "reviewStatus": "unverified"
+    }
+  ],
+  "mode": "reports"
+}

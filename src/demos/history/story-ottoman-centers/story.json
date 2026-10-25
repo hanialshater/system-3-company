@@ -1,0 +1,133 @@
+{
+  "slug": "story-ottoman-centers",
+  "title": "Ottomans: more than one city",
+  "family": "Empires",
+  "hook": "Did a new capital erase the empire’s other centers?",
+  "predict": {
+    "question": "After 1453, was imperial activity confined to the capital?",
+    "options": [
+      "Yes",
+      "No, it involved many centers"
+    ],
+    "answer": 1
+  },
+  "frames": [
+    {
+      "date": "Early 1300s",
+      "heading": "Anatolia",
+      "text": "A frontier principality expands.",
+      "active": [
+        "anatolia"
+      ]
+    },
+    {
+      "date": "1453",
+      "heading": "New capital",
+      "text": "Ottoman forces capture Constantinople.",
+      "active": [
+        "istanbul"
+      ]
+    },
+    {
+      "date": "1517",
+      "heading": "Egypt",
+      "text": "The conquest of Mamluk lands extends rule.",
+      "active": [
+        "cairo"
+      ]
+    },
+    {
+      "date": "1500s",
+      "heading": "Many centers",
+      "text": "Provincial cities remain artistic production centers.",
+      "active": [
+        "bursa",
+        "cairo",
+        "baghdad"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "anatolia",
+      "name": "Anatolia",
+      "coordinates": [
+        30,
+        40
+      ]
+    },
+    {
+      "id": "istanbul",
+      "name": "Constantinople",
+      "coordinates": [
+        28.98,
+        41.01
+      ]
+    },
+    {
+      "id": "cairo",
+      "name": "Cairo",
+      "coordinates": [
+        31.24,
+        30.04
+      ]
+    },
+    {
+      "id": "bursa",
+      "name": "Bursa",
+      "coordinates": [
+        29.06,
+        40.19
+      ]
+    },
+    {
+      "id": "baghdad",
+      "name": "Baghdad",
+      "coordinates": [
+        44.36,
+        33.31
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "frame": 1,
+      "nodes": [
+        "anatolia",
+        "istanbul"
+      ]
+    },
+    {
+      "frame": 2,
+      "nodes": [
+        "istanbul",
+        "cairo"
+      ]
+    },
+    {
+      "frame": 3,
+      "nodes": [
+        "istanbul",
+        "bursa"
+      ]
+    },
+    {
+      "frame": 3,
+      "nodes": [
+        "istanbul",
+        "baghdad"
+      ]
+    }
+  ],
+  "reveal": "Constantinople became an imperial capital, but the empire remained a network of places. Expansion incorporated Syria and Egypt, while cities such as Bursa, Cairo and Baghdad contributed distinct artistic industries. A capital’s prominence does not mean all production moved there.",
+  "limit": "Schematic connections show selected centers, not conquest paths or settled borders.",
+  "sources": [
+    {
+      "url": "https://www.metmuseum.org/essays/the-art-of-the-ottomans-before-1600",
+      "section": "Early principality, 1453, 1517 and provincial production centers",
+      "opened": "2026-10-21",
+      "reviewStatus": "unverified"
+    }
+  ],
+  "mode": "network"
+}

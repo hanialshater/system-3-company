@@ -926,8 +926,8 @@
           "Probability: every predict question rewritten as a concrete second-person scene with its conditions stated."
         ],
         "known_issues": [
-          "Edited lessons' learner-review and QA records are for an older version (W-1990).",
-          "Reveal still shrinks the stage on long reveals (W-1991).",
+          "Edited lessons' learner-review and QA records are for an older version (W-2016).",
+          "Reveal still shrinks the stage on long reveals (W-2017).",
           "No local production build; layout QA ran on 42 sampled lessons against a dev server."
         ]
       }
@@ -959,8 +959,8 @@
           "Titles that gave the answer away now pose the question; wink hooks rewritten."
         ],
         "known_issues": [
-          "1,049 lessons need fresh learner walks and QA (W-1993).",
-          "Claim-quoted questions (ai, lifehacks, history, algorithms) only partly changed (W-1992)."
+          "1,049 lessons need fresh learner walks and QA (W-2019).",
+          "Claim-quoted questions (ai, lifehacks, history, algorithms) only partly changed (W-2018)."
         ]
       }
     },
@@ -991,8 +991,8 @@
           "Reveals no longer end on restating slogans; claim-carrying sentences unchanged."
         ],
         "known_issues": [
-          "Edited lessons need fresh learner walks and QA (W-1993).",
-          "Claim-quoted text in ai, history, lifehacks and algorithms unchanged (W-1992)."
+          "Edited lessons need fresh learner walks and QA (W-2019).",
+          "Claim-quoted text in ai, history, lifehacks and algorithms unchanged (W-2018)."
         ]
       }
     },
@@ -1059,6 +1059,110 @@
         ],
         "known_issues": [
           "Design checked on 8 lessons only; tall custom stages (books, algorithms) unchecked."
+        ]
+      }
+    },
+    {
+      "version": "r20",
+      "date": "2026-10-21T01:15:00+02:00",
+      "commit": "5aba4884285e82039c1411bd2e6d73117da35234",
+      "target": "production",
+      "approved_by": {
+        "who": "founder",
+        "record": "company/decisions/2026-10-21-founder-history-map-stories.md; ongoing history fix/deploy request and “Yes do it” for interactive stories"
+      },
+      "summary": "Interactive history atlas: 24 draft map stories across eight families, with a separate 200-topic expansion curriculum.",
+      "added": {
+        "features": [
+          "/history atlas with geographic previews and links to 24 actual lessons.",
+          "Source-addressed four-checkpoint stories with prediction, timeline scrubbing, earlier-state comparison, distinct-visit reveal gating and original schematic geography.",
+          "Campaigns, empires, exploration, migration, trade, revolutions/borders, disasters and infrastructure; includes Normandy, Alexander, Golden Horde and 1492.",
+          "Separate 200-topic curriculum: 24 built drafts and 176 research candidates."
+        ],
+        "lessons": {
+          "published": {
+            "count": 0,
+            "slugs": []
+          },
+          "in_review": {
+            "count": 0,
+            "slugs": []
+          },
+          "draft": {
+            "count": 24,
+            "slugs": [
+              "story-normandy",
+              "story-alexander",
+              "story-hannibal",
+              "story-golden-horde",
+              "story-roman-mediterranean",
+              "story-ottoman-centers",
+              "story-columbus-1492",
+              "story-magellan-elcano",
+              "story-zheng-he",
+              "story-pacific-voyaging",
+              "story-bantu-networks",
+              "story-great-migration",
+              "story-silk-road-relays",
+              "story-indian-ocean-textiles",
+              "story-sahara-routes",
+              "story-italian-unification",
+              "story-german-unification",
+              "story-haitian-revolution",
+              "story-black-death",
+              "story-great-fire-london",
+              "story-lisbon-tsunami",
+              "story-suez-canal",
+              "story-panama-locks",
+              "story-trans-siberian"
+            ]
+          }
+        },
+        "fixes": [
+          "The history charter now permits source-grounded interactive narratives under the founder’s new direction.",
+          "Reveal layout keeps the map, final checkpoint and explanation together on phones."
+        ],
+        "known_issues": [
+          "All 24 lessons are drafts; claims unverified. Independent research/cultural pre-build review was not completed; deviation recorded and independent reviews pending.",
+          "The global company check has the same 811 existing errors and 4 warnings; publication and HQ suites also have outstanding failures. No gate or protected file changed.",
+          "A standard build regenerates editorial profiles; their independently approved admission hash is not rewritten. Existing admission logic fails closed if regenerated contents differ.",
+          "Schematic connections and modern coastlines do not reconstruct exact routes, borders, fire perimeters, infection chains or tsunami wave models."
+        ]
+      }
+    },
+    {
+      "version": "r21",
+      "date": "2026-10-21T17:14:58.231021+00:00",
+      "commit": "b74e5f1ba181b05934e33479859ef04dcec6931f",
+      "target": "production",
+      "approved_by": {
+        "who": "founder",
+        "record": "company/decisions/2026-10-21-founder-history-map-symbols.md; requested SVG refinement continuing the history fix/deploy task"
+      },
+      "summary": "Illustrated history maps: ships, horses, camps, fire, swords and castles follow the story checkpoints.",
+      "added": {
+        "features": [
+          "Seven original SVG assets, including a Normandy landing craft, appear on 18 suitable story maps and atlas previews.",
+          "Checkpoint-specific illustrations avoid geographic labels and markers; camps use unlocated illustrative vignettes.",
+          "Shared vector source and a standalone SVG generator keep reusable assets aligned with the map renderer."
+        ],
+        "lessons": {
+          "published": {
+            "count": 0,
+            "slugs": []
+          },
+          "in_review": {
+            "count": 0,
+            "slugs": []
+          }
+        },
+        "fixes": [
+          "History figure regression now follows the shared story-map component and checks actual coastlines and markers."
+        ],
+        "known_issues": [
+          "Historical claims and new illustration conventions remain unverified drafts; independent research/cultural/fact/learner review W-2024 is still pending.",
+          "Global company check retains the same 811 errors and four warnings. Full verify still stops on two existing publication-readiness failures; no full-suite success is claimed.",
+          "Symbols illustrate narrative context, not exact vehicles, equipment, counts, buildings or campsite locations."
         ]
       }
     }

@@ -1,0 +1,110 @@
+{
+  "slug": "story-haitian-revolution",
+  "title": "Haiti: independence and recognition",
+  "family": "Revolutions & borders",
+  "hook": "Did winning independence bring immediate recognition?",
+  "predict": {
+    "question": "Did the US immediately recognize independent Haiti?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1
+  },
+  "frames": [
+    {
+      "date": "1791",
+      "heading": "Rebellion",
+      "text": "Enslaved people rebel in northern Saint-Domingue.",
+      "active": [
+        "north"
+      ]
+    },
+    {
+      "date": "1793",
+      "heading": "Displacement",
+      "text": "Conflict sends refugees toward US ports.",
+      "active": [
+        "north",
+        "norfolk"
+      ]
+    },
+    {
+      "date": "1804",
+      "heading": "Independence",
+      "text": "Haiti becomes an independent country.",
+      "active": [
+        "haiti"
+      ]
+    },
+    {
+      "date": "1862",
+      "heading": "US recognition",
+      "text": "The United States finally recognizes Haiti.",
+      "active": [
+        "washington"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "north",
+      "name": "Northern Haiti",
+      "coordinates": [
+        -72.2,
+        19.76
+      ]
+    },
+    {
+      "id": "haiti",
+      "name": "Haiti",
+      "coordinates": [
+        -72.7,
+        19.4
+      ]
+    },
+    {
+      "id": "norfolk",
+      "name": "Norfolk",
+      "coordinates": [
+        -76.29,
+        36.85
+      ]
+    },
+    {
+      "id": "washington",
+      "name": "Washington",
+      "coordinates": [
+        -77.04,
+        38.9
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "frame": 1,
+      "nodes": [
+        "north",
+        "norfolk"
+      ]
+    },
+    {
+      "frame": 3,
+      "nodes": [
+        "haiti",
+        "washington"
+      ]
+    }
+  ],
+  "reveal": "Winning independence and gaining recognition were different struggles. The revolt of enslaved people led to an independent Haiti in 1804, but US leaders withheld recognition until 1862. Refugees, trade and fears among slaveholders connected the revolution to places beyond the island.",
+  "limit": "Selected political and refugee connections; no single arrow explains the revolution.",
+  "sources": [
+    {
+      "url": "https://history.state.gov/milestones/1784-1800/haitian-rev",
+      "section": "1791 revolt, 1793 refugees, independence 1804, recognition 1862",
+      "opened": "2026-10-21",
+      "reviewStatus": "unverified"
+    }
+  ],
+  "mode": "network"
+}

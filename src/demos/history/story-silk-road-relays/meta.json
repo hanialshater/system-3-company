@@ -1,0 +1,149 @@
+{
+  "slug": "story-silk-road-relays",
+  "title": "Silk Roads: the handoffs",
+  "hook": "Could distant trade work without one end-to-end traveler?",
+  "domain": "history",
+  "concept": "story-silk-road-relays",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Events happen in places and at different times."
+    ],
+    "doesNotKnow": [
+      "A network of trading posts"
+    ]
+  },
+  "misconception": "A single direct road",
+  "objective": "Follow the handoffs rather than imagining one highway.",
+  "claims": [
+    {
+      "id": "history.story-silk-road-relays.frame1",
+      "text": "c. 1 CE: Eastern links. Han and Central Asian worlds exchange goods.",
+      "support": "source",
+      "source": "https://www.metmuseum.org/essays/trade-between-the-romans-and-the-empires-of-asia — Trade expansion, Parthian Stations, Merv, Ctesiphon, Palmyra and Antioch",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[0]"
+      ]
+    },
+    {
+      "id": "history.story-silk-road-relays.frame2",
+      "text": "c. 1 CE: Branch point. Routes branch near Merv.",
+      "support": "source",
+      "source": "https://www.metmuseum.org/essays/trade-between-the-romans-and-the-empires-of-asia — Trade expansion, Parthian Stations, Merv, Ctesiphon, Palmyra and Antioch",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[1]"
+      ]
+    },
+    {
+      "id": "history.story-silk-road-relays.frame3",
+      "text": "c. 1 CE: Mesopotamia. Trading posts connect overland and river routes.",
+      "support": "source",
+      "source": "https://www.metmuseum.org/essays/trade-between-the-romans-and-the-empires-of-asia — Trade expansion, Parthian Stations, Merv, Ctesiphon, Palmyra and Antioch",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[2]"
+      ]
+    },
+    {
+      "id": "history.story-silk-road-relays.frame4",
+      "text": "c. 1 CE: Mediterranean. Caravan links reach eastern Mediterranean ports.",
+      "support": "source",
+      "source": "https://www.metmuseum.org/essays/trade-between-the-romans-and-the-empires-of-asia — Trade expansion, Parthian Stations, Merv, Ctesiphon, Palmyra and Antioch",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[3]"
+      ]
+    },
+    {
+      "id": "history.story-silk-road-relays.reveal",
+      "text": "Follow the handoffs rather than imagining one highway. Trading posts stored and exchanged goods, and routes branched between rivers, caravan cities and ports. Goods could move far through this network without the map proving that one merchant traveled its entire length.",
+      "support": "source",
+      "source": "https://www.metmuseum.org/essays/trade-between-the-romans-and-the-empires-of-asia — Trade expansion, Parthian Stations, Merv, Ctesiphon, Palmyra and Antioch",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.reveal"
+      ]
+    },
+    {
+      "id": "history.story-silk-road-relays.limit",
+      "text": "This is a spatial walkthrough around 1 CE, not four successive historical dates.",
+      "support": "convention",
+      "source": "Original authored schematic; source scope and omissions in story.json. Modern coastlines: Natural Earth, content/history-locators.json.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.limit"
+      ]
+    },
+    {
+      "id": "history.story-silk-road-relays.geometry",
+      "text": "Modern reference coordinates and original schematic links. No historical boundary or exact route is asserted.",
+      "support": "convention",
+      "source": "content/history-stories/README.md; tools/generate-history-story-maps.mjs; Natural Earth land pin in content/history-locators.json",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.nodes",
+        "story.edges",
+        "map.json"
+      ]
+    }
+  ],
+  "recall": {
+    "question": "What connected the route?",
+    "options": [
+      "A single direct road",
+      "A network of trading posts"
+    ],
+    "answer": 1,
+    "why": "Follow the handoffs rather than imagining one highway. Trading posts stored and exchanged goods, and routes branched between rivers, caravan cities and ports. Goods could move far through this network without the map proving that one merchant traveled its entire length."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "history:story-silk-road-relays",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "maps-borders",
+    "references": [
+      "https://www.metmuseum.org/essays/trade-between-the-romans-and-the-empires-of-asia"
+    ],
+    "tags": [
+      "map-story",
+      "trade"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "timeline",
+    "slider",
+    "compare",
+    "reset"
+  ]
+}

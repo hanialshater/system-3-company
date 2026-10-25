@@ -25,11 +25,21 @@ export type PersonaView = {
   fingerprintMeans: Record<string, number>; needsAtMeans: NeedExplanation[];
   groundTruth: { note: string; latent: Record<string, unknown> };
 };
+export type SessionCoefs = { base: number; onRem: Record<string, number>; onCov: Record<string, number>; slotDecay: number; attentionCost: number };
+export type SessionMeta = {
+  version: string; size: number; servingMode: string; recompute: string; v1: SessionCoefs; v3: SessionCoefs;
+  /** model-v0.4.2: v3 with base = beta; absent in a stale precomputed meta. */
+  "v3-edpbase"?: SessionCoefs; edpBaseEdits?: { target: string; path: string; from: number; to: number; reason: string }[]; sandboxVariants?: Record<string, string>;
+  edits: { target: string; path: string; from: number; to: number; reason: string }[]; why: Record<string, string>;
+  ablations: Record<string, string[]>; circularLabel: string;
+};
 export type SimMeta = {
   schema: "personalization-hq-meta-v0"; unscored: string; criterion: string; provisional: string; simulatedOnly: string;
   modelVersion: string; personasVersion: string; composerVersion: string; decision: string;
   model: ModelView; personas: PersonaView[];
-  policies: { model: string[]; all: string[]; ablations: Record<string, string[]> };
+  policies: { model: string[]; all: string[]; ablations: Record<string, string[]>; session?: Record<string, { variant: "v1" | "v3" | "v3-edpbase"; off: string[] }> };
+  /** model-v0.3.0: the session composer's coefficients, v1 and v3, and the v3 edit table. Absent in a stale precomputed meta. */
+  session?: SessionMeta;
   sim: Record<string, unknown> & { defaultDays: number };
   saved: string[];
   /** Present only when the server serves committed precomputed runs (production, or HQ_LAB_PRECOMPUTED=1). */
@@ -69,9 +79,11 @@ export type SimTrace = {
   model: ModelView;
 };
 export type CompareRow = { policy: string; episodes: number; recall: number | null; recallSd: number | null; recallSe: number | null;
-  concepts: number; domains: number; prereqFirst: number; reveal: number | null; gain: number; movedShare: number; cards: number };
+  concepts: number; domains: number; prereqFirst: number; reveal: number | null; gain: number; movedShare: number; cards: number;
+  /** EDP-style diagnostics, graded by the model's own beliefs. Always shown with its label, never a pass score. Absent in a stale document. */
+  circular?: { label: string; needCoverageRate: number | null; domainDiversity: number | null; distinctDomainsServed: number | null } };
 export type SimCompare = { schema: "personalization-hq-compare-v0"; unscored: string; provisional: string; modelVersion: string;
-  personas: string[]; seeds: number; days: number; set: string; ms: number; rows: CompareRow[]; columns: Record<string, string> };
+  personas: string[]; seeds: number; days: number; set: string; ms: number; rows: CompareRow[]; columns: Record<string, string>; circularLabel?: string };
 
 // ---- requests (the only arguments the HQ server will pass to the CLI) ----
 
@@ -79,7 +91,8 @@ export type SimRequest =
   | { op: "meta" }
   | { op: "run"; persona: string; policy: string; seed: number; days: number }
   | { op: "saved"; file: string }
-  | { op: "compare"; persona: string; seeds: number; set: "main" | "all"; days: number };
+  | { op: "compare"; persona: string; seeds: number; set: "main" | "all"; days: number }
+  | { op: "sandbox"; persona: string; variant: "v1" | "v3" | "edpbase"; seed: number };
 
 const ID = /^[a-z0-9-]{1,48}$/;
 const SAVED = /^[a-z0-9-]+\.[a-z0-9-]+\.seed\d{1,3}\.json$/;
@@ -116,7 +129,15 @@ export function parseSimRequest(q: { get(k: string): string | null }): SimReques
     if (set !== "main" && set !== "all") return "set must be main or all";
     return { op, persona, seeds, set, days };
   }
-  return "op must be meta, run, saved or compare";
+  if (op === "sandbox") {
+    const variant = q.get("variant") ?? "";
+    const seed = intIn(q.get("seed"), 1, 1, 999);
+    if (!ID.test(persona)) return "persona must be an id";
+    if (variant !== "v1" && variant !== "v3" && variant !== "edpbase") return "variant must be v1, v3 or edpbase";
+    if (seed === null) return "seed must be an integer 1..999";
+    return { op, persona, variant, seed };
+  }
+  return "op must be meta, run, saved, compare or sandbox";
 }
 
 /** The CLI argument vector for a request (no shell is involved; each element is one argv entry). */
@@ -126,6 +147,7 @@ export function cliArgs(r: SimRequest): string[] {
     case "saved": return ["saved", `--file=${r.file}`];
     case "run": return ["run", `--persona=${r.persona}`, `--policy=${r.policy}`, `--seed=${r.seed}`, `--days=${r.days}`];
     case "compare": return ["compare", `--persona=${r.persona}`, `--seeds=${r.seeds}`, `--set=${r.set}`, `--days=${r.days}`];
+    case "sandbox": return ["sandbox", `--persona=${r.persona}`, `--variant=${r.variant}`, `--seed=${r.seed}`];
   }
 }
 
@@ -154,10 +176,12 @@ export const yesNo = (b: boolean | null | undefined, yes = "yes", no = "no", non
 /** Policies grouped for the selector: the model's list, the one-term ablations, then anything else (baselines). */
 export function policyGroups(p: SimMeta["policies"]): { label: string; items: string[] }[] {
   const abl = Object.keys(p.ablations).filter((k) => k !== "gam" && !p.model.includes(k));
-  const rest = p.all.filter((k) => !p.model.includes(k) && !abl.includes(k));
+  const session = Object.keys(p.session ?? {}).filter((k) => p.all.includes(k));
+  const rest = p.all.filter((k) => !p.model.includes(k) && !abl.includes(k) && !session.includes(k));
   return [
     { label: "Model policies (model.ts POLICIES)", items: p.model },
     { label: "GAM ablations (one or more terms off)", items: abl },
+    ...(session.length ? [{ label: "Session policies (offline, UNSCORED; model-v0.3.0)", items: session }] : []),
     ...(rest.length ? [{ label: "Other", items: rest }] : []),
   ];
 }

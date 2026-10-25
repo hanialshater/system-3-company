@@ -1,0 +1,93 @@
+{
+  "slug": "story-suez-canal",
+  "title": "Suez: a connection can close",
+  "family": "Infrastructure",
+  "hook": "Does opening a canal make its connection permanent?",
+  "predict": {
+    "question": "Was Suez continuously open after 1869?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1
+  },
+  "frames": [
+    {
+      "date": "1859",
+      "heading": "Construction",
+      "text": "Digging begins near today’s Port Said.",
+      "active": [
+        "portsaid"
+      ]
+    },
+    {
+      "date": "1869",
+      "heading": "Opening",
+      "text": "The canal opens between two seas.",
+      "active": [
+        "portsaid",
+        "suez"
+      ]
+    },
+    {
+      "date": "1967",
+      "heading": "Closure",
+      "text": "War closes the canal.",
+      "active": [
+        "suez"
+      ]
+    },
+    {
+      "date": "1975",
+      "heading": "Reopening",
+      "text": "The canal reopens to navigation.",
+      "active": [
+        "portsaid",
+        "suez"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "portsaid",
+      "name": "Port Said",
+      "coordinates": [
+        32.3,
+        31.26
+      ]
+    },
+    {
+      "id": "suez",
+      "name": "Suez",
+      "coordinates": [
+        32.55,
+        29.97
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "frame": 1,
+      "nodes": [
+        "portsaid",
+        32.33,
+        30.7,
+        "suez"
+      ]
+    }
+  ],
+  "reveal": "The physical channel was not a permanently available connection. After opening in 1869, Suez closed following the 1967 war and reopened in 1975. Maps of infrastructure need time as well as geometry: a line on a map does not guarantee an open route. Construction also depended on Egyptian labor under harsh conditions.",
+  "limit": "Canal geometry is schematic; the closed frame shows interruption, not disappearance.",
+  "sources": [
+    {
+      "url": "https://www.suezcanal.gov.eg/English/About/SuezCanal/Pages/CanalHistory.aspx",
+      "section": "1859 construction, 1869 opening, 1967 closure and 1975 reopening",
+      "opened": "2026-10-21",
+      "reviewStatus": "unverified"
+    }
+  ],
+  "mode": "connection",
+  "closedFrames": [
+    2
+  ]
+}

@@ -13,6 +13,13 @@ test("every history lesson has a figure, including a sourced map for every city-
     if (slug.startsWith("history-")) {
       assert.ok(catalog.lessons[slug], `missing location data: ${slug}`);
       assert.match(demo, new RegExp(`<HistoryLocator slug="${slug}"`), `map absent from stage: ${slug}`);
+    } else if (slug.startsWith("story-")) {
+      assert.match(demo, /<StoryStage/, `shared story map absent: ${slug}`);
+      const engine = fs.readFileSync("src/components/history-story/StoryLesson.tsx", "utf8");
+      assert.match(engine, /<svg/);
+      const geometry = JSON.parse(fs.readFileSync(`src/demos/history/${slug}/map.json`, "utf8"));
+      assert.ok(geometry.land.length > 0, `missing story coastline: ${slug}`);
+      assert.ok(geometry.nodes.length > 0, `missing story markers: ${slug}`);
     } else {
       assert.match(demo, /<svg|<WorldMap/, `missing data figure: ${slug}`);
     }

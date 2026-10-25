@@ -1,0 +1,125 @@
+{
+  "slug": "story-german-unification",
+  "title": "Germany: who was left out?",
+  "family": "Revolutions & borders",
+  "hook": "Did unification include the other major German power?",
+  "predict": {
+    "question": "Was Austria included in the 1871 German Empire?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1
+  },
+  "frames": [
+    {
+      "date": "1864",
+      "heading": "Denmark",
+      "text": "Prussia wins a war against Denmark.",
+      "active": [
+        "denmark",
+        "berlin"
+      ]
+    },
+    {
+      "date": "1866",
+      "heading": "Austria",
+      "text": "War excludes Austria from Prussia’s unification path.",
+      "active": [
+        "vienna",
+        "berlin"
+      ]
+    },
+    {
+      "date": "1870–71",
+      "heading": "France",
+      "text": "War against France precedes the empire.",
+      "active": [
+        "paris",
+        "berlin"
+      ]
+    },
+    {
+      "date": "1871",
+      "heading": "Empire",
+      "text": "A German Empire forms without Austria.",
+      "active": [
+        "berlin"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "denmark",
+      "name": "Denmark",
+      "coordinates": [
+        10,
+        55
+      ]
+    },
+    {
+      "id": "berlin",
+      "name": "Berlin",
+      "coordinates": [
+        13.4,
+        52.52
+      ]
+    },
+    {
+      "id": "vienna",
+      "name": "Vienna",
+      "coordinates": [
+        16.37,
+        48.21
+      ]
+    },
+    {
+      "id": "paris",
+      "name": "France",
+      "coordinates": [
+        2.35,
+        48.86
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "frame": 0,
+      "nodes": [
+        "berlin",
+        "denmark"
+      ]
+    },
+    {
+      "frame": 1,
+      "nodes": [
+        "berlin",
+        "vienna"
+      ]
+    },
+    {
+      "frame": 2,
+      "nodes": [
+        "berlin",
+        "paris"
+      ]
+    }
+  ],
+  "reveal": "Unification did not simply gather every German-speaking territory. Prussia’s victory over Austria in 1866 made Austrian participation increasingly remote, and the empire formed after war against France. The outcome reflected conflicts between states as well as a national movement.",
+  "limit": "Lines mark wars between states, not troop routes or modern territorial claims.",
+  "sources": [
+    {
+      "url": "https://www.dhm.de/lemo/kapitel/reaktionszeit",
+      "section": "Unification wars 1864, 1866, 1870/71; Reichsgründung 1871 on Austria exclusion",
+      "opened": "2026-10-21",
+      "reviewStatus": "unverified"
+    },
+    {
+      "url": "https://www.dhm.de/lemo/kapitel/kaiserreich/reich/reichsgruendung",
+      "section": "Austria and unification after 1866",
+      "opened": "2026-10-21",
+      "reviewStatus": "unverified"
+    }
+  ],
+  "mode": "network"
+}

@@ -1,0 +1,149 @@
+{
+  "slug": "story-lisbon-tsunami",
+  "title": "1755: beyond Lisbon",
+  "hook": "Was the tsunami’s reach confined to the damaged city?",
+  "domain": "history",
+  "concept": "story-lisbon-tsunami",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Events happen in places and at different times."
+    ],
+    "doesNotKnow": [
+      "No, they crossed the Atlantic"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Local destruction and ocean-wide effects are different scales of the same event.",
+  "claims": [
+    {
+      "id": "history.story-lisbon-tsunami.frame1",
+      "text": "1 Nov 1755: Earthquake. An earthquake devastates Lisbon.",
+      "support": "source",
+      "source": "https://sos.noaa.gov/catalog/datasets/tsunami-historical-series-lisbon-1755/ — NOAA description: Lisbon, Tagus, Cádiz, Safi and West Indies",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[0]"
+      ]
+    },
+    {
+      "id": "history.story-lisbon-tsunami.frame2",
+      "text": "About 1 h later: Tagus. A tsunami surges into the estuary.",
+      "support": "source",
+      "source": "https://sos.noaa.gov/catalog/datasets/tsunami-historical-series-lisbon-1755/ — NOAA description: Lisbon, Tagus, Cádiz, Safi and West Indies",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[1]"
+      ]
+    },
+    {
+      "id": "history.story-lisbon-tsunami.frame3",
+      "text": "Later that day: Regional shores. Waves damage Spanish and Moroccan ports.",
+      "support": "source",
+      "source": "https://sos.noaa.gov/catalog/datasets/tsunami-historical-series-lisbon-1755/ — NOAA description: Lisbon, Tagus, Cádiz, Safi and West Indies",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[2]"
+      ]
+    },
+    {
+      "id": "history.story-lisbon-tsunami.frame4",
+      "text": "Later: Across the Atlantic. Observers report waves in the West Indies.",
+      "support": "source",
+      "source": "https://sos.noaa.gov/catalog/datasets/tsunami-historical-series-lisbon-1755/ — NOAA description: Lisbon, Tagus, Cádiz, Safi and West Indies",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[3]"
+      ]
+    },
+    {
+      "id": "history.story-lisbon-tsunami.reveal",
+      "text": "Local destruction and ocean-wide effects are different scales of the same event. Reports place tsunami impacts around Iberia and Morocco and across the Atlantic in the West Indies. This map shows selected observations; it does not calculate wave heights, arrival times or a precise source fault.",
+      "support": "source",
+      "source": "https://sos.noaa.gov/catalog/datasets/tsunami-historical-series-lisbon-1755/ — NOAA description: Lisbon, Tagus, Cádiz, Safi and West Indies",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.reveal"
+      ]
+    },
+    {
+      "id": "history.story-lisbon-tsunami.limit",
+      "text": "Later checkpoints group reports; their ordering is not a complete wave-arrival timetable.",
+      "support": "convention",
+      "source": "Original authored schematic; source scope and omissions in story.json. Modern coastlines: Natural Earth, content/history-locators.json.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.limit"
+      ]
+    },
+    {
+      "id": "history.story-lisbon-tsunami.geometry",
+      "text": "Modern reference coordinates and original schematic links. No historical boundary or exact route is asserted.",
+      "support": "convention",
+      "source": "content/history-stories/README.md; tools/generate-history-story-maps.mjs; Natural Earth land pin in content/history-locators.json",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.nodes",
+        "story.edges",
+        "map.json"
+      ]
+    }
+  ],
+  "recall": {
+    "question": "Did tsunami reports stop at Portugal’s coast?",
+    "options": [
+      "Yes",
+      "No, they crossed the Atlantic"
+    ],
+    "answer": 1,
+    "why": "Local destruction and ocean-wide effects are different scales of the same event. Reports place tsunami impacts around Iberia and Morocco and across the Atlantic in the West Indies. This map shows selected observations; it does not calculate wave heights, arrival times or a precise source fault."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "history:story-lisbon-tsunami",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "maps-borders",
+    "references": [
+      "https://sos.noaa.gov/catalog/datasets/tsunami-historical-series-lisbon-1755/"
+    ],
+    "tags": [
+      "map-story",
+      "disease & disasters"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "timeline",
+    "slider",
+    "compare",
+    "reset"
+  ]
+}

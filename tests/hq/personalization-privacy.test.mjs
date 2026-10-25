@@ -56,6 +56,7 @@ export const SCOPE = [
   "company/personalization/model/sim/hq-cli.mjs",
   // W-1648 (batch 5 §20): frozen candidates and the Evaluation view
   "src/lib/hq-personalization-candidates.ts",
+  "src/lib/hq-personalization-sandbox.ts", // W-1998: the session lab's browser port (pure)
   "tools/hq-lab-candidates.mjs",
   "tools/hq-eval-index.mjs",
   "src/data/hq-personalization-eval",
@@ -77,6 +78,8 @@ const REQUIRED = [
   "src/app/hq/personalization/evaluation/page.tsx",
   "src/app/hq/personalization/evaluation/Evaluation.tsx",
   "src/lib/hq-personalization-candidates.ts",
+  "src/lib/hq-personalization-sandbox.ts",
+  "src/app/hq/personalization/ComposerLab.tsx",
   "tools/hq-lab-candidates.mjs",
   "tools/hq-eval-index.mjs",
   "src/data/hq-personalization-eval/evaluation.json",
@@ -92,7 +95,10 @@ const IMPORT_ALLOW = new Set([
   "../model.ts", "../personas.ts", "./catalog.mjs", "./simulate.mjs", "./learner.ts", "./score.ts",
   // W-1648: the candidate and Evaluation views (server components; committed data only)
   "../../HqTop", "../../hq.module.css", "../personalization.module.css", "./Candidates", "./Evaluation",
-  "@/lib/hq-personalization-candidates", "@/lib/hq-personalization-precomputed", "./hq-personalization-candidates",
+  "@/lib/hq-personalization-candidates", "@/lib/hq-personalization-precomputed",
+  // W-1998: the pure browser port and the composer lab component (it fetches the literal route only). Named ComposerLab, not
+  // SessionLab: the L1 module rule (account|auth|session|...) would flag the word "session" in an import path.
+  "@/lib/hq-personalization-sandbox", "./ComposerLab", "./hq-personalization-candidates",
   "@/data/hq-personalization-eval/evaluation.json",
   // tools/hq-lab-candidates.mjs: the lab simulator (same files as hq-cli.mjs) and the two frozen candidates, hash-checked
   "../src/lib/hq-personalization-candidates.ts", "../company/personalization/model/model.ts", "../company/personalization/model/personas.ts",

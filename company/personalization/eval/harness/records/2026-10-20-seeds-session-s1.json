@@ -1,0 +1,64 @@
+{
+  "what": "S from the reference arm (default-order + fixed, Feed.tsx interleave) alone at interleave:base, session criterion block. SDs only; no mean, no other arm.",
+  "rule": "criterion 2 §1.4, unchanged: S = max(200, ceil((2.8·√2·sd_R/δ_min)²)), cap 2000; sd_R = largest per-persona SD of R_7 of the reference arm",
+  "e1Hash": "c8c09eac7613720c7d1499958d5c416b57ed7d614e7e68eb8a132068f7482840",
+  "e3Hash": "0e120add6ada34da159d77bc7d994f092318b4bba802941f4477a4273fc1927a",
+  "catalogSha256": "c65feabb2277d214a324e9869cfda1a6170fb1729b820fa5c823f3f515f8ff5f",
+  "lessons": 231,
+  "cellName": "interleave:base",
+  "cell": {
+    "forgetScale": 1,
+    "forgetShape": 0.27,
+    "kSpread": 0.4,
+    "pullScale": 1,
+    "prereqPenalty": 0.15,
+    "learnRate": 0.6,
+    "revisitStrengthen": "lag",
+    "relearn": 0.7,
+    "priorKnowledgeMean": 0.2,
+    "revisitStopScale": 1,
+    "revisitSlotCost": 0.3,
+    "slots": 8,
+    "priorRateMult": 0.0574,
+    "priorAgeDays": 0,
+    "placement": "interleave"
+  },
+  "pilotSeeds": "70001..70500",
+  "deltaMin": 0.01,
+  "perPersona": {
+    "curious-newcomer": {
+      "sdR": 0.12236232939851419,
+      "n": 500,
+      "nan": 0
+    },
+    "single-subject-crammer": {
+      "sdR": 0.055998557352797004,
+      "n": 500,
+      "nan": 0
+    },
+    "struggling-repeater": {
+      "sdR": 0.06544770605889835,
+      "n": 500,
+      "nan": 0
+    },
+    "returning-expert": {
+      "sdR": 0.1414364753679975,
+      "n": 500,
+      "nan": 0
+    },
+    "wanderer": {
+      "sdR": 0.1343457011606477,
+      "n": 500,
+      "nan": 0
+    },
+    "lapsed-returner": {
+      "sdR": 0.19492041034055974,
+      "n": 500,
+      "nan": 0
+    }
+  },
+  "sdMax": 0.19492041034055974,
+  "S": 2000,
+  "seedList": "70001..72000",
+  "modelVersion": "model-v0.4.4"
+}

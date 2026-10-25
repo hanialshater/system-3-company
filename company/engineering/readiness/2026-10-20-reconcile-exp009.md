@@ -5,12 +5,12 @@ change-tier: 1
 paths: tools/reconcile.mjs, tests/reconcile/**, company/experiments/EXP-009/**
 author: tools-lead
 self-check: tools-lead
-board: W-1998
+board: W-2026
 risks: none
 links: company/experiments/EXP-009-meta-measurement-integrity.md, company/experiments/EXP-009/build-notes.md
 
 1. **What can fail.** A wrong extraction or matching rule produces a wrong coverage number, and because it is code, it is consistently wrong (the founder record names this risk). Worst case: EXP-009's phase-1 decision rests on a rule error. Only agents and the founder see it; nothing reaches learners.
-2. **How we would know.** Fixture tests (`node --test tests/reconcile/*.test.mjs`) pin each rule. analytics-steward accepts the output independently (W-1999) and samples 10 gaps by hand. The output names every parameter and the git HEAD it read, so a rerun can be compared.
+2. **How we would know.** Fixture tests (`node --test tests/reconcile/*.test.mjs`) pin each rule. analytics-steward accepts the output independently (W-2027) and samples 10 gaps by hand. The output names every parameter and the git HEAD it read, so a rerun can be compared.
 3. **How to roll back.** `git revert <sha>`. The tool writes nothing unless its stdout is redirected; there is no state to undo.
 4. **Capacity.** About 3 s and a few hundred MB of git log output in memory for a 5-day window. No server, no build.
 5. **Security.** None: no network, no new routes, no secrets. It runs `git log` and reads repository files.

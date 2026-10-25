@@ -1,0 +1,162 @@
+{
+  "slug": "story-haitian-revolution",
+  "title": "Haiti: independence and recognition",
+  "hook": "Did winning independence bring immediate recognition?",
+  "domain": "history",
+  "concept": "story-haitian-revolution",
+  "status": "draft",
+  "version": 2,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Events happen in places and at different times."
+    ],
+    "doesNotKnow": [
+      "No"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "Winning independence and gaining recognition were different struggles.",
+  "claims": [
+    {
+      "id": "history.story-haitian-revolution.frame1",
+      "text": "1791: Rebellion. Enslaved people rebel in northern Saint-Domingue.",
+      "support": "source",
+      "source": "https://history.state.gov/milestones/1784-1800/haitian-rev — 1791 revolt, 1793 refugees, independence 1804, recognition 1862",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[0]"
+      ]
+    },
+    {
+      "id": "history.story-haitian-revolution.frame2",
+      "text": "1793: Displacement. Conflict sends refugees toward US ports.",
+      "support": "source",
+      "source": "https://history.state.gov/milestones/1784-1800/haitian-rev — 1791 revolt, 1793 refugees, independence 1804, recognition 1862",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[1]"
+      ]
+    },
+    {
+      "id": "history.story-haitian-revolution.frame3",
+      "text": "1804: Independence. Haiti becomes an independent country.",
+      "support": "source",
+      "source": "https://history.state.gov/milestones/1784-1800/haitian-rev — 1791 revolt, 1793 refugees, independence 1804, recognition 1862",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[2]"
+      ]
+    },
+    {
+      "id": "history.story-haitian-revolution.frame4",
+      "text": "1862: US recognition. The United States finally recognizes Haiti.",
+      "support": "source",
+      "source": "https://history.state.gov/milestones/1784-1800/haitian-rev — 1791 revolt, 1793 refugees, independence 1804, recognition 1862",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[3]"
+      ]
+    },
+    {
+      "id": "history.story-haitian-revolution.reveal",
+      "text": "Winning independence and gaining recognition were different struggles. The revolt of enslaved people led to an independent Haiti in 1804, but US leaders withheld recognition until 1862. Refugees, trade and fears among slaveholders connected the revolution to places beyond the island.",
+      "support": "source",
+      "source": "https://history.state.gov/milestones/1784-1800/haitian-rev — 1791 revolt, 1793 refugees, independence 1804, recognition 1862",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.reveal"
+      ]
+    },
+    {
+      "id": "history.story-haitian-revolution.limit",
+      "text": "Selected political and refugee connections; no single arrow explains the revolution.",
+      "support": "convention",
+      "source": "Original authored schematic; source scope and omissions in story.json. Modern coastlines: Natural Earth, content/history-locators.json.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.limit"
+      ]
+    },
+    {
+      "id": "history.story-haitian-revolution.geometry",
+      "text": "Modern reference coordinates and original schematic links. No historical boundary or exact route is asserted.",
+      "support": "convention",
+      "source": "content/history-stories/README.md; tools/generate-history-story-maps.mjs; Natural Earth land pin in content/history-locators.json",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.nodes",
+        "story.edges",
+        "map.json"
+      ]
+    },
+    {
+      "id": "history.story-haitian-revolution.illustrations",
+      "text": "Ships, horses, camps, fire, swords and castles are original illustrative symbols. They do not encode counts, exact equipment, buildings or campsite locations.",
+      "support": "convention",
+      "source": "Original SVG artwork in content/history-stories/symbol-art.json; checkpoint choices in symbols.json. Camps are unlocated vignettes.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "StoryStage illustrative symbols",
+        "History atlas preview illustration"
+      ]
+    }
+  ],
+  "recall": {
+    "question": "Did the US immediately recognize independent Haiti?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "why": "Winning independence and gaining recognition were different struggles. The revolt of enslaved people led to an independent Haiti in 1804, but US leaders withheld recognition until 1862. Refugees, trade and fears among slaveholders connected the revolution to places beyond the island."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "history:story-haitian-revolution",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "maps-borders",
+    "references": [
+      "https://history.state.gov/milestones/1784-1800/haitian-rev"
+    ],
+    "tags": [
+      "map-story",
+      "revolutions & borders"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "timeline",
+    "slider",
+    "compare",
+    "reset"
+  ]
+}

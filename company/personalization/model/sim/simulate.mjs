@@ -11,8 +11,13 @@
 // The composer sees only ComposeInput (fingerprint from history, needs, pool, default order, history, due
 // revisits). It never sees the persona id or its latent block; the learner (learner.ts, PROVISIONAL) does.
 // Only the first revisit is simulated (it is the scored event); later revisits (3, 7, 21 days) are not.
+// model-v0.3.0: session policies (SESSION_VARIANTS, ./composer-session.ts) compose a session of
+// COMPOSER_SESSION.sessionSize new cards, serve them in order, and recompose after the session or at the
+// end of the day (model.ts §4b). Their trace schema is personalization-sim-trace-v1 (sim/README.md). The
+// phase A policies' code path below is unchanged; their trace records M.PHASE_A_MODEL_VERSION.
 import * as M from "../model.ts";
-import { composeExplained, defaultOrderPolicy, randomPolicy, draftRulesPolicy } from "./composer.ts";
+import { composeExplained, defaultOrderPolicy, randomPolicy, draftRulesPolicy, buildCtx } from "./composer.ts";
+import { composeSession, addrAll, sandboxPool, SESSION_TRACE_SCHEMA } from "./composer-session.ts";
 import { makeLearner, BASE_PARAMS } from "./learner.ts";
 import { newLog, scoreEpisode } from "./score.ts";
 
@@ -37,7 +42,31 @@ export const GAM_VARIANTS = {
   "gam-off-novelty": ["novelty"],
   "gam-off-floor": ["floor"],
 };
-export const ALL_POLICIES = ["default-order", "draft-rules", ...Object.keys(GAM_VARIANTS), "random", "epsilon-greedy"];
+/** The phase A ordering policies (composer-v0.2 and baselines). sim/policy-golden.json pins exactly these. */
+export const PHASE_A_POLICIES = ["default-order", "draft-rules", ...Object.keys(GAM_VARIANTS), "random", "epsilon-greedy"];
+/** Session policies (composer-v0.3-session): name -> coefficient variant and terms switched off. Not in model.ts POLICIES
+ *  (that list feeds the phase A eval harness and the HQ "main" set); they are in ALL_POLICIES (HQ set=all). */
+export const SESSION_VARIANTS = {
+  "gam-session": { variant: "v1", off: [] },
+  "gam-session-v3": { variant: "v3", off: [] },
+  "gam-session-no-cov": { variant: "v1", off: M.COMPOSER_SESSION.ablations["no-cov"] },
+  // model-v0.4.2 (W-2003, VP record company/decisions/2026-10-20-vp-personalization-session-base.md §2): v3 + one row,
+  // session base 1.0 -> beta (M.COMPOSER_SESSION.edpBaseEdits; beta a placeholder pending W-2004). The only variant that record adds.
+  "gam-session-v3-edpbase": { variant: "v3-edpbase", off: [] },
+};
+/** hq-cli `sandbox --variant=<key>`: the sandbox variant -> its session policy (model-v0.4.2 adds edpbase). */
+export const SANDBOX_VARIANTS = { v1: "gam-session", v3: "gam-session-v3", edpbase: "gam-session-v3-edpbase" };
+export const ALL_POLICIES = [...PHASE_A_POLICIES, ...Object.keys(SESSION_VARIANTS)];
+export const CIRCULAR_LABEL = M.COMPOSER_SESSION.circularLabel;
+export { sandboxPool };
+
+/** Compose one session for a session policy (also used by hq-cli sandbox, so the CLI and the simulator agree). */
+export function composeSessionFor(policy, input, cat) {
+  const v = SESSION_VARIANTS[policy];
+  if (!v) throw new Error(`not a session policy ${policy}`);
+  return composeSession(input, M.COMPOSER, M.COMPOSER_SESSION, M.sessionCoefficients(v.variant),
+    { off: v.off, pilotConcepts: cat.pilotConcepts, variant: v.variant });
+}
 
 /** Draw the visible pre-simulation history from jittered fingerprint means (no latent read). */
 export function seedHistory(persona, cat, rand) {
@@ -93,7 +122,8 @@ function choose(policy, input, cat, policyRand) {
  * Run one episode. Returns the score and, if opts.trace, the per-step trace (W-1504).
  * Same (persona, seed, params) gives the same pre-history and the same starting knowledge for every policy.
  */
-export function runEpisode({ persona, policy, seed, params = BASE_PARAMS, cat, trace = false, days = SIM.days }) {
+export function runEpisode({ persona, policy, seed, params = BASE_PARAMS, cat, trace = false, days = SIM.days, diagnostics = false }) {
+  if (SESSION_VARIANTS[policy]) return runSessionEpisode({ persona, policy, seed, params, cat, trace, days, diagnostics });
   const key = `${seed}|${persona.id}`;
   const histRand = rng(fnv(key + "|history"));
   const learnRand = rng(fnv(key + "|learner"));
@@ -108,6 +138,7 @@ export function runEpisode({ persona, policy, seed, params = BASE_PARAMS, cat, t
   const steps = [];
   const stepBySlug = {};
   const initialFp = M.fingerprintFrom(history, cat.dims, BASE_T);
+  const diag = diagnostics ? circularDiagnostics(cat) : null;
 
   for (let day = 0; day <= days; day++) {
     let t = BASE_T + day * DAY + 9 * 3_600_000;
@@ -137,6 +168,7 @@ export function runEpisode({ persona, policy, seed, params = BASE_PARAMS, cat, t
       log.started++; cards++;
       if (beforePrereq) log.prereqFirst++;
       if (pick.moved) log.moved++;
+      if (diag) diag.add(fingerprint, lesson, history);
       if (out.revealed) {
         log.revealed++;
         history.push({ slug: pick.slug, completedAt: t, predictedCorrectly: out.predictedRight, recalls: [] });
@@ -156,9 +188,10 @@ export function runEpisode({ persona, policy, seed, params = BASE_PARAMS, cat, t
   log.knownEnd = learner.knownCount();
   const score = scoreEpisode(log);
   const result = { persona: persona.id, policy, seed, score };
+  if (diag) result.circular = diag.result();
   if (trace) {
     result.trace = {
-      schema: "personalization-sim-trace-v0", modelVersion: M.MODEL_VERSION, composer: M.COMPOSER.version,
+      schema: "personalization-sim-trace-v0", modelVersion: M.PHASE_A_MODEL_VERSION, composer: M.COMPOSER.version,
       provisional: "simulated learner and scorer are PROVISIONAL placeholders by the builder (learner-model-engineer); to be replaced or owned by personalization-eval; smoke test, not evidence",
       criterion: "none committed (W-1496); unscored",
       persona: { id: persona.id, name: persona.name, fingerprintMeans: persona.fingerprintMeans, jitteredMeans: pre.jitteredMeans, homeDomain: pre.home },
@@ -167,4 +200,182 @@ export function runEpisode({ persona, policy, seed, params = BASE_PARAMS, cat, t
     };
   }
   return result;
+}
+
+/**
+ * EDP-style diagnostics, the same definition for every policy (compare --circular; founder decision 2026-10-20 Q3).
+ * CIRCULAR: they grade the served cards with the model's own detect() and addr(), not with the learner. Diagnostic
+ * only; never a pass score, always shown beside simulated recall (personalization-eval, brief response C5).
+ * - needCoverageRate: Σ over served new cards of Σ_n min(needs[n], addr[card, n]) / Σ over the same cards of Σ_n needs[n],
+ *   with needs and addr computed from the evidence at the moment the card is served (EDP's resolved / initial mass, per card).
+ * - domainDiversity: Shannon entropy of the served new cards' domains / log2(number of pilot domains), 0..1 (EDP's widget-mix entropy).
+ * - distinctDomainsServed: domains among the served new cards.
+ */
+export function circularDiagnostics(cat) {
+  let mass = 0, resolved = 0;
+  const domains = {};
+  const nDomains = new Set(cat.lessons.map((l) => l.domain)).size;
+  return {
+    add(fingerprint, lesson, history) {
+      const needs = M.detect(fingerprint);
+      const ctx = buildCtx({ pool: cat.lessons, history }, cat.pilotConcepts);
+      const a = addrAll(lesson, ctx, M.COMPOSER);
+      for (const n of M.NEEDS) { mass += needs[n]; resolved += Math.min(needs[n], a[n]); }
+      domains[lesson.domain] = (domains[lesson.domain] || 0) + 1;
+    },
+    result() {
+      const tot = Object.values(domains).reduce((x, y) => x + y, 0);
+      const h = tot ? -Object.values(domains).reduce((q, c) => q + (c / tot) * Math.log2(c / tot), 0) : 0;
+      return { label: CIRCULAR_LABEL, needCoverageRate: mass ? resolved / mass : null, needMass: mass, resolved,
+        domainDiversity: nDomains > 1 ? h / Math.log2(nDomains) : 0, distinctDomainsServed: Object.keys(domains).length };
+    },
+  };
+}
+
+/**
+ * A session policy's episode: as runEpisode, but new cards come from a session plan of COMPOSER_SESSION.sessionSize
+ * cards, served in order; a new plan is composed when the plan runs out or a new day starts (model.ts §4b).
+ * Each served card's trace step carries the slot trace it was composed with; the step that composed a plan also
+ * carries the whole plan (sessionPlan) and its circular diagnostics. `fingerprint` and `needs` on a step are the
+ * ones at compose time (what the decision used), not at serve time.
+ */
+function runSessionEpisode({ persona, policy, seed, params, cat, trace, days, diagnostics }) {
+  const key = `${seed}|${persona.id}`;
+  const histRand = rng(fnv(key + "|history"));
+  const learnRand = rng(fnv(key + "|learner"));
+  const pre = seedHistory(persona, cat, histRand);
+  const prereqsOf = (c) => (cat.prereqsByConcept[c] || []);
+  const learner = makeLearner(persona, params, { pilotConcepts: cat.pilotConcepts, prereqsOf }, learnRand);
+  learner.seedKnowledge(pre.history, cat.dims);
+  const history = pre.history.map((h) => ({ ...h, recalls: [...h.recalls] }));
+  const simSlugs = new Set();
+  const log = newLog(learner.knownCount());
+  const steps = [];
+  const stepBySlug = {};
+  const initialFp = M.fingerprintFrom(history, cat.dims, BASE_T);
+  const diag = diagnostics ? circularDiagnostics(cat) : null;
+  const v = SESSION_VARIANTS[policy];
+  let sessions = 0;
+
+  for (let day = 0; day <= days; day++) {
+    let t = BASE_T + day * DAY + 9 * 3_600_000;
+    let cards = 0;
+    let plan = null; // recomposed at the start of every day
+    for (;;) {
+      const due = history.filter((h) => simSlugs.has(h.slug) && h.recalls.length === 0 && h.completedAt + DAY <= t).map((h) => h.slug);
+      if (due.length) {
+        const slug = due[0];
+        const ok = learner.revisit(cat.dims[slug], t);
+        history.find((h) => h.slug === slug).recalls.push({ at: t, correct: ok });
+        log.firstRecalls.push(ok);
+        if (trace) { steps.push({ step: steps.length, day, kind: "revisit", slug, recalled: ok }); if (stepBySlug[slug]) stepBySlug[slug].simulated.firstRecall = ok; }
+        t += 60_000; continue;
+      }
+      if (day === days || cards >= SIM.maxCardsPerDay) break;
+      let composedHere = false;
+      if (!plan || plan.idx >= plan.picks.length) {
+        const fingerprint = M.fingerprintFrom(history, cat.dims, t);
+        const needs = M.detect(fingerprint);
+        const input = { fingerprint, needs, remaining: { ...needs }, pool: cat.lessons, defaultOrder: cat.defaultOrder,
+          queued: [], history, dueRevisits: [], personalisationOn: true };
+        const comp = composeSessionFor(policy, input, cat);
+        plan = { comp, fingerprint, picks: comp.picks.filter((p) => p.reason !== "due-revisit"), slots: comp.slots.filter((x) => x.kind === "new"),
+          idx: 0, id: sessions++, composedAtStep: steps.length };
+        composedHere = true;
+        if (!plan.picks.length) break;
+      }
+      const pick = plan.picks[plan.idx], slot = plan.slots[plan.idx], sessionSlot = plan.idx;
+      plan.idx++;
+      const lesson = cat.dims[pick.slug];
+      const doneConcepts = new Set(history.map((h) => cat.dims[h.slug]?.concept));
+      const beforePrereq = prereqsOf(lesson.concept).some((c) => !doneConcepts.has(c));
+      if (diag) diag.add(composedHere ? plan.fingerprint : M.fingerprintFrom(history, cat.dims, t), lesson, history);
+      const out = learner.study(lesson, t);
+      log.started++; cards++;
+      if (beforePrereq) log.prereqFirst++;
+      if (pick.moved) log.moved++;
+      if (out.revealed) {
+        log.revealed++;
+        history.push({ slug: pick.slug, completedAt: t, predictedCorrectly: out.predictedRight, recalls: [] });
+        simSlugs.add(pick.slug); log.domains.add(lesson.domain); log.concepts.add(lesson.concept);
+      }
+      if (trace) {
+        const s = { step: steps.length, day, kind: "new", fingerprint: plan.fingerprint, needs: M.explainNeeds(plan.fingerprint),
+          personalised: plan.comp.personalised, note: plan.comp.note,
+          session: { id: plan.id, slot: sessionSlot, size: plan.picks.length, composedAtStep: plan.composedAtStep, composedHere, variant: v.variant },
+          slots: [slot], ...(composedHere ? { sessionPlan: plan.comp.slots, sessionDiagnostics: plan.comp.diagnostics } : {}),
+          served: pick.slug, moved: pick.moved, reason: pick.reason, shownBeforePrerequisites: beforePrereq,
+          simulated: { predictedRight: out.predictedRight, revealed: out.revealed, stopped: out.stop, firstRecall: null } };
+        steps.push(s); if (out.revealed) stepBySlug[pick.slug] = s;
+      }
+      t += 120_000;
+      if (out.stop) break;
+    }
+  }
+  log.knownEnd = learner.knownCount();
+  const score = scoreEpisode(log);
+  const result = { persona: persona.id, policy, seed, score };
+  if (diag) result.circular = diag.result();
+  if (trace) {
+    result.trace = {
+      schema: SESSION_TRACE_SCHEMA, modelVersion: M.MODEL_VERSION, composer: M.COMPOSER_SESSION.version,
+      session: { variant: v.variant, off: v.off, size: M.COMPOSER_SESSION.sessionSize, servingMode: M.COMPOSER_SESSION.servingMode,
+        recompute: M.COMPOSER_SESSION.recompute, coefficients: M.sessionCoefficients(v.variant), circularLabel: CIRCULAR_LABEL, sessions },
+      provisional: "simulated learner and scorer are PROVISIONAL placeholders by the builder (learner-model-engineer); to be replaced or owned by personalization-eval; smoke test, not evidence",
+      criterion: "none committed (W-1496); unscored",
+      persona: { id: persona.id, name: persona.name, fingerprintMeans: persona.fingerprintMeans, jitteredMeans: pre.jitteredMeans, homeDomain: pre.home },
+      groundTruth: { note: "simulator only; no policy read this", latent: persona.latent, params },
+      initialFingerprint: initialFp, preHistoryCount: pre.history.length, steps, score,
+    };
+  }
+  return result;
+}
+
+/**
+ * The ComposeInput of an episode's first new-card decision (day 0, 09:00, the seeded pre-history, no due revisits),
+ * for hq-cli `sandbox`. Same seed derivation as runEpisode, so the sandbox starts where the episode starts.
+ */
+export function firstComposeInput(persona, seed, cat) {
+  const pre = seedHistory(persona, cat, rng(fnv(`${seed}|${persona.id}` + "|history")));
+  const t = BASE_T + 9 * 3_600_000;
+  const history = pre.history.map((h) => ({ ...h, recalls: [...h.recalls] }));
+  const fingerprint = M.fingerprintFrom(history, cat.dims, t);
+  const needs = M.detect(fingerprint);
+  return { at: t, input: { fingerprint, needs, remaining: { ...needs }, pool: cat.lessons, defaultOrder: cat.defaultOrder,
+    queued: [], history, dueRevisits: [], personalisationOn: true } };
+}
+
+/**
+ * The hq-cli `sandbox` document body (schema personalization-hq-sandbox-v0; hq-cli adds the labels): everything a
+ * browser needs to recompute detect() + one session compose without importing the model (sim/sandbox-reference.mjs
+ * is the algorithm), plus this simulator's own composed session for the same input, so a drift test can compare.
+ * Unrounded on purpose.
+ */
+export function sandboxDocument(persona, variant, seed, cat) {
+  if (!Object.hasOwn(SANDBOX_VARIANTS, variant)) throw new Error(`variant must be one of ${Object.keys(SANDBOX_VARIANTS).join(", ")}, not ${variant}`);
+  const pol = SANDBOX_VARIANTS[variant];
+  const { at, input } = firstComposeInput(persona, seed, cat);
+  const pool = sandboxPool(input, M.COMPOSER, { pilotConcepts: cat.pilotConcepts });
+  const comp = composeSessionFor(pol, input, cat);
+  const g = M.COMPOSER.constraints.antiBubbleFloor;
+  const row = ([target, path, from, to, reason]) => ({ target, path, from, to, reason });
+  const edits = M.COMPOSER_SESSION.edits.map(row);
+  return {
+    circularLabel: CIRCULAR_LABEL,
+    note: "browser-only sandbox input (founder decision 2026-10-20 Q2): recompute with sim/sandbox-reference.mjs; nothing is saved; a change goes into model.ts under the change rule",
+    modelVersion: M.MODEL_VERSION, composerVersion: M.COMPOSER_SESSION.version,
+    persona: { id: persona.id, name: persona.name }, seed, variant, policy: pol, at, historyCount: input.history.length,
+    fingerprint: input.fingerprint, needShapes: M.NEED_SHAPES, dampener: M.DAMPENER, needs: input.needs,
+    session: { size: M.COMPOSER_SESSION.sessionSize, coefficients: M.sessionCoefficients(SESSION_VARIANTS[pol].variant), off: SESSION_VARIANTS[pol].off,
+      v1: M.sessionCoefficients("v1"), v3: M.sessionCoefficients("v3"), edits, why: M.COMPOSER_SESSION.why,
+      // model-v0.4.2 (W-2003): only in the edpbase document, so the v1 and v3 documents are unchanged in shape.
+      ...(variant === "edpbase" ? { "v3-edpbase": M.sessionCoefficients("v3-edpbase"), edpBaseEdits: M.COMPOSER_SESSION.edpBaseEdits.map(row) } : {}) },
+    candidates: pool.candidates,
+    constraints: { personalisationOn: input.personalisationOn, dueRevisits: input.dueRevisits, antiBubbleStreak: pool.antiBubbleStreak,
+      antiBubbleFloor: { everyN: g.everyN, fromDefaultRoundRobin: g.fromDefaultRoundRobin }, stretchNeedsSomePrereq: M.COMPOSER.constraints.stretchNeedsSomePrereq,
+      surpriseGateActive: M.COMPOSER.surpriseGate.active, noveltyGateActive: M.COMPOSER.noveltyGate.active,
+      filters: { statedSubjects: input.fingerprint.statedSubjects, lessOfThis: input.fingerprint.lessOfThis, applied: "candidates are already filtered and in default order" },
+      fixedForSession: "addr, stretchBlocked, surprise and novelty are fixed for the session (surprise and novelty are 0 while both gates are shut; if a gate is active the sandbox must refuse)" },
+    composed: { picks: comp.picks, remaining: comp.remaining, coverage: comp.coverage, personalised: comp.personalised, diagnostics: comp.diagnostics, slots: comp.slots },
+  };
 }

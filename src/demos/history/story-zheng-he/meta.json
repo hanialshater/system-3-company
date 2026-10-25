@@ -1,0 +1,162 @@
+{
+  "slug": "story-zheng-he",
+  "title": "Zheng He: seven voyages",
+  "hook": "Was this one continuous trip across the ocean?",
+  "domain": "history",
+  "concept": "story-zheng-he",
+  "status": "draft",
+  "version": 2,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Events happen in places and at different times."
+    ],
+    "doesNotKnow": [
+      "Seven separate voyages"
+    ]
+  },
+  "misconception": "One nonstop voyage",
+  "objective": "The growing picture combines seven voyages between 1405 and 1433.",
+  "claims": [
+    {
+      "id": "history.story-zheng-he.frame1",
+      "text": "1405: Departure. The first of seven voyages begins.",
+      "support": "source",
+      "source": "https://hk.history.museum/en/web/mh/exhibition/2006_past_07.html — Seven voyages, 1405–1433, regions visited",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[0]"
+      ]
+    },
+    {
+      "id": "history.story-zheng-he.frame2",
+      "text": "1405–33: Southeast Asia. The voyages connect Southeast Asian waters.",
+      "support": "source",
+      "source": "https://hk.history.museum/en/web/mh/exhibition/2006_past_07.html — Seven voyages, 1405–1433, regions visited",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[1]"
+      ]
+    },
+    {
+      "id": "history.story-zheng-he.frame3",
+      "text": "1405–33: Indian Ocean. The fleets visit Indian Ocean destinations.",
+      "support": "source",
+      "source": "https://hk.history.museum/en/web/mh/exhibition/2006_past_07.html — Seven voyages, 1405–1433, regions visited",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[2]"
+      ]
+    },
+    {
+      "id": "history.story-zheng-he.frame4",
+      "text": "By 1433: Farther west. Voyages also reach East Africa and the Red Sea.",
+      "support": "source",
+      "source": "https://hk.history.museum/en/web/mh/exhibition/2006_past_07.html — Seven voyages, 1405–1433, regions visited",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[3]"
+      ]
+    },
+    {
+      "id": "history.story-zheng-he.reveal",
+      "text": "The growing picture combines seven voyages between 1405 and 1433. It is not the track of a single ship making one enormous circuit. A network view reveals repeated maritime connections across Southeast Asia, the Indian Ocean, East Africa and the Red Sea.",
+      "support": "source",
+      "source": "https://hk.history.museum/en/web/mh/exhibition/2006_past_07.html — Seven voyages, 1405–1433, regions visited",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.reveal"
+      ]
+    },
+    {
+      "id": "history.story-zheng-he.limit",
+      "text": "Voyages are grouped by region; the sequence does not date each first regional visit.",
+      "support": "convention",
+      "source": "Original authored schematic; source scope and omissions in story.json. Modern coastlines: Natural Earth, content/history-locators.json.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.limit"
+      ]
+    },
+    {
+      "id": "history.story-zheng-he.geometry",
+      "text": "Modern reference coordinates and original schematic links. No historical boundary or exact route is asserted.",
+      "support": "convention",
+      "source": "content/history-stories/README.md; tools/generate-history-story-maps.mjs; Natural Earth land pin in content/history-locators.json",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.nodes",
+        "story.edges",
+        "map.json"
+      ]
+    },
+    {
+      "id": "history.story-zheng-he.illustrations",
+      "text": "Ships, horses, camps, fire, swords and castles are original illustrative symbols. They do not encode counts, exact equipment, buildings or campsite locations.",
+      "support": "convention",
+      "source": "Original SVG artwork in content/history-stories/symbol-art.json; checkpoint choices in symbols.json. Camps are unlocated vignettes.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "StoryStage illustrative symbols",
+        "History atlas preview illustration"
+      ]
+    }
+  ],
+  "recall": {
+    "question": "What does the 1405–1433 network represent?",
+    "options": [
+      "One nonstop voyage",
+      "Seven separate voyages"
+    ],
+    "answer": 1,
+    "why": "The growing picture combines seven voyages between 1405 and 1433. It is not the track of a single ship making one enormous circuit. A network view reveals repeated maritime connections across Southeast Asia, the Indian Ocean, East Africa and the Red Sea."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "history:story-zheng-he",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "maps-borders",
+    "references": [
+      "https://hk.history.museum/en/web/mh/exhibition/2006_past_07.html"
+    ],
+    "tags": [
+      "map-story",
+      "exploration"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "timeline",
+    "slider",
+    "compare",
+    "reset"
+  ]
+}

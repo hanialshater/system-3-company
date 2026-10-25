@@ -1,0 +1,162 @@
+{
+  "slug": "story-suez-canal",
+  "title": "Suez: a connection can close",
+  "hook": "Does opening a canal make its connection permanent?",
+  "domain": "history",
+  "concept": "story-suez-canal",
+  "status": "draft",
+  "version": 2,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Events happen in places and at different times."
+    ],
+    "doesNotKnow": [
+      "No"
+    ]
+  },
+  "misconception": "Yes",
+  "objective": "The physical channel was not a permanently available connection.",
+  "claims": [
+    {
+      "id": "history.story-suez-canal.frame1",
+      "text": "1859: Construction. Digging begins near today’s Port Said.",
+      "support": "source",
+      "source": "https://www.suezcanal.gov.eg/English/About/SuezCanal/Pages/CanalHistory.aspx — 1859 construction, 1869 opening, 1967 closure and 1975 reopening",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[0]"
+      ]
+    },
+    {
+      "id": "history.story-suez-canal.frame2",
+      "text": "1869: Opening. The canal opens between two seas.",
+      "support": "source",
+      "source": "https://www.suezcanal.gov.eg/English/About/SuezCanal/Pages/CanalHistory.aspx — 1859 construction, 1869 opening, 1967 closure and 1975 reopening",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[1]"
+      ]
+    },
+    {
+      "id": "history.story-suez-canal.frame3",
+      "text": "1967: Closure. War closes the canal.",
+      "support": "source",
+      "source": "https://www.suezcanal.gov.eg/English/About/SuezCanal/Pages/CanalHistory.aspx — 1859 construction, 1869 opening, 1967 closure and 1975 reopening",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[2]"
+      ]
+    },
+    {
+      "id": "history.story-suez-canal.frame4",
+      "text": "1975: Reopening. The canal reopens to navigation.",
+      "support": "source",
+      "source": "https://www.suezcanal.gov.eg/English/About/SuezCanal/Pages/CanalHistory.aspx — 1859 construction, 1869 opening, 1967 closure and 1975 reopening",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[3]"
+      ]
+    },
+    {
+      "id": "history.story-suez-canal.reveal",
+      "text": "The physical channel was not a permanently available connection. After opening in 1869, Suez closed following the 1967 war and reopened in 1975. Maps of infrastructure need time as well as geometry: a line on a map does not guarantee an open route. Construction also depended on Egyptian labor under harsh conditions.",
+      "support": "source",
+      "source": "https://www.suezcanal.gov.eg/English/About/SuezCanal/Pages/CanalHistory.aspx — 1859 construction, 1869 opening, 1967 closure and 1975 reopening",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.reveal"
+      ]
+    },
+    {
+      "id": "history.story-suez-canal.limit",
+      "text": "Canal geometry is schematic; the closed frame shows interruption, not disappearance.",
+      "support": "convention",
+      "source": "Original authored schematic; source scope and omissions in story.json. Modern coastlines: Natural Earth, content/history-locators.json.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.limit"
+      ]
+    },
+    {
+      "id": "history.story-suez-canal.geometry",
+      "text": "Modern reference coordinates and original schematic links. No historical boundary or exact route is asserted.",
+      "support": "convention",
+      "source": "content/history-stories/README.md; tools/generate-history-story-maps.mjs; Natural Earth land pin in content/history-locators.json",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.nodes",
+        "story.edges",
+        "map.json"
+      ]
+    },
+    {
+      "id": "history.story-suez-canal.illustrations",
+      "text": "Ships, horses, camps, fire, swords and castles are original illustrative symbols. They do not encode counts, exact equipment, buildings or campsite locations.",
+      "support": "convention",
+      "source": "Original SVG artwork in content/history-stories/symbol-art.json; checkpoint choices in symbols.json. Camps are unlocated vignettes.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "StoryStage illustrative symbols",
+        "History atlas preview illustration"
+      ]
+    }
+  ],
+  "recall": {
+    "question": "Was Suez continuously open after 1869?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "why": "The physical channel was not a permanently available connection. After opening in 1869, Suez closed following the 1967 war and reopened in 1975. Maps of infrastructure need time as well as geometry: a line on a map does not guarantee an open route. Construction also depended on Egyptian labor under harsh conditions."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "history:story-suez-canal",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "maps-borders",
+    "references": [
+      "https://www.suezcanal.gov.eg/English/About/SuezCanal/Pages/CanalHistory.aspx"
+    ],
+    "tags": [
+      "map-story",
+      "infrastructure"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "timeline",
+    "slider",
+    "compare",
+    "reset"
+  ]
+}

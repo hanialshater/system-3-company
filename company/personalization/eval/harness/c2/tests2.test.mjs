@@ -14,7 +14,7 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import * as M from "../../../model/model.ts";
 import { PERSONAS } from "../personas.copy.mjs";
-import { cellByName2, assertScoringAllowed2, criterionStatus2, runEpisode2, fixedDue, gamFingerprint, GAM_FROZEN_VERSION, REVIEW_FIXTURES, reviewInput, decisionProblems } from "./harness2.mjs";
+import { cellByName2, assertScoringAllowed2, criterionStatus2, runEpisode2, fixedDue, gamFingerprint, gamModelVersion, GAM_FROZEN_VERSION, REVIEW_FIXTURES, reviewInput, decisionProblems } from "./harness2.mjs";
 import * as K from "./checks2.mjs";
 import { E1, cells2, EPISODE2, CRITERION2 } from "./world2.mjs";
 import { judgePair2, outcome2, headroom, seedsFromSd } from "./scorer2.mjs";
@@ -116,7 +116,7 @@ test("freeze lock: while criterion 2 is a draft, only the reference arm and fixt
 
 // ---------------- pre-commitment 1, cells, rule ----------------
 test("the GAM is model-v0.2.2 as frozen: version, gates and fingerprint pinned", () => {
-  assert.equal(M.MODEL_VERSION, GAM_FROZEN_VERSION);
+  assert.equal(gamModelVersion(), GAM_FROZEN_VERSION); // W-1996: PHASE_A_MODEL_VERSION since model-v0.3.0
   assert.equal(M.COMPOSER.noveltyGate.active, false);
   assert.equal(M.COMPOSER.surpriseGate.active, false);
   assert.equal(gamFingerprint(), readFileSync(join(HERE, "gam-v0.2.2.sha256"), "utf8").trim());

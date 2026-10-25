@@ -4,7 +4,8 @@
 // 1. Node guard (review C1): the model's `.ts` files need type stripping, on by default from
 //    Node 22.18. Older Node fails here with a clear message. It never skips: a skip would turn T1
 //    back into a habit. Simulate an old Node with `--node-version=20.11.0` (testing only).
-// 2. Runs ./self-check.mjs, then sim/privacy-n1-n3.test.mjs, then sim/review-timing.test.mjs (W-1547), with this Node.
+// 2. Runs ./self-check.mjs, then sim/privacy-n1-n3.test.mjs, then sim/review-timing.test.mjs (W-1547), then
+//    sim/composer-session.test.mjs (model-v0.3.0), with this Node.
 // 3. On failure, names the owner and where to read (review C4).
 // Why this is in `check`, not `verify`: CI's verify job runs only check, typecheck, build and qa
 // (ci.yml is protected), so `check` is the only place that makes T1 a gate in CI
@@ -36,6 +37,7 @@ const steps = [
   ["self-check (invariants, boundaries, privacy P1/P2/N6)", [join(here, "self-check.mjs")]],
   ["privacy N1/N3 tests", ["--test", join(here, "sim", "privacy-n1-n3.test.mjs")]],
   ["review-timing candidate tests (W-1547: §I.4 rules, existing policies byte-identical)", ["--test", join(here, "sim", "review-timing.test.mjs")]],
+  ["session composer tests (model-v0.4.0: EDP applyAddr x addrUse, EDP gain, on_cov, default card, constraints, sandbox drift)", ["--test", join(here, "sim", "composer-session.test.mjs")]],
 ];
 for (const [name, args] of steps) {
   const r = spawnSync(process.execPath, args, { stdio: "inherit" });

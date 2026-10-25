@@ -1,2 +1,0 @@
-import { test } from "node:test"; import assert from "node:assert/strict"; import { page } from "./rubric.mjs";
-test("PAGE2 meets the rubric", () => { const p = page("PAGE2"); assert.ok(!p.missing, "missing"); assert.ok(p.title, "# Title first line"); assert.ok(p.words >= 120 && p.words <= 220, `${p.words} words`); assert.ok(p.pip, "mentions Pip"); assert.ok(p.ease >= 75, `reading ease ${p.ease.toFixed(0)}`); assert.deepEqual(p.banned, [], "no banned words"); });

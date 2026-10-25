@@ -11,6 +11,13 @@
 //   node company/personalization/model/sim/hq-cli.mjs run --persona=<id> --policy=<name> --seed=<1..999> [--days=1..14]
 //   node company/personalization/model/sim/hq-cli.mjs compare --persona=<id|all> [--seeds=1..10] [--set=main|all] [--days=1..14]
 //   node company/personalization/model/sim/hq-cli.mjs saved --file=<persona>.<policy>.seed<k>.json   (a run.mjs trace in out/traces)
+//   node company/personalization/model/sim/hq-cli.mjs sandbox --persona=<id> --variant=v1|v3|edpbase [--seed=1..999]
+//        (model-v0.3.0: everything a browser needs to recompute detect() + one session compose without the model,
+//         plus the CLI's own composed session for a drift test; schema personalization-hq-sandbox-v0; the algorithm
+//         is sim/sandbox-reference.mjs)
+// (model-v0.4.2: --variant=edpbase is gam-session-v3-edpbase, W-2003; its document adds session["v3-edpbase"] and session.edpBaseEdits.)
+// Session policies (gam-session, gam-session-v3, gam-session-no-cov, gam-session-v3-edpbase) are in policies.all and policies.session, not in
+// policies.model; their `run` trace schema is personalization-sim-trace-v1 (sim/README.md "Session policies").
 //
 // SIMULATED PERSONAS ONLY. Nothing here reads, or can be pointed at, real learner data: the only inputs are
 // personas.ts, the lesson catalog (the pinned snapshot of meta.json + curriculum in ./catalog-pin/) and the arguments above.
@@ -21,7 +28,7 @@ import { fileURLToPath } from "node:url";
 import * as M from "../model.ts";
 import { PERSONAS, PERSONAS_VERSION } from "../personas.ts";
 import { loadCatalog, STRENGTH_PLACEHOLDER } from "./catalog.mjs";
-import { runEpisode, ALL_POLICIES, GAM_VARIANTS, SIM } from "./simulate.mjs";
+import { runEpisode, ALL_POLICIES, GAM_VARIANTS, SIM, SESSION_VARIANTS, SANDBOX_VARIANTS, CIRCULAR_LABEL, sandboxDocument } from "./simulate.mjs";
 import { BASE_PARAMS } from "./learner.ts";
 import { mean, sd } from "./score.ts";
 
@@ -60,7 +67,17 @@ if (cmd === "meta") {
     personas: PERSONAS.map((p) => ({ id: p.id, name: p.name, description: p.description, why: p.why, source: p.source,
       fingerprintMeans: p.fingerprintMeans, needsAtMeans: M.explainNeeds(fpOf(p)),
       groundTruth: { note: "simulator only; no policy reads this", latent: p.latent } })),
-    policies: { model: M.POLICIES, all: ALL_POLICIES, ablations: GAM_VARIANTS },
+    policies: { model: M.POLICIES, all: ALL_POLICIES, ablations: GAM_VARIANTS, session: SESSION_VARIANTS },
+    // model-v0.3.0: the session composer's coefficients, EDP's v1/v3 and the edit table [target, path, from, to, reason].
+    session: { version: M.COMPOSER_SESSION.version, size: M.COMPOSER_SESSION.sessionSize, servingMode: M.COMPOSER_SESSION.servingMode,
+      recompute: M.COMPOSER_SESSION.recompute, v1: M.sessionCoefficients("v1"), v3: M.sessionCoefficients("v3"),
+      edits: M.COMPOSER_SESSION.edits.map(([target, path, from, to, reason]) => ({ target, path, from, to, reason })),
+      // model-v0.4.2 (W-2003): gam-session-v3-edpbase = v3 + edpBaseEdits (one row, base 1.0 -> beta;
+      // beta .033 since model-v0.4.3, W-2004, company/personalization/policies/gam-session-params.md).
+      "v3-edpbase": M.sessionCoefficients("v3-edpbase"),
+      edpBaseEdits: M.COMPOSER_SESSION.edpBaseEdits.map(([target, path, from, to, reason]) => ({ target, path, from, to, reason })),
+      sandboxVariants: SANDBOX_VARIANTS,
+      why: M.COMPOSER_SESSION.why, ablations: M.COMPOSER_SESSION.ablations, circularLabel: CIRCULAR_LABEL },
     sim: { ...SIM, defaultDays: 7, learnerParams: BASE_PARAMS, misconceptionStrength: STRENGTH_PLACEHOLDER },
     saved: savedFiles(),
   };
@@ -91,11 +108,19 @@ if (cmd === "meta") {
   const t0 = Date.now();
   const rows = set.map((pol) => {
     const rs = [];
-    for (const p of ps) for (let s = 1; s <= seeds; s++) rs.push(runEpisode({ persona: p, policy: pol, seed: s, params: BASE_PARAMS, cat, days }).score);
+    const circ = [];
+    for (const p of ps) for (let s = 1; s <= seeds; s++) {
+      const e = runEpisode({ persona: p, policy: pol, seed: s, params: BASE_PARAMS, cat, days, diagnostics: true });
+      rs.push(e.score); circ.push(e.circular);
+    }
     const rec = rs.map((r) => r.recall).filter((x) => !Number.isNaN(x));
     const m = (k) => mean(rs.map((r) => r[k]));
+    // EDP-style diagnostics (founder decision 2026-10-20 Q3): pooled need coverage, mean domain diversity. Circular.
+    const mass = circ.reduce((q, c) => q + c.needMass, 0), res = circ.reduce((q, c) => q + c.resolved, 0);
     return { policy: pol, episodes: rs.length, recall: mean(rec), recallSd: sd(rec), recallSe: rec.length > 1 ? sd(rec) / Math.sqrt(rec.length) : null,
-      concepts: m("concepts"), domains: m("domains"), prereqFirst: m("prereqFirst"), reveal: m("reveal"), gain: m("gain"), movedShare: m("movedShare"), cards: m("cards") };
+      concepts: m("concepts"), domains: m("domains"), prereqFirst: m("prereqFirst"), reveal: m("reveal"), gain: m("gain"), movedShare: m("movedShare"), cards: m("cards"),
+      circular: { label: CIRCULAR_LABEL, needCoverageRate: mass ? res / mass : null, domainDiversity: mean(circ.map((c) => c.domainDiversity)),
+        distinctDomainsServed: mean(circ.map((c) => c.distinctDomainsServed)) } };
   });
   out = { schema: "personalization-hq-compare-v0", ...LABEL, modelVersion: M.MODEL_VERSION, personasVersion: PERSONAS_VERSION,
     personas: ps.map((p) => p.id), seeds, days, set: args.set ?? "main", ms: Date.now() - t0, rows,
@@ -104,8 +129,18 @@ if (cmd === "meta") {
       recallSd: "sd across episodes", recallSe: "standard error", concepts: "distinct concepts completed", domains: "distinct domains completed",
       prereqFirst: "share of cards shown before an in-pilot prerequisite", reveal: "reveal completion proxy (reported, never optimised)",
       gain: "concepts known at end minus start (ground truth; extra, not in OBJECTIVE)", movedShare: "share of cards moved off the default order",
-    } };
+      circular: `${CIRCULAR_LABEL}: EDP-style, graded by the model's own detect() and addr(), not by the learner; never a pass score, always beside recall`,
+      "circular.needCoverageRate": "Σ min(need, addr[served card, need]) / Σ need over every served new card, needs and addr from the evidence when the card is served (EDP resolved / initial mass), pooled over episodes",
+      "circular.domainDiversity": "Shannon entropy of served new cards' domains / log2(pilot domains), 0..1, mean over episodes (EDP widget-mix entropy)",
+      "circular.distinctDomainsServed": "distinct domains among served new cards, mean over episodes",
+    }, circularLabel: CIRCULAR_LABEL };
+} else if (cmd === "sandbox") {
+  const p = persona(args.persona);
+  const variant = Object.hasOwn(SANDBOX_VARIANTS, args.variant ?? "") ? args.variant : fail(`--variant must be one of ${Object.keys(SANDBOX_VARIANTS).join(", ")}`);
+  const seed = int("seed", 1, 1, 999);
+  out = { schema: "personalization-hq-sandbox-v0", ...LABEL, personasVersion: PERSONAS_VERSION, ...sandboxDocument(p, variant, seed, loadPinnedCatalog()) };
 } else {
-  fail("usage: hq-cli.mjs meta | run --persona= --policy= --seed= [--days=] | compare --persona=<id|all> [--seeds=] [--set=main|all] | saved --file=");
+  fail("usage: hq-cli.mjs meta | run --persona= --policy= --seed= [--days=] | compare --persona=<id|all> [--seeds=] [--set=main|all] | saved --file= | sandbox --persona= --variant=v1|v3|edpbase [--seed=]");
 }
-process.stdout.write(JSON.stringify(out, round));
+// sandbox is not rounded: a browser re-implementation must see the exact numbers the CLI composed with (drift test).
+process.stdout.write(JSON.stringify(out, cmd === "sandbox" ? undefined : round));

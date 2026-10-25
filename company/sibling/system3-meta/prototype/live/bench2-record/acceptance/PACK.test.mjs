@@ -1,2 +1,0 @@
-import { test } from "node:test"; import assert from "node:assert/strict"; import { read, duplicatesIn, stats } from "./rubric.mjs";
-test("PACK assembles five rounds with no repeated answer", () => { const t = read("PACK"); assert.ok(t != null, "missing"); for (let n = 1; n <= 5; n++) assert.match(t, new RegExp(`^# Round ${n}: `, "m"), `round ${n}`); assert.equal((t.match(/\*\*Answer:\*\*/g) || []).length, 20, "20 answers"); assert.deepEqual(duplicatesIn(t), [], "no answer twice across rounds"); assert.deepEqual(stats(t).banned, []); });

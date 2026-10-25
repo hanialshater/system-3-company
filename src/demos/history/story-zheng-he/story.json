@@ -1,0 +1,138 @@
+{
+  "slug": "story-zheng-he",
+  "title": "Zheng He: seven voyages",
+  "family": "Exploration",
+  "hook": "Was this one continuous trip across the ocean?",
+  "predict": {
+    "question": "What does the 1405–1433 network represent?",
+    "options": [
+      "One nonstop voyage",
+      "Seven separate voyages"
+    ],
+    "answer": 1
+  },
+  "frames": [
+    {
+      "date": "1405",
+      "heading": "Departure",
+      "text": "The first of seven voyages begins.",
+      "active": [
+        "china"
+      ]
+    },
+    {
+      "date": "1405–33",
+      "heading": "Southeast Asia",
+      "text": "The voyages connect Southeast Asian waters.",
+      "active": [
+        "southeast"
+      ]
+    },
+    {
+      "date": "1405–33",
+      "heading": "Indian Ocean",
+      "text": "The fleets visit Indian Ocean destinations.",
+      "active": [
+        "india"
+      ]
+    },
+    {
+      "date": "By 1433",
+      "heading": "Farther west",
+      "text": "Voyages also reach East Africa and the Red Sea.",
+      "active": [
+        "africa",
+        "redsea"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "china",
+      "name": "China",
+      "coordinates": [
+        119,
+        26
+      ]
+    },
+    {
+      "id": "southeast",
+      "name": "SE Asia",
+      "coordinates": [
+        104,
+        2
+      ]
+    },
+    {
+      "id": "india",
+      "name": "India",
+      "coordinates": [
+        75,
+        12
+      ]
+    },
+    {
+      "id": "africa",
+      "name": "East Africa",
+      "coordinates": [
+        41,
+        -2
+      ]
+    },
+    {
+      "id": "redsea",
+      "name": "Red Sea",
+      "coordinates": [
+        39,
+        20
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "frame": 1,
+      "nodes": [
+        "china",
+        114,
+        12,
+        "southeast"
+      ]
+    },
+    {
+      "frame": 2,
+      "nodes": [
+        "southeast",
+        85,
+        5,
+        "india"
+      ]
+    },
+    {
+      "frame": 3,
+      "nodes": [
+        "india",
+        "africa"
+      ]
+    },
+    {
+      "frame": 3,
+      "nodes": [
+        "india",
+        53,
+        12,
+        "redsea"
+      ]
+    }
+  ],
+  "reveal": "The growing picture combines seven voyages between 1405 and 1433. It is not the track of a single ship making one enormous circuit. A network view reveals repeated maritime connections across Southeast Asia, the Indian Ocean, East Africa and the Red Sea.",
+  "limit": "Voyages are grouped by region; the sequence does not date each first regional visit.",
+  "sources": [
+    {
+      "url": "https://hk.history.museum/en/web/mh/exhibition/2006_past_07.html",
+      "section": "Seven voyages, 1405–1433, regions visited",
+      "opened": "2026-10-21",
+      "reviewStatus": "unverified"
+    }
+  ],
+  "mode": "network"
+}

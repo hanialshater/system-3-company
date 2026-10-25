@@ -1,0 +1,149 @@
+{
+  "slug": "story-roman-mediterranean",
+  "title": "Rome: an overseas republic",
+  "family": "Empires",
+  "hook": "When did Rome’s reach become more than Italian?",
+  "predict": {
+    "question": "What changed after the First Punic War?",
+    "options": [
+      "Rome abandoned Italy",
+      "Rome acquired Sicily",
+      "Rome acquired all Europe"
+    ],
+    "answer": 1
+  },
+  "frames": [
+    {
+      "date": "272 BCE",
+      "heading": "Italy",
+      "text": "Rome’s expansion reaches southern Italy.",
+      "active": [
+        "rome",
+        "italy"
+      ]
+    },
+    {
+      "date": "241 BCE",
+      "heading": "Sicily",
+      "text": "The First Punic War brings Sicily.",
+      "active": [
+        "sicily"
+      ]
+    },
+    {
+      "date": "201 BCE",
+      "heading": "Iberia",
+      "text": "Rome acquires Carthaginian territory in Iberia.",
+      "active": [
+        "iberia"
+      ]
+    },
+    {
+      "date": "146 BCE",
+      "heading": "Across the sea",
+      "text": "Roman armies destroy Carthage and Corinth.",
+      "active": [
+        "carthage",
+        "corinth"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "rome",
+      "name": "Rome",
+      "coordinates": [
+        12.5,
+        41.9
+      ]
+    },
+    {
+      "id": "italy",
+      "name": "Italy",
+      "coordinates": [
+        16,
+        39
+      ]
+    },
+    {
+      "id": "sicily",
+      "name": "Sicily",
+      "coordinates": [
+        14,
+        37.5
+      ]
+    },
+    {
+      "id": "iberia",
+      "name": "Iberia",
+      "coordinates": [
+        -1,
+        38
+      ]
+    },
+    {
+      "id": "carthage",
+      "name": "Carthage",
+      "coordinates": [
+        10.32,
+        36.85
+      ]
+    },
+    {
+      "id": "corinth",
+      "name": "Corinth",
+      "coordinates": [
+        22.9,
+        37.9
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "frame": 0,
+      "nodes": [
+        "rome",
+        "italy"
+      ]
+    },
+    {
+      "frame": 1,
+      "nodes": [
+        "rome",
+        "sicily"
+      ]
+    },
+    {
+      "frame": 2,
+      "nodes": [
+        "rome",
+        "iberia"
+      ]
+    },
+    {
+      "frame": 3,
+      "nodes": [
+        "rome",
+        "carthage"
+      ]
+    },
+    {
+      "frame": 3,
+      "nodes": [
+        "rome",
+        "corinth"
+      ]
+    }
+  ],
+  "reveal": "Rome’s expansion crossed water as well as land. Sicily became an overseas possession after the First Punic War; subsequent wars brought Iberian territory and interventions farther east. These selected events show a changing Mediterranean reach, not a uniform block of Roman control.",
+  "limit": "Connections mark selected events; no territorial boundaries or full conquest chronology.",
+  "sources": [
+    {
+      "url": "https://openstax.org/books/world-history-volume-1/pages/6-4-the-roman-republic",
+      "section": "Italy map, Punic Wars and Macedonian wars",
+      "opened": "2026-10-21",
+      "reviewStatus": "unverified"
+    }
+  ],
+  "mode": "network"
+}

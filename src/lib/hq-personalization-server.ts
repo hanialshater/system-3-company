@@ -48,6 +48,7 @@ export function childEnv(env: Readonly<Record<string, string | undefined>> = pro
 
 let inFlight: { key: string; p: Promise<SimResult<unknown>> } | null = null;
 let metaInFlight: { key: string; p: Promise<SimResult<unknown>> } | null = null;
+const sandboxCache = new Map<string, Promise<SimResult<unknown>>>();
 let metaCache: { root: string; stamp: string; result: SimResult<unknown> } | null = null;
 
 /** Newest mtime under the model folder (skipping out/ and node_modules), plus the saved-traces folder's mtime. */
@@ -86,6 +87,18 @@ function spawnSim<T>(req: SimRequest, root: string, timeoutMs: number): Promise<
 export function runSim<T>(req: SimRequest, root = process.cwd(), timeoutMs = 90_000): Promise<SimResult<T>> {
   if (!simLocal()) return Promise.resolve(readPrecomputed<T>(req, root)); // production: committed files only, no process
   const key = JSON.stringify([root, cliArgs(req)]);
+  if (req.op === "sandbox") {
+    // A sandbox document is cheap (~0.4 s), read-only and fixed for a model stamp, so it takes no run lock (a run in
+    // flight must not make the session lab show BUSY) and is cached per request and stamp. At most 12 exist.
+    const stamp = modelStamp(root);
+    const skey = `${key}:${stamp}`;
+    const hit = sandboxCache.get(skey);
+    if (hit) return hit as Promise<SimResult<T>>;
+    const p = spawnSim<T>(req, root, timeoutMs).then((r) => { if (!r.ok) sandboxCache.delete(skey); return r; });
+    for (const k of sandboxCache.keys()) if (!k.endsWith(`:${stamp}`)) sandboxCache.delete(k);
+    sandboxCache.set(skey, p);
+    return p;
+  }
   if (req.op === "meta") {
     const stamp = modelStamp(root);
     if (metaCache && metaCache.root === root && metaCache.stamp === stamp) return Promise.resolve(metaCache.result as SimResult<T>);

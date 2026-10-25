@@ -1,0 +1,133 @@
+{
+  "slug": "story-alexander",
+  "title": "Alexander: the return matters",
+  "family": "Campaigns",
+  "hook": "Did the expedition keep moving east until it ended?",
+  "predict": {
+    "question": "Where does the expedition end?",
+    "options": [
+      "Farther east",
+      "Back west, at Babylon",
+      "In Greece"
+    ],
+    "answer": 1
+  },
+  "frames": [
+    {
+      "date": "334 BCE",
+      "heading": "Crossing",
+      "text": "The army crosses the Hellespont.",
+      "active": [
+        "hellespont"
+      ]
+    },
+    {
+      "date": "330s BCE",
+      "heading": "Conquests",
+      "text": "Campaigns take in Egypt and Persia.",
+      "active": [
+        "egypt",
+        "persia"
+      ]
+    },
+    {
+      "date": "Later",
+      "heading": "Eastern reach",
+      "text": "The expedition reaches the Indus region.",
+      "active": [
+        "indus"
+      ]
+    },
+    {
+      "date": "323 BCE",
+      "heading": "Return",
+      "text": "The army turns back; Alexander dies at Babylon.",
+      "active": [
+        "babylon"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "hellespont",
+      "name": "Hellespont",
+      "coordinates": [
+        26.4,
+        40.2
+      ]
+    },
+    {
+      "id": "egypt",
+      "name": "Egypt",
+      "coordinates": [
+        31.2,
+        30
+      ]
+    },
+    {
+      "id": "persia",
+      "name": "Persia",
+      "coordinates": [
+        52.9,
+        29.9
+      ]
+    },
+    {
+      "id": "indus",
+      "name": "Indus",
+      "coordinates": [
+        72.5,
+        32
+      ]
+    },
+    {
+      "id": "babylon",
+      "name": "Babylon",
+      "coordinates": [
+        44.42,
+        32.54
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "frame": 0,
+      "nodes": [
+        "hellespont"
+      ]
+    },
+    {
+      "frame": 1,
+      "nodes": [
+        "hellespont",
+        "egypt",
+        "persia"
+      ]
+    },
+    {
+      "frame": 2,
+      "nodes": [
+        "persia",
+        "indus"
+      ]
+    },
+    {
+      "frame": 3,
+      "nodes": [
+        "indus",
+        "babylon"
+      ]
+    }
+  ],
+  "reveal": "The map bends back west. The Macedonian army’s eastern reach did not become an endless advance: the soldiers insisted on returning. Alexander died at Babylon, and the conquests were divided among generals. Army decisions and succession mattered alongside the commander.",
+  "limit": "Selected regional checkpoints; intermediate campaigns and exact marches omitted.",
+  "sources": [
+    {
+      "url": "https://www.metmuseum.org/essays/the-rise-of-macedonia-and-the-conquests-of-alexander-the-great",
+      "section": "Hemingway and Hemingway, 2004, paragraphs on 334 BCE, Indus, return and division",
+      "opened": "2026-10-21",
+      "reviewStatus": "unverified"
+    }
+  ],
+  "mode": "journey"
+}

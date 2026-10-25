@@ -29,4 +29,4 @@ Existing target: system-3-company, prj_US7nNpj24KIFV5aIe27i2lqvD1Zq, account tea
 
 ## Board
 
-- W-1995: restore history maps, verify and deploy.
+- W-2021: restore history maps, verify and deploy.

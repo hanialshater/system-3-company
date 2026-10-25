@@ -1,6 +1,0 @@
-wrong 0, misleading 2, nitpick 2
-
-- Misleading: Round 2, Q3 (Venus). Claim: "Thick clouds trap the heat like a heavy blanket." True: the heat is trapped by Venus's very thick carbon dioxide atmosphere (a runaway greenhouse effect). The sulfuric-acid clouds actually reflect most sunlight away. A child would come away thinking clouds are what make Venus hot. Suggested fix: "Its thick air traps the heat like a heavy blanket."
-- Misleading: Round 5, Q2 (Pluto). Claim: a dwarf planet "means a small round world that circles the Sun." True: that description also fits Mercury, a full planet. What makes Pluto a dwarf planet is that it has not cleared its path around the Sun of other objects; it shares its neighbourhood with many other icy bodies in the Kuiper Belt. That was the reason for the 2006 change, and the definition as written leaves it out. Suggested fix: "...a round world that circles the Sun but shares its path with lots of other icy objects."
-- Nitpick: Round 5, Q1 (meteor). The answer key says "A meteor", but "a shooting star" is a reasonable child answer to "What do we call...", and the Why line itself says many people use that name. Accept either.
-- Nitpick: Round 4, Q4 (Titan). Claim: Titan's lakes hold "liquid methane." True: they hold methane and ethane. This is fine for ages 8-10.

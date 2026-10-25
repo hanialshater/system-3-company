@@ -1,0 +1,126 @@
+{
+  "slug": "story-columbus-1492",
+  "title": "1492: an inhabited Atlantic",
+  "family": "Exploration",
+  "hook": "What did an Atlantic crossing actually connect?",
+  "predict": {
+    "question": "Did the fleet reach an uninhabited world?",
+    "options": [
+      "Yes",
+      "No, inhabited Caribbean islands"
+    ],
+    "answer": 1
+  },
+  "frames": [
+    {
+      "date": "Aug 1492",
+      "heading": "Departure",
+      "text": "The fleet leaves Palos.",
+      "active": [
+        "palos"
+      ]
+    },
+    {
+      "date": "Aug–Sep",
+      "heading": "Canaries",
+      "text": "The fleet prepares in the Canary Islands.",
+      "active": [
+        "canaries"
+      ]
+    },
+    {
+      "date": "Oct 1492",
+      "heading": "Bahamas",
+      "text": "The fleet encounters Taíno communities.",
+      "active": [
+        "bahamas"
+      ]
+    },
+    {
+      "date": "Dec 1492",
+      "heading": "Hispaniola",
+      "text": "The voyage continues through the Caribbean.",
+      "active": [
+        "hispaniola"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "palos",
+      "name": "Palos",
+      "coordinates": [
+        -6.89,
+        37.23
+      ]
+    },
+    {
+      "id": "canaries",
+      "name": "Canaries",
+      "coordinates": [
+        -17.1,
+        28.1
+      ]
+    },
+    {
+      "id": "bahamas",
+      "name": "Bahamas",
+      "coordinates": [
+        -74.5,
+        24.1
+      ]
+    },
+    {
+      "id": "hispaniola",
+      "name": "Hispaniola",
+      "coordinates": [
+        -71,
+        19
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "frame": 1,
+      "nodes": [
+        "palos",
+        "canaries"
+      ]
+    },
+    {
+      "frame": 2,
+      "nodes": [
+        "canaries",
+        -40,
+        27,
+        "bahamas"
+      ]
+    },
+    {
+      "frame": 3,
+      "nodes": [
+        "bahamas",
+        -76,
+        22,
+        "hispaniola"
+      ]
+    }
+  ],
+  "reveal": "The crossing connected places where people already lived. Columbus’s crews encountered Taíno societies in the Caribbean, not an empty continent. Following the stops also separates a voyage’s actual landfalls from the Asian destination Columbus believed he had reached.",
+  "limit": "Guanahani’s precise modern identification is debated; the dot marks the Bahamas broadly.",
+  "sources": [
+    {
+      "url": "https://www.loc.gov/exhibits/exploring-the-early-americas/columbus-and-the-taino.html",
+      "section": "Columbus and the Taíno, arrival and letter; Harrisse collection chronology for stops",
+      "opened": "2026-10-21",
+      "reviewStatus": "unverified"
+    },
+    {
+      "url": "https://www.loc.gov/static/research-centers/rare-book-and-special-collections/documents/Henry%20Harrisse.pdf",
+      "section": "Chronological notes: Aug 3 departure, Canaries, December Hispaniola",
+      "opened": "2026-10-21",
+      "reviewStatus": "unverified"
+    }
+  ],
+  "mode": "journey"
+}

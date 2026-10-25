@@ -1,0 +1,119 @@
+{
+  "slug": "story-pacific-voyaging",
+  "title": "Pacific: islands over centuries",
+  "family": "Migration",
+  "hook": "Was Pacific settlement one continuous expedition?",
+  "predict": {
+    "question": "What separates western and eastern settlement?",
+    "options": [
+      "Only a few weeks",
+      "Many centuries"
+    ],
+    "answer": 1
+  },
+  "frames": [
+    {
+      "date": "c. 1300 BCE",
+      "heading": "Near Oceania",
+      "text": "Lapita communities live in the Bismarck islands.",
+      "active": [
+        "bismarck"
+      ]
+    },
+    {
+      "date": "1100–800 BCE",
+      "heading": "West Polynesia",
+      "text": "Settlement reaches Fiji, Tonga and Samoa.",
+      "active": [
+        "samoa"
+      ]
+    },
+    {
+      "date": "After 1000 CE",
+      "heading": "East Polynesia",
+      "text": "Voyagers settle eastern archipelagos.",
+      "active": [
+        "society"
+      ]
+    },
+    {
+      "date": "c. 1300 CE",
+      "heading": "Aotearoa",
+      "text": "Polynesian settlers reach Aotearoa New Zealand.",
+      "active": [
+        "aotearoa"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "bismarck",
+      "name": "Bismarck",
+      "coordinates": [
+        151,
+        -5
+      ]
+    },
+    {
+      "id": "samoa",
+      "name": "Samoa",
+      "coordinates": [
+        -172,
+        -14
+      ]
+    },
+    {
+      "id": "society",
+      "name": "Society Is.",
+      "coordinates": [
+        -149,
+        -17
+      ]
+    },
+    {
+      "id": "aotearoa",
+      "name": "Aotearoa",
+      "coordinates": [
+        175,
+        -39
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "frame": 1,
+      "nodes": [
+        "bismarck",
+        177,
+        -17,
+        "samoa"
+      ]
+    },
+    {
+      "frame": 2,
+      "nodes": [
+        "samoa",
+        "society"
+      ]
+    },
+    {
+      "frame": 3,
+      "nodes": [
+        "society",
+        "aotearoa"
+      ]
+    }
+  ],
+  "reveal": "Scrubbing the dates reveals a long pause, not one unbroken expedition. Settlement spread into West Polynesia in the second millennium BCE; eastern archipelagos were settled much later. Aotearoa was reached around 1300 CE. These were generations of skilled navigation and settlement.",
+  "limit": "Dates are approximate and revised by archaeology; arrows summarize regional movement.",
+  "sources": [
+    {
+      "url": "https://teara.govt.nz/en/pacific-migrations/print",
+      "section": "Geoff Irwin: Remote Oceania, settlement sequence and New Zealand",
+      "opened": "2026-10-21",
+      "reviewStatus": "unverified"
+    }
+  ],
+  "mode": "spread",
+  "center": 180
+}

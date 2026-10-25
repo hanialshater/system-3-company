@@ -70,6 +70,17 @@ for (const persona of personas) for (const policy of policies) for (const seed o
   files.set(rel, gzipSync(Buffer.from(JSON.stringify(t)), { level: 9 }));
   runs.push({ persona, policy, seed, days: DAYS, file: rel });
 }
+// Session sandbox documents (founder decision 2026-10-20 Q2, W-1998): one per persona x variant, seed 1, exactly the
+// CLI's `sandbox` output (unrounded, so the browser port can be held equal to the CLI's own composed session).
+// The session policies get no precomputed runs; the session lab recomputes from these documents in the browser.
+const SANDBOX_VARIANTS = ["v1", "v3", "edpbase"];
+const sandboxes = [];
+for (const persona of personas) for (const variant of SANDBOX_VARIANTS) for (const seed of SEEDS) {
+  const d = cli(["sandbox", `--persona=${persona}`, `--variant=${variant}`, `--seed=${seed}`]);
+  const rel = `sandbox/${persona}.${variant}.seed${seed}.json.gz`;
+  files.set(rel, gzipSync(Buffer.from(JSON.stringify(d)), { level: 9 }));
+  sandboxes.push({ persona, variant, seed, file: rel });
+}
 // Frozen candidates (batch 5 §20.2): computed before anything is written, so a refusal writes nothing.
 const cand = (() => {
   try {
@@ -111,7 +122,7 @@ const manifest = {
   excluded: ["review-timing: not an ordering policy (no episode in hq-cli)", "reachable-* in the simulator's policy set, and every reachable-* file but the two frozen candidates (reachable-v1 included): batch 5 §4 as amended by §20.2", "saved traces (sim/out/traces): local files, never copied"],
   candidateLabel, candidateAdapter: ADAPTER,
   candidatePolicies: [...new Set(candidates.map((c) => c.policy))],
-  runs, compares, candidates,
+  runs, compares, sandboxes, candidates,
   files: Object.fromEntries([...files].map(([k, b]) => [k, sha(b)]).sort(([a], [b]) => a.localeCompare(b))),
 };
 
@@ -125,7 +136,7 @@ if (check) {
   console.log(`hq-lab-precompute --check: current (${files.size} files, ${old.modelVersion}, inputs ${old.inputsCommit})`);
   process.exit(0);
 }
-for (const sub of ["runs", "compare", "candidates"]) if (existsSync(path.join(dir, sub))) rmSync(path.join(dir, sub), { recursive: true });
+for (const sub of ["runs", "compare", "sandbox", "candidates"]) if (existsSync(path.join(dir, sub))) rmSync(path.join(dir, sub), { recursive: true });
 for (const [rel, buf] of files) { mkdirSync(path.dirname(path.join(dir, rel)), { recursive: true }); writeFileSync(path.join(dir, rel), buf); }
 writeFileSync(path.join(dir, "manifest.json"), JSON.stringify(manifest, null, 1) + "\n");
 const bytes = [...files.values()].reduce((s, b) => s + b.length, 0);

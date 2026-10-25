@@ -1,0 +1,149 @@
+{
+  "slug": "story-trans-siberian",
+  "title": "Siberia: the route changed",
+  "hook": "Was the final railway the only route ever considered?",
+  "domain": "history",
+  "concept": "story-trans-siberian",
+  "status": "draft",
+  "version": 1,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Events happen in places and at different times."
+    ],
+    "doesNotKnow": [
+      "Yes"
+    ]
+  },
+  "misconception": "No",
+  "objective": "Terrain and politics changed the railway’s path.",
+  "claims": [
+    {
+      "id": "history.story-trans-siberian.frame1",
+      "text": "Early plans: Amur route. Plans favor a route along the Amur.",
+      "support": "source",
+      "source": "https://blogs.loc.gov/maps/2025/09/the-long-and-winding-road-to-vladivostok-the-trans-siberian-railway-and-the-world/ — LOC Geography and Map Division: original route, Manchurian shortcut, 1916 Amur line",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[0]"
+      ]
+    },
+    {
+      "id": "history.story-trans-siberian.frame2",
+      "text": "Before 1916: A shortcut. A line through Manchuria shortens the route.",
+      "support": "source",
+      "source": "https://blogs.loc.gov/maps/2025/09/the-long-and-winding-road-to-vladivostok-the-trans-siberian-railway-and-the-world/ — LOC Geography and Map Division: original route, Manchurian shortcut, 1916 Amur line",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[1]"
+      ]
+    },
+    {
+      "id": "history.story-trans-siberian.frame3",
+      "text": "Early 1900s: Political exposure. The Manchurian connection faces political conflict.",
+      "support": "source",
+      "source": "https://blogs.loc.gov/maps/2025/09/the-long-and-winding-road-to-vladivostok-the-trans-siberian-railway-and-the-world/ — LOC Geography and Map Division: original route, Manchurian shortcut, 1916 Amur line",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[2]"
+      ]
+    },
+    {
+      "id": "history.story-trans-siberian.frame4",
+      "text": "1916: Amur completed. The Amur line provides an all-Russian route.",
+      "support": "source",
+      "source": "https://blogs.loc.gov/maps/2025/09/the-long-and-winding-road-to-vladivostok-the-trans-siberian-railway-and-the-world/ — LOC Geography and Map Division: original route, Manchurian shortcut, 1916 Amur line",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[3]"
+      ]
+    },
+    {
+      "id": "history.story-trans-siberian.reveal",
+      "text": "Terrain and politics changed the railway’s path. The route through Manchuria shortened the journey but exposed it to political changes and conflict. Completion of the Amur line in 1916 supplied a route entirely within Russia’s territory at the time. Infrastructure routes reflect choices as well as distance.",
+      "support": "source",
+      "source": "https://blogs.loc.gov/maps/2025/09/the-long-and-winding-road-to-vladivostok-the-trans-siberian-railway-and-the-world/ — LOC Geography and Map Division: original route, Manchurian shortcut, 1916 Amur line",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.reveal"
+      ]
+    },
+    {
+      "id": "history.story-trans-siberian.limit",
+      "text": "Selected eastern corridors, not the complete railway or modern borders.",
+      "support": "convention",
+      "source": "Original authored schematic; source scope and omissions in story.json. Modern coastlines: Natural Earth, content/history-locators.json.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.limit"
+      ]
+    },
+    {
+      "id": "history.story-trans-siberian.geometry",
+      "text": "Modern reference coordinates and original schematic links. No historical boundary or exact route is asserted.",
+      "support": "convention",
+      "source": "content/history-stories/README.md; tools/generate-history-story-maps.mjs; Natural Earth land pin in content/history-locators.json",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.nodes",
+        "story.edges",
+        "map.json"
+      ]
+    }
+  ],
+  "recall": {
+    "question": "Did an earlier route pass through Manchuria?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "why": "Terrain and politics changed the railway’s path. The route through Manchuria shortened the journey but exposed it to political changes and conflict. Completion of the Amur line in 1916 supplied a route entirely within Russia’s territory at the time. Infrastructure routes reflect choices as well as distance."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "history:story-trans-siberian",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "maps-borders",
+    "references": [
+      "https://blogs.loc.gov/maps/2025/09/the-long-and-winding-road-to-vladivostok-the-trans-siberian-railway-and-the-world/"
+    ],
+    "tags": [
+      "map-story",
+      "infrastructure"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "timeline",
+    "slider",
+    "compare",
+    "reset"
+  ]
+}

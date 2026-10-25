@@ -1,0 +1,163 @@
+{
+  "slug": "story-hannibal",
+  "title": "Hannibal: invasion and return",
+  "hook": "Did crossing the Alps settle the war?",
+  "domain": "history",
+  "concept": "story-hannibal",
+  "status": "draft",
+  "version": 2,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Events happen in places and at different times."
+    ],
+    "doesNotKnow": [
+      "North Africa"
+    ]
+  },
+  "misconception": "Italy",
+  "objective": "An invasion route is not the whole war.",
+  "claims": [
+    {
+      "id": "history.story-hannibal.frame1",
+      "text": "218 BCE: From Iberia. Hannibal’s army leaves Iberia for Italy.",
+      "support": "source",
+      "source": "https://openstax.org/books/world-history-volume-1/pages/6-4-the-roman-republic — Second Punic War paragraphs and Zama (202 BCE)",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[0]"
+      ]
+    },
+    {
+      "id": "history.story-hannibal.frame2",
+      "text": "218 BCE: Alpine crossing. The army crosses the Alps.",
+      "support": "source",
+      "source": "https://openstax.org/books/world-history-volume-1/pages/6-4-the-roman-republic — Second Punic War paragraphs and Zama (202 BCE)",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[1]"
+      ]
+    },
+    {
+      "id": "history.story-hannibal.frame3",
+      "text": "218–201 BCE: Italian campaign. Many Roman allies remain with Rome.",
+      "support": "source",
+      "source": "https://openstax.org/books/world-history-volume-1/pages/6-4-the-roman-republic — Second Punic War paragraphs and Zama (202 BCE)",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[2]"
+      ]
+    },
+    {
+      "id": "history.story-hannibal.frame4",
+      "text": "202 BCE: Return to Africa. Rome wins at Zama in North Africa.",
+      "support": "source",
+      "source": "https://openstax.org/books/world-history-volume-1/pages/6-4-the-roman-republic — Second Punic War paragraphs and Zama (202 BCE)",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[3]"
+      ]
+    },
+    {
+      "id": "history.story-hannibal.reveal",
+      "text": "An invasion route is not the whole war. Crossing the Alps brought Hannibal’s army into Italy, but many Roman allies stayed with Rome. A Roman campaign in Africa drew Hannibal back; Rome’s victory at Zama ended the contest on another shore.",
+      "support": "source",
+      "source": "https://openstax.org/books/world-history-volume-1/pages/6-4-the-roman-republic — Second Punic War paragraphs and Zama (202 BCE)",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.reveal"
+      ]
+    },
+    {
+      "id": "history.story-hannibal.limit",
+      "text": "The Alpine pass and exact march are uncertain; this line does not choose a pass.",
+      "support": "convention",
+      "source": "Original authored schematic; source scope and omissions in story.json. Modern coastlines: Natural Earth, content/history-locators.json.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.limit"
+      ]
+    },
+    {
+      "id": "history.story-hannibal.geometry",
+      "text": "Modern reference coordinates and original schematic links. No historical boundary or exact route is asserted.",
+      "support": "convention",
+      "source": "content/history-stories/README.md; tools/generate-history-story-maps.mjs; Natural Earth land pin in content/history-locators.json",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.nodes",
+        "story.edges",
+        "map.json"
+      ]
+    },
+    {
+      "id": "history.story-hannibal.illustrations",
+      "text": "Ships, horses, camps, fire, swords and castles are original illustrative symbols. They do not encode counts, exact equipment, buildings or campsite locations.",
+      "support": "convention",
+      "source": "Original SVG artwork in content/history-stories/symbol-art.json; checkpoint choices in symbols.json. Camps are unlocated vignettes.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "StoryStage illustrative symbols",
+        "History atlas preview illustration"
+      ]
+    }
+  ],
+  "recall": {
+    "question": "Where was the war’s decisive final battle?",
+    "options": [
+      "Italy",
+      "The Alps",
+      "North Africa"
+    ],
+    "answer": 2,
+    "why": "An invasion route is not the whole war. Crossing the Alps brought Hannibal’s army into Italy, but many Roman allies stayed with Rome. A Roman campaign in Africa drew Hannibal back; Rome’s victory at Zama ended the contest on another shore."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "history:story-hannibal",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "maps-borders",
+    "references": [
+      "https://openstax.org/books/world-history-volume-1/pages/6-4-the-roman-republic"
+    ],
+    "tags": [
+      "map-story",
+      "campaigns"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "timeline",
+    "slider",
+    "compare",
+    "reset"
+  ]
+}

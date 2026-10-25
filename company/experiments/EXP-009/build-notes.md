@@ -1,6 +1,6 @@
 # EXP-009 build notes: tools/reconcile.mjs
 
-owner: tools-lead (build, W-1998) · acceptance: analytics-steward (W-1999), who reads these notes only after writing its own findings on the coverage table and a 10-gap sample
+owner: tools-lead (build, W-2026) · acceptance: analytics-steward (W-2027), who reads these notes only after writing its own findings on the coverage table and a 10-gap sample
 run: `node tools/reconcile.mjs --from=2026-10-15T00:00Z --to=2026-10-19T23:59Z --json > company/experiments/EXP-009/run-2026-10-20.json` (git HEAD 57ed928e0a, recorded in the file)
 tests: `node --test tests/reconcile/*.test.mjs` (12 fixture tests; no npm script, because package.json is tier 2 and this is a read-only tool)
 

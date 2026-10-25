@@ -1,0 +1,162 @@
+{
+  "slug": "story-pacific-voyaging",
+  "title": "Pacific: islands over centuries",
+  "hook": "Was Pacific settlement one continuous expedition?",
+  "domain": "history",
+  "concept": "story-pacific-voyaging",
+  "status": "draft",
+  "version": 2,
+  "confidence": "",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Events happen in places and at different times."
+    ],
+    "doesNotKnow": [
+      "Many centuries"
+    ]
+  },
+  "misconception": "Only a few weeks",
+  "objective": "Scrubbing the dates reveals a long pause, not one unbroken expedition.",
+  "claims": [
+    {
+      "id": "history.story-pacific-voyaging.frame1",
+      "text": "c. 1300 BCE: Near Oceania. Lapita communities live in the Bismarck islands.",
+      "support": "source",
+      "source": "https://teara.govt.nz/en/pacific-migrations/print — Geoff Irwin: Remote Oceania, settlement sequence and New Zealand",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[0]"
+      ]
+    },
+    {
+      "id": "history.story-pacific-voyaging.frame2",
+      "text": "1100–800 BCE: West Polynesia. Settlement reaches Fiji, Tonga and Samoa.",
+      "support": "source",
+      "source": "https://teara.govt.nz/en/pacific-migrations/print — Geoff Irwin: Remote Oceania, settlement sequence and New Zealand",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[1]"
+      ]
+    },
+    {
+      "id": "history.story-pacific-voyaging.frame3",
+      "text": "After 1000 CE: East Polynesia. Voyagers settle eastern archipelagos.",
+      "support": "source",
+      "source": "https://teara.govt.nz/en/pacific-migrations/print — Geoff Irwin: Remote Oceania, settlement sequence and New Zealand",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[2]"
+      ]
+    },
+    {
+      "id": "history.story-pacific-voyaging.frame4",
+      "text": "c. 1300 CE: Aotearoa. Polynesian settlers reach Aotearoa New Zealand.",
+      "support": "source",
+      "source": "https://teara.govt.nz/en/pacific-migrations/print — Geoff Irwin: Remote Oceania, settlement sequence and New Zealand",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.frames[3]"
+      ]
+    },
+    {
+      "id": "history.story-pacific-voyaging.reveal",
+      "text": "Scrubbing the dates reveals a long pause, not one unbroken expedition. Settlement spread into West Polynesia in the second millennium BCE; eastern archipelagos were settled much later. Aotearoa was reached around 1300 CE. These were generations of skilled navigation and settlement.",
+      "support": "source",
+      "source": "https://teara.govt.nz/en/pacific-migrations/print — Geoff Irwin: Remote Oceania, settlement sequence and New Zealand",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.reveal"
+      ]
+    },
+    {
+      "id": "history.story-pacific-voyaging.limit",
+      "text": "Dates are approximate and revised by archaeology; arrows summarize regional movement.",
+      "support": "convention",
+      "source": "Original authored schematic; source scope and omissions in story.json. Modern coastlines: Natural Earth, content/history-locators.json.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.limit"
+      ]
+    },
+    {
+      "id": "history.story-pacific-voyaging.geometry",
+      "text": "Modern reference coordinates and original schematic links. No historical boundary or exact route is asserted.",
+      "support": "convention",
+      "source": "content/history-stories/README.md; tools/generate-history-story-maps.mjs; Natural Earth land pin in content/history-locators.json",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "story.nodes",
+        "story.edges",
+        "map.json"
+      ]
+    },
+    {
+      "id": "history.story-pacific-voyaging.illustrations",
+      "text": "Ships, horses, camps, fire, swords and castles are original illustrative symbols. They do not encode counts, exact equipment, buildings or campsite locations.",
+      "support": "convention",
+      "source": "Original SVG artwork in content/history-stories/symbol-art.json; checkpoint choices in symbols.json. Camps are unlocated vignettes.",
+      "status": "unverified",
+      "checkedBy": "",
+      "checkedOn": "",
+      "addresses": [
+        "StoryStage illustrative symbols",
+        "History atlas preview illustration"
+      ]
+    }
+  ],
+  "recall": {
+    "question": "What separates western and eastern settlement?",
+    "options": [
+      "Only a few weeks",
+      "Many centuries"
+    ],
+    "answer": 1,
+    "why": "Scrubbing the dates reveals a long pause, not one unbroken expedition. Settlement spread into West Polynesia in the second millennium BCE; eastern archipelagos were settled much later. Aotearoa was reached around 1300 CE. These were generations of skilled navigation and settlement."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "history:story-pacific-voyaging",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "maps-borders",
+    "references": [
+      "https://teara.govt.nz/en/pacific-migrations/print"
+    ],
+    "tags": [
+      "map-story",
+      "migration"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "timeline",
+    "slider",
+    "compare",
+    "reset"
+  ]
+}
