@@ -1,0 +1,9 @@
+{ "note": "System 3 Company in the city HQ: its tools, run from this folder (a checkout of hanialshater/system3-meta beside this repository, at ../system3-meta, or set META). Publish its snapshot: node $META/hq/build.mjs --city=hq-city.json --snapshot=system-3-company --out=<dir>",
+  "companies": [
+  { "id": "system-3-company", "name": "System 3 Lessons", "archetype": "corporate", "owner": "founder",
+    "eventsCmd": "node hq-events.mjs ../../../../..",
+    "orgCmd": "node org-from-roles.mjs ../../../../../tools/org/roles.mjs",
+    "dashboardCmd": "node hq-dashboard.mjs ../../../../..",
+    "knowledgeCmd": "node hq-knowledge.mjs ../../../../..",
+    "docsCmd": "node ${META:-../../../../../../system3-meta}/src/docs.mjs ../../../../.. --config=hq-docs.json" }
+  ] }
