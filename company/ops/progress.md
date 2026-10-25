@@ -1,3 +1,12 @@
+## 2026-10-25 · chief-of-staff-ceo-office (Leonie) · Restructuring proposal for the founder (W-2030, F-50)
+
+- **Changed:** I wrote `company/ceo-office/2026-10-25-restructuring-proposal.md` (status: proposed), added founder-inbox **F-50** (approval, priority 1, options A/B/C) and moved W-2030 to review. No change to roles, tools, gates or protected paths.
+- **Recommendation (A):** two content-type lanes, single-card (lane S, manager principal-pm-verticals) and multi-card sequence (lane M, manager design-lead). Each has one flow, a `projects.json` lane budget that stops at 100% (a change to the B1 rule in `tools/lib/ledger.mjs`) and a cost target: 90k per tier-S lesson against 78k measured on the catalog line, and 300k per multi-card item (provisional). There are four levels: founder → head-of-product and portfolio-manager → lane managers by mailbox → pooled workers. The 51 cm-* roles collapse into one pooled `category-curator`, and cultural plus safety review merge into `route-reviewer`. That takes **109 roles to 39**. Gate tiers are requested of the evaluation steward through AMD-014, not set.
+- **Believe:** high confidence in the evidence tables (ledger, events, board, meta.json, recomputed this session). Medium confidence in the cost targets: tier S depends on AMD-014, and lane M has n = 1. The operator is still the hub: 1,280 of 1,281 dispatches, plus its own unmeasured production passes on 10-20 and 10-21.
+- **Not measured:** all runs after 2026-10-16T15:27Z, the operator's tokens, and the personalization org's runs (proposal §1d).
+- **Next:** the founder decides F-50. On A, step 3 comes first: chief-of-staff-ceo-office consults the receiving roles in writing. tools-lead resumes the ledger import (§3).
+- **Blocked:** nothing in my lane. Step 10 (AMD-014 tiers) needs the evaluation steward and ratification.
+
 ## 2026-10-25 · chief-of-staff (for System 3 Meta, as vp-meta) · B13 running; the starter HQ, crew sessions, meetings and onboarding as code
 
 Founder: "need to go do b13, write code for other features, when you need new repos for migration I will provide them later"; B13 approved at about $500.
