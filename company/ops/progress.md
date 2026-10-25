@@ -1,3 +1,39 @@
+## 2026-10-25 · chief-of-staff-ceo-office (Leonie) · Restructuring applied (F-50 option A): 109 → 39 roles, two content-type lanes, lane budgets
+
+- **Changed:** the founder approved F-50 option A ("Approved and decide for me", relayed verbatim by the coordinating session). The record is `company/decisions/2026-10-25-founder-restructuring.md`.
+  - **Roles:** `tools/org/roles.mjs` has 39 active roles. 2 are new pools: `category-curator`, with the category as data, and `route-reviewer`, covering sensitive, safety and copyright. 72 roles are parked in a `parked` export with their definitions kept. 4 reporting lines moved.
+  - **Generate:** the 14 domain-lead docs stay in `company/roles/` with stand-in agents, because the protected check needs them. The other 58 moved to `company/roles/parked/`. There are 52 agent files, down from 108, and dispatch-check S2 refuses every parked role.
+  - **Lanes:** `lane-single-card` (9M to 11-08, 90k per published) and `lane-multi-card` (1.5M, 300k per item) are in `projects.json`. `ledger.mjs gate` stops a lane at 100%.
+  - **Board:** 231 items of parked roles re-owned with notes. 27 queued items got a priority. 935 unprioritised items are listed for the portfolio-manager. Follow-ups are W-2032 to W-2041, and W-2030 is done.
+  - **Docs:** the POC map (lanes 1 = S, 6 = M), operating loop §0 and the org chart header are rewritten.
+  - **Consultations:** 18 written notes in `company/ceo-office/consultations/2026-10-25-restructuring/`, represented from each role's records, not live replies.
+  - **Drafted only:** AMD-017 (tiers in the protected `tools/company.mjs`), with founder inbox F-51.
+- **Checks:** `npm run check` is at its baseline of 811 errors and 4 warnings, with the same lines. The test results are:
+
+  | Suite | Pass | Fail |
+  |---|---|---|
+  | test:dispatch | 124 | 0 (plus 2 new lane-gate tests) |
+  | test:mailbox | 11 | 0 |
+  | test:memory | 11 | 0 |
+  | test:metrics | 6 | 0 |
+  | rituals | 6 | 0 |
+  | eval | 27 | 0 |
+  | reconcile | 12 | 0 |
+  | test:hq | 108 | 12 (the same 12 as baseline) |
+  | s3c org adapter | 2 | 0 |
+
+  test:hq ran with a temporary `typescript` symlink, which has been removed. Typecheck and build were not run: there is no `node_modules` in this checkout.
+- **Believe:** high confidence that the org data, the tests and the check match the decision. Medium confidence that the lanes will reduce the hub; P1 to P3 in the proposal judge that. Whether the founder's approval was quoted correctly rests on the relay.
+- **Next:**
+  - tools-lead: readiness self-check (W-2032), drain order (W-2033), ledger import (W-2034), format normalisation (W-2041).
+  - evaluation-steward: AMD-017 (W-2036).
+  - design-lead: lane M batch (W-2037).
+  - principal-pm-verticals: lane S orders (W-2038).
+  - portfolio-manager: budgets and triage (W-2039).
+  - chief-of-staff: the org-change event and loop adoption (W-2040).
+  - hq-engineer: floor redraw (W-2035).
+- **Blocked:** gate tiers wait for the AMD-017 ratification (F-51).
+
 ## 2026-10-25 · chief-of-staff-ceo-office (Leonie) · Restructuring proposal for the founder (W-2030, F-50)
 
 - **Changed:** I wrote `company/ceo-office/2026-10-25-restructuring-proposal.md` (status: proposed), added founder-inbox **F-50** (approval, priority 1, options A/B/C) and moved W-2030 to review. No change to roles, tools, gates or protected paths.
