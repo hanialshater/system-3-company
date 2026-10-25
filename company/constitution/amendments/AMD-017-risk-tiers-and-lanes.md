@@ -91,6 +91,6 @@ Board: founder (ratified); evaluation steward (prepared, redrafted, applied); he
 
 | Objection | Raised by | Status |
 |---|---|---|
-| Ratifying the 1-in-5 sample before the weekly audit of 50 published lessons (F-41 item 9) has run removes a check without its safeguard. | chief-of-staff-ceo-office (org health; company/ceo-office/2026-10-25-principles-audit.md, P6) | **Open.** Owner: chief-of-staff-ceo-office. The sampled walk has no safeguard until the weekly audit runs; it closes when two weekly audits have run (the revocation rule needs two). The steward owns the audit (W-2050). |
+| Ratifying the 1-in-5 sample before the weekly audit of 50 published lessons (F-41 item 9) has run removes a check without its safeguard. | chief-of-staff-ceo-office (org health; company/ceo-office/2026-10-25-principles-audit.md, P6) | **Open.** Owner: chief-of-staff-ceo-office. Week 1 ran 2026-10-25 (0 fatal in 50; company/evaluation/audits/2026-10-25-weekly-audit.md); the safeguard is half in place until week 2 (due 2026-11-01), because the revocation rule needs two audits running. The steward owns the audit (W-2050). |
 | Sampling the learner walk lowers the floor that caught soft locks after the 10-14 rush. | evaluation-steward | Overruled by the founder's ratification; answered in part: the stop rule and the audit revocation are in code, risky and new-format lessons keep every walk. |
 | One route-reviewer role for three routes may dilute expertise. | evaluation-steward | Open; (c) is side by side, decided at the enforcement review. |
