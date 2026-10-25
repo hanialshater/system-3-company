@@ -63,10 +63,10 @@
       "id": "math.euclid-three-steps.c5",
       "text": "Any finite list gets the same three steps, so no finite list holds every prime.",
       "support": "derivation",
-      "source": "c3 and c4 hold for any finite list of primes. Hardy and Wright, An Introduction to the Theory of Numbers, Theorem 4. | FC pass 38 (fact-checker, 2026-10-14): VERIFIED by my own derivation (c3 and c4 use nothing about the list except that it is finite and made of primes). Hardy and Wright Theorem 4 not opened; not relied on.",
-      "status": "unverified",
+      "source": "c3 and c4 hold for any finite list of primes. Hardy and Wright, An Introduction to the Theory of Numbers, Theorem 4. | FC pass 38 (fact-checker, 2026-10-14): VERIFIED by my own derivation (c3 and c4 use nothing about the list except that it is finite and made of primes). Hardy and Wright Theorem 4 not opened; not relied on. | FC W-2037 (fact-checker, 2026-10-25): VERIFIED against the copy edit in be3a6d58b (\"no list\" -> \"no finite list\"). Text matches Demo.tsx reveal paragraph 2 verbatim. Own derivation: for any finite list of primes p1..pk, P = p1...pk is a multiple of each pi, so P + 1 leaves remainder 1 on each (c3); P + 1 >= 2, so its least divisor above 1 is a prime, not on the list (c4). Hence no finite list of primes holds every prime. The edit narrows the conclusion to what the argument proves. Own node (BigInt trial division): remainder 1 and all prime factors off-list for every prefix list of the first 0..15 primes and for 3,5 / 2,7,13 / 5,11,17 (e.g. 16 = 2^4, 183 = 3 x 61). Hardy and Wright not opened; not relied on.",
+      "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "checkedOn": "2026-10-25"
     },
     {
       "id": "math.euclid-three-steps.c6",
