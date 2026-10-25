@@ -5,6 +5,13 @@ founder ask (2026-10-25, relayed by the coordinating session): "we spent a lot o
 principles: /home/user/system3-meta/PRINCIPLES.md · tool: `node /home/user/system3-meta/src/principles.mjs /home/user/system-3-company`
 written with this audit: `company/company.json` (the design record the tool reads) · proposals: `company/ceo-office/2026-10-25-principles-org-proposal.md` (G1-G3)
 
+scope (founder, 2026-10-25: "Since we removed press from s3 company adjust accordingly. Also we removed meta as well."): this audit counts **System 3 Lessons only**. S3 Press and System 3 Meta are separate companies in the city.
+- `tools/org/roles.mjs` (checked 2026-10-25) has no Press or Meta role, either active or parked. Press roles were never in it (`company/sibling/press/README.md`).
+- The four parked `cm-books*` roles were this company's Books category managers, now category-curator instances. They are not Press roles.
+- No Press or Meta work is recorded as a flow.
+- system3-meta is cited only as the source of the principles and of Benchmark 6, which ran on this company's briefs.
+- The removal of `company/sibling/` and HQ floor 8 is tools-lead's, and this audit does not touch them.
+
 ## Summary
 
 | | Before (no company.json) | After (company.json from the records) |
