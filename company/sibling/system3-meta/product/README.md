@@ -12,6 +12,7 @@ feature that is built, moved or retired is updated here in the same change.
 | [STARTER.md](STARTER.md) | the starter kit: what every company gets on day one (Meta-owned) and what each company owns and customises |
 | [ONBOARDING.md](ONBOARDING.md) | company onboarding: the org archetypes (corporate, science, committee, dynamic workflow, population, single agent, open source), the catalog of roles and skills, the plan for a new company (HQ developers included) |
 | [FEATURES.md](FEATURES.md) | the feature catalogue: every feature that exists today, its layer (starter or company), where it lives, its status and the evidence for it |
+- [MIGRATION.md](MIGRATION.md): migration coverage for Meta and System 3 Company (assessment, 2026-10-25)
 | [../decisions/](../decisions/) | the decision records (one file per decision, dated, with the ask, the decision, the reasons and the objections) |
 | [../PRINCIPLES.md](../PRINCIPLES.md) | the founder's principles for agent organisations |
 | [../knowledge/](../knowledge/) | the knowledge base: what agents learned in runs, with evidence and beliefs |
