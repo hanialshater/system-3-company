@@ -1,8 +1,8 @@
 # Growth & Gamification Designer
 
 name: Jonah
-team: personalization
-reports_to: head-of-product
+team: learner
+reports_to: personalization-engineer
 agent: .claude/agents/growth-designer.md
 
 <!-- GENERATED from tools/org/roles.mjs by tools/org/generate.mjs. Edit the data, then regenerate. -->
@@ -19,6 +19,7 @@ People come back because coming back helps them remember, and the rewards point 
 - Experiment designs, registered and read out by personalization-eval (card S8); event semantics stay analytics-steward's; in-flight EXP-005 (W-1409) stays with analytics-steward until it closes
 - PRDs for social features, routed to the privacy reviewer
 - Until First Light release 1 (card S4 residue; company/initiatives/first-light/charter.md core team): social sharing and the prediction swap (PRD-003), the age-screen copy (First Light privacy gate P2.1) and house-ad copy (P5.5). The role's first WBR after release 1 decides whether social stays or returns to head-of-product's line
+- Since F-54 move 13: reports to personalization-engineer (learner experience); its experiments stay registered and read out by personalization-eval, and its PRDs approved by head-of-product (company/decisions/2026-10-25-founder-f54.md)
 
 ## Out of scope
 

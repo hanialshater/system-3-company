@@ -57,7 +57,7 @@
     "cm-behavioral",
     "route-reviewer"
   ],
-  "rolesSource": "tools/org/roles.mjs `roles` export after PARK, 2026-10-25 after F-53: 47 entries (46 agent roles plus the founder), run by 32 agent definitions (see `agents`); 64 roles parked: by F-50 (company/decisions/2026-10-25-founder-restructuring.md), F-52 G2 (company/decisions/2026-10-25-founder-f52.md) and F-53 (category-curator into the 14 category owners, company/decisions/2026-10-25-founder-f53.md). F-53 un-parked the 14 category owners (cm-<domain>); the 36 strand roles and cm-course-ncm stay parked. Scheduled to park (SCHEDULED_PARK in roles.mjs): head-of-strategic-initiatives and vp-marketing on 2026-11-23 at First Light's close, rnd-lead if F-49 is declined. Pools: demo-builder, route-reviewer, research-scientist.",
+  "rolesSource": "tools/org/roles.mjs `roles` export after PARK, 2026-10-25 after F-53: 47 entries (46 agent roles plus the founder), run by 32 agent definitions (see `agents`); 64 roles parked: by F-50 (company/decisions/2026-10-25-founder-restructuring.md), F-52 G2 (company/decisions/2026-10-25-founder-f52.md) and F-53 (category-curator into the 14 category owners, company/decisions/2026-10-25-founder-f53.md). F-53 un-parked the 14 category owners (cm-<domain>); the 36 strand roles and cm-course-ncm stay parked. Scheduled to park (SCHEDULED_PARK in roles.mjs): head-of-strategic-initiatives and vp-marketing on 2026-11-23 at First Light's close, rnd-lead if F-49 is declined. Pools: demo-builder, route-reviewer, research-scientist. F-54 (company/decisions/2026-10-25-founder-f54.md): 11 reporting-line moves; no role added, parked or retired; depth 2 below the founder and no manager with a single direct report. head-of-strategic-initiatives and vp-marketing keep the founder's line until they park (F54-2 not selected). The reporting lines as data: company/org.json (generated), which system3-meta src/principles.mjs reads for layers of one.",
   "agents": {
     "cm-math": "category-owner",
     "cm-cs": "category-owner",
@@ -283,7 +283,8 @@
       "paths": [
         "company/ceo-office/",
         "tools/org/roles.mjs",
-        "company/company.json"
+        "company/company.json",
+        "company/org.json"
       ]
     },
     {
@@ -331,7 +332,9 @@
       "role": "backend-engineer",
       "paths": [
         "src/app/api/**",
-        "src/lib/server/**"
+        "src/lib/server/**",
+        "db/migrations/**",
+        "src/kit/progress.ts"
       ]
     },
     {
@@ -340,7 +343,17 @@
         "src/components/Feed.tsx",
         "src/lib/feed-index.ts",
         "src/app/api/feed/**",
-        "src/lib/learner/**"
+        "src/lib/learner/**",
+        "src/lib/feed-types.ts",
+        "src/app/page.tsx",
+        "src/app/login/**",
+        "src/components/SocialActions.tsx",
+        "src/components/LibraryView.tsx",
+        "src/components/account/**",
+        "src/app/account/**",
+        "src/app/preferences/**",
+        "src/app/profile/**",
+        "src/app/library/**"
       ]
     },
     {
@@ -399,7 +412,7 @@
       ]
     }
   ],
-  "ownsSource": "each path is named in the role's inScope in tools/org/roles.mjs (2026-10-25, after F-52 G3, company/decisions/2026-10-25-founder-f52.md): src/app/hq/** is hq-engineer's alone (tools-lead keeps the HQ data adapters and tools); company/ops/events.jsonl is written by chief-of-staff alone (tools-lead owns the schema and tools/events.mjs); src/lib/learner/** moved with learner-model-engineer's work to personalization-engineer (G2). Glob paths are recorded as written; src/lib/hq-*.ts and src/app/hq/** do not overlap. F-53 (company/decisions/2026-10-25-founder-f53.md): content/curriculum/<domain>.json, company/domains/<domain>.md and company/domains/briefs/ belong to the category's owner (cm-<domain>), one owner per category; the pooled category-curator is parked.",
+  "ownsSource": "each path is named in the role's inScope in tools/org/roles.mjs (2026-10-25, after F-52 G3, company/decisions/2026-10-25-founder-f52.md): src/app/hq/** is hq-engineer's alone (tools-lead keeps the HQ data adapters and tools); company/ops/events.jsonl is written by chief-of-staff alone (tools-lead owns the schema and tools/events.mjs); src/lib/learner/** moved with learner-model-engineer's work to personalization-engineer (G2). Glob paths are recorded as written; src/lib/hq-*.ts and src/app/hq/** do not overlap. F-53 (company/decisions/2026-10-25-founder-f53.md): content/curriculum/<domain>.json, company/domains/<domain>.md and company/domains/briefs/ belong to the category's owner (cm-<domain>), one owner per category; the pooled category-curator is parked. F-54 (company/decisions/2026-10-25-founder-f54.md): the learner-experience paths have one owner each. Likes, saves and progress tracking end to end are backend-engineer's: db/migrations/** (incl. lesson_like and lesson_save), src/kit/progress.ts (platform-engineer's review kept as a gate where it touches the lesson contract), src/app/api/** and src/lib/server/** as before. The first-run, sign-in, likes, saves, library and account screens are personalization-engineer's, taken out of platform-engineer's catch-all. The rest of src/kit/** stays platform-engineer's (not listed, as before). company/org.json is generated by tools/org/generate.mjs.",
   "referee": {
     "cmd": "npm run company -- publish <slug>",
     "what": "launchGates in tools/company.mjs (protected): every claim verified by someone other than its builder, a computer-use QA record, a learner review of the current version, readiness and publish holds; plus npm run check and the QA contract in tests/qa/** (protected)",
@@ -442,5 +455,6 @@
       "state": "ok",
       "note": "since 2026-10-25 the operator's commits are dispatch events and handoffs, and it stopped W-2037 rather than produce (progress.md, 2026-10-25). It breached on 2026-10-20 and 10-21 (copy passes, 100 maps, 24 stories; F-50 section 1c). The rule has no mechanism beyond operating-loop section 0; the next audit re-checks; audit P11"
     }
-  }
+  },
+  "orgSource": "company/org.json: generated by tools/org/generate.mjs from tools/org/roles.mjs (id, title, team, reportsTo, agent; parked roles flagged and not counted). F-54, company/decisions/2026-10-25-founder-f54.md"
 }

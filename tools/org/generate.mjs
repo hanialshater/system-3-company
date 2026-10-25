@@ -184,6 +184,22 @@ for (const [a, g] of Object.entries(AGENTS)) chart.push(`| ${a} | ${g.roles.join
 chart.push("");
 fs.writeFileSync(path.join(ROOT, "company/roles/README.md"), chart.join("\n"));
 
+// The reporting lines as data, for Meta's principles audit (system3-meta src/principles.mjs reads company/org.json: a manager
+// with a single direct report is a layer of one). Generated, never hand-edited (F-54, company/decisions/2026-10-25-founder-f54.md).
+{
+  const line = (r) => (r.reportsTo && r.reportsTo !== "nobody" ? r.reportsTo : null);
+  const org = {
+    v: 1,
+    generated: "GENERATED from tools/org/roles.mjs by tools/org/generate.mjs. Edit the data, then regenerate.",
+    owner: "founder",
+    roles: [
+      ...roles.map((r) => ({ id: r.id, title: r.title, team: r.team, reportsTo: line(r), ...(r.agent ? { agent: r.agent } : {}), ...(r.human ? { human: true } : {}) })),
+      ...(parked ?? []).map((r) => ({ id: r.id, title: r.title, team: r.team, reportsTo: line(r), parked: { since: r.parked.since, into: r.parked.into ?? null, record: r.parked.record } })),
+    ],
+  };
+  fs.writeFileSync(path.join(ROOT, "company/org.json"), JSON.stringify(org, null, 1) + "\n");
+}
+
 // Sub-areas: copy the single source (roles.mjs) into content/domains.json, and make sure each strand has a briefs file.
 {
   const dp = path.join(ROOT, "content/domains.json");

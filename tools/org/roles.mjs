@@ -2358,6 +2358,74 @@ for (const r of roles) {
 // Who held category-curator's lines now points at the owners.
 for (const r of roles) if (r.reportsTo === "category-curator") r.reportsTo = "principal-pm-verticals";
 
+// ------------------------------------------------------------------ no layer of one and the learner-experience team (2026-10-25, F-54)
+// Record: company/decisions/2026-10-25-founder-f54.md (proposal: company/ceo-office/2026-10-25-f54-flatten-layers.md).
+// F54-1 (moves 1-8): no manager with a single direct, depth 2 below the founder. F54-3 X1 (moves 11-13): the learner-experience
+// team under personalization-engineer, with one owner per learner path. F54-2 (moves 9-10) was NOT selected:
+// head-of-strategic-initiatives and vp-marketing keep the founder's line until they park on 2026-11-23 (SCHEDULED_PARK).
+// F54-4: categories stay flat; area leads only on a stated trigger, replacing the category lead. No mission, gate, mayNot or
+// handoff changes here: lines, titles, teams and path-owning scope lines only. Move 5 supersedes the F-50 line that put
+// demo-builder under principal-pm-verticals (set via category-curator above); lane S still asks demo-builder by mailbox.
+const F54 = { date: "2026-10-25", record: "company/decisions/2026-10-25-founder-f54.md" };
+const f54 = (s) => `${s} (${F54.record})`;
+const LEARNER_CLIENT_PATHS = "src/app/login/** (first run and sign-in), src/components/SocialActions.tsx, src/components/LibraryView.tsx, src/components/account/**, src/app/account/**, src/app/preferences/**, src/app/profile/**, src/app/library/**";
+const F54_EDIT = {
+  // F54-1, moves 1-8
+  "hq-engineer": { reportsTo: "principal-engineer", add: ["Since F-54 move 1: reports to principal-engineer, a peer of tools-lead on adjacent paths (src/app/hq/** is this role's; the HQ adapters and tools are tools-lead's); a change across both is a mailbox request between peers, and review follows principal-engineer's tiers until F53-9 is decided"] },
+  "tools-lead": { reportsTo: "principal-engineer", add: ["Since F-54 move 2: reports to principal-engineer, not the operator: the tools that meter and gate the operator's dispatches are reviewed under engineering's tiers; hq-engineer is a peer, not a report. B2 and B4 stay this role's"] },
+  "platform-engineer": {
+    reportsTo: "principal-engineer",
+    replace: [
+      [/^src\/kit\/\*\* \(including progress\.ts, the store and event API every lesson calls; Lesson\.tsx is constitutional\)$/, "src/kit/** except src/kit/progress.ts (backend-engineer's since F-54; Lesson.tsx is constitutional)"],
+      [/and the rest of src\/app, src\/components and src\/lib that no other role owns$/, `and the rest of src/app, src/components and src/lib that no other role owns (since F-54 not the learner-experience paths: ${LEARNER_CLIENT_PATHS}, which are personalization-engineer's)`],
+    ],
+    add: ["Review of changes to src/kit/progress.ts (backend-engineer's since F-54) wherever they touch the lesson contract or the event API every lesson calls: the review is a gate, not the work, as for the feed changes that touch the kit"],
+  },
+  "release-manager": { reportsTo: "founder", add: ["Since F-54 move 4: reports to the founder, where every deploy approval already sits; a desk with no reports"] },
+  "demo-builder": { reportsTo: "design-lead", add: ["Since F-54 move 5: reports to design-lead (content types: both lanes' makers); lane S still asks this role for builds through mailbox requests from the category lead, and priority across lanes stays head-of-product's"] },
+  "design-lead": { reportsTo: "founder", add: ["Content-types lead (F-54 moves 5-6): the line for interaction-designer and demo-builder (both lanes); lane S still asks demo-builder through mailbox requests, and lane S's queue, priority and briefs stay with the category lead and head-of-product. The line adds no approvals"] },
+  "portfolio-manager": { reportsTo: "head-of-product", team: "product", title: "Portfolio Manager (intake, triage, priority)", add: ["Since F-54 move 7: reports to head-of-product (product and portfolio), not to chief-of-staff-ceo-office, which audits the lane budgets and should not manage their holder"] },
+  "pattern-librarian": { reportsTo: "head-of-product", team: "product", add: ["Since F-54 move 8: reports to head-of-product (product and portfolio), beside analytics-steward, not to the operator whose loop the patterns judge"] },
+  // F54-3 X1, moves 11-13
+  "personalization-engineer": {
+    reportsTo: "founder",
+    team: "learner",
+    title: "Learner Experience Lead (Personalization Engineer)",
+    add: [
+      "Learner-experience lead (F-54 X1): answers for what the learner sees and keeps outside a lesson, end to end: the feed and its serving, first-run onboarding, likes, saves and progress, gamification, and the account that holds them. The line for backend-engineer and growth-designer; it adds no approvals and is not a check: privacy-reviewer (engineering), personalization-eval (quality) and principal-engineer's tier-2 approval check the team from outside",
+      `Code owner of the learner screens: ${LEARNER_CLIENT_PATHS} (from platform-engineer's catch-all), plus the IntroCard in Feed.tsx (first-run onboarding)`,
+    ],
+  },
+  "backend-engineer": {
+    reportsTo: "personalization-engineer",
+    team: "learner",
+    replace: [[/^Moving src\/kit\/progress\.ts from localStorage-only to sync-with-server, keeping offline play working$/, "Progress tracking end to end (F-54): src/kit/progress.ts (from platform-engineer; its changes that touch the lesson contract keep platform-engineer's review as a gate), src/lib/server/progress-store.ts, src/app/api/account/progress/**, src/app/api/events/**; moving progress.ts from localStorage-only to sync-with-server, keeping offline play working"]],
+    add: [
+      "Likes and saves, stored and served (F-54): the lesson_like and lesson_save tables (db/migrations/002), src/app/api/account/likes/**, src/app/api/account/saves/**, src/app/api/likes/**; the data-inventory rows are written by privacy-reviewer (W-2091)",
+      "The accounts database: db/migrations/** (named as an owned path since F-54)",
+      "Since F-54 move 12: reports to personalization-engineer (learner experience). The migration-order review and the export and delete review stay this role's, including of the lead's and other teams' patches; they are peer engineering reviews, and the independent checks of learner data stay outside the team (privacy-reviewer, principal-engineer's tier 2). This role's objection to the line (its review under a maker it reviews) is open in the decision record",
+    ],
+  },
+  "growth-designer": { reportsTo: "personalization-engineer", team: "learner", add: ["Since F-54 move 13: reports to personalization-engineer (learner experience); its experiments stay registered and read out by personalization-eval, and its PRDs approved by head-of-product"] },
+  "head-of-product": { add: ["Since F-54: the line for portfolio-manager, pattern-librarian, analytics-steward and research-scientist (product and portfolio), plus the two dated roles only if they do not park; design, release, the feed and the engineers moved to their central teams. Keeps priority across content types and lanes and signs batch launch records; stays at or under 8 directs (F-50's CPO rule)"] },
+  "principal-engineer": { add: ["Since F-54: the engineering line for principal-engineer-ops, platform-engineer, privacy-reviewer, tools-lead, hq-engineer and rnd-lead; backend-engineer moved to the learner-experience team and stays under this role's readiness tiers (tier 2: auth and learner data)"] },
+  "chief-of-staff": { add: ["Since F-54 moves 2 and 8: no reports. tools-lead and pattern-librarian are asked by mailbox or board like every other team (operating-loop section 0: the operator dispatches and does not produce)"] },
+  "principal-pm-verticals": { add: ["Since F-54 (F54-4): the 14 category owners stay flat under this role; area leads come only on a trigger (this role runs more than once per category batch; more than 20 categories; route findings clustering in one area above 1 in 5 over 10 briefs), and then replace this role rather than stack under it. demo-builder reports to design-lead (move 5); lane S asks it by mailbox"] },
+};
+for (const r of roles) {
+  const e = F54_EDIT[r.id];
+  if (!e) continue;
+  if (e.title) r.title = e.title;
+  if (e.reportsTo) r.reportsTo = e.reportsTo;
+  if (e.team) r.team = e.team;
+  for (const [re, to] of e.replace ?? []) {
+    const i = r.inScope.findIndex((s) => re.test(s));
+    if (i < 0) throw new Error(`F-54 edit: no inScope line of ${r.id} matches ${re}`);
+    r.inScope[i] = r.inScope[i].replace(re, to);
+  }
+  if (e.add) r.inScope = [...r.inScope, ...e.add.map(f54)];
+}
+
 export const parked = [];
 for (let i = roles.length - 1; i >= 0; i--) {
   const p = PARK[roles[i].id];

@@ -2,7 +2,7 @@
 
 name: Diego
 team: platform
-reports_to: head-of-product
+reports_to: founder
 agent: .claude/agents/release-manager.md
 
 <!-- GENERATED from tools/org/roles.mjs by tools/org/generate.mjs. Edit the data, then regenerate. -->
@@ -20,6 +20,7 @@ Ship only what passed its gates, and be able to undo it in one command.
 - Operational readiness for its own changes (company/rituals/templates/ops-readiness.md): none for change tier 0; a self-check record for tier 1; for tier 2, or anything touching deploy, the event API, auth or learner data, a record approved by principal-engineer-ops before it ships (company/engineering/readiness/)
 - Its risk entries in company/ops/risks.json (the owner field): proposes new risks and re-scores with evidence; principal-engineer-ops writes the file
 - Incidents in its services: it contains them and owns their COE actions (a COE is written by an engineer outside the area)
+- Since F-54 move 4: reports to the founder, where every deploy approval already sits; a desk with no reports (company/decisions/2026-10-25-founder-f54.md)
 
 ## Out of scope
 

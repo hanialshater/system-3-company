@@ -2,7 +2,7 @@
 
 name: Noor
 team: platform
-reports_to: head-of-product
+reports_to: principal-engineer
 agent: .claude/agents/platform-engineer.md
 
 <!-- GENERATED from tools/org/roles.mjs by tools/org/generate.mjs. Edit the data, then regenerate. -->
@@ -13,9 +13,9 @@ Keep the work close to the lesson: builders should never have to think about plu
 
 ## In scope
 
-- src/kit/** (including progress.ts, the store and event API every lesson calls; Lesson.tsx is constitutional)
+- src/kit/** except src/kit/progress.ts (backend-engineer's since F-54; Lesson.tsx is constitutional)
 - The lesson host: src/components/DemoCard.tsx and DemoHost.tsx (on the feed and on /d/<slug>; the host's invariant list, W-533), src/app/d/**
-- The app shell: src/app/layout.tsx, globals.css, the src/app/catalog page shell (the mastery layer on it is the personalization org's), src/lib/catalog.ts, and the rest of src/app, src/components and src/lib that no other role owns
+- The app shell: src/app/layout.tsx, globals.css, the src/app/catalog page shell (the mastery layer on it is the personalization org's), src/lib/catalog.ts, and the rest of src/app, src/components and src/lib that no other role owns (since F-54 not the learner-experience paths: src/app/login/** (first run and sign-in), src/components/SocialActions.tsx, src/components/LibraryView.tsx, src/components/account/**, src/app/account/**, src/app/preferences/**, src/app/profile/**, src/app/library/**, which are personalization-engineer's)
 - tools/ (except gates)
 - Performance budget: first lesson interactive < 2s on a mid phone (it measures and holds it, including for the feed, which is the path to the first lesson)
 - Kit change requests from builders
@@ -25,6 +25,7 @@ Keep the work close to the lesson: builders should never have to think about plu
 - Incidents in its services: it contains them and owns their COE actions (a COE is written by an engineer outside the area)
 - Kit components and tokens incl. CardSequence and the sequence probe (absorbed design-engineer, 2026-10-25) (company/decisions/2026-10-25-founder-restructuring.md)
 - Community pull requests (absorbed community-engineer, 2026-10-25) (company/decisions/2026-10-25-founder-restructuring.md)
+- Review of changes to src/kit/progress.ts (backend-engineer's since F-54) wherever they touch the lesson contract or the event API every lesson calls: the review is a gate, not the work, as for the feed changes that touch the kit (company/decisions/2026-10-25-founder-f54.md)
 
 ## Out of scope
 

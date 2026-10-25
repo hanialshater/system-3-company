@@ -2,16 +2,17 @@
 
 > **Since 2026-10-25 (restructuring, F-50 option A, company/decisions/2026-10-25-founder-restructuring.md): 39 roles; 34 after F-52 G2 (company/decisions/2026-10-25-founder-f52.md), with head-of-strategic-initiatives and vp-marketing scheduled to park on 2026-11-23 and rnd-lead if F-49 is declined.** The drawing below is from before that date and is kept for history. The org as data is `tools/org/roles.mjs`, and `company/roles/README.md` lists the active and parked roles. Reporting lines now:
 >
+> **Reporting lines since F-54 (company/decisions/2026-10-25-founder-f54.md): depth 2 below the founder, no manager with a single direct.** Generated as data in `company/org.json`.
+>
 > | Manager | Reports |
 > |---|---|
-> | founder | chief-of-staff, chief-of-staff-ceo-office, head-of-product, evaluation-steward, principal-engineer, head-of-strategic-initiatives, vp-marketing |
-> | head-of-product | principal-pm-verticals (lane S), design-lead (lane M), platform-engineer, release-manager, analytics-steward, research-scientist, personalization-engineer, growth-designer (lane 14, F-52) |
-> | principal-pm-verticals | category-curator (pool, category as data), demo-builder (pool) |
-> | design-lead | interaction-designer |
-> | evaluation-steward | fact-checker, learner-evaluator, qa-tester, accessibility-reviewer, pedagogy-critic, route-reviewer (pool), personalization-eval (F-52) |
-> | principal-engineer | principal-engineer-ops, backend-engineer, privacy-reviewer, rnd-lead |
-> | chief-of-staff | tools-lead (and hq-engineer under it), pattern-librarian |
-> | chief-of-staff-ceo-office | portfolio-manager |
+> | founder | chief-of-staff, chief-of-staff-ceo-office, head-of-product, evaluation-steward, principal-engineer, principal-pm-verticals (category lead), release-manager, design-lead (content types), personalization-engineer (learner experience), head-of-strategic-initiatives and vp-marketing (until they park on 2026-11-23) |
+> | principal-pm-verticals | the 14 category owners (cm-<domain>, one category-owner agent; flat by F54-4) |
+> | evaluation-steward | fact-checker, learner-evaluator, pedagogy-critic, qa-tester, accessibility-reviewer (tester agent), personalization-eval, route-reviewer (pool) |
+> | principal-engineer | principal-engineer-ops, platform-engineer, privacy-reviewer, tools-lead, hq-engineer, rnd-lead |
+> | head-of-product | portfolio-manager, pattern-librarian, analytics-steward, research-scientist |
+> | design-lead | interaction-designer, demo-builder (pool) |
+> | personalization-engineer | backend-engineer, growth-designer |
 
 ```text
                                  Founder (human)

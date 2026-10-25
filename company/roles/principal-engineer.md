@@ -21,6 +21,7 @@ Keep the system simple enough to change and strong enough to grow: decide which 
 - Dependency and security review (npm audit, licenses)
 - Since 2026-10-13 sits in the CEO office; the principal engineer for operations reports here and owns operational health
 - Co-designs operational readiness with principal-engineer-ops: owns the change-tier path map it reads (EDD-007), and approves readiness for changes in principal-engineer-ops' own area
+- Since F-54: the engineering line for principal-engineer-ops, platform-engineer, privacy-reviewer, tools-lead, hq-engineer and rnd-lead; backend-engineer moved to the learner-experience team and stays under this role's readiness tiers (tier 2: auth and learner data) (company/decisions/2026-10-25-founder-f54.md)
 
 ## Out of scope
 

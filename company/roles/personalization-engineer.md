@@ -1,8 +1,8 @@
-# Personalization Engineer
+# Learner Experience Lead (Personalization Engineer)
 
 name: Tavi
-team: personalization
-reports_to: head-of-product
+team: learner
+reports_to: founder
 agent: .claude/agents/personalization-engineer.md
 
 <!-- GENERATED from tools/org/roles.mjs by tools/org/generate.mjs. Edit the data, then regenerate. -->
@@ -25,6 +25,8 @@ The org's work is visible and inspectable: anyone can pick a persona and see why
 - The learner model and composer, src/lib/learner/**, the policies under test, the per-step trace, the progressive-learning engine, and reproducing a readout from its seeds (determinism only, in a fresh session that did not build what it reproduces) (absorbed learner-model-engineer, F-52 G2) (company/decisions/2026-10-25-founder-f52.md)
 - Candidate curve numbers, each with a written reason, from published evidence only, never from the eval's learner (absorbed applied-scientist-personalization, F-52 G2); a second read of the numbers goes to research-scientist on request (company/decisions/2026-10-25-founder-f52.md)
 - Lesson dimensions as data (the dims generator), absorbed from learning-scientist-personalization (F-52 G2) (company/decisions/2026-10-25-founder-f52.md)
+- Learner-experience lead (F-54 X1): answers for what the learner sees and keeps outside a lesson, end to end: the feed and its serving, first-run onboarding, likes, saves and progress, gamification, and the account that holds them. The line for backend-engineer and growth-designer; it adds no approvals and is not a check: privacy-reviewer (engineering), personalization-eval (quality) and principal-engineer's tier-2 approval check the team from outside (company/decisions/2026-10-25-founder-f54.md)
+- Code owner of the learner screens: src/app/login/** (first run and sign-in), src/components/SocialActions.tsx, src/components/LibraryView.tsx, src/components/account/**, src/app/account/**, src/app/preferences/**, src/app/profile/**, src/app/library/** (from platform-engineer's catch-all), plus the IntroCard in Feed.tsx (first-run onboarding) (company/decisions/2026-10-25-founder-f54.md)
 
 ## Out of scope
 

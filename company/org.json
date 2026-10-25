@@ -1,0 +1,1010 @@
+{
+ "v": 1,
+ "generated": "GENERATED from tools/org/roles.mjs by tools/org/generate.mjs. Edit the data, then regenerate.",
+ "owner": "founder",
+ "roles": [
+  {
+   "id": "founder",
+   "title": "Founder",
+   "team": "leadership",
+   "reportsTo": null,
+   "human": true
+  },
+  {
+   "id": "chief-of-staff",
+   "title": "Chief of Staff (operator, day-to-day loop)",
+   "team": "leadership",
+   "reportsTo": "founder"
+  },
+  {
+   "id": "head-of-product",
+   "title": "Head of Product",
+   "team": "product",
+   "reportsTo": "founder"
+  },
+  {
+   "id": "demo-builder",
+   "title": "Demo Builder",
+   "team": "studio",
+   "reportsTo": "design-lead"
+  },
+  {
+   "id": "fact-checker",
+   "title": "Fact-Checker",
+   "team": "quality",
+   "reportsTo": "evaluation-steward"
+  },
+  {
+   "id": "learner-evaluator",
+   "title": "Learner Evaluator (borrowed mind)",
+   "team": "quality",
+   "reportsTo": "evaluation-steward"
+  },
+  {
+   "id": "pedagogy-critic",
+   "title": "Pedagogy Critic (pairwise)",
+   "team": "quality",
+   "reportsTo": "evaluation-steward"
+  },
+  {
+   "id": "qa-tester",
+   "title": "Computer-Use QA Tester",
+   "team": "quality",
+   "reportsTo": "evaluation-steward",
+   "agent": "tester"
+  },
+  {
+   "id": "accessibility-reviewer",
+   "title": "Accessibility Reviewer",
+   "team": "quality",
+   "reportsTo": "evaluation-steward",
+   "agent": "tester"
+  },
+  {
+   "id": "evaluation-steward",
+   "title": "Evaluation Steward",
+   "team": "quality",
+   "reportsTo": "founder"
+  },
+  {
+   "id": "principal-engineer",
+   "title": "Principal Engineer, CEO Office",
+   "team": "leadership",
+   "reportsTo": "founder"
+  },
+  {
+   "id": "platform-engineer",
+   "title": "Platform Engineer",
+   "team": "platform",
+   "reportsTo": "principal-engineer"
+  },
+  {
+   "id": "release-manager",
+   "title": "Release Manager",
+   "team": "platform",
+   "reportsTo": "founder"
+  },
+  {
+   "id": "backend-engineer",
+   "title": "Backend Engineer",
+   "team": "learner",
+   "reportsTo": "personalization-engineer"
+  },
+  {
+   "id": "privacy-reviewer",
+   "title": "Privacy & Safety Reviewer",
+   "team": "backend",
+   "reportsTo": "principal-engineer"
+  },
+  {
+   "id": "growth-designer",
+   "title": "Growth & Gamification Designer",
+   "team": "learner",
+   "reportsTo": "personalization-engineer"
+  },
+  {
+   "id": "tools-lead",
+   "title": "Company Tools Lead",
+   "team": "company-tools",
+   "reportsTo": "principal-engineer"
+  },
+  {
+   "id": "hq-engineer",
+   "title": "HQ Engineer",
+   "team": "company-tools",
+   "reportsTo": "principal-engineer"
+  },
+  {
+   "id": "analytics-steward",
+   "title": "Analytics & Experiment Steward",
+   "team": "insight",
+   "reportsTo": "head-of-product"
+  },
+  {
+   "id": "pattern-librarian",
+   "title": "Pattern Librarian",
+   "team": "product",
+   "reportsTo": "head-of-product"
+  },
+  {
+   "id": "cm-math",
+   "title": "Category Owner — Mathematics",
+   "team": "categories",
+   "reportsTo": "principal-pm-verticals",
+   "agent": "category-owner"
+  },
+  {
+   "id": "cm-cs",
+   "title": "Category Owner — Computer Science",
+   "team": "categories",
+   "reportsTo": "principal-pm-verticals",
+   "agent": "category-owner"
+  },
+  {
+   "id": "cm-probability",
+   "title": "Category Owner — Probability & Data",
+   "team": "categories",
+   "reportsTo": "principal-pm-verticals",
+   "agent": "category-owner"
+  },
+  {
+   "id": "cm-physics",
+   "title": "Category Owner — Physics",
+   "team": "categories",
+   "reportsTo": "principal-pm-verticals",
+   "agent": "category-owner"
+  },
+  {
+   "id": "cm-ai",
+   "title": "Category Owner — AI & Machine Learning",
+   "team": "categories",
+   "reportsTo": "principal-pm-verticals",
+   "agent": "category-owner"
+  },
+  {
+   "id": "cm-economics",
+   "title": "Category Owner — Economics & Money",
+   "team": "categories",
+   "reportsTo": "principal-pm-verticals",
+   "agent": "category-owner"
+  },
+  {
+   "id": "cm-life",
+   "title": "Category Owner — Life Sciences",
+   "team": "categories",
+   "reportsTo": "principal-pm-verticals",
+   "agent": "category-owner"
+  },
+  {
+   "id": "cm-geography",
+   "title": "Category Owner — Geography & Maps",
+   "team": "categories",
+   "reportsTo": "principal-pm-verticals",
+   "agent": "category-owner"
+  },
+  {
+   "id": "cm-lifehacks",
+   "title": "Category Owner — Life Hacks",
+   "team": "categories",
+   "reportsTo": "principal-pm-verticals",
+   "agent": "category-owner"
+  },
+  {
+   "id": "cm-chemistry",
+   "title": "Category Owner — Chemistry",
+   "team": "categories",
+   "reportsTo": "principal-pm-verticals",
+   "agent": "category-owner"
+  },
+  {
+   "id": "cm-books",
+   "title": "Category Owner — Book Summaries",
+   "team": "categories",
+   "reportsTo": "principal-pm-verticals",
+   "agent": "category-owner"
+  },
+  {
+   "id": "cm-big-ideas",
+   "title": "Category Owner — Big Ideas",
+   "team": "categories",
+   "reportsTo": "principal-pm-verticals",
+   "agent": "category-owner"
+  },
+  {
+   "id": "cm-history",
+   "title": "Category Owner — History through data and maps",
+   "team": "categories",
+   "reportsTo": "principal-pm-verticals",
+   "agent": "category-owner"
+  },
+  {
+   "id": "cm-behavioral",
+   "title": "Category Owner — Behavioral Economics and Irrational Behavior",
+   "team": "categories",
+   "reportsTo": "principal-pm-verticals",
+   "agent": "category-owner"
+  },
+  {
+   "id": "personalization-eval",
+   "title": "Personalization Evaluator",
+   "team": "personalization",
+   "reportsTo": "evaluation-steward"
+  },
+  {
+   "id": "personalization-engineer",
+   "title": "Learner Experience Lead (Personalization Engineer)",
+   "team": "learner",
+   "reportsTo": "founder"
+  },
+  {
+   "id": "chief-of-staff-ceo-office",
+   "title": "Chief of Staff, CEO Office (company health)",
+   "team": "leadership",
+   "reportsTo": "founder"
+  },
+  {
+   "id": "head-of-strategic-initiatives",
+   "title": "Head of Strategic Initiatives",
+   "team": "leadership",
+   "reportsTo": "founder"
+  },
+  {
+   "id": "rnd-lead",
+   "title": "R&D Engineering Lead",
+   "team": "rnd",
+   "reportsTo": "principal-engineer"
+  },
+  {
+   "id": "research-scientist",
+   "title": "Research Scientist",
+   "team": "research",
+   "reportsTo": "head-of-product"
+  },
+  {
+   "id": "principal-engineer-ops",
+   "title": "Principal Engineer, Operations (CEO Office)",
+   "team": "leadership",
+   "reportsTo": "principal-engineer"
+  },
+  {
+   "id": "portfolio-manager",
+   "title": "Portfolio Manager (intake, triage, priority)",
+   "team": "product",
+   "reportsTo": "head-of-product"
+  },
+  {
+   "id": "design-lead",
+   "title": "Design Lead",
+   "team": "design",
+   "reportsTo": "founder"
+  },
+  {
+   "id": "interaction-designer",
+   "title": "Interaction Designer",
+   "team": "design",
+   "reportsTo": "design-lead"
+  },
+  {
+   "id": "principal-pm-verticals",
+   "title": "Category Lead (Principal Product Manager, Strategic Verticals)",
+   "team": "categories",
+   "reportsTo": "founder"
+  },
+  {
+   "id": "vp-marketing",
+   "title": "VP of Marketing",
+   "team": "marketing",
+   "reportsTo": "founder"
+  },
+  {
+   "id": "route-reviewer",
+   "title": "Route Reviewer (pooled: sensitive, safety, copyright)",
+   "team": "quality",
+   "reportsTo": "evaluation-steward"
+  },
+  {
+   "id": "domain-scout",
+   "title": "Domain Scout",
+   "team": "product",
+   "reportsTo": "head-of-product",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "principal-pm-verticals",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "learning-designer",
+   "title": "Learning Designer",
+   "team": "studio",
+   "reportsTo": "head-of-product",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "interaction-designer",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "mockup-artist",
+   "title": "Mockup Artist",
+   "team": "design",
+   "reportsTo": "design-lead",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "interaction-designer",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "researcher",
+   "title": "Researcher (Research org, learning and teaching)",
+   "team": "research",
+   "reportsTo": "research-lead",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "research-scientist",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "lifehacks-safety-reviewer",
+   "title": "Life Hacks Safety Reviewer",
+   "team": "categories",
+   "reportsTo": "evaluation-steward",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "route-reviewer",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "vp-personalization",
+   "title": "VP of Personalization (CEO Office)",
+   "team": "personalization",
+   "reportsTo": "founder",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "head-of-product",
+    "record": "company/decisions/2026-10-25-founder-f52.md"
+   }
+  },
+  {
+   "id": "applied-scientist-personalization",
+   "title": "Applied Scientist, Personalization",
+   "team": "personalization",
+   "reportsTo": "vp-personalization",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "personalization-engineer",
+    "record": "company/decisions/2026-10-25-founder-f52.md"
+   }
+  },
+  {
+   "id": "learning-scientist-personalization",
+   "title": "Learning Scientist, Personalization",
+   "team": "personalization",
+   "reportsTo": "vp-personalization",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "research-scientist",
+    "record": "company/decisions/2026-10-25-founder-f52.md"
+   }
+  },
+  {
+   "id": "lesson-dims-owner",
+   "title": "Lesson Features Owner",
+   "team": "personalization",
+   "reportsTo": "vp-personalization",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "personalization-engineer",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "learner-model-engineer",
+   "title": "Learner Model Engineer",
+   "team": "personalization",
+   "reportsTo": "vp-personalization",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "personalization-engineer",
+    "record": "company/decisions/2026-10-25-founder-f52.md"
+   }
+  },
+  {
+   "id": "learner-data-engineer",
+   "title": "Learner Data Engineer (Customer Data)",
+   "team": "personalization",
+   "reportsTo": "vp-personalization",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "backend-engineer",
+    "record": "company/decisions/2026-10-25-founder-f52.md"
+   }
+  },
+  {
+   "id": "localization-lead",
+   "title": "Localization Lead (International)",
+   "team": "international",
+   "reportsTo": "head-of-product",
+   "parked": {
+    "since": "2026-10-25",
+    "into": null,
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "localizer",
+   "title": "Localizer",
+   "team": "international",
+   "reportsTo": "localization-lead",
+   "parked": {
+    "since": "2026-10-25",
+    "into": null,
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "cultural-reviewer",
+   "title": "Cultural & Regional Reviewer",
+   "team": "international",
+   "reportsTo": "localization-lead",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "route-reviewer",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "community-engineer",
+   "title": "Community Engineer (external pull requests)",
+   "team": "platform",
+   "reportsTo": "principal-engineer",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "platform-engineer",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "vp-rnd",
+   "title": "VP of R&D (CEO Office)",
+   "team": "leadership",
+   "reportsTo": "founder",
+   "parked": {
+    "since": "2026-10-25",
+    "into": null,
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "rnd-engineer",
+   "title": "R&D Engineer",
+   "team": "rnd",
+   "reportsTo": "rnd-lead",
+   "parked": {
+    "since": "2026-10-25",
+    "into": null,
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "research-lead",
+   "title": "Research Lead",
+   "team": "research",
+   "reportsTo": "vp-rnd",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "research-scientist",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "illustrator",
+   "title": "Illustrator (external contributor, image generation)",
+   "team": "design",
+   "reportsTo": "visual-designer",
+   "parked": {
+    "since": "2026-10-25",
+    "into": null,
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "design-engineer",
+   "title": "Design Engineer (SWE, Design team)",
+   "team": "design",
+   "reportsTo": "design-lead",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "platform-engineer",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "visual-designer",
+   "title": "Visual Designer",
+   "team": "design",
+   "reportsTo": "design-lead",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "design-lead",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "cm-math-algebra",
+   "title": "Sub-area Category Manager — Mathematics: Number & Algebra",
+   "team": "categories",
+   "reportsTo": "cm-math",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "category-curator",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "cm-math-geometry",
+   "title": "Sub-area Category Manager — Mathematics: Geometry & Measurement",
+   "team": "categories",
+   "reportsTo": "cm-math",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "category-curator",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "cm-math-discrete",
+   "title": "Sub-area Category Manager — Mathematics: Discrete Maths & Logic",
+   "team": "categories",
+   "reportsTo": "cm-math",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "category-curator",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "cm-cs-algorithms",
+   "title": "Sub-area Category Manager — Computer Science: Algorithms & Data Structures",
+   "team": "categories",
+   "reportsTo": "cm-cs",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "category-curator",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "cm-cs-systems",
+   "title": "Sub-area Category Manager — Computer Science: Computer Systems & Networks",
+   "team": "categories",
+   "reportsTo": "cm-cs",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "category-curator",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "cm-cs-security",
+   "title": "Sub-area Category Manager — Computer Science: Data, Security & Cryptography",
+   "team": "categories",
+   "reportsTo": "cm-cs",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "category-curator",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "cm-probability-chance",
+   "title": "Sub-area Category Manager — Probability & Data: Chance & Randomness",
+   "team": "categories",
+   "reportsTo": "cm-probability",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "category-curator",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "cm-probability-statistics",
+   "title": "Sub-area Category Manager — Probability & Data: Statistics & Inference",
+   "team": "categories",
+   "reportsTo": "cm-probability",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "category-curator",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "cm-probability-data-literacy",
+   "title": "Sub-area Category Manager — Probability & Data: Data Literacy & Graphs",
+   "team": "categories",
+   "reportsTo": "cm-probability",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "category-curator",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "cm-physics-mechanics",
+   "title": "Sub-area Category Manager — Physics: Mechanics & Motion",
+   "team": "categories",
+   "reportsTo": "cm-physics",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "category-curator",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "cm-physics-waves",
+   "title": "Sub-area Category Manager — Physics: Waves, Sound & Light",
+   "team": "categories",
+   "reportsTo": "cm-physics",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "category-curator",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "cm-physics-electricity",
+   "title": "Sub-area Category Manager — Physics: Electricity, Magnetism & Energy",
+   "team": "categories",
+   "reportsTo": "cm-physics",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "category-curator",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "cm-ai-ml-basics",
+   "title": "Sub-area Category Manager — AI & Machine Learning: Machine Learning Basics",
+   "team": "categories",
+   "reportsTo": "cm-ai",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "category-curator",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "cm-ai-neural-language",
+   "title": "Sub-area Category Manager — AI & Machine Learning: Neural Networks & Language Models",
+   "team": "categories",
+   "reportsTo": "cm-ai",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "category-curator",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "cm-ai-ai-society",
+   "title": "Sub-area Category Manager — AI & Machine Learning: AI Safety & Society",
+   "team": "categories",
+   "reportsTo": "cm-ai",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "category-curator",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "cm-economics-personal-finance",
+   "title": "Sub-area Category Manager — Economics & Money: Personal Finance",
+   "team": "categories",
+   "reportsTo": "cm-economics",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "category-curator",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "cm-economics-markets",
+   "title": "Sub-area Category Manager — Economics & Money: Markets & Microeconomics",
+   "team": "categories",
+   "reportsTo": "cm-economics",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "category-curator",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "cm-economics-macro",
+   "title": "Sub-area Category Manager — Economics & Money: Macroeconomics & Growth",
+   "team": "categories",
+   "reportsTo": "cm-economics",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "category-curator",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "cm-life-genetics-evolution",
+   "title": "Sub-area Category Manager — Life Sciences: Genetics & Evolution",
+   "team": "categories",
+   "reportsTo": "cm-life",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "category-curator",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "cm-life-health-epidemiology",
+   "title": "Sub-area Category Manager — Life Sciences: Health & Epidemiology",
+   "team": "categories",
+   "reportsTo": "cm-life",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "category-curator",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "cm-life-ecology-body",
+   "title": "Sub-area Category Manager — Life Sciences: Ecology & the Human Body",
+   "team": "categories",
+   "reportsTo": "cm-life",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "category-curator",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "cm-chemistry-matter-reactions",
+   "title": "Sub-area Category Manager — Chemistry: Matter & Reactions",
+   "team": "categories",
+   "reportsTo": "cm-chemistry",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "category-curator",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "cm-chemistry-solutions-acids",
+   "title": "Sub-area Category Manager — Chemistry: Solutions, Acids & Bases",
+   "team": "categories",
+   "reportsTo": "cm-chemistry",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "category-curator",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "cm-chemistry-energy-rates",
+   "title": "Sub-area Category Manager — Chemistry: Energy, Rates & Equilibrium",
+   "team": "categories",
+   "reportsTo": "cm-chemistry",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "category-curator",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "cm-geography-maps-projections",
+   "title": "Sub-area Category Manager — Geography & Maps: Maps & Projections",
+   "team": "categories",
+   "reportsTo": "cm-geography",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "category-curator",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "cm-geography-earth-climate",
+   "title": "Sub-area Category Manager — Geography & Maps: Earth, Sky & Climate",
+   "team": "categories",
+   "reportsTo": "cm-geography",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "category-curator",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "cm-geography-people-places",
+   "title": "Sub-area Category Manager — Geography & Maps: People & Places",
+   "team": "categories",
+   "reportsTo": "cm-geography",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "category-curator",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "cm-books-business",
+   "title": "Sub-area Category Manager — Book Summaries: Business & Strategy",
+   "team": "categories",
+   "reportsTo": "cm-books",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "category-curator",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "cm-books-psychology",
+   "title": "Sub-area Category Manager — Book Summaries: Psychology & Self",
+   "team": "categories",
+   "reportsTo": "cm-books",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "category-curator",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "cm-books-science-history",
+   "title": "Sub-area Category Manager — Book Summaries: Science & History",
+   "team": "categories",
+   "reportsTo": "cm-books",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "category-curator",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "cm-big-ideas-science",
+   "title": "Sub-area Category Manager — Big Ideas: Science",
+   "team": "categories",
+   "reportsTo": "cm-big-ideas",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "category-curator",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "cm-big-ideas-society",
+   "title": "Sub-area Category Manager — Big Ideas: Society & Economics",
+   "team": "categories",
+   "reportsTo": "cm-big-ideas",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "category-curator",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "cm-big-ideas-mind",
+   "title": "Sub-area Category Manager — Big Ideas: Mind & Philosophy",
+   "team": "categories",
+   "reportsTo": "cm-big-ideas",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "category-curator",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "cm-history-population-economy",
+   "title": "Sub-area Category Manager — History through data and maps: Population & Economy over Time",
+   "team": "categories",
+   "reportsTo": "cm-history",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "category-curator",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "cm-history-maps-borders",
+   "title": "Sub-area Category Manager — History through data and maps: Maps & Borders",
+   "team": "categories",
+   "reportsTo": "cm-history",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "category-curator",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "cm-history-events-data",
+   "title": "Sub-area Category Manager — History through data and maps: Events through Data",
+   "team": "categories",
+   "reportsTo": "cm-history",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "category-curator",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "courses-lead",
+   "title": "Head of Courses (category management)",
+   "team": "courses",
+   "reportsTo": "head-of-product",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "principal-pm-verticals",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "cm-course-ncm",
+   "title": "Course Manager — Networks, Crowds, and Markets (Easley & Kleinberg)",
+   "team": "courses",
+   "reportsTo": "courses-lead",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "category-curator",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "chief-product-officer",
+   "title": "Chief Product Officer (CEO Office)",
+   "team": "leadership",
+   "reportsTo": "founder",
+   "parked": {
+    "since": "2026-10-25",
+    "into": null,
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "head-of-evaluation",
+   "title": "Head of Evaluation",
+   "team": "evaluation",
+   "reportsTo": "chief-product-officer",
+   "parked": {
+    "since": "2026-10-25",
+    "into": null,
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "pairwise-judge",
+   "title": "Pairwise Judge (Evaluation)",
+   "team": "evaluation",
+   "reportsTo": "head-of-evaluation",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "pedagogy-critic",
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "evaluation-engineer",
+   "title": "Evaluation Engineer",
+   "team": "evaluation",
+   "reportsTo": "head-of-evaluation",
+   "parked": {
+    "since": "2026-10-25",
+    "into": null,
+    "record": "company/decisions/2026-10-25-founder-restructuring.md"
+   }
+  },
+  {
+   "id": "category-curator",
+   "title": "Category Curator (pooled; one instance per category)",
+   "team": "categories",
+   "reportsTo": "principal-pm-verticals",
+   "parked": {
+    "since": "2026-10-25",
+    "into": "the 14 category owners (cm-<domain>, run by the category-owner agent)",
+    "record": "company/decisions/2026-10-25-founder-f53.md"
+   }
+  }
+ ]
+}

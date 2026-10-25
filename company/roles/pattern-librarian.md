@@ -1,8 +1,8 @@
 # Pattern Librarian
 
 name: Ottilie
-team: insight
-reports_to: chief-of-staff
+team: product
+reports_to: head-of-product
 agent: .claude/agents/pattern-librarian.md
 
 <!-- GENERATED from tools/org/roles.mjs by tools/org/generate.mjs. Edit the data, then regenerate. -->
@@ -17,6 +17,7 @@ Turn lessons into patterns that can lose an argument, and retire the ones that h
 - Confidence changes with the evidence that moved them
 - known_failure and excluded_cases fields
 - Distillation: proposing patterns and checks to delete
+- Since F-54 move 8: reports to head-of-product (product and portfolio), beside analytics-steward, not to the operator whose loop the patterns judge (company/decisions/2026-10-25-founder-f54.md)
 
 ## Out of scope
 

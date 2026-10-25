@@ -24,6 +24,7 @@ Decide what the product should be next and write it down so that someone who was
 - Signing batch launch records for both lanes (company/decisions/2026-10-25-founder-restructuring.md)
 - Personalization (absorbed vp-personalization, F-52 G2): keep or kill per term on personalization-eval's readout; the objective, constraints and phases, set in personalization-engineer's brief (company/personalization/README.md); approving growth-designer's PRDs; POC of lane 14. Un-park vp-personalization if a maker runs out of context on the next phase (F-52 objection 3) (company/decisions/2026-10-25-founder-f52.md)
 - Since F-53 L1 the 14 category owners report to the category lead (principal-pm-verticals, who reports to the founder), not here; head-of-product keeps priority across lanes and signs batch launch records (company/decisions/2026-10-25-founder-f53.md)
+- Since F-54: the line for portfolio-manager, pattern-librarian, analytics-steward and research-scientist (product and portfolio), plus the two dated roles only if they do not park; design, release, the feed and the engineers moved to their central teams. Keeps priority across content types and lanes and signs batch launch records; stays at or under 8 directs (F-50's CPO rule) (company/decisions/2026-10-25-founder-f54.md)
 
 ## Out of scope
 

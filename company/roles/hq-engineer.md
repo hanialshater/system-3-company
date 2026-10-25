@@ -2,7 +2,7 @@
 
 name: Pip
 team: company-tools
-reports_to: tools-lead
+reports_to: principal-engineer
 agent: .claude/agents/hq-engineer.md
 
 <!-- GENERATED from tools/org/roles.mjs by tools/org/generate.mjs. Edit the data, then regenerate. -->
@@ -18,6 +18,7 @@ Make the event log legible at a glance and replayable at any moment.
 - Operational readiness for its own changes (company/rituals/templates/ops-readiness.md): none for change tier 0; a self-check record for tier 1; for tier 2, or anything touching deploy, the event API, auth or learner data, a record approved by principal-engineer-ops before it ships (company/engineering/readiness/)
 - Its risk entries in company/ops/risks.json (the owner field): proposes new risks and re-scores with evidence; principal-engineer-ops writes the file
 - Incidents in its services: it contains them and owns their COE actions (a COE is written by an engineer outside the area)
+- Since F-54 move 1: reports to principal-engineer, a peer of tools-lead on adjacent paths (src/app/hq/** is this role's; the HQ adapters and tools are tools-lead's); a change across both is a mailbox request between peers, and review follows principal-engineer's tiers until F53-9 is decided (company/decisions/2026-10-25-founder-f54.md)
 
 ## Out of scope
 

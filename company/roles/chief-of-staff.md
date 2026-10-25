@@ -24,6 +24,7 @@ Given everything we know, choose what to try next and send it to the narrowest r
 - Writing the session handoff at the end of every session
 - Drains mailbox dispatch requests mechanically: priority, then lane budget headroom, then age; no production work itself (a founder ask that touches lessons becomes a lane batch, 2026-10-25) (company/decisions/2026-10-25-founder-restructuring.md)
 - The quality desk (F-53 Q1): drains the review queue mechanically from evaluation-steward's standing orders (the tester once per checked version, fact-checker, learner-evaluator, route-reviewer for a non-standard route, pedagogy-critic where the lane says). The dispatcher of a check never made the item; the referee owner stays out of dispatch (company/decisions/2026-10-25-founder-f53.md)
+- Since F-54 moves 2 and 8: no reports. tools-lead and pattern-librarian are asked by mailbox or board like every other team (operating-loop section 0: the operator dispatches and does not produce) (company/decisions/2026-10-25-founder-f54.md)
 
 ## Out of scope
 

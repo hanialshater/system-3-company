@@ -2,7 +2,7 @@
 
 name: Ines
 team: design
-reports_to: head-of-product
+reports_to: founder
 agent: .claude/agents/design-lead.md
 
 <!-- GENERATED from tools/org/roles.mjs by tools/org/generate.mjs. Edit the data, then regenerate. -->
@@ -19,6 +19,7 @@ Every lesson uses the format that shows its idea best, looks like one product, a
 - Requests to the platform engineer for kit support of new formats (and to the evaluation steward when a format needs a contract amendment)
 - Lane M (multi-card sequences): the lane's manager. Owns its queue (project:lane-multi-card) and the design review of a format's first 3 items. Each item is one demo-builder session that writes its own interaction spec and mockup, builds and runs its own checks in its loop; then interaction-designer's review after the build and the independent checks once at the end (QA, fact-check, learner walk, plus pedagogy-critic's pairwise for the first 3). Asks curators, demo-builder and interaction-designer through mailbox requests, inside the lane budget. Never dispatches the quality lane's checkers (company/decisions/2026-10-25-founder-f52.md)
 - The visual system (absorbed visual-designer, 2026-10-25) (company/decisions/2026-10-25-founder-restructuring.md)
+- Content-types lead (F-54 moves 5-6): the line for interaction-designer and demo-builder (both lanes); lane S still asks demo-builder through mailbox requests, and lane S's queue, priority and briefs stay with the category lead and head-of-product. The line adds no approvals (company/decisions/2026-10-25-founder-f54.md)
 
 ## Out of scope
 

@@ -1,8 +1,8 @@
 # Backend Engineer
 
 name: Amara
-team: backend
-reports_to: principal-engineer
+team: learner
+reports_to: personalization-engineer
 agent: .claude/agents/backend-engineer.md
 
 <!-- GENERATED from tools/org/roles.mjs by tools/org/generate.mjs. Edit the data, then regenerate. -->
@@ -16,13 +16,16 @@ Make a learner's progress survive devices and sessions, and make the revisit rec
 - Auth (anonymous first; sign-in merges anonymous progress), sessions, account deletion
 - Database schema and migrations for users, attempts (lesson, version, choice, correct, time) and revisit schedules
 - src/app/api/** and server-side code in src/lib/server/**
-- Moving src/kit/progress.ts from localStorage-only to sync-with-server, keeping offline play working
+- Progress tracking end to end (F-54): src/kit/progress.ts (from platform-engineer; its changes that touch the lesson contract keep platform-engineer's review as a gate), src/lib/server/progress-store.ts, src/app/api/account/progress/**, src/app/api/events/**; moving progress.ts from localStorage-only to sync-with-server, keeping offline play working
 - The migration sequence and runner for the shared accounts database: order review of every migration, including other teams'; review of other teams' patches to the export and delete code (card E3, company/decisions/2026-10-16-founder-personalization-org.md)
 - `progress` and `recall` are the learning record every surface reads, and their data owner includes the local store s3c:progress:v1 (data inventory D1, written in by privacy-reviewer); the personalization org reads them read-only, and its learner profile (stated choices, computed state) is learner-data-engineer's
 - Operational readiness for its own changes (company/rituals/templates/ops-readiness.md): none for change tier 0; a self-check record for tier 1; for tier 2, or anything touching deploy, the event API, auth or learner data, a record approved by principal-engineer-ops before it ships (company/engineering/readiness/)
 - Its risk entries in company/ops/risks.json (the owner field): proposes new risks and re-scores with evidence; principal-engineer-ops writes the file
 - Incidents in its services: it contains them and owns their COE actions (a COE is written by an engineer outside the area)
 - Personalization's stored learner data (absorbed learner-data-engineer, F-52 G2): the settings table and its migrations, retention and purge, the settings API and server code (src/app/api/account/settings/**, src/lib/server/personalization/**), their data-inventory rows; nothing stored before privacy-reviewer's written pass, and no derived value stored (D20) (company/decisions/2026-10-25-founder-f52.md)
+- Likes and saves, stored and served (F-54): the lesson_like and lesson_save tables (db/migrations/002), src/app/api/account/likes/**, src/app/api/account/saves/**, src/app/api/likes/**; the data-inventory rows are written by privacy-reviewer (W-2091) (company/decisions/2026-10-25-founder-f54.md)
+- The accounts database: db/migrations/** (named as an owned path since F-54) (company/decisions/2026-10-25-founder-f54.md)
+- Since F-54 move 12: reports to personalization-engineer (learner experience). The migration-order review and the export and delete review stay this role's, including of the lead's and other teams' patches; they are peer engineering reviews, and the independent checks of learner data stay outside the team (privacy-reviewer, principal-engineer's tier 2). This role's objection to the line (its review under a maker it reviews) is open in the decision record (company/decisions/2026-10-25-founder-f54.md)
 
 ## Out of scope
 

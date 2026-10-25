@@ -2,7 +2,7 @@
 
 name: Builders (each running builder gets its own name in HQ)
 team: studio
-reports_to: principal-pm-verticals
+reports_to: design-lead
 agent: .claude/agents/demo-builder.md
 
 <!-- GENERATED from tools/org/roles.mjs by tools/org/generate.mjs. Edit the data, then regenerate. -->
@@ -24,6 +24,7 @@ Make the design executable: the picture has to pay its debts. Every control does
 - Incidents in its services: it contains them and owns their COE actions (a COE is written by an engineer outside the area). Applies only to shared engines, templates used by more than 10 lessons, and kit changes; a lesson's own files are change tier 0
 - Pulls the next brief of its lane by board priority; one revision round per finding, then publish or park (F-41 item 4) (company/decisions/2026-10-25-founder-restructuring.md)
 - Lane M: one session owns the item. It writes the interaction spec and mockup (company/design/specs/<slug>.md), then builds in CardSequence, and in its own loop runs `npm run check`, the brief's numbers script (which it may update), the QA contract, tools/sequence-probe.mjs, tools/reveal-fit.mjs, tools/a11y-scan.mjs and the 60-second time estimate, and walks every reachable path, not only the QA path (the skip path, the reveal mid-animation, back after motion settles; design-lead's probe company/reviews/flatten-the-cube-to-a-dot/design-2026-10-25/probe.mjs until the sequence probe has a skip check, W-2059). If a claim's source or wording must change it edits it, leaves it `unverified`, and notes it in build.md. One revision round, from its own build.md (company/decisions/2026-10-25-founder-f52.md)
+- Since F-54 move 5: reports to design-lead (content types: both lanes' makers); lane S still asks this role for builds through mailbox requests from the category lead, and priority across lanes stays head-of-product's (company/decisions/2026-10-25-founder-f54.md)
 
 ## Out of scope
 

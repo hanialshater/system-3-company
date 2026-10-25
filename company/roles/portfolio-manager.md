@@ -1,8 +1,8 @@
-# Portfolio Manager, CEO Office (intake, triage, priority)
+# Portfolio Manager (intake, triage, priority)
 
 name: Odette
-team: leadership
-reports_to: chief-of-staff-ceo-office
+team: product
+reports_to: head-of-product
 agent: .claude/agents/portfolio-manager.md
 
 <!-- GENERATED from tools/org/roles.mjs by tools/org/generate.mjs. Edit the data, then regenerate. -->
@@ -19,6 +19,7 @@ Every open item has a priority, an owner and a reason to exist, and the top of t
 - Routing founder-only items to company/ops/founder-inbox.json, never deciding them
 - A portfolio section in the WBR: items in, out, by priority, by owner, age of the oldest P1/P2
 - Lane budget lines (kind: lane) in company/ops/projects.json: cycle budget, cost target, tranches; priority 1-4 on every queued lane item (company/decisions/2026-10-25-founder-restructuring.md)
+- Since F-54 move 7: reports to head-of-product (product and portfolio), not to chief-of-staff-ceo-office, which audits the lane budgets and should not manage their holder (company/decisions/2026-10-25-founder-f54.md)
 
 ## Out of scope
 

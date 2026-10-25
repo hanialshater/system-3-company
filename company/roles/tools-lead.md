@@ -2,7 +2,7 @@
 
 name: Sora
 team: company-tools
-reports_to: chief-of-staff
+reports_to: principal-engineer
 agent: .claude/agents/tools-lead.md
 
 <!-- GENERATED from tools/org/roles.mjs by tools/org/generate.mjs. Edit the data, then regenerate. -->
@@ -20,6 +20,7 @@ Anyone, the founder above all, can see what the company is doing now and what it
 - Operational readiness for its own changes (company/rituals/templates/ops-readiness.md): none for change tier 0; a self-check record for tier 1; for tier 2, or anything touching deploy, the event API, auth or learner data, a record approved by principal-engineer-ops before it ships (company/engineering/readiness/)
 - Its risk entries in company/ops/risks.json (the owner field): proposes new risks and re-scores with evidence; principal-engineer-ops writes the file
 - Incidents in its services: it contains them and owns their COE actions (a COE is written by an engineer outside the area)
+- Since F-54 move 2: reports to principal-engineer, not the operator: the tools that meter and gate the operator's dispatches are reviewed under engineering's tiers; hq-engineer is a peer, not a report. B2 and B4 stay this role's (company/decisions/2026-10-25-founder-f54.md)
 
 ## Out of scope
 

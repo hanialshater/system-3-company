@@ -23,6 +23,7 @@ Pick the few verticals where 60-second predict-and-see lessons can be the best i
 - The per-category clearing meter: a category's queue clears in a cycle if it closes at least as many items as it opens, and at least 1 (board.json closes and opens by owner=cm-<d>). The dormant rule on 2 cycles without clearing waits on the founder's answer to F53-6 (company/decisions/2026-10-25-founder-f53.md)
 - Course items (content/courses/**, the parked cm-course-ncm's queue): a course is an ordered path over existing items, so its items are this role's (company/decisions/2026-10-25-founder-f53.md)
 - F-53 row 2 pilot (history), once B1-B4 are met: the category lead runs it and reports the dispatch share against P2 and P3 (company/decisions/2026-10-25-founder-f53.md)
+- Since F-54 (F54-4): the 14 category owners stay flat under this role; area leads come only on a trigger (this role runs more than once per category batch; more than 20 categories; route findings clustering in one area above 1 in 5 over 10 briefs), and then replace this role rather than stack under it. demo-builder reports to design-lead (move 5); lane S asks it by mailbox (company/decisions/2026-10-25-founder-f54.md)
 
 ## Out of scope
 

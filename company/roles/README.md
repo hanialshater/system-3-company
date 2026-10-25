@@ -14,19 +14,20 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 | [Chief of Staff, CEO Office (company health)](chief-of-staff-ceo-office.md) | founder | The org chart matches how work actually flows: every role is either used or retired, every handoff is wired, and no one checks their own work.. |
 | [Head of Strategic Initiatives](head-of-strategic-initiatives.md) | founder | Company-wide initiatives land on the date they promised, or say early and in writing why not: every initiative has a charter, a cadence, a dependency map, a risk log, a budget and an end.. |
 | [Principal Engineer, Operations (CEO Office)](principal-engineer-ops.md) | principal-engineer | Every service, data store and known deficit has a tier, an owner and a status, incidents end in a COE with actions that close, and the founder can see the company's operational health on one page.. |
-| [Portfolio Manager, CEO Office (intake, triage, priority)](portfolio-manager.md) | chief-of-staff-ceo-office | Every open item has a priority, an owner and a reason to exist, and the top of the board is what matters most.. |
 
 ## Product
 
 | Role | Reports to | Mission |
 |---|---|---|
 | [Head of Product](head-of-product.md) | founder | Decide what the product should be next and write it down so that someone who was not in the room can tell when a line has stopped being true.. |
+| [Pattern Librarian](pattern-librarian.md) | head-of-product | Turn lessons into patterns that can lose an argument, and retire the ones that have stopped being true.. |
+| [Portfolio Manager (intake, triage, priority)](portfolio-manager.md) | head-of-product | Every open item has a priority, an owner and a reason to exist, and the top of the board is what matters most.. |
 
 ## Studio
 
 | Role | Reports to | Mission |
 |---|---|---|
-| [Demo Builder](demo-builder.md) | principal-pm-verticals | Make the design executable: the picture has to pay its debts. |
+| [Demo Builder](demo-builder.md) | design-lead | Make the design executable: the picture has to pay its debts. |
 
 ## Quality
 
@@ -44,37 +45,35 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 
 | Role | Reports to | Mission |
 |---|---|---|
-| [Platform Engineer](platform-engineer.md) | head-of-product | Keep the work close to the lesson: builders should never have to think about plumbing.. |
-| [Release Manager](release-manager.md) | head-of-product | Ship only what passed its gates, and be able to undo it in one command.. |
+| [Platform Engineer](platform-engineer.md) | principal-engineer | Keep the work close to the lesson: builders should never have to think about plumbing.. |
+| [Release Manager](release-manager.md) | founder | Ship only what passed its gates, and be able to undo it in one command.. |
+
+## Learner
+
+| Role | Reports to | Mission |
+|---|---|---|
+| [Backend Engineer](backend-engineer.md) | personalization-engineer | Make a learner's progress survive devices and sessions, and make the revisit recall rate measurable, while storing as little about a person as the product needs.. |
+| [Growth & Gamification Designer](growth-designer.md) | personalization-engineer | People come back because coming back helps them remember, and the rewards point at that, not at taps.. |
+| [Learner Experience Lead (Personalization Engineer)](personalization-engineer.md) | founder | The org's work is visible and inspectable: anyone can pick a persona and see why each card was chosen.. |
 
 ## Backend
 
 | Role | Reports to | Mission |
 |---|---|---|
-| [Backend Engineer](backend-engineer.md) | principal-engineer | Make a learner's progress survive devices and sessions, and make the revisit recall rate measurable, while storing as little about a person as the product needs.. |
 | [Privacy & Safety Reviewer](privacy-reviewer.md) | principal-engineer | Every field we store has a reason, an owner and a deletion path; nothing social ships without moderation and a child-safety answer.. |
-
-## Personalization
-
-| Role | Reports to | Mission |
-|---|---|---|
-| [Growth & Gamification Designer](growth-designer.md) | head-of-product | People come back because coming back helps them remember, and the rewards point at that, not at taps.. |
-| [Personalization Evaluator](personalization-eval.md) | evaluation-steward | A personalization policy is judged against an independent learner and a criterion frozen before the run, never against its own assumptions.. |
-| [Personalization Engineer](personalization-engineer.md) | head-of-product | The org's work is visible and inspectable: anyone can pick a persona and see why each card was chosen.. |
 
 ## Company-tools
 
 | Role | Reports to | Mission |
 |---|---|---|
-| [Company Tools Lead](tools-lead.md) | chief-of-staff | Anyone, the founder above all, can see what the company is doing now and what it did at any past moment, and no ritual depends on someone remembering it.. |
-| [HQ Engineer](hq-engineer.md) | tools-lead | Make the event log legible at a glance and replayable at any moment.. |
+| [Company Tools Lead](tools-lead.md) | principal-engineer | Anyone, the founder above all, can see what the company is doing now and what it did at any past moment, and no ritual depends on someone remembering it.. |
+| [HQ Engineer](hq-engineer.md) | principal-engineer | Make the event log legible at a glance and replayable at any moment.. |
 
 ## Insight
 
 | Role | Reports to | Mission |
 |---|---|---|
 | [Analytics & Experiment Steward](analytics-steward.md) | head-of-product | Before the result arrives, write down what the number is taken to mean, over what period, and what would count against the claim.. |
-| [Pattern Librarian](pattern-librarian.md) | chief-of-staff | Turn lessons into patterns that can lose an argument, and retire the ones that have stopped being true.. |
 
 ## Categories
 
@@ -96,6 +95,12 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 | [Category Owner — Behavioral Economics and Irrational Behavior](cm-behavioral.md) | principal-pm-verticals | Decide what Behavioral Economics and Irrational Behavior should teach next and why, and keep the category's map honest about what it does not yet teach.. |
 | [Category Lead (Principal Product Manager, Strategic Verticals)](principal-pm-verticals.md) | founder | Pick the few verticals where 60-second predict-and-see lessons can be the best in the world, and make the categories work together to win them.. |
 
+## Personalization
+
+| Role | Reports to | Mission |
+|---|---|---|
+| [Personalization Evaluator](personalization-eval.md) | evaluation-steward | A personalization policy is judged against an independent learner and a criterion frozen before the run, never against its own assumptions.. |
+
 ## Rnd
 
 | Role | Reports to | Mission |
@@ -112,7 +117,7 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 
 | Role | Reports to | Mission |
 |---|---|---|
-| [Design Lead](design-lead.md) | head-of-product | Every lesson uses the format that shows its idea best, looks like one product, and reads in a glance on a phone.. |
+| [Design Lead](design-lead.md) | founder | Every lesson uses the format that shows its idea best, looks like one product, and reads in a glance on a phone.. |
 | [Interaction Designer](interaction-designer.md) | design-lead | The learner's hands discover the idea; the reveal only names what they already saw.. |
 
 ## Marketing
