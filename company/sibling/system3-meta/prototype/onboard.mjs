@@ -93,7 +93,7 @@ export function generate(proposal, dir, catalog = []) {
   else fs.writeFileSync(path.join(dir, "spec.json"), JSON.stringify({ name: intake.id, roles: roles.map((id) => ({ id })), rooms: [], skills: [], flow: null, _todo: "complete the spec (generator.mjs validate) before `meta.mjs init --spec-file`" }, null, 2) + "\n");
   const ev = [{ type: "company.proposed", by: proposal.by, t: proposal.t, designs: proposal.designs.map((x) => x.archetype) }, { type: "company.approved", by: proposal.approvedBy, t: proposal.approvedAt, archetype: d.archetype }, { type: "company.start", by: "meta", t, archetype: d.archetype, roles, budget: intake.budget }];
   fs.writeFileSync(path.join(dir, "events.jsonl"), ev.map((e) => JSON.stringify({ v: 1, ...e })).join("\n") + "\n");
-  return { id: intake.id, name: intake.name, archetype: a.title, owner: intake.owner, events: path.join(dir, "events.jsonl"), knowledge: path.join(dir, "knowledge"), hq: path.join(dir, "hq"), org: path.join(dir, "org.json") };
+  return { id: intake.id, name: intake.name, archetype: a.title, owner: intake.owner, events: path.join(dir, "events.jsonl"), knowledge: path.join(dir, "knowledge"), hq: path.join(dir, "hq"), orgCmd: a.shape === "crew" ? `CREW_DIR=${JSON.stringify(dir)} node ${JSON.stringify(path.join(HERE, "crew.mjs"))} org` : `cat ${JSON.stringify(path.join(dir, "org.json"))}` };
 }
 
 // ---------------------------------------------------------------- CLI

@@ -2,7 +2,7 @@
 // A company's org file for the HQ's Org page, from its org as data (System 3 Company: tools/org/roles.mjs):
 // [{ id, name, title, reportsTo, team }], the founder at the root; names from its people data (people.mjs beside
 // roles.mjs: nameFor), if it has one.
-//   node hq/org-from-roles.mjs <roles.mjs> <out.json>
+//   node hq/org-from-roles.mjs <roles.mjs> [out.json]    prints the org contract (the HQ runs this live), or writes it
 import fs from "node:fs";
 import path from "node:path";
 import { pathToFileURL, fileURLToPath } from "node:url";
@@ -17,5 +17,6 @@ export async function orgFromRoles(file) {
   return [...root, ...roles.map((r) => ({ id: r.id, name: name(r.id), title: r.title, reportsTo: r.id === "founder" ? null : ids.has(r.reportsTo) && r.reportsTo !== r.id ? r.reportsTo : "founder", team: r.team ?? null }))];
 }
 if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1])) {
-  const org = await orgFromRoles(process.argv[2]); fs.writeFileSync(process.argv[3], JSON.stringify(org, null, 1) + "\n"); console.log(`${org.length} roles → ${process.argv[3]}`);
+  const org = await orgFromRoles(process.argv[2]);
+  if (process.argv[3]) { fs.writeFileSync(process.argv[3], JSON.stringify(org, null, 1) + "\n"); console.log(`${org.length} roles → ${process.argv[3]}`); } else console.log(JSON.stringify(org));
 }

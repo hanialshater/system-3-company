@@ -64,6 +64,14 @@ generator. A company's knowledge base is private unless its owner publishes entr
 ## 3. The contract between the layers
 
 - **The event log schema** is versioned; the kernel adds event types without breaking old readers.
+- **The org contract** (2026-10-25: "UI and tools should work together"). Every company's org tool answers one
+  read-only command with `[{ id, name?, title, reportsTo, team?, level?, room?, floor?, model? }]` (the root has
+  `reportsTo: null`): the kernel `meta.mjs org roles`, the crew `crew.mjs org`, System 3 Company
+  `hq/org-from-roles.mjs tools/org/roles.mjs` (its roles and people modules, live). The HQ runs the command named
+  by the company's `orgCmd` and never reads a tool's files. Fields are only added, never renamed.
+- **Writes go through the tools, never the HQ.** The HQ is read-only: an org change is `org propose` (applied only
+  with the founder's approval), a land is `crew land`, minutes are `crew minutes`; the HQ shows each from the event
+  log (Org changes, Landings, Meetings).
 - **HQ extension points**: a company page declares its route, its sidebar entry and the event types it reads.
 - **The referee hook**: `score(tree) → { rate, by area, ok }`; the kernel never interprets a company's score beyond
   "did main get worse".

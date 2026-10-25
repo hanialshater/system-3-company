@@ -60,9 +60,10 @@ test("the HQ reads a generated company as onboarded", async () => {
   assert.equal(h.state, "onboarded"); assert.equal(h.members, 4); assert.equal(h.budget, 50);
 });
 
-test("generate: the org file keeps catalog reporting lines among the chosen roles, else the owner", () => {
+test("generate: the org file keeps catalog reporting lines among the chosen roles, else the owner", async () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "co-")), e = generate(approve(propose(catalog, intake, [crewDesign, corpDesign], "chief-of-staff"), "founder-k", 2), dir, catalog);
-  const org = JSON.parse(fs.readFileSync(e.org, "utf8")), by = Object.fromEntries(org.map((r) => [r.id, r]));
+  const { spawnSync } = await import("node:child_process"), r = spawnSync("sh", ["-c", e.orgCmd], { encoding: "utf8" }); // the city entry names the org tool
+  const org = JSON.parse(r.stdout), by = Object.fromEntries(org.map((r) => [r.id, r]));
   assert.equal(by["founder-k"].reportsTo, null); assert.equal(by["chief-of-staff"].reportsTo, "founder-k");
   for (const r of org.slice(1)) assert.ok(by[r.reportsTo], `${r.id} reports to a role in the org`);
 });

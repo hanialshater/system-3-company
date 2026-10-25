@@ -8,7 +8,7 @@
 // { v: 1, t, type, by, ...fields }. Types: crew.start, land, land.refused, sync, note, board.post, claim, claim.drop,
 // idle, wake, spend, turn.error, meeting, offboard, crew.end. The starter HQ reads this log; nothing else is needed to draw the crew.
 //
-//   node crew.mjs status|sync|land ["msg"]|note --to=<id|all> --text=…|notes|post …|read [--area=]|claim …|claims|drop …
+//   node crew.mjs org (read-only: the org contract, for the HQ)   ·   node crew.mjs status|sync|land ["msg"]|note --to=<id|all> --text=…|notes|post …|read [--area=]|claim …|claims|drop …
 //   with CREW_DIR (the crew's folder) and CREW_ME (the member) in the environment, or crew.json beside the caller's tree
 import fs from "node:fs";
 import path from "node:path";
@@ -114,6 +114,14 @@ export function minutes(crew, by, { title, attendees = [], decisions = [], objec
   return crew.emit("meeting", by, { title: title.slice(0, 120), attendees: who, decisions: decisions.map((d) => String(d).slice(0, 400)), objections: objections.map((o) => String(o).slice(0, 400)), text: text.slice(0, 6000) });
 }
 
+/** the org contract (product/STARTER.md "the org"): the company's org file if onboarding wrote one (org.json beside
+ *  crew.json), else the members as peers under the owner, each with its role and model */
+export function orgOf(crew) {
+  try { return JSON.parse(fs.readFileSync(path.join(crew.dir, "org.json"), "utf8")); } catch {}
+  const owner = crew.spec.owner ?? "owner";
+  return [{ id: owner, title: "Owner (CEO)", reportsTo: null }, ...crew.spec.members.map((m) => ({ id: m.id, title: String(m.role ?? "member").split(":")[0], reportsTo: owner, team: "crew", model: m.model ?? null, ...(m.name ? { name: m.name } : {}) }))];
+}
+
 export function post(crew, by, { kind, area, text, evidence, wrongIf }) {
   if (!BOARD_KINDS.includes(kind)) refuse(`kind is one of ${BOARD_KINDS.join(", ")}`);
   for (const [k, v] of Object.entries({ area, text, evidence, wrongIf })) if (!String(v ?? "").trim()) refuse(`a board post needs ${k} (a finding carries its evidence and the outcome that would show it wrong)`);
@@ -143,6 +151,7 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.a
   const words = rest.filter((a) => !a.startsWith("--")).join(" ");
   const dir = process.env.CREW_DIR, me = process.env.CREW_ME;
   try {
+    if (cmd === "org") { if (!dir) refuse("CREW_DIR must be set"); console.log(JSON.stringify(orgOf(openCrew(dir)), null, 1)); process.exit(0); } // read-only: anyone may ask
     if (!dir || !me) refuse("CREW_DIR and CREW_ME must be set");
     const crew = openCrew(dir); crew.member(me);
     const out = {
@@ -158,7 +167,7 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.a
       minutes: () => { const L = (v) => (v ? String(v).split("|").map((x) => x.trim()).filter(Boolean) : []); return `recorded (${minutes(crew, me, { title: opt.title, attendees: L(opt.with), decisions: L(opt.decided), objections: L(opt.objections), text: opt.text }).t})`; },
       claims: () => claims(crew).map((e) => `[${e.area}] ${e.by}: ${e.text}`).join("\n") || "no claims in force",
     }[cmd];
-    if (!out) refuse("usage: crew.mjs status|sync|land [msg]|note --to= --text=|notes|post --kind= --area= --text= --evidence= --wrong-if=|read|claim --area= --text=|drop --area=|claims|minutes --title= --with=a|b --decided=x|y --objections= --text=");
+    if (!out) refuse("usage: crew.mjs status|sync|land [msg]|note --to= --text=|notes|post --kind= --area= --text= --evidence= --wrong-if=|read|claim --area= --text=|drop --area=|claims|org|minutes --title= --with=a|b --decided=x|y --objections= --text=");
     console.log(out());
   } catch (e) { if (e instanceof CrewRefusal) { console.error(e.message); process.exit(e.code); } throw e; }
 }

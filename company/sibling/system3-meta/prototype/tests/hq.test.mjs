@@ -71,3 +71,21 @@ test("the org: a kernel company's roles with their reporting lines; System 3 Com
   const s3 = await orgFromRoles(path.join(HERE2, "..", "..", "..", "..", "..", "tools", "org", "roles.mjs")), ids = new Set(s3.map((r) => r.id));
   assert.ok(s3.length > 100); assert.ok(s3.every((r) => r.reportsTo === null || ids.has(r.reportsTo)));
 });
+
+test("the org contract: each tool answers `org` with the same shape, and the HQ reads it through the tool", async () => {
+  const { spawnSync } = await import("node:child_process"), HERE2 = path.dirname(new URL(import.meta.url).pathname), P = path.join(HERE2, "..");
+  const shape = (org) => { assert.ok(Array.isArray(org) && org.length); const ids = new Set(org.map((r) => r.id)); for (const r of org) { assert.ok(r.id && "title" in r && "reportsTo" in r, JSON.stringify(r)); assert.ok(r.reportsTo === null || ids.has(r.reportsTo), `${r.id} → ${r.reportsTo}`); } assert.ok(org.some((r) => r.reportsTo === null)); return org; };
+  // kernel: meta.mjs org roles (read-only, on a copy of a recorded company)
+  const live = fs.mkdtempSync(path.join(os.tmpdir(), "k-")); fs.copyFileSync(path.join(P, "live", "bench3-a", "state.json"), path.join(live, "state.json"));
+  const k = shape(JSON.parse(spawnSync(process.execPath, [path.join(P, "meta.mjs"), "org", "roles"], { encoding: "utf8", env: { ...process.env, META_LIVE_DIR: live } }).stdout));
+  assert.equal(k.find((r) => r.id === "editor").reportsTo, "cos"); assert.ok(k.every((r) => "level" in r && "lane" in r && "room" in r), "the old fields stay");
+  // crew: crew.mjs org
+  const cd = fs.mkdtempSync(path.join(os.tmpdir(), "c-")); fs.writeFileSync(path.join(cd, "crew.json"), JSON.stringify({ owner: "ana", members: [{ id: "m-a", role: "parser: all of it", model: "x", tree: cd }], main: cd, referee: { cmd: "true" }, budget: 1, minutes: 1 }));
+  const c = shape(JSON.parse(spawnSync(process.execPath, [path.join(P, "crew.mjs"), "org"], { encoding: "utf8", env: { ...process.env, CREW_DIR: cd } }).stdout));
+  assert.deepEqual(c.map((r) => [r.id, r.reportsTo, r.title]), [["ana", null, "Owner (CEO)"], ["m-a", "ana", "parser"]]);
+  // System 3 Company: its roles and people modules, live
+  shape(JSON.parse(spawnSync(process.execPath, [path.join(P, "hq", "org-from-roles.mjs"), path.join(P, "..", "..", "..", "..", "tools", "org", "roles.mjs")], { encoding: "utf8" }).stdout));
+  // the HQ: orgCmd
+  const { orgOf } = await import("../hq/server.mjs");
+  assert.equal(orgOf({ id: "t1", orgCmd: `CREW_DIR=${JSON.stringify(cd)} node ${JSON.stringify(path.join(P, "crew.mjs"))} org` }).length, 2);
+});

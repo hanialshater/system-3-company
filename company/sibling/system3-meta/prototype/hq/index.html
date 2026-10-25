@@ -333,7 +333,14 @@ function viewOrg(c) {
   return `<h1>Org</h1><div class="sub1">${nodes.length} roles${teams.size ? ` in ${teams.size} teams` : ""} · open a team with ▸ · pick anyone for their line to the top</div>${replayBar()}
   <input class="search" placeholder="find someone by name, role or team" value="${esc(state.oq)}" oninput="state.oq=this.value;render()">${hits.length ? `<div class="hits">${hits.map((n) => avatarBtn(n.id)).join("")}</div>` : ""}
   ${f ? `<div class="crumbs">${chain(f.id).map((n) => `<a onclick="focusOrg('${n.id}')">${mini(n.id, 18)}${esc(nameOf(n.id))}</a>`).join(`<span class="k">›</span>`)}</div>` : ""}
-  <div class="ogrid"><div class="tree"><ul>${roots.map((n) => row(n, 0)).join("")}</ul></div>${panel}</div>`;
+  <div class="ogrid"><div class="tree"><ul>${roots.map((n) => row(n, 0)).join("")}</ul></div>${panel}</div>${orgChanges()}`;
+}
+// org changes go through the company's org tool (proposed, then approved by the founder); the HQ shows them from the log
+function orgChanges() {
+  const ev = state.events.filter((e) => ["kernel.org-propose", "kernel.org-change", "kernel.onboard", "kernel.offboard", "org.propose", "org.change"].includes(e.type));
+  if (!ev.length) return "";
+  const done = new Set(ev.filter((e) => !e.type.endsWith("propose")).map((e) => e.change));
+  return `<h3 style="margin:22px 0 8px">Org changes</h3><div class="k" style="margin-bottom:8px">proposed through the org tool; applied only with the founder's approval</div><table><tr><th>when</th><th>change</th><th>role</th><th>by</th><th>state</th></tr>${ev.filter((e) => e.type.endsWith("propose")).reverse().map((e) => `<tr><td class="k">${time(e.t)}</td><td>${esc(e.op ?? "")} <span class="k">${esc(e.change ?? "")}</span><div class="k">${esc(e.reason ?? "")}</div></td><td>${avatarBtn(e.role)}</td><td>${esc(nameOf(e.by))}</td><td><span class="chip">${done.has(e.change) ? "applied" : "awaiting the founder"}</span></td></tr>`).join("")}</table>`;
 }
 const avatarBtn = (id) => `<a class="av" style="cursor:pointer" onclick="focusOrg('${id}')">${mini(id, 22)}${esc(nameOf(id))}</a>`;
 function toggleOrg(id) { state.open.has(id) ? state.open.delete(id) : state.open.add(id); render(); }

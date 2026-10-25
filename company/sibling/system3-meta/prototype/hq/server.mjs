@@ -4,7 +4,7 @@
 //   GET /api/city                      the companies in the city file: [{ id, name, archetype, health }]
 //   GET /api/company/<id>/events       the company's events (v1), newest last
 //   GET /api/company/<id>/knowledge    its knowledge base entries (knowledge/entries.jsonl), if it has one
-//   GET /api/company/<id>/org          its org (reporting lines), from its org file
+//   GET /api/company/<id>/org          its org (reporting lines), from its org tool (orgCmd)
 //   GET /api/company/<id>/page/<p>.js  one of the company's own HQ pages (its extension point, below)
 // A company is { id, name, archetype, events: <path to events.jsonl>, knowledge?: <dir> } in the city file, or a
 // benchmark org ({ bench: <runs dir> }) read through bench2events.mjs, or a kernel company ({ kernel: <state.json> })
@@ -17,6 +17,7 @@
 import http from "node:http";
 import fs from "node:fs";
 import path from "node:path";
+import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { benchEvents } from "./bench2events.mjs";
 import { kernelEvents, kernelOrg } from "./kernel2events.mjs";
@@ -27,9 +28,21 @@ const cityFile = path.resolve(opt.city ?? path.join(HERE, "city.json"));
 const readJsonl = (f) => { try { return fs.readFileSync(f, "utf8").trim().split("\n").filter(Boolean).map((l) => JSON.parse(l)); } catch { return []; } };
 const city = () => JSON.parse(fs.readFileSync(cityFile, "utf8"));
 export function pagesOf(c) { if (!c.hq) return []; try { return JSON.parse(fs.readFileSync(path.join(c.hq, "pages.json"), "utf8")).filter((p) => /^[a-z0-9-]+$/.test(p.id ?? "") && p.file); } catch { return []; } }
-/** the org: [{ id, title, reportsTo, team }] from the company's org file (`org` in its entry), or none (crews draw
- *  their members as peers under the owner) */
-export function orgOf(c) { if (!c.org) return c.kernel ? kernelOrg(c.kernel) : []; try { const o = JSON.parse(fs.readFileSync(c.org, "utf8")); return Array.isArray(o) ? o : o.roles ?? []; } catch { return []; } }
+/** the org (the org contract, product/STARTER.md): from the company's own org tool, `orgCmd` in its entry, a
+ *  read-only command that prints [{ id, name?, title, reportsTo, team?, level?, room?, floor?, model? }]
+ *  (kernel: `meta.mjs org roles`; crew: `crew.mjs org`; System 3 Company: `hq/org-from-roles.mjs tools/org/roles.mjs`).
+ *  Cached for a few seconds. A plain org file (`org`) is read only when a company has no tool. */
+const orgCache = new Map();
+export function orgOf(c) {
+  if (c.orgCmd) {
+    const hit = orgCache.get(c.id); if (hit && Date.now() - hit.t < 10_000) return hit.org;
+    const r = spawnSync("sh", ["-c", c.orgCmd], { encoding: "utf8", timeout: 20_000, cwd: c.cwd ?? path.dirname(cityFile) }); // commands run from the city file's folder
+    let org = []; try { const o = JSON.parse(r.stdout.slice(r.stdout.indexOf(r.stdout.trimStart()[0]))); org = Array.isArray(o) ? o : o.roles ?? []; } catch {}
+    orgCache.set(c.id, { t: Date.now(), org }); return org;
+  }
+  if (c.org) { try { const o = JSON.parse(fs.readFileSync(c.org, "utf8")); return Array.isArray(o) ? o : o.roles ?? []; } catch { return []; } }
+  return c.kernel ? kernelOrg(c.kernel) : [];
+}
 export function eventsOf(c) { return c.bench ? benchEvents(c.bench) : c.kernel ? kernelEvents(c.kernel) : readJsonl(c.events); }
 export function health(ev) {
   const co = ev.find((e) => e.type === "company.start"), start = ev.find((e) => e.type === "crew.start"), lands = ev.filter((e) => e.type === "land"), last = lands.at(-1);

@@ -516,7 +516,8 @@ function dispatch(co, cmd, sub, arg) {
     const a = engine.request({ approver: "founder", kind: "org-change", ref: id, dueMin: 24 * 60, key: `${id}:approve` });
     return { change: id, approval: a.id };
   }
-  if (cmd === "org" && sub === "roles") return org.active().map((r) => ({ id: r.id, level: r.level, lane: r.lane ?? null, room: r.room }));
+  // the org contract (product/STARTER.md "the org"): what the HQ's Org and Rooms pages read; level, lane and room as before
+  if (cmd === "org" && sub === "roles") return org.active().map((r) => ({ id: r.id, level: r.level, lane: r.lane ?? null, room: r.room, title: r.title ?? r.level, reportsTo: r.level === "founder" ? null : r.reportsTo ?? null, team: r.lane ?? null, floor: r.floor ?? null, ...(r.name ? { name: r.name } : {}) }));
   if (cmd === "org" && sub === "gaps") return org.gaps(log.events, { waitP50Min: N("wait") ?? 60 });
   // ---- channels
   if (cmd === "channel" && sub === "create") { need("by", "id", "kind"); return CH.createChannel(co, { by: opt.by, id: opt.id, kind: opt.kind, members: L("members") ?? [], title: opt.title ?? "" }); }
