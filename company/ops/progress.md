@@ -1,3 +1,22 @@
+## 2026-10-25 · chief-of-staff-ceo-office (Leonie) · Principles audit against system3-meta PRINCIPLES.md; company.json written
+
+- **Changed:**
+  - `company/ceo-office/2026-10-25-principles-audit.md`: P1-P13, each with its evidence, verdict and fix.
+  - `company/company.json` (not protected): the design record Meta's audit reads. It holds roles (39), orgReasons, sizeReason, the B6 baseline, flows for lane S and lane M, owns, the referee (heldOut false), costTarget (90k per published lesson), stopRule, and principlesRecord for the verdicts the tool cannot compute or that I judged stricter.
+  - `company/ceo-office/2026-10-25-principles-org-proposal.md`: G1 (lane M warm maker), G2 (park 8 roles), G3 (one owner per path), with the F-52 text.
+  - Board: W-2050 to W-2054. Nothing applied to roles, flows or gates.
+- **Audit:** before, 2 followed, 6 gaps, 5 by hand. After, 6 followed, 7 gaps, 0 by hand. The gaps are P2, P3, P4, P5, P6, P7 and P8. They rose because the record is now written down, not because anything got worse.
+- **Believe:**
+  - High confidence that lane M is a relay. Its first item went curator → interaction-designer → curator again (W-2043) → builder, and the removal order was decided three times.
+  - High confidence that P8's stop cannot fire: no ledger line exists after 10-16 or for either lane.
+  - Medium confidence in the P7 split (about 30 roles supported, 8 not): personalization's tokens were never measured.
+- **Next:**
+  - chief-of-staff: file F-52 (W-2054) and re-own W-2045 and W-2047 from the parked design-engineer (W-2052).
+  - tools-lead: W-2034, the ledger import, which is the one fix that makes P8 bind.
+  - evaluation-steward: the F-41 item 9 weekly audit as the held-out part (W-2050).
+  - Founder: G1 to G3.
+- **Blocked:** G1 to G3 wait on the founder. No protected path, gate or amendment is needed.
+
 ## 2026-10-25 · fact-checker · W-2037 lane M: claims of math/flatten-the-cube-to-a-dot (base 283a3ed50)
 
 - **Changed:** in `src/demos/math/flatten-the-cube-to-a-dot/meta.json`, only the claims array changed.

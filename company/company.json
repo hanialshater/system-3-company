@@ -1,0 +1,148 @@
+{
+  "v": 1,
+  "id": "system-3-company",
+  "name": "System 3 Lessons (System 3 Company)",
+  "owner": "founder (Hani Alshater)",
+  "archetype": "corporate",
+  "mission": "60-second interactive lessons (a vertical feed of predict, explore, reveal cards) whose every learner-facing sentence is a checked claim (CLAUDE.md; company/mission.md)",
+  "recordedBy": "chief-of-staff-ceo-office (Leonie), 2026-10-25, from the company's records; the audit behind each field is company/ceo-office/2026-10-25-principles-audit.md",
+  "principles": "system3-meta PRINCIPLES.md",
+  "roles": [
+    "founder", "chief-of-staff", "head-of-product", "demo-builder", "fact-checker", "learner-evaluator", "pedagogy-critic", "qa-tester",
+    "accessibility-reviewer", "evaluation-steward", "principal-engineer", "platform-engineer", "release-manager", "backend-engineer",
+    "privacy-reviewer", "growth-designer", "tools-lead", "hq-engineer", "analytics-steward", "pattern-librarian", "vp-personalization",
+    "personalization-eval", "applied-scientist-personalization", "learning-scientist-personalization", "personalization-engineer",
+    "learner-model-engineer", "learner-data-engineer", "chief-of-staff-ceo-office", "head-of-strategic-initiatives", "rnd-lead",
+    "research-scientist", "principal-engineer-ops", "portfolio-manager", "design-lead", "interaction-designer", "principal-pm-verticals",
+    "vp-marketing", "category-curator", "route-reviewer"
+  ],
+  "rolesSource": "tools/org/roles.mjs `roles` export after PARK, 2026-10-25: 39 entries (38 agent roles plus the founder); 72 roles parked (company/decisions/2026-10-25-founder-restructuring.md). Pools: demo-builder, category-curator, route-reviewer, research-scientist.",
+  "orgReasons": ["recurs", "too-big-for-one-context", "independent-checking", "long-horizon"],
+  "orgReasonsEvidence": {
+    "recurs": "1,646 lessons on disk (720 published, 692 draft, 234 in review: npm run company -- status, 2026-10-25); lane S plans 100 published lessons per two-week cycle (company/ops/projects.json lane-single-card basis).",
+    "too-big-for-one-context": "14 curricula (content/curriculum/*.json) and 8,260 claims awaiting the fact-checker (company status, 2026-10-25). One lesson fits one context (system3-meta research/bench6/BENCH6.md); the catalogue does not. Held as data for one pooled category-curator, not as 51 manager roles (F-50).",
+    "independent-checking": "Builders never mark their own claims verified (CLAUDE.md; tools/company.mjs claimGates refuses a claim verified by its builder). M6: the independent fact-checker found real errors in 7 of 10 lessons after the builders' own checks passed (system3-meta research/bench6/PREDICTIONS.md). Learner data and a child-safety trigger need a privacy gate (AMD-015).",
+    "long-horizon": "A live product with accounts, a feed and 21 production releases since 2026-10-14 (company/ops/releases.json); the disk is the memory (CLAUDE.md)."
+  },
+  "sizeReason": "39 roles (38 agents) against the default of 8. The evidence supports about 30: the 11 roles of the two production flows (curator, builder, interaction-designer, qa, fact, learner, a11y, pedagogy, route, release, design-lead) and the referee owner, because the work recurs at 100 lessons a cycle across 14 curricula and the constitution separates maker from checker at four gates; 4 managers who hold priority and lane budgets; the operator and its auditor; 7 engineers and stewards of a live product with learner accounts and a privacy gate; 2 for learning and metrics; 1 research pool; 3 for personalization. It does not support 8: 5 personalization roles with no measured run and no step in a flow since 2026-10-20, 2 First Light roles that sunset at its close on 2026-11-23, and rnd-lead, kept only until F-49. The parking of those 8 is proposed to the founder (company/ceo-office/2026-10-25-principles-org-proposal.md, G2); until decided, P7 is recorded as a gap.",
+  "baseline": {
+    "weighed": "Benchmark 6 ran the single-agent baseline on this company's work: one vanilla agent (V) with the company's CLAUDE.md, hooks and tools against the many-stage flow (M) on the same 3 cs.systems one-card briefs, scored blind.",
+    "result": "V cost $7.19 against $16.66 (43%; about 51% counting its unpriced nested sessions), took 36.5 min against 98, had 0 confirmed S1/S2 defects against 1, 3/3 accepted against 2/3, and won 2 of 3 pairwise. V checked its claims with nested checker sessions it launched itself, which the protocol does not count as independent.",
+    "conclusion": "At the size of one lesson the single agent won. The org is kept only for what one agent cannot hold or must not do: the recurring catalogue, the breadth of 14 curricula, and checks independent of the maker (enforced in code, not briefed by the builder). Each item's own flow should look like V: one warm maker running its own checks, then independent checks once (PRINCIPLES.md P2).",
+    "caveats": "n = 3 lessons, one model, both arms in parallel on 4 CPUs; M's time includes environment and founder waits.",
+    "source": "system3-meta research/bench6/BENCH6.md (2026-10-22), predictions research/bench6/PREDICTIONS.md"
+  },
+  "alternatives": ["single-agent"],
+  "flows": [
+    {
+      "id": "lane-S",
+      "title": "Lane S: single-card lesson (every single-card format)",
+      "source": "company/ceo-office/2026-10-25-restructuring-proposal.md section 2b; company/ceo-office/poc-map.md lane 1; manager principal-pm-verticals",
+      "steps": [
+        { "role": "category-curator", "kind": "maker", "what": "brief: misconception, claims, format, reviewRoute, proposed priority; batches of 10-20" },
+        { "role": "demo-builder", "kind": "maker", "what": "build plus pre-flight; 10-20 briefs per run" },
+        { "role": "qa-tester", "kind": "check", "what": "npm run check, QA contract record, tools/a11y-scan.mjs" },
+        { "role": "fact-checker", "kind": "check", "what": "claims, in batches of 50" },
+        { "role": "learner-evaluator", "kind": "check", "what": "learner walk of the current version (every lesson until AMD-017 is ratified)" },
+        { "role": "route-reviewer", "kind": "check", "what": "route verdict, tier R only (sensitive, safety, copyright, health, money)" },
+        { "role": "demo-builder", "kind": "maker", "what": "one revision round: one fix, re-run only the failed check, then publish or park" },
+        { "role": "head-of-product", "kind": "owner", "what": "signs the batch launch record with predictions" },
+        { "role": "release-manager", "kind": "owner", "what": "publishes" },
+        { "role": "founder", "kind": "owner", "what": "approves every deploy" }
+      ]
+    },
+    {
+      "id": "lane-M",
+      "title": "Lane M: multi-card sequence (2-4 sub-cards), as approved in F-50 and run on 2026-10-25",
+      "source": "company/ceo-office/2026-10-25-restructuring-proposal.md section 2c; company/ceo-office/poc-map.md lane 6; manager design-lead; first item math/flatten-the-cube-to-a-dot (W-2037, W-2042, W-2043, W-2044)",
+      "steps": [
+        { "role": "category-curator", "kind": "maker", "what": "brief naming 2-4 sub-cards, claims, a numbers check script; scaffolds the lesson" },
+        { "role": "interaction-designer", "kind": "maker", "what": "interaction spec plus mockup (and a mockup renderer) before every build" },
+        { "role": "demo-builder", "kind": "maker", "what": "build in CardSequence from the spec" },
+        { "role": "qa-tester", "kind": "check", "what": "automated checks plus tools/sequence-probe.mjs" },
+        { "role": "fact-checker", "kind": "check", "what": "claims" },
+        { "role": "learner-evaluator", "kind": "check", "what": "learner walk on every item for the first 10" },
+        { "role": "design-lead", "kind": "check", "what": "design review, first 3 items" },
+        { "role": "pedagogy-critic", "kind": "check", "what": "pairwise against a single-card version, first 3 items" },
+        { "role": "demo-builder", "kind": "maker", "what": "one revision round" },
+        { "role": "head-of-product", "kind": "owner", "what": "batch launch record" },
+        { "role": "release-manager", "kind": "owner", "what": "publishes" },
+        { "role": "founder", "kind": "owner", "what": "approves every deploy" }
+      ],
+      "note": "Three makers in a row, each a cold session (PRINCIPLES.md P2). On the first item the curator was dispatched a second time (W-2043) to re-fit its brief and check script to the spec's new removal order: four maker sessions before the first check. No reason recorded; the warm-maker flow is proposed to the founder (company/ceo-office/2026-10-25-principles-org-proposal.md, G1)."
+    }
+  ],
+  "proposedFlows": [
+    {
+      "id": "lane-M-warm",
+      "status": "proposed to the founder, not in force (company/ceo-office/2026-10-25-principles-org-proposal.md, G1)",
+      "steps": [
+        { "role": "category-curator", "kind": "maker", "what": "brief naming 2-4 sub-cards and claims (unchanged)" },
+        { "role": "demo-builder", "kind": "maker", "what": "one session owns the item: writes its interaction spec and mockup, then builds, and runs its own checks in its loop (npm run check, the brief's numbers script, QA contract, sequence-probe, reveal-fit, a11y-scan, the 60-second time estimate)" },
+        { "role": "interaction-designer", "kind": "check", "what": "interaction review of the spec and the built stage, artifact first" },
+        { "role": "qa-tester", "kind": "check", "what": "automated checks plus sequence probe" },
+        { "role": "fact-checker", "kind": "check", "what": "claims" },
+        { "role": "learner-evaluator", "kind": "check", "what": "learner walk" },
+        { "role": "design-lead", "kind": "check", "what": "design review, first 3 items" },
+        { "role": "pedagogy-critic", "kind": "check", "what": "pairwise, first 3 items" },
+        { "role": "demo-builder", "kind": "maker", "what": "one revision round, from its own build notes" },
+        { "role": "head-of-product", "kind": "owner", "what": "batch launch record" },
+        { "role": "release-manager", "kind": "owner", "what": "publishes" },
+        { "role": "founder", "kind": "owner", "what": "approves every deploy" }
+      ]
+    }
+  ],
+  "owns": [
+    { "role": "founder", "paths": ["company/product/surface-value.md", "company/constitution/constitution.md"] },
+    { "role": "evaluation-steward", "paths": ["tests/qa/**", "tools/company.mjs", "company/constitution/amendments/"] },
+    { "role": "chief-of-staff", "paths": ["company/ops/board.json", "company/ops/events.jsonl", "company/ops/operating-loop.md"] },
+    { "role": "tools-lead", "paths": ["company/ops/events.jsonl", "tools/events.mjs", "tools/metrics.mjs", "src/app/hq/**"] },
+    { "role": "hq-engineer", "paths": ["src/app/hq/**", "src/lib/events.ts"] },
+    { "role": "chief-of-staff-ceo-office", "paths": ["company/ceo-office/", "tools/org/roles.mjs", "company/company.json"] },
+    { "role": "portfolio-manager", "paths": ["company/ops/projects.json", "tools/triage.mjs"] },
+    { "role": "demo-builder", "paths": ["src/demos/<domain>/<slug>/Demo.tsx"] },
+    { "role": "category-curator", "paths": ["content/curriculum/<domain>.json", "company/domains/<domain>.md", "company/domains/briefs/"] },
+    { "role": "interaction-designer", "paths": ["company/design/specs/"] },
+    { "role": "design-lead", "paths": ["company/design/formats.md", "company/design/system.md"] },
+    { "role": "platform-engineer", "paths": ["src/app/d/**", "src/components/DemoCard.tsx"] },
+    { "role": "backend-engineer", "paths": ["src/app/api/**", "src/lib/server/**"] },
+    { "role": "personalization-engineer", "paths": ["src/components/Feed.tsx", "src/lib/feed-index.ts", "src/app/api/feed/**"] },
+    { "role": "learner-model-engineer", "paths": ["src/lib/learner/**"] },
+    { "role": "privacy-reviewer", "paths": ["company/engineering/data-inventory.md"] },
+    { "role": "release-manager", "paths": ["company/ops/runbook-deploy.md"] },
+    { "role": "principal-engineer", "paths": ["company/engineering/adr/"] },
+    { "role": "principal-engineer-ops", "paths": ["company/engineering/operations/"] },
+    { "role": "pattern-librarian", "paths": ["company/knowledge/patterns/"] },
+    { "role": "research-scientist", "paths": ["company/research/notes/"] },
+    { "role": "rnd-lead", "paths": ["src/lab/"] },
+    { "role": "head-of-product", "paths": ["company/product/demo-standard.md", "company/product/prds/"] },
+    { "role": "vp-marketing", "paths": ["company/marketing/"] }
+  ],
+  "ownsSource": "each path is named in the role's inScope in tools/org/roles.mjs (2026-10-25). Two paths are claimed by two roles there and are recorded as they stand: src/app/hq/** (tools-lead and hq-engineer) and company/ops/events.jsonl (chief-of-staff as only writer, tools-lead as its tool's owner). Fix proposed as G3.",
+  "referee": {
+    "cmd": "npm run company -- publish <slug>",
+    "what": "launchGates in tools/company.mjs (protected): every claim verified by someone other than its builder, a computer-use QA record, a learner review of the current version, readiness and publish holds; plus npm run check and the QA contract in tests/qa/** (protected)",
+    "owner": "evaluation-steward",
+    "heldOut": false,
+    "heldOutNote": "No part of the referee is hidden from the makers: the gates, the QA contract and every past review are readable by builders. The nearest thing, approved by the founder on 2026-10-16 (F-41 item 9: a weekly random sample of 50 published lessons re-walked and fact-checked), has no record of having run. Fix routed to evaluation-steward (audit, P6)."
+  },
+  "costTarget": {
+    "unit": "published lesson",
+    "tokens": 90000,
+    "allInTokens": 150000,
+    "tierRTokens": 300000,
+    "laneMTokensPerItem": 300000,
+    "basis": "lane S tier-S target of 90k subagent tokens per published lesson (78k measured on the catalog line, ledger report 2026-10-25) and 150k all-in once the coordinator is measured; lane M 300k provisional (n = 1 measured). Source: company/ceo-office/2026-10-25-restructuring-proposal.md sections 2b and 2c; company/ops/projects.json lane-single-card and lane-multi-card."
+  },
+  "stopRule": "a lane stops at 100% of its cycle budget (tools/lib/ledger.mjs gate, kind lane; dispatch-check B1) and asks the portfolio-manager for a tranche; a lane S batch over 2x its per-item target (180k) pauses for the lane manager and portfolio-manager; lane M above 450k per published item pauses and goes to the founder at the next project review",
+  "stopRuleCaveat": "The meter is off: ledger usage stops 2026-10-16T15:27Z and no ledger line names either lane, so the stop cannot fire until the ledger import resumes (W-2034, tools-lead).",
+  "principlesRecord": {
+    "P3": { "state": "gap", "note": "sessions are cold by construction: each dispatch is a new subagent and memory files (F-39) stand in for persistence; the first lane M item passed through four cold maker sessions before its first check. Prompts say where things are rather than what to read (company/roles/*.md). Fix: G1 (one warm maker per item); audit P3" },
+    "P4": { "state": "gap", "note": "assignment is a recorded departure (corporate: lane managers choose by mailbox, F-42, F-50 section 3; checkers dispatched only from the quality lane, F-28); dispatch claims exist (slot files O_EXCL, mailbox M1). Shared files have no claim: W-2043 and W-2044 edited the same meta.json in parallel on 2026-10-25, coordinated in prose. Fix routed to tools-lead; audit P4" },
+    "P7": { "state": "gap", "note": "39 roles (38 agents); the sizeReason supports about 30; parking 8 is proposed to the founder (G2); audit P7" },
+    "P8": { "state": "gap", "note": "90000 tokens per published lesson with a stop rule at 100% of the lane budget and 2x per item, but the meter is off: ledger usage ends 2026-10-16 and no line names a lane, so the stop cannot fire (W-2034); audit P8" },
+    "P9": { "state": "ok", "note": "27 patterns in company/knowledge/patterns/, each with a confidence and the sentence it rests on, would_be_wrong_if and known failures; downgraded in review when evidence was thin (2026-10-12). No pattern has changed since 2026-10-16; the format is not entries.jsonl, so this state is the company's answer, not the tool's; audit P9" },
+    "P10": { "state": "ok", "note": "predictions with wrong-if committed before the run: F-50 P1-P3 (restructuring proposal), AMD-017, launch predictions committed before the deploy that carried the lesson (company/experiments/EXP-008, cited in company/rituals/records/2026-10-17-launch-review-left-or-right-r9.md). Judging F-50 P1-P2 needs the ledger (W-2034); audit P10" },
+    "P11": { "state": "ok", "note": "since 2026-10-25 the operator's commits are dispatch events and handoffs, and it stopped W-2037 rather than produce (progress.md, 2026-10-25). It breached on 2026-10-20 and 10-21 (copy passes, 100 maps, 24 stories; F-50 section 1c). The rule has no mechanism beyond operating-loop section 0; the next audit re-checks; audit P11" }
+  }
+}
