@@ -1,3 +1,13 @@
+## 2026-10-25 · design-lead (Ines), lane M manager · W-2037: design review of math/flatten-the-cube-to-a-dot v1
+
+- **Changed:** wrote `company/reviews/flatten-the-cube-to-a-dot/2026-10-25-design.md` (verdict **revise**: D1 required, D2 minor) with probe `design-2026-10-25/probe.mjs`, its output and 5 screenshots. Board: W-2056 (demo-builder: D1-D2, bump to v2), W-2057 (demo-builder, another session: build the twin `slice-a-corner-off`, lane-multi-card), W-2058 (evaluation-steward: dispatch the pairwise once twin and v2 exist), W-2059 (interaction-designer: kit-level answer to skipping an unfinished sub-card, plus a probe "skip" check). Kudos to demo-builder.
+- **Rulings:** (R1) sequence-probe "back" FAIL is the probe's: settled 3 s, every card is identical after going back, at 390 and 1280; W-2047 stands (settle, do not emulate reduced motion), and the gate clears only when the fixed probe passes. (R2) "Next: Shrink" without flattening is the lesson's: card 3 shows a flat drawing the learner never made, they can finish it, and the reveal stays locked with no cue; D1 makes Shrink inert with "Take the top off first" until the flatten. (R3) dark under both schemes is the product chrome (`.single`/`.feed-wrap`, 896905545), not the lesson's; it reads with light tokens forced.
+- **Launch:** not launchable until a pairwise record exists (lane M flow §2c step 7), and the twin is unbuilt. Also open: probe gate (W-2047), learner walk, a QA record in company/reviews, c8 re-check (W-2055). Nothing waived.
+- **P2 answer (proposal only):** agree with the audit's G1 (one warm builder owns spec, mockup and build; checks at the end), plus: the maker walks every reachable path (skip, mid-animation reveal, settled back), twin built or queued before the item's build, and my review stays a craft review. In the review record.
+- **Believe:** high that R1 and R3 are right (measured); high that D1 is a real dead end; medium that O1 (sparse end frame) matters to learners, so it is left to the walk.
+- **Next:** demo-builder W-2056 and W-2057; platform-engineer W-2047 (re-owned by W-2052); learner walk on v2.
+- **Blocked:** launch, on the pairwise (twin unbuilt).
+
 ## 2026-10-25 · category-curator (math) · W-2048, W-2049: flatten-the-cube-to-a-dot hook, c8, c6 source
 
 - **Changed** (only `src/demos/math/flatten-the-cube-to-a-dot/meta.json`, only these fields):
