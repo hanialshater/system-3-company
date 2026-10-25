@@ -2180,7 +2180,7 @@ const F52_EDIT = {
   "tools-lead": {
     replace: [
       [/^company\/ops\/events\.jsonl and tools\/events\.mjs \(append, backfill, query\)$/, f52("The event schema and tools/events.mjs (append, backfill, query); the log company/ops/events.jsonl itself is written by chief-of-staff")],
-      [/^HQ: src\/app\/hq\/\*\* \(floor plan, timeline, replay, meeting pages\)$/, f52("HQ data adapters (src/lib/hq-*.ts) and HQ tools (tools/hq-*.mjs); HQ pages (src/app/hq/**) through hq-engineer, their owner")],
+      [/^HQ: src\/app\/hq\/\*\* \(floor plan, timeline, replay, meeting pages\)$/, f52("HQ data adapters (src/lib/hq-*.ts, src/lib/hq.ts) and HQ tools (tools/hq-*.mjs, tools/hq/**, the city adapters); HQ pages (src/app/hq/**) through hq-engineer, their owner")],
     ],
     descriptionReplace: [/the event log, HQ \(rooms, timeline, replay\)/, "the event schema and tools, HQ's data adapters and tools (HQ pages are hq-engineer's)"],
   },

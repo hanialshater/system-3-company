@@ -9,8 +9,9 @@ import { orgFromRoles } from "./org-from-roles.mjs";
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..", "..");
 test("System 3 Company's org through the org contract: every role reports to a role in the org; names from people.mjs", async () => {
   const org = await orgFromRoles(path.join(ROOT, "tools", "org", "roles.mjs")), ids = new Set(org.map((r) => r.id));
-  // 39 roles since the 2026-10-25 restructuring (company/decisions/2026-10-25-founder-restructuring.md); parked roles are not in the org.
-  assert.ok(org.length >= 39); assert.ok(org.every((r) => r.reportsTo === null || ids.has(r.reportsTo)));
+  // 39 roles since the 2026-10-25 restructuring (company/decisions/2026-10-25-founder-restructuring.md); 34 since F-52 G2 parked five
+  // personalization roles (company/decisions/2026-10-25-founder-f52.md). Parked roles are not in the org.
+  assert.ok(org.length >= 34); assert.ok(!ids.has("vp-personalization"), "vp-personalization is parked (F-52)"); assert.ok(org.every((r) => r.reportsTo === null || ids.has(r.reportsTo)));
   assert.ok(!ids.has("cm-math") && ids.has("category-curator"), "category managers are parked; the pooled curator is in the org");
   assert.equal(org.find((r) => r.id === "chief-of-staff").name, "Ada");
 });
