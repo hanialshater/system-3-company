@@ -37,10 +37,11 @@ benchmark harness, not yet in the kernel). Update this file in the same change t
 
 | Feature | Layer | Where | Status |
 |---|---|---|---|
-| Members land their own work past the company's referee (sync, land; refused if main falls; serialised; stale locks broken) | starter | `crew.mjs` | built; tests/crew.test.mjs (9 tests) |
+| Members land their own work past the company's referee (sync, land; refused if main falls; serialised; stale locks broken) | starter | `crew.mjs` | built; tests/crew.test.mjs (13 tests) |
 | Notes, unread counts, the board (evidence and wrong-if required), claims that expire | starter | `crew.mjs` | built |
-| The v1 event log (`events.jsonl`): crew.start, land, land.refused, sync, note, board.post, claim, idle, wake, spend, crew.end | starter | `crew.mjs` | built: the contract for the starter HQ |
-| The runner: continuous member sessions, the shared budget, idle and wake, a plateau stop, off-boarding into the knowledge base | starter | `crew-run.mjs` | built (fake mode tested; SDK sessions wired by the launcher: next) |
+| Meeting minutes: members who met record title, attendees, decisions, objections and text (`crew minutes`) | starter | `crew.mjs` | built |
+| The v1 event log (`events.jsonl`): crew.start, land, land.refused, sync, note, board.post, claim, idle, wake, spend, turn.error, meeting, crew.end | starter | `crew.mjs` | built: the contract for the starter HQ |
+| The runner: continuous member sessions, the shared budget, idle and wake, a plateau stop, off-boarding into the knowledge base | starter | `crew-run.mjs` | built: `sdkSession({options})` for real members (the company passes its sandbox and permissions; the CLI refuses real members without `--sandboxed`); three failed turns in a row put a member idle |
 
 ## The starter HQ (`prototype/hq/`), since 2026-10-25
 
@@ -51,7 +52,8 @@ benchmark harness, not yet in the kernel). Update this file in the same change t
 | Health per company from its events: score, start, lands, refusals, spend vs budget, members, running or ended | starter | `hq/server.mjs health()` | built |
 | Linear-like sidebar (city → company → Overview, Landings, Board, Notes, People, Knowledge), score chart, notes threads by hour, knowledge search, light and dark | starter | `hq/index.html` | built; refreshes every 15 s |
 | Benchmark orgs shown live (status, notes, board, ledger read as v1 events) | Meta research | `hq/bench2events.mjs` | built: B11, B12, B13 |
-| Meeting records page; company extension points for custom pages (HQ developers) | starter | — | next |
+| Meetings page: the minutes members recorded, newest first | starter | `hq/index.html` | built |
+| Company extension points for custom pages (HQ developers); the kernel's meetings (meetings.mjs) as v1 events | starter | — | next |
 
 ## Proven in benchmarks, to be folded into the kernel (the rest)
 

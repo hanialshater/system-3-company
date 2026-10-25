@@ -6,7 +6,7 @@
 //
 // Everything is an event in one append-only log, <dir>/events.jsonl (schema v1, product/STARTER.md "the event log"):
 // { v: 1, t, type, by, ...fields }. Types: crew.start, land, land.refused, sync, note, board.post, claim, claim.drop,
-// idle, wake, spend, offboard, crew.end. The starter HQ reads this log; nothing else is needed to draw the crew.
+// idle, wake, spend, turn.error, meeting, offboard, crew.end. The starter HQ reads this log; nothing else is needed to draw the crew.
 //
 //   node crew.mjs status|sync|land ["msg"]|note --to=<id|all> --text=…|notes|post …|read [--area=]|claim …|claims|drop …
 //   with CREW_DIR (the crew's folder) and CREW_ME (the member) in the environment, or crew.json beside the caller's tree
@@ -106,6 +106,14 @@ export const notesFor = (crew, me) => crew.events().filter((e) => e.type === "no
 export const unread = (crew, me) => { const seen = crew.events().filter((e) => (e.type === "notes.read" || e.type === "wake") && e.by === me).at(-1)?.count ?? 0; return notesFor(crew, me).length - seen; };
 export function readNotes(crew, me) { const n = notesFor(crew, me); crew.emit("notes.read", me, { count: n.length }); return n; }
 
+/** a meeting's record: members who met (on a call, in a note thread, at the board) record its minutes, so the HQ shows
+ *  what was decided and who was there. Decisions are lines; each objection travels with the decision it was raised on */
+export function minutes(crew, by, { title, attendees = [], decisions = [], objections = [], text }) {
+  if (!String(title ?? "").trim() || !String(text ?? "").trim()) refuse("minutes need a title and text");
+  const who = [...new Set([by, ...attendees])]; for (const a of who) crew.member(a);
+  return crew.emit("meeting", by, { title: title.slice(0, 120), attendees: who, decisions: decisions.map((d) => String(d).slice(0, 400)), objections: objections.map((o) => String(o).slice(0, 400)), text: text.slice(0, 6000) });
+}
+
 export function post(crew, by, { kind, area, text, evidence, wrongIf }) {
   if (!BOARD_KINDS.includes(kind)) refuse(`kind is one of ${BOARD_KINDS.join(", ")}`);
   for (const [k, v] of Object.entries({ area, text, evidence, wrongIf })) if (!String(v ?? "").trim()) refuse(`a board post needs ${k} (a finding carries its evidence and the outcome that would show it wrong)`);
@@ -147,9 +155,10 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.a
       read: () => board(crew, opt.area ?? null).slice(-Number(opt.last ?? 50)).map((e) => `${e.kind} [${e.area}] by ${e.by}: ${e.text}\n   evidence: ${e.evidence}\n   wrong if: ${e.wrongIf}`).join("\n") || "the board is empty",
       claim: () => (claim(crew, me, opt.area, opt.text), `claimed [${opt.area}]`),
       drop: () => (dropClaim(crew, me, opt.area), `dropped [${opt.area}]`),
+      minutes: () => { const L = (v) => (v ? String(v).split("|").map((x) => x.trim()).filter(Boolean) : []); return `recorded (${minutes(crew, me, { title: opt.title, attendees: L(opt.with), decisions: L(opt.decided), objections: L(opt.objections), text: opt.text }).t})`; },
       claims: () => claims(crew).map((e) => `[${e.area}] ${e.by}: ${e.text}`).join("\n") || "no claims in force",
     }[cmd];
-    if (!out) refuse("usage: crew.mjs status|sync|land [msg]|note --to= --text=|notes|post --kind= --area= --text= --evidence= --wrong-if=|read|claim --area= --text=|drop --area=|claims");
+    if (!out) refuse("usage: crew.mjs status|sync|land [msg]|note --to= --text=|notes|post --kind= --area= --text= --evidence= --wrong-if=|read|claim --area= --text=|drop --area=|claims|minutes --title= --with=a|b --decided=x|y --objections= --text=");
     console.log(out());
   } catch (e) { if (e instanceof CrewRefusal) { console.error(e.message); process.exit(e.code); } throw e; }
 }

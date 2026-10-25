@@ -94,3 +94,35 @@ test("crew-run: a fake crew runs until every member is idle, lands, spends, and 
   const kb = path.join(dir, "kb"), n = recordOffboard(kb, "T", { id: "a", model: "m" }, 'x BEGIN-KB [{"topic":"t","kind":"practice","text":"x","evidence":"e","belief":0.7}] END-KB');
   assert.equal(n, 1); assert.equal(fs.readFileSync(path.join(kb, "entries.jsonl"), "utf8").trim().split("\n").length, 1);
 });
+
+test("sdkSession: the session id, the answer, the company's options and resume reach the SDK", async () => {
+  const { sdkSession } = await import("../crew-run.mjs"); const seen = [];
+  const query = async function* ({ prompt, options }) { seen.push({ prompt, options }); yield { type: "system", session_id: "s1" }; yield { type: "assistant", session_id: "s1", message: { content: [{ type: "text", text: "working" }] } }; yield { type: "result", session_id: "s1", result: "done\nIDLE" }; };
+  const session = sdkSession({ query, options: (w) => ({ permissionMode: "default", env: { WHO: w.id } }) });
+  const r = await session({ id: "a", model: "m", tree: os.tmpdir() }, "hi", { resume: "s0" });
+  assert.equal(r.sid, "s1"); assert.equal(r.text, "done\nIDLE"); assert.equal(r.error, null);
+  assert.equal(seen[0].options.resume, "s0"); assert.equal(seen[0].options.env.WHO, "a"); assert.equal(seen[0].options.model, "m"); assert.equal(seen[0].options.cwd, os.tmpdir());
+});
+
+test("sdkSession: an SDK error is returned, not thrown", async () => {
+  const { sdkSession } = await import("../crew-run.mjs");
+  const query = async function* () { yield { type: "system", session_id: "s2" }; throw new Error("boom"); };
+  const r = await sdkSession({ query })({ id: "a", model: "m", tree: os.tmpdir() }, "hi");
+  assert.equal(r.sid, "s2"); assert.match(r.error, /boom/);
+});
+
+test("crew-run: three failed turns in a row put a member idle, with turn.error events", async () => {
+  const { dir } = setup(); const { runCrew } = await import("../crew-run.mjs");
+  const session = async (w) => ({ sid: `s-${w.id}`, usd: 0.1, text: "", error: "overloaded" });
+  const { crew } = await runCrew(dir, { session });
+  const ev = crew.events();
+  assert.equal(ev.filter((e) => e.type === "turn.error").length, 6); assert.equal(ev.filter((e) => e.type === "idle").length, 2); assert.equal(ev.at(-1).type, "crew.end");
+});
+
+test("minutes: a meeting's record names members only, and needs a title and text", () => {
+  const { crew } = setup(); const { minutes } = crewMod;
+  const e = minutes(crew, "a", { title: "parser plan", attendees: ["b"], decisions: ["a owns the parser"], text: "we split the work" });
+  assert.deepEqual(e.attendees, ["a", "b"]); assert.equal(crew.events().at(-1).type, "meeting");
+  refusal(() => minutes(crew, "a", { title: "x", attendees: ["zed"], text: "t" }), /no member/);
+  refusal(() => minutes(crew, "a", { title: "", text: "t" }), /title and text/);
+});

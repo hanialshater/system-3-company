@@ -49,7 +49,7 @@ input.search { width:100%; padding:7px 10px; border:1px solid var(--line); borde
   <main id="main"><div class="empty">Loading…</div></main>
 </div>
 <script>
-const VIEWS = [["overview", "Overview"], ["landings", "Landings"], ["board", "Board"], ["notes", "Notes"], ["people", "People"], ["knowledge", "Knowledge"]];
+const VIEWS = [["overview", "Overview"], ["landings", "Landings"], ["board", "Board"], ["notes", "Notes"], ["meetings", "Meetings"], ["people", "People"], ["knowledge", "Knowledge"]];
 let state = { city: [], company: null, view: "city", events: [], knowledge: [], q: "" };
 const $ = (s) => document.querySelector(s);
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -110,6 +110,11 @@ function viewBoard() {
   ${posts.length ? `<table><tr><th>kind</th><th>area</th><th>by</th><th>finding</th></tr>${posts.map((e) => `<tr><td><span class="chip">${esc(e.kind)}</span></td><td>${esc(e.area)}</td><td class="who">${esc(e.by)}</td><td>${esc(e.text)}<div class="k">evidence: ${esc(e.evidence)} · wrong if: ${esc(e.wrongIf)}</div></td></tr>`).join("")}</table>` : `<div class="empty">No posts yet.</div>`}
   <h3 style="margin:20px 0 8px">Claims</h3>${cl.length ? `<table><tr><th>when</th><th>who</th><th>area</th><th>what</th></tr>${cl.map((e) => `<tr><td class="k">${time(e.t)}</td><td class="who">${esc(e.by)}</td><td>${esc(e.area)}</td><td>${esc(e.text)}</td></tr>`).join("")}</table>` : `<div class="empty">No claims.</div>`}`;
 }
+function viewMeetings() {
+  const ms = state.events.filter((e) => e.type === "meeting").reverse();
+  if (!ms.length) return `<h1>Meetings</h1><div class="empty">No meetings recorded. Members record one with <code>crew minutes</code>.</div>`;
+  return `<h1>Meetings</h1><div class="sub1">minutes recorded by the members who met: who was there, what was decided, the objections raised (${ms.length})</div>${ms.map((m) => `<div class="thread"><div class="msg"><span class="who">${esc(m.title)}</span><span class="when">${time(m.t)}</span><div class="k">chair ${esc(m.by)} · with ${esc((m.attendees ?? []).filter((a) => a !== m.by).join(", ") || "nobody else")}</div>${(m.decisions ?? []).length ? `<div class="k" style="margin-top:8px">decided</div><ul>${m.decisions.map((d) => `<li>${esc(d)}</li>`).join("")}</ul>` : ""}${(m.objections ?? []).length ? `<div class="k">objections</div><ul>${m.objections.map((d) => `<li>${esc(d)}</li>`).join("")}</ul>` : ""}<div style="white-space:pre-wrap;margin-top:6px">${esc(m.text)}</div></div></div>`).join("")}`;
+}
 function viewNotes() {
   const seen = new Set(), msgs = state.events.filter((e) => e.type === "note").filter((e) => { const k = `${e.t}${e.by}${e.text}`; if (e.broadcast && seen.has(k)) return false; seen.add(k); return true; });
   if (!msgs.length) return `<h1>Notes</h1><div class="empty">No notes yet.</div>`;
@@ -126,7 +131,7 @@ function viewKnowledge() {
 }
 function render() {
   nav(); const c = state.city.find((x) => x.id === state.company);
-  const v = !c ? viewCity() : { overview: () => viewOverview(c), landings: viewLandings, board: viewBoard, notes: viewNotes, people: viewPeople, knowledge: viewKnowledge }[state.view]?.() ?? viewOverview(c);
+  const v = !c ? viewCity() : { overview: () => viewOverview(c), landings: viewLandings, board: viewBoard, notes: viewNotes, meetings: viewMeetings, people: viewPeople, knowledge: viewKnowledge }[state.view]?.() ?? viewOverview(c);
   const focus = document.activeElement?.classList?.contains("search"); $("#main").innerHTML = v; if (focus) { const s = $("input.search"); s.focus(); s.setSelectionRange(s.value.length, s.value.length); }
 }
 async function load() {

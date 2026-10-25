@@ -2,10 +2,10 @@
 // The crew's runner: drives each member of a crew (crew.mjs) as one continuous agent session until the shared budget,
 // the time or a plateau ends it, then off-boards every member into the company's knowledge base. Generalised from
 // bench11-13's run.mjs (the dynamic-workflow archetype, product/ONBOARDING.md).
-//   node crew-run.mjs <crew dir> [--fake]        the crew's crew.json: members [{id, model, role, tree, root?}], main,
+//   node crew-run.mjs <crew dir> [--fake|--sandboxed]       the crew's crew.json: members [{id, model, role, tree, root?}], main,
 //                                                referee {cmd}, budget, minutes, task (a file the members read first),
 //                                                knowledge (the knowledge base's KB.md, optional), plateauMin (optional)
-// Sessions: the Agent SDK in each member's tree; a member's spend is estimated from its session transcript (the SDK's
+// Sessions: the Agent SDK in each member's tree (sdkSession); a member's spend is estimated from its session transcript (the SDK's
 // own figure is unreliable for resumed sessions, B10) and emitted as a spend event per turn. --fake plays each member
 // (a trivial commit and a land), for tests.
 import fs from "node:fs";
@@ -35,6 +35,7 @@ Members: ${s.members.map((x) => `**${x.id}** (${String(x.role).split(":")[0]})`)
 
 - \`${cli} sync\` merges main into your tree; \`${cli} land "what it does"\` lands your committed work on main if the referee says main does not get worse. Land often.
 - \`${cli} status\`; \`${cli} note --to=<member|all> --text='…'\`; \`${cli} notes\`; the board: \`${cli} read\`, \`${cli} post --kind=finding|dead-end|hypothesis --area=… --text='…' --evidence='…' --wrong-if='…'\`; claims: \`${cli} claim --area=… --text='…'\`, \`${cli} claims\`, \`${cli} drop --area=…\`.
+- When you meet with others (a note thread, a pairing), record it: \`${cli} minutes --title='…' --with='a|b' --decided='…|…' --text='…'\`.
 - The budget ($${s.budget}) and the time (${Math.round(s.minutes / 60)} hours) are shared by all members.${s.knowledge ? `\n- What earlier teams learned: ${s.knowledge} (use what you judge useful).` : ""}
 - To step back, end your answer with IDLE on its own line; you will be woken by a note.
 
@@ -60,12 +61,38 @@ export async function runCrew(dir, { fake = false, session = null } = {}) {
       const r = fake ? await fakeTurn(crew, w, w.k) : await session(w, prompt, { resume: w.sid, stop: done });
       w.sid = r.sid ?? w.sid; w.k++;
       crew.emit("spend", w.id, { usd: Number((r.usd ?? 0).toFixed(4)), turn: w.k, sid: w.sid });
+      // a failed turn (not one the stop guard cut) is retried; after three in a row the member goes idle until a note
+      if (r.error && !done()) { w.errors = (w.errors ?? 0) + 1; crew.emit("turn.error", w.id, { why: r.error.slice(0, 300), turn: w.k }); if (w.errors >= 3) { w.idle = true; w.errors = 0; crew.emit("idle", w.id, { why: "three failed turns" }); } continue; }
+      w.errors = 0;
       if (/(^|\n)\s*IDLE\s*$/.test(r.text ?? "")) { w.idle = true; crew.emit("idle", w.id, {}); }
     }
   };
   await Promise.all(W.map(one));
   crew.emit("crew.end", "operator", { main: mainState(crew), spent: Number(spent(crew).toFixed(2)), minutes: Math.round(minutes()) });
   return { crew, W };
+}
+
+/** Agent SDK sessions for real members: session(w, prompt, {resume, stop}) → {sid, usd, text}. One turn runs until the
+ *  member answers, `stop()` turns true (checked every 10 s: the shared budget, the time, a plateau) or turnMs passes.
+ *  `options(w)` adds the company's own session options (a sandbox, canUseTool, hooks, env): the kernel grants nothing
+ *  beyond the tools list, so a company without a sandbox decides here what its members may run. `query` is for tests. */
+export const TOOLS = ["Bash", "Read", "Write", "Edit", "Glob", "Grep"];
+export function sdkSession({ options = () => ({}), turnMs = 45 * 60000, query = null, sdk = path.join(HERE, "launcher", "node_modules", "@anthropic-ai", "claude-agent-sdk", "sdk.mjs") } = {}) {
+  return async (w, prompt, { resume = null, stop = () => false } = {}) => {
+    query ??= (await import(pathToFileURL(sdk).href)).query;
+    const ac = new AbortController(), t0 = Date.now(), timer = setTimeout(() => ac.abort(new Error("time cap")), turnMs), guard = setInterval(() => { if (stop()) ac.abort(new Error("stop")); }, 10_000);
+    let sid = resume, text = "", error = null;
+    try {
+      const opts = { cwd: w.root ?? w.tree, model: w.model, abortController: ac, settingSources: [], tools: TOOLS, maxTurns: 1000, ...(resume ? { resume } : {}), ...(await options(w)) };
+      for await (const m of query({ prompt, options: opts })) {
+        if (typeof m.session_id === "string" && m.session_id) sid = m.session_id;
+        if (m.type === "assistant") for (const c of m.message?.content ?? []) if (c.type === "text") text = c.text;
+        if (m.type === "result" && typeof m.result === "string") text = m.result;
+      }
+    } catch (e) { error = String(e?.message ?? e); }
+    clearTimeout(timer); clearInterval(guard);
+    return { sid, usd: sid ? transcriptCost(w.root ?? w.tree, sid, t0) : 0, text, error };
+  };
 }
 
 /** off-boarding: one last turn per member, its JSON entries appended to the company's knowledge base */
@@ -79,8 +106,10 @@ export function recordOffboard(kbDir, run, member, text) {
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1])) {
+  // a real crew from the CLI gets the kernel's sessions with no options of the company's: run it only inside a sandbox
+  // (a company's launcher passes its own options to sdkSession instead)
   const dir = path.resolve(process.argv[2] ?? "."), fake = process.argv.includes("--fake");
-  if (!fake) { console.error("crew-run: SDK sessions are wired by the company's launcher (session(w, prompt, {resume, stop}) → {sid, usd, text}); this CLI runs --fake"); process.exit(2); }
-  const { crew } = await runCrew(dir, { fake });
+  if (!fake && !process.argv.includes("--sandboxed")) { console.error("crew-run: real members need a sandbox; run inside one with --sandboxed, or from a launcher that passes sdkSession({options}), or --fake"); process.exit(2); }
+  const { crew } = await runCrew(dir, { fake, session: fake ? null : sdkSession({ options: () => ({ permissionMode: "bypassPermissions", allowDangerouslySkipPermissions: true }) }) });
   console.log(JSON.stringify(crew.events().at(-1)));
 }
