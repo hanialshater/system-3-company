@@ -1,6 +1,6 @@
 # Restructuring System 3 Company: content-type lanes, budgeted levels, 39 roles (W-2030)
 
-owner: chief-of-staff-ceo-office (Leonie) · decides: founder · date: 2026-10-25 · status: **proposed** (nothing applied; I may not approve my own proposals)
+owner: chief-of-staff-ceo-office (Leonie) · decides: founder · date: 2026-10-25 · status: **approved 2026-10-25, option A** (founder: "Approved and decide for me"); applied except step 10 (record: company/decisions/2026-10-25-founder-restructuring.md)
 founder ask (2026-10-25, verbatim): "system 3 co need restructuring though to streamline, different content type, multi level/priority/budget based execution"
 checkpoint: CP1-L1 in system3-meta `docs/CHECKPOINT-1.md` ("fewer roles, one flow per content type, priority- and budget-based execution"); CP1-L3 (one new content type with its own flow and one published item)
 founder inbox: F-50 · board: W-2030 · rests on: `2026-10-13-role-evaluation.md`, `2026-10-13-proposals.md` (F-13), `2026-10-18-role-keep-remove.md` (F-33), `company/decisions/2026-10-16-founder-throughput-for-10k.md` (F-41), `company/decisions/2026-10-16-founder-mailbox-dispatch.md` (F-42), `company/decisions/2026-10-18-founder-simple-scalable-lesson-path.md` (AMD-014 draft)
