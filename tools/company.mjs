@@ -10,6 +10,7 @@
 //   claims [--open]            the claims ledger; --open lists claims not yet verified
 //   new-demo <domain> <slug>   scaffold a lesson from the standard template
 //   publish <slug>             run the launch gates and flip status to published
+//   sample <domain> <slug...> --by=<role>  draw a tier-S batch's learner-walk sample (AMD-017 (b))
 //   ritual <name>              start a ritual record from its template (wbr, op-planning, ...)
 //   rituals                    cadence table: last run, next due, overdue
 //   board [add|move] ...       the work board (company/ops/board.json)
@@ -23,6 +24,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { registryFiles } from "./registry.mjs";
 import { readiness, loadContext, gitAncestry } from "./lib/readiness.mjs";
+import * as tiers from "./lib/tiers.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const rel = (...p) => path.join(ROOT, ...p);
@@ -289,14 +291,215 @@ function readinessGates(meta) {
     return [`readiness check failed to run: ${e.message}`];
   }
   if (!r || typeof r.ready !== "boolean" || !Array.isArray(r.reasons)) return ["readiness returned a malformed answer"];
-  if (!r.ready) fails.push(...(r.reasons.length ? r.reasons : ["not ready (readiness gave no reason)"]));
+  // AMD-017 (b): a batch sample can stand in for the learner walk of a tier-S lesson; QA, holds and the rest still apply.
+  const covered = walkCover(meta).covered;
+  const reasons = covered ? r.reasons.filter((x) => !x.startsWith("learner review:")) : r.reasons;
+  if (!r.ready && !(covered && reasons.length === 0)) fails.push(...(reasons.length ? reasons : ["not ready (readiness gave no reason)"]));
   if (opts.holds[meta.slug] && !fails.some((f) => f.startsWith("active publish hold"))) fails.push(`active publish hold: ${opts.holds[meta.slug]}`);
   return fails;
 }
 
 /** Gates a lesson must pass to be published: the claim/evidence floor plus readiness. Returns a list of failures. */
 function launchGates(meta) {
-  return [...claimGates(meta), ...readinessGates(meta)];
+  return [...claimGates(meta), ...readinessGates(meta), ...(AMD017_EVIDENCE_ENFORCED ? tierEvidence(meta) : [])];
+}
+
+// ---------------------------------------------------------------- AMD-017: risk tiers (ratified 2026-10-25, F-51)
+// Mechanics in tools/lib/tiers.mjs (ordinary surface); the strictness parameters, the canary and the rule that the
+// gates call it live here. Record: company/decisions/2026-10-25-founder-f51-amd017.md.
+//   (a) tier N (new format), R (risky route, sensitive concept or incubating domain), S (the rest);
+//   (b) tier S may publish on a batch sample: at least 1 in 5 of the category's batch walked, drawn by hash, not by
+//       the maker; stop rule: more than 1 fatal in 10 in a sample and that batch and the category's next batch walk
+//       every lesson; two weekly audits running with more than 1 fatal in 10 in a category revoke (b) for it;
+//   (c)-(e) route verdict, sequence-probe record, design and pairwise records: side by side (warnings) for one cycle,
+//       then enforced by setting AMD017_EVIDENCE_ENFORCED in a commit under the AMD-017 trailer.
+const AMD017 = { sampleRate: 1 / 5, stopNumerator: 1, stopDenominator: 10, newFormatBelow: 3, riskRoutes: ["sensitive", "safety", "copyright"] };
+const AMD017_EVIDENCE_ENFORCED = false;
+
+let tierDataCache = null;
+function tierData() {
+  if (tierDataCache) return tierDataCache;
+  const metas = loadDemos().map((d) => d.meta).filter(Boolean);
+  const domains = new Map(loadDomains().map((d) => [d.id, d]));
+  const concepts = new Map();
+  for (const id of domains.keys()) for (const c of loadCurriculum(id)?.concepts ?? []) concepts.set(`${id}:${c.id}`, c);
+  let batches = [];
+  let audits = [];
+  let loadError = null;
+  try {
+    batches = tiers.loadBatches(ROOT);
+    audits = tiers.loadAudits(ROOT);
+  } catch (e) {
+    loadError = `batch or audit records unreadable (${e.message})`;
+  }
+  const bySlug = new Map(metas.map((m) => [m.slug, m]));
+  const reviews = new Map();
+  const reviewsOf = (slug) => (reviews.has(slug) ? reviews.get(slug) : reviews.set(slug, tiers.learnerVerdicts(ROOT, slug)).get(slug));
+  tierDataCache = { metas, domains, concepts, batches, audits, loadError, bySlug, reviewsOf, formatCounts: tiers.publishedFormatCounts(metas) };
+  return tierDataCache;
+}
+
+function amd017Params() {
+  const td = tierData();
+  return { ...AMD017, builders: (b) => (b.lessons ?? []).map((l) => td.bySlug.get(l.slug)?.owner?.builder).filter(Boolean) };
+}
+
+// Known answers the tiers lib must give before the sampled path is open. Synthetic records, no disk.
+let tiersCanaryResult;
+function tiersCanary() {
+  if (tiersCanaryResult !== undefined) return tiersCanaryResult;
+  tiersCanaryResult = null;
+  try {
+    const P = { ...AMD017, builders: () => ["builder-x"] };
+    const fc = new Map([["single-card", 10], ["multi-card-sequence", 2]]);
+    const m = (slug, extra = {}) => ({ slug, domain: "math", status: "review", version: 1, format: "single-card", ...extra });
+    const ten = Array.from({ length: 10 }, (_, i) => ({ slug: `l${i}`, version: 1 }));
+    const b1 = { id: "2026-01-01-math-1", date: "2026-01-01", domain: "math", drawnBy: "evaluation-steward", lessons: ten };
+    const s1 = tiers.drawSample(b1, AMD017.sampleRate);
+    const un = ten.map((l) => l.slug).find((x) => !s1.includes(x));
+    const all = (v) => () => v;
+    const fatalOne = (slug) => (slug === s1[0] ? "fatal" : "launch");
+    const b2 = { ...b1, id: "2026-01-02-math-2", date: "2026-01-02", lessons: ten.map((l) => ({ ...l, slug: `k${l.slug}` })) };
+    const s2 = tiers.drawSample(b2, AMD017.sampleRate);
+    const un2 = b2.lessons.map((l) => l.slug).find((x) => !s2.includes(x));
+    const audit = (date, f, n) => ({ date, lessons: Array.from({ length: n }, (_, i) => ({ domain: "math", fatal: i < f })) });
+    const cases = [
+      ["tier S", tiers.tierOf(m("a"), { formatCounts: fc }, P).tier, "S"],
+      ["tier R from the lesson route", tiers.tierOf(m("a", { reviewRoute: { route: "safety" } }), { formatCounts: fc }, P).tier, "R"],
+      ["tier R from a sensitive concept", tiers.tierOf(m("a"), { formatCounts: fc, concept: { sensitive: "war" } }, P).tier, "R"],
+      ["tier R from an incubating domain", tiers.tierOf(m("a"), { formatCounts: fc, domainStatus: "incubating" }, P).tier, "R"],
+      ["tier N wins over R", tiers.tierOf(m("a", { format: "multi-card-sequence", reviewRoute: { route: "sensitive" } }), { formatCounts: fc }, P).tier, "N"],
+      ["sample of 10 is 2", s1.length, 2],
+      ["full sample is 10", tiers.drawSample(b1, AMD017.sampleRate, true).length, 10],
+      ["unsampled lesson covered", tiers.coverage(m(un), "S", [b1], all("launch"), P).covered, true],
+      ["sampled lesson not covered", tiers.coverage(m(s1[0]), "S", [b1], all("launch"), P).covered, false],
+      ["sample not walked", tiers.coverage(m(un), "S", [b1], all(null), P).covered, false],
+      ["stop rule trips this batch", tiers.coverage(m(un), "S", [b1], fatalOne, P).covered, false],
+      ["stop rule makes the next batch full", tiers.coverage(m(un2), "S", [b1, b2], fatalOne, P).covered, false],
+      ["no stop rule, next batch normal", tiers.coverage(m(un2), "S", [b1, b2], all("launch"), P).covered, true],
+      ["tier R never covered", tiers.coverage(m(un), "R", [b1], all("launch"), P).covered, false],
+      ["own review governs", tiers.coverage(m(un), "S", [b1], all("launch"), P, { ownCurrentReviews: 1 }).covered, false],
+      ["older version not covered", tiers.coverage(m(un, { version: 2 }), "S", [b1], all("launch"), P).covered, false],
+      ["drawn by a builder", tiers.coverage(m(un), "S", [{ ...b1, drawnBy: "builder-x" }], all("launch"), P).covered, false],
+      ["two bad audits revoke", !!tiers.auditRevoked("math", [audit("2026-01-08", 1, 5), audit("2026-01-15", 1, 2)], P), true],
+      ["one bad audit does not revoke", !!tiers.auditRevoked("math", [audit("2026-01-08", 1, 1), audit("2026-01-15", 0, 10)], P), false],
+    ];
+    for (const [name, got, want] of cases) {
+      if (got !== want) {
+        tiersCanaryResult = `tiers lib failed its known-answer canary (${name}: expected ${want}, got ${got}); the sampled learner walk is closed until it passes`;
+        break;
+      }
+    }
+  } catch (e) {
+    tiersCanaryResult = `tiers lib canary threw (${e.message}); the sampled learner walk is closed until it passes`;
+  }
+  return tiersCanaryResult;
+}
+
+/** Tier and learner-walk coverage for one lesson. Fails closed: any error means "not covered". */
+const walkCoverCache = new Map();
+function walkCover(meta) {
+  const key = `${meta.slug}@${meta.version ?? 1}:${meta.status}`;
+  if (walkCoverCache.has(key)) return walkCoverCache.get(key);
+  let out;
+  try {
+    const canary = tiersCanary();
+    const td = tierData();
+    const P = amd017Params();
+    const t = tiers.tierOf(meta, { formatCounts: td.formatCounts, concept: td.concepts.get(`${meta.domain}:${meta.concept}`) ?? null, domainStatus: td.domains.get(meta.domain)?.status ?? null }, P);
+    if (canary || td.loadError) out = { covered: false, reason: canary ?? td.loadError, ...t };
+    else {
+      const v = meta.version ?? 1;
+      const own = td.reviewsOf(meta.slug).filter((r) => r.version === v).length;
+      const verdictAt = (slug, ver) => tiers.worstAt(td.reviewsOf(slug), ver);
+      const c = tiers.coverage(meta, t.tier, td.batches, verdictAt, P, { ownCurrentReviews: own, revoked: tiers.auditRevoked(meta.domain, td.audits, P) });
+      out = { ...c, ...t };
+    }
+  } catch (e) {
+    out = { covered: false, reason: `tiers check failed to run: ${e.message}` };
+  }
+  walkCoverCache.set(key, out);
+  return out;
+}
+
+/** AMD-017 (c)-(e): the evidence tiers R and N, and multi-card lessons, need. Returns a list of failures. */
+function tierEvidence(meta) {
+  const fails = [];
+  const t = walkCover(meta).tier;
+  if (!t) return ["(a) tier unknown: the tiers check did not run"];
+  const v = meta.version ?? 1;
+  const dir = rel("company/reviews", meta.slug);
+  const files = ls(dir).filter((f) => f.endsWith(".md"));
+  const read = (f) => fs.readFileSync(path.join(dir, f), "utf8");
+  const stamped = (txt) => new RegExp(`lesson version:[ \\t*_]*v${v}\\b`, "i").test(txt);
+  if (t === "R" || t === "N") {
+    const c = tierData().concepts.get(`${meta.domain}:${meta.concept}`);
+    const route = meta.reviewRoute?.route ?? (typeof c?.reviewRoute === "string" ? c.reviewRoute : null) ?? (c?.sensitive ? "sensitive" : null);
+    if (route && AMD017.riskRoutes.includes(route)) {
+      const ok = files.filter((f) => f.endsWith(`-${route}.md`) && !f.endsWith(`-${route}-brief.md`)).some((f) => {
+        const x = read(f);
+        return /stage:[ \t]*publish\b/i.test(x) && /^[ \t>*_#-]*Verdict:[ \t*_]*publish\b/im.test(x) && stamped(x);
+      });
+      if (!ok) fails.push(`(c) tier ${t}: no ${route} route verdict (stage: publish, Verdict: publish) for v${v}`);
+    } else if (t === "R") fails.push("(c) tier R: no reviewRoute.route declared, so no route verdict can be read");
+  }
+  if (tiers.normFormat(meta.contentType ?? meta.format) === "multi-card-sequence") {
+    const ok = files.filter((f) => /sequence-probe/.test(f)).some((f) => {
+      const x = read(f);
+      return stamped(x) && /\b0 FAIL\b/.test(x);
+    });
+    if (!ok) fails.push(`(d) multi-card: no sequence-probe record with 0 FAIL for v${v} (company/reviews/${meta.slug}/*-sequence-probe.md)`);
+  }
+  if (t === "N") {
+    if (!files.filter((f) => /design/.test(f)).some((f) => stamped(read(f)))) fails.push(`(e) tier N: no design-review record for v${v}`);
+    if (!(meta.evidence?.pairwise ?? []).some((p) => exists(rel(p)) && stamped(fs.readFileSync(rel(p), "utf8")))) fails.push(`(e) tier N: no pairwise record for v${v}`);
+  }
+  return fails;
+}
+
+/** `company sample <domain> <slug...> --by=<role>`: list a tier-S batch and draw its learner-walk sample. */
+function cmdSample(args) {
+  const by = args.find((a) => a.startsWith("--by="))?.slice(5);
+  const [domain, ...slugs] = args.filter((a) => !a.startsWith("--"));
+  if (!by || !domain || !slugs.length) {
+    console.log("usage: company sample <domain> <slug...> --by=<role>");
+    process.exitCode = 1;
+    return;
+  }
+  const td = tierData();
+  const problems = [];
+  const lessons = [];
+  for (const s of [...new Set(slugs)]) {
+    const m = td.bySlug.get(s);
+    if (!m) problems.push(`${s}: no such lesson`);
+    else if (m.domain !== domain) problems.push(`${s}: domain ${m.domain}, not ${domain}`);
+    else if (m.status === "published" || m.status === "retired") problems.push(`${s}: already ${m.status}`);
+    else if (m.owner?.builder === by) problems.push(`${s}: built by ${by}, who may not draw its sample`);
+    else if (td.batches.some((b) => (b.lessons ?? []).some((l) => l.slug === s && l.version === (m.version ?? 1)))) problems.push(`${s}: already listed in a batch at v${m.version ?? 1}`);
+    else {
+      const w = walkCover(m);
+      if (w.tier !== "S") problems.push(`${s}: tier ${w.tier ?? "?"} (${w.why ?? w.reason}) walks every lesson`);
+      else lessons.push({ slug: s, version: m.version ?? 1 });
+    }
+  }
+  if (problems.length) {
+    console.log(color.red("cannot draw a sample:"));
+    for (const p of problems) console.log(`  - ${p}`);
+    process.exitCode = 1;
+    return;
+  }
+  const date = today();
+  const n = td.batches.filter((b) => b.domain === domain && String(b.date) === date).length + 1;
+  const batch = { id: `${date}-${domain}-${n}`, date, domain, drawnBy: by, lessons };
+  const P = amd017Params();
+  const verdictAt = (slug, ver) => tiers.worstAt(td.reviewsOf(slug), ver);
+  let prev = false;
+  for (const b of td.batches.filter((x) => x.domain === domain).sort((a, b) => String(a.date).localeCompare(String(b.date)) || String(a.id).localeCompare(String(b.id))))
+    prev = tiers.batchState(b, verdictAt, P, prev).tripped;
+  batch.sample = tiers.drawSample(batch, AMD017.sampleRate, prev);
+  fs.mkdirSync(rel(tiers.BATCH_DIR), { recursive: true });
+  writeJSON(rel(tiers.BATCH_DIR, `${batch.id}.json`), batch);
+  console.log(`${tiers.BATCH_DIR}/${batch.id}.json: ${lessons.length} lesson(s); walk ${batch.sample.length}${prev ? " (stop rule: the previous batch tripped, so every lesson)" : ""}: ${batch.sample.join(", ")}`);
 }
 
 /** The claim and evidence floor, unchanged by AMD-013. Returns a list of failures. */
@@ -310,7 +513,7 @@ function claimGates(meta) {
     if (c.status === "verified" && c.checkedBy === meta.owner.builder) fails.push(`${c.id} verified by its own builder`);
   }
   if (!meta.evidence.qa?.length) fails.push("no computer-use QA record (company/reviews/...)");
-  if (!meta.evidence.simulatedLearner?.length) fails.push("no borrowed-mind learner review");
+  if (!meta.evidence.simulatedLearner?.length && !walkCover(meta).covered) fails.push("no borrowed-mind learner review");
   for (const k of ["qa", "simulatedLearner", "pairwise", "humanLearners"]) {
     for (const r of meta.evidence[k] ?? []) if (!exists(rel(r))) fails.push(`evidence.${k} points at missing file ${r}`);
   }
@@ -487,6 +690,16 @@ function cmdCheck() {
     warn("readiness (AMD-013)", `${grandfathered.length} grandfathered published lesson(s) still fail readiness: ${grandfathered.slice(0, 6).join(", ")}${grandfathered.length > 6 ? ", …" : ""} (measure.mjs in company/constitution/amendments/AMD-013-one-readiness/ lists why)`);
   const nowPass = [...READINESS_GRANDFATHERED].filter((slug) => !grandfathered.includes(slug) && demos.some((d) => d.meta?.slug === slug && d.meta.status === "published"));
   if (nowPass.length) warn("readiness (AMD-013)", `${nowPass.length} grandfathered lesson(s) now pass readiness; drop them from READINESS_GRANDFATHERED at the next amendment: ${nowPass.slice(0, 6).join(", ")}`);
+  {
+    // AMD-017: canary, batch records, and the (c)-(e) side-by-side count for lessons in review.
+    const canary = tiersCanary();
+    if (canary) warn("tiers (AMD-017)", canary);
+    for (const b of tierData().batches) if (!b.id || !b.domain || !Array.isArray(b.lessons) || !b.drawnBy) err(`${tiers.BATCH_DIR}/${b._file}`, "batch record needs id, domain, lessons and drawnBy");
+    const inReview = demos.filter((d) => d.meta?.status === "review");
+    const stopped = inReview.filter((d) => tierEvidence(d.meta).length);
+    if (!AMD017_EVIDENCE_ENFORCED && stopped.length)
+      warn("tiers (AMD-017)", `side-by-side: ${stopped.length} of ${inReview.length} lesson(s) in review would be stopped by (c)-(e) once enforced: ${stopped.slice(0, 6).map((d) => d.meta.slug).join(", ")}${stopped.length > 6 ? ", …" : ""}`);
+  }
   for (const w of warnings) console.log(color.yellow("warn  ") + w);
   for (const e of errors) console.log(color.red("error ") + e);
   console.log(
@@ -700,6 +913,9 @@ function cmdPublish(slug) {
     return;
   }
   const fails = launchGates(d.meta);
+  const wc = walkCover(d.meta);
+  console.log(color.dim(`tier ${wc.tier ?? "?"} (${wc.why ?? ""}); learner walk: ${wc.covered ? `covered by batch ${wc.batch}` : wc.reason}`));
+  if (!AMD017_EVIDENCE_ENFORCED) for (const w of tierEvidence(d.meta)) console.log(color.yellow(`  AMD-017 side-by-side (not yet enforced): ${w}`));
   if (fails.length) {
     console.log(color.red(`${slug} cannot publish:`));
     for (const f of fails) console.log(`  - ${f}`);
@@ -834,6 +1050,7 @@ const commands = {
   claims: () => cmdClaims(args),
   "new-demo": () => cmdNewDemo(args[0], args[1]),
   publish: () => cmdPublish(args[0]),
+  sample: () => cmdSample(args),
   ritual: () => cmdRitual(args[0]),
   rituals: () => cmdRituals(),
   board: () => cmdBoard(args),
@@ -841,6 +1058,6 @@ const commands = {
   "qa-record": () => cmdQaRecord(),
 };
 if (!cmd || !commands[cmd]) {
-  console.log(fs.readFileSync(fileURLToPath(import.meta.url), "utf8").split("\n").slice(1, 19).map((l) => l.replace(/^\/\/ ?/, "")).join("\n"));
+  console.log(fs.readFileSync(fileURLToPath(import.meta.url), "utf8").split("\n").slice(1, 20).map((l) => l.replace(/^\/\/ ?/, "")).join("\n"));
   process.exitCode = cmd ? 1 : 0;
 } else commands[cmd]();
