@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0805",
+  "title": "Score one probability forecast",
+  "hook": "Two stated cases: explore the squared probability error on one outcome.",
+  "domain": "probability",
+  "concept": "cp-source-0805",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the squared probability error on one outcome affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Loss, regardless of the stated inputs.",
+  "objective": "Compare the squared probability error on one outcome in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0805.predict",
+      "text": "Binary toy outcome Y 1 was forecast with P 0.5. What squared probability error results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0805/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #805. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0805.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0805/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #805. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0805.reveal.0",
+      "text": "The retained results are P=0.5; Loss=0.25 and P=0.9; Loss=0.01.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0805/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #805. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0805.reveal.1",
+      "text": "A Brier score evaluates a probability against an outcome. Repeated forecasts are needed to assess calibration. This comparison isolates the squared probability error on one outcome.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0805/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #805. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0805.case.0.witness",
+      "text": "P=0.5; Loss=0.25",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0805/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #805. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0805.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Y\",1],[\"P\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0805/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #805. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0805.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Loss\",\"value\":0.25}]},\"metrics\":[{\"label\":\"Loss\",\"value\":\"0.25\"},{\"label\":\"P\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0805/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #805. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0805.case.1.witness",
+      "text": "P=0.9; Loss=0.01",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0805/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #805. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0805.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Y\",1],[\"P\",0.9]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0805/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #805. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0805.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Loss\",\"value\":0.009999999999999995}]},\"metrics\":[{\"label\":\"Loss\",\"value\":\"0.01\"},{\"label\":\"P\",\"value\":\"0.9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0805/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #805. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0805.recall",
+      "text": "Binary toy outcome Y 1 was forecast with P 0.4. What squared probability error results? Answer 0.36.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0805/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #805. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Binary toy outcome Y 1 was forecast with P 0.4. What squared probability error results?",
+    "options": [
+      "0.216",
+      "0.504",
+      "0.36"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Loss 0.36 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0805",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-805"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 805,
+    "sourceSection": "41. Uncertainty quantification, calibration & conformal prediction",
+    "sourceEntryOriginal": "- **805. Brier score** \\[Measure\\]: score your probability forecasts; hedging everything at 50% scores poorly.",
+    "modelBoundary": "the squared probability error on one outcome",
+    "recallInputs": [
+      1,
+      0.4
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0781",
+  "title": "A Gaussian coordinate is denoised",
+  "hook": "Two stated cases: explore the retained signal strength in one conditional estimate.",
+  "domain": "probability",
+  "concept": "cp-source-0781",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the retained signal strength in one conditional estimate affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Mean, regardless of the stated inputs.",
+  "objective": "Compare the retained signal strength in one conditional estimate in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0781.predict",
+      "text": "With a standard-normal prior and toy noised observation 2=sqrt(Alpha 0.2)X+sqrt(1-Alpha)ε, what posterior mean of X results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0781/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #781. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0781.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0781/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #781. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0781.reveal.0",
+      "text": "The retained results are Alpha=0.2; Mean=0.894 and Alpha=0.8; Mean=1.789.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0781/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #781. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0781.reveal.1",
+      "text": "Gaussian conditioning gives a denoised mean and remaining variance. A posterior mean is not a generated image or a reverse-sampling trajectory. This comparison isolates the retained signal strength in one conditional estimate.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0781/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #781. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0781.case.0.witness",
+      "text": "Alpha=0.2; Mean=0.894",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0781/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #781. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0781.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Noisy\",2],[\"Alpha\",0.2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0781/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #781. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0781.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Mean\",\"value\":0.8944271909999159},{\"label\":\"Variance\",\"value\":0.8}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"0.894\"},{\"label\":\"Alpha\",\"value\":\"0.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0781/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #781. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0781.case.1.witness",
+      "text": "Alpha=0.8; Mean=1.789",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0781/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #781. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0781.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Noisy\",2],[\"Alpha\",0.8]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0781/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #781. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0781.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Mean\",\"value\":1.7888543819998317},{\"label\":\"Variance\",\"value\":0.19999999999999996}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"1.789\"},{\"label\":\"Alpha\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0781/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #781. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0781.recall",
+      "text": "With a standard-normal prior and toy noised observation 3=sqrt(Alpha 0.2)X+sqrt(1-Alpha)ε, what posterior mean of X results? Answer 1.342.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0781/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #781. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "With a standard-normal prior and toy noised observation 3=sqrt(Alpha 0.2)X+sqrt(1-Alpha)ε, what posterior mean of X results?",
+    "options": [
+      "0.805",
+      "1.878",
+      "1.342"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Mean 1.342 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0781",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-781"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 781,
+    "sourceSection": "40. Probabilistic deep learning & generative models",
+    "sourceEntryOriginal": "- **781. From noise to image** \\[Slider\\]: scrub through a diffusion model's steps as a picture emerges from static.",
+    "modelBoundary": "the retained signal strength in one conditional estimate",
+    "recallInputs": [
+      3,
+      0.2
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

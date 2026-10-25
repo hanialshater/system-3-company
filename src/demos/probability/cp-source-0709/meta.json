@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0709",
+  "title": "A reorder action has continuation",
+  "hook": "Two stated cases for a reorder action has continuation.",
+  "domain": "probability",
+  "concept": "cp-source-0709",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the supplied inventory continuation before solving a stock policy affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Value, regardless of the stated inputs.",
+  "objective": "Compare the supplied inventory continuation before solving a stock policy in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0709.predict",
+      "text": "A toy seller can take Offer 5 or discounted continuation 8×Gamma 0.9. What is the better expected value?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0709/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #709. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0709.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0709/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #709. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0709.reveal.0",
+      "text": "The retained results are Continuation=8; Value=7.2 and Continuation=3; Value=5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0709/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #709. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0709.reveal.1",
+      "text": "Stopping compares the offer with a supplied continuation value. Computing that continuation is a separate dynamic-programming problem. This comparison isolates the supplied inventory continuation before solving a stock policy.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0709/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #709. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0709.case.0.witness",
+      "text": "Continuation=8; Value=7.2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0709/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #709. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0709.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Offer\",5],[\"Continuation\",8],[\"Gamma\",0.9]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0709/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #709. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0709.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Value\",\"value\":7.2}]},\"metrics\":[{\"label\":\"Value\",\"value\":\"7.2\"},{\"label\":\"Continuation\",\"value\":\"8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0709/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #709. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0709.case.1.witness",
+      "text": "Continuation=3; Value=5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0709/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #709. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0709.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Offer\",5],[\"Continuation\",3],[\"Gamma\",0.9]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0709/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #709. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0709.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Value\",\"value\":5}]},\"metrics\":[{\"label\":\"Value\",\"value\":\"5\"},{\"label\":\"Continuation\",\"value\":\"3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0709/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #709. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0709.recall",
+      "text": "A toy seller can take Offer 5 or discounted continuation 9×Gamma 0.9. What is the better expected value? Answer 8.1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0709/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #709. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy seller can take Offer 5 or discounted continuation 9×Gamma 0.9. What is the better expected value?",
+    "options": [
+      "4.86",
+      "11.34",
+      "8.1"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Value 8.1 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0709",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-709"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 709,
+    "sourceSection": "36. MDPs & reinforcement learning",
+    "sourceEntryOriginal": "- **709. Inventory control** \\[Slider\\]: when to reorder stock under random demand; the policy forms an (s, S) rule.",
+    "modelBoundary": "the supplied inventory continuation before solving a stock policy",
+    "recallInputs": [
+      5,
+      9,
+      0.9
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

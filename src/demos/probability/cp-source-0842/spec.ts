@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0842", "title": "Sellers change outcomes across arms", "op": "spillover", "labels": ["Direct", "Spill", "TreatedNeighbors"], "outputs": ["Total"], "a": [0.0, 2.0, 0.0], "b": [0.0, 2.0, 5.0], "question": "A toy unit gets direct effect 0 plus Spill 2 per treated neighbor. With 0 treated neighbors, what total effect results?", "questionTemplate": "A toy unit gets direct effect {Direct} plus Spill {Spill} per treated neighbor. With {TreatedNeighbors} treated neighbors, what total effect results?", "explain": "With interference, exposure includes neighbors’ assignments. A single treatment indicator is insufficient to define every unit’s outcome.", "lens": "the cross-arm behavioral spillover in a stipulated seller model", "kind": "graph", "answerPosition": 2, "graph": "spillover"};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

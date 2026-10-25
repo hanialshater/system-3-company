@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0765",
+  "title": "A damped message iterates",
+  "hook": "Two stated cases for a damped message iterates.",
+  "domain": "probability",
+  "concept": "cp-source-0765",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How a fixed-point damping recurrence rather than exact loopy inference affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Estimate, regardless of the stated inputs.",
+  "objective": "Compare a fixed-point damping recurrence rather than exact loopy inference in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0765.predict",
+      "text": "Starting at 0, move fraction 0.2 of the remaining distance toward 1 for 5 steps. Where does the estimate finish?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0765/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #765. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0765.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0765/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #765. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0765.reveal.0",
+      "text": "The retained results are Fraction=0.2; Estimate=0.672 and Fraction=0.8; Estimate=1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0765/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #765. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0765.reveal.1",
+      "text": "Each adjustment leaves a fraction of the original distance. Stopping after a small number of steps preserves dependence on the start. This comparison isolates a fixed-point damping recurrence rather than exact loopy inference.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0765/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #765. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0765.case.0.witness",
+      "text": "Fraction=0.2; Estimate=0.672",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0765/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #765. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0765.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Start\",0],[\"Target\",1],[\"Steps\",5],[\"Fraction\",0.2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0765/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #765. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0765.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":0},{\"label\":\"1\",\"value\":0.19999999999999996},{\"label\":\"2\",\"value\":0.3599999999999999},{\"label\":\"3\",\"value\":0.4879999999999999},{\"label\":\"4\",\"value\":0.5903999999999999},{\"label\":\"5\",\"value\":0.6723199999999999}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"0.672\"},{\"label\":\"Fraction\",\"value\":\"0.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0765/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #765. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0765.case.1.witness",
+      "text": "Fraction=0.8; Estimate=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0765/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #765. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0765.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Start\",0],[\"Target\",1],[\"Steps\",5],[\"Fraction\",0.8]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0765/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #765. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0765.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":0},{\"label\":\"1\",\"value\":0.8},{\"label\":\"2\",\"value\":0.96},{\"label\":\"3\",\"value\":0.992},{\"label\":\"4\",\"value\":0.9984},{\"label\":\"5\",\"value\":0.99968}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"1\"},{\"label\":\"Fraction\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0765/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #765. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0765.recall",
+      "text": "Starting at 1, move fraction 0.2 of the remaining distance toward 1 for 5 steps. Where does the estimate finish? Answer 1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0765/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #765. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Starting at 1, move fraction 0.2 of the remaining distance toward 1 for 5 steps. Where does the estimate finish?",
+    "options": [
+      "0.6",
+      "1",
+      "1.4"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Estimate 1 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0765",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-765"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 765,
+    "sourceSection": "39. Graphical models & belief propagation",
+    "sourceEntryOriginal": "- **765. Loopy BP** \\[Slider\\]: run the same messages on a grid with loops; it often still converges to good answers.",
+    "modelBoundary": "a fixed-point damping recurrence rather than exact loopy inference",
+    "recallInputs": [
+      1,
+      1,
+      5,
+      0.2
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

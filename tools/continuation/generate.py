@@ -5,6 +5,7 @@ import behavioral_extra
 import probability_ops
 import inference_ops
 import process_ops
+import sequential_ops
 batch=sys.argv[1];domain=sys.argv[2];curation=Path(sys.argv[3])
 root=Path.cwd();rows=list(csv.DictReader(curation.open(),delimiter='\t'))
 remaining=json.load(open(f'company/domains/briefs/continuation/{domain}-remaining.json'))

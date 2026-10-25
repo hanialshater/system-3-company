@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0831",
+  "title": "Pairing removes shared variation",
+  "hook": "Two stated cases: explore the covariance term in a paired mean-difference standard error.",
+  "domain": "probability",
+  "concept": "cp-source-0831",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the covariance term in a paired mean-difference standard error affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines SE, regardless of the stated inputs.",
+  "objective": "Compare the covariance term in a paired mean-difference standard error in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0831.predict",
+      "text": "Paired toy measurements have SDs 2,2, correlation 0, N 20 pairs. What standard error of the mean difference results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0831/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #831. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0831.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0831/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #831. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0831.reveal.0",
+      "text": "The retained results are Rho=0; SE=0.632 and Rho=0.8; SE=0.283.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0831/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #831. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0831.reveal.1",
+      "text": "Positive within-pair covariance can remove noise from a difference. Carryover, ordering and pairing validity need separate design checks. This comparison isolates the covariance term in a paired mean-difference standard error.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0831/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #831. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0831.case.0.witness",
+      "text": "Rho=0; SE=0.632",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0831/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #831. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0831.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"SDA\",2],[\"SDB\",2],[\"Rho\",0],[\"N\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0831/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #831. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0831.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"SE\",\"value\":0.6324555320336759}]},\"metrics\":[{\"label\":\"SE\",\"value\":\"0.632\"},{\"label\":\"Rho\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0831/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #831. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0831.case.1.witness",
+      "text": "Rho=0.8; SE=0.283",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0831/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #831. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0831.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"SDA\",2],[\"SDB\",2],[\"Rho\",0.8],[\"N\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0831/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #831. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0831.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"SE\",\"value\":0.282842712474619}]},\"metrics\":[{\"label\":\"SE\",\"value\":\"0.283\"},{\"label\":\"Rho\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0831/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #831. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0831.recall",
+      "text": "Paired toy measurements have SDs 3,2, correlation 0, N 20 pairs. What standard error of the mean difference results? Answer 0.806.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0831/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #831. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Paired toy measurements have SDs 3,2, correlation 0, N 20 pairs. What standard error of the mean difference results?",
+    "options": [
+      "0.484",
+      "0.806",
+      "1.129"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives SE 0.806 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0831",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-831"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 831,
+    "sourceSection": "42. Sequential testing & Bayesian experimental design",
+    "sourceEntryOriginal": "- **831. Paired designs** \\[Split\\]: test each person under both conditions and noise drops sharply.",
+    "modelBoundary": "the covariance term in a paired mean-difference standard error",
+    "recallInputs": [
+      3,
+      2,
+      0,
+      20
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0752",
+  "title": "Past safety updates a chosen model",
+  "hook": "Two stated cases for past safety updates a chosen model.",
+  "domain": "probability",
+  "concept": "cp-source-0752",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How posterior confidence conditional on a stationary Bernoulli model affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Mean, regardless of the stated inputs.",
+  "objective": "Compare posterior confidence conditional on a stationary Bernoulli model in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0752.predict",
+      "text": "A toy Beta(1,1) prior sees 100 wins and 0 losses. What posterior mean results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0752/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #752. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0752.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0752/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #752. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0752.reveal.0",
+      "text": "The retained results are Wins=100; Mean=0.99 and Wins=1,000; Mean=0.999.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0752/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #752. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0752.reveal.1",
+      "text": "Posterior parameters add successes and failures separately. Sampling from this posterior is an additional Thompson-sampling step. This comparison isolates posterior confidence conditional on a stationary Bernoulli model.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0752/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #752. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0752.case.0.witness",
+      "text": "Wins=100; Mean=0.99",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0752/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #752. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0752.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Alpha\",1],[\"Beta\",1],[\"Wins\",100],[\"Losses\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0752/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #752. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0752.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Mean\",\"value\":0.9901960784313726},{\"label\":\"Variance\",\"value\":0.00009425053097576362}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"0.99\"},{\"label\":\"Wins\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0752/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #752. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0752.case.1.witness",
+      "text": "Wins=1,000; Mean=0.999",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0752/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #752. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0752.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Alpha\",1],[\"Beta\",1],[\"Wins\",1000],[\"Losses\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0752/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #752. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0752.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Mean\",\"value\":0.999001996007984},{\"label\":\"Variance\",\"value\":9.940259023408656e-7}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"0.999\"},{\"label\":\"Wins\",\"value\":\"1,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0752/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #752. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0752.recall",
+      "text": "A toy Beta(1,2) prior sees 100 wins and 0 losses. What posterior mean results? Answer 0.981.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0752/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #752. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy Beta(1,2) prior sees 100 wins and 0 losses. What posterior mean results?",
+    "options": [
+      "0.981",
+      "0.588",
+      "1.373"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Mean 0.981 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0752",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-752"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 752,
+    "sourceSection": "38. Extreme values, heavy tails & risk",
+    "sourceEntryOriginal": "- **752. The turkey** \\[Gotcha\\]: fed for 1,000 days, the turkey's confidence peaks the day before Thanksgiving.",
+    "modelBoundary": "posterior confidence conditional on a stationary Bernoulli model",
+    "recallInputs": [
+      1,
+      2,
+      100,
+      0
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

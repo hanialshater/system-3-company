@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0755",
+  "title": "A wave threshold probes the tail",
+  "hook": "Two stated cases: explore an illustrative tail threshold without a historical estimate.",
+  "domain": "probability",
+  "concept": "cp-source-0755",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How an illustrative tail threshold without a historical estimate affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Tail, regardless of the stated inputs.",
+  "objective": "Compare an illustrative tail threshold without a historical estimate in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0755.predict",
+      "text": "A toy Pareto distribution has Minimum 1, Shape 3. What probability exceeds Threshold 10?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0755/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #755. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0755.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0755/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #755. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0755.reveal.0",
+      "text": "The retained results are Threshold=10; Tail=0.001 and Threshold=26; Tail=5.69e-5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0755/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #755. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0755.reveal.1",
+      "text": "A tail exponent controls how rapidly large-event probability falls. The stipulated distribution is not evidence that a real dataset is Pareto. This comparison isolates an illustrative tail threshold without a historical estimate.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0755/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #755. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0755.case.0.witness",
+      "text": "Threshold=10; Tail=0.001",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0755/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #755. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0755.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Minimum\",1],[\"Shape\",3],[\"Threshold\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0755/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #755. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0755.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":1,\"y\":1},{\"x\":1.7916666666666665,\"y\":0.17387148301407424},{\"x\":2.583333333333333,\"y\":0.05800409519653588},{\"x\":3.375,\"y\":0.026012294873748915},{\"x\":4.166666666666666,\"y\":0.013824000000000008},{\"x\":4.958333333333334,\"y\":0.008203380215160703},{\"x\":5.75,\"y\":0.0052601298594559046},{\"x\":6.541666666666667,\"y\":0.003572191789282029},{\"x\":7.333333333333333,\"y\":0.002535687453042826},{\"x\":8.125,\"y\":0.0018643604915794267},{\"x\":8.916666666666668,\"y\":0.0014105627312673917},{\"x\":9.708333333333334,\"y\":0.0010928636022583633},{\"x\":10.5,\"y\":0.0008638375985314759},{\"x\":11.291666666666666,\"y\":0.0006945857233793266},{\"x\":12.083333333333334,\"y\":0.0005668129074582804},{\"x\":12.875,\"y\":0.0004685525295888176},{\"x\":13.666666666666666,\"y\":0.00039175287648176915},{\"x\":14.458333333333334,\"y\":0.0003308607887674293},{\"x\":15.25,\"y\":0.0002819619263286355},{\"x\":16.041666666666664,\"y\":0.0002422431675256773},{\"x\":16.833333333333336,\"y\":0.0002096474719523711},{\"x\":17.625,\"y\":0.00018264703353749133},{\"x\":18.416666666666668,\"y\":0.00016009099987483621},{\"x\":19.208333333333332,\"y\":0.00014110127853538345},{\"x\":20,\"y\":0.00012500000000000003}],\"xLabel\":\"Threshold\",\"yLabel\":\"Tail\"},\"metrics\":[{\"label\":\"Tail\",\"value\":\"0.001\"},{\"label\":\"Threshold\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0755/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #755. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0755.case.1.witness",
+      "text": "Threshold=26; Tail=5.69e-5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0755/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #755. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0755.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Minimum\",1],[\"Shape\",3],[\"Threshold\",26]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0755/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #755. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0755.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":1,\"y\":1},{\"x\":1.7916666666666665,\"y\":0.17387148301407424},{\"x\":2.583333333333333,\"y\":0.05800409519653588},{\"x\":3.375,\"y\":0.026012294873748915},{\"x\":4.166666666666666,\"y\":0.013824000000000008},{\"x\":4.958333333333334,\"y\":0.008203380215160703},{\"x\":5.75,\"y\":0.0052601298594559046},{\"x\":6.541666666666667,\"y\":0.003572191789282029},{\"x\":7.333333333333333,\"y\":0.002535687453042826},{\"x\":8.125,\"y\":0.0018643604915794267},{\"x\":8.916666666666668,\"y\":0.0014105627312673917},{\"x\":9.708333333333334,\"y\":0.0010928636022583633},{\"x\":10.5,\"y\":0.0008638375985314759},{\"x\":11.291666666666666,\"y\":0.0006945857233793266},{\"x\":12.083333333333334,\"y\":0.0005668129074582804},{\"x\":12.875,\"y\":0.0004685525295888176},{\"x\":13.666666666666666,\"y\":0.00039175287648176915},{\"x\":14.458333333333334,\"y\":0.0003308607887674293},{\"x\":15.25,\"y\":0.0002819619263286355},{\"x\":16.041666666666664,\"y\":0.0002422431675256773},{\"x\":16.833333333333336,\"y\":0.0002096474719523711},{\"x\":17.625,\"y\":0.00018264703353749133},{\"x\":18.416666666666668,\"y\":0.00016009099987483621},{\"x\":19.208333333333332,\"y\":0.00014110127853538345},{\"x\":20,\"y\":0.00012500000000000003}],\"xLabel\":\"Threshold\",\"yLabel\":\"Tail\"},\"metrics\":[{\"label\":\"Tail\",\"value\":\"5.69e-5\"},{\"label\":\"Threshold\",\"value\":\"26\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0755/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #755. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0755.recall",
+      "text": "A toy Pareto distribution has Minimum 2, Shape 3. What probability exceeds Threshold 10? Answer 0.008.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0755/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #755. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy Pareto distribution has Minimum 2, Shape 3. What probability exceeds Threshold 10?",
+    "options": [
+      "0.008",
+      "-0.092",
+      "0.108"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Tail 0.008 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0755",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-755"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 755,
+    "sourceSection": "38. Extreme values, heavy tails & risk",
+    "sourceEntryOriginal": "- **755. Rogue waves** \\[Story\\]: the 1995 Draupner wave in the North Sea, about 26 m high, confirmed waves once thought mythical.",
+    "modelBoundary": "an illustrative tail threshold without a historical estimate",
+    "recallInputs": [
+      2,
+      3,
+      10
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0819",
+  "title": "A track ensemble has growing spread",
+  "hook": "Two stated cases: explore the stipulated forecast spread rather than a hurricane model.",
+  "domain": "probability",
+  "concept": "cp-source-0819",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the stipulated forecast spread rather than a hurricane model affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines HalfWidth, regardless of the stated inputs.",
+  "objective": "Compare the stipulated forecast spread rather than a hurricane model in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0819.predict",
+      "text": "Known toy SD 1, N 20, Z multiplier 2. Prediction 1=1 targets a new observation, 0 the mean. What normal interval half-width results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0819/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #819. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0819.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0819/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #819. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0819.reveal.0",
+      "text": "The retained results are SD=1; HalfWidth=2.049 and SD=4; HalfWidth=8.198.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0819/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #819. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0819.reveal.1",
+      "text": "An individual prediction includes irreducible observation noise. These normal intervals assume a known variance and independent data. This comparison isolates the stipulated forecast spread rather than a hurricane model.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0819/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #819. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0819.case.0.witness",
+      "text": "SD=1; HalfWidth=2.049",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0819/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #819. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0819.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"SD\",1],[\"N\",20],[\"Z\",2],[\"Prediction\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0819/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #819. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0819.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"HalfWidth\",\"value\":2.04939015319192}]},\"metrics\":[{\"label\":\"HalfWidth\",\"value\":\"2.049\"},{\"label\":\"SD\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0819/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #819. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0819.case.1.witness",
+      "text": "SD=4; HalfWidth=8.198",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0819/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #819. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0819.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"SD\",4],[\"N\",20],[\"Z\",2],[\"Prediction\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0819/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #819. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0819.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"HalfWidth\",\"value\":8.19756061276768}]},\"metrics\":[{\"label\":\"HalfWidth\",\"value\":\"8.198\"},{\"label\":\"SD\",\"value\":\"4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0819/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #819. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0819.recall",
+      "text": "Known toy SD 2, N 20, Z multiplier 2. Prediction 1=1 targets a new observation, 0 the mean. What normal interval half-width results? Answer 4.099.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0819/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #819. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Known toy SD 2, N 20, Z multiplier 2. Prediction 1=1 targets a new observation, 0 the mean. What normal interval half-width results?",
+    "options": [
+      "2.459",
+      "4.099",
+      "5.738"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives HalfWidth 4.099 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0819",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-819"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 819,
+    "sourceSection": "41. Uncertainty quantification, calibration & conformal prediction",
+    "sourceEntryOriginal": "- **819. Spaghetti plots** \\[Slider\\]: a hurricane's ensemble of possible tracks fans out over days.",
+    "modelBoundary": "the stipulated forecast spread rather than a hurricane model",
+    "recallInputs": [
+      2,
+      20,
+      2,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

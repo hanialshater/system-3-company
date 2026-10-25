@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0766", "title": "A pixel follows its neighbors", "op": "ising", "labels": ["Beta", "J", "Neighbors", "Field"], "outputs": ["UpProbability"], "a": [1.0, 0.5, 4.0, 0.0], "b": [1.0, 0.5, -4.0, 0.0], "question": "A toy Ising-site conditional uses inverse temperature Beta 1, coupling J 0.5, neighbor-spin sum 4, and external Field 0. What is P(spin=+1)?", "questionTemplate": "A toy Ising-site conditional uses inverse temperature Beta {Beta}, coupling J {J}, neighbor-spin sum {Neighbors}, and external Field {Field}. What is P(spin=+1)?", "explain": "The local conditional favors agreement when coupling is positive. One site’s probability does not demonstrate global equilibrium or critical behavior.", "lens": "a local binary image-label conditional", "kind": "grid", "answerPosition": 1};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

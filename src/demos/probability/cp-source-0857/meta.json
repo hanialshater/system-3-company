@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0857",
+  "title": "A test draws on shared inventory",
+  "hook": "Two stated cases: explore the depletion rate of a common stock buffer.",
+  "domain": "probability",
+  "concept": "cp-source-0857",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the depletion rate of a common stock buffer affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Stock, regardless of the stated inputs.",
+  "objective": "Compare the depletion rate of a common stock buffer in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0857.predict",
+      "text": "A toy stock starts at 100, receives 0 per time and loses 10 per time over 5. Reflected at zero, what remains?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0857/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #857. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0857.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0857/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #857. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0857.reveal.0",
+      "text": "The retained results are Out=10; Stock=50 and Out=20; Stock=0.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0857/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #857. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0857.reveal.1",
+      "text": "Inflows and outflows jointly determine the buffer. This fluid inventory model omits randomness and any feedback after depletion. This comparison isolates the depletion rate of a common stock buffer.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0857/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #857. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0857.case.0.witness",
+      "text": "Out=10; Stock=50",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0857/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #857. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0857.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Initial\",100],[\"In\",0],[\"Out\",10],[\"Time\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0857/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #857. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0857.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"Input\",\"value\":100},{\"label\":\"Result\",\"value\":50}]},\"metrics\":[{\"label\":\"Stock\",\"value\":\"50\"},{\"label\":\"Out\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0857/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #857. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0857.case.1.witness",
+      "text": "Out=20; Stock=0",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0857/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #857. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0857.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Initial\",100],[\"In\",0],[\"Out\",20],[\"Time\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0857/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #857. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0857.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"Input\",\"value\":100},{\"label\":\"Result\",\"value\":0}]},\"metrics\":[{\"label\":\"Stock\",\"value\":\"0\"},{\"label\":\"Out\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0857/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #857. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0857.recall",
+      "text": "A toy stock starts at 101, receives 0 per time and loses 10 per time over 5. Reflected at zero, what remains? Answer 51.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0857/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #857. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy stock starts at 101, receives 0 per time and loses 10 per time over 5. Reflected at zero, what remains?",
+    "options": [
+      "51",
+      "30.6",
+      "71.4"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Stock 51 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0857",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-857"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 857,
+    "sourceSection": "43. Interference, networks & marketplace experiments",
+    "sourceEntryOriginal": "- **857. Shared inventory** \\[Slider\\]: a pricing test sells out stock that control customers also needed.",
+    "modelBoundary": "the depletion rate of a common stock buffer",
+    "recallInputs": [
+      101,
+      0,
+      10,
+      5
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

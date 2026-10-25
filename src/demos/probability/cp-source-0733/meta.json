@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0733",
+  "title": "A nonfailing fraction leaves a plateau",
+  "hook": "Two stated cases: explore the stipulated cure component of a survival mixture.",
+  "domain": "probability",
+  "concept": "cp-source-0733",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the stipulated cure component of a survival mixture affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Survival, regardless of the stated inputs.",
+  "objective": "Compare the stipulated cure component of a survival mixture in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0733.predict",
+      "text": "Toy cure Fraction 0 never fails; others have exponential Rate 0.3. What survival remains at Time 10?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0733/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #733. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0733.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0733/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #733. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0733.reveal.0",
+      "text": "The retained results are Fraction=0; Survival=0.05 and Fraction=0.4; Survival=0.43.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0733/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #733. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0733.reveal.1",
+      "text": "A mixture with a nonfailing component has a positive survival plateau. A finite observation window cannot by itself prove a cure fraction. This comparison isolates the stipulated cure component of a survival mixture.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0733/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #733. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0733.case.0.witness",
+      "text": "Fraction=0; Survival=0.05",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0733/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #733. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0733.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Fraction\",0],[\"Rate\",0.3],[\"Time\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0733/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #733. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0733.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":1},{\"x\":0.5,\"y\":0.8607079764250578},{\"x\":1,\"y\":0.7408182206817179},{\"x\":1.5,\"y\":0.6376281516217733},{\"x\":2,\"y\":0.5488116360940265},{\"x\":2.5,\"y\":0.4723665527410147},{\"x\":3,\"y\":0.40656965974059917},{\"x\":3.5,\"y\":0.3499377491111553},{\"x\":4,\"y\":0.3011942119122021},{\"x\":4.5,\"y\":0.25924026064589156},{\"x\":5,\"y\":0.22313016014842982},{\"x\":5.5,\"y\":0.19204990862075413},{\"x\":6,\"y\":0.16529888822158656},{\"x\":6.5,\"y\":0.1422740715865136},{\"x\":7,\"y\":0.1224564282529819},{\"x\":7.5,\"y\":0.10539922456186433},{\"x\":8,\"y\":0.09071795328941251},{\"x\":8.5,\"y\":0.07808166600115317},{\"x\":9,\"y\":0.06720551273974978},{\"x\":9.5,\"y\":0.057844320874838456},{\"x\":10,\"y\":0.049787068367863944},{\"x\":10.5,\"y\":0.04285212686704018},{\"x\":11,\"y\":0.036883167401240015},{\"x\":11.5,\"y\":0.03174563637806795},{\"x\":12,\"y\":0.027323722447292573}],\"xLabel\":\"Time\",\"yLabel\":\"Survival\"},\"metrics\":[{\"label\":\"Survival\",\"value\":\"0.05\"},{\"label\":\"Fraction\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0733/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #733. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0733.case.1.witness",
+      "text": "Fraction=0.4; Survival=0.43",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0733/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #733. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0733.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Fraction\",0.4],[\"Rate\",0.3],[\"Time\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0733/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #733. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0733.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":1},{\"x\":0.5,\"y\":0.9164247858550347},{\"x\":1,\"y\":0.8444909324090307},{\"x\":1.5,\"y\":0.7825768909730639},{\"x\":2,\"y\":0.7292869816564159},{\"x\":2.5,\"y\":0.6834199316446088},{\"x\":3,\"y\":0.6439417958443595},{\"x\":3.5,\"y\":0.6099626494666932},{\"x\":4,\"y\":0.5807165271473212},{\"x\":4.5,\"y\":0.555544156387535},{\"x\":5,\"y\":0.5338780960890579},{\"x\":5.5,\"y\":0.5152299451724525},{\"x\":6,\"y\":0.49917933293295197},{\"x\":6.5,\"y\":0.48536444295190817},{\"x\":7,\"y\":0.4734738569517892},{\"x\":7.5,\"y\":0.46323953473711865},{\"x\":8,\"y\":0.4544307719736475},{\"x\":8.5,\"y\":0.4468489996006919},{\"x\":9,\"y\":0.4403233076438499},{\"x\":9.5,\"y\":0.43470659252490307},{\"x\":10,\"y\":0.4298722410207184},{\"x\":10.5,\"y\":0.42571127612022414},{\"x\":11,\"y\":0.42212990044074405},{\"x\":11.5,\"y\":0.4190473818268408},{\"x\":12,\"y\":0.41639423346837556}],\"xLabel\":\"Time\",\"yLabel\":\"Survival\"},\"metrics\":[{\"label\":\"Survival\",\"value\":\"0.43\"},{\"label\":\"Fraction\",\"value\":\"0.4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0733/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #733. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0733.recall",
+      "text": "Toy cure Fraction 0 never fails; others have exponential Rate 0.4. What survival remains at Time 10? Answer 0.018.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0733/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #733. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy cure Fraction 0 never fails; others have exponential Rate 0.4. What survival remains at Time 10?",
+    "options": [
+      "-0.082",
+      "0.118",
+      "0.018"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Survival 0.018 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0733",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-733"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 733,
+    "sourceSection": "37. Survival analysis & reliability",
+    "sourceEntryOriginal": "- **733. Some never churn** \\[Slider\\]: a cure model lets the survival curve level off above zero.",
+    "modelBoundary": "the stipulated cure component of a survival mixture",
+    "recallInputs": [
+      0,
+      0.4,
+      10
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

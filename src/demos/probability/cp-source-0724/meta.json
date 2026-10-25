@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0724",
+  "title": "Early failures and later wear",
+  "hook": "Two stated cases: explore a changed late hazard segment in a bounded lifetime model.",
+  "domain": "probability",
+  "concept": "cp-source-0724",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How a changed late hazard segment in a bounded lifetime model affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Survival, regardless of the stated inputs.",
+  "objective": "Compare a changed late hazard segment in a bounded lifetime model in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0724.predict",
+      "text": "A toy lifetime has hazard Rate1 0.5 for Time1 1, then Rate2 0.1 for Time2 4. What survival probability results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0724/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #724. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0724.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0724/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #724. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0724.reveal.0",
+      "text": "The retained results are Rate2=0.1; Survival=0.407 and Rate2=0.4; Survival=0.122.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0724/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #724. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0724.reveal.1",
+      "text": "Survival is the exponential of negative cumulative hazard. These stipulated rates need not describe a real population. This comparison isolates a changed late hazard segment in a bounded lifetime model.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0724/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #724. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0724.case.0.witness",
+      "text": "Rate2=0.1; Survival=0.407",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0724/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #724. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0724.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Rate1\",0.5],[\"Time1\",1],[\"Rate2\",0.1],[\"Time2\",4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0724/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #724. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0724.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Survival\",\"value\":0.4065696597405991}]},\"metrics\":[{\"label\":\"Survival\",\"value\":\"0.407\"},{\"label\":\"Rate2\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0724/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #724. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0724.case.1.witness",
+      "text": "Rate2=0.4; Survival=0.122",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0724/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #724. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0724.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Rate1\",0.5],[\"Time1\",1],[\"Rate2\",0.4],[\"Time2\",4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0724/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #724. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0724.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Survival\",\"value\":0.1224564282529819}]},\"metrics\":[{\"label\":\"Survival\",\"value\":\"0.122\"},{\"label\":\"Rate2\",\"value\":\"0.4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0724/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #724. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0724.recall",
+      "text": "A toy lifetime has hazard Rate1 0.6 for Time1 1, then Rate2 0.1 for Time2 4. What survival probability results? Answer 0.368.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0724/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #724. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy lifetime has hazard Rate1 0.6 for Time1 1, then Rate2 0.1 for Time2 4. What survival probability results?",
+    "options": [
+      "0.221",
+      "0.515",
+      "0.368"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Survival 0.368 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0724",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-724"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 724,
+    "sourceSection": "37. Survival analysis & reliability",
+    "sourceEntryOriginal": "- **724. Bathtub curve** \\[Slider\\]: high early failures, a calm middle, then wear-out; tune each phase.",
+    "modelBoundary": "a changed late hazard segment in a bounded lifetime model",
+    "recallInputs": [
+      0.6,
+      1,
+      0.1,
+      4
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,3 +1,9 @@
+## 2026-10-25 · source batch 07 · 200 sequential and survival drafts
+
+Implemented exactly 200 probability-list entries (remaining ledger positions 600–799). These are bounded numerical illustrations with source-specific boundaries; richer simulations suggested by the source list are not asserted to be complete. All lessons remain draft, claims unverified, evidence empty. No independent review or novelty certification is claimed.
+
+Validation: 938 cross-language arithmetic/schema/state assertions and 1,044 relationship, new-recall and draft-boundary checks pass. TypeScript and browser/build checks are recorded separately when completed. Company check retains 811 errors/four warnings; full verify stops at inherited publication failures. W-2039 tracks independent review. Implementation coverage reaches 1,400 of 1,500 entries; the last 100 remain, plus the earlier recall audit W-2037. No merge or deploy.
+
 ## 2026-10-25 · source batch 06 · 200 process and inference drafts
 
 Implemented the next 200 source entries with explicit queueing, stochastic-process, sampler, pooling, GP and filtering models. 1,020 arithmetic/schema/state assertions and 434 relationship/fresh-recall checks pass. TypeScript passes with a 6 GiB Node heap after the default heap exhausted memory. Company check remains 811 errors/four warnings. This batch's build/browser validation is pending; independent approvals are not claimed.

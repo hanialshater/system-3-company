@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0791",
+  "title": "Data noise and parameter uncertainty",
+  "hook": "Two stated cases: explore the component that shrinks with sample size.",
+  "domain": "probability",
+  "concept": "cp-source-0791",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the component that shrinks with sample size affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Total, regardless of the stated inputs.",
+  "objective": "Compare the component that shrinks with sample size in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0791.predict",
+      "text": "Toy prediction variance is irreducible Noise 1+ParameterVar 4/N 1. What total variance results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0791/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #791. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0791.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0791/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #791. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0791.reveal.0",
+      "text": "The retained results are N=1; Total=5 and N=100; Total=1.04.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0791/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #791. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0791.reveal.1",
+      "text": "Only the specified parameter component shrinks with more data. The decomposition assumes this particular model. This comparison isolates the component that shrinks with sample size.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0791/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #791. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0791.case.0.witness",
+      "text": "N=1; Total=5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0791/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #791. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0791.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Noise\",1],[\"ParameterVar\",4],[\"N\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0791/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #791. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0791.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Total\",\"value\":5},{\"label\":\"Noise\",\"value\":1},{\"label\":\"Parameter\",\"value\":4}]},\"metrics\":[{\"label\":\"Total\",\"value\":\"5\"},{\"label\":\"N\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0791/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #791. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0791.case.1.witness",
+      "text": "N=100; Total=1.04",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0791/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #791. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0791.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Noise\",1],[\"ParameterVar\",4],[\"N\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0791/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #791. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0791.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Total\",\"value\":1.04},{\"label\":\"Noise\",\"value\":1},{\"label\":\"Parameter\",\"value\":0.04}]},\"metrics\":[{\"label\":\"Total\",\"value\":\"1.04\"},{\"label\":\"N\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0791/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #791. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0791.recall",
+      "text": "Toy prediction variance is irreducible Noise 2+ParameterVar 4/N 1. What total variance results? Answer 6.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0791/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #791. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy prediction variance is irreducible Noise 2+ParameterVar 4/N 1. What total variance results?",
+    "options": [
+      "6",
+      "3.6",
+      "8.4"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Total 6 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0791",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-791"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 791,
+    "sourceSection": "40. Probabilistic deep learning & generative models",
+    "sourceEntryOriginal": "- **791. Two kinds of uncertainty** \\[Split\\]: noise in the data vs ignorance from too little data; only the second shrinks with more data.",
+    "modelBoundary": "the component that shrinks with sample size",
+    "recallInputs": [
+      2,
+      4,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

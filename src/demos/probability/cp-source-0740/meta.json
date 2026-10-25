@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0740",
+  "title": "Population risk falls by selection",
+  "hook": "Two stated cases: explore the changing composition of surviving risk groups.",
+  "domain": "probability",
+  "concept": "cp-source-0740",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the changing composition of surviving risk groups affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Hazard, regardless of the stated inputs.",
+  "objective": "Compare the changing composition of surviving risk groups in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0740.predict",
+      "text": "A toy population starts with Share 0.5 at constant hazard Fast 1; others at Slow 0.1. What population hazard remains at Time 0?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0740/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #740. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0740.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0740/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #740. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0740.reveal.0",
+      "text": "The retained results are Time=0; Hazard=0.55 and Time=5; Hazard=0.11.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0740/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #740. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0740.reveal.1",
+      "text": "Higher-risk people leave the surviving population sooner. Its mixture hazard can fall while each individual hazard stays constant. This comparison isolates the changing composition of surviving risk groups.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0740/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #740. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0740.case.0.witness",
+      "text": "Time=0; Hazard=0.55",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0740/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #740. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0740.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Share\",0.5],[\"Fast\",1],[\"Slow\",0.1],[\"Time\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0740/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #740. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0740.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":0.55},{\"x\":0.3333333333333333,\"y\":0.4830017348695069},{\"x\":0.6666666666666666,\"y\":0.4189093243967841},{\"x\":1,\"y\":0.36014544763749645},{\"x\":1.3333333333333333,\"y\":0.30832769485088407},{\"x\":1.6666666666666667,\"y\":0.2641829714257207},{\"x\":2,\"y\":0.22766595841043905},{\"x\":2.3333333333333335,\"y\":0.19818713907605165},{\"x\":2.6666666666666665,\"y\":0.17485542684453012},{\"x\":3,\"y\":0.15667602045129683},{\"x\":3.3333333333333335,\"y\":0.1426832858598101},{\"x\":3.6666666666666665,\"y\":0.13201407034537255},{\"x\":4,\"y\":0.12393729421917928},{\"x\":4.333333333333333,\"y\":0.11785627516066977},{\"x\":4.666666666666667,\"y\":0.11329662852394574},{\"x\":5,\"y\":0.10988824836753387},{\"x\":5.333333333333333,\"y\":0.10734631403784392},{\"x\":5.666666666666667,\"y\":0.10545382134242572},{\"x\":6,\"y\":0.10404664584484706},{\"x\":6.333333333333333,\"y\":0.103001326576672},{\"x\":6.666666666666667,\"y\":0.10222536084097131},{\"x\":7,\"y\":0.10164964504824352},{\"x\":7.333333333333333,\"y\":0.10122266795538606},{\"x\":7.666666666666667,\"y\":0.10090609373807709},{\"x\":8,\"y\":0.10067142595045302}],\"xLabel\":\"Time\",\"yLabel\":\"Hazard\"},\"metrics\":[{\"label\":\"Hazard\",\"value\":\"0.55\"},{\"label\":\"Time\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0740/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #740. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0740.case.1.witness",
+      "text": "Time=5; Hazard=0.11",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0740/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #740. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0740.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Share\",0.5],[\"Fast\",1],[\"Slow\",0.1],[\"Time\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0740/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #740. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0740.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":0.55},{\"x\":0.3333333333333333,\"y\":0.4830017348695069},{\"x\":0.6666666666666666,\"y\":0.4189093243967841},{\"x\":1,\"y\":0.36014544763749645},{\"x\":1.3333333333333333,\"y\":0.30832769485088407},{\"x\":1.6666666666666667,\"y\":0.2641829714257207},{\"x\":2,\"y\":0.22766595841043905},{\"x\":2.3333333333333335,\"y\":0.19818713907605165},{\"x\":2.6666666666666665,\"y\":0.17485542684453012},{\"x\":3,\"y\":0.15667602045129683},{\"x\":3.3333333333333335,\"y\":0.1426832858598101},{\"x\":3.6666666666666665,\"y\":0.13201407034537255},{\"x\":4,\"y\":0.12393729421917928},{\"x\":4.333333333333333,\"y\":0.11785627516066977},{\"x\":4.666666666666667,\"y\":0.11329662852394574},{\"x\":5,\"y\":0.10988824836753387},{\"x\":5.333333333333333,\"y\":0.10734631403784392},{\"x\":5.666666666666667,\"y\":0.10545382134242572},{\"x\":6,\"y\":0.10404664584484706},{\"x\":6.333333333333333,\"y\":0.103001326576672},{\"x\":6.666666666666667,\"y\":0.10222536084097131},{\"x\":7,\"y\":0.10164964504824352},{\"x\":7.333333333333333,\"y\":0.10122266795538606},{\"x\":7.666666666666667,\"y\":0.10090609373807709},{\"x\":8,\"y\":0.10067142595045302}],\"xLabel\":\"Time\",\"yLabel\":\"Hazard\"},\"metrics\":[{\"label\":\"Hazard\",\"value\":\"0.11\"},{\"label\":\"Time\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0740/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #740. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0740.recall",
+      "text": "A toy population starts with Share 0.4 at constant hazard Fast 1; others at Slow 0.1. What population hazard remains at Time 0? Answer 0.46.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0740/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #740. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy population starts with Share 0.4 at constant hazard Fast 1; others at Slow 0.1. What population hazard remains at Time 0?",
+    "options": [
+      "0.46",
+      "0.276",
+      "0.644"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Hazard 0.46 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0740",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-740"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 740,
+    "sourceSection": "37. Survival analysis & reliability",
+    "sourceEntryOriginal": "- **740. Frailty illusion** \\[Gotcha\\]: each person's risk is constant, but the population hazard falls as frail people leave first.",
+    "modelBoundary": "the changing composition of surviving risk groups",
+    "recallInputs": [
+      0.4,
+      1,
+      0.1,
+      0
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

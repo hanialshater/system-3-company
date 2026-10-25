@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0701",
+  "title": "Back up a neighboring value",
+  "hook": "Two stated cases: explore the supplied continuation in one value-iteration backup.",
+  "domain": "probability",
+  "concept": "cp-source-0701",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the supplied continuation in one value-iteration backup affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Value, regardless of the stated inputs.",
+  "objective": "Compare the supplied continuation in one value-iteration backup in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0701.predict",
+      "text": "A toy one-step backup uses Reward 0+Gamma 0.9×Next 10. What backed-up value results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0701/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #701. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0701.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0701/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #701. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0701.reveal.0",
+      "text": "The retained results are Next=10; Value=9 and Next=8; Value=7.2.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0701/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #701. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0701.reveal.1",
+      "text": "Immediate reward and discounted continuation both matter. One backup does not solve a complete decision process. This comparison isolates the supplied continuation in one value-iteration backup.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0701/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #701. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0701.case.0.witness",
+      "text": "Next=10; Value=9",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0701/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #701. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0701.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Reward\",0],[\"Gamma\",0.9],[\"Next\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0701/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #701. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0701.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Value\",\"value\":9}]},\"metrics\":[{\"label\":\"Value\",\"value\":\"9\"},{\"label\":\"Next\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0701/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #701. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0701.case.1.witness",
+      "text": "Next=8; Value=7.2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0701/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #701. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0701.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Reward\",0],[\"Gamma\",0.9],[\"Next\",8]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0701/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #701. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0701.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Value\",\"value\":7.2}]},\"metrics\":[{\"label\":\"Value\",\"value\":\"7.2\"},{\"label\":\"Next\",\"value\":\"8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0701/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #701. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0701.recall",
+      "text": "A toy one-step backup uses Reward 1+Gamma 0.9×Next 10. What backed-up value results? Answer 10.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0701/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #701. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy one-step backup uses Reward 1+Gamma 0.9×Next 10. What backed-up value results?",
+    "options": [
+      "10",
+      "6",
+      "14"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Value 10 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0701",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-701"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 701,
+    "sourceSection": "36. MDPs & reinforcement learning",
+    "sourceEntryOriginal": "- **701. Value iteration** \\[Slider\\]: values spread outward from the goal across a gridworld like heat, sweep by sweep.",
+    "modelBoundary": "the supplied continuation in one value-iteration backup",
+    "recallInputs": [
+      1,
+      0.9,
+      10
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "slug": "cp-source-0829",
+  "title": "A dose score changes response chance",
+  "hook": "Two stated cases: explore the response probability before calculating design information.",
+  "domain": "probability",
+  "concept": "cp-source-0829",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the response probability before calculating design information affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Probability, regardless of the stated inputs.",
+  "objective": "Compare the response probability before calculating design information in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0829.predict",
+      "text": "A toy logistic model has score -2. What probability is 1/(1+exp(-score))?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0829/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #829. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0829.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0829/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #829. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0829.reveal.0",
+      "text": "The retained results are Score=-2; Probability=0.119 and Score=0; Probability=0.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0829/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #829. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0829.reveal.1",
+      "text": "The link maps an unbounded score into a bounded model probability. Calibration still requires outcome evidence. This comparison isolates the response probability before calculating design information.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0829/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #829. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0829.case.0.witness",
+      "text": "Score=-2; Probability=0.119",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0829/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #829. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0829.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Score\",-2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0829/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #829. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0829.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":-6,\"y\":0.0024726231566347743},{\"x\":-5.5,\"y\":0.004070137715896128},{\"x\":-5,\"y\":0.0066928509242848554},{\"x\":-4.5,\"y\":0.01098694263059318},{\"x\":-4,\"y\":0.01798620996209156},{\"x\":-3.5,\"y\":0.02931223075135632},{\"x\":-3,\"y\":0.04742587317756678},{\"x\":-2.5,\"y\":0.07585818002124355},{\"x\":-2,\"y\":0.11920292202211755},{\"x\":-1.5,\"y\":0.18242552380635635},{\"x\":-1,\"y\":0.2689414213699951},{\"x\":-0.5,\"y\":0.3775406687981454},{\"x\":0,\"y\":0.5},{\"x\":0.5,\"y\":0.6224593312018546},{\"x\":1,\"y\":0.7310585786300049},{\"x\":1.5,\"y\":0.8175744761936437},{\"x\":2,\"y\":0.8807970779778823},{\"x\":2.5,\"y\":0.9241418199787566},{\"x\":3,\"y\":0.9525741268224334},{\"x\":3.5,\"y\":0.9706877692486436},{\"x\":4,\"y\":0.9820137900379085},{\"x\":4.5,\"y\":0.9890130573694068},{\"x\":5,\"y\":0.9933071490757153},{\"x\":5.5,\"y\":0.995929862284104},{\"x\":6,\"y\":0.9975273768433653}],\"xLabel\":\"Score\",\"yLabel\":\"Probability\"},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.119\"},{\"label\":\"Score\",\"value\":\"-2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0829/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #829. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0829.case.1.witness",
+      "text": "Score=0; Probability=0.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0829/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #829. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0829.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Score\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0829/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #829. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0829.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":-6,\"y\":0.0024726231566347743},{\"x\":-5.5,\"y\":0.004070137715896128},{\"x\":-5,\"y\":0.0066928509242848554},{\"x\":-4.5,\"y\":0.01098694263059318},{\"x\":-4,\"y\":0.01798620996209156},{\"x\":-3.5,\"y\":0.02931223075135632},{\"x\":-3,\"y\":0.04742587317756678},{\"x\":-2.5,\"y\":0.07585818002124355},{\"x\":-2,\"y\":0.11920292202211755},{\"x\":-1.5,\"y\":0.18242552380635635},{\"x\":-1,\"y\":0.2689414213699951},{\"x\":-0.5,\"y\":0.3775406687981454},{\"x\":0,\"y\":0.5},{\"x\":0.5,\"y\":0.6224593312018546},{\"x\":1,\"y\":0.7310585786300049},{\"x\":1.5,\"y\":0.8175744761936437},{\"x\":2,\"y\":0.8807970779778823},{\"x\":2.5,\"y\":0.9241418199787566},{\"x\":3,\"y\":0.9525741268224334},{\"x\":3.5,\"y\":0.9706877692486436},{\"x\":4,\"y\":0.9820137900379085},{\"x\":4.5,\"y\":0.9890130573694068},{\"x\":5,\"y\":0.9933071490757153},{\"x\":5.5,\"y\":0.995929862284104},{\"x\":6,\"y\":0.9975273768433653}],\"xLabel\":\"Score\",\"yLabel\":\"Probability\"},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.5\"},{\"label\":\"Score\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0829/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #829. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0829.recall",
+      "text": "A toy logistic model has score -1. What probability is 1/(1+exp(-score))? Answer 0.269.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0829/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #829. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy logistic model has score -1. What probability is 1/(1+exp(-score))?",
+    "options": [
+      "0.161",
+      "0.377",
+      "0.269"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Probability 0.269 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0829",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-829"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 829,
+    "sourceSection": "42. Sequential testing & Bayesian experimental design",
+    "sourceEntryOriginal": "- **829. Dose finding** \\[Slider\\]: place doses where they best pin down a dose-response curve.",
+    "modelBoundary": "the response probability before calculating design information",
+    "recallInputs": [
+      -1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

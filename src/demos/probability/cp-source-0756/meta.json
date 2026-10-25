@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0756",
+  "title": "The top product and the long tail",
+  "hook": "Two stated cases: explore the catalog size beneath a stipulated rank-frequency rule.",
+  "domain": "probability",
+  "concept": "cp-source-0756",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the catalog size beneath a stipulated rank-frequency rule affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines FirstShare, regardless of the stated inputs.",
+  "objective": "Compare the catalog size beneath a stipulated rank-frequency rule in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0756.predict",
+      "text": "A toy vocabulary has 100 ranks with weights proportional to rank raised to -1. What share belongs to rank 1?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0756/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #756. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0756.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0756/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #756. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0756.reveal.0",
+      "text": "The retained results are Ranks=100; FirstShare=0.193 and Ranks=1,000; FirstShare=0.134.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0756/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #756. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0756.reveal.1",
+      "text": "Normalize the power-law weights over the stated finite vocabulary. A Zipf curve does not mean each successive rank is exactly half as frequent. This comparison isolates the catalog size beneath a stipulated rank-frequency rule.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0756/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #756. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0756.case.0.witness",
+      "text": "Ranks=100; FirstShare=0.193",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0756/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #756. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0756.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Ranks\",100],[\"Exponent\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0756/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #756. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0756.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"FirstShare\",\"value\":0.19277563597396005}]},\"metrics\":[{\"label\":\"FirstShare\",\"value\":\"0.193\"},{\"label\":\"Ranks\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0756/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #756. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0756.case.1.witness",
+      "text": "Ranks=1,000; FirstShare=0.134",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0756/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #756. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0756.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Ranks\",1000],[\"Exponent\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0756/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #756. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0756.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"FirstShare\",\"value\":0.13359213049244018}]},\"metrics\":[{\"label\":\"FirstShare\",\"value\":\"0.134\"},{\"label\":\"Ranks\",\"value\":\"1,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0756/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #756. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0756.recall",
+      "text": "A toy vocabulary has 101 ranks with weights proportional to rank raised to -1. What share belongs to rank 1? Answer 0.192.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0756/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #756. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy vocabulary has 101 ranks with weights proportional to rank raised to -1. What share belongs to rank 1?",
+    "options": [
+      "0.092",
+      "0.192",
+      "0.292"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives FirstShare 0.192 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0756",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-756"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 756,
+    "sourceSection": "38. Extreme values, heavy tails & risk",
+    "sourceEntryOriginal": "- **756. The long tail** \\[Slider\\]: a few products sell hugely, but the many niche ones add up.",
+    "modelBoundary": "the catalog size beneath a stipulated rank-frequency rule",
+    "recallInputs": [
+      101,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

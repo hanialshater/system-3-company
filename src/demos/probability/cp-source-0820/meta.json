@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0820",
+  "title": "An ETA range exposes uncertainty",
+  "hook": "Two stated cases: explore the assumed arrival-time spread without a complaint-rate claim.",
+  "domain": "probability",
+  "concept": "cp-source-0820",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the assumed arrival-time spread without a complaint-rate claim affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines HalfWidth, regardless of the stated inputs.",
+  "objective": "Compare the assumed arrival-time spread without a complaint-rate claim in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0820.predict",
+      "text": "Known toy SD 2, N 20, Z multiplier 2. Prediction 1=1 targets a new observation, 0 the mean. What normal interval half-width results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0820/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #820. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0820.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0820/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #820. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0820.reveal.0",
+      "text": "The retained results are SD=2; HalfWidth=4.099 and SD=5; HalfWidth=10.247.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0820/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #820. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0820.reveal.1",
+      "text": "An individual prediction includes irreducible observation noise. These normal intervals assume a known variance and independent data. This comparison isolates the assumed arrival-time spread without a complaint-rate claim.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0820/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #820. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0820.case.0.witness",
+      "text": "SD=2; HalfWidth=4.099",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0820/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #820. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0820.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"SD\",2],[\"N\",20],[\"Z\",2],[\"Prediction\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0820/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #820. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0820.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"HalfWidth\",\"value\":4.09878030638384}]},\"metrics\":[{\"label\":\"HalfWidth\",\"value\":\"4.099\"},{\"label\":\"SD\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0820/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #820. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0820.case.1.witness",
+      "text": "SD=5; HalfWidth=10.247",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0820/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #820. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0820.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"SD\",5],[\"N\",20],[\"Z\",2],[\"Prediction\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0820/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #820. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0820.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"HalfWidth\",\"value\":10.2469507659596}]},\"metrics\":[{\"label\":\"HalfWidth\",\"value\":\"10.247\"},{\"label\":\"SD\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0820/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #820. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0820.recall",
+      "text": "Known toy SD 3, N 20, Z multiplier 2. Prediction 1=1 targets a new observation, 0 the mean. What normal interval half-width results? Answer 6.148.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0820/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #820. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Known toy SD 3, N 20, Z multiplier 2. Prediction 1=1 targets a new observation, 0 the mean. What normal interval half-width results?",
+    "options": [
+      "3.689",
+      "8.607",
+      "6.148"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives HalfWidth 6.148 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0820",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-820"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 820,
+    "sourceSection": "41. Uncertainty quantification, calibration & conformal prediction",
+    "sourceEntryOriginal": "- **820. Honest delivery ETAs** \\[Slider\\]: show a range instead of a single time and watch complaints fall in a simulated app.",
+    "modelBoundary": "the assumed arrival-time spread without a complaint-rate claim",
+    "recallInputs": [
+      3,
+      20,
+      2,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

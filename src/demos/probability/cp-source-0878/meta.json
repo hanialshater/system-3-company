@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0878",
+  "title": "Balance the region of common support",
+  "hook": "Two stated cases: explore the balancing weight before overlap-weighted causal estimation.",
+  "domain": "probability",
+  "concept": "cp-source-0878",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the balancing weight before overlap-weighted causal estimation affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines HighWeight, regardless of the stated inputs.",
+  "objective": "Compare the balancing weight before overlap-weighted causal estimation in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0878.predict",
+      "text": "Mix toy values Low 0 and High 1 to obtain Target mean 0.5. What weight on High is required?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0878/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #878. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0878.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0878/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #878. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0878.reveal.0",
+      "text": "The retained results are Target=0.5; HighWeight=0.5 and Target=0.8; HighWeight=0.8.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0878/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #878. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0878.reveal.1",
+      "text": "Matching a mean can be solved algebraically when the target lies inside the support. Matching that moment does not guarantee every distributional or causal property. This comparison isolates the balancing weight before overlap-weighted causal estimation.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0878/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #878. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0878.case.0.witness",
+      "text": "Target=0.5; HighWeight=0.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0878/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #878. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0878.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Target\",0.5],[\"Low\",0],[\"High\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0878/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #878. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0878.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"HighWeight\",\"value\":0.5}]},\"metrics\":[{\"label\":\"HighWeight\",\"value\":\"0.5\"},{\"label\":\"Target\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0878/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #878. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0878.case.1.witness",
+      "text": "Target=0.8; HighWeight=0.8",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0878/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #878. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0878.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Target\",0.8],[\"Low\",0],[\"High\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0878/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #878. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0878.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"HighWeight\",\"value\":0.8}]},\"metrics\":[{\"label\":\"HighWeight\",\"value\":\"0.8\"},{\"label\":\"Target\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0878/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #878. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0878.recall",
+      "text": "Mix toy values Low 0 and High 1 to obtain Target mean 0.6. What weight on High is required? Answer 0.6.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0878/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #878. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Mix toy values Low 0 and High 1 to obtain Target mean 0.6. What weight on High is required?",
+    "options": [
+      "0.6",
+      "0.36",
+      "0.84"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives HighWeight 0.6 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0878",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-878"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 878,
+    "sourceSection": "44. Advanced identification: front-door, bounds, transportability",
+    "sourceEntryOriginal": "- **878. Overlap weights** \\[Slider\\]: weight people in the region where treated and control truly overlap, avoiding extreme weights.",
+    "modelBoundary": "the balancing weight before overlap-weighted causal estimation",
+    "recallInputs": [
+      0.6,
+      0,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

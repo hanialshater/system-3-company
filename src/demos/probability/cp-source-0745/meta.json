@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0745",
+  "title": "Tail shape changes exceedance odds",
+  "hook": "Two stated cases: explore the assumed Pareto exponent before fitting a Hill estimator.",
+  "domain": "probability",
+  "concept": "cp-source-0745",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the assumed Pareto exponent before fitting a Hill estimator affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Tail, regardless of the stated inputs.",
+  "objective": "Compare the assumed Pareto exponent before fitting a Hill estimator in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0745.predict",
+      "text": "A toy Pareto distribution has Minimum 1, Shape 2. What probability exceeds Threshold 10?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0745/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #745. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0745.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0745/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #745. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0745.reveal.0",
+      "text": "The retained results are Shape=2; Tail=0.01 and Shape=1; Tail=0.1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0745/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #745. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0745.reveal.1",
+      "text": "A tail exponent controls how rapidly large-event probability falls. The stipulated distribution is not evidence that a real dataset is Pareto. This comparison isolates the assumed Pareto exponent before fitting a Hill estimator.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0745/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #745. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0745.case.0.witness",
+      "text": "Shape=2; Tail=0.01",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0745/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #745. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0745.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Minimum\",1],[\"Shape\",2],[\"Threshold\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0745/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #745. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0745.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":1,\"y\":1},{\"x\":1.7916666666666665,\"y\":0.31151974040021635},{\"x\":2.583333333333333,\"y\":0.149843912591051},{\"x\":3.375,\"y\":0.0877914951989026},{\"x\":4.166666666666666,\"y\":0.05760000000000002},{\"x\":4.958333333333334,\"y\":0.04067509356683849},{\"x\":5.75,\"y\":0.030245746691871453},{\"x\":6.541666666666667,\"y\":0.023368087954886606},{\"x\":7.333333333333333,\"y\":0.018595041322314054},{\"x\":8.125,\"y\":0.015147928994082842},{\"x\":8.916666666666668,\"y\":0.012577517687134243},{\"x\":9.708333333333334,\"y\":0.010609884138591612},{\"x\":10.5,\"y\":0.009070294784580497},{\"x\":11.291666666666666,\"y\":0.007843030459824894},{\"x\":12.083333333333334,\"y\":0.006848989298454221},{\"x\":12.875,\"y\":0.006032613818456027},{\"x\":13.666666666666666,\"y\":0.005353955978584178},{\"x\":14.458333333333334,\"y\":0.004783695570929082},{\"x\":15.25,\"y\":0.004299919376511691},{\"x\":16.041666666666664,\"y\":0.0038859841457244064},{\"x\":16.833333333333336,\"y\":0.003529065777864914},{\"x\":17.625,\"y\":0.0032191539660982845},{\"x\":18.416666666666668,\"y\":0.002948342581028234},{\"x\":19.208333333333332,\"y\":0.002710320391867157},{\"x\":20,\"y\":0.0025000000000000005}],\"xLabel\":\"Threshold\",\"yLabel\":\"Tail\"},\"metrics\":[{\"label\":\"Tail\",\"value\":\"0.01\"},{\"label\":\"Shape\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0745/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #745. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0745.case.1.witness",
+      "text": "Shape=1; Tail=0.1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0745/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #745. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0745.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Minimum\",1],[\"Shape\",1],[\"Threshold\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0745/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #745. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0745.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":1,\"y\":1},{\"x\":1.7916666666666665,\"y\":0.5581395348837209},{\"x\":2.583333333333333,\"y\":0.38709677419354843},{\"x\":3.375,\"y\":0.2962962962962963},{\"x\":4.166666666666666,\"y\":0.24000000000000005},{\"x\":4.958333333333334,\"y\":0.20168067226890754},{\"x\":5.75,\"y\":0.17391304347826086},{\"x\":6.541666666666667,\"y\":0.15286624203821655},{\"x\":7.333333333333333,\"y\":0.13636363636363638},{\"x\":8.125,\"y\":0.12307692307692308},{\"x\":8.916666666666668,\"y\":0.11214953271028036},{\"x\":9.708333333333334,\"y\":0.10300429184549356},{\"x\":10.5,\"y\":0.09523809523809523},{\"x\":11.291666666666666,\"y\":0.0885608856088561},{\"x\":12.083333333333334,\"y\":0.08275862068965517},{\"x\":12.875,\"y\":0.07766990291262135},{\"x\":13.666666666666666,\"y\":0.07317073170731708},{\"x\":14.458333333333334,\"y\":0.06916426512968299},{\"x\":15.25,\"y\":0.06557377049180328},{\"x\":16.041666666666664,\"y\":0.062337662337662345},{\"x\":16.833333333333336,\"y\":0.059405940594059396},{\"x\":17.625,\"y\":0.05673758865248227},{\"x\":18.416666666666668,\"y\":0.054298642533936646},{\"x\":19.208333333333332,\"y\":0.05206073752711497},{\"x\":20,\"y\":0.05}],\"xLabel\":\"Threshold\",\"yLabel\":\"Tail\"},\"metrics\":[{\"label\":\"Tail\",\"value\":\"0.1\"},{\"label\":\"Shape\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0745/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #745. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0745.recall",
+      "text": "A toy Pareto distribution has Minimum 2, Shape 2. What probability exceeds Threshold 10? Answer 0.04.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0745/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #745. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy Pareto distribution has Minimum 2, Shape 2. What probability exceeds Threshold 10?",
+    "options": [
+      "-0.06",
+      "0.14",
+      "0.04"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Tail 0.04 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0745",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-745"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 745,
+    "sourceSection": "38. Extreme values, heavy tails & risk",
+    "sourceEntryOriginal": "- **745. Hill plot** \\[Slider\\]: estimate how heavy a tail is from the largest observations.",
+    "modelBoundary": "the assumed Pareto exponent before fitting a Hill estimator",
+    "recallInputs": [
+      2,
+      2,
+      10
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

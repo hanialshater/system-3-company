@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0770",
+  "title": "Repeated variables multiply states",
+  "hook": "Two stated cases: explore the plate size in a finite state-count illustration.",
+  "domain": "probability",
+  "concept": "cp-source-0770",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the plate size in a finite state-count illustration affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Capacity, regardless of the stated inputs.",
+  "objective": "Compare the plate size in a finite state-count illustration in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0770.predict",
+      "text": "With 2 possible answers per question and 3 questions, what is the maximum number of distinct answer sequences?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0770/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #770. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0770.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0770/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #770. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0770.reveal.0",
+      "text": "The retained results are Questions=3; Capacity=8 and Questions=8; Capacity=256.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0770/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #770. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0770.reveal.1",
+      "text": "Balanced questions can use the available answer sequences efficiently. Counting sequences is a capacity bound, not a guarantee that a particular puzzle achieves it. This comparison isolates the plate size in a finite state-count illustration.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0770/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #770. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0770.case.0.witness",
+      "text": "Questions=3; Capacity=8",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0770/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #770. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0770.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Outcomes\",2],[\"Questions\",3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0770/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #770. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0770.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Capacity\",\"value\":8}]},\"metrics\":[{\"label\":\"Capacity\",\"value\":\"8\"},{\"label\":\"Questions\",\"value\":\"3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0770/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #770. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0770.case.1.witness",
+      "text": "Questions=8; Capacity=256",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0770/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #770. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0770.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Outcomes\",2],[\"Questions\",8]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0770/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #770. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0770.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Capacity\",\"value\":256}]},\"metrics\":[{\"label\":\"Capacity\",\"value\":\"256\"},{\"label\":\"Questions\",\"value\":\"8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0770/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #770. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0770.recall",
+      "text": "With 3 possible answers per question and 3 questions, what is the maximum number of distinct answer sequences? Answer 27.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0770/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #770. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "With 3 possible answers per question and 3 questions, what is the maximum number of distinct answer sequences?",
+    "options": [
+      "27",
+      "16.2",
+      "37.8"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Capacity 27 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0770",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-770"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 770,
+    "sourceSection": "39. Graphical models & belief propagation",
+    "sourceEntryOriginal": "- **770. Plate notation** \\[Slider\\]: build a model diagram node by node and see the code it implies.",
+    "modelBoundary": "the plate size in a finite state-count illustration",
+    "recallInputs": [
+      3,
+      3
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

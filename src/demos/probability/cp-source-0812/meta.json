@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0812",
+  "title": "Count intervals that miss their target",
+  "hook": "Two stated cases: explore realized misses before interpreting nominal coverage.",
+  "domain": "probability",
+  "concept": "cp-source-0812",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How realized misses before interpreting nominal coverage affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Misses, regardless of the stated inputs.",
+  "objective": "Compare realized misses before interpreting nominal coverage in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0812.predict",
+      "text": "A toy interval procedure claims coverage 0.95; it covers 95 of 100 targets. How many targets were missed?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0812/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #812. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0812.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0812/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #812. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0812.reveal.0",
+      "text": "The retained results are Hits=95; Misses=5 and Hits=80; Misses=20.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0812/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #812. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0812.reveal.1",
+      "text": "Count realized coverage before trusting the stated confidence. A narrow interval can be precise in appearance and poorly calibrated. This comparison isolates realized misses before interpreting nominal coverage.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0812/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #812. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0812.case.0.witness",
+      "text": "Hits=95; Misses=5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0812/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #812. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0812.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Nominal\",0.95],[\"Hits\",95],[\"Trials\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0812/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #812. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0812.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Misses\",\"value\":5}]},\"metrics\":[{\"label\":\"Misses\",\"value\":\"5\"},{\"label\":\"Hits\",\"value\":\"95\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0812/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #812. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0812.case.1.witness",
+      "text": "Hits=80; Misses=20",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0812/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #812. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0812.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Nominal\",0.95],[\"Hits\",80],[\"Trials\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0812/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #812. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0812.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Misses\",\"value\":20}]},\"metrics\":[{\"label\":\"Misses\",\"value\":\"20\"},{\"label\":\"Hits\",\"value\":\"80\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0812/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #812. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0812.recall",
+      "text": "A toy interval procedure claims coverage 0.95; it covers 96 of 100 targets. How many targets were missed? Answer 4.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0812/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #812. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy interval procedure claims coverage 0.95; it covers 96 of 100 targets. How many targets were missed?",
+    "options": [
+      "4",
+      "2.4",
+      "5.6"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Misses 4 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0812",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-812"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 812,
+    "sourceSection": "41. Uncertainty quantification, calibration & conformal prediction",
+    "sourceEntryOriginal": "- **812. Check the coverage** \\[Predict\\]: draw 100 intervals and count how many contain the truth.",
+    "modelBoundary": "realized misses before interpreting nominal coverage",
+    "recallInputs": [
+      0.95,
+      96,
+      100
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

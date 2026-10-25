@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0730",
+  "title": "A second cause removes future risk",
+  "hook": "Two stated cases: explore the competing hazard in a cause-specific incidence.",
+  "domain": "probability",
+  "concept": "cp-source-0730",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the competing hazard in a cause-specific incidence affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Incidence, regardless of the stated inputs.",
+  "objective": "Compare the competing hazard in a cause-specific incidence in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0730.predict",
+      "text": "Two constant toy cause-specific hazards are 0.1,0. By Time 5, what probability has failed from cause 1?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0730/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #730. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0730.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0730/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #730. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0730.reveal.0",
+      "text": "The retained results are Rate2=0; Incidence=0.393 and Rate2=0.3; Incidence=0.216.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0730/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #730. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0730.reveal.1",
+      "text": "A competing event removes a person from future risk. Ignoring that event gives a different estimand. This comparison isolates the competing hazard in a cause-specific incidence.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0730/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #730. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0730.case.0.witness",
+      "text": "Rate2=0; Incidence=0.393",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0730/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #730. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0730.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Rate1\",0.1],[\"Rate2\",0],[\"Time\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0730/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #730. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0730.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":0},{\"x\":0.4166666666666667,\"y\":0.040810542890861834},{\"x\":0.8333333333333334,\"y\":0.07995558537067682},{\"x\":1.25,\"y\":0.11750309741540454},{\"x\":1.6666666666666667,\"y\":0.15351827510938598},{\"x\":2.0833333333333335,\"y\":0.18806365384936508},{\"x\":2.5,\"y\":0.22119921692859512},{\"x\":2.9166666666666665,\"y\":0.25298249968956754},{\"x\":3.3333333333333335,\"y\":0.28346868942621084},{\"x\":3.75,\"y\":0.3127107212090279},{\"x\":4.166666666666667,\"y\":0.34075936979955634},{\"x\":4.583333333333333,\"y\":0.36766333781375016},{\"x\":5,\"y\":0.3934693402873666},{\"x\":5.416666666666667,\"y\":0.41822218579019177},{\"x\":5.833333333333333,\"y\":0.4419648542299529},{\"x\":6.25,\"y\":0.4647385714810097},{\"x\":6.666666666666667,\"y\":0.486582880967408},{\"x\":7.083333333333333,\"y\":0.5075357123245903},{\"x\":7.5,\"y\":0.5276334472589853},{\"x\":7.916666666666667,\"y\":0.5469109827198311},{\"x\":8.333333333333334,\"y\":0.5654017914929219},{\"x\":8.75,\"y\":0.5831379803214916},{\"x\":9.166666666666666,\"y\":0.6001503456551527},{\"x\":9.583333333333334,\"y\":0.6164684271236893},{\"x\":10,\"y\":0.6321205588285577}],\"xLabel\":\"Time\",\"yLabel\":\"Incidence\"},\"metrics\":[{\"label\":\"Incidence\",\"value\":\"0.393\"},{\"label\":\"Rate2\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0730/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #730. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0730.case.1.witness",
+      "text": "Rate2=0.3; Incidence=0.216",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0730/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #730. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0730.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Rate1\",0.1],[\"Rate2\",0.3],[\"Time\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0730/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #730. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0730.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":0},{\"x\":0.4166666666666667,\"y\":0.038379568777346496},{\"x\":0.8333333333333334,\"y\":0.07086717235655271},{\"x\":1.25,\"y\":0.09836733507184164},{\"x\":1.6666666666666667,\"y\":0.121645720241852},{\"x\":2.0833333333333335,\"y\":0.14135044787323048},{\"x\":2.5,\"y\":0.15803013970713942},{\"x\":2.9166666666666665,\"y\":0.1721491940213506},{\"x\":3.3333333333333335,\"y\":0.18410071547106832},{\"x\":3.75,\"y\":0.19421745996289255},{\"x\":4.166666666666667,\"y\":0.20278109929060956},{\"x\":4.583333333333333,\"y\":0.21003006348007652},{\"x\":5,\"y\":0.21616617919084682},{\"x\":5.416666666666667,\"y\":0.22136028900182808},{\"x\":5.833333333333333,\"y\":0.22575700803389873},{\"x\":6.25,\"y\":0.2294787503440253},{\"x\":6.666666666666667,\"y\":0.23262913719429962},{\"x\":7.083333333333333,\"y\":0.23529588208939253},{\"x\":7.5,\"y\":0.237553232908034},{\"x\":7.916666666666667,\"y\":0.2394640391226809},{\"x\":8.333333333333334,\"y\":0.2410815016631869},{\"x\":8.75,\"y\":0.24245065414442038},{\"x\":9.166666666666666,\"y\":0.24360961669837314},{\"x\":9.583333333333334,\"y\":0.24459065732012672},{\"x\":10,\"y\":0.24542109027781644}],\"xLabel\":\"Time\",\"yLabel\":\"Incidence\"},\"metrics\":[{\"label\":\"Incidence\",\"value\":\"0.216\"},{\"label\":\"Rate2\",\"value\":\"0.3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0730/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #730. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0730.recall",
+      "text": "Two constant toy cause-specific hazards are 0.2,0. By Time 5, what probability has failed from cause 1? Answer 0.632.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0730/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #730. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two constant toy cause-specific hazards are 0.2,0. By Time 5, what probability has failed from cause 1?",
+    "options": [
+      "0.379",
+      "0.885",
+      "0.632"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Incidence 0.632 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0730",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-730"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 730,
+    "sourceSection": "37. Survival analysis & reliability",
+    "sourceEntryOriginal": "- **730. Competing risks** \\[Slider\\]: customers can cancel or downgrade; treating one as censoring overstates the other.",
+    "modelBoundary": "the competing hazard in a cause-specific incidence",
+    "recallInputs": [
+      0.2,
+      0,
+      5
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

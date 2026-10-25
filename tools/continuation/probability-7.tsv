@@ -1,0 +1,201 @@
+id	op	title	A	B	lens	Recall
+669	kalman	One navigation update	0,4,1,10,4	0,4,1,10,1	the observation weight in a scalar navigation illustration	
+670	normalshrink	A later reading revises the past	0,4,2,4	0,4,8,4	the added observation in a smoothing ingredient	
+671	kalman	A level beneath daily noise	10,1,0.1,16,9	10,1,4,16,9	the process variance in a local-level update	
+672	season	Separate trend and season	10,1,3,0.25	10,1,0,0.25	the seasonal component of a stipulated signal	
+673	line	A changing price slope	10,-1,3	10,-2,3	the supplied price coefficient at two times	
+674	volupdate	A return changes the variance	1,1,0.2	4,1,0.2	the squared-return contribution to a volatility update	
+675	chain	A hidden regime persists	0.05,0.2,0,10	0.2,0.2,0,10	the transition rate in a two-regime model	
+676	assignment	Which detection belongs to which dot?	0,10,1,9	0,10,9,1	the squared-distance association cost	
+677	gauge	A map can shift with the robot	2,8,0	2,8,100	the translation ambiguity of relative localization	
+678	kalman	Blend forecast and observation	20,4,1,25,9	20,4,1,25,1	the observation uncertainty in a scalar assimilation step	
+679	bayes	A noisy step detector	0.2,0.9,0.1	0.2,0.9,0.4	the false-positive rate in one hidden-step update	
+680	kalman	Adapt to a level jump	0,1,0.1,10,4	0,1,9,10,4	the process variance controlling one filter response	
+681	betamom	A slot machine posterior	1,1,8,2	1,1,2,8	the outcomes informing one arm before posterior sampling	
+683	optimism	An optimism bonus shrinks	0.5,100,5	0.5,100,50	the pull count in a specified UCB rule	
+684	betamom	Evidence narrows an arm estimate	1,1,8,2	1,1,80,20	the posterior uncertainty behind one sampling arm	
+685	regret	Count the cost of inferior pulls	0.7,0.5,100	0.7,0.5,10	the number of suboptimal pulls rather than a regret theorem	
+686	regret	Exploration has a reward cost	0.6,0.4,50	0.6,0.4,10	the inferior-arm allocation in a fixed comparison	
+688	contextpolicy	Choose a headline by reader type	0.5,0.8,0.2,0.2,0.8	0.9,0.8,0.2,0.2,0.8	the reward heterogeneity available to a contextual policy	
+689	selectedmean	Early outcomes select what is seen	1,0,0.5,1,1	1,0,0.5,0.2,1	outcome-dependent retention in a bandit-data illustration	
+690	regret	Learn the best arm or earn now	0.7,0.5,40	0.7,0.5,5	the immediate cost of additional exploratory pulls	
+691	streamvalue	A known-arm discount benchmark	1,0.5	1,0.9	the discount factor before uncertain-arm index calculation	
+692	rates	Compare attributed ranker clicks	30,100,20,100	30,100,25,100	the descriptive click contrast before interleaving inference	
+693	optimism	A cold-start arm gets a bonus	0.1,100,1	0.1,100,20	the exploration bonus for an under-sampled item	
+694	mediation	A layout has interacting paths	1,2,3	1,2,-1	the stipulated interaction path in a layout reward model	
+695	flow	Pace a daily advertising budget	100,4,10	100,4,20	the spend rate determining the remaining budget	
+696	mixture	Adaptive allocation changes exposure	0.5,0.7,0.4	0.8,0.7,0.4	the treatment mix in an illustrative adaptive trial	
+697	optimism	Rare visits carry a larger bonus	0,100,1	0,100,25	the count-based optimism ingredient of exploration	
+698	selectedmean	Pending outcomes change observed rates	1,0,0.5,1,1	1,0,0.5,0.5,1	selective completion before a delayed-reward update	
+699	regret	A poor price has an experiment cost	10,7,20	10,7,5	the inferior-price exposure under assumed mean revenues	
+700	regret	Batching delays an improved action	0.6,0.4,100	0.6,0.4,10	the avoidable inferior pulls under a stipulated delay	
+701	bellman	Back up a neighboring value	0,0.9,10	0,0.9,8	the supplied continuation in one value-iteration backup	
+703	qupdate	One Q-learning update	0,0.2,1,0.9,5	0,0.8,1,0.9,5	the learning rate in a single value update	
+704	qupdate	A risky continuation changes a backup	0,0.2,-1,0.9,10	0,0.2,-1,0.9,2	the chosen next-action value in a cliff illustration	
+705	stopvalue	A proxy reward favors circling	10,20,0.9	10,5,0.9	the supplied loop continuation versus finishing reward	
+706	regret	Stopping exploration can cost later	0.7,0.4,100	0.7,0.4,10	the later inferior pulls after a stipulated early commitment	
+707	policygradient	Reward nudges an action probability	0.5,1,2,0,0.5	0.5,1,-2,0,0.5	the reward sign in one score-function step	
+709	stopvalue	A reorder action has continuation	5,8,0.9	5,3,0.9	the supplied inventory continuation before solving a stock policy	
+710	stopvalue	Sell now or keep the option	10,12,0.9	10,8,0.9	the supplied continuation value at an offer	
+711	breakeven	A hit decision needs outcome odds	1,1,0.6	1,1,0.3	the assumed win probability before a full blackjack strategy	
+712	breakeven	A game policy has expected payoff	1,1,0.5	1,1,0.8	the assumed game outcome rate rather than a self-play trainer	
+713	anyevent	A rare goal may stay unseen	0.001,100	0.001,1000	the independent chance of encountering a sparse reward	
+714	shaped	Shape reward with a potential	0,0.9,2,4	0,0.9,2,1	the potential difference added to an immediate reward	
+715	bayes	Listening updates a tiger belief	0.5,0.85,0.15	0.5,0.6,0.4	one observation update before a tiger-door decision	
+716	optimism	A search branch gets an upper score	0.5,100,2	0.5,100,20	the exploration bonus in a search-tree selection ingredient	
+717	offpolicy	Correct an off-policy sample	0.8,0.4,2	0.4,0.8,2	the target-to-behavior probability ratio on one reward	
+718	maxnoise	The maximum selects positive noise	2,1	8,1	the number of noisy equal-valued actions	
+719	mixture	A policy meets a different floor mix	0.9,0.95,0.2	0.1,0.95,0.2	the deployment composition under fixed conditional performance	
+720	mg1	Admission changes the queue load	0.8,1,1	0.4,1,1	the accepted arrival rate before a queue admission policy	
+721	km	Two drops in a survival curve	100,10,80,10	100,20,80,10	the event count divided by its current risk set	
+723	piecehazard	Hazard accumulates into survival	0.1,2,0.2,2	0.1,2,0.5,2	the later segment of cumulative hazard	
+724	piecehazard	Early failures and later wear	0.5,1,0.1,4	0.5,1,0.4,4	a changed late hazard segment in a bounded lifetime model	
+725	weibull	Shape changes the age pattern	0.5,5,3	2,5,3	the Weibull shape governing the age-dependent hazard	
+726	exponential	Compare two stipulated churn rates	0.1,12	0.03,12	the constant monthly hazard in a plan comparison	
+727	ph	A hazard ratio bends survival	0.8,1	0.8,2	the proportional-hazard transformation of baseline survival	
+728	piecehazard	An early advantage can reverse	0.1,1,0.8,2	0.5,1,0.1,2	the time-varying hazard pattern behind a crossing comparison	
+729	zstat	A survival contrast needs precision	0.2,0,0.2	0.2,0,0.05	a standardized summary rather than a full log-rank test	
+730	competing	A second cause removes future risk	0.1,0,5	0.1,0.3,5	the competing hazard in a cause-specific incidence	
+731	piecehazard	Changing activity changes exposure	0.1,2,0.1,2	0.1,2,0.5,2	the later hazard after a stipulated covariate change	
+732	exponential	The observation window starts later	0.1,5	0.1,2	the remaining elapsed time under exponential memorylessness	
+733	cure	A nonfailing fraction leaves a plateau	0,0.3,10	0.4,0.3,10	the stipulated cure component of a survival mixture	
+734	residualwait	Lifetime variance changes what remains	10,0	10,400	the length-bias ingredient rather than a universal Lindy law	
+735	rmst	Count survival time up to a cutoff	0.1,5	0.1,10	the restricted horizon in mean survival time	
+736	km	A drive cohort loses members	1000,10,900,20	1000,10,900,100	the illustrative drive-cohort event counts	
+738	aft	Stretch a lifetime's clock	0.2,1,5	0.2,2,5	the accelerated-time factor in one survival model	
+739	exponential	A second purchase arrives sooner	0.1,5	0.3,5	the assumed repeat-purchase hazard	
+740	frailty	Population risk falls by selection	0.5,1,0.1,0	0.5,1,0.1,5	the changing composition of surviving risk groups	
+741	maxuniform	A maximum moves toward the boundary	0.9,2	0.9,20	the number of bounded independent draws	
+742	gumbel	One stipulated extreme-value family	0,0,1	0,1,1	the location parameter of a Gumbel CDF	
+743	anyevent	From annual exceedance to many years	0.01,1	0.01,100	independent yearly exceedance aggregation	
+744	returnlevel	A rarer return level lies higher	100,0.1	1000,0.1	the exceedance period in a stipulated exponential model	
+745	paretosurvival	Tail shape changes exceedance odds	1,2,10	1,1,10	the assumed Pareto exponent before fitting a Hill estimator	
+746	paretosurvival	A visible tail needs a model	1,2,5	1,3,5	two stipulated tail slopes rather than distribution identification	
+749	shock	A common shock links crashes	0,0.01	0.05,0.01	the common-shock component of joint tail risk	
+750	shock	Marginals do not settle joint risk	0,0.05	0.02,0.05	an explicit dependence ingredient rather than a copula fit	
+751	paretosurvival	A heavy tail assigns rare-event mass	1,1.5,20	1,3,20	tail probability under two explicitly assumed models	
+752	betamom	Past safety updates a chosen model	1,1,100,0	1,1,1000,0	posterior confidence conditional on a stationary Bernoulli model	
+753	annual	Each magnitude step changes the rate	1000,-0.9,1	1000,-0.9,2	the stipulated tenfold decline per magnitude step	
+754	pareto	A few fires can dominate area	0.1,1.2	0.1,3	tail concentration in a Pareto area illustration	
+755	paretosurvival	A wave threshold probes the tail	1,3,10	1,3,26	an illustrative tail threshold without a historical estimate	
+756	zipf	The top product and the long tail	100,1	1000,1	the catalog size beneath a stipulated rank-frequency rule	
+757	layer	Measure a loss below a prior peak	10,0,100	30,0,100	the depth of a stipulated decline rather than a drawdown law	
+758	layer	A catastrophe payout has layers	100,50,40	100,80,40	the attachment point of a bounded insurance layer	
+759	recordchance	The next record becomes rarer	10	100	the observation count under iid continuous sampling	
+760	normalshrink	A warming mean changes a forecast	0,1,0,1	2,1,2,1	the shifted mean before computing a trend-dependent record chance	
+761	bayes	Wet evidence updates a rain prior	0.2,0.9,0.1	0.2,0.9,0.6	the alternative explanation for a positive observation	
+763	messages	Two callers update an alarm belief	0.01,10,5	0.01,10,1	a second likelihood message under conditional independence	
+764	messages	Multiply evidence messages on odds	0.2,3,4	0.2,3,1	two independent evidence factors in a tree ingredient	
+765	adjust	A damped message iterates	0,1,5,0.2	0,1,5,0.8	a fixed-point damping recurrence rather than exact loopy inference	
+766	ising	A pixel follows its neighbors	1,0.5,4,0	1,0.5,-4,0	a local binary image-label conditional	
+767	ising	A label has local compatibility	1,0.5,2,0	1,0.5,2,-2	a local compatibility factor rather than a sentence decoder	
+768	capacity	Constraints reduce possible grids	4,4	3,4	the choice-count ingredient before Sudoku constraint propagation	
+769	correctable	A code has a bounded correction radius	3	5	the minimum-distance ingredient of error correction	
+770	capacity	Repeated variables multiply states	2,3	2,8	the plate size in a finite state-count illustration	
+772	capacity	Large cliques make inference costly	2,3	2,10	the joint state count inside one clique	
+773	bayes	A symptom changes disease odds	0.01,0.9,0.1	0.1,0.9,0.1	one illustrative disease prior rather than clinical advice	
+774	messages	Independent features multiply odds	0.2,4,4	0.2,4,1	the conditional independence assumption in naive Bayes	
+775	bic	A candidate network pays for size	-100,3,100	-95,8,100	the likelihood and complexity terms before causal identification	
+776	ising	A unit responds to the network	1,0.5,4,0	0.1,0.5,4,0	the inverse temperature in one Boltzmann conditional	
+777	partialcorr	A precision entry sets partial linkage	2,-1,2	2,0,2	the off-diagonal precision entry in a Gaussian graph	
+778	partialcorr	A direct stock linkage is conditional	3,-1,3	3,-2,3	the Gaussian conditional correlation of a supplied precision block	
+779	commonfactor	One latent source links symptoms	1,1,1	4,1,1	the shared variance inducing a measurement correlation	
+780	betamom	Condition a tiny probabilistic model	1,1,2,1	1,1,20,10	the data update in a finite conjugate model	
+781	denoise	A Gaussian coordinate is denoised	2,0.2	2,0.8	the retained signal strength in one conditional estimate	
+782	forwardnoise	Mix signal with a noise coordinate	2,-1,0.9	2,-1,0.1	the signal-to-noise weight of the forward process	
+783	score	A score points uphill in density	2,0,1	-2,0,1	the local log-density gradient of a Gaussian target	
+785	latentinfo	A generator can lose its input signal	1,0.1	0,0.1	the information collapse of a binary decoder illustration	
+786	conjunction	A pixel sequence multiplies conditionals	0.8,0.7	0.8,0.2	the chain-rule ingredient in autoregressive generation	
+787	line	A straight interpolation has velocity	0,2,0.25	0,2,0.75	the time coordinate on a stipulated linear transport path	
+788	twolatent	Interpolate an encoded direction	0,0.5	1.57,0.5	the angular coordinate of a constructed latent decoder	
+789	score	An energy slope pulls toward a center	3,0,1	3,0,4	the inverse scale of one quadratic energy gradient	
+791	uncertainty	Data noise and parameter uncertainty	1,4,1	1,4,100	the component that shrinks with sample size	
+792	leapfrog	Take one density-driven position step	2,0,0.1	2,0,0.5	the deterministic drift ingredient before Langevin noise	
+793	temperature	A masked choice has probabilities	2,0,1	2,0,2	the softmax temperature of two supplied candidates	
+794	surprisal	A token probability has a surprise	0.9	0.1	the likelihood attached to one generated token	
+795	temperature	Sharpen or flatten a text choice	2,0,0.2	2,0,2	a local distribution before beam or sampling sequence decisions	
+796	surprisal	High likelihood is a model statement	0.01	0.1	the assigned density score rather than semantic familiarity	
+797	forwardnoise	A schedule changes retained signal	1,0.5,0.8	1,0.5,0.2	the noising coefficient at a stipulated schedule time	
+798	watermark	A green-token count gets a null score	60,100,0.5	50,100,0.5	the Bernoulli null used to standardize a token tally	
+799	weights	A repeated generator loses a tail	8,1,1	8,0.1,0.1	the renormalized weight after tail mass is removed	
+800	predwidth	A forecast band widens with its level	2,20,1,1	2,20,2,1	the normal multiplier of a prediction band	
+802	temperature	Temperature softens confidence	3,0,1	3,0,3	the probability transformation before calibration evaluation	
+803	calibration	Rain forecasts meet observed counts	0.7,70,100	0.7,50,100	the illustrative rain-frequency gap without a forecaster claim	
+804	calibration	Check confidence against outcomes	0.9,60,100	0.6,60,100	the reported confidence at a fixed observed frequency	
+805	brier	Score one probability forecast	1,0.5	1,0.9	the squared probability error on one outcome	
+806	expectedbrier	An honest report minimizes expected loss	0.7,0.7	0.7,0.5	the reported probability under a stipulated belief	
+808	capacity	A prediction set can contain more labels	2,1	3,1	the returned set size rather than conformal coverage certification	
+809	coverage	Coverage can fail after a shift	0.9,90,100	0.9,60,100	the realized coverage count in two stipulated populations	
+810	predwidth	Noisier inputs get wider bands	1,20,2,1	3,20,2,1	the local observation spread in a toy prediction interval	
+811	predwidth	A mean is easier to predict than a point	2,20,2,0	2,20,2,1	the additional observation noise in a prediction interval	
+812	coverage	Count intervals that miss their target	0.95,95,100	0.95,80,100	realized misses before interpreting nominal coverage	
+813	mixture	Group errors can cancel in aggregate	0.5,0.2,-0.2	0.9,0.2,-0.2	the group weights in a signed calibration-gap illustration	
+814	selectedmean	Abstention changes retained accuracy	1,0,0.7,1,1	1,0,0.7,1,0.2	selective retention of correct and incorrect cases	
+815	weightedcontrast	Binning can cancel signed errors	0.5,0.2,-0.2	0.9,0.2,-0.2	the grouping weights before taking absolute calibration errors	
+816	binomial	Repeated answers can agree by chance	5,0.7,5	5,0.4,5	the all-agree probability under independent identical answer draws	
+817	mixture	Combine two forecast probabilities	0.5,0.9,0.3	0.8,0.9,0.3	the ensemble weights before an empirical calibration check	
+818	extremize	Push aggregate odds toward extremes	0.7,1	0.7,2	the log-odds scaling of a forecast aggregate	
+819	predwidth	A track ensemble has growing spread	1,20,2,1	4,20,2,1	the stipulated forecast spread rather than a hurricane model	
+820	predwidth	An ETA range exposes uncertainty	2,20,2,1	5,20,2,1	the assumed arrival-time spread without a complaint-rate claim	
+822	confidencewidth	Allocate error across every look	100,0.05,0	100,0.05,1	the summable error budget in a Hoeffding confidence sequence	
+824	selectedmean	Stopping on success selects results	1,0,0.5,1,1	1,0,0.5,1,0.1	outcome selection behind an early-stop illustration	
+825	confidencewidth	Fixed and repeated looks use budgets	50,0.05,0	50,0.05,1	the error allocation for a single look or all looks	
+826	betwealth	Evidence grows as likelihood wealth	12,20,0.5,0.7	16,20,0.5,0.7	the fixed-alternative likelihood ratio under a Bernoulli null	
+827	betamom	Condition on the observed outcomes	1,1,8,2	1,1,80,20	the posterior from a proper prior under an ignorable stopping rule	
+828	binaryentropy	A balanced question carries more entropy	0.5	0.9	the outcome entropy ingredient of information-gain design	
+829	logistic	A dose score changes response chance	-2	0	the response probability before calculating design information	
+830	ucb	Uncertainty affects an acquisition score	1,0.1,2	1,1,2	the uncertainty bonus in one adaptive measurement choice	
+831	paired	Pairing removes shared variation	2,2,0,20	2,2,0.8,20	the covariance term in a paired mean-difference standard error	
+832	mediation	An interaction contributes to a response	1,2,3	1,2,0	the stipulated product contribution in a factorial illustration	
+833	weightedcontrast	Aliased effects share a contrast	1,2,3	0.5,2,3	the unresolved mixture of two effects in a reduced design	
+834	capacity	A balanced grid has many assignments	3,3	4,4	the combinatorial assignment count before Latin-square restrictions	
+835	line	A local response slope guides a move	10,2,1	10,-2,1	one local directional slope before response-surface optimization	
+836	binomial	Count significant simulated replicates	10,0.8,8	10,0.5,8	an illustrative rejection-count distribution under fixed power	
+837	meancontrast	A shared control affects precision	1,20,1,20	1,20,1,80	the control sample size in one independent mean contrast	
+838	mixture	Adaptive trial allocation changes yield	0.5,0.8,0.4	0.9,0.8,0.4	the reward mix before adaptive-inference corrections	
+839	samplesize	A tighter target needs more samples	0.5,2,0.1	0.5,2,0.05	the normal-approximation precision target before sequential stopping	
+840	premium	A test's expected benefit meets cost	0.5,100,20	0.5,100,60	a supplied value-of-information benefit and testing cost	
+841	displacement	A rating lift can steal control sales	10,0	10,8	the control displacement inflating a measured sales contrast	
+842	spillover	Sellers change outcomes across arms	0,2,0	0,2,5	the cross-arm behavioral spillover in a stipulated seller model	
+843	displacement	The split changes stolen sales	10,8	10,2	the substitution exposure under two assumed split designs	
+844	spillover	Both sides determine exposure	2,1,2	2,1,8	a two-sided exposure count before a randomization estimator	
+845	spillover	Cluster peers share treatment	0,1,1	0,1,5	the number of treated neighbors within an illustrative cluster	
+846	spillover	Exposure depends on treated neighbors	1,0.5,2	1,0.5,8	the exposure map in a declared linear spillover model	
+847	flow	A shared budget can starve controls	100,4,10	100,4,20	the shared resource remaining after faster treatment spending	
+848	spillover	Geographic separation reduces leakage	0,1,5	0,1,0	the cross-boundary exposure assumed in a geo design	
+850	feedback	Stars and sales can amplify each other	1,1.1,10	1,1.3,10	the stipulated feedback multiplier of a rating loop	
+851	line	Compressed stars carry a smaller gap	4.5,0.1,1	4.5,0.01,1	the response scale of an illustrative ratings display	
+852	feedback	An early vote gets amplified	10,1.1,5	11,1.1,5	the initial vote in a toy herding recurrence	
+853	confounded	Similarity need not mean peer influence	0,2,0.8,0	0,2,0.8,1	the shared-cause path in a friendship illustration	
+854	confounded	Peer association has a shared cause	1,2,0.8,0	1,2,0.8,1	the observational ambiguity of a stipulated peer model	
+855	spillover	An untreated neighbor can benefit	0,0.2,0	0,0.2,5	a positive neighborhood treatment externality in a toy model	
+856	spillover	A full rollout changes peer exposure	1,0.5,2	1,0.5,8	the treatment saturation behind a policy effect	
+857	stock	A test draws on shared inventory	100,0,10,5	100,0,20,5	the depletion rate of a common stock buffer	
+859	mixture	Shared training mixes treatment data	0.5,0.8,0.2	0.9,0.8,0.2	the data composition entering a shared model update	
+860	samplesd	Larger clusters leave fewer units	0.5,100	0.5,10	the independent-cluster count before cluster-size design effects	
+861	mediation	A mediator carries a declared path	0,2,3	0,2,1	the mediated coefficient under stated no-confounding assumptions	
+862	manski	Unknown counterfactuals leave bounds	0.5,0.7,0.3,0	0.8,0.7,0.3,0	the treatment share in binary worst-case effect bounds	
+863	manski	A no-harm assumption tightens a bound	0.5,0.7,0.3,0	0.5,0.7,0.3,1	the monotone-response restriction on a partial identification set	
+865	heteroeffect	A new population changes average effect	0.5,5,1	0.9,5,1	the target population mix under transportable group effects	
+866	heteroeffect	Transport needs a target composition	0.2,4,0	0.8,4,0	the population shift under an explicit effect-invariance assumption	
+867	confounded	A proxy method needs identification	1,2,0.8,0	1,2,0.8,1	the confounding gap before a proximal bridge is identified	
+868	confounded	A negative control can reveal bias	0,2,0.8,0	0,2,0.8,1	the noncausal association of a declared null exposure	
+870	selectedmean	Survivors can be different people	1,0,0.5,1,1	1,0,0.5,1,0.2	outcome-dependent survival in a selected mean	
+871	rdjump	A threshold can change local outcomes	10,12	10,18	a descriptive threshold jump before structural bunching inference	
+872	mixture	Industry weights transmit shocks	0.2,5,-1	0.8,5,-1	the local exposure-weighted shift rather than instrument validity	
+873	wald	Judge assignment supplies a first stage	0.1,0.5	0.1,0.2	the assumed valid-instrument ratio in a judge illustration	
+874	wald	A genetic instrument needs assumptions	0.02,0.1	0.02,0.02	the first-stage denominator under stipulated IV validity	
+875	confounded	Bias depends on two common-cause links	1,2,0.2,0	1,2,0.8,0	the omitted-variable contribution to an observational slope	
+876	synthetic	A placebo gap needs a benchmark	0.5,10,12,16	0.5,10,12,12	the observed-minus-synthetic gap before a placebo ranking	
+877	weightedcontrast	A distribution has unequal group shifts	0.5,1,5	0.9,1,5	the quantile-group composition in a distributional contrast	
+878	balanceweight	Balance the region of common support	0.5,0,1	0.8,0,1	the balancing weight before overlap-weighted causal estimation	
+879	weightedcontrast	Combine a trial and a corrected estimate	0.5,2,3	0.9,2,3	the stipulated estimator weights after observational bias correction	
+880	line	Measurement error attenuates a slope	0,2,1	0,2,0.5	the assumed reliability factor multiplying an effect	
+881	heteroeffect	Aggregate group-time effects explicitly	0.5,2,8	0.9,2,8	the cohort weights behind a declared causal aggregation	
+882	weightedcontrast	Event-study weights change the target	0.5,2,8	1.2,2,8	the supplied positive or negative cohort weights	
+883	weightedcontrast	A forbidden comparison can get weight	0.5,2,8	1.5,2,8	the negative component in a toy fixed-effect decomposition	
+885	did	A weighted control also has a trend	10,15,8,10	10,15,8,13	the control trend after unit and time weighting	
+886	zstat	A noisy pretrend may look insignificant	0.2,0,0.5	0.2,0,0.05	the standard error behind a pretrend diagnostic	
+888	line	Policy intensity changes a contrast	0,2,1	0,2,3	the stipulated dose slope under a parallel-trend assumption	
+889	synthetic	A campaign gap needs a counterfactual	0.5,10,12,16	0.5,10,12,12	the supplied no-campaign prediction rather than fitted causal proof	
+890	did	Seasonality belongs in the baseline	10,20,10,18	10,20,10,10	the common seasonal change removed by a control contrast	

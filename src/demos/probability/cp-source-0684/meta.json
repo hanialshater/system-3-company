@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0684",
+  "title": "Evidence narrows an arm estimate",
+  "hook": "Two stated cases: explore the posterior uncertainty behind one sampling arm.",
+  "domain": "probability",
+  "concept": "cp-source-0684",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the posterior uncertainty behind one sampling arm affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Mean, regardless of the stated inputs.",
+  "objective": "Compare the posterior uncertainty behind one sampling arm in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0684.predict",
+      "text": "A toy Beta(1,1) prior sees 8 wins and 2 losses. What posterior mean results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0684/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #684. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0684.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0684/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #684. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0684.reveal.0",
+      "text": "The retained results are Wins=8 Losses=2; Mean=0.75 and Wins=80 Losses=20; Mean=0.794.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0684/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #684. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0684.reveal.1",
+      "text": "Posterior parameters add successes and failures separately. Sampling from this posterior is an additional Thompson-sampling step. This comparison isolates the posterior uncertainty behind one sampling arm.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0684/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #684. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0684.case.0.witness",
+      "text": "Wins=8 Losses=2; Mean=0.75",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0684/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #684. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0684.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Alpha\",1],[\"Beta\",1],[\"Wins\",8],[\"Losses\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0684/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #684. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0684.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Mean\",\"value\":0.75},{\"label\":\"Variance\",\"value\":0.014423076923076924}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"0.75\"},{\"label\":\"Wins\",\"value\":\"8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0684/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #684. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0684.case.1.witness",
+      "text": "Wins=80 Losses=20; Mean=0.794",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0684/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #684. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0684.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Alpha\",1],[\"Beta\",1],[\"Wins\",80],[\"Losses\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0684/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #684. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0684.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Mean\",\"value\":0.7941176470588235},{\"label\":\"Variance\",\"value\":0.0015873282494037022}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"0.794\"},{\"label\":\"Wins\",\"value\":\"80\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0684/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #684. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0684.recall",
+      "text": "A toy Beta(2,1) prior sees 8 wins and 2 losses. What posterior mean results? Answer 0.769.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0684/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #684. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy Beta(2,1) prior sees 8 wins and 2 losses. What posterior mean results?",
+    "options": [
+      "0.462",
+      "0.769",
+      "1.077"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Mean 0.769 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0684",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-684"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 684,
+    "sourceSection": "35. Bandits & sequential experimentation",
+    "sourceEntryOriginal": "- **684. Racing posteriors** \\[Slider\\]: three beta curves race; Thompson sampling picks by drawing once from each.",
+    "modelBoundary": "the posterior uncertainty behind one sampling arm",
+    "recallInputs": [
+      2,
+      1,
+      8,
+      2
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

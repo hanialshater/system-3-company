@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0851",
+  "title": "Compressed stars carry a smaller gap",
+  "hook": "Two stated cases: explore the response scale of an illustrative ratings display.",
+  "domain": "probability",
+  "concept": "cp-source-0851",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the response scale of an illustrative ratings display affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Prediction, regardless of the stated inputs.",
+  "objective": "Compare the response scale of an illustrative ratings display in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0851.predict",
+      "text": "A toy fitted line has Intercept 4.5, Slope 0.1; what does it predict at X 1?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0851/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #851. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0851.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0851/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #851. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0851.reveal.0",
+      "text": "The retained results are Slope=0.1; Prediction=4.6 and Slope=0.01; Prediction=4.51.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0851/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #851. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0851.reveal.1",
+      "text": "A line mechanically extrapolates beyond observed inputs. Whether its slope persists is an additional empirical assumption. This comparison isolates the response scale of an illustrative ratings display.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0851/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #851. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0851.case.0.witness",
+      "text": "Slope=0.1; Prediction=4.6",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0851/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #851. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0851.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Intercept\",4.5],[\"Slope\",0.1],[\"X\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0851/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #851. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0851.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Prediction\",\"value\":4.6}]},\"metrics\":[{\"label\":\"Prediction\",\"value\":\"4.6\"},{\"label\":\"Slope\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0851/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #851. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0851.case.1.witness",
+      "text": "Slope=0.01; Prediction=4.51",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0851/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #851. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0851.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Intercept\",4.5],[\"Slope\",0.01],[\"X\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0851/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #851. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0851.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Prediction\",\"value\":4.51}]},\"metrics\":[{\"label\":\"Prediction\",\"value\":\"4.51\"},{\"label\":\"Slope\",\"value\":\"0.01\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0851/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #851. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0851.recall",
+      "text": "A toy fitted line has Intercept 4.6, Slope 0.1; what does it predict at X 1? Answer 4.7.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0851/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #851. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy fitted line has Intercept 4.6, Slope 0.1; what does it predict at X 1?",
+    "options": [
+      "4.7",
+      "2.82",
+      "6.58"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Prediction 4.7 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0851",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-851"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 851,
+    "sourceSection": "43. Interference, networks & marketplace experiments",
+    "sourceEntryOriginal": "- **851. Inflated ratings** \\[Story\\]: most Airbnb listings rate 4.5 stars or higher, compressing ratings' signal (Zervas, Proserpio & Byers, 2021).",
+    "modelBoundary": "the response scale of an illustrative ratings display",
+    "recallInputs": [
+      4.6,
+      0.1,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

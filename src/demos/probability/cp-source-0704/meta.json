@@ -1,0 +1,154 @@
+{
+  "slug": "cp-source-0704",
+  "title": "A risky continuation changes a backup",
+  "hook": "Two stated cases: explore the chosen next-action value in a cliff illustration.",
+  "domain": "probability",
+  "concept": "cp-source-0704",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the chosen next-action value in a cliff illustration affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Q, regardless of the stated inputs.",
+  "objective": "Compare the chosen next-action value in a cliff illustration in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0704.predict",
+      "text": "Toy Q 0 moves by Alpha 0.2 toward Reward -1+Gamma 0.9×Next 10. What updated Q results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0704/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #704. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0704.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0704/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #704. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0704.reveal.0",
+      "text": "The retained results are Next=10; Q=1.6 and Next=2; Q=0.16.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0704/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #704. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0704.reveal.1",
+      "text": "The sampled target changes a value estimate. Which continuation is supplied distinguishes different learning updates. This comparison isolates the chosen next-action value in a cliff illustration.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0704/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #704. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0704.case.0.witness",
+      "text": "Next=10; Q=1.6",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0704/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #704. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0704.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Q\",0],[\"Alpha\",0.2],[\"Reward\",-1],[\"Gamma\",0.9],[\"Next\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0704/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #704. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0704.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Q\",\"value\":1.6},{\"label\":\"Target\",\"value\":8}]},\"metrics\":[{\"label\":\"Q\",\"value\":\"1.6\"},{\"label\":\"Next\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0704/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #704. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0704.case.1.witness",
+      "text": "Next=2; Q=0.16",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0704/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #704. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0704.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Q\",0],[\"Alpha\",0.2],[\"Reward\",-1],[\"Gamma\",0.9],[\"Next\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0704/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #704. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0704.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Q\",\"value\":0.16000000000000003},{\"label\":\"Target\",\"value\":0.8}]},\"metrics\":[{\"label\":\"Q\",\"value\":\"0.16\"},{\"label\":\"Next\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0704/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #704. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0704.recall",
+      "text": "Toy Q 1 moves by Alpha 0.2 toward Reward -1+Gamma 0.9×Next 10. What updated Q results? Answer 2.4.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0704/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #704. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy Q 1 moves by Alpha 0.2 toward Reward -1+Gamma 0.9×Next 10. What updated Q results?",
+    "options": [
+      "2.4",
+      "1.44",
+      "3.36"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Q 2.4 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0704",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-704"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 704,
+    "sourceSection": "36. MDPs & reinforcement learning",
+    "sourceEntryOriginal": "- **704. Cliff walking** \\[Split\\]: SARSA learns a safe path away from the edge; Q-learning learns the risky shortcut.",
+    "modelBoundary": "the chosen next-action value in a cliff illustration",
+    "recallInputs": [
+      1,
+      0.2,
+      -1,
+      0.9,
+      10
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

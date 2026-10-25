@@ -1,0 +1,150 @@
+{
+  "slug": "cp-source-0759",
+  "title": "The next record becomes rarer",
+  "hook": "Two stated cases: explore the observation count under iid continuous sampling.",
+  "domain": "probability",
+  "concept": "cp-source-0759",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the observation count under iid continuous sampling affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Probability, regardless of the stated inputs.",
+  "objective": "Compare the observation count under iid continuous sampling in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0759.predict",
+      "text": "For N 10 independent identically distributed continuous observations, what chance is the last a new upper record?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0759/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #759. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0759.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0759/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #759. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0759.reveal.0",
+      "text": "The retained results are N=10; Probability=0.1 and N=100; Probability=0.01.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0759/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #759. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0759.reveal.1",
+      "text": "Exchangeability makes every observation equally likely to be the largest. Trend and ties can break this argument. This comparison isolates the observation count under iid continuous sampling.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0759/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #759. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0759.case.0.witness",
+      "text": "N=10; Probability=0.1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0759/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #759. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0759.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"N\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0759/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #759. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0759.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Probability\",\"value\":0.1}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.1\"},{\"label\":\"N\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0759/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #759. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0759.case.1.witness",
+      "text": "N=100; Probability=0.01",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0759/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #759. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0759.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"N\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0759/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #759. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0759.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Probability\",\"value\":0.01}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.01\"},{\"label\":\"N\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0759/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #759. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0759.recall",
+      "text": "For N 11 independent identically distributed continuous observations, what chance is the last a new upper record? Answer 0.091.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0759/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #759. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For N 11 independent identically distributed continuous observations, what chance is the last a new upper record?",
+    "options": [
+      "-0.009",
+      "0.091",
+      "0.191"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Probability 0.091 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0759",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-759"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 759,
+    "sourceSection": "38. Extreme values, heavy tails & risk",
+    "sourceEntryOriginal": "- **759. New records** \\[Predict\\]: in random data, the chance year n sets a record is 1/n.",
+    "modelBoundary": "the observation count under iid continuous sampling",
+    "recallInputs": [
+      11
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

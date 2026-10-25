@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0740", "title": "Population risk falls by selection", "op": "frailty", "labels": ["Share", "Fast", "Slow", "Time"], "outputs": ["Hazard", "Survival"], "a": [0.5, 1.0, 0.1, 0.0], "b": [0.5, 1.0, 0.1, 5.0], "question": "A toy population starts with Share 0.5 at constant hazard Fast 1; others at Slow 0.1. What population hazard remains at Time 0?", "questionTemplate": "A toy population starts with Share {Share} at constant hazard Fast {Fast}; others at Slow {Slow}. What population hazard remains at Time {Time}?", "explain": "Higher-risk people leave the surviving population sooner. Its mixture hazard can fall while each individual hazard stays constant.", "lens": "the changing composition of surviving risk groups", "kind": "curve", "answerPosition": 2, "plot": [3, 0, 8]};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

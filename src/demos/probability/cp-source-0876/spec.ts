@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0876", "title": "A placebo gap needs a benchmark", "op": "synthetic", "labels": ["Weight", "DonorA", "DonorB", "Actual"], "outputs": ["Gap", "Synthetic"], "a": [0.5, 10.0, 12.0, 16.0], "b": [0.5, 10.0, 12.0, 12.0], "question": "A toy synthetic control uses weight 0.5 on donor A 10, remainder on donor B 12; actual outcome 16. What is actual minus synthetic?", "questionTemplate": "A toy synthetic control uses weight {Weight} on donor A {DonorA}, remainder on donor B {DonorB}; actual outcome {Actual}. What is actual minus synthetic?", "explain": "The weighted counterfactual is model-based. Pre-period fit and donor suitability matter before treating this gap as a causal estimate.", "lens": "the observed-minus-synthetic gap before a placebo ranking", "kind": "grid", "answerPosition": 0};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

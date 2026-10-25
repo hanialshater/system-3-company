@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0725",
+  "title": "Shape changes the age pattern",
+  "hook": "Two stated cases: explore the Weibull shape governing the age-dependent hazard.",
+  "domain": "probability",
+  "concept": "cp-source-0725",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the Weibull shape governing the age-dependent hazard affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Survival, regardless of the stated inputs.",
+  "objective": "Compare the Weibull shape governing the age-dependent hazard in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0725.predict",
+      "text": "A toy Weibull lifetime has Shape 0.5, Scale 5. What survival probability remains at Time 3?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0725/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #725. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0725.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0725/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #725. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0725.reveal.0",
+      "text": "The retained results are Shape=0.5; Survival=0.461 and Shape=2; Survival=0.698.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0725/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #725. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0725.reveal.1",
+      "text": "The shape parameter changes how hazard varies with age. The model is illustrative rather than a fitted reliability forecast. This comparison isolates the Weibull shape governing the age-dependent hazard.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0725/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #725. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0725.case.0.witness",
+      "text": "Shape=0.5; Survival=0.461",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0725/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #725. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0725.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Shape\",0.5],[\"Scale\",5],[\"Time\",3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0725/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #725. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0725.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0.05,\"y\":0.9048374180359595},{\"x\":0.5479166666666666,\"y\":0.718180941204341},{\"x\":1.0458333333333332,\"y\":0.6329603959297502},{\"x\":1.5437499999999997,\"y\":0.573697646745938},{\"x\":2.0416666666666665,\"y\":0.5278148865398705},{\"x\":2.5395833333333333,\"y\":0.4903270188325431},{\"x\":3.037499999999999,\"y\":0.4586706505484099},{\"x\":3.535416666666666,\"y\":0.4313297186147796},{\"x\":4.033333333333333,\"y\":0.4073240417171796},{\"x\":4.53125,\"y\":0.3859792612728842},{\"x\":5.029166666666667,\"y\":0.3668095783897709},{\"x\":5.527083333333333,\"y\":0.34945238239550785},{\"x\":6.024999999999999,\"y\":0.33362925416371875},{\"x\":6.522916666666666,\"y\":0.31912143288723455},{\"x\":7.020833333333332,\"y\":0.3057537050677115},{\"x\":7.51875,\"y\":0.29338344285780954},{\"x\":8.016666666666666,\"y\":0.2818929206347483},{\"x\":8.514583333333333,\"y\":0.27118379102319917},{\"x\":9.012500000000001,\"y\":0.2611730255372114},{\"x\":9.510416666666666,\"y\":0.25178987401070985},{\"x\":10.008333333333335,\"y\":0.24297354853947262},{\"x\":10.50625,\"y\":0.23467143280909564},{\"x\":11.004166666666666,\"y\":0.22683767907680286},{\"x\":11.502083333333333,\"y\":0.21943209565713997},{\"x\":11.999999999999998,\"y\":0.21241925517304497}],\"xLabel\":\"Time\",\"yLabel\":\"Survival\"},\"metrics\":[{\"label\":\"Survival\",\"value\":\"0.461\"},{\"label\":\"Shape\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0725/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #725. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0725.case.1.witness",
+      "text": "Shape=2; Survival=0.698",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0725/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #725. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0725.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Shape\",2],[\"Scale\",5],[\"Time\",3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0725/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #725. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0725.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0.05,\"y\":0.9999000049998333},{\"x\":0.5479166666666666,\"y\":0.9880633074265144},{\"x\":1.0458333333333332,\"y\":0.9571925611524312},{\"x\":1.5437499999999997,\"y\":0.9090760158532005},{\"x\":2.0416666666666665,\"y\":0.8464229434785415},{\"x\":2.5395833333333333,\"y\":0.7726111938746958},{\"x\":3.037499999999999,\"y\":0.691386518864807},{\"x\":3.535416666666666,\"y\":0.6065507724342932},{\"x\":4.033333333333333,\"y\":0.5216746761711673},{\"x\":4.53125,\"y\":0.43986427634788294},{\"x\":5.029166666666667,\"y\":0.3636000808044255},{\"x\":5.527083333333333,\"y\":0.2946562056164458},{\"x\":6.024999999999999,\"y\":0.23409576387832992},{\"x\":6.522916666666666,\"y\":0.18232988573745557},{\"x\":7.020833333333332,\"y\":0.1392222046307314},{\"x\":7.51875,\"y\":0.10421866255343315},{\"x\":8.016666666666666,\"y\":0.07648368890759552},{\"x\":8.514583333333333,\"y\":0.05502733739931015},{\"x\":9.012500000000001,\"y\":0.03881275885262071},{\"x\":9.510416666666666,\"y\":0.026838415411411826},{\"x\":10.008333333333335,\"y\":0.018193890202048833},{\"x\":10.50625,\"y\":0.012091511971467678},{\"x\":11.004166666666666,\"y\":0.00787810913722913},{\"x\":11.502083333333333,\"y\":0.005032105267049952},{\"x\":11.999999999999998,\"y\":0.0031511115984444497}],\"xLabel\":\"Time\",\"yLabel\":\"Survival\"},\"metrics\":[{\"label\":\"Survival\",\"value\":\"0.698\"},{\"label\":\"Shape\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0725/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #725. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0725.recall",
+      "text": "A toy Weibull lifetime has Shape 0.6, Scale 5. What survival probability remains at Time 3? Answer 0.479.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0725/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #725. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy Weibull lifetime has Shape 0.6, Scale 5. What survival probability remains at Time 3?",
+    "options": [
+      "0.479",
+      "0.287",
+      "0.671"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Survival 0.479 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0725",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-725"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 725,
+    "sourceSection": "37. Survival analysis & reliability",
+    "sourceEntryOriginal": "- **725. Weibull shape** \\[Slider\\]: shape below 1 means early failures, above 1 means wear-out.",
+    "modelBoundary": "the Weibull shape governing the age-dependent hazard",
+    "recallInputs": [
+      0.6,
+      5,
+      3
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

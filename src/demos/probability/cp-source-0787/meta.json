@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0787",
+  "title": "A straight interpolation has velocity",
+  "hook": "Two stated cases: explore the time coordinate on a stipulated linear transport path.",
+  "domain": "probability",
+  "concept": "cp-source-0787",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the time coordinate on a stipulated linear transport path affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Prediction, regardless of the stated inputs.",
+  "objective": "Compare the time coordinate on a stipulated linear transport path in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0787.predict",
+      "text": "A toy fitted line has Intercept 0, Slope 2; what does it predict at X 0.25?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0787/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #787. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0787.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0787/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #787. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0787.reveal.0",
+      "text": "The retained results are X=0.25; Prediction=0.5 and X=0.75; Prediction=1.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0787/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #787. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0787.reveal.1",
+      "text": "A line mechanically extrapolates beyond observed inputs. Whether its slope persists is an additional empirical assumption. This comparison isolates the time coordinate on a stipulated linear transport path.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0787/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #787. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0787.case.0.witness",
+      "text": "X=0.25; Prediction=0.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0787/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #787. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0787.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Intercept\",0],[\"Slope\",2],[\"X\",0.25]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0787/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #787. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0787.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Prediction\",\"value\":0.5}]},\"metrics\":[{\"label\":\"Prediction\",\"value\":\"0.5\"},{\"label\":\"X\",\"value\":\"0.25\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0787/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #787. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0787.case.1.witness",
+      "text": "X=0.75; Prediction=1.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0787/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #787. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0787.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Intercept\",0],[\"Slope\",2],[\"X\",0.75]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0787/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #787. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0787.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Prediction\",\"value\":1.5}]},\"metrics\":[{\"label\":\"Prediction\",\"value\":\"1.5\"},{\"label\":\"X\",\"value\":\"0.75\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0787/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #787. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0787.recall",
+      "text": "A toy fitted line has Intercept 1, Slope 2; what does it predict at X 0.25? Answer 1.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0787/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #787. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy fitted line has Intercept 1, Slope 2; what does it predict at X 0.25?",
+    "options": [
+      "0.9",
+      "2.1",
+      "1.5"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Prediction 1.5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0787",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-787"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 787,
+    "sourceSection": "40. Probabilistic deep learning & generative models",
+    "sourceEntryOriginal": "- **787. Straight vs curved paths** \\[Split\\]: flow matching moves noise to data along straighter paths than diffusion.",
+    "modelBoundary": "the time coordinate on a stipulated linear transport path",
+    "recallInputs": [
+      1,
+      2,
+      0.25
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

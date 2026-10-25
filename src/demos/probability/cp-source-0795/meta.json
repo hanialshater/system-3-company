@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0795",
+  "title": "Sharpen or flatten a text choice",
+  "hook": "Two stated cases: explore a local distribution before beam or sampling sequence decisions.",
+  "domain": "probability",
+  "concept": "cp-source-0795",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How a local distribution before beam or sampling sequence decisions affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines ProbabilityA, regardless of the stated inputs.",
+  "objective": "Compare a local distribution before beam or sampling sequence decisions in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0795.predict",
+      "text": "Two toy logits are 2 and 0, divided by positive Temperature 0.2 before softmax. What probability is assigned to A?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0795/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #795. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0795.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0795/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #795. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0795.reveal.0",
+      "text": "The retained results are Temperature=0.2; ProbabilityA=1 and Temperature=2; ProbabilityA=0.731.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0795/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #795. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0795.reveal.1",
+      "text": "Temperature changes sampling concentration while preserving logit order. It does not supply evidence that the scores are calibrated. This comparison isolates a local distribution before beam or sampling sequence decisions.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0795/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #795. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0795.case.0.witness",
+      "text": "Temperature=0.2; ProbabilityA=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0795/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #795. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0795.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"LogitA\",2],[\"LogitB\",0],[\"Temperature\",0.2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0795/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #795. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0795.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"ProbabilityA\",\"value\":0.9999546021312976}]},\"metrics\":[{\"label\":\"ProbabilityA\",\"value\":\"1\"},{\"label\":\"Temperature\",\"value\":\"0.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0795/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #795. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0795.case.1.witness",
+      "text": "Temperature=2; ProbabilityA=0.731",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0795/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #795. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0795.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"LogitA\",2],[\"LogitB\",0],[\"Temperature\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0795/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #795. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0795.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"ProbabilityA\",\"value\":0.7310585786300049}]},\"metrics\":[{\"label\":\"ProbabilityA\",\"value\":\"0.731\"},{\"label\":\"Temperature\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0795/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #795. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0795.recall",
+      "text": "Two toy logits are 2 and 1, divided by positive Temperature 0.2 before softmax. What probability is assigned to A? Answer 0.993.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0795/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #795. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two toy logits are 2 and 1, divided by positive Temperature 0.2 before softmax. What probability is assigned to A?",
+    "options": [
+      "0.596",
+      "0.993",
+      "1.391"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives ProbabilityA 0.993 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0795",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-795"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 795,
+    "sourceSection": "40. Probabilistic deep learning & generative models",
+    "sourceEntryOriginal": "- **795. Beam search vs sampling** \\[Split\\]: the most likely text is often bland and repetitive; sampled text is livelier.",
+    "modelBoundary": "a local distribution before beam or sampling sequence decisions",
+    "recallInputs": [
+      2,
+      1,
+      0.2
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}
