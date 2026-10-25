@@ -1165,6 +1165,45 @@
           "Symbols illustrate narrative context, not exact vehicles, equipment, counts, buildings or campsite locations."
         ]
       }
+    },
+    {
+      "version": "r22",
+      "date": "2026-10-25T20:45:00.000Z",
+      "commit": "40b8bfbc1f902bb51bb56ba470efe38d27ef6a98",
+      "target": "production",
+      "approved_by": {
+        "who": "founder",
+        "record": "company/decisions/2026-10-25-founder-cube-pairwise-after-publish.md; system3-meta docs/decisions/2026-10-25-founder-approvals.md item 4",
+        "quote": "Cube lesson: skip pairwise: \"Publish flatten-the-cube-to-a-dot and deploy System 3 Lessons once its own checks pass, without the comparison against a single-card version. That comparison runs after publishing.\" (founder, 2026-10-25)"
+      },
+      "summary": "A new multi-card lesson: flatten a cube to a dot to see why corners minus edges plus faces is 2 for every convex solid.",
+      "added": {
+        "features": [
+          "HQ: floor 8 (System 3 Press) removed; a link to the city HQ (https://system3-city-hq.vercel.app) in its place (tools-lead d5ed24fa4, founder 2026-10-25)."
+        ],
+        "lessons": {
+          "published": {
+            "count": 1,
+            "slugs": [
+              "flatten-the-cube-to-a-dot"
+            ]
+          },
+          "in_review": {
+            "count": 0,
+            "slugs": []
+          }
+        },
+        "fixes": [
+          "math/euclid-three-steps: claim c5 re-verified after the 'no finite list' copy edit; its trust line now reads 6 of 6 claims checked (fact-checker dfcd66b13; flagged by tools-lead)."
+        ],
+        "known_issues": [
+          "flatten-the-cube-to-a-dot ships before its lane M pairwise against the single-card twin (founder's decision); W-2057 builds the twin, W-2058 runs the pairwise; if the single card wins, the lesson goes back to lane M for revision or withdrawal. design-lead's objection carried.",
+          "'convex' is unglossed in the hook and reveal (W-2068, non-blocking).",
+          "No head-of-product countersignature (W-2080) or committed launch predictions (W-2081) at publish.",
+          "next build ends with Next.js 16.4.0's SecurityFatalError upgrade advisory after the output is written; not upgraded (W-2067, principal-engineer).",
+          "company check keeps 810 pre-existing errors (grandfathered readiness and decision-record format); none for the two lessons in this release."
+        ]
+      }
     }
   ],
   "historical_deployments": [
