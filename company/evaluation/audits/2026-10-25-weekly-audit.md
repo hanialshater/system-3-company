@@ -1,6 +1,6 @@
 # Weekly audit of 50 published lessons, week 1 (F-41 item 9, W-2050): design and predictions
 
-owner: evaluation-steward · date: 2026-10-25 · status: **design and predictions committed before the run**
+owner: evaluation-steward · date: 2026-10-25 · status: **run; results below** (design and predictions committed first, 43d838cd0)
 why now: AMD-017 (b) samples tier-S learner walks at 1 in 5 from today (F-51). This audit is its safeguard; the founder ratified knowing it had never run (company/decisions/2026-10-25-founder-f51-amd017.md). Two audits running with more than 1 fatal in 10 in a category switch (b) off for that category, in code (`auditRevoked`, tools/lib/tiers.mjs).
 
 ## What runs
@@ -46,3 +46,44 @@ Fatal rate overall and per category; revise rate; walk completion. The record of
 - One reviewer (the steward), the same model family as the builders: correlated with them. The walk is a borrowed-mind check, not a learner.
 - One viewport (phone) and one choice (option 1). H4 at desktop is not checked.
 - Sources are not re-fetched; a claim that needs a source I cannot check from knowledge is marked "unchecked", not "true".
+
+## Results (2026-10-25, after the run)
+
+Record: `2026-10-25-weekly.json` (one row per lesson: verdict, `fatal`, whether the walk reached the reveal, findings). Walks: `artifacts/walkthroughs/<slug>/` (transcripts kept locally, not committed).
+
+| Measure | Result |
+|---|---|
+| Fatal | **0 of 50** (every category 0) |
+| Revise | 1 of 50 (`base-rates`: the stage's picture text announces "1 tested positive" before the learner presses Test all, so a screen-reader learner hears the result early) |
+| Launch | 49 of 50 |
+| Walk reached the reveal | 49 of 50 by the walkthrough; 50 of 50 with a probe (below) |
+| False learner-visible statements | 0. Every number in the 50 reveals was recomputed (exact binomial, SIR final size, PageRank, Gale-Shapley both ways, saturation pressures, bond energies, and so on) |
+| Lessons in the sample that fail the gate on main | 31 of 50 (407 of 720 published lessons fail it: learner verdict for an older version, mostly after the 10-20 copy pass bumped versions) |
+
+### Verdicts on the predictions
+
+| id | Prediction | Verdict |
+|---|---|---|
+| A1 | at most 5 fatal | **right** (0) |
+| A2 | at least 1 fatal | **wrong** (0). I expected the 10-14 rush to have left at least one soft lock or false claim among 50; none was found by this reviewer on this path. |
+| A3 | at least 47 reach the reveal | **right** (49 by the walk, 50 with the probe) |
+| A4 | at least 8 revise | **wrong** (1). The published catalog is cleaner than I predicted on the phone path, option 1. |
+| A5 | at most 2 false statements | **right** (0) |
+| A6 | no category above 1 fatal in 10 | **right** |
+
+What I now believe, and how sure: the published single-card catalog, on the path a learner takes first, has a fatal rate well under 1 in 10 (90% sure it is under 1 in 10; 0 of 50 gives an upper 95% bound of about 6%). I am **not** sure the audit can find what it is looking for: one reviewer, the same model family as the builders, on the same path the builders' QA follows, found nothing. A clean result from a correlated reviewer is weak evidence (artifact-before-account, known failure). Week 2 therefore plants known flaws to measure the audit's own detection rate.
+
+### Findings that are not about a lesson
+
+1. **The walkthrough misses autoplay reveals.** `odd-numbers-make-squares`: the walk presses "Keep going" and checks the reveal 1.2 s later, at total 16; the autoplay reaches 25 within 3 s and unlocks it (`artifacts/audit-probe-odd.mjs`). The walk reported "the reveal never unlocked". Owner: tools-lead (`tools/walkthrough.mjs`, wait for the reveal button up to a ceiling after the last press). The QA contract follows the same path; whether it has the same blind spot is the steward's to check (W-2050 follow-up).
+2. **The referee is red on main and has been for days.** `npm run check` reports 810 errors; 792 are published lessons failing the gate (408 lessons), almost all a learner verdict for an older version. Everyone treats 810 as the baseline. This audit re-walked 31 of them and found none fatal, which says the versions moved for copy, not for content; but a gate everyone ignores is not a gate. Proposal for the next amendment cycle: grandfather the copy-pass versions explicitly (as AMD-013 did) or re-stamp their walks, so that `check` can go green and a new failure is visible.
+3. **A published lesson with unverified claims.** `twenty-flips-run-of-five` c2 and c5 (implementation notes about seeds and the tap reveal) are unverified; the lesson is live. Owner: the probability fact-checker queue.
+
+### Deviations
+
+- The walks used the 19:31Z build; the release-manager deployed r22 during the run (the cube only, excluded from the sample).
+- Screenshots were deleted after review to keep disk above 4 GB (it fell to 3.9 GB once, during the walks, with other sessions writing).
+
+## Next audit
+
+Week 2, due **2026-11-01**: a new hash seed; a rotated checklist; 5 planted flaws (a wrong marked answer, a false number in a reveal, a dead control, text cut at 390 px, a reveal that contradicts the stage) mixed into a copy of the sample on a scratch build, to measure the audit's detection rate; a second reviewer persona; desktop as well as phone. With two audits on disk, `auditRevoked` starts to bite.

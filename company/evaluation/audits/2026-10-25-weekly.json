@@ -1,0 +1,511 @@
+{
+ "date": "2026-10-25",
+ "kind": "weekly-50",
+ "week": 1,
+ "by": "evaluation-steward",
+ "design": "company/evaluation/audits/2026-10-25-weekly-audit.md",
+ "checklist": "H1-H6 in the design file",
+ "sampleRule": "first 50 published by sha256('weekly-audit-2026-10-25:'+slug), cube excluded",
+ "lessons": [
+  {
+   "slug": "loophole-lap-farming",
+   "domain": "ai",
+   "version": 2,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": true,
+   "findings": "300 = 20 buoys by step 80 + finish at 100; 250 never leaving; 230 at 92 (no finish) all check."
+  },
+  {
+   "slug": "rank-the-pairs",
+   "domain": "ai",
+   "version": 3,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": true,
+   "findings": "21.5/25 = 86% checks (losses 0.5v0.6, 0.3v0.6, 0.3v0.4, tie 0.3v0.3). Reveal names only one of the 0.3 spam's two losses (incomplete, not false; grid shows both)."
+  },
+  {
+   "slug": "raters-reward-agreement",
+   "domain": "ai",
+   "version": 2,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": true,
+   "findings": "25+35 vs 25+15 = 60/40; 50/50 at 50%; 40/60 at 30% check."
+  },
+  {
+   "slug": "heat-in-no-rise",
+   "domain": "chemistry",
+   "version": 2,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": true,
+   "findings": "200/334 = 0.60 kg melted; 200/4.18 = 48 C; true."
+  },
+  {
+   "slug": "pay-first-then-profit",
+   "domain": "chemistry",
+   "version": 4,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": false,
+   "findings": "2648 broken, 3450 formed, 802 net; matches standard combustion enthalpy with gaseous water (~802 kJ/mol)."
+  },
+  {
+   "slug": "ph-log-scale",
+   "domain": "chemistry",
+   "version": 5,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": true,
+   "findings": "pH 5 to 2 = 1000x; pH 7 = 1/100 of pH 5; true."
+  },
+  {
+   "slug": "same-air-less-oxygen",
+   "domain": "chemistry",
+   "version": 3,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": true,
+   "findings": "standard atmosphere at 8,849 m ~31.4 kPa; 21% of it 6.6 kPa; caveat about measured ~34 kPa shown; true."
+  },
+  {
+   "slug": "when-the-water-is-full",
+   "domain": "chemistry",
+   "version": 2,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": false,
+   "findings": "NaCl ~36 g/100 g at 20 C; 14 g left; dynamic equilibrium wording correct."
+  },
+  {
+   "slug": "where-the-dew-forms",
+   "domain": "chemistry",
+   "version": 4,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": false,
+   "findings": "saturation 4.24/3.17/2.34/1.70 kPa at 30/25/20/15 C; 2.12 kPa saturates near 18 C; true."
+  },
+  {
+   "slug": "who-runs-out-first",
+   "domain": "chemistry",
+   "version": 2,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": true,
+   "findings": "6 H2 + 4 O2 -> 6 H2O, 1 O2 left; true."
+  },
+  {
+   "slug": "bloom-maybe-yes",
+   "domain": "cs",
+   "version": 2,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": true,
+   "findings": "false positive from bits lit by cat and dog; one-sided error stated correctly."
+  },
+  {
+   "slug": "clear-the-lowest-one",
+   "domain": "cs",
+   "version": 2,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": false,
+   "findings": "x&(x-1) clears lowest 1; 3/1/8 repeats; power-of-two test stated correctly; bit-flip readouts (e.g. 233->232) check."
+  },
+  {
+   "slug": "gray-code-one-flip",
+   "domain": "cs",
+   "version": 1,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": false,
+   "findings": "binary 11 flips 0..7, Gray 7; g = n XOR n>>1 table correct."
+  },
+  {
+   "slug": "hash-bucket-pileup",
+   "domain": "cs",
+   "version": 4,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": false,
+   "findings": "0.504 for 4 keys, 0.3024 for 5; birthday-style claim true."
+  },
+  {
+   "slug": "pivot-lands-home",
+   "domain": "cs",
+   "version": 2,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": true,
+   "findings": "3 cards below 5 so position 3; quicksort and n^2/2 worst case true."
+  },
+  {
+   "slug": "proposers-get-the-best",
+   "domain": "cs",
+   "version": 7,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": false,
+   "findings": "Recomputed Gale-Shapley both ways: Ann-X/Bea-Y/Cal-Z (students 2 firsts) and Ann-Y/Bea-Z/Cal-X (hospitals 2); both stable. Tapping Ann first shows no visible change on the stage (minor)."
+  },
+  {
+   "slug": "random-surfer-finds-the-rank",
+   "domain": "cs",
+   "version": 4,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": false,
+   "findings": "Recomputed PageRank (A->B->C->A, D,E->C, d=0.85): A 0.312, C 0.332; matches."
+  },
+  {
+   "slug": "runs-that-grow",
+   "domain": "cs",
+   "version": 2,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": true,
+   "findings": "RLE of BWBWBWBW = 16 chars; counting argument for lossless codes true."
+  },
+  {
+   "slug": "two-eggs-hundred-floors",
+   "domain": "cs",
+   "version": 3,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": true,
+   "findings": "14 worst case (14+13+..=105>=100, 13 covers 91); plan A/B drop counts per break recomputed and match."
+  },
+  {
+   "slug": "cheap-printer-dear-ink",
+   "domain": "economics",
+   "version": 2,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": true,
+   "findings": "$260 vs $210 at 2,000 pages; tie at 90/0.07 = 1,286; labelled as a model."
+  },
+  {
+   "slug": "growth-gap-seventy-years",
+   "domain": "economics",
+   "version": 2,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": true,
+   "findings": "1.03^70 = 7.92, 1.02^70 = 4.00, ratio 1.98; 0.5 pt and 2 pt values recomputed."
+  },
+  {
+   "slug": "sunk-cost-exit",
+   "domain": "economics",
+   "version": 2,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": true,
+   "findings": "stop -80k vs finish -90k; spent money shifts both bars; true."
+  },
+  {
+   "slug": "tax-now-or-tax-later",
+   "domain": "economics",
+   "version": 3,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": true,
+   "findings": "10,000 x 0.75 x 4 both orders; 35% later gives 26,000; true."
+  },
+  {
+   "slug": "twenty-then-ten-off",
+   "domain": "economics",
+   "version": 4,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": false,
+   "findings": "0.8 x 0.9 = 0.72, 28%, order-independent; true."
+  },
+  {
+   "slug": "two-thirds-of-the-average",
+   "domain": "economics",
+   "version": 2,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": true,
+   "findings": "ceilings 66.7/44.4/29.6/19.8/13.2 recomputed; unique equilibrium 0 with common knowledge stated."
+  },
+  {
+   "slug": "earth-flattening",
+   "domain": "geography",
+   "version": 4,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": false,
+   "findings": "flattening 1/298: 43 km polar vs equatorial diameter, 0.34%, 1.0 mm on 30 cm; Chimborazo 6,384.4 km vs Everest 6,382.3 km; true."
+  },
+  {
+   "slug": "shrinking-degree",
+   "domain": "geography",
+   "version": 5,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": false,
+   "findings": "111.2 cos(lat): 55.6 km at 60N, 19.3 km at 80N; true on a sphere (labelled)."
+  },
+  {
+   "slug": "cut-the-island",
+   "domain": "life",
+   "version": 2,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": true,
+   "findings": "0.1^0.25 = 0.56, 0.5^0.25 = 0.84, 0.8^0.25 = 0.95; exponent range caveat shown. The exponent renders inline as \"area0.25\" and \"0.10.25\" in text extraction; check the superscript shows on screen (sheet looked fine)."
+  },
+  {
+   "slug": "early-fatality-count",
+   "domain": "life",
+   "version": 2,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": true,
+   "findings": "15-day lag at 5-day doubling = 8x, ~1 in 400 at day 45, 1 in 50 after cases stop; true for the model. \"Once cases fell\": in the model they stop at day 120 (minor wording)."
+  },
+  {
+   "slug": "epidemic-overshoot",
+   "domain": "life",
+   "version": 2,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": true,
+   "findings": "SIR final size z = 1 - exp(-R0 z): 0.80/0.94/0.98 for R0 2/3/4; peak at the threshold; true."
+  },
+  {
+   "slug": "add-a-zero",
+   "domain": "math",
+   "version": 2,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": true,
+   "findings": "3.5 x 10 = 35, place-value shift explained correctly."
+  },
+  {
+   "slug": "bridge-parity",
+   "domain": "math",
+   "version": 2,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": false,
+   "findings": "Konigsberg degrees 5,3,3,3; closing bridge 7 leaves 2 odd; Euler argument correct."
+  },
+  {
+   "slug": "odd-numbers-make-squares",
+   "domain": "math",
+   "version": 3,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes (probe)",
+   "failsGateOnMain": true,
+   "findings": "The walkthrough (and the contract path it follows) never unlocked the reveal: it presses \"Keep going\", the autoplay starts, and the walk reads the reveal button 1.2 s later, at total 16. A separate probe (artifacts/audit-probe-odd.mjs) shows the autoplay reaches 25 within 3 s and the reveal unlocks; the reveal text is correct (sum of first n odd numbers = n^2). Tooling finding, not a lesson defect: walkthrough does not wait for autoplay."
+  },
+  {
+   "slug": "one-boss-moves-the-mean",
+   "domain": "math",
+   "version": 3,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": false,
+   "findings": "(30+35+40+45+500)/5 = 130; median 40; true."
+  },
+  {
+   "slug": "plus-and-minus-chips",
+   "domain": "math",
+   "version": 4,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": true,
+   "findings": "3 - 5 = -2; zero pairs; true."
+  },
+  {
+   "slug": "the-middle-voter-decides",
+   "domain": "math",
+   "version": 3,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": false,
+   "findings": "median voter (3) beats every rival; 4.8 and 5 lose 2-3 to 4; true."
+  },
+  {
+   "slug": "thirteen-pigeons",
+   "domain": "math",
+   "version": 4,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": false,
+   "findings": "pigeonhole, 13 for 12 months; true."
+  },
+  {
+   "slug": "zeno-half-steps",
+   "domain": "math",
+   "version": 2,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": true,
+   "findings": "6 halves = 63/64; geometric series sums to 1; true."
+  },
+  {
+   "slug": "kettle-vs-bulb-kwh",
+   "domain": "physics",
+   "version": 2,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": true,
+   "findings": "2 kW x 0.05 h = 0.10 kWh vs 0.06 kW x 2 h = 0.12 kWh; true."
+  },
+  {
+   "slug": "magnet-still-in-coil",
+   "domain": "physics",
+   "version": 2,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": true,
+   "findings": "Faraday's law stated correctly; sheet shows the -/+ kicks on the trace and 0 while still. \"Meter now\" reads 0 mV a second after each push (the kick is only on the trace); fine, the trace carries it."
+  },
+  {
+   "slug": "release-the-spinning-ball",
+   "domain": "physics",
+   "version": 2,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": true,
+   "findings": "tangential exit after the cut; no outward force; true."
+  },
+  {
+   "slug": "seesaw-sit-closer",
+   "domain": "physics",
+   "version": 5,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": false,
+   "findings": "20 x 9.81 x 4 = 40 x 9.81 x 2 = 785 N m; 3.5 m gives 687; true."
+  },
+  {
+   "slug": "two-ripples-cancel",
+   "domain": "physics",
+   "version": 4,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": false,
+   "findings": "half-wavelength path difference cancels; idealisation stated."
+  },
+  {
+   "slug": "base-rates",
+   "domain": "probability",
+   "version": 3,
+   "verdict": "revise",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": true,
+   "findings": "11 positives, 1 sick (~9%); 10/20 at 1 in 100; 99/108 at 1 in 10; Casscells et al. 1978 (5% false positives, modal answer 95%, ~2% correct) stated correctly. A11y note: the stage's picture text says \"1 tested positive\" before the learner presses Test all (screen readers hear the result early)."
+  },
+  {
+   "slug": "capped-doubling-game",
+   "domain": "probability",
+   "version": 4,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": false,
+   "findings": "EV = 20 x $1 = $20; 75% pay <= $4; profit and share readouts recomputed ($8,192 = 2^13 is 58% of $14,190 paid)."
+  },
+  {
+   "slug": "jackpot-once-a-week",
+   "domain": "probability",
+   "version": 2,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": true,
+   "findings": "292,201,338 / 52.18 = 5.6 million years; 80 years = 4,174 tickets = 0.0014%; 63% = 1 - 1/e at the expected count; true."
+  },
+  {
+   "slug": "more-copying-bigger-stars",
+   "domain": "probability",
+   "version": 3,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": false,
+   "findings": "simulation readouts consistent (6,278/12 = 523x); copying-is-proportional-to-links claim true for link copying."
+  },
+  {
+   "slug": "ninety-five-percent-of-what",
+   "domain": "probability",
+   "version": 2,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": true,
+   "findings": "Wald 95% interval at n = 1,000, p = 0.5 misses with probability 5.37% (recomputed exactly); \"the 95% belongs to the method\" correct."
+  },
+  {
+   "slug": "twenty-flips-run-of-five",
+   "domain": "probability",
+   "version": 4,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": true,
+   "findings": "P(run >= 5 of either face in 20 flips) = 45.8% (recomputed exactly); simulation readouts consistent. Account step: claims c2 and c5 are unverified on a published lesson (check already errors on it)."
+  },
+  {
+   "slug": "which-coin-is-it",
+   "domain": "probability",
+   "version": 2,
+   "verdict": "launch",
+   "fatal": false,
+   "reachedReveal": "yes",
+   "failsGateOnMain": true,
+   "findings": "8/9 = 89% after 3 heads; 94% after 4; simulation 505/578 = 87% consistent."
+  }
+ ]
+}
