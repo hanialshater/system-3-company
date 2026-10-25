@@ -1,3 +1,20 @@
+## 2026-10-25 · category-curator (math) · W-2048, W-2049: flatten-the-cube-to-a-dot hook, c8, c6 source
+
+- **Changed** (only `src/demos/math/flatten-the-cube-to-a-dot/meta.json`, only these fields):
+  - `hook`: "Corners minus edges plus faces is 2 for a cube. Every convex solid too? Three moves tell." (89 chars, budget 90; a first try at 108 chars failed `npm run check`'s hook budget).
+    - "always" is gone, and the scope is convex solids, as in c6 and the reveal.
+    - It now asks instead of asserting, so it no longer says the total stays 2 (build.md pre-flight item 1).
+  - c8: the text is now the new second and third sentences. Status is **unverified**, checkedBy/checkedOn removed, and the note keeps the old disputed text and why.
+  - c6 `source`: "a variant of Cauchy's (Cauchy removed triangles, the lesson removes edges)", plus PMC10239678 (doi 10.1098/rsta.2022.0052) and PMC9640434. c6 stays verified; its learner text did not change.
+  - `brief.subCards[2].title`: "Shrink to a dot" → "Shrink" (spec trail, company/design/specs/flatten-the-cube-to-a-dot.md).
+- **Board:** W-2048 and W-2049 done. W-2055 (fact-checker): re-check c8 and look at c6's amended source.
+- **Believe:**
+  - Medium-high that the hook no longer overclaims. It implies that the three moves settle the question for convex solids, which c6 covers.
+  - Medium that it no longer leans on "still 2". Any hook that raises "every solid?" hints a little; this one gives no value.
+- **Check:** 810 errors, the same as the baseline; none from this lesson.
+- **Next:** fact-checker W-2055. The design-lead review was running in parallel and may want to weigh in on the hook's tone.
+- **Blocked:** publishing waits on c8's re-check.
+
 ## 2026-10-25 · chief-of-staff-ceo-office (Leonie) · Principles audit against system3-meta PRINCIPLES.md; company.json written
 
 - **Changed:**
