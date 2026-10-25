@@ -10,14 +10,15 @@
 .op { font-size: 20px; font-weight: 700; line-height: 1.15; color: var(--muted); }
 
 .line { margin: 0; text-align: center; font-size: 13px; font-weight: 600; line-height: 1.4; color: var(--warn); min-height: 1.4em; }
-.stripLabel { margin: 0; text-align: center; font-size: 11px; line-height: 1.3; color: var(--muted); }
+.note { margin: 0; text-align: center; font-size: 12px; line-height: 1.35; color: var(--muted); min-height: 1.35em; }
+.stripLabel { margin: 0; text-align: center; font-size: 11px; line-height: 1.3; color: var(--muted); min-height: 1.3em; }
 .strip { display: block; margin: 0 auto; max-width: 100%; height: auto; }
 .end { margin: 0; text-align: center; font-size: 16px; font-weight: 800; line-height: 1.3; color: var(--good); min-height: 1.3em; }
 
 .tap { min-height: 44px; }
 .chip { flex: 1 1 0; max-width: 148px; }
 
-.line + :global(.row), .end + :global(.row) { justify-content: center; margin-top: 2px; }
+.line + :global(.row), .note + :global(.row), .end + :global(.row) { justify-content: center; margin-top: 2px; }
 
 /* Picture */
 .edge { stroke: var(--fg); stroke-width: 2; stroke-linecap: round; }

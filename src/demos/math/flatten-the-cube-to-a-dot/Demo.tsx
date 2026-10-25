@@ -5,10 +5,13 @@
 //   1. Slice: one press slices the front-top-right corner; 8 − 12 + 6 = 2 becomes 10 − 15 + 7 = 2. Milestone: done.
 //   2. Flatten: one press lifts the top face off (parked as a tile) and stretches the rest flat: 8 − 12 + 5 = 1.
 //      Milestone: done (on the press; the 700 ms animation never races QA).
+//      v2 (W-2063): the chip becomes "Replay the flatten" once the 700 ms are done; a line says the 5 regions are the other 5 faces.
 //   3. Shrink: "Remove an edge" removes the next edge in a fixed order; "Remove the rest" (after the first removal)
 //      commits the remaining removals at the press and plays them at 220 ms each. Every removal takes an edge with a
 //      region or a corner, so the total stays 1 down to one dot; the tile then slides back beside it.
 //      Milestones: region (first removal), corner (first corner removal, press 3), dot (12th removal committed).
+//      v2 (D1, design review 2026-10-25): until the top is off, card 3 shows the cube, "Take the top off first",
+//      and both removal controls disabled. Next is not gated.
 // The trail records each card's result once its picture has finished moving, and a strip of twelve "1" cells
 // (squares where a region went, circles where a corner went) keeps "the total never moved" on the stage.
 
@@ -108,13 +111,14 @@ function useReducedMotion() {
   );
 }
 
-/** 0 → 1 over `ms` once `on` is true; 1 at once when `instant`. Never goes back (every chip is one-way). */
-function useTween(on: boolean, ms: number, instant: boolean) {
+/** 0 → 1 over `ms` once `on` is true; 1 at once when `instant`. A new `run` plays it again from 0 (replay). */
+function useTween(on: boolean, ms: number, instant: boolean, run = 0) {
   const [v, setV] = useState(0);
   useEffect(() => {
     if (!on || instant) return;
     let raf = 0;
     const start = performance.now();
+    setV(0);
     const tick = (now: number) => {
       const k = Math.min(1, (now - start) / ms);
       setV(k);
@@ -122,7 +126,7 @@ function useTween(on: boolean, ms: number, instant: boolean) {
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [on, ms, instant]);
+  }, [on, ms, instant, run]);
   if (!on) return 0;
   return instant ? 1 : v;
 }
@@ -136,6 +140,7 @@ export default function FlattenTheCubeToADot({ slug }: { slug: string }) {
   const reduced = useReducedMotion();
   const [sliced, setSliced] = useState(false);
   const [flat, setFlat] = useState(false);
+  const [replays, setReplays] = useState(0); // W-2063: card 2's flatten can be watched again
   const [n, setN] = useState(0); // removals committed
   const [shown, setShown] = useState(0); // removals presented (the playback catches up with n)
   const [ghost, setGhost] = useState<number | null>(null); // the removal flashing now (index into ORDER)
@@ -174,6 +179,8 @@ export default function FlattenTheCubeToADot({ slug }: { slug: string }) {
           onSlice={() => setSliced(true)}
           flat={flat}
           onFlat={() => setFlat(true)}
+          replays={replays}
+          onReplay={() => setReplays((r) => r + 1)}
           n={n}
           shown={shown}
           ghost={ghost}
@@ -197,6 +204,8 @@ interface StageProps {
   onSlice: () => void;
   flat: boolean;
   onFlat: () => void;
+  replays: number;
+  onReplay: () => void;
   n: number;
   shown: number;
   ghost: number | null;
@@ -208,13 +217,13 @@ interface StageProps {
 }
 
 function Stage(p: StageProps) {
-  const { phase, locked, interact, reduced, sliced, flat, n, ghost, rest } = p;
+  const { phase, locked, interact, reduced, sliced, flat, n, ghost, rest, replays } = p;
   const snap = reduced || phase === "reveal"; // the playback jumps to the end: the reveal always sees the dot
   const shown = snap ? n : p.shown;
   const playing = shown < n;
 
   const sliceK = useTween(sliced, 300, reduced);
-  const flatK = useTween(flat, 700, reduced);
+  const flatK = useTween(flat, 700, reduced, replays);
   const endK = useTween(shown === N_REMOVE, 250, reduced);
 
   // Playback: one removal every 220 ms until the presented count reaches the committed one.
@@ -257,6 +266,8 @@ function Stage(p: StageProps) {
             <SolidPicture slice={sliceK} />
             <Equation v={sliced ? 10 : 8} e={sliced ? 15 : 12} f={sliced ? 7 : 6} fKey="faces" changed={sliced ? "vef" : ""} />
             <p className={s.line}>{sliced ? "+2 corners, +3 edges, +1 face" : ""}</p>
+            {/* W-2063: say why +2 when the picture shows 3 new corners (one line, so it does not wrap at 390) */}
+            <p className={s.note}>{sliced ? "1 corner gone, 3 new: +2 corners" : ""}</p>
             <Row>
               <Control
                 className={`${s.tap} ${sliced ? "active" : ""}`}
@@ -273,22 +284,25 @@ function Stage(p: StageProps) {
         )}
       </SubCard>
 
-      <SubCard id="flatten" title="Flatten" milestones={M_FLAT} trace={flatK === 1 ? "8−12+5=1" : undefined}>
+      <SubCard id="flatten" title="Flatten" milestones={M_FLAT} trace={flatK === 1 || replays > 0 ? "8−12+5=1" : undefined}>
         {({ reach }) => (
           <>
             <FlattenPicture k={flatK} />
             <Equation v={8} e={12} f={flat ? 5 : 6} fKey={flatK === 1 ? "regions" : "faces"} changed={flat ? "ft" : ""} />
             <p className={s.line}>{flat ? "top face off: 1 short" : ""}</p>
+            <p className={s.note}>{flatK === 1 ? "The 5 regions are the cube's other 5 faces." : ""}</p>
             <Row>
+              {/* W-2063: once the top is off, the same chip replays the flatten (one control, so no QA index moves). */}
               <Control
-                className={`${s.tap} ${flat ? "active" : ""}`}
-                disabled={locked || flat}
+                className={s.tap}
+                disabled={locked || (flat && (reduced || flatK < 1))}
                 onClick={() => {
+                  if (flat) return p.onReplay();
                   p.onFlat();
                   reach("done");
                 }}
               >
-                Take the top off
+                {flat && !reduced ? "Replay the flatten" : "Take the top off"}
               </Control>
             </Row>
           </>
@@ -296,66 +310,90 @@ function Stage(p: StageProps) {
       </SubCard>
 
       <SubCard id="shrink" title="Shrink" milestones={M_SHRINK} trace={shown === N_REMOVE ? "1−0+0=1" : undefined}>
-        {({ reach }) => (
-          <>
-            <ShrinkPicture st={st} ghost={snap ? null : ghost} end={endK} />
-            <Equation
-              v={st.V.length}
-              e={st.E.length}
-              f={st.R.length}
-              fKey="regions"
-              changed={lastKind === "region" ? "ef" : lastKind === "corner" ? "ve" : ""}
-            />
-            <p className={s.line}>{lastKind ? `−1 edge, −1 ${lastKind}` : ""}</p>
-            <p className={s.stripLabel}>total after each removal</p>
-            <Strip shown={shown} />
-            <p className={s.end}>{shown === N_REMOVE ? "+ the top face = 2" : ""}</p>
-            <Row>
-              <Control
-                className={`${s.tap} ${s.chip}`}
-                disabled={locked || n >= N_REMOVE || playing}
-                onClick={() => commitTo(n + 1, reach)}
-              >
-                Remove an edge
-              </Control>
-              <Control
-                className={`${s.tap} ${s.chip} ${rest ? "active" : ""}`}
-                disabled={locked || n < 1 || n >= N_REMOVE || playing}
-                onClick={() => {
-                  p.setRest(true);
-                  commitTo(N_REMOVE, reach);
-                }}
-              >
-                Remove the rest
-              </Control>
-            </Row>
-          </>
-        )}
+        {({ reach }) =>
+          !flat ? (
+            // D1 (design review 2026-10-25): card 3 starts from card 2's result, so until the top is off it shows
+            // card 2's starting cube, says what is missing, and both removal controls stay disabled. Next is not gated.
+            <>
+              <FlattenPicture k={0} />
+              <Equation v={8} e={12} f={6} fKey="faces" changed="" />
+              <p className={s.line}>Take the top off first</p>
+              <p className={s.stripLabel}></p>
+              <Strip shown={0} />
+              <p className={s.end}></p>
+              <Row>
+                <Control className={`${s.tap} ${s.chip}`} disabled>
+                  Remove an edge
+                </Control>
+                <Control className={`${s.tap} ${s.chip}`} disabled>
+                  Remove the rest
+                </Control>
+              </Row>
+            </>
+          ) : (
+            <>
+              <ShrinkPicture st={st} ghost={snap ? null : ghost} end={endK} />
+              <Equation
+                v={st.V.length}
+                e={st.E.length}
+                f={st.R.length}
+                fKey="regions"
+                changed={lastKind === "region" ? "ef" : lastKind === "corner" ? "ve" : ""}
+              />
+              <p className={s.line}>{lastKind ? `−1 edge, −1 ${lastKind}` : ""}</p>
+              <p className={s.stripLabel}>total after each removal</p>
+              <Strip shown={shown} />
+              <p className={s.end}>{shown === N_REMOVE ? "+ the top face = 2" : ""}</p>
+              <Row>
+                <Control
+                  className={`${s.tap} ${s.chip}`}
+                  disabled={locked || n >= N_REMOVE || playing}
+                  onClick={() => commitTo(n + 1, reach)}
+                >
+                  Remove an edge
+                </Control>
+                <Control
+                  className={`${s.tap} ${s.chip} ${rest ? "active" : ""}`}
+                  disabled={locked || n < 1 || n >= N_REMOVE || playing}
+                  onClick={() => {
+                    p.setRest(true);
+                    commitTo(N_REMOVE, reach);
+                  }}
+                >
+                  Remove the rest
+                </Control>
+              </Row>
+            </>
+          )
+        }
       </SubCard>
     </CardSequence>
   );
 }
 
 // ---------- the readout: one equation line ----------
+// "1 corner", "1 region" (D2 for the screen-reader sentence; W-2063 for the visible keys too).
+const noun = (k: number, word: string) => `${word}${k === 1 ? "" : "s"}`;
+const count = (k: number, word: string) => `${k} ${noun(k, word)}`;
 function Equation({ v, e, f, fKey, changed }: { v: number; e: number; f: number; fKey: "faces" | "regions"; changed: string }) {
   const t = v - e + f;
   const c = (k: string) => `${s.num} ${changed.includes(k) ? s.changed : ""}`;
   return (
     <div className={s.eq} role="status" aria-live="polite">
-      <span className={s.sr}>{`${v} corners minus ${e} edges plus ${f} ${fKey} equals ${t}`}</span>
+      <span className={s.sr}>{`${count(v, "corner")} minus ${count(e, "edge")} plus ${count(f, fKey.slice(0, -1))} equals ${t}`}</span>
       <span className={s.term} aria-hidden="true">
         <span className={c("v")}>{v}</span>
-        <span className={s.key}>corners</span>
+        <span className={s.key}>{noun(v, "corner")}</span>
       </span>
       <span className={s.op} aria-hidden="true">−</span>
       <span className={s.term} aria-hidden="true">
         <span className={c("e")}>{e}</span>
-        <span className={s.key}>edges</span>
+        <span className={s.key}>{noun(e, "edge")}</span>
       </span>
       <span className={s.op} aria-hidden="true">+</span>
       <span className={s.term} aria-hidden="true">
         <span className={c("f")}>{f}</span>
-        <span className={s.key}>{fKey}</span>
+        <span className={s.key}>{noun(f, fKey.slice(0, -1))}</span>
       </span>
       <span className={s.op} aria-hidden="true">=</span>
       <span className={s.term} aria-hidden="true">
@@ -460,7 +498,7 @@ function ShrinkPicture({ st, ghost, end }: { st: Flat; ghost: number | null; end
       aria-label={
         one
           ? "One dot is left, with the top face beside it."
-          : `The flat drawing: ${st.V.length} corners, ${st.E.length} edges, ${st.R.length} regions. The top face sits aside.`
+          : `The flat drawing: ${count(st.V.length, "corner")}, ${count(st.E.length, "edge")}, ${count(st.R.length, "region")}. The top face sits aside.`
       }
     >
       {REGIONS.filter((r) => st.R.includes(r.id)).map((r) => (

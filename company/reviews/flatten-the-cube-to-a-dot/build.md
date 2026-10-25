@@ -60,3 +60,25 @@ Cube vertex i is flat vertex i (0-3 the top face's rim, 4-7 the bottom face), so
 ## Screenshots
 artifacts/flat-shots/ (gitignored; regenerate from a build): states after slice, mid-flatten, flat, shrink press 3 (flash), playback, end and reveal, at phone and desktop.
 The `/d/` page renders dark under both colour schemes, so light-theme values (`--warn` #7d5200) were not seen on the stage.
+
+## v2 (2026-10-25, W-2056 + W-2063): one revision round
+
+demo-builder · from the design review (`2026-10-25-design.md` D1, D2, O3) and the v1 learner walk (`2026-10-25-learner-knows-faces-not-euler.md`, folded in as W-2063). Version 1 → 2 (stage text and behaviour changed; also covers fb76d7c13's hook change). Status stays draft.
+
+### What changed
+- **D1, skip-flatten dead end.** Until `flat` is true, card 3 shows card 2's starting cube (`FlattenPicture` k = 0), `8 − 12 + 6 = 2` with key "faces", the change line **"Take the top off first"**, an empty strip label and end line, and both removal chips disabled. Next is not gated; no control index moved.
+- **D2 + W-2063 (c), singular for 1.** The readout's screen-reader sentence and its visible keys say "1 corner", "1 edge", "1 region" (the walk saw "1 corners / 1 regions" on the stage, so the visible keys change too, against D2's "keys stay plural"; the coordinator's W-2063 instruction). The picture's aria-label uses the same rule.
+- **W-2063 (a), card 2.** Once the 700 ms flatten is done, the "Take the top off" chip becomes **"Replay the flatten"** and plays it again from the cube (the same control, so the QA path and every control index stay as in v1; disabled during the motion and under reduced motion, where it reads "Take the top off" as before). The trace stays after a replay. A muted line under the change line: **"The 5 regions are the cube's other 5 faces."** (new claim **c9**, `unverified`).
+- **W-2063 (b), card 1.** The change line keeps "+2 corners, +3 edges, +1 face"; a muted line under it says **"1 corner gone, 3 new: +2 corners"** (one line at 390; "1 corner becomes 3: +2 corners, …" in one line wrapped at 390, so I split it). c2's text is unchanged; the new line restates c2 ("removes 1 corner and adds 3"). Fact-checker re-check of c9 and that line is on the board.
+
+### Pre-flight deltas
+- Busiest frame still Shrink at the end: 21 words. Card 2 after the flatten: trail 3 + readout keys 3 + change line 5 + note 8 + chip 3 + Next 2 = 24 (25 allowed). Card 3 inert: keys 3, cue 5, chips 6, trail 3 = 17.
+- Locked stage and the reveal: unchanged.
+
+### Maker's loop (own build `.next-w2056`, `next start`)
+- `v2-maker-probe.mjs` (this folder, output `v2-maker-probe.out`): **22/22 PASS** at 390×844 and 1280×800, normal motion. Paths: skip (Next, Next before any milestone: card 3 inert, reveal locked), skip then back by the trail to flatten and slice (card 3 goes live; reveal unlocks only when all five milestones are in), hurry (Next pressed inside the 700 ms flatten: card 3 live at once), reveal 100 ms into the 2.4 s playback (stage snaps to the dot, end line and trace present), Replay (picture moves at 150 ms, ends identical), card 1 lines, settled back navigation (cards 1-3 identical after returning), and the readout text after every one of 12 hand presses (sr and visible keys: no "1 corners", no "5 corner").
+- **Settle rule, learned here (for W-2047):** "two readings ~200 ms apart match" calls the card settled mid-playback, because two reads can fall inside one 220 ms removal step. My probe uses a 500 ms gap (longer than any one motion step here), 6 s ceiling.
+- `tools/sequence-probe.mjs` (`v2-sequence-probe.out`): 12 PASS, 3 FAIL, 2 n/a, the same as v1: back ×2 (W-2047, probe samples at 300 ms; my settled check passes), four-cards at 390 (W-601, hypothetical 4th step). An intermediate v2 with a separate Replay chip broke the walk (an extra control shifted the index-based QA path past its starting count); that is why Replay reuses the chip.
+- `tools/reveal-fit.mjs` 390×844: **fit**, crop 0, hidden 0, stage 419, picture 167 px, 76 words; namedHidden 1 ("corners | faces": card 3's end keys now read "corner"; the reveal's "corners − edges + faces" sentence matches only the hidden cards). 1280×800: fit, crop 0, but **thumb**: the main picture is fitted at the reveal (165/197, `data-reveal-fit`) so the heuristic falls to the next svg, the 284×20 strip, drawn at 0.68 of the width it could take. The strip and the fitting are unchanged from v1, so this is not new in v2; I read it as the heuristic picking a decorative strip, not a squeezed picture (screenshot desktop reveal in artifacts/sequence-probe/). Flagged for qa-tester, not fixed.
+- QA contract (QA_ONLY, against `.next-w2056`): 2/2.
+- Walkthrough rebuilt from this build: `artifacts/walkthroughs/flatten-the-cube-to-a-dot/` shows the new hook (fb76d7c13) and v2.

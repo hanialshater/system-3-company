@@ -102,6 +102,14 @@
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-25",
       "note": "Re-checked at fb76d7c13 on a fresh build (walkthrough on .next-fc2055; the shared .next was older than the commit). Previously DISPUTED as 'Three moves show why it is always 2.' (a holed solid gives 0). New text asks instead of asserting and scopes to convex solids; the holed counterexample is not convex. What it implies, that the lesson's three moves settle it for convex solids, holds: there are exactly three cards (Slice, Flatten, Shrink), the reveal answers yes, and flatten-then-shrink is the argument verified as c6 (own2.py; PMC10239678, PMC9640434). Slice illustrates one change on an example rather than proving the general case; acceptable in a hook, nothing a learner takes from it is false. Hook sentence 1 (8-12+6=2) is c1, verified. Record: company/reviews/flatten-the-cube-to-a-dot/2026-10-25-fact-check.md (pass 2)."
+    },
+    {
+      "id": "math.flatten-the-cube-to-a-dot.c9",
+      "text": "The 5 regions are the cube's other 5 faces.",
+      "support": "derivation",
+      "source": "Stage line on card 2 after the flatten (W-2063, v2). The flat drawing keeps every corner and edge of the cube without its top face: the inner square is the bottom face and each of the 4 trapezoids is one side face (Demo.tsx REGIONS: bottom 4-5-6-7, side i = i, i+1, i+5, i+4); the outside stands for the top face taken off (c3).",
+      "status": "unverified",
+      "note": "Added by demo-builder 2026-10-25 for W-2063 (learner walk: 'faces' became 'regions' with no word on what a region is). Builder's own count, not a verification."
     }
   ],
   "confidence": "",
@@ -121,7 +129,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "format": "multi-card-sequence",
   "interactions": [
     "choice-before-reveal",

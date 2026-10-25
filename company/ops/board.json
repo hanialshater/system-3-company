@@ -25174,7 +25174,8 @@
         "record": "company/decisions/2026-10-25-founder-f52.md",
         "note": "tools/sequence-probe.mjs is platform-engineer's (it absorbed design-engineer, F-50)"
       },
-      "updated": "2026-10-25"
+      "updated": "2026-10-25",
+      "note": "2026-10-25 demo-builder (W-2056): left with platform-engineer (owns tools/sequence-probe.mjs, F-52; demo-builder may run it, not edit it). Evidence for the fix: a 200 ms two-reads-match settle calls a card settled mid-playback (two reads inside one 220 ms removal step); a 500 ms gap with a 6 s ceiling passes back on this lesson v2 at 390 and 1280 (company/reviews/flatten-the-cube-to-a-dot/v2-maker-probe.mjs settled(), v2-maker-probe.out)."
     },
     {
       "id": "W-2048",
@@ -25275,14 +25276,15 @@
       "id": "W-2056",
       "title": "Lane M revise (one round): flatten-the-cube-to-a-dot D1-D2 from the design review: Shrink card inert until the flatten (cube + 'Take the top off first' cue, both removal controls disabled), singular nouns in the readout's screen-reader sentence; bump version to 2 (also covers fb76d7c13's hook change); rerun walkthrough, reveal-fit and the review probe's skip path. project lane-multi-card. company/reviews/flatten-the-cube-to-a-dot/2026-10-25-design.md",
       "owner": "demo-builder",
-      "state": "next",
+      "state": "review",
       "domain": "math",
       "created": "2026-10-25",
       "links": [
         "company/reviews/flatten-the-cube-to-a-dot/2026-10-25-design.md"
       ],
       "priority": 1,
-      "project": "lane-multi-card"
+      "project": "lane-multi-card",
+      "updated": "2026-10-25"
     },
     {
       "id": "W-2057",
@@ -25358,8 +25360,27 @@
       "id": "W-2063",
       "title": "flatten-the-cube-to-a-dot learner notes (non-blocking, v1 walk): (a) the flatten plays once in under a second with no replay, and the key changes 'faces' to 'regions' without a word on what a region is; (b) card 1 caption '+2 corners' while the picture shows 3 new corners (say '−1 +3' or similar); (c) visible '1 corners'/'1 regions' and picture text '1 regions'. Fold into W-2056 if it is still open. company/reviews/flatten-the-cube-to-a-dot/2026-10-25-learner-knows-faces-not-euler.md",
       "owner": "demo-builder",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
+      "created": "2026-10-25",
+      "links": [],
+      "updated": "2026-10-25"
+    },
+    {
+      "id": "W-2064",
+      "title": "flatten-the-cube-to-a-dot v2 (W-2056/W-2063): check new claim c9 'The 5 regions are the cube's other 5 faces.' (card 2 line after the flatten) and the new card 1 line '1 corner gone, 3 new: +2 corners' against c2 (c2 text unchanged); those two sentences only. company/reviews/flatten-the-cube-to-a-dot/build.md, v2 section",
+      "owner": "fact-checker",
+      "state": "next",
+      "domain": "math",
+      "created": "2026-10-25",
+      "links": []
+    },
+    {
+      "id": "W-2065",
+      "title": "flatten-the-cube-to-a-dot v2: reveal-fit at 1280x800 reports thumb because the reveal-fitted main picture is skipped and the 284x20 strip svg becomes the 'main picture' (0.68 of allowed width); unchanged since v1. Decide whether the heuristic should skip short decorative svgs or the lesson should mark the strip. artifacts/reveal-fit/flatten-the-cube-to-a-dot-v2-1280.json; company/reviews/flatten-the-cube-to-a-dot/build.md v2",
+      "owner": "qa-tester",
+      "state": "backlog",
+      "domain": "math",
       "created": "2026-10-25",
       "links": []
     }

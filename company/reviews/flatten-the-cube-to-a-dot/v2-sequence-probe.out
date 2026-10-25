@@ -1,0 +1,19 @@
+PASS  flatten-the-cube-to-a-dot  phone  walk: 3 sub-cards, 6 presses, every sub-card shown; reveal unlocked (3s)
+PASS  flatten-the-cube-to-a-dot  phone  overflow: 3/3 sub-cards measured
+PASS  flatten-the-cube-to-a-dot  phone  crop: 3/3 sub-cards measured
+PASS  flatten-the-cube-to-a-dot  phone  tap: 3/3 sub-cards measured, narrowest visible control 92px, shortest 44px
+FAIL  flatten-the-cube-to-a-dot  phone  back: card 2 changed after leaving it (state not kept); card 3 changed after going back and forth
+PASS  flatten-the-cube-to-a-dot  phone  revealCard: on card 1 at the reveal; card shown at reveal commit 3, first frame 3, expected 3 (default: last)
+FAIL  flatten-the-cube-to-a-dot  phone  four-cards: 3 real steps 92px wide, 44px tall; padded with 1 copies of "Step 2 Flatten ✓, done: 8−12+5=1": steps 68px wide, 87/87/87/87px tall (wraps; W-601 decides if accepted), overflow page 0px / trail 0px
+PASS  flatten-the-cube-to-a-dot  phone  errors: none
+n/a   flatten-the-cube-to-a-dot  phone  warnings: not a dev server (or none printed); dev warnings only show under next dev
+PASS  flatten-the-cube-to-a-dot  desktop  walk: 3 sub-cards, 6 presses, every sub-card shown; reveal unlocked (3s)
+PASS  flatten-the-cube-to-a-dot  desktop  overflow: 3/3 sub-cards measured
+PASS  flatten-the-cube-to-a-dot  desktop  crop: 3/3 sub-cards measured
+PASS  flatten-the-cube-to-a-dot  desktop  tap: 3/3 sub-cards measured, narrowest visible control 112px, shortest 44px
+FAIL  flatten-the-cube-to-a-dot  desktop  back: card 2 changed after leaving it (state not kept); card 3 changed after going back and forth
+PASS  flatten-the-cube-to-a-dot  desktop  revealCard: on card 1 at the reveal; card shown at reveal commit 3, first frame 3, expected 3 (default: last)
+PASS  flatten-the-cube-to-a-dot  desktop  errors: none
+n/a   flatten-the-cube-to-a-dot  desktop  warnings: not a dev server (or none printed); dev warnings only show under next dev
+
+12 PASS, 3 FAIL, 2 n/a  (1 lesson, 2 viewports)

@@ -1,0 +1,23 @@
+PASS  phone   skip       card 3 inert: "8 corners minus 12 edges plus 6 faces equals 2 8 corners − 12 edges + 6 faces = 2 Take the top off first Remove an edge " edge=false rest=false reveal=false
+PASS  phone   skip-back  after flattening via the trail: edge enabled=true, end line shown, reveal still locked (slice skipped)=true
+PASS  phone   skip-done  slice done last via the trail: reveal unlocks
+PASS  phone   errors     no page errors
+PASS  phone   caption    card 1: "1 face 1 corner gone, 3 new: +2 corners Slice a corner Next: Flatten →"
+PASS  phone   replay     Replay enabled=true, moving at 150 ms=true, ends as before=true, regions line shown
+PASS  phone   hurry      Next pressed mid-flatten: card 3 live at once (edge enabled=true)
+PASS  phone   early      reveal at 100 ms into playback; stage at reveal: end line + trace present
+PASS  phone   sr         readout sr: "1 corner minus 0 edges plus 0 regions equals 11corner−0edges+0regions=1"
+PASS  phone   back       card 2 same, card 1 same, card 3 same
+PASS  phone   sr-all     12 hand presses, sr + visible keys; bad: 0; with a 1 count: 8 corners minus 11 edges plus 4 regions equals 1 || visible: 8 corners, 11 edges, 4 regions / 8 corners minus 10 edges plus 3 regions equals 1 || visible: 8 corners, 10 edges, 3 regions / 7 corners minus 9 edges plus 3 regions equals 1 || visible: 7 corners, 9 edges, 3 regions / 7 corners minus 8 edges plus 2 regions equals 1 || visible: 7 corners, 8 edges, 2 regions / 6 corners minus 7 edges plus 2 regions equals 1 || visible: 6 corners, 7 edges, 2 regions / 6 corners minus 6 edges plus 1 region equals 1 || visible: 6 corners, 6 edges, 1 region / 5 corners minus 5 edges plus 1 region equals 1 || visible: 5 corners, 5 edges, 1 region / 4 corners minus 4 edges plus 1 region equals 1 || visible: 4 corners, 4 edges, 1 region / 4 corners minus 3 edges plus 0 regions equals 1 || visible: 4 corners, 3 edges, 0 regions / 3 corners minus 2 edges plus 0 regions equals 1 || visible: 3 corners, 2 edges, 0 regions / 2 corners minus 1 edge plus 0 regions equals 1 || visible: 2 corners, 1 edge, 0 regions / 1 corner minus 0 edges plus 0 regions equals 1 || visible: 1 corner, 0 edges, 0 regions
+PASS  desktop skip       card 3 inert: "8 corners minus 12 edges plus 6 faces equals 2 8 corners − 12 edges + 6 faces = 2 Take the top off first Remove an edge " edge=false rest=false reveal=false
+PASS  desktop skip-back  after flattening via the trail: edge enabled=true, end line shown, reveal still locked (slice skipped)=true
+PASS  desktop skip-done  slice done last via the trail: reveal unlocks
+PASS  desktop errors     no page errors
+PASS  desktop caption    card 1: "1 face 1 corner gone, 3 new: +2 corners Slice a corner Next: Flatten →"
+PASS  desktop replay     Replay enabled=true, moving at 150 ms=true, ends as before=true, regions line shown
+PASS  desktop hurry      Next pressed mid-flatten: card 3 live at once (edge enabled=true)
+PASS  desktop early      reveal at 100 ms into playback; stage at reveal: end line + trace present
+PASS  desktop sr         readout sr: "1 corner minus 0 edges plus 0 regions equals 11corner−0edges+0regions=1"
+PASS  desktop back       card 2 same, card 1 same, card 3 same
+PASS  desktop sr-all     12 hand presses, sr + visible keys; bad: 0; with a 1 count: 8 corners minus 11 edges plus 4 regions equals 1 || visible: 8 corners, 11 edges, 4 regions / 8 corners minus 10 edges plus 3 regions equals 1 || visible: 8 corners, 10 edges, 3 regions / 7 corners minus 9 edges plus 3 regions equals 1 || visible: 7 corners, 9 edges, 3 regions / 7 corners minus 8 edges plus 2 regions equals 1 || visible: 7 corners, 8 edges, 2 regions / 6 corners minus 7 edges plus 2 regions equals 1 || visible: 6 corners, 7 edges, 2 regions / 6 corners minus 6 edges plus 1 region equals 1 || visible: 6 corners, 6 edges, 1 region / 5 corners minus 5 edges plus 1 region equals 1 || visible: 5 corners, 5 edges, 1 region / 4 corners minus 4 edges plus 1 region equals 1 || visible: 4 corners, 4 edges, 1 region / 4 corners minus 3 edges plus 0 regions equals 1 || visible: 4 corners, 3 edges, 0 regions / 3 corners minus 2 edges plus 0 regions equals 1 || visible: 3 corners, 2 edges, 0 regions / 2 corners minus 1 edge plus 0 regions equals 1 || visible: 2 corners, 1 edge, 0 regions / 1 corner minus 0 edges plus 0 regions equals 1 || visible: 1 corner, 0 edges, 0 regions
+all PASS
