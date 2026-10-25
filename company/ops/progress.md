@@ -1,3 +1,13 @@
+## 2026-10-25 · fact-checker (W-2064) · flatten-the-cube-to-a-dot v2: c9 verified, card 1 line consistent with c2
+
+- **Changed:** `src/demos/math/flatten-the-cube-to-a-dot/meta.json`: c9 is now **verified** (checkedBy, checkedOn, note), and c2 stays verified with one sentence added to its note. Both changes were made by `fc-2026-10-25/set_status_pass3.py`, which only touches the claims array and asserts that nothing else moved. The record is pass 3 in `company/reviews/flatten-the-cube-to-a-dot/2026-10-25-fact-check.md`, and my own derivation is in `fc-2026-10-25/own3.py` + `.out`. No learner text was edited.
+- **How:** I made a fresh build at 3e365688e into `.next-fc2064`, ran the walkthrough against it, and wrote my findings before reading meta.json or the diff. The build exits 1 on Next's security-advisory nudge after the route table is printed. The output was complete (BUILD_ID present), so I used it, did not retry, and ran nothing the nudge asked for. I removed the build dir afterwards.
+- **Verdicts:** c9 "The 5 regions are the cube's other 5 faces." is verified. I derived the faces from the 3D coordinates, and the 5 bounded regions match the 5 faces left after the top comes off, one to one; the outside is the top's rim. The card 1 line "1 corner gone, 3 new: +2 corners" is true and restates c2's corner count. It has no id of its own, so I filed it under c2's note. A separate id is optional (builder).
+- **Check:** 810 errors, the same as the baseline. W-2064 is done.
+- **Believe:** high (an independent derivation plus a read of the stage). No claim on the lesson is unverified or disputed now.
+- **Next:** qa-tester QA record on v2. Outside my scope: the walkthrough captured step 6 partway through (5−5+1=1), which looks like capture timing.
+- **Blocked:** nothing.
+
 ## 2026-10-25 · demo-builder (W-2056, W-2063) · flatten-the-cube-to-a-dot v2: D1, D2 and the v1 walk's notes
 
 - **Changed** (`src/demos/math/flatten-the-cube-to-a-dot/` Demo.tsx, styles.module.css, meta.json; build.md v2 section; new `company/reviews/flatten-the-cube-to-a-dot/v2-maker-probe.mjs` + `.out`, `v2-sequence-probe.out`): version 1 → **2**, status draft.

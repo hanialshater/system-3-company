@@ -41,7 +41,7 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-25",
-      "note": "Own recount: deltas +2 corners (-1 old, +3 new), +3 edges (the 3 old edges are shortened, 3 new edges bound the triangle), +1 face; +2-3+1=0. Holds for any cut that crosses only the 3 edges at a corner where 3 edges meet. Record: company/reviews/flatten-the-cube-to-a-dot/2026-10-25-fact-check.md; own scripts company/reviews/flatten-the-cube-to-a-dot/fc-2026-10-25/."
+      "note": "Own recount: deltas +2 corners (-1 old, +3 new), +3 edges (the 3 old edges are shortened, 3 new edges bound the triangle), +1 face; +2-3+1=0. Holds for any cut that crosses only the 3 edges at a corner where 3 edges meet. Record: company/reviews/flatten-the-cube-to-a-dot/2026-10-25-fact-check.md; own scripts company/reviews/flatten-the-cube-to-a-dot/fc-2026-10-25/. Pass 3 (W-2064, 3e365688e): card 1's v2 line '1 corner gone, 3 new: +2 corners' restates this claim's corner count (-1 old, +3 new); matches the stage (3 new dots on the 3 edges at the cut corner, counter 8->10) and own3.py."
     },
     {
       "id": "math.flatten-the-cube-to-a-dot.c3",
@@ -108,8 +108,10 @@
       "text": "The 5 regions are the cube's other 5 faces.",
       "support": "derivation",
       "source": "Stage line on card 2 after the flatten (W-2063, v2). The flat drawing keeps every corner and edge of the cube without its top face: the inner square is the bottom face and each of the 4 trapezoids is one side face (Demo.tsx REGIONS: bottom 4-5-6-7, side i = i, i+1, i+5, i+4); the outside stands for the top face taken off (c3).",
-      "status": "unverified",
-      "note": "Added by demo-builder 2026-10-25 for W-2063 (learner walk: 'faces' became 'regions' with no word on what a region is). Builder's own count, not a verification."
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-25",
+      "note": "Added by demo-builder 2026-10-25 for W-2063. Verified at 3e365688e on a fresh build (walkthrough on .next-fc2064). Own derivation (fc-2026-10-25/own3.py): faces derived from the 3D corner coordinates, not from REGIONS; with the top face (y=1, corners 0-3) off, 5 faces remain; the flat drawing has exactly 5 bounded regions (4-cycles holding no other dot), their areas tile the outer square, and each is one remaining face, one to one (inner square = bottom y=0, the 4 trapezoids = the 4 sides). The outer square is the removed top face's rim, so the outside is not one of the 5. On the stage the line shows only after the flatten, under 'top face off: 1 short', so 'other' has its referent. Record: company/reviews/flatten-the-cube-to-a-dot/2026-10-25-fact-check.md (pass 3)."
     }
   ],
   "confidence": "",

@@ -155,3 +155,43 @@ No claim on the lesson is disputed or unverified now. Script: `fc-2026-10-25/set
 
 - category-curator (non-blocking): c6 source "1813" is unconfirmed, so drop it or source it. Optionally change c8 support from "source" to "derivation".
 - Whoever runs walkthroughs: the shared `.next` build can be older than HEAD. Rebuild, or use `NEXT_DIST_DIR`, before evaluating.
+
+# Pass 3 (W-2064): what v2 added, at 3e365688e
+
+Scope: only the two learner lines v2 added. These are claim c9 on card 2 and the new card 1 line, which I checked against c2. Claims c1 and c3 to c8 were not touched by these lines, so they keep their status.
+
+## 1. Artifact first (findings written before opening meta.json, the diff or build.md)
+
+I made a fresh build at 3e365688e into `.next-fc2064`, not the shared `.next`. Then I ran `npm run walkthrough -- flatten-the-cube-to-a-dot` against it on a phone viewport and read the transcript and the screenshots.
+
+- **Card 1, after "Slice a corner":** the counter shows 10 − 15 + 7 = 2. Under it are the tally "+2 corners, +3 edges, +1 face" and the new line "1 corner gone, 3 new: +2 corners". In the picture the front-top-right corner is gone. Three yellow dots sit on the three edges that met at that corner (I checked their positions against the edge lines), and they bound a triangle. My own count: a cube corner meets 3 edges, so the cut removes 1 corner and puts 1 new corner on each of the 3 edges. That is 8 − 1 + 3 = 10, a net of +2. The line is true. It agrees with the tally, the counter and the trust sheet's c2 ("removes 1 corner and adds 3").
+- **Card 2, after "Take the top off":** the drawing is a square inside a square joined at the corners, with the top face parked as a tile at the top right. The counter shows 8 − 12 + 5 = 1, with "top face off: 1 short" and the new line "The 5 regions are the cube's other 5 faces." My own count: the inner square is the bottom face and the 4 trapezoids are the 4 side faces, which makes 5. The outer square's 4 corners and 4 edges are the rim of the face that was taken off, so the outside is not a region. The line is true. "Other" refers back to "top face off", the line just above it. The line appears only after the flatten.
+
+## 2. Own derivation
+
+`fc-2026-10-25/own3.py` (output in `own3.out`). It takes CUBE, ALL_E, FP and CUT from Demo.tsx by hand, but works out the faces from the 3D coordinates and the regions from the flat drawing, without using Demo.tsx `REGIONS`. Results:
+
+- With the top face (y = 1, corners 0 to 3) off, 5 faces remain.
+- The flat drawing has exactly 5 bounded regions, meaning 4-cycles that hold no other dot.
+- Their areas tile the outer square.
+- The outer square's corners are the top face's corners.
+- Each region is exactly one remaining face, one to one. The bottom is y = 0. The sides are x = 0, x = 1, z = 0 and z = 1.
+- Corner 2 meets 3 edges. Slicing it gives 10 corners (net +2), 15 edges and 7 faces, so 10 − 15 + 7 = 2.
+
+## 3. Read after my findings (the account)
+
+The diff adds the two `<p className={s.note}>` lines as the transcript shows them. c9's source names the same mapping I derived (bottom 4-5-6-7, side i = i, i+1, i+5, i+4). The builder's note says it is their own count and not a verification. Reading the account changes nothing in sections 1 and 2.
+
+The card 1 line has no claim id of its own. It restates part of c2: same fact, same numbers, and c2 is on the trust sheet. I put it under c2 by adding a sentence to c2's note. If the company wants one claim per learner sentence, the builder can give it its own id (non-blocking).
+
+## 4. Verdicts (pass 3)
+
+| Claim / line | Status | Basis |
+|---|---|---|
+| c9 "The 5 regions are the cube's other 5 faces." | **verified** (was unverified) | Sections 1 and 2. |
+| Card 1 "1 corner gone, 3 new: +2 corners", against c2 | **consistent; c2 stays verified** (note extended) | Sections 1 and 2. |
+| c1, c3 to c8 | unchanged (verified) | Not touched by the v2 lines. |
+
+No claim on the lesson is disputed or unverified now. Script: `fc-2026-10-25/set_status_pass3.py` (claims array only, with asserts).
+
+One thing outside scope, not checked: in the walkthrough, step 6 ("Remove the rest") was captured partway through, at 5 − 5 + 1 = 1 with 7 totals shown. That looks like capture timing. The arithmetic shown still holds. It belongs to whoever owns the walkthrough or QA, not to this check.
