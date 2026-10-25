@@ -17,6 +17,8 @@ Every lesson uses the format that shows its idea best, looks like one product, a
 - company/design/system.md: type scale, colour roles (light/dark), spacing, motion, iconography, chart style, with the accessibility reviewer
 - Design review: a design pass on new formats, on lessons with layout or clarity findings, and on a sample of each wave
 - Requests to the platform engineer for kit support of new formats (and to the evaluation steward when a format needs a contract amendment)
+- Lane M (multi-card sequences): the lane's manager. Owns its queue (project:lane-multi-card), the interaction spec plus mockup before every build, and the design review of a format's first 3 items; asks curators, interaction-designer and demo-builder through mailbox requests, inside the lane budget. Never dispatches checkers (quality lane) (company/decisions/2026-10-25-founder-restructuring.md)
+- The visual system (absorbed visual-designer, 2026-10-25) (company/decisions/2026-10-25-founder-restructuring.md)
 
 ## Out of scope
 

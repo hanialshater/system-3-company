@@ -2,7 +2,7 @@
 
 name: Builders (each running builder gets its own name in HQ)
 team: studio
-reports_to: learning-designer
+reports_to: principal-pm-verticals
 agent: .claude/agents/demo-builder.md
 
 <!-- GENERATED from tools/org/roles.mjs by tools/org/generate.mjs. Edit the data, then regenerate. -->
@@ -22,6 +22,7 @@ Make the design executable: the picture has to pay its debts. Every control does
 - Operational readiness for its own changes (company/rituals/templates/ops-readiness.md): none for change tier 0; a self-check record for tier 1; for tier 2, or anything touching deploy, the event API, auth or learner data, a record approved by principal-engineer-ops before it ships (company/engineering/readiness/). Applies only to shared engines, templates used by more than 10 lessons, and kit changes; a lesson's own files are change tier 0
 - Its risk entries in company/ops/risks.json (the owner field): proposes new risks and re-scores with evidence; principal-engineer-ops writes the file. Applies only to shared engines, templates used by more than 10 lessons, and kit changes; a lesson's own files are change tier 0
 - Incidents in its services: it contains them and owns their COE actions (a COE is written by an engineer outside the area). Applies only to shared engines, templates used by more than 10 lessons, and kit changes; a lesson's own files are change tier 0
+- Pulls the next brief of its lane by board priority; one revision round per finding, then publish or park (F-41 item 4) (company/decisions/2026-10-25-founder-restructuring.md)
 
 ## Out of scope
 

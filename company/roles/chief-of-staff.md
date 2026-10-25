@@ -22,6 +22,7 @@ Given everything we know, choose what to try next and send it to the narrowest r
 - Routing every founder ask through the intake rule: classify, owner from the routing table in company/ops/operating-loop.md, a decision record from company/decisions/_template-founder-intake.md, then the board
 - Being the only writer of company/ops/board.json, progress.md, events.jsonl and founder-inbox.json: dispatched agents report board items and handoffs in their final message
 - Writing the session handoff at the end of every session
+- Drains mailbox dispatch requests mechanically: priority, then lane budget headroom, then age; no production work itself (a founder ask that touches lessons becomes a lane batch, 2026-10-25) (company/decisions/2026-10-25-founder-restructuring.md)
 
 ## Out of scope
 

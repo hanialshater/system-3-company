@@ -43,7 +43,8 @@ export function readEvents(root = ROOT) {
 // Ritual ids a role takes part in: the first word of each entry of its `rituals:` list in tools/org/roles.mjs
 // (W-1240 Q1, F6). Data, generated into the onboarding docs, so a free-text reason cannot widen it.
 let ROLES = null;
-try { ({ roles: ROLES } = await import("../org/roles.mjs")); } catch { ROLES = null; }
+let PARKED = new Map();
+try { let parked; ({ roles: ROLES, parked } = await import("../org/roles.mjs")); PARKED = new Map((parked ?? []).map((r) => [r.id, r.parked])); } catch { ROLES = null; }
 export function roleRituals(role) {
   const r = (ROLES ?? []).find((x) => x.id === role);
   return new Set((r?.rituals ?? []).map((x) => String(x).trim().split(/\s+/)[0]).filter(Boolean));
@@ -218,6 +219,11 @@ export function evaluate({ role, source, chooser, kind, agent, s4 = false, root 
   if (roleId === "general-purpose") {
     if (src.type !== "s4") fails.push({ rule: "S2", msg: "general-purpose runs only for a §4 integration task (source §4:integration: …); a missing role is never run as general-purpose (poc-map rule 4)" });
     else if (!/^integration:\s*\S/i.test(src.reason ?? "")) fails.push({ rule: "S2", msg: `general-purpose with §4 reason "${src.reason}": only §4:integration: <what> allows it` });
+  } else if (roleId && PARKED.has(roleId)) {
+    // Restructuring 2026-10-25 (company/decisions/2026-10-25-founder-restructuring.md): a parked role is refused in every
+    // slot mode, even where a stand-in agent file exists (the 14 category leads the protected check needs a doc for).
+    const p = PARKED.get(roleId);
+    fails.push({ rule: "S2", msg: `role ${roleId} is parked since ${p.since} (${p.record}); dispatch ${p.into ?? "nobody: it is dormant"} instead`, hard: true });
   } else if (roleId && !agentRoles(root).has(roleId)) {
     // A role the org does not define (not in tools/org/roles.mjs) is refused in every slot mode (hard); a defined
     // role with no agent file (founder) stays an S2 failure that follows the mode.

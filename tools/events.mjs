@@ -337,6 +337,10 @@ export const ROOM_BY_ROLE = {
   "head-of-evaluation": "learner-review",
   "evaluation-engineer": "learner-review",
   "pairwise-judge": "learner-review",
+  // Restructuring 2026-10-25 (company/decisions/2026-10-25-founder-restructuring.md): pooled roles. Parked roles keep their rows
+  // so the replay of past events still places them.
+  "category-curator": "strategy",
+  "route-reviewer": "culture-review",
 };
 export const roomFor = (role) => ROOM_BY_ROLE[role] ?? (role?.startsWith("cm-") ? role.split("-").slice(0, 2).join("-") : "chief-of-staff");
 

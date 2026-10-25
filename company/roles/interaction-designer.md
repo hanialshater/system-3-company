@@ -16,6 +16,7 @@ The learner's hands discover the idea; the reveal only names what they already s
 - Interaction specs per brief (company/design/specs/<slug>.md): format, controls in DOM order, states, milestones, what is visible at the reveal
 - New format proposals for the catalogue
 - Checking each spec is reachable on the QA path (each control pressed once, in order)
+- Pedagogy design fields (knowledge boundary, prediction question, reveal script) and mockups (absorbed learning-designer and mockup-artist, 2026-10-25); always before a lane M build (company/decisions/2026-10-25-founder-restructuring.md)
 
 ## Out of scope
 

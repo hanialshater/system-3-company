@@ -1,9 +1,11 @@
 # Category Manager (category lead) — Big Ideas
 
+> **PARKED since 2026-10-25** (company/decisions/2026-10-25-founder-restructuring.md). Not an active role: no HQ seat, not dispatchable. Its work now belongs to `category-curator`. Why: instance category=big-ideas; the category's charter, curriculum, briefs and this role's memory are the curator's data. Un-park: remove the id from PARK in tools/org/roles.mjs and regenerate.
+
 name: Dmitri
 team: categories
 reports_to: head-of-product
-agent: .claude/agents/cm-big-ideas.md
+agent: .claude/agents/cm-big-ideas.md (parked stand-in: it does no work; dispatch-check refuses parked roles)
 domain: big-ideas
 
 <!-- GENERATED from tools/org/roles.mjs by tools/org/generate.mjs. Edit the data, then regenerate. -->

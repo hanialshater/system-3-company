@@ -17,6 +17,8 @@ Pick the few verticals where 60-second predict-and-see lessons can be the best i
 - Cross-category portfolios: which concepts from which categories and strands a vertical needs, and in what order
 - Inputs to the OP: vertical bets and their budgets
 - Working with International (which verticals and locales go together) and Personalization (paths through a vertical)
+- Lane S (single-card lessons): the lane's manager. Owns its queue (board items tagged project:lane-single-card, in priority order), asks category-curator instances for briefs and demo-builder for builds through mailbox dispatch requests (F-42), inside the lane's cycle budget in company/ops/projects.json; a spent lane asks the portfolio-manager for a tranche and never borrows. Never dispatches checkers (quality lane) (company/decisions/2026-10-25-founder-restructuring.md)
+- New subjects and courses (absorbed domain-scout and courses-lead, 2026-10-25) (company/decisions/2026-10-25-founder-restructuring.md)
 
 ## Out of scope
 

@@ -2,7 +2,7 @@
 
 name: Bram
 team: rnd
-reports_to: vp-rnd
+reports_to: principal-engineer
 agent: .claude/agents/rnd-lead.md
 
 <!-- GENERATED from tools/org/roles.mjs by tools/org/generate.mjs. Edit the data, then regenerate. -->
@@ -18,6 +18,7 @@ Small, tested, dependency-free libraries that a builder can use in an afternoon.
 - Generation briefs, selection and generation records (company/rnd/evolution/)
 - Code review of R&D engineers
 - EDDs for promoting lab libraries into the kit
+- Kept until F-49 (rnd-knots tranche 2) is decided; parks with the line if it is declined (company/decisions/2026-10-25-founder-restructuring.md)
 
 ## Out of scope
 

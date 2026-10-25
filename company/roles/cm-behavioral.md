@@ -1,9 +1,11 @@
 # Category Manager (category lead) — Behavioral Economics and Irrational Behavior
 
+> **PARKED since 2026-10-25** (company/decisions/2026-10-25-founder-restructuring.md). Not an active role: no HQ seat, not dispatchable. Its work now belongs to `category-curator`. Why: instance category=behavioral; the category's charter, curriculum, briefs and this role's memory are the curator's data. Un-park: remove the id from PARK in tools/org/roles.mjs and regenerate.
+
 name: Rasmus
 team: categories
 reports_to: head-of-product
-agent: .claude/agents/cm-behavioral.md
+agent: .claude/agents/cm-behavioral.md (parked stand-in: it does no work; dispatch-check refuses parked roles)
 domain: behavioral
 
 <!-- GENERATED from tools/org/roles.mjs by tools/org/generate.mjs. Edit the data, then regenerate. -->

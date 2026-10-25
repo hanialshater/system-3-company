@@ -23,6 +23,8 @@ Keep the work close to the lesson: builders should never have to think about plu
 - Operational readiness for its own changes (company/rituals/templates/ops-readiness.md): none for change tier 0; a self-check record for tier 1; for tier 2, or anything touching deploy, the event API, auth or learner data, a record approved by principal-engineer-ops before it ships (company/engineering/readiness/)
 - Its risk entries in company/ops/risks.json (the owner field): proposes new risks and re-scores with evidence; principal-engineer-ops writes the file
 - Incidents in its services: it contains them and owns their COE actions (a COE is written by an engineer outside the area)
+- Kit components and tokens incl. CardSequence and the sequence probe (absorbed design-engineer, 2026-10-25) (company/decisions/2026-10-25-founder-restructuring.md)
+- Community pull requests (absorbed community-engineer, 2026-10-25) (company/decisions/2026-10-25-founder-restructuring.md)
 
 ## Out of scope
 

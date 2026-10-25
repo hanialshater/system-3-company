@@ -239,7 +239,7 @@ test("S4 is off by default; on with --s4 or S3_SLOTS_S4=on it refuses a checker 
 
 test("lane-10 checker roles are read from poc-map.md, and the CLI usage names the new flags", () => {
   const c = slots.checkerRoles(ROOT);
-  for (const r of ["fact-checker", "qa-tester", "learner-evaluator", "privacy-reviewer", "cultural-reviewer"]) assert.ok(c.has(r), r);
+  for (const r of ["fact-checker", "qa-tester", "learner-evaluator", "privacy-reviewer", "route-reviewer"]) assert.ok(c.has(r), r);
   assert.ok(!c.has("evaluation-steward"), "the lane's POC is not a checker");
   const src = fs.readFileSync(CHECK, "utf8");
   for (const f of ["--role=", "--source=", "--chooser=", "--no-claim", "S3_SLOTS=warn|enforce", "S4 "]) assert.ok(src.includes(f), f);

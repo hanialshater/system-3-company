@@ -18,6 +18,7 @@ Every open item has a priority, an owner and a reason to exist, and the top of t
 - Approval: moving backlog items to 'next' (approved, with a priority) or 'dropped' (with a reason), and keeping 'next' short enough to be true
 - Routing founder-only items to company/ops/founder-inbox.json, never deciding them
 - A portfolio section in the WBR: items in, out, by priority, by owner, age of the oldest P1/P2
+- Lane budget lines (kind: lane) in company/ops/projects.json: cycle budget, cost target, tranches; priority 1-4 on every queued lane item (company/decisions/2026-10-25-founder-restructuring.md)
 
 ## Out of scope
 

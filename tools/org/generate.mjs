@@ -5,7 +5,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { roles, SUBAREAS } from "./roles.mjs";
+import { roles, parked, SUBAREAS } from "./roles.mjs";
 import { PERSONA, nameFor } from "./people.mjs";
 import { MEMORY_POLICY, kb } from "./memory-policy.mjs";
 import { template as memoryTemplate } from "../memory.mjs";
@@ -122,6 +122,35 @@ for (const r of roles) {
   }
 }
 
+// Parked roles (2026-10-25 restructuring, company/decisions/2026-10-25-founder-restructuring.md). Nothing is deleted:
+// - The 14 category leads that content/domains.json names as `categoryManager` keep their doc in company/roles/ (the protected
+//   `company check` requires that doc, and an agent file for every doc there). Their agent file is a parked stand-in that does
+//   no work, and dispatch-check S2 refuses every parked role (tools/lib/slots.mjs).
+// - Every other parked role's doc moves to company/roles/parked/<id>.md, and its subagent is removed.
+// Memory files stay where they are (read-only notebooks); generate never creates one for a parked role.
+{
+  const domainCms = new Set(JSON.parse(fs.readFileSync(path.join(ROOT, "content/domains.json"), "utf8")).domains.map((d) => d.categoryManager));
+  fs.mkdirSync(path.join(ROOT, "company/roles/parked"), { recursive: true });
+  for (const r of parked ?? []) {
+    const p = r.parked;
+    const standIn = domainCms.has(r.id);
+    const banner = `> **PARKED since ${p.since}** (${p.record}). Not an active role: no HQ seat, not dispatchable.${p.into ? ` Its work now belongs to \`${p.into}\`.` : ""} Why: ${p.why}. Un-park: remove the id from PARK in tools/org/roles.mjs and regenerate.\n\n`;
+    const agentNote = standIn ? `agent: .claude/agents/${r.id}.md (parked stand-in: it does no work; dispatch-check refuses parked roles)` : `agent: none (parked; was .claude/agents/${r.id}.md)`;
+    const doc = onboarding(r).replace(/^(# .*\n\n)/, `$1${banner}`).replace(/^agent: .*$/m, agentNote);
+    const live = path.join(ROOT, "company/roles", `${r.id}.md`), moved = path.join(ROOT, "company/roles/parked", `${r.id}.md`);
+    const ap = path.join(ROOT, ".claude/agents", `${r.id}.md`);
+    if (standIn) {
+      fs.writeFileSync(live, doc);
+      if (fs.existsSync(moved)) fs.rmSync(moved);
+      fs.writeFileSync(ap, `---\nname: ${r.id}\ndescription: PARKED since ${p.since} (${p.record}). Not an active role; do not use. Use ${p.into ?? "nobody"} instead${r.domain ? ` with category=${r.domain}` : ""}.\ntools: Read\nmodel: haiku\n---\n\nYou are a parked role (${r.title}). Do no work: read nothing, write nothing. Reply with exactly one line: "parked since ${p.since}: dispatch ${p.into ?? "nobody"}${r.domain ? ` with category=${r.domain}` : ""} instead (${p.record})".\n`);
+    } else {
+      fs.writeFileSync(moved, doc);
+      if (fs.existsSync(live)) fs.rmSync(live);
+      if (fs.existsSync(ap)) fs.rmSync(ap);
+    }
+  }
+}
+
 // Org chart index
 const teams = [...new Set(roles.map((r) => r.team))];
 const chart = [
@@ -135,6 +164,11 @@ const chart = [
 for (const t of teams) {
   chart.push(`## ${t[0].toUpperCase() + t.slice(1)}`, "", "| Role | Reports to | Mission |", "|---|---|---|");
   for (const r of roles.filter((x) => x.team === t)) chart.push(`| [${r.title}](${r.id}.md) | ${r.reportsTo} | ${r.mission.split(". ")[0].replace(/\|/g, "/")}. |`);
+  chart.push("");
+}
+if (parked?.length) {
+  chart.push("## Parked (2026-10-25 restructuring)", "", "Files kept; not active. See company/decisions/2026-10-25-founder-restructuring.md.", "", "| Role | Work now with | Why |", "|---|---|---|");
+  for (const r of parked) chart.push(`| [${r.title}](${fs.existsSync(path.join(ROOT, "company/roles", `${r.id}.md`)) ? "" : "parked/"}${r.id}.md) | ${r.parked.into ?? "nobody (dormant)"} | ${r.parked.why.replace(/\|/g, "/")} |`);
   chart.push("");
 }
 fs.writeFileSync(path.join(ROOT, "company/roles/README.md"), chart.join("\n"));
@@ -154,7 +188,7 @@ fs.writeFileSync(path.join(ROOT, "company/roles/README.md"), chart.join("\n"));
       if (!fs.existsSync(bp)) fs.writeFileSync(bp, `# ${name} briefs (cm-${dom}-${id})\n\nRanked briefs for this strand, in the same format as \`${dom}.md\` (\`### N. slug · concept: <id> · level · demand N\`). \`tools/claim.mjs next ${dom}\` hands these out after the domain's own list. Check every brief's answer in node before adding it.\n`);
     }
 }
-console.log(`generated ${roles.length} onboarding docs and ${roles.filter((r) => !r.human).length} agents`);
+console.log(`generated ${roles.length} onboarding docs and ${roles.filter((r) => !r.human).length} agents; ${parked?.length ?? 0} parked (docs kept: 14 category leads in company/roles/ with a stand-in agent, the rest in company/roles/parked/)`);
 
 // Org-change hygiene (company/ceo-office/org-change-process.md): every role should appear in a decision record.
 {

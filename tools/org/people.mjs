@@ -90,10 +90,13 @@ export const PERSONA = {
   "visual-designer": "Kiri",
   illustrator: "Aquarelle",
   "design-engineer": "Tomoko",
+  // Restructuring 2026-10-25 (company/decisions/2026-10-25-founder-restructuring.md): two pooled roles; instances take POOL names.
+  "category-curator": "Curators",
+  "route-reviewer": "Route reviewers",
 };
 
 // Roles that run as many parallel agents. Their instances take names from POOL.
-export const MANY = new Set(["demo-builder", "fact-checker", "learner-evaluator", "general-purpose", "pedagogy-critic", "qa-tester", "localizer", "cultural-reviewer", "rnd-engineer", "research-scientist", "personalization-eval", "applied-scientist-personalization", "learning-scientist-personalization", "pairwise-judge"]);
+export const MANY = new Set(["demo-builder", "fact-checker", "learner-evaluator", "general-purpose", "pedagogy-critic", "qa-tester", "localizer", "cultural-reviewer", "rnd-engineer", "research-scientist", "personalization-eval", "applied-scientist-personalization", "learning-scientist-personalization", "pairwise-judge", "category-curator", "route-reviewer"]);
 
 export const POOL = [
   "Nia", "Theo", "Zara", "Felix", "Maya", "Leo", "Ines", "Kai", "Rumi", "Oskar",

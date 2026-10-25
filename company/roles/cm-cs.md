@@ -1,9 +1,11 @@
 # Category Manager (category lead) — Computer Science
 
+> **PARKED since 2026-10-25** (company/decisions/2026-10-25-founder-restructuring.md). Not an active role: no HQ seat, not dispatchable. Its work now belongs to `category-curator`. Why: instance category=cs; the category's charter, curriculum, briefs and this role's memory are the curator's data. Un-park: remove the id from PARK in tools/org/roles.mjs and regenerate.
+
 name: Lin
 team: categories
 reports_to: head-of-product
-agent: .claude/agents/cm-cs.md
+agent: .claude/agents/cm-cs.md (parked stand-in: it does no work; dispatch-check refuses parked roles)
 domain: cs
 
 <!-- GENERATED from tools/org/roles.mjs by tools/org/generate.mjs. Edit the data, then regenerate. -->

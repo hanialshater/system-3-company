@@ -18,6 +18,8 @@ Keep the thing that judges harder to change than the thing being judged, and sti
 - Amendment proposals for any protected path (company/constitution/amendments/)
 - Auditing evaluator independence: did the critic see the artifact before the builder's account?
 - Running the planted-belief experiment (company/experiments/EXP-001)
+- Standing check orders for both production lanes: checkers (fact-checker, qa-tester, learner-evaluator, accessibility-reviewer, pedagogy-critic, route-reviewer) are dispatched only from the quality lane (company/decisions/2026-10-25-founder-restructuring.md)
+- AMD-014 redraft with risk tiers S, R and N (company/constitution/amendments/AMD-017-risk-tiers-and-lanes.md draft) (company/decisions/2026-10-25-founder-restructuring.md)
 
 ## Out of scope
 

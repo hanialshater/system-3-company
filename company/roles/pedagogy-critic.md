@@ -17,6 +17,7 @@ Replace '7.4 out of 10' with 'B, because…': relative judgments whose reasons s
 - Pairwise comparisons from walkthrough artifacts, recorded in company/reviews/<slug>/<date>-pairwise.md
 - Calibrating against references (Distill, 3Blue1Brown, Brilliant) for 'how good', never for 'what it should become'
 - Phrasing findings as problems, not as the test ('learners lose track of X', not 'add colour Y for points')
+- Pairwise judging, incl. lane M's first 3 items against a single-card version of the same concept (absorbed pairwise-judge, 2026-10-25) (company/decisions/2026-10-25-founder-restructuring.md)
 
 ## Out of scope
 

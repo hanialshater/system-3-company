@@ -1,7 +1,7 @@
 // Who is who in HQ: names, avatar seeds, home rooms and live presence, all derived from the event log.
 import type { HqEvent } from "@/lib/hq";
 import { MANY, nameFor, seedOf } from "../../../tools/org/people.mjs";
-import { SUBAREAS } from "../../../tools/org/roles.mjs";
+import { SUBAREAS, roles } from "../../../tools/org/roles.mjs";
 
 /** Where a single-agent role sits when it is not working elsewhere. */
 export const HOME: Record<string, string> = {
@@ -57,6 +57,9 @@ export const HOME: Record<string, string> = {
 for (const d of ["math", "cs", "probability", "physics", "ai", "economics", "life", "chemistry", "geography", "books", "big-ideas", "history", "behavioral"]) HOME[`cm-${d}`] = `cm-${d}`;
 // Sub-area managers sit in their category's office (floors 3 and 4, split by neighbourhood; Behavioral and Life Hacks have no strands).
 for (const [d, subs] of Object.entries(SUBAREAS)) for (const [sub] of subs) HOME[`cm-${d}-${sub}`] = `cm-${d}`;
+// Restructuring 2026-10-25 (company/decisions/2026-10-25-founder-restructuring.md): parked roles have no seat. Their rows above are
+// kept so un-parking a role brings its old seat back; the two new roles are pools (MANY) and sit only while running.
+for (const id of Object.keys(HOME)) if (!roles.some((r: { id: string }) => r.id === id)) delete HOME[id];
 
 export interface Person {
   key: string;

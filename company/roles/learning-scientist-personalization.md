@@ -16,6 +16,7 @@ The org's questions about learning get sourced answers, and the simulated learne
 - Evidence memos for the org (surprise/hypercorrection, novelty, readiness, forgetting, prerequisite order)
 - Parameter ranges for the simulated learner
 - Review of the simulated learner against those ranges
+- Lesson dimensions (absorbed lesson-dims-owner, 2026-10-25) (company/decisions/2026-10-25-founder-restructuring.md)
 
 ## Out of scope
 

@@ -13,44 +13,21 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 | [Principal Engineer, CEO Office](principal-engineer.md) | founder | Keep the system simple enough to change and strong enough to grow: decide which changes need a design and a review, and make sure those get one.. |
 | [Chief of Staff, CEO Office (company health)](chief-of-staff-ceo-office.md) | founder | The org chart matches how work actually flows: every role is either used or retired, every handoff is wired, and no one checks their own work.. |
 | [Head of Strategic Initiatives](head-of-strategic-initiatives.md) | founder | Company-wide initiatives land on the date they promised, or say early and in writing why not: every initiative has a charter, a cadence, a dependency map, a risk log, a budget and an end.. |
-| [VP of R&D (CEO Office)](vp-rnd.md) | founder | Turn 'we can't teach that in 60 seconds' into a library, an engine or a finding, and stop the bets that don't pay.. |
 | [Principal Engineer, Operations (CEO Office)](principal-engineer-ops.md) | principal-engineer | Every service, data store and known deficit has a tier, an owner and a status, incidents end in a COE with actions that close, and the founder can see the company's operational health on one page.. |
 | [Portfolio Manager, CEO Office (intake, triage, priority)](portfolio-manager.md) | chief-of-staff-ceo-office | Every open item has a priority, an owner and a reason to exist, and the top of the board is what matters most.. |
-| [Chief Product Officer (CEO Office)](chief-product-officer.md) | founder | Lessons get measurably better across the whole catalogue, and the company can say which ones, on which criteria, and how sure it is.. |
 
 ## Product
 
 | Role | Reports to | Mission |
 |---|---|---|
-| [Head of Product](head-of-product.md) | chief-product-officer | Decide what the product should be next and write it down so that someone who was not in the room can tell when a line has stopped being true.. |
-| [Domain Scout](domain-scout.md) | head-of-product | Find subjects worth adding and make the case for or against each with evidence, using the Domain Launch Review.. |
+| [Head of Product](head-of-product.md) | founder | Decide what the product should be next and write it down so that someone who was not in the room can tell when a line has stopped being true.. |
 | [Principal Product Manager — Strategic Verticals](principal-pm-verticals.md) | head-of-product | Pick the few verticals where 60-second predict-and-see lessons can be the best in the world, and make the categories work together to win them.. |
 
 ## Studio
 
 | Role | Reports to | Mission |
 |---|---|---|
-| [Learning Designer](learning-designer.md) | head-of-product | Decide what the learner should do, predict and notice, so the lesson teaches the payoff and not the procedure.. |
-| [Demo Builder](demo-builder.md) | learning-designer | Make the design executable: the picture has to pay its debts. |
-
-## Design
-
-| Role | Reports to | Mission |
-|---|---|---|
-| [Mockup Artist](mockup-artist.md) | design-lead | Draw it before anyone builds it: a mockup is a cheap hypothesis about where things go and what the learner looks at first.. |
-| [Design Lead](design-lead.md) | head-of-product | Every lesson uses the format that shows its idea best, looks like one product, and reads in a glance on a phone.. |
-| [Interaction Designer](interaction-designer.md) | design-lead | The learner's hands discover the idea; the reveal only names what they already saw.. |
-| [Illustrator (external contributor, image generation)](illustrator.md) | visual-designer | Beautiful, consistent watercolor illustrations that show exactly what the lesson needs, and nothing that is false or unsafe.. |
-| [Design Engineer (SWE, Design team)](design-engineer.md) | design-lead | Designers can see every concept and every lesson for it at a glance, and a new format is a component, not a hand-built one-off.. |
-| [Visual Designer](visual-designer.md) | design-lead | One recognisable, calm, legible style across 500+ lessons and every locale.. |
-
-## Research
-
-| Role | Reports to | Mission |
-|---|---|---|
-| [Researcher (Research org, learning and teaching)](researcher.md) | research-lead | Answer the question the work produced, and say where each answer came from, who was studied, and how strong it is.. |
-| [Research Lead](research-lead.md) | vp-rnd | Every big bet rests on evidence someone can check.. |
-| [Research Scientist](research-scientist.md) | research-lead | Find out what is known, say how sure we are, and say what it means for a lesson.. |
+| [Demo Builder](demo-builder.md) | principal-pm-verticals | Make the design executable: the picture has to pay its debts. |
 
 ## Quality
 
@@ -62,6 +39,7 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 | [Computer-Use QA Tester](qa-tester.md) | evaluation-steward | Use the thing. |
 | [Accessibility Reviewer](accessibility-reviewer.md) | evaluation-steward | Make sure the lesson works for learners who do not use it the way the builder does.. |
 | [Evaluation Steward](evaluation-steward.md) | founder | Keep the thing that judges harder to change than the thing being judged, and still able to change when it has stopped measuring what matters.. |
+| [Route Reviewer (pooled: sensitive, safety, copyright)](route-reviewer.md) | evaluation-steward | Catch the harm a fact-checker cannot: the hack that hurts, the past told from one side, the book quoted instead of summarised. |
 
 ## Platform
 
@@ -69,7 +47,6 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 |---|---|---|
 | [Platform Engineer](platform-engineer.md) | head-of-product | Keep the work close to the lesson: builders should never have to think about plumbing.. |
 | [Release Manager](release-manager.md) | head-of-product | Ship only what passed its gates, and be able to undo it in one command.. |
-| [Community Engineer (external pull requests)](community-engineer.md) | principal-engineer | Outside work lands safely and fast: nothing merges without the reviews our own work needs, and no contributor waits without an answer.. |
 
 ## Backend
 
@@ -87,7 +64,6 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 | [Personalization Evaluator](personalization-eval.md) | vp-personalization | A personalization policy is judged against an independent learner and a criterion frozen before the run, never against its own assumptions.. |
 | [Applied Scientist, Personalization](applied-scientist-personalization.md) | vp-personalization | The curves say what the evidence says, and every change to them has a reason someone can check.. |
 | [Learning Scientist, Personalization](learning-scientist-personalization.md) | vp-personalization | The org's questions about learning get sourced answers, and the simulated learner behaves the way the evidence says learners do.. |
-| [Lesson Features Owner](lesson-dims-owner.md) | vp-personalization | Every lesson exposes the features the composer needs, consistently, from data we already have wherever possible.. |
 | [Personalization Engineer](personalization-engineer.md) | vp-personalization | The org's work is visible and inspectable: anyone can pick a persona and see why each card was chosen.. |
 | [Learner Model Engineer](learner-model-engineer.md) | vp-personalization | A small, explainable model of what each learner knows, updated from evidence, never from guesses about who they are.. |
 | [Learner Data Engineer (Customer Data)](learner-data-engineer.md) | vp-personalization | Every piece of learner data personalization reads or keeps is stated, minimal, privacy-read before it exists, and leaves with the account.. |
@@ -106,83 +82,24 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 | [Analytics & Experiment Steward](analytics-steward.md) | head-of-product | Before the result arrives, write down what the number is taken to mean, over what period, and what would count against the claim.. |
 | [Pattern Librarian](pattern-librarian.md) | chief-of-staff | Turn lessons into patterns that can lose an argument, and retire the ones that have stopped being true.. |
 
-## Categories
-
-| Role | Reports to | Mission |
-|---|---|---|
-| [Category Manager (category lead) — Mathematics](cm-math.md) | head-of-product | Decide what Mathematics should teach next and why, and keep the category's map honest about what it does not yet teach.. |
-| [Category Manager (category lead) — Computer Science](cm-cs.md) | head-of-product | Decide what Computer Science should teach next and why, and keep the category's map honest about what it does not yet teach.. |
-| [Category Manager (category lead) — Probability & Data](cm-probability.md) | head-of-product | Decide what Probability & Data should teach next and why, and keep the category's map honest about what it does not yet teach.. |
-| [Category Manager (category lead) — Physics](cm-physics.md) | head-of-product | Decide what Physics should teach next and why, and keep the category's map honest about what it does not yet teach.. |
-| [Category Manager (category lead) — AI & Machine Learning](cm-ai.md) | head-of-product | Decide what AI & Machine Learning should teach next and why, and keep the category's map honest about what it does not yet teach.. |
-| [Category Manager (category lead) — Economics & Money](cm-economics.md) | head-of-product | Decide what Economics & Money should teach next and why, and keep the category's map honest about what it does not yet teach.. |
-| [Category Manager (category lead) — Life Sciences](cm-life.md) | head-of-product | Decide what Life Sciences should teach next and why, and keep the category's map honest about what it does not yet teach.. |
-| [Category Manager (category lead) — Geography & Maps](cm-geography.md) | head-of-product | Decide what Geography & Maps should teach next and why, and keep the category's map honest about what it does not yet teach.. |
-| [Category Manager (category lead) — Life Hacks](cm-lifehacks.md) | head-of-product | Decide what Life Hacks should teach next and why, and keep the category's map honest about what it does not yet teach.. |
-| [Category Manager (category lead) — Chemistry](cm-chemistry.md) | head-of-product | Decide what Chemistry should teach next and why, and keep the category's map honest about what it does not yet teach.. |
-| [Category Manager (category lead) — Book Summaries](cm-books.md) | head-of-product | Decide what Book Summaries should teach next and why, and keep the category's map honest about what it does not yet teach.. |
-| [Category Manager (category lead) — Big Ideas](cm-big-ideas.md) | head-of-product | Decide what Big Ideas should teach next and why, and keep the category's map honest about what it does not yet teach.. |
-| [Category Manager (category lead) — History through data and maps](cm-history.md) | head-of-product | Decide what History through data and maps should teach next and why, and keep the category's map honest about what it does not yet teach.. |
-| [Category Manager (category lead) — Behavioral Economics and Irrational Behavior](cm-behavioral.md) | head-of-product | Decide what Behavioral Economics and Irrational Behavior should teach next and why, and keep the category's map honest about what it does not yet teach.. |
-| [Life Hacks Safety Reviewer](lifehacks-safety-reviewer.md) | evaluation-steward | No learner gets hurt, poisoned, burned, shocked, cheated or misled by a 60-second hack we showed them.. |
-| [Sub-area Category Manager — Mathematics: Number & Algebra](cm-math-algebra.md) | cm-math | Turn Number & Algebra into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
-| [Sub-area Category Manager — Mathematics: Geometry & Measurement](cm-math-geometry.md) | cm-math | Turn Geometry & Measurement into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
-| [Sub-area Category Manager — Mathematics: Discrete Maths & Logic](cm-math-discrete.md) | cm-math | Turn Discrete Maths & Logic into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
-| [Sub-area Category Manager — Computer Science: Algorithms & Data Structures](cm-cs-algorithms.md) | cm-cs | Turn Algorithms & Data Structures into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
-| [Sub-area Category Manager — Computer Science: Computer Systems & Networks](cm-cs-systems.md) | cm-cs | Turn Computer Systems & Networks into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
-| [Sub-area Category Manager — Computer Science: Data, Security & Cryptography](cm-cs-security.md) | cm-cs | Turn Data, Security & Cryptography into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
-| [Sub-area Category Manager — Probability & Data: Chance & Randomness](cm-probability-chance.md) | cm-probability | Turn Chance & Randomness into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
-| [Sub-area Category Manager — Probability & Data: Statistics & Inference](cm-probability-statistics.md) | cm-probability | Turn Statistics & Inference into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
-| [Sub-area Category Manager — Probability & Data: Data Literacy & Graphs](cm-probability-data-literacy.md) | cm-probability | Turn Data Literacy & Graphs into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
-| [Sub-area Category Manager — Physics: Mechanics & Motion](cm-physics-mechanics.md) | cm-physics | Turn Mechanics & Motion into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
-| [Sub-area Category Manager — Physics: Waves, Sound & Light](cm-physics-waves.md) | cm-physics | Turn Waves, Sound & Light into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
-| [Sub-area Category Manager — Physics: Electricity, Magnetism & Energy](cm-physics-electricity.md) | cm-physics | Turn Electricity, Magnetism & Energy into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
-| [Sub-area Category Manager — AI & Machine Learning: Machine Learning Basics](cm-ai-ml-basics.md) | cm-ai | Turn Machine Learning Basics into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
-| [Sub-area Category Manager — AI & Machine Learning: Neural Networks & Language Models](cm-ai-neural-language.md) | cm-ai | Turn Neural Networks & Language Models into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
-| [Sub-area Category Manager — AI & Machine Learning: AI Safety & Society](cm-ai-ai-society.md) | cm-ai | Turn AI Safety & Society into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
-| [Sub-area Category Manager — Economics & Money: Personal Finance](cm-economics-personal-finance.md) | cm-economics | Turn Personal Finance into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
-| [Sub-area Category Manager — Economics & Money: Markets & Microeconomics](cm-economics-markets.md) | cm-economics | Turn Markets & Microeconomics into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
-| [Sub-area Category Manager — Economics & Money: Macroeconomics & Growth](cm-economics-macro.md) | cm-economics | Turn Macroeconomics & Growth into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
-| [Sub-area Category Manager — Life Sciences: Genetics & Evolution](cm-life-genetics-evolution.md) | cm-life | Turn Genetics & Evolution into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
-| [Sub-area Category Manager — Life Sciences: Health & Epidemiology](cm-life-health-epidemiology.md) | cm-life | Turn Health & Epidemiology into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
-| [Sub-area Category Manager — Life Sciences: Ecology & the Human Body](cm-life-ecology-body.md) | cm-life | Turn Ecology & the Human Body into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
-| [Sub-area Category Manager — Chemistry: Matter & Reactions](cm-chemistry-matter-reactions.md) | cm-chemistry | Turn Matter & Reactions into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
-| [Sub-area Category Manager — Chemistry: Solutions, Acids & Bases](cm-chemistry-solutions-acids.md) | cm-chemistry | Turn Solutions, Acids & Bases into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
-| [Sub-area Category Manager — Chemistry: Energy, Rates & Equilibrium](cm-chemistry-energy-rates.md) | cm-chemistry | Turn Energy, Rates & Equilibrium into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
-| [Sub-area Category Manager — Geography & Maps: Maps & Projections](cm-geography-maps-projections.md) | cm-geography | Turn Maps & Projections into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
-| [Sub-area Category Manager — Geography & Maps: Earth, Sky & Climate](cm-geography-earth-climate.md) | cm-geography | Turn Earth, Sky & Climate into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
-| [Sub-area Category Manager — Geography & Maps: People & Places](cm-geography-people-places.md) | cm-geography | Turn People & Places into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
-| [Sub-area Category Manager — Book Summaries: Business & Strategy](cm-books-business.md) | cm-books | Turn Business & Strategy into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
-| [Sub-area Category Manager — Book Summaries: Psychology & Self](cm-books-psychology.md) | cm-books | Turn Psychology & Self into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
-| [Sub-area Category Manager — Book Summaries: Science & History](cm-books-science-history.md) | cm-books | Turn Science & History into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
-| [Sub-area Category Manager — Big Ideas: Science](cm-big-ideas-science.md) | cm-big-ideas | Turn Science into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
-| [Sub-area Category Manager — Big Ideas: Society & Economics](cm-big-ideas-society.md) | cm-big-ideas | Turn Society & Economics into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
-| [Sub-area Category Manager — Big Ideas: Mind & Philosophy](cm-big-ideas-mind.md) | cm-big-ideas | Turn Mind & Philosophy into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
-| [Sub-area Category Manager — History through data and maps: Population & Economy over Time](cm-history-population-economy.md) | cm-history | Turn Population & Economy over Time into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
-| [Sub-area Category Manager — History through data and maps: Maps & Borders](cm-history-maps-borders.md) | cm-history | Turn Maps & Borders into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
-| [Sub-area Category Manager — History through data and maps: Events through Data](cm-history-events-data.md) | cm-history | Turn Events through Data into a curriculum a learner can climb: concepts in order of prerequisites, each with a lesson brief worth building, without repeating what other strands already teach.. |
-
-## International
-
-| Role | Reports to | Mission |
-|---|---|---|
-| [Localization Lead (International)](localization-lead.md) | head-of-product | A learner in any locale gets a lesson that feels made for them: their language, units, money, examples and norms, with every fact still true where they live.. |
-| [Localizer](localizer.md) | localization-lead | Same insight, native feel, still true.. |
-| [Cultural & Regional Reviewer](cultural-reviewer.md) | localization-lead | Catch what a translator or a category manager cannot: the example that lands wrong, the norm that differs, the fact that is not true here, and the past told from only one side.. |
-
 ## Rnd
 
 | Role | Reports to | Mission |
 |---|---|---|
-| [R&D Engineering Lead](rnd-lead.md) | vp-rnd | Small, tested, dependency-free libraries that a builder can use in an afternoon.. |
-| [R&D Engineer](rnd-engineer.md) | rnd-lead | Correct first, then small, then easy to use in a 60-second lesson.. |
+| [R&D Engineering Lead](rnd-lead.md) | principal-engineer | Small, tested, dependency-free libraries that a builder can use in an afternoon.. |
 
-## Courses
+## Research
 
 | Role | Reports to | Mission |
 |---|---|---|
-| [Head of Courses (category management)](courses-lead.md) | head-of-product | A learner who is reading a book or taking a course finds a 60-second demo for every idea in it that can be shown, in the order the course teaches it.. |
-| [Course Manager — Networks, Crowds, and Markets (Easley & Kleinberg)](cm-course-ncm.md) | courses-lead | Every idea in Networks, Crowds, and Markets that a learner can predict and then see has a 60-second lesson, mapped to its chapter and section.. |
+| [Research Scientist](research-scientist.md) | head-of-product | Find out what is known, say how sure we are, and say what it means for a lesson.. |
+
+## Design
+
+| Role | Reports to | Mission |
+|---|---|---|
+| [Design Lead](design-lead.md) | head-of-product | Every lesson uses the format that shows its idea best, looks like one product, and reads in a glance on a phone.. |
+| [Interaction Designer](interaction-designer.md) | design-lead | The learner's hands discover the idea; the reveal only names what they already saw.. |
 
 ## Marketing
 
@@ -190,10 +107,87 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 |---|---|---|
 | [VP of Marketing](vp-marketing.md) | founder | People who would benefit from 60-second predict-and-see lessons hear about them in words that are true, checkable and ours.. |
 
-## Evaluation
+## Categories
 
 | Role | Reports to | Mission |
 |---|---|---|
-| [Head of Evaluation](head-of-evaluation.md) | chief-product-officer | A leaderboard on several criteria that the company can trust: every comparison blind and reasoned, every rank with its uncertainty, and judges whose agreement is measured, not assumed.. |
-| [Pairwise Judge (Evaluation)](pairwise-judge.md) | head-of-evaluation | For each criterion, say which of two lessons is better for a first-time learner on a phone, and why, in one sentence a builder could act on.. |
-| [Evaluation Engineer](evaluation-engineer.md) | head-of-evaluation | Turn blind pairwise records into a leaderboard per criterion whose uncertainty is honest and whose every number traces back to a record.. |
+| [Category Curator (pooled; one instance per category)](category-curator.md) | principal-pm-verticals | Keep each category's queue full of briefs worth building, in priority order, and keep its map honest about what it does not yet teach. |
+
+## Parked (2026-10-25 restructuring)
+
+Files kept; not active. See company/decisions/2026-10-25-founder-restructuring.md.
+
+| Role | Work now with | Why |
+|---|---|---|
+| [Domain Scout](parked/domain-scout.md) | principal-pm-verticals | F-13 P8; 2 runs |
+| [Learning Designer](parked/learning-designer.md) | interaction-designer | 1 run; pedagogy fields go to interaction-designer, brief fields to category-curator |
+| [Mockup Artist](parked/mockup-artist.md) | interaction-designer | never ran |
+| [Researcher (Research org, learning and teaching)](parked/researcher.md) | research-scientist | never ran; same job |
+| [Category Manager (category lead) — Mathematics](cm-math.md) | category-curator | instance category=math; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Category Manager (category lead) — Computer Science](cm-cs.md) | category-curator | instance category=cs; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Category Manager (category lead) — Probability & Data](cm-probability.md) | category-curator | instance category=probability; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Category Manager (category lead) — Physics](cm-physics.md) | category-curator | instance category=physics; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Category Manager (category lead) — AI & Machine Learning](cm-ai.md) | category-curator | instance category=ai; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Category Manager (category lead) — Economics & Money](cm-economics.md) | category-curator | instance category=economics; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Category Manager (category lead) — Life Sciences](cm-life.md) | category-curator | instance category=life; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Category Manager (category lead) — Geography & Maps](cm-geography.md) | category-curator | instance category=geography; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Category Manager (category lead) — Life Hacks](cm-lifehacks.md) | category-curator | instance category=lifehacks; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Category Manager (category lead) — Chemistry](cm-chemistry.md) | category-curator | instance category=chemistry; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Category Manager (category lead) — Book Summaries](cm-books.md) | category-curator | instance category=books; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Category Manager (category lead) — Big Ideas](cm-big-ideas.md) | category-curator | instance category=big-ideas; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Category Manager (category lead) — History through data and maps](cm-history.md) | category-curator | instance category=history; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Category Manager (category lead) — Behavioral Economics and Irrational Behavior](cm-behavioral.md) | category-curator | instance category=behavioral; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Life Hacks Safety Reviewer](parked/lifehacks-safety-reviewer.md) | route-reviewer | route=safety checklist |
+| [Lesson Features Owner](parked/lesson-dims-owner.md) | learning-scientist-personalization | 2 reports |
+| [Localization Lead (International)](parked/localization-lead.md) | nobody (dormant) | never ran; no locale chosen (F-09) |
+| [Localizer](parked/localizer.md) | nobody (dormant) | never ran; no locale chosen (F-09) |
+| [Cultural & Regional Reviewer](parked/cultural-reviewer.md) | route-reviewer | route=sensitive checklist |
+| [Community Engineer (external pull requests)](parked/community-engineer.md) | platform-engineer | no run on record; PR intake is platform work |
+| [VP of R&D (CEO Office)](parked/vp-rnd.md) | nobody (dormant) | 1 run in two weeks; a layer over rnd-lead (rnd-lead now reports to principal-engineer) |
+| [R&D Engineer](parked/rnd-engineer.md) | nobody (dormant) | no run on record; knot builds use the catalog line |
+| [Research Lead](parked/research-lead.md) | research-scientist | 3 runs; a lead over a pool |
+| [Illustrator (external contributor, image generation)](parked/illustrator.md) | nobody (dormant) | never ran; un-park on the first external delivery |
+| [Design Engineer (SWE, Design team)](parked/design-engineer.md) | platform-engineer | 3 runs; kit work (W-604, W-605 move with it) |
+| [Visual Designer](parked/visual-designer.md) | design-lead | 2 runs |
+| [Sub-area Category Manager — Mathematics: Number & Algebra](parked/cm-math-algebra.md) | category-curator | instance category=math; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Sub-area Category Manager — Mathematics: Geometry & Measurement](parked/cm-math-geometry.md) | category-curator | instance category=math; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Sub-area Category Manager — Mathematics: Discrete Maths & Logic](parked/cm-math-discrete.md) | category-curator | instance category=math; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Sub-area Category Manager — Computer Science: Algorithms & Data Structures](parked/cm-cs-algorithms.md) | category-curator | instance category=cs; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Sub-area Category Manager — Computer Science: Computer Systems & Networks](parked/cm-cs-systems.md) | category-curator | instance category=cs; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Sub-area Category Manager — Computer Science: Data, Security & Cryptography](parked/cm-cs-security.md) | category-curator | instance category=cs; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Sub-area Category Manager — Probability & Data: Chance & Randomness](parked/cm-probability-chance.md) | category-curator | instance category=probability; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Sub-area Category Manager — Probability & Data: Statistics & Inference](parked/cm-probability-statistics.md) | category-curator | instance category=probability; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Sub-area Category Manager — Probability & Data: Data Literacy & Graphs](parked/cm-probability-data-literacy.md) | category-curator | instance category=probability; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Sub-area Category Manager — Physics: Mechanics & Motion](parked/cm-physics-mechanics.md) | category-curator | instance category=physics; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Sub-area Category Manager — Physics: Waves, Sound & Light](parked/cm-physics-waves.md) | category-curator | instance category=physics; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Sub-area Category Manager — Physics: Electricity, Magnetism & Energy](parked/cm-physics-electricity.md) | category-curator | instance category=physics; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Sub-area Category Manager — AI & Machine Learning: Machine Learning Basics](parked/cm-ai-ml-basics.md) | category-curator | instance category=ai; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Sub-area Category Manager — AI & Machine Learning: Neural Networks & Language Models](parked/cm-ai-neural-language.md) | category-curator | instance category=ai; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Sub-area Category Manager — AI & Machine Learning: AI Safety & Society](parked/cm-ai-ai-society.md) | category-curator | instance category=ai; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Sub-area Category Manager — Economics & Money: Personal Finance](parked/cm-economics-personal-finance.md) | category-curator | instance category=economics; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Sub-area Category Manager — Economics & Money: Markets & Microeconomics](parked/cm-economics-markets.md) | category-curator | instance category=economics; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Sub-area Category Manager — Economics & Money: Macroeconomics & Growth](parked/cm-economics-macro.md) | category-curator | instance category=economics; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Sub-area Category Manager — Life Sciences: Genetics & Evolution](parked/cm-life-genetics-evolution.md) | category-curator | instance category=life; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Sub-area Category Manager — Life Sciences: Health & Epidemiology](parked/cm-life-health-epidemiology.md) | category-curator | instance category=life; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Sub-area Category Manager — Life Sciences: Ecology & the Human Body](parked/cm-life-ecology-body.md) | category-curator | instance category=life; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Sub-area Category Manager — Chemistry: Matter & Reactions](parked/cm-chemistry-matter-reactions.md) | category-curator | instance category=chemistry; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Sub-area Category Manager — Chemistry: Solutions, Acids & Bases](parked/cm-chemistry-solutions-acids.md) | category-curator | instance category=chemistry; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Sub-area Category Manager — Chemistry: Energy, Rates & Equilibrium](parked/cm-chemistry-energy-rates.md) | category-curator | instance category=chemistry; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Sub-area Category Manager — Geography & Maps: Maps & Projections](parked/cm-geography-maps-projections.md) | category-curator | instance category=geography; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Sub-area Category Manager — Geography & Maps: Earth, Sky & Climate](parked/cm-geography-earth-climate.md) | category-curator | instance category=geography; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Sub-area Category Manager — Geography & Maps: People & Places](parked/cm-geography-people-places.md) | category-curator | instance category=geography; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Sub-area Category Manager — Book Summaries: Business & Strategy](parked/cm-books-business.md) | category-curator | instance category=books; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Sub-area Category Manager — Book Summaries: Psychology & Self](parked/cm-books-psychology.md) | category-curator | instance category=books; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Sub-area Category Manager — Book Summaries: Science & History](parked/cm-books-science-history.md) | category-curator | instance category=books; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Sub-area Category Manager — Big Ideas: Science](parked/cm-big-ideas-science.md) | category-curator | instance category=big-ideas; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Sub-area Category Manager — Big Ideas: Society & Economics](parked/cm-big-ideas-society.md) | category-curator | instance category=big-ideas; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Sub-area Category Manager — Big Ideas: Mind & Philosophy](parked/cm-big-ideas-mind.md) | category-curator | instance category=big-ideas; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Sub-area Category Manager — History through data and maps: Population & Economy over Time](parked/cm-history-population-economy.md) | category-curator | instance category=history; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Sub-area Category Manager — History through data and maps: Maps & Borders](parked/cm-history-maps-borders.md) | category-curator | instance category=history; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Sub-area Category Manager — History through data and maps: Events through Data](parked/cm-history-events-data.md) | category-curator | instance category=history; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Head of Courses (category management)](parked/courses-lead.md) | principal-pm-verticals | never dispatched |
+| [Course Manager — Networks, Crowds, and Markets (Easley & Kleinberg)](parked/cm-course-ncm.md) | category-curator | instance category=course-ncm; the category's charter, curriculum, briefs and this role's memory are the curator's data |
+| [Chief Product Officer (CEO Office)](parked/chief-product-officer.md) | nobody (dormant) | no measured run; head-of-product reports to the founder again. Un-park if head-of-product's span passes 8 |
+| [Head of Evaluation](parked/head-of-evaluation.md) | nobody (dormant) | never ran; lane 21 has no budget |
+| [Pairwise Judge (Evaluation)](parked/pairwise-judge.md) | pedagogy-critic | never ran; pedagogy-critic already judges pairwise |
+| [Evaluation Engineer](parked/evaluation-engineer.md) | nobody (dormant) | never ran |

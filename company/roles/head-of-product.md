@@ -2,7 +2,7 @@
 
 name: Priya
 team: product
-reports_to: chief-product-officer
+reports_to: founder
 agent: .claude/agents/head-of-product.md
 
 <!-- GENERATED from tools/org/roles.mjs by tools/org/generate.mjs. Edit the data, then regenerate. -->
@@ -20,6 +20,8 @@ Decide what the product should be next and write it down so that someone who was
 - Owning every product decision record and the objections that travel with it
 - The default order: the baseline every fresh device, chip and flag-off build shows, and every personalised order is compared against; and the two cold-start trade-offs she owns in company/product/surface-value.md
 - Release-1 scope rulings on PRD-003 and PRD-004 inside First Light, until First Light closes
+- Priority across content types and lanes (level L1, with the portfolio-manager): which lane gets the next slot (company/decisions/2026-10-25-founder-restructuring.md)
+- Signing batch launch records for both lanes (company/decisions/2026-10-25-founder-restructuring.md)
 
 ## Out of scope
 

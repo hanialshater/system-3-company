@@ -37,7 +37,7 @@ const request = (sb, from, role, extra = []) =>
 test("parallel sends never collide: 40 concurrent writers, 40 distinct complete files", async () => {
   const sb = sandbox();
   const runs = Array.from({ length: 40 }, (_, i) =>
-    pexec(process.execPath, [CLI, "send", "--from=cm-physics", "--to=principal-pm-verticals", "--kind=question", "--project=wave-j", `--body=question ${i}`, "--json"], { env: sb.env }));
+    pexec(process.execPath, [CLI, "send", "--from=design-lead", "--to=principal-pm-verticals", "--kind=question", "--project=wave-j", `--body=question ${i}`, "--json"], { env: sb.env }));
   const res = await Promise.all(runs);
   const ids = res.map((r) => JSON.parse(r.stdout).id);
   assert.equal(new Set(ids).size, 40);
@@ -46,18 +46,18 @@ test("parallel sends never collide: 40 concurrent writers, 40 distinct complete 
   assert.equal(files.length, 40);
   const bodies = new Set(files.map((f) => fs.readFileSync(path.join(box, f), "utf8").match(/question (\d+)/)[1]));
   assert.equal(bodies.size, 40, "every message is whole and none overwrote another");
-  for (const f of files) assert.match(f, /^\d{8}T\d{9}Z-cm-physics-[0-9a-f]{8}\.md$/);
+  for (const f of files) assert.match(f, /^\d{8}T\d{9}Z-design-lead-[0-9a-f]{8}\.md$/);
   assert.equal(fs.readdirSync(box).filter((f) => f.startsWith(".tmp-")).length, 0, "no temp files left");
 });
 
-test("out-of-lane request refused: cm-physics may not request backend-engineer (lane 7)", () => {
+test("out-of-lane request refused: design-lead (lane 6) may not request backend-engineer (lane 7)", () => {
   const sb = sandbox();
-  const r = request(sb, "cm-physics", "backend-engineer");
+  const r = request(sb, "design-lead", "backend-engineer");
   assert.equal(r.code, 1);
-  assert.match(r.err, /not dispatched in lane 1/);
+  assert.match(r.err, /not dispatched in lane 6/);
   assert.ok(!fs.existsSync(path.join(sb.mail, "dispatcher")), "nothing written");
-  // and a CM may not request another CM's strand manager
-  const r2 = request(sb, "cm-physics", "cm-chemistry-energy-rates");
+  // and a parked role (2026-10-25 restructuring: no agent file) is never requested
+  const r2 = request(sb, "design-lead", "cm-chemistry-energy-rates");
   assert.equal(r2.code, 1);
   // a role that is no POC requests nothing
   const r3 = request(sb, "demo-builder", "demo-builder");
@@ -65,10 +65,10 @@ test("out-of-lane request refused: cm-physics may not request backend-engineer (
   assert.match(r3.err, /not the POC of any lane/);
 });
 
-test("checker request from a CM refused; evaluation-steward (lane 10) may request it", () => {
+test("checker request from a production lane refused; evaluation-steward (lane 10) may request it", () => {
   const sb = sandbox();
   for (const c of ["fact-checker", "qa-tester", "learner-evaluator", "accessibility-reviewer", "pedagogy-critic"]) {
-    const r = request(sb, "cm-lifehacks", c);
+    const r = request(sb, "principal-pm-verticals", c);
     assert.equal(r.code, 1, c);
     assert.match(r.err, /only lane 10/, c);
   }
@@ -78,24 +78,24 @@ test("checker request from a CM refused; evaluation-steward (lane 10) may reques
 
 test("release-manager and anything naming deploy refused", () => {
   const sb = sandbox();
-  const r1 = request(sb, "cm-physics", "release-manager");
+  const r1 = request(sb, "design-lead", "release-manager");
   assert.equal(r1.code, 1);
   assert.match(r1.err, /release-manager is never requested/);
-  const r2 = mbox(sb, ["send", "--from=cm-physics", "--to=demo-builder", "--kind=dispatch-request", "--project=wave-j", ...REQ, "--body=Build it, then run npm run deploy"]);
+  const r2 = mbox(sb, ["send", "--from=design-lead", "--to=demo-builder", "--kind=dispatch-request", "--project=wave-j", ...REQ, "--body=Build it, then run npm run deploy"]);
   assert.equal(r2.code, 1);
   assert.match(r2.err, /deploy/);
-  const r3 = request(sb, "cm-physics", "demo-builder", ["--title=build and Deploy the lesson"]);
+  const r3 = request(sb, "design-lead", "demo-builder", ["--title=build and Deploy the lesson"]);
   assert.equal(r3.code, 1);
 });
 
-test("pilot lane: principal-pm-verticals (lane 2) may request demo-builder and domain-scout, not a checker", () => {
+test("lane S: principal-pm-verticals (lane 1) may request demo-builder and category-curator, not a checker", () => {
   const sb = sandbox();
   const r = request(sb, "principal-pm-verticals", "demo-builder");
   assert.equal(r.code, 0, r.err);
-  assert.match(r.out, /role demo-builder, lane 2/);
-  assert.equal(request(sb, "principal-pm-verticals", "domain-scout").code, 0);
+  assert.match(r.out, /role demo-builder, lane 1/);
+  assert.equal(request(sb, "principal-pm-verticals", "category-curator").code, 0);
   assert.equal(request(sb, "principal-pm-verticals", "qa-tester").code, 1);
-  assert.equal(request(sb, "principal-pm-verticals", "demo-builder", ["--lane=1"]).code, 1, "not POC of lane 1");
+  assert.equal(request(sb, "principal-pm-verticals", "demo-builder", ["--lane=6"]).code, 1, "not POC of lane 6");
 });
 
 test("drain (reserves) -> dispatch-check --run -> launched -> done round trip; drain writes no event", () => {
@@ -135,7 +135,7 @@ test("drain (reserves) -> dispatch-check --run -> launched -> done round trip; d
   assert.ok(!good.fails.some((f) => /^M1|^S1/.test(f)), JSON.stringify(good.fails));
   assert.ok(chk("demo-builder").fails.some((f) => /M1 mailbox: .* is reserved by run .*: pass --run=/.test(f)));
   assert.ok(chk("demo-builder", "run-other").fails.some((f) => /M1 mailbox: .* reserved by run .*, not run-other/.test(f)));
-  const bad = chk("domain-scout", d[0].run);
+  const bad = chk("interaction-designer", d[0].run);
   assert.ok(bad.fails.some((f) => /^M1 mailbox: .* requests role demo-builder/.test(f)));
 
   assert.equal(mbox(sb, ["launched", id, "--run=run-other"]).code, 1, "only the reserving run confirms the launch");
@@ -168,8 +168,8 @@ test("dispatch-check M1 refuses a hand-made out-of-lane message even in warn mod
   const sb = sandbox();
   const box = path.join(sb.mail, "dispatcher");
   fs.mkdirSync(box, { recursive: true });
-  const id = "20261016T120000000Z-cm-math-deadbeef";
-  fs.writeFileSync(path.join(box, `${id}.md`), "---\nid: " + id + "\nfrom: cm-math\nto: dispatcher\nkind: dispatch-request\nrole: qa-tester\nlane: 1\nproject: catalog\n---\n\nQA my lesson\n");
+  const id = "20261016T120000000Z-principal-pm-verticals-deadbeef";
+  fs.writeFileSync(path.join(box, `${id}.md`), "---\nid: " + id + "\nfrom: principal-pm-verticals\nto: dispatcher\nkind: dispatch-request\nrole: qa-tester\nlane: 1\nproject: catalog\n---\n\nQA my lesson\n");
   let r;
   try { r = { code: 0, ...JSON.parse(execFileSync(process.execPath, [CHECK, "--kind=check", "--role=qa-tester", `--source=mail:${id}`, "--running=0", "--json"], { env: { ...sb.env, S3_SLOTS: "warn" }, encoding: "utf8" })) }; }
   catch (e) { r = { code: e.status, ...JSON.parse(e.stdout) }; }

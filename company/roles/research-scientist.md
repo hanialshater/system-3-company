@@ -2,7 +2,7 @@
 
 name: Dario
 team: research
-reports_to: research-lead
+reports_to: head-of-product
 agent: .claude/agents/research-scientist.md
 
 <!-- GENERATED from tools/org/roles.mjs by tools/org/generate.mjs. Edit the data, then regenerate. -->
@@ -15,6 +15,7 @@ Find out what is known, say how sure we are, and say what it means for a lesson.
 
 - company/research/notes/<date>-<slug>.md
 - Web and paper searches with links
+- Provenance and research requests from lane managers directly (absorbed research-lead's routing and researcher, 2026-10-25) (company/decisions/2026-10-25-founder-restructuring.md)
 
 ## Out of scope
 

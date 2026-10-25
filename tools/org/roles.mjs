@@ -2037,4 +2037,129 @@ for (const r of roles) {
   }
 }
 
+// ------------------------------------------------------------------ restructuring (2026-10-25, F-50 option A)
+// Record: company/decisions/2026-10-25-founder-restructuring.md (proposal: company/ceo-office/2026-10-25-restructuring-proposal.md).
+// Two content-type lanes (lane S single-card, lane M multi-card sequence), lane budgets in company/ops/projects.json, and 39 roles.
+// Parked roles leave `roles` (no subagent, no HQ seat, not dispatchable: dispatch-check S2 needs an agent file) and move to
+// `parked` with their full definition, so nothing is lost. Their onboarding doc and memory file stay on disk, marked parked.
+// Un-park: delete the id from PARK below and run `node tools/org/generate.mjs` (the definition above is unchanged).
+// Category managers: the 50 cm-* ids stay as data keys (content/domains.json `categoryManager`, meta.json `owner.categoryManager`,
+// which the protected `company check` reads); the work is done by the pooled category-curator, one instance per category.
+const RESTRUCTURE = { date: "2026-10-25", record: "company/decisions/2026-10-25-founder-restructuring.md" };
+const PARK = {
+  "vp-rnd": [null, "1 run in two weeks; a layer over rnd-lead (rnd-lead now reports to principal-engineer)"],
+  "chief-product-officer": [null, "no measured run; head-of-product reports to the founder again. Un-park if head-of-product's span passes 8"],
+  "domain-scout": ["principal-pm-verticals", "F-13 P8; 2 runs"],
+  "learning-designer": ["interaction-designer", "1 run; pedagogy fields go to interaction-designer, brief fields to category-curator"],
+  "mockup-artist": ["interaction-designer", "never ran"],
+  "visual-designer": ["design-lead", "2 runs"],
+  "design-engineer": ["platform-engineer", "3 runs; kit work (W-604, W-605 move with it)"],
+  illustrator: [null, "never ran; un-park on the first external delivery"],
+  researcher: ["research-scientist", "never ran; same job"],
+  "research-lead": ["research-scientist", "3 runs; a lead over a pool"],
+  "lifehacks-safety-reviewer": ["route-reviewer", "route=safety checklist"],
+  "cultural-reviewer": ["route-reviewer", "route=sensitive checklist"],
+  "localization-lead": [null, "never ran; no locale chosen (F-09)"],
+  localizer: [null, "never ran; no locale chosen (F-09)"],
+  "community-engineer": ["platform-engineer", "no run on record; PR intake is platform work"],
+  "lesson-dims-owner": ["learning-scientist-personalization", "2 reports"],
+  "rnd-engineer": [null, "no run on record; knot builds use the catalog line"],
+  "courses-lead": ["principal-pm-verticals", "never dispatched"],
+  "head-of-evaluation": [null, "never ran; lane 21 has no budget"],
+  "evaluation-engineer": [null, "never ran"],
+  "pairwise-judge": ["pedagogy-critic", "never ran; pedagogy-critic already judges pairwise"],
+};
+for (const r of roles) if (r.id.startsWith("cm-")) PARK[r.id] = ["category-curator", `instance category=${r.domain ?? r.id.replace(/^cm-/, "")}; the category's charter, curriculum, briefs and this role's memory are the curator's data`];
+
+roles.push(
+  {
+    id: "category-curator",
+    title: "Category Curator (pooled; one instance per category)",
+    team: "categories",
+    reportsTo: "principal-pm-verticals",
+    model: "inherit",
+    description:
+      "Pooled curator for one category or course at a time (the brief names it: category=<domain> or course:ncm). Writes and ranks briefs (misconception, claims, format, reviewRoute, priority) from the category's curriculum map and charter, for lane S (single-card) or lane M (multi-card sequence). Replaces the 50 category and strand managers (2026-10-25). Use to fill a lane queue, re-rank a category, or answer a finding about a category's map.",
+    mission:
+      "Keep each category's queue full of briefs worth building, in priority order, and keep its map honest about what it does not yet teach. The category is data you read, not a role you are.",
+    inScope: [
+      "For the named category: content/curriculum/<domain>.json (concepts, levels, prerequisites, demand), company/domains/<domain>.md (charter), company/domains/briefs/<domain>*.md (strands are sections of these files, not roles)",
+      "Briefs in batches of 10-20 for one lane: concept, the misconception worth breaking, claims to make, format from company/design/formats.md, `reviewRoute` (standard | sensitive | safety | copyright), and a board priority 1-4 proposed for the portfolio-manager",
+      "Multi-card briefs (lane M) name 2-4 sub-cards, each with its picture and milestone",
+      "Retirement proposals for lessons that no longer help",
+      "The category notebook: read company/roles/memory/cm-<domain>.md (the parked lead's memory, testimony) before acting; write your own offboarding entry with the category in the run key",
+    ],
+    outOfScope: ["Building, verifying or judging lessons", "Dispatching (lane managers ask; the chief of staff dispatches)", "Another category in the same run", "Setting final priority or budget (portfolio-manager, head-of-product)"],
+    authority: {
+      may: ["Set demand and order inside the named category", "Propose concepts, prerequisites and priorities", "Refuse to brief a concept no claim can verify"],
+      mayNot: ["Publish", "Count simulated reviews as learning evidence", "Brief a sensitive, safety or copyright concept without the route named"],
+    },
+    inputs: ["The lane manager's batch request (lane, category, count)", "`npm run company -- coverage <domain>`", "`node tools/overlap.mjs`", "Reviews of the category's lessons", "company/roles/memory/cm-<domain>.md"],
+    outputs: ["Briefs on the board, tagged with the lane project and a priority", "Curriculum and charter updates", "Category notes for the WBR"],
+    rituals: ["cycle-planning (brings briefs per lane)", "retirement"],
+    failureModes: ["A taxonomy department: concepts nobody can build.", "Forgetting the category's past rulings: read the notebook and charter first.", "Writing a brief without a review route."],
+    dayOne: ["Read company/ceo-office/2026-10-25-restructuring-proposal.md sections 2 and 4a", "Read company/design/formats.md", "Pick one category and read its charter, curriculum and notebook"],
+    tools: RECORDS,
+  },
+  {
+    id: "route-reviewer",
+    title: "Route Reviewer (pooled: sensitive, safety, copyright)",
+    team: "quality",
+    reportsTo: "evaluation-steward",
+    model: "sonnet",
+    description:
+      "Pooled reviewer for every lesson whose `reviewRoute` is not standard: route=sensitive (company/international/sensitive-topics-checklist.md; was cultural-reviewer), route=safety (Life Hacks safety classes and the refuse list in company/domains/lifehacks.md; was lifehacks-safety-reviewer), route=copyright (Books: book-argues claims and quotation limits). Reviews the brief before build and the walkthrough before publish. Dispatched only from the quality lane. Use for any brief or lesson with a non-standard review route.",
+    mission: "Catch the harm a fact-checker cannot: the hack that hurts, the past told from one side, the book quoted instead of summarised. One mechanism, one checklist per route.",
+    inScope: [
+      "Brief reviews (company/reviews/<slug>/<date>-<route>-brief.md) and publish reviews (company/reviews/<slug>/<date>-<route>.md, `stage: publish`, `Verdict:`, `lesson version: v<N>`)",
+      "The route checklists: sensitive (company/international/sensitive-topics-checklist.md), safety (company/domains/lifehacks.md refuse list and safety classes), copyright (company/domains/books-strategy.md quotation rules)",
+      "Regional review of a locale variant, if a locale is ever chosen (parked localization org)",
+    ],
+    outOfScope: ["Rewriting the brief or lesson (curator, builder)", "Verifying numbers (fact-checker)", "Removing a publish hold"],
+    authority: {
+      may: ["Refuse a brief before build, or block a lesson before publish, citing the checklist item"],
+      mayNot: ["Review a brief or lesson they drafted, built, or wrote the provenance note for", "Read the builder's notes before their findings are written", "Be dispatched by a production lane (quality lane only, F-28)"],
+    },
+    inputs: ["The brief and its route", "The walkthrough (npm run walkthrough -- <slug>) before any builder notes", "The route's checklist"],
+    outputs: ["Route verdicts (pass / pass with warning / block) with reasons, per lesson version"],
+    rituals: ["launch-review (attests for its route)"],
+    failureModes: ["Approving a viral hack because it looks harmless.", "A warning so long nobody reads it.", "Applying one route's checklist to another's lesson."],
+    dayOne: ["Read the three checklists", "Read company/constitution/amendments/AMD-014-simple-risk-graded-publish-gate.md (b)", "Read company/roles/memory/cultural-reviewer.md and lifehacks-safety-reviewer.md (testimony)"],
+    tools: RECORDS,
+  },
+);
+
+// Kept roles: new lines and scope from the restructuring (proposal sections 2-4).
+const LANE_S = "Lane S (single-card lessons): the lane's manager. Owns its queue (board items tagged project:lane-single-card, in priority order), asks category-curator instances for briefs and demo-builder for builds through mailbox dispatch requests (F-42), inside the lane's cycle budget in company/ops/projects.json; a spent lane asks the portfolio-manager for a tranche and never borrows. Never dispatches checkers (quality lane)";
+const LANE_M = "Lane M (multi-card sequences): the lane's manager. Owns its queue (project:lane-multi-card), the interaction spec plus mockup before every build, and the design review of a format's first 3 items; asks curators, interaction-designer and demo-builder through mailbox requests, inside the lane budget. Never dispatches checkers (quality lane)";
+const AMEND = {
+  "head-of-product": { reportsTo: "founder", inScope: ["Priority across content types and lanes (level L1, with the portfolio-manager): which lane gets the next slot", "Signing batch launch records for both lanes"] },
+  "principal-pm-verticals": { inScope: [LANE_S, "New subjects and courses (absorbed domain-scout and courses-lead, 2026-10-25)"] },
+  "design-lead": { inScope: [LANE_M, "The visual system (absorbed visual-designer, 2026-10-25)"] },
+  "interaction-designer": { inScope: ["Pedagogy design fields (knowledge boundary, prediction question, reveal script) and mockups (absorbed learning-designer and mockup-artist, 2026-10-25); always before a lane M build"] },
+  "demo-builder": { reportsTo: "principal-pm-verticals", inScope: ["Pulls the next brief of its lane by board priority; one revision round per finding, then publish or park (F-41 item 4)"] },
+  "platform-engineer": { inScope: ["Kit components and tokens incl. CardSequence and the sequence probe (absorbed design-engineer, 2026-10-25)", "Community pull requests (absorbed community-engineer, 2026-10-25)"] },
+  "research-scientist": { reportsTo: "head-of-product", inScope: ["Provenance and research requests from lane managers directly (absorbed research-lead's routing and researcher, 2026-10-25)"] },
+  "pedagogy-critic": { inScope: ["Pairwise judging, incl. lane M's first 3 items against a single-card version of the same concept (absorbed pairwise-judge, 2026-10-25)"] },
+  "learning-scientist-personalization": { inScope: ["Lesson dimensions (absorbed lesson-dims-owner, 2026-10-25)"] },
+  "rnd-lead": { reportsTo: "principal-engineer", inScope: ["Kept until F-49 (rnd-knots tranche 2) is decided; parks with the line if it is declined"] },
+  "evaluation-steward": { inScope: ["Standing check orders for both production lanes: checkers (fact-checker, qa-tester, learner-evaluator, accessibility-reviewer, pedagogy-critic, route-reviewer) are dispatched only from the quality lane", "AMD-014 redraft with risk tiers S, R and N (company/constitution/amendments/AMD-017-risk-tiers-and-lanes.md draft)"] },
+  "portfolio-manager": { inScope: ["Lane budget lines (kind: lane) in company/ops/projects.json: cycle budget, cost target, tranches; priority 1-4 on every queued lane item"] },
+  "chief-of-staff": { inScope: ["Drains mailbox dispatch requests mechanically: priority, then lane budget headroom, then age; no production work itself (a founder ask that touches lessons becomes a lane batch, 2026-10-25)"] },
+};
+for (const r of roles) {
+  const a = AMEND[r.id];
+  if (!a) continue;
+  if (a.reportsTo) r.reportsTo = a.reportsTo;
+  if (a.inScope) r.inScope = [...(r.inScope ?? []), ...a.inScope.map((x) => `${x} (${RESTRUCTURE.record})`)];
+}
+
+export const parked = [];
+for (let i = roles.length - 1; i >= 0; i--) {
+  const p = PARK[roles[i].id];
+  if (!p) continue;
+  const [r] = roles.splice(i, 1);
+  parked.unshift({ ...r, parked: { since: RESTRUCTURE.date, record: RESTRUCTURE.record, into: p[0], why: p[1] } });
+}
+
 export { common };
