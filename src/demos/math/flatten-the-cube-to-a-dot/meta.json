@@ -1,0 +1,184 @@
+{
+  "slug": "flatten-the-cube-to-a-dot",
+  "title": "Flatten the cube to a dot",
+  "hook": "Corners minus edges plus faces is 2 for a cube. Three moves show why it is always 2.",
+  "domain": "math",
+  "concept": "euler-polyhedron-formula",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "corners (vertices), edges and faces of a cube",
+      "adding and subtracting small whole numbers"
+    ],
+    "doesNotKnow": [
+      "that corners − edges + faces stays 2 when a corner is sliced off",
+      "why it is 2 for every convex solid: flatten the solid, then shrink it to one dot without changing the total"
+    ]
+  },
+  "misconception": "Slicing a corner off a solid changes its counts in an unrelated way, so corners − edges + faces changes too; and the 2 is a coincidence of the cube.",
+  "objective": "The learner can say why corners − edges + faces is 2 for any convex solid: take one face off and flatten it (total 1), remove edges one at a time (each removal takes 1 edge with 1 region or 1 corner, so the total stays 1) down to one dot, then put the face back: 1 + 1 = 2.",
+  "claims": [
+    {
+      "id": "math.flatten-the-cube-to-a-dot.c1",
+      "text": "A cube has 8 corners, 12 edges and 6 faces: 8 − 12 + 6 = 2. With one corner sliced off it has 10, 15 and 7: still 2.",
+      "support": "derivation",
+      "source": "Counted from the solids; company/domains/briefs/checks/math-lane-m-euler-check.mjs (brief check, category-curator 2026-10-25). Builder recounts from the drawn solid.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.flatten-the-cube-to-a-dot.c2",
+      "text": "Slicing off a corner where 3 edges meet removes 1 corner and adds 3, adds 3 edges and adds 1 face: +2 − 3 + 1 = 0, so the total does not change.",
+      "support": "derivation",
+      "source": "The cut is a new triangular face with 3 new corners and 3 new edges; the old corner goes.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.flatten-the-cube-to-a-dot.c3",
+      "text": "Take the top face off the cube and stretch the rest flat: 8 corners, 12 edges and 5 regions, so 8 − 12 + 5 = 1. The missing 1 is the face you took off.",
+      "support": "derivation",
+      "source": "Flat drawing: a square inside a square joined at the corners (Schlegel diagram of the cube through the top face). company/domains/briefs/checks/math-lane-m-euler-check.mjs.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.flatten-the-cube-to-a-dot.c4",
+      "text": "Removing an edge on the outside of a region removes 1 edge and 1 region; removing an edge with a loose end removes 1 edge and 1 corner. Either way corners − edges + regions does not change.",
+      "support": "derivation",
+      "source": "(−0 corners) − (−1 edge) + (−1 region) = 0 and (−1 corner) − (−1 edge) + 0 = 0.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.flatten-the-cube-to-a-dot.c5",
+      "text": "Twelve removals shrink the flat cube to one dot: 1 − 0 + 0 = 1, the total it had all along. Put the top face back and the cube's total is 1 + 1 = 2.",
+      "support": "derivation",
+      "source": "Scripted order in company/domains/briefs/checks/math-lane-m-euler-check.mjs: the 4 outer edges, then one inner edge (5 regions gone), then the 7 loose edges; the total is 1 after every step.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.flatten-the-cube-to-a-dot.c6",
+      "text": "Every convex solid can be flattened and shrunk the same way, so corners − edges + faces is 2 for every convex solid.",
+      "support": "source",
+      "source": "Euler's polyhedron formula; the flatten-and-remove-edges proof is Cauchy's (1813). D. S. Richeson, Euler's Gem (Princeton University Press, 2008), on Cauchy's proof; I. Lakatos, Proofs and Refutations (Cambridge, 1976), ch. 1. Fact-checker opens a source; the derivation of c3 to c5 holds for any connected flat drawing.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.flatten-the-cube-to-a-dot.c7",
+      "text": "This is Euler's formula for solids.",
+      "support": "source",
+      "source": "Euler, 'Elementa doctrinae solidorum' (written 1750s; Novi Commentarii Academiae Scientiarum Petropolitanae 4, 1758). Name only if the fact-checker accepts the attribution; no date in learner text.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why is corners − edges + faces 2 for every convex solid?",
+    "options": [
+      "Take one face off and flatten it: the total is 1. Removing edges one at a time never changes it, down to a single dot. Put the face back: 2",
+      "Because every solid has twice as many edges as faces",
+      "It is only true for cubes and shapes cut from cubes"
+    ],
+    "answer": 0,
+    "why": "Each removal takes 1 edge with either 1 region or 1 corner, so the total stays 1 until one dot is left; the face taken off adds the last 1."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "multi-card-sequence",
+  "curriculum": {
+    "primary": "math:euler-polyhedron-formula",
+    "also": [
+      "math:induction-dominoes"
+    ],
+    "prerequisites": [],
+    "level": "core",
+    "strand": "geometry",
+    "references": [],
+    "tags": [
+      "polyhedra",
+      "invariants",
+      "euler",
+      "proof"
+    ]
+  },
+  "brief": {
+    "by": "category-curator (math), 2026-10-25, board W-2037 lane M",
+    "lane": "M",
+    "format": "multi-card-sequence",
+    "reviewRoute": "standard",
+    "reviewRouteWhy": "Pure mathematics: no health, money, safety, sensitive-history or copyrighted material. The Euler and Cauchy attributions are ordinary citations for the fact-checker.",
+    "priority": 2,
+    "priorityWhy": "Proposed for the portfolio-manager. Concept demand 2 (content/curriculum/math.json); its value now is as one of lane M's first 3 items (W-2037): a proof whose steps each need a different picture, the way euclid-three-steps does, with a ready single-card twin for the pairwise.",
+    "whySequence": "The concept is a proof in three moves, and each move needs a different picture: a solid in 3-D (slice a corner), a flat drawing (take a face off and stretch), and a shrinking network (remove edges to a dot). One stage cannot hold the solid and its flattening at once without losing the count, and the learner needs to see the total survive each move before the next one makes sense. The single-card version can only show the total surviving a slice and then tell the learner it is always 2 (demo-standard 'show the why you promised').",
+    "knowledgeBoundary": {
+      "teaches": "V − E + F = 2 for convex solids; that slicing a corner keeps it; why it holds (Cauchy's flatten-and-shrink argument, shown on the cube).",
+      "doesNotTeach": [
+        "solids with holes (a picture-frame solid gives 0): meta evidence only, never learner text",
+        "non-convex solids in general, or the rigour gaps in Cauchy's argument (Lakatos)",
+        "graph theory vocabulary (planar graph, spanning tree, Schlegel diagram): the stage says corners, edges, regions",
+        "Euler characteristic, topology, or any date"
+      ],
+      "prerequisites": "none in the map; the learner can count corners, edges and faces of a cube"
+    },
+    "prediction": {
+      "text": "A cube: 8 corners − 12 edges + 6 faces = 2. Slice one corner off. Now corners − edges + faces is…",
+      "options": [
+        "less than 2",
+        "still 2",
+        "more than 2"
+      ],
+      "answer": 1,
+      "why": "Kept word for word from the single-card twin (company/domains/briefs/math.geometry.md #5) so the pairwise compares formats, not questions. Sub-card 1 answers it; sub-cards 2 and 3 explain it."
+    },
+    "subCards": [
+      {
+        "id": "slice",
+        "title": "Slice",
+        "picture": "The cube as a wireframe, hidden edges dashed, about 220 px. Readout under it: '8 − 12 + 6 = 2'. After the slice the corner is replaced by a small shaded triangle and the readout reads '10 − 15 + 7 = 2' with the change line '+2 corners, +3 edges, +1 face'.",
+        "controls": [
+          "Slice a corner"
+        ],
+        "milestone": "slice.done: one corner sliced, readout 10 − 15 + 7 = 2 with the change line shown (claims c1, c2).",
+        "wordBudget": "about 7 words: change line 'corners, edges, face' 3, chip 'Slice a corner' 3, plus 1 for a reset if the kit needs one; numerals and signs 0."
+      },
+      {
+        "id": "flatten",
+        "title": "Flatten",
+        "picture": "Back to the plain cube. Pressing 'Take the top off' lifts the top face away, then the rest stretches flat into a square inside a square joined at the four corners (8 dots, 12 lines, 5 regions, regions lightly shaded and countable). Readout: '8 − 12 + 5 = 1' with the caption 'top face off: 1 short'.",
+        "controls": [
+          "Take the top off"
+        ],
+        "milestone": "flatten.done: the flat drawing is on screen with readout 8 − 12 + 5 = 1 (claim c3).",
+        "wordBudget": "about 9 words: chip 'Take the top off' 4, caption 'top face off: 1 short' 4 (numeral 0), readout key 'regions' 1."
+      },
+      {
+        "id": "shrink",
+        "title": "Shrink to a dot",
+        "picture": "The flat drawing from sub-card 2. Each press removes the next edge in a fixed order (the 4 outer edges, one inner edge, then the 7 loose edges); the removed edge fades and the readout updates, with a change line '−1 edge, −1 region' or '−1 edge, −1 corner'. Ends at one dot: '1 − 0 + 0 = 1', then '+ the top face = 2'.",
+        "controls": [
+          "Remove an edge",
+          "Remove the rest"
+        ],
+        "milestone": "shrink.region: an edge removed with one region (first press); shrink.corner: an edge removed with one corner (first loose edge); shrink.dot: one dot left, readout 1 − 0 + 0 = 1 and '+ the top face = 2' (claims c4, c5). 'Remove the rest' steps through the remaining removals so the QA path (each control once, in DOM order) reaches all three milestones.",
+        "wordBudget": "about 14 words: chips 'Remove an edge' 3, 'Remove the rest' 3; change line 'edge, region' or 'edge, corner' 2; end line 'the top face' 3; readout keys up to 3. Interaction designer confirms the busiest frame."
+      }
+    ],
+    "revealDraft": "Slicing kept the total at 2. Then you took the top face off, flattened the cube and got 1. Each edge you removed took a region or a corner with it, so the total never moved, down to a single dot: 1. Put the top face back: 2. Any convex solid can be flattened and shrunk the same way, so corners − edges + faces is always 2. This is Euler's formula.",
+    "revealWords": 72,
+    "singleCardTwin": {
+      "slug": "slice-a-corner-off",
+      "where": "company/domains/briefs/math.geometry.md, brief #5 (Wave J, not built)",
+      "howItDiffers": "Same concept, misconception and prediction. One card: slice corners on the cube and a square pyramid, watch the total stay 2, and the reveal tells the learner it is 2 for every convex solid. The sequence keeps the slice as sub-card 1 and adds sub-cards 2 and 3 to show why.",
+      "pairwise": "For pedagogy-critic (company/ceo-office/consultations/2026-10-25-restructuring/pedagogy-critic.md): build the twin from its brief as written, then judge both on the shared prediction and on this recall question. The question the pairwise answers: does showing the why (sub-cards 2 and 3) earn its extra time over telling it?"
+    },
+    "nearest": "math/bridge-parity (Euler paths) shares the name, not the idea; math/two-colours-enough is about plane maps; math/domino-chain is induction. No lesson teaches V − E + F (coverage math: euler-polyhedron-formula unmet, 2026-10-25).",
+    "next": "Lane M step 2: interaction-designer writes the interaction spec plus mockup before build (company/ceo-office/2026-10-25-restructuring-proposal.md §2c). Builder: build in CardSequence / SubCard; do not mark claims verified."
+  }
+}

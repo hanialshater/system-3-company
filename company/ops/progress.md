@@ -1,3 +1,10 @@
+## 2026-10-25 · category-curator (math) · W-2037 lane M brief: math/flatten-the-cube-to-a-dot
+
+- **Changed:** one lane M brief, scaffolded as `src/demos/math/flatten-the-cube-to-a-dot/` (status draft; Demo.tsx is the untouched scaffold). The brief is in its `meta.json` under `brief`: 3 sub-cards (Slice, Flatten, Shrink to a dot), each with picture and milestone; knowledge boundary; 7 unverified claims; reviewRoute standard; priority 2 proposed. Concept `euler-polyhedron-formula` (unmet in `coverage math`). Numbers in `company/domains/briefs/checks/math-lane-m-euler-check.mjs`. Pointer section added to `company/domains/briefs/math.geometry.md`. Board W-2042 (interaction-designer, spec plus mockup).
+- **Believe:** fairly sure the concept needs a sequence (3 different pictures: solid, flat drawing, shrinking network). The single-card twin for the pairwise is the unbuilt `slice-a-corner-off` (math.geometry.md #5), with the same prediction text. Less sure the 12-removal shrink fits the 60 s; the "Remove the rest" chip is the brief's answer, and the interaction-designer may change it.
+- **Next:** interaction-designer spec plus mockup (W-2042); then build in CardSequence; the twin must be built too for the pairwise (design-lead, as lane M manager, decides when).
+- **Blocked:** nothing. `npm run check` is at 810 errors (baseline 811), none from this lesson.
+
 ## 2026-10-25 · chief-of-staff · W-2037 (lane M, CP1-L2/L3) not started: no subagent tool in this session
 
 - **Changed:** nothing in production. No dispatches, no events, no spend against `lane-multi-card`.

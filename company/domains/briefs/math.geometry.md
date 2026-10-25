@@ -97,3 +97,12 @@ Shared build rules: as in `math.algebra.md` Wave J (stage text ≤ 25 words, rev
 - curriculum: `{"primary":"math:euler-polyhedron-formula","also":[],"prerequisites":[],"level":"core","strand":"geometry","references":[],"tags":["polyhedra","invariants","euler"]}`
 - Needs interaction-designer spec: no.
 - Differs from nearest: `math/bridge-parity` (Euler paths) shares the name, not the idea; `math/two-colours-enough` is about plane maps. No lesson teaches V − E + F.
+
+## Lane M (category-curator, math, 2026-10-25, board W-2037)
+
+One multi-card sequence brief. The full brief (sub-cards, pictures, milestones, knowledge boundary, claims, reviewRoute, priority, single-card twin) is in `src/demos/math/flatten-the-cube-to-a-dot/meta.json` under `brief`; the lesson folder is scaffolded, status draft. Numbers: `node company/domains/briefs/checks/math-lane-m-euler-check.mjs`.
+
+### L1. flatten-the-cube-to-a-dot · concept: euler-polyhedron-formula · core · demand 2 · format: multi-card-sequence · reviewRoute: standard · priority 2 (proposed)
+- Sub-cards: (1) Slice: cube corner sliced, 10 − 15 + 7 = 2. (2) Flatten: top face off, stretched flat, 8 − 12 + 5 = 1. (3) Shrink to a dot: 12 edge removals, each takes 1 edge with 1 region or 1 corner, ending 1 − 0 + 0 = 1, plus the top face = 2.
+- Prediction: the same text as brief #5 above, so brief #5 (`slice-a-corner-off`, single card) is the pairwise twin for pedagogy-critic.
+- Needs interaction-designer spec: yes, always (lane M step 2).
