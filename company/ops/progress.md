@@ -1,3 +1,32 @@
+## 2026-10-25 · demo-builder · W-2044 lane M build: math/flatten-the-cube-to-a-dot
+
+- **Changed:** built `src/demos/math/flatten-the-cube-to-a-dot/Demo.tsx` and `styles.module.css` from `company/design/specs/flatten-the-cube-to-a-dot.md`. It uses CardSequence with Slice, Flatten and Shrink, 9 stage controls and `minInteractions` 5.
+  - `FP`, `ORDER` and `REGIONS` are copied from the mockup script. The 13 states are recomputed and match the spec's table.
+  - meta.json gains `interactions` only. Claims, their text and status are untouched (all unverified), and the version stays 1 at status draft.
+  - The build note and pre-flight are in `company/reviews/flatten-the-cube-to-a-dot/build.md`.
+  - Board: W-2044 is moved to review, and W-2047 is new for design-engineer (the probe's settle).
+- **Results:**
+  - QA contract: 2/2 (phone and desktop, release build).
+  - `tools/reveal-fit.mjs` at 390×844: fit, stage-top crop 0 px, hidden 0 px, 76 words. No fix from the spec's order was needed. namedHidden 1 is "faces": the heuristic matches the reveal's formula word to the readout key on hidden cards 1 and 2.
+  - `tools/sequence-probe.mjs` at 390 and 1280: walk, overflow, crop, tap, revealCard and errors PASS.
+  - The probe's "back" check FAILs at both widths. The probe fingerprints about 300 ms after a press, and the spec's motion runs 700 ms (flatten) and 2.4 s (playback). With reduced motion emulated, back passes and state is kept. The four-cards check FAILs at 390, which is W-601's call.
+  - `npm run check`: 810 errors, the baseline 810; none from this lesson.
+  - typecheck and build pass. The build stops once with a Next.js "SecurityFatalError" upgrade nudge after compiling, and passes on retry. Nothing was upgraded.
+- **Verify suites red, not from this build:** publish 2, lifehacks 1, algorithms 5, hq 9, settings 1, main-feed 2 and dims 4. None names this lesson, except two that do:
+  - dims lists the draft (it has been in the tree since the curator's scaffold).
+  - `tests/platform/registry-split.test.mjs` #23 flags this meta.json: no claim yet carries checkedBy/checkedOn or a `company/reviews/` path. It clears when the fact-checker verifies a claim.
+- **Believe:**
+  - Fairly sure the stage matches the spec control by control: milestones fire at the press, and the playback snaps at the reveal or under reduced motion.
+  - Less sure of the light theme: `/d/` rendered dark under both colour schemes, so the light `--warn` was never seen on the stage.
+  - The hook ("…show why it is always 2") leans towards the right option. That is the curator's text, flagged in pre-flight 1.
+- **Next:**
+  - W-2043: the category-curator updates c5's source.
+  - The fact-checker verifies c1–c7.
+  - design-lead runs the design review (W-2037) and checks the 390×844 reveal.
+  - qa-tester and learner-evaluator walk v1.
+  - W-2047: design-engineer fixes the probe's settle.
+- **Blocked:** nothing.
+
 ## 2026-10-25 · qa-tester · W-2037 QA of math/euclid-three-steps v2
 
 - **Changed:** `company/reviews/euclid-three-steps/2026-10-25-qa-v2.md` (hand run, sequence probe, contract), `2026-10-25-qa.md` (company qa-record, contract), both linked in the lesson's `evidence.qa`. No lesson or test edits.

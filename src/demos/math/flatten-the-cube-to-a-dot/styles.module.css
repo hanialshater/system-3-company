@@ -1,0 +1,49 @@
+/* flatten-the-cube-to-a-dot (spec company/design/specs/flatten-the-cube-to-a-dot.md). Theme variables only. */
+.pic { width: 100%; max-width: 340px; margin: 0 auto; max-height: 30dvh; }
+
+/* The readout: one equation line, numbers 20 px bold, keys 11 px muted under each number. */
+.eq { display: flex; justify-content: center; align-items: flex-start; gap: 6px; font-variant-numeric: tabular-nums; }
+.term { display: flex; flex-direction: column; align-items: center; min-width: 40px; }
+.num { font-size: 20px; font-weight: 800; line-height: 1.15; color: var(--fg); }
+.changed { color: var(--warn); }
+.key { font-size: 11px; line-height: 1.2; color: var(--muted); }
+.op { font-size: 20px; font-weight: 700; line-height: 1.15; color: var(--muted); }
+
+.line { margin: 0; text-align: center; font-size: 13px; font-weight: 600; line-height: 1.4; color: var(--warn); min-height: 1.4em; }
+.stripLabel { margin: 0; text-align: center; font-size: 11px; line-height: 1.3; color: var(--muted); }
+.strip { display: block; margin: 0 auto; max-width: 100%; height: auto; }
+.end { margin: 0; text-align: center; font-size: 16px; font-weight: 800; line-height: 1.3; color: var(--good); min-height: 1.3em; }
+
+.tap { min-height: 44px; }
+.chip { flex: 1 1 0; max-width: 148px; }
+
+.line + :global(.row), .end + :global(.row) { justify-content: center; margin-top: 2px; }
+
+/* Picture */
+.edge { stroke: var(--fg); stroke-width: 2; stroke-linecap: round; }
+.edgeHidden { stroke: var(--fg); stroke-width: 2; stroke-dasharray: 4 4; stroke-opacity: 0.6; }
+.edgeNew { stroke: var(--warn); stroke-width: 2; stroke-linecap: round; }
+.dot { fill: var(--fg); }
+.dotHidden { fill: var(--fg); fill-opacity: 0.5; }
+.dotNew { fill: var(--warn); }
+.cutFace { fill: var(--warn-fill); fill-opacity: 0.45; }
+.region { fill: var(--domain); fill-opacity: 0.16; }
+.tile { fill: var(--domain); fill-opacity: 0.3; stroke: var(--domain); stroke-width: 1.5; }
+
+/* A removal: the edge and what goes with it flash --warn for 120 ms, then fade over 200 ms. */
+.ghostEdge { stroke: var(--warn); stroke-width: 3; stroke-linecap: round; }
+.ghostRegion { fill: var(--warn-fill); fill-opacity: 0.35; }
+.ghostDot { fill: var(--warn); }
+.flash { animation: flash 320ms linear forwards; }
+@keyframes flash { 0%, 37.5% { opacity: 1; } 100% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .flash { display: none; } }
+
+/* The strip: twelve cells, rounded squares where a region went, circles where a corner went. */
+.cellOff { fill: none; stroke: var(--line); stroke-width: 1.5; stroke-dasharray: 3 2; }
+.cellOn { fill: color-mix(in srgb, var(--domain) 30%, var(--bg-2)); stroke: var(--domain); stroke-width: 1.5; }
+.cellText { font-size: 12px; font-weight: 800; text-anchor: middle; fill: var(--fg); font-variant-numeric: tabular-nums; }
+
+.sr {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}

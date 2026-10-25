@@ -24824,10 +24824,11 @@
       "id": "W-2044",
       "title": "Lane M step 3: build math/flatten-the-cube-to-a-dot in CardSequence from company/design/specs/flatten-the-cube-to-a-dot.md (removal order, milestones at the press, measure the 390x844 reveal with tools/reveal-fit.mjs; W-2037)",
       "owner": "demo-builder",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-25",
-      "links": []
+      "links": [],
+      "updated": "2026-10-25"
     },
     {
       "id": "W-2045",
@@ -24845,6 +24846,15 @@
       "title": "Rule on math/euclid-three-steps: v2 learner walk says revise on the missing prime-factor step; v1 r10 walk saw the same gap and said launch. Disagreement in company/reviews/euclid-three-steps/2026-10-25-learner-knows-primes-v2.md (W-2037)",
       "owner": "evaluation-steward",
       "state": "backlog",
+      "domain": "math",
+      "created": "2026-10-25",
+      "links": []
+    },
+    {
+      "id": "W-2047",
+      "title": "tools/sequence-probe.mjs 'back' check fingerprints a card ~300 ms after a press, so a lesson whose spec'd motion runs longer FAILs 'state not kept' with state kept: math/flatten-the-cube-to-a-dot (700 ms flatten, 2.4 s 'Remove the rest' playback) fails back at 390 and 1280, passes with reducedMotion reduce. Let the fingerprint settle (wait until two reads match, or emulate reduced motion) before recording it (company/reviews/flatten-the-cube-to-a-dot/build.md, W-2037)",
+      "owner": "design-engineer",
+      "state": "next",
       "domain": "math",
       "created": "2026-10-25",
       "links": []
