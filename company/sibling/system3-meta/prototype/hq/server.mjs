@@ -6,7 +6,8 @@
 //   GET /api/company/<id>/knowledge    its knowledge base entries (knowledge/entries.jsonl), if it has one
 //   GET /api/company/<id>/page/<p>.js  one of the company's own HQ pages (its extension point, below)
 // A company is { id, name, archetype, events: <path to events.jsonl>, knowledge?: <dir> } in the city file, or a
-// benchmark org ({ bench: <runs dir> }) read through bench2events.mjs.
+// benchmark org ({ bench: <runs dir> }) read through bench2events.mjs, or a kernel company ({ kernel: <state.json> })
+// read through kernel2events.mjs.
 // Extension point: a company's HQ developers add pages without forking the starter HQ. The company's entry names its
 // `hq` folder; <hq>/pages.json lists [{ id, title, file }], and each file is an ES module exporting
 // render({ events, knowledge, company, esc, time, pct }) → HTML. The pages appear in the company's sidebar. They run
@@ -17,6 +18,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { benchEvents } from "./bench2events.mjs";
+import { kernelEvents } from "./kernel2events.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const opt = Object.fromEntries(process.argv.slice(2).filter((a) => a.startsWith("--")).map((a) => { const [k, ...v] = a.slice(2).split("="); return [k, v.join("=") || true]; }));
@@ -24,7 +26,7 @@ const cityFile = path.resolve(opt.city ?? path.join(HERE, "city.json"));
 const readJsonl = (f) => { try { return fs.readFileSync(f, "utf8").trim().split("\n").filter(Boolean).map((l) => JSON.parse(l)); } catch { return []; } };
 const city = () => JSON.parse(fs.readFileSync(cityFile, "utf8"));
 export function pagesOf(c) { if (!c.hq) return []; try { return JSON.parse(fs.readFileSync(path.join(c.hq, "pages.json"), "utf8")).filter((p) => /^[a-z0-9-]+$/.test(p.id ?? "") && p.file); } catch { return []; } }
-export function eventsOf(c) { return c.bench ? benchEvents(c.bench) : readJsonl(c.events); }
+export function eventsOf(c) { return c.bench ? benchEvents(c.bench) : c.kernel ? kernelEvents(c.kernel) : readJsonl(c.events); }
 export function health(ev) {
   const co = ev.find((e) => e.type === "company.start"), start = ev.find((e) => e.type === "crew.start"), lands = ev.filter((e) => e.type === "land"), last = lands.at(-1);
   const spent = ev.filter((e) => e.type === "spend").reduce((a, e) => a + (e.usd ?? 0), 0), end = ev.find((e) => e.type === "crew.end");

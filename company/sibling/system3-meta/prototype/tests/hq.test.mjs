@@ -53,3 +53,12 @@ test("extension point: a company's own pages are listed and served from its hq f
   const [s3] = await get("/api/company/c1/page/none.js"); assert.equal(s3, 404);
   srv.close(); process.argv.pop();
 });
+
+test("kernel2events: a kernel company's closed meetings become meeting events with their minutes", async () => {
+  const { kernelEvents } = await import("../hq/kernel2events.mjs");
+  const ev = kernelEvents(path.join(path.dirname(new URL(import.meta.url).pathname), "..", "live", "bench3-a", "state.json"));
+  assert.ok(ev.length, "the recorded kernel run (live/bench3-a) is in the repository")
+  assert.equal(ev[0].type, "company.start"); const m = ev.find((e) => e.type === "meeting");
+  assert.ok(m.title && m.attendees.length && m.decisions.length && /^# /.test(m.text));
+  assert.ok(ev.every((e) => e.v === 1 && !Number.isNaN(Date.parse(e.t))));
+});

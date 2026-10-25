@@ -41,6 +41,7 @@ svg.spark { width:100%; height:120px; background:var(--panel); border:1px solid 
 .empty { color:var(--muted); padding:30px; text-align:center; background:var(--panel); border:1px dashed var(--line); border-radius:10px; }
 input.search { width:100%; padding:7px 10px; border:1px solid var(--line); border-radius:8px; background:var(--panel); color:var(--text); margin-bottom:12px; }
 @media (max-width: 760px) { .app { grid-template-columns:1fr; } aside { position:static; height:auto; } main { padding:16px; } }
+main{min-width:0} .msg,.thread,td{overflow-wrap:anywhere}
 </style>
 </head>
 <body>
@@ -113,7 +114,7 @@ function viewBoard() {
 function viewMeetings() {
   const ms = state.events.filter((e) => e.type === "meeting").reverse();
   if (!ms.length) return `<h1>Meetings</h1><div class="empty">No meetings recorded. Members record one with <code>crew minutes</code>.</div>`;
-  return `<h1>Meetings</h1><div class="sub1">minutes recorded by the members who met: who was there, what was decided, the objections raised (${ms.length})</div>${ms.map((m) => `<div class="thread"><div class="msg"><span class="who">${esc(m.title)}</span><span class="when">${time(m.t)}</span><div class="k">chair ${esc(m.by)} · with ${esc((m.attendees ?? []).filter((a) => a !== m.by).join(", ") || "nobody else")}</div>${(m.decisions ?? []).length ? `<div class="k" style="margin-top:8px">decided</div><ul>${m.decisions.map((d) => `<li>${esc(d)}</li>`).join("")}</ul>` : ""}${(m.objections ?? []).length ? `<div class="k">objections</div><ul>${m.objections.map((d) => `<li>${esc(d)}</li>`).join("")}</ul>` : ""}<div style="white-space:pre-wrap;margin-top:6px">${esc(m.text)}</div></div></div>`).join("")}`;
+  return `<h1>Meetings</h1><div class="sub1">minutes recorded by the members who met: who was there, what was decided, the objections raised (${ms.length})</div>${ms.map((m) => `<div class="thread"><div class="msg"><span class="who">${esc(m.title)}</span><span class="when">${time(m.t)}</span><div class="k">chair ${esc(m.by)} · with ${esc((m.attendees ?? []).filter((a) => a !== m.by).join(", ") || "nobody else")}</div>${(m.decisions ?? []).length ? `<div class="k" style="margin-top:8px">decided</div><ul>${m.decisions.map((d) => `<li>${esc(d)}</li>`).join("")}</ul>` : ""}${(m.objections ?? []).length ? `<div class="k">objections</div><ul>${m.objections.map((d) => `<li>${esc(d)}</li>`).join("")}</ul>` : ""}${(m.decisions ?? []).length ? `<details style="margin-top:6px"><summary class="k">full minutes</summary><div style="white-space:pre-wrap;margin-top:6px">${esc(m.text)}</div></details>` : `<div style="white-space:pre-wrap;margin-top:6px">${esc(m.text)}</div>`}</div></div>`).join("")}`;
 }
 function viewNotes() {
   const seen = new Set(), msgs = state.events.filter((e) => e.type === "note").filter((e) => { const k = `${e.t}${e.by}${e.text}`; if (e.broadcast && seen.has(k)) return false; seen.add(k); return true; });
