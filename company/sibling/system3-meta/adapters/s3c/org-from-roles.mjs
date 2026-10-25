@@ -10,7 +10,7 @@ import { pathToFileURL, fileURLToPath } from "node:url";
 // Where each role sits (a bridge until System 3 Company keeps rooms in its org data): floor names from
 // src/lib/hq-floors.ts, rooms (id, name, kind, floor) from src/lib/hq.ts, home rooms from src/app/hq/people.ts.
 // Read as text (they are TypeScript); anything not found is simply left out of the org.
-export function seating(root, roles = [], SUBAREAS = {}) {
+export function plan(root, SUBAREAS = {}) {
   const read = (f) => { try { return fs.readFileSync(path.join(root, f), "utf8"); } catch { return ""; } };
   const floorNames = Object.fromEntries([...read("src/lib/hq-floors.ts").matchAll(/^\s*(\d+): "([^"]+)"/gm)].map((m) => [Number(m[1]), m[2]]));
   const hq = read("src/lib/hq.ts"), rooms = {};
@@ -24,6 +24,10 @@ export function seating(root, roles = [], SUBAREAS = {}) {
   const cms = /for \(const d of \[([^\]]+)\]\) HOME\[`cm-\$\{d\}`\]/.exec(people)?.[1];
   if (cms) for (const d of cms.match(/"([\w-]+)"/g).map((x) => x.slice(1, -1))) home[`cm-${d}`] = `cm-${d}`;
   for (const [d, subs] of Object.entries(SUBAREAS)) for (const [sub] of subs) home[`cm-${d}-${sub}`] ??= `cm-${d}`;
+  return { floorNames, rooms, home };
+}
+export function seating(root, roles = [], SUBAREAS = {}) {
+  const { floorNames, rooms, home } = plan(root, SUBAREAS);
   const out = {};
   for (const r of roles) { const rid = home[r.id], room = rid && rooms[rid]; if (!room) continue; out[r.id] = { room: rid, roomName: room.name, roomKind: room.kind, floor: room.floor, floorName: floorNames[room.floor] }; }
   return out;
@@ -39,7 +43,14 @@ export async function orgFromRoles(file) {
   const root = ids.has("founder") ? [] : [{ id: "founder", title: "Founder (CEO)", reportsTo: null, team: null }];
   return [...root, ...roles.map((r) => ({ id: r.id, name: name(r.id), ...(seats[r.id] ?? {}), title: r.title, reportsTo: r.id === "founder" ? null : ids.has(r.reportsTo) && r.reportsTo !== r.id ? r.reportsTo : "founder", team: r.team ?? null }))];
 }
+/** the building (the HQ's building contract): every room, homed or not (meeting rooms included), and the floors */
+export async function building(file) {
+  const { SUBAREAS = {} } = await import(pathToFileURL(path.resolve(file)).href);
+  const { floorNames, rooms } = plan(path.resolve(path.dirname(path.resolve(file)), "..", ".."), SUBAREAS);
+  return { floors: Object.entries(floorNames).map(([n, name]) => ({ n: Number(n), name })).sort((a, b) => a.n - b.n), rooms: Object.entries(rooms).map(([id, r]) => ({ id, name: r.name, kind: r.kind, floor: r.floor })) };
+}
 if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1])) {
+  if (process.argv[2] === "--building") { console.log(JSON.stringify(await building(process.argv[3]))); process.exit(0); }
   const org = await orgFromRoles(process.argv[2]);
   if (process.argv[3]) { fs.writeFileSync(process.argv[3], JSON.stringify(org, null, 1) + "\n"); console.log(`${org.length} roles → ${process.argv[3]}`); } else console.log(JSON.stringify(org));
 }

@@ -24,7 +24,11 @@ export function dashboard(root) {
   }
   const kpis = [{ label: "lessons published", value: st.published ?? 0 }, { label: "in review", value: st.review ?? 0 }, { label: "in draft", value: st.draft ?? 0 }];
   const capped = lines.filter((l) => l.approved != null).reduce((a, l) => a + l.spent, 0);
-  return { v: 1, id: "system-3-company", name: "System 3 Lessons", mission, owner: "founder", budget: { unit: "tokens", approved, spent: total, spentCapped: capped, spentUncapped: total - capped, lines }, milestones: ms, kpis };
+  // what waits on the founder (company/ops/founder-inbox.json: "everything waiting on the founder, in one place")
+  const inbox = JSON.parse(read("company/ops/founder-inbox.json") || "{}").items ?? [];
+  const asks = inbox.filter((i) => !["decided", "superseded", "done", "withdrawn"].includes(i.status)).map((i) => ({ id: i.id, title: i.title, kind: i.category ?? null, priority: i.priority ?? null, status: i.status, since: i.since ?? i.date ?? i.opened ?? null, from: i.from ?? i.owner ?? "chief-of-staff", blocks: i.blocks ?? null, recommendation: typeof i.recommendation === "string" ? i.recommendation.slice(0, 400) : null, options: Array.isArray(i.options) ? i.options : i.options ? [String(i.options)] : [], links: i.links ?? [] }));
+  const links = [{ label: "Website", url: "https://system-3-company.vercel.app", kind: "website" }, { label: "Repository", url: "https://github.com/hanialshater/system-3-company", kind: "repo" }];
+  return { v: 1, id: "system-3-company", name: "System 3 Lessons", mission, owner: "founder", links, asks, budget: { unit: "tokens", approved, spent: total, spentCapped: capped, spentUncapped: total - capped, lines }, milestones: ms, kpis };
 }
 if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1])) {
   const root = path.resolve(process.argv[2] ?? path.join(path.dirname(fileURLToPath(import.meta.url)), "../../../../.."));

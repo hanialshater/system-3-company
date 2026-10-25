@@ -3,6 +3,7 @@
   { "id": "system-3-company", "name": "System 3 Lessons", "archetype": "corporate", "owner": "founder",
     "eventsCmd": "node hq-events.mjs ../../../../..",
     "orgCmd": "node org-from-roles.mjs ../../../../../tools/org/roles.mjs",
+    "buildingCmd": "node org-from-roles.mjs --building ../../../../../tools/org/roles.mjs",
     "dashboardCmd": "node hq-dashboard.mjs ../../../../..",
     "knowledgeCmd": "node hq-knowledge.mjs ../../../../..",
     "docsCmd": "node ${META:-../../../../../../system3-meta}/src/docs.mjs ../../../../.. --config=hq-docs.json" }
