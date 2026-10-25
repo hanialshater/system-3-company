@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0667",
+  "title": "One particle can dominate the weight",
+  "hook": "Two stated cases: explore the importance-weight ESS before any resampling step.",
+  "domain": "probability",
+  "concept": "cp-source-0667",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the importance-weight ESS before any resampling step affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines First, regardless of the stated inputs.",
+  "objective": "Compare the importance-weight ESS before any resampling step in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0667.predict",
+      "text": "Three positive toy importance weights are 0.99,0.005,0.005. What is the first normalized weight?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0667/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #667. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0667.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0667/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #667. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0667.reveal.0",
+      "text": "The retained results are A=0.99 B=0.005; First=0.99 and A=1 B=1; First=0.333.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0667/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #667. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0667.reveal.1",
+      "text": "Weight concentration reduces the usual importance-weight ESS. This diagnostic differs from autocorrelation-based ESS for an MCMC sequence. This comparison isolates the importance-weight ESS before any resampling step.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0667/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #667. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0667.case.0.witness",
+      "text": "A=0.99 B=0.005; First=0.99",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0667/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #667. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0667.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"A\",0.99],[\"B\",0.005],[\"C\",0.005]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0667/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #667. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0667.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"First\",\"value\":0.99},{\"label\":\"ESS\",\"value\":1.0202520022445543}]},\"metrics\":[{\"label\":\"First\",\"value\":\"0.99\"},{\"label\":\"A\",\"value\":\"0.99\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0667/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #667. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0667.case.1.witness",
+      "text": "A=1 B=1; First=0.333",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0667/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #667. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0667.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"A\",1],[\"B\",1],[\"C\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0667/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #667. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0667.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"First\",\"value\":0.3333333333333333},{\"label\":\"ESS\",\"value\":3}]},\"metrics\":[{\"label\":\"First\",\"value\":\"0.333\"},{\"label\":\"A\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0667/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #667. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0667.recall",
+      "text": "Three positive toy importance weights are 1.09,0.005,0.005. What is the first normalized weight? Answer 0.991.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0667/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #667. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Three positive toy importance weights are 1.09,0.005,0.005. What is the first normalized weight?",
+    "options": [
+      "0.595",
+      "1.387",
+      "0.991"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives First 0.991 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0667",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-667"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 667,
+    "sourceSection": "34. State-space models, Kalman & particle filters",
+    "sourceEntryOriginal": "- **667. Particle collapse** \\[Slider\\]: without resampling, almost all weight lands on one particle.",
+    "modelBoundary": "the importance-weight ESS before any resampling step",
+    "recallInputs": [
+      1.09,
+      0.005,
+      0.005
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

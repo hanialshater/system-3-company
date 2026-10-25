@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0551",
+  "title": "Volatility separates mean and median",
+  "hook": "Two stated cases: explore the lognormal terminal distribution under specified parameters.",
+  "domain": "probability",
+  "concept": "cp-source-0551",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the lognormal terminal distribution under specified parameters affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Median, regardless of the stated inputs.",
+  "objective": "Compare the lognormal terminal distribution under specified parameters in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0551.predict",
+      "text": "A toy geometric Brownian price starts 100, drift 0.05, diffusion Sigma 0.1, over Time 10. What is its median terminal price?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0551/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #551. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0551.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0551/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #551. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0551.reveal.0",
+      "text": "The retained results are Sigma=0.1; Median=156.831 and Sigma=0.5; Median=47.237.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0551/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #551. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0551.reveal.1",
+      "text": "Volatility separates the median from the mean under this lognormal model. The specified drift is an assumption rather than a market forecast. This comparison isolates the lognormal terminal distribution under specified parameters.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0551/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #551. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0551.case.0.witness",
+      "text": "Sigma=0.1; Median=156.831",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0551/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #551. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0551.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Initial\",100],[\"Drift\",0.05],[\"Sigma\",0.1],[\"Time\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0551/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #551. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0551.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Median\",\"value\":156.83121854901688},{\"label\":\"Expected\",\"value\":164.87212707001282}]},\"metrics\":[{\"label\":\"Median\",\"value\":\"156.831\"},{\"label\":\"Sigma\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0551/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #551. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0551.case.1.witness",
+      "text": "Sigma=0.5; Median=47.237",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0551/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #551. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0551.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Initial\",100],[\"Drift\",0.05],[\"Sigma\",0.5],[\"Time\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0551/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #551. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0551.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Median\",\"value\":47.236655274101466},{\"label\":\"Expected\",\"value\":164.87212707001282}]},\"metrics\":[{\"label\":\"Median\",\"value\":\"47.237\"},{\"label\":\"Sigma\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0551/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #551. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0551.recall",
+      "text": "A toy geometric Brownian price starts 101, drift 0.05, diffusion Sigma 0.1, over Time 10. What is its median terminal price? Answer 158.4.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0551/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #551. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy geometric Brownian price starts 101, drift 0.05, diffusion Sigma 0.1, over Time 10. What is its median terminal price?",
+    "options": [
+      "158.4",
+      "95.04",
+      "221.759"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Median 158.4 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0551",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-551"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 551,
+    "sourceSection": "28. Stochastic processes: Poisson, renewal & branching",
+    "sourceEntryOriginal": "- **551. Stock price paths** \\[Slider\\]: geometric Brownian motion; raise volatility and the fan of paths widens.",
+    "modelBoundary": "the lognormal terminal distribution under specified parameters",
+    "recallInputs": [
+      101,
+      0.05,
+      0.1,
+      10
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -4,6 +4,7 @@ from math_ops import OPS
 import behavioral_extra
 import probability_ops
 import inference_ops
+import process_ops
 batch=sys.argv[1];domain=sys.argv[2];curation=Path(sys.argv[3])
 root=Path.cwd();rows=list(csv.DictReader(curation.open(),delimiter='\t'))
 remaining=json.load(open(f'company/domains/briefs/continuation/{domain}-remaining.json'))
@@ -35,11 +36,12 @@ for row in rows:
  (d/'model.ts').write_text('''// Explicit finite illustration; not a simulated empirical response.
 export function compute(p:number[]):number[] {
  if(p.length!==%d || p.some(v=>!Number.isFinite(v))) throw Error('Invalid numerical inputs');
+ %s
  const result:number[]=%s;
  if(result.some(v=>!Number.isFinite(v)||Math.abs(v)>1e15)) throw Error('Invalid result');
  return result;
 }
-'''%(len(a),o['ts']))
+'''%(len(a),"if("+o['guard']+")throw Error('Outside model domain');" if o.get('guard') else '',o['ts']))
  question=o['question'].format(**dict(zip(o['labels'],map(lambda x:f'{x:g}',a))))
  config=dict(id=slug,title=row['title'],op=row['op'],labels=o['labels'],outputs=o['out'],a=a,b=b,question=question,questionTemplate=o['question'],explain=o['explain'],lens=row['lens'],kind=o['kind'],answerPosition=id%3)
  if 'plot' in o: config['plot']=o['plot']

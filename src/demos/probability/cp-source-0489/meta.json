@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0489",
+  "title": "Squaring requires an assumption",
+  "hook": "Two stated cases: explore the conditional probability needed for a joint rare event.",
+  "domain": "probability",
+  "concept": "cp-source-0489",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the conditional probability needed for a joint rare event affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Joint, regardless of the stated inputs.",
+  "objective": "Compare the conditional probability needed for a joint rare event in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0489.predict",
+      "text": "A toy event has probability 0.0001; conditional on it, an additional property occurs with probability 0.0001. What is the joint probability?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0489/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #489. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0489.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0489/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #489. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0489.reveal.0",
+      "text": "The retained results are Conditional=1.00e-4; Joint=1.00e-8 and Conditional=0.01; Joint=1.00e-6.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0489/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #489. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0489.reveal.1",
+      "text": "The conjunction occupies only part of the original event. Adding a condition cannot make the same event more probable. This comparison isolates the conditional probability needed for a joint rare event.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0489/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #489. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0489.case.0.witness",
+      "text": "Conditional=1.00e-4; Joint=1.00e-8",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0489/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #489. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0489.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"First\",0.0001],[\"Conditional\",0.0001]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0489/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #489. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0489.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Joint\",\"value\":1e-8}]},\"metrics\":[{\"label\":\"Joint\",\"value\":\"1.00e-8\"},{\"label\":\"Conditional\",\"value\":\"1.00e-4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0489/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #489. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0489.case.1.witness",
+      "text": "Conditional=0.01; Joint=1.00e-6",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0489/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #489. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0489.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"First\",0.0001],[\"Conditional\",0.01]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0489/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #489. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0489.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Joint\",\"value\":0.0000010000000000000002}]},\"metrics\":[{\"label\":\"Joint\",\"value\":\"1.00e-6\"},{\"label\":\"Conditional\",\"value\":\"0.01\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0489/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #489. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0489.recall",
+      "text": "A toy event has probability 8.00e-5; conditional on it, an additional property occurs with probability 1.00e-4. What is the joint probability? Answer 8.00e-9.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0489/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #489. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy event has probability 8.00e-5; conditional on it, an additional property occurs with probability 1.00e-4. What is the joint probability?",
+    "options": [
+      "-0.1",
+      "8.00e-9",
+      "0.1"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Joint 8.00e-9 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0489",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-489"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 489,
+    "sourceSection": "25. Famous real-world causal and probability stories",
+    "sourceEntryOriginal": "- **489. Sally Clark** \\[Story\\]: a \"1 in 73 million\" figure squared a single-death probability, assuming independence; her conviction was overturned in 2003.",
+    "modelBoundary": "the conditional probability needed for a joint rare event",
+    "recallInputs": [
+      0.00008,
+      0.0001
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

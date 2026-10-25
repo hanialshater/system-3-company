@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0560",
+  "title": "Pin both ends of a random path",
+  "hook": "Two stated cases: explore the Brownian-bridge variance profile.",
+  "domain": "probability",
+  "concept": "cp-source-0560",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the Brownian-bridge variance profile affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Variance, regardless of the stated inputs.",
+  "objective": "Compare the Brownian-bridge variance profile in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0560.predict",
+      "text": "A zero-endpoint toy Brownian bridge has diffusion Sigma 1 and Horizon 1. What is its variance at Time 0.5?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0560/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #560. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0560.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0560/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #560. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0560.reveal.0",
+      "text": "The retained results are Time=0.5; Variance=0.25 and Time=0.9; Variance=0.09.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0560/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #560. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0560.reveal.1",
+      "text": "Pinning both endpoints removes uncertainty at the ends. The variance profile describes a distribution of paths, not one deterministic trajectory. This comparison isolates the Brownian-bridge variance profile.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0560/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #560. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0560.case.0.witness",
+      "text": "Time=0.5; Variance=0.25",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0560/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #560. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0560.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Sigma\",1],[\"Time\",0.5],[\"Horizon\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0560/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #560. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0560.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":0},{\"x\":0.041666666666666664,\"y\":0.03993055555555555},{\"x\":0.08333333333333333,\"y\":0.07638888888888888},{\"x\":0.125,\"y\":0.109375},{\"x\":0.16666666666666666,\"y\":0.1388888888888889},{\"x\":0.20833333333333334,\"y\":0.16493055555555555},{\"x\":0.25,\"y\":0.1875},{\"x\":0.2916666666666667,\"y\":0.2065972222222222},{\"x\":0.3333333333333333,\"y\":0.22222222222222224},{\"x\":0.375,\"y\":0.234375},{\"x\":0.4166666666666667,\"y\":0.24305555555555552},{\"x\":0.4583333333333333,\"y\":0.24826388888888892},{\"x\":0.5,\"y\":0.25},{\"x\":0.5416666666666666,\"y\":0.2482638888888889},{\"x\":0.5833333333333334,\"y\":0.24305555555555555},{\"x\":0.625,\"y\":0.234375},{\"x\":0.6666666666666666,\"y\":0.22222222222222224},{\"x\":0.7083333333333334,\"y\":0.2065972222222222},{\"x\":0.75,\"y\":0.1875},{\"x\":0.7916666666666666,\"y\":0.16493055555555558},{\"x\":0.8333333333333334,\"y\":0.13888888888888887},{\"x\":0.875,\"y\":0.109375},{\"x\":0.9166666666666666,\"y\":0.07638888888888892},{\"x\":0.9583333333333334,\"y\":0.039930555555555525},{\"x\":1,\"y\":0}],\"xLabel\":\"Time\",\"yLabel\":\"Variance\"},\"metrics\":[{\"label\":\"Variance\",\"value\":\"0.25\"},{\"label\":\"Time\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0560/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #560. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0560.case.1.witness",
+      "text": "Time=0.9; Variance=0.09",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0560/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #560. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0560.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Sigma\",1],[\"Time\",0.9],[\"Horizon\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0560/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #560. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0560.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":0},{\"x\":0.041666666666666664,\"y\":0.03993055555555555},{\"x\":0.08333333333333333,\"y\":0.07638888888888888},{\"x\":0.125,\"y\":0.109375},{\"x\":0.16666666666666666,\"y\":0.1388888888888889},{\"x\":0.20833333333333334,\"y\":0.16493055555555555},{\"x\":0.25,\"y\":0.1875},{\"x\":0.2916666666666667,\"y\":0.2065972222222222},{\"x\":0.3333333333333333,\"y\":0.22222222222222224},{\"x\":0.375,\"y\":0.234375},{\"x\":0.4166666666666667,\"y\":0.24305555555555552},{\"x\":0.4583333333333333,\"y\":0.24826388888888892},{\"x\":0.5,\"y\":0.25},{\"x\":0.5416666666666666,\"y\":0.2482638888888889},{\"x\":0.5833333333333334,\"y\":0.24305555555555555},{\"x\":0.625,\"y\":0.234375},{\"x\":0.6666666666666666,\"y\":0.22222222222222224},{\"x\":0.7083333333333334,\"y\":0.2065972222222222},{\"x\":0.75,\"y\":0.1875},{\"x\":0.7916666666666666,\"y\":0.16493055555555558},{\"x\":0.8333333333333334,\"y\":0.13888888888888887},{\"x\":0.875,\"y\":0.109375},{\"x\":0.9166666666666666,\"y\":0.07638888888888892},{\"x\":0.9583333333333334,\"y\":0.039930555555555525},{\"x\":1,\"y\":0}],\"xLabel\":\"Time\",\"yLabel\":\"Variance\"},\"metrics\":[{\"label\":\"Variance\",\"value\":\"0.09\"},{\"label\":\"Time\",\"value\":\"0.9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0560/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #560. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0560.recall",
+      "text": "A zero-endpoint toy Brownian bridge has diffusion Sigma 2 and Horizon 1. What is its variance at Time 0.5? Answer 1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0560/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #560. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A zero-endpoint toy Brownian bridge has diffusion Sigma 2 and Horizon 1. What is its variance at Time 0.5?",
+    "options": [
+      "1",
+      "0.6",
+      "1.4"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Variance 1 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0560",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-560"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 560,
+    "sourceSection": "28. Stochastic processes: Poisson, renewal & branching",
+    "sourceEntryOriginal": "- **560. Brownian bridge** \\[Slider\\]: random paths pinned at both ends, the shape behind many statistical tests.",
+    "modelBoundary": "the Brownian-bridge variance profile",
+    "recallInputs": [
+      2,
+      0.5,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

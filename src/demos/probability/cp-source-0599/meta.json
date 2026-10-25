@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0599",
+  "title": "Uncertain slopes produce uncertain lines",
+  "hook": "Two stated cases: explore the predictive variance from one uncertain linear weight.",
+  "domain": "probability",
+  "concept": "cp-source-0599",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the predictive variance from one uncertain linear weight affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Mean, regardless of the stated inputs.",
+  "objective": "Compare the predictive variance from one uncertain linear weight in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0599.predict",
+      "text": "A toy linear weight has mean 1, variance 0.2; input X 2, independent output-noise variance 0. What predictive mean results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0599/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #599. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0599.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0599/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #599. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0599.reveal.0",
+      "text": "The retained results are WeightVar=0.2; Mean=2 and WeightVar=2; Mean=2.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0599/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #599. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0599.reveal.1",
+      "text": "Weight uncertainty and observation noise contribute differently to predictive variance. This one-weight model is not a full Bayesian neural network. This comparison isolates the predictive variance from one uncertain linear weight.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0599/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #599. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0599.case.0.witness",
+      "text": "WeightVar=0.2; Mean=2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0599/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #599. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0599.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"WeightMean\",1],[\"WeightVar\",0.2],[\"X\",2],[\"Noise\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0599/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #599. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0599.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":2},{\"label\":\"Variance\",\"value\":0.8}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"2\"},{\"label\":\"WeightVar\",\"value\":\"0.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0599/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #599. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0599.case.1.witness",
+      "text": "WeightVar=2; Mean=2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0599/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #599. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0599.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"WeightMean\",1],[\"WeightVar\",2],[\"X\",2],[\"Noise\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0599/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #599. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0599.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":2},{\"label\":\"Variance\",\"value\":8}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"2\"},{\"label\":\"WeightVar\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0599/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #599. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0599.recall",
+      "text": "A toy linear weight has mean 2, variance 0.2; input X 2, independent output-noise variance 0. What predictive mean results? Answer 4.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0599/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #599. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy linear weight has mean 2, variance 0.2; input X 2, independent output-noise variance 0. What predictive mean results?",
+    "options": [
+      "4",
+      "2.4",
+      "5.6"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Mean 4 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0599",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-599"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 599,
+    "sourceSection": "30. MCMC & sampling algorithms",
+    "sourceEntryOriginal": "- **599. A posterior of lines** \\[Slider\\]: draw 200 regression lines from the posterior; the band they form is the uncertainty.",
+    "modelBoundary": "the predictive variance from one uncertain linear weight",
+    "recallInputs": [
+      2,
+      0.2,
+      2,
+      0
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

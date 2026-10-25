@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0636", "title": "Tiny markets borrow from a common mean", "op": "poolnormal", "labels": ["Grand", "Group", "N", "NoiseVar", "GroupVar"], "outputs": ["Posterior", "Weight"], "a": [0.0, 0.02, 100.0, 0.2, 0.001], "b": [0.0, 0.02, 10000.0, 0.2, 0.001], "question": "Toy group mean 0.02 comes from N 100 observations of variance 0.2. A normal prior has Grand mean 0, GroupVar 0.001. What posterior mean results?", "questionTemplate": "Toy group mean {Group} comes from N {N} observations of variance {NoiseVar}. A normal prior has Grand mean {Grand}, GroupVar {GroupVar}. What posterior mean results?", "explain": "Small or noisy groups borrow more from the stipulated population prior. Hyperparameter uncertainty is held fixed in this elementary update.", "lens": "the normal pooling weight across toy market estimates", "kind": "grid", "answerPosition": 0};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

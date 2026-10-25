@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0511",
+  "title": "A service threshold enters Erlang C",
+  "hook": "Two stated cases: explore the staffing input of an explicit queueing model.",
+  "domain": "probability",
+  "concept": "cp-source-0511",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the staffing input of an explicit queueing model affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Wait, regardless of the stated inputs.",
+  "objective": "Compare the staffing input of an explicit queueing model in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0511.predict",
+      "text": "A stable toy M/M/c queue has arrival rate 50, service rate 1 per server, 60 servers and wait threshold 0.333333. What is mean waiting time before service?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0511/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #511. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0511.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0511/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #511. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0511.reveal.0",
+      "text": "The retained results are Servers=60; Wait=0.012 and Servers=55; Wait=0.077.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0511/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #511. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0511.reveal.1",
+      "text": "Pooling servers changes both waiting probability and delay. Erlang C assumes Poisson arrivals, exponential service, an infinite queue and no abandonment. This comparison isolates the staffing input of an explicit queueing model.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0511/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #511. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0511.case.0.witness",
+      "text": "Servers=60; Wait=0.012",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0511/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #511. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0511.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Arrival\",50],[\"Service\",1],[\"Servers\",60],[\"Threshold\",0.3333333333333333]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0511/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #511. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0511.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Wait\",\"value\":0.011730205613220742},{\"label\":\"Total\",\"value\":1.0117302056132207},{\"label\":\"SLA\",\"value\":0.9958153672299206},{\"label\":\"Utilization\",\"value\":0.8333333333333334}]},\"metrics\":[{\"label\":\"Wait\",\"value\":\"0.012\"},{\"label\":\"Servers\",\"value\":\"60\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0511/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #511. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0511.case.1.witness",
+      "text": "Servers=55; Wait=0.077",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0511/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #511. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0511.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Arrival\",50],[\"Service\",1],[\"Servers\",55],[\"Threshold\",0.3333333333333333]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0511/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #511. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0511.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Wait\",\"value\":0.0769094635865857},{\"label\":\"Total\",\"value\":1.0769094635865857},{\"label\":\"SLA\",\"value\":0.9273683935058505},{\"label\":\"Utilization\",\"value\":0.9090909090909091}]},\"metrics\":[{\"label\":\"Wait\",\"value\":\"0.077\"},{\"label\":\"Servers\",\"value\":\"55\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0511/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #511. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0511.recall",
+      "text": "A stable toy M/M/c queue has arrival rate 51, service rate 1 per server, 60 servers and wait threshold 0.333. What is mean waiting time before service? Answer 0.017.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0511/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #511. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A stable toy M/M/c queue has arrival rate 51, service rate 1 per server, 60 servers and wait threshold 0.333. What is mean waiting time before service?",
+    "options": [
+      "-0.083",
+      "0.117",
+      "0.017"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Wait 0.017 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0511",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-511"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 511,
+    "sourceSection": "26. Queueing theory: single queues & Little's law",
+    "sourceEntryOriginal": "- **511. Erlang C staffing** \\[Slider\\]: how many agents are needed to answer 80% of calls within 20 seconds?",
+    "modelBoundary": "the staffing input of an explicit queueing model",
+    "recallInputs": [
+      51,
+      1,
+      60,
+      0.3333333333333333
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

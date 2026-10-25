@@ -1,0 +1,154 @@
+{
+  "slug": "cp-source-0657",
+  "title": "A changed slope alters extrapolation",
+  "hook": "Two stated cases: explore the piecewise mean component of a changepoint model.",
+  "domain": "probability",
+  "concept": "cp-source-0657",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the piecewise mean component of a changepoint model affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Prediction, regardless of the stated inputs.",
+  "objective": "Compare the piecewise mean component of a changepoint model in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0657.predict",
+      "text": "A continuous toy trend starts at Intercept 0, slope Before 0.1 until Cut 10, then slope After 1. What is its level at X 5?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0657/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #657. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0657.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0657/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #657. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0657.reveal.0",
+      "text": "The retained results are X=5; Prediction=0.5 and X=15; Prediction=6.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0657/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #657. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0657.reveal.1",
+      "text": "A stated changepoint can alter extrapolation. This piecewise mean is only one component of a possible changepoint GP model. This comparison isolates the piecewise mean component of a changepoint model.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0657/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #657. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0657.case.0.witness",
+      "text": "X=5; Prediction=0.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0657/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #657. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0657.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Intercept\",0],[\"Before\",0.1],[\"After\",1],[\"Cut\",10],[\"X\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0657/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #657. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0657.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Prediction\",\"value\":0.5}]},\"metrics\":[{\"label\":\"Prediction\",\"value\":\"0.5\"},{\"label\":\"X\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0657/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #657. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0657.case.1.witness",
+      "text": "X=15; Prediction=6",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0657/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #657. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0657.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Intercept\",0],[\"Before\",0.1],[\"After\",1],[\"Cut\",10],[\"X\",15]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0657/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #657. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0657.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Prediction\",\"value\":6}]},\"metrics\":[{\"label\":\"Prediction\",\"value\":\"6\"},{\"label\":\"X\",\"value\":\"15\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0657/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #657. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0657.recall",
+      "text": "A continuous toy trend starts at Intercept 1, slope Before 0.1 until Cut 10, then slope After 1. What is its level at X 5? Answer 1.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0657/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #657. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A continuous toy trend starts at Intercept 1, slope Before 0.1 until Cut 10, then slope After 1. What is its level at X 5?",
+    "options": [
+      "0.9",
+      "1.5",
+      "2.1"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Prediction 1.5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0657",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-657"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 657,
+    "sourceSection": "33. Gaussian processes & Bayesian optimization",
+    "sourceEntryOriginal": "- **657. Changepoints** \\[Slider\\]: a GP whose kernel switches at a changepoint captures a sudden regime shift.",
+    "modelBoundary": "the piecewise mean component of a changepoint model",
+    "recallInputs": [
+      1,
+      0.1,
+      1,
+      10,
+      5
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0564",
+  "title": "A collection transition can be sharp",
+  "hook": "Two stated cases for a collection transition can be sharp.",
+  "domain": "probability",
+  "concept": "cp-source-0564",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the coupon-completion analogy rather than a general cutoff theorem affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Complete, regardless of the stated inputs.",
+  "objective": "Compare the coupon-completion analogy rather than a general cutoff theorem in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0564.predict",
+      "text": "A toy collector draws 40 independent uniform coupons among 20 types. What probability has it collected every type?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0564/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #564. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0564.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0564/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #564. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0564.reveal.0",
+      "text": "The retained results are Draws=40; Complete=0.036 and Draws=100; Complete=0.887.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0564/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #564. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0564.reveal.1",
+      "text": "Inclusion-exclusion sums the missing-type events. A collection transition can illustrate concentration without proving cutoff for an arbitrary Markov chain. This comparison isolates the coupon-completion analogy rather than a general cutoff theorem.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0564/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #564. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0564.case.0.witness",
+      "text": "Draws=40; Complete=0.036",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0564/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #564. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0564.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Types\",20],[\"Draws\",40]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0564/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #564. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0564.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Complete\",\"value\":0.03588772630743876}]},\"metrics\":[{\"label\":\"Complete\",\"value\":\"0.036\"},{\"label\":\"Draws\",\"value\":\"40\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0564/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #564. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0564.case.1.witness",
+      "text": "Draws=100; Complete=0.887",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0564/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #564. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0564.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Types\",20],[\"Draws\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0564/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #564. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0564.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Complete\",\"value\":0.8865373398865845}]},\"metrics\":[{\"label\":\"Complete\",\"value\":\"0.887\"},{\"label\":\"Draws\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0564/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #564. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0564.recall",
+      "text": "A toy collector draws 40 independent uniform coupons among 21 types. What probability has it collected every type? Answer 0.019.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0564/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #564. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy collector draws 40 independent uniform coupons among 21 types. What probability has it collected every type?",
+    "options": [
+      "-0.081",
+      "0.019",
+      "0.119"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Complete 0.019 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0564",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-564"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 564,
+    "sourceSection": "29. Markov chains, mixing & PageRank",
+    "sourceEntryOriginal": "- **564. The cutoff** \\[Gotcha\\]: some chains stay far from mixed, then mix almost all at once.",
+    "modelBoundary": "the coupon-completion analogy rather than a general cutoff theorem",
+    "recallInputs": [
+      21,
+      40
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

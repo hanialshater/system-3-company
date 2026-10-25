@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0539",
+  "title": "A fixed polling loop pays switch time",
+  "hook": "Two stated cases: explore the one-job-per-visit timing facet of a polling cycle.",
+  "domain": "probability",
+  "concept": "cp-source-0539",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the one-job-per-visit timing facet of a polling cycle affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Cycle, regardless of the stated inputs.",
+  "objective": "Compare the one-job-per-visit timing facet of a polling cycle in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0539.predict",
+      "text": "A toy polling cycle visits 5 queues, serves one job taking 2 at each, and spends 1 switching after each. What cycle time results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0539/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #539. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0539.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0539/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #539. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0539.reveal.0",
+      "text": "The retained results are Switch=1; Cycle=15 and Switch=3; Cycle=25.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0539/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #539. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0539.reveal.1",
+      "text": "Switching overhead adds to service time. This fixed-cycle calculation does not simulate bus bunching or general polling-system stability. This comparison isolates the one-job-per-visit timing facet of a polling cycle.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0539/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #539. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0539.case.0.witness",
+      "text": "Switch=1; Cycle=15",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0539/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #539. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0539.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Queues\",5],[\"Service\",2],[\"Switch\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0539/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #539. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0539.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Cycle\",\"value\":15}]},\"metrics\":[{\"label\":\"Cycle\",\"value\":\"15\"},{\"label\":\"Switch\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0539/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #539. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0539.case.1.witness",
+      "text": "Switch=3; Cycle=25",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0539/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #539. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0539.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Queues\",5],[\"Service\",2],[\"Switch\",3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0539/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #539. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0539.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Cycle\",\"value\":25}]},\"metrics\":[{\"label\":\"Cycle\",\"value\":\"25\"},{\"label\":\"Switch\",\"value\":\"3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0539/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #539. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0539.recall",
+      "text": "A toy polling cycle visits 6 queues, serves one job taking 2 at each, and spends 1 switching after each. What cycle time results? Answer 18.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0539/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #539. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy polling cycle visits 6 queues, serves one job taking 2 at each, and spends 1 switching after each. What cycle time results?",
+    "options": [
+      "18",
+      "10.8",
+      "25.2"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Cycle 18 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0539",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-539"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 539,
+    "sourceSection": "27. Queueing networks, scheduling & load balancing",
+    "sourceEntryOriginal": "- **539. The bus loop** \\[Slider\\]: one server visiting several queues in turn; buses bunch together over time.",
+    "modelBoundary": "the one-job-per-visit timing facet of a polling cycle",
+    "recallInputs": [
+      6,
+      2,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

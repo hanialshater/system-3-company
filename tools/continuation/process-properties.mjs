@@ -1,0 +1,22 @@
+import assert from 'node:assert/strict';import fs from 'node:fs';
+const model=async id=>(await import(`../../src/demos/probability/cp-source-${String(id).padStart(4,'0')}/model.ts`)).compute;
+let checks=0;const ok=x=>{assert(x);checks++;},near=(a,b)=>{assert(Math.abs(a-b)<1e-8,`${a} != ${b}`);checks++;};
+const road=await model(454);near(road([4000,45,100,0])[0],65);near(road([4000,45,100,1])[0],80);
+const mg=await model(504);near(mg([.8,1,1])[0],2*mg([.8,1,0])[0]);assert.throws(()=>mg([1,1,1]));checks++;
+const pooled=await model(506);ok(pooled([1.8,1,3,1])[0]<pooled([1.8,1,2,1])[0]);ok(pooled([1.8,1,2,2])[2]>pooled([1.8,1,2,1])[2]);
+const little=await model(540);near(little([40,5])[0],2*little([20,5])[0]);
+const ess=await model(593);near(ess([100,0])[0],100);ok(ess([100,.8])[0]<100);ok(ess([500,.81])[0]<ess([1000,.9])[0]);
+const ou=await model(550);near(ou([3,3,.2,1,10])[0],3);ok(ou([0,10,.2,1,20])[0]<ou([0,10,.2,1,10])[0]);
+const price=await model(551);near(price([100,.05,.1,10])[1],price([100,.05,.5,10])[1]);ok(price([100,.05,.5,10])[0]<price([100,.05,.1,10])[0]);
+const bridge=await model(560);near(bridge([1,0,1])[0],0);near(bridge([1,1,1])[0],0);near(bridge([1,.5,1])[0],.25);
+const tv=await model(568);near(tv([1,1,1,10])[0],tv([1,1,1,11])[0]);near(tv([.5,.5,1,1])[0],0);
+const flow=await model(567);near(flow([.2,.4])[0],flow([.2,.4])[1]);
+const gp=await model(641);near(gp([0,1,0,2,0])[0],2);near(gp([0,1,0,2,0])[1],0);ok(gp([0,1,4,2,0])[1]>gp([0,1,.1,2,0])[1]);near(gp([1,1,.1,2,2])[0],gp([0,1,.1,2,2])[0]);
+const improvement=await model(649);near(improvement([0,1,0])[0],1/Math.sqrt(2*Math.PI));near(improvement([0,2,0])[0],2*improvement([0,1,0])[0]);
+const update=await model(661);near(update([0,4,1,3,0])[0],3);near(update([0,4,1,3,0])[1],0);near(update([0,4,1,3,0])[2],1);
+const curve=await model(668);near(curve([0,1,0])[0],1);near(curve([0,1,1])[0],0);
+const branch=await model(549);ok(branch([.4,.5,20])[0]>branch([.4,.5,2])[0]);ok(branch([.4,.5,20])[0]<.8);
+const cp=await model(546);ok(cp([2,10,100,0])[1]>0);
+const record=JSON.parse(fs.readFileSync('company/reviews/continuation-batch-06/manifest.json'));
+for(const r of record.entries){const meta=JSON.parse(fs.readFileSync(`src/demos/probability/${r.slug}/meta.json`));const {curation:c}=await import(`../../src/demos/probability/${r.slug}/spec.ts`);assert.notDeepEqual(meta.provenance.recallInputs,c.a);assert.notDeepEqual(meta.provenance.recallInputs,c.b);checks+=2;}
+console.log(`${checks} process-model and fresh-recall relationship checks pass.`);

@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0616", "title": "An ignored code carries no information", "op": "latentinfo", "labels": ["Coupled", "Noise"], "outputs": ["MutualBits"], "a": [1.0, 0.1], "b": [0.0, 0.1], "question": "A uniform binary toy code drives a noisy binary decoder with flip probability 0.1 when Coupled 1=1. At 0 the output is independent. What mutual information remains?", "questionTemplate": "A uniform binary toy code drives a noisy binary decoder with flip probability {Noise} when Coupled {Coupled}=1. At 0 the output is independent. What mutual information remains?", "explain": "Ignoring a latent code removes information from that code to the output. This channel analogy does not reproduce VAE training dynamics.", "lens": "the binary-channel analogy of latent-code collapse", "kind": "grid", "answerPosition": 1};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0517", "title": "A virtual place moves the waiting", "op": "ticket", "labels": ["TotalWait", "VirtualShare"], "outputs": ["PhysicalWait", "Total"], "a": [30.0, 0.0], "b": [30.0, 0.9], "question": "A toy ticket system leaves total wait 30 unchanged but lets fraction 0 be spent away from the physical line. What in-line wait remains?", "questionTemplate": "A toy ticket system leaves total wait {TotalWait} unchanged but lets fraction {VirtualShare} be spent away from the physical line. What in-line wait remains?", "explain": "A virtual place can change where waiting occurs without creating service capacity. This accounting makes no claim about measured customer satisfaction.", "lens": "in-line time without changing the stipulated total wait", "kind": "grid", "answerPosition": 1};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

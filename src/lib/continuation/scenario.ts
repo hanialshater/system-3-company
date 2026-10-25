@@ -16,6 +16,7 @@ function checked(calc:Calculator,p:number[]) {
 }
 function picture(c:CuratedCase,p:number[],v:number[],calc:Calculator):MiniLabVisual {
  if(c.kind==='graph') {
+  if(c.graph==='braess')return {kind:'graph',nodes:[{id:'s',label:'Start',x:20,y:85},{id:'b',label:'B',x:110,y:20},{id:'c',label:'C',x:210,y:150},{id:'t',label:'End',x:300,y:85}],edges:[{from:'s',to:'b',label:`x/${f(p[2])}`,active:true},{from:'b',to:'t',label:f(p[1]),active:true},{from:'s',to:'c',label:f(p[1]),active:true},{from:'c',to:'t',label:`x/${f(p[2])}`,active:true},{from:'b',to:'c',label:'0',active:p[3]===1}]};
   const pattern=c.graph==='dsep'?['fork','chain','collider'][p[0]]:c.graph;
   const middle=pattern==='fork'||pattern==='counterfactual'?'U':pattern==='collider'?'S':pattern==='instrument'?'T':pattern==='spillover'?'Neighbors':'M';
   const nodes=[{id:'x',label:'X',x:40,y:130},{id:'m',label:middle,x:160,y:40},{id:'y',label:'Y',x:280,y:130}];
@@ -50,6 +51,7 @@ function picture(c:CuratedCase,p:number[],v:number[],calc:Calculator):MiniLabVis
   else if(c.op==='beta') events=[{label:'Now',value:p[0]},{label:`t${f(p[2])}`,value:p[1]}];
   else if(c.op==='repeat') events=Array.from({length:6},(_,i)=>({label:String(i+1),value:p[0]*(1-Math.pow(p[2],i+1))/(1-p[2])}));
   else if(c.op==='feedback') events=[0,p[2]/4,p[2]/2,3*p[2]/4,p[2]].map(t=>({label:f(t),value:p[0]*Math.pow(p[1],t)}));
+  else if(c.op==='fluid') events=[0,p[3]/4,p[3]/2,3*p[3]/4,p[3]].map(t=>({label:f(t),value:Math.max(0,p[0]+(p[1]-p[2])*t)}));
   else events=[{label:'Input',value:p[0]},{label:'Result',value:v[0]}];
   return {kind:'timeline',events};
  }

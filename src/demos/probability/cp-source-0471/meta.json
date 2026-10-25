@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0471",
+  "title": "A background shortcut meets a new mix",
+  "hook": "Two stated cases: explore the group composition behind a toy classifier accuracy.",
+  "domain": "probability",
+  "concept": "cp-source-0471",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the group composition behind a toy classifier accuracy affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Rate, regardless of the stated inputs.",
+  "objective": "Compare the group composition behind a toy classifier accuracy in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0471.predict",
+      "text": "A toy mixture puts fraction 0.9 at rate 0.9 and the remainder at rate 0.1. What is its aggregate rate?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0471/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #471. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0471.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0471/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #471. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0471.reveal.0",
+      "text": "The retained results are Weight=0.9; Rate=0.82 and Weight=0.1; Rate=0.18.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0471/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #471. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0471.reveal.1",
+      "text": "An aggregate mixes groups with their weights. Changes in composition can move it while component rates stay fixed. This comparison isolates the group composition behind a toy classifier accuracy.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0471/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #471. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0471.case.0.witness",
+      "text": "Weight=0.9; Rate=0.82",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0471/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #471. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0471.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Weight\",0.9],[\"RateA\",0.9],[\"RateB\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0471/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #471. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0471.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Rate\",\"value\":0.8200000000000001}]},\"metrics\":[{\"label\":\"Rate\",\"value\":\"0.82\"},{\"label\":\"Weight\",\"value\":\"0.9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0471/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #471. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0471.case.1.witness",
+      "text": "Weight=0.1; Rate=0.18",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0471/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #471. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0471.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Weight\",0.1],[\"RateA\",0.9],[\"RateB\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0471/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #471. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0471.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Rate\",\"value\":0.18000000000000002}]},\"metrics\":[{\"label\":\"Rate\",\"value\":\"0.18\"},{\"label\":\"Weight\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0471/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #471. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0471.recall",
+      "text": "A toy mixture puts fraction 0.72 at rate 0.9 and the remainder at rate 0.1. What is its aggregate rate? Answer 0.676.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0471/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #471. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy mixture puts fraction 0.72 at rate 0.9 and the remainder at rate 0.1. What is its aggregate rate?",
+    "options": [
+      "0.406",
+      "0.676",
+      "0.946"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Rate 0.676 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0471",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-471"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 471,
+    "sourceSection": "24. Causal discovery & causal ML",
+    "sourceEntryOriginal": "- **471. Cows on beaches** \\[Gotcha\\]: a classifier fails on cows outside grassy fields because it learned the background.",
+    "modelBoundary": "the group composition behind a toy classifier accuracy",
+    "recallInputs": [
+      0.7200000000000001,
+      0.9,
+      0.1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

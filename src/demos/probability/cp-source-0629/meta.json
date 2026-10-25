@@ -1,0 +1,154 @@
+{
+  "slug": "cp-source-0629",
+  "title": "A new seller has little direct evidence",
+  "hook": "Two stated cases: explore the prior-data weighting for an explicit seller model.",
+  "domain": "probability",
+  "concept": "cp-source-0629",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the prior-data weighting for an explicit seller model affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Posterior, regardless of the stated inputs.",
+  "objective": "Compare the prior-data weighting for an explicit seller model in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0629.predict",
+      "text": "Toy group mean 1 comes from N 2 observations of variance 0.09. A normal prior has Grand mean 0.9, GroupVar 0.005. What posterior mean results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0629/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #629. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0629.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0629/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #629. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0629.reveal.0",
+      "text": "The retained results are N=2; Posterior=0.91 and N=200; Posterior=0.992.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0629/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #629. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0629.reveal.1",
+      "text": "Small or noisy groups borrow more from the stipulated population prior. Hyperparameter uncertainty is held fixed in this elementary update. This comparison isolates the prior-data weighting for an explicit seller model.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0629/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #629. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0629.case.0.witness",
+      "text": "N=2; Posterior=0.91",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0629/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #629. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0629.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Grand\",0.9],[\"Group\",1],[\"N\",2],[\"NoiseVar\",0.09],[\"GroupVar\",0.005]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0629/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #629. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0629.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Posterior\",\"value\":0.91},{\"label\":\"Weight\",\"value\":0.1}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"0.91\"},{\"label\":\"N\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0629/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #629. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0629.case.1.witness",
+      "text": "N=200; Posterior=0.992",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0629/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #629. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0629.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Grand\",0.9],[\"Group\",1],[\"N\",200],[\"NoiseVar\",0.09],[\"GroupVar\",0.005]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0629/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #629. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0629.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Posterior\",\"value\":0.9917431192660551},{\"label\":\"Weight\",\"value\":0.9174311926605505}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"0.992\"},{\"label\":\"N\",\"value\":\"200\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0629/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #629. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0629.recall",
+      "text": "Toy group mean 1 comes from N 2 observations of variance 0.09. A normal prior has Grand mean 1, GroupVar 0.005. What posterior mean results? Answer 1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0629/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #629. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy group mean 1 comes from N 2 observations of variance 0.09. A normal prior has Grand mean 1, GroupVar 0.005. What posterior mean results?",
+    "options": [
+      "1",
+      "0.6",
+      "1.4"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Posterior 1 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0629",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-629"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 629,
+    "sourceSection": "32. Hierarchical & multilevel models",
+    "sourceEntryOriginal": "- **629. New sellers** \\[Slider\\]: a marketplace scores a seller with 2 orders by borrowing strength from similar sellers.",
+    "modelBoundary": "the prior-data weighting for an explicit seller model",
+    "recallInputs": [
+      1,
+      1,
+      2,
+      0.09,
+      0.005
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

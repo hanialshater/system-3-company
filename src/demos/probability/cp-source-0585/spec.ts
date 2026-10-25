@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0585", "title": "Within and between chains disagree", "op": "rhat", "labels": ["N", "Within", "Between"], "outputs": ["Rhat"], "a": [100.0, 1.0, 100.0], "b": [100.0, 1.0, 1.0], "question": "A toy classic variance-ratio diagnostic has per-chain N 100, within-chain variance 1, N-scaled between-chain variance 100. What square-root ratio results?", "questionTemplate": "A toy classic variance-ratio diagnostic has per-chain N {N}, within-chain variance {Within}, N-scaled between-chain variance {Between}. What square-root ratio results?", "explain": "This classic summary compares within and between variation. Modern rank-normalized diagnostics and other checks are needed for robust sampler assessment.", "lens": "the classic variance-ratio diagnostic under supplied summaries", "kind": "grid", "answerPosition": 0};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

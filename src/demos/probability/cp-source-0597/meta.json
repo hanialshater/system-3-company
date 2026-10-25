@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0597",
+  "title": "A code proposal changes a supplied score",
+  "hook": "Two stated cases for a code proposal changes a supplied score.",
+  "domain": "probability",
+  "concept": "cp-source-0597",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How a symmetric-proposal acceptance ingredient rather than a live decoder affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Acceptance, regardless of the stated inputs.",
+  "objective": "Compare a symmetric-proposal acceptance ingredient rather than a live decoder in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0597.predict",
+      "text": "A toy annealing move increases cost by 5, with positive temperature 1. What acceptance probability does exp(-increase/temperature) assign?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0597/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #597. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0597.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0597/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #597. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0597.reveal.0",
+      "text": "The retained results are Increase=5; Acceptance=0.007 and Increase=0.5; Acceptance=0.607.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0597/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #597. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0597.reveal.1",
+      "text": "A higher temperature permits more uphill moves. This one-step rule alone does not guarantee a global optimum. This comparison isolates a symmetric-proposal acceptance ingredient rather than a live decoder.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0597/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #597. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0597.case.0.witness",
+      "text": "Increase=5; Acceptance=0.007",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0597/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #597. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0597.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Increase\",5],[\"Temperature\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0597/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #597. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0597.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Acceptance\",\"value\":0.006737946999085467}]},\"metrics\":[{\"label\":\"Acceptance\",\"value\":\"0.007\"},{\"label\":\"Increase\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0597/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #597. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0597.case.1.witness",
+      "text": "Increase=0.5; Acceptance=0.607",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0597/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #597. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0597.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Increase\",0.5],[\"Temperature\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0597/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #597. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0597.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Acceptance\",\"value\":0.6065306597126334}]},\"metrics\":[{\"label\":\"Acceptance\",\"value\":\"0.607\"},{\"label\":\"Increase\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0597/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #597. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0597.recall",
+      "text": "A toy annealing move increases cost by 6, with positive temperature 1. What acceptance probability does exp(-increase/temperature) assign? Answer 0.002.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0597/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #597. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy annealing move increases cost by 6, with positive temperature 1. What acceptance probability does exp(-increase/temperature) assign?",
+    "options": [
+      "-0.098",
+      "0.002",
+      "0.102"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Acceptance 0.002 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0597",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-597"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 597,
+    "sourceSection": "30. MCMC & sampling algorithms",
+    "sourceEntryOriginal": "- **597. Cracking a prison code** \\[Story\\]: MCMC over letter substitutions decoded a coded prisoner's message (Diaconis, 2009).",
+    "modelBoundary": "a symmetric-proposal acceptance ingredient rather than a live decoder",
+    "recallInputs": [
+      6,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0519", "title": "Little slack near full capacity", "op": "mg1", "labels": ["Arrival", "Mean", "Variance"], "outputs": ["Wait", "Total", "Utilization"], "a": [0.95, 1.0, 1.0], "b": [0.8, 1.0, 1.0], "question": "A stable toy M/G/1 queue has Poisson arrival rate 0.95, mean service time 1, service-time variance 1. What is mean waiting time before service?", "questionTemplate": "A stable toy M/G/1 queue has Poisson arrival rate {Arrival}, mean service time {Mean}, service-time variance {Variance}. What is mean waiting time before service?", "explain": "The Pollaczek-Khinchine mean uses both the mean and second moment of service. Stability and the specified arrival/service assumptions are required.", "lens": "the nonlinear waiting-time effect near service capacity", "kind": "grid", "answerPosition": 0};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

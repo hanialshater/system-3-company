@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0586",
+  "title": "A curved target has a different energy",
+  "hook": "Two stated cases: explore the energy cross-section of a stipulated banana density.",
+  "domain": "probability",
+  "concept": "cp-source-0586",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the energy cross-section of a stipulated banana density affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Energy, regardless of the stated inputs.",
+  "objective": "Compare the energy cross-section of a stipulated banana density in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0586.predict",
+      "text": "A toy banana potential is x²/2+[y-Bend×(x²-1)]²/2. At X 2, Y 0, Bend 1, what energy results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0586/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #586. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0586.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0586/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #586. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0586.reveal.0",
+      "text": "The retained results are Bend=1; Energy=6.5 and Bend=0; Energy=2.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0586/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #586. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0586.reveal.1",
+      "text": "A curved high-density region changes the geometry a sampler must navigate. Energy at one point does not measure full-chain mixing. This comparison isolates the energy cross-section of a stipulated banana density.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0586/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #586. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0586.case.0.witness",
+      "text": "Bend=1; Energy=6.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0586/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #586. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0586.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"X\",2],[\"Y\",0],[\"Bend\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0586/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #586. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0586.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":-3,\"y\":36.5},{\"x\":-2.75,\"y\":25.314453125},{\"x\":-2.5,\"y\":16.90625},{\"x\":-2.25,\"y\":10.783203125},{\"x\":-2,\"y\":6.5},{\"x\":-1.75,\"y\":3.658203125},{\"x\":-1.5,\"y\":1.90625},{\"x\":-1.25,\"y\":0.939453125},{\"x\":-1,\"y\":0.5},{\"x\":-0.75,\"y\":0.376953125},{\"x\":-0.5,\"y\":0.40625},{\"x\":-0.25,\"y\":0.470703125},{\"x\":0,\"y\":0.5},{\"x\":0.25,\"y\":0.470703125},{\"x\":0.5,\"y\":0.40625},{\"x\":0.75,\"y\":0.376953125},{\"x\":1,\"y\":0.5},{\"x\":1.25,\"y\":0.939453125},{\"x\":1.5,\"y\":1.90625},{\"x\":1.75,\"y\":3.658203125},{\"x\":2,\"y\":6.5},{\"x\":2.25,\"y\":10.783203125},{\"x\":2.5,\"y\":16.90625},{\"x\":2.75,\"y\":25.314453125},{\"x\":3,\"y\":36.5}],\"xLabel\":\"X\",\"yLabel\":\"Energy\"},\"metrics\":[{\"label\":\"Energy\",\"value\":\"6.5\"},{\"label\":\"Bend\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0586/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #586. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0586.case.1.witness",
+      "text": "Bend=0; Energy=2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0586/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #586. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0586.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"X\",2],[\"Y\",0],[\"Bend\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0586/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #586. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0586.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":-3,\"y\":4.5},{\"x\":-2.75,\"y\":3.78125},{\"x\":-2.5,\"y\":3.125},{\"x\":-2.25,\"y\":2.53125},{\"x\":-2,\"y\":2},{\"x\":-1.75,\"y\":1.53125},{\"x\":-1.5,\"y\":1.125},{\"x\":-1.25,\"y\":0.78125},{\"x\":-1,\"y\":0.5},{\"x\":-0.75,\"y\":0.28125},{\"x\":-0.5,\"y\":0.125},{\"x\":-0.25,\"y\":0.03125},{\"x\":0,\"y\":0},{\"x\":0.25,\"y\":0.03125},{\"x\":0.5,\"y\":0.125},{\"x\":0.75,\"y\":0.28125},{\"x\":1,\"y\":0.5},{\"x\":1.25,\"y\":0.78125},{\"x\":1.5,\"y\":1.125},{\"x\":1.75,\"y\":1.53125},{\"x\":2,\"y\":2},{\"x\":2.25,\"y\":2.53125},{\"x\":2.5,\"y\":3.125},{\"x\":2.75,\"y\":3.78125},{\"x\":3,\"y\":4.5}],\"xLabel\":\"X\",\"yLabel\":\"Energy\"},\"metrics\":[{\"label\":\"Energy\",\"value\":\"2\"},{\"label\":\"Bend\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0586/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #586. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0586.recall",
+      "text": "A toy banana potential is x²/2+[y-Bend×(x²-1)]²/2. At X 3, Y 0, Bend 1, what energy results? Answer 36.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0586/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #586. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy banana potential is x²/2+[y-Bend×(x²-1)]²/2. At X 3, Y 0, Bend 1, what energy results?",
+    "options": [
+      "21.9",
+      "51.1",
+      "36.5"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Energy 36.5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0586",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-586"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 586,
+    "sourceSection": "30. MCMC & sampling algorithms",
+    "sourceEntryOriginal": "- **586. The banana** \\[Slider\\]: random-walk Metropolis struggles along a curved posterior while Hamiltonian Monte Carlo glides through it.",
+    "modelBoundary": "the energy cross-section of a stipulated banana density",
+    "recallInputs": [
+      3,
+      0,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0525", "title": "Which of two jobs goes first?", "op": "joborder", "labels": ["Long", "Short", "ShortFirst"], "outputs": ["MeanWait"], "a": [10.0, 1.0, 0.0], "b": [10.0, 1.0, 1.0], "question": "Two toy jobs arrive together, durations Long 10, Short 1. ShortFirst 0=1 serves the short job first, 0 the long. What is mean time waiting before service?", "questionTemplate": "Two toy jobs arrive together, durations Long {Long}, Short {Short}. ShortFirst {ShortFirst}=1 serves the short job first, 0 the long. What is mean time waiting before service?", "explain": "The first job waits zero and the second waits for the first. Mean delay and fairness can favor different scheduling rules.", "lens": "the mean wait in two explicitly ordered jobs", "kind": "grid", "answerPosition": 0};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

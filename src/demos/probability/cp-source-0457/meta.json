@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0457",
+  "title": "Two wandering levels share a gap",
+  "hook": "Two stated cases: explore the common trend removed by differencing.",
+  "domain": "probability",
+  "concept": "cp-source-0457",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the common trend removed by differencing affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Difference, regardless of the stated inputs.",
+  "objective": "Compare the common trend removed by differencing in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0457.predict",
+      "text": "Two toy series are X=Trend 0, Y=Trend+Gap 2. What is Y-X?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0457/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #457. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0457.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0457/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #457. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0457.reveal.0",
+      "text": "The retained results are Trend=0; Difference=2 and Trend=100; Difference=2.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0457/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #457. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0457.reveal.1",
+      "text": "A shared trend can disappear from a difference even as both levels move. This algebra illustrates a tether, not a statistical cointegration test. This comparison isolates the common trend removed by differencing.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0457/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #457. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0457.case.0.witness",
+      "text": "Trend=0; Difference=2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0457/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #457. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0457.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Trend\",0],[\"Gap\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0457/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #457. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0457.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Difference\",\"value\":2},{\"label\":\"X\",\"value\":0},{\"label\":\"Y\",\"value\":2}]},\"metrics\":[{\"label\":\"Difference\",\"value\":\"2\"},{\"label\":\"Trend\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0457/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #457. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0457.case.1.witness",
+      "text": "Trend=100; Difference=2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0457/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #457. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0457.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Trend\",100],[\"Gap\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0457/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #457. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0457.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Difference\",\"value\":2},{\"label\":\"X\",\"value\":100},{\"label\":\"Y\",\"value\":102}]},\"metrics\":[{\"label\":\"Difference\",\"value\":\"2\"},{\"label\":\"Trend\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0457/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #457. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0457.recall",
+      "text": "Two toy series are X=Trend 0, Y=Trend+Gap 3. What is Y-X? Answer 3.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0457/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #457. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two toy series are X=Trend 0, Y=Trend+Gap 3. What is Y-X?",
+    "options": [
+      "1.8",
+      "4.2",
+      "3"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Difference 3 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0457",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-457"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 457,
+    "sourceSection": "23. Time, feedback loops & interference",
+    "sourceEntryOriginal": "- **457. The drunk and her dog** \\[Slider\\]: two random walks that wander but stay tied together, cointegration in one picture.",
+    "modelBoundary": "the common trend removed by differencing",
+    "recallInputs": [
+      0,
+      3
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

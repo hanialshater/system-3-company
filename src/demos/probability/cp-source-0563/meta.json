@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0563",
+  "title": "A chain approaches stationarity",
+  "hook": "Two stated cases: explore the exact two-state total-variation distance.",
+  "domain": "probability",
+  "concept": "cp-source-0563",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the exact two-state total-variation distance affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines TV, regardless of the stated inputs.",
+  "objective": "Compare the exact two-state total-variation distance in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0563.predict",
+      "text": "A toy two-state chain transitions 0→1 with A 0.2, 1→0 with B 0.4; initial P(1) 1. After 5 steps, what is total-variation distance from stationarity?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0563/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #563. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0563.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0563/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #563. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0563.reveal.0",
+      "text": "The retained results are Steps=5; TV=0.007 and Steps=20; TV=7.33e-9.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0563/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #563. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0563.reveal.1",
+      "text": "The nontrivial eigenvalue controls the transient distance in this two-state model. A stationary distribution can exist even when periodicity prevents convergence. This comparison isolates the exact two-state total-variation distance.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0563/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #563. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0563.case.0.witness",
+      "text": "Steps=5; TV=0.007",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0563/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #563. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0563.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"A\",0.2],[\"B\",0.4],[\"Start\",1],[\"Steps\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0563/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #563. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0563.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"TV\",\"value\":0.006826666666666669},{\"label\":\"Gap\",\"value\":0.6}]},\"metrics\":[{\"label\":\"TV\",\"value\":\"0.007\"},{\"label\":\"Steps\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0563/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #563. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0563.case.1.witness",
+      "text": "Steps=20; TV=7.33e-9",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0563/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #563. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0563.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"A\",0.2],[\"B\",0.4],[\"Start\",1],[\"Steps\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0563/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #563. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0563.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"TV\",\"value\":7.330077518506676e-9},{\"label\":\"Gap\",\"value\":0.6}]},\"metrics\":[{\"label\":\"TV\",\"value\":\"7.33e-9\"},{\"label\":\"Steps\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0563/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #563. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0563.recall",
+      "text": "A toy two-state chain transitions 0→1 with A 0.3, 1→0 with B 0.4; initial P(1) 1. After 5 steps, what is total-variation distance from stationarity? Answer 0.001.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0563/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #563. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy two-state chain transitions 0→1 with A 0.3, 1→0 with B 0.4; initial P(1) 1. After 5 steps, what is total-variation distance from stationarity?",
+    "options": [
+      "0.001",
+      "-0.099",
+      "0.101"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives TV 0.001 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0563",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-563"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 563,
+    "sourceSection": "29. Markov chains, mixing & PageRank",
+    "sourceEntryOriginal": "- **563. How fast does it mix?** \\[Slider\\]: plot distance from uniform after each shuffle of a deck.",
+    "modelBoundary": "the exact two-state total-variation distance",
+    "recallInputs": [
+      0.30000000000000004,
+      0.4,
+      1,
+      5
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

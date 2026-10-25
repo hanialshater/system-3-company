@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0614",
+  "title": "Average weights before taking a log",
+  "hook": "Two stated cases: explore the realized log-mean-exp statistic in an importance bound.",
+  "domain": "probability",
+  "concept": "cp-source-0614",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the realized log-mean-exp statistic in an importance bound affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines LogMean, regardless of the stated inputs.",
+  "objective": "Compare the realized log-mean-exp statistic in an importance bound in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0614.predict",
+      "text": "Three toy log importance weights are -2,-4,-6. What is log of the mean of their exponentials?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0614/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #614. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0614.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0614/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #614. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0614.reveal.0",
+      "text": "The retained results are B=-4 C=-6; LogMean=-2.956 and B=-2 C=-2; LogMean=-2.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0614/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #614. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0614.reveal.1",
+      "text": "The log-mean-exp statistic differs from the mean log weight. Statements about tightening in expectation do not imply monotonic improvement for every realized sample. This comparison isolates the realized log-mean-exp statistic in an importance bound.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0614/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #614. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0614.case.0.witness",
+      "text": "B=-4 C=-6; LogMean=-2.956",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0614/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #614. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0614.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"A\",-2],[\"B\",-4],[\"C\",-6]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0614/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #614. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0614.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"LogMean\",\"value\":-2.95568066016821}]},\"metrics\":[{\"label\":\"LogMean\",\"value\":\"-2.956\"},{\"label\":\"B\",\"value\":\"-4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0614/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #614. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0614.case.1.witness",
+      "text": "B=-2 C=-2; LogMean=-2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0614/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #614. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0614.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"A\",-2],[\"B\",-2],[\"C\",-2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0614/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #614. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0614.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"LogMean\",\"value\":-2}]},\"metrics\":[{\"label\":\"LogMean\",\"value\":\"-2\"},{\"label\":\"B\",\"value\":\"-2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0614/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #614. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0614.recall",
+      "text": "Three toy log importance weights are -1,-4,-6. What is log of the mean of their exponentials? Answer -2.044.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0614/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #614. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Three toy log importance weights are -1,-4,-6. What is log of the mean of their exponentials?",
+    "options": [
+      "-2.044",
+      "-2.861",
+      "-1.226"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives LogMean -2.044 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0614",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-614"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 614,
+    "sourceSection": "31. Variational inference & approximate Bayes",
+    "sourceEntryOriginal": "- **614. Importance-weighted bounds** \\[Slider\\]: more samples per step tighten the bound toward the true evidence.",
+    "modelBoundary": "the realized log-mean-exp statistic in an importance bound",
+    "recallInputs": [
+      -1,
+      -4,
+      -6
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0551", "title": "Volatility separates mean and median", "op": "gbm", "labels": ["Initial", "Drift", "Sigma", "Time"], "outputs": ["Median", "Expected"], "a": [100.0, 0.05, 0.1, 10.0], "b": [100.0, 0.05, 0.5, 10.0], "question": "A toy geometric Brownian price starts 100, drift 0.05, diffusion Sigma 0.1, over Time 10. What is its median terminal price?", "questionTemplate": "A toy geometric Brownian price starts {Initial}, drift {Drift}, diffusion Sigma {Sigma}, over Time {Time}. What is its median terminal price?", "explain": "Volatility separates the median from the mean under this lognormal model. The specified drift is an assumption rather than a market forecast.", "lens": "the lognormal terminal distribution under specified parameters", "kind": "grid", "answerPosition": 2};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

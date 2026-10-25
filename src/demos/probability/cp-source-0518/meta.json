@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0518",
+  "title": "A shorter-job lane changes service mix",
+  "hook": "Two stated cases: explore the service distribution supplied to a toy express queue.",
+  "domain": "probability",
+  "concept": "cp-source-0518",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the service distribution supplied to a toy express queue affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Wait, regardless of the stated inputs.",
+  "objective": "Compare the service distribution supplied to a toy express queue in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0518.predict",
+      "text": "A stable toy M/G/1 queue has Poisson arrival rate 0.8, mean service time 1, service-time variance 1. What is mean waiting time before service?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0518/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #518. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0518.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0518/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #518. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0518.reveal.0",
+      "text": "The retained results are Mean=1 Variance=1; Wait=4 and Mean=0.5 Variance=0.25; Wait=0.333.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0518/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #518. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0518.reveal.1",
+      "text": "The Pollaczek-Khinchine mean uses both the mean and second moment of service. Stability and the specified arrival/service assumptions are required. This comparison isolates the service distribution supplied to a toy express queue.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0518/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #518. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0518.case.0.witness",
+      "text": "Mean=1 Variance=1; Wait=4",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0518/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #518. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0518.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Arrival\",0.8],[\"Mean\",1],[\"Variance\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0518/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #518. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0518.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Wait\",\"value\":4.000000000000001},{\"label\":\"Total\",\"value\":5.000000000000001},{\"label\":\"Utilization\",\"value\":0.8}]},\"metrics\":[{\"label\":\"Wait\",\"value\":\"4\"},{\"label\":\"Mean\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0518/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #518. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0518.case.1.witness",
+      "text": "Mean=0.5 Variance=0.25; Wait=0.333",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0518/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #518. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0518.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Arrival\",0.8],[\"Mean\",0.5],[\"Variance\",0.25]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0518/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #518. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0518.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Wait\",\"value\":0.33333333333333337},{\"label\":\"Total\",\"value\":0.8333333333333334},{\"label\":\"Utilization\",\"value\":0.4}]},\"metrics\":[{\"label\":\"Wait\",\"value\":\"0.333\"},{\"label\":\"Mean\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0518/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #518. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0518.recall",
+      "text": "A stable toy M/G/1 queue has Poisson arrival rate 0.9, mean service time 1, service-time variance 1. What is mean waiting time before service? Answer 9.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0518/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #518. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A stable toy M/G/1 queue has Poisson arrival rate 0.9, mean service time 1, service-time variance 1. What is mean waiting time before service?",
+    "options": [
+      "9",
+      "5.4",
+      "12.6"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Wait 9 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0518",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-518"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 518,
+    "sourceSection": "26. Queueing theory: single queues & Little's law",
+    "sourceEntryOriginal": "- **518. Express lane threshold** \\[Slider\\]: set the item limit and watch both lanes' waits balance.",
+    "modelBoundary": "the service distribution supplied to a toy express queue",
+    "recallInputs": [
+      0.9,
+      1,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

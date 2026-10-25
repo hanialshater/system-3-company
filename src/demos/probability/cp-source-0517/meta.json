@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0517",
+  "title": "A virtual place moves the waiting",
+  "hook": "Two stated cases: explore in-line time without changing the stipulated total wait.",
+  "domain": "probability",
+  "concept": "cp-source-0517",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How in-line time without changing the stipulated total wait affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines PhysicalWait, regardless of the stated inputs.",
+  "objective": "Compare in-line time without changing the stipulated total wait in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0517.predict",
+      "text": "A toy ticket system leaves total wait 30 unchanged but lets fraction 0 be spent away from the physical line. What in-line wait remains?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0517/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #517. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0517.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0517/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #517. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0517.reveal.0",
+      "text": "The retained results are VirtualShare=0; PhysicalWait=30 and VirtualShare=0.9; PhysicalWait=3.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0517/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #517. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0517.reveal.1",
+      "text": "A virtual place can change where waiting occurs without creating service capacity. This accounting makes no claim about measured customer satisfaction. This comparison isolates in-line time without changing the stipulated total wait.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0517/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #517. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0517.case.0.witness",
+      "text": "VirtualShare=0; PhysicalWait=30",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0517/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #517. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0517.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"TotalWait\",30],[\"VirtualShare\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0517/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #517. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0517.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"PhysicalWait\",\"value\":30},{\"label\":\"Total\",\"value\":30}]},\"metrics\":[{\"label\":\"PhysicalWait\",\"value\":\"30\"},{\"label\":\"VirtualShare\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0517/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #517. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0517.case.1.witness",
+      "text": "VirtualShare=0.9; PhysicalWait=3",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0517/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #517. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0517.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"TotalWait\",30],[\"VirtualShare\",0.9]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0517/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #517. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0517.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"PhysicalWait\",\"value\":2.999999999999999},{\"label\":\"Total\",\"value\":30}]},\"metrics\":[{\"label\":\"PhysicalWait\",\"value\":\"3\"},{\"label\":\"VirtualShare\",\"value\":\"0.9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0517/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #517. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0517.recall",
+      "text": "A toy ticket system leaves total wait 31 unchanged but lets fraction 0 be spent away from the physical line. What in-line wait remains? Answer 31.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0517/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #517. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy ticket system leaves total wait 31 unchanged but lets fraction 0 be spent away from the physical line. What in-line wait remains?",
+    "options": [
+      "18.6",
+      "43.4",
+      "31"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives PhysicalWait 31 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0517",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-517"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 517,
+    "sourceSection": "26. Queueing theory: single queues & Little's law",
+    "sourceEntryOriginal": "- **517. Virtual queue** \\[Split\\]: a theme-park ride with and without return-time tickets; same capacity, very different experience.",
+    "modelBoundary": "in-line time without changing the stipulated total wait",
+    "recallInputs": [
+      31,
+      0
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

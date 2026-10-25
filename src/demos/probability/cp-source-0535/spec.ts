@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0535", "title": "High priority consumes the spare service", "op": "priority", "labels": ["High", "Low", "Capacity", "Time"], "outputs": ["LowBacklog"], "a": [95.0, 20.0, 100.0, 10.0], "b": [70.0, 20.0, 100.0, 10.0], "question": "Toy high-priority arrivals use rate 95 of Capacity 100; low arrivals rate 20 get the remainder for Time 10. Starting empty, what low-priority fluid backlog accumulates?", "questionTemplate": "Toy high-priority arrivals use rate {High} of Capacity {Capacity}; low arrivals rate {Low} get the remainder for Time {Time}. Starting empty, what low-priority fluid backlog accumulates?", "explain": "Priority can reserve nearly all capacity for one class. This fluid model illustrates starvation pressure rather than a full stochastic priority queue.", "lens": "the residual capacity available to a low-priority fluid queue", "kind": "grid", "answerPosition": 1};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

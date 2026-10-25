@@ -1,3 +1,9 @@
+## 2026-10-25 · source batch 06 · 200 process and inference drafts
+
+Implemented the next 200 source entries with explicit queueing, stochastic-process, sampler, pooling, GP and filtering models. 1,020 arithmetic/schema/state assertions and 434 relationship/fresh-recall checks pass. TypeScript passes with a 6 GiB Node heap after the default heap exhausted memory. Company check remains 811 errors/four warnings. This batch's build/browser validation is pending; independent approvals are not claimed.
+
+Saved completed batch05 evidence: 400 protected browser passes, 200 strict phone fits, final production build exit 0 and 2,645 pages. Batches02–04 have 1,200 browser passes and 600 strict phone fits recorded in continuation-series. Source/learner/overlap readiness remains open. Implementation coverage now reaches 1,200 supplied-list entries; 300 probability entries remain (200 then 100). Prior transfer-case audit W-2037 remains to be completed. No merge or deploy.
+
 ## 2026-10-25 · source batch 05 · 200 information and inference drafts
 
 Implemented the next 200 remaining source entries, spanning information, testing, confounding, selection, counterfactual and experimental-design models. Exact curation and boundaries are in company/reviews/continuation-batch-05. All claims remain unverified and all lessons draft. No independent review is asserted.

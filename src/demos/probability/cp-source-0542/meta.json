@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0542",
+  "title": "Thin, then merge independent streams",
+  "hook": "Two stated cases: explore independent thinning and superposition rates.",
+  "domain": "probability",
+  "concept": "cp-source-0542",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How independent thinning and superposition rates affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Rate, regardless of the stated inputs.",
+  "objective": "Compare independent thinning and superposition rates in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0542.predict",
+      "text": "Thin a toy Poisson stream of Rate 10 independently with Share 0.3, then merge an independent Poisson stream of rate 2. What rate results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0542/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #542. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0542.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0542/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #542. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0542.reveal.0",
+      "text": "The retained results are Share=0.3; Rate=5 and Share=0.8; Rate=10.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0542/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #542. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0542.reveal.1",
+      "text": "Independent thinning and superposition preserve Poisson structure. Dependence between streams can invalidate that process-level conclusion. This comparison isolates independent thinning and superposition rates.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0542/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #542. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0542.case.0.witness",
+      "text": "Share=0.3; Rate=5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0542/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #542. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0542.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Rate\",10],[\"Share\",0.3],[\"Added\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0542/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #542. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0542.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Rate\",\"value\":5}]},\"metrics\":[{\"label\":\"Rate\",\"value\":\"5\"},{\"label\":\"Share\",\"value\":\"0.3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0542/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #542. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0542.case.1.witness",
+      "text": "Share=0.8; Rate=10",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0542/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #542. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0542.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Rate\",10],[\"Share\",0.8],[\"Added\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0542/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #542. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0542.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Rate\",\"value\":10}]},\"metrics\":[{\"label\":\"Rate\",\"value\":\"10\"},{\"label\":\"Share\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0542/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #542. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0542.recall",
+      "text": "Thin a toy Poisson stream of Rate 11 independently with Share 0.3, then merge an independent Poisson stream of rate 2. What rate results? Answer 5.3.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0542/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #542. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Thin a toy Poisson stream of Rate 11 independently with Share 0.3, then merge an independent Poisson stream of rate 2. What rate results?",
+    "options": [
+      "5.3",
+      "3.18",
+      "7.42"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Rate 5.3 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0542",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-542"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 542,
+    "sourceSection": "28. Stochastic processes: Poisson, renewal & branching",
+    "sourceEntryOriginal": "- **542. Split and merge streams** \\[Slider\\]: thin one Poisson stream into two, or merge two into one; both stay Poisson.",
+    "modelBoundary": "independent thinning and superposition rates",
+    "recallInputs": [
+      11,
+      0.3,
+      2
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

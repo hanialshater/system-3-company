@@ -1,0 +1,150 @@
+{
+  "slug": "cp-source-0483",
+  "title": "How strong is a stipulated sensitivity?",
+  "hook": "Two stated cases: explore the specified risk-ratio sensitivity function.",
+  "domain": "probability",
+  "concept": "cp-source-0483",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the specified risk-ratio sensitivity function affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines EValue, regardless of the stated inputs.",
+  "objective": "Compare the specified risk-ratio sensitivity function in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0483.predict",
+      "text": "For a toy risk ratio RR 5 at least 1, evaluate the sensitivity function RR+sqrt(RR×(RR-1)). What value results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0483/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #483. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0483.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0483/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #483. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0483.reveal.0",
+      "text": "The retained results are RR=5; EValue=9.472 and RR=2; EValue=3.414.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0483/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #483. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0483.reveal.1",
+      "text": "This risk-ratio sensitivity summary concerns unmeasured confounding under its assumptions. It does not address all biases or certify causation. This comparison isolates the specified risk-ratio sensitivity function.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0483/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #483. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0483.case.0.witness",
+      "text": "RR=5; EValue=9.472",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0483/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #483. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0483.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"RR\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0483/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #483. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0483.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"EValue\",\"value\":9.47213595499958}]},\"metrics\":[{\"label\":\"EValue\",\"value\":\"9.472\"},{\"label\":\"RR\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0483/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #483. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0483.case.1.witness",
+      "text": "RR=2; EValue=3.414",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0483/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #483. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0483.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"RR\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0483/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #483. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0483.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"EValue\",\"value\":3.414213562373095}]},\"metrics\":[{\"label\":\"EValue\",\"value\":\"3.414\"},{\"label\":\"RR\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0483/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #483. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0483.recall",
+      "text": "For a toy risk ratio RR 6 at least 1, evaluate the sensitivity function RR+sqrt(RR×(RR-1)). What value results? Answer 11.477.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0483/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #483. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For a toy risk ratio RR 6 at least 1, evaluate the sensitivity function RR+sqrt(RR×(RR-1)). What value results?",
+    "options": [
+      "6.886",
+      "11.477",
+      "16.068"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives EValue 11.477 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0483",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-483"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 483,
+    "sourceSection": "25. Famous real-world causal and probability stories",
+    "sourceEntryOriginal": "- **483. Fisher's objection** \\[Story\\]: Fisher argued a gene might cause both smoking and cancer; Cornfield showed such a confounder would need implausible strength (1959).",
+    "modelBoundary": "the specified risk-ratio sensitivity function",
+    "recallInputs": [
+      6
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

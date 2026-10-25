@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0592", "title": "A temperature swap has a ratio", "op": "swap", "labels": ["ColdBeta", "HotBeta", "ColdEnergy", "HotEnergy"], "outputs": ["Acceptance"], "a": [1.0, 0.1, 10.0, 0.0], "b": [1.0, 0.1, 0.0, 10.0], "question": "Two toy tempering chains have inverse temperatures 1,0.1 and energies 10,0. What swap acceptance probability follows?", "questionTemplate": "Two toy tempering chains have inverse temperatures {ColdBeta},{HotBeta} and energies {ColdEnergy},{HotEnergy}. What swap acceptance probability follows?", "explain": "A swap ratio accounts for both temperatures and energies. Hot-chain exploration helps only if information can move between chains.", "lens": "the two-energy tempering-swap probability", "kind": "grid", "answerPosition": 1, "recall": [1.0, 0.5, 0.0, 2.0]};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0555", "title": "A neutral allele can take over", "op": "fixation", "labels": ["Copies", "Population"], "outputs": ["Probability"], "a": [5.0, 100.0], "b": [50.0, 100.0], "question": "A neutral toy Moran population has 5 copies of an allele among 100. With no mutation or selection, what is its eventual fixation probability?", "questionTemplate": "A neutral toy Moran population has {Copies} copies of an allele among {Population}. With no mutation or selection, what is its eventual fixation probability?", "explain": "Under this neutral finite model, the initial frequency equals fixation probability. Time to fixation and selective advantages are different questions.", "lens": "the initial frequency under a neutral finite-population model", "kind": "grid", "answerPosition": 0};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

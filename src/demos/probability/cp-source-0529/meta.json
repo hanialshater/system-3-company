@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0529",
+  "title": "Speed up the binding station",
+  "hook": "Two stated cases: explore the movement of a deterministic capacity bottleneck.",
+  "domain": "probability",
+  "concept": "cp-source-0529",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the movement of a deterministic capacity bottleneck affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Capacity, regardless of the stated inputs.",
+  "objective": "Compare the movement of a deterministic capacity bottleneck in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0529.predict",
+      "text": "Three toy serial stations have capacities 10,20,30 units per time, with unlimited buffers. What is the maximum sustainable line throughput?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0529/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #529. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0529.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0529/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #529. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0529.reveal.0",
+      "text": "The retained results are A=10; Capacity=10 and A=25; Capacity=20.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0529/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #529. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0529.reveal.1",
+      "text": "A line cannot sustainably exceed its slowest station. Speeding a nonbinding station does not remove the bottleneck. This comparison isolates the movement of a deterministic capacity bottleneck.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0529/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #529. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0529.case.0.witness",
+      "text": "A=10; Capacity=10",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0529/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #529. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0529.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"A\",10],[\"B\",20],[\"C\",30]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0529/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #529. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0529.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Capacity\",\"value\":10}]},\"metrics\":[{\"label\":\"Capacity\",\"value\":\"10\"},{\"label\":\"A\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0529/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #529. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0529.case.1.witness",
+      "text": "A=25; Capacity=20",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0529/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #529. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0529.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"A\",25],[\"B\",20],[\"C\",30]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0529/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #529. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0529.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Capacity\",\"value\":20}]},\"metrics\":[{\"label\":\"Capacity\",\"value\":\"20\"},{\"label\":\"A\",\"value\":\"25\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0529/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #529. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0529.recall",
+      "text": "Three toy serial stations have capacities 11,20,30 units per time, with unlimited buffers. What is the maximum sustainable line throughput? Answer 11.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0529/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #529. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Three toy serial stations have capacities 11,20,30 units per time, with unlimited buffers. What is the maximum sustainable line throughput?",
+    "options": [
+      "6.6",
+      "15.4",
+      "11"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Capacity 11 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0529",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-529"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 529,
+    "sourceSection": "27. Queueing networks, scheduling & load balancing",
+    "sourceEntryOriginal": "- **529. Find the bottleneck** \\[Predict\\]: guess which station limits a production line, then speed it up and watch the bottleneck move.",
+    "modelBoundary": "the movement of a deterministic capacity bottleneck",
+    "recallInputs": [
+      11,
+      20,
+      30
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

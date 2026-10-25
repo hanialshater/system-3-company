@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0588",
+  "title": "A path begins moving back toward home",
+  "hook": "Two stated cases: explore the one-dimensional U-turn dot-product check.",
+  "domain": "probability",
+  "concept": "cp-source-0588",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the one-dimensional U-turn dot-product check affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Dot, regardless of the stated inputs.",
+  "objective": "Compare the one-dimensional U-turn dot-product check in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0588.predict",
+      "text": "A one-dimensional toy path starts at 0, reaches 2 with Momentum 1. What is (position-start)×momentum?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0588/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #588. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0588.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0588/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #588. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0588.reveal.0",
+      "text": "The retained results are Momentum=1; Dot=2 and Momentum=-1; Dot=-2.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0588/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #588. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0588.reveal.1",
+      "text": "A negative dot product indicates motion back toward the start in this simplified check. Full NUTS uses a trajectory-building and stopping procedure beyond this scalar test. This comparison isolates the one-dimensional U-turn dot-product check.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0588/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #588. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0588.case.0.witness",
+      "text": "Momentum=1; Dot=2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0588/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #588. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0588.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Start\",0],[\"Position\",2],[\"Momentum\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0588/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #588. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0588.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Dot\",\"value\":2}]},\"metrics\":[{\"label\":\"Dot\",\"value\":\"2\"},{\"label\":\"Momentum\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0588/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #588. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0588.case.1.witness",
+      "text": "Momentum=-1; Dot=-2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0588/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #588. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0588.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Start\",0],[\"Position\",2],[\"Momentum\",-1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0588/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #588. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0588.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Dot\",\"value\":-2}]},\"metrics\":[{\"label\":\"Dot\",\"value\":\"-2\"},{\"label\":\"Momentum\",\"value\":\"-1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0588/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #588. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0588.recall",
+      "text": "A one-dimensional toy path starts at 1, reaches 2 with Momentum 1. What is (position-start)×momentum? Answer 1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0588/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #588. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A one-dimensional toy path starts at 1, reaches 2 with Momentum 1. What is (position-start)×momentum?",
+    "options": [
+      "0.6",
+      "1",
+      "1.4"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Dot 1 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0588",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-588"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 588,
+    "sourceSection": "30. MCMC & sampling algorithms",
+    "sourceEntryOriginal": "- **588. The U-turn** \\[Slider\\]: NUTS stops a trajectory once it starts doubling back; watch the tree grow and halt.",
+    "modelBoundary": "the one-dimensional U-turn dot-product check",
+    "recallInputs": [
+      1,
+      2,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

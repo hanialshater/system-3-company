@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0655",
+  "title": "Inducing points change a work proxy",
+  "hook": "Two stated cases: explore the stated dense-versus-approximate operation counts.",
+  "domain": "probability",
+  "concept": "cp-source-0655",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the stated dense-versus-approximate operation counts affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Ratio, regardless of the stated inputs.",
+  "objective": "Compare the stated dense-versus-approximate operation counts in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0655.predict",
+      "text": "Use toy work proxies N³ for a dense GP and N×M² for an approximation with N 10000, M 20. What is the dense-to-approximate work ratio?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0655/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #655. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0655.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0655/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #655. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0655.reveal.0",
+      "text": "The retained results are M=20; Ratio=250,000 and M=100; Ratio=10,000.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0655/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #655. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0655.reveal.1",
+      "text": "Operation-count proxies describe scaling, not measured runtime or approximation accuracy. Inducing-point placement and implementation still matter. This comparison isolates the stated dense-versus-approximate operation counts.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0655/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #655. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0655.case.0.witness",
+      "text": "M=20; Ratio=250,000",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0655/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #655. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0655.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"N\",10000],[\"M\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0655/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #655. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0655.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Ratio\",\"value\":250000}]},\"metrics\":[{\"label\":\"Ratio\",\"value\":\"250,000\"},{\"label\":\"M\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0655/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #655. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0655.case.1.witness",
+      "text": "M=100; Ratio=10,000",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0655/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #655. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0655.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"N\",10000],[\"M\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0655/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #655. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0655.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Ratio\",\"value\":10000}]},\"metrics\":[{\"label\":\"Ratio\",\"value\":\"10,000\"},{\"label\":\"M\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0655/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #655. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0655.recall",
+      "text": "Use toy work proxies N³ for a dense GP and N×M² for an approximation with N 10,001, M 20. What is the dense-to-approximate work ratio? Answer 250,050.003.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0655/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #655. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Use toy work proxies N³ for a dense GP and N×M² for an approximation with N 10,001, M 20. What is the dense-to-approximate work ratio?",
+    "options": [
+      "150,030.002",
+      "350,070.003",
+      "250,050.003"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Ratio 250,050.003 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0655",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-655"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 655,
+    "sourceSection": "33. Gaussian processes & Bayesian optimization",
+    "sourceEntryOriginal": "- **655. Inducing points** \\[Slider\\]: summarize 10,000 points with 20 inducing points and see what's lost.",
+    "modelBoundary": "the stated dense-versus-approximate operation counts",
+    "recallInputs": [
+      10001,
+      20
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

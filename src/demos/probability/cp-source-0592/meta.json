@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0592",
+  "title": "A temperature swap has a ratio",
+  "hook": "Two stated cases: explore the two-energy tempering-swap probability.",
+  "domain": "probability",
+  "concept": "cp-source-0592",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the two-energy tempering-swap probability affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Acceptance, regardless of the stated inputs.",
+  "objective": "Compare the two-energy tempering-swap probability in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0592.predict",
+      "text": "Two toy tempering chains have inverse temperatures 1,0.1 and energies 10,0. What swap acceptance probability follows?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0592/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #592. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0592.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0592/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #592. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0592.reveal.0",
+      "text": "The retained results are ColdEnergy=10 HotEnergy=0; Acceptance=1 and ColdEnergy=0 HotEnergy=10; Acceptance=1.23e-4.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0592/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #592. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0592.reveal.1",
+      "text": "A swap ratio accounts for both temperatures and energies. Hot-chain exploration helps only if information can move between chains. This comparison isolates the two-energy tempering-swap probability.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0592/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #592. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0592.case.0.witness",
+      "text": "ColdEnergy=10 HotEnergy=0; Acceptance=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0592/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #592. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0592.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"ColdBeta\",1],[\"HotBeta\",0.1],[\"ColdEnergy\",10],[\"HotEnergy\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0592/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #592. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0592.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Acceptance\",\"value\":1}]},\"metrics\":[{\"label\":\"Acceptance\",\"value\":\"1\"},{\"label\":\"ColdEnergy\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0592/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #592. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0592.case.1.witness",
+      "text": "ColdEnergy=0 HotEnergy=10; Acceptance=1.23e-4",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0592/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #592. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0592.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"ColdBeta\",1],[\"HotBeta\",0.1],[\"ColdEnergy\",0],[\"HotEnergy\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0592/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #592. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0592.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Acceptance\",\"value\":0.00012340980408667956}]},\"metrics\":[{\"label\":\"Acceptance\",\"value\":\"1.23e-4\"},{\"label\":\"ColdEnergy\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0592/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #592. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0592.recall",
+      "text": "Two toy tempering chains have inverse temperatures 1,0.5 and energies 0,2. What swap acceptance probability follows? Answer 0.368.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0592/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #592. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two toy tempering chains have inverse temperatures 1,0.5 and energies 0,2. What swap acceptance probability follows?",
+    "options": [
+      "0.221",
+      "0.515",
+      "0.368"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Acceptance 0.368 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0592",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-592"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 592,
+    "sourceSection": "30. MCMC & sampling algorithms",
+    "sourceEntryOriginal": "- **592. Parallel tempering** \\[Slider\\]: hot chains roam freely and swap states with cold ones, crossing between modes.",
+    "modelBoundary": "the two-energy tempering-swap probability",
+    "recallInputs": [
+      1,
+      0.5,
+      0,
+      2
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

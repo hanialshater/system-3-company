@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0559", "title": "First hit within a finite horizon", "op": "hitbarrier", "labels": ["Steps", "Barrier", "P"], "outputs": ["Hit"], "a": [20.0, 3.0, 0.5], "b": [100.0, 3.0, 0.5], "question": "A toy ±1 walk starts at zero, steps up with probability 0.5. What is probability of first reaching positive Barrier 3 within 20 steps?", "questionTemplate": "A toy ±1 walk starts at zero, steps up with probability {P}. What is probability of first reaching positive Barrier {Barrier} within {Steps} steps?", "explain": "Absorbing the first-hit mass answers a path event, not just endpoint position. This finite lattice model is not an exact Brownian first-passage distribution.", "lens": "the absorbing finite-lattice analogue of first passage", "kind": "grid", "answerPosition": 1};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

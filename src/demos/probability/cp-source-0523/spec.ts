@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0523", "title": "Few jobs can mean much outstanding work", "op": "workroute", "labels": ["CountA", "WorkA", "CountB", "WorkB", "ByWork"], "outputs": ["Wait"], "a": [1.0, 100.0, 5.0, 10.0, 0.0], "b": [1.0, 100.0, 5.0, 10.0, 1.0], "question": "Toy queues A/B have counts 1/5, outstanding work 100/10. ByWork 0=1 picks less work; 0 picks fewer jobs. What chosen workload results?", "questionTemplate": "Toy queues A/B have counts {CountA}/{CountB}, outstanding work {WorkA}/{WorkB}. ByWork {ByWork}=1 picks less work; 0 picks fewer jobs. What chosen workload results?", "explain": "Job counts can hide unequal sizes. Least outstanding work and least connections need not select the same server.", "lens": "job counts versus remaining workload", "kind": "grid", "answerPosition": 1};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

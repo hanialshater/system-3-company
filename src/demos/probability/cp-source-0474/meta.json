@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0474",
+  "title": "Change a stipulated sentiment feature",
+  "hook": "Two stated cases: explore a fixed structural decoder rather than a retrained model.",
+  "domain": "probability",
+  "concept": "cp-source-0474",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How a fixed structural decoder rather than a retrained model affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Counterfactual, regardless of the stated inputs.",
+  "objective": "Compare a fixed structural decoder rather than a retrained model in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0474.predict",
+      "text": "Toy Y=Slope 2×X+U. Observe X=1,Y=5; hold inferred U fixed and intervene X=-1. What counterfactual Y results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0474/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #474. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0474.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0474/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #474. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0474.reveal.0",
+      "text": "The retained results are NewX=-1; Counterfactual=1 and NewX=2; Counterfactual=7.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0474/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #474. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0474.reveal.1",
+      "text": "Infer the disturbance from the observation, change the assigned cause, and reuse that disturbance. The answer depends on this specified structural model. This comparison isolates a fixed structural decoder rather than a retrained model.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0474/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #474. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0474.case.0.witness",
+      "text": "NewX=-1; Counterfactual=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0474/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #474. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0474.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Slope\",2],[\"ObservedX\",1],[\"ObservedY\",5],[\"NewX\",-1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0474/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #474. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0474.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"x\",\"label\":\"X\",\"x\":40,\"y\":130},{\"id\":\"m\",\"label\":\"U\",\"x\":160,\"y\":40},{\"id\":\"y\",\"label\":\"Y\",\"x\":280,\"y\":130}],\"edges\":[{\"from\":\"x\",\"to\":\"y\",\"active\":true},{\"from\":\"m\",\"to\":\"y\",\"active\":true}]},\"metrics\":[{\"label\":\"Counterfactual\",\"value\":\"1\"},{\"label\":\"NewX\",\"value\":\"-1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0474/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #474. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0474.case.1.witness",
+      "text": "NewX=2; Counterfactual=7",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0474/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #474. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0474.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Slope\",2],[\"ObservedX\",1],[\"ObservedY\",5],[\"NewX\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0474/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #474. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0474.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"x\",\"label\":\"X\",\"x\":40,\"y\":130},{\"id\":\"m\",\"label\":\"U\",\"x\":160,\"y\":40},{\"id\":\"y\",\"label\":\"Y\",\"x\":280,\"y\":130}],\"edges\":[{\"from\":\"x\",\"to\":\"y\",\"active\":true},{\"from\":\"m\",\"to\":\"y\",\"active\":true}]},\"metrics\":[{\"label\":\"Counterfactual\",\"value\":\"7\"},{\"label\":\"NewX\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0474/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #474. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0474.recall",
+      "text": "Toy Y=Slope 3×X+U. Observe X=1,Y=5; hold inferred U fixed and intervene X=-1. What counterfactual Y results? Answer -1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0474/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #474. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy Y=Slope 3×X+U. Observe X=1,Y=5; hold inferred U fixed and intervene X=-1. What counterfactual Y results?",
+    "options": [
+      "-1.4",
+      "-1",
+      "-0.6"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Counterfactual -1 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0474",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-474"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 474,
+    "sourceSection": "24. Causal discovery & causal ML",
+    "sourceEntryOriginal": "- **474. Counterfactual augmentation** \\[Slider\\]: flip a review's sentiment words but not its topic, and retrain to cut shortcuts.",
+    "modelBoundary": "a fixed structural decoder rather than a retrained model",
+    "recallInputs": [
+      3,
+      1,
+      5,
+      -1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

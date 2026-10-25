@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0584", "title": "The starting state fades with steps", "op": "mixingtv", "labels": ["A", "B", "Start", "Steps"], "outputs": ["TV", "Gap"], "a": [0.2, 0.3, 1.0, 0.0], "b": [0.2, 0.3, 1.0, 100.0], "question": "A toy two-state chain transitions 0→1 with A 0.2, 1→0 with B 0.3; initial P(1) 1. After 0 steps, what is total-variation distance from stationarity?", "questionTemplate": "A toy two-state chain transitions 0→1 with A {A}, 1→0 with B {B}; initial P(1) {Start}. After {Steps} steps, what is total-variation distance from stationarity?", "explain": "The nontrivial eigenvalue controls the transient distance in this two-state model. A stationary distribution can exist even when periodicity prevents convergence.", "lens": "the finite-time transient in a specified chain", "kind": "grid", "answerPosition": 2};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

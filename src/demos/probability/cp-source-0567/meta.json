@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0567",
+  "title": "Forward and reverse stationary flow",
+  "hook": "Two stated cases: explore detailed balance in a specified two-state chain.",
+  "domain": "probability",
+  "concept": "cp-source-0567",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How detailed balance in a specified two-state chain affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Forward, regardless of the stated inputs.",
+  "objective": "Compare detailed balance in a specified two-state chain in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0567.predict",
+      "text": "A toy two-state chain has transition chances A 0.2 and B 0.4. At stationarity, what probability flow goes 0→1 per step?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0567/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #567. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0567.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0567/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #567. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0567.reveal.0",
+      "text": "The retained results are A=0.2; Forward=0.133 and A=0.3; Forward=0.171.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0567/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #567. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0567.reveal.1",
+      "text": "The forward and reverse stationary flows agree here. Detailed balance is stronger than merely having an invariant distribution in a general chain. This comparison isolates detailed balance in a specified two-state chain.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0567/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #567. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0567.case.0.witness",
+      "text": "A=0.2; Forward=0.133",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0567/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #567. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0567.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"A\",0.2],[\"B\",0.4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0567/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #567. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0567.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Forward\",\"value\":0.13333333333333333},{\"label\":\"Reverse\",\"value\":0.13333333333333333}]},\"metrics\":[{\"label\":\"Forward\",\"value\":\"0.133\"},{\"label\":\"A\",\"value\":\"0.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0567/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #567. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0567.case.1.witness",
+      "text": "A=0.3; Forward=0.171",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0567/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #567. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0567.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"A\",0.3],[\"B\",0.4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0567/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #567. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0567.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Forward\",\"value\":0.17142857142857143},{\"label\":\"Reverse\",\"value\":0.17142857142857143}]},\"metrics\":[{\"label\":\"Forward\",\"value\":\"0.171\"},{\"label\":\"A\",\"value\":\"0.3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0567/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #567. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0567.recall",
+      "text": "A toy two-state chain has transition chances A 0.3 and B 0.4. At stationarity, what probability flow goes 0→1 per step? Answer 0.171.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0567/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #567. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy two-state chain has transition chances A 0.3 and B 0.4. At stationarity, what probability flow goes 0→1 per step?",
+    "options": [
+      "0.071",
+      "0.171",
+      "0.271"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Forward 0.171 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0567",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-567"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 567,
+    "sourceSection": "29. Markov chains, mixing & PageRank",
+    "sourceEntryOriginal": "- **567. Detailed balance** \\[Slider\\]: flows between each pair of states cancel, a property that MCMC relies on.",
+    "modelBoundary": "detailed balance in a specified two-state chain",
+    "recallInputs": [
+      0.30000000000000004,
+      0.4
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

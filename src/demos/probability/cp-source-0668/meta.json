@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0668",
+  "title": "Curvature changes a predicted mean",
+  "hook": "Two stated cases: explore the exact transformed moment versus a mean linearization.",
+  "domain": "probability",
+  "concept": "cp-source-0668",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the exact transformed moment versus a mean linearization affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Expected, regardless of the stated inputs.",
+  "objective": "Compare the exact transformed moment versus a mean linearization in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0668.predict",
+      "text": "A toy normal X has Mean 0, Variance 1; transform Y=X². Linearized 1=1 plugs in the mean, 0 uses the exact moment. What predicted mean results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0668/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #668. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0668.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0668/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #668. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0668.reveal.0",
+      "text": "The retained results are Linearized=1; Expected=0 and Linearized=0; Expected=1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0668/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #668. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0668.reveal.1",
+      "text": "Curvature can make transforming the mean differ from averaging the transformed variable. This moment example isolates one limitation of linearization. This comparison isolates the exact transformed moment versus a mean linearization.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0668/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #668. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0668.case.0.witness",
+      "text": "Linearized=1; Expected=0",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0668/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #668. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0668.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Mean\",0],[\"Variance\",1],[\"Linearized\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0668/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #668. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0668.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Expected\",\"value\":0},{\"label\":\"ExactVariance\",\"value\":2}]},\"metrics\":[{\"label\":\"Expected\",\"value\":\"0\"},{\"label\":\"Linearized\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0668/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #668. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0668.case.1.witness",
+      "text": "Linearized=0; Expected=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0668/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #668. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0668.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Mean\",0],[\"Variance\",1],[\"Linearized\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0668/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #668. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0668.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Expected\",\"value\":1},{\"label\":\"ExactVariance\",\"value\":2}]},\"metrics\":[{\"label\":\"Expected\",\"value\":\"1\"},{\"label\":\"Linearized\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0668/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #668. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0668.recall",
+      "text": "A toy normal X has Mean 1, Variance 1; transform Y=X². Linearized 1=1 plugs in the mean, 0 uses the exact moment. What predicted mean results? Answer 1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0668/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #668. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy normal X has Mean 1, Variance 1; transform Y=X². Linearized 1=1 plugs in the mean, 0 uses the exact moment. What predicted mean results?",
+    "options": [
+      "1",
+      "0.6",
+      "1.4"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Expected 1 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0668",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-668"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 668,
+    "sourceSection": "34. State-space models, Kalman & particle filters",
+    "sourceEntryOriginal": "- **668. Curved motion** \\[Split\\]: extended and unscented Kalman filters track a turning target with different errors.",
+    "modelBoundary": "the exact transformed moment versus a mean linearization",
+    "recallInputs": [
+      1,
+      1,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

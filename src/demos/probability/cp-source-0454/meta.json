@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0454",
+  "title": "A shortcut can raise equilibrium time",
+  "hook": "Two stated cases: explore selfish routing on the specified symmetric network.",
+  "domain": "probability",
+  "concept": "cp-source-0454",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How selfish routing on the specified symmetric network affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Cost, regardless of the stated inputs.",
+  "objective": "Compare selfish routing on the specified symmetric network in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0454.predict",
+      "text": "Toy traffic Flow 4000 splits over two symmetric routes, each with one x/Scale 100 edge and Fixed 45 edge. Shortcut 0=1 joins the two variable edges at zero cost. What is selfish-equilibrium travel cost?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0454/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #454. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0454.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0454/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #454. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0454.reveal.0",
+      "text": "The retained results are Shortcut=0; Cost=65 and Shortcut=1; Cost=80.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0454/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #454. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0454.reveal.1",
+      "text": "The zero-cost link can change route choices and raise the equilibrium cost. This is the specified nonatomic symmetric network, not a claim about every new road. This comparison isolates selfish routing on the specified symmetric network.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0454/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #454. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0454.case.0.witness",
+      "text": "Shortcut=0; Cost=65",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0454/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #454. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0454.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Flow\",4000],[\"Fixed\",45],[\"Scale\",100],[\"Shortcut\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0454/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #454. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0454.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"s\",\"label\":\"Start\",\"x\":20,\"y\":85},{\"id\":\"b\",\"label\":\"B\",\"x\":110,\"y\":20},{\"id\":\"c\",\"label\":\"C\",\"x\":210,\"y\":150},{\"id\":\"t\",\"label\":\"End\",\"x\":300,\"y\":85}],\"edges\":[{\"from\":\"s\",\"to\":\"b\",\"label\":\"x/100\",\"active\":true},{\"from\":\"b\",\"to\":\"t\",\"label\":\"45\",\"active\":true},{\"from\":\"s\",\"to\":\"c\",\"label\":\"45\",\"active\":true},{\"from\":\"c\",\"to\":\"t\",\"label\":\"x/100\",\"active\":true},{\"from\":\"b\",\"to\":\"c\",\"label\":\"0\",\"active\":false}]},\"metrics\":[{\"label\":\"Cost\",\"value\":\"65\"},{\"label\":\"Shortcut\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0454/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #454. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0454.case.1.witness",
+      "text": "Shortcut=1; Cost=80",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0454/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #454. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0454.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Flow\",4000],[\"Fixed\",45],[\"Scale\",100],[\"Shortcut\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0454/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #454. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0454.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"s\",\"label\":\"Start\",\"x\":20,\"y\":85},{\"id\":\"b\",\"label\":\"B\",\"x\":110,\"y\":20},{\"id\":\"c\",\"label\":\"C\",\"x\":210,\"y\":150},{\"id\":\"t\",\"label\":\"End\",\"x\":300,\"y\":85}],\"edges\":[{\"from\":\"s\",\"to\":\"b\",\"label\":\"x/100\",\"active\":true},{\"from\":\"b\",\"to\":\"t\",\"label\":\"45\",\"active\":true},{\"from\":\"s\",\"to\":\"c\",\"label\":\"45\",\"active\":true},{\"from\":\"c\",\"to\":\"t\",\"label\":\"x/100\",\"active\":true},{\"from\":\"b\",\"to\":\"c\",\"label\":\"0\",\"active\":true}]},\"metrics\":[{\"label\":\"Cost\",\"value\":\"80\"},{\"label\":\"Shortcut\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0454/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #454. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0454.recall",
+      "text": "Toy traffic Flow 4,001 splits over two symmetric routes, each with one x/Scale 100 edge and Fixed 45 edge. Shortcut 0=1 joins the two variable edges at zero cost. What is selfish-equilibrium travel cost? Answer 65.005.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0454/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #454. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy traffic Flow 4,001 splits over two symmetric routes, each with one x/Scale 100 edge and Fixed 45 edge. Shortcut 0=1 joins the two variable edges at zero cost. What is selfish-equilibrium travel cost?",
+    "options": [
+      "39.003",
+      "91.007",
+      "65.005"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Cost 65.005 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0454",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-454"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 454,
+    "sourceSection": "23. Time, feedback loops & interference",
+    "sourceEntryOriginal": "- **454. Braess's paradox** \\[Gotcha\\]: adding a road to a network can make everyone's commute slower.",
+    "modelBoundary": "selfish routing on the specified symmetric network",
+    "recallInputs": [
+      4001,
+      45,
+      100,
+      0
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

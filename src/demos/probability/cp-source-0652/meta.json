@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0652",
+  "title": "A tasting-score acquisition value",
+  "hook": "Two stated cases: explore the expected-improvement ingredient of a recipe-search analogy.",
+  "domain": "probability",
+  "concept": "cp-source-0652",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the expected-improvement ingredient of a recipe-search analogy affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Improvement, regardless of the stated inputs.",
+  "objective": "Compare the expected-improvement ingredient of a recipe-search analogy in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0652.predict",
+      "text": "A toy normal objective at one candidate has Mean 7, SD 2; current Best 8. What is expected positive improvement over the best?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0652/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #652. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0652.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0652/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #652. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0652.reveal.0",
+      "text": "The retained results are Mean=7 SD=2; Improvement=0.396 and Mean=8 SD=0.1; Improvement=0.04.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0652/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #652. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0652.reveal.1",
+      "text": "Expected improvement combines the chance and size of beating the current best. The normal predictive distribution and current best are explicit assumptions. This comparison isolates the expected-improvement ingredient of a recipe-search analogy.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0652/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #652. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0652.case.0.witness",
+      "text": "Mean=7 SD=2; Improvement=0.396",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0652/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #652. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0652.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Mean\",7],[\"SD\",2],[\"Best\",8]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0652/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #652. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0652.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Improvement\",\"value\":0.3955931148030962}]},\"metrics\":[{\"label\":\"Improvement\",\"value\":\"0.396\"},{\"label\":\"Mean\",\"value\":\"7\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0652/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #652. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0652.case.1.witness",
+      "text": "Mean=8 SD=0.1; Improvement=0.04",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0652/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #652. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0652.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Mean\",8],[\"SD\",0.1],[\"Best\",8]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0652/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #652. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0652.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Improvement\",\"value\":0.039894228040143274}]},\"metrics\":[{\"label\":\"Improvement\",\"value\":\"0.04\"},{\"label\":\"Mean\",\"value\":\"8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0652/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #652. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0652.recall",
+      "text": "A toy normal objective at one candidate has Mean 8, SD 2; current Best 8. What is expected positive improvement over the best? Answer 0.798.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0652/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #652. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy normal objective at one candidate has Mean 8, SD 2; current Best 8. What is expected positive improvement over the best?",
+    "options": [
+      "0.479",
+      "1.117",
+      "0.798"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Improvement 0.798 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0652",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-652"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 652,
+    "sourceSection": "33. Gaussian processes & Bayesian optimization",
+    "sourceEntryOriginal": "- **652. Optimized cookies** \\[Story\\]: Google used Bayesian optimization to tune a chocolate chip cookie recipe through tasting rounds (Kochanski et al., 2017).",
+    "modelBoundary": "the expected-improvement ingredient of a recipe-search analogy",
+    "recallInputs": [
+      8,
+      2,
+      8
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

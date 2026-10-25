@@ -1,0 +1,154 @@
+{
+  "slug": "cp-source-0635",
+  "title": "Few students leave a noisy teacher score",
+  "hook": "Two stated cases: explore the information weight under a stipulated teacher-effect prior.",
+  "domain": "probability",
+  "concept": "cp-source-0635",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the information weight under a stipulated teacher-effect prior affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Posterior, regardless of the stated inputs.",
+  "objective": "Compare the information weight under a stipulated teacher-effect prior in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0635.predict",
+      "text": "Toy group mean 5 comes from N 10 observations of variance 100. A normal prior has Grand mean 0, GroupVar 1. What posterior mean results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0635/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #635. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0635.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0635/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #635. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0635.reveal.0",
+      "text": "The retained results are N=10; Posterior=0.455 and N=1,000; Posterior=4.545.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0635/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #635. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0635.reveal.1",
+      "text": "Small or noisy groups borrow more from the stipulated population prior. Hyperparameter uncertainty is held fixed in this elementary update. This comparison isolates the information weight under a stipulated teacher-effect prior.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0635/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #635. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0635.case.0.witness",
+      "text": "N=10; Posterior=0.455",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0635/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #635. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0635.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Grand\",0],[\"Group\",5],[\"N\",10],[\"NoiseVar\",100],[\"GroupVar\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0635/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #635. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0635.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Posterior\",\"value\":0.45454545454545453},{\"label\":\"Weight\",\"value\":0.09090909090909091}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"0.455\"},{\"label\":\"N\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0635/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #635. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0635.case.1.witness",
+      "text": "N=1,000; Posterior=4.545",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0635/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #635. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0635.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Grand\",0],[\"Group\",5],[\"N\",1000],[\"NoiseVar\",100],[\"GroupVar\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0635/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #635. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0635.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Posterior\",\"value\":4.545454545454545},{\"label\":\"Weight\",\"value\":0.9090909090909091}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"4.545\"},{\"label\":\"N\",\"value\":\"1,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0635/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #635. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0635.recall",
+      "text": "Toy group mean 5 comes from N 10 observations of variance 100. A normal prior has Grand mean 1, GroupVar 1. What posterior mean results? Answer 1.364.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0635/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #635. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy group mean 5 comes from N 10 observations of variance 100. A normal prior has Grand mean 1, GroupVar 1. What posterior mean results?",
+    "options": [
+      "1.364",
+      "0.818",
+      "1.909"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Posterior 1.364 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0635",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-635"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 635,
+    "sourceSection": "32. Hierarchical & multilevel models",
+    "sourceEntryOriginal": "- **635. Teacher value-added** \\[Slider\\]: shrinking estimates for teachers with few students tames wild rankings.",
+    "modelBoundary": "the information weight under a stipulated teacher-effect prior",
+    "recallInputs": [
+      1,
+      5,
+      10,
+      100,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0631",
+  "title": "The same standardized latent coordinate",
+  "hook": "Two stated cases: explore the nonlinear scale mapping in a noncentered parameterization.",
+  "domain": "probability",
+  "concept": "cp-source-0631",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the nonlinear scale mapping in a noncentered parameterization affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines X, regardless of the stated inputs.",
+  "objective": "Compare the nonlinear scale mapping in a noncentered parameterization in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0631.predict",
+      "text": "A toy funnel coordinate is X=exp(V/2)×Z. With V -4, Z 1, what X results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0631/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #631. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0631.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0631/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #631. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0631.reveal.0",
+      "text": "The retained results are V=-4; X=0.135 and V=2; X=2.718.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0631/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #631. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0631.reveal.1",
+      "text": "The same standardized coordinate maps into very different scales across the funnel. Reparameterizing changes geometry without creating new data. This comparison isolates the nonlinear scale mapping in a noncentered parameterization.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0631/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #631. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0631.case.0.witness",
+      "text": "V=-4; X=0.135",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0631/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #631. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0631.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"V\",-4],[\"Z\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0631/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #631. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0631.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"X\",\"value\":0.1353352832366127},{\"label\":\"SD\",\"value\":0.1353352832366127}]},\"metrics\":[{\"label\":\"X\",\"value\":\"0.135\"},{\"label\":\"V\",\"value\":\"-4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0631/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #631. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0631.case.1.witness",
+      "text": "V=2; X=2.718",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0631/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #631. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0631.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"V\",2],[\"Z\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0631/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #631. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0631.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"X\",\"value\":2.718281828459045},{\"label\":\"SD\",\"value\":2.718281828459045}]},\"metrics\":[{\"label\":\"X\",\"value\":\"2.718\"},{\"label\":\"V\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0631/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #631. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0631.recall",
+      "text": "A toy funnel coordinate is X=exp(V/2)×Z. With V -3, Z 1, what X results? Answer 0.223.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0631/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #631. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy funnel coordinate is X=exp(V/2)×Z. With V -3, Z 1, what X results?",
+    "options": [
+      "0.123",
+      "0.323",
+      "0.223"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives X 0.223 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0631",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-631"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 631,
+    "sourceSection": "32. Hierarchical & multilevel models",
+    "sourceEntryOriginal": "- **631. Fixing the funnel** \\[Split\\]: the same model in centered and non-centered form; one samples cleanly.",
+    "modelBoundary": "the nonlinear scale mapping in a noncentered parameterization",
+    "recallInputs": [
+      -3,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

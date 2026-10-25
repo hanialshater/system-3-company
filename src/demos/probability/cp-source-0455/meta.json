@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0455",
+  "title": "A holiday changes both groups",
+  "hook": "Two stated cases: explore the seasonal comparison removed by a control trend.",
+  "domain": "probability",
+  "concept": "cp-source-0455",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the seasonal comparison removed by a control trend affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Estimate, regardless of the stated inputs.",
+  "objective": "Compare the seasonal comparison removed by a control trend in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0455.predict",
+      "text": "Toy treated outcomes move 100→150; controls move 100→140. What difference-in-differences results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0455/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #455. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0455.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0455/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #455. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0455.reveal.0",
+      "text": "The retained results are CAfter=140; Estimate=10 and CAfter=100; Estimate=50.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0455/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #455. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0455.reveal.1",
+      "text": "The arithmetic removes the control change. Interpreting it causally requires parallel untreated trends and other design assumptions. This comparison isolates the seasonal comparison removed by a control trend.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0455/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #455. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0455.case.0.witness",
+      "text": "CAfter=140; Estimate=10",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0455/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #455. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0455.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"TBefore\",100],[\"TAfter\",150],[\"CBefore\",100],[\"CAfter\",140]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0455/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #455. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0455.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Estimate\",\"value\":10}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"10\"},{\"label\":\"CAfter\",\"value\":\"140\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0455/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #455. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0455.case.1.witness",
+      "text": "CAfter=100; Estimate=50",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0455/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #455. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0455.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"TBefore\",100],[\"TAfter\",150],[\"CBefore\",100],[\"CAfter\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0455/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #455. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0455.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Estimate\",\"value\":50}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"50\"},{\"label\":\"CAfter\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0455/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #455. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0455.recall",
+      "text": "Toy treated outcomes move 101→150; controls move 100→140. What difference-in-differences results? Answer 9.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0455/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #455. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy treated outcomes move 101→150; controls move 100→140. What difference-in-differences results?",
+    "options": [
+      "9",
+      "5.4",
+      "12.6"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Estimate 9 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0455",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-455"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 455,
+    "sourceSection": "23. Time, feedback loops & interference",
+    "sourceEntryOriginal": "- **455. Seasonal confounding** \\[Slider\\]: a campaign launched in December looks great because of Christmas.",
+    "modelBoundary": "the seasonal comparison removed by a control trend",
+    "recallInputs": [
+      101,
+      150,
+      100,
+      140
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0582",
+  "title": "A large proposal can be rejected",
+  "hook": "Two stated cases: explore the acceptance ratio under a symmetric standard-normal proposal.",
+  "domain": "probability",
+  "concept": "cp-source-0582",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the acceptance ratio under a symmetric standard-normal proposal affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Acceptance, regardless of the stated inputs.",
+  "objective": "Compare the acceptance ratio under a symmetric standard-normal proposal in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0582.predict",
+      "text": "A symmetric toy Metropolis proposal moves from 0 to 0.1 under a standard-normal target. What is acceptance probability?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0582/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #582. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0582.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0582/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #582. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0582.reveal.0",
+      "text": "The retained results are Proposed=0.1; Acceptance=0.995 and Proposed=3; Acceptance=0.011.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0582/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #582. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0582.reveal.1",
+      "text": "Acceptance compares target densities because proposal terms cancel here. High acceptance alone does not establish rapid exploration. This comparison isolates the acceptance ratio under a symmetric standard-normal proposal.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0582/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #582. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0582.case.0.witness",
+      "text": "Proposed=0.1; Acceptance=0.995",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0582/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #582. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0582.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Current\",0],[\"Proposed\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0582/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #582. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0582.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Acceptance\",\"value\":0.9950124791926823}]},\"metrics\":[{\"label\":\"Acceptance\",\"value\":\"0.995\"},{\"label\":\"Proposed\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0582/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #582. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0582.case.1.witness",
+      "text": "Proposed=3; Acceptance=0.011",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0582/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #582. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0582.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Current\",0],[\"Proposed\",3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0582/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #582. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0582.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Acceptance\",\"value\":0.011108996538242306}]},\"metrics\":[{\"label\":\"Acceptance\",\"value\":\"0.011\"},{\"label\":\"Proposed\",\"value\":\"3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0582/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #582. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0582.recall",
+      "text": "A symmetric toy Metropolis proposal moves from 1 to 0.1 under a standard-normal target. What is acceptance probability? Answer 1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0582/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #582. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A symmetric toy Metropolis proposal moves from 1 to 0.1 under a standard-normal target. What is acceptance probability?",
+    "options": [
+      "0.6",
+      "1",
+      "1.4"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Acceptance 1 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0582",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-582"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 582,
+    "sourceSection": "30. MCMC & sampling algorithms",
+    "sourceEntryOriginal": "- **582. Step size** \\[Slider\\]: tiny steps crawl, huge steps get rejected; find the sweet spot by the acceptance meter.",
+    "modelBoundary": "the acceptance ratio under a symmetric standard-normal proposal",
+    "recallInputs": [
+      1,
+      0.1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}
