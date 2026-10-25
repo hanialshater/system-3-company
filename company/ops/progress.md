@@ -1,3 +1,13 @@
+## 2026-10-25 · qa-tester · W-2037 QA of math/euclid-three-steps v2
+
+- **Changed:** `company/reviews/euclid-three-steps/2026-10-25-qa-v2.md` (hand run, sequence probe, contract), `2026-10-25-qa.md` (company qa-record, contract), both linked in the lesson's `evidence.qa`. No lesson or test edits.
+- **Result: pass.** Contract 2/2 (phone, desktop, 0 retries). Sequence probe: 7 PASS on each viewport; four-cards FAIL at 390 only (padded to 4 steps the titles wrap to 72 px; the lesson has 3 cards, so it is W-601's call, not a defect of the lesson).
+- **Hand run found no defect, four minor observations:** a double tap on "Next: Add 1" lands on card 3; at 844x390 the controls sit below the stage window; keyboard focus drops to BODY after a list chip press and to page start after Lock it in; the locked reveal says only "Try it first" (Multiply needs the 2 to 13 list). Reveal text matched the stage on every path, including a list change after the reveal.
+- **Believe:** fairly sure of the above on Chromium at 390x844, 360x640, 844x390, 1280x800. WebKit, reduced motion, dark mode and feed swipe-away not run.
+- **Caveat:** built from 347059b15 with `next build --webpack`; the build exited 1 at the end on a Next.js security-advisory check after compile and static generation had finished, and the output served fine. `npm run check`: 810 errors, same baseline.
+- **Next:** interaction-designer to decide O1 to O4 and W-601 (four-cards); evaluation-steward owns the probe's four-cards rule.
+- **Blocked:** nothing.
+
 ## 2026-10-25 · category-curator (math) · W-2043 flatten-the-cube-to-a-dot: new removal order in the brief
 
 - **Changed:** `src/demos/math/flatten-the-cube-to-a-dot/meta.json` (meta fields only; Demo.tsx untouched, W-2044 builds in parallel): claim c5 `source` now cites the spec's removal order (company/design/specs/flatten-the-cube-to-a-dot.md, mockup ORDER): 5 regions, 7 corners, first corner on press 3, corner 4 is the dot. `brief.subCards[2].picture` describes that order and the 12-cell strip. New `brief.revealToldDecision` answers the interaction-designer's open question. `company/domains/briefs/checks/math-lane-m-euler-check.mjs` uses the new order and now throws if the order breaks (no merges, total 1 throughout, 5/7 split, press 3, dot = corner 4). All claims stay unverified; learner text unchanged. W-2043 done.
